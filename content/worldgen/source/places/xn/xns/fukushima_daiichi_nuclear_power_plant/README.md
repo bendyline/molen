@@ -1,0 +1,13 @@
+# Fukushima Daiichi Nuclear Power Plant
+
+A bounded, approximate 2021 representation of the six main reactor and turbine groups, remaining damaged reactor bodies, Unit 3/4 fuel-removal covers and western turbine service wings, and all four original exhaust systems. The later Units 1/2 stack is capped at 59 m. Seventeen independently approved geographic assets cover these twenty physical scope items. Seven accepted circa-1971 variants remain available as a separate phase; they are not mixed into the later view. The collection has 24 assets in total, no aggregate GLB and no duplicate plant-wide placement.
+
+The collection is complete for this main power-block scope. It does not claim a survey of the entire 350 ha site, peripheral administrative, storage or waste-processing buildings, tank and equipment inventories, docks, landscaping or interiors. The central ventilation exhaust stack is included; this does not imply that its separate waste-processing building is modeled. `route-coverage.json` records 27 bounded identity membership tests: twenty later scope items plus seven historical variants. These are not geometry rays or a full native-feature census.
+
+Original member envelopes, positions, headings, floors, sections, fields and reviews are unchanged. Their source-specific estimates remain explicit. The two northern reactor forms dated May 2021 and other forms dated 2019 are carried into the approximate March 2021 preview with unverified continuity. Demolition details, roof heights, platform counts, lattice sections, finishes and some stack identities/positions remain approximate. No contemporary appearance imagery is implied by the early public-domain DOE photographs.
+
+Each member keeps its own original DEM datum; these do not form a shared surveyed OP datum. Relative building and cover-bearing heights remain approximate. The original 2048 m whole-complex terrain also remains unchanged, including coastal void artifacts and an extreme offshore minimum of -15798.5455 m; this is not a bathymetric measurement. Some bases are buried or locally exposed by the source relief. No field, frame, floor or section was fitted to improve a render.
+
+`collection-review.json` binds all existing approvals and four current group views: whole oblique, north-up, southern blocks and northern blocks. The new views establish integration and coverage without reopening accepted per-member reviews. Bulk renders stay local. Regenerate with `node content/worldgen/source/places/xn/xns/fukushima_daiichi_nuclear_power_plant/generate-collection-scene.mjs`; `--check` verifies the saved assembly and scene.
+
+[Qualla story](https://qualla.com/fukushima-daiichi-nuclear-power-plant/)

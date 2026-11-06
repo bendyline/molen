@@ -1,0 +1,102 @@
+{
+  "format": "molen/structure-map-frame@1",
+  "candidateId": "QS-73fe16470c60",
+  "title": "Murchison Widefield Array Phase-I antenna tile",
+  "anchor": [
+    116.6692851,
+    -26.70094317
+  ],
+  "heading": 0,
+  "coordinateSpace": "model-local-xz",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "axis": "+X east,+Z south,+Y up; originalcorneranchored, cardinal5m screen.",
+  "source": "Original operator MWA Tile Coordinates.xlsx /128T tiles worksheet, originalLat/Long South-West corners andreported5m groundscreen. No photographicmap/diagram adopted.",
+  "sourceUrl": "https://mwatelescope.atlassian.net/wiki/spaces/MP/pages/24973313/Telescope+Configurations",
+  "identityStatus": "Original Phase-I tile11 southwestcorner, withall128 distinctoriginaltilerows, notobservatorycentroid/ASKAPdish/currentPhase-IIhexarray.",
+  "geometryLabel": "Derivedfourcorner5m screen envelope from originaloperatorSWcorner andwrittenphysicalsize; not originalsurveyedfourcornerpolygon.",
+  "geometry": {
+    "polygons": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          -5
+        ],
+        [
+          0,
+          -5
+        ]
+      ]
+    ],
+    "point": [
+      0,
+      0
+    ]
+  },
+  "features": [
+    {
+      "id": "mwa-phase1-tile-11",
+      "role": "original-operator-128T-tile11-southwest-point-with-derived5m-screen-envelope",
+      "points": [
+        [
+          0,
+          0
+        ]
+      ],
+      "properties": {
+        "tile": "11",
+        "coordinateRole": "southwest-corner",
+        "screenSizeMeters": 5
+      }
+    }
+  ],
+  "mappedIdentity": {
+    "name": "Murchison Widefield Array tile11",
+    "parentCollection": "murchison_radio_astronomy_observatory",
+    "nativeSource": {
+      "path": "native-map/original-phase1-tile-corners.json",
+      "hash": "sha256:1d63f49fe0c146015defb5b67123378abfd3e4ae44adaf3b726811f45ec6e610"
+    },
+    "derivedEnvelope": {
+      "kind": "reported5m-groundscreen-from-originalSWcorner",
+      "nativePointControls": 1,
+      "derivedCorners": 4,
+      "notMappedFoundationPolygon": true
+    }
+  },
+  "orientationControl": {
+    "status": "reviewed-approximation",
+    "reviewedOn": "2026-11-01",
+    "headingRadians": 0,
+    "uncertaintyDegrees": 2,
+    "basis": "Primary2013systemdescription specifiesalignedwithin2degreesnorth-south/east-west. Cardinalillustrationretained; not surveyedper-tileorientation.",
+    "referencePages": [
+      "https://www.mwatelescope.org/telescope/technology/"
+    ]
+  },
+  "terrainContact": {
+    "local": [
+      0,
+      0
+    ],
+    "modelY": 0,
+    "basis": "OriginaloperatorSWcorner fixedbeforeindependentfield/floors/mainsections. ReportedGPSaltitude notmixedwithproviderdatum; directgroundscreencontactisapproximate."
+  },
+  "historicalAppearance": {
+    "representedDate": "2013-12-31",
+    "validFrom": "2013-01-01",
+    "validUntil": "2014-01-01"
+  },
+  "notes": "Whole 2013 Phase-I MWA tile: entire 5x5m open wire ground screen, all16 crossed vertical bowtie dipoles in4x4 grid at1.1m, dielectricfeet/LNAhubs, intrinsicbeamformerbox and exposedcablebundle. Original operator tile11 southwestcorner retained asanchor; localenvelope[0..5]east/[-5..0]north isderivedfromwritten5m dimension, not mappedfoundation. All128 originalactualSWcorner placements use samecompleteequipmentasset. Everyimageunused; no one tile stands for wholeobservatory."
+}

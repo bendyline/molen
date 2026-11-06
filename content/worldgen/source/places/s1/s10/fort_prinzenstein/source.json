@@ -1,0 +1,65 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fort_prinzenstein",
+  "kind": "static-structure",
+  "title": "Fort Prinzenstein — Keta,1847",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fort_prinzenstein",
+        "output": "assets/places/s1/s10/fort_prinzenstein/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7ba07ae6afb01eb605cb18c5b67650802fce164ef01776987e44dc37957496f3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "historical-plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/original-fort-location.json",
+      "native-map/original-map-tile.mvt",
+      "native-map/published-fort-identity.json",
+      "reference-originals/larsen1918-original-volume.pdf",
+      "reference-rights/svedstrup1847-expired-drawings.json",
+      "reference-rights/original-1918-title-page.txt",
+      "reference-rights/original-1918-plate-credits.txt",
+      "reference-rights/primary-museum-creator-facts.txt",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-16474-15843.png",
+      "terrain-sources/terrarium-15-16474-15844.png",
+      "import-report.json",
+      "geometry-review.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "qa.json",
+      "medium-fi-report.json"
+    ]
+  }
+}

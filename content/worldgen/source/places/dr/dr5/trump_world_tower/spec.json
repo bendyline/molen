@@ -1,0 +1,459 @@
+{
+  "planId": "trump_world_tower",
+  "id": "trump_world_tower",
+  "assetId": "molen.worldgen.structure.trump_world_tower",
+  "title": "Trump World Tower",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q844324",
+  "referenceCoordinate": {
+    "longitude": -73.967664,
+    "latitude": 40.75228
+  },
+  "visualBrief": "Complete262m bronze-glass rectangular residential tower at845 United Nations Plaza,with fine regular curtain-wall grid,flat parapet/crown,east-southeast gold entrance canopy,coffered soffit,revolving doors,address/sign and native-fitting entrance stairs.",
+  "size": [
+    46,
+    264.41440510749817,
+    34.56950092315674
+  ],
+  "actualBounds": {
+    "min": [
+      -23,
+      -2.414405107498169,
+      -15.800000190734863
+    ],
+    "max": [
+      23,
+      262,
+      18.769500732421875
+    ]
+  },
+  "nativeAxes": "+X north-northeast,-X south-southwest;+Z east-southeast toward United Nations Plaza/First Avenue and the signed gold entrance canopy;-Z west-northwest;+Y up.",
+  "sourceFacts": {
+    "retainedHeightMeters": 262,
+    "mappedPartHeightMeters": 260,
+    "mappedLengthMeters": 45.197,
+    "mappedWidthMeters": 30.895,
+    "modelDatumMeters": 10,
+    "terrainTiles": 1
+  },
+  "referencePages": [
+    "https://s3.amazonaws.com/images.skyscrapercenter.com/thumbs/45916_500x650.jpg",
+    "https://www.nyhome.com/uploads/2/0/1/7/2017742/twtbldgg_orig.jpg",
+    "https://www.openstreetmap.org/way/104071486"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      -73.967676093,
+      40.752537462
+    ],
+    "heading": 1.062761457364,
+    "elevationMode": "sea-level",
+    "elevationMeters": 10,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The foundation skirt embeds in the unmodified standard global native field and reconstructed entry stairs sample it. The10m base reference and original entry grades are approximate,not surveyed.",
+    "groundModelY": 0,
+    "replaceFootprint": true,
+    "bounds": [
+      -73.96797247078437,
+      40.752274922312736,
+      -73.96734894912713,
+      40.752787025101306
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b6b7154d69d7c5c3f7ea959dfc4ec7b0fa49df8787c9b04f3231551ac47a6cd3",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://www.openstreetmap.org/way/104071486",
+    "wikidataId": "Q844324",
+    "notes": "845 United Nations Plaza residential tower,not Fifth Avenue Trump Tower. Main45.196m rectangle and eastern25.411m entrance projection follow exact retained OSM identity. Gold canopy faces+Z/ESE toward United Nations Plaza/First Avenue. Original262m exterior and approximate native foundation/stair fit;base10m and details are not surveyed."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Four existing shared window grid,painted metal,bronze/gold and granite graphs with metric UVs. No private or embedded image copies.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/dr/dr5/trump_world_tower/models/trump-model.mjs",
+    "export": "buildTrumpSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.72,
+        "metallic": 0.1
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.16,
+        "metallic": 0.2
+      },
+      "frame": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.43,
+        "metallic": 0.48
+      },
+      "gold": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.3,
+        "metallic": 0.72
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.86,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTrumpDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.16,
+            "metallic": 0.2
+          },
+          "frame": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.43,
+            "metallic": 0.48
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.3,
+            "metallic": 0.72
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 2
+      },
+      "street": {
+        "export": "buildTrumpStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.16,
+            "metallic": 0.2
+          },
+          "frame": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.43,
+            "metallic": 0.48
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.3,
+            "metallic": 0.72
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1
+      },
+      "closeup": {
+        "export": "buildTrumpCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.1
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.16,
+            "metallic": 0.2
+          },
+          "frame": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.43,
+            "metallic": 0.48
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.3,
+            "metallic": 0.72
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.4
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        195,
+        155,
+        420
+      ],
+      "lookAt": [
+        0,
+        130,
+        -3
+      ]
+    },
+    {
+      "name": "whole-tower-district",
+      "reviewLod": "district",
+      "position": [
+        195,
+        155,
+        420
+      ],
+      "lookAt": [
+        0,
+        130,
+        -3
+      ]
+    },
+    {
+      "name": "whole-tower-street",
+      "reviewLod": "street",
+      "position": [
+        195,
+        155,
+        420
+      ],
+      "lookAt": [
+        0,
+        130,
+        -3
+      ]
+    },
+    {
+      "name": "whole-tower-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        195,
+        155,
+        420
+      ],
+      "lookAt": [
+        0,
+        130,
+        -3
+      ]
+    },
+    {
+      "name": "street-entry-canopy",
+      "reviewLod": "street",
+      "position": [
+        21,
+        6.2,
+        35
+      ],
+      "lookAt": [
+        0,
+        4.2,
+        11
+      ]
+    },
+    {
+      "name": "closeup-door-apertures",
+      "reviewLod": "closeup",
+      "position": [
+        0,
+        2.4,
+        18
+      ],
+      "lookAt": [
+        0,
+        3.3,
+        9.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Original complete exterior reconstruction from two inspected ordinary photos and exact retained OSM/Q844324 footprint with standard viewer PMTiles/global terrain. This is845 United Nations Plaza,not Fifth Avenue Trump Tower. No downloaded mesh,private photo texture,bespoke survey or archival research. Interiors,individual apartment curtains/furnishings,exact façade inventory,street furniture and surrounding buildings are outside scope.",
+    "Main tower bounds45.196m by24.569m follow the retained rectangular footprint;the narrower eastern25.411m-wide entrance projection expands the mapped width to30.894m. Height262m follows the retained fact,versus260m generalized PMTiles part. The +Z/ESE gold canopy and entrance face United Nations Plaza/First Avenue. Pane/floor counts,window tint/reflectance,roof plant,canopy coffers,sign lettering,doors and stairs are approximate original reconstructions,not an engineering schedule.",
+    "Detailed source preserves individual panes,recess returns,fine mullion relief,coffered gold canopy,original geometric sign/845 address,two revolving-door assemblies,side doors and stair rails. Four browser tiers simplify that detail. Skyline uses a tinted whole tower and canopy;district uses shared window ribbons;street aggregates vertical panes;close-up restores80 reconstructed rows,physical door apertures,canopy/sign and roof plant. Opaque shared patterned glass approximates glazing;no optical interiors or transparency claim.",
+    "Four existing256px shared graphs provide window grid,painted-metal mullions,bronze/gold trim and granite foundation. Colors supply the bronze and gold palette;the rough bronze graph is an approximation for polished entrance trim. No private or embedded images. The source master is separate from browser tiers;far tiers aggregate ground-floor door openings and roof details.",
+    "Unmodified129x129/1.5m standard global terrain grid oversamples one coarse native urban tile. Base10m comes from the retained map elevation and remains approximate. Native ground at the perimeter is roughly8–9m;foundation skirt embeds below it and the stair end samples the native field. Actual curb,foundation,accessibility and entry gradients are not surveyed. Estimated tier errors4/2/1/.4m are not certified mesh distances;physical laptop/phone and dense-city timing remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "bronze-tower-entrance-side",
+      "position": [
+        195,
+        155,
+        420
+      ],
+      "lookAt": [
+        0,
+        130,
+        -3
+      ],
+      "fov": 51
+    },
+    {
+      "name": "opposite-complete-tower",
+      "position": [
+        -190,
+        155,
+        -430
+      ],
+      "lookAt": [
+        0,
+        130,
+        -3
+      ],
+      "fov": 51
+    },
+    {
+      "name": "flat-crown-and-roof",
+      "position": [
+        72,
+        303,
+        85
+      ],
+      "lookAt": [
+        0,
+        253,
+        -3
+      ],
+      "fov": 48
+    },
+    {
+      "name": "gold-entry-canopy",
+      "position": [
+        21,
+        6.2,
+        35
+      ],
+      "lookAt": [
+        0,
+        4.2,
+        11
+      ],
+      "fov": 53
+    },
+    {
+      "name": "revolving-doors-under-soffit",
+      "position": [
+        0,
+        2.4,
+        18
+      ],
+      "lookAt": [
+        0,
+        3.3,
+        9.5
+      ],
+      "fov": 58
+    },
+    {
+      "name": "native-stairs-and-landing",
+      "position": [
+        -18,
+        3.5,
+        27
+      ],
+      "lookAt": [
+        0,
+        0,
+        16
+      ],
+      "fov": 52
+    },
+    {
+      "name": "curtain-wall-corner",
+      "position": [
+        34,
+        71,
+        28
+      ],
+      "lookAt": [
+        20,
+        71,
+        7
+      ],
+      "fov": 45
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 64974,
+    "vertices": 129724,
+    "materials": 4,
+    "bytes": 5452668,
+    "sha256": "sha256:519158c6be50c2b521690a636705bae2c454258c5e5b9e7f370606d77ab674f7"
+  }
+}

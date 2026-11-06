@@ -50,3 +50,10 @@ https://commons.wikimedia.org/wiki/File:MetLife_Stadium_Exterior.jpg — gargudo
 https://commons.wikimedia.org/wiki/File:Interior_view_of_the_MetLife_Stadium_-_ARG_v_CAN_-_2024-07-09.jpg — Sebas; CC-BY-3.0. Viewed only; no pixels copied.
 
 https://commons.wikimedia.org/wiki/File:MetLife_Stadium_Exterior,_2026_FIFA_World_Cup_(June_20,_2026)_(cropped).jpg — MiracleMiles; CC-BY-4.0. Viewed only; no pixels copied.
+
+
+## Current shared-material/context review —2026-10-31
+
+Inspected32 new current Earth frames:8 shared-surface/detail/map views and24 context/mode/LOD views. The open three-tier gray bowl, field, four inward corner boards, silver louvers, entry pylons and glazed base remain coherent. Scale-three context cameras sit outside the bowl. Far tiers deliberately aggregate rows and facade bands; fine-line aliasing remains visible when detailed tiers are forced into distance views. All six GLBs,geometry,scene and map placement remain unchanged. Source photographs and native/map fit retain their previously documented scope. No new source research,survey or physical-device timing claim.
+
+Runtime triangles:756 / 3290 / 15722 / 55482. Initial skyline+district:361624bytes. Current shared graph hashes and all four LOD/mode captures are bound in qa.json. Near views show the actual simplified row bands and material patterns;far tiers intentionally aggregate rows and cladding. Fine lines can alias when a distance tier is forced close.

@@ -1,0 +1,354 @@
+/** Whole Unit 4 independent steel cover frame and upper working enclosure. */
+import '../../../../../../../../packages/worldgen/scripts/install-deterministic-math.mjs';
+import fs from 'node:fs';
+import { MeshBufferBuilder } from '../../../../../../../../packages/worldgen/dist/kernel.mjs';
+import {
+  beam,
+  normalFor,
+} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
+export const P = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));
+export const surfaces = {
+  wall: { slot: 'wall', graph: 'concrete_plain', roughness: 0.92, metallic: 0 },
+  upper: { slot: 'wall', graph: 'metal_corrugated', roughness: 0.86, metallic: 0.18 },
+  roof: { slot: 'roof', graph: 'metal_painted', roughness: 0.85, metallic: 0.25 },
+  foundation: { slot: 'foundation', graph: 'concrete_plain', roughness: 0.95, metallic: 0 },
+  steel: { slot: 'trim', graph: 'metal_painted', roughness: 0.68, metallic: 0.35 },
+};
+const colors = {
+    wall: rgb('cfd2cf'),
+    upper: rgb('c0cbd0'),
+    roof: rgb('9ca89f'),
+    foundation: rgb('b3bcb2'),
+    steel: rgb('8d9c92'),
+  },
+  rect = (x0, x1, z0, z1) => [
+    [x0, z0],
+    [x1, z0],
+    [x1, z1],
+    [x0, z1],
+  ];
+export const componentEvidence = [];
+function face(o, k, p, n, tint = colors[k]) {
+  let v = normalFor(...p);
+  if (n && v.reduce((s, a, i) => s + a * n[i], 0) < 0) {
+    p = [...p].reverse();
+    v = normalFor(...p);
+  }
+  o.addConvexPolygon(k, 'palette:#ffffff', p, v, (q) => [q[0], q[1]], tint);
+}
+function cap(o, k, r, y, up, tint) {
+  const b = new MeshBufferBuilder();
+  if (
+    !b.addCap(
+      k,
+      'palette:#ffffff',
+      r,
+      [],
+      (p) => (typeof y === 'function' ? y(p) : y),
+      [0, up, 0],
+      (p) => p,
+      tint ?? colors[k],
+    )
+  )
+    throw Error('Invalid warehouse cap');
+  const m = b.finalize();
+  for (let i = 0; i < m.indices.length; i += 3)
+    face(
+      o,
+      k,
+      Array.from(m.indices.slice(i, i + 3)).map((j) =>
+        Array.from(m.positions.slice(j * 3, j * 3 + 3)),
+      ),
+      [0, up, 0],
+      tint,
+    );
+}
+function prism(o, k, r, y0, y1, tint) {
+  const sg = Math.sign(
+      r.reduce((s, p, i) => {
+        const q = r[(i + 1) % r.length];
+        return s + p[0] * q[1] - p[1] * q[0];
+      }, 0),
+    ),
+    top = (p) => (typeof y1 === 'function' ? y1(p) : y1);
+  for (let i = 0; i < r.length; i++) {
+    const a = r[i],
+      b = r[(i + 1) % r.length];
+    face(
+      o,
+      k,
+      [
+        [a[0], y0, a[1]],
+        [b[0], y0, b[1]],
+        [b[0], top(b), b[1]],
+        [a[0], top(a), a[1]],
+      ],
+      [(b[1] - a[1]) * sg, 0, (a[0] - b[0]) * sg],
+      tint,
+    );
+  }
+  cap(o, k, r, y0, -1, tint);
+  cap(o, k, r, y1, 1, tint);
+}
+const box = (o, k, x, z, w, d, y0, y1, t) =>
+    prism(o, k, rect(x - w / 2, x + w / 2, z - d / 2, z + d / 2), y0, y1, t),
+  strut = (o, k, a, b, w = 0.07, t) => beam(o, k, a, b, w, w, t ?? colors[k]);
+
+function perimeter(o, ring, y0, y1, lod, step = 4) {
+  const sg = Math.sign(
+    ring.reduce((s, a, i) => {
+      const b = ring[(i + 1) % ring.length];
+      return s + a[0] * b[1] - a[1] * b[0];
+    }, 0),
+  );
+  let joints = 0;
+  for (let i = 0; i < ring.length; i++) {
+    const a = ring[i],
+      b = ring[(i + 1) % ring.length],
+      L = Math.hypot(b[0] - a[0], b[1] - a[1]),
+      u = [(b[0] - a[0]) / L, (b[1] - a[1]) / L],
+      n = [u[1] * sg, -u[0] * sg],
+      pt = (t, y, off = 0.06) => [a[0] + u[0] * t + n[0] * off, y, a[1] + u[1] * t + n[1] * off];
+    if (lod >= 1) {
+      strut(o, 'steel', pt(0, y0), pt(0, y1), 0.13);
+      strut(o, 'steel', pt(0, y1), pt(L, y1), 0.13);
+    }
+    if (lod >= 2) {
+      const N = Math.ceil(L / (lod === 3 ? step : step * 2));
+      for (let j = 1; j < N; j++) {
+        strut(
+          o,
+          'steel',
+          pt((L * j) / N, y0 + 0.05),
+          pt((L * j) / N, y1 - 0.05),
+          0.035,
+          rgb('9baeb4'),
+        );
+        joints++;
+      }
+    }
+  }
+  return joints;
+}
+function closedPanel(o, ring, i, t, w, y0, y1, lod, color) {
+  const a = ring[i],
+    b = ring[(i + 1) % ring.length],
+    L = Math.hypot(b[0] - a[0], b[1] - a[1]),
+    u = [(b[0] - a[0]) / L, (b[1] - a[1]) / L],
+    sg = Math.sign(
+      ring.reduce((s, a, i) => {
+        const b = ring[(i + 1) % ring.length];
+        return s + a[0] * b[1] - a[1] * b[0];
+      }, 0),
+    ),
+    n = [u[1] * sg, -u[0] * sg],
+    pt = (x, y, d = 0.09) => [a[0] + u[0] * x + n[0] * d, y, a[1] + u[1] * x + n[1] * d],
+    lo = L * t - w / 2,
+    hi = lo + w;
+  face(o, 'steel', [pt(lo, y0), pt(hi, y0), pt(hi, y1), pt(lo, y1)], [n[0], 0, n[1]], color);
+  if (lod >= 1)
+    for (const [a, b] of [
+      [pt(lo, y0, 0.13), pt(lo, y1, 0.13)],
+      [pt(hi, y0, 0.13), pt(hi, y1, 0.13)],
+      [pt(lo, y1, 0.13), pt(hi, y1, 0.13)],
+    ])
+      strut(o, 'steel', a, b, 0.12);
+}
+
+function column(o, x, z, lod) {
+  if (lod === 0) {
+    box(o, 'steel', x, z, P.columnWidth, P.columnDepth, P.floor, P.mainRoof);
+    return;
+  }
+  const off = (P.columnDepth - P.flangeThickness) / 2;
+  for (const sign of [-1, 1])
+    box(
+      o,
+      'steel',
+      x,
+      z + sign * off,
+      P.columnWidth,
+      P.flangeThickness,
+      P.floor,
+      P.mainRoof,
+      rgb('a7b4b9'),
+    );
+  box(
+    o,
+    'steel',
+    x,
+    z,
+    P.webThickness,
+    P.columnDepth - 2 * P.flangeThickness,
+    P.floor,
+    P.mainRoof,
+    rgb('a7b4b9'),
+  );
+}
+export function buildHouse(o, _f, lod = 3) {
+  componentEvidence.length = 0;
+  prism(o, 'steel', P.workingRing, P.workFloor - 0.18, P.workFloor, rgb('9ca8a7'));
+  prism(o, 'upper', P.workingRing, P.workFloor, P.mainRoof - P.roofThickness, rgb('c0c8cc'));
+  prism(o, 'roof', P.workingRing, P.mainRoof - P.roofThickness, P.mainRoof, rgb('bfcaca'));
+  for (const sign of [-1, 1])
+    for (const z of P.columnStations) {
+      const x = sign * P.columnX;
+      box(o, 'foundation', x, z, 2.4, 2.6, P.foundationBottom, P.floor);
+      column(o, x, z, lod);
+    }
+  let braceCount = 0;
+  for (const y of P.beamLevels) {
+    for (const sign of [-1, 1])
+      strut(
+        o,
+        'steel',
+        [sign * P.columnX, y, -P.halfLength],
+        [sign * P.columnX, y, P.halfLength],
+        0.45,
+        rgb('a6b3b7'),
+      );
+    for (const z of P.columnStations)
+      strut(o, 'steel', [-P.halfWidth, y, z], [P.halfWidth, y, z], 0.45, rgb('a6b3b7'));
+  }
+  for (const z of [-P.halfLength, P.halfLength])
+    strut(
+      o,
+      'steel',
+      [-P.halfWidth, P.mainRoof - 0.25, z],
+      [P.halfWidth, P.mainRoof - 0.25, z],
+      0.45,
+      rgb('a6b3b7'),
+    );
+  if (lod >= 1) {
+    for (const sign of [-1, 1])
+      for (let j = 0; j < P.columnStations.length - 1; j++)
+        for (const [a, b] of [
+          [P.floor, 15],
+          [15, P.workFloor],
+        ]) {
+          const z0 = P.columnStations[j],
+            z1 = P.columnStations[j + 1],
+            x = sign * (P.columnX + 0.16);
+          strut(o, 'steel', [x, a, z0], [x, b, z1], 0.19, rgb('96a8b0'));
+          braceCount++;
+          if (lod >= 2) {
+            strut(o, 'steel', [x, a, z1], [x, b, z0], 0.16, rgb('96a8b0'));
+            braceCount++;
+          }
+        }
+    for (const z of [P.columnStations[0], P.columnStations.at(-1)])
+      for (const [a, b] of [
+        [P.floor, 15],
+        [15, P.workFloor],
+        [P.workFloor, 41.5],
+        [41.5, P.mainRoof - 0.25],
+      ]) {
+        strut(o, 'steel', [-P.columnX, a, z], [P.columnX, b, z], 0.2, rgb('96a8b0'));
+        braceCount++;
+        if (lod >= 2) {
+          strut(o, 'steel', [P.columnX, a, z], [-P.columnX, b, z], 0.16, rgb('96a8b0'));
+          braceCount++;
+        }
+      }
+  }
+  const joints = perimeter(o, P.workingRing, P.workFloor, P.mainRoof - P.roofThickness, lod, 4);
+  if (lod === 3)
+    for (let z = -P.workingHalfLength + 4; z < P.workingHalfLength - 0.3; z += 4)
+      strut(
+        o,
+        'roof',
+        [-P.halfWidth + 0.12, P.mainRoof + 0.02, z],
+        [P.halfWidth - 0.12, P.mainRoof + 0.02, z],
+        0.035,
+        rgb('a2b1b5'),
+      );
+  componentEvidence.push({
+    lod,
+    wholeIndependentCover: true,
+    wholeOuterSteelFrame: true,
+    closedWorkingEnclosure: true,
+    wholeClosedRoof: true,
+    closedWorkFloor: true,
+    allWorkingExteriorWalls: true,
+    openLowerFrame: true,
+    openEndBays: true,
+    columns: 8,
+    concreteBearingBlocks: 8,
+    nativeEnvelopeIsContextOnly: true,
+    identityInferred: true,
+    underlyingReactorOmitted: true,
+    notWholePlantProxy: true,
+    braceCount,
+    panelJoints: joints,
+  });
+}
+export const houseSkyline = (o, f) => buildHouse(o, f, 0),
+  houseDistrict = (o, f) => buildHouse(o, f, 1),
+  houseStreet = (o, f) => buildHouse(o, f, 2),
+  houseCloseup = (o, f) => buildHouse(o, f, 3);
+const root = 'content/worldgen/source/places/' + P.cell + '/' + P.model,
+  camera = [100, 78, 125],
+  look = [0, 25, 0];
+export const houseModel = {
+  id: P.model,
+  key: P.model,
+  cell: P.cell,
+  title: P.title,
+  recipe: 'house-model.mjs',
+  surfaces,
+  build: buildHouse,
+  category: 'landmark',
+  quality: 'medium-fi-exterior',
+  reviewStatus: 'review-in-qa.json',
+  geographicStatus: 'historical-proposal',
+  orientationPolicy: 'approximate-visualization',
+  progressLedger: 'qualla-002.PROGRESS.md',
+  brief:
+    'Whole independent Unit4steel fuel-removal cover frame: written69mNS/31mEW/53mhigh,55mNSx31mEWx23m upper working enclosure above inferred30m operating floor. Open lower/end bays,8estimated steel columns/ground bearings,longitudinal and cross beams/bracing,closed upper walls/roof/floor. Native context identity/registration, enclosure position, fine sections/finish/2021continuity estimated. Underlying reactor remains separate. All imagery unused.',
+  appearance: {
+    kind: 'historical',
+    representedDate: P.representedDate,
+    validFrom: P.validFrom,
+    validUntil: P.validUntil,
+    currentWorldEligible: false,
+  },
+  camera,
+  lookAt: look,
+  portableGroundY: -1.23,
+  mediumFiContext: {
+    scale: 1,
+    groundY: 0,
+    terrain: { descriptor: 'terrain-review.terrain.json', heightmap: 'terrain-review.height.png' },
+  },
+  embeddedCanonicalGraphs: ['metal_corrugated', 'metal_painted', 'concrete_plain'],
+  qaCameras: [
+    { name: 'whole-east-working-enclosure-and-open-frame', position: camera, lookAt: look },
+    {
+      name: 'whole-west-ground-bearings-and-open-end-bays',
+      position: [-100, 78, -125],
+      lookAt: look,
+    },
+  ],
+  qaLodCameras: ['skyline', 'district', 'street', 'closeup'].map((reviewLod) => ({
+    name: 'whole-Unit4-steel-cover-' + reviewLod,
+    position: camera,
+    lookAt: look,
+    reviewLod,
+  })),
+  runtimeLodOverlay: {
+    module: root + '/models/house-model.mjs',
+    level: 'skyline',
+    export: 'houseSkyline',
+    errorMeters: 0.25,
+    surfaces,
+    authoredLevels: {
+      district: { export: 'houseDistrict', errorMeters: 0.15, surfaces },
+      street: { export: 'houseStreet', errorMeters: 0.05, surfaces },
+      closeup: { export: 'houseCloseup', errorMeters: 0.001, surfaces },
+    },
+  },
+  limitations: P.limitations,
+  sourceLicense:
+    'Original procedural geometry under repository license. Operator original written cover dimensions/independent steel frame facts only; original Overture/OSM context ODbL attributed. Every source report figure/plan/photo/map/satellite pixel unused. Native Unit4identity/registration, enclosure placement, fine sections/finish/nominal2021continuity estimated. Underlying reactor omitted.',
+};

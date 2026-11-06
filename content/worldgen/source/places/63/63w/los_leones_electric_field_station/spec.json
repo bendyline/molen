@@ -1,0 +1,389 @@
+{
+  "planId": "los_leones_electric_field_station",
+  "id": "los_leones_electric_field_station",
+  "assetId": "molen.worldgen.structure.los_leones_electric_field_station",
+  "title": "Los Leones electric field station",
+  "wikidataId": "Q794886",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -69.45119,
+    "latitude": -35.4681
+  },
+  "size": [
+    3.7915000915527344,
+    2.988999903202057,
+    2.231858491897583
+  ],
+  "actualBounds": {
+    "min": [
+      -1.6119999885559082,
+      -0.550000011920929,
+      -1.1159292459487915
+    ],
+    "max": [
+      2.179500102996826,
+      2.438999891281128,
+      1.1159292459487915
+    ]
+  },
+  "visualBrief": "Whole independent armadiLLo electric-field instrument assembly: sensor, tripod and anchoring, solar rack, closed electronics box, grounding and grid dish radio. Existing/new site fence and other observatory equipment remain separate; whole observatory unfinished. Original table4.2 rounded point and north/east frame fixed before independent source field or sections. Sensor face2m, box0.8x0.6x0.410m are written measurements; other architectural shape, finish and placements are explicit schematic estimates. Every source image/figure/diagram/plan unused. Original schematic estimates: .05m mast diameter,2.30m mast top,1.15m tripod leg spread, brackets, vertical orientation of the .152x.152x.432m nominal sensor envelope, .84x.60m radio-grid dish,1.2x.67m solar panel and its slope/offset, joinery, cables, colors and all minor fittings. Sensor face remains2m over the original point datum; no lightning rod or guy wires. The exact component offsets, yaw, ground registration and graded patch are unverified. Published latitude/longitude rounded to five decimals; datum not separately stated;10m horizontal and180degree orientation uncertainty are nominal estimates. Whole independent instrument assembly only. Existing BATATA fencing/new15m field-station fences remain separate because exact boundaries are unprovided. Other detectors, CRS, AERAWS, receiving-tower antenna and entire observatory are not represented by this model. Represented November2023 installation after documented battery servicing. Every source photograph, figure, diagram, plan and image-derived description unused. Original source field fixed before these floor/section estimates; no grade cutout/flattening/mask/refit.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2023-11-30",
+    "validFrom": "2023-11-01",
+    "validUntil": "2024-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "pierre-auger-observatory-wp",
+      "url": "https://qualla.com/pierre-auger-observatory/"
+    }
+  ],
+  "referenceInputHash": "sha256:2da9b3d5fc8e2e8dec048e9a4900caa36525fd80fc9d1ad94a8d9fb5e8c1e442",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/63/63w/los_leones_electric_field_station/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/63/63w/los_leones_electric_field_station/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.15,
+    "surfaces": {
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_stainless_beadblasted",
+        "roughness": 0.7,
+        "metallic": 0.65
+      },
+      "casing": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.2
+      },
+      "solar": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.42,
+        "metallic": 0.25
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.7,
+            "metallic": 0.65
+          },
+          "casing": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2
+          },
+          "solar": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.42,
+            "metallic": 0.25
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.025,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.7,
+            "metallic": 0.65
+          },
+          "casing": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2
+          },
+          "solar": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.42,
+            "metallic": 0.25
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.001,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.7,
+            "metallic": 0.65
+          },
+          "casing": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2
+          },
+          "solar": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.42,
+            "metallic": 0.25
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "metal_stainless_beadblasted",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.12,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Reviewed nominal Y=0 contact at the original published instrument point and unchanged original elevation field. The ground rod extends0.55m below this plane; feet/cairns meet nominal grade. Sensor face2m above the plane. Historic soil grading and exact vertical registration are explicitly approximate, not surveyed.",
+    "anchor": [
+      -69.45119,
+      -35.4681
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -69.45119,
+        -35.4681
+      ],
+      "modelHeight": 0,
+      "basis": "Published station point fixed before independent field and floor; exact historic graded patch/threshold unsurveyed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "primary/EFM-1626"
+    ],
+    "source": "https://publikationen.bibliothek.kit.edu/1000180290/158121542",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:93b8a9731cab19da87f0c9266869698e2481c75542c7fdf49b654587e15460e7",
+    "notes": "Whole independent armadiLLo electric-field instrument assembly: sensor, tripod and anchoring, solar rack, closed electronics box, grounding and grid dish radio. Existing/new site fence and other observatory equipment remain separate; whole observatory unfinished. Original table4.2 rounded point and north/east frame fixed before independent source field or sections. Sensor face2m, box0.8x0.6x0.410m are written measurements; other architectural shape, finish and placements are explicit schematic estimates. Every source image/figure/diagram/plan unused."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_beadblasted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole independent armadiLLo electric-field instrument assembly: sensor, tripod and anchoring, solar rack, closed electronics box, grounding and grid dish radio. Existing/new site fence and other observatory equipment remain separate; whole observatory unfinished. Original table4.2 rounded point and north/east frame fixed before independent source field or sections. Sensor face2m, box0.8x0.6x0.410m are written measurements; other architectural shape, finish and placements are explicit schematic estimates. Every source image/figure/diagram/plan unused.",
+    "Original schematic estimates: .05m mast diameter,2.30m mast top,1.15m tripod leg spread, brackets, vertical orientation of the .152x.152x.432m nominal sensor envelope, .84x.60m radio-grid dish,1.2x.67m solar panel and its slope/offset, joinery, cables, colors and all minor fittings. Sensor face remains2m over the original point datum; no lightning rod or guy wires.",
+    "The exact component offsets, yaw, ground registration and graded patch are unverified. Published latitude/longitude rounded to five decimals; datum not separately stated;10m horizontal and180degree orientation uncertainty are nominal estimates.",
+    "Whole independent instrument assembly only. Existing BATATA fencing/new15m field-station fences remain separate because exact boundaries are unprovided. Other detectors, CRS, AERAWS, receiving-tower antenna and entire observatory are not represented by this model.",
+    "Represented November2023 installation after documented battery servicing. Every source photograph, figure, diagram, plan and image-derived description unused. Original source field fixed before these floor/section estimates; no grade cutout/flattening/mask/refit."
+  ],
+  "sourceLicense": "Original procedural geometry under repository license. Researcher original numerical station records and written equipment facts; every source photograph/figure/diagram/plan unused. Original open elevation data credited separately.",
+  "qaLodCameras": [
+    {
+      "name": "whole-electric-field-station-skyline",
+      "position": [
+        5.8,
+        3.6,
+        7.4
+      ],
+      "lookAt": [
+        0.55,
+        1.1,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-electric-field-station-district",
+      "position": [
+        5.8,
+        3.6,
+        7.4
+      ],
+      "lookAt": [
+        0.55,
+        1.1,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-electric-field-station-street",
+      "position": [
+        5.8,
+        3.6,
+        7.4
+      ],
+      "lookAt": [
+        0.55,
+        1.1,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-electric-field-station-closeup",
+      "position": [
+        5.8,
+        3.6,
+        7.4
+      ],
+      "lookAt": [
+        0.55,
+        1.1,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-instrument-sensor-solar-and-electronics",
+      "position": [
+        5.8,
+        3.6,
+        7.4
+      ],
+      "lookAt": [
+        0.55,
+        1.1,
+        0
+      ]
+    },
+    {
+      "name": "whole-opposite-tripod-grid-dish-and-anchor-stones",
+      "position": [
+        -5,
+        3.4,
+        -6.5
+      ],
+      "lookAt": [
+        0.55,
+        1.1,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4600,
+    "vertices": 13800,
+    "materials": 4,
+    "bytes": 671692,
+    "sha256": "sha256:cadb7e02ef87c4dc806855b1311d575e081b5920dcaa52fcba4c16f9946c51db"
+  }
+}

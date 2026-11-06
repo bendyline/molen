@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mubarak_mandi_post_office",
+  "kind": "static-structure",
+  "title": "Mubarak Mandi Post Office",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mubarak_mandi_post_office",
+        "output": "assets/places/tt/ttv/mubarak_mandi_post_office/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:276276159b00bad78eaa94be09e8d06420c6ef3d888b3060f76915732fa69545"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "primary-facts-reconstruction.json",
+      "primary-source/postal-service-written-controls.json",
+      "native-map/original-site-map.xml",
+      "native-map/original-building.json",
+      "native-map/original-postal-identity.json",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-23199-13227.png",
+      "import-report.json",
+      "geometry-review.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

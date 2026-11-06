@@ -1,0 +1,156 @@
+{
+  "status": "passed",
+  "checks": 3,
+  "validationGroups": [
+    "original-source-field-frame-floor-sections-and-numerical-building-provenance",
+    "whole-native-body-closed-roof-and-current-runtime-geometry-all-four-levels",
+    "sixteen-bounded-front-face-culled-rays-at-closed-roof-and-opposite-long-walls"
+  ],
+  "sourceHash": "sha256:d7b961da10c3c1a142d6bb3766285ed76516ea1a67c773b77a7119de77293699",
+  "originalHeightValues": 16641,
+  "pngRoundTripMaxErrorMeters": 0.0004976762770638743,
+  "originalFieldFrameFloorsAndMainSectionsUnchanged": true,
+  "actualGeometryRays": [
+    {
+      "lod": 0,
+      "id": "whole-roof-ridge",
+      "distance": 10.00000022125244,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 0,
+      "id": "whole-roof-slope",
+      "distance": 10.12535014595531,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 0,
+      "id": "whole-long-wall-south",
+      "distance": 23.61786460876465,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 0,
+      "id": "whole-long-wall-north",
+      "distance": 23.61786460876465,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 1,
+      "id": "whole-roof-ridge",
+      "distance": 10.00000022125244,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 1,
+      "id": "whole-roof-slope",
+      "distance": 10.12535014595531,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 1,
+      "id": "whole-long-wall-south",
+      "distance": 23.61786460876465,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 1,
+      "id": "whole-long-wall-north",
+      "distance": 23.61786460876465,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 2,
+      "id": "whole-roof-ridge",
+      "distance": 10.00000022125244,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 2,
+      "id": "whole-roof-slope",
+      "distance": 10.12535014595531,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 2,
+      "id": "whole-long-wall-south",
+      "distance": 23.61786460876465,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 2,
+      "id": "whole-long-wall-north",
+      "distance": 23.61786460876465,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 3,
+      "id": "whole-roof-ridge",
+      "distance": 10.00000022125244,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 3,
+      "id": "whole-roof-slope",
+      "distance": 10.12535014595531,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 3,
+      "id": "whole-long-wall-south",
+      "distance": 23.61786460876465,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 3,
+      "id": "whole-long-wall-north",
+      "distance": 23.61786460876465,
+      "frontFaceCulling": true
+    }
+  ],
+  "lods": [
+    {
+      "level": "skyline",
+      "triangles": 188,
+      "wholeSourceOutlineAndClosedRoofRetained": true,
+      "actualRuntimeGeometryMatched": true
+    },
+    {
+      "level": "district",
+      "triangles": 1580,
+      "wholeSourceOutlineAndClosedRoofRetained": true,
+      "actualRuntimeGeometryMatched": true
+    },
+    {
+      "level": "street",
+      "triangles": 8072,
+      "wholeSourceOutlineAndClosedRoofRetained": true,
+      "actualRuntimeGeometryMatched": true
+    },
+    {
+      "level": "closeup",
+      "triangles": 11072,
+      "wholeSourceOutlineAndClosedRoofRetained": true,
+      "actualRuntimeGeometryMatched": true
+    }
+  ],
+  "preAcceptanceProbeAdjustment": {
+    "earlierActualRayAttempts": 11,
+    "geometryChanged": false,
+    "reason": "A wall-center ray encountered the deliberately projecting modular joint at streetLOD. Shifted the diagnostic ray2m along the same closed wall; no model/source/field change."
+  },
+  "factualEvidence": {
+    "status": "passed",
+    "method": "primary-facts-only",
+    "imageryUsed": false,
+    "evidenceHash": "sha256:bf186217d96bb8e00a45c60870f2dcf9c32c8629cdebad4684c780dafb34194c",
+    "notes": "Whole original Google-via-Overture outline and qualified original2023learned height retained. SS2membership inferred from operator relative location and source cluster; individual function, floor/roof/facade and historic grade explicit estimates. No unbuilt operating enclosure or whole-project proxy."
+  },
+  "negativeProvenanceCases": 2,
+  "preCaptureCameraLabelCorrection": {
+    "previousCaptureAttemptRejectedBeforeReview": true,
+    "nonAsciiCameraLabelChangedToAscii": true,
+    "sourceGeometryBytesUnchanged": true,
+    "extraMeshRays": 0
+  }
+}

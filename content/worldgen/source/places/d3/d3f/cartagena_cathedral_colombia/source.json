@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.cartagena_cathedral_colombia",
+  "kind": "static-structure",
+  "title": "Cartagena Cathedral, Colombia — whole1870church and original bell tower",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.cartagena_cathedral_colombia",
+        "output": "assets/places/d3/d3f/cartagena_cathedral_colombia/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:fd075d8d3246200c08f0380b809746d19b35c11cc5a4bf1e3767f6128123cdf0"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/original-whole-cathedral-way.json",
+      "reference-originals/moran1870-cathedral-original.jpg",
+      "reference-rights/moran1870-public-domain.json",
+      "reference-rights/museum-original-item.html",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-9507-15429.png",
+      "terrain-sources/terrarium-15-9507-15430.png",
+      "import-report.json",
+      "geometry-review.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "qa.json",
+      "medium-fi-report.json"
+    ]
+  }
+}

@@ -1,0 +1,432 @@
+{
+  "id": "nagarjuna_sagar_dam",
+  "title": "Nagarjuna Sagar Dam",
+  "wikidataId": "Q1112896",
+  "referenceCoordinate": {
+    "longitude": 79.31149984,
+    "latitude": 16.575274434
+  },
+  "module": "content/worldgen/source/places/tf/tfb/nagarjuna_sagar_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "dark": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "gate": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    }
+  },
+  "exportLabel": "Molen original Nagarjuna Sagar Dam and Krishna generating hall",
+  "expectedDraftMasterHash": "sha256:4585c8f8d79765c0492b36e2a7ad043261ce40059c355c1352f5f322c95fa890",
+  "visualBrief": "Nagarjuna Sagar’s mapped masonry dam, 26 radial crest gates, flanking stair towers, high abutments and north-bank generating hall.",
+  "heightPolicy": "The standard Terrarium upstream sample is 160.12 m and the downstream channel is 70.64 m. The production sampler estimates 159.88–160.65 m upstream and 70.38–72.09 m downstream in the retained windows.",
+  "nativeAxes": "+X northeast along the crest, +Z east toward the downstream Krishna and +Y up.",
+  "sourceFacts": {
+    "mappedIdentity": "way/101362710",
+    "nativeWaterIds": [
+      19564023,
+      102204563
+    ],
+    "ownedBuildingId": 35184614632643,
+    "ownedTransportationIds": [
+      35185196157060,
+      35185196157063
+    ],
+    "mappedExtentMeters": 1352.678,
+    "radialGates": 26,
+    "spillwayWidthMeters": 470.9,
+    "terrainDatum": 160.121958,
+    "terrainGridStep": 16,
+    "terrainTiles": 8,
+    "tailwaterModelY": -89.48600553125
+  },
+  "materialMethod": "Shared board-formed and plain concrete, gravel, painted metal, standing-seam metal and window graphs with metric UVs and no embedded images.",
+  "limitations": [
+    "The standard Terrarium upstream sample is 160.12 m and the downstream channel is 70.64 m. The production sampler estimates 159.88–160.65 m upstream and 70.38–72.09 m downstream in the retained windows.",
+    "The modeled 1,352 m concrete dam follows its retained exact mapped centerline. The remote embankments remain in native terrain.",
+    "Current dry photographs establish the radial gates, long chute, stair towers and cream powerhouse. Structural sections, equipment, apron and abutment dimensions are approximate.",
+    "The three crest bridge fragments are clipped only across the modeled deck. Both outer approaches and the separate NH565 bridge remain in native transportation."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Nagarjuna_Sagar_dam_with_all_Crest_gates_closed.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:Nagarjuna_Sagar_dam_with_all_Crest_gates_closed.jpg",
+      "observed": "Downstream close view with the curved spillway profile, repeated recessed radial gates, pale flanking stair towers, dark masonry non-overflow wings and the cream generator hall."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Nagarjuna_Sagar_Dam.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:Nagarjuna_Sagar_Dam.jpg",
+      "observed": "The panorama with water release confirms the deep central chute, high wings and the long power hall below the north wing. Temporary flood plume is excluded."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The western water polygon is the reservoir. The eastern tailwater identifies the photographed spillway face. The owned crest crossing is separate from NH565 farther downstream."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "krishna-overview",
+      "position": [
+        -130,
+        215,
+        790
+      ],
+      "lookAt": [
+        0,
+        -38,
+        55
+      ],
+      "fov": 50
+    },
+    {
+      "name": "radial-gates",
+      "position": [
+        31,
+        40,
+        243
+      ],
+      "lookAt": [
+        31,
+        -5,
+        20
+      ],
+      "fov": 50
+    },
+    {
+      "name": "spillway-and-toe",
+      "position": [
+        -170,
+        -39,
+        252
+      ],
+      "lookAt": [
+        14,
+        -54,
+        50
+      ],
+      "fov": 50
+    },
+    {
+      "name": "generating-hall",
+      "position": [
+        270,
+        -33,
+        320
+      ],
+      "lookAt": [
+        387,
+        -65,
+        130
+      ],
+      "fov": 50
+    },
+    {
+      "name": "reservoir-crest",
+      "position": [
+        -125,
+        95,
+        -450
+      ],
+      "lookAt": [
+        53,
+        -3,
+        1
+      ],
+      "fov": 50
+    },
+    {
+      "name": "southern-masonry-wing",
+      "position": [
+        -511,
+        51,
+        234
+      ],
+      "lookAt": [
+        -370,
+        -17,
+        39
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -108,
+    "scale": 3.4,
+    "focus": {
+      "center": [
+        0,
+        -36,
+        55
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/tf/tfb/nagarjuna_sagar_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "dark": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "gate": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "nagarjuna-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -130,
+        215,
+        790
+      ],
+      "lookAt": [
+        0,
+        -38,
+        55
+      ]
+    },
+    {
+      "name": "nagarjuna-district",
+      "reviewLod": "district",
+      "position": [
+        -130,
+        215,
+        790
+      ],
+      "lookAt": [
+        0,
+        -38,
+        55
+      ]
+    },
+    {
+      "name": "nagarjuna-street",
+      "reviewLod": "street",
+      "position": [
+        -130,
+        215,
+        790
+      ],
+      "lookAt": [
+        0,
+        -38,
+        55
+      ]
+    },
+    {
+      "name": "nagarjuna-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -130,
+        215,
+        790
+      ],
+      "lookAt": [
+        0,
+        -38,
+        55
+      ]
+    }
+  ]
+}

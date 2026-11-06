@@ -1,0 +1,1045 @@
+{
+  "id": "praha_hlavni_nadrazi",
+  "title": "Praha hlavní nádraží",
+  "wikidataId": "Q751174",
+  "referenceCoordinate": {
+    "longitude": 14.434374516,
+    "latitude": 50.083459894
+  },
+  "module": "content/worldgen/source/places/u2/u2f/praha_hlavni_nadrazi/models/station-model.mjs",
+  "builder": "buildStationLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.88
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.9
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.18
+    },
+    "sheet": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.15
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.88
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.4
+    },
+    "deck": {
+      "slot": "roof",
+      "graph": "concrete_plain",
+      "roughness": 0.92
+    }
+  },
+  "exportLabel": "Molen original complete Prague modern terminal Fanta frontage and open train sheds source",
+  "expectedDraftMasterHash": "sha256:6c97188b0bc90527585078debaeb67b9d2cd8ed298e278ff7ca02b61985d7599",
+  "visualBrief": "Complete permanent Prague main-station passenger ensemble: modern western terminal with dark park-facing glass,roof parking/terrace,parapets andsix tall shafts;full historic Fanta building with both round central clock turrets,large arched glazed entrance,red-brick stepped gable,long wings,both outer roof/clock pavilions;two complete curved train sheds andall mapped extended canopy rows. Keep the road between terminals,open rail/platform spaces,park andindependent city/service buildings separate. Exterior only;no copied lettering,brands,coats of arms,figurative sculptures,people,trains or navigable underground/interior.",
+  "heightPolicy": "Native heights are retained per physical family:modern7m deck,14/15m shafts,Fanta11m parent/15m wing ridges,25m end roofs/32m outer clocks,26m central gable/35m round turrets,20m shed crowns and6/8m platform roofs. Source modern floor+.65m andhistoric architectural grade+6m/floor+6.65m share one common outside-park datum,with foundations-10m. Roof curvature,grade transition,window/rib inventory andsmall absent-height details are explicit original photo-proportioned approximations. Map layers are not elevations;no per-part host offsets. Only actual closed lower floors receive masks;the road,cantilevers,roof parking,open sheds/platforms andcanopy gaps do not. One unchanged standard field sample outside the modern park entrance[0,-52],208.6560418m,defines commonY=0. Historic architectural grade+6m is explicit;native contact still needs render review.",
+  "nativeAxes": "+X NNE along tracks; +Z ESE toward the historic Fanta building and platform sheds; -Z WNW toward Vrchlickeho sady park. +Y up.",
+  "sourceFacts": {
+    "numericNativeHeightsAvailable": true,
+    "nativePartFacts": [
+      {
+        "index": 722,
+        "id": 35184560913139,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 11
+        }
+      },
+      {
+        "index": 740,
+        "id": 35184803183779,
+        "properties": {
+          "kind_detail": "elevator",
+          "sort_rank": 400,
+          "kind": "building_part"
+        }
+      },
+      {
+        "index": 741,
+        "id": 35184803183788,
+        "properties": {
+          "kind_detail": "elevator",
+          "sort_rank": 400,
+          "kind": "building_part"
+        }
+      },
+      {
+        "index": 742,
+        "id": 35184803183792,
+        "properties": {
+          "kind_detail": "elevator",
+          "sort_rank": 400,
+          "kind": "building_part"
+        }
+      },
+      {
+        "index": 743,
+        "id": 35184803183793,
+        "properties": {
+          "kind_detail": "elevator",
+          "sort_rank": 400,
+          "kind": "building_part"
+        }
+      },
+      {
+        "index": 744,
+        "id": 35184818176025,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1,
+          "height": 20
+        }
+      },
+      {
+        "index": 745,
+        "id": 35184818176026,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1,
+          "height": 8
+        }
+      },
+      {
+        "index": 746,
+        "id": 35184818176027,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1,
+          "height": 20
+        }
+      },
+      {
+        "index": 749,
+        "id": 35184828208529,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 25
+        }
+      },
+      {
+        "index": 750,
+        "id": 35184828208530,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 20,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 32
+        }
+      },
+      {
+        "index": 751,
+        "id": 35184828208531,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 25
+        }
+      },
+      {
+        "index": 752,
+        "id": 35184828208532,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 20,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 32
+        }
+      },
+      {
+        "index": 753,
+        "id": 35184828208533,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 35
+        }
+      },
+      {
+        "index": 754,
+        "id": 35184828208534,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 35
+        }
+      },
+      {
+        "index": 755,
+        "id": 35184828208535,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 26
+        }
+      },
+      {
+        "index": 764,
+        "id": 35184830180825,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 765,
+        "id": 35184830181581,
+        "properties": {
+          "kind_detail": "roof",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "layer": 1,
+          "height": 6
+        }
+      },
+      {
+        "index": 797,
+        "id": 35184864487328,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1
+        }
+      },
+      {
+        "index": 798,
+        "id": 35184864487329,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1
+        }
+      },
+      {
+        "index": 799,
+        "id": 35184864487330,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1
+        }
+      },
+      {
+        "index": 800,
+        "id": 35184864487331,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1
+        }
+      },
+      {
+        "index": 801,
+        "id": 35184864487332,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1,
+          "height": 6
+        }
+      },
+      {
+        "index": 802,
+        "id": 35184864487333,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1,
+          "height": 6
+        }
+      },
+      {
+        "index": 803,
+        "id": 35184864487334,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1,
+          "height": 6
+        }
+      },
+      {
+        "index": 804,
+        "id": 35184864487335,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1
+        }
+      },
+      {
+        "index": 806,
+        "id": 35184889818381,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 5
+        }
+      },
+      {
+        "index": 807,
+        "id": 35184889818383,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 5
+        }
+      },
+      {
+        "index": 808,
+        "id": 35184889818384,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 5
+        }
+      },
+      {
+        "index": 809,
+        "id": 35184889818390,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 5
+        }
+      },
+      {
+        "index": 810,
+        "id": 35184889818394,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 5
+        }
+      },
+      {
+        "index": 811,
+        "id": 35184889818402,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 5
+        }
+      },
+      {
+        "index": 843,
+        "id": 35185034440358,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 14
+        }
+      },
+      {
+        "index": 844,
+        "id": 35185034440359,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 14
+        }
+      },
+      {
+        "index": 847,
+        "id": 35185211405466,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 15
+        }
+      },
+      {
+        "index": 848,
+        "id": 35185211405467,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 15
+        }
+      },
+      {
+        "index": 849,
+        "id": 35185211405468,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1,
+          "height": 15
+        }
+      },
+      {
+        "index": 850,
+        "id": 35185211405469,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1,
+          "height": 15
+        }
+      },
+      {
+        "index": 862,
+        "id": 35185600126731,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 2
+        }
+      },
+      {
+        "index": 863,
+        "id": 35185600126732,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 5
+        }
+      },
+      {
+        "index": 864,
+        "id": 35185600126733,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 5
+        }
+      },
+      {
+        "index": 865,
+        "id": 35185600126734,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 5,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 7
+        }
+      },
+      {
+        "index": 867,
+        "id": 35185730619280,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 10
+        }
+      },
+      {
+        "index": 890,
+        "id": 52776562390663,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 7
+        }
+      },
+      {
+        "index": 1352,
+        "id": 35184560913139,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 11
+        }
+      },
+      {
+        "index": 1366,
+        "id": 35184818176025,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1,
+          "height": 20
+        }
+      },
+      {
+        "index": 1367,
+        "id": 35184818176026,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1,
+          "height": 8
+        }
+      },
+      {
+        "index": 1368,
+        "id": 35184818176027,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1,
+          "height": 20
+        }
+      },
+      {
+        "index": 1371,
+        "id": 35184828208531,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 25
+        }
+      },
+      {
+        "index": 1372,
+        "id": 35184828208532,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 20,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 32
+        }
+      },
+      {
+        "index": 1373,
+        "id": 35184830180825,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 1405,
+        "id": 35184864487323,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1
+        }
+      },
+      {
+        "index": 1406,
+        "id": 35184864487325,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1
+        }
+      },
+      {
+        "index": 1407,
+        "id": 35184864487326,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1
+        }
+      },
+      {
+        "index": 1408,
+        "id": 35184864487327,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1
+        }
+      },
+      {
+        "index": 1409,
+        "id": 35184864487332,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1,
+          "height": 6
+        }
+      },
+      {
+        "index": 1410,
+        "id": 35184864487333,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1,
+          "height": 6
+        }
+      },
+      {
+        "index": 1411,
+        "id": 35184864487334,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1,
+          "height": 6
+        }
+      },
+      {
+        "index": 1412,
+        "id": 35184864487335,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1
+        }
+      }
+    ],
+    "authoredLevels": {
+      "modernFloor": 0.65,
+      "modernDeck": 7,
+      "foundation": -10,
+      "historicGrade": 6,
+      "historicFloor": 6.65,
+      "wingWall": 11,
+      "wingRidge": 15,
+      "outerWall": 19,
+      "outerRoof": 25,
+      "outerClock": 32,
+      "centralWall": 18.5,
+      "centralGable": 26,
+      "roundTurret": 35,
+      "canopy": 6,
+      "shedEave": 12,
+      "shedCrown": 20
+    },
+    "heightPolicy": "Native heights are retained per physical family:modern7m deck,14/15m shafts,Fanta11m parent/15m wing ridges,25m end roofs/32m outer clocks,26m central gable/35m round turrets,20m shed crowns and6/8m platform roofs. Source modern floor+.65m andhistoric architectural grade+6m/floor+6.65m share one common outside-park datum,with foundations-10m. Roof curvature,grade transition,window/rib inventory andsmall absent-height details are explicit original photo-proportioned approximations. Map layers are not elevations;no per-part host offsets. Only actual closed lower floors receive masks;the road,cantilevers,roof parking,open sheds/platforms andcanopy gaps do not.",
+    "authoredMaximumMeters": 41,
+    "terrainTiles": 4,
+    "terrainReferenceLocal": [
+      0,
+      -52
+    ],
+    "occupiedMasks": 2,
+    "ownedNativeParts": 58,
+    "retainedNativeParts": 1496,
+    "mainShedFamilies": 2,
+    "extendedCanopyFamilies": 13,
+    "roundClockTowers": 2,
+    "outerClockTowers": 2,
+    "modernShafts": 6
+  },
+  "materialMethod": "Seven existing shared256px graphs:stone_limestone,brick,stone_granite,metal_painted,tile_ceramic,window_grid andconcrete_plain. Eight merged semantic groups separate opaque metal roof sheet fromstructural metal;metric UVs andlinear colors,no private or embedded images.",
+  "limitations": [
+    "Complete permanent Prague main-station passenger ensemble: modern western terminal with dark park-facing glass,roof parking/terrace,parapets andsix tall shafts;full historic Fanta building with both round central clock turrets,large arched glazed entrance,red-brick stepped gable,long wings,both outer roof/clock pavilions;two complete curved train sheds andall mapped extended canopy rows. Keep the road between terminals,open rail/platform spaces,park andindependent city/service buildings separate. Exterior only;no copied lettering,brands,coats of arms,figurative sculptures,people,trains or navigable underground/interior.",
+    "Native heights are retained per physical family:modern7m deck,14/15m shafts,Fanta11m parent/15m wing ridges,25m end roofs/32m outer clocks,26m central gable/35m round turrets,20m shed crowns and6/8m platform roofs. Source modern floor+.65m andhistoric architectural grade+6m/floor+6.65m share one common outside-park datum,with foundations-10m. Roof curvature,grade transition,window/rib inventory andsmall absent-height details are explicit original photo-proportioned approximations. Map layers are not elevations;no per-part host offsets. Only actual closed lower floors receive masks;the road,cantilevers,roof parking,open sheds/platforms andcanopy gaps do not. One unchanged standard field sample outside the modern park entrance[0,-52],208.6560418m,defines commonY=0. Historic architectural grade+6m is explicit;native contact still needs render review.",
+    "Two adequate ordinary photographs inspected. Full historic/modern plans andnative height stacks are retained. Hidden openings,roof sections,fine ornament,parking-bay/panel/rib inventory,current works andexact thresholds/platform transitions remain approximate. Modern exact relation identity doesnot assert anexact tag onFanta/every roof family. Exact hidden windows,thresholds,roof section/rib inventory andcurrent works remain approximate. Physical-device timing andnumerical LODerrors remainunmeasured.",
+    "Seven existing shared256px graphs:stone_limestone,brick,stone_granite,metal_painted,tile_ceramic,window_grid andconcrete_plain. Eight merged semantic groups separate opaque metal roof sheet fromstructural metal;metric UVs andlinear colors,no private or embedded images. Skyline retainsboth complete terminal masses,four historic clocktowers,sixmodernshafts,both curved train sheds andall extended canopy roofs. Districtaddscoarsepanes;streetaddsrealrecessesandframes;close-upaddsroof/parapet/mullion/ribdetail. Masterseparatelyrefinescurves,framesandpanels. Windowframes use front ribbons overrealrecesses inbrowser tiers;master preserves volumetricframes. Fine details areabsent onshort nativewallreturns rather thanextending beyond theirbounds."
+  ],
+  "references": [
+    {
+      "url": "https://www.abczech.cz/Hlavni-nadrazi-Praha-P7034809.html",
+      "imageUrl": "https://www.abczech.cz/img/Hlavni-nadrazi-Praha-PO1100-7034809.jpg",
+      "observed": "Actually inspected ordinary full Fanta front photograph. Pale warm cream masonry and stone bands,red-brick stepped/curved central gable,a very large recessed round-arched glazed entrance with muted green frames and shallow glass/green-metal canopy. Two tall rounded central clock turrets have stacked windows,broad circular cornices,lantern-like glass caps and slim poles. Long two-storey lateral ranges have repeated ground round arches and upper curved-top windows under terracotta pitched roofs. Figurative sculpture,coats of arms,lettering,brands,people andvehicles are excluded rather than copied."
+    },
+    {
+      "url": "https://www.flying-revue.cz/praha-z-zeppelinu",
+      "imageUrl": "https://www.flying-revue.cz/rimage/40215313/800/600/17986576_content_afc361d835e650fc18d1b088fdd70b6f.jpg",
+      "observed": "Actually inspected ordinary whole-station aerial photograph. Complete historic long frontage includes both large square outer pavilions with steep red tiled roofs and dark clock/spire tops,not only the central round turrets. Behind it are two full long curved metal/glass train sheds with open platform space and extended low roof rows. The separate low modern terminal west of the road has dark glazed park facade and a broad roof parking/terrace deck with parapets,ramp-like rounded ends,vent/entry shafts and lighting. Preserve the road separating modern andhistoric buildings,open rail spaces,park andindependent neighboring buildings. This is an ordinary picture,not a surveyed elevation or current construction-stage record."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Complete aboveground passenger-ensemble physical scope:58 current PMTiles components,1496 independent components retained,subject to exact production replacement verification. Exact relation identity belongs to the modern terminal only. Two actual closed lower floors are distinct from overhead parking,roads,train-shed roofs andcanopy gaps. Modern7m deck andFanta/rail architectural grade+6m use one common datum rather than per-part host offsets. Independent underground connector733 andservice/city buildings remain native."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-modern-fanta-and-open-train-roofs",
+      "position": [
+        -370,
+        220,
+        -290
+      ],
+      "lookAt": [
+        0,
+        18,
+        90
+      ],
+      "fov": 52
+    },
+    {
+      "name": "full-historic-front-four-towers-and-gable",
+      "position": [
+        -155,
+        62,
+        -25
+      ],
+      "lookAt": [
+        0,
+        24,
+        72
+      ],
+      "fov": 52
+    },
+    {
+      "name": "modern-park-entry-and-roof-terrace",
+      "position": [
+        -120,
+        24,
+        -120
+      ],
+      "lookAt": [
+        0,
+        7,
+        -5
+      ],
+      "fov": 52
+    },
+    {
+      "name": "whole-double-train-sheds-and-extended-rows",
+      "position": [
+        250,
+        160,
+        310
+      ],
+      "lookAt": [
+        0,
+        17,
+        145
+      ],
+      "fov": 52
+    },
+    {
+      "name": "under-two-open-train-sheds",
+      "position": [
+        0,
+        12,
+        115
+      ],
+      "lookAt": [
+        45,
+        23,
+        127
+      ],
+      "fov": 52
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.4,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u2/u2f/praha_hlavni_nadrazi/models/station-model.mjs",
+    "export": "buildStationSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.88
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.9
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.18
+      },
+      "sheet": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.15
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.88
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.4
+      },
+      "deck": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      }
+    },
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStationDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "sheet": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          }
+        },
+        "errorMeters": 1.2
+      },
+      "street": {
+        "export": "buildStationStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "sheet": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          }
+        },
+        "errorMeters": 0.5
+      },
+      "closeup": {
+        "export": "buildStationCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "sheet": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          }
+        },
+        "errorMeters": 0.18
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-prague-station-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -370,
+        220,
+        -290
+      ],
+      "lookAt": [
+        0,
+        18,
+        90
+      ]
+    },
+    {
+      "name": "whole-prague-station-district",
+      "reviewLod": "district",
+      "position": [
+        -370,
+        220,
+        -290
+      ],
+      "lookAt": [
+        0,
+        18,
+        90
+      ]
+    },
+    {
+      "name": "whole-prague-station-street",
+      "reviewLod": "street",
+      "position": [
+        -370,
+        220,
+        -290
+      ],
+      "lookAt": [
+        0,
+        18,
+        90
+      ]
+    },
+    {
+      "name": "whole-prague-station-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -370,
+        220,
+        -290
+      ],
+      "lookAt": [
+        0,
+        18,
+        90
+      ]
+    }
+  ]
+}

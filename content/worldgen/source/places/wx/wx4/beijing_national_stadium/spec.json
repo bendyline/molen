@@ -547,7 +547,12 @@
     "notes": "Pitch area centroid avoids the bias from uneven OSM vertex subdivision. Heading follows the long mapped pitch edge with +Z south. Published as-built dimensions govern the envelope; the hand-mapped footprint differs by roughly2.5m per east/west side. North/south axis ambiguity is resolved with mapped goal direction and architect plan."
   },
   "limitations": [
-    "This is an architectural reconstruction of the final fixed-roof exterior, not a shop-drawing inventory of every welded junction. Secondary steel plane families, connection phase and stair flights preserve the designer’s construction logic but are reconstructed from the published drawings/photos. Individual seat counts, temporary event overlays and inaccessible service interiors are excluded. Native field grade is scaled from the engineer section; the7.1m basement story is a separate published dimension. The open red concrete bowl, gray1.2m bands,24leaf supports and saddle envelope are explicit mesh geometry."
+    "This is an architectural reconstruction of the final fixed-roof exterior, not a shop-drawing inventory of every welded junction. Secondary steel plane families, connection phase and stair flights preserve the designer’s construction logic but are reconstructed from the published drawings/photos. Individual seat counts, temporary event overlays and inaccessible service interiors are excluded. Native field grade is scaled from the engineer section; the7.1m basement story is a separate published dimension. The open red concrete bowl, gray1.2m bands,24leaf supports and saddle envelope are explicit mesh geometry.",
+    "Original detailed source and imported design-time master remain byte-identical. Four separately authored browser levels retain the saddle envelope,24 primary support units,open crisscross lattice,red inner bowl,three seating tiers,oval fixed-roof aperture,athletics track and below-plaza field. Distant ribbons are wider and seating is aggregated;small welded junctions,individual seats,handrails and private service rooms remain outside browser detail.",
+    "Skyline uses24 perimeter facets and double-sided broad ribbon faces;district36 facets and reduced square-section ribbon families;street60 facets,19 grouped tread levels and sloping stair flights;closeup80 facets,all89 row bands,24 diamond supports,80 secondary facade ribbons,selected roof web/secondary lines and grouped stair treads. Individual seat counts and fine steel phasing remain source approximations.",
+    "Three existing shared256px painted metal,plain concrete and membrane graphs use metric UVs. Seating,turf,track and screens use local palette factors. No private or embedded images. The browser roof aggregates the transparent ETFE/acoustic PTFE system into opaque pale membrane faces;its fixed oval aperture stays open. This is a deliberate browser representation;the detailed master retains the layers.",
+    "Retained mapped pitch centroid[116.39027285127406,39.99141197188173],heading0.02719713994063493 and native+Z south remain unchanged. Native plazaY0 and fieldY-5 are retained architectural relative grades,not a new terrain or geodetic survey. Existing120-point elliptical cutout remains enclosed by the plaza annulus at every browser tier. No new bespoke reference or terrain fetch.",
+    "LOD error values8/4/2/1m are authoring estimates rather than certified whole-mesh Hausdorff errors. Faceting,coarse distant ribbon density,grouped treads and static transitions remain visible when tiers are forced close. Physical phone/laptop and downtown timing remain unmeasured."
   ],
   "importOptions": {
     "optimize": false
@@ -645,10 +650,246 @@
       ]
     }
   ],
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Open crisscross pale painted steel,24 diamond support units,saddle fixed roof and red three-tier bowl with oval opening and track."
+  },
+  "mediumFiContext": {
+    "groundY": -6,
+    "scale": 3,
+    "neighborStyle": "molen.worldgen.regional.east_asian.apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/models/birds-nest-browser.mjs",
+    "export": "buildBirdsNestSkyline",
+    "surfaces": {
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.66
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      },
+      "membrane": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.86
+      },
+      "plastic": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.78
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.35
+      },
+      "turf": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1
+      }
+    },
+    "errorMeters": 8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBirdsNestDistrict",
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.86
+          },
+          "plastic": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35
+          },
+          "turf": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 4
+      },
+      "street": {
+        "export": "buildBirdsNestStreet",
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.86
+          },
+          "plastic": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35
+          },
+          "turf": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 2
+      },
+      "closeup": {
+        "export": "buildBirdsNestCloseup",
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.86
+          },
+          "plastic": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.78
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35
+          },
+          "turf": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-birds-nest-skyline",
+      "position": [
+        330,
+        210,
+        350
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "fov": 50,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-birds-nest-district",
+      "position": [
+        330,
+        210,
+        350
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "fov": 50,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-birds-nest-street",
+      "position": [
+        330,
+        210,
+        350
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "fov": 50,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-birds-nest-closeup",
+      "position": [
+        330,
+        210,
+        350
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "fov": 50,
+      "reviewLod": "closeup"
+    }
+  ],
   "assetId": "molen.worldgen.structure.beijing_national_stadium",
   "category": "stadium",
   "quality": "detailed",
   "actualBounds": {
+    "min": [
+      -152.38829040527344,
+      -5.039999961853027,
+      -170.1354217529297
+    ],
+    "max": [
+      152.320556640625,
+      69.02808380126953,
+      170.1883544921875
+    ]
+  },
+  "mesh": {
+    "triangles": 1434126,
+    "vertices": 3244660,
+    "materials": 7,
+    "bytes": 134021220,
+    "sha256": "sha256:24a3be75c462e0549e8b96960dbdf1447abbcef0814149cd8e0231d666e60af1",
     "min": [
       -152.38829040527344,
       -5.039999961853027,

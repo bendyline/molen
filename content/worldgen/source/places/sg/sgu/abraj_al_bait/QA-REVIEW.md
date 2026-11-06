@@ -25,3 +25,10 @@ Accepted medium-fi exterior and approximate picture/PMTiles fitting. Preserve or
 - [Inspected picture 1](https://www.sl-rasch.com/wp-content/uploads/2019/07/Makkahclock.jpg) — actual pixels inspected; image not redistributed.
 - [Inspected picture 2](https://www.sl-rasch.com/wp-content/uploads/2019/07/SL_Rasch_Tower_Tents_01-3.jpg) — actual pixels inspected; image not redistributed.
 - Standard viewer Protomaps20261008/Mapzen Terrarium PMTiles; controls/hashes retained in pmtiles-fit.json. ©OpenStreetMap contributors/ODbL, elevation attribution retained with the fit data.
+
+
+## Current Earth context refresh — 2026-10-31
+
+Inspected all 26 freshly rendered current-Earth context, mode, detail and four-tier transition images. All seven tower masses, the offset clock shaft, four dials, V supports, pale tents, green jewel and continuous gold crescent remain readable across the four tiers. Small facade grids aggregate at distance; close dial typography is representative and wide-context shadow maps show finite-resolution artifacts. Corrected whole-building framing uses context scale 14; neighbor buildings and source-local height correction remain synthetic/approximate context. No new terrain, survey, reference-research or physical-device performance claim.
+
+Only review-camera identifiers were normalized to hyphens and the synthetic Earth-context camera scale was increased to frame the whole tower. All six GLBs, shared-material bindings, portable scene/cameras and geographic placement remain unchanged. Previously inspected portable/shared/map evidence is retained, not relabeled as fresh renders. Six unchanged GLBs validate with zero errors/warnings/embedded images. Current hash bindings, four-tier budgets and shared graph hashes pass.

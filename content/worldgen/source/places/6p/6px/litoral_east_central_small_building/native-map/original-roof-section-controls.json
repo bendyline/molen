@@ -1,0 +1,146 @@
+{
+  "sourceUrl": "https://storage.googleapis.com/open-buildings-data/v3/polygons_s2_level_4_gzip/903_buildings.csv.gz",
+  "sourceDatasetHash": "sha256:a3a20d797f23abf9159ecef10b2355be9f8f87aa3b7b67f96ad1537f8529e400",
+  "coordinateFrame": {
+    "anchor": [
+      -79.9439,
+      -2.051
+    ],
+    "axes": "east/south",
+    "metersPerDegree": 111319.49079327358,
+    "eastCosine": 0.9993593664422343
+  },
+  "originalSource": {
+    "sourceId": "google-open-buildings:6792W3X4+4MPH",
+    "originalCsvRow": {
+      "latitude": "-2.05216415",
+      "longitude": "-79.94328145",
+      "area_in_meters": "45.1915",
+      "confidence": "0.8640",
+      "geometry": "POLYGON((-79.9432478056431 -2.05219199260337, -79.9432645816136 -2.05212375220361, -79.9433150867897 -2.05213631977719, -79.9432983108206 -2.05220456017858, -79.9432478056431 -2.05219199260337))",
+      "full_plus_code": "6792W3X4+4MPH"
+    },
+    "originalGeographicRing": [
+      [
+        -79.9432478056431,
+        -2.05219199260337
+      ],
+      [
+        -79.9432645816136,
+        -2.05212375220361
+      ],
+      [
+        -79.9433150867897,
+        -2.05213631977719
+      ],
+      [
+        -79.9432983108206,
+        -2.05220456017858
+      ],
+      [
+        -79.9432478056431,
+        -2.05219199260337
+      ]
+    ],
+    "originalRing": [
+      [
+        72.55543246715285,
+        132.69200963645937
+      ],
+      [
+        70.68913635101518,
+        125.09552308366527
+      ],
+      [
+        65.07052764283868,
+        126.49453897510183
+      ],
+      [
+        66.93682360246413,
+        134.0910257093747
+      ],
+      [
+        72.55543246715285,
+        132.69200963645937
+      ]
+    ],
+    "sourceAreaSquareMeters": 45.29266458584243,
+    "maskModels": [],
+    "outsidePolygons": [
+      {
+        "part": 0,
+        "areaSquareMeters": 45.29266458584243,
+        "rings": [
+          [
+            [
+              65.07052764283868,
+              126.49453897510183
+            ],
+            [
+              70.68913635101518,
+              125.09552308366527
+            ],
+            [
+              72.55543246715285,
+              132.69200963645937
+            ],
+            [
+              66.93682360246413,
+              134.0910257093747
+            ],
+            [
+              65.07052764283868,
+              126.49453897510183
+            ]
+          ]
+        ]
+      }
+    ],
+    "outsideAreaSquareMeters": 45.29266458584243,
+    "heightObservationFile": "research/litoral-remaining-interior-original-2023-height-observations-2026-11-02.json",
+    "heightSummary": null,
+    "interpretation": "Exact source-set difference against accepted roofed-body plans; not proof that every sliver is a physical annex. Full original source retained; no old frame/field/floor/geometry or QA changed. Distinguish broad supported remainder from small competing boundary strips before authoring."
+  },
+  "modelPolygons": [
+    [
+      [
+        -3.9021385114838507,
+        2.895065689558301
+      ],
+      [
+        -3.92024380841691,
+        -2.8950669102909865
+      ],
+      [
+        3.902138441870916,
+        -2.895065786429907
+      ],
+      [
+        3.920243877700668,
+        2.895067008709664
+      ]
+    ]
+  ],
+  "originalHeightControls": {
+    "sourceId": "google-open-buildings:6792W3X4+4MPH",
+    "sourceHeightYear": 2023,
+    "relativeHeightLearnedNotSurvey": true,
+    "numericalProjection": "Newton inverse of original WGS84 UTM17S numeric projection, original sample coordinates unchanged; <0.0001m round-trip numerical residual is not source accuracy.",
+    "sourceHeightUrl": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/902d4_2023_06_30/tile_FRzHb_Wx0jw.tif",
+    "wholeSourcePassing": 0,
+    "wholeSourceHeightSummary": {},
+    "parts": [
+      {
+        "part": 0,
+        "area": 45.29266458584243,
+        "selectedSamples": 0,
+        "heights": [],
+        "heightSummary": {},
+        "observations": []
+      }
+    ]
+  },
+  "adjacency": [],
+  "sourceLicense": "Original Google Open Buildings v3 numerical footprints/heights selected ODbL; no source imagery used.",
+  "interpretation": "Exact complete original source outside accepted roofed-body masks. This is an intrinsic complement, not an independently proven new building or a native compound boundary. Source outline/sections/current-condition unverified at survey level. Any source-precision remnant under10m² is explicitly considered for roof-edge reconciliation, not assumed to be a new room."
+}

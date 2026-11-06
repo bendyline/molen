@@ -1,0 +1,431 @@
+/** Whole later Unit 1 power block. Numerical sections; explicit historical continuity estimates. */
+import '../../../../../../../../packages/worldgen/scripts/install-deterministic-math.mjs';
+import fs from 'node:fs';
+import { MeshBufferBuilder } from '../../../../../../../../packages/worldgen/dist/kernel.mjs';
+import {
+  beam,
+  normalFor,
+} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
+export const P = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));
+export const surfaces = {
+  concrete: { slot: 'wall', graph: 'concrete_plain', roughness: 0.92, metallic: 0 },
+  deck: { slot: 'roof', graph: 'concrete_plain', roughness: 0.96, metallic: 0 },
+  metal: { slot: 'wall', graph: 'metal_corrugated', roughness: 0.86, metallic: 0.18 },
+  roof: { slot: 'roof', graph: 'metal_painted', roughness: 0.85, metallic: 0.25 },
+  steel: { slot: 'trim', graph: 'metal_painted', roughness: 0.7, metallic: 0.35 },
+  foundation: { slot: 'foundation', graph: 'concrete_plain', roughness: 0.96, metallic: 0 },
+};
+const colors = {
+    concrete: rgb('cdd0c8'),
+    deck: rgb('b8bfb4'),
+    metal: rgb('cbd3d0'),
+    roof: rgb('9ca89f'),
+    foundation: rgb('b3bcb2'),
+    steel: rgb('8d9c92'),
+  },
+  rect = (x0, x1, z0, z1) => [
+    [x0, z0],
+    [x1, z0],
+    [x1, z1],
+    [x0, z1],
+  ];
+export const componentEvidence = [];
+function face(o, k, p, n, tint = colors[k]) {
+  let v = normalFor(...p);
+  if (n && v.reduce((s, a, i) => s + a * n[i], 0) < 0) {
+    p = [...p].reverse();
+    v = normalFor(...p);
+  }
+  o.addConvexPolygon(k, 'palette:#ffffff', p, v, (q) => [q[0], q[1]], tint);
+}
+function cap(o, k, r, y, up, tint) {
+  const b = new MeshBufferBuilder();
+  if (
+    !b.addCap(
+      k,
+      'palette:#ffffff',
+      r,
+      [],
+      () => y,
+      [0, up, 0],
+      (p) => p,
+      tint ?? colors[k],
+    )
+  )
+    throw Error('Invalid Unit 1 cap');
+  const m = b.finalize();
+  for (let i = 0; i < m.indices.length; i += 3)
+    face(
+      o,
+      k,
+      Array.from(m.indices.slice(i, i + 3)).map((j) =>
+        Array.from(m.positions.slice(j * 3, j * 3 + 3)),
+      ),
+      [0, up, 0],
+      tint,
+    );
+}
+function prism(o, k, r, y0, y1, tint) {
+  const sg = Math.sign(
+    r.reduce((s, p, i) => {
+      const q = r[(i + 1) % r.length];
+      return s + p[0] * q[1] - p[1] * q[0];
+    }, 0),
+  );
+  for (let i = 0; i < r.length; i++) {
+    const a = r[i],
+      b = r[(i + 1) % r.length];
+    face(
+      o,
+      k,
+      [
+        [a[0], y0, a[1]],
+        [b[0], y0, b[1]],
+        [b[0], y1, b[1]],
+        [a[0], y1, a[1]],
+      ],
+      [(b[1] - a[1]) * sg, 0, (a[0] - b[0]) * sg],
+      tint,
+    );
+  }
+  cap(o, k, r, y0, -1, tint);
+  cap(o, k, r, y1, 1, tint);
+}
+const box = (o, k, x, z, w, d, y0, y1, t) =>
+    prism(o, k, rect(x - w / 2, x + w / 2, z - d / 2, z + d / 2), y0, y1, t),
+  strut = (o, k, a, b, w = 0.08, t) => beam(o, k, a, b, w, w, t ?? colors[k]);
+function cylinder(o, k, x, z, r, y0, y1, n, t) {
+  prism(
+    o,
+    k,
+    Array.from({ length: n }, (_, i) => [
+      x + r * Math.cos((i * 2 * Math.PI) / n),
+      z + r * Math.sin((i * 2 * Math.PI) / n),
+    ]),
+    y0,
+    y1,
+    t,
+  );
+}
+function walls(o, k, ring, y0, y1, lod, spacing = 6, entries = false) {
+  const sg = Math.sign(
+    ring.reduce((s, a, i) => {
+      const b = ring[(i + 1) % ring.length];
+      return s + a[0] * b[1] - a[1] * b[0];
+    }, 0),
+  );
+  let joints = 0,
+    doors = 0;
+  for (let i = 0; i < ring.length; i++) {
+    const a = ring[i],
+      b = ring[(i + 1) % ring.length],
+      L = Math.hypot(b[0] - a[0], b[1] - a[1]),
+      u = [(b[0] - a[0]) / L, (b[1] - a[1]) / L],
+      n = [u[1] * sg, -u[0] * sg],
+      pt = (t, y, off = 0.065) => [a[0] + u[0] * t + n[0] * off, y, a[1] + u[1] * t + n[1] * off];
+    if (lod >= 1) {
+      strut(o, 'steel', pt(0, y0), pt(0, y1), 0.1);
+      strut(o, 'steel', pt(0, y1), pt(L, y1), 0.1);
+    }
+    if (lod >= 2 && L > 8) {
+      const N = Math.ceil(L / (lod === 3 ? spacing : spacing * 2));
+      for (let j = 1; j < N; j++) {
+        strut(o, 'steel', pt((L * j) / N, y0 + 0.1), pt((L * j) / N, y1 - 0.1), 0.035);
+        joints++;
+      }
+    }
+    if (entries && L > 25) {
+      const t = L * 0.55,
+        w = 3.2;
+      face(
+        o,
+        'steel',
+        [
+          pt(t - w / 2, y0 + 0.03, 0.14),
+          pt(t + w / 2, y0 + 0.03, 0.14),
+          pt(t + w / 2, y0 + 4, 0.14),
+          pt(t - w / 2, y0 + 4, 0.14),
+        ],
+        [n[0], 0, n[1]],
+        rgb('5e746b'),
+      );
+      doors++;
+    }
+  }
+  return { joints, doors };
+}
+function reactor(o, lod) {
+  prism(o, 'foundation', P.reactorLowerRing, P.foundationBottom, P.floor);
+  prism(o, 'concrete', P.reactorLowerRing, P.floor, P.reactorLowerRoof - 0.25);
+  prism(o, 'deck', P.reactorLowerRing, P.reactorLowerRoof - 0.25, P.reactorLowerRoof);
+  prism(
+    o,
+    'concrete',
+    P.reactorUpperRing,
+    P.reactorLowerRoof,
+    P.reactorOperatingDeck - P.reactorDeckThickness,
+  );
+  prism(
+    o,
+    'deck',
+    P.reactorUpperRing,
+    P.reactorOperatingDeck - P.reactorDeckThickness,
+    P.reactorOperatingDeck,
+  );
+  walls(o, 'concrete', P.reactorLowerRing, P.floor, P.reactorLowerRoof - 0.25, lod, 7, true);
+  walls(
+    o,
+    'concrete',
+    P.reactorUpperRing,
+    P.reactorLowerRoof,
+    P.reactorOperatingDeck - P.reactorDeckThickness,
+    lod,
+    7,
+  );
+  if (lod === 3)
+    for (let z = -17; z < 21; z += 5)
+      strut(
+        o,
+        'deck',
+        [-20.9, P.reactorOperatingDeck + 0.014, z],
+        [9.9, P.reactorOperatingDeck + 0.014, z],
+        0.024,
+        rgb('9ca898'),
+      );
+}
+function turbine(o, lod) {
+  prism(o, 'foundation', P.turbineRing, P.foundationBottom, P.floor);
+  prism(o, 'metal', P.turbineRing, P.floor, P.turbineLowRoof);
+  cap(o, 'roof', P.turbineRing, P.turbineLowRoof + 0.025, 1);
+  prism(o, 'metal', P.turbineMainRing, P.turbineLowRoof, P.turbineRoof - 0.16);
+  prism(o, 'roof', P.turbineMainRing, P.turbineRoof - 0.16, P.turbineRoof);
+  const lo = [0, 1].map((k) => Math.min(...P.turbineMainRing.map((p) => p[k]))),
+    hi = [0, 1].map((k) => Math.max(...P.turbineMainRing.map((p) => p[k]))),
+    x = (lo[0] + hi[0]) / 2;
+  for (const t of [0.17, 0.39, 0.61, 0.83]) {
+    const z = lo[1] + (hi[1] - lo[1]) * t;
+    box(o, 'steel', x, z, 2.4, 2.4, P.turbineRoof, P.turbineRoof + 1.2);
+    box(o, 'roof', x, z, 2.8, 2.8, P.turbineRoof + 1.2, P.turbineRoof + 1.35);
+  }
+  const a = walls(o, 'metal', P.turbineRing, P.floor, P.turbineLowRoof, lod, 4, true),
+    b = walls(o, 'metal', P.turbineMainRing, P.turbineLowRoof, P.turbineRoof - 0.16, lod, 4);
+  return { joints: a.joints + b.joints, doors: a.doors };
+}
+function stack(o, lod) {
+  const [x, z] = P.stackPoint,
+    n = [4, 6, 10, 16][lod],
+    bays = [2, 5, 8, 10][lod],
+    half = (h) =>
+      (P.originalTowerBaseWidth +
+        ((P.originalTowerTopWidth - P.originalTowerBaseWidth) * h) / P.originalTowerHeight) /
+      2,
+    corner = (i, h) => {
+      const a = [
+          [-1, -1],
+          [1, -1],
+          [1, 1],
+          [-1, 1],
+        ][i],
+        r = half(h);
+      return [x + a[0] * r, P.floor + h, z + a[1] * r];
+    },
+    color = (h) => (Math.floor(Math.min(h, 59) / 20) % 2 ? rgb('c44f3f') : rgb('e7e8dc')),
+    steps = Array.from({ length: bays + 1 }, (_, i) => (i * P.stackHeight) / bays);
+  for (let i = 0; i < 4; i++) {
+    const a = corner(i, 0),
+      b = corner(i, P.stackHeight);
+    cylinder(
+      o,
+      'foundation',
+      a[0],
+      a[2],
+      P.pierRadius,
+      P.foundationBottom,
+      P.floor,
+      n,
+      colors.foundation,
+    );
+    strut(o, 'steel', a, b, 0.5, colors.steel);
+  }
+  cylinder(
+    o,
+    'foundation',
+    x,
+    z,
+    P.centralPadRadius,
+    P.foundationBottom,
+    P.floor,
+    n,
+    colors.foundation,
+  );
+  for (const [a, b] of [
+    [0, 20],
+    [20, 40],
+    [40, 59],
+  ])
+    cylinder(
+      o,
+      'steel',
+      x,
+      z,
+      P.flueOuterRadius,
+      P.floor + a,
+      P.floor + b,
+      [6, 10, 16, 24][lod],
+      color((a + b) / 2),
+    );
+  cylinder(
+    o,
+    'steel',
+    x,
+    z,
+    P.flueOuterRadius + 0.12,
+    P.floor + 59,
+    P.floor + 59 + P.stackCapThickness,
+    [6, 10, 16, 24][lod],
+    rgb('a4aea6'),
+  );
+  for (const h of steps)
+    for (let i = 0; i < 4; i++)
+      strut(o, 'steel', corner(i, h), corner((i + 1) % 4, h), 0.2, color(h));
+  let braces = 0;
+  for (let j = 0; j < bays; j++)
+    for (let i = 0; i < 4; i++) {
+      const k = (i + 1) % 4,
+        a = steps[j],
+        b = steps[j + 1];
+      strut(o, 'steel', corner(i, a), corner(k, b), 0.16, color((a + b) / 2));
+      braces++;
+      if (lod >= 1) {
+        strut(o, 'steel', corner(k, a), corner(i, b), 0.16, color((a + b) / 2));
+        braces++;
+      }
+    }
+  if (lod >= 2) {
+    const spacing = lod === 3 ? 0.7 : 1.5;
+    for (let h = 1; h < 58; h += spacing)
+      strut(
+        o,
+        'steel',
+        [x - 0.35, P.floor + h, z - half(h) - 0.2],
+        [x + 0.35, P.floor + h, z - half(h) - 0.2],
+        0.045,
+      );
+    for (const dx of [-0.35, 0.35])
+      strut(
+        o,
+        'steel',
+        [x + dx, P.floor + 1, z - half(1) - 0.2],
+        [x + dx, P.floor + 58, z - half(58) - 0.2],
+        0.045,
+      );
+    for (const h of [29, 57])
+      for (let i = 0; i < 4; i++) {
+        const a = corner(i, h),
+          b = corner((i + 1) % 4, h);
+        strut(o, 'steel', [a[0], a[1] + 1, a[2]], [b[0], b[1] + 1, b[2]], 0.05);
+      }
+  }
+  return { bays, braces, cutWidth: half(59) * 2 };
+}
+export function buildHouse(o, _f, lod = 3) {
+  componentEvidence.length = 0;
+  reactor(o, lod);
+  const t = turbine(o, lod),
+    s = stack(o, lod);
+  componentEvidence.push({
+    lod,
+    wholeThreeStructurePowerBlock: true,
+    remainingReactorWhole: true,
+    reactorLowerControls: 4,
+    reactorUpperControls: 4,
+    reactorOperatingDeck: P.reactorOperatingDeck,
+    originalReactorRoofRestored: false,
+    turbineOuterControls: P.turbineRing.length,
+    turbineMainControls: P.turbineMainRing.length,
+    wholeTurbineAndLowProjections: true,
+    turbineVentHousings: 4,
+    turbineClosedDoors: t.doors,
+    turbinePanelJoints: t.joints,
+    wholeRemainingSharedStack: true,
+    stackHeight: 59,
+    cappedStackTop: true,
+    remainingStackWidth: s.cutWidth,
+    fourWholeLegs: true,
+    fourPierFootingsAndCentralPad: true,
+    bracingBays: s.bays,
+    diagonalMembers: s.braces,
+    filledCompoundPolygon: false,
+    notWholePlantProxy: true,
+  });
+}
+export const houseSkyline = (o, f) => buildHouse(o, f, 0),
+  houseDistrict = (o, f) => buildHouse(o, f, 1),
+  houseStreet = (o, f) => buildHouse(o, f, 2),
+  houseCloseup = (o, f) => buildHouse(o, f, 3);
+const root = 'content/worldgen/source/places/' + P.cell + '/' + P.model,
+  camera = [210, 135, 210],
+  look = [23, 24, 10];
+export const houseModel = {
+  id: P.model,
+  key: P.model,
+  cell: P.cell,
+  title: P.title,
+  recipe: 'house-model.mjs',
+  surfaces,
+  build: buildHouse,
+  category: 'landmark',
+  quality: 'medium-fi-exterior',
+  reviewStatus: 'review-in-qa.json',
+  geographicStatus: 'historical-proposal',
+  orientationPolicy: 'approximate-visualization',
+  progressLedger: 'qualla-002.PROGRESS.md',
+  brief:
+    'Whole approximate2021 Unit1powerblock: damaged remaining reactor concretebody/operatingdeckOP31,whole original14corner turbinehall withlowattachments and shared1/2stack shortened/cappedat59m. Three separate intrinsicstructures retain their original positions,not a filled compound. Source numerical facts and limited cleared historical QuallaDOEreferenceuse; later continuity and damage/finish estimates explicit.',
+  appearance: {
+    kind: 'historical',
+    representedDate: P.representedDate,
+    validFrom: P.validFrom,
+    validUntil: P.validUntil,
+    currentWorldEligible: false,
+  },
+  camera,
+  lookAt: look,
+  portableGroundY: -1.23,
+  mediumFiContext: {
+    scale: 1,
+    groundY: 0,
+    terrain: { descriptor: 'terrain-review.terrain.json', heightmap: 'terrain-review.height.png' },
+  },
+  embeddedCanonicalGraphs: ['metal_corrugated', 'metal_painted', 'concrete_plain'],
+  qaCameras: [
+    { name: 'whole-east-turbine-reactor-and-shortened-stack', position: camera, lookAt: look },
+    {
+      name: 'whole-west-remaining-reactor-and-capped-stack',
+      position: [-200, 125, -190],
+      lookAt: look,
+    },
+  ],
+  qaLodCameras: ['skyline', 'district', 'street', 'closeup'].map((reviewLod) => ({
+    name: 'whole-Unit1-power-block-' + reviewLod,
+    position: camera,
+    lookAt: look,
+    reviewLod,
+  })),
+  runtimeLodOverlay: {
+    module: root + '/models/house-model.mjs',
+    level: 'skyline',
+    export: 'houseSkyline',
+    errorMeters: 0.2,
+    surfaces,
+    authoredLevels: {
+      district: { export: 'houseDistrict', errorMeters: 0.12, surfaces },
+      street: { export: 'houseStreet', errorMeters: 0.04, surfaces },
+      closeup: { export: 'houseCloseup', errorMeters: 0.001, surfaces },
+    },
+  },
+  limitations: P.limitations,
+  sourceLicense:
+    'Original procedural geometry under repository license. Original Overture/OSM numeric geometry ODbL attributed. Original NRC/operator numerical and condition text only; report pixels unused. Existing cleared Qualla ENERGY.GOV/PD-USGov-DOE1971 originals reused only for limited historic finish/relative stack location.2021continuity/section/damage/groundtie approximate; no phototextures.',
+};

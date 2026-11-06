@@ -1,0 +1,453 @@
+{
+  "id": "nagoya_station",
+  "title": "Nagoya Station",
+  "wikidataId": "Q49381",
+  "referenceCoordinate": {
+    "longitude": 136.88288055360317,
+    "latitude": 35.170885165799234
+  },
+  "module": "content/worldgen/source/places/xn/xn3/nagoya_station/models/station-model.mjs",
+  "builder": "buildStationLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.87
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "membrane",
+      "roughness": 0.88
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.24
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.36
+    },
+    "doorGlass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.36
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.87
+    }
+  },
+  "exportLabel": "Molen original complete Nagoya Station passenger building and mapped platform canopies shared-surface source",
+  "expectedDraftMasterHash": "sha256:826273b67ee68d9988c580028b47aac9c4689cb8565e7ab8e080c1c4be88321a",
+  "visualBrief": "Complete JR Central Towers passenger-building exterior as the main Nagoya Station model:both distinctive curved towers withflatservicebacks,roofcrown/disc,sharedmultilevelpodium,centralglazedspine,terraces/closedentrances andattachednorthhall. Include eightmappedJR platformcanopieswithopen sides/supports behindthebuilding. PreserveJR GateTower,JPTower,Meitetsu/Kintetsu andotherindependentbuildings,roads/rails/platformsurfaces. Originalmedium-fi returns andunseenopeninginventory;no navigableinterior orcopiedbrands.",
+  "heightPolicy": "Native mapped podium47m,office155m andhotel161m part heights are retained with their incomplete elevation semantics. Photo-proportioned source podium60m,north office245m andsouth hotel220m body/226m crown-disc are approximate visualization controls,not surveyed heights. One common unchanged host sample outside the street frontage at local[0,40], 46.516188m suppliesY=0;closed occupied building floors+.35m/support-3m. Platform canopy roofs9m/14m andtransverse concourse8.6m are explicit map/photo-based approximations. No per-part terrain offsets,track replacement or invented outside plaza.",
+  "nativeAxes": "+X north-northwest along the station bar toward the office tower,+Z east-northeast toward the photographed curved street facades,-Z west-southwest toward rail platforms,+Y up.",
+  "sourceFacts": {
+    "components": [
+      {
+        "index": 5035,
+        "id": 35184571857004,
+        "height": 47
+      },
+      {
+        "index": 5977,
+        "id": 35184873501520,
+        "height": 155
+      },
+      {
+        "index": 5978,
+        "id": 35184873501521,
+        "height": 161
+      },
+      {
+        "index": 6006,
+        "id": 35185207342120
+      },
+      {
+        "index": 6008,
+        "id": 35185207342123
+      }
+    ],
+    "platformCanopies": 8,
+    "heightPolicy": "Nativepartheightsretained. Total sourceheights willbephoto-proportionedapproximations;not surveyedrealbuildingheights.",
+    "photoProportionedMeters": {
+      "podium": 60,
+      "officeTop": 245,
+      "hotelBody": 220,
+      "hotelDisc": 226,
+      "canopyConventional": 9,
+      "canopyShinkansen": 14
+    },
+    "authoredMaximumMeters": 245.5,
+    "terrainTiles": 3,
+    "terrainReferenceLocal": [
+      0,
+      40
+    ]
+  },
+  "limitations": [
+    "Complete JR Central Towers passenger-building exterior as the main Nagoya Station model:both distinctive curved towers withflatservicebacks,roofcrown/disc,sharedmultilevelpodium,centralglazedspine,terraces/closedentrances andattachednorthhall. Include eightmappedJR platformcanopieswithopen sides/supports behindthebuilding. PreserveJR GateTower,JPTower,Meitetsu/Kintetsu andotherindependentbuildings,roads/rails/platformsurfaces. Originalmedium-fi returns andunseenopeninginventory;no navigableinterior orcopiedbrands.",
+    "Native mapped podium47m,office155m andhotel161m part heights are retained with their incomplete elevation semantics. Photo-proportioned source podium60m,north office245m andsouth hotel220m body/226m crown-disc are approximate visualization controls,not surveyed heights. One common unchanged host sample outside the street frontage at local[0,40], 46.516188m suppliesY=0;closed occupied building floors+.35m/support-3m. Platform canopy roofs9m/14m andtransverse concourse8.6m are explicit map/photo-based approximations. No per-part terrain offsets,track replacement or invented outside plaza.",
+    "Two ordinary pictures plus standard viewerPMTiles andTerrarium only. No downloaded meshes or bespoke research. Picturefilesremainlocal andarenot textures. Whole principal passenger ensemble only. Deep podium ledges and recessed glazing are modeled; hidden service returns,roof inventory,entrance/crown details andeight platformcanopies are original medium-fi approximations. No copied corporate lettering/brands,navigable interior,independent JR GateTower/JP Tower,Meitetsu/Kintetsu,tracks or platform surface replacement. Coarse standard field hasstrong urban returns;native site acceptance remains pending current field inspection. Physical-device timing andnumerical LOD errors remain unmeasured.",
+    "Five existing shared256px concrete,granite,membrane,painted-metal andwindow-grid graphs;five groups maximum. MetricUVs andlinearcolors;no private/embeddedimages. Skyline preserves both distincttowers,podium,northhall,crown andeightcanopies. District addsfacadebanding andsparseverticals. Street addsrecessedpodiumglazing,realfloorledges andentranceframes. Close-up addsstablefins/floorgrid,terracerails andfinercurves. Master preservesfinercurves independently of facadefinspacing."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:JR_Central_Towers_(2016-07-07).jpg",
+      "observed": "Actually inspected2016 southeast street view:paired pale towers with curved outward street faces andflat service returns;many narrow repeated window/fins,asymmetric rooflines,large multi-level glazed podium withdeep horizontalwhite bands/open terraces,tall central dark vertical glazed spine andshallow entrancecanopies. Thecurvedsouthtower appearscloserandlarger inperspective;do not inferrelativephysicalheight fromthat alone. NearbyJR GateTower isseparate context."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:JR_Central_Towers_from_Taikodori_Entrance_of_Nagoya_Station.jpg",
+      "observed": "Actually inspected2015 west/Taikodori view:the north office tower has a flatback/rectangular service return andtallcontinuousgrid;the south hotel tower has a roundedcrown,smaller projectingupperdisc and flatback/return wing. Lowerstationhall/podium isbroadandhorizontallybanded. Railplatform canopyisvisibleintheforeground butindividualroofinventoryisnotphoto-established;useactualPMTiles platformplans andexplicitapproximation."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "StationQ49381 is a station/site reference,not an exact building way. Native podium35184571857004,office35184873501520,hotel35184873501521,outerpassengerstrip35185207342123 andattachednorthhall35185207342120 alignwithtwoordinarypictures. No exact OSM elementIDs asserted forencodedtileIDs. IndependentJRGateTower/JP Tower remainnative. Native47mpodium,155moffice and161mhotel facts arepreserved;picture-proportionedtotal heights requireoriginalapproximatecontrols. EightJRplatformislandscontrolonlyroofcanopyplans;tracks andplatformsurfacesremain native."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-east-twin-towers-podium-and-canopies",
+      "position": [
+        260,
+        190,
+        360
+      ],
+      "lookAt": [
+        0,
+        105,
+        -40
+      ],
+      "fov": 50
+    },
+    {
+      "name": "whole-west-service-backs-and-platform-canopies",
+      "position": [
+        -260,
+        170,
+        -400
+      ],
+      "lookAt": [
+        0,
+        95,
+        -80
+      ],
+      "fov": 50
+    },
+    {
+      "name": "podium-ledges-recessed-glazing-and-closed-entrances",
+      "position": [
+        160,
+        90,
+        190
+      ],
+      "lookAt": [
+        0,
+        40,
+        15
+      ],
+      "fov": 50
+    },
+    {
+      "name": "curved-towers-roof-ends-and-hotel-crown",
+      "position": [
+        -95,
+        245,
+        120
+      ],
+      "lookAt": [
+        15,
+        219,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "all-eight-open-platform-canopies-and-transverse-hall",
+      "position": [
+        -280,
+        55,
+        -300
+      ],
+      "lookAt": [
+        0,
+        7,
+        -110
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 3.3,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/xn/xn3/nagoya_station/models/station-model.mjs",
+    "export": "buildStationSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.87
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.88
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.24
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.36
+      },
+      "doorGlass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.36
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.87
+      }
+    },
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStationDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.87
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.88
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.36
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.36
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.87
+          }
+        },
+        "errorMeters": 1
+      },
+      "street": {
+        "export": "buildStationStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.87
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.88
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.36
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.36
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.87
+          }
+        },
+        "errorMeters": 0.4
+      },
+      "closeup": {
+        "export": "buildStationCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.87
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.88
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.36
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.36
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.87
+          }
+        },
+        "errorMeters": 0.15
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-nagoya-station-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        260,
+        190,
+        360
+      ],
+      "lookAt": [
+        0,
+        105,
+        -40
+      ]
+    },
+    {
+      "name": "whole-nagoya-station-district",
+      "reviewLod": "district",
+      "position": [
+        260,
+        190,
+        360
+      ],
+      "lookAt": [
+        0,
+        105,
+        -40
+      ]
+    },
+    {
+      "name": "whole-nagoya-station-street",
+      "reviewLod": "street",
+      "position": [
+        260,
+        190,
+        360
+      ],
+      "lookAt": [
+        0,
+        105,
+        -40
+      ]
+    },
+    {
+      "name": "whole-nagoya-station-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        260,
+        190,
+        360
+      ],
+      "lookAt": [
+        0,
+        105,
+        -40
+      ]
+    }
+  ]
+}

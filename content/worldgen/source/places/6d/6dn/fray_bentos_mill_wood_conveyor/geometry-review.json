@@ -1,0 +1,142 @@
+{
+  "status": "passed",
+  "checks": 3,
+  "validationGroups": [
+    "frozen-original-ground-and-heightfield-roundtrip",
+    "complete-conveyor-silhouette-four-lod-budgets-and-source-runtime-geometry",
+    "sixteen-representative-frontface-conveyor-roof-side-and-original-footing-rays"
+  ],
+  "sourceHash": "sha256:96ddf2db6427c006a998122f8e5361c40d9957c8e329f57e969bb506aec07a3d",
+  "runtimeHash": "sha256:bc68594c47d5d182c1434fb01dbd54451d56339af0575bdab6d076075543bec5",
+  "pngRoundTripMaxErrorMeters": 0.00014550600052132268,
+  "originalFieldFrameFloorsAndMainSectionsUnchanged": true,
+  "layoutExplicitlyEstimated": true,
+  "actualGeometryRays": [
+    {
+      "lod": 0,
+      "id": "conveyor-closed-roof",
+      "distance": 39.2330101006275,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 0,
+      "id": "conveyor-closed-side",
+      "distance": 6.100000023841861,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 0,
+      "id": "original-footing-top",
+      "distance": 19.230925023555756,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 0,
+      "id": "original-footing-bottom",
+      "distance": 9.91907499730587,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 1,
+      "id": "conveyor-closed-roof",
+      "distance": 39.2330101006275,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 1,
+      "id": "conveyor-closed-side",
+      "distance": 6.100000023841861,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 1,
+      "id": "original-footing-top",
+      "distance": 19.230925023555756,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 1,
+      "id": "original-footing-bottom",
+      "distance": 9.91907499730587,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 2,
+      "id": "conveyor-closed-roof",
+      "distance": 39.2330101006275,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 2,
+      "id": "conveyor-closed-side",
+      "distance": 6.100000023841861,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 2,
+      "id": "original-footing-top",
+      "distance": 19.230925023555756,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 2,
+      "id": "original-footing-bottom",
+      "distance": 9.91907499730587,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 3,
+      "id": "conveyor-closed-roof",
+      "distance": 39.2330101006275,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 3,
+      "id": "conveyor-closed-side",
+      "distance": 6.100000023841861,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 3,
+      "id": "original-footing-top",
+      "distance": 19.230925023555756,
+      "frontFaceCulling": true
+    },
+    {
+      "lod": 3,
+      "id": "original-footing-bottom",
+      "distance": 9.91907499730587,
+      "frontFaceCulling": true
+    }
+  ],
+  "lods": [
+    {
+      "level": "skyline",
+      "triangles": 384,
+      "wholeConveyorSilhouetteRetained": true,
+      "actualRuntimeGeometryMatched": true
+    },
+    {
+      "level": "district",
+      "triangles": 1248,
+      "wholeConveyorSilhouetteRetained": true,
+      "actualRuntimeGeometryMatched": true
+    },
+    {
+      "level": "street",
+      "triangles": 6408,
+      "wholeConveyorSilhouetteRetained": true,
+      "actualRuntimeGeometryMatched": true
+    },
+    {
+      "level": "closeup",
+      "triangles": 7572,
+      "wholeConveyorSilhouetteRetained": true,
+      "actualRuntimeGeometryMatched": true
+    }
+  ],
+  "preAcceptanceProbeAdjustment": {
+    "earlierActualRayAttempts": 13,
+    "reason": "The closeup seam at x0 correctly sits above the roof skin. Shift roof-skin probe to x2.37 without changing geometry, controls, ground or bounds."
+  }
+}

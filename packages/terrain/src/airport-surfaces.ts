@@ -14,14 +14,25 @@ import {
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
 import type { TerrainSemanticTile } from './semantic-types';
 import { resolveTerrainSurfaceStyle, type TerrainSurfaceOptions } from './surface-styles';
-import { taggedTerrainObjects, tagTerrainObject, terrainRootOffset } from './tagged-objects';
+import {
+  taggedTerrainObjects,
+  taggedTerrainObjectsVersion,
+  tagTerrainObject,
+  terrainRootOffset,
+} from './tagged-objects';
 import { isAeroway } from './transport-features';
 
 /** Name of each surface tile's airside pavement mesh (aprons, taxiways, runways). */
 export const AIRPORT_PAVEMENT_MESH = 'surfaces:airport-pavement';
 // Pavement is draped 0.48-0.55 m above the terrain grid; a car's support ray starts as high.
 const PAVEMENT_REACH = 0.65;
-const PAVEMENT_CELLS = 32;
+// A mesh's plan grid has cells of about this many meters, 32 to 128 along a side: an aircraft's
+// probes ask hundreds of times a tick, and a coarse tile's 32 cells were 75 m wide, scores of
+// triangles each.
+const PAVEMENT_CELL_SIZE = 12;
+const MIN_PAVEMENT_CELLS = 32;
+const MAX_PAVEMENT_CELLS = 128;
+const PAVEMENT_RETRY_MS = 100;
 
 /** A mesh built here or reassembled from a surface worker, for {@link sampleAirportPavement}. */
 export function tagAirportPavement(mesh: THREE.Mesh): void {
@@ -33,6 +44,8 @@ interface PavementGrid {
   minX: number;
   minZ: number;
   cell: number;
+  /** Cells along each side. */
+  side: number;
   /** Each cell's triangles: `triangles[starts[cell]]` up to `triangles[starts[cell + 1]]`. */
   starts: Uint32Array;
   triangles: Uint32Array;
@@ -53,9 +66,14 @@ function pavementGrid(geometry: THREE.BufferGeometry, box: THREE.Box3): Pavement
   const p = position.array;
   const index = corners(geometry);
   const count = Math.floor((index?.length ?? position.count) / 3);
-  const cell = Math.max(1, box.max.x - box.min.x, box.max.z - box.min.z) / PAVEMENT_CELLS;
+  const extent = Math.max(1, box.max.x - box.min.x, box.max.z - box.min.z);
+  const side = Math.min(
+    MAX_PAVEMENT_CELLS,
+    Math.max(MIN_PAVEMENT_CELLS, Math.ceil(extent / PAVEMENT_CELL_SIZE)),
+  );
+  const cell = extent / side;
   const at = (value: number, from: number): number =>
-    Math.max(0, Math.min(PAVEMENT_CELLS - 1, Math.floor((value - from) / cell)));
+    Math.max(0, Math.min(side - 1, Math.floor((value - from) / cell)));
   const cells = (t: number, each: (cell: number) => void): void => {
     let minX = Infinity,
       maxX = -Infinity,
@@ -69,9 +87,9 @@ function pavementGrid(geometry: THREE.BufferGeometry, box: THREE.Box3): Pavement
       maxZ = Math.max(maxZ, p[v + 2] as number);
     }
     for (let z = at(minZ, box.min.z); z <= at(maxZ, box.min.z); z++)
-      for (let x = at(minX, box.min.x); x <= at(maxX, box.min.x); x++) each(z * PAVEMENT_CELLS + x);
+      for (let x = at(minX, box.min.x); x <= at(maxX, box.min.x); x++) each(z * side + x);
   };
-  const starts = new Uint32Array(PAVEMENT_CELLS * PAVEMENT_CELLS + 1);
+  const starts = new Uint32Array(side * side + 1);
   for (let t = 0; t < count; t++)
     cells(t, (c) => {
       starts[c + 1] = (starts[c + 1] as number) + 1;
@@ -90,11 +108,79 @@ function pavementGrid(geometry: THREE.BufferGeometry, box: THREE.Box3): Pavement
     minX: box.min.x,
     minZ: box.min.z,
     cell,
+    side,
     starts,
     triangles,
   };
   grids.set(geometry, grid);
   return grid;
+}
+
+/** A pavement mesh placed under a root: its offset there and its plan bounds in that frame. */
+interface PlacedPavement {
+  mesh: WeakRef<THREE.Mesh>;
+  offset: THREE.Vector3;
+  minX: number;
+  minZ: number;
+  maxX: number;
+  maxZ: number;
+}
+interface PavementIndex {
+  version: number;
+  placed: PlacedPavement[];
+  /** Tagged meshes not yet under the root (built, waiting for publication), tried again. */
+  unplaced: WeakRef<THREE.Mesh>[];
+  /** When `unplaced` was last tried (performance.now()). */
+  tried: number;
+}
+const pavementIndexes = new WeakMap<THREE.Object3D, PavementIndex>();
+
+// Every contact of every aircraft asks each tick, and parked aircraft every frame. Each question
+// walked every pavement mesh ever tagged (evicted tiles stay until collected) and found each one's
+// place again, which took a takeoff 1-2 ms a frame. Bounds are gathered once per tagging instead;
+// a ground cut only removes pavement within them, so they stay a superset.
+function pavementIndex(root: THREE.Object3D): PavementIndex {
+  const version = taggedTerrainObjectsVersion(AIRPORT_PAVEMENT_MESH);
+  let index = pavementIndexes.get(root);
+  if (index === undefined || index.version !== version) {
+    index = { version, placed: [], unplaced: [], tried: Number.NEGATIVE_INFINITY };
+    for (const object of taggedTerrainObjects(AIRPORT_PAVEMENT_MESH))
+      index.unplaced.push(new WeakRef(object as THREE.Mesh));
+    pavementIndexes.set(root, index);
+  }
+  // Tiles prepared ahead of the aircraft, or cancelled and not yet collected, wait here too: tried
+  // for every question, a fast flight's hundreds of them cost more than the questions themselves.
+  // A published tile is found within PAVEMENT_RETRY_MS.
+  const now = performance.now();
+  if (index.unplaced.length > 0 && now - index.tried >= PAVEMENT_RETRY_MS) {
+    index.tried = now;
+    const placed = index.placed;
+    index.unplaced = index.unplaced.filter((ref) => {
+      const mesh = ref.deref();
+      if (mesh === undefined) return false;
+      // Its parents only, until it is published: finding its offset refreshes each one's matrix.
+      let parent: THREE.Object3D | null = mesh.parent;
+      while (parent !== null && parent !== root) parent = parent.parent;
+      if (parent === null) return true;
+      // Tile layers sit at a fixed translation under the stream, as for tunnel queries; anything
+      // else under the root was never sampled.
+      const offset = terrainRootOffset(mesh, root);
+      if (offset === null) return false;
+      const geometry = mesh.geometry;
+      if (geometry.boundingBox === null) geometry.computeBoundingBox();
+      const box = geometry.boundingBox as THREE.Box3;
+      placed.push({
+        mesh: ref,
+        offset,
+        minX: box.min.x + offset.x,
+        minZ: box.min.z + offset.z,
+        maxX: box.max.x + offset.x,
+        maxZ: box.max.z + offset.z,
+      });
+      return false;
+    });
+  }
+  return index;
 }
 
 /**
@@ -110,11 +196,11 @@ export function sampleAirportPavement(
   ground: number,
 ): number | undefined {
   let top: number | undefined;
-  for (const object of taggedTerrainObjects(AIRPORT_PAVEMENT_MESH)) {
-    const mesh = object as THREE.Mesh;
-    // Tile layers sit at a fixed translation under the stream, as for tunnel queries.
-    const offset = terrainRootOffset(mesh, root);
-    if (offset === null) continue;
+  for (const placed of pavementIndex(root).placed) {
+    if (x < placed.minX || x > placed.maxX || z < placed.minZ || z > placed.maxZ) continue;
+    const mesh = placed.mesh.deref();
+    if (mesh === undefined) continue;
+    const offset = placed.offset;
     const lx = x - offset.x,
       lz = z - offset.z;
     const geometry = mesh.geometry;
@@ -133,8 +219,8 @@ export function sampleAirportPavement(
     if (!shown) continue;
     const grid = pavementGrid(geometry, box);
     const cell =
-      Math.min(PAVEMENT_CELLS - 1, Math.floor((lz - grid.minZ) / grid.cell)) * PAVEMENT_CELLS +
-      Math.min(PAVEMENT_CELLS - 1, Math.floor((lx - grid.minX) / grid.cell));
+      Math.min(grid.side - 1, Math.floor((lz - grid.minZ) / grid.cell)) * grid.side +
+      Math.min(grid.side - 1, Math.floor((lx - grid.minX) / grid.cell));
     const p = geometry.getAttribute('position').array;
     const index = corners(geometry);
     for (let i = grid.starts[cell] as number; i < (grid.starts[cell + 1] as number); i++) {

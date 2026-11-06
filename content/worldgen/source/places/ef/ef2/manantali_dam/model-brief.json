@@ -1,0 +1,508 @@
+{
+  "id": "manantali_dam",
+  "title": "Manantali Dam",
+  "wikidataId": "Q583804",
+  "referenceCoordinate": {
+    "longitude": -10.42949016,
+    "latitude": 13.197351992
+  },
+  "module": "content/worldgen/source/places/ef/ef2/manantali_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "ochre": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "dark": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "silt": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "gate": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "paint": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "red": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    }
+  },
+  "exportLabel": "Molen original Manantali Dam and Bafing generating works",
+  "expectedDraftMasterHash": "sha256:76027fd86d46d9cb63d6671f7d8c899959961fd001b42c430c817aa87c847cc5",
+  "visualBrief": "Manantali’s central concrete dam with its eight gated spillways, ochre generating hall and five tailrace outlets, the crest control tower and gantries, and both rockfill wings.",
+  "heightPolicy": "The unmodified standard terrain uses a 204.43 m pond reference. The sampled reservoir windows range from 202.37 to 211.92 m and the downstream windows from 162.22 to 192.28 m. A damaged south-bank tile contains isolated anomalous elevations.",
+  "nativeAxes": "+X south along the crest and +Z west along the downstream Bafing.",
+  "sourceFacts": {
+    "mappedIdentity": "way/190325901",
+    "nativeWaterIds": [
+      2535883,
+      23178733
+    ],
+    "nativeCrestMeters": 1481.874,
+    "concreteSpanMeters": 493,
+    "spillwayBays": 8,
+    "powerhouseOutlets": 5,
+    "terrainDatum": 204.42665966666667,
+    "terrainGridStep": 12,
+    "terrainTiles": 5,
+    "tailwaterModelY": -42.20665966666667
+  },
+  "materialMethod": "Shared board-formed and plain concrete, gravel, painted metal, standing-seam metal and window graphs with metric UVs and no embedded images.",
+  "limitations": [
+    "The unmodified standard terrain uses a 204.43 m pond reference. The sampled reservoir windows range from 202.37 to 211.92 m and the downstream windows from 162.22 to 192.28 m. A damaged south-bank tile contains isolated anomalous elevations.",
+    "The crest road and both rockfill flanks follow the native axis. Concrete and machinery dimensions use project references and estimated local proportions.",
+    "The reference fixture shows a continuous reservoir and a 162.22 m tailrace. The sampled-water comparison shows the individual window stages and its boundaries are illustrative.",
+    "Ground heights remain unchanged. Terrarium tile 14/7717/7586 contains a −1,680.49 m pixel amid neighboring 239–244 m elevations, leaving sharp defects in the nearby reservoir bank. Site acceptance remains pending."
+  ],
+  "references": [
+    {
+      "url": "https://www.andritz.com/hydro-en/hydronews/26/hy-news-26-08-manantali-hydro",
+      "imageUrl": "https://www.andritz.com/resource/blob/58140/4a0e833e80efcc4bad99df9b7d28733e/hydropower-plant-and-spillway-data.png",
+      "observed": "The turbine hall has two levels of continuous framed glazing, a low apron walkway and separate exposed tailrace outlets. The concrete crest has sloped buttresses, deeply recessed gate bays and a control tower and cranes. Two rockfill flanks tie into the abutments."
+    },
+    {
+      "url": "https://cda-omvs.org/wp-content/uploads/2012/02/09678_River-Senegal.pdf",
+      "imageUrl": "https://cda-omvs.org/wp-content/uploads/2012/02/09678_River-Senegal.pdf",
+      "observed": "The combined dam has a concrete center, lateral rockfill sections, eight 9 m flood bays and five power waterways."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The Manantali reservoir is east of the signed crest. The Bafing tailwater and the independent RN22 bridge lie west."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "main-overview",
+      "position": [
+        -360,
+        182,
+        482
+      ],
+      "lookAt": [
+        45,
+        -10,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "generating-hall",
+      "position": [
+        13,
+        1,
+        169
+      ],
+      "lookAt": [
+        108,
+        -24,
+        46
+      ],
+      "fov": 50
+    },
+    {
+      "name": "eight-gated-spillways",
+      "position": [
+        293,
+        1,
+        164
+      ],
+      "lookAt": [
+        242,
+        -17,
+        25
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-cranes",
+      "position": [
+        190,
+        29,
+        -71
+      ],
+      "lookAt": [
+        251,
+        11,
+        -23
+      ],
+      "fov": 50
+    },
+    {
+      "name": "south-rockfill-tie",
+      "position": [
+        685,
+        37,
+        129
+      ],
+      "lookAt": [
+        593,
+        -5,
+        -19
+      ],
+      "fov": 50
+    },
+    {
+      "name": "north-rockfill-tie",
+      "position": [
+        -575,
+        41,
+        114
+      ],
+      "lookAt": [
+        -393,
+        -7,
+        -12
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -57,
+    "scale": 3.3,
+    "focus": {
+      "center": [
+        110,
+        -9,
+        12
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ef/ef2/manantali_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "ochre": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "dark": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "silt": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "gate": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "paint": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "red": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "ochre": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "silt": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "red": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "ochre": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "silt": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "red": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "ochre": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "silt": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "red": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "manantali-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -360,
+        182,
+        482
+      ],
+      "lookAt": [
+        45,
+        -10,
+        0
+      ]
+    },
+    {
+      "name": "manantali-district",
+      "reviewLod": "district",
+      "position": [
+        -360,
+        182,
+        482
+      ],
+      "lookAt": [
+        45,
+        -10,
+        0
+      ]
+    },
+    {
+      "name": "manantali-street",
+      "reviewLod": "street",
+      "position": [
+        -360,
+        182,
+        482
+      ],
+      "lookAt": [
+        45,
+        -10,
+        0
+      ]
+    },
+    {
+      "name": "manantali-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -360,
+        182,
+        482
+      ],
+      "lookAt": [
+        45,
+        -10,
+        0
+      ]
+    }
+  ]
+}

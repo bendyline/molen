@@ -1,0 +1,424 @@
+{
+  "planId": "fray_bentos_mill_process_train",
+  "id": "fray_bentos_mill_process_train",
+  "assetId": "molen.worldgen.structure.fray_bentos_mill_process_train",
+  "title": "Fray Bentos mill process train",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -58.25855,
+    "latitude": -33.11555
+  },
+  "size": [
+    76.68999862670898,
+    56.11039984226227,
+    58.38999938964844
+  ],
+  "actualBounds": {
+    "min": [
+      -38.599998474121094,
+      -1.623900055885315,
+      -31.299999237060547
+    ],
+    "max": [
+      38.09000015258789,
+      54.48649978637695,
+      27.09000015258789
+    ]
+  },
+  "visualBrief": "Photo-based reconstruction of the characteristic Fray Bentos process vessels, blue external stair tower, yellow vessel/crane and trussed pipe racks. Whole connected equipment train; dimensions and arrangement explicitly estimated within the known factory.",
+  "nativeAxes": {
+    "x": "estimated across process corridor",
+    "y": "up",
+    "z": "estimated along process corridor"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2020-09-30",
+    "validFrom": "2013-09-01",
+    "validUntil": "2021-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Emb._George_visita_UPM_(50408664051).jpg",
+    "https://commons.wikimedia.org/wiki/File:Emb._George_visita_UPM_(50407959643).jpg",
+    "https://commons.wikimedia.org/wiki/File:Emb._George_visita_UPM_(50408818672).jpg"
+  ],
+  "stories": [
+    {
+      "id": "uruguay-river-pulp-mill-dispute-wp",
+      "url": "https://qualla.com/uruguay-river-pulp-mill-dispute/"
+    }
+  ],
+  "referenceInputHash": "sha256:b8b6594c4105c6a2cd8672618fb6bc40706d042924da08166abf7d9b6ffab07a",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6d/6dn/fray_bentos_mill_process_train/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/6d/6dn/fray_bentos_mill_process_train/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "vessel": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.65,
+        "metallic": 0.5
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_stainless_beadblasted",
+        "roughness": 0.62,
+        "metallic": 0.65
+      },
+      "blue": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.15
+      },
+      "duct": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.15
+      },
+      "yellow": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.15
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.98,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "vessel": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.65,
+            "metallic": 0.5
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.62,
+            "metallic": 0.65
+          },
+          "blue": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "duct": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "yellow": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "vessel": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.65,
+            "metallic": 0.5
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.62,
+            "metallic": 0.65
+          },
+          "blue": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "duct": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "yellow": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.001,
+        "surfaces": {
+          "vessel": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.65,
+            "metallic": 0.5
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.62,
+            "metallic": 0.65
+          },
+          "blue": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "duct": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "yellow": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_corrugated",
+    "metal_stainless_beadblasted",
+    "metal_painted",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -58.25855,
+      -33.11555
+    ],
+    "heading": -0.3,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -58.25855,
+        -33.11555
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate factory process location, fixed before ground sampling and model sections. No surveyed plant datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/119015899"
+    ],
+    "source": "https://www.openstreetmap.org/way/119015899",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7a16bea472aca4bdaab7f2acd3481779a73dc2610849fb5f2ef37480c5aeb253",
+    "notes": "Best-effort reconstruction authorized on 2026-11-03: use available terrain and cleared photographs and estimate missing measurements. The actual UPM factory is independently identified by way119015899. This installation anchor, 80x74m envelope and -0.3rad orientation are authored approximations, not mapped process footprints. Preserve existing mapped buildings and chimney. Photographic proportions establish recognizable features; exact vessel identity, process function, plan arrangement and as-built dimensions are unverified."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_beadblasted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Best-effort reconstruction authorized on 2026-11-03: use available terrain and cleared photographs and estimate missing measurements. The actual UPM factory is independently identified by way119015899. This installation anchor, 80x74m envelope and -0.3rad orientation are authored approximations, not mapped process footprints. Preserve existing mapped buildings and chimney. Photographic proportions establish recognizable features; exact vessel identity, process function, plan arrangement and as-built dimensions are unverified.",
+    "Photographs establish two large silver corrugated vessels with a darker lower shell, slender silver process columns, a blue stair casing, white segmented vertical duct, yellow vessel and yellow maintenance crane, open steel platforms and trussed pipe racks. These cues are reconstructed directly; exact total equipment census and unseen backs are estimates. No photographed people, signs, logos, stockpiles or plumes are modeled.",
+    "Estimated nominal dimensions: large vessels 23m/21m diameter and43m/37m tall; slender columns4.4m/4m diameter and52m/48m tall; blue tower7x8m and48m tall; yellow vessel12m diameter and22m tall; racks76m/56m long with11m deck. These are photo-proportion estimates, not engineering or survey dimensions. Anchor within the actual factory, -0.3rad heading, vessel spacing and hidden pipe routing are approximations; nominal80m placement/45degree yaw/25percent section allowances are descriptive estimates, not measured error bounds.",
+    "Own256m129x129 original terrain field/1 cached original tiles fixed before sections. Datum22.501m; first-pass pad deck1.799m and pad bottoms-1.6239m chosen from unmasked local source range. Exact engineered grade is unknown; footings bridge coarse source relief without altering it. No field masking, flattening, refetch or photographic ground texturing.",
+    "The continuous process train is one connected equipment installation. Existing independently mapped halls, chimney and piers remain separate assets. This reconstruction fills the previously missing characteristic machinery; exhaustive engineering equipment counts are outside the medium-fi model scope. Estimated nominal2020 appearance uses the cleared2020 views; temporal continuity outside the photographed period is unverified."
+  ],
+  "sourceLicense": "Original procedural geometry under repository license. Previously cleared U.S. Embassy government photographs (public domain), attributed original OSM numeric factory boundary (ODbL), and open Mapzen terrain. No photographic textures; all missing dimensions and equipment positions are original reconstruction estimates.",
+  "qaLodCameras": [
+    {
+      "name": "whole-process-train-skyline",
+      "position": [
+        110,
+        81.799,
+        115
+      ],
+      "lookAt": [
+        0,
+        24.799,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-process-train-district",
+      "position": [
+        110,
+        81.799,
+        115
+      ],
+      "lookAt": [
+        0,
+        24.799,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-process-train-street",
+      "position": [
+        110,
+        81.799,
+        115
+      ],
+      "lookAt": [
+        0,
+        24.799,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-process-train-closeup",
+      "position": [
+        110,
+        81.799,
+        115
+      ],
+      "lookAt": [
+        0,
+        24.799,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "silver-vessels-blue-stair-and-white-duct",
+      "position": [
+        -60,
+        39.799,
+        65
+      ],
+      "lookAt": [
+        0,
+        26.799,
+        0
+      ]
+    },
+    {
+      "name": "pipe-racks-and-open-process-structure",
+      "position": [
+        85,
+        31.799,
+        -85
+      ],
+      "lookAt": [
+        0,
+        23.799,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 14372,
+    "vertices": 43116,
+    "materials": 5,
+    "bytes": 1879156,
+    "sha256": "sha256:c25e1f8abeb3dd753fa0a7895fd37302700c4664d2afe8222ee1447d92bf2d61"
+  }
+}

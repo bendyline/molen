@@ -1,0 +1,425 @@
+{
+  "id": "ponte_giuseppe_mazzini",
+  "title": "Ponte Giuseppe Mazzini",
+  "wikidataId": "Q3907978",
+  "referenceCoordinate": {
+    "longitude": 12.465997072534,
+    "latitude": 41.896063244046
+  },
+  "module": "content/worldgen/source/places/sr/sr2/ponte_giuseppe_mazzini/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-ponte-giuseppe-mazzini.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_ashlar"
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_travertine"
+    },
+    "bronze": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "walk": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "mark": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "globe": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    }
+  },
+  "exportLabel": "Molen original Ponte Giuseppe Mazzini master",
+  "expectedDraftMasterHash": "sha256:9587051830ddeacf97b2a8521d84ece6ae0a1e34f5e961409631d9df0e8863cb",
+  "visualBrief": "Complete Ponte Giuseppe Mazzini: three open segmental stone arches, two rounded river piers with waterline bases and projecting springing caps, ashlar spandrels, pale travertine arch rings and cornice, broad road with raised verge walks, pierced circular stone parapets and green-patinated ornamental lamps with small rostral scroll forms. Preserve the complete mapped crossing and both independent riverside routes beneath the outer spans.",
+  "heightPolicy": "Fixed10m standard terrain datum; road endpoints23m and center23.25m. Three circular-segment arch intrados rise from14.2m at springing to20.7m at their crowns. Exterior heights, supports and lamps are ordinary-picture approximations; original standard terrain and the actual native river/route surfaces determine fit.",
+  "nativeAxes": "+X northeast along the current carriageway and balanced bridge sidewalks; +Z southeast. The southwest bank is -X. Retained footprint world coordinates are preserved separately from the refined deck frame.",
+  "sourceFacts": {
+    "retainedEnvelopeMeters": 106.558,
+    "reportedLengthMeters": 106,
+    "currentPMTilesFeature": 35184396698369,
+    "control": {
+      "id": "ponte_giuseppe_mazzini",
+      "anchor": [
+        12.465997072534,
+        41.896063244046
+      ],
+      "heading": 0.7587772347645159,
+      "datum": 10,
+      "ends": [
+        -54.2,
+        54.2
+      ],
+      "centerZ": 0,
+      "halfWidth": 8.933,
+      "roadHalfWidth": 5.65,
+      "foundationY": -4,
+      "openings": [
+        [
+          -50.6,
+          -18.8
+        ],
+        [
+          -14.2,
+          14.2
+        ],
+        [
+          18.8,
+          50.6
+        ]
+      ],
+      "mainPiers": [
+        -16.5,
+        16.5
+      ],
+      "lampStations": [
+        -50,
+        -16.5,
+        16.5,
+        50
+      ],
+      "ownedRoadId": 35184396698369,
+      "ownedSidewalkIds": [
+        35185731347560
+      ],
+      "underRoutes": [
+        {
+          "id": 35184456292657,
+          "station": -47.638124
+        },
+        {
+          "id": 35184602133230,
+          "station": 45.416685
+        }
+      ]
+    },
+    "independentUnderRouteIds": [
+      35184456292657,
+      35184602133230
+    ]
+  },
+  "limitations": [
+    "Original ordinary-picture medium-fi approximation, not a surveyed engineering or conservation model. ColdShine’s2007 lower-lungotevere photograph controls the three open arches, rounded piers and pierced parapet. Lubin23’s lamp close-up controls the patinated shaft, globe and small rostral scroll silhouette. Heraldic relief, inscriptions and individual carved figures are simplified rather than copied as photo textures.",
+    "Retained106.558m by17.866m envelope identifies the bridge; current carriageway and paired sidewalk traces refine its axis by0.8298 degrees and center by less than1m. The108.4m source includes short mapped sidewalk-bearing ends. Original footprint world coordinates remain in map-frame.json; they are not used as a literal deck rectangle. Hidden construction, masonry blocks, lamp count, road markings, arch profile and absolute elevations remain approximate. No custom terrain/water flattening, private textures, copied meshes or vehicles. Physical-device timing remains unmeasured."
+  ],
+  "materialMethod": "Four existing shared stone_ashlar, stone_travertine, metal_bronze_cast and concrete_plain graphs, metric UVs and linear palette tints. Warm pale masonry, patinated ornamental metal and neutral pavement reuse the shared library. Four merged bindings, zero embedded images.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Giuseppe_Mazzini_Bridge_from_lower_lungotevere,_Rome,_Italy.jpg",
+      "observations": "ColdShine,2007 ordinary lower-lungotevere picture: three shallow open masonry arches, two rounded river piers with bases and springing caps, pale arch-ring voussoirs, horizontally coursed stone spandrels, cornice and circular pierced parapet. Lower-bank cycle/walking routes pass under the outer arches; retained current PMTiles controls their location."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Street_light,_Giuseppe_Mazzini_bridge_in_Rome,_Italy.jpg",
+      "observations": "Lubin23,2012 ordinary streetlight picture: green-patinated metal shaft, large collar, frosted globe and scrolling rostral projections. Relief sculpture is reduced to medium-fi silhouette forms. No photo pixels copied."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-three-arch-crossing",
+      "position": [
+        55,
+        28,
+        90
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "river-side-arches",
+      "position": [
+        -20,
+        4,
+        80
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "rounded-pier-and-arch-ring",
+      "position": [
+        27,
+        4,
+        25
+      ],
+      "lookAt": [
+        16.5,
+        5,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "western-cycleway",
+      "position": [
+        -47,
+        3,
+        22
+      ],
+      "lookAt": [
+        -47,
+        5,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "pierced-parapet",
+      "position": [
+        5,
+        15,
+        12
+      ],
+      "lookAt": [
+        0,
+        14,
+        8.45
+      ],
+      "fov": 50
+    },
+    {
+      "name": "bronze-rostral-lamp",
+      "position": [
+        48,
+        17,
+        13
+      ],
+      "lookAt": [
+        50,
+        16,
+        8.05
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        7,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/sr2/ponte_giuseppe_mazzini/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar"
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_travertine"
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "walk": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "mark": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "globe": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      }
+    },
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_travertine"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "mark": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "globe": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_travertine"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "mark": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "globe": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.15
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_travertine"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "mark": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "globe": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "ponte_giuseppe_mazzini-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        55,
+        28,
+        90
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "ponte_giuseppe_mazzini-district",
+      "reviewLod": "district",
+      "position": [
+        55,
+        28,
+        90
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "ponte_giuseppe_mazzini-street",
+      "reviewLod": "street",
+      "position": [
+        55,
+        28,
+        90
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "ponte_giuseppe_mazzini-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        55,
+        28,
+        90
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    }
+  ]
+}

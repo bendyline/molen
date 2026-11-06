@@ -1,0 +1,387 @@
+{
+  "planId": "daiichi_unit_5_reactor_building",
+  "id": "daiichi_unit_5_reactor_building",
+  "assetId": "molen.worldgen.structure.daiichi_unit_5_reactor_building",
+  "title": "Daiichi Unit 5 reactor building",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 141.0324062,
+    "latitude": 37.428414200000006
+  },
+  "size": [
+    47.31500053405762,
+    47.332499742507935,
+    47.380001068115234
+  ],
+  "actualBounds": {
+    "min": [
+      -17.725000381469727,
+      -1.2000000476837158,
+      -23.690000534057617
+    ],
+    "max": [
+      29.59000015258789,
+      46.13249969482422,
+      23.690000534057617
+    ]
+  },
+  "visualBrief": "Whole Unit 5 aboveground reactor: operator-written 47m square lower body, 35.2m east-west by 47m north-south upper body, 46.05m abovegrade height. East lower terrace, concrete walls, closed roofs and entries. Native four-corner record registers upper roof only; lower outline is written dimensions. Finish, terrain tie and 2021 continuity estimated; appearance imagery unused.",
+  "nativeAxes": {
+    "x": "east / turbine-and-lowterrace-side",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2021-05-09",
+    "validFrom": "2021-01-01",
+    "validUntil": "2022-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "fukushima-daiichi-nuclear-power-plant-wp",
+      "url": "https://qualla.com/fukushima-daiichi-nuclear-power-plant/"
+    }
+  ],
+  "referenceInputHash": "sha256:4810e33f44887af2f5736a6abde4e9389122360c8d9af3a0c4a1241187f61cf5",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xns/daiichi_unit_5_reactor_building/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xns/daiichi_unit_5_reactor_building/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "upper": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.86,
+        "metallic": 0.18
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.25
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.35
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "upper": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.25
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.35
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "upper": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.25
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.35
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.001,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "upper": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.18
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.25
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.35
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_corrugated",
+    "metal_painted",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      141.0324062,
+      37.428414200000006
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        141.0328360608791,
+        37.428414200000006
+      ],
+      "modelHeight": 0,
+      "basis": "FixedeastapproachBEFOREownfield/floor/mainsections. CompositeDEMcancontainadjacentbuildingreturns,notactualhistoricgroundsurvey."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "overture/6a8325a0-e4bc-4fa9-95ba-ca7c9394aa26"
+    ],
+    "source": "https://www.tepco.co.jp/cc/press/betu11_j/images/110818h.pdf",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4bbd1f0db3308ed61f176743f7f91ef27bf3ec4af87bec1c7eb4f59183be240a",
+    "notes": "WholeUnit5reactorbuildingexteriorfromoriginaloperatorwritten47x47mlowerfloors1/2and35.2x47mupperfloors3/4/5with46.05mabovegradeheight. Intrinsiceastlowerroofterrace11.8mwideincluded;native4cornerrecordprovidesupperroofapproximateanchoronly,notcompletegroundbody. Basement/internalcontainment/adjacentturbine/wholeplantremainseparate. Allappearanceimagesunused,Qualla-first25families/0conflicts;cleared1971DOEoriginalspredatecompletedUnit5andnotapplied. Operator17August2011section3.1printed3-1/PDFpage5explicitwholeabovegroundlower47x47m/upper47mNSx35.20mEW/height46.05mabovegradevs62.11mfrommat/5aboveand1belowfloors/reinforcedconcreteandsteeltrussroof. NumericOP13.20firstfloor/29.90thirdfloor/42.92operatingfloor/50.82cranelevel/59.05roof;groundOP13. Underground47x57.4mextentomitted. NativeUnit5fourcornersmatchupperroofapproximately37.5x47.6m,notcomplete47mlowerfootprint. Writtenuppercenteranchoredtooriginalroofmidpoint;lowerwestflushupper/east11.8mterraceinterpretationinferredfromoriginaladjacentturbinewesternsharedprojectionandmatching16.9mlevel,notviewedplan/photo. Engineeringownershipofmaproofsegmentationunverified;existingcompletedturbineuntouched,sharedterracenotadditionalcompletioncredit. 8mhorizontal/3degreeheading/3mheight/2mcomponentuncertainty,nominal2021-05-09nativeupdate/2011engineeringcontinuityunverified,currenteligiblefalse. Finefinish/roofpartdetails/closedentries/panelsestimated. Everyreportfigure/plan/photo/map/satelliteimageunused."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "WholeUnit5reactorbuildingexteriorfromoriginaloperatorwritten47x47mlowerfloors1/2and35.2x47mupperfloors3/4/5with46.05mabovegradeheight. Intrinsiceastlowerroofterrace11.8mwideincluded;native4cornerrecordprovidesupperroofapproximateanchoronly,notcompletegroundbody. Basement/internalcontainment/adjacentturbine/wholeplantremainseparate. Allappearanceimagesunused,Qualla-first25families/0conflicts;cleared1971DOEoriginalspredatecompletedUnit5andnotapplied. Operator17August2011section3.1printed3-1/PDFpage5explicitwholeabovegroundlower47x47m/upper47mNSx35.20mEW/height46.05mabovegradevs62.11mfrommat/5aboveand1belowfloors/reinforcedconcreteandsteeltrussroof. NumericOP13.20firstfloor/29.90thirdfloor/42.92operatingfloor/50.82cranelevel/59.05roof;groundOP13. Underground47x57.4mextentomitted. NativeUnit5fourcornersmatchupperroofapproximately37.5x47.6m,notcomplete47mlowerfootprint. Writtenuppercenteranchoredtooriginalroofmidpoint;lowerwestflushupper/east11.8mterraceinterpretationinferredfromoriginaladjacentturbinewesternsharedprojectionandmatching16.9mlevel,notviewedplan/photo. Engineeringownershipofmaproofsegmentationunverified;existingcompletedturbineuntouched,sharedterracenotadditionalcompletioncredit. 8mhorizontal/3degreeheading/3mheight/2mcomponentuncertainty,nominal2021-05-09nativeupdate/2011engineeringcontinuityunverified,currenteligiblefalse. Finefinish/roofpartdetails/closedentries/panelsestimated. Everyreportfigure/plan/photo/map/satelliteimageunused.",
+    "Originaloperator2011section3.1printed3-1/PDFpage5specifies47x47mlowerfloors1/2,47mNSx35.2mEWupperfloors3/4/5,46.05mabovegrade/62.11mfrommat,5aboveand1belowfloors,RCbodyandsteeltrussroof. Larger47x57.4mundergroundfoundationomitted. Wholeabovegroundbodyiswrittencontrols,notthefourpointupperroofobservationextrudedasentirebuilding.",
+    "OriginalnumericPDFpage7OP13.20firstfloor/29.90thirdfloor/42.92operatingfloor/50.82cranelevel/59.05roof,groundOP13. Floor.25/lowroof16.95/concretetop37.87/mainroof46.10 retain16.70mfirstfloortothirdfloor/37.62mtocrane/45.85mtoroof. .05mnominalgradeoffsetfromoriginal.20mfirstfloorabovegradeexplicitapproximation. Upperroof35.2mEWcentreanchoredtooriginalnativeupper-roofmidpointwith8mregistrationuncertainty;lowerwestflushupperandeast11.8mterraceinferredfromoriginalroofprojection/16.9mgradelevelcorrespondence,notviewedplan/photoorOSMgroundcornerproof.",
+    "Originalmappedupperroof~37.48mEWx47.60mNSisapproximatecontext. Writtenlower47mextendsintopartoforiginalturbinewaywesternroofsegmentation;thatsharedphysicalledgeownershipisnotanexplicitmaptag. Existingcompletedturbinegeometry/QA/fieldunchanged. Sharedledgeisnotaseparateadditionalcompletioncredit; exactsiteassemblyregistrationunverified. Hiddenwalls/finish/paneljoints/closedentrycount2/upperclosedpanel/flatgrayroof/claddingmaterialestimated2m,mainheight3muncertainty.",
+    "Ownoriginal256m129x129field16641values/2rawtiles/datum21.7923m fixedBEFOREfloor.25/foundation-1.2/lowroof16.95/concrete37.87/mainroof46.10. No field/frame/floor/mainsectionsmask/flatten/refetch/refit/reframe. CompositeDEMmayincludeadjacentbuildingreturns;actualhistoricground/verticaltieunverified.",
+    "Nominal2021-05-09nativeupdate/2011writtensectioncontinuityunverified,currentWorldEligiblefalse. Allappearanceimagesunused,Qualla-first25families/0conflicts. Cleared1971DOEoriginalspredatecompletedUnit5andnotapplied. Everyreportfigure/plan/photo/map/satelliteimageunused. Internalcontainment/interiors/basement/otherbuildingsandwholeplantremainseparateandunfinished."
+  ],
+  "sourceLicense": "Original procedural geometry under repository license. Original Overture/OpenStreetMap roof coordinates ODbL-1.0 attributed; operator written numerical facts used for complete exterior. All source appearance imagery, report figures and plans unused. Fine finish, registration and nominal 2021 continuity estimated.",
+  "qaLodCameras": [
+    {
+      "name": "whole-Unit5-reactor-skyline",
+      "position": [
+        100,
+        70,
+        120
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-Unit5-reactor-district",
+      "position": [
+        100,
+        70,
+        120
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-Unit5-reactor-street",
+      "position": [
+        100,
+        70,
+        120
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-Unit5-reactor-closeup",
+      "position": [
+        100,
+        70,
+        120
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-east-reactor-terrace-and-closed-entries",
+      "position": [
+        100,
+        70,
+        120
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "whole-west-reactor-and-rear",
+      "position": [
+        -100,
+        70,
+        -120
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2094,
+    "vertices": 6282,
+    "materials": 5,
+    "bytes": 354468,
+    "sha256": "sha256:29c906053f650e9ff4e67ad04ca938d8be1318d06c5bd4c2fb99e6fcaf3ca524"
+  }
+}

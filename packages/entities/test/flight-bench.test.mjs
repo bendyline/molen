@@ -20,6 +20,7 @@ it('covers every shipped aircraft and distinguishes sourced anchors from estimat
   }
 });
 describe.each(performanceLedger.aircraft)('$slug production flight integration', (p) => {
+  // A 180 s fighter bench takes ~1.5 s locally but up to ~5 s on CI runners.
   it('accelerates toward its declared cruise/maximum anchor while holding altitude', () => {
     const s = types[p.id].components.aircraft.spec,
       target = referenceSpeed(p);
@@ -32,7 +33,7 @@ describe.each(performanceLedger.aircraft)('$slug production flight integration',
     expect(result.state.airspeed / target).toBeGreaterThan(1 - p.reference.tolerance);
     expect(result.state.airspeed / target).toBeLessThan(1 + p.reference.tolerance);
     expect(result.maxAltitudeError).toBeLessThan(100);
-  });
+  }, 30000);
 });
 it('checks a withheld DA42 cruise condition: 175 KTAS at 75% and 16000 ft', () => {
   // Manufacturer publishes this separately from the 190 KTAS MCP calibration anchor.

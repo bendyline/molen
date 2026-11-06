@@ -1,29 +1,36 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.flame_towers",
-  "sourceHash": "sha256:1e41b7462b990ec34ca54bd3cc513c37247897951a7b032a60aec668d823ea41",
-  "runtimeHash": "sha256:400f78c3ff7ab9c90afcc6f72a3a638970081a2aec7fbb74bcfa3414292c5457",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.flame_towers",
+    "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc"
+  },
+  "sourceHash": "sha256:4200e30ee275e35afd8be5323c59170309f88f3df0d7dc50916d22e84eec2c22",
+  "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
-  "neighborTriangles": 6240,
+  "neighborTriangles": 5696,
   "runtimeLods": [
     {
       "name": "skyline",
@@ -52,24 +59,24 @@
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:102e4626b90a0965473f48aa56a462c104c1735f58f61f3e6303bdb322d21b3c",
-      "bytes": 1503984,
-      "gzipBytes": 490706,
-      "triangles": 15972,
-      "cpuBytes": 1500228,
-      "gpuBytes": 1500228,
+      "hash": "sha256:0fb137a5727381c1ea61f47852a99b0b94a6821bf3e196bf4ae839534850dc3a",
+      "bytes": 1492296,
+      "gzipBytes": 488491,
+      "triangles": 15740,
+      "cpuBytes": 1488540,
+      "gpuBytes": 1488540,
       "errorMeters": 0.5,
       "drawCalls": 3
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:aba1e181f1c8408daf6e20006523e3532c864e8d1813f82ccef1001d00d6b8a1",
-      "bytes": 6838520,
-      "gzipBytes": 2358616,
-      "triangles": 63578,
-      "cpuBytes": 6834740,
-      "gpuBytes": 6834740,
+      "hash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
+      "bytes": 6820304,
+      "gzipBytes": 2355741,
+      "triangles": 63218,
+      "cpuBytes": 6816524,
+      "gpuBytes": 6816524,
       "errorMeters": 0.1,
       "drawCalls": 3
     }
@@ -81,416 +88,467 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:975585181dab9b4cc864a5cd63127061360664af5393535f1eb7ed1dcaa3e5e9",
+      "hash": "sha256:77fe1c6bc4ac1ae0aad1fee7403b86f3451f0eaa1da6db05d1a8ac50ef280ecc",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          48,
-          26,
-          83
+          336,
+          182,
+          581
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:b10773c1893e63b8e493ba8c163e54304563f94037a90cfef3a22180ab70830b",
+      "hash": "sha256:ea97d2a1728f04f0daeb41d07e5a708284b62f288b94033d742437601a899321",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          48,
-          26,
-          83
+          336,
+          182,
+          581
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:681a51c3a7a3aba2c349027d73a1ca4ae78901ad93adde3e805aa7752b0939c1",
+      "hash": "sha256:8f3c98f55de54ac859d7f796f79971b9a032b2a39f487981ef92b6de6d744ca0",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          48,
-          26,
-          83
+          336,
+          182,
+          581
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:70bdfd467a563f7c1244bc28c1599e41910a1cf517fa6289435421a4a5c245e5",
+      "hash": "sha256:27ac0d813ede465905a5a9f619317b1f6505c4d735c3b6397a79135a4c9d9dd3",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          48,
-          26,
-          83
+          336,
+          182,
+          581
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:ea945e2f08d3a98cd36d33031d568a62c79a1c6527060355d54e32d56bbb9daf",
+      "hash": "sha256:955fec7dca92fe0a22558e9d6f97ec0e601343a404680991f76420dd0247c317",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:46ba56970fd18634e77f930546515ec36c26f0a567775d56275b19ff8678678e",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 8,
-        "triangles": 10098,
+        "triangles": 9554,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          97,
-          62,
-          168
+          679,
+          434,
+          1176
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:0adb537b32cc8433e4ad7e680a6ac02e64fbef62c27a789ae18eb4f74b2c7108",
+      "hash": "sha256:7d06aeb9a7fe0a7af65b686971a9e36b4f21bb78ea2297262db2b27b8a806d7d",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:46ba56970fd18634e77f930546515ec36c26f0a567775d56275b19ff8678678e",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 10098,
+        "triangles": 9554,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          97,
-          62,
-          168
+          679,
+          434,
+          1176
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:f7b1df1bd52ffba98bbacd7c1933026c9a53506fbfe7f1d6e0fd955f294780fe",
+      "hash": "sha256:338153a281f1e02d4c110229ae7295c926f6f4edc4bd67b2bace01e0925ac5df",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:46ba56970fd18634e77f930546515ec36c26f0a567775d56275b19ff8678678e",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
         "drawCalls": 8,
-        "triangles": 10098,
+        "triangles": 9554,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          97,
-          62,
-          168
+          679,
+          434,
+          1176
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:4af5b6f8faaa70c403cb363ee9af90eb37a2e03ab20ddf71a646d25359552d9a",
+      "hash": "sha256:cc7b87c211b58e52843c6af4dd559769eeadfd943ce8a47e304dd4c782dab467",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:46ba56970fd18634e77f930546515ec36c26f0a567775d56275b19ff8678678e",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 10098,
+        "triangles": 9554,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          97,
-          62,
-          168
+          679,
+          434,
+          1176
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:15155e9e4cc2bc7c7e84e4bf5cc07249dadf16009bb87837adff1620e3953749",
+      "hash": "sha256:1b5329bef33839024392e2b09a1de0e30d0915778cbd6c3682616a75607483e7",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:f3099e8e9971cd20e4a1d160a2c35a6b9a5c0067ccb02950280e2b36123d65d9",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 6,
-        "triangles": 7046,
+        "triangles": 6502,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          194,
-          100,
-          336
+          1358,
+          700,
+          2352
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:d91b3887ad09ac9dfd4ea671b27e458c5b9027e33ed1e9c1e57006126f9017d2",
+      "hash": "sha256:979d026bed7349365f0f9ce47d008991771e32b363c5bf60b2ec02a5f19b5571",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:f3099e8e9971cd20e4a1d160a2c35a6b9a5c0067ccb02950280e2b36123d65d9",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
         "drawCalls": 6,
-        "triangles": 7046,
+        "triangles": 6502,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          194,
-          100,
-          336
+          1358,
+          700,
+          2352
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:d222bfe72f29339314c1ed07acd37828749903264200f1f4d3715750e23b3e23",
+      "hash": "sha256:486b3fe4cd29cf25f8cc1455c1850ac90a22f728af0acf61a645876e31f05292",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:f3099e8e9971cd20e4a1d160a2c35a6b9a5c0067ccb02950280e2b36123d65d9",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
         "drawCalls": 6,
-        "triangles": 7046,
+        "triangles": 6502,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          194,
-          100,
-          336
+          1358,
+          700,
+          2352
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:8970f13aa2859734a3c2cb6e2f3f4b0724d791db43634a49812cadbc4543865a",
+      "hash": "sha256:5fdbdf742a78a269f24d9c422c22dd528c6afe04576cef794cbcb1b19f84d436",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:f3099e8e9971cd20e4a1d160a2c35a6b9a5c0067ccb02950280e2b36123d65d9",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
         "drawCalls": 6,
-        "triangles": 7046,
+        "triangles": 6502,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          194,
-          100,
-          336
+          1358,
+          700,
+          2352
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:b07e3d90a4bf3c55758828c6afb1b6c38bdd9064fe73e8249a64a063e88550cc",
+      "hash": "sha256:2f9053fc244934f3d42100ac6f777acd15821c6a4ec1e03a4d21a8cc420a62e9",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:f3099e8e9971cd20e4a1d160a2c35a6b9a5c0067ccb02950280e2b36123d65d9",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -500,37 +558,41 @@
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          194,
-          100,
-          336
+          1358,
+          700,
+          2352
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/three-distinct-flames.png",
-      "hash": "sha256:e490beb6b2490fbe842b5e936802e22117ecfa30171770dcd1e2e9a4eb09be0f",
+      "hash": "sha256:1ba4a41a902bad011ab65ea21681d9d882fa49e4c9f5a601b2719391411db427",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -544,27 +606,31 @@
           -23
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/west-office-profile.png",
-      "hash": "sha256:5d7dfbdc581ed423e90df128d8ca24d80c20ca883006e6bb32157097b16a508f",
+      "hash": "sha256:fd872f83474e2e0524b97709eccf3cd0486eb79f9ba43291d4072bd998ab0199",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -578,27 +644,31 @@
           -31
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/north-hotel-profile.png",
-      "hash": "sha256:b185a54059e7569cd8825d237f518685919ca36abc153b700d8d814c3a8c1416",
+      "hash": "sha256:ddf56b07641f32537cfa1b50dd688a0c6a797ad15293ea3a0aa267b6ec5f983a",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -612,27 +682,31 @@
           -112
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/south-residential-flick.png",
-      "hash": "sha256:b4431f70f22d0c6b5c79ce8800fbec1a7b99ba41cc68c70eda97d672d426a2b8",
+      "hash": "sha256:821bf6de1bb870de82fe3699eb7684d147e64dd8fa7c953604b7e404065f256d",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -646,27 +720,31 @@
           66
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/four-corner-glazing.png",
-      "hash": "sha256:7604d0263f1e81773ae8366875fd9f8d7166c6b8b588b5db796299eccf44c79c",
+      "hash": "sha256:5f2fa0b2f59cf3c725b18a21e44e76de127cb581d52ab832a5944b7ef4b362a9",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -680,27 +758,31 @@
           53
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/paired-maintenance-slots.png",
-      "hash": "sha256:1e324d09447c2cad9297c49319a5bb8b52fa7594fa8f5bf2229930d211c9dff2",
+      "hash": "sha256:eb32af7acb59bec9c7b83d86ce14cef1d12863f55c48bdc29a6de8a63d3b1a8c",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -714,27 +796,31 @@
           65
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/shared-retail-podium.png",
-      "hash": "sha256:3cb1e9806598b4c7cf299dd6c47d608073bc0aec15fc57431c85984d4bc77ef5",
+      "hash": "sha256:40bf3b42ac6934742e4647a3b326133b2650e0b886ca53626ee266725f0d0660",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -748,27 +834,31 @@
           -23
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/barrel-atrium-and-pool.png",
-      "hash": "sha256:e1e740c555d1f02eddd3855d6640414c5fabb6e7d5edc96544762440c568c3ef",
+      "hash": "sha256:823dffa123ef79164aeb70b651560182347a99dd3d0603c1676dbae87202a3aa",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -782,27 +872,31 @@
           -25
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/red-cinema-pavilion.png",
-      "hash": "sha256:9463a336a7767d1c51a37862fd66873cd72e58ec4eda30ec2268f8789f9f2646",
+      "hash": "sha256:c5a7f7d1ef4f6fa7a8284b4d3a2af82fb05e06e015ae61325ead33923a80c8d9",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -816,27 +910,31 @@
           -66
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/hotel-arrival-canopy.png",
-      "hash": "sha256:4a011970767a250652caa609ec5a2944b7645be7f2d409da770a8a7f5405ed76",
+      "hash": "sha256:f3d4fa9a4ada9d7043e2e73dea022b4bb4dc468d9800114fca6be5fd8c2a8288",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -850,27 +948,31 @@
           -103
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/crown-from-above.png",
-      "hash": "sha256:68b33d9ea79387d31a2a5b93e0d1661f421e680cc8cce49f1d36e365ebe1f1bc",
+      "hash": "sha256:bb544321841633440128861f0732e55c0da0603132296cdb181486b3b3e25e11",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -884,27 +986,31 @@
           76
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/far-caspian-skyline.png",
-      "hash": "sha256:941e94e7f2d3febdd3b9f25cd7626ddc424a5b7194c787a20834da0f842da75a",
+      "hash": "sha256:443c68de8ed67c2625daca66b53f2abd33480f39e2bafff72a64ab8509a318bd",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -918,27 +1024,31 @@
           -26
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-reviewed-ensemble.png",
-      "hash": "sha256:5c0d8e839e2ded6328206f15b6668147801028220af36cde4620630ffdb99d6e",
+      "hash": "sha256:0b6df1daeb81de40a43bc4857618f2d06807c3a9e175bcaf794a4a2eab77aa39",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -952,27 +1062,31 @@
           -26
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/east-pavilion-cut-roofs.png",
-      "hash": "sha256:0601279b8205123ca749845a7a9d6afbdc8f64adae24fe782d6d4729d09da7b9",
+      "hash": "sha256:855c986fc4d85ddddc29aac29b2644f9e6d0e04a0c0d6c31b1fae0a7433562de",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -986,27 +1100,31 @@
           -28
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-flames-skyline.png",
-      "hash": "sha256:48a2dc02b1d5166b59942720f601be7d9cbde187f569f279e74ae6f00beeb8d6",
+      "hash": "sha256:62fe6c8b49379239d263028e7759732a6c8fb203c5d8b30f2c3c29984d349d65",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:f3099e8e9971cd20e4a1d160a2c35a6b9a5c0067ccb02950280e2b36123d65d9",
         "level": "skyline",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 6,
-        "triangles": 7046,
+        "triangles": 6502,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -1020,27 +1138,31 @@
           -26
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-flames-district.png",
-      "hash": "sha256:8d1a54a84d359812203c888ba1cf5242b3b5bfccc1579dd64c6684d75a85c3ed",
+      "hash": "sha256:cac255392aad35740802516fb262cc929a8a1e2abc7ea521e056bbdf3a03b43c",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:46ba56970fd18634e77f930546515ec36c26f0a567775d56275b19ff8678678e",
         "level": "district",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 10098,
+        "triangles": 9554,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -1054,27 +1176,31 @@
           -26
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-flames-street.png",
-      "hash": "sha256:14e02d1bf529453a2ef8ba8631fae8eecd73c0f2edf9901d8b1d8f3d8e74ea54",
+      "hash": "sha256:bcf54bee32e23ebe60840908df5defaaeadc7ffcd25c5eb08432862f0abdf954",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0fb137a5727381c1ea61f47852a99b0b94a6821bf3e196bf4ae839534850dc3a",
         "level": "street",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 22214,
+        "triangles": 21438,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -1088,27 +1214,31 @@
           -26
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/whole-flames-closeup.png",
-      "hash": "sha256:5c0d8e839e2ded6328206f15b6668147801028220af36cde4620630ffdb99d6e",
+      "hash": "sha256:0b6df1daeb81de40a43bc4857618f2d06807c3a9e175bcaf794a4a2eab77aa39",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -1122,27 +1252,31 @@
           -26
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/district-hotel-curved-flick.png",
-      "hash": "sha256:3f9062d42023cb27cdf4f33f5dd3d373406ab053c4d22600bb6aa6980b529b98",
+      "hash": "sha256:edb686c92246c13e10afc57827fa2784770864c20975405994985a24484b1260",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:46ba56970fd18634e77f930546515ec36c26f0a567775d56275b19ff8678678e",
         "level": "district",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 10098,
+        "triangles": 9554,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -1156,27 +1290,31 @@
           -112
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-arrival-canopy.png",
-      "hash": "sha256:52ec3d49613f018cab375ddaffa323b1728c59e7838d6f6b56cabaa2df0cceae",
+      "hash": "sha256:85706334d495d8f32d1c9f797e89a05742ba0eccd43a4a02fdcdf2e180e16773",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0fb137a5727381c1ea61f47852a99b0b94a6821bf3e196bf4ae839534850dc3a",
         "level": "street",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 22214,
+        "triangles": 21438,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -1190,27 +1328,31 @@
           -103
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/close-atrium-merged-shell.png",
-      "hash": "sha256:e1e740c555d1f02eddd3855d6640414c5fabb6e7d5edc96544762440c568c3ef",
+      "hash": "sha256:823dffa123ef79164aeb70b651560182347a99dd3d0603c1676dbae87202a3aa",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -1224,27 +1366,31 @@
           -25
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/district-separated-crowns.png",
-      "hash": "sha256:d5a30a258e61a062d2c1aa0bec8f46d71648a9e7d97f414836c206f61a426bce",
+      "hash": "sha256:bb81b5902507adf58f38e686076e3a0b22bb5fa51a64d622b06889f987f8db2b",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:46ba56970fd18634e77f930546515ec36c26f0a567775d56275b19ff8678678e",
         "level": "district",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 10098,
+        "triangles": 9554,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
@@ -1258,150 +1404,167 @@
           -25
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:2ea04eaac1e328f3611863045169fbfe8a04ef536df1f244214398da6263f7f5",
+      "hash": "sha256:6fda0b17ee1ed03abd971c824005c97486e6e1ae5cbfcf217e5e24c310a191f3",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:f3099e8e9971cd20e4a1d160a2c35a6b9a5c0067ccb02950280e2b36123d65d9",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 6,
-        "triangles": 7046,
+        "triangles": 6502,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          97,
-          62,
-          168
+          679,
+          434,
+          1176
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:0adb537b32cc8433e4ad7e680a6ac02e64fbef62c27a789ae18eb4f74b2c7108",
+      "hash": "sha256:7d06aeb9a7fe0a7af65b686971a9e36b4f21bb78ea2297262db2b27b8a806d7d",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:46ba56970fd18634e77f930546515ec36c26f0a567775d56275b19ff8678678e",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 10098,
+        "triangles": 9554,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          97,
-          62,
-          168
+          679,
+          434,
+          1176
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:965e6b82899750d8f0a64dd49184b04d16bc412db83ad76e75b6a7b46151a351",
+      "hash": "sha256:9b321092fe9b0ddc981083105c8abc26af3ed84afd4577c701add18f55298ab6",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0fb137a5727381c1ea61f47852a99b0b94a6821bf3e196bf4ae839534850dc3a",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 22214,
+        "triangles": 21438,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          97,
-          62,
-          168
+          679,
+          434,
+          1176
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:14891ea800934296f2b12394761689b0405e57aa33fc9cd68f195a8aa1619bcb",
+      "hash": "sha256:714594cde8cee2b1b4c2162e1779781a43ddc758f2136f5ab3e14099698eccfa",
       "state": {
+        "assetId": "molen.worldgen.structure.flame_towers",
+        "runtimeHash": "sha256:850490c62d30360fc2f08391a588925c58eed92b87da2dd01e767a54cfe3c1bc",
+        "lodHash": "sha256:0024c11b8cab6a0c58087c72291ee0825e51f47e43083edbdaf87b3ec1ca0647",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 69820,
+        "triangles": 68916,
         "groundY": 0,
         "terrainFixture": null,
         "position": [
-          97,
-          62,
-          168
+          679,
+          434,
+          1176
         ],
         "lookAt": [
           0,
-          11,
+          77,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_longformat": 1,
-          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.siheyuan",
-        "contextScale": 1,
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 7,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     }

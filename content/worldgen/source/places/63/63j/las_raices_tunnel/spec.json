@@ -1,0 +1,381 @@
+{
+  "planId": "las_raices_tunnel",
+  "id": "las_raices_tunnel",
+  "assetId": "molen.worldgen.structure.las_raices_tunnel",
+  "title": "Las Raíces Tunnel — complete existing bore and both portals",
+  "category": "transport",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -71.50761187076569,
+    "latitude": -38.537180467451854
+  },
+  "size": [
+    4572.3388671875,
+    17.871612548828125,
+    13.661099910736084
+  ],
+  "actualBounds": {
+    "min": [
+      -2285.896728515625,
+      -398.9533386230469,
+      -6.742137908935547
+    ],
+    "max": [
+      2286.442138671875,
+      -381.08172607421875,
+      6.918962001800537
+    ]
+  },
+  "visualBrief": "Whole original single-bore road tunnel, both open portal headwalls/integral wingwalls and traffic signals, complete continuous underground horseshoe liner and paved deck. Primary ministry numerical facts and complete original numeric alignment; estimated portal architecture and grade. No imagery used.",
+  "nativeAxes": {
+    "x": "along original whole tunnel from northwest to southeast",
+    "y": "up",
+    "z": "perpendicular to complete tunnel alignment"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2020-08-08",
+    "validFrom": "2020-08-08",
+    "validUntil": "2021-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "las-raices-tunnel-wp",
+      "url": "https://qualla.com/las-raices-tunnel/"
+    }
+  ],
+  "referenceInputHash": "sha256:069aedfed77a7416a65087992ff11bbc996860a17a2a34a77dba8029ef6a2a75",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/63/63j/las_raices_tunnel/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/63/63j/las_raices_tunnel/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.18
+      },
+      "red": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.75,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.18
+          },
+          "red": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.18
+          },
+          "red": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.18
+          },
+          "red": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 24000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -71.50761187076569,
+      -38.537180467451854
+    ],
+    "heading": -1.230809331248647,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -71.50761187076569,
+        -38.537180467451854
+      ],
+      "modelHeight": 0,
+      "basis": "Midpoint of complete original tunnel endpoints chosen before independent terrain. Provider mountain-surface datum; underground road floor is separately estimated after the field is frozen."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "roads/35184709025050"
+    ],
+    "source": "https://build.protomaps.com/20261029.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8a38430f08cc09334fd505eb88c3cbbfe7fd4dcca37a751b6ec1c4474cae1bce",
+    "notes": "Whole existing Las Raíces single-bore4528m road tunnel, complete mapped underground alignment, continuous horseshoe lining and paved deck, both terminal mouths/headwalls and intrinsic wingwalls/traffic signals. Both original numeric endpoints verified against surface approaches. No one-portal proxy, invented ventilation plant, future parallel bore or detached operator/toll building. Portal architecture, liner, exact grade and finish are explicit estimates; all imagery unused. Historical2020 existing-tunnel phase."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole existing Las Raíces single-bore4528m road tunnel, complete mapped underground alignment, continuous horseshoe lining and paved deck, both terminal mouths/headwalls and intrinsic wingwalls/traffic signals. Both original numeric endpoints verified against surface approaches. No one-portal proxy, invented ventilation plant, future parallel bore or detached operator/toll building. Portal architecture, liner, exact grade and finish are explicit estimates; all imagery unused. Historical2020 existing-tunnel phase.",
+    "Original seven buffered numeric fragments give13 unique quantized controls and4552.335m route, versus4528m ministry reported length. Original coordinates retained without stretching or a claimed survey. Both terminal controls meet original surface road approaches; original story pin at northwest portal is unchanged.",
+    "Actual original Ministry2020engineering PDFpages7-8 fixes existing tunnel4528m/5.9m total height/4.75m base/4.2m clearance, alternating one-way and end traffic lights; explicitly no ventilation. Older connectivity report page1371010m altitude/4.2m width/5.6m height is context only, not a portal elevation survey. All source photographs/figures/maps/drawings unused.",
+    "Original8192m/16641-height/16-raw-tile field and whole frame fixed before floors/main sections. Datum1432.0946m is mountain-surface provider datum, not road elevation. Portal road floors selected once as original64m-grid bilinear ground+0.04m, northwest1043.213m/southeast1033.591m; linear grade between them explicitly estimated. No surveyed historic grade/datum conversion. Underground alignment is expected to be hidden by mountain terrain. Source field not cut, masked, flattened, refetched or refit; frozen floors/main sections never moved for screenshots.",
+    "Continuous single-bore horseshoe lining has primary clear section4.75m base/5.9m total height, semicircular2.375m crown radius and3.525m spring height explicitly estimated. Liner thickness0.4m, asphalt deck0.22m, drainage kerbs and joint spacing/profile/finish estimated. Full lining and deck connect both original ends at every LOD; no invented machinery/ventilation/second bore.",
+    "Both terminal headwalls are complete open horseshoe rings, estimated8.75m width/7.8m height/2.2m depth, integral8m wingwalls widening2.2m each side, short complete roadway aprons and intrinsic traffic-light poles. Exact portal architecture/stone census/cornice/signage/floor/finish unknown; no protected portal photograph traced. Independent operator huts/toll buildings, separate approaches/bridges, mountain mass and future parallel tunnel excluded.",
+    "Whole physical existing tunnel historical2020phase, currentWorldEligible false. Nominal5m plan and5m height uncertainty for portal architecture/grade, wider DEM/native-registration uncertainty possible. Original coarse terrain can bury or expose mouths/wingwalls and camera views; no ground contact/vertical registration or photographic fidelity claim. All12Qualla families/allotherimagery unused."
+  ],
+  "sourceLicense": "Original procedural whole existing single-bore tunnel geometry under repository license. Original numeric Protomaps/OpenStreetMap route data ODbL; primary Ministry written construction facts only. All imagery/figures unused; portal architecture/liner/grade/finish explicitly estimated. No borrowed mesh, protected photo trace, surveyed contact or current replacement claim.",
+  "qaLodCameras": [
+    {
+      "name": "whole-las-raices-skyline",
+      "position": [
+        0,
+        2406.307462922068,
+        4000
+      ],
+      "lookAt": [
+        0,
+        -393.6925370779316,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-las-raices-district",
+      "position": [
+        0,
+        2406.307462922068,
+        4000
+      ],
+      "lookAt": [
+        0,
+        -393.6925370779316,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-las-raices-street",
+      "position": [
+        0,
+        2406.307462922068,
+        4000
+      ],
+      "lookAt": [
+        0,
+        -393.6925370779316,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-las-raices-closeup",
+      "position": [
+        0,
+        2406.307462922068,
+        4000
+      ],
+      "lookAt": [
+        0,
+        -393.6925370779316,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-original-single-bore-both-portals",
+      "position": [
+        0,
+        2406.307462922068,
+        4000
+      ],
+      "lookAt": [
+        0,
+        -393.6925370779316,
+        0
+      ]
+    },
+    {
+      "name": "complete-northwest-mouth-headwall-wingwalls-signal",
+      "position": [
+        -2300.896216215525,
+        -378.881730655823,
+        14.0958809950655
+      ],
+      "lookAt": [
+        -2275.896216215525,
+        -385.881730655823,
+        0.09588099506549952
+      ]
+    },
+    {
+      "name": "complete-southeast-mouth-headwall-wingwalls-signal",
+      "position": [
+        2301.438342112547,
+        -388.5033435000402,
+        14.095880995065272
+      ],
+      "lookAt": [
+        2276.438342112547,
+        -395.5033435000402,
+        0.09588099506527215
+      ]
+    },
+    {
+      "name": "true-northwest-continuous-tunnel-mouth",
+      "position": [
+        -2291.896216215525,
+        -386.28173065582297,
+        0
+      ],
+      "lookAt": [
+        -2250.896216215525,
+        -386.28173065582297,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 18876,
+    "vertices": 56628,
+    "materials": 4,
+    "bytes": 2333236,
+    "sha256": "sha256:13fd94b55c717acf868dd0b1489bba6a7684a9267127c90e0a6498556ad413cc"
+  }
+}

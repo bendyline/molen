@@ -1,0 +1,270 @@
+{
+  "sourceUrl": "https://storage.googleapis.com/open-buildings-data/v3/polygons_s2_level_4_gzip/903_buildings.csv.gz",
+  "release": "Google Open Buildings v3 May2023 inference",
+  "originalDatasetSha256": "sha256:a3a20d797f23abf9159ecef10b2355be9f8f87aa3b7b67f96ad1537f8529e400",
+  "footprintThresholdRecord": {
+    "s2_token": "903",
+    "geometry": "POLYGON ((-84.94013115373588 0, -84.94013115373588 -5.040252729758283, -79.38034472384487 -4.973642825000524, -79.38034472384487 0, -84.94013115373588 0))",
+    "confidence_threshold_80%_precision": "0.780",
+    "confidence_threshold_85%_precision": "0.823",
+    "confidence_threshold_90%_precision": "0.870",
+    "building_count_80%_precision": "2418703",
+    "building_count_85%_precision": "1590087",
+    "building_count_90%_precision": "636830",
+    "building_count": "4140157",
+    "num_samples": "9146"
+  },
+  "sourceLicense": "Google original v3 numerical footprint and numerical height data dual CC BY 4.0 / ODbL, selected ODbL. No imagery used.",
+  "modelRecord": {
+    "sourceId": "google-open-buildings:6792W3X4+3MJ6",
+    "originalCsvRow": {
+      "latitude": "-2.05229197",
+      "longitude": "-79.94337135",
+      "area_in_meters": "90.9045",
+      "confidence": "0.8350",
+      "geometry": "POLYGON((-79.9433181459544 -2.05232123230378, -79.9433367670842 -2.05224185844948, -79.943424562351 -2.05226270667132, -79.9434059412243 -2.05234208052878, -79.9433181459544 -2.05232123230378))",
+      "full_plus_code": "6792W3X4+3MJ6"
+    },
+    "footprintConfidence": 0.835,
+    "pavilion": 8,
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -79.9433181459544,
+            -2.05232123230378
+          ],
+          [
+            -79.9433367670842,
+            -2.05224185844948
+          ],
+          [
+            -79.943424562351,
+            -2.05226270667132
+          ],
+          [
+            -79.9434059412243,
+            -2.05234208052878
+          ],
+          [
+            -79.9433181459544,
+            -2.05232123230378
+          ]
+        ]
+      ]
+    },
+    "heightSource": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/902d4_2023_06_30/tile_FRzHb_Wx0jw.tif",
+    "heightSourceYear": 2023,
+    "heightBand": 1,
+    "presenceBand": 2,
+    "sourceBandDescriptions": [
+      {
+        "sample": 0,
+        "meta": {
+          "DESCRIPTION": "building_fractional_count"
+        }
+      },
+      {
+        "sample": 1,
+        "meta": {
+          "DESCRIPTION": "building_height"
+        }
+      },
+      {
+        "sample": 2,
+        "meta": {
+          "DESCRIPTION": "building_presence"
+        }
+      }
+    ],
+    "samplingStepMeters": 4,
+    "confidenceThreshold": 0.7,
+    "samples": [
+      {
+        "pixel": [
+          11928,
+          11800
+        ],
+        "utm": [
+          617504.25,
+          9773123.75
+        ],
+        "values": [
+          0.003466204507276416,
+          4,
+          0.699999988079071
+        ]
+      },
+      {
+        "pixel": [
+          11936,
+          11800
+        ],
+        "utm": [
+          617508.25,
+          9773123.75
+        ],
+        "values": [
+          0.000866551126819104,
+          4,
+          0.6200000047683716
+        ]
+      },
+      {
+        "pixel": [
+          11944,
+          11800
+        ],
+        "utm": [
+          617512.25,
+          9773123.75
+        ],
+        "values": [
+          0.000433275563409552,
+          3,
+          0.3199999928474426
+        ]
+      },
+      {
+        "pixel": [
+          11928,
+          11808
+        ],
+        "utm": [
+          617504.25,
+          9773119.75
+        ],
+        "values": [
+          0.000433275563409552,
+          3.5,
+          0.30000001192092896
+        ]
+      },
+      {
+        "pixel": [
+          11936,
+          11808
+        ],
+        "utm": [
+          617508.25,
+          9773119.75
+        ],
+        "values": [
+          0,
+          5.5,
+          0.6600000262260437
+        ]
+      },
+      {
+        "pixel": [
+          11944,
+          11808
+        ],
+        "utm": [
+          617512.25,
+          9773119.75
+        ],
+        "values": [
+          0,
+          6,
+          0.8600000143051147
+        ]
+      },
+      {
+        "pixel": [
+          11928,
+          11816
+        ],
+        "utm": [
+          617504.25,
+          9773115.75
+        ],
+        "values": [
+          0,
+          7,
+          0.9599999785423279
+        ]
+      },
+      {
+        "pixel": [
+          11936,
+          11816
+        ],
+        "utm": [
+          617508.25,
+          9773115.75
+        ],
+        "values": [
+          0,
+          7,
+          0.9599999785423279
+        ]
+      }
+    ],
+    "selectedSamples": 3,
+    "heightSummary": {
+      "min": 6,
+      "median": 7,
+      "max": 7,
+      "q25": 6,
+      "q75": 7
+    },
+    "limitations": "Heights are learned numerical estimates at effective 4 m resolution, not a surveyed roof profile or floor census. Confidence is a relative rank, not a probability. Ecuador performance is not established by the Global North evaluation. Use at least 3 m height uncertainty; all imagery unused."
+  },
+  "compoundIdentity": {
+    "originalSource": "https://build.protomaps.com/20261029.pmtiles",
+    "poi": {
+      "id": "pois/35185886821928",
+      "properties": {
+        "name": "Pabellón 08",
+        "kind": "residential",
+        "min_zoom": 15
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.94360715150833,
+          -2.0524861087647253
+        ]
+      }
+    },
+    "area": {
+      "id": "landuse/35185886821928",
+      "properties": {
+        "sort_rank": 189,
+        "kind": "residential"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -79.9440148472786,
+              -2.0524056941163735
+            ],
+            [
+              -79.94328796863556,
+              -2.0522207404098083
+            ],
+            [
+              -79.94320213794708,
+              -2.0525692038971073
+            ],
+            [
+              -79.9439263343811,
+              -2.052735394148911
+            ],
+            [
+              -79.9440148472786,
+              -2.0524056941163735
+            ]
+          ]
+        ]
+      }
+    },
+    "role": "Pavilion 8 compound identity only; not a roof or a replacement building boundary."
+  },
+  "fullRecordSnapshotHash": "sha256:5a2c2e98b54027cba85caace0e4cd4d9ccc579499d51a830347214310ddeb295",
+  "heightSnapshotHash": "sha256:0a2b9ee129cf2bb47b02885adaf8a27addf41ead56e08cfcfc0e9c75413b81a0"
+}

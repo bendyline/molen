@@ -1,0 +1,1710 @@
+PDF PAGE 1
+The Murchison Wideﬁeld Array: the Square Kilometre Array
+Precursor at low radio frequencies
+S.J. Tingay A,S,T, R. Goeke B, J.D. Bowman C, D. Emrich A, S.M. Ord A, D.A.
+MitchellD,S, M.F. Morales E, T. Booler A, B. Crosse A, D. Pallot A, A. Wicenec F,
+W. ArcusA, D. Barnes G, G. Bernardi H, F. Briggs I,S, S. Burns J, J.D. Bunton K,
+R.J. Cappallo L, T. Colegate A, B.E. Corey L, A. Deshpande M, L. deSouza K, B.M.
+GaenslerN,S, L.J. Greenhill H, P.J. Hall A, B.J. Hazelton E, D. Herne A, J.N.
+HewittB, M. Johnston-Hollitt O, D.L. Kaplan P, J.C. Kasper H, B.B. Kincaid L, R.
+KoenigK, E. Kratzenberg L, C.J. Lonsdale L, M.J. Lynch A, B. McKinley I,S, S.R.
+McWhirterL, E. Morgan B, D. Oberoi Q, J. Pathikulangara K, T. Prabu M, R.A
+RemillardB, A.E.E. Rogers L, A. Roshi R, J.E. Salah L, R.J. Sault D, N.
+Udaya-ShankarM, F. Schlagenhaufer A, K.S. Srivani M, J. Stevens K, R.
+SubrahmanyanM,S, S. Tremblay A,S, R.B. Wayth A,S, M. Waterson A, R.L.
+WebsterD,S, A.R. Whitney L, A. Williams F, C.L. Williams B and J.S.B.
+WyitheD,S
+A ICRAR - Curtin University, Perth, Australia
+B MIT Kavli Institute for Astrophysics and Space Research, Cambridge, MA, USA
+C Arizona State University, Tempe, AZ, USA
+D The University of Melbourne, Melbourne, Australia
+E University of Washington, Seattle, USA
+F ICRAR - University of Western Australia, Perth, Australia
+G Monash University, Melbourne, Australia
+H Harvard-Smithsonian Center for Astrophysics, Cambridge, MA, USA
+I The Australian National University, Canberra, Australia
+J Burns Industries, Nashua, NH, USA
+K CSIRO Astronomy and Space Science, Australia
+L MIT Haystack Observatory, Westford, MA, USA
+M Raman Research Institute, Bangalore, India
+N Sydney Institute for Astronomy, The University of Sydney, Sydney, Australia
+O School of Chemical and Physical Sciences, Victoria University of Wellington, New Zealand
+P University of Wisconsin–Milwaukee, Milwaukee, WI, USA
+Q National Centre for Radio Astrophysics, Pune, India
+R National Radio Astronomy Observatory, Charlottesville, WV, USA
+S ARC Centre of Excellence for All-sky Astrophysics (CAASTRO)
+T Email: s.tingay@curtin.edu.au
+Abstract: The Murchison Wideﬁeld Array (MWA) is one of three Square Kilometre Array Precursor
+telescopes and is located at the Murchison Radio-astronomy Observatory in the Murchison Shire of
+the mid-west of Western Australia, a location chosen for its extremely low levels of radio frequency
+interference. The MWA operates at low radio frequencies, 80−300 MHz, with a processed bandwidth of
+30.72 MHz for both linear polarisations, and consists of 128 aperture arrays (known as tiles) distributed
+over a ∼3 km diameter area. Novel hybrid hardware/software correlation and a real-time imaging and
+calibration systems comprise the MWA signal processing backend. In this paper the as-built MWA is
+described both at a system and sub-system level, the expected performance of the array is presented,
+and the science goals of the instrument are summarised. Keywords: instrumentation: interferometers
+— techniques: image processing — techniques: interferometric — radio coninuum: general — radio
+lines: general — cosmology: early universe
+1
+arXiv:1206.6945v1  [astro-ph.IM]  29 Jun 2012
+PDF PAGE 2
+2 Publications of the Astronomical Society of Australia
+1 Introduction
+The Murchison Wideﬁeld Array (MWA1) is the Square
+Kilometre Array (SKA: Dewdney et al. (2010)) Precur-
+sor telescope at low radio frequencies. An SKA Pre-
+cursor is a recognised SKA technology demonstrator
+located at one of the two sites shortlisted for the SKA
+in 2006, the Murchison Radio-astronomy Observatory
+(MRO) in the Murchison region of Western Australia
+and the Karoo region of South Africa’s Northern Cape.
+The MWA is one of two SKA Precursor telescopes
+sited at the MRO, the other being the Australian SKA
+Pathﬁnder (ASKAP: Johnston et al. (2008); Johnston
+et al. (2007)). The MeerKAT 2 SKA Precursor is lo-
+cated at the South African site. The MRO was chosen
+for the site of the MWA due to its extremely low levels
+of human-made radio frequency intereference, partic-
+ularly in the FM band encompassed by the MWA at
+the low end of its operating frequency range (Bowman
+& Rogers 2010). The MRO has been chosen as the
+host site for the low frequency component of the SKA,
+in both Phases 1 and 2, to consist of sparse aperture
+arrays3.
+While only three instruments have SKA Precur-
+sor status, a number of other instruments have SKA
+Pathﬁnder status (SKA technology demonstrator but
+not on a candidate SKA site) and are also feeding in-
+formation into the SKA design and costing process.
+The most notable of the SKA Pathﬁnders in the MWA
+frequency range is LOFAR, built in The Netherlands
+(van Harlem et al. 2012).
+The MWA and ASKAP are complementary, in that
+they operate in diﬀerent frequency ranges (MWA: 80 -
+300 MHz; ASKAP: 0.7 - 1.8 GHz) and employ diﬀerent
+antenna technologies (MWA: aperture arrays (tiles);
+ASKAP: dishes plus Phased Array Feeds). The com-
+bined MWA and ASKAP technology speciﬁcations al-
+most fully sample the roadmap technologies for the
+SKA (Dewdney et al. 2010) at a single radio quiet lo-
+cation, the MRO. In particular, the MWA explores the
+so-called large-N and small-D array concept that will
+be utilised for the SKA, with large numbers of small
+receiving elements providing a large ﬁeld of view on
+the sky and therefore high sensitivity over wide ﬁelds,
+equating to high survey speed, a key metric for SKA
+science (Carilli & Rawlings 2004).
+All three of the MWA, ASKAP and MeerKAT are
+planning, or have operated, demonstrator instruments.
+ASKAP is building the six antenna Boolardy Engineer-
+ing Test Array (BETA4). MeerKAT is being preceeded
+by KAT75, a seven antenna array. For the MWA, a 32
+tile test array operated between 2009 and 2011, allow-
+ing the assesment of a number of generations of pro-
+totype hardware as well as several iterations of MWA
+system integration. The MWA 32 tile array also un-
+dertook science-quality astronomical observations, in
+1http://www.mwatelescope.org;
+http://www.facebook.com/Murchison.Wideﬁeld.Array
+2http://public.ska.ac.za/meerkat
+3http://www.skatelescope.org/news/dual-site-agreed-
+square-kilometre-array-telescope/
+4http://www.atnf.csiro.au/projects/askap
+5http://public.ska.ac.za/kat-7
+order to demonstrate the performance of the hardware
+on-sky. A number of science results have been reported
+from the 32 tile data (Williams et al. 2012; Bernardi et
+al. 2012; McKinley et al. 2012; Bell et al. 2012; Oberoi
+et al. 2011). Operation of the 32 tile test array ceased
+in late 2011, in preparation for the commencement of
+construction for the ﬁnal MWA instrument in early
+2012, due for completion in late 2012.
+Previously, Lonsdale et al. (2009) described the
+conceptual underpinings of the MWA design, the ad-
+vantages of a large-N, small-D architecture for radio
+interferometers and some of the challenges inherent in
+the data processing for this type of telescope. Lons-
+dale et al. (2009) also provided brief descriptions of the
+initial plans for MWA hardware and data processing
+elements, as well as the science goals for the MWA.
+Since the Lonsdale et al. (2009) paper was pub-
+lished, a number of design and construction consider-
+ations, that were uncertain at the time of publication,
+have been ﬁnalised. In particular the originally envis-
+aged 512 tiles was re-scoped to 128 tiles due to funding
+constraints. The construction of the ﬁnal MWA in-
+strument is underway and practical completion of the
+facility is expected in late 2012. MWA commissioning
+will commence in mid-2012, with science operations
+to commence in approximately mid-2013. Thus, the
+purpose of this paper is to provide a full description
+of the MWA in its as-built form, including the ﬁnal
+system architecture and sub-systems, as well as signal
+processing and data handling strategies (Section 2).
+This paper will also give a brief summary of the MWA
+science goals, a full description of which will appear
+elsewhere (Bowman et al. 2012) and details on the ex-
+pected performance of the MWA (Sections 3 and 4).
+This paper is intended to inform future users of the
+capabilities of the MWA, ahead of the science opera-
+tions phase, such that users can commence planning
+for MWA science activities. Section 5 brieﬂy discusses
+the MWA within the context of other existing and fu-
+ture instrumentation, including the Phase 1 SKA.
+2 MWA system design and sub-
+system descriptions
+We start with a very brief overview of the MWA sig-
+nal path, and provide details on each of the iden-
+tiﬁed sub-systems in subsequent Sections. Table 1
+provides a summary of the MWA system parameters
+and expected performance. Figure 1 gives a high-level
+schematic overview of the MWA physical system and
+signal path.
+The MWA signal path starts with a dual-polarisation
+dipole antenna, roughly a square meter of collecting
+area at ∼150 MHz. Sixteen of these antennas are con-
+ﬁgured as an aperture array on a regular 4x4 grid (with
+a spacing of 1.1 m). Their signals are combined in
+an analog beamformer, using a set of switchable delay
+lines to provide coarse pointing capability. Each beam-
+former produces two wideband analog outputs repre-
+senting orthogonal X and Y linear polarisations. This
+we refer to as an antenna tile and analog beamformer
+(Section 2.3).
+PDF PAGE 3
+www.publish.csiro.au/journals/pasa 3
+Figure 1: High level schematic overview of MWA physical system and signal path
+The sum of our four science drivers (Section 4 and
+Bowman et al. (2012)) leads to a desire for a uv base-
+line distribution which has a dense core surrounded by
+a smooth r−2 radial distribution (Section 2.2). Our
+core area has 50 antenna tiles uniformly distributed
+over a 100 metre diameter core, surrounded by 62 tiles
+which are distributed over a 1.5 km diameter circle.
+The ﬁnal 16 tiles have been placed even further out
+on a 3 km diameter circle to optimise solar imaging
+performance, and for the highest angular resolution
+imaging.
+A host of practical considerations led us to combine
+the signals from 8 tiles into a single receiver (Section
+2.4); we thus deploy 16 receivers distributed over our
+landscape such that no tile is more than 500 metres
+removed from its associated receiver. A receiver ﬁlters
+the two analog signals from each tile to a bandpass
+of 80 to 300 MHz, Nyquist samples the signals with
+an 8-bit A/D converter, and digitally ﬁlters the result
+into 24×1.28 MHz frequency channels which form a se-
+lectable, usually but not necessarily contiguous, 30.72
+MHz sample space. The receivers themselves are a
+mixture of high technology and low, combining high-
+speed, and hence high power, digital circuitry with me-
+chanical cooling. They are powered from a standard
+240 V mains circuit and send out their digital data
+streams on three 2.1 Gbps ﬁber optic links. One of
+our early design decisions was to provide spare power
+and ﬁbre connections to most receiver locations so that
+future instrument development could share our exist-
+ing infrastructure at low incremental cost.
+About 5 km from the core of our array sits a build-
+ing provided by CSIRO, which we share with the ASKAP
+project (the Central Processing Facility: CPF). It has
+power, Electrommagnetic Interference (EMI) shield-
+ing, and water-cooled equipment racks for our data
+processing hardware. The data streams from all 16
+receivers meet here and each of the 1.28 MHz chan-
+nels is ﬁltered by dedicated hardware into 128×10 kHz
+ﬁne channels (Section 2.5). A correlator implemented
+in software using general purpose graphical processing
+units (GPGPUs) processes, averages in time and fre-
+quency space, and outputs its results in 768 ×40 kHz
+channels with 0.5 s resolution (Section 2.5). This 2.25
+Gbps stream of correlation products is then processed
+by the MWA Real Time System (RTS: Mitchell et al.
+(2012)) to produce real-time calibrated images every 8
+s (Section 2.6). We have enabled the ability for visi-
+bility data to also be saved, to allow for the possibility
+of post-observation processing (Sections 2.6 and 2.7).
+The MWA runs a monitor and control system to
+schedule observations and monitor system health and
+parameters of use for data processing (Section 2.8).
+The RTS output and the uv data are transmitted
+on a dedicated 10 Gbps optical ﬁbre connection to the
+Pawsey High Performance Computing Centre for SKA
+science in Perth, where 15 PB of data storage capacity
+has been reserved over a 5 year period to accommodate
+the MWA data archive (Section 2.7).
+Supporting the MWA instrument is the underlying
+infrastructure, including the reticulation of ﬁbre and
+power around the array and the connection to MRO
+site-wide services provided by the Commonwealth Sci-
+entiﬁc and Industrial Research Organisation (CSIRO)
+PDF PAGE 4
+4 Publications of the Astronomical Society of Australia
+Table 1: System parameters for MWA
+Parameter Symbol 150 MHz 200 MHz
+Number of tiles N 128 128
+Area of one tile at zenith (m 2) A eﬀ 21.5 19.8
+Total collecting area (m2) 2752 2534
+Receiver temperature (K) T rcv 50 25
+aTypical sky temperature (K) T sky 350 170
+bField of view (deg 2) Ω P 610 375
+Instantaneous bandwidth (MHz) B 30.72 30.72
+Spectral resolution (MHz) 0.04 0.04
+Temporal Resolution 0.5 s uncalibrated 0.5 s uncalibrated
+8 s calibrated 8 s calibrated
+Polarization Full Stokes Full Stokes
+Minimum baseline (m) 7.7 7.7
+Maximum baseline (m) 2864 2864
+Angular resolution (1.5 km array) ∼3’ ∼2’
+Angular resolution (3 km array) ∼2’ ∼1’
+aNijboer, Pandey-Pommier & de Bruyn (2009).
+b Based on FWHM of primary beam. Imageable area is signiﬁcantly larger.
+(Section 2.1).
+In the following Sections we provide further detail
+on the MWA sub-systems.
+2.1 MWA infrastructure at the MRO
+The MWA support infrastructure at the MRO includes
+all of the installations and equipment required to trans-
+port power and data to, from, and around the ar-
+ray. The focus of the MWA infrastructure is a power
+and data distribution “hub” located near the core of
+the array. This Section describes the distribution hub
+and then, in turn, its connections to central MRO
+site services; and its connections to MWA equipment
+in the ﬁeld. All of the infrastructure and equipment
+described in this paper conforms to the speciﬁcation
+“RFI Standards for Equipment to be Deployed on the
+MRO”6.
+The hub, located approximately 200 m south of
+the MWA core, is the central distribution point for
+the power and data services into, from and around the
+array (Figure 2); it consists of power and data distri-
+bution apparatus mounted on separate but adjacent
+concrete plinths.
+A compact substation consisting of a transformer
+and a Low Voltage (LV) switchboard housed in an en-
+vironmental enclosure (kiosk) is mounted on one con-
+crete plinth. All cable entries are from underneath
+through apertures in the precast concrete plinth. The
+transformer is a three phase ONAN type (O=mineral
+oil or synthetic insulation ﬂuid with a ﬁre point 300 ◦;
+N=natural convection ﬂow through cooling equipment
+and in windings; A=air is the external cooling medium;
+N=natural convection of the external cooling medium)
+with a ratio of 6.6kV/415V, a Dyn11 winding arrange-
+ment and an impedance of 4%. The incoming cable
+6ASKAP-MRO-0001-Version1.1, dated 15 Oct 2010
+enters the termination enclosure via an all-metal cable
+gland which is bonded to the cable sheath. The HV
+termination enclosure is sealed with conductive RFI
+gaskets. The LV switchboard comprises the main in-
+coming terminal, including a three pole manual changeover
+switch (mains/oﬀ/generator) and the outgoing mains
+feeders. The incoming and outgoing feeders are pro-
+tected by fused switches. No electronic equipment is
+employed within the compact substation.
+A high density ﬁbre optic patch panel housed in an
+environmental enclosure is mounted on a separate but
+adjacent plinth. All ﬁbre entries are from underneath
+through apertures in the precast concrete plinth.
+The MWA distribution hub is connected to the
+wider MRO power and data networks by a single in-
+coming services trench. The incoming high voltage
+cable is a 35 mm three core armoured cable with alu-
+minium conductor and an operating voltage range of
+6.35/11kV, designed and constructed to comply with
+AS/NZS1429.1-2006. The incoming data cables are
+Prysmian Fusion link dry ribbon cables consisting of
+18 ribbons of 12 ﬁbres (216 single mode ﬁbres) op-
+erating at 1310 nm. There are two incoming cables
+providing a total of 432 incoming ﬁbres. An extruded
+nylon sheath provides environmental protection.
+Distribution from the MWA hub is by cables direct
+buried in service trenches that terminate at service pil-
+lars designed to provide direct plug-in points for MWA
+receivers (and other hardware that can make use of
+the same service formats). The LV cabling has a cop-
+per conductor of various diameters based on the load
+and length of individual cable runs packaged in ﬂex-
+ible cross-linked polyethylene insulation and with an
+extruded nylon protective barrier. The optical ﬁbre
+cables consist of 12 cores of standard single mode ﬁ-
+bre in a cable designed for direct burial and with an
+extruded nylon barrier. The capacity of the ﬁbre and
+power deployed is designed to accommodate possible
+PDF PAGE 5
+www.publish.csiro.au/journals/pasa 5
+−1500 −1000 −500 0 500 1000 1500
+−1500
+−1000
+−500
+0
+500
+1000
+1500
+East (m)
+North (m)
+N
+Figure 2: Plan of MWA infrastructure, as built at the MRO. The hub referred to in the text is located at
+(0,-200), with seven radial trench lines shown in red. Receiver locations are marked as red crossess and
+tile positions are marked as blue squares.
+expansion of the core of the array at some future point
+in time.
+The service pillars are equipped for single phase
+distribution and include a single phase distribution
+board used to supply either one or two receivers. The
+distribution board also provides a local isolation point
+for the receivers. The service pillars are mounted on
+concrete plinths with bottom cable entry facilitated
+by apertures in the precast concrete. The ﬁnal con-
+nection to receiver is by means of a standard three-pin
+plug and socket.
+The CPF houses the MWA post-receiver signal pro-
+cessing equipment within 16 Schroﬀ LHX20 water cooled
+19” cabinets (42U height ×800 mm width ×1200 mm
+depth).
+2.2 Array conﬁguration
+The initially envisaged MWA design consisted of 512
+tiles distributed with a r−2 density proﬁle for radii
+of 50−750 m, with a ﬂat distribution of tiles inside of
+50 m and 16 outlying tiles at∼1500 m radius (Lonsdale
+et al. 2009). This proﬁle provided smooth uv coverage
+with a strong concentration of short baselines at the
+scales relevant for EoR power spectrum measurements
+(Beardsley et al. 2012), the excellent snapshot imag-
+ing needed for transients and holographic calibration
+(Hazelton et al. 2012).
+In rescoping the array to 128 tiles, we maximised
+science capacity by keeping the key ﬁgures of the orig-
+inal layout: excellent snapshot uv coverage, a concen-
+trated core of tiles for Epoch of Reionisation (EoR)
+power spectrum measurements, and longer baselines
+for solar observations. This has lead us to place 25%
+of the tiles within a dense 100 m diameter core, with
+a very smooth tile distribution out to 1.5 km diame-
+ter and 16 tiles in an outer region of 3 km diameter.
+The resulting tile distribution is shown in Figure 3 and
+the snapshot single frequency uv coverage is shown in
+Figure 4. The coordinates of the centre of the array
+are: Latitude −26◦ 42’ 11.94986”; Longitude 116◦ 40’
+14.93485”; Elevation 377.827 m.
+Even in the remote Australian desert, there are
+areas of rock outcroppings, emergency runways, ﬂood
+zones, and heritage areas where tiles cannot be placed.
+Beardsley et al. (2012) details a new tile placement
+algorithm that produces extremely smooth snapshot
+uv distributions in the presence of ground exclusion
+zones. Noting that over- and under-densities in the uv
+plane act like two dimensional wave packets to produce
+PSF (array beam) sidelobes, the new method uses a
+Bessel decomposition of the uv plane to create very
+smooth baseline distributions.
+PDF PAGE 6
+6 Publications of the Astronomical Society of Australia
+Figure 3: Left: An aerial map of the central 112 antennas of the MWA layout, indicated by white 5x5 m
+squares. The layout features a dense core of antennas within 50 m of the array center, with a very smooth
+distribution of antennas out to 750 m radius. The arrows indicate the direction to the outer 16 antennas
+for high angular resolution imaging which are in a rough ring of ∼1.5 km radius. The purple regions
+indicate the electrical footprints of each of the 16 receivers, each servicing 8 antennas. Right: A zoom
+into the central ∼1 km of the array conﬁguration. The contours
+2.3 Tiles and analog beamformers
+The MWA antenna system is composed of the active
+and passive components described below. These com-
+ponents, when connected together, form a “tile” and
+analog beamformer (Figures 5 and 6). The MWA has
+deployed 128 antenna tiles and beamformers, in a con-
+ﬁguration described in Section 2.2.
+A 5 m × 5 m mesh reﬂecting screen (eﬀectively
+a plane mirror over the MWA operating frequency
+range), consisting of galvanised steel wire mesh with
+50 mm × 50 mm wire spacing, and 3.15 mm wire
+thickness, forms the ground screen for each tile. These
+ground screens rest directly on the ground, each po-
+sitioned to align within 2 ◦ of north-south/east-west,
+within 1.5◦ of perpendicular to the zenith, and with
+less than 5 cm deviations from planarity across each
+ground screen. The ground screen is composed of
+three rectangular sheets spot welded together suﬃ-
+ciently well to provide a continuous electrical path and
+is electrically connected to the metal chassis of the
+analog beamformer which, through a dedicated drain
+wire, is connected to the metal chassis of the receiver,
+ensuring a good discharge path for static electricity.
+Sixteen dual polarisation active antenna elements
+form a 4 × 4 regular grid on the ground screen. Each
+antenna element consists of two sets of orthogonally
+mounted aluminium broad-band dipole “bat-wings”,
+each pair directly feeding a custom designed Low-Noise-
+Ampliﬁer (LNA) circuit. The LNA circuit provides
+approximately 19 dB of gain at 150 MHz when termi-
+nated at 50 ohms, and includes a feed conversion from
+balanced to single-ended. The LNA circuit is pow-
+ered from a 5 VDC bias supplied by the analog beam-
+former. Antenna elements are mounted on the mesh
+with one dipole aligned north-south and the other east-
+west. While these active dipoles are broad-band by
+design, the anti-aliasing ﬁlter immediately prior to the
+digitisation stage in the receiver limits the telescope
+operating range to approximately 80 −300 MHz. The
+centre-to-centre element spacing on the mesh is 1100
+mm corresponding to half wavelength separation at
+136 MHz.
+The signals from the 16 × 2 dipole antennas are
+wired to the analog beamformer using 50-ohm cable
+speciﬁed to LMR-100. All these element cables are
+made to the same length of seven metres to ensure
+that all antenna signals reach the analog beamformer
+front panel with identical delays. As mentioned above,
+these cables also carry the 5VDC bias from the beam-
+former to power the LNA circuits. Each of the 32 chan-
+nels in the analog beamformer has an independently
+PDF PAGE 7
+www.publish.csiro.au/journals/pasa 7
+East−West (λ)
+North−South (λ)
+ 
+ 
+−800 −600 −400 −200 0 200 400 600 800
+−800
+−600
+−400
+−200
+0
+200
+400
+600
+800
+0
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+East−West (λ)
+North−South (λ)
+ 
+ 
+−1500 −1000 −500 0 500 1000 1500
+−1500
+−1000
+−500
+0
+500
+1000
+1500
+0
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+Figure 4: Left: The snapshot single frequency uv coverage for the central 112 antennas. Right: The
+snapshot single frequency uv coverage for the full array.
+controlled 32-step delay using ﬁve binary-weighted de-
+lay steps, each of which can be switched in or out.
+When any delay step is switched out, a gain-matching
+circuit stub is switched in to maintain relatively con-
+stant gain regardless of delay setting (tile gains are
+calibrated post-correlation). The delay steps are mul-
+tiples of 435 picoseconds, allowing a range of discrete
+relative delays between elements, from zero to 13.5 ns.
+The outputs from all 16 delay stages for each polar-
+isation are summed to create X- and Y-polarised tile
+beams on the sky. The analog beamformer, and hence
+the instrument, can support steering the X- and Y-
+beams for all 128 tiles in diﬀerent directions, for a total
+of 256 beam directions. It should be noted that the
+beam shape changes with pointing direction (as well
+as frequency) and pointing directions below 30◦ eleva-
+tion are not available. Figure 7 shows the simulated
+beam response of a single MWA tile, at a frequency of
+150 MHz and pointed at zenith.
+The summed X- and Y-outputs are ampliﬁed and
+impedance converted to match the 75-ohm dual coaxial
+cable that connects the analog beamformer to the re-
+ceiver. This cable also carries encoded control signals
+to set the delays on the analog beamformer, as well
+as the 48 VDC power for the beamformer. Shorter
+cables conform to RG-6 speciﬁcation, while longer ca-
+bles meet LMR-400-75 speciﬁcation. Furthermore, on
+longer cable runs a “whitening” ﬁlter is inserted to
+overcome some of the frequency-dependent loss that
+would otherwise over-emphasise the low-frequency sig-
+nals.
+2.4 Receivers, digitisation and ﬁrst
+stage channelisation
+An MWA receiver node unit (Figure 8) is responsible
+for taking the analog radio frequency (RF) signals from
+8 tiles, performing digitisation and coarse frequency
+channel selection of these signals, and then transmit-
+ting the resulting digital streams via ﬁbre optic cable
+to the CPF.
+There are a total of 16 receiver nodes in the com-
+plete 128 tile MWA system. These receivers are phys-
+ically distributed around the array to minimise the
+length of the coaxial cables that carry the analog RF
+from the beamformers to the receivers. synchronisa-
+tion RF signals arriving at the receiver are passed to an
+Analog Signal Conditioning (ASC) board where signal-
+level adjustment, impedance matching and 80−300 MHz
+band-pass ﬁltering takes place. The conditioned ana-
+log signals are then passed to an Analog-to-Digital and
+Filter Bank (ADFB) board. The signals are sampled
+at 8 bits per sample and 655.36 Msamples/sec by AT-
+MEL AT84AD001B ADC chips and fed to Xilinx Vir-
+tex 4 Field Programmable Gate Array (FPGA) chips.
+The FPGAs implement a 256 channel coarse polyphase
+ﬁlter bank which gives 256 ×1.28 MHz wide channels
+over the 327.68 MHz sampled bandwidth. Of these
+256 coarse channels, channel numbers below about 55
+and above about 235 are highly attenuated by the ASC
+ﬁltering.
+The channelised data are transferred by a custom
+designed high-speed backplane to the Virtex 5 FPGA
+based Aggregator Formatter (AGFO) board. A user-
+deﬁned subset of 24 of these channels (not necessarily
+contiguous) are formatted and transmitted on three ﬁ-
+bre optic cables. Each of the three ﬁbres contains data
+for 8 of the selected coarse channels for each of 2 polar-
+isations for the 8 tiles connected to that receiver. The
+three ﬁbres together yield 30.72 MHz of RF bandwidth
+that is transmitted to the CPF. The data are transmit-
+ted in the form of 5+5 bit complex samples. Together,
+the 16 receiver nodes in the 128 tile system pass in
+excess of 80 Gbits/s of data to the down-stream signal
+processing systems.
+Additional ﬁbres provide Ethernet communications
+PDF PAGE 8
+8 Publications of the Astronomical Society of Australia
+Figure 5: A schematic antenna tile layout. Note that element cables are not shown to length scale.
+for monitor and control functions and distribute a cen-
+tralised clock signal for the samplers, FPGA logic and
+timing signals for array synchronisation. A single-
+board computer controls the receiver node functions
+and services monitor and control (M&C) needs. Con-
+trol functions include analogue beamformer commands,
+setting and monitoring of ASC units, conﬁguring and
+monitoring of high-speed digital boards, thermal con-
+trol and managing power start-up and shut-oﬀ in re-
+sponse to various conditions.
+The receiver electronics are ﬁtted into a rack which
+is housed in a weather-tight, RF shielded enclosure
+with an integrated refrigeration unit. This allows the
+receiver to meet the stringent radio quiet requirements
+of the MRO and to provide environmental condition-
+ing and protection to enable the unit to survive in an
+environment where the ambient air temperature can
+range from 0◦ to 50◦C.
+2.5 Correlation
+The real-time cross-correlation task for interferomet-
+ric arrays is a large computational challenge, histori-
+cally addressed by Application Specﬁc Integrated Cir-
+cuits (ASICs) and FPGAs. These technologies are well
+matched to the limited precision ﬁxed point arithmetic
+required, but their application typically involves trade-
+oﬀs between cost of development, power consumption
+and performance. ASICs are costly to develop and
+produce; FPGAs are cheaper to develop than ASICs,
+and both are much more power eﬃcient than gen-
+eral purpose processors. However, as discussed by
+Nieuwpoort & Romein (2009), there has been con-
+siderable recent eﬀort expended applying many-core
+processors to this problem. The MWA has chosen to
+leverage two technologies to perform the correlation
+task, a polyphase ﬁltering task (PFB) performed by
+an FPGA-based solution, and a cross-multiply and ac-
+cumulate task (XMAC) utilising GPGPU technologies
+developed by Clark et al. (2012).
+The purpose of a spectral line correlator is to mea-
+sure the level of signal correlation between all antenna
+pairs at diﬀerent frequencies across the observing band.
+The result is commonly called the cross power spec-
+trum and for any two antennas V1 and V2 can be
+formed in two ways. Firstly the cross correlation as
+a function of lag, τ, can be formed:
+(V1⋆V 2)(τ) =
+∫ ∞
+−∞
+V1(t)V2(t −τ)dt. (1)
+PDF PAGE 9
+www.publish.csiro.au/journals/pasa 9
+Figure 6: MWA tiles and analog beamformers deployed in the ﬁeld.
+Figure 7: Simulated beam response for a single MWA tile, as described in the text.
+The cross power spectrum, S(ν), is then obtained by
+application of the Fourier transform to reveal:
+S12(ν) =
+∫ ∞
+−∞
+(V1⋆V 2)(τ)e−i2πντdτ. (2)
+When the tasks required to form the cross power spec-
+trum are performed in this order (lag cross-correlation,
+followed by Fourier transform) the combined operation
+is considered an XF correlator. However the cross cor-
+relation analogue of the convolution theorem allows
+Equation 2 to be written as the product of the Fourier
+transform of the voltage time series from each antenna:
+S12(ν) =
+∫ ∞
+−∞
+V1(t)e−i2πνtdt ×
+∫ ∞
+−∞
+V2(t)e2πνtdt. (3)
+Implemented as Equation 3, the operation is described
+as an FX correlator. The FX correlator has a large
+computational advantage. In an XF correlator the
+cross correlation for all baselines requires O(N2) opera-
+tions for every lag, and there is a one to one correspon-
+dence between lags and output channels, F, resulting in
+O(FN2) operations to generate the full set of lags. The
+Fourier transform requires a further O(Flog2F) opera-
+tions, but this can be performed after averaging the lag
+spectrum and is therefore inconsequential. For the FX
+correlator we require O(Nlog 2F) operations per sam-
+ple for the Fourier transform of each data stream, but
+only O(N 2) operations per sample for the cross mul-
+tiply (although we have F channels the sample rate
+is now lower by the same factor). As discussed by
+Clark et al. (2012) there is a huge computational ad-
+vantage in implementing an FX correlator of at least a
+factor of F. However XF correlators have been histor-
+ically favoured by the astronomy community, at least
+in real-time applications, as there are disadvantages to
+the FX implementation. The predominant disadvan-
+tage is data growth: the precision of the output from
+the Fourier transform is generally larger than the in-
+put, resulting in a data rate increase and there is also
+the complexity of implementing the Fourier transform.
+The MWA implements a hybrid, distributed FX
+correlator solution that eﬃciently deals with the disad-
+vantages of an FX correlator (Figure 9). The F-stage is
+PDF PAGE 10
+10 Publications of the Astronomical Society of Australia
+Figure 8: Exploded view of an MWA receiver package.
+performed in two stages, ﬁrst as a coarse, complex ﬁl-
+ter in the receiver, as described in the previous Section,
+and then to ﬁner spectral resolution by 4 dedicated
+FPGA-based polyphase ﬁlter bank (PFB) boards co-
+located with the cross-multiply system in the CPF.
+The ﬁne channelisation system captures 48 ﬁbres in
+total from 16 receiver nodes; each ﬁbre carries 24 x
+1.28 MHz spectral channels from both polarisations of
+8 antenna tiles digitised to 5 bit precision. An indi-
+vidual PFB board ingests the full bandwidth from 4
+receivers (32 tiles) and performs a further factor of 128
+in channellisation resulting in 3072 x 10 kHz channels.
+The output of each PFB is therefore 3072 Nyquist sam-
+pled, 10kHz channels from 2 polarisations of 32 tiles,
+presented on serial data lines via an interface module
+known as the rear transition module (RTM). The last
+stage of the PFB is a bit selection stage that selects
+only the most signiﬁcant 4 bits to represent the sam-
+ples. This eﬀectively counters the major disadvantage
+of the FX correlator, data growth. In the MWA case,
+as 5 bit precision is input, and 4 bit precision is out-
+put, the F stage performs a slight reduction in data
+rate.
+The MWA cross-multiplication and accumulate (XMAC)
+is frequency multiplexed and performed independently
+on 24 IBM iDataPlex dual Xeon servers, each housing
+2 × NVIDIA Tesla M2070 Graphics Processing Units.
+Each machine is allocated 128 contiguous 10 kHz chan-
+nels from all the antennas. A Chelsio 10 GbE interface
+card and a 64 port IBM BNT 8264 switch are used to
+provide the packet switching required to aggregate the
+data from each PFB output. To permit packet switch-
+ing the output of the PFB must be converted from
+the Xilinx propriety serial protocol (RocketIO) into 10
+GbE. The media conversion is performed by a set of
+16 dedicated dual Xeon servers, each housing a Xil-
+inx FPGA-based capture board (supplied by EDT In-
+corporated) which accepts a portion of the serial data
+from the PFB and presents it to system memory where
+a bespoke software application routes each packet to a
+target machine. A connection based protocol (TCP) is
+used due to the complex nature of the packet switching
+and the synchronisation issues arising from capturing
+many parallel streams in a general purpose computing
+environment.
+Although the purpose of the operations described
+above is to facilitate re-packetisation from RocketIO
+to 10 GbE, the 16 servers also provide a capability to
+capture the voltage samples directly to disk. The volt-
+age capture system (VCS) will record a copy of the
+voltages using a continuous ring buﬀer via a SAS-2
+controller in each server with enough 10,000 rpm hard
+drives to store an hour of data at minimum. Upon re-
+ceiving a trigger, the ring buﬀers will form new rings
+using unused memory on the drives, thus preserving
+the data from the previous buﬀers. The VCS servers
+contain enough memory to store at least 4 minutes
+of data which can be searched through for transients
+with inherent timescales shorter than the integration
+time of the telescope using incoherent dispersion and
+to prompt the trigger on the ring buﬀer when a de-
+tection occurs. Alternatively, an external trigger can
+be used to save the data from the ring buﬀer. Room
+has been intentionally reserved within this system to
+incorporate real-time GPU processing at a later date.
+The recorded voltages can be correlated using existing
+PDF PAGE 11
+www.publish.csiro.au/journals/pasa 11
+Figure 9: Correlation sub-system overview
+software correlation solutions, such as DiFX (Deller et
+al. 2011, 2007).
+In order to obtain data from all the tiles for its fre-
+quency allocation, each of the 24 XMAC servers has
+to accept packets from all of the media converters, and
+obtain them in the correct order within a narrow time
+interval. This task is enabled by extensive use of par-
+allel programming methodologies. Despite the large
+aggregate bandwidth, the bandwidth per XMAC ma-
+chine is only 2.8 Gbps, and is well within the PCIe2.0
+bandwidth of 64 Gbps available to the 16-lane Telsla
+M2070. The GPU enabled XMAC operation is de-
+scribed in detail by Clark et al. (2012) and the level of
+computation required to processes 1.28 MHz of band-
+width for 128 tiles is 335 GFLOP which is also well
+within the capability of the XMAC kernel we employ.
+The XMAC is fully performed within the GPU en-
+vironment, with an output resolution of 0.5 s, and a
+channel resolution of 10 kHz (which will be combined
+to 40 kHz to facilitate storage). The format is half the
+correlation matrix for each channel with a lightweight
+FITS (Wells, Greisen & Harten 1981) header and the
+output data rate from the XMAC is 3.2 Gbps.
+2.6 Real-time imaging and calibra-
+tion
+The ever-growing data rates generated by next gen-
+eration radio arrays, in the MWA case driven by the
+wide ﬁelds of view and correlation rich architecture,
+are forcing astronomers to integrate visibilities over
+longer time intervals than are otherwise desirable. One
+approach to dealing with these problems is to make
+snapshot images and to extend data reduction into
+the image domain, where various types of direction-
+dependent corrections can be readily made.
+The MWA sub-systems outlined in previous Sec-
+tions contain novel elements, such as wide-ﬁeld ﬁxed
+dipole antennas and GPU-based software correlation,
+but describe signal chain operations that are largely
+traditional in nature. Real-time imaging and calibra-
+tion systems at the correlator output are emerging as
+a critical element of next generation wide ﬁeld of view
+arrays, for example as demonstrated for LOFAR (van
+Harlem et al. 2012) and as planned for ASKAP (John-
+ston et al. 2008, 2007). As such, we include below a
+relatively extensive discussion of the MWA approach
+to this sub-system (the Real-Time System: RTS) and
+function. Figure 10 presents a schematic overview of
+the following description.
+Synthesis imaging is centred around inverting the
+three-dimensional van Cittert-Zernike theorem, which
+describes the transformation between the desired sky
+brightness distribution and the measured visibilities
+(Thompson et al. 2001). Solutions to this problem
+for arrays like the MWA are challenging, due mainly
+to four issues that worsen with increasing ﬁeld-of-view
+(FOV) size: how best to deal with the three-dimensional
+problem in a way that is computationally feasible and
+conducive to high-dynamic-range deconvolution; how
+best to deal with an ionosphere that causes time- and
+direction-dependent distortions; how best to deal with
+antennas that have primary beam and polarised feed
+conﬁguration variations in time, frequency and direc-
+PDF PAGE 12
+12 Publications of the Astronomical Society of Australia
+Figure 10: Overview of MWA RTS, as described in text.
+tion, and that diﬀer from one antenna to the next; and
+how best to deal with the large data rates and data vol-
+umes. For an approximately coplanar array like the
+MWA, an imaging approach based on snapshots can
+meet all of these challenges: one can think of snapshot
+visibilities as a slice through the three-dimensional vis-
+ibility set, for which the ionosphere and the nominal
+feed conﬁguration matrices toward each source are con-
+stant. They are also consecutive in time and so are well
+suited to pipeline processing. We will consider each of
+the issues separately.
+For a suﬃciently short snapshot observation, and
+at the expense of a non-uniform sky brightness co-
+ordinate distortion, the transformation between sky
+brightness and the visibilities of a coplanar array re-
+duces to two dimensions (Bracewell 1984; Cornwell &
+Perley 1992; Perley 1999; Cornwell 2005; Ord et al.
+2010). The non-uniform coordinate distortion comes
+from imaging on a plane that is parallel to the ar-
+ray plane, rather than the tangent plane at the ﬁeld
+centre, and thus it will change as the ﬁeld centre is
+tracked. Once these coordinate distortions have been
+removed, which requires an image re-sampling process,
+time integration can continue in the image domain af-
+ter appropriate pixel-wise weighting to maximise the
+signal-to-noise ratio. This is known as warped-snapshot
+imaging, and in the RTS the procedure is combined
+with ionospheric corrections and conversion to right as-
+cension and declination coordinates (in the HEALPIX
+pixelisation scheme; Gorski et al. 2005).
+Averaging in time is computationally expensive when
+it is done in the image domain, and in many tradi-
+tional situations the pixel-based operations will dom-
+inate the processing, often by orders of magnitude.
+For arrays like the MWA, however, as the number
+of visibilities grows relative to the number of pixels,
+it can become competitive or even cheap compared
+to alternatives such as W-projection (Cornwell 2005).
+On the other hand, removing the non-uniform warp
+from the snapshot images will lead to a shift-variant
+point spread function (PSF), which can signiﬁcantly
+eﬀect deconvolution, as described by Perley (1999).
+However, the variable primary beams and the vari-
+able atmosphere described below, which are realities
+for most low-frequency dipole arrays, can both lead to
+variable PSFs, both in position and time, and joint-
+deconvolution approaches will likely be required, re-
+gardless of the imaging strategy.
+One of the most compelling reasons to make snap-
+shot images is the ionosphere. During good ionospheric
+PDF PAGE 13
+www.publish.csiro.au/journals/pasa 13
+conditions, the size scales of the ionosphere that are
+expected to be relevant for the MWA are large rela-
+tive to MWA baselines lengths (Lonsdale et al. 2009).
+The eﬀects of the ionosphere in such a situation re-
+duce to direction-dependent shifts in source positions,
+and direction-dependent Faraday rotation that is con-
+stant across the array. While it is possible to deal
+with the time-dependent ionospheric distortions in the
+Fourier domain, the angular variations expected for
+the MWA will require either very large gridding kernels
+or many image facets. In a warped-snapshot imaging
+approach, position distortions can be removed during
+the warped pixel re-sampling step, while ionospheric
+Faraday rotation can be taken into account during
+pixel-by-pixel polarisation conversion. In the RTS, the
+distortions are modelled by interpolating between po-
+sition measurements of many compact sources with
+known positions, at the imaging cadence (i.e., every
+8 seconds). It is unclear how well we will be able to
+measure ionospheric Faraday rotation, but an array
+of GPS receivers is being tested for this purpose, and
+we note that we only need to correct changes in iono-
+spheric eﬀects that occur within the image averaging
+time interval (i.e., several minutes). Any information
+that becomes available later (by carefully re-processing
+the data for polarised sources, from other instruments,
+etc.) can be incorporated during post-processing.
+Primary beams that diﬀer from visibility to visi-
+bility (due, for example, to changes in time or diﬀer-
+ences between antennas) are not just of concern for
+low-frequency dipole arrays. They are a part of wide
+FOV imaging where high dynamic range is required.
+Making direction-dependent corrections at the sample
+level is possible if one incorporates primary beam infor-
+mation into the visibility gridding kernels, an approach
+that is being investigated by a number of groups (My-
+ers et al. 2003; Bhatnagar et al. 2008; Morales & Mate-
+jek 2009; Smirnov 2011; Mitchell et al. 2012). These
+approaches typically require larger gridding kernels,
+which can be computationally demanding. This type
+of gridding also results in the pixel-wise weighting re-
+quired for optimal snapshot integration (Ord et al.
+2010). Arrays of dipoles have an added complication,
+however, in that the Jones matrices that convert be-
+tween sky and instrument polarisations are both time-
+and direction-dependent (Mitchell et al. 2012). These
+transformations are diﬃcult to correct for in Fourier
+space when large FOVs are involved, and will also
+lead to large convolution kernels or will require many
+facets on the sky. The RTS approach is a good ﬁt
+to this problem, since any direction-dependent coor-
+dinate corrections can be made in the image domain.
+When generating visibility gridding kernels, the RTS
+uses a unique primary beam model for each snapshot,
+frequency, polarisation and antenna. It also has the
+ability to update the models in real time, using gain
+measurements generated while peeling strong, com-
+pact sources.
+Finally, a few points should be made about real-
+time averaging of gridded data. The RTS will average
+images over several minutes, storing the resultant in-
+tegrated images. During each interval, the ionospheric
+and coordinate variations described above are typically
+fairly small, and the larger variations that occur over
+hours can be dealt with in post-processing. Further-
+more, since we grid for a direction that is normal to
+the plane of the array, the size of the gridding kernels
+can be kept at a minimum. This is not the case for ap-
+proaches cited above, in which most of the corrections
+occur during gridding, and so would need to occur in
+real time. The task is still extremely computationally
+demanding, and the RTS has been designed and writ-
+ten to run on high-performance GPUs (Edgar et al.
+2010; Ord et al. 2009).
+From the discussion above, it should be clear that
+the real-time calibration system has two main tasks: it
+needs to measure primary beam patterns, and it needs
+to measure ionospheric distortions across the ﬁeld of
+view. To avoid pixelisation eﬀects during deconvolu-
+tion, it will also subtract strong compact sources from
+the visibilities, before gridding (peeling, as described
+by Nordam (2004). Each GPU will process and make
+images for a small number of adjacent frequency chan-
+nels, as described in detail by Mitchell et al. (2008)
+and Edgar et al. (2010), and the baseline system for
+real-time processing at MWA is 32 consecutive 40 kHz
+channels.
+Twice per second, a complete set of visibilities ar-
+rive from the correlator, split over 24 iDataPlex com-
+pute nodes in sub-bands of 1.28 MHz (the RTS is
+implemented on the same machines as the correla-
+tor cross-multiplication, sharing the GPU resources
+between the correltor and RTS). The visibilities for
+each baseline are averaged in time and frequency over
+the longest intervals for which decorrelation from delay
+and fringe rates remains below one percent, which is
+nominally 40 kHz and either 2, 4 or 8 seconds, depend-
+ing on the baseline length. After averaging, the RTS
+performs a series of standard calibration tasks, such
+as applying cable corrections, automatic RFI detection
+(as described by Mitchell et al. 2010) and ﬂagging, and
+then the visibilities are sent to the GPUs. The data
+are now ready to be used to solve for the instrumental
+and atmospheric gains and phases, a non-linear opti-
+misation problem that we approach via peeling. For
+the MWA, much of the visibility noise comes from the
+sky itself, and the ﬁrst step is to generate model visi-
+bilities from antenna primary beam models and a sky
+model, which are subtracted to generate residual visi-
+bilities. At minimum the sky model will include all of
+the strong compact sources, which will be added back
+in turn – ranked based on the amount of power they
+contribute to the visibilities – for the following calibra-
+tion steps:
+1. Rotate visibilities : The visibility phases are ro-
+tated to be centred at the estimated calibrator
+position, and the visibilities for each baseline are
+averaged across all available time and frequency
+samples (i.e., averaged to 8 seconds and 32 ×40
+kHz), into a temporary working visibility set.
+2. Ionospheric measurements: A position oﬀset for
+the calibrator is modelled as a baseline- and frequency-
+dependent oﬀset in the imaginary part each vis-
+ibility, as in Mitchell et al. (2008), which will be
+zero-mean noise if the source is at phase centre.
+PDF PAGE 14
+14 Publications of the Astronomical Society of Australia
+A single pan-frequency measurement is made, to
+help isolate ionospheric phases from any uncali-
+brated instrument phases.
+3. Instrumental gain measurements : A Jones ma-
+trix for each antenna is determined toward the
+calibrator, based on the least squares approach
+discussed by Hamaker (2000) and Mitchell et
+al. (2008). At present a running-mean is used
+to reduce noise in the measurements, however
+an improved approach that uses a Kalman ﬁlter
+is under investigation. For the most dominant
+calibrator, the optimisation is repeated for each
+frequency channel, and polynomial ﬁts to the
+resulting Jones matrices are used for bandpass
+calibration.
+4. Source subtraction : If the gain and ionosphere
+measurements pass a set of goodness-of-ﬁt tests,
+they are used to peel the source from the full
+resolution visibility set, thus updating the initial
+source subtraction. Otherwise the initial source
+subtraction is repeated.
+5. If there are more calibrators in the list, loop back
+to step 1.
+The output of this loop, apart from the peeled visi-
+bilities, is a set of ionospheric oﬀset measurements and
+a set of Jones matrix measurements for each tile, dis-
+tributed in angle across the ﬁeld of view and side-lobes.
+The ionospheric measurements are used to adjust the
+pixel boundaries used in the warped pixel re-sampling
+step, and we currently use a moving least squares ap-
+proach to interpolate between the calibrators. For iso-
+planatic patch sizes of ∼ 4◦ and image sizes of ∼ 30◦,
+we will need at least 50 or 60 sources in the ﬁeld to de-
+scribe the phase variation of each patch. Optimally, we
+would like to oversample these variations by a factor
+of at least a few, and if needed we will make position
+measurements in the images themselves to increase the
+number of sources. A Levenberg-Marquardt approach
+is used to ﬁt primary beam models, the form of which
+will be ﬁnalised during commissioning. We expect to
+make Jones matrix calibration measurements for at
+least a few dozen sources at the imaging cadence.
+For the MWA and other similar arrays, the process
+known as deconvolution is not really deconvolution,
+since the PSF changes with time, position, and polar-
+isation. However, with various modiﬁcations, many of
+the standard deconvolution approaches can be used to
+accurately remove PSF side-lobes, and developments
+are being made on a number of complementary fronts,
+see for example Pindor et al. (2011), Bernardi et al.
+(2011), Williams et al. (2012), Sullivan et al. (2012),
+Mitchell et al. (2012) and Bernardi et al. (2012).
+Finally, one of the biggest risks involved with real-
+time calibration and imaging is that the visibility data
+volume is too large to store. The ability to loop back to
+the raw visibilities during deconvolution is at the heart
+of traditional high-dynamic-range synthesis imaging
+and is lost in such a system. The MWA approaches
+high-dynamic-range imaging from a non-traditional an-
+gle, that of a densely ﬁlled aperture that has a high
+quality instantaneous PSF with low side-lobes. This is
+important for both deconvolution and real-time cali-
+bration, and also allows us to limit the amount of PSF
+variation from snapshot to snapshot.
+However, it is unclear how well this approach will
+compare with more traditional self-calibration approaches,
+and to ensure the best quality images, the MWA project
+will also store full sets of raw visibilities. Comparisons
+of image quality will be made using the RTS running
+in real time, using the RTS running on stored data in a
+full self-calibration and deconvolution loop, and using
+other imaging strategies available in standard software
+packages. The RTS development and evaluation will
+make the MWA an important step in the development
+of low-frequency radio astronomy in the lead-up to the
+SKA.
+2.7 Oﬀsite data transport and the
+MWA data archive
+The output of the RTS (calibrated images) and the
+visibility output of the correlator, plus miscellaneous
+control data and calibration information, totals ap-
+proximately 4.4 Gbps at maximum data rate. These
+data are streamed to a dedicated 10 Gbps connection
+implemented on the CSIRO optical ﬁbre network be-
+tween the MRO and Geraldton, which is seamlessly
+integrated onto an AARNet network dedicated to car-
+rying data traﬃc from the MRO to Perth. The termi-
+nation point of the connection in Perth is iVEC, which
+hosts the Pawsey HPC centre for SKA Science (aka the
+Pawsey Centre), a new $A80M supercomputing cen-
+tre. Up to 15 PB of data storage has been allocated
+at the Pawsey Centre, ramping up over a ﬁve year pe-
+riod from 2013, to host the MWA data archive (both
+images and visibility data). At the full data rate, this
+storage allowance corresponds to approximately 300
+× 24 hrs of observation. In practice, some percent-
+age of the MWA observations will be at a signiﬁcantly
+lower data rate, thus corresponding to more than 300
+days of observations. Since the visibility data will be
+archived, it will be possible to reprocess visibilities in a
+post-observation mode, using Pawsey Centre or other
+resources (organised by users) and the RTS or other
+software packages. This will allow gradual reﬁnement
+of imaging and calibration techniques and the highest
+quality data products.
+The Pawsey Centre is currently under construc-
+tion. However, the MWA data archive has been spec-
+iﬁed and a prototype archive system has been imple-
+mented for testing and to support commissioning and
+early operations. The MWA data archive will utilise
+the NGAS software (Wicenec & Knudstrup 2007) and
+is implemented on a single server machine. The server
+includes a storage array consisting of 24 × 2 TB drives
+arranged in a RAID5 conﬁguration for redundancy.
+The total amount of storage is ∼48 TB when parity
+and striping are taken into account. The storage ca-
+pacity is expandable up to ∼170 TB if required. There
+are 24 separate 1 Gbps links from each of the correla-
+tor/RTS nodes that are multiplexed into the storage
+array at a peak sustained data rate of ∼3.2 Gbps for
+visibility data and ∼1.2 Gbps for RTS data, combin-
+ing to data rate of ∼4.4 Gbps while observing. This
+PDF PAGE 15
+www.publish.csiro.au/journals/pasa 15
+equates to ∼24 hours of continuous observing time at a
+32 bit real and imaginary precision, 0.5 second integra-
+tions and 40 kHz course channel conﬁguration. Data
+throughput tests have shown that NGAS is capable of
+streaming to the RAID5 disk array at a rate of ∼6.4
+Gbps. The remaining bandwidth will be dedicated to
+management links required for operations.
+The NGAS archive has been engineered to allow
+ﬁle formats to change over time or new data pipelines
+to be installed without the need to change code or
+modify the underlying archive software conﬁguration
+in any way. A data capture application programmer
+interface has been developed to be the entry point into
+the archive that can be embedded into any applica-
+tion to accommodate future data pipelines. Engineers
+and scientists will have access to a web based inter-
+face that is the portal into the archive. For a given
+set of observation search results, users will be pre-
+sented with links to data ﬁles and their associated
+meta-data. The archive will oﬀer the functionality
+to convert raw visibility data into a standard UV-
+FITS format. Such tools will include the capability
+to greatly reduce the bandwidth and processing over-
+heads for each user. Users will have the option to ac-
+cess and download the raw visibility data if required.
+2.8 Instrument monitor and control
+The large number of tiles and the ubiquity of embed-
+ded processing have led us implement a highly dis-
+tributed Monitor and Control (M&C) system for the
+MWA. Most interferometer M&C systems are mono-
+lithic in design with a tight command and control paradigm
+for each antenna and hardware system. In contrast,
+the MWA M&C system is a much more distributed
+design that leverages the embedded processing in each
+hardware system. In essence, each local hardware con-
+troller is responsible for the health and safety of that
+instrument system and all of the detailed hardware
+state changes (e.g. power up sequence, order of digital
+mixer changes to change the receiver frequency, etc.).
+The central portions of the M&C are then primarily
+concerned with orchestrating all of the hardware for
+observing and commissioning and providing a central
+repository for all of the conﬁguration and monitoring
+information (meta-data).
+Part of this change is due to the ubiquity of embed-
+ded processing − even power outlets now have embed-
+ded webservers − so it is reasonable to expect every
+system that interfaces with M&C to have the local in-
+telligence to perform low-level operational tasks. The
+other driving factor is the sheer number of tiles and
+ﬁeld hardware systems. As the number of antennas
+reaches into the hundreds it becomes more diﬃcult to
+maintain centralised control. Instead of trying to have
+a single entity simultaneously control hundreds of sub-
+systems, we have opted for a model where many indi-
+vidual entities are coordinated centrally. The central
+coordinator directs the distributed entities at a high
+level and these entities are responsible for controlling
+and monitoring the given sub-systems.
+At the heart of the MWA M&C system is a rela-
+tional database that serves as a central repository of
+all system information. This database includes cur-
+rent and historical conﬁguration; the planned observ-
+ing schedule (by GPS second), the detailed state changes
+of each hardware and software system; monitoring data;
+and links to associate data ﬁles with the schedule,
+conﬁguration, and all associated commands and state
+changes.
+This central database allows us to accurately re-
+construct the state of the array for any observation,
+including a large volume of debug information. For
+example, we record the full broadband 0 −300 MHz
+spectrum for each tile every ∼8 seconds. Compar-
+ing the spectra of diﬀerent tiles and cross-referencing
+with changes in pointing direction can quickly diag-
+nose many errors, even when they only happen spo-
+radically. The database is implemented in Postgres,
+and all of the other M&C systems interact directly or
+indirectly with the database.
+The other major M&C systems are:
+• The Scheduler loads the desired observing sched-
+ule into the database. As noted below, there are
+many settings which can be either set speciﬁ-
+cally or delayed until run time (e.g. use all of
+the antennas in the list of good antennas). The
+Scheduler is implemented in a scriptable Python
+library;
+• The array conﬁguration web pages allow the en-
+try and modiﬁcation of the array conﬁguration
+information. This includes the location, serial
+numbers, and interconnections of all the ma-
+jor hardware components and includes speciﬁc
+pages for common conﬁguration changes (e.g.
+moving a beamformer from one tile to another);
+• Each hardware and software component has a lo-
+cal control program. It receives commands, im-
+plements those commands at the indicated clock
+tick (synchronised by the array clock and PPS),
+and records all of its state changes in the central
+database;
+• The Observation Controller serves as the con-
+ductor, and reads the schedule and the conﬁgu-
+ration tables of the database and sends the ap-
+propriate commands to the ﬁeld hardware. All
+commands are sent in advance with the GPS
+time of when the command should be imple-
+mented to allow clock accurate commands de-
+spite the ∼10 ms jitter inherent in any messaging
+system. The amount of advance notice is part of
+the interface deﬁnition for each hardware to Ob-
+servation Controller relationship. The Observa-
+tion controller also resolves any observation-time
+decisions. For example, this allows the schedule
+to be written weeks in advance to use only the
+tiles the instrument team judge as good, and
+which tiles are actually in that list are resolved
+at observation time. Even within an observa-
+tion, as tiles are added and removed from the
+list the tiles included in the observation are dy-
+namically adjusted. The Observation Controller
+is implemented in Java;
+• The Facility Controller serves a similar purpose
+to the Observation Controller, but concentrates
+PDF PAGE 16
+16 Publications of the Astronomical Society of Australia
+on startup and shutdown of the array, software
+and ﬁrmware updates, and restarting faulty equip-
+ment. While this could have been implemented
+as part of the Observation Controller, the staged
+startup of the array (e.g. making sure the neces-
+sary network switches have started prior to boot-
+ing a receiver, and staging the receiver startup
+to limit inrush current) and software updates
+are conceptually quite diﬀerent than observation
+commands and we have separated the implemen-
+tation of these functions. The Facility Controller
+is implemented in Python;
+• The Monitoring Tools present the current and
+historical state of the array to users. All of
+the system information is stored in the central
+database, but these tools present the database
+information to the user in a useful way. A few
+examples include: a page that lists all of the
+data ﬁles produced during an observation and
+a summary of all the receivers and tiles that
+were online; a zoomable plot of the temperature
+of each tile vs. time ( ∼ambient temperature) or
+each receiver vs. time ( ∼air conditioner perfor-
+mance); a plot of the broadband 80 −300 MHz
+spectra during the course of an observation; re-
+sults of a commissioning observation that turns
+on one dipole at a time for each tile to measure
+the complex gain of each dipole as a function
+of frequency. The Monitoring Tools are imple-
+mented as a diverse and growing set of web tools;
+• The Police are a set of tests that determine when
+a system is performing within speciﬁcations. They
+range from very simple (is a receiver respond-
+ing to commands) to quite complex (identify-
+ing unstable LNAs from the broadband spectra).
+The results of the Police are logged back to the
+database and are the basis of alerts presented by
+the Monitoring Tools (turning an receiver status
+from green to red) and can be used to dynam-
+ically adjust the array conﬁguration (remove a
+tile from the good list).
+Together the components listed above act in con-
+cert to enable a very ﬂexible and robust M&C system.
+To date the system has performed well, with the inher-
+ent ﬂexibility and the volume of monitoring data serv-
+ing as a great resource in commissioning and debug-
+ging the MWA. Partly because of the modular nature
+of the MWA, the M&C system is inherently scalable
+to many hundreds of tiles and may provide a useful
+starting point for future arrays with large numbers of
+antennas.
+3 MWA performance metrics
+For the MWA as described in this paper, the time
+needed to reach a point source sensitivity of σs is:
+t =
+( 2kBT
+AeﬀNϵc
+)2 1
+σ2sBnp
+(4)
+where kB is the Boltzmann constant, T = Tsky +
+Trcv is the system temperature, Aeﬀ is the eﬀective
+area of each antenna tile, N is the number of antenna
+tiles, ϵc is the correlator eﬃciency (assumed unity for
+the MWA),B is the instantaneous bandwidth, and np
+is the number of polarisations. For the parameters
+given in Table 1 at 150 MHz, this equation reduces to
+t ≈ 8 × 104/Bσ2
+s seconds, for σs in mJy.
+The intrinsic source confusion limit is estimated
+to be ∼10 - 20 mJy at 150 MHz at the MWA angular
+resolution of ∼ 1−5′. Table 2 lists approximate derived
+sensitivities.
+4 MWA science goals
+The MWA will be capable of a wide range of science
+investigations. These planned investigations are de-
+scribed in detail by Bowman et al. (2012). Here, we
+review the four key science themes that encompass the
+planned investigations and that have driven the design
+of the array. The key science themes for the array are:
+1) detection of ﬂuctuations in the brightness tempera-
+ture of the diﬀuse redshifted 21 cm line of neutral hy-
+drogen from the epoch of reionisation (EoR); 2) studies
+of Galactic and extragalactic (GEG) processes based
+on a deep, confusion-limited survey of the full sky vis-
+ible to the array; 3) time domain astrophysics through
+exploration of the variable radio sky (transients); and
+4) solar heliosphere and ionosphere (SHI) imaging and
+characterisation via propagation eﬀects on background
+radio sources.
+Exploration of the Cosmic Dawn, the period when
+the ﬁrst stars and galaxies formed in the early Uni-
+verse, has been identiﬁed as an important area for new
+discoveries within the next decade. The MWA will be
+one of the ﬁrst radio interferometers to attempt to de-
+tect redshifted 21 cm line emission from neutral hydro-
+gen gas in the intergalactic medium (IGM) during this
+period. The array has been designed to optimise its
+ability to detect brightness temperature ﬂuctuations in
+the 21 cm line emission during the EoR in the redshift
+range 6<z < 10. During the EoR, primordial neutral
+hydrogen begins to be ionised by the radiation from
+the ﬁrst luminous sources. The MWA has suﬃcient
+thermal sensitivity to detect the presence of the large
+ionised voids that form during reionisation through
+measurements of the power spectrum and other sta-
+tistical properties of the ﬂuctuations to a signiﬁcance
+level of 14σ (Beardsley et al. 2012). In order to achieve
+this objective, the MWA will be a testbed to develop
+and demonstrate techniques to subtract the bright ra-
+dio foregrounds that obscure the 21 cm background.
+Radio emission from the Galaxy and from extra-
+galactic sources is both a complicating foreground for
+EoR observations and an interesting scientiﬁc target
+that forms the second key science theme for the MWA.
+The MWA will be unique in its ability to conduct an
+arc-minute resolution, confusion-limited survey of the
+full Southern Hemisphere sky below 10 ◦ declination
+over the 80−300 MHz frequency range. The survey will
+include the Galactic Centre and the Large and Small
+Magellanic Clouds. At the low observing frequencies
+of the MWA, non-thermal processes and Faraday ro-
+tation (and depolarization) eﬀects will be prominent.
+PDF PAGE 17
+www.publish.csiro.au/journals/pasa 17
+Table 2: Sensitivity of the MWA at 150 MHz
+Property B, σs, (ΘB) Value
+Surface brightness sensitivity 1 MHz, 1 K, (1 ◦) 60 seconds
+Point source sensitivity 1 MHz, 10 mJy 800 seconds
+Point source sensitivity 31 MHz, 10 mJy 26 seconds
+Broadband survey speed 31 MHz, 10 mJy 1.5 ×105 deg2/hr
+Narrowband survey speed 0.04 MHz, 10 mJy 190 deg 2/hr
+The MWA should be particularly well suited to iden-
+tifying the missing population of old and faint super-
+nova remnants (SNRs) in the Galaxy, closing the gap
+between the ∼ 300 known SNRs and the expected 1000
+to 2000, and thereby providing a critical measurement
+of the total energy budget of the interstellar medium.
+Additional experiments planned for the MWA target
+radio relics and clusters, the cosmic web, and Fara-
+day tomography to probe magnetic ﬁelds. Cosmic
+ray mapping may be also be possible along sight-lines
+where suﬃciently dense HII regions have become opti-
+cally thick in the MWA frequency band, blocking syn-
+chrotron emission from the Galaxy behind them.
+With its high survey eﬃciency, as well as planned
+long integrations on EoR target ﬁelds, the MWA will
+enable sensitive transient and variable searches for both
+rare and faint events on timescales from seconds to
+days. The MWA will perform blind searches and tar-
+get known transient sources, including low-mass stars
+and brown dwarfs, pulsars, X-ray binaries, and isolated
+neutron stars. At time resolution in the µs − 1s range,
+the voltage capture capability of the MWA will allow
+studies of pulsars at low frequencies and searches for
+fast transients (e.g. Wayth et al. (2012)).
+The ﬁnal key science theme for the MWA encom-
+passes the ﬁeld of space weather, targeting multiple
+aspects of solar bursts as they travel from the sur-
+face of the Sun to the Earth. The primary science
+focuses on high-dynamic range spectroscopic imaging
+to map the frequency, spatial, and time evolution of
+radio bursts occuring in the solar corona at heights
+of approximately 1 to 4 solar radii. Interplanetary
+scintillation will be used to constrain the density and
+turbulence of the interstellar wind in the inner helio-
+sphere. The MWA may also enable measurements of
+the magnetic ﬁeld of the heliosphere plasma if it proves
+possible to track changes in the polarisation angles of
+background sources. Lastly, the calibration solutions
+of the MWA will yield near-real time corrections for
+ionospheric distortions, providing a new window into
+variability in the Earth’s ionosphere.
+5 Discussion
+The MWA will be the ﬁrst of the SKA Precursors to
+come to completion. The MWA will also be the only
+low frequency SKA Precursor and the most capable
+general purpose low frequency radio telescope in the
+Southern Hemisphere, located on an extremely low in-
+terference site at the MRO. The MWA is therefore a
+unique facility and highly complementary to ASKAP
+(also located at the MRO), with access to a similar ﬁeld
+of view, but with ASKAP operating at higher frequen-
+cies (700 - 1800 MHz). This frequency diversity poten-
+tially allows simultaneous coverage of interesting astro-
+nomical phenomena over the frequency range 80 - 1800
+MHz from the MRO. The MWA is also highly com-
+plementary to LOFAR, as the premier low frequency
+radio telesope in the Northern Hemisphere, providing
+complementary coverage of the whole sky and also lon-
+gitudinal coverage important for observations of the
+Sun.
+As one of a range of new facilities being brought
+online around the world now and in the future, many
+with an emphasis on high sensitivity and/or wide ﬁeld
+of view survey science, a comparison of relevant met-
+rics is useful. In particular, a prime metric of impor-
+tance for new survey science programs is the survey
+speed (SS), deﬁned as (Cordes 2010):
+SS = ΩFoV
+τ , (5)
+where ΩFov is the solid angle subtended by the ﬁeld
+of view of the telescope in question, and τ is the time
+required for an image of that ﬁeld of view to reach
+a particular level of sensitivity. The wider the ﬁeld
+of view of the primary array elements and the more
+primary elements in the array, the faster an array can
+survey a given region of the sky. ASKAP, the MWA
+and LOFAR are well suited to survey science, as will
+the planned SKA.
+A comparison of the survey speed metric is pro-
+vided in Figure 11, for various existing and future in-
+struments.
+Figure 11 shows that the MWA is highly compet-
+itive in terms of ﬁeld of view on the sky, at an or-
+der of magnitude lower sensitivity than LOFAR, but
+of comparable sensitivity to the GMRT. In produc-
+ing this comparison, the low frequency instruments are
+shown with corrections for spectral indices of −0.7 and
+−2.0, corresponding to incoherent and coherent emis-
+sion processes, respectively, in order to compare to the
+higher frequency instruments, which are all shown for
+an observing frequency of 1.4 GHz. This style of com-
+parison follows Fender & Bell (2011). Additionally, in
+Figure 11, the aperture array instruments are assumed
+to be pointed at zenith and a common sky tempera-
+ture is assumed at low frequencies following Nijboer,
+Pandey-Pommier & de Bruyn (2009). The solid lines
+shown denote constant depth and constant volume ﬁg-
+ures of merit, arbitrarily normalised to the MWA point
+PDF PAGE 18
+18 Publications of the Astronomical Society of Australia
+10-2 10-1 100 101 102 103
+field of view (deg2 )
+10-6
+10-5
+10-4
+10-3
+10-2
+10-1
+100
+sensitivity σs (Jy) for t =1 s
+Parameter space for selected telescopes
+SKA1 AA
+(150 MHz)
+SKA2 AA
+(150 MHz)
+ASKAP
+ATA
+SKA1 dishes
+SKA2 dishes
+SKA2 with PAF
+GMRT
+GMRT
+(151 MHz)
+Arecibo
+(ALFA)
+Parkes
+(multibeam)
+EVLA
+LOFAR
+(60 MHz)
+LOFAR
+(150 MHz)
+MeerKAT
+MWA
+(150 MHz)
+MWA
+(200 MHz)
+PAPER-64
+(156 MHz)
+Telescope characteristics
+Figures of merit
+survey speed FoM (constant depth)
+constant survey volume
+T. Colegate, ICRAR - Curtin University, 2012
+correlated
+single dish
+spectral index = -0.7
+spectral index = -2.0
+10-6 10-5 10-4 10-3 10-2 10-1
+field of view (fraction of hemisphere)
+Figure 11: Comparison of ﬁeld of view and sensitivity for existing and future radio telescopes. Red
+squares denote interferometric telescopes. Blue circles denote single dish telescopes. For the low frequency
+instruments, spectral index corrections to 1.4 GHz are indicated by the open diamonds and triangles, to
+allow comparison with higher frequency instruments. Note that in this ﬁgure, sensitivity increases to the
+top of the ﬁgure ( σs decreases). Figures of merit as discussed in the text are indicated by the blue and
+green lines.
+at 200 MHz.
+The MWA is therefore very well suited to large
+scale and repeated surveys of the sky between 80 and
+300 MHz, down to the expected confusion limit of 10
+- 20 mJy. An expansion of the MWA at some future
+date to 256 tiles would move the MWA points in Figure
+11 higher by a factor of two in sensitivity.
+In its formal role as an SKA Precursor, the MWA
+feeds information to the international SKA project,
+primarily by informing activities such as the devel-
+opment of conceptual design reviews for the low fre-
+quency component of the SKA, and by reporting tech-
+nical and scientiﬁc results into international SKA fora.
+A signiﬁcant fraction of the MWA is built upon novel
+and new approaches to radio astronomy. For example,
+the use of aperture arrays to implement steerable an-
+tennas with no moving parts is a pathﬁnder activity
+for the SKA and the MWA and LOFAR are pioneering
+this technology on medium to large scales. The choice
+of siting the MWA at the MRO, as part of a green-
+ﬁeld development in search of the best environments
+for low frequency radio astronomy, clearly has massive
+beneﬁts for low frequency science, but comes with sig-
+niﬁcant challenges. The practical challenges attendant
+to the construction of highly complex systems, in loca-
+tions well away from the traditional centres of support
+for radio astronomy, are challenges that the SKA will
+have to face on an even larger scale. Lessons learned
+from the MWA have a deep relevance to how the SKA
+project could proceed.
+The MWA is expected to have an approximate ﬁve
+year lifetime, in order to acheive its science goals. Be-
+yond the operational lifetime of the facility, we note
+that the technologies that have gone into the MWA
+analog, digital and signal processing systems will be
+of order a decade old and it is likely that new, more
+eﬃcient, more powerful, and less power intensive hard-
+ware will be available for the same task. It is possible,
+therefore, to imagine a future re-use of the MWA in-
+frastructure (power and ﬁbre reticulation, capacity in
+CPF, and data transport to the Pawsey Centre) that
+could support a new and much more capable successor
+to the MWA, on a 5 - 10 year timescale. This sce-
+nario highlights the enormous value created in build-
+ing highly capable infrastructure at a remote and, from
+an RFI point of view, pristine site. Such a scenario
+is supported by the fact that the ﬁelded MWA equip-
+ment in tiles, beamformers and receivers, are all highly
+portable and can be easily decommissioned and re-
+placed. Thus, the MWA consortium recognises a long
+PDF PAGE 19
+www.publish.csiro.au/journals/pasa 19
+term future for low frequency radio astronomy at the
+MRO, through the MWA initially and then, perhaps,
+subsequent generations of instrument that re-use the
+underlying infrastructure.
+An immediate possibility that takes advantage of
+the MWA infrastructure is for the facility to host some
+of the required prototyping activities for the low fre-
+quency sparse aperture array component of the SKA.
+As the MRO is the internationally endorsed host site
+for the low frequency SKA in Phases 1 and 2, imme-
+diate advantage to the SKA project could be derived
+through use of the MWA infrastructure in testing and
+verifying the performance of prototype SKA hardware,
+through the international SKA Aperture Array Veriﬁ-
+cation Programme (AAVP).
+Acknowledgments
+We acknowledge the Wajarri Yamatji people as the tra-
+ditional owners of the Observatory site. Support for
+the MWA comes from the U.S. National Science Foun-
+dation (grants AST CAREER-0847753, AST-0457585,
+AST-0908884 and PHY-0835713), the Australian Re-
+search Council (LIEF grants LE0775621 and LE0882938),
+the U.S. Air Force Oﬃce of Scientic Research (grant
+FA9550-0510247), the Centre for All-sky Astrophysics
+(an Australian Research Council Centre of Excellence
+funded by grant CE110001020), New Zealand Min-
+istry of Economic Development (grant MED-E1799),
+an IBM Shared University Research Grant (via VUW
+& Curtin), the Smithsonian Astrophysical Observa-
+tory, the MIT School of Science, the Raman Research
+Institute, the Australian National University, the Vic-
+toria University of Wellington, the Australian Fed-
+eral government via the National Collaborative Re-
+search Infrastructure Strategy, Education Investment
+Fund and the Australia India Strategic Research Fund
+and Astronomy Australia Limited, under contract to
+Curtin University, the iVEC Petabyte Data Store, the
+Initiative in Innovative Computing and NVIDIA spon-
+sored CUDA Center for Excellence at Harvard, and the
+International Centre for Radio Astronomy Research, a
+Joint Venture of Curtin University and The Univer-
+sity of Western Australia, funded by the Western Aus-
+tralian State government.
+References
+Beardsley, A. et al. 2012, ApJ, submitted
+Bell, M. et al. 2012, in preparation
+Bernardi, G. et al. 2012, in preparation
+Bernardi, G. et al. 2011, MNRAS, 413, 411
+Bowman, J. et al. 2012, in preparation
+Bowman, J.D & Rogers, A.E.E. 2010, Nature, 468, 796
+Bracewell, R.N. 1984, In J. A. Roberts, ed. Indirect
+Imaging Cambridge: Cambridge University Press,
+vol. 177
+Bhatnagar, S., Cornwell, T.J., Golap, K. & Uson, J.M.
+2008, A&A, 487(1), 419
+eds: Carilli, C. & Rawlings, S. 2012, New Astronomy
+Rewiews, Vol. 48, Elsevier
+Clark, La Plante & Greenhill 2012, arXiv 1107.4264
+Cornwell, T.J., Golap, K. & Bhatnagar, S. 2005,
+in ASP Conf. Series: Astronomical Data Analysis
+Software and Systems XIV , San Francisco: Astro-
+nomical Society of the Paciﬁc, vol. 347, pp. 86
+Cornwell, T.J. & Perley, R.A. 1992, A&A, 261, 353
+Cordes, J.M. 2007, SKA Memo
+#109, ”Survey metrics”,
+www.skatelescope.org/pages/page memos.htm
+Deller, A.T. et al. 2011, PASP, 123, 275
+Deller, A.T., Tingay, S.J., Bailes, M. & West, C. 2007,
+PASP, 119, 318
+Dewdney, P.. et al. 2010, SKA Memo #130,
+”SKA Phase 1: Prelimninary System Description”,
+www.skatelescope.org/pages/page memos.htm
+Edgar, R.G. et al. 2010, Comp. Phys. Comm. , 181(10),
+1707
+Fender, R. & Bell, M.E. 2011, BASI, 39, 315
+Gorski, K.M. et al. 2005, ApJ, 622(2), 759
+Hamaker, J.P. 2000, Astron. Astrophys. Suppl. Ser. ,
+vol. 143, pp. 515
+Hazelton, B. et al. 2012, in preparation
+Johnston, S. et al. 2008, Ex.A., 22, 151
+Johnston, S. et al. 2007, PASA, 24, 174
+Lonsdale, C.J. et al.2009, Proc. IEEE, 97, 1497
+McKinley, B. et al. 2012, in preparation
+Mitchell, D.A., Wayth, R.B., Bernardi, G., Greenhill,
+L.J. & Ord, S.M. 2012, submitted
+Mitchell, D.A. et al. 2010, PoS(RFI2010)016
+Mitchell, D.A. et al. 2008, IEEE Journal of Selected
+Topics in Signal Processing , 2, 1993
+Morales, M.F. & Matejek, M. 2009,MNRAS, 400, 1814
+Myers, S.T. et al. 2003, ApJ, 591, 575
+Nieuwpoort, R.V.V. & Romein, J.W. 2009, In 23rd
+ACM International Conference on Supercomputing
+Nijboer, R.J. Pandey-Pommier, M. & de Bruyn,
+A.G. 2009, SKA Memo #113, ”LOFAR
+imaging capabilities and system sensitivity”,
+www.skatelescope.org/pages/page memos.htm
+Noordam, J.E. 2004, in Proc. SPIE: Groundbased Tele-
+scopes, Glasgow, vol. 5489, pp. 817
+PDF PAGE 20
+20 Publications of the Astronomical Society of Australia
+Oberoi, D. et al. 2011, ApJ, 728, L27
+Ord, S,M. et al. 2010, PASP, 122, 1353
+Ord, S.M. et al. 2009, Proc. of ADASS XVII
+Perley, R.A. 1999, In G. B. Taylor, C. L. Carilli, and
+R. A. Perley (editors), Synthesis Imaging in Radio
+Astronomy II, ASP Conf. Series, vol. 180, pp. 383
+Pindor, B., Wyithe, J.S.B., Mitchell, D.A., Ord, S.M.,
+Wayth, R.B. & Greenhill, L.J. 2011, PASA, 28 (1),
+46
+Smirnov, O.M. 2011, A&A, 527
+Sullivan, I.S. et al. 2012, In prep.
+Thompson, A.R., Moran, J.M. & Swenson Jr., G.W.
+2001, Interferometry and Synthesis in Radio Astron-
+omy, 2nd Ed., New York: Wiley
+van Harlem, M. et al. 2012, in preparation
+Wayth R.B. et al. 2012, ApJ accepted
+(arXiv:1205.5840)
+Wells, Greisen & Harten 1981, A&A Supplement, Vol.
+44, P. 363
+Wicenec, A. & Knudstrup, J. 2007, The Messenger,
+129, 27
+Williams, C.L. et al. 2012, ApJ accepted
+(arXiv:1203.5790)

@@ -107,6 +107,33 @@ describe('airplane propeller blur', () => {
     visual.dispose();
   });
 
+  it('keeps blades solid until a preparing renderer has built their faded programs', () => {
+    const f = fixture();
+    const visual = createAircraftVisual(f.model, spec);
+    const variants = f.blade.userData.materialVariants as THREE.Material[];
+    expect(variants).toContain(f.material);
+    const faded = variants.find((material) => material !== f.material) as THREE.Material;
+    expect(faded.transparent).toBe(true);
+    // What a renderer's prepareObject installs: false while building, asked for each variant.
+    const built = new Set<THREE.Material>();
+    const asked: THREE.Material[] = [];
+    for (const mesh of [f.blade, f.tip])
+      mesh.userData.materialReady = (material: THREE.Material) => {
+        asked.push(material);
+        return built.has(material);
+      };
+    visual.update(state(0.2), input, 0);
+    expect(f.blade.material).toBe(f.material);
+    expect(f.blade.castShadow).toBe(true);
+    expect(asked).toContain(faded);
+    for (const material of asked) built.add(material);
+    visual.update(state(0.2), input, 0);
+    expect(f.blade.material).toBe(faded);
+    expect(f.blade.material.opacity).toBeCloseTo(0.5);
+    expect(f.blade.castShadow).toBe(false);
+    visual.dispose();
+  });
+
   it('uses independent engine RPM and absolute binding speed, with a first-engine default', () => {
     const left = fixture('left'),
       right = fixture('right');

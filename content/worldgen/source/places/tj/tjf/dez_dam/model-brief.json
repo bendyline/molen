@@ -1,0 +1,515 @@
+{
+  "id": "dez_dam",
+  "title": "Dez Dam",
+  "wikidataId": "Q1207298",
+  "referenceCoordinate": {
+    "longitude": 48.46404478,
+    "latitude": 32.60523128
+  },
+  "module": "content/worldgen/source/places/tj/tjf/dez_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "face": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "joint": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "rockLight": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "rockDark": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "dark": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "steel": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "crane": {
+      "slot": "door",
+      "graph": "metal_painted"
+    }
+  },
+  "exportLabel": "Molen original Dez Dam double-curvature arch and tunnel works",
+  "expectedDraftMasterHash": "sha256:3bf37f623cb249c24800d41b515c466127f2d8854d48f75444a4860b4478f3b1",
+  "visualBrief": "Dez Dam’s thin double-curvature concrete arch, two east-bank spillway tunnel mouths and ledge, west-bank intake gallery, irrigation outlet mouths and occupied canyon contacts.",
+  "heightPolicy": "The model uses a nominal 354 m crest. An unchanged west-bank Terrarium sample at model-local [−182, −44] gives the matching model contact. The partial-fill review plane is 317 m. The production water sampler gives 364.72–377.19 m in the retained reservoir windows.",
+  "nativeAxes": "+X east along the arch chord and +Z south toward the downstream Dez River. +Y is up.",
+  "sourceFacts": {
+    "nativeReservoirId": 230984272,
+    "nativeRiverIds": [
+      35184395187150,
+      35184395187159
+    ],
+    "mappedCrestPoints": 9,
+    "chordMeters": 205.913,
+    "maximumWallHeight": 203.5,
+    "crestThickness": 4.5,
+    "foundationThickness": 21,
+    "outletMouths": 2,
+    "irrigationMouths": 3,
+    "terrainDatum": 354,
+    "terrainGridStep": 8,
+    "terrainTiles": 4,
+    "reviewReservoirModelY": -37
+  },
+  "materialMethod": "Shared board-formed and plain concrete, gravel, and painted metal graphs with metric UVs and no embedded images.",
+  "limitations": [
+    "The model uses a nominal 354 m crest. An unchanged west-bank Terrarium sample at model-local [−182, −44] gives the matching model contact. The partial-fill review plane is 317 m. The production water sampler gives 364.72–377.19 m in the retained reservoir windows.",
+    "The 206 m chord follows nine PMTiles reservoir-edge vertices. The builder describes the 203.5 m maximum wall height, 4.5 m crest thickness and 21 m base thickness.",
+    "The reviewed local canyon collar replaces the overly high terrain immediately surrounding the arch. Its cliff profiles, partial-fill water plane and exact equipment details are illustrative. The adjacent native land heights remain available.",
+    "Default runtime water estimates exceed the nominal crest by 10.7–23.2 m. The downstream map supplies a river line and no local water polygon. The viewer placement therefore remains a preview pending the runtime reservoir datum and canyon fit."
+  ],
+  "references": [
+    {
+      "url": "https://www.avatoday.net/fa/node/17394",
+      "imageUrl": "https://www.avatoday.net/fa/node/17394",
+      "observed": "The modern upstream view shows a narrow curved crest, continuous pale concrete face, the two canyon-side installations, and exposed horizontally layered cliffs at partial reservoir fill."
+    },
+    {
+      "url": "https://www.webuildgroup.com/en/projects/dams-hydroelectric-plants/dez-hydroelectric-plant/",
+      "imageUrl": "https://www.webuildgroup.com/en/projects/dams-hydroelectric-plants/dez-hydroelectric-plant/",
+      "observed": "The builder describes the 203.5 m double-curvature wall, 4.5 m crest thickness and 21 m base thickness, and locates the two surface outlets on the left bank and the generating plant underground."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Dez_Dam.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:Dez_Dam.jpg",
+      "observed": "Downstream photo shows the deep arch with horizontal construction bands and the twin rectangular rock-cut inlet portals behind the eastern end."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Dez_Dam2021-04-27.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:Dez_Dam2021-04-27.jpg",
+      "observed": "Modern photo establishes the rough pale layered geology above the reservoir."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The nine-point wall arc at the downstream edge of the reservoir closes the gorge and meets the start of the downstream Dez line."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "canyon-overview",
+      "position": [
+        -19,
+        195,
+        450
+      ],
+      "lookAt": [
+        -7,
+        -72,
+        1
+      ],
+      "fov": 50
+    },
+    {
+      "name": "downstream-arch",
+      "position": [
+        12,
+        -22,
+        141
+      ],
+      "lookAt": [
+        -8,
+        -72,
+        6
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upstream-reservoir",
+      "position": [
+        -35,
+        84,
+        -284
+      ],
+      "lookAt": [
+        -2,
+        -14,
+        -28
+      ],
+      "fov": 50
+    },
+    {
+      "name": "east-spillway-portals",
+      "position": [
+        39,
+        21,
+        -131
+      ],
+      "lookAt": [
+        76,
+        -9,
+        -89
+      ],
+      "fov": 50
+    },
+    {
+      "name": "west-intake-gallery",
+      "position": [
+        -33,
+        30,
+        -143
+      ],
+      "lookAt": [
+        -96,
+        -10,
+        -59
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-and-abutment",
+      "position": [
+        124,
+        45,
+        -8
+      ],
+      "lookAt": [
+        -28,
+        -3,
+        -22
+      ],
+      "fov": 50
+    },
+    {
+      "name": "low-outlet-collars",
+      "position": [
+        13,
+        -116,
+        100
+      ],
+      "lookAt": [
+        -12,
+        -132,
+        9
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -205,
+    "scale": 2.35,
+    "focus": {
+      "center": [
+        -9,
+        -44,
+        0
+      ]
+    },
+    "cameraYaw": -0.523,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/tj/tjf/dez_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "face": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "joint": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "rockLight": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "rockDark": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "dark": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "steel": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "crane": {
+        "slot": "door",
+        "graph": "metal_painted"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "face": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "joint": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "rockLight": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "rockDark": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "crane": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "face": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "joint": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "rockLight": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "rockDark": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "crane": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "face": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "joint": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "rockLight": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "rockDark": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "crane": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "dez-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -19,
+        195,
+        450
+      ],
+      "lookAt": [
+        -7,
+        -72,
+        1
+      ]
+    },
+    {
+      "name": "dez-district",
+      "reviewLod": "district",
+      "position": [
+        -19,
+        195,
+        450
+      ],
+      "lookAt": [
+        -7,
+        -72,
+        1
+      ]
+    },
+    {
+      "name": "dez-street",
+      "reviewLod": "street",
+      "position": [
+        -19,
+        195,
+        450
+      ],
+      "lookAt": [
+        -7,
+        -72,
+        1
+      ]
+    },
+    {
+      "name": "dez-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -19,
+        195,
+        450
+      ],
+      "lookAt": [
+        -7,
+        -72,
+        1
+      ]
+    }
+  ]
+}

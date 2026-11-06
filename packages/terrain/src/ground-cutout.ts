@@ -329,6 +329,8 @@ export function subtractTerrainGroundGeometry(
 const SLICE_MS = 1;
 const SLICE_CHECK = 256;
 const CLIP_WORK = 24;
+/** A grid cell without openings. */
+const NO_CUTTERS: readonly number[] = [];
 
 /**
  * subtractTerrainGroundGeometry in slices: it pauses after about SLICE_MS of work and returns the
@@ -389,18 +391,29 @@ function* terrainGroundCutSteps(
           cells.set(key, values);
         }
     });
+  // The query each cutter was last considered for: one spanning several of a triangle's cells is
+  // taken once. A set of candidates, spread, sorted and filtered for each triangle near an
+  // opening was most of a cut's time, more than the clipping itself.
+  const considered = new Uint32Array(cutters.length);
+  let query = 0;
   const nearbyCutters = (box: readonly number[]): typeof cutters => {
     const [x0, z0, x1, z1] = cellBounds(box);
     if (cutters.length <= 16 || (x1 - x0 + 1) * (z1 - z0 + 1) > 256)
       return cutters.filter((c) => overlaps(box, c.bounds));
-    const candidates = new Set(broad);
+    query++;
+    const found: number[] = [];
+    const consider = (i: number): void => {
+      if (considered[i] === query) return;
+      considered[i] = query;
+      if (overlaps(box, (cutters[i] as (typeof cutters)[number]).bounds)) found.push(i);
+    };
+    for (const i of broad) consider(i);
     for (let x = x0; x <= x1; x++)
       for (let z = z0; z <= z1; z++)
-        for (const i of cells.get(cellKey(x, z)) ?? []) candidates.add(i);
-    return [...candidates]
-      .sort((a, b) => a - b)
-      .map((i) => cutters[i] as (typeof cutters)[number])
-      .filter((c) => overlaps(box, c.bounds));
+        for (const i of cells.get(cellKey(x, z)) ?? NO_CUTTERS) consider(i);
+    // In the cutters' own order, as before.
+    if (found.length > 1) found.sort((a, b) => a - b);
+    return found.map((i) => cutters[i] as (typeof cutters)[number]);
   };
   // The union of every cutter's bounds, which most of a tile's triangles lie outside.
   const reach = [Infinity, Infinity, -Infinity, -Infinity];
@@ -436,7 +449,7 @@ function* terrainGroundCutSteps(
     for (const i of broad) if (hits(i)) return true;
     for (let x = x0; x <= x1; x++)
       for (let z = z0; z <= z1; z++)
-        for (const i of cells.get(cellKey(x, z)) ?? []) if (hits(i)) return true;
+        for (const i of cells.get(cellKey(x, z)) ?? NO_CUTTERS) if (hits(i)) return true;
     return false;
   };
   const index = source.index;

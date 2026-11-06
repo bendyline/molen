@@ -150,6 +150,12 @@ export function createAircraftPropellers(
               clone.depthWrite = false;
               return clone;
             });
+            // Transparent, the fading blades need programs of their own: a preparing renderer
+            // builds them on request (see update), instead of in the frame the engine starts.
+            mesh.userData.materialVariants = [
+              ...(Array.isArray(original) ? original : [original]),
+              ...faded,
+            ];
             return { mesh, original, faded, shadow: mesh.castShadow };
           }),
         });
@@ -178,9 +184,20 @@ export function createAircraftPropellers(
             material.opacity = source.opacity * (1 - blend);
             material.visible = source.visible && blend < 1;
           }
-          mesh.material =
-            blend === 0 ? original : Array.isArray(original) ? faded : (faded[0] as THREE.Material);
-          mesh.castShadow = shadow && blend === 0;
+          // Solid blades until the faded programs are built (asking queues them first): drawn
+          // unbuilt, the first spin-up stalled the frame for over 100 ms.
+          const ready = mesh.userData.materialReady as
+            | ((material: THREE.Material) => boolean)
+            | undefined;
+          const fading =
+            blend > 0 &&
+            (ready === undefined || faded.filter((material) => !ready(material)).length === 0);
+          mesh.material = !fading
+            ? original
+            : Array.isArray(original)
+              ? faded
+              : (faded[0] as THREE.Material);
+          mesh.castShadow = shadow && !fading;
         }
       }
     },

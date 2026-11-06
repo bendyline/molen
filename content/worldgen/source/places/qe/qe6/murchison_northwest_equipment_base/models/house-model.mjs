@@ -1,0 +1,263 @@
+/** Whole original mapped equipment-base body; external sections and upper apparatus unverified. */
+import '../../../../../../../../packages/worldgen/scripts/install-deterministic-math.mjs';
+import fs from 'node:fs';
+import { MeshBufferBuilder } from '../../../../../../../../packages/worldgen/dist/kernel.mjs';
+import {
+  beam,
+  normalFor,
+} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
+export const P = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));
+export const surfaces = {
+  wall: { slot: 'wall', graph: 'concrete_plain', roughness: 0.98, metallic: 0 },
+  roof: { slot: 'roof', graph: 'concrete_plain', roughness: 0.96, metallic: 0 },
+  trim: { slot: 'trim', graph: 'metal_painted', roughness: 0.76, metallic: 0.4 },
+  vent: { slot: 'trim', graph: 'metal_painted', roughness: 0.95, metallic: 0.2 },
+  foundation: { slot: 'foundation', graph: 'concrete_plain', roughness: 0.98, metallic: 0 },
+  door: { slot: 'door', graph: 'metal_painted', roughness: 0.8, metallic: 0.25 },
+};
+const colors = {
+  wall: rgb('aaa99b'),
+  roof: rgb('999e93'),
+  trim: rgb('7b908d'),
+  foundation: rgb('969b88'),
+  door: rgb('7e918d'),
+  vent: rgb('3d4d49'),
+};
+export const componentEvidence = [];
+function face(o, k, p, n) {
+  let normal = normalFor(...p);
+  if (n && normal.reduce((s, v, i) => s + v * n[i], 0) < 0) {
+    p = [...p].reverse();
+    normal = normalFor(...p);
+  }
+  o.addConvexPolygon(k, 'palette:#ffffff', p, normal, (q) => [q[0], q[1]], colors[k]);
+}
+function cap(o, k, r, y, up) {
+  const b = new MeshBufferBuilder();
+  if (
+    !b.addCap(
+      k,
+      'palette:#ffffff',
+      r,
+      [],
+      () => y,
+      [0, up, 0],
+      (p) => p,
+      colors[k],
+    )
+  )
+    throw Error('Invalid tank cap');
+  const m = b.finalize();
+  for (let i = 0; i < m.indices.length; i += 3)
+    face(
+      o,
+      k,
+      Array.from(m.indices.slice(i, i + 3)).map((j) =>
+        Array.from(m.positions.slice(j * 3, j * 3 + 3)),
+      ),
+      [0, up, 0],
+    );
+}
+function polygon(o, k, r, y0, y1) {
+  const sign = Math.sign(
+    r.reduce((s, a, i) => {
+      const b = r[(i + 1) % r.length];
+      return s + a[0] * b[1] - a[1] * b[0];
+    }, 0),
+  );
+  for (let i = 0; i < r.length; i++) {
+    const a = r[i],
+      b = r[(i + 1) % r.length];
+    face(
+      o,
+      k,
+      [
+        [a[0], y0, a[1]],
+        [b[0], y0, b[1]],
+        [b[0], y1, b[1]],
+        [a[0], y1, a[1]],
+      ],
+      [(b[1] - a[1]) * sign, 0, -(b[0] - a[0]) * sign],
+    );
+  }
+  cap(o, k, r, y0, -1);
+  cap(o, k, r, y1, 1);
+}
+function ring(o, k, r, y, width, height) {
+  for (let i = 0; i < r.length; i++) {
+    const a = r[i],
+      b = r[(i + 1) % r.length];
+    beam(o, k, [a[0], y, a[1]], [b[0], y, b[1]], width, height, colors[k]);
+  }
+}
+const disk = (radius, count) =>
+  Array.from({ length: count }, (_, i) => [
+    radius * Math.cos((i * 2 * Math.PI) / count),
+    radius * Math.sin((i * 2 * Math.PI) / count),
+  ]);
+function serviceFace(index) {
+  const r = P.nativeRing,
+    a = r[index],
+    b = r[(index + 1) % r.length],
+    dx = b[0] - a[0],
+    dz = b[1] - a[1],
+    length = Math.hypot(dx, dz),
+    sign = Math.sign(
+      r.reduce((s, a, i) => {
+        const b = r[(i + 1) % r.length];
+        return s + a[0] * b[1] - a[1] * b[0];
+      }, 0),
+    );
+  return {
+    mid: [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2],
+    u: [dx / length, dz / length],
+    n: [(dz / length) * sign, (-dx / length) * sign],
+  };
+}
+export function buildHouse(o, _f, lod = 3) {
+  componentEvidence.length = 0;
+  const R = P.nativeRing;
+  polygon(o, 'foundation', R, P.foundationBottom, P.floor);
+  polygon(o, 'wall', R, P.floor, P.eave);
+  polygon(o, 'roof', R, P.eave, P.roofTop);
+  polygon(o, 'trim', disk(P.mountRadius, [8, 12, 16, 24][lod]), P.roofTop, P.mountTop);
+  const s = serviceFace(P.serviceEdge),
+    mid = s.mid.map((v, i) => v + s.n[i] * 0.024),
+    at = (u, y, n = 0) => [mid[0] + s.u[0] * u + s.n[0] * n, y, mid[1] + s.u[1] * u + s.n[1] * n],
+    doorY = P.floor + 0.1 + P.doorHeight / 2;
+  beam(
+    o,
+    'door',
+    at(-P.doorWidth / 2, doorY),
+    at(P.doorWidth / 2, doorY),
+    0.035,
+    P.doorHeight,
+    colors.door,
+  );
+  const v = serviceFace(6),
+    ventAt = (u, y, n = 0) => [
+      v.mid[0] + v.u[0] * u + v.n[0] * (0.028 + n),
+      y,
+      v.mid[1] + v.u[1] * u + v.n[1] * (0.028 + n),
+    ];
+  beam(o, 'vent', ventAt(-0.38, 1.2), ventAt(0.38, 1.2), 0.025, 0.42, colors.vent);
+  if (lod >= 1) {
+    for (const u of [-0.42, 0.42])
+      beam(
+        o,
+        'trim',
+        at(u, P.floor + 0.08, 0.026),
+        at(u, P.floor + 0.1 + P.doorHeight, 0.026),
+        0.024,
+        0.024,
+        colors.trim,
+      );
+    beam(
+      o,
+      'trim',
+      at(-0.42, P.floor + 0.1 + P.doorHeight, 0.026),
+      at(0.42, P.floor + 0.1 + P.doorHeight, 0.026),
+      0.024,
+      0.024,
+      colors.trim,
+    );
+    beam(o, 'trim', at(0.25, 0.85, 0.055), at(0.25, 1.06, 0.055), 0.03, 0.03, colors.trim);
+    for (const a of [0, Math.PI / 2, Math.PI, Math.PI * 1.5])
+      polygon(
+        o,
+        'trim',
+        disk(0.035, 4).map(([x, z]) => [x + 0.37 * Math.cos(a), z + 0.37 * Math.sin(a)]),
+        P.mountTop,
+        P.mountTop + 0.05,
+      );
+  }
+  const slats = [0, 3, 5, 8][lod];
+  for (let i = 0; i < slats; i++) {
+    const y = 1.03 + (i * 0.34) / Math.max(1, slats - 1);
+    beam(o, 'trim', ventAt(-0.36, y, 0.024), ventAt(0.36, y, 0.024), 0.018, 0.018, colors.trim);
+  }
+  componentEvidence.push({
+    lod,
+    wholeIndependentEquipmentBase: true,
+    nativeControls: R.length,
+    allExteriorWalls: true,
+    wholeClosedRoofSlab: true,
+    wholeFoundation: true,
+    closedServiceAccess: true,
+    estimatedMountingBoss: true,
+    estimatedVent: true,
+    upperAntennaIdentityVerified: false,
+    upperAntennaModeled: false,
+    heightRoofMaterialAndFinishEstimated: true,
+    notWholeObservatoryProxy: true,
+  });
+}
+export const houseSkyline = (o, f) => buildHouse(o, f, 0),
+  houseDistrict = (o, f) => buildHouse(o, f, 1),
+  houseStreet = (o, f) => buildHouse(o, f, 2),
+  houseCloseup = (o, f) => buildHouse(o, f, 3);
+const root = 'content/worldgen/source/places/qe/qe6/' + P.model,
+  camera = [9, 6, 10],
+  look = [0, 1.1, 0];
+export const houseModel = {
+  id: P.model,
+  key: P.model,
+  cell: P.cell,
+  title: P.title,
+  recipe: 'house-model.mjs',
+  surfaces,
+  build: buildHouse,
+  category: 'landmark',
+  quality: 'medium-fi-exterior',
+  reviewStatus: 'review-in-qa.json',
+  geographicStatus: 'historical-proposal',
+  orientationPolicy: 'approximate-visualization',
+  progressLedger: 'qualla-002.PROGRESS.md',
+  brief: P.limitations.join(' '),
+  appearance: {
+    kind: 'historical',
+    representedDate: P.representedDate,
+    validFrom: P.validFrom,
+    validUntil: P.validUntil,
+    currentWorldEligible: false,
+  },
+  camera,
+  lookAt: look,
+  portableGroundY: -0.43,
+  mediumFiContext: {
+    scale: 1,
+    groundY: 0,
+    terrain: { descriptor: 'terrain-review.terrain.json', heightmap: 'terrain-review.height.png' },
+  },
+  embeddedCanonicalGraphs: ['metal_painted', 'concrete_plain'],
+  qaCameras: [
+    {
+      name: 'whole-native-equipment-base-roof-serviceaccess-mountingboss',
+      position: camera,
+      lookAt: look,
+    },
+    { name: 'opposite-complete-base-and-vent', position: [-8, 6, -9], lookAt: look },
+  ],
+  qaLodCameras: ['skyline', 'district', 'street', 'closeup'].map((reviewLod) => ({
+    name: 'whole-equipment-base-' + reviewLod,
+    position: camera,
+    lookAt: look,
+    reviewLod,
+  })),
+  runtimeLodOverlay: {
+    module: root + '/models/house-model.mjs',
+    level: 'skyline',
+    export: 'houseSkyline',
+    errorMeters: 0.12,
+    surfaces,
+    authoredLevels: {
+      district: { export: 'houseDistrict', errorMeters: 0.08, surfaces },
+      street: { export: 'houseStreet', errorMeters: 0.035, surfaces },
+      closeup: { export: 'houseCloseup', errorMeters: 0.005, surfaces },
+    },
+  },
+  limitations: P.limitations,
+  sourceLicense:
+    'Original deterministic procedural geometry under repository license. OriginalOSMnumerical12cornerequipment-basebodycreditedODbL; everyphoto/figure/plan/diagram/map/satellitepixelunused. Height,roof,concretefinish,serviceaccess,vent,mountingbossand2013survivalestimated. Upperantennaidentityunverified; noupperapparatusinventedorclaimedabsent.',
+};

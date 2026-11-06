@@ -1,0 +1,514 @@
+{
+  "id": "kensington_palace",
+  "title": "Kensington Palace",
+  "wikidataId": "Q207385",
+  "referenceCoordinate": {
+    "longitude": -0.188083641,
+    "latitude": 51.505131167
+  },
+  "module": "content/worldgen/source/places/gc/gcp/kensington_palace/models/kensington-model.mjs",
+  "builder": "buildKensingtonLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.65,
+      "metallic": 0.35
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.35
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.4,
+      "metallic": 0.05
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_painted_lap",
+      "roughness": 0.8,
+      "metallic": 0
+    }
+  },
+  "exportLabel": "Molen original Kensington Palace complete principal exterior shared surfaces source",
+  "expectedDraftMasterHash": "sha256:285b230d8615cb1ea3f6541db138166a590f7bd5d86b8732898d93ebb7218936",
+  "visualBrief": "Complete individual Kensington Palace principal exterior and attached east glazed canopy: three real open courts, connected State Apartments and northern private ranges, east pediment and pale basement strip, south gallery pilasters/raised urn attic, hipped and dormered roofs/large chimneys, clock stage and open white lantern above a deep closed-back entry recess. Gardens,gates,independent statues/cottages andinteriors remain context.",
+  "heightPolicy": "Picture-guided original relative heights on an approximate23m standard global viewer reference,not surveyed floor/eave levels. Three court paving levels follow the unchanged standard field approximately;foundations/entry transitions must be fitted to that field without global flattening. Fine inventories andhistoric levels remain approximate.",
+  "nativeAxes": "+X SSE south public gate/front; -X NNW northern attached ranges; +Z WSW western court/private approach; -Z ENE east State Apartments/Victoria statue/Round Pond. +Y up.",
+  "sourceFacts": {
+    "mappedLengthMeters": 109.819,
+    "mappedWidthMeters": 103.797,
+    "modelDatumMeters": 23,
+    "ownedMapComponents": 3,
+    "preservedNativeComponents": 42,
+    "terrainTiles": 1,
+    "heightBasis": "Picture-guided original relative heights on an approximate23m standard global viewer reference,not surveyed floor/eave levels. Three court paving levels follow the unchanged standard field approximately;foundations/entry transitions must be fitted to that field without global flattening. Fine inventories andhistoric levels remain approximate."
+  },
+  "limitations": [
+    "Complete individual Kensington Palace principal exterior and attached east glazed canopy: three real open courts, connected State Apartments and northern private ranges, east pediment and pale basement strip, south gallery pilasters/raised urn attic, hipped and dormered roofs/large chimneys, clock stage and open white lantern above a deep closed-back entry recess. Gardens,gates,independent statues/cottages andinteriors remain context.",
+    "Picture-guided original relative heights on an approximate23m standard global viewer reference,not surveyed floor/eave levels. Three court paving levels follow the unchanged standard field approximately;foundations/entry transitions must be fitted to that field without global flattening. Fine inventories andhistoric levels remain approximate.",
+    "Original approximations of fine relief,urns/clock details,dormer/chimney/window inventories,hidden roof joints andinterior levels. No copied royal arms,inscriptions,sculptures orprivate textures. Exterior only;the deep clock-court recess has closed rear doors because the pictures do not prove a through passage. Physical laptop/phone timing andLOD error estimates remain unmeasured.",
+    "Seven existing 256px brick,limestone,granite,slate,painted metal,window grid andpainted wood graphs;metric UVs andlinear colors. Skyline preserves the whole palace,three courts,clock stage/lantern andentry steps. District adds sparse sash glazing. Street adds dormers. Close-up adds cornices,urns andwindow frames;master retains fine profiles/roof seams. Clipped planar hip roofs preserve native notches andall three court voids. Error estimates3/1.5/.7/.25m andphysical timing remain unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://www.townandcountrymag.com/society/tradition/a41869441/which-royal-family-kensington-palace/",
+      "observed": "Whole aerial actually inspected: connected red/brown brick palace with three open internal courts, several different eaves and slate/lead roofs, long dormered private ranges, tall brick chimneys, a clock-stage/white open lantern above one court and a real ground arch below it. East State Apartments have a projecting pedimented central pavilion,hipped corner roofs andlower pale basement strip;entire attached northern/western fabric must be retained."
+    },
+    {
+      "url": "https://www.myguidelondon.com/royal-london/kensington-palace",
+      "observed": "South public front actually inspected: broad two-level red-brick elevation with tall rectangular sash windows,brick pilasters,pale dentil cornice andlow hipped roof. Raised central brick attic with pale urns. Open metal gate gap/railings infront;do not copy royal arms or private graphics. Garden/statue remain independent context."
+    },
+    {
+      "url": "https://www.johnsimpsonarchitects.com/pa/Kensington-Palace.html",
+      "observed": "East front actually inspected: varying roof/eave heights,pedimented center withblank pale arched tablet,hipped southern pavilion,two principal window floors andpale basement. Projecting shallow green/metal/glazed entrance canopy withcloseddoors;attached long northern dormered range is integral. Independent Victoria statue/pool andformal gardens remain context."
+    },
+    {
+      "url": "https://www.openstreetmap.org/relation/904705",
+      "observed": "Retained principal parent41,east canopy40 andprojected underground basement21. All42 independent native features,including the separate western building36,remain context. Underground geometry isnot turned into a visible above-ground wing."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-connected-palace-east-and-south-fronts",
+      "position": [
+        125,
+        88,
+        -155
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "whole-private-ranges-and-western-native-boundary",
+      "position": [
+        -130,
+        80,
+        120
+      ],
+      "lookAt": [
+        -15,
+        10,
+        5
+      ],
+      "fov": 53
+    },
+    {
+      "name": "three-open-native-courts-and-hip-roof-joints",
+      "position": [
+        0,
+        225,
+        0
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "east-pediment-basement-and-glazed-entrance-canopy",
+      "position": [
+        11,
+        8,
+        -100
+      ],
+      "lookAt": [
+        11,
+        10,
+        -40
+      ],
+      "fov": 65
+    },
+    {
+      "name": "south-gallery-pilasters-attic-and-urn-silhouette",
+      "position": [
+        105,
+        8,
+        35
+      ],
+      "lookAt": [
+        52,
+        9,
+        35
+      ],
+      "fov": 65
+    },
+    {
+      "name": "clock-court-stage-open-lantern-and-deep-entry",
+      "position": [
+        19,
+        4,
+        8
+      ],
+      "lookAt": [
+        -4,
+        12,
+        3.55
+      ],
+      "fov": 65
+    },
+    {
+      "name": "supported-clock-entry-stairs-and-closed-rear-doors",
+      "position": [
+        7,
+        2.2,
+        8
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        3.55
+      ],
+      "fov": 65
+    },
+    {
+      "name": "open-white-clock-lantern-and-cap",
+      "position": [
+        13,
+        26,
+        13
+      ],
+      "lookAt": [
+        -4.35,
+        24.4,
+        3.55
+      ],
+      "fov": 55
+    },
+    {
+      "name": "northern-dormers-chimneys-and-window-seating",
+      "position": [
+        -100,
+        55,
+        -55
+      ],
+      "lookAt": [
+        -25,
+        13,
+        0
+      ],
+      "fov": 55
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/gc/gcp/kensington_palace/models/kensington-model.mjs",
+    "export": "buildKensingtonSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.65,
+        "metallic": 0.35
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.4,
+        "metallic": 0.05
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_painted_lap",
+        "roughness": 0.8,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKensingtonDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "street": {
+        "export": "buildKensingtonStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.7
+      },
+      "closeup": {
+        "export": "buildKensingtonCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.25
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-palace-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        125,
+        88,
+        -155
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "whole-palace-district",
+      "reviewLod": "district",
+      "position": [
+        125,
+        88,
+        -155
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "whole-palace-street",
+      "reviewLod": "street",
+      "position": [
+        125,
+        88,
+        -155
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "whole-palace-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        125,
+        88,
+        -155
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    }
+  ]
+}

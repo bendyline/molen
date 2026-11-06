@@ -1,0 +1,544 @@
+{
+  "sourceUrl": "https://storage.googleapis.com/open-buildings-data/v3/polygons_s2_level_4_gzip/903_buildings.csv.gz",
+  "sourceDatasetHash": "sha256:a3a20d797f23abf9159ecef10b2355be9f8f87aa3b7b67f96ad1537f8529e400",
+  "coordinateFrame": {
+    "anchor": [
+      -79.9439,
+      -2.051
+    ],
+    "axes": "east/south",
+    "metersPerDegree": 111319.49079327358,
+    "eastCosine": 0.9993593664422343
+  },
+  "originalSource": {
+    "sourceId": "google-open-buildings:6792W3W4+RMQ4",
+    "originalCsvRow": {
+      "latitude": "-2.05292386",
+      "longitude": "-79.94326259",
+      "area_in_meters": "158.0964",
+      "confidence": "0.7468",
+      "geometry": "POLYGON((-79.9431665398178 -2.05293408643236, -79.9431859806133 -2.05285339857255, -79.9432705632508 -2.05287402652323, -79.9432610805667 -2.05291338384613, -79.9433883423689 -2.05294442035317, -79.9433783842627 -2.05298575089562, -79.9431665398178 -2.05293408643236))",
+      "full_plus_code": "6792W3W4+RMQ4"
+    },
+    "originalGeographicRing": [
+      [
+        -79.9431665398178,
+        -2.05293408643236
+      ],
+      [
+        -79.9431859806133,
+        -2.05285339857255
+      ],
+      [
+        -79.9432705632508,
+        -2.05287402652323
+      ],
+      [
+        -79.9432610805667,
+        -2.05291338384613
+      ],
+      [
+        -79.9433883423689,
+        -2.05294442035317
+      ],
+      [
+        -79.9433783842627,
+        -2.05298575089562
+      ],
+      [
+        -79.9431665398178,
+        -2.05293408643236
+      ]
+    ],
+    "originalRing": [
+      [
+        81.59610728611868,
+        215.3015168004739
+      ],
+      [
+        79.4333542510383,
+        206.31938533321673
+      ],
+      [
+        70.02369012409332,
+        208.61567829902643
+      ],
+      [
+        71.07862143253921,
+        212.996915443272
+      ],
+      [
+        56.92097808917555,
+        216.4518836029611
+      ],
+      [
+        58.028799238769984,
+        221.05277854268408
+      ],
+      [
+        81.59610728611868,
+        215.3015168004739
+      ]
+    ],
+    "sourceAreaSquareMeters": 158.4504694667885,
+    "maskModels": [
+      {
+        "model": "litoral_southeast_small_building",
+        "partIndex": 0,
+        "sourceFrame": "content/worldgen/source/places/6p/6px/litoral_southeast_small_building/map-frame.json",
+        "sourceFrameHash": "sha256:8a7786f5bf95bc698efef00de262fa00dfd8dac535891c173053f04d076038bf",
+        "coordinates": [
+          [
+            82.04552964643754,
+            215.24736739783447
+          ],
+          [
+            81.82303329541561,
+            207.3548155006054
+          ],
+          [
+            74.06903544143317,
+            207.5774544822231
+          ],
+          [
+            74.29153179403603,
+            215.47000637945214
+          ],
+          [
+            82.04552964643754,
+            215.24736739783447
+          ]
+        ],
+        "overlapSquareMeters": 51.033163128303386
+      }
+    ],
+    "outsidePolygons": [
+      {
+        "part": 0,
+        "areaSquareMeters": 104.44113141210164,
+        "rings": [
+          [
+            [
+              56.92097808917555,
+              216.4518836029611
+            ],
+            [
+              71.07862143253921,
+              212.996915443272
+            ],
+            [
+              70.02369012409332,
+              208.61567829902643
+            ],
+            [
+              74.0704637785072,
+              207.62812149025098
+            ],
+            [
+              74.29153179403603,
+              215.47000637945214
+            ],
+            [
+              81.58624428594267,
+              215.26055476606425
+            ],
+            [
+              81.59610728611868,
+              215.3015168004739
+            ],
+            [
+              58.028799238769984,
+              221.05277854268408
+            ],
+            [
+              56.92097808917555,
+              216.4518836029611
+            ]
+          ]
+        ]
+      },
+      {
+        "part": 1,
+        "areaSquareMeters": 2.9761749263834645,
+        "rings": [
+          [
+            [
+              74.30596146371866,
+              207.57065167297375
+            ],
+            [
+              79.4333542510383,
+              206.31938533321673
+            ],
+            [
+              79.6973651884463,
+              207.4158493816439
+            ],
+            [
+              74.30596146371866,
+              207.57065167297375
+            ]
+          ]
+        ]
+      }
+    ],
+    "outsideAreaSquareMeters": 107.4173063384851,
+    "heightObservationFile": "research/litoral-lower-score-original-2023-presence-height-observations-2026-11-02.json",
+    "heightSummary": null,
+    "interpretation": "Exact source-set difference against accepted roofed-body plans; not proof that every sliver is a physical annex. Full original source retained; no old frame/field/floor/geometry or QA changed. Distinguish broad supported remainder from small competing boundary strips before authoring.",
+    "siteBoundaryControl": {
+      "source": "https://api.openstreetmap.org/api/0.6/map?bbox=-79.947,-2.055,-79.941,-2.049",
+      "sourceResponseHash": "sha256:552d04e94ab444ffc05f5381368361eb416a5db4b8ebdc8e4a5cb493ad549e07",
+      "originalSnapshotHash": "sha256:3a6136ee675f2b93c9718ec7a976cf96b05aa15b6fc23273282ddb945d5385f7",
+      "record": {
+        "type": "way",
+        "id": "46012320",
+        "tags": {
+          "addr:city": "Guayaquil",
+          "addr:street": "Vía a Daule",
+          "amenity": "prison",
+          "barrier": "wall",
+          "name": "Penitenciaría del Litoral",
+          "wikidata": "Q108830348",
+          "wikipedia": "es:Penitenciaría del Litoral"
+        },
+        "nodes": [
+          "586449774",
+          "586449755",
+          "586449758",
+          "586449756",
+          "586449757",
+          "586449780",
+          "586449781",
+          "586449775",
+          "586449774"
+        ],
+        "missingNodes": [],
+        "coordinates": [
+          [
+            -79.9464438,
+            -2.0499961
+          ],
+          [
+            -79.9455104,
+            -2.0540031
+          ],
+          [
+            -79.9452946,
+            -2.0539587
+          ],
+          [
+            -79.9451497,
+            -2.0539289
+          ],
+          [
+            -79.9450543,
+            -2.0543317
+          ],
+          [
+            -79.9419994,
+            -2.0535366
+          ],
+          [
+            -79.9418934,
+            -2.0533882
+          ],
+          [
+            -79.9429541,
+            -2.0491693
+          ],
+          [
+            -79.9464438,
+            -2.0499961
+          ]
+        ],
+        "members": []
+      },
+      "commonLocalRing": [
+        [
+          -282.99310957905357,
+          -111.75363680738612
+        ],
+        [
+          -179.15406229563425,
+          334.3035628012716
+        ],
+        [
+          -155.14670595902822,
+          329.3609774100317
+        ],
+        [
+          -139.02684528733394,
+          326.04365658438326
+        ],
+        [
+          -128.41376931607982,
+          370.8831474759426
+        ],
+        [
+          211.43828290985954,
+          282.37302034621774
+        ],
+        [
+          223.23058954405934,
+          265.8532079124906
+        ],
+        [
+          105.22964948204915,
+          -203.79259179526653
+        ],
+        [
+          -282.99310957905357,
+          -111.75363680738612
+        ]
+      ],
+      "sourceAreaSquareMeters": 158.4504694667885,
+      "insideAreaSquareMeters": 158.4504694667885,
+      "insideFraction": 1,
+      "roofClippedToPerimeter": false,
+      "wholeOriginalSourceRetained": true,
+      "ownershipSurveyed": false,
+      "interpretation": "Complete original numerical roof estimate predominantly within generalized named prison setting. The southwest boundary body crosses the approximate perimeter; whole original roof retained, exact ownership and membership unverified. No qualified2023relative height observation; original3.5m modeling height and5m allowance are not source observations. Exact roof membership, outline, facade, grade and2023continuity unverified. Below0.780tile ranking threshold; no per-building precision probability. No yard boundary adopted as roof."
+    }
+  },
+  "modelPolygons": [
+    [
+      [
+        -14.417531502222296,
+        -0.8950858555721002
+      ],
+      [
+        0.15556660122385058,
+        -0.8950893277439449
+      ],
+      [
+        0.1694081234858602,
+        -5.40152081146501
+      ],
+      [
+        4.334934033201494,
+        -5.401522006686629
+      ],
+      [
+        2.69055881514394,
+        2.2692054495351908
+      ],
+      [
+        9.826951007658991,
+        3.795140875118722
+      ],
+      [
+        9.826821598997164,
+        3.837273404620352
+      ],
+      [
+        -14.432067193758767,
+        3.837280118250077
+      ]
+    ],
+    [
+      [
+        4.577342379126899,
+        -5.401522076339505
+      ],
+      [
+        9.855198105998484,
+        -5.401523590597066
+      ],
+      [
+        9.851734136896297,
+        -4.273727945278671
+      ]
+    ]
+  ],
+  "originalHeightControls": {
+    "sourceId": "google-open-buildings:6792W3W4+RMQ4",
+    "sourceHeightYear": 2023,
+    "relativeHeightLearnedNotSurvey": true,
+    "numericalProjection": "Newton inverse of original WGS84 UTM17S numeric projection, original sample coordinates unchanged; <0.0001m round-trip numerical residual is not source accuracy.",
+    "sourceHeightUrl": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/902d4_2023_06_30/tile_FRzHb_Wx0jw.tif",
+    "wholeSourcePassing": 0,
+    "wholeSourceHeightSummary": {},
+    "parts": [
+      {
+        "part": 0,
+        "area": 104.44113141210164,
+        "selectedSamples": 0,
+        "heights": [],
+        "heightSummary": {},
+        "observations": []
+      },
+      {
+        "part": 1,
+        "area": 2.9761749263834645,
+        "selectedSamples": 0,
+        "heights": [],
+        "heightSummary": {},
+        "observations": []
+      }
+    ]
+  },
+  "adjacency": [
+    {
+      "model": "litoral_southeast_small_building",
+      "sourcePath": "content/worldgen/source/places/6p/6px/litoral_southeast_small_building",
+      "sourceFrameHash": "sha256:8a7786f5bf95bc698efef00de262fa00dfd8dac535891c173053f04d076038bf",
+      "sourceFrame": {
+        "format": "molen/structure-map-frame@1",
+        "candidateId": "QS-b6b2036a0c35",
+        "title": "Litoral southeast small building",
+        "anchor": [
+          -79.94319835,
+          -2.05289915
+        ],
+        "heading": -1.5426131511583718,
+        "coordinateSpace": "model-local-xz",
+        "nativeAxes": {
+          "x": "along longest original roof edge",
+          "y": "up",
+          "z": "perpendicular across original roof"
+        },
+        "axis": "+X along original long edge, +Y up, +Z across roof. Entrance and facade facing unobserved estimates.",
+        "source": "Whole original Overture WKB Microsoft ML Buildings four-corner body8f6dfbd6 inside named Litoral perimeter. Original native height/date/confidence absent. ODbL-1.0numeric geometry only, no source imagery.15m horizontal allowance and all exterior sections are original estimates.",
+        "sourceUrl": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building/part-00003-cc865024-4c8e-5276-b51f-e8d81cd96612-c000.zstd.parquet",
+        "identityStatus": "Independent numerical roofed building inside named prison perimeter. Exact body function, pavilion assignment and2023 continuity unverified.",
+        "geometryLabel": "All four original numerical building-outline corners; not a prison compound or yard boundary.",
+        "geometry": {
+          "polygons": [
+            [
+              [
+                3.9458199779422958,
+                -3.8785916136818157
+              ],
+              [
+                -3.9498674499571758,
+                -3.8785916152621165
+              ],
+              [
+                -3.9458199779422958,
+                3.8785916136818157
+              ],
+              [
+                3.9498674500017255,
+                3.878591613681815
+              ]
+            ]
+          ]
+        },
+        "features": [
+          {
+            "id": "overture/8f6dfbd6-a6b8-4846-a31c-05fa42538911",
+            "role": "whole-independent-numerical-roof-outline",
+            "points": [
+              [
+                3.9458199779422958,
+                -3.8785916136818157
+              ],
+              [
+                -3.9498674499571758,
+                -3.8785916152621165
+              ],
+              [
+                -3.9458199779422958,
+                3.8785916136818157
+              ],
+              [
+                3.9498674500017255,
+                3.878591613681815
+              ]
+            ],
+            "properties": {
+              "id": "8f6dfbd6-a6b8-4846-a31c-05fa42538911",
+              "names": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "Microsoft ML Buildings",
+                  "license": "ODbL-1.0",
+                  "record_id": null,
+                  "update_time": null,
+                  "confidence": null,
+                  "between": null,
+                  "provider": "microsoft",
+                  "resource": "ml_buildings",
+                  "version": "2026-08-11"
+                }
+              ],
+              "level": null,
+              "height": null,
+              "min_height": null,
+              "is_underground": false,
+              "num_floors": null,
+              "num_floors_underground": null,
+              "min_floor": null,
+              "subtype": null,
+              "class": null,
+              "facade_color": null,
+              "facade_material": null,
+              "roof_material": null,
+              "roof_shape": null,
+              "roof_direction": null,
+              "roof_orientation": null,
+              "roof_color": null,
+              "roof_height": null,
+              "has_parts": false,
+              "version": 4,
+              "bbox": {
+                "xmin": -79.9432373046875,
+                "xmax": -79.94316101074219,
+                "ymin": -2.0529356002807617,
+                "ymax": -2.0528626441955566
+              },
+              "theme": "buildings",
+              "type": "building",
+              "geometry_wkb": "0103000000010000000500000012143FC65CFC53C059E08673686C00C0E28FA2CE5CFC53C0136D7D47436C00C0005EFAF25DFC53C01FE7EC53446C00C02FE296EA5DFC53C0655AF67F696C00C012143FC65CFC53C059E08673686C00C0"
+            }
+          }
+        ],
+        "mappedIdentity": {
+          "name": "Litoral southeast small building",
+          "parentCollection": "litoral_penitentiary",
+          "featureIds": [
+            "overture/8f6dfbd6-a6b8-4846-a31c-05fa42538911"
+          ],
+          "nativeSource": {
+            "path": "native-map/original-roof-record.json",
+            "hash": "sha256:b89f6651522ddcbc62d429dad0d8f1ef25ab64048c7c7a16e8ca621b3586776d"
+          }
+        },
+        "orientationControl": {
+          "status": "reviewed-approximation",
+          "reviewedOn": "2026-11-02",
+          "headingRadians": -1.5426131511583718,
+          "uncertaintyDegrees": 30,
+          "basis": "Original numerical long edge fixes the frame. Door/window assignment and precise outline remain unverified.",
+          "referencePages": [
+            "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building/part-00003-cc865024-4c8e-5276-b51f-e8d81cd96612-c000.zstd.parquet"
+          ]
+        },
+        "terrainContact": {
+          "local": [
+            0,
+            0
+          ],
+          "modelY": 0,
+          "basis": "Original whole numerical body center chosen before independent source field, floor and main sections. No surveyed vertical tie."
+        },
+        "historicalAppearance": {
+          "representedDate": "2023-12-31",
+          "validFrom": "2023-01-01",
+          "validUntil": "2024-01-01"
+        },
+        "notes": "Whole independent four-corner small building in southeastern Litoral site, inside original named prison46012320. Every original Overture WKB corner retained; adjacent bodies/open yards remain separate. Microsoft ML Buildings numeric geometry republished by Overture2026-10-21, ODbL-1.0; original source height, confidence, image date, floor count and exact function absent. Google detection thresholds do not apply. Overture is not independent confirmation of its provider. Original nominal height/detail/roof estimates will be recorded explicitly,15m horizontal/5m height/3m component allowances are not measured bounds. Historical2023continuity is unverified. Qualla-first single unrelated portrait and all other appearance images unused."
+      },
+      "sourcePartIndex": 0,
+      "sourceFloor": 0.25,
+      "sourceRoof": 5.75,
+      "sourceDatum": 11.5522,
+      "absoluteFloor": 11.8022,
+      "absoluteRoof": 17.3022
+    }
+  ],
+  "sourceLicense": "Original Google Open Buildings v3 numerical footprints/heights selected ODbL; no source imagery used.",
+  "interpretation": "Exact complete original source outside accepted roofed-body masks. This is an intrinsic complement, not an independently proven new building or a native compound boundary. Source outline/sections/current-condition unverified at survey level. Any source-precision remnant under10m² is explicitly considered for roof-edge reconciliation, not assumed to be a new room."
+}

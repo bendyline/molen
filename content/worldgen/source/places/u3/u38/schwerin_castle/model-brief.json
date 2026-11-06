@@ -1,0 +1,531 @@
+{
+  "id": "schwerin_castle",
+  "title": "Schwerin Castle",
+  "wikidataId": "Q573656",
+  "referenceCoordinate": {
+    "longitude": 11.418599953,
+    "latitude": 53.624445004
+  },
+  "module": "content/worldgen/source/places/u3/u38/schwerin_castle/models/schwerin-model.mjs",
+  "builder": "buildSchwerinLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "red": {
+      "slot": "trim",
+      "graph": "brick",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.48,
+      "metallic": 0.45
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.35,
+      "metallic": 0.08
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_painted_lap",
+      "roughness": 0.8,
+      "metallic": 0
+    }
+  },
+  "exportLabel": "Molen complete Schwerin principal castle irregular open court main arched entrance gilded and green domes nine individual tower silhouettes slate stepped gables shared materials source",
+  "expectedDraftMasterHash": "sha256:a1e26eed5b5d3e5474c4585bd8641200f7de0a2512accc14c5ca3531ffa96e0a",
+  "visualBrief": "Complete principal irregular castle ring with its actual open courtyard,main entrance passage,gilded courtyard-side dome,green west dome,four tall outer round towers,two court turrets,northeastern chapel/bay,stepped roof gables and chimney silhouettes. Independent lower orangery and island terrace/bridge/garden structures remain native context.",
+  "nativeAxes": "+X NNE northern entrance range;+Z ESE garden/lake side;main bridge entrance on+X/-Z diagonal. +Y up.",
+  "sourceFacts": {
+    "mappedLengthMeters": 99.048,
+    "mappedWidthMeters": 91.041,
+    "modelDatumMeters": 47,
+    "ownedMapComponents": 50,
+    "terrainTiles": 1,
+    "heightBasis": "Approximate47m sea-level datum from unmodified standard129x129/2m global viewer field. Exterior foundations sample field-.35m;entrance floor follows field+.12m. Original photo-proportional main eaves23.6-25.2m/roofs31-33m;outer towers~42m,great garden tower~52m,gilded dome figure~49m. Native height tags inform silhouettes but are not surveyed. No island flattening."
+  },
+  "limitations": [
+    "Complete principal irregular castle ring with its actual open courtyard,main entrance passage,gilded courtyard-side dome,green west dome,four tall outer round towers,two court turrets,northeastern chapel/bay,stepped roof gables and chimney silhouettes. Independent lower orangery and island terrace/bridge/garden structures remain native context.",
+    "Retained irregular exterior/court rings are real void geometry;no convex parent fill. Seven distinct range roofs with opaque caps,open arched through passage,individual radial tower profiles andtwo distinctive domes. Source has denser profiles/frames/stepped gables;tiers remove small trim/windows before skyline volumes.",
+    "Approximate47m sea-level datum from unmodified standard129x129/2m global viewer field. Exterior foundations sample field-.35m;entrance floor follows field+.12m. Original photo-proportional main eaves23.6-25.2m/roofs31-33m;outer towers~42m,great garden tower~52m,gilded dome figure~49m. Native height tags inform silhouettes but are not surveyed. No island flattening.",
+    "Ordinary pictures plus standard PMTiles/global terrain only. Fine window/gable/chimney/sculpture inventories,roof junctions,exact foundations/historic threshold/accessibility levels approximate. Original simplified figure/equestrian silhouettes do not copy sculpture or lettering. Closed panes/doors exclude optical interiors. Independent orangery,bridges,terrace/garden retaining walls and island landscaping excluded and preserved. No private/embedded images. Physical laptop/phone/dense-city timing unmeasured.",
+    "Seven existing256px shared sandstone,limestone,brick,slate,painted-metal,window-grid andpainted-wood graphs;metric UVs/linear colors. Skyline preserves the principal open court,gate,tall towers andtwo contrasting domes without small windows. District keeps sparse glazing andselected gables;street adds flat frames andnine turret silhouettes;close-up has physical border frames anddenser tower/gable profiles;master keeps finer mullions/profiles andmore gables. Subpixel small court/chapel turrets omitted from skyline/district. Error estimates4/2/1/.3m are not measured mesh distances. No physical device timing."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_Schwerin_Castle_(view_from_the_east).jpg",
+      "observed": "Whole principal ring,actual open court,gilded dome behind main entrance,conical great garden tower,red stepped garden gables,chapel bay andindependent lower orangery."
+    },
+    {
+      "url": "https://www.pensionamtheater.m-vp.de/hotel/uebersicht/",
+      "observed": "Reverse principal ranges,roof heights,green west dome,round corner towers andmain bridge approach."
+    },
+    {
+      "url": "https://suzahh.blogspot.com/2020/07/das-schweriner-schlo.html",
+      "observed": "Court-side decorated arched passage,paired stone columns,red terracotta surrounds,pale masonry andstone balustrade. Filename is local shorthand;this is a courtyard portal detail,not the wholefront."
+    },
+    {
+      "url": "https://www.landtag-mv.de/landtag/landtagssitz/schweriner-schloss-entdecken/schlossinnenhof",
+      "observed": "Actual open vaulted passage to court,terracotta window/orders/stepped roofgables,short court staircase andclosed windowed wall behind."
+    },
+    {
+      "url": "https://www.openstreetmap.org/relation/20744",
+      "observed": "Retained99.048x91.041m castle envelope with actual court hole,50native masks andseparate garden/terrace components. Main bridge/northern paired towers bound the signed entrance diagonal. Native height tags are generalized envelopes only."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-northern-entrance-and-gilded-dome",
+      "position": [
+        124,
+        103,
+        -134
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "whole-garden-ranges-and-great-tower",
+      "position": [
+        -132,
+        102,
+        132
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "whole-irregular-native-castle-plan",
+      "position": [
+        0,
+        205,
+        1
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "court-terracotta-orders-and-dome",
+      "position": [
+        0,
+        8,
+        11
+      ],
+      "lookAt": [
+        19,
+        23,
+        -15
+      ],
+      "fov": 64
+    },
+    {
+      "name": "through-entrance-arch-and-court",
+      "position": [
+        36,
+        4.8,
+        -38
+      ],
+      "lookAt": [
+        19,
+        4.8,
+        -11
+      ],
+      "fov": 62
+    },
+    {
+      "name": "portal-columns-and-original-horse-silhouette",
+      "position": [
+        57,
+        18,
+        -69
+      ],
+      "lookAt": [
+        32,
+        11,
+        -31
+      ],
+      "fov": 51
+    },
+    {
+      "name": "great-garden-tower-and-stepped-gables",
+      "position": [
+        -46,
+        37,
+        83
+      ],
+      "lookAt": [
+        -1,
+        23,
+        35
+      ],
+      "fov": 51
+    },
+    {
+      "name": "roof-green-dome-chimneys-and-tower-profiles",
+      "position": [
+        -51,
+        77,
+        -71
+      ],
+      "lookAt": [
+        0,
+        29,
+        -15
+      ],
+      "fov": 51
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u3/u38/schwerin_castle/models/schwerin-model.mjs",
+    "export": "buildSchwerinSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "red": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.48,
+        "metallic": 0.45
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.35,
+        "metallic": 0.08
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_painted_lap",
+        "roughness": 0.8,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSchwerinDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.45
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.35,
+            "metallic": 0.08
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 2
+      },
+      "street": {
+        "export": "buildSchwerinStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.45
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.35,
+            "metallic": 0.08
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1
+      },
+      "closeup": {
+        "export": "buildSchwerinCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.45
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.35,
+            "metallic": 0.08
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.3
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-castle-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        124,
+        103,
+        -134
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "whole-castle-district",
+      "reviewLod": "district",
+      "position": [
+        124,
+        103,
+        -134
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "whole-castle-street",
+      "reviewLod": "street",
+      "position": [
+        124,
+        103,
+        -134
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "whole-castle-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        124,
+        103,
+        -134
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "street-open-court-and-gilded-dome",
+      "reviewLod": "street",
+      "position": [
+        0,
+        8,
+        11
+      ],
+      "lookAt": [
+        19,
+        23,
+        -15
+      ]
+    },
+    {
+      "name": "closeup-through-gate-soffit",
+      "reviewLod": "closeup",
+      "position": [
+        36,
+        4.8,
+        -38
+      ],
+      "lookAt": [
+        19,
+        4.8,
+        -11
+      ]
+    }
+  ]
+}

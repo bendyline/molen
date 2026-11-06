@@ -1,0 +1,89 @@
+/** Independent geographic assets assembled only for authoring review; no aggregate GLB or placement. */
+import '../../../../../../../packages/worldgen/scripts/install-deterministic-math.mjs';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const check = process.argv.includes('--check'),
+  dir = path.dirname(fileURLToPath(import.meta.url)),
+  root = path.resolve(dir, '../../../../../../..'),
+  read = (p) => JSON.parse(fs.readFileSync(p)),
+  scope = read(path.join(dir, 'assembly-scope.json')),
+  f = read(path.join(dir, 'collection-frame.json')),
+  g = read(path.join(dir, 'terrain-grid.json')),
+  D = (6378137 * Math.PI) / 180,
+  co = Math.cos((f.anchor[1] * Math.PI) / 180),
+  members = [];
+const write = (n, j) => {
+  const p = path.join(dir, n),
+    bytes = JSON.stringify(j, null, 2) + '\n';
+  if (fs.existsSync(p) && fs.readFileSync(p, 'utf8') === bytes) return;
+  if (check) throw Error('Stale construction assembly ' + n);
+  fs.writeFileSync(p, bytes);
+};
+for (const m of scope.selectedMembers) {
+  const d = path.join(root, m.sourcePath),
+    mf = read(path.join(d, 'map-frame.json')),
+    mg = read(path.join(d, 'terrain-grid.json')),
+    spec = read(path.join(d, 'spec.json'));
+  members.push({
+    ...m,
+    assetId: spec.assetId,
+    sourceHash: spec.mesh.sha256,
+    originalDatumElevationMeters: mg.modelDatumElevationMeters,
+    pos: [
+      (mf.anchor[0] - f.anchor[0]) * D * co,
+      mg.modelDatumElevationMeters - g.modelDatumElevationMeters,
+      -(mf.anchor[1] - f.anchor[1]) * D,
+    ],
+    rot: [0, Math.sin(mf.heading / 2), 0, Math.cos(mf.heading / 2)],
+  });
+}
+write('construction-assembly.json', {
+  date: '2026-11-02',
+  status: 'incomplete-construction-context',
+  parentCompleted: false,
+  plannedPhase: scope.plannedPhase,
+  phaseContinuityVerified: false,
+  scope: scope.scope,
+  members,
+  acceptedMemberGeometryFramesFieldsFloorsAndQaChanged: false,
+  remaining: scope.outstandingPhysicalScope,
+  limitations: [
+    '2019/2021membergeometry is combined for a planned approximate2021representation; continuity beyond each original dated phase is unverified.',
+    'Each accepted own-source datum is preserved, with no cross-member floor fitting. Relative roof/bearing heights may differ because compositeDEM is not a common surveyedOPdatum.',
+    'Wholecomplex original offshore DEM void/extreme down to-15798.5455m remains unmasked; not physical bathymetric proof.',
+  ],
+});
+write('construction-scene.json', {
+  format: 'molen/scene@3',
+  name: 'Daiichi six-unit power-block construction context — incomplete',
+  seed: 'daiichi-six-unit-construction-context',
+  tickRate: 30,
+  entities: [
+    ...members.map((m) => ({
+      id: m.id,
+      components: {
+        transform: { pos: m.pos, rot: m.rot },
+        renderable: { kind: 'gltf', ref: m.assetId, shadows: { cast: true, receive: true } },
+      },
+    })),
+    {
+      id: 'environment',
+      components: {
+        environment: {
+          ambient: { sky: '#c4dcec', ground: '#7a7258', intensity: 2 },
+          sun: { direction: [-8, 14, 9], color: '#fff1d8', intensity: 3.5, castShadow: true },
+          background: '#c4dcec',
+          toneMapping: 'neutral',
+          exposure: 1,
+          shadows: 'high',
+        },
+      },
+    },
+  ],
+  camera: { mode: 'fixed', position: [1100, 1050, 1350], lookAt: [0, -12, 0], fov: 43 },
+  terrain: { descriptor: 'terrain-review.terrain.json', heightmap: 'terrain-review.height.png' },
+  physics: { engine: 'none' },
+});
+console.log({ models: members.length, parentCompleted: false, memberGeometryOrQaChanged: false });

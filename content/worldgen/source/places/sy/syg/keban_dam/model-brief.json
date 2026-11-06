@@ -1,0 +1,476 @@
+{
+  "id": "keban_dam",
+  "title": "Keban Dam",
+  "wikidataId": "Q1737672",
+  "referenceCoordinate": {
+    "longitude": 38.756780695,
+    "latitude": 38.808041292
+  },
+  "module": "content/worldgen/source/places/sy/syg/keban_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "rock": {
+      "slot": "foundation",
+      "graph": "stone_basalt"
+    },
+    "terrace": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "pipe": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "gates": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "insulator": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "letter": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    }
+  },
+  "exportLabel": "Molen original Keban Dam and Euphrates works",
+  "expectedDraftMasterHash": "sha256:10e19f92054979ac0bd152df53b1df04291049c1c8781f712dd8e434e6c7572a",
+  "visualBrief": "The complete near-site Keban dam exterior, with its north rock-fill wedge, DSİ slope lettering, six crest gates, three concrete spillway lanes, eight mapped penstocks, twin lower outlet portals, and shore powerhouse and switchyard.",
+  "heightPolicy": "Single 823.5 m reservoir datum from the standard Terrarium sample at local [−150, −430]. The crest, pipe supports, portal headwalls and chute toe use the signed map and local terrain shape. The illustrative tailwater is 133.5 m below this datum.",
+  "nativeAxes": "+X south along the dam, -Z east toward the reservoir and +Z west toward the Euphrates tailwater. +Y up.",
+  "sourceFacts": {
+    "mappedIdentity": "way/28431893",
+    "retainedCrestLengthMeters": 1097,
+    "retainedPlanLengthMeters": 1047.935,
+    "gateBays": 6,
+    "spillwayLanes": 3,
+    "penstocks": 8,
+    "lowerPortals": 2,
+    "terrainDatum": 823.5,
+    "terrainGridStep": 12,
+    "terrainTiles": 4,
+    "nativePowerhouseId": 35184767833204
+  },
+  "materialMethod": "Shared basalt, gravel, concrete and painted metal graphs with metric UVs, linear tints and no embedded images.",
+  "limitations": [
+    "Single 823.5 m reservoir datum from the standard Terrarium sample at local [−150, −430]. The crest, pipe supports, portal headwalls and chute toe use the signed map and local terrain shape. The illustrative tailwater is 133.5 m below this datum.",
+    "The main footprint and orientation follow retained exact way 28431893, while the penstocks, powerhouse, and downstream portal mouths use native PMTiles controls. Gate heights, pipe diameters, chute grade, portal crowns, and electrical equipment are visually interpreted. The modeled water levels are approximate; the gates show a static operating state."
+  ],
+  "references": [
+    {
+      "url": "https://www.trthaber.com/haber/ekonomi/keban-baraji-ve-hidroelektrik-santrali-50-yasinda-876780.html",
+      "imageUrl": "https://trthaberstatic.cdn.wp.trt.com.tr/resimler/2276000/keban-baraji-2276941.jpg",
+      "observed": "Dry oblique overview identifies the long north rockfill wedge, white DSİ lettering, diagonal berm road, penstock fan and shore powerhouse. A separate pale concrete section carries six narrow crest gates and a three-lane lower spillway with a broad stepped toe."
+    },
+    {
+      "url": "https://okuldisiogrenme.eba.gov.tr/place-detail/keban-hidroelektrik-santrali-seyir-tepesi-4673",
+      "imageUrl": "https://okuldisiogrenme-cdn-small.eba.gov.tr/uploads/places/6902516bcae54.jpg",
+      "observed": "Downstream discharge view makes the three main spillway lanes, two distinct outlet mouths between powerhouse and spillway, stepped lower lip, and adjacent terraces and electrical yard visible."
+    },
+    {
+      "url": "https://www.openstreetmap.org/way/28431893",
+      "observed": "The reservoir lies east, on local negative Z. The arch-like concrete section and spillway occupy the southern side, and the DSI stone lettering and penstock fan are north of the spillway."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Native pipe traces, powerhouse and distinct upstream and downstream water polygons."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "keban-canyon-overview",
+      "position": [
+        690,
+        240,
+        1120
+      ],
+      "lookAt": [
+        50,
+        -44,
+        80
+      ],
+      "fov": 50
+    },
+    {
+      "name": "penstocks-and-powerhouse",
+      "position": [
+        -190,
+        110,
+        550
+      ],
+      "lookAt": [
+        116,
+        -63,
+        143
+      ],
+      "fov": 50
+    },
+    {
+      "name": "gates-and-three-chute-lanes",
+      "position": [
+        486,
+        44,
+        435
+      ],
+      "lookAt": [
+        366,
+        -50,
+        -2
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upstream-rockfill-and-crest",
+      "position": [
+        -310,
+        130,
+        -405
+      ],
+      "lookAt": [
+        -40,
+        9,
+        -56
+      ],
+      "fov": 50
+    },
+    {
+      "name": "powerhouse-tailrace",
+      "position": [
+        -30,
+        -67,
+        532
+      ],
+      "lookAt": [
+        105,
+        -119,
+        313
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-and-penstock-intakes",
+      "position": [
+        92,
+        81,
+        -319
+      ],
+      "lookAt": [
+        173,
+        11,
+        -144
+      ],
+      "fov": 50
+    },
+    {
+      "name": "lower-portals",
+      "position": [
+        308,
+        -90,
+        408
+      ],
+      "lookAt": [
+        300,
+        -130,
+        264
+      ],
+      "fov": 50
+    },
+    {
+      "name": "north-lettering",
+      "position": [
+        -278,
+        89,
+        372
+      ],
+      "lookAt": [
+        -144,
+        10,
+        80
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -137.2,
+    "scale": 3.1,
+    "focus": {
+      "center": [
+        120,
+        -32,
+        5
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sy/syg/keban_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "rock": {
+        "slot": "foundation",
+        "graph": "stone_basalt"
+      },
+      "terrace": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "pipe": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "gates": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "insulator": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "letter": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "terrace": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "pipe": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "gates": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "insulator": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "letter": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "terrace": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "pipe": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "gates": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "insulator": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "letter": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "terrace": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "pipe": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "gates": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "insulator": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "letter": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "keban-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        690,
+        240,
+        1120
+      ],
+      "lookAt": [
+        50,
+        -44,
+        80
+      ]
+    },
+    {
+      "name": "keban-district",
+      "reviewLod": "district",
+      "position": [
+        690,
+        240,
+        1120
+      ],
+      "lookAt": [
+        50,
+        -44,
+        80
+      ]
+    },
+    {
+      "name": "keban-street",
+      "reviewLod": "street",
+      "position": [
+        690,
+        240,
+        1120
+      ],
+      "lookAt": [
+        50,
+        -44,
+        80
+      ]
+    },
+    {
+      "name": "keban-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        690,
+        240,
+        1120
+      ],
+      "lookAt": [
+        50,
+        -44,
+        80
+      ]
+    }
+  ]
+}

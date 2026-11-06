@@ -1,0 +1,42 @@
+{
+  "format": "molen/primary-facts-reconstruction@1",
+  "case": "litoral-primary-original-osm-whole-perimeter-wall-2023",
+  "model": "litoral_perimeter_wall",
+  "structureId": "QS-b6b2036a0c35",
+  "method": "primary-facts-only",
+  "imageryUsed": false,
+  "primarySources": [
+    {
+      "key": "osm",
+      "path": "reference-rights/primary-osm-wall.txt",
+      "url": "https://api.openstreetmap.org/api/0.6/map?bbox=-79.947,-2.055,-79.941,-2.049",
+      "sha256": "sha256:53f42c0e1243e546549256205adca1ce417304d862ae3f72316583b6f906bb32",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-11-01"
+    }
+  ],
+  "nativeIdentity": {
+    "path": "native-map/original-wall-record.json",
+    "sha256": "sha256:73ba00c797203cd734f7100c92dcbe8bcaa2cbdbee781c6844928499d42511df",
+    "featureId": "osm:way/46012320"
+  },
+  "quallaFirst": {
+    "families": 1,
+    "inventoryHash": "sha256:d83f4f8d33fc54e2b57b19f47c0d21f262dfbfd9bfbabccf3b2d9bd6c3f1c1e2",
+    "questionableImageryAdopted": false
+  },
+  "estimates": [
+    "Original OSM way46012320, explicitly named Penitenciaría del Litoral and tagged barrier=wall/amenity=prison. Eight original wall-path controls retained, not a roof or a courtyard cap. Horizontal uncertainty5m; height, thickness, condition and precise2023 continuity estimated.",
+    "Whole separately mapped Litoral exterior perimeter wall: every original OSM way control, complete wall around an open interior and one nearby mapped gate represented closed. No compound yard, roof, pavilion building, nearby separate prison or whole-prison proxy is filled in. Qualla-first reference inventory contains no cleared architectural image for this wall; every photograph and source image unused. Original OSM way46012320 explicitly carries amenity=prison, barrier=wall, name Penitenciaría del Litoral and Wikidata Q108830348. Its current numerical outline is not a survey or proof of end-2023 continuity. Original node11224443220 is a mapped gate 1.202m from the wall centerline, projected onto edge4 under5m horizontal uncertainty; exact opening census and gate dimensions remain unverified. Wall height/thickness/finish, coping, piers and gate width/height are estimates. Keep the complete original path; choose an independent source field before any floor or main wall sections.",
+    "Whole original closed mapped perimeter wall only, every original eight controls retained at all four LODs. Interior remains open; no giant ground/roof polygon, no separate nearby prison, no courtyard or building substituted by the wall.",
+    "Wall height4.5m, thickness.4m, floor offset.25m, foundation depth1.2m, coping.15m and plain pale rendered finish are author estimates, not measurements. Height uncertainty at least3m, component uncertainty2m, horizontal uncertainty5m. One original mapped gate1.202m from the line is projected onto its recorded edge under that uncertainty;6m gate width and4.5m height estimated. Unknown gates/opening census, towers, equipment and security systems are not invented.",
+    "Own original1024m field,129x129/16641 source heights/8m review step, frozen before wall floor/profile/main sections. Grade-following base profiles are chosen from that field before authoring; all sections and all four LOD profiles are frozen here. The source DEM is coarse and has no surveyed vertical tie. Exact threshold, local grade, contact and historical ground condition remain unverified. No terrain masking, flattening, replacement or later frame/floor/section refit.",
+    "Four LODs retain the whole closed wall and original corners plus the one closed gate. Grade-profile sample spacings80/40/20/10m reduce in the distance; their actual deviation against the authored near profile is bound to runtime error budgets. Near levels add estimated sparse square piers; no observed pier census is claimed.",
+    "Original numerical OSM map records used under ODbL; all imagery unused after Qualla-first inventory. Current source is not proof of2023 continuity; approximate2023-12-31 historical preview, current-world eligible false. Whole Litoral site remains unfinished."
+  ],
+  "review": {
+    "status": "reviewed-primary-facts",
+    "reviewedOn": "2026-11-01",
+    "notes": "Whole named mapped wall path retained; open interior, no building proxy. Dimensions/finish and historical continuity remain bounded estimates; all imagery unused."
+  }
+}

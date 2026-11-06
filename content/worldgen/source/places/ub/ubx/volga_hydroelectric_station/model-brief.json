@@ -1,0 +1,492 @@
+{
+  "id": "volga_hydroelectric_station",
+  "title": "Volga Hydroelectric Station",
+  "wikidataId": "Q1743883",
+  "referenceCoordinate": {
+    "longitude": 44.671849458,
+    "latitude": 48.825970788
+  },
+  "module": "content/worldgen/source/places/ub/ubx/volga_hydroelectric_station/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "dark": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "earth": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "gate": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "paint": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    }
+  },
+  "exportLabel": "Molen original Volga Hydroelectric Station and twin navigation locks",
+  "expectedDraftMasterHash": "sha256:4df0b78a9a92a32e9cdf6d5d6bdce7674a819dd1c8941ea42fd4db523bf8daf4",
+  "visualBrief": "The concrete Volga crossing with 27 spillway bays, the generating hall, two traveling cranes, the immediate crest approaches, and twin lock chambers 30 and 31.",
+  "heightPolicy": "Standard Terrarium gives a 7.96 m reservoir reference and about −8.4 m in the main tailwater. The live sampler returns 8.29–9.03 m on the reservoir and 2.15 m on the tailwater and lock outlet.",
+  "nativeAxes": "+X southeast along the mapped crest road and +Z southwest toward the downstream Volga.",
+  "sourceFacts": {
+    "mappedIdentity": "Q1743883",
+    "nativeWaterIds": {
+      "reservoir": [
+        83091033
+      ],
+      "tailwater": [
+        60930660,
+        60930663
+      ],
+      "lock": [
+        2662589290
+      ],
+      "akhtuba": [
+        16575050
+      ]
+    },
+    "ownedBuildingIds": [
+      35184509500678,
+      35184511036844
+    ],
+    "nativeCrestMeters": 1456.51866,
+    "radialGates": 27,
+    "spillwayMeters": 725,
+    "lockCount": 2,
+    "lockLengths": [
+      348.28149534536,
+      348.5240307353282
+    ],
+    "terrainDatum": 7.956383,
+    "terrainGridStep": 16,
+    "terrainTiles": 20,
+    "tailwaterModelY": -16.356383
+  },
+  "materialMethod": "Shared board-formed and plain concrete, gravel, painted metal, standing-seam metal and window graphs with metric UVs and no embedded images.",
+  "limitations": [
+    "Standard Terrarium gives a 7.96 m reservoir reference and about −8.4 m in the main tailwater. The live sampler returns 8.29–9.03 m on the reservoir and 2.15 m on the tailwater and lock outlet.",
+    "The 725 m concrete spillway and neighboring powerhouse use the signed road and rail corridor. Both navigation chambers use their mapped axes. Gate machinery and some approach grades are interpreted.",
+    "The review includes the raw terrain approximation and the production water sample. The 10.55 m tailwater discrepancy obscures the lower spillway and the powerhouse outlets in the latter condition. Runtime site readiness is pending.",
+    "The separate road and rail crossing at the locks remains native. Remote dikes, lock approach channels and unrelated site infrastructure use the native world map."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Volga_Hydroelectric_Station,_dam_P5150932_2200.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:Volga_Hydroelectric_Station,_dam_P5150932_2200.jpg",
+      "observed": "Gated spillway with repetitive concrete piers, dark gate openings, yellow traveling cranes and the overhead rail line."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Volga_Hydroelectric_Station,_lock_P8080642_2200.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:Volga_Hydroelectric_Station,_lock_P8080642_2200.jpg",
+      "observed": "Parallel locks numbered 30 and 31, with separate cream and gray control towers, gates, and a central dividing quay."
+    },
+    {
+      "url": "https://www.hydropower.ru/stations/detail.php?ELEMENT_ID=2095",
+      "imageUrl": "https://www.hydropower.ru/stations/detail.php?ELEMENT_ID=2095",
+      "observed": "The project profile lists 27 overflow bays on the 725 m concrete spillway."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The powerhouse and both named locks lie alongside the retained crest crossing. The candidate seed aligns to this mapped dam and its rail corridor."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "station-overview",
+      "position": [
+        250,
+        155,
+        540
+      ],
+      "lookAt": [
+        310,
+        -8,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "spillway-bays",
+      "position": [
+        690,
+        33,
+        139
+      ],
+      "lookAt": [
+        777,
+        -1,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "generating-hall",
+      "position": [
+        -120,
+        49,
+        124
+      ],
+      "lookAt": [
+        -53,
+        5,
+        -23
+      ],
+      "fov": 50
+    },
+    {
+      "name": "reservoir-and-cranes",
+      "position": [
+        497,
+        29,
+        -97
+      ],
+      "lookAt": [
+        463,
+        6,
+        -15
+      ],
+      "fov": 50
+    },
+    {
+      "name": "twin-navigation-locks",
+      "position": [
+        2094,
+        43,
+        -88
+      ],
+      "lookAt": [
+        2040,
+        -1,
+        -177
+      ],
+      "fov": 50
+    },
+    {
+      "name": "lock-chamber-downstream",
+      "position": [
+        2146,
+        27,
+        84
+      ],
+      "lookAt": [
+        2092,
+        -4,
+        -113
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -38,
+    "scale": 3.1,
+    "focus": {
+      "center": [
+        600,
+        -4,
+        0
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ub/ubx/volga_hydroelectric_station/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "dark": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "earth": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "gate": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "paint": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "volga-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        250,
+        155,
+        540
+      ],
+      "lookAt": [
+        310,
+        -8,
+        0
+      ]
+    },
+    {
+      "name": "volga-district",
+      "reviewLod": "district",
+      "position": [
+        250,
+        155,
+        540
+      ],
+      "lookAt": [
+        310,
+        -8,
+        0
+      ]
+    },
+    {
+      "name": "volga-street",
+      "reviewLod": "street",
+      "position": [
+        250,
+        155,
+        540
+      ],
+      "lookAt": [
+        310,
+        -8,
+        0
+      ]
+    },
+    {
+      "name": "volga-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        250,
+        155,
+        540
+      ],
+      "lookAt": [
+        310,
+        -8,
+        0
+      ]
+    }
+  ]
+}

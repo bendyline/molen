@@ -1,0 +1,1433 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+    "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c"
+  },
+  "sourceHash": "sha256:2cbfd564e09e8fb2084fcd1dc08c745e98808a88addac2c24bf8d62064674f2f",
+  "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
+    },
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:0a48f27566c6acbfcb884d24907161fa1812737c2157b0c5855c66bcd600db00",
+      "bytes": 73084,
+      "gzipBytes": 14925,
+      "triangles": 938,
+      "cpuBytes": 71652,
+      "gpuBytes": 71652,
+      "errorMeters": 4,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:466e3a508359adc890cc08b3df0beac61bee07afe901ad8e882aa06f977cf409",
+      "bytes": 185824,
+      "gzipBytes": 35274,
+      "triangles": 2394,
+      "cpuBytes": 181908,
+      "gpuBytes": 181908,
+      "errorMeters": 2,
+      "drawCalls": 3
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:01522b2bc5d230e2058b97a18c1c970e6572d76cb4bf591e4b3b6f54b5c6befd",
+      "bytes": 600620,
+      "gzipBytes": 111678,
+      "triangles": 7930,
+      "cpuBytes": 595572,
+      "gpuBytes": 595572,
+      "errorMeters": 1,
+      "drawCalls": 4
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:29de14ebefb3336c800c1e704e7905b475f1064db1f21ff4e9a5c6164fd99b4c",
+      "bytes": 1269872,
+      "gzipBytes": 246638,
+      "triangles": 16722,
+      "cpuBytes": 1264788,
+      "gpuBytes": 1264788,
+      "errorMeters": 0.35,
+      "drawCalls": 4
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:d839bac6853ca8d1477488742b82b555e6e96811f595220c851805603c47ee9d"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:6ce5535f329d0c5509e5d7a44d61aae8a99d232cac61ef72a5e39b832ad83385"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:ebd9cc1b48e42b8b554ad8d3cc4df050bda84fca65fd4cbd383412dc296deba1",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:29de14ebefb3336c800c1e704e7905b475f1064db1f21ff4e9a5c6164fd99b4c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 55188,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          76.65,
+          39.8191,
+          112.05000000000001
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:af7e677032c0f754987f1a96fbcc19d5262d08e978a6e1db51aaccfe081f28b2",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:29de14ebefb3336c800c1e704e7905b475f1064db1f21ff4e9a5c6164fd99b4c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 55188,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          76.65,
+          39.8191,
+          112.05000000000001
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:6fe2d93a7b778831884ca46094bebc231f0c657460d458f2799740de019452fe",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:29de14ebefb3336c800c1e704e7905b475f1064db1f21ff4e9a5c6164fd99b4c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 55188,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          76.65,
+          39.8191,
+          112.05000000000001
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:459f4d00ab5d690300c0a9676cf9296622682617fe9b35f519713c25c68ed360",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:29de14ebefb3336c800c1e704e7905b475f1064db1f21ff4e9a5c6164fd99b4c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 55188,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          76.65,
+          39.8191,
+          112.05000000000001
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:67ca4defdac611e911c923d0569d984fe8b849f5bcb034a3482fcb7fa3bc7ad5",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:466e3a508359adc890cc08b3df0beac61bee07afe901ad8e882aa06f977cf409",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 40860,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          142.8,
+          88.4191,
+          226.8
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:d42fc74aa86bd4bfc51482c32d33e6268c141a97431bf8fa9da250ec4d393f04",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:466e3a508359adc890cc08b3df0beac61bee07afe901ad8e882aa06f977cf409",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 40860,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          142.8,
+          88.4191,
+          226.8
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:6b5ec09a78b02fda4b0cd656e5840b3059b78209edccde26fc38940638d4a303",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:466e3a508359adc890cc08b3df0beac61bee07afe901ad8e882aa06f977cf409",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 40860,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          142.8,
+          88.4191,
+          226.8
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:c341f19d6aa521cf315bc4696e982355ec1bf21e2800437fdcc60c7ed6313dc8",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:466e3a508359adc890cc08b3df0beac61bee07afe901ad8e882aa06f977cf409",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 40860,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          142.8,
+          88.4191,
+          226.8
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:fe9822722b741bdd71fa2a6563e3773925e57810055c3abf4163c17925a3d19a",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:0a48f27566c6acbfcb884d24907161fa1812737c2157b0c5855c66bcd600db00",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 39404,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          273.75000000000006,
+          139.7191,
+          453.6
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:d2d5632d2ccddc5a4c7173f4c227d654aa952b593e7d61b3b0c372ac0efc4bf0",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:0a48f27566c6acbfcb884d24907161fa1812737c2157b0c5855c66bcd600db00",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 39404,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          273.75000000000006,
+          139.7191,
+          453.6
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:dd396a3525289a6547d9b49f338182121ca3af46eb6a465ad1beddfe6b677541",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:0a48f27566c6acbfcb884d24907161fa1812737c2157b0c5855c66bcd600db00",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 39404,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          273.75000000000006,
+          139.7191,
+          453.6
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:730d1bfb96b9883d9364f57e9c8d627c32e6cb58a8510719ee661d21c5c3517f",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:0a48f27566c6acbfcb884d24907161fa1812737c2157b0c5855c66bcd600db00",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 39404,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          273.75000000000006,
+          139.7191,
+          453.6
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:25249ffd3cb18aa73e55bf4dcb468d21c8e02f317bc7da3b082af58d9097ffb8",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:0a48f27566c6acbfcb884d24907161fa1812737c2157b0c5855c66bcd600db00",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 33708,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          273.75000000000006,
+          139.7191,
+          453.6
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/complete-lake-facing-pylon-and-temple.png",
+      "hash": "sha256:854f0f9a2988232ab1b3bea7f6df932ac36f9f119e2a73803ed1cfa0ac296d65",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:29de14ebefb3336c800c1e704e7905b475f1064db1f21ff4e9a5c6164fd99b4c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 55188,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          118,
+          66,
+          100
+        ],
+        "lookAt": [
+          3,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/complete-rear-sanctuary-and-enclosure.png",
+      "hash": "sha256:5ea7d42d15c244739daf4235e7098d9feda9c4e462119430d511a3f90f349d30",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:29de14ebefb3336c800c1e704e7905b475f1064db1f21ff4e9a5c6164fd99b4c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 55188,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          -110,
+          66,
+          -95
+        ],
+        "lookAt": [
+          0,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-open-court-and-roofless-hall.png",
+      "hash": "sha256:6399d613820b73c4e01766d0d26662a3824bdf6f200790fe0dff19e77aa95cd8",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:29de14ebefb3336c800c1e704e7905b475f1064db1f21ff4e9a5c6164fd99b4c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 55188,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          135,
+          5
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/pylon-torus-cornice-and-open-portal.png",
+      "hash": "sha256:d6a6a059d56b91c7b2bc50d166761b67e73bfab0da02b026f9547869eabe7469",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:29de14ebefb3336c800c1e704e7905b475f1064db1f21ff4e9a5c6164fd99b4c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 55188,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          68,
+          15,
+          3
+        ],
+        "lookAt": [
+          34,
+          7,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/court-column-screen-and-floral-capitals.png",
+      "hash": "sha256:49783ed3f5808400b7f8d539e4f8d41194c9279b6efa70289ba5e7f39ca23325",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:29de14ebefb3336c800c1e704e7905b475f1064db1f21ff4e9a5c6164fd99b4c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 54900,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          25,
+          8,
+          1
+        ],
+        "lookAt": [
+          8,
+          6,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roofless-hall-and-rear-chambers.png",
+      "hash": "sha256:a539b9612b74105e3b04cd7e6c54a78badade69befc153fac464d012739b7080",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:29de14ebefb3336c800c1e704e7905b475f1064db1f21ff4e9a5c6164fd99b4c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 54900,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          -12,
+          27,
+          27
+        ],
+        "lookAt": [
+          -3,
+          6,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/surviving-court-colonnade-and-postern.png",
+      "hash": "sha256:e9abadaa5a89f0b91174ed21ae9859711a51e157c79fef10975159d40f60f593",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:29de14ebefb3336c800c1e704e7905b475f1064db1f21ff4e9a5c6164fd99b4c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 54900,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          27,
+          9,
+          -5
+        ],
+        "lookAt": [
+          19,
+          6,
+          14
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/through-open-pylon-and-axis.png",
+      "hash": "sha256:3b36f68c09835f5d835880f6aeb298efcb6cf16d200d9d149fba129e77ce7601",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:29de14ebefb3336c800c1e704e7905b475f1064db1f21ff4e9a5c6164fd99b4c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 55188,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          47,
+          3,
+          0
+        ],
+        "lookAt": [
+          2,
+          3,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/complete-temple-skyline.png",
+      "hash": "sha256:a0a0baa6655ca984fece4271e6a99f08cb631a75f668372703d5c6d77b0744b6",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:0a48f27566c6acbfcb884d24907161fa1812737c2157b0c5855c66bcd600db00",
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 39404,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          118,
+          66,
+          100
+        ],
+        "lookAt": [
+          3,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/complete-temple-district.png",
+      "hash": "sha256:26c40b92c74b1bb04b39fe1de7c9eff4c3f78de25e342a7df7ed0dbf67501e80",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:466e3a508359adc890cc08b3df0beac61bee07afe901ad8e882aa06f977cf409",
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 40860,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          118,
+          66,
+          100
+        ],
+        "lookAt": [
+          3,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/complete-temple-street.png",
+      "hash": "sha256:9f1a17e5520e16225e5ad1f73819f190450c06b665d8262a49ae8a7d8cb48dd2",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:01522b2bc5d230e2058b97a18c1c970e6572d76cb4bf591e4b3b6f54b5c6befd",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 46396,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          118,
+          66,
+          100
+        ],
+        "lookAt": [
+          3,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/complete-temple-closeup.png",
+      "hash": "sha256:854f0f9a2988232ab1b3bea7f6df932ac36f9f119e2a73803ed1cfa0ac296d65",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:29de14ebefb3336c800c1e704e7905b475f1064db1f21ff4e9a5c6164fd99b4c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 55188,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          118,
+          66,
+          100
+        ],
+        "lookAt": [
+          3,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-open-column-hall.png",
+      "hash": "sha256:b561327dd1c489dc9f3c95e6f9c2b54ec160c7cdf8e1d2587ce79d2a13cd8fea",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:01522b2bc5d230e2058b97a18c1c970e6572d76cb4bf591e4b3b6f54b5c6befd",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 46372,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          25,
+          8,
+          1
+        ],
+        "lookAt": [
+          8,
+          6,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/closeup-pylon-and-portal.png",
+      "hash": "sha256:d6a6a059d56b91c7b2bc50d166761b67e73bfab0da02b026f9547869eabe7469",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:29de14ebefb3336c800c1e704e7905b475f1064db1f21ff4e9a5c6164fd99b4c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 55188,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          68,
+          15,
+          3
+        ],
+        "lookAt": [
+          34,
+          7,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:aec0f04bc27b6948a1d95041ffc66c3798e8fd75326e0afa54153ac68894aab3",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:0a48f27566c6acbfcb884d24907161fa1812737c2157b0c5855c66bcd600db00",
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 39404,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          142.8,
+          88.4191,
+          226.8
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:d42fc74aa86bd4bfc51482c32d33e6268c141a97431bf8fa9da250ec4d393f04",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:466e3a508359adc890cc08b3df0beac61bee07afe901ad8e882aa06f977cf409",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 40860,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          142.8,
+          88.4191,
+          226.8
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:f4ad06392ce05ff279a7f62a686888b4d3f78b4db102719452f9ae177bbd2b1a",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:01522b2bc5d230e2058b97a18c1c970e6572d76cb4bf591e4b3b6f54b5c6befd",
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 46396,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          142.8,
+          88.4191,
+          226.8
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:4d971b60f16272893d06e43c680438d6172f11de41ebfb5ed9fd382cd123f7b9",
+      "state": {
+        "assetId": "molen.worldgen.structure.temple_of_kalabsha",
+        "runtimeHash": "sha256:5acc922f819879ce3b0d374f8e4692c46ea20dec0d646eb6142f6f17c683e17c",
+        "lodHash": "sha256:29de14ebefb3336c800c1e704e7905b475f1064db1f21ff4e9a5c6164fd99b4c",
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 55188,
+        "groundY": -14,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/terrain-review.height.png"
+        },
+        "position": [
+          142.8,
+          88.4191,
+          226.8
+        ],
+        "lookAt": [
+          11.85,
+          19.569100000000002,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.35,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

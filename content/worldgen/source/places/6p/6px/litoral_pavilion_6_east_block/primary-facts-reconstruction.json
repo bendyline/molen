@@ -1,0 +1,59 @@
+{
+  "format": "molen/primary-facts-reconstruction@1",
+  "case": "litoral-primary-whole-pavilion6-east-block-numerical-2023",
+  "model": "litoral_pavilion_6_east_block",
+  "structureId": "QS-b6b2036a0c35",
+  "method": "primary-facts-only",
+  "imageryUsed": false,
+  "primarySources": [
+    {
+      "key": "roof",
+      "path": "reference-rights/primary-structured-roof.txt",
+      "url": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building/part-00003-cc865024-4c8e-5276-b51f-e8d81cd96612-c000.zstd.parquet",
+      "sha256": "sha256:bab50b06c80df86345f3b5299076a31edf2909095a7f52b26847df4d9801596f",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-11-01"
+    },
+    {
+      "key": "height",
+      "path": "reference-rights/primary-numerical-height.txt",
+      "url": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/902d4_2023_06_30/tile_FRzHb_Wx0jw.tif",
+      "sha256": "sha256:b8947f636ab3f1c83448cd9efd7ea474ed4c65acc655529d308fca286ba65ef2",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-11-01"
+    },
+    {
+      "key": "snai",
+      "path": "reference-rights/primary-snai-repair.txt",
+      "url": "https://www.atencionintegral.gob.ec/wp-content/uploads/2024/03/Informe-RDC-2023-VF-2024-02-27-signed.pdf",
+      "sha256": "sha256:fb98f45ea391ae6b526244f45648233bf47785e723ad3ca7975fd73692ed5cba",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-11-01"
+    }
+  ],
+  "nativeIdentity": {
+    "path": "native-map/original-roof-and-height-record.json",
+    "sha256": "sha256:1f63b8d29eb6c06aa969d4b01f631ee357f647f6aaf4c1535e6be448157f27b2",
+    "featureId": "overture/51012c67-2e92-4f6e-8409-ea613c3f1c29"
+  },
+  "quallaFirst": {
+    "families": 1,
+    "inventoryHash": "sha256:d83f4f8d33fc54e2b57b19f47c0d21f262dfbfd9bfbabccf3b2d9bd6c3f1c1e2",
+    "questionableImageryAdopted": false
+  },
+  "estimates": [
+    "Whole independently placed east roofed block inside Pavilion 6 of the Litoral Penitentiary. All four full-precision numerical roof controls, complete walls and closed roof. The pavilion compound includes yards and multiple other buildings; those are not filled or substituted by this block. All imagery unused. Qualla-first corpus contains only an unrelated architectural-reference portrait. Structured Overture / Google building coordinates and numerical height samples establish this roofed body; original SNAI 2023 written repair record establishes Pavilion 6/7 context and exterior doors/windows/canopies/roof waterproofing. Exact height is a learned estimate, not survey: median 5 m, at least 3 m uncertainty. Floor census, facade, roof section, paint, small detail and precise 2023 condition are estimates. No photograph, satellite image, map image, plan, figure or texture fetched or viewed.",
+    "Whole original Overture GERS 51012c67-2e92-4f6e-8409-ea613c3f1c29 / Google record 6792W3W4+Q9VW numerical roof footprint, within original named Pavilion 6 compound. Source footprint is an automated estimate, not survey; 3 m horizontal uncertainty. Numerical 2023 relative height median 5 m, 3 m uncertainty. Compound is contextual and is not roofed over.",
+    "Whole original four-corner roofed block, all exterior walls, closed flat roof and full foundation. Numerical relative roof height is 5 m (median of 21 selected source samples); height uncertainty at least 3 m and no surveyed floor census. Source height data has effective 4 m resolution, although distributed at 0.5 m; samples are spaced 4 m. Source confidence is a relative score, not a probability.",
+    "The original SNAI 2023 written report records repairs to Pavilion 6/7 doors, windows, canopies, roof waterproofing and paint. It does not specify these individual blocks, facade layout, color, material, floor count or roof section. This model uses estimated plain light rendered walls, flat waterproofed roof, shallow parapet, simple closed entrance/canopy and high barred window recesses. No internal rooms, inmates or security systems modeled. Exact exterior details and current condition are unverified, with 2 m component uncertainty.",
+    "Original own 256 m field, 129 x 129 / 16641 heights, 2 raw terrain tiles and datum 9 m fixed before floor .25 m, foundation -1.2 m, wall eave 5.13 m and closed main roof 5.25 m. A .22 m parapet is an estimated small detail. No field/frame/floor/main section masking, flattening, replacement or refitting. Datum/grade/contact approximate; foundation is an estimated closing extension.",
+    "All four LODs retain every original corner, whole walls/roof/base, closed entrance and window census. Far levels use flat window cues; near levels use shallow physical recesses/backings, frames and sparse bars. Bar/frame spacing and hidden wall finish are original conservative estimates, not photographic/surveyed reconstruction.",
+    "Every photograph, satellite image, map image, figure, plan and photographic texture unused. Qualla-first corpus contained only a portrait; no architectural imagery adopted. Overture/Google numerical footprint and numerical height data credited under ODbL; no dataset photograph or source pixels used for appearance.",
+    "Approximate 2023-12-31 historical preview, current-world eligible false. Contemporary/2023 continuity, numerical detection boundaries and precise body use remain approximate. Adjacent blocks, open yards, full Pavilion 6 and whole Litoral prison remain separate and unfinished; no courtyard filled as a roof."
+  ],
+  "review": {
+    "status": "reviewed-primary-facts",
+    "reviewedOn": "2026-11-01",
+    "notes": "Whole separate roofed block is bound to full-precision structured footprint, named compound context and original numerical relative heights. Height remains an estimate; complete body and conservative exterior details, no compound-yard roof substitution. All imagery unused."
+  }
+}

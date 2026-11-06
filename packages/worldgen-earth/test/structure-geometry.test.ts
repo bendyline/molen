@@ -544,6 +544,129 @@ describe('curved bridge road ends', () => {
 });
 
 describe('short retained bridge tails', () => {
+  it.each([
+    false,
+    true,
+  ])('keeps a bank stair lower landing below the bridge in either member order (%s)', async (stairsFirst) => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.transportation.push(
+      {
+        id: 'deck',
+        class: 'path',
+        bridge: true,
+        lines: [
+          [
+            [0.25, 0.5],
+            [0.75, 0.5],
+          ],
+        ],
+      },
+      {
+        id: 'stairs',
+        class: 'path',
+        subclass: 'steps',
+        bridge: true,
+        lines: [
+          [
+            [0.6, 0.5],
+            [0.6, 0.35],
+          ],
+        ],
+        bridgeConnections: [{ point: [0.6, 0.425], elevation: 17, radius: 100 }],
+      },
+      {
+        id: 'bank',
+        class: 'path',
+        lines: [
+          [
+            [0.6, 0.35],
+            [0.6, 0.25],
+          ],
+        ],
+      },
+      {
+        id: 'nearby',
+        class: 'path',
+        lines: [
+          [
+            [0.61, 0.35],
+            [0.61, 0.25],
+          ],
+        ],
+      },
+    );
+    const before = JSON.stringify(tile);
+    const deck: StructurePlacement = {
+      ...entry,
+      replaceRoads: {
+        length: 100,
+        width: 20,
+        outline: [
+          [-50, -10],
+          [50, -10],
+          [50, 10],
+          [-50, 10],
+        ],
+        deckHeights: [18, 18],
+        deckProfile: [
+          [-50, 18, 0],
+          [50, 18, 0],
+        ],
+        includeConnectedApproaches: true,
+        includeTransverseBridges: true,
+      },
+    };
+    const stairs: StructurePlacement = {
+      ...entry,
+      id: 'stairs',
+      anchor: [20 / 111319.49079327358, 20 / 111319.49079327358],
+      heading: Math.PI / 2,
+      replaceRoads: {
+        length: 19.6,
+        width: 4,
+        outline: [
+          [-9.8, -2],
+          [9.8, -2],
+          [9.8, 2],
+          [-9.8, 2],
+        ],
+        deckEndpoints: [
+          [-10, 0],
+          [10, 0],
+        ],
+        deckHeights: [18, 2],
+        deckProfile: [
+          [-10, 18, 0],
+          [-9, 18, 0],
+          [9, 2, 0],
+          [10, 2, 0],
+        ],
+        includeConnectedApproaches: true,
+      },
+    };
+    const result = withoutStructureRoads(
+      tile,
+      context,
+      stairsFirst ? [stairs, deck] : [deck, stairs],
+      1,
+    );
+    const bank = result.transportation.find((f) => f.id === 'bank');
+    expect(bank?.bridgeConnections?.length).toBeGreaterThan(0);
+    expect(bank?.bridgeConnections?.every((hint) => Math.abs(hint.elevation - 2) < 1e-5)).toBe(
+      true,
+    );
+    const retainedSteps = result.transportation.filter((f) => f.id === 'stairs');
+    expect(
+      retainedSteps.flatMap((f) => f.bridgeConnections ?? []).some((hint) => hint.elevation === 17),
+    ).toBe(false);
+    expect(result.transportation.find((f) => f.id === 'nearby')).toBe(tile.transportation[3]);
+    const { gradeStructureApproaches } = await import('../src/client/structure-approaches');
+    const graded = gradeStructureApproaches(result, context);
+    expect(
+      graded.transportation.find((f) => f.id === 'bank')?.bridgeApproachProfile?.[0]?.elevation,
+    ).toBeCloseTo(2);
+    expect(JSON.stringify(tile)).toBe(before);
+  });
   it('clips bends belonging to the modeled bridge while retaining a separate crossing', () => {
     const tile = createEmptyTerrainSemanticTile();
     tile.transportation.push(

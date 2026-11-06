@@ -1,0 +1,419 @@
+{
+  "id": "royal_spanish_academy",
+  "title": "Royal Spanish Academy",
+  "wikidataId": "Q11993457",
+  "referenceCoordinate": {
+    "longitude": -3.6908818781375885,
+    "latitude": 40.4149572245088
+  },
+  "module": "content/worldgen/source/places/ez/ezj/royal_spanish_academy/models/academy-model.mjs",
+  "builder": "buildAcademyLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.9
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.9
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.83
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.85
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.75,
+      "metallic": 0.15
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_punched",
+      "roughness": 0.5
+    }
+  },
+  "exportLabel": "Molen original Royal Spanish Academy headquarters shared-surface source",
+  "expectedDraftMasterHash": "sha256:25e152a1245d9bb32998a67b6da8d04113cea4e92a210218efd1ab183d8a9fe1",
+  "visualBrief": "Complete principal Madrid headquarters exterior: red-brick rectangular main block with pale basement and attic, all four windowed elevations, eleven-bay north frontage with closed secondary door and small balcony, east principal four-column fluted Doric portico with genuinely open intercolumniation, closed entablature and triangular pediment, three closed entry doors and integral descending stairs, low closed slate hip roof with eight brick chimneys, continuous belt courses, dentil cornice and original geometric attic reliefs and pediment figures. Independent garden fence/gates, transient flags, vegetation, street furniture and neighbors remain native. No navigable interior or exact inscription/sculptural likeness is claimed.",
+  "heightPolicy": "No retained numeric building height. Current map parent records 8m, which is retained as a conflicting coarse map fact. The photo-proportioned source has 20m cornice, 21.4m low roof and 23.4m chimney caps; main body is approximately 28.4 by 44.2m, with east stair/portico projection to local Z29.6m. These are approximate visualization controls, not surveyed dimensions. One unchanged field sample outside the east stair toe [0,31], 660.4381705m, supplies the common datum; closed occupied support extends to -8m and portico landing is +2.2m. The coarse urban field varies across the building, so exact historic basement/door/street grades require actual visual review.",
+  "nativeAxes": "+X north, +Z east toward the main portico, -Z west toward the rear, +Y up; approximate 10-degree direction uncertainty.",
+  "sourceFacts": {
+    "nativeHeightMeters": 8,
+    "authoredCorniceMeters": 20,
+    "authoredRoofMeters": 21.4,
+    "authoredMaximumMeters": 23.4,
+    "ownedMapComponents": 1,
+    "preservedNativeComponents": 275,
+    "terrainTiles": 2
+  },
+  "limitations": [
+    "Complete principal Madrid headquarters exterior: red-brick rectangular main block with pale basement and attic, all four windowed elevations, eleven-bay north frontage with closed secondary door and small balcony, east principal four-column fluted Doric portico with genuinely open intercolumniation, closed entablature and triangular pediment, three closed entry doors and integral descending stairs, low closed slate hip roof with eight brick chimneys, continuous belt courses, dentil cornice and original geometric attic reliefs and pediment figures. Independent garden fence/gates, transient flags, vegetation, street furniture and neighbors remain native. No navigable interior or exact inscription/sculptural likeness is claimed.",
+    "No retained numeric building height. Current map parent records 8m, which is retained as a conflicting coarse map fact. The photo-proportioned source has 20m cornice, 21.4m low roof and 23.4m chimney caps; main body is approximately 28.4 by 44.2m, with east stair/portico projection to local Z29.6m. These are approximate visualization controls, not surveyed dimensions. One unchanged field sample outside the east stair toe [0,31], 660.4381705m, supplies the common datum; closed occupied support extends to -8m and portico landing is +2.2m. The coarse urban field varies across the building, so exact historic basement/door/street grades require actual visual review.",
+    "Two ordinary exterior pictures and the current standard viewer PMTiles only. Distinct east and north elevations are observed; south/west window inventory, low roof shape and eight chimney positions are original medium-fi approximations. No copied relief, lettering, exact statue, interior or hidden roof survey. Current native height 8m conflicts with picture-proportioned body; no claim that the conflict is surveyed or resolved. Standard terrain fit is approximate; physical-device timing and numerical LOD errors remain unmeasured. No bespoke research.",
+    "Seven existing shared 256px brick, limestone, granite, slate, wood, painted metal and punched-window graphs. Metric UVs and linear colors, no private or embedded images. Skyline uses one palette group, closed window patches and coarse open portico. District adds closed recesses and shallow trim; street adds modeled frames, dentils, alternating window heads and geometric attic plaques; close-up refines fluted columns, original reliefs and figures. Source master preserves finer curves."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Sede_de_la_Real_Academia_Espa%C3%B1ola.jpg",
+      "observed": "Actually inspected the complete north/east oblique: red brick main body over pale basement, pale attic band with alternating tall glazed windows and original geometric relief panels, heavy dentil cornice, dark low roof with brick chimneys. East principal portico has four tall pale fluted Doric columns, genuine open intercolumniation, a deep entablature and closed triangular pediment with simplified corner/peak figures. Broad entrance stairs and closed timber doors are partly obscured by railings/trees. North side has two rows of framed windows, a central secondary door and small balcony. No roof courtyard appears in map; rear details are inferred."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Sede_de_la_R.A.E._(Madrid)_02.jpg",
+      "observed": "Actually inspected the full north frontage: eleven bays on both brick stories, central closed secondary door with small stone balcony above, alternating triangular and horizontal upper window heads, continuous pale belt/base courses, tall narrow attic windows alternating square relief panels, dentil cornice and several brick chimneys. Ground and basement follow a slight street slope. Exact sculptural/lettered detail is omitted in favor of original geometric interpretation."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Catalog Q11993457 identifies the institution, not a unique building. The modeled principal Madrid headquarters is the named Real Academia Española map building and same-ID POI 35184457607397 at Felipe IV,4, checked against two ordinary north/east pictures. Physical building Q26960988 is linked by the ordinary image page. No retained exact OSM way or relation identity is available; encoded tile ID is not claimed to be an OSM element ID. Only native component113 is owned; 275 other components remain independent."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-east-portico-north-frontage-and-roof",
+      "position": [
+        63,
+        38,
+        72
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "whole-south-west-rear-and-roof",
+      "position": [
+        -65,
+        34,
+        -68
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "open-doric-portico-closed-doors-and-stairs",
+      "position": [
+        21,
+        13,
+        44
+      ],
+      "lookAt": [
+        0,
+        9,
+        24
+      ],
+      "fov": 55
+    },
+    {
+      "name": "north-eleven-bays-balcony-attic-and-dentils",
+      "position": [
+        35,
+        16,
+        -3
+      ],
+      "lookAt": [
+        14.2,
+        11,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "roof-chimneys-and-geometric-attic-reliefs",
+      "position": [
+        42,
+        35,
+        6
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "fov": 55
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ez/ezj/royal_spanish_academy/models/academy-model.mjs",
+    "export": "buildAcademySkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.9
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.9
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.83
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.85
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.15
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_punched",
+        "roughness": 0.5
+      }
+    },
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAcademyDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.83
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.5
+          }
+        },
+        "errorMeters": 0.9
+      },
+      "street": {
+        "export": "buildAcademyStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.83
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.5
+          }
+        },
+        "errorMeters": 0.35
+      },
+      "closeup": {
+        "export": "buildAcademyCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.83
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.5
+          }
+        },
+        "errorMeters": 0.15
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-headquarters-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        63,
+        38,
+        72
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "whole-headquarters-district",
+      "reviewLod": "district",
+      "position": [
+        63,
+        38,
+        72
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "whole-headquarters-street",
+      "reviewLod": "street",
+      "position": [
+        63,
+        38,
+        72
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "whole-headquarters-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        63,
+        38,
+        72
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import { createRequire } from 'node:module';
 import { dirname, isAbsolute, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer } from 'vite';
+import { registerSourceDocuments } from '../../../../packages/worldgen/scripts/structure-model-files.mjs';
 import { structureSourceDirectory } from '../../../../packages/worldgen/scripts/structure-source-paths.mjs';
 import { verifyMediumFiRender } from './medium-fi-asset.mjs';
 
@@ -23,7 +24,7 @@ const hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 const fixtureHash = hash(
   Buffer.concat(
     await Promise.all(
-      ['medium-fi.ts', 'medium-fi.html', 'medium-fi-asset.mjs'].map((p) =>
+      ['medium-fi.ts', 'medium-fi.html', 'medium-fi-asset.mjs', 'medium-fi-context.mjs'].map((p) =>
         readFile(resolve(here, p)),
       ),
     ),
@@ -59,11 +60,11 @@ try {
       ),
     ]);
     for (const camera of [...spec.qaCameras, ...(spec.qaLodCameras ?? [])]) {
-      if (captureNames.has(camera.name))
+      if (captureNames.has(camera.name.toLowerCase()))
         throw new Error(
           `${id}: duplicate capture name ${camera.name}; give review cameras unique names`,
         );
-      captureNames.add(camera.name);
+      captureNames.add(camera.name.toLowerCase());
     }
     const pack = JSON.parse(await readFile(resolve(root, 'content/worldgen/stylepack.json'))),
       sidecar = JSON.parse(
@@ -72,8 +73,23 @@ try {
     await mkdir(out, { recursive: true });
     const page = await browser.newPage({ viewport: { width: 1200, height: 760 } });
     page.on('pageerror', (e) => errors.push(e.message));
-    const { terrain: separateTerrain, ...contextOptions } = spec.mediumFiContext ?? {};
+    const {
+      terrain: separateTerrain,
+      focus,
+      water,
+      ...contextOptions
+    } = spec.mediumFiContext ?? {};
     const context = new URLSearchParams(contextOptions);
+    if (focus) context.set('focus', JSON.stringify(focus));
+    let waterFixture;
+    if (water) {
+      const local = resolve(dir, water.path),
+        sourceRelative = relative(dir, local).replaceAll('\\', '/');
+      if (isAbsolute(sourceRelative) || sourceRelative === '..' || sourceRelative.startsWith('../'))
+        throw new Error('Water fixture escapes source');
+      waterFixture = { path: water.path, hash: hash(await readFile(local)) };
+      context.set('waterFixture', relative(root, local).replaceAll('\\', '/'));
+    }
     if (process.argv.includes('--reflections')) context.set('reflections', '1');
     const sourceScene = JSON.parse(await readFile(resolve(dir, 'scene.json')));
     const reviewScope = await readFile(resolve(dir, 'review-scope.json'), 'utf8')
@@ -108,17 +124,18 @@ try {
       }
     }
     const floor = spec.geographicProposal?.groundCutout?.minHeight;
+    const openingOutlines = spec.geographicProposal?.groundCutout?.outlines ?? [
+      spec.geographicProposal?.groundCutout?.outline,
+      ...(spec.geographicProposal?.groundCutout?.additionalOutlines ?? []),
+    ];
     // The isolated flat stage lies below a bridge's bank cap; native fitting exercises it.
     const groundOpening =
       floor === undefined || reviewTerrain || (spec.mediumFiContext?.groundY ?? 0) > floor
-        ? spec.geographicProposal?.groundCutout?.outline
+        ? openingOutlines[0]
         : undefined;
     if (groundOpening) {
       context.set('groundOpening', JSON.stringify(groundOpening));
-      context.set(
-        'additionalGroundOpenings',
-        JSON.stringify(spec.geographicProposal.groundCutout.additionalOutlines ?? []),
-      );
+      context.set('additionalGroundOpenings', JSON.stringify(openingOutlines.slice(1)));
     }
     await page.goto(
       `http://127.0.0.1:${server.httpServer.address().port}/medium-fi.html?id=${encodeURIComponent(id)}&${context}`,
@@ -152,7 +169,7 @@ try {
           await shot(`${distance}-${time}-${mode}`, { distance, time, mode });
     await shot('silhouette', { distance: 'skyline', mode: 'economy', silhouette: true });
     for (const camera of [...spec.qaCameras, ...(spec.qaLodCameras ?? [])])
-      await shot(camera.name, {
+      await shot(camera.name.toLowerCase(), {
         position: camera.position,
         lookAt: camera.lookAt,
         level: camera.reviewLod,
@@ -171,6 +188,8 @@ try {
       neighborTriangles: await page.evaluate(() => window.mediumFi.neighborTriangles),
       runtimeLods: sidecar.runtimeLods.levels,
       terrainFixture,
+      waterFixture,
+      focus,
       fixtureEntities,
       context: reviewTerrain
         ? 'Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.'
@@ -181,6 +200,7 @@ try {
     };
     if (errors.length) throw new Error(errors.join('; '));
     await writeFile(resolve(dir, 'medium-fi-report.json'), `${JSON.stringify(report, null, 2)}\n`);
+    await registerSourceDocuments(dir, ['medium-fi-report.json']);
     await page.close();
     console.log(`${id}: ${frames.length} medium-fi frames`);
   }

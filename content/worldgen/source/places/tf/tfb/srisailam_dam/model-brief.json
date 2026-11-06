@@ -1,0 +1,386 @@
+{
+  "id": "srisailam_dam",
+  "title": "Srisailam Dam",
+  "wikidataId": "Q1552235",
+  "referenceCoordinate": {
+    "longitude": 78.89679595828056,
+    "latitude": 16.086618323666798
+  },
+  "module": "content/worldgen/source/places/tf/tfb/srisailam_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "body": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "pier": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "pale": {
+      "slot": "trim",
+      "graph": "concrete_plain"
+    },
+    "dark": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    }
+  },
+  "exportLabel": "Molen original Srisailam Dam, radial gates and right-bank powerhouse",
+  "expectedDraftMasterHash": "sha256:4b58302c78ea8ce9a177ada971d5434f31a7bfd87aeafab4ba1ca1da30da12a5",
+  "visualBrief": "Srisailam Dam’s 511 m gravity crossing, twelve closed radial gate assemblies, tapered spillway piers, steel maintenance walk, stilling apron, solid wings and the right-bank powerhouse.",
+  "heightPolicy": "The signed vertical origin is 250.053237 m. The crest is fixed at 275.54 m, sill at 252.98 m and foundation at 132.28 m. The design fixture uses 269.75 m full pool and an illustrative 190 m tailwater.",
+  "nativeAxes": "+X follows the crest northwest and +Z points northeast downstream into the Krishna gorge.",
+  "sourceFacts": {
+    "mappedIdentity": "Q1552235",
+    "nativeWaterIds": [
+      19746710,
+      19746713,
+      1359531512
+    ],
+    "crestElevation": 275.54,
+    "foundationElevation": 132.28,
+    "documentedCrestLengthMeters": 512,
+    "mappedCrestRoadLengthMeters": 511.125298,
+    "spillway": {
+      "count": 12,
+      "clearWidth": 18.29,
+      "clearHeight": 16.76,
+      "sill": 252.98
+    },
+    "normalPool": 269.75,
+    "rightBankPowerhouse": 35184617217316,
+    "terrainTiles": 4
+  },
+  "materialMethod": "Shared board-formed and plain concrete, painted steel, standing seam roofing and glazing with metric UVs and zero embedded images.",
+  "limitations": [
+    "The signed vertical origin is 250.053237 m. The crest is fixed at 275.54 m, sill at 252.98 m and foundation at 132.28 m. The design fixture uses 269.75 m full pool and an illustrative 190 m tailwater.",
+    "The crest and powerhouse plan follow the retained PMTiles map. The apron section, wing outlets, gate machinery and powerhouse elevation are exterior approximations based on the reference photos and standard terrain.",
+    "Standard terrain contains spurious deep negative elevations near the crossing and provides stages of 252.82 m upstream and 179.68 m downstream. Native bank, base and water fit remain pending.",
+    "The model depicts the dry closed-gate configuration. Left-bank generating chambers and internal conduits are underground and outside the exterior model."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:2025_Srisailam_Dam_view.jpg",
+      "observed": "Downstream photo shows 12 bays, weathered chutes with a common flip lip, flanking solid wings, two lower openings on the right wing, and a continuous catwalk."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Closeup_at_Crest_Gates_of_Srisailam_Dam.jpg",
+      "observed": "Close view shows the separate steel crest deck, tall tapered piers, the radial gate arms, and cross-braced maintenance walk."
+    },
+    {
+      "url": "https://www.krmb.gov.in/html/project19.html",
+      "observed": "River authority lists a 512 m crossing, 275.54 m top, 252.98 m spillway sill, twelve radial gates and 269.75 m full reservoir."
+    },
+    {
+      "url": "https://www.apgenco.gov.in/Main/pageview/6/66/3",
+      "observed": "Owner identifies the seven-unit right-bank station and full reservoir level."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The joined native crest road and downstream river establish the signed model frame. The mapped right-bank powerhouse remains separate from the dam face."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "gorge-overview",
+      "position": [
+        -118,
+        164,
+        565
+      ],
+      "lookAt": [
+        0,
+        -14,
+        48
+      ],
+      "fov": 50
+    },
+    {
+      "name": "radial-gates",
+      "position": [
+        -76,
+        41,
+        107
+      ],
+      "lookAt": [
+        -7,
+        1,
+        21
+      ],
+      "fov": 50
+    },
+    {
+      "name": "toe-and-right-wing",
+      "position": [
+        -153,
+        -9,
+        209
+      ],
+      "lookAt": [
+        -128,
+        -38,
+        70
+      ],
+      "fov": 50
+    },
+    {
+      "name": "right-bank-powerhouse",
+      "position": [
+        -61,
+        36,
+        683
+      ],
+      "lookAt": [
+        -160,
+        -36,
+        521
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upstream-crest",
+      "position": [
+        112,
+        104,
+        -310
+      ],
+      "lookAt": [
+        0,
+        12,
+        -7
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -119,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        -12,
+        39
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/tf/tfb/srisailam_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "body": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "pier": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "pale": {
+        "slot": "trim",
+        "graph": "concrete_plain"
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "body": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "body": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "body": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "srisailam-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -118,
+        164,
+        565
+      ],
+      "lookAt": [
+        0,
+        -14,
+        48
+      ]
+    },
+    {
+      "name": "srisailam-district",
+      "reviewLod": "district",
+      "position": [
+        -118,
+        164,
+        565
+      ],
+      "lookAt": [
+        0,
+        -14,
+        48
+      ]
+    },
+    {
+      "name": "srisailam-street",
+      "reviewLod": "street",
+      "position": [
+        -118,
+        164,
+        565
+      ],
+      "lookAt": [
+        0,
+        -14,
+        48
+      ]
+    },
+    {
+      "name": "srisailam-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -118,
+        164,
+        565
+      ],
+      "lookAt": [
+        0,
+        -14,
+        48
+      ]
+    }
+  ]
+}

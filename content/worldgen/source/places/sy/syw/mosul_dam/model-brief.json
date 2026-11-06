@@ -1,0 +1,528 @@
+{
+  "id": "mosul_dam",
+  "title": "Mosul Dam",
+  "wikidataId": "Q606561",
+  "referenceCoordinate": {
+    "longitude": 42.82421,
+    "latitude": 36.63083
+  },
+  "module": "content/worldgen/source/places/sy/syw/mosul_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.93
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_basalt",
+      "roughness": 0.96
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.91
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.91
+    },
+    "gravel": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.85
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.74
+    },
+    "dark": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.8
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.43
+    }
+  },
+  "exportLabel": "Molen original Mosul Dam principal hydraulic complex",
+  "expectedDraftMasterHash": "sha256:be7d0afee9b7807deba22c344313c15ec60f23ef443914ed4fa8ba5181d7b526",
+  "visualBrief": "Whole map-associated bent Mosul barrier and crest road,five-gate service spillway with open lower apron to its mapped canal mouth,western native-plan main powerhouse and smaller outlet house,four native-plan surge cylinders and connecting plinths. Separate residential/maintenance buildings,substation,roads,islands and hills remain native context. Emergency spillway beyond the pictured/mapped principal hydraulic core remains unverified;not invented. Static closed gates;no lettering,logos,people,vehicles or baked whitewater.",
+  "heightPolicy": "One model datum equals the standard viewer reservoir sample307.003906m at local[0,-700]. Crest+30m,foundation-82m,tailwater-55m,powerhouse floor-37m,small outlet floor-39m,tank bottom-35m/top+13m and all hydraulic profiles are picture/map-scale estimates. Historical3400m length and selected3485.370m mapped road trace are distinct controls. No exact-Q OSM way or surveyed height claim;heading0 retains actual east/south geometry with ESE crest and NNE reservoir.",
+  "nativeAxes": "+X east,+Z south,+Y up. Actual crest runs ESE;reservoir lies NNE of it,tailraces SSW. Heading0 preserves this geographic frame and the actual oblique crest shape.",
+  "sourceFacts": {
+    "retainedLength": 3400,
+    "selectedCrestLength": 3485.3695156288036,
+    "nativeTanks": 4,
+    "mainGateBays": 5,
+    "estimatedCrest": 30,
+    "estimatedFoundation": -82,
+    "estimatedPowerhouseFloor": -37,
+    "estimatedTailwater": -55,
+    "mainSpillwayOutlet": "Ends at mapped canal mouth;native tailrace continues unmodified",
+    "crestBridgeKnots": 4,
+    "ownedNativeParts": 4,
+    "retainedNativeParts": 342,
+    "terrainTiles": 16,
+    "terrainGridStep": 20,
+    "terrainReferenceLocal": [
+      0,
+      -700
+    ],
+    "terrainDatum": 307.003906
+  },
+  "materialMethod": "Six existing shared 256px graphs for gravel, basalt, concrete, standing-seam metal, painted metal and window grid. One far palette draw and at most seven near groups. Metric UVs, linear tint colors, and no embedded images.",
+  "limitations": [
+    "Whole map-associated bent Mosul barrier and crest road,five-gate service spillway with open lower apron to its mapped canal mouth,western native-plan main powerhouse and smaller outlet house,four native-plan surge cylinders and connecting plinths. Separate residential/maintenance buildings,substation,roads,islands and hills remain native context. Emergency spillway beyond the pictured/mapped principal hydraulic core remains unverified;not invented. Static closed gates;no lettering,logos,people,vehicles or baked whitewater.",
+    "One model datum equals the standard viewer reservoir sample307.003906m at local[0,-700]. Crest+30m,foundation-82m,tailwater-55m,powerhouse floor-37m,small outlet floor-39m,tank bottom-35m/top+13m and all hydraulic profiles are picture/map-scale estimates. Historical3400m length and selected3485.370m mapped road trace are distinct controls. No exact-Q OSM way or surveyed height claim;heading0 retains actual east/south geometry with ESE crest and NNE reservoir.",
+    "Named map and two ordinary aerials identify the modeled principal core. The separate emergency spillway beyond the reviewed core is not claimed. Terrain/tailwater and section elevations are standard-tile and picture-scale estimates. No exact-Q OSM way claim. Nearby roads, independent buildings, and tailrace remain native. Physical-device and dense-scene timings remain unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://trevispa.com/en/progetti/mosul-dam/",
+      "imageUrl": "https://trevispa.com/en/wp-content/uploads/sites/3/2025/07/4099_n_DJI_0012a-scaled.jpeg",
+      "observed": "Ordinary aerial inspected:long bent rock-fill barrier and crest road,principal five-gate service spillway with deep divided upper chutes and lower common channel,western powerhouse/tailrace/intake structures and a separate smaller outlet. Two-sided embankment,downstream roads/substation and independent properties remain clear. Lettering,logos,construction vehicles and flowing whitewater are not model textures or geometry. Exact machinery,grades and ownership of the adjacent native intake/control footprints still need one geometry-pass decision."
+    },
+    {
+      "url": "https://trevispa.com/en/2017/11/26/the-mosul-dam-the-project-and-the-role-of-trevi/",
+      "imageUrl": "https://trevispa.com/en/wp-content/uploads/sites/3/2025/07/3357_z_2di6.jpg",
+      "observed": "Ordinary aerial inspected:long bent rock-fill barrier and crest road,principal five-gate service spillway with deep divided upper chutes and lower common channel,western powerhouse/tailrace/intake structures and a separate smaller outlet. Two-sided embankment,downstream roads/substation and independent properties remain clear. Lettering,logos,construction vehicles and flowing whitewater are not model textures or geometry. Exact machinery,grades and ownership of the adjacent native intake/control footprints still need one geometry-pass decision."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Whole map-associated bent Mosul barrier and crest road,five-gate service spillway with open lower apron to its mapped canal mouth,western native-plan main powerhouse and smaller outlet house,four native-plan surge cylinders and connecting plinths. Separate residential/maintenance buildings,substation,roads,islands and hills remain native context. Emergency spillway beyond the pictured/mapped principal hydraulic core remains unverified;not invented. Static closed gates;no lettering,logos,people,vehicles or baked whitewater. One model datum equals the standard viewer reservoir sample307.003906m at local[0,-700]. Crest+30m,foundation-82m,tailwater-55m,powerhouse floor-37m,small outlet floor-39m,tank bottom-35m/top+13m and all hydraulic profiles are picture/map-scale estimates. Historical3400m length and selected3485.370m mapped road trace are distinct controls. No exact-Q OSM way or surveyed height claim;heading0 retains actual east/south geometry with ESE crest and NNE reservoir."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-principal-complex",
+      "position": [
+        1300,
+        1750,
+        2450
+      ],
+      "lookAt": [
+        430,
+        -12,
+        320
+      ],
+      "fov": 50
+    },
+    {
+      "name": "downstream-rock-fill",
+      "position": [
+        650,
+        290,
+        860
+      ],
+      "lookAt": [
+        90,
+        0,
+        120
+      ],
+      "fov": 50
+    },
+    {
+      "name": "four-surge-towers",
+      "position": [
+        -850,
+        100,
+        500
+      ],
+      "lookAt": [
+        -650,
+        -2,
+        205
+      ],
+      "fov": 50
+    },
+    {
+      "name": "powerhouse-and-outlet",
+      "position": [
+        -300,
+        25,
+        600
+      ],
+      "lookAt": [
+        -560,
+        -30,
+        295
+      ],
+      "fov": 50
+    },
+    {
+      "name": "five-gate-service-spillway",
+      "position": [
+        600,
+        120,
+        850
+      ],
+      "lookAt": [
+        1060,
+        15,
+        430
+      ],
+      "fov": 50
+    },
+    {
+      "name": "whole-spillway-and-basin",
+      "position": [
+        150,
+        330,
+        1350
+      ],
+      "lookAt": [
+        700,
+        -12,
+        660
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -82,
+    "scale": 2.6,
+    "focus": {
+      "center": [
+        -600,
+        -28,
+        290
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sy/syw/mosul_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_basalt",
+        "roughness": 0.96
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.91
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.91
+      },
+      "gravel": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.85
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.74
+      },
+      "dark": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.8
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.43
+      }
+    },
+    "errorMeters": 12,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 2
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 0.7
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-mosul-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        1300,
+        1750,
+        2450
+      ],
+      "lookAt": [
+        430,
+        -12,
+        320
+      ]
+    },
+    {
+      "name": "whole-mosul-district",
+      "reviewLod": "district",
+      "position": [
+        1300,
+        1750,
+        2450
+      ],
+      "lookAt": [
+        430,
+        -12,
+        320
+      ]
+    },
+    {
+      "name": "whole-mosul-street",
+      "reviewLod": "street",
+      "position": [
+        1300,
+        1750,
+        2450
+      ],
+      "lookAt": [
+        430,
+        -12,
+        320
+      ]
+    },
+    {
+      "name": "whole-mosul-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        1300,
+        1750,
+        2450
+      ],
+      "lookAt": [
+        430,
+        -12,
+        320
+      ]
+    }
+  ]
+}

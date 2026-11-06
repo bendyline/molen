@@ -1,0 +1,438 @@
+{
+  "id": "baihetan_dam",
+  "title": "Baihetan Dam",
+  "wikidataId": "Q803757",
+  "referenceCoordinate": {
+    "longitude": 102.9030588,
+    "latitude": 27.2231173
+  },
+  "module": "content/worldgen/source/places/wk/wkc/baihetan_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "board": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "dark": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "stain": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "light": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "red": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "frame": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "glazing": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "gravel"
+    }
+  },
+  "exportLabel": "Molen original Baihetan double-curvature arch and downstream waterworks",
+  "expectedDraftMasterHash": "sha256:e431340d4e72a44d525323cd96948eccf89181ecf9c010ae1f6d72069910875e",
+  "visualBrief": "Baihetan Dam’s 709 m double-curvature arch crest, six surface bays, seven deep outlets, red gantries and finned intake, plus the plunge pool retaining walls and downstream auxiliary weir.",
+  "heightPolicy": "The absolute vertical origin is 644.781 m and the concrete crest is fixed at 834 m. The operator’s normal reservoir level is 825 m. The production water sampler gives 676.79 m upstream and 637.62–641.76 m downstream on the checked normal tile boundaries.",
+  "nativeAxes": "+X toward the west bank, +Z north along the downstream Jinsha River. The curved crest bows toward the reservoir on local -Z.",
+  "sourceFacts": {
+    "mappedIdentity": "Q803757",
+    "nativeWaterIds": [
+      68549173,
+      90793933
+    ],
+    "crestLengthMeters": 709,
+    "crestElevation": 834,
+    "foundationElevation": 545,
+    "upperOutlets": 6,
+    "deepOutlets": 7,
+    "weirModelCrestElevation": 650,
+    "normalPoolElevation": 825,
+    "terrainTiles": 9
+  },
+  "materialMethod": "Five shared material graphs for board-formed and plain concrete, gravel, painted steel and glazing, with metric UVs and zero embedded images.",
+  "limitations": [
+    "The absolute vertical origin is 644.781 m and the concrete crest is fixed at 834 m. The operator’s normal reservoir level is 825 m. The production water sampler gives 676.79 m upstream and 637.62–641.76 m downstream on the checked normal tile boundaries.",
+    "The source geometry reproduces the documented arch length and elevation with measured map alignment. The subsurface section, abutment reinforcement, exterior gate settings, and the modeled 650 m weir crest and 643 m plunge stage are approximate.",
+    "The sampled reservoir sits about 148 m below the normal pool. This exposes the upstream face and creates steep bank curtains in the standard viewer comparison. The operator’s normal pool is used in a separate review fixture.",
+    "The buried generation caverns and spillway tunnels are represented by their retained map lines for placement. Interiors, tunnel sections, and operating discharges are outside this exterior asset."
+  ],
+  "references": [
+    {
+      "url": "https://www.engineering.org.cn/engi/EN/1159990400712761986",
+      "observed": "Project authors describe the asymmetric double-curvature 289 m arch with an 834 m crest, six surface gates, seven deep outlets, a plunge pool and auxiliary weir."
+    },
+    {
+      "url": "https://www.ctg.com.cn/ctgenglish/news_media/news37/2024080621160550017/index.html",
+      "observed": "Owner gives the 709 m centerline arc length."
+    },
+    {
+      "url": "https://www.newindianexpress.com/web-only/2025/Jan/18/chinas-mega-dam-strategy-upstream-control-downstream-impacts",
+      "observed": "Oblique photograph shows narrow crest, red gantries, vertically finned intake block and shelves across the downstream arch face."
+    },
+    {
+      "url": "https://www.peopleapp.com/column/30038642683-500003649864",
+      "observed": "Completed downstream photograph shows six open crest-level gate slots and seven lower chutes under the long separation gallery."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The curved reservoir face, two water bodies and named tunnel system identify the Baihetan Dam arch."
+    },
+    {
+      "url": "https://www.ctg.com.cn/sxjt/xwzx55/zhxw23/2024081106214572309/index.html",
+      "observed": "Operator confirms the 825 m normal reservoir level."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "downstream-arch",
+      "position": [
+        42,
+        330,
+        650
+      ],
+      "lookAt": [
+        23,
+        102,
+        -29
+      ],
+      "fov": 50
+    },
+    {
+      "name": "spillway-openings",
+      "position": [
+        -130,
+        240,
+        310
+      ],
+      "lookAt": [
+        23,
+        143,
+        -44
+      ],
+      "fov": 50
+    },
+    {
+      "name": "reservoir-face",
+      "position": [
+        61,
+        281,
+        -500
+      ],
+      "lookAt": [
+        28,
+        151,
+        -52
+      ],
+      "fov": 50
+    },
+    {
+      "name": "auxiliary-weir",
+      "position": [
+        63,
+        66,
+        158
+      ],
+      "lookAt": [
+        7,
+        5,
+        88
+      ],
+      "fov": 50
+    },
+    {
+      "name": "east-abutment",
+      "position": [
+        -207,
+        238,
+        199
+      ],
+      "lookAt": [
+        -251,
+        177,
+        148
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-intakes",
+      "position": [
+        273,
+        240,
+        97
+      ],
+      "lookAt": [
+        225,
+        181,
+        -18
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -101,
+    "scale": 3.2,
+    "focus": {
+      "center": [
+        20,
+        110,
+        10
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wk/wkc/baihetan_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "board": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "dark": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "stain": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "light": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "red": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "frame": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "glazing": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "gravel"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "board": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "stain": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "light": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "red": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "frame": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "board": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "stain": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "light": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "red": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "frame": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "board": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "stain": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "light": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "red": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "frame": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "baihetan-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        42,
+        330,
+        650
+      ],
+      "lookAt": [
+        23,
+        102,
+        -29
+      ]
+    },
+    {
+      "name": "baihetan-district",
+      "reviewLod": "district",
+      "position": [
+        42,
+        330,
+        650
+      ],
+      "lookAt": [
+        23,
+        102,
+        -29
+      ]
+    },
+    {
+      "name": "baihetan-street",
+      "reviewLod": "street",
+      "position": [
+        42,
+        330,
+        650
+      ],
+      "lookAt": [
+        23,
+        102,
+        -29
+      ]
+    },
+    {
+      "name": "baihetan-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        42,
+        330,
+        650
+      ],
+      "lookAt": [
+        23,
+        102,
+        -29
+      ]
+    }
+  ]
+}

@@ -1,0 +1,481 @@
+{
+  "planId": "lyduvenai_bridge",
+  "id": "lyduvenai_bridge",
+  "assetId": "molen.worldgen.structure.lyduvenai_bridge",
+  "title": "Lyduvėnai Bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q6707743",
+  "referenceCoordinate": {
+    "longitude": 23.08555556,
+    "latitude": 55.50611111
+  },
+  "visualBrief": "Long single-track railway viaduct over the Dubysa valley,with open deep steel X-lattice spans,recessed pale tapered piers,top track and maintenance walks,and the current lower visitor path.",
+  "size": [
+    607.8460083007812,
+    43.89786338806152,
+    7.5
+  ],
+  "actualBounds": {
+    "min": [
+      -303.9230041503906,
+      -0.2653636932373047,
+      -3.75
+    ],
+    "max": [
+      303.9230041503906,
+      43.63249969482422,
+      3.75
+    ]
+  },
+  "nativeAxes": "+X northeast toward Tytuvėnai; -X southwest. +Z southeast, +Y up.",
+  "sourceFacts": {
+    "mappedLengthMeters": 598.246,
+    "mappedWidthMeters": 4.509,
+    "roundedReferenceLengthMeters": 599,
+    "reconstructedSpans": 9,
+    "modelDatumMeters": 66,
+    "approximateRailReferenceAboveDatumMeters": 42.5,
+    "terrainTiles": 3
+  },
+  "referencePages": [
+    "https://www.15min.lt/gyvenimas/galerija/gelezinkelininko-dienos-proga-ypatingos-ekskursijos-traukiniu-begiais-342724",
+    "https://www.miestai.net/forumas/forum/bendrosios-diskusijos/infrastrukt%C5%ABra-ir-pramon%C4%97/b%C4%97ginis-transportas/6634-lyduv%C4%97n%C5%B3-gele%C5%BEinkelio-tiltas",
+    "https://www.15min.lt/gyvenimas/naujiena/keliones/auksciausias-ir-ilgiausias-gelezinkelio-tiltas-lietuvoje-laukia-drasuoliu-1630-2210502",
+    "https://www.openstreetmap.org/way/993376564"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      23.086682574,
+      55.505915036
+    ],
+    "heading": 0.75995116399,
+    "elevationMode": "sea-level",
+    "elevationMeters": 66,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Footings embed in the unmodified global native terrain; the origin is the approximate66m valley reference. Rail ends meet reconstructed abutments,not native-ground endpoints. External rail grades remain approximate.",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 598.246,
+      "width": 5,
+      "outline": [
+        [
+          -299.123,
+          -2.5
+        ],
+        [
+          299.123,
+          -2.5
+        ],
+        [
+          299.123,
+          2.5
+        ],
+        [
+          -299.123,
+          2.5
+        ]
+      ],
+      "includeConnectedApproaches": true,
+      "deckEndpoints": [
+        [
+          -299.123,
+          0
+        ],
+        [
+          299.123,
+          0
+        ]
+      ],
+      "deckHeights": [
+        108.5,
+        108.5
+      ],
+      "deckProfile": [
+        [
+          -299.123,
+          108.5,
+          0
+        ],
+        [
+          299.123,
+          108.5,
+          0
+        ]
+      ]
+    },
+    "bounds": [
+      23.083147060750626,
+      55.50400982985535,
+      23.090218087249376,
+      55.507820242144646
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:baf5eed7b6bef0a1951df72144612f10018f36e542ef4799ffc990e67be219d8",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://www.openstreetmap.org/way/993376564",
+    "wikidataId": "Q6707743",
+    "notes": "Exact retained bridge envelope and single railway alignment;open steel trusses,recessed piers,track and current lower visitor path. Standard terrain fits foundations approximately. Native DEM bank returns do not certify external railway grades."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Three existing shared concrete, painted-metal and wood graphs with metric UVs and palette tints. No private or embedded image copies.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u9/u9b/lyduvenai_bridge/models/lyduvenai-model.mjs",
+    "export": "buildLyduvenaiSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.32
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLyduvenaiDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.32
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "street": {
+        "export": "buildLyduvenaiStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.32
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.7
+      },
+      "closeup": {
+        "export": "buildLyduvenaiCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.32
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.3
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.4,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-bridge-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -425,
+        190,
+        420
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "whole-bridge-district",
+      "reviewLod": "district",
+      "position": [
+        -425,
+        190,
+        420
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "whole-bridge-street",
+      "reviewLod": "street",
+      "position": [
+        -425,
+        190,
+        420
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "whole-bridge-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -425,
+        190,
+        420
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "street-open-truss",
+      "reviewLod": "street",
+      "position": [
+        -115,
+        15,
+        38
+      ],
+      "lookAt": [
+        -99.7,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "closeup-visitor-path",
+      "reviewLod": "closeup",
+      "position": [
+        -156,
+        35.2,
+        0
+      ],
+      "lookAt": [
+        -113,
+        34,
+        0
+      ]
+    }
+  ],
+  "limitations": [
+    "Original exterior reconstruction from three actually inspected ordinary pictures:2024 LTG aerial,older structural side view and current lower visitor path. No downloaded mesh,private photo texture,bespoke survey or terrain source. Trees,railway signals,catenary,stations,village buildings,exact equipment and full surrounding river/bank landscape are excluded.",
+    "The retained exact OSM/Q6707743 footprint is598.246m by about4.5m,corroborated by a PMTiles single railway bridge line within0.3m laterally. The599m rounded reference is not forced onto it. Nine reconstructed equal steel spans/eight piers preserve the picture rhythm; exact bay counts,member sections,pier stations,gauge1.52m and original foundations are visualization approximations,not an engineering survey.",
+    "Paired deep open X-lattice side trusses support a single track above; rails,sleepers,narrow outer maintenance walks,lower visitor path and overhead transverse braces remain distinct. Recessed tapered piers have caps and spread footings. Near tiers restore flange strips,gusset plates,visitor rails and approximate end stair flights;master adds rectangular rivet heads and open grating. Fine mesh fencing and exact bolts/stairs/protective roof construction are simplified.",
+    "Railway reference is42.5m above the66m model valley datum,with a lower visitor path8.88m below it. This preserves inspected proportions but is not a certified absolute rail elevation. The unmodified129x129/6m field oversamples ordinary coarse global DEM. Eight foundations and abutments embed into it; coarse bank-edge ground returns are14–15m below rail height. External rail-bed crest/embankment and approach grade fit remain approximate and must not be represented as surveyed or native-ground+0.25m endpoints.",
+    "Three existing shared256px concrete,painted metal and wood graphs with metric UVs,no embedded/private images. The skyline aggregates both side trusses into one central open lattice plane within the3m error allowance;district retains two coarser side trusses. Far tiers aggregate lattice panels and omit individual sleepers/rails furniture; near tiers restore those details. Estimated errors3/1.5/.7/.3m are not certified mesh distances. Initial size targets are checked;physical laptop/phone timings and dense-city performance remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "complete-viaduct",
+      "position": [
+        -425,
+        190,
+        420
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "open-truss-elevation",
+      "position": [
+        -28,
+        52,
+        300
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "recessed-piers-and-bearings",
+      "position": [
+        -115,
+        15,
+        38
+      ],
+      "lookAt": [
+        -99.7,
+        22,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "single-railway-and-maintenance-walks",
+      "position": [
+        -245,
+        45,
+        5.7
+      ],
+      "lookAt": [
+        -155,
+        42,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "current-lower-visitor-path",
+      "position": [
+        -156,
+        35.2,
+        0
+      ],
+      "lookAt": [
+        -113,
+        34,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "riveted-truss-joint",
+      "position": [
+        -166,
+        36.8,
+        7.8
+      ],
+      "lookAt": [
+        -166.1,
+        34,
+        -2.05
+      ],
+      "fov": 46
+    },
+    {
+      "name": "abutment-and-access-stairs",
+      "position": [
+        -316,
+        35,
+        23
+      ],
+      "lookAt": [
+        -298,
+        34,
+        0
+      ],
+      "fov": 48
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 142680,
+    "vertices": 285360,
+    "materials": 3,
+    "bytes": 11987576,
+    "sha256": "sha256:32a5311a23107696b7e225c982584c5df8c652ff981df35d3d1ae9b99c627d3b"
+  }
+}

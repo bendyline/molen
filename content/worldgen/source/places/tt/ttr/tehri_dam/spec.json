@@ -1,0 +1,454 @@
+{
+  "planId": "tehri_dam",
+  "id": "tehri_dam",
+  "assetId": "molen.worldgen.structure.tehri_dam",
+  "title": "Tehri Dam — Bhagirathi Stage-I",
+  "wikidataId": "Q69091",
+  "category": "dam",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 78.4801601,
+    "latitude": 30.3780867
+  },
+  "size": [
+    952.7095947265625,
+    269.3500061035156,
+    1133.5870666503906
+  ],
+  "actualBounds": {
+    "min": [
+      -509.2095947265625,
+      -123.20700073242188,
+      -646.924072265625
+    ],
+    "max": [
+      443.5,
+      146.14300537109375,
+      486.6629943847656
+    ]
+  },
+  "visualBrief": "WholephysicalTehriStage-Iearth-and-rockfilldam/maincrest andallintrinsicexteriorworks: three-bayrightbankchutespillway, bothrightbankungatedshaftspillways/bothleftbankgatedshaftspillways, fullleftbankmainHPPintakeandtailrace/accessportalexteriors. Primaryowner260.5m/575m/five-spillway/undergroundfour-unit1000MWfacts, original48controlnamedQ69091damoutline. Nativearearoles/exposedtoeandcrestedgeinterpretationapproximate; allshaft/chute/intake/portalplans/sections/gradeexplicitestimates. Undergroundpowerhouse/tunnelsnotinventedabovegroundroofedsheds, interiorsnotrepresented. No bareembankment/onegate/unit/nearbyKoteshwar/newPSP/neighborproxy. Historical2014Stage-Ionly, allimageryunused.",
+  "nativeAxes": {
+    "x": "along original main-dam crest toward northeast",
+    "y": "up",
+    "z": "downstream approximatelysoutheast"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2014-06-01",
+    "validFrom": "2014-06-01",
+    "validUntil": "2015-06-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "tehri-dam-wp",
+      "url": "https://qualla.com/tehri-dam/"
+    }
+  ],
+  "referenceInputHash": "sha256:3e2f79e372a1a8615aa99c75d25721d9351292378b88710719e4981f8e6d82aa",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tt/ttr/tehri_dam/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tt/ttr/tehri_dam/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "rock": {
+        "slot": "foundation",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "crown": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.25
+      },
+      "gate": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.3
+      },
+      "window": {
+        "slot": "window",
+        "graph": "window_punched",
+        "roughness": 0.4,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "crown": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.25
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.3
+          },
+          "window": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.4,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "crown": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.25
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.3
+          },
+          "window": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.4,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "crown": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.25
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.3
+          },
+          "window": {
+            "slot": "window",
+            "graph": "window_punched",
+            "roughness": 0.4,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "stone_basalt_raw",
+    "metal_painted",
+    "window_punched"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 14000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "OriginalcurrentoperatorHTMLintroduction/technicaltable andoriginalFeb2025two-pageoperatorPDFpage1wereactuallyread; allsourcephotos/figuresunused. Stage-I260.5mearthrockfill/575mcrest, fullthree-bayrightbankchute/tworightshaft/twoleftshaftspillways, undergroundleftbankfour250MWmachines/1000MWsince2006-2007. Legacyownercachedsectiontable supplies839.5mcrest/25.5to30.5mwidth/1125mbase/2.5upstreamand2downstreamslopes/3x10.5mchute/12mshafts/shaftcrestELs; originallegacyrequestsrepeatTimeout explicitlydisclosed. No originallegacyplanbyteclaim. Original48nativeareacontrols retained as wholemappedphysicaldam/exposeddownstreamfacecontext, not a surveyeddeepburied/upstreamtoe. Fouroriginalupperedgeindices4,2,1,0interpretedascrest, actualnativepolyline588.565mretainedwithoutstretchto575m. Entiremainbarrierincludesbothupstream/downstreamrockfillfaces andburiedfoundation. Allcomponentplanpositions/edge-functionalroles approximate; noengineeringdrawing/photos traced. Original2048m/16641height/nine-tileproviderfieldfixedfirst. LegacyreportedcrestEL839.5m minusoriginalprovideranchor702.207m givesestimatedlocalcrest137.2930m, not a surveyedverticaldatumconversion. Primary260.5mheightplacesdeepestbase-123.2070m local; nominal1125mbase/25.5mcrown/2.5up-and2downstreamslopesyield244.333mupperrockfillheightand16.167madditionalburiedbase. This estimatedsectionreconcilesreportedmaximumdimensionswithoutstretchingnativearea; foundation/profile/toerolesnotcertified. Originalfieldmin607.9172m wellabovedeepbase579m, noexcavation/bathymetryclaim. Allheights/fields/mainsectionsremainfixedthroughreview. Completechutespillway estimatedcenter[-335,-25]m, three10.5mclearbays/17.5mestimatedgateheight, bridgearoundcrestlevel/hoists5mabovecrest, estimated415mdownstreamchutetoEL610m/apronandtwochute-wingwalls. Published220msystemdropnotmisstatedasexactindividualchutesill-to-outletdrop:815to610mestimated205mchutedrop. Exactportal/controlblock/pier/gatepose/chutepath/curvature/profile/finishandgrade estimated, nohydraulicoperationclaim. Allfour12mshaftthroatsincluded. Two rightbankfree-overflowcircularbellmouthscenter[-380,-110]/[-430,-180], lipEL830.2m; twoleftbankgatedshaftscenter[350,-95]/[405,-165], lipEL815m. Lipdiameters28mright/25mleft,14mfunneldepth/18mvisibleliner andgantries/gatepanels exactprofiles estimated;12mnominalshaftdiameterpreserved. Buriedlongshafttunnels/internalflowmechanicsnotmodeledaboveground. Allshaft/bridge/bankregistrationsuncertain75m, no surveyedgatemouthlocations. TwoleftbankmainHPPintakeexteriorsatestimated[365,-255]/[430,-290]m, nominal25x18mshaft/platform, sourceheadrace2x8.5mdiameter, estimatedlowerintakeEL745m/uppercontrolhouses8.5mhigharoundcrest. Four5.75mpenstocksand197x22x47.2mpowerhouseareunderground, notinventedopenairpipesorabovegroundhall. Two9mtailraceportalsestimated[345,440]/[385,475]m, EL615mfloor, fullhorse-shoemouthedconcreteheadwalls9mclearopening and12mwallheight. Adjoiningvehicularaccessheadwallestimatedsameleftbankportalzone, noclaimexactas-builtportalpositionorarchitecturalcensus. DetachedindoorSF6switchyard/office/campus/neighborhoodandKoteshwarseparatestructuresareexcluded. Historical2014Stage-Ionly, valid2014-06-01to2015-06-01, afterall2007commissioningandbeforelaterpumpedstorageoperation. NoKoteshwar400MW/2025-2026newPSP1000MWsubstitution. Entirevisiblecivilworksanddefiningfive-spillwaycensusincluded, notbareearthbody/singleintakeproxy. Surfacepalette/profiles/finish and all75mcomponent/15mheightuncertaintiesexplicit. Sourcefield/frame/floors/mainsectionsnotcut/masked/flattened/refetched/refitforviews. Currentcoarseproviderfieldnot2014grading; clipping/burial/float andunverifiedground/verticalcontact disclosed. All38Quallafamiliesandallotherimageryunused.",
+    "anchor": [
+      78.4801601,
+      30.3780867
+    ],
+    "heading": 0.1243247318457272,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        78.4801601,
+        30.3780867
+      ],
+      "modelHeight": 0,
+      "basis": "Midpointoforiginaltwooriginalendcontrols4and0fixedbeforefield; providerrelativeanchor not surveycrest/riverbed/foundationorMSLwaterstage."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/93091865",
+      "native-interpretation/tehri-upper-edge"
+    ],
+    "source": "https://www.openstreetmap.org/way/93091865",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7c8e9d9e0df5f35b023156575dd5281149a8114571a2b9075373d43917926503",
+    "notes": "WholephysicalTehriStage-Iearth-and-rockfilldam/maincrest andallintrinsicexteriorworks: three-bayrightbankchutespillway, bothrightbankungatedshaftspillways/bothleftbankgatedshaftspillways, fullleftbankmainHPPintakeandtailrace/accessportalexteriors. Primaryowner260.5m/575m/five-spillway/undergroundfour-unit1000MWfacts, original48controlnamedQ69091damoutline. Nativearearoles/exposedtoeandcrestedgeinterpretationapproximate; allshaft/chute/intake/portalplans/sections/gradeexplicitestimates. Undergroundpowerhouse/tunnelsnotinventedabovegroundroofedsheds, interiorsnotrepresented. No bareembankment/onegate/unit/nearbyKoteshwar/newPSP/neighborproxy. Historical2014Stage-Ionly, allimageryunused."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_punched",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    }
+  ],
+  "limitations": [
+    "WholephysicalTehriStage-Iearth-and-rockfilldam/maincrest andallintrinsicexteriorworks: three-bayrightbankchutespillway, bothrightbankungatedshaftspillways/bothleftbankgatedshaftspillways, fullleftbankmainHPPintakeandtailrace/accessportalexteriors. Primaryowner260.5m/575m/five-spillway/undergroundfour-unit1000MWfacts, original48controlnamedQ69091damoutline. Nativearearoles/exposedtoeandcrestedgeinterpretationapproximate; allshaft/chute/intake/portalplans/sections/gradeexplicitestimates. Undergroundpowerhouse/tunnelsnotinventedabovegroundroofedsheds, interiorsnotrepresented. No bareembankment/onegate/unit/nearbyKoteshwar/newPSP/neighborproxy. Historical2014Stage-Ionly, allimageryunused.",
+    "OriginalcurrentoperatorHTMLintroduction/technicaltable andoriginalFeb2025two-pageoperatorPDFpage1wereactuallyread; allsourcephotos/figuresunused. Stage-I260.5mearthrockfill/575mcrest, fullthree-bayrightbankchute/tworightshaft/twoleftshaftspillways, undergroundleftbankfour250MWmachines/1000MWsince2006-2007. Legacyownercachedsectiontable supplies839.5mcrest/25.5to30.5mwidth/1125mbase/2.5upstreamand2downstreamslopes/3x10.5mchute/12mshafts/shaftcrestELs; originallegacyrequestsrepeatTimeout explicitlydisclosed. No originallegacyplanbyteclaim.",
+    "Original48nativeareacontrols retained as wholemappedphysicaldam/exposeddownstreamfacecontext, not a surveyeddeepburied/upstreamtoe. Fouroriginalupperedgeindices4,2,1,0interpretedascrest, actualnativepolyline588.565mretainedwithoutstretchto575m. Entiremainbarrierincludesbothupstream/downstreamrockfillfaces andburiedfoundation. Allcomponentplanpositions/edge-functionalroles approximate; noengineeringdrawing/photos traced.",
+    "Original2048m/16641height/nine-tileproviderfieldfixedfirst. LegacyreportedcrestEL839.5m minusoriginalprovideranchor702.207m givesestimatedlocalcrest137.2930m, not a surveyedverticaldatumconversion. Primary260.5mheightplacesdeepestbase-123.2070m local; nominal1125mbase/25.5mcrown/2.5up-and2downstreamslopesyield244.333mupperrockfillheightand16.167madditionalburiedbase. This estimatedsectionreconcilesreportedmaximumdimensionswithoutstretchingnativearea; foundation/profile/toerolesnotcertified. Originalfieldmin607.9172m wellabovedeepbase579m, noexcavation/bathymetryclaim. Allheights/fields/mainsectionsremainfixedthroughreview.",
+    "Completechutespillway estimatedcenter[-335,-25]m, three10.5mclearbays/17.5mestimatedgateheight, bridgearoundcrestlevel/hoists5mabovecrest, estimated415mdownstreamchutetoEL610m/apronandtwochute-wingwalls. Published220msystemdropnotmisstatedasexactindividualchutesill-to-outletdrop:815to610mestimated205mchutedrop. Exactportal/controlblock/pier/gatepose/chutepath/curvature/profile/finishandgrade estimated, nohydraulicoperationclaim.",
+    "Allfour12mshaftthroatsincluded. Two rightbankfree-overflowcircularbellmouthscenter[-380,-110]/[-430,-180], lipEL830.2m; twoleftbankgatedshaftscenter[350,-95]/[405,-165], lipEL815m. Lipdiameters28mright/25mleft,14mfunneldepth/18mvisibleliner andgantries/gatepanels exactprofiles estimated;12mnominalshaftdiameterpreserved. Buriedlongshafttunnels/internalflowmechanicsnotmodeledaboveground. Allshaft/bridge/bankregistrationsuncertain75m, no surveyedgatemouthlocations.",
+    "TwoleftbankmainHPPintakeexteriorsatestimated[365,-255]/[430,-290]m, nominal25x18mshaft/platform, sourceheadrace2x8.5mdiameter, estimatedlowerintakeEL745m/uppercontrolhouses8.5mhigharoundcrest. Four5.75mpenstocksand197x22x47.2mpowerhouseareunderground, notinventedopenairpipesorabovegroundhall. Two9mtailraceportalsestimated[345,440]/[385,475]m, EL615mfloor, fullhorse-shoemouthedconcreteheadwalls9mclearopening and12mwallheight. Adjoiningvehicularaccessheadwallestimatedsameleftbankportalzone, noclaimexactas-builtportalpositionorarchitecturalcensus. DetachedindoorSF6switchyard/office/campus/neighborhoodandKoteshwarseparatestructuresareexcluded.",
+    "Historical2014Stage-Ionly, valid2014-06-01to2015-06-01, afterall2007commissioningandbeforelaterpumpedstorageoperation. NoKoteshwar400MW/2025-2026newPSP1000MWsubstitution. Entirevisiblecivilworksanddefiningfive-spillwaycensusincluded, notbareearthbody/singleintakeproxy. Surfacepalette/profiles/finish and all75mcomponent/15mheightuncertaintiesexplicit. Sourcefield/frame/floors/mainsectionsnotcut/masked/flattened/refetched/refitforviews. Currentcoarseproviderfieldnot2014grading; clipping/burial/float andunverifiedground/verticalcontact disclosed. All38Quallafamiliesandallotherimageryunused."
+  ],
+  "sourceLicense": "OriginalproceduralwholeStage-Iearthrockfilldam/five-spillways/mainHPPintake-portalexteriors underrepositorylicense. OriginalnativewholeQ69091damcoordinatesODbL, primaryoperatorwrittenconstructionfacts only. Allphotos/figures/drawingsunused, no borrowedmesh/textures, Quallafirst38families allunused/questionablesourcesskipped. Exactcomponentplans/profiles/sections/finish/grade explicitlyestimated, originalfieldpreserved. Undergroundpowerhouse notinventedabovegroundhall; no newPSP/Koteshwar/campusproxy, survey/photo/currentreplacementclaim.",
+  "qaLodCameras": [
+    {
+      "name": "whole-tehri-skyline",
+      "position": [
+        1100,
+        860,
+        1390
+      ],
+      "lookAt": [
+        0,
+        37.293000000000006,
+        50
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tehri-district",
+      "position": [
+        1100,
+        860,
+        1390
+      ],
+      "lookAt": [
+        0,
+        37.293000000000006,
+        50
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tehri-street",
+      "position": [
+        1100,
+        860,
+        1390
+      ],
+      "lookAt": [
+        0,
+        37.293000000000006,
+        50
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tehri-closeup",
+      "position": [
+        1100,
+        860,
+        1390
+      ],
+      "lookAt": [
+        0,
+        37.293000000000006,
+        50
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-dam-both-rockfill-slopes-and-all-five-spillways",
+      "position": [
+        1100,
+        860,
+        1390
+      ],
+      "lookAt": [
+        0,
+        37.293000000000006,
+        50
+      ]
+    },
+    {
+      "name": "complete-three-bay-rightbank-chute-and-two-ungated-shafts",
+      "position": [
+        -650,
+        407.293,
+        490
+      ],
+      "lookAt": [
+        -345,
+        67.293,
+        80
+      ]
+    },
+    {
+      "name": "both-leftbank-gated-shafts-and-both-intake-headworks",
+      "position": [
+        610,
+        327.293,
+        -455
+      ],
+      "lookAt": [
+        375,
+        122.293,
+        -185
+      ]
+    },
+    {
+      "name": "full-leftbank-tailrace-and-access-portals",
+      "position": [
+        455,
+        -17.206999999999994,
+        610
+      ],
+      "lookAt": [
+        365,
+        -83.207,
+        450
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6858,
+    "vertices": 20574,
+    "materials": 6,
+    "bytes": 991996,
+    "sha256": "sha256:f869d82a7ed4dcc935c51f22aabdb0e066018181e18e15b7ddb524f7e6f19f05"
+  }
+}

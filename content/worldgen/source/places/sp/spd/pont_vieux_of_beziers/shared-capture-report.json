@@ -1,0 +1,69 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.pont_vieux_of_beziers",
+  "inputHash": "sha256:08d98ed071c1d1520a126fbb0da865e4263ba7a3a79dc2988ae13ce592ed3829",
+  "sourceHash": "sha256:5aff048fe4dde71c9afc24e735f4bb0ab0de45607a50755665a9bdd451cce549",
+  "runtimeHash": "sha256:47f89e3a45cafb5372d2b0cd57011d319cdc22c66ad5004b63724de3d70da011",
+  "fixtureHash": "sha256:9e1b68d8534a9644dbb632406857d53dcffa99403d3e309dc26250deffaf8182",
+  "placementHash": "sha256:ff3cff16c992aabf845bea347ec98d4689a096108b5531c4234627db6e5e5f57",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_ashlar": {
+      "path": "materials/stone_ashlar.matgraph.json",
+      "hash": "sha256:f5692cbd995206b1475a803b027d181a664bd3a20df51db34667f205abce8093"
+    },
+    "molen.worldgen.material.stone_basalt": {
+      "path": "materials/stone_basalt.matgraph.json",
+      "hash": "sha256:41efa6ad89840fdf50772224f4eabb544099dc0cafa791c3a85f916b44b9bf8c"
+    },
+    "molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-bridge.png",
+      "hash": "sha256:5f987c893ef5581105ac15492bebc9e5a6a8798f7f260f3b50864831a9b4807b",
+      "camera": {
+        "name": "main-street-noon-high",
+        "mediumName": "street-noon-high",
+        "group": "main",
+        "position": [
+          20,
+          12,
+          85
+        ],
+        "lookAt": [
+          0,
+          5,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "pont.vieux.of.beziers",
+        "visibleDraws": 4
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "liveSupportGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The existing stone_ashlar, stone_limestone and stone_basalt graphs are loaded once each for the close tiers. Four merged material bindings, metric UVs and linear palette colors; no private textures or embedded images. Paving and tiny iron-strap finishes intentionally approximate existing shared surfaces."
+}

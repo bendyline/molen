@@ -25,3 +25,10 @@ Accepted medium-fi exterior with picture/PMTiles approximate fitting. Two inspec
 - [Inspected picture 1](https://cdn.mos.cms.futurecdn.net/TwwgqCTqbfreXzKdTG2pvV.jpg) — actual pixels inspected; image not redistributed.
 - [Inspected picture 2](https://images.divisare.com/images/c_limit%2Cf_auto%2Ch_2000%2Cq_auto%2Cw_3000/v1/project_images/5115944/1004_FP345733_indesign/foster-partners-nigel-young-richard-bryant-swiss-re-hq-30-st-mary-axe.jpg) — actual pixels inspected; image not redistributed.
 - Standard viewer Protomaps20261008/Mapzen Terrarium PMTiles; controls/hashes retained in pmtiles-fit.json. ©OpenStreetMap contributors/ODbL, elevation attribution retained with the fit data.
+
+
+## Current Earth context refresh — 2026-10-31
+
+Inspected all 26 freshly rendered current-Earth context, mode, detail and four-tier transition images. The tapered rounded silhouette, six connected dark spiral bands, triangular glazing grid, crown and opposing ground braces remain legible across all four tiers. Close frames show deliberately finite facets and fine-line aliasing; exact doors, light wells and glass schedule remain reconstructed or excluded. Corrected whole-building framing uses context scale 4; neighbor buildings and source-local height correction remain synthetic/approximate context. No new terrain, survey, reference-research or physical-device performance claim.
+
+Only review-camera identifiers were normalized to hyphens and the synthetic Earth-context camera scale was increased to frame the whole tower. All six GLBs, shared-material bindings, portable scene/cameras and geographic placement remain unchanged. Previously inspected portable/shared/map evidence is retained, not relabeled as fresh renders. Six unchanged GLBs validate with zero errors/warnings/embedded images. Current hash bindings, four-tier budgets and shared graph hashes pass.

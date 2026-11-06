@@ -1,0 +1,15 @@
+# Albert Memorial — principal monument
+
+Reviewed 2026-11-02. **Complete medium-fi exterior; approximate native contact accepted.**
+
+All9 final portable views actually inspected. Complete principal stepped centralpodium/frieze,four clustered reddishcolumns withdarkbases/capitals andsupported sidefigures,four genuine pointed canopy openings/closedsoffits,theclosed crossing-gable roof/colored geometric inlays,four pinnacles,two genuinely pierced spire stages withclosed neck support,gold crown/cross,seated goldfigure/chair/plinth,andfour outer original animal/human allegory groups ontheir ownnative plinths. Added missing column-statuary brackets andjoined figure neck/seat contacts inthissamepass. Allgeometry isoriginal medium-fi interpretation;exactportraits/mosaics/lettering/sculptural likeness/vault detail arenot claimed.
+
+Q281465/retained exact precinct way372965954. Anchor[-.177681308,51.502385064],heading.11315986672389666,+X ENE,+Z SSE towardthefront seatedfigure/Royal Albert Hall,+Y up;10-degree uncertainty. Retained69.305by64.064m outline isprecinct,not a69m canopy. Actual currentcanopy component35184745054789 measures14.6by14.8m andiscentered atlocal[-.1763015,-3.5732855]. Fourouter allegory plinths35184745054790–793 arealso authored. Production removesexactlyfive components andpreserves118others,including separate southgatepiers5/6. Approximate54m wholeheight isfromordinarypicture descriptions;retained facts/currentmap haveno numericheight. Noencodedtile ID isasserted tobe anOSM elementID.
+
+All25 final standard-field/context,noon/late,economy/high,silhouette,detail andfour-tier views actually inspected. Two unchanged global Terrarium tiles. Onehost sample justoutside thecentralfront stair toe,local[-.1763015,11.5267145],absolute24.46188304348432m,supplies acommon datum;center25.795314m hasurbanreturns. Only theclosed occupied30m centralstep footprint andfour closed allegory plinths cutterrain. Theempty69by64m precinct,open gaps,gates/fence andneighbors remainnative. Coarseglobal slopeexposes additional lowerplinth support andchanges lowerstair contacts;accepted approximate visualization,not exacthistoric plinth/paving levels. Thewhole principalbody remains present/usable withallarches/groups visible. Synthetic neighbors arenot literalLondon reconstruction. No bespoke survey/archive/terrain research orprecinct flattening.
+
+Detailed source: 241595 triangles / 28995288 bytes. Browser tiers: 990 / 3966 / 11358 / 60795 triangles. Initial skyline plus district: 434524 bytes;close-up: 6062908 bytes. Six shared graphs,zero embedded images.
+
+Four focused tests pass;six GLBs validate without errors orwarnings. All43 final current render views wereactually inspected. Source/runtime/input andimage hashes plus exactcommands arein qa.json. Physical-device timings andnumerical LOD errors remainunmeasured.
+
+Rebuild: node packages/worldgen/scripts/generate-padrao-dos-descobrimentos.mjs;append --check toverify exactbytes. Import/LOD/placement select --ids=albert_memorial. GLBs remainignored buildoutputs.

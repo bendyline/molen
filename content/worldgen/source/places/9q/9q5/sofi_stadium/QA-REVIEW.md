@@ -54,3 +54,10 @@ https://commons.wikimedia.org/wiki/File:SoFi_Stadium_2022.jpg — PontiacAurora;
 https://commons.wikimedia.org/wiki/File:SoFi_Stadium_(Los_Angeles,_USA).jpg — Thank You (21 Millions+) views; CC-BY-2.0. Viewed only; no pixels copied.
 
 https://commons.wikimedia.org/wiki/File:Sofi_stadium_inside.jpg — DevvvyDevvv; CC-BY-3.0. Viewed only; no pixels copied.
+
+
+## Current shared-material/context review —2026-10-31
+
+Inspected32 new current Earth frames:8 shared-surface/detail/map views and24 context/mode/LOD views. The swept closed pale canopy,branched columns,sunken four-band bowl,hollow hanging oval display,entry openings and attached theater remain coherent. Near-line aliasing and the shared frit/canvas approximations remain visible and explicitly retained. All six GLBs,geometry,scene and map placement remain unchanged. Source photographs and native/map fit retain their previously documented scope. No new source research,survey or physical-device timing claim.
+
+Runtime triangles:836 / 3878 / 15728 / 39834. Initial skyline+district:460820bytes. Current shared graph hashes and all four LOD/mode captures are bound in qa.json. Near views show the actual simplified row bands and material patterns;far tiers intentionally aggregate rows and cladding. Fine lines can alias when a distance tier is forced close.

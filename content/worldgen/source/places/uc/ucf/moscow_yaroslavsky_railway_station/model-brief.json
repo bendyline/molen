@@ -1,0 +1,564 @@
+{
+  "id": "moscow_yaroslavsky_railway_station",
+  "title": "Moscow Yaroslavsky railway station",
+  "wikidataId": "Q55658542",
+  "referenceCoordinate": {
+    "longitude": 37.65736162662506,
+    "latitude": 55.7767766699601
+  },
+  "module": "content/worldgen/source/places/uc/ucf/moscow_yaroslavsky_railway_station/models/station-model.mjs",
+  "builder": "buildStationLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.88
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.9
+    },
+    "base": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.9
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.9
+    },
+    "mural": {
+      "slot": "wall",
+      "graph": "tile_glazed",
+      "roughness": 0.55
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.85
+    },
+    "canopy": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.82
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.8
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.4
+    },
+    "doorGlass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.4
+    }
+  },
+  "exportLabel": "Molen original complete Yaroslavsky passenger terminal source",
+  "expectedDraftMasterHash": "sha256:25c87873707683e6516c7dbaa55f8901988e448718230e7b3afcec5ef45389f9",
+  "visualBrief": "Complete individual Yaroslavsky passenger-terminal exterior: the whole named historic front headhouse and connected modern rear concourse, the entire mapped comb-shaped rear boarding canopy and each physically connected mapped passenger platform. Preserve the independent Leningradsky terminal and its many detailed mapped facade parts to the west, Kazansky terminal across the square, postal/rail service properties, streets and rail network. The candidate reference coordinate is in the northern yard; the named passenger-terminal footprint supplies the model anchor. No trains, people, branding, lettering, ticket interfaces or navigable railway interiors. No imagined future shared canopy between the independent terminals.",
+  "heightPolicy": "Standard 20261031 PMTiles physically associates the named Yaroslavsky Rail Terminal building/POI 52776559531195 with its complete two tile fragments and rear canopy 52776559531169. The ordinary front photo resolves asymmetric left spire, large eastern flared/tented roof, right turret, broad arched entry, grey-brown walls, pale trim and turquoise ceramic frieze. A 2026 yard picture establishes the open platform/track character but does not verify hidden terminal facades. Native main envelope height14m and rear canopy5m are retained as map facts; feature-specific roof/tower heights, wall bays, hidden facade details, floor/platform grades and current renovation state are explicit medium-fi estimates. Source hall and platform floors are +1.25m from one unchanged standard outside forecourt sample [10,69], 149.02778940000002m absolute datum. The native main envelope14m and boarding canopy5m are retained; western shaft19m/drum23.2m/spire42m/finial44.55m, broad eastern flared roof30.2m/crest32.7m and right turret26m are explicit picture-based estimates. Eight whole mapped platform islands are retained; a fixed transverse concrete boarding apron connects their noses to the rear canopy, without masking the rail corridor. Exact threshold, track-buffer and platform grades remain unverified.",
+  "nativeAxes": "+X ENE along the historic forecourt facade; -X WSW toward independent Leningradsky; +Z SSE toward Komsomolskaya Square; -Z NNW through Yaroslavsky passenger platforms/yard; +Y up.",
+  "sourceFacts": {
+    "nativePartFacts": [
+      {
+        "index": 737,
+        "id": 52776559531169,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 5
+        }
+      },
+      {
+        "index": 738,
+        "id": 52776559531195,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 14
+        }
+      },
+      {
+        "index": 970,
+        "id": 52776559531195,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 14
+        }
+      }
+    ],
+    "ownedNativeParts": 3,
+    "retainedNativeParts": 1494,
+    "namedTerminalId": 52776559531195,
+    "rearCanopyId": 52776559531169,
+    "originalCandidateReference": [
+      37.65407,
+      55.78379
+    ],
+    "platformIds": [
+      52776559531090,
+      52776559531145,
+      52776559531163,
+      52776559531164,
+      52776559531166,
+      52776559531167,
+      52776559531168,
+      52776559531171
+    ],
+    "platformCount": 8,
+    "floorHeight": 1.25,
+    "platformFloor": 1.25,
+    "mainEnvelope": 14,
+    "rearCanopy": 5,
+    "westernShaft": 19,
+    "westernDrum": 23.2,
+    "westernSpire": 42,
+    "spireFinial": 44.55,
+    "mainFlaredRoof": 30.2,
+    "mainCrest": 32.7,
+    "rightTurretRoof": 26,
+    "terrainReferenceLocal": [
+      10,
+      69
+    ],
+    "terrainTiles": 4,
+    "occupiedMasks": 1
+  },
+  "materialMethod": "Eight existing shared 256px graphs: brick, concrete_plain, stone_limestone, tile_glazed, slate, metal_standing_seam, metal_painted and window_grid. Eight merged near groups and one far palette group, metric UVs and linear colours. No embedded/private images. Turquoise ceramic frieze uses tile_glazed; actual glazing uses window_grid; brick masonry, pale trim, dark slate, concrete and metal retain their proper slots. The frieze is a shared tinted material, not copied artwork.",
+  "limitations": [
+    "Complete individual Yaroslavsky passenger-terminal exterior: the whole named historic front headhouse and connected modern rear concourse, the entire mapped comb-shaped rear boarding canopy and each physically connected mapped passenger platform. Preserve the independent Leningradsky terminal and its many detailed mapped facade parts to the west, Kazansky terminal across the square, postal/rail service properties, streets and rail network. The candidate reference coordinate is in the northern yard; the named passenger-terminal footprint supplies the model anchor. No trains, people, branding, lettering, ticket interfaces or navigable railway interiors. No imagined future shared canopy between the independent terminals.",
+    "Standard 20261031 PMTiles physically associates the named Yaroslavsky Rail Terminal building/POI 52776559531195 with its complete two tile fragments and rear canopy 52776559531169. The ordinary front photo resolves asymmetric left spire, large eastern flared/tented roof, right turret, broad arched entry, grey-brown walls, pale trim and turquoise ceramic frieze. A 2026 yard picture establishes the open platform/track character but does not verify hidden terminal facades. Native main envelope height14m and rear canopy5m are retained as map facts; feature-specific roof/tower heights, wall bays, hidden facade details, floor/platform grades and current renovation state are explicit medium-fi estimates. Source hall and platform floors are +1.25m from one unchanged standard outside forecourt sample [10,69], 149.02778940000002m absolute datum. The native main envelope14m and boarding canopy5m are retained; western shaft19m/drum23.2m/spire42m/finial44.55m, broad eastern flared roof30.2m/crest32.7m and right turret26m are explicit picture-based estimates. Eight whole mapped platform islands are retained; a fixed transverse concrete boarding apron connects their noses to the rear canopy, without masking the rail corridor. Exact threshold, track-buffer and platform grades remain unverified.",
+    "Two ordinary front/yard photographs and current standard PMTiles. Hidden facades, interior organization, present renovation details, intermediate levels, exact decorative motifs and tower/roof heights are medium-fi interpretations. Native 14m main envelope and 5m boarding canopy are map facts. Passenger platforms and a transverse apron retain physical continuity. Exact railway clearances and threshold grades remain unverified; ordinary viewer terrain contact must be checked before readiness. Independent Leningradsky, Kazansky, postal/rail properties and streets remain separate. Physical-device/dense-city timing and numerical LOD errors remain unmeasured.",
+    "Eight existing shared 256px graphs: brick, concrete_plain, stone_limestone, tile_glazed, slate, metal_standing_seam, metal_painted and window_grid. Eight merged near groups and one far palette group, metric UVs and linear colours. No embedded/private images. Turquoise ceramic frieze uses tile_glazed; actual glazing uses window_grid; brick masonry, pale trim, dark slate, concrete and metal retain their proper slots. The frieze is a shared tinted material, not copied artwork. Four whole-station tiers retain the asymmetric spire/flared roof/right turret, historic front and modern concourse, full boarding canopy and eight mapped platform islands. Near tiers add actual recesses, arch frames, roof seams/dormers/crest, rounded piers, canopy supports/braces, platform edge bands and facade bays. Decorative details and hidden surfaces are explicit simplified interpretations."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Yaroslavsky_rail_terminal_front_side.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Yaroslavsky_rail_terminal_front_side.jpg",
+      "observed": "Ordinary 2010 main-front photograph inspected: pale carved trim on grey-brown lower masonry, turquoise ceramic upper frieze, asymmetrical tall narrow left spire, broad eastern tented/flared roof with ornate ridge crest and small dormers, rounded flanking entrance piers, right square turret/steep roof, tall glazed central opening and large arched lower entrance, repeated ground arches and rectangular upper windows. No copied lettering, symbols, cars, overhead wires, brands or people."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:20260219_Yaroslavsky_rail_terminal_in_Moscow.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/64/20260219_Yaroslavsky_rail_terminal_in_Moscow.jpg",
+      "observed": "Ordinary February 2026 yard photograph inspected: long open paved platforms with concrete edges and exposed tracks/catenary. The background station/yard service buildings do not establish hidden passenger-terminal facade inventory. No copied train, snow layer, people or overhead wire inventory."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Complete individual Yaroslavsky passenger-terminal exterior: the whole named historic front headhouse and connected modern rear concourse, the entire mapped comb-shaped rear boarding canopy and each physically connected mapped passenger platform. Preserve the independent Leningradsky terminal and its many detailed mapped facade parts to the west, Kazansky terminal across the square, postal/rail service properties, streets and rail network. The candidate reference coordinate is in the northern yard; the named passenger-terminal footprint supplies the model anchor. No trains, people, branding, lettering, ticket interfaces or navigable railway interiors. No imagined future shared canopy between the independent terminals. Standard 20261031 PMTiles physically associates the named Yaroslavsky Rail Terminal building/POI 52776559531195 with its complete two tile fragments and rear canopy 52776559531169. The ordinary front photo resolves asymmetric left spire, large eastern flared/tented roof, right turret, broad arched entry, grey-brown walls, pale trim and turquoise ceramic frieze. A 2026 yard picture establishes the open platform/track character but does not verify hidden terminal facades. Native main envelope height14m and rear canopy5m are retained as map facts; feature-specific roof/tower heights, wall bays, hidden facade details, floor/platform grades and current renovation state are explicit medium-fi estimates. Source hall and platform floors are +1.25m from one unchanged standard outside forecourt sample [10,69], 149.02778940000002m absolute datum. The native main envelope14m and boarding canopy5m are retained; western shaft19m/drum23.2m/spire42m/finial44.55m, broad eastern flared roof30.2m/crest32.7m and right turret26m are explicit picture-based estimates. Eight whole mapped platform islands are retained; a fixed transverse concrete boarding apron connects their noses to the rear canopy, without masking the rail corridor. Exact threshold, track-buffer and platform grades remain unverified."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "historic-front",
+      "position": [
+        140,
+        90,
+        190
+      ],
+      "lookAt": [
+        0,
+        15,
+        -8
+      ],
+      "fov": 52
+    },
+    {
+      "name": "spire-and-ceramic-frieze",
+      "position": [
+        -100,
+        36,
+        110
+      ],
+      "lookAt": [
+        -25,
+        20,
+        42
+      ],
+      "fov": 52
+    },
+    {
+      "name": "main-flared-roof-and-entry",
+      "position": [
+        60,
+        27,
+        110
+      ],
+      "lookAt": [
+        18,
+        16,
+        48
+      ],
+      "fov": 52
+    },
+    {
+      "name": "modern-concourse-and-canopy",
+      "position": [
+        -110,
+        50,
+        -130
+      ],
+      "lookAt": [
+        -5,
+        9,
+        -25
+      ],
+      "fov": 52
+    },
+    {
+      "name": "whole-passenger-platforms",
+      "position": [
+        330,
+        260,
+        430
+      ],
+      "lookAt": [
+        -5,
+        8,
+        -230
+      ],
+      "fov": 52
+    },
+    {
+      "name": "boarding-canopy-soffit",
+      "position": [
+        45,
+        5,
+        -105
+      ],
+      "lookAt": [
+        -20,
+        4,
+        -70
+      ],
+      "fov": 52
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.4,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucf/moscow_yaroslavsky_railway_station/models/station-model.mjs",
+    "export": "buildStationSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.88
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.9
+      },
+      "base": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.9
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.9
+      },
+      "mural": {
+        "slot": "wall",
+        "graph": "tile_glazed",
+        "roughness": 0.55
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.85
+      },
+      "canopy": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.82
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.8
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.4
+      },
+      "doorGlass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.4
+      }
+    },
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStationDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.88
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "mural": {
+            "slot": "wall",
+            "graph": "tile_glazed",
+            "roughness": 0.55
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          }
+        },
+        "errorMeters": 1.2
+      },
+      "street": {
+        "export": "buildStationStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.88
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "mural": {
+            "slot": "wall",
+            "graph": "tile_glazed",
+            "roughness": 0.55
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          }
+        },
+        "errorMeters": 0.5
+      },
+      "closeup": {
+        "export": "buildStationCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.88
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "mural": {
+            "slot": "wall",
+            "graph": "tile_glazed",
+            "roughness": 0.55
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          }
+        },
+        "errorMeters": 0.18
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-yaroslavsky-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        140,
+        90,
+        190
+      ],
+      "lookAt": [
+        0,
+        15,
+        -8
+      ]
+    },
+    {
+      "name": "whole-yaroslavsky-district",
+      "reviewLod": "district",
+      "position": [
+        140,
+        90,
+        190
+      ],
+      "lookAt": [
+        0,
+        15,
+        -8
+      ]
+    },
+    {
+      "name": "whole-yaroslavsky-street",
+      "reviewLod": "street",
+      "position": [
+        140,
+        90,
+        190
+      ],
+      "lookAt": [
+        0,
+        15,
+        -8
+      ]
+    },
+    {
+      "name": "whole-yaroslavsky-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        140,
+        90,
+        190
+      ],
+      "lookAt": [
+        0,
+        15,
+        -8
+      ]
+    }
+  ]
+}

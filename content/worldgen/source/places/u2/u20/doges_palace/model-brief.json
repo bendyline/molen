@@ -1,0 +1,514 @@
+{
+  "id": "doges_palace",
+  "title": "Doge’s Palace",
+  "wikidataId": "Q189883",
+  "referenceCoordinate": {
+    "longitude": 12.340244206,
+    "latitude": 45.434212915
+  },
+  "module": "content/worldgen/source/places/u2/u20/doges_palace/models/doges-model.mjs",
+  "builder": "buildDogesLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.35
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.4,
+      "metallic": 0.05
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_painted_lap",
+      "roughness": 0.8,
+      "metallic": 0
+    }
+  },
+  "exportLabel": "Molen original Doge Palace complete principal exterior shared surfaces source",
+  "expectedDraftMasterHash": "sha256:f786fd979b6c9daf9e3ec83815a63298b080db996fe32fa849ecf4b884b42629",
+  "visualBrief": "Complete principal Doge’s Palace exterior and attached mapped north/east range, main open courtyard, Giants Staircase/landing, both two-level open south/west colonnades and three two-level court galleries, upper pointed windows, balconies, pale sheet-metal roof ranges and Gothic parapet pinnacles. Adjacent Basilica,Campanile,Bridge of Sighs,prisons andcanals remain context.",
+  "heightPolicy": "Picture-guided relative heights with retained PMTiles partheights on an approximate13m reference from the unchanged standard global Terrarium field. Venice urban DEM returns are substantially above actual tidal datum;this is approximate viewer contact,not surveyed quay or historic floor elevation. No flattening or bespoke data.",
+  "nativeAxes": "+X SSE toward lagoon/south arcade; -X NNW attached eastern range/basilica side; +Z WSW Piazzetta/west arcade; -Z ENE Rio del Palazzo canal. +Y up.",
+  "sourceFacts": {
+    "mappedLengthMeters": 145.615,
+    "mappedWidthMeters": 77.302,
+    "modelDatumMeters": 13,
+    "ownedMapComponents": 15,
+    "preservedNativeComponents": 514,
+    "terrainTiles": 1,
+    "heightBasis": "Picture-guided relative heights with retained PMTiles partheights on an approximate13m reference from the unchanged standard global Terrarium field. Venice urban DEM returns are substantially above actual tidal datum;this is approximate viewer contact,not surveyed quay or historic floor elevation. No flattening or bespoke data."
+  },
+  "limitations": [
+    "Complete principal Doge’s Palace exterior and attached mapped north/east range, main open courtyard, Giants Staircase/landing, both two-level open south/west colonnades and three two-level court galleries, upper pointed windows, balconies, pale sheet-metal roof ranges and Gothic parapet pinnacles. Adjacent Basilica,Campanile,Bridge of Sighs,prisons andcanals remain context.",
+    "Picture-guided relative heights with retained PMTiles partheights on an approximate13m reference from the unchanged standard global Terrarium field. Venice urban DEM returns are substantially above actual tidal datum;this is approximate viewer contact,not surveyed quay or historic floor elevation. No flattening or bespoke data.",
+    "Fine relief,statues,tracery,window counts,hidden roofs andhistoric floorlevels are original approximations. No interiors,copied graphics,arms orprivate texturecopies. Four browser tiers preserve whole massing andcourt;far tiers simplify arcades/ornament. Physical-device timing unmeasured.",
+    "Six existing 256px limestone,brick,granite,painted metal,window grid andpainted wood graphs;metric UVs andlinear colors. Skyline preserves whole source massing andcourt;district coarsens open arcade rhythm;street preserves both full arcade levels withsimple frieze;close-up adds pierced quatrefoils/marble inlay/pinnacles. Source retains fine roof seams andprofiles. Error estimates3/1.5/.7/.25m andphysical timing remain unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://www.brasilnaitalia.net/2023/01/palacio-ducal-veneza.html",
+      "observed": "Aerial actually inspected: pink-and-white diamond-inlaid upper western range, two open stacked arcades below, large pointed upper windows and projecting center balcony. Pale gray sheet-metal hips with Gothic pinnacles,open principal court and taller pale Renaissance canal range. Northern attached buildings meet the independent basilica;do not substitute a plain isolated rectangular shell."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Palazzo_ducale,_scala_dei_giganti_02.jpg",
+      "observed": "Courtyard stair actually inspected: broad straight supported marble stair to the upper gallery,solid side balustrades,pedestals with two original simplified figures,round ground arches and pointed upper arches. Three upper openings behind landing andclosed rear gallery wall;no invented black doorway painted on a blank wall."
+    },
+    {
+      "url": "https://www.nationsonline.org/oneworld/map/Mediterranean-Region-Map.htm",
+      "observed": "Lagoon/canal actually inspected: two true open arcade levels along the lagoon andwest front;stone diamond inlays over them,large pointed glazed windows,central balcony andthin pinnacle silhouette. The east side has red brick andpale surrounds adjoining a taller white Renaissance range;Bridge of Sighs andPonte della Paglia are independent context."
+    },
+    {
+      "url": "https://www.openstreetmap.org/way/138803915",
+      "observed": "Retained whole parent and15 actual attached palace components;514 independent native features remain context."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-palace-lagoon-and-west-colonnades",
+      "position": [
+        150,
+        85,
+        125
+      ],
+      "lookAt": [
+        10,
+        12,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "whole-northern-attached-range-and-canal-side",
+      "position": [
+        -140,
+        85,
+        -120
+      ],
+      "lookAt": [
+        -10,
+        13,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "whole-native-footprint-and-open-court",
+      "position": [
+        0,
+        220,
+        0
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "south-double-open-arcades-and-upper-windows",
+      "position": [
+        118,
+        13,
+        0
+      ],
+      "lookAt": [
+        70,
+        12,
+        0
+      ],
+      "fov": 65
+    },
+    {
+      "name": "west-marble-inlay-balcony-and-pinnacles",
+      "position": [
+        35,
+        18,
+        88
+      ],
+      "lookAt": [
+        35,
+        15,
+        36
+      ],
+      "fov": 65
+    },
+    {
+      "name": "inside-ground-colonnade-and-closed-rear-door",
+      "position": [
+        71,
+        2.4,
+        -16
+      ],
+      "lookAt": [
+        68,
+        2.7,
+        -8
+      ],
+      "fov": 66
+    },
+    {
+      "name": "courtyard-giants-stair-and-upper-gallery",
+      "position": [
+        6,
+        4,
+        7
+      ],
+      "lookAt": [
+        -10,
+        7,
+        -11
+      ],
+      "fov": 65
+    },
+    {
+      "name": "upper-quatrefoil-frieze-and-real-soffits",
+      "position": [
+        92,
+        10,
+        8
+      ],
+      "lookAt": [
+        72,
+        11.6,
+        8
+      ],
+      "fov": 57
+    },
+    {
+      "name": "native-north-east-extension-hip-roof-joints",
+      "position": [
+        -95,
+        65,
+        -70
+      ],
+      "lookAt": [
+        -35,
+        17,
+        -25
+      ],
+      "fov": 57
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u2/u20/doges_palace/models/doges-model.mjs",
+    "export": "buildDogesSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.4,
+        "metallic": 0.05
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_painted_lap",
+        "roughness": 0.8,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDogesDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "street": {
+        "export": "buildDogesStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.7
+      },
+      "closeup": {
+        "export": "buildDogesCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.25
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-palace-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        150,
+        85,
+        125
+      ],
+      "lookAt": [
+        10,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "whole-palace-district",
+      "reviewLod": "district",
+      "position": [
+        150,
+        85,
+        125
+      ],
+      "lookAt": [
+        10,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "whole-palace-street",
+      "reviewLod": "street",
+      "position": [
+        150,
+        85,
+        125
+      ],
+      "lookAt": [
+        10,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "whole-palace-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        150,
+        85,
+        125
+      ],
+      "lookAt": [
+        10,
+        12,
+        0
+      ]
+    }
+  ]
+}

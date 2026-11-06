@@ -1,0 +1,381 @@
+{
+  "id": "kyiv_hydroelectric_power_plant",
+  "title": "Kyiv Hydroelectric Power Plant",
+  "wikidataId": "Q3443779",
+  "referenceCoordinate": {
+    "longitude": 30.5116981667226,
+    "latitude": 50.588373212230145
+  },
+  "module": "content/worldgen/source/places/u8/u8v/kyiv_hydroelectric_power_plant/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "body": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "pale": {
+      "slot": "trim",
+      "graph": "concrete_plain"
+    },
+    "asphalt": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "dark": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "blue": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    }
+  },
+  "exportLabel": "Molen original Kyiv Hydroelectric Power Plant, crest, gantries and ship lock",
+  "expectedDraftMasterHash": "sha256:010fdeab1d1e5f6bda2782ce51efe0eda9db783461b27536b42f2382e78757e6",
+  "visualBrief": "Kyiv Hydroelectric Power Plant’s 288 m low spillway-powerhouse exterior with paired recessed bays, two blue gantries, control tower, downstream quay walls, navigation lock and road bridge.",
+  "heightPolicy": "The signed vertical origin is 98.004144 m. The crest road is approximately 107.2 m. The design review uses 103 m headwater, 91.5 m tailwater and 96.1 m illustrative chamber stage.",
+  "nativeAxes": "+X runs east-southeast along the main crown road and +Z runs south-southwest downstream.",
+  "sourceFacts": {
+    "mappedIdentity": "Q3443779",
+    "nativeWaterIds": [
+      16059383,
+      663983,
+      12958105052
+    ],
+    "crestElevation": 107.2,
+    "documentedCrestLengthMeters": 288,
+    "spillwayBays": 20,
+    "gantries": 2,
+    "lockWidthMeters": 18,
+    "lockBridgeFeatureId": 35184399174679,
+    "referenceEpoch": "2018–2021",
+    "terrainTiles": 7
+  },
+  "materialMethod": "Shared board-formed and plain concrete, painted steel, standing seam roofing and glazing with metric UVs and zero embedded images.",
+  "limitations": [
+    "The signed vertical origin is 98.004144 m. The crest road is approximately 107.2 m. The design review uses 103 m headwater, 91.5 m tailwater and 96.1 m illustrative chamber stage.",
+    "The published exterior reference dates are August 2018 for the plant and June 2021 for the lock. The model records that appearance, and current repair-era exterior and equipment are unverified.",
+    "The crest road, lock and bridge are located from PMTiles. Gate elevations, the low crown grade and some equipment dimensions are exterior approximations.",
+    "The standard terrain gives 98.65 m upstream and 90.65 m downstream. The illustrative lock chamber, closed gate configuration and static water are review fixtures. Adjacent dikes and buildings stay native."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Київська_ГЕС.jpg",
+      "observed": "August 2018 owner aerial shows the low powerhouse, sloping concrete supports, separate crown road, two blue gantries, white control tower and angular downstream quay walls."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Вышгород_открытие_шлюзов_на_Киевской_ГЭС.jpg",
+      "observed": "June 2021 lock photo shows deep vertical chamber walls, upstream cross gate, downstream miter leaves and two yellow operating columns."
+    },
+    {
+      "url": "https://www.uhe.gov.ua/media_tsentr/novyny/ukrgidroenergo-zapobigae-negativnim-naslidkam-pavodku-na-richkakh-karpatskogo",
+      "observed": "Historical operator bulletin provides representative Kyiv Reservoir and lower Dnipro cascade stage ranges."
+    },
+    {
+      "url": "https://www.kmu.gov.ua/en/news/minfin-iebrr-spriamuie-75-mln-ievro-kredytu-na-finansuvannia-proektu-ukrhidroenerho-z-reahuvannia-na-enerhetychni-nadzvychaini-sytuatsii",
+      "observed": "January 2026 government release includes the Kyiv HPP and PSP cascade in the recovery program. The model uses the dated published exterior references."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The native crown road and headwater and tailwater boundaries locate the plant. The two mapped lock polygons establish the independent lock axis."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "downstream-overview",
+      "position": [
+        -175,
+        107,
+        395
+      ],
+      "lookAt": [
+        -77,
+        0,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "spillway-and-road",
+      "position": [
+        86,
+        20,
+        78
+      ],
+      "lookAt": [
+        9,
+        2.6,
+        3.8
+      ],
+      "fov": 50
+    },
+    {
+      "name": "gantry-and-control-tower",
+      "position": [
+        -154,
+        32,
+        -105
+      ],
+      "lookAt": [
+        -158,
+        16,
+        -23
+      ],
+      "fov": 50
+    },
+    {
+      "name": "lock-and-road-bridge",
+      "position": [
+        -395,
+        39,
+        35
+      ],
+      "lookAt": [
+        -389,
+        2,
+        -91
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upstream-complex",
+      "position": [
+        -100,
+        132,
+        -560
+      ],
+      "lookAt": [
+        -90,
+        2,
+        -22
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -12,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -69,
+        3,
+        -3
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u8/u8v/kyiv_hydroelectric_power_plant/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "body": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "pale": {
+        "slot": "trim",
+        "graph": "concrete_plain"
+      },
+      "asphalt": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "blue": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "body": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "asphalt": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "body": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "asphalt": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "body": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "asphalt": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "kyiv-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -175,
+        107,
+        395
+      ],
+      "lookAt": [
+        -77,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "kyiv-district",
+      "reviewLod": "district",
+      "position": [
+        -175,
+        107,
+        395
+      ],
+      "lookAt": [
+        -77,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "kyiv-street",
+      "reviewLod": "street",
+      "position": [
+        -175,
+        107,
+        395
+      ],
+      "lookAt": [
+        -77,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "kyiv-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -175,
+        107,
+        395
+      ],
+      "lookAt": [
+        -77,
+        0,
+        0
+      ]
+    }
+  ]
+}

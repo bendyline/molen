@@ -1,0 +1,503 @@
+{
+  "id": "bodrum_castle",
+  "title": "Bodrum Castle",
+  "wikidataId": "Q1113602",
+  "referenceCoordinate": {
+    "longitude": 27.429444444,
+    "latitude": 37.031666666
+  },
+  "module": "content/worldgen/source/places/sw/swe/bodrum_castle/models/bodrum-model.mjs",
+  "builder": "buildBodrumLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "ground": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.2
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.3,
+      "metallic": 0.1
+    }
+  },
+  "exportLabel": "Molen complete Bodrum Castle original curtain walls open baileys separate towers chapel minaret and ranges source",
+  "expectedDraftMasterHash": "sha256:638e57a6c70aef84c8bc808b4007f9a07b72e5dceb0ad452936ee75f4d5d9f88",
+  "visualBrief": "Complete original Bodrum coastal fortress: irregular hollow outer/double curtain walls, open stepped baileys, separate French/Italian/English/German/round/D-shaped towers, low museum ranges, Gothic tile-roof chapel with pale minaret and low bath dome; mapped entrance paths remain physically open.",
+  "nativeAxes": "+X ESE toward the east bay,-X WNW toward the marina;+Z SSW toward the seaward/south peninsula tip,-Z NNE toward the town/landward approach;+Y up. The mapped chapel is at local[-29.010,56.713]; the principal east/west tower pair is near[39,30]/[14,34]. Fine named tower association remains original picture/map interpretation.",
+  "sourceFacts": {
+    "mappedLengthMeters": 208.941,
+    "mappedWidthMeters": 173.868,
+    "frenchTowerTopAboveSeaLevelMeters": 47.5,
+    "heightSource": "https://muze.gov.tr/muze-detay?DistId=BSA&SectionId=BSA04",
+    "heightBasis": "Ordinary official visitor description, not a measured drawing or engineering survey.",
+    "modelDatumMeters": 9,
+    "terrainTiles": 1,
+    "ownedMapComponents": 21
+  },
+  "limitations": [
+    "Complete original castle exterior: full irregular outer/double curtain walls, open upper/lower baileys and stepped stone terraces, distinct French/Italian/English/German/round towers and bastions, chapel with minaret, low bath roof, internal museum/range roofs, entry bridges/gates/steps and physically open passages. Town/marina/boats/water, trees/planting, temporary archaeological display objects, museum fit-out and underground chambers are excluded. Original geometry from four inspected ordinary pictures and standard PMTiles/terrain. No downloaded meshes, bespoke survey, PDF or archival research.",
+    "Retained map supplies plan dimensions and internal footprints but no reliable wall/tower heights. The ordinary official museum visitor page describes the French Tower as47.50m above sea level; use that as a total envelope with explicit original photo-proportional reconstruction. Do not turn it into a47.5m building height above the local hill. Other vertical levels and current gateway/terrace/site grades remain approximate, not surveyed. Original local tower crests:French38.5m(47.5m above sea),Italian32.3m/34.5m roof house,English30.5m,German26.2m,round21m,D-shaped22.3m. Chapel7.5m floor/14.8m eaves/18.5m ridge;minaret33.5m tip. All except French total are original picture proportions, not surveyed. +X ESE toward the east bay,-X WNW toward the marina;+Z SSW toward the seaward/south peninsula tip,-Z NNE toward the town/landward approach;+Y up. The mapped chapel is at local[-29.010,56.713]; the principal east/west tower pair is near[39,30]/[14,34]. Fine named tower association remains original picture/map interpretation.",
+    "The one unmodified129x129/4m field covers512m and oversamples a coarse global peninsula DEM.9m rounded datum is approximate; roof/wall/terrace/curb/gateway/accessibility levels and fine tower-name/opening/crenellation inventories require original photo-proportional interpretation. Do not flatten the hill. Structural raised platforms/retaining walls may be modeled; terrain, sea, landscaping and archaeological exhibit contents remain host data/context. Four pictures inspected; three additional Commons originals were not retrieved/inspected. Current authoring/visual acceptance is recorded separately; intermediary levels and tower naming remain approximate. Original gateways aligned with retained PMTiles footway intersections. These establish two physically open curtain-wall passages; exact historical seven-gate inventory and fine levels are not asserted. Southern bath/range passages and site steps remain original approximate interpretation. The original compound has separate outer/inner curtain walls, all21 owned map structures, six principal tower masses, chapel/minaret and low bath/ranges. Gardens, archaeological displays and modern temporary exhibit canopies are excluded. Only the French47.5m sea-level envelope is retained height evidence; all other heights and fine tower/bath naming are original approximations.",
+    "Six existing256px limestone, weathered-stone, granite, ceramic tile, painted-metal and window-grid graphs; metric UVs/linear vertex colors. No private/new/embedded image copies, baked shadows, reflections, signage or night lights. Glazing opaque; portable/shared appearances differ.",
+    "Unmodified129x129/4m standard field covers512m across one global coarse peninsula tile;9m rounded datum. Sampled foundations and original retaining terraces connect to the field without flattening. Walk/gateway/floor/accessibility levels are original approximations. Far walls, steps, crenellations and small roofs aggregate. Tier errors10/5/2/.7m are estimates, not measured mesh distances. Physical laptop/phone/dense-city timings remain unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://www.aa.com.tr/tr/kultur-sanat/yenilenen-bodrum-kalesini-165-bin-kisi-ziyaret-etti-/2481387",
+      "observed": "Actually inspected cropped aerial of the restored upper bailey: a circular crenellated tower and adjacent D-shaped/rounded tower, open stone courts, terraced walks/stairs, low double walls, large square tower masses and modern small glass exhibition cover. It does not show the entire castle; do not treat it as a complete site survey. Trees/exhibits/water are context, not copied textures."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bodrum%20Museum%20View%20from%20above%20bath%20to%20Mosque%2C%20Italian%20and%20French%20tower%20and%20English%20Tower%20in%202015%203689.jpg",
+      "observed": "Actually inspected ordinary upper-court view: small Gothic chapel with terracotta gable roof and pointed windows/portal, pale round minaret, broad square stone towers, irregular crenellated parapets and stepped stone walks/walls. A low bath dome with round rooflights is visible near the viewpoint. Preserve distinct building levels and open court spaces; exact internal inventories remain approximate."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bodrum%20Museum%20French%20Tower%20in%202015%203681.jpg",
+      "observed": "Actually inspected ordinary French Tower close view: near-square battered/pale mixed-stone body, high slit/arched window and small lower doorway, projecting corbels and stepped merlons. Fine masonry joints, individual reliefs and ornament counts are not measured or copied as private textures."
+    },
+    {
+      "url": "https://www.avecrentacar.com/tr/bodrum-gezilecek-yerler-kiralik-araba-ile-bodrum-gezilecek-parklar-ve-tarihi-yerler-s2",
+      "observed": "Actually inspected whole-castle aerial overview: full rocky peninsula perimeter and double curtain walls, five principal tower masses, open upper/lower courtyards and internal ranges, chapel/minaret near the western side, distinct French/Italian high pair and tall English tower at the far seaward corner. Outer walls follow the shoreline; the retained polygon is a wall perimeter rather than a solid building footprint. Marina, town, trees, sea and boats are excluded from the structure mesh."
+    },
+    {
+      "url": "https://www.openstreetmap.org/way/29094795",
+      "observed": "Retained castle perimeter and21 actual owned native wall/building components. Outer footprint is a wall boundary, not a roofed building."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-marina-and-seaward-fortress",
+      "position": [
+        -225,
+        165,
+        230
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "complete-town-and-east-fortress",
+      "position": [
+        240,
+        170,
+        -235
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "whole-open-baileys-and-double-walls",
+      "position": [
+        0,
+        270,
+        0
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "french-italian-square-towers-and-upper-court",
+      "position": [
+        80,
+        65,
+        85
+      ],
+      "lookAt": [
+        26,
+        24,
+        34
+      ],
+      "fov": 51
+    },
+    {
+      "name": "chapel-gothic-gable-minaret-and-bath",
+      "position": [
+        -80,
+        33,
+        98
+      ],
+      "lookAt": [
+        -34,
+        16,
+        60
+      ],
+      "fov": 51
+    },
+    {
+      "name": "round-and-d-shaped-northern-towers",
+      "position": [
+        -5,
+        58,
+        -80
+      ],
+      "lookAt": [
+        25,
+        15,
+        -27
+      ],
+      "fov": 51
+    },
+    {
+      "name": "english-seaward-corner-tower-and-curtains",
+      "position": [
+        135,
+        45,
+        130
+      ],
+      "lookAt": [
+        78,
+        15,
+        75
+      ],
+      "fov": 51
+    },
+    {
+      "name": "actual-marina-gateway-open-passage",
+      "position": [
+        -91,
+        4.2,
+        -25.3
+      ],
+      "lookAt": [
+        -68,
+        4.2,
+        -16.8
+      ],
+      "fov": 51
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sw/swe/bodrum_castle/models/bodrum-model.mjs",
+    "export": "buildBodrumSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "ground": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.2
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.3,
+        "metallic": 0.1
+      }
+    },
+    "errorMeters": 10,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBodrumDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.1
+          }
+        },
+        "errorMeters": 5
+      },
+      "street": {
+        "export": "buildBodrumStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.1
+          }
+        },
+        "errorMeters": 2
+      },
+      "closeup": {
+        "export": "buildBodrumCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.1
+          }
+        },
+        "errorMeters": 0.7
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "complete-fortress-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -225,
+        165,
+        230
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "complete-fortress-district",
+      "reviewLod": "district",
+      "position": [
+        -225,
+        165,
+        230
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "complete-fortress-street",
+      "reviewLod": "street",
+      "position": [
+        -225,
+        165,
+        230
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "complete-fortress-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -225,
+        165,
+        230
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "street-chapel-minaret-and-bath",
+      "reviewLod": "street",
+      "position": [
+        -80,
+        33,
+        98
+      ],
+      "lookAt": [
+        -34,
+        16,
+        60
+      ]
+    },
+    {
+      "name": "closeup-french-italian-open-courts",
+      "reviewLod": "closeup",
+      "position": [
+        80,
+        65,
+        85
+      ],
+      "lookAt": [
+        26,
+        24,
+        34
+      ]
+    }
+  ]
+}

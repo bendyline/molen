@@ -1,0 +1,240 @@
+{
+  "sourceUrl": "https://storage.googleapis.com/open-buildings-data/v3/polygons_s2_level_4_gzip/903_buildings.csv.gz",
+  "release": "Google Open Buildings v3 May2023 inference",
+  "originalDatasetSha256": "sha256:a3a20d797f23abf9159ecef10b2355be9f8f87aa3b7b67f96ad1537f8529e400",
+  "footprintThresholdRecord": {
+    "s2_token": "903",
+    "geometry": "POLYGON ((-84.94013115373588 0, -84.94013115373588 -5.040252729758283, -79.38034472384487 -4.973642825000524, -79.38034472384487 0, -84.94013115373588 0))",
+    "confidence_threshold_80%_precision": "0.780",
+    "confidence_threshold_85%_precision": "0.823",
+    "confidence_threshold_90%_precision": "0.870",
+    "building_count_80%_precision": "2418703",
+    "building_count_85%_precision": "1590087",
+    "building_count_90%_precision": "636830",
+    "building_count": "4140157",
+    "num_samples": "9146"
+  },
+  "sourceLicense": "Google original v3 numerical footprint and numerical height data dual CC BY 4.0 / ODbL, selected ODbL. No imagery used.",
+  "modelRecord": {
+    "sourceId": "google-open-buildings:6792W3X4+WCGG",
+    "originalCsvRow": {
+      "latitude": "-2.05018833",
+      "longitude": "-79.94391868",
+      "area_in_meters": "83.1404",
+      "confidence": "0.8392",
+      "geometry": "POLYGON((-79.9438700274329 -2.05021989251673, -79.9438907013674 -2.05013734534511, -79.9439673461599 -2.05015677540407, -79.9439466722281 -2.05023932257857, -79.9438700274329 -2.05021989251673))",
+      "full_plus_code": "6792W3X4+WCGG"
+    },
+    "footprintConfidence": 0.8392,
+    "pavilion": 12,
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -79.9438700274329,
+            -2.05021989251673
+          ],
+          [
+            -79.9438907013674,
+            -2.05013734534511
+          ],
+          [
+            -79.9439673461599,
+            -2.05015677540407
+          ],
+          [
+            -79.9439466722281,
+            -2.05023932257857
+          ],
+          [
+            -79.9438700274329,
+            -2.05021989251673
+          ]
+        ]
+      ]
+    },
+    "heightSource": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/902d4_2023_06_30/tile_FRzHb_Wx0jw.tif",
+    "heightSourceYear": 2023,
+    "heightBand": 1,
+    "presenceBand": 2,
+    "sourceBandDescriptions": [
+      {
+        "sample": 0,
+        "meta": {
+          "DESCRIPTION": "building_fractional_count"
+        }
+      },
+      {
+        "sample": 1,
+        "meta": {
+          "DESCRIPTION": "building_height"
+        }
+      },
+      {
+        "sample": 2,
+        "meta": {
+          "DESCRIPTION": "building_presence"
+        }
+      }
+    ],
+    "samplingStepMeters": 4,
+    "confidenceThreshold": 0.7,
+    "samples": [
+      {
+        "pixel": [
+          11807,
+          11334
+        ],
+        "utm": [
+          617443.75,
+          9773356.75
+        ],
+        "values": [
+          0.002599653322249651,
+          3.5,
+          0.6200000047683716
+        ]
+      },
+      {
+        "pixel": [
+          11815,
+          11334
+        ],
+        "utm": [
+          617447.75,
+          9773356.75
+        ],
+        "values": [
+          0.0056325821205973625,
+          4,
+          0.699999988079071
+        ]
+      },
+      {
+        "pixel": [
+          11807,
+          11342
+        ],
+        "utm": [
+          617443.75,
+          9773352.75
+        ],
+        "values": [
+          0.001733102253638208,
+          3.5,
+          0.6200000047683716
+        ]
+      },
+      {
+        "pixel": [
+          11815,
+          11342
+        ],
+        "utm": [
+          617447.75,
+          9773352.75
+        ],
+        "values": [
+          0.0060658580623567104,
+          4,
+          0.7799999713897705
+        ]
+      },
+      {
+        "pixel": [
+          11823,
+          11342
+        ],
+        "utm": [
+          617451.75,
+          9773352.75
+        ],
+        "values": [
+          0.0012998266611248255,
+          2.5,
+          0.5
+        ]
+      },
+      {
+        "pixel": [
+          11815,
+          11350
+        ],
+        "utm": [
+          617447.75,
+          9773348.75
+        ],
+        "values": [
+          0.000433275563409552,
+          5,
+          0.5
+        ]
+      }
+    ],
+    "selectedSamples": 1,
+    "heightSummary": {
+      "min": 4,
+      "median": 4,
+      "max": 4,
+      "q25": 4,
+      "q75": 4
+    },
+    "limitations": "Heights are learned numerical estimates at effective 4 m resolution, not a surveyed roof profile or floor census. Confidence is a relative rank, not a probability. Ecuador performance is not established by the Global North evaluation. Use at least 3 m height uncertainty; all imagery unused."
+  },
+  "compoundIdentity": {
+    "originalSource": "https://build.protomaps.com/20261029.pmtiles",
+    "poi": {
+      "id": "pois/35185886821932",
+      "properties": {
+        "name": "Pabellón 12",
+        "kind": "residential",
+        "min_zoom": 15
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.94415432214737,
+          -2.0503953265934456
+        ]
+      }
+    },
+    "area": {
+      "id": "landuse/35185886821932",
+      "properties": {
+        "sort_rank": 189,
+        "kind": "residential"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -79.94456201791763,
+              -2.0503149118399904
+            ],
+            [
+              -79.9438351392746,
+              -2.0501299578916843
+            ],
+            [
+              -79.9437466263771,
+              -2.050475741342865
+            ],
+            [
+              -79.94447350502014,
+              -2.0506446123035005
+            ],
+            [
+              -79.94456201791763,
+              -2.0503149118399904
+            ]
+          ]
+        ]
+      }
+    },
+    "role": "Pavilion 12 compound identity only; not a roof or a replacement building boundary."
+  },
+  "fullRecordSnapshotHash": "sha256:5a2c2e98b54027cba85caace0e4cd4d9ccc579499d51a830347214310ddeb295",
+  "heightSnapshotHash": "sha256:aee2cb27a684ffa20222f4971ff9a6caa710625b017559d04ec4f19d810e0657"
+}

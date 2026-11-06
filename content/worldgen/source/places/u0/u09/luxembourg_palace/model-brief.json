@@ -1,0 +1,500 @@
+{
+  "id": "luxembourg_palace",
+  "title": "Luxembourg Palace",
+  "wikidataId": "Q329852",
+  "referenceCoordinate": {
+    "longitude": 2.337109238,
+    "latitude": 48.848557996
+  },
+  "module": "content/worldgen/source/places/u0/u09/luxembourg_palace/models/luxembourg-model.mjs",
+  "builder": "buildLuxembourgLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.78,
+      "metallic": 0.05
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.25
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.38,
+      "metallic": 0.05
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_painted_lap",
+      "roughness": 0.8,
+      "metallic": 0
+    }
+  },
+  "exportLabel": "Molen original Luxembourg Palace complete individual exterior",
+  "expectedDraftMasterHash": "sha256:5ab906e8850cdc000fbcfd9bd723648d11f08899875fb3088fdb5f869ee12b6e",
+  "visualBrief": "Complete individual Luxembourg Palace exterior:large open north entrance court,low north crossrange withreal arched throughgate anddomed clocktower,eight mapped high pavilion roofs,connecting sidewings,transverse central block,rounded hemicycle roof,garden-front clock pavilion/lantern,two small open servicecourts andattached northwest return. Retain theindependentPetit Luxembourg,museum,roads,gardens andcitycontext.",
+  "heightPolicy": "Approximate53m sea-level reference/53.8m court paving fromunmodified standard global Terrariumfield. Native tagged pavilion heights31.2m,main roofs26.7/28.2m,lowgallery8.6m andnorth dome25.7/lantern28.8m guide relativeproportions. Groundclip limited tooccupiedpalace/court paving;two tiny servicecourts excluded. Historic terraces/thresholds not surveyed.",
+  "nativeAxes": "+X NNE Rue deVaugirard entrance;-X SSW garden;+Z ESE east range;-Z WNW Petit Luxembourg. Geometry uses this retained native frame;internal architectural u=east/v=south isrotated intomodel coordinates.",
+  "sourceFacts": {
+    "mappedLengthMeters": 149.783,
+    "mappedWidthMeters": 118.641,
+    "modelDatumMeters": 53,
+    "ownedMapComponents": 87,
+    "terrainTiles": 2,
+    "heightBasis": "Approximate53m sea-level reference/53.8m court paving fromunmodified standard global Terrariumfield. Native tagged pavilion heights31.2m,main roofs26.7/28.2m,lowgallery8.6m andnorth dome25.7/lantern28.8m guide relativeproportions. Groundclip limited tooccupiedpalace/court paving;two tiny servicecourts excluded. Historic terraces/thresholds not surveyed."
+  },
+  "limitations": [
+    "Complete individual Luxembourg Palace exterior:large open north entrance court,low north crossrange withreal arched throughgate anddomed clocktower,eight mapped high pavilion roofs,connecting sidewings,transverse central block,rounded hemicycle roof,garden-front clock pavilion/lantern,two small open servicecourts andattached northwest return. Retain theindependentPetit Luxembourg,museum,roads,gardens andcitycontext.",
+    "Explicit nativewholeplan andheightbands keep allthree court voids;two servicecourts stayopen. Major roof masses interpret actualnative component heights andordinary pictures;not a generic palace replacement. Closed archwindows except actual northgate passage. Eighthigh pavilions plus north domed gate/garden clockcupola. Internal architecturalu/v transformed toretained nativeframe.",
+    "Approximate53m sea-level reference/53.8m court paving fromunmodified standard global Terrariumfield. Native tagged pavilion heights31.2m,main roofs26.7/28.2m,lowgallery8.6m andnorth dome25.7/lantern28.8m guide relativeproportions. Groundclip limited tooccupiedpalace/court paving;two tiny servicecourts excluded. Historic terraces/thresholds not surveyed.",
+    "Window/dormer/chimney inventory,sculpture,orders andhidden elevations original approximations. No copied insignia,flag graphics,lettering ordecorative statuary. No rooms/interior furnishing orentire gardens. Physicaldevice timing unmeasured.",
+    "Six existing256px limestone,granite,slate,painted-metal,window-grid andpainted-wood graphs;metric UVs/linearcolors. Skyline usescoarse roof/volume derivatives andretains allthree courts/north portal. District adds sparse closed glazing;street addsregular facade rhythm/dormers;closeupadds framing,orders,clock hands,chimneys/ribs. Masterretains denser profiles. Error estimates3/1.5/.7/.25m areunmeasuredapproximations;physicaltiming unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://www.dailymotion.com/video/x3759v5",
+      "observed": "Actual aerial from north:large open north entrance court,low north crossrange withdomed central gate,high corner pavilions andsteep gray roofs/cream chimneys. Two side wings lead totransverse main block;additional southern roof masses/hemicycle andgarden front visible behind. Keep thecomplete main palace,not just thegarden facade."
+    },
+    {
+      "url": "https://www.myparispass.com/fr/luxembourg-palace",
+      "observed": "Garden oblique actually inspected:pale limestone rustication,three levels,paired corner pilasters/cornices,tall slate-gray pavilion roofs withsubstantial cream chimneys/dormers,central garden clock pavilion withsmall domed roof/lantern. Large rounded hemicycle roof sitsbehind it. Gardens,trees,basin andneighbor cityremain context."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Cour_d%27honneur_vers_dome.JPG",
+      "observed": "Entrance court actually inspected:single low north gallery withclosed arched windows,central real through portal,round clock drum andribbed domed roof/lantern. High flanking wings/corner pavilions behind. Pale stone rough horizontal bands,white windowframes andbalustrade. No open arcade behind every window."
+    },
+    {
+      "url": "https://www.openstreetmap.org/relation/975955",
+      "observed": "Individual wholepalace nativeparentand87 actualparent/partpolygons includingeightpavilionroofs,hemicycle,two cupolas,threecourts andnorthwestreturn;independentPetitLuxembourg/museum/cityremaincontext."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-garden-palace-pavilions-and-two-clock-roofs",
+      "position": [
+        -160,
+        110,
+        150
+      ],
+      "lookAt": [
+        0,
+        12,
+        7
+      ],
+      "fov": 53
+    },
+    {
+      "name": "whole-north-gate-open-court-and-main-block",
+      "position": [
+        175,
+        115,
+        -130
+      ],
+      "lookAt": [
+        0,
+        12,
+        7
+      ],
+      "fov": 53
+    },
+    {
+      "name": "whole-native-plan-and-three-open-courts",
+      "position": [
+        -1,
+        250,
+        8
+      ],
+      "lookAt": [
+        0,
+        0,
+        8
+      ],
+      "fov": 51
+    },
+    {
+      "name": "north-arched-throughgate-reveals-and-domed-clock",
+      "position": [
+        83,
+        4.4,
+        14.6
+      ],
+      "lookAt": [
+        63.7,
+        9,
+        14.6
+      ],
+      "fov": 66
+    },
+    {
+      "name": "entrance-court-low-gallery-and-clock-dome",
+      "position": [
+        23,
+        4.4,
+        14.5
+      ],
+      "lookAt": [
+        63.7,
+        12,
+        14.6
+      ],
+      "fov": 66
+    },
+    {
+      "name": "garden-front-clock-pavilion-hemicycle-and-pavilion-roofs",
+      "position": [
+        -112,
+        65,
+        85
+      ],
+      "lookAt": [
+        -42,
+        20,
+        14.5
+      ],
+      "fov": 58
+    },
+    {
+      "name": "two-open-servicecourts-and-southern-roof-masses",
+      "position": [
+        -55,
+        105,
+        -40
+      ],
+      "lookAt": [
+        -45,
+        10,
+        12
+      ],
+      "fov": 58
+    },
+    {
+      "name": "main-court-facade-closed-arch-windows-and-pavilion",
+      "position": [
+        28,
+        4.4,
+        -5
+      ],
+      "lookAt": [
+        -15,
+        12,
+        5
+      ],
+      "fov": 66
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u0/u09/luxembourg_palace/models/luxembourg-model.mjs",
+    "export": "buildLuxembourgSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.78,
+        "metallic": 0.05
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.25
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.38,
+        "metallic": 0.05
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_painted_lap",
+        "roughness": 0.8,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLuxembourgDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.78,
+            "metallic": 0.05
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.38,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "street": {
+        "export": "buildLuxembourgStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.78,
+            "metallic": 0.05
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.38,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.7
+      },
+      "closeup": {
+        "export": "buildLuxembourgCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.78,
+            "metallic": 0.05
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.38,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.25
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-palace-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -160,
+        110,
+        150
+      ],
+      "lookAt": [
+        0,
+        12,
+        7
+      ]
+    },
+    {
+      "name": "whole-palace-district",
+      "reviewLod": "district",
+      "position": [
+        -160,
+        110,
+        150
+      ],
+      "lookAt": [
+        0,
+        12,
+        7
+      ]
+    },
+    {
+      "name": "whole-palace-street",
+      "reviewLod": "street",
+      "position": [
+        -160,
+        110,
+        150
+      ],
+      "lookAt": [
+        0,
+        12,
+        7
+      ]
+    },
+    {
+      "name": "whole-palace-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -160,
+        110,
+        150
+      ],
+      "lookAt": [
+        0,
+        12,
+        7
+      ]
+    }
+  ]
+}

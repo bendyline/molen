@@ -91,3 +91,41 @@ it("keeps a diorama's own lights out of a host scene that asks", async () => {
   expect(lights(host).some((light) => light.visible)).toBe(false);
   hidden.dispose();
 });
+
+it("builds a diorama's shaders through the host before it joins the scene", async () => {
+  const root = new THREE.Group();
+  const definition: DioramaDefinition = {
+    scene: {
+      format: 'molen/scene@3',
+      name: 'prop',
+      entities: [
+        {
+          id: 'box',
+          components: {
+            transform: { pos: [1, 0, 0], rot: [0, 0, 0, 1] },
+            renderable: { kind: 'primitive', ref: 'box' },
+          },
+        },
+      ],
+    },
+    bounds: { min: [-2, -2, -2], max: [2, 2, 2] },
+  };
+  const prepared: { meshes: number; attached: boolean; parent: THREE.Object3D }[] = [];
+  const instance = await createDioramaVisual(
+    definition,
+    { id: 'a', position: [10, 0, 0], load: async () => definition },
+    {
+      root,
+      prepare: async (object, parent) => {
+        let meshes = 0;
+        object.traverse((child) => {
+          if ((child as THREE.Mesh).isMesh) meshes++;
+        });
+        prepared.push({ meshes, attached: object.parent !== null, parent });
+      },
+    },
+  );
+  expect(prepared).toEqual([{ meshes: 1, attached: false, parent: root }]);
+  expect(root.children.map((child) => child.name)).toEqual(['diorama:a']);
+  instance.dispose();
+});

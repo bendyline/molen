@@ -49,3 +49,10 @@ Only declared OSM collection members gained an attributed map-frame guard and th
 Previous input: sha256:b03831426869a0eafaaad3d9b8c840c7c1ada2a9a611d8ad613ac94486a0b0e6
 
 Current input: sha256:3aefa6dec26958eac8d929cad63314da50f5be1b6ff82e7a823ca04632e3339e
+
+
+## Current Earth context refresh — 2026-10-31
+
+Inspected all 46 fresh images across portable, shared-material/geographic-flat and current-Earth fixtures, including mode, detail and four-tier transition views. The eleven pearl forms, triangulated ruby and pale shells, three main shafts, tripod braces and upper mast remain complete and recognizable in the four tiers. Near views retain support-joint pearls and shell geometry; exact radii, hotel-pearl layout and fabrication remain approximations, with the surrounding exhibition complex excluded. Corrected whole-building framing uses context scale 10; neighbor buildings and source-local height correction remain synthetic/approximate context. No new terrain, survey, reference-research or physical-device performance claim.
+
+Current generators reproduced the detailed/source and imported masters exactly, and all four runtime tiers retain their previous hashes. Review-camera identifiers were normalized to hyphens and context framing corrected. Portable, shared-material/geographic-flat and Earth-context captures were all freshly rendered and inspected against the current source inputs. Geographic placement and its retained approximate PMTiles contact scope are unchanged. Six unchanged GLBs validate with zero errors/warnings/embedded images. Current hash bindings, four-tier budgets and shared graph hashes pass.

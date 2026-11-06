@@ -1,0 +1,1442 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.grunwald_bridge",
+  "reviewedOn": "2026-10-31",
+  "inputHash": "sha256:502cbe18ca9c6a114b77e07cf719c330cbc111c1cfea6a63a4f8495b9dd27a32",
+  "sourceHash": "sha256:ce65a335e6c39333d03c42bddf8d170735758434a64412c0cda264de23b2905a",
+  "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+  "captureReportHash": "sha256:8b6795a6456c6482ab00fd9dc98fc037d5309696eda869077d733871e80cee97",
+  "visualReview": {
+    "status": "passed",
+    "inputHash": "sha256:502cbe18ca9c6a114b77e07cf719c330cbc111c1cfea6a63a4f8495b9dd27a32",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/complete-suspension.png",
+      "shots/blue-bands-and-stone-gates.png",
+      "shots/open-stone-portal.png",
+      "shots/upper-band-window.png",
+      "shots/suspended-deck-and-trusses.png",
+      "shots/tram-track-roadway.png",
+      "shots/riveted-band-and-hangers.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "preview.png",
+        "hash": "sha256:a15b607bf440ff3116e3274b15d937800ae5c1610afa1dac83b62ac484b8db0c"
+      },
+      {
+        "path": "shots/turntable/angle_0.png",
+        "hash": "sha256:324f86b4a4a8d31fcae51fe7efe4c9038ef86f2602a144eb481a6ffae49711fe"
+      },
+      {
+        "path": "shots/turntable/angle_1.png",
+        "hash": "sha256:87c359b635ff76c202da2be66f248b2e3aa259ece817ec32c53d715d02d20199"
+      },
+      {
+        "path": "shots/turntable/angle_2.png",
+        "hash": "sha256:22d103e6d65a2385de8d98f1fe9f7f2e6f6dbb7fed12a7bf9fabc4ada2174f09"
+      },
+      {
+        "path": "shots/turntable/angle_3.png",
+        "hash": "sha256:d6210524843fa1a9971571b6f0bfe7d8ba09c6160b86fb8e3fbb0e373849a80e"
+      },
+      {
+        "path": "shots/complete-suspension.png",
+        "hash": "sha256:a15b607bf440ff3116e3274b15d937800ae5c1610afa1dac83b62ac484b8db0c"
+      },
+      {
+        "path": "shots/blue-bands-and-stone-gates.png",
+        "hash": "sha256:c6cee006848d6f4a66767f5873a2cdb686225e3cfe3e127b20a0ac8a77554d79"
+      },
+      {
+        "path": "shots/open-stone-portal.png",
+        "hash": "sha256:036d61f1d0081884963ef80def42e579fceda17278e57b5cf8790936b4468c66"
+      },
+      {
+        "path": "shots/upper-band-window.png",
+        "hash": "sha256:85d80f605afc816278177a65d5ba9b96b4bf83b465db471dbc5e4b6fd6eb68d0"
+      },
+      {
+        "path": "shots/suspended-deck-and-trusses.png",
+        "hash": "sha256:23f101027aecd7a1f3e0dabf5171d6dba283387b8440d339efe2136493006a21"
+      },
+      {
+        "path": "shots/tram-track-roadway.png",
+        "hash": "sha256:011a1bdd7cbf6d46569102180c8fbc6f70c467b99fc93c2ec913556c5cd81cc4"
+      },
+      {
+        "path": "shots/riveted-band-and-hangers.png",
+        "hash": "sha256:fbffec3d67607e846bbde8644869dece011e340d1536977a5edeeb0b61296958"
+      }
+    ],
+    "notes": "Inspected 54 current frames: 12 portable, 12 shared-material/flat-map and 30 Earth-rig/native-terrain/tier frames. Two open granite gateways, broad paired blue suspension bands passing through upper arched chambers, vertical hangers, open under-deck trusses, continuous road/tram deck, pedestrian rails and backstays remain coherent. Main gateway arches are open at every tier; nearer tiers retain the small upper band chambers. Five existing 256px shared graphs supply granite, coated steel, polished rail metal, paving aggregate and concrete; no private or embedded images. Exact-QID map outline and retained PMTiles road/two tram centerlines establish the signed orientation and tracks. The suspended roadway is 112.5m, distinct from the 126.6m portal-axis spacing and authored 176m approach length. All 30 Earth frames render the unmodified standard-viewer native terrain plus an explicitly schematic water fixture. End attachments use coarse ground+0.22m and foundations embed into the bank relief. Four focused tests prove source/tier bytes, open gateways and upper chambers, native end fit and actual runtime duplicate road/tram removal while preserving the transverse bank street. Minor High-shadow aliasing on shallow masonry relief and light stylized granite remain visible. Exact historic lettering/heraldry, original stone/steel connection dimensions, quay walls, surveyed grades, water levels and physical-device timing remain outside scope."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inputHash": "sha256:502cbe18ca9c6a114b77e07cf719c330cbc111c1cfea6a63a4f8495b9dd27a32",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:912e36ed109914abace26c8974e935b9b7fea35c65b016408af72a58fda55af8",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "placementHash": "sha256:26515202f51c6eed0507b8991298098c94cbbd97db8624492951dff92232d019",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_granite": {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.metal_stainless": {
+        "path": "materials/metal_stainless.matgraph.json",
+        "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.gravel": {
+        "path": "materials/gravel.matgraph.json",
+        "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/complete-suspension.png",
+      "shots/shared/blue-bands-and-stone-gates.png",
+      "shots/shared/open-stone-portal.png",
+      "shots/shared/upper-band-window.png",
+      "shots/shared/suspended-deck-and-trusses.png",
+      "shots/shared/tram-track-roadway.png",
+      "shots/shared/riveted-band-and-hangers.png",
+      "shots/shared/placement.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:3a73ce8bb47a7ca8bdbcc3126545cb45425a1bb97de2ee686300c697001c92b1",
+        "camera": {
+          "name": "angle-0",
+          "angle": 0.6
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.grunwald_bridge",
+          "mode": "geographic-flat-terrain",
+          "placementId": "grunwald.bridge",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 6,
+          "triangles": 59512,
+          "bounds": {
+            "min": [
+              -87.51435089111328,
+              110,
+              -41.954551696777344
+            ],
+            "max": [
+              86.61904907226562,
+              136.36984252929688,
+              39.479583740234375
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -87.5143524310943,
+              110,
+              -41.95455447767308
+            ],
+            "max": [
+              86.61905297532593,
+              136.3698444366455,
+              39.47957935471378
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "2a52c677-0d4c-43a3-ba62-c71509e61667",
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "650b6e48-4071-4d22-9712-19a3a2ce6f20",
+            "worldgen:matgraph:molen.worldgen.material.metal_stainless": "80439465-ae31-4d8d-ae16-a3e83b004772",
+            "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d7591ec4-0122-4caa-a011-bdd2cc490d2d",
+            "worldgen:matgraph:molen.worldgen.material.gravel": "3c151b2b-b7f5-4234-9b94-27e778e00597"
+          },
+          "loads": [
+            "molen.worldgen.structure.grunwald_bridge"
+          ],
+          "selectionBounds": [
+            17.050721783452506,
+            51.10833459813242,
+            17.0543846725475,
+            51.11063428525984
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "grunwald.bridge"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_stainless": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.gravel": 1
+          },
+          "draws": 7,
+          "renderedTriangles": 59514
+        }
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:21efab87f4c8d641579a3fa66a0d8da87ed42107891fda6ddb11c3ca3677cbfe",
+        "camera": {
+          "name": "angle-1",
+          "angle": 2.1707963267948966
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.grunwald_bridge",
+          "mode": "geographic-flat-terrain",
+          "placementId": "grunwald.bridge",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 6,
+          "triangles": 59512,
+          "bounds": {
+            "min": [
+              -87.51435089111328,
+              110,
+              -41.954551696777344
+            ],
+            "max": [
+              86.61904907226562,
+              136.36984252929688,
+              39.479583740234375
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -87.5143524310943,
+              110,
+              -41.95455447767308
+            ],
+            "max": [
+              86.61905297532593,
+              136.3698444366455,
+              39.47957935471378
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "2a52c677-0d4c-43a3-ba62-c71509e61667",
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "650b6e48-4071-4d22-9712-19a3a2ce6f20",
+            "worldgen:matgraph:molen.worldgen.material.metal_stainless": "80439465-ae31-4d8d-ae16-a3e83b004772",
+            "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d7591ec4-0122-4caa-a011-bdd2cc490d2d",
+            "worldgen:matgraph:molen.worldgen.material.gravel": "3c151b2b-b7f5-4234-9b94-27e778e00597"
+          },
+          "loads": [
+            "molen.worldgen.structure.grunwald_bridge"
+          ],
+          "selectionBounds": [
+            17.050721783452506,
+            51.10833459813242,
+            17.0543846725475,
+            51.11063428525984
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "grunwald.bridge"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_stainless": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.gravel": 1
+          },
+          "draws": 7,
+          "renderedTriangles": 59514
+        }
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:67fc7e5aa37cf9028803073e4a47f81841d794e9d5f87307f3b0d444f5b062d4",
+        "camera": {
+          "name": "angle-2",
+          "angle": 3.741592653589793
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.grunwald_bridge",
+          "mode": "geographic-flat-terrain",
+          "placementId": "grunwald.bridge",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 6,
+          "triangles": 59512,
+          "bounds": {
+            "min": [
+              -87.51435089111328,
+              110,
+              -41.954551696777344
+            ],
+            "max": [
+              86.61904907226562,
+              136.36984252929688,
+              39.479583740234375
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -87.5143524310943,
+              110,
+              -41.95455447767308
+            ],
+            "max": [
+              86.61905297532593,
+              136.3698444366455,
+              39.47957935471378
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "2a52c677-0d4c-43a3-ba62-c71509e61667",
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "650b6e48-4071-4d22-9712-19a3a2ce6f20",
+            "worldgen:matgraph:molen.worldgen.material.metal_stainless": "80439465-ae31-4d8d-ae16-a3e83b004772",
+            "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d7591ec4-0122-4caa-a011-bdd2cc490d2d",
+            "worldgen:matgraph:molen.worldgen.material.gravel": "3c151b2b-b7f5-4234-9b94-27e778e00597"
+          },
+          "loads": [
+            "molen.worldgen.structure.grunwald_bridge"
+          ],
+          "selectionBounds": [
+            17.050721783452506,
+            51.10833459813242,
+            17.0543846725475,
+            51.11063428525984
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "grunwald.bridge"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_stainless": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.gravel": 1
+          },
+          "draws": 7,
+          "renderedTriangles": 59514
+        }
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:cf3a94eee41749a6676e35ad7072bf3e64ecfed1222a0b6710c9516390682b9f",
+        "camera": {
+          "name": "angle-3",
+          "angle": 5.312388980384689
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.grunwald_bridge",
+          "mode": "geographic-flat-terrain",
+          "placementId": "grunwald.bridge",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 6,
+          "triangles": 59512,
+          "bounds": {
+            "min": [
+              -87.51435089111328,
+              110,
+              -41.954551696777344
+            ],
+            "max": [
+              86.61904907226562,
+              136.36984252929688,
+              39.479583740234375
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -87.5143524310943,
+              110,
+              -41.95455447767308
+            ],
+            "max": [
+              86.61905297532593,
+              136.3698444366455,
+              39.47957935471378
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "2a52c677-0d4c-43a3-ba62-c71509e61667",
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "650b6e48-4071-4d22-9712-19a3a2ce6f20",
+            "worldgen:matgraph:molen.worldgen.material.metal_stainless": "80439465-ae31-4d8d-ae16-a3e83b004772",
+            "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d7591ec4-0122-4caa-a011-bdd2cc490d2d",
+            "worldgen:matgraph:molen.worldgen.material.gravel": "3c151b2b-b7f5-4234-9b94-27e778e00597"
+          },
+          "loads": [
+            "molen.worldgen.structure.grunwald_bridge"
+          ],
+          "selectionBounds": [
+            17.050721783452506,
+            51.10833459813242,
+            17.0543846725475,
+            51.11063428525984
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "grunwald.bridge"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_stainless": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.gravel": 1
+          },
+          "draws": 7,
+          "renderedTriangles": 59514
+        }
+      },
+      {
+        "path": "shots/shared/complete-suspension.png",
+        "hash": "sha256:2a2a1afe7128bee96099f91b98cbbb096b4479ecf888214bda34667cf5641a96",
+        "camera": {
+          "name": "complete-suspension",
+          "position": [
+            -145,
+            105,
+            175
+          ],
+          "lookAt": [
+            0,
+            17,
+            -1
+          ],
+          "fov": 53
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.grunwald_bridge",
+          "mode": "geographic-flat-terrain",
+          "placementId": "grunwald.bridge",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 6,
+          "triangles": 59512,
+          "bounds": {
+            "min": [
+              -87.51435089111328,
+              110,
+              -41.954551696777344
+            ],
+            "max": [
+              86.61904907226562,
+              136.36984252929688,
+              39.479583740234375
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -87.5143524310943,
+              110,
+              -41.95455447767308
+            ],
+            "max": [
+              86.61905297532593,
+              136.3698444366455,
+              39.47957935471378
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "2a52c677-0d4c-43a3-ba62-c71509e61667",
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "650b6e48-4071-4d22-9712-19a3a2ce6f20",
+            "worldgen:matgraph:molen.worldgen.material.metal_stainless": "80439465-ae31-4d8d-ae16-a3e83b004772",
+            "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d7591ec4-0122-4caa-a011-bdd2cc490d2d",
+            "worldgen:matgraph:molen.worldgen.material.gravel": "3c151b2b-b7f5-4234-9b94-27e778e00597"
+          },
+          "loads": [
+            "molen.worldgen.structure.grunwald_bridge"
+          ],
+          "selectionBounds": [
+            17.050721783452506,
+            51.10833459813242,
+            17.0543846725475,
+            51.11063428525984
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "grunwald.bridge"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_stainless": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.gravel": 1
+          },
+          "draws": 7,
+          "renderedTriangles": 59514
+        }
+      },
+      {
+        "path": "shots/shared/blue-bands-and-stone-gates.png",
+        "hash": "sha256:63356d7751173df2864711cb704345853a9b1423a98f49b95508d413e98250ce",
+        "camera": {
+          "name": "blue-bands-and-stone-gates",
+          "position": [
+            0,
+            32,
+            145
+          ],
+          "lookAt": [
+            0,
+            15,
+            -1
+          ],
+          "fov": 52
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.grunwald_bridge",
+          "mode": "geographic-flat-terrain",
+          "placementId": "grunwald.bridge",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 6,
+          "triangles": 59512,
+          "bounds": {
+            "min": [
+              -87.51435089111328,
+              110,
+              -41.954551696777344
+            ],
+            "max": [
+              86.61904907226562,
+              136.36984252929688,
+              39.479583740234375
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -87.5143524310943,
+              110,
+              -41.95455447767308
+            ],
+            "max": [
+              86.61905297532593,
+              136.3698444366455,
+              39.47957935471378
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "2a52c677-0d4c-43a3-ba62-c71509e61667",
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "650b6e48-4071-4d22-9712-19a3a2ce6f20",
+            "worldgen:matgraph:molen.worldgen.material.metal_stainless": "80439465-ae31-4d8d-ae16-a3e83b004772",
+            "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d7591ec4-0122-4caa-a011-bdd2cc490d2d",
+            "worldgen:matgraph:molen.worldgen.material.gravel": "3c151b2b-b7f5-4234-9b94-27e778e00597"
+          },
+          "loads": [
+            "molen.worldgen.structure.grunwald_bridge"
+          ],
+          "selectionBounds": [
+            17.050721783452506,
+            51.10833459813242,
+            17.0543846725475,
+            51.11063428525984
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "grunwald.bridge"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_stainless": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.gravel": 1
+          },
+          "draws": 7,
+          "renderedTriangles": 59514
+        }
+      },
+      {
+        "path": "shots/shared/open-stone-portal.png",
+        "hash": "sha256:ae4402069e75679eeddd501311f17787be2b016252010c83c2cad20c663c4065",
+        "camera": {
+          "name": "open-stone-portal",
+          "position": [
+            -84,
+            16,
+            1
+          ],
+          "lookAt": [
+            -58,
+            18,
+            -1
+          ],
+          "fov": 54
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.grunwald_bridge",
+          "mode": "geographic-flat-terrain",
+          "placementId": "grunwald.bridge",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 6,
+          "triangles": 59512,
+          "bounds": {
+            "min": [
+              -87.51435089111328,
+              110,
+              -41.954551696777344
+            ],
+            "max": [
+              86.61904907226562,
+              136.36984252929688,
+              39.479583740234375
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -87.5143524310943,
+              110,
+              -41.95455447767308
+            ],
+            "max": [
+              86.61905297532593,
+              136.3698444366455,
+              39.47957935471378
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "2a52c677-0d4c-43a3-ba62-c71509e61667",
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "650b6e48-4071-4d22-9712-19a3a2ce6f20",
+            "worldgen:matgraph:molen.worldgen.material.metal_stainless": "80439465-ae31-4d8d-ae16-a3e83b004772",
+            "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d7591ec4-0122-4caa-a011-bdd2cc490d2d",
+            "worldgen:matgraph:molen.worldgen.material.gravel": "3c151b2b-b7f5-4234-9b94-27e778e00597"
+          },
+          "loads": [
+            "molen.worldgen.structure.grunwald_bridge"
+          ],
+          "selectionBounds": [
+            17.050721783452506,
+            51.10833459813242,
+            17.0543846725475,
+            51.11063428525984
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "grunwald.bridge"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_stainless": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.gravel": 1
+          },
+          "draws": 7,
+          "renderedTriangles": 59514
+        }
+      },
+      {
+        "path": "shots/shared/upper-band-window.png",
+        "hash": "sha256:e2de287228dd341bc37c99b74107e3d585a694c24c22b669953928b54f570430",
+        "camera": {
+          "name": "upper-band-window",
+          "position": [
+            -77,
+            29,
+            16
+          ],
+          "lookAt": [
+            -63.3,
+            22.2,
+            8
+          ],
+          "fov": 46
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.grunwald_bridge",
+          "mode": "geographic-flat-terrain",
+          "placementId": "grunwald.bridge",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 6,
+          "triangles": 59512,
+          "bounds": {
+            "min": [
+              -87.51435089111328,
+              110,
+              -41.954551696777344
+            ],
+            "max": [
+              86.61904907226562,
+              136.36984252929688,
+              39.479583740234375
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -87.5143524310943,
+              110,
+              -41.95455447767308
+            ],
+            "max": [
+              86.61905297532593,
+              136.3698444366455,
+              39.47957935471378
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "2a52c677-0d4c-43a3-ba62-c71509e61667",
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "650b6e48-4071-4d22-9712-19a3a2ce6f20",
+            "worldgen:matgraph:molen.worldgen.material.metal_stainless": "80439465-ae31-4d8d-ae16-a3e83b004772",
+            "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d7591ec4-0122-4caa-a011-bdd2cc490d2d",
+            "worldgen:matgraph:molen.worldgen.material.gravel": "3c151b2b-b7f5-4234-9b94-27e778e00597"
+          },
+          "loads": [
+            "molen.worldgen.structure.grunwald_bridge"
+          ],
+          "selectionBounds": [
+            17.050721783452506,
+            51.10833459813242,
+            17.0543846725475,
+            51.11063428525984
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "grunwald.bridge"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_stainless": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.gravel": 1
+          },
+          "draws": 7,
+          "renderedTriangles": 59514
+        }
+      },
+      {
+        "path": "shots/shared/suspended-deck-and-trusses.png",
+        "hash": "sha256:a50b6c9d74a5a49f1c505b572cf74deb7d5220ebb61dc8a1657ab1d9e318a6d5",
+        "camera": {
+          "name": "suspended-deck-and-trusses",
+          "position": [
+            -10,
+            4,
+            34
+          ],
+          "lookAt": [
+            0,
+            8,
+            6
+          ],
+          "fov": 50
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.grunwald_bridge",
+          "mode": "geographic-flat-terrain",
+          "placementId": "grunwald.bridge",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 6,
+          "triangles": 59512,
+          "bounds": {
+            "min": [
+              -87.51435089111328,
+              110,
+              -41.954551696777344
+            ],
+            "max": [
+              86.61904907226562,
+              136.36984252929688,
+              39.479583740234375
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -87.5143524310943,
+              110,
+              -41.95455447767308
+            ],
+            "max": [
+              86.61905297532593,
+              136.3698444366455,
+              39.47957935471378
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "2a52c677-0d4c-43a3-ba62-c71509e61667",
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "650b6e48-4071-4d22-9712-19a3a2ce6f20",
+            "worldgen:matgraph:molen.worldgen.material.metal_stainless": "80439465-ae31-4d8d-ae16-a3e83b004772",
+            "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d7591ec4-0122-4caa-a011-bdd2cc490d2d",
+            "worldgen:matgraph:molen.worldgen.material.gravel": "3c151b2b-b7f5-4234-9b94-27e778e00597"
+          },
+          "loads": [
+            "molen.worldgen.structure.grunwald_bridge"
+          ],
+          "selectionBounds": [
+            17.050721783452506,
+            51.10833459813242,
+            17.0543846725475,
+            51.11063428525984
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "grunwald.bridge"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_stainless": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.gravel": 1
+          },
+          "draws": 7,
+          "renderedTriangles": 59514
+        }
+      },
+      {
+        "path": "shots/shared/tram-track-roadway.png",
+        "hash": "sha256:a1e41718a456cf647eaac3ae50a194dd5463ae12fa743b1841221d825d496bfe",
+        "camera": {
+          "name": "tram-track-roadway",
+          "position": [
+            -39,
+            11,
+            3
+          ],
+          "lookAt": [
+            55,
+            10,
+            -2
+          ],
+          "fov": 57
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.grunwald_bridge",
+          "mode": "geographic-flat-terrain",
+          "placementId": "grunwald.bridge",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 6,
+          "triangles": 59512,
+          "bounds": {
+            "min": [
+              -87.51435089111328,
+              110,
+              -41.954551696777344
+            ],
+            "max": [
+              86.61904907226562,
+              136.36984252929688,
+              39.479583740234375
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -87.5143524310943,
+              110,
+              -41.95455447767308
+            ],
+            "max": [
+              86.61905297532593,
+              136.3698444366455,
+              39.47957935471378
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "2a52c677-0d4c-43a3-ba62-c71509e61667",
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "650b6e48-4071-4d22-9712-19a3a2ce6f20",
+            "worldgen:matgraph:molen.worldgen.material.metal_stainless": "80439465-ae31-4d8d-ae16-a3e83b004772",
+            "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d7591ec4-0122-4caa-a011-bdd2cc490d2d",
+            "worldgen:matgraph:molen.worldgen.material.gravel": "3c151b2b-b7f5-4234-9b94-27e778e00597"
+          },
+          "loads": [
+            "molen.worldgen.structure.grunwald_bridge"
+          ],
+          "selectionBounds": [
+            17.050721783452506,
+            51.10833459813242,
+            17.0543846725475,
+            51.11063428525984
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "grunwald.bridge"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_stainless": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.gravel": 1
+          },
+          "draws": 7,
+          "renderedTriangles": 59514
+        }
+      },
+      {
+        "path": "shots/shared/riveted-band-and-hangers.png",
+        "hash": "sha256:f5c208f1a30a4b9981557dca3bdfe564396052807d0164c2bacc6df5bdd548be",
+        "camera": {
+          "name": "riveted-band-and-hangers",
+          "position": [
+            -31,
+            20,
+            21
+          ],
+          "lookAt": [
+            -28,
+            15,
+            8
+          ],
+          "fov": 47
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.grunwald_bridge",
+          "mode": "geographic-flat-terrain",
+          "placementId": "grunwald.bridge",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 6,
+          "triangles": 59512,
+          "bounds": {
+            "min": [
+              -87.51435089111328,
+              110,
+              -41.954551696777344
+            ],
+            "max": [
+              86.61904907226562,
+              136.36984252929688,
+              39.479583740234375
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -87.5143524310943,
+              110,
+              -41.95455447767308
+            ],
+            "max": [
+              86.61905297532593,
+              136.3698444366455,
+              39.47957935471378
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "2a52c677-0d4c-43a3-ba62-c71509e61667",
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "650b6e48-4071-4d22-9712-19a3a2ce6f20",
+            "worldgen:matgraph:molen.worldgen.material.metal_stainless": "80439465-ae31-4d8d-ae16-a3e83b004772",
+            "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d7591ec4-0122-4caa-a011-bdd2cc490d2d",
+            "worldgen:matgraph:molen.worldgen.material.gravel": "3c151b2b-b7f5-4234-9b94-27e778e00597"
+          },
+          "loads": [
+            "molen.worldgen.structure.grunwald_bridge"
+          ],
+          "selectionBounds": [
+            17.050721783452506,
+            51.10833459813242,
+            17.0543846725475,
+            51.11063428525984
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "grunwald.bridge"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_stainless": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.gravel": 1
+          },
+          "draws": 7,
+          "renderedTriangles": 59514
+        }
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:ee3ed209a2301fb9ef902db842fb642101622437a667788772af4a5cbdf93ebd",
+        "camera": {
+          "name": "placement",
+          "placement": true
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.grunwald_bridge",
+          "mode": "geographic-flat-terrain",
+          "placementId": "grunwald.bridge",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 6,
+          "triangles": 59512,
+          "bounds": {
+            "min": [
+              -87.51435089111328,
+              110,
+              -41.954551696777344
+            ],
+            "max": [
+              86.61904907226562,
+              136.36984252929688,
+              39.479583740234375
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -87.5143524310943,
+              110,
+              -41.95455447767308
+            ],
+            "max": [
+              86.61905297532593,
+              136.3698444366455,
+              39.47957935471378
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "2a52c677-0d4c-43a3-ba62-c71509e61667",
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "650b6e48-4071-4d22-9712-19a3a2ce6f20",
+            "worldgen:matgraph:molen.worldgen.material.metal_stainless": "80439465-ae31-4d8d-ae16-a3e83b004772",
+            "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d7591ec4-0122-4caa-a011-bdd2cc490d2d",
+            "worldgen:matgraph:molen.worldgen.material.gravel": "3c151b2b-b7f5-4234-9b94-27e778e00597"
+          },
+          "loads": [
+            "molen.worldgen.structure.grunwald_bridge"
+          ],
+          "selectionBounds": [
+            17.050721783452506,
+            51.10833459813242,
+            17.0543846725475,
+            51.11063428525984
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "grunwald.bridge"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.metal_stainless": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.gravel": 1
+          },
+          "draws": 8,
+          "renderedTriangles": 59514
+        }
+      }
+    ],
+    "notes": "Inspected 54 current frames: 12 portable, 12 shared-material/flat-map and 30 Earth-rig/native-terrain/tier frames. Two open granite gateways, broad paired blue suspension bands passing through upper arched chambers, vertical hangers, open under-deck trusses, continuous road/tram deck, pedestrian rails and backstays remain coherent. Main gateway arches are open at every tier; nearer tiers retain the small upper band chambers. Five existing 256px shared graphs supply granite, coated steel, polished rail metal, paving aggregate and concrete; no private or embedded images. Exact-QID map outline and retained PMTiles road/two tram centerlines establish the signed orientation and tracks. The suspended roadway is 112.5m, distinct from the 126.6m portal-axis spacing and authored 176m approach length. All 30 Earth frames render the unmodified standard-viewer native terrain plus an explicitly schematic water fixture. End attachments use coarse ground+0.22m and foundations embed into the bank relief. Four focused tests prove source/tier bytes, open gateways and upper chambers, native end fit and actual runtime duplicate road/tram removal while preserving the transverse bank street. Minor High-shadow aliasing on shallow masonry relief and light stylized granite remain visible. Exact historic lettering/heraldry, original stone/steel connection dimensions, quay walls, surveyed grades, water levels and physical-device timing remain outside scope."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "inputHash": "sha256:502cbe18ca9c6a114b77e07cf719c330cbc111c1cfea6a63a4f8495b9dd27a32",
+    "placementHash": "sha256:26515202f51c6eed0507b8991298098c94cbbd97db8624492951dff92232d019",
+    "scope": "Signed exact-QID river deck, named PMTiles road and two tram centerlines, bounded connected approaches and native end/foundation attachment inspected. Approximate standard-viewer terrain fit; exact quay, as-built grades, water levels and original foundation dimensions are unsurveyed.",
+    "notes": "Inspected 54 current frames: 12 portable, 12 shared-material/flat-map and 30 Earth-rig/native-terrain/tier frames. Two open granite gateways, broad paired blue suspension bands passing through upper arched chambers, vertical hangers, open under-deck trusses, continuous road/tram deck, pedestrian rails and backstays remain coherent. Main gateway arches are open at every tier; nearer tiers retain the small upper band chambers. Five existing 256px shared graphs supply granite, coated steel, polished rail metal, paving aggregate and concrete; no private or embedded images. Exact-QID map outline and retained PMTiles road/two tram centerlines establish the signed orientation and tracks. The suspended roadway is 112.5m, distinct from the 126.6m portal-axis spacing and authored 176m approach length. All 30 Earth frames render the unmodified standard-viewer native terrain plus an explicitly schematic water fixture. End attachments use coarse ground+0.22m and foundations embed into the bank relief. Four focused tests prove source/tier bytes, open gateways and upper chambers, native end fit and actual runtime duplicate road/tram removal while preserving the transverse bank street. Minor High-shadow aliasing on shallow masonry relief and light stylized granite remain visible. Exact historic lettering/heraldry, original stone/steel connection dimensions, quay walls, surveyed grades, water levels and physical-device timing remain outside scope."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "inputHash": "sha256:502cbe18ca9c6a114b77e07cf719c330cbc111c1cfea6a63a4f8495b9dd27a32",
+    "notes": "Inspected 54 current frames: 12 portable, 12 shared-material/flat-map and 30 Earth-rig/native-terrain/tier frames. Two open granite gateways, broad paired blue suspension bands passing through upper arched chambers, vertical hangers, open under-deck trusses, continuous road/tram deck, pedestrian rails and backstays remain coherent. Main gateway arches are open at every tier; nearer tiers retain the small upper band chambers. Five existing 256px shared graphs supply granite, coated steel, polished rail metal, paving aggregate and concrete; no private or embedded images. Exact-QID map outline and retained PMTiles road/two tram centerlines establish the signed orientation and tracks. The suspended roadway is 112.5m, distinct from the 126.6m portal-axis spacing and authored 176m approach length. All 30 Earth frames render the unmodified standard-viewer native terrain plus an explicitly schematic water fixture. End attachments use coarse ground+0.22m and foundations embed into the bank relief. Four focused tests prove source/tier bytes, open gateways and upper chambers, native end fit and actual runtime duplicate road/tram removal while preserving the transverse bank street. Minor High-shadow aliasing on shallow masonry relief and light stylized granite remain visible. Exact historic lettering/heraldry, original stone/steel connection dimensions, quay walls, surveyed grades, water levels and physical-device timing remain outside scope."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inputHash": "sha256:502cbe18ca9c6a114b77e07cf719c330cbc111c1cfea6a63a4f8495b9dd27a32",
+    "captureReportHash": "sha256:7c358275916ef8c4ea07028e16661b442df8e520529f4378d8975511ac977f09",
+    "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/complete-suspension.png",
+      "medium-fi/blue-bands-and-stone-gates.png",
+      "medium-fi/open-stone-portal.png",
+      "medium-fi/upper-band-window.png",
+      "medium-fi/suspended-deck-and-trusses.png",
+      "medium-fi/tram-track-roadway.png",
+      "medium-fi/riveted-band-and-hangers.png",
+      "medium-fi/whole-bridge-skyline.png",
+      "medium-fi/whole-bridge-district.png",
+      "medium-fi/whole-bridge-street.png",
+      "medium-fi/whole-bridge-closeup.png",
+      "medium-fi/street-open-portal.png",
+      "medium-fi/closeup-upper-band-chamber.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected 54 current frames: 12 portable, 12 shared-material/flat-map and 30 Earth-rig/native-terrain/tier frames. Two open granite gateways, broad paired blue suspension bands passing through upper arched chambers, vertical hangers, open under-deck trusses, continuous road/tram deck, pedestrian rails and backstays remain coherent. Main gateway arches are open at every tier; nearer tiers retain the small upper band chambers. Five existing 256px shared graphs supply granite, coated steel, polished rail metal, paving aggregate and concrete; no private or embedded images. Exact-QID map outline and retained PMTiles road/two tram centerlines establish the signed orientation and tracks. The suspended roadway is 112.5m, distinct from the 126.6m portal-axis spacing and authored 176m approach length. All 30 Earth frames render the unmodified standard-viewer native terrain plus an explicitly schematic water fixture. End attachments use coarse ground+0.22m and foundations embed into the bank relief. Four focused tests prove source/tier bytes, open gateways and upper chambers, native end fit and actual runtime duplicate road/tram removal while preserving the transverse bank street. Minor High-shadow aliasing on shallow masonry relief and light stylized granite remain visible. Exact historic lettering/heraldry, original stone/steel connection dimensions, quay walls, surveyed grades, water levels and physical-device timing remain outside scope."
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-standard-terrain",
+    "inputHash": "sha256:502cbe18ca9c6a114b77e07cf719c330cbc111c1cfea6a63a4f8495b9dd27a32",
+    "terrainFixture": {
+      "descriptor": {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:99eff0b2ecfe0ed02528a8ca572d2819d97960e79511a6355424846475340ca9"
+      },
+      "heightmap": {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:72d3eb046e718f9a96ed0b1c056ca62a0f539e207500e49dd7b15c0ee781c30b"
+      }
+    },
+    "gridHash": "sha256:e5f394613e3840eab233d674d0dc8fa9c2b7bae6547778148e0f08b3f2bab4b2",
+    "source": "Standard viewer PMTiles and four ordinary global Terrarium tiles; no bespoke terrain acquisition.",
+    "notes": "The native field is unmodified. Its 5m sample grid oversamples a coarse mixed-source DEM. Endpoint heights follow ground+0.22m and portal foundations embed into this field. A rectangular water fixture represents the mapped wet crossing interval, not an exact bank polygon, and is excluded from the landmark GLB. Actual production road suppression was tested with retained road/tram coordinates and the crossing bank street."
+  },
+  "sourceInventoryBinding": {
+    "status": "passed-registration-only",
+    "previousInputHash": "sha256:f3af7d4bcdc84f1b76b8374a1c24aea54086181a2d336a23ce003a8306d17e91",
+    "inputHash": "sha256:502cbe18ca9c6a114b77e07cf719c330cbc111c1cfea6a63a4f8495b9dd27a32",
+    "reason": "The generator terrain inventory now declares all four existing grid input tiles instead of only the sparse-sampling tile. This changes wrapper recipe text and the model input key. All six GLBs, the actual rendered native grid/heightmap/descriptor, material graphs and all 54 actually inspected image bytes are unchanged. No new render or new visual review is claimed.",
+    "terrainTiles": [
+      {
+        "path": "terrain-14-8968-5477.png",
+        "hash": "sha256:3dab9fb34a0620de4ddabe336d693dc62796b2ad53590e2f16f8f90273705acc"
+      },
+      {
+        "path": "terrain-14-8967-5477.png",
+        "hash": "sha256:840bcf1e7c075fc73558040db7e8062d06d85d704db570e637bca3193397f588"
+      },
+      {
+        "path": "terrain-14-8967-5476.png",
+        "hash": "sha256:815f27676a7d6cfe21c5e457aa09d788ecb8eafddb430c49dc4d2942b17afe36"
+      },
+      {
+        "path": "terrain-14-8968-5476.png",
+        "hash": "sha256:2c85e3c25a6af0d0278fc145767964a6c4187a42a2d21ecc0efb90013972767a"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/u3/u3h/grunwald_bridge/models/source.glb",
+        "hash": "sha256:ce65a335e6c39333d03c42bddf8d170735758434a64412c0cda264de23b2905a"
+      },
+      {
+        "path": "content/worldgen/assets/places/u3/u3h/grunwald_bridge/model.glb",
+        "hash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299"
+      },
+      {
+        "path": "content/worldgen/assets/places/u3/u3h/grunwald_bridge/model.skyline.glb",
+        "hash": "sha256:370e3ffcf33a7830aa6acb5e8429de9be9ef368236c3137b7be03de3bc9c5977"
+      },
+      {
+        "path": "content/worldgen/assets/places/u3/u3h/grunwald_bridge/model.district.glb",
+        "hash": "sha256:dec2e33ae849905bc6bce11ba3376180e1670fa86a132de639adb4d91ef0ea90"
+      },
+      {
+        "path": "content/worldgen/assets/places/u3/u3h/grunwald_bridge/model.street.glb",
+        "hash": "sha256:7fc8216317371ca83844ec53101dffc65513a91a34776c3cd5395bdb43e5e029"
+      },
+      {
+        "path": "content/worldgen/assets/places/u3/u3h/grunwald_bridge/model.closeup.glb",
+        "hash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7"
+      }
+    ]
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u3/u3h/grunwald_bridge/models/source.glb",
+        "hash": "sha256:ce65a335e6c39333d03c42bddf8d170735758434a64412c0cda264de23b2905a",
+        "bytes": 5055176,
+        "triangles": 59512,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -89.30000305175781,
+          0,
+          -13.40649127960205
+        ],
+        "max": [
+          89.30000305175781,
+          26.369844436645508,
+          10.77455997467041
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u3/u3h/grunwald_bridge/model.glb",
+        "hash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "bytes": 5054604,
+        "triangles": 59512,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -89.30000305175781,
+          0,
+          -13.40649127960205
+        ],
+        "max": [
+          89.30000305175781,
+          26.369844436645508,
+          10.77455997467041
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u3/u3h/grunwald_bridge/model.skyline.glb",
+        "hash": "sha256:370e3ffcf33a7830aa6acb5e8429de9be9ef368236c3137b7be03de3bc9c5977",
+        "bytes": 74580,
+        "triangles": 984,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -89.30000305175781,
+          0,
+          -13.206490516662598
+        ],
+        "max": [
+          89.30000305175781,
+          24.76984405517578,
+          10.574559211730957
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u3/u3h/grunwald_bridge/model.district.glb",
+        "hash": "sha256:dec2e33ae849905bc6bce11ba3376180e1670fa86a132de639adb4d91ef0ea90",
+        "bytes": 228580,
+        "triangles": 3104,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -89.30000305175781,
+          0,
+          -13.40649127960205
+        ],
+        "max": [
+          89.30000305175781,
+          24.76984405517578,
+          10.77455997467041
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u3/u3h/grunwald_bridge/model.street.glb",
+        "hash": "sha256:7fc8216317371ca83844ec53101dffc65513a91a34776c3cd5395bdb43e5e029",
+        "bytes": 641032,
+        "triangles": 8656,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -89.30000305175781,
+          0,
+          -13.40649127960205
+        ],
+        "max": [
+          89.30000305175781,
+          24.76984405517578,
+          10.77455997467041
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u3/u3h/grunwald_bridge/model.closeup.glb",
+        "hash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+        "bytes": 2209796,
+        "triangles": 29312,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -89.30000305175781,
+          0,
+          -13.40649127960205
+        ],
+        "max": [
+          89.30000305175781,
+          24.76984405517578,
+          10.77455997467041
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "node node_modules/vitest/vitest.mjs run test/grunwald-bridge-lods.test.mjs --maxWorkers=1",
+      "passed": 4,
+      "failed": 0
+    }
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:154eafcb26ef167a1e2c4d3e99b302beb52b5e3ecb68424993435c5ef855923a",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:370e3ffcf33a7830aa6acb5e8429de9be9ef368236c3137b7be03de3bc9c5977",
+        "bytes": 74580,
+        "gzipBytes": 16320,
+        "triangles": 984,
+        "cpuBytes": 73152,
+        "gpuBytes": 73152,
+        "errorMeters": 3,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:dec2e33ae849905bc6bce11ba3376180e1670fa86a132de639adb4d91ef0ea90",
+        "bytes": 228580,
+        "gzipBytes": 43660,
+        "triangles": 3104,
+        "cpuBytes": 222384,
+        "gpuBytes": 222384,
+        "errorMeters": 1.5,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:7fc8216317371ca83844ec53101dffc65513a91a34776c3cd5395bdb43e5e029",
+        "bytes": 641032,
+        "gzipBytes": 133386,
+        "triangles": 8656,
+        "cpuBytes": 633732,
+        "gpuBytes": 633732,
+        "errorMeters": 0.75,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+        "bytes": 2209796,
+        "gzipBytes": 399435,
+        "triangles": 29312,
+        "cpuBytes": 2202456,
+        "gpuBytes": 2202456,
+        "errorMeters": 0.35,
+        "drawCalls": 6
+      }
+    ],
+    "initialBytes": 303160,
+    "notes": "Four authored browser tiers, at most six draws, no embedded/private images and separate position/normal streams. Detailed master is preserved separately. No physical laptop/phone timing claim."
+  }
+}

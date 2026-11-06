@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.penglai_p3_warehouse",
+  "kind": "static-structure",
+  "title": "Penglai P3 Warehouse",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.penglai_p3_warehouse",
+        "output": "assets/places/ws/wsj/penglai_p3_warehouse/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3dfd028b582b03955ff06a4eb9202cf79bd3e46f0f49de0cddf0d5c17fef8fc8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "member-identity.json",
+      "native-map/whole-warehouse-and-context.json",
+      "imagery-evidence.json",
+      "references/warehouse-original-20151129-cc0.jpg",
+      "reference-rights/photographer-original-cc0.html",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-27332-14269.png",
+      "import-report.json",
+      "geometry-review.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "capture-report.json",
+      "qa.json"
+    ]
+  }
+}

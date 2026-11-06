@@ -1,0 +1,375 @@
+{
+  "id": "vanderkloof_dam",
+  "title": "Vanderkloof Dam",
+  "wikidataId": "Q3445636",
+  "referenceCoordinate": {
+    "longitude": 24.7317,
+    "latitude": -29.9922
+  },
+  "module": "content/worldgen/source/places/kd/kd9/vanderkloof_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "warm": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "wet": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "ribs": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "slab": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "asphalt": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "green": {
+      "slot": "door",
+      "graph": "metal_painted"
+    }
+  },
+  "exportLabel": "Molen original Vanderkloof curved arch gravity dam and radial gate works",
+  "expectedDraftMasterHash": "sha256:7c41065aa921da936a76c5a6e7e72e59ca4cc3b72cf39d2fb4177254b5b4cb52",
+  "visualBrief": "Vanderkloof Dam’s curved crest road, ribbed free-overflow apron, four radial gates on the south gravity flank, and lower outlet works on the Orange River.",
+  "heightPolicy": "The vertical origin is 1165.3184255 m. The crest road is fixed at 1180 m. The review water fixture uses 1170.5 m at full supply and an illustrative 1106 m below the dam.",
+  "nativeAxes": "+X follows the dam crest approximately south and +Z follows the river downstream west.",
+  "sourceFacts": {
+    "mappedIdentity": "Q3445636",
+    "nativeWaterIds": [
+      28779293,
+      67943263
+    ],
+    "crestLengthMeters": 770,
+    "crestElevation": 1180,
+    "foundationElevation": 1072,
+    "bedElevation": 1089,
+    "radialGates": 4,
+    "radialGateWidth": 15,
+    "radialGateHeight": 9.5,
+    "centralOverflowBays": 14,
+    "normalPoolElevation": 1170.5,
+    "terrainTiles": 9
+  },
+  "materialMethod": "Shared material graphs for board-formed and plain concrete, and painted steel, with metric UVs and zero embedded images.",
+  "limitations": [
+    "The vertical origin is 1165.3184255 m. The crest road is fixed at 1180 m. The review water fixture uses 1170.5 m at full supply and an illustrative 1106 m below the dam.",
+    "The crest uses the mapped road and extrapolated land ties to reach the operator’s 770 m length. The subsurface section, exact rib and outlet dimensions, and closed gate positions are exterior approximations.",
+    "The raw terrain retains low anomalous samples, and its bank surface intersects portions of both outer wings. The 1170.5 m reference pool and representative sampled stages are separately recorded.",
+    "The asset depicts dry gates and spillways. The underground power station and canals stay in their native map context. Operating flows are outside its scope."
+  ],
+  "references": [
+    {
+      "url": "https://www.karoo-southafrica.com/eastern-upper-karoo/petrusville/",
+      "imageUrl": "https://www.karoo-southafrica.com/wp-content/uploads/2019/06/Petrusville-9.jpg",
+      "observed": "Ordinary crest photograph shows dark, ribbed central apron beneath the road deck and four separate chutes on the far southern flank."
+    },
+    {
+      "url": "https://www.eskom.co.za/heritage/vanderkloof-power-station/",
+      "observed": "Operator reports a 770 m crest, 1180 m road elevation, 1170.5 m full supply, and four 15 by 9.5 m radial gates on the left flank. The station is underground."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The named attraction and reservoir, crest road, Orange River downstream polygon and underground station POI jointly identify Vanderkloof."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "downstream-overview",
+      "position": [
+        -38,
+        123,
+        438
+      ],
+      "lookAt": [
+        -32,
+        -16,
+        33
+      ],
+      "fov": 50
+    },
+    {
+      "name": "central-spillway",
+      "position": [
+        -144,
+        45,
+        105
+      ],
+      "lookAt": [
+        -49,
+        0,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "radial-gates",
+      "position": [
+        201,
+        59,
+        215
+      ],
+      "lookAt": [
+        166,
+        -6,
+        78
+      ],
+      "fov": 50
+    },
+    {
+      "name": "low-outlets",
+      "position": [
+        -45,
+        -34,
+        153
+      ],
+      "lookAt": [
+        -91,
+        -53,
+        40
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upstream-crest",
+      "position": [
+        104,
+        41,
+        -210
+      ],
+      "lookAt": [
+        1,
+        8,
+        2
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -94,
+    "scale": 2.2,
+    "focus": {
+      "center": [
+        -17,
+        -27,
+        54
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/kd/kd9/vanderkloof_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "warm": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "wet": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "ribs": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "slab": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "asphalt": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "green": {
+        "slot": "door",
+        "graph": "metal_painted"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "warm": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "wet": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "ribs": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "slab": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "asphalt": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "green": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "warm": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "wet": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "ribs": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "slab": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "asphalt": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "green": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "warm": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "wet": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "ribs": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "slab": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "asphalt": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "green": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "vanderkloof-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -38,
+        123,
+        438
+      ],
+      "lookAt": [
+        -32,
+        -16,
+        33
+      ]
+    },
+    {
+      "name": "vanderkloof-district",
+      "reviewLod": "district",
+      "position": [
+        -38,
+        123,
+        438
+      ],
+      "lookAt": [
+        -32,
+        -16,
+        33
+      ]
+    },
+    {
+      "name": "vanderkloof-street",
+      "reviewLod": "street",
+      "position": [
+        -38,
+        123,
+        438
+      ],
+      "lookAt": [
+        -32,
+        -16,
+        33
+      ]
+    },
+    {
+      "name": "vanderkloof-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -38,
+        123,
+        438
+      ],
+      "lookAt": [
+        -32,
+        -16,
+        33
+      ]
+    }
+  ]
+}

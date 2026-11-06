@@ -1,0 +1,103 @@
+{
+  "format": "molen/structure-map-frame@1",
+  "candidateId": "QS-73fe16470c60",
+  "title": "Murchison EDGES fourpoint antenna",
+  "anchor": [
+    116.60447336305138,
+    -26.71502579887564
+  ],
+  "heading": -0.12217304763960307,
+  "coordinateSpace": "model-local-xz",
+  "nativeAxes": {
+    "x": "transverse to active north-south panel pair",
+    "y": "up",
+    "z": "opposite active panel pointing7degrees east of north"
+  },
+  "axis": "+X transverse,+Z away from hut,+Y up. Whole groundplane rectangle derived from written5.8x5m dimensions; long-edge assignment estimated.",
+  "source": "ASU original November2013site report23 and dimensional report33, written/numerical facts only; original nearby hut numerical context.",
+  "sourceUrl": "https://loco.lab.asu.edu/loco-memos/edges_reports/report_20131113.pdf",
+  "identityStatus": "Actual EDGES fourpoint instrument is institutionally identified. Its model registration is an explicit30m approximation near the rounded operator EDGES site coordinate and original hut618004254; no exact historical antenna point asserted.",
+  "geometryLabel": "Whole5.8x5m groundplane rectangle from original written2013 dimensions, not an independently surveyed four-corner footprint.",
+  "geometry": {
+    "polygons": [
+      [
+        [
+          -2.9,
+          -2.5
+        ],
+        [
+          2.9,
+          -2.5
+        ],
+        [
+          2.9,
+          2.5
+        ],
+        [
+          -2.9,
+          2.5
+        ]
+      ]
+    ]
+  },
+  "features": [
+    {
+      "id": "asu/edges-report23-2013",
+      "role": "whole-equipment-envelope-derived-from-written-dimensions",
+      "points": [
+        [
+          -2.9,
+          -2.5
+        ],
+        [
+          2.9,
+          -2.5
+        ],
+        [
+          2.9,
+          2.5
+        ],
+        [
+          -2.9,
+          2.5
+        ]
+      ]
+    }
+  ],
+  "mappedIdentity": {
+    "name": "Murchison EDGES fourpoint antenna",
+    "parentCollection": "murchison_radio_astronomy_observatory",
+    "featureIds": [
+      "asu/edges-report23-2013"
+    ],
+    "registrationUncertaintyMeters": 30,
+    "nativeSource": {
+      "path": "native-map/original-operator-site-and-hut-context.json",
+      "hash": "sha256:e3de5cda0c1c571cf200b7c05016d1edfad39b9c72252251992eba689a245f4a"
+    }
+  },
+  "orientationControl": {
+    "status": "reviewed-approximation",
+    "reviewedOn": "2026-11-01",
+    "headingRadians": -0.12217304763960307,
+    "uncertaintyDegrees": 2,
+    "basis": "Original2013field report activepanel points7degrees east of due north toward hut. Groundplane long-edge assignment estimated independently; no source diagram traced.",
+    "referencePages": [
+      "https://loco.lab.asu.edu/loco-memos/edges_reports/report_20131113.pdf"
+    ]
+  },
+  "terrainContact": {
+    "local": [
+      0,
+      0
+    ],
+    "modelY": 0,
+    "basis": "Approximate historically registered antenna centre fixed before independent source field, groundplane floor and all main sections; no surveyed vertical tie."
+  },
+  "historicalAppearance": {
+    "representedDate": "2013-11-13",
+    "validFrom": "2013-11-01",
+    "validUntil": "2014-01-01"
+  },
+  "notes": "Whole November2013 EDGES fourpoint instrument, allfour horizontal diamond panels/vertical rims/centralbalun/topcap/inter-panel capacitor indications/estimated supports/receiver housing and full5.8x5m groundplane. Primary2013numerical dimensions and written form only; every image unused. Geographic registration is approximate30m: nearby mapped hut618004254 provides context, assumed20m south7degrees west of it, not a surveyed historical antenna point or proven hut identity. No ASKAP34dish or later2015blade/plus-groundplane substitution. Exact supports/finish/cable routing and2013small details estimated. Parent observatory unfinished."
+}

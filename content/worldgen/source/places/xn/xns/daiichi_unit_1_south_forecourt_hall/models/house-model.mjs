@@ -1,0 +1,276 @@
+/** Whole independent low forecourt hall from cleared DOE aerials and numerical controls. */
+import '../../../../../../../../packages/worldgen/scripts/install-deterministic-math.mjs';
+import fs from 'node:fs';
+import { MeshBufferBuilder } from '../../../../../../../../packages/worldgen/dist/kernel.mjs';
+import {
+  beam,
+  normalFor,
+} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
+export const P = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));
+export const surfaces = {
+  wall: { slot: 'wall', graph: 'metal_painted', roughness: 0.86, metallic: 0.1 },
+  roof: { slot: 'roof', graph: 'metal_painted', roughness: 0.88, metallic: 0.2 },
+  trim: { slot: 'trim', graph: 'metal_painted', roughness: 0.87, metallic: 0.12 },
+  door: { slot: 'door', graph: 'metal_painted', roughness: 0.9, metallic: 0.12 },
+  foundation: { slot: 'foundation', graph: 'concrete_plain', roughness: 0.97, metallic: 0 },
+};
+const colors = {
+  wall: rgb('e7e6da'),
+  roof: rgb('bec5bf'),
+  trim: rgb('a4ada7'),
+  door: rgb('c9cfc6'),
+  foundation: rgb('a5a99b'),
+};
+export const componentEvidence = [];
+function face(o, k, p, n) {
+  let normal = normalFor(...p);
+  if (n && normal.reduce((s, v, i) => s + v * n[i], 0) < 0) {
+    p = [...p].reverse();
+    normal = normalFor(...p);
+  }
+  o.addConvexPolygon(k, 'palette:#ffffff', p, normal, (q) => [q[0], q[1]], colors[k]);
+}
+function cap(o, k, r, y, up) {
+  const b = new MeshBufferBuilder();
+  if (
+    !b.addCap(
+      k,
+      'palette:#ffffff',
+      r,
+      [],
+      () => y,
+      [0, up, 0],
+      (p) => p,
+      colors[k],
+    )
+  )
+    throw Error('Invalid hall cap');
+  const m = b.finalize();
+  for (let i = 0; i < m.indices.length; i += 3)
+    face(
+      o,
+      k,
+      Array.from(m.indices.slice(i, i + 3)).map((j) =>
+        Array.from(m.positions.slice(j * 3, j * 3 + 3)),
+      ),
+      [0, up, 0],
+    );
+}
+function polygon(o, k, r, y0, y1) {
+  const sign = Math.sign(
+    r.reduce((s, a, i) => {
+      const b = r[(i + 1) % r.length];
+      return s + a[0] * b[1] - a[1] * b[0];
+    }, 0),
+  );
+  for (let i = 0; i < r.length; i++) {
+    const a = r[i],
+      b = r[(i + 1) % r.length];
+    face(
+      o,
+      k,
+      [
+        [a[0], y0, a[1]],
+        [b[0], y0, b[1]],
+        [b[0], y1, b[1]],
+        [a[0], y1, a[1]],
+      ],
+      [(b[1] - a[1]) * sign, 0, -(b[0] - a[0]) * sign],
+    );
+  }
+  cap(o, k, r, y0, -1);
+  cap(o, k, r, y1, 1);
+}
+const point = (p, y) => [p[0], y, p[1]],
+  mix = (a, b, t) => a.map((v, i) => v + (b[i] - v) * t),
+  mid = (a, b) => mix(a, b, 0.5);
+export function buildHouse(o, _frame, lod = 3) {
+  componentEvidence.length = 0;
+  const byX = [...P.nativeRing].sort((a, b) => a[0] - b[0]),
+    west = byX.slice(0, 2).sort((a, b) => a[1] - b[1]),
+    east = byX.slice(2).sort((a, b) => a[1] - b[1]),
+    [A, D] = west,
+    [B, C] = east,
+    rW = mid(A, D),
+    rE = mid(B, C),
+    pA = point(A, P.eave),
+    pB = point(B, P.eave),
+    pC = point(C, P.eave),
+    pD = point(D, P.eave),
+    pW = point(rW, P.ridge),
+    pE = point(rE, P.ridge);
+  polygon(o, 'foundation', P.nativeRing, P.foundationBottom, P.floor);
+  polygon(o, 'wall', P.nativeRing, P.floor, P.eave);
+  face(o, 'wall', [pA, pW, pD], [-1, 0, 0]);
+  face(o, 'wall', [pB, pC, pE], [1, 0, 0]);
+  for (const roof of [
+    [pA, pB, pE, pW],
+    [pW, pE, pC, pD],
+  ]) {
+    const bottom = roof.map((p) => [p[0], p[1] - P.roofThickness, p[2]]);
+    face(o, 'roof', roof, [0, 1, 0]);
+    face(o, 'roof', bottom, [0, -1, 0]);
+    for (let i = 0; i < roof.length; i++) {
+      const j = (i + 1) % roof.length;
+      face(o, 'roof', [roof[i], bottom[i], bottom[j], roof[j]]);
+    }
+  }
+  // Closed service entries: placement and dimensions are estimates, not inferred openings.
+  for (const [p, sign, width, height] of [
+    [rW, -1, 1.1, 2.2],
+    [rE, 1, 2.2, 2.6],
+  ]) {
+    const x = p[0] + sign * 0.055,
+      z = p[1],
+      r = [
+        [x - 0.055, z - width / 2],
+        [x + 0.055, z - width / 2],
+        [x + 0.055, z + width / 2],
+        [x - 0.055, z + width / 2],
+      ];
+    polygon(o, 'door', r, P.floor, P.floor + height);
+  }
+  if (lod > 0) {
+    for (const [a, b] of [
+      [pA, pB],
+      [pD, pC],
+    ])
+      beam(o, 'trim', a, b, 0.07, 0.08, colors.trim);
+    beam(o, 'trim', pW, pE, 0.09, 0.09, colors.trim);
+    const count = [0, 7, 15, 31][lod];
+    for (let i = 1; i <= count; i++) {
+      const t = i / (count + 1),
+        north = mix(pA, pB, t),
+        south = mix(pD, pC, t),
+        ridge = mix(pW, pE, t);
+      for (const edge of [north, south]) {
+        beam(
+          o,
+          'roof',
+          [edge[0], edge[1] + 0.006, edge[2]],
+          [ridge[0], ridge[1] + 0.006, ridge[2]],
+          0.014,
+          0.01,
+          colors.roof,
+        );
+        if (lod > 1)
+          beam(
+            o,
+            'wall',
+            [edge[0], P.floor, edge[2]],
+            [edge[0], P.eave - 0.05, edge[2]],
+            0.014,
+            0.014,
+            colors.wall,
+          );
+      }
+    }
+    for (const [p, sign] of [
+      [rW, -1],
+      [rE, 1],
+    ]) {
+      const x = p[0] + sign * 0.065,
+        z = p[1],
+        y = P.eave + 0.3;
+      polygon(
+        o,
+        'trim',
+        [
+          [x - 0.055, z - 0.55],
+          [x + 0.055, z - 0.55],
+          [x + 0.055, z + 0.55],
+          [x - 0.055, z + 0.55],
+        ],
+        y,
+        y + 0.35,
+      );
+      if (lod > 1)
+        for (let i = 1; i < 4; i++)
+          beam(
+            o,
+            'door',
+            [x + sign * 0.06, y + i * 0.085, z - 0.5],
+            [x + sign * 0.06, y + i * 0.085, z + 0.5],
+            0.012,
+            0.018,
+            colors.door,
+          );
+    }
+  }
+  componentEvidence.push({
+    lod,
+    wholeIndependentHall: true,
+    nativeControls: P.nativeRing.length,
+    allExteriorWalls: true,
+    wholeClosedPitchedRoof: true,
+    foundation: true,
+    closedEndEntries: 2,
+    roofAxis: 'east-west',
+    notWholePlantProxy: true,
+  });
+}
+export const houseSkyline = (o, f) => buildHouse(o, f, 0),
+  houseDistrict = (o, f) => buildHouse(o, f, 1),
+  houseStreet = (o, f) => buildHouse(o, f, 2),
+  houseCloseup = (o, f) => buildHouse(o, f, 3);
+const root = 'content/worldgen/source/places/xn/xns/daiichi_unit_1_south_forecourt_hall',
+  camera = [31, 18, 27],
+  look = [0, 1.8, 0];
+export const houseModel = {
+  id: P.model,
+  key: P.model,
+  cell: P.cell,
+  title: P.title,
+  recipe: 'house-model.mjs',
+  surfaces,
+  build: buildHouse,
+  category: 'landmark',
+  quality: 'medium-fi-exterior',
+  reviewStatus: 'review-in-qa.json',
+  geographicStatus: 'historical-proposal',
+  orientationPolicy: 'approximate-visualization',
+  progressLedger: 'qualla-002.PROGRESS.md',
+  brief: P.limitations.join(' '),
+  appearance: {
+    kind: 'historical',
+    representedDate: P.representedDate,
+    validFrom: P.validFrom,
+    validUntil: P.validUntil,
+    currentWorldEligible: false,
+  },
+  camera,
+  lookAt: look,
+  portableGroundY: -1.8,
+  mediumFiContext: {
+    scale: 1,
+    groundY: 0,
+    terrain: { descriptor: 'terrain-review.terrain.json', heightmap: 'terrain-review.height.png' },
+  },
+  embeddedCanonicalGraphs: ['metal_painted', 'concrete_plain'],
+  qaCameras: [
+    { name: 'whole-pitched-roof-hall-and-east-entry', position: camera, lookAt: look },
+    { name: 'opposite-gable-all-walls-and-roof', position: [-31, 17, -27], lookAt: look },
+  ],
+  qaLodCameras: ['skyline', 'district', 'street', 'closeup'].map((reviewLod) => ({
+    name: 'whole-forecourt-hall-' + reviewLod,
+    position: camera,
+    lookAt: look,
+    reviewLod,
+  })),
+  runtimeLodOverlay: {
+    module: root + '/models/house-model.mjs',
+    level: 'skyline',
+    export: 'houseSkyline',
+    errorMeters: 0.15,
+    surfaces,
+    authoredLevels: {
+      district: { export: 'houseDistrict', errorMeters: 0.1, surfaces },
+      street: { export: 'houseStreet', errorMeters: 0.04, surfaces },
+      closeup: { export: 'houseCloseup', errorMeters: 0.01, surfaces },
+    },
+  },
+  limitations: P.limitations,
+  sourceLicense:
+    'Original deterministic geometry under repository license. Two cleared published DOE government-work aerials provide approximate 1971 low white hall and pitched roof form; contemporary numerical four-corner footprint attributed to ODbL. No copied pixels or photographic texture. Historical continuity, exact roof-to-current-footprint assignment, height, hidden details and ground contact are explicitly approximate.',
+};

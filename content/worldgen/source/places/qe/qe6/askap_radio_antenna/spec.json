@@ -1,0 +1,378 @@
+{
+  "planId": "askap_radio_antenna",
+  "id": "askap_radio_antenna",
+  "assetId": "molen.worldgen.structure.askap_radio_antenna",
+  "title": "ASKAP 12-metre radio antenna",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 116.6314243,
+    "latitude": -26.6970007
+  },
+  "size": [
+    12,
+    11.400000005960464,
+    12
+  ],
+  "actualBounds": {
+    "min": [
+      -6,
+      -0.4000000059604645,
+      -6
+    ],
+    "max": [
+      6,
+      11,
+      6
+    ]
+  },
+  "visualBrief": "Whole 12 m prime-focus paraboloid, both reflector faces and rim, quadrupod/receiver, rear ribs, three-axis support envelope, pedestal and concrete base. Written mechanical facts and numerical native antenna positions only. Reusable equipment with 36 individual geographic placements; whole observatory remains in progress.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2013-12-31",
+    "validFrom": "2013-01-01",
+    "validUntil": "2014-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "murchison-radio-astronomy-observatory-wp",
+      "url": "https://qualla.com/murchison-radio-astronomy-observatory/"
+    }
+  ],
+  "referenceInputHash": "sha256:f721b1f7a8514c58fcb145a054c105acfe41c51a75988d407f1e75c7ba98f066",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/qe/qe6/askap_radio_antenna/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/qe/qe6/askap_radio_antenna/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.15,
+    "surfaces": {
+      "reflector": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.62,
+        "metallic": 0.25
+      },
+      "back": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.3
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.69,
+        "metallic": 0.35
+      },
+      "receiver": {
+        "slot": "window",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.2
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "reflector": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.25
+          },
+          "back": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.3
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.35
+          },
+          "receiver": {
+            "slot": "window",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "reflector": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.25
+          },
+          "back": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.3
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.35
+          },
+          "receiver": {
+            "slot": "window",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.001,
+        "surfaces": {
+          "reflector": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.25
+          },
+          "back": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.3
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.35
+          },
+          "receiver": {
+            "slot": "window",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      116.6314243,
+      -26.6970007
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        116.6314243,
+        -26.6970007
+      ],
+      "modelHeight": 0,
+      "basis": "ActualnativeBiyarli/ref1point fixed beforeindependentfield/floor/mainsections; not a surveyedconcretepadthreshold. Other36positionsmustretain ownactualnativeanchors."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "node/2377898985"
+    ],
+    "source": "https://www.openstreetmap.org/node/2377898985",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:caed028edc72151778c81166e35820e2b539622d04aa4707adcc83d7863a910f",
+    "notes": "Whole ASKAP12mantennahardware—reflector/bothfaces/rim/quadrupod/primefocusfeed/rearstructure/mount/pedestal/base. Nativeoriginalreferencepoint/12mdiameterfixedbeforefield. Reusableequipmentgeometryanddistinct36actualpointplacements, neveronesingledishaswholeobservatory. Allimageryunused; exactheights/mechanicaldetails/pose/finish estimates remain."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "window",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole ASKAP12mantennahardware—reflector/bothfaces/rim/quadrupod/primefocusfeed/rearstructure/mount/pedestal/base. Nativeoriginalreferencepoint/12mdiameterfixedbeforefield. Reusableequipmentgeometryanddistinct36actualpointplacements, neveronesingledishaswholeobservatory. Allimageryunused; exactheights/mechanicaldetails/pose/finish estimates remain.",
+    "Operator12mdiameter/focalratio.5 fixes6mfocaldistance and1.5mdeep paraboloid at6mradius. Entirefront/backreflector, continuousrim, quadrantfeedlegs/PAFbox, rearframe, elevationyoke/azimuthbearing/pedestal/concretebase included. Nominalvertex4.6maboveprovider-relativeorigin/primefocus10.6m, shell.1m/feedpackage1.0x.75x.8m, support/pedestal/base sizes andribcounts are explicit estimates,1.5mheight/1mcomponentuncertainty. Not a flatdisc/radome/oneportal proxy.",
+    "OriginalactualBiyarlinode2377898985 andderived12mdiametercircle fixed before independent256m129x129field/16641values/4rawtiles; datum375.7684m/range371.6255..377.9829m. Floor.2m/base-.4m/vertex4.6m/focus10.6m selectedonce afterfield. Originalfield/frame/floors/mainsections nevercut/masked/flattened/refetched/reframed/refit forcaptures. Source2026numericdata approximates2013phase; oldguide/softwareelevations not adoptedasground. No surveyedcontact/verticalregistration.",
+    "Illustrativezenithstowpose only; actualthree-axisorientationvariesduringobservation. Mainparaboloid/quadrupod form fromwrittenmechanicalfacts; exact mount/counterweight/backstiffener/PAF2013casing/finish/cabling not established, original estimates retained. No specificobservingtarget/workingRFIorpointingperformance claimed. Laterreceiverinternals and hiddenelectronics excluded.",
+    "One reusable12mequipmentmodel, withall36originalnamed/refASKAPpoints asdistinctgeographicinstances. Eachnativeposition/identity/footprintbound preserved; no compositeGLB/centroidplacement, fake36thpoint or ASKAP34-asEDGESsubstitution. Derived32pointcircle isreportedreflectordiameterenvelope, not a mappedfoundationpolygon. Instancepositions verifiedbeforecompletion.",
+    "Qualla first4families/1conflict, everyimageunused. OriginalauthorPDFread forwrittenfacts only; allphotos/plans/diagrams/figuresunused. OriginalnumericOSMnodes/12mdiametertags retainedwithODbLcredit. No rightsrepair/questionableimagery orimageapproval claimed.",
+    "Approximate2013datedproposal/currentWorldEligible false. Entireequipment/aperture/support/base retained atfourLODs; curvature/shellsegments/rear-rib/pedestal-sides reduce atdistance. Parentobservatory remainsunfinished untilMWA128/2013EDGES/requiredsupportcoverage complete."
+  ],
+  "sourceLicense": "Original deterministic procedural geometry under repository license. OSM numerical points ODbL attribution retained. Primary written mechanical facts only; no photographs, plans or figures adopted. Height, pose, support detail, casing and finish estimates explicit.",
+  "qaLodCameras": [
+    {
+      "name": "whole-antenna-skyline",
+      "position": [
+        16,
+        13,
+        18
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-antenna-district",
+      "position": [
+        16,
+        13,
+        18
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-antenna-street",
+      "position": [
+        16,
+        13,
+        18
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-antenna-closeup",
+      "position": [
+        16,
+        13,
+        18
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "complete-aperture-quadrupod-and-primefocus",
+      "position": [
+        12,
+        17,
+        13
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "rear-reflector-ribs-mount-and-pedestal",
+      "position": [
+        15,
+        3,
+        -13
+      ],
+      "lookAt": [
+        0,
+        4.6,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8084,
+    "vertices": 24252,
+    "materials": 5,
+    "bytes": 1038880,
+    "sha256": "sha256:2450b52489b2518673c49ea096c915e1b5ae34f4939ad22a9a94ba14fefdb94d"
+  }
+}

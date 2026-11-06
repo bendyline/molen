@@ -1,0 +1,203 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.kolnbrein_dam",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
+  },
+  "hash": "sha256:88c19b83e71105e8938cf2ea37129248aa4c2b8742bd6a6e6a3f4b70154af89d",
+  "sourceHash": "sha256:cd8e1651254c802bbb5ae9cf9186a8ed2257bb8c46e1589872648fcb25de7fbe",
+  "bounds": {
+    "aabb": {
+      "min": [
+        -338.4939,
+        -185.9741,
+        -11.0002
+      ],
+      "max": [
+        207.6907,
+        15.1531,
+        133.9532
+      ]
+    },
+    "sphere": {
+      "center": [
+        -65.4016,
+        -85.4105,
+        61.4765
+      ],
+      "radius": 299.8185
+    }
+  },
+  "stats": {
+    "triangles": 4167,
+    "vertices": 8355,
+    "meshes": 1,
+    "primitives": 7,
+    "materials": 7,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 354560
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 4167
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "concrete_boardformed",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "concrete_plain",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "metal_standing_seam",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "concrete_plain",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "metal_painted",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "glass_frit_triangular",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": true,
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "window_grid",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -338.4939,
+          -185.9741,
+          -11.0002,
+          -338.4939,
+          -185.9741,
+          133.9532,
+          -338.4939,
+          15.1531,
+          -11.0002,
+          -338.4939,
+          15.1531,
+          133.9532,
+          207.6907,
+          -185.9741,
+          -11.0002,
+          207.6907,
+          -185.9741,
+          133.9532,
+          207.6907,
+          15.1531,
+          -11.0002,
+          207.6907,
+          15.1531,
+          133.9532
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": [],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:ac7af6a259d2ed69237283e6f0057a01f33605340456edd4fadc74297ddb932e",
+    "masterHash": "sha256:88c19b83e71105e8938cf2ea37129248aa4c2b8742bd6a6e6a3f4b70154af89d",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:3c577bbef5fbcc3fb64a52f4184129c3f7905a1ca8ca1424429f52e59b52b6fd",
+        "bytes": 54016,
+        "gzipBytes": 17295,
+        "triangles": 613,
+        "cpuBytes": 46484,
+        "gpuBytes": 46484,
+        "errorMeters": 4,
+        "drawCalls": 6
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:7eacfb4c44525d11d9f28cf4a9c132b3603021fe7cca842aa6c41f5e843061b9",
+        "bytes": 120832,
+        "gzipBytes": 36931,
+        "triangles": 1497,
+        "cpuBytes": 113276,
+        "gpuBytes": 113276,
+        "errorMeters": 1.6,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:26d13aace530a7e90a655fcf2c61a20aa29e499c2900e528b1e87eff7d3b2d9a",
+        "bytes": 313432,
+        "gzipBytes": 75774,
+        "triangles": 3959,
+        "cpuBytes": 304700,
+        "gpuBytes": 304700,
+        "errorMeters": 0.6,
+        "drawCalls": 7
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:a55199ae07e1de73184b08e923e8d1740747ba21dd5eb1466efa3b1984019294",
+        "bytes": 327784,
+        "gzipBytes": 80272,
+        "triangles": 4143,
+        "cpuBytes": 319052,
+        "gpuBytes": 319052,
+        "errorMeters": 0.2,
+        "drawCalls": 7
+      }
+    ]
+  }
+}

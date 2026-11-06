@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-02",
+  "problem": "Shared source frame origin can lie well outside an individual enclosure, causing the old anchor-centered review query to exceed the bounded local-query limit.",
+  "change": "Bounded query centers on declared actual extent; tile-root translation and map-line projection preserve original native model coordinates. Unbounded/point review behavior retained. Previous valid captures remain compatible through the exact prior fixture hash.",
+  "oldFixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+  "tests": {
+    "passed": 13,
+    "files": [
+      "examples/world-explorer/test/visual/landmark-capture-clipping.test.mjs",
+      "examples/world-explorer/test/visual/landmark-capture-footprint.test.mjs"
+    ]
+  },
+  "currentSharedFramesRendered": 24,
+  "priorPortableFramesRetained": 24,
+  "modelGeometryFramesFieldsAndPlacementsChanged": false,
+  "oldAcceptedModelsReopened": 0
+}

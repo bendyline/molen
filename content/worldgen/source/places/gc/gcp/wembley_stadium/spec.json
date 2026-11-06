@@ -65,7 +65,13 @@
     "notes": "Pitch goal axis is east-west, so native+X follows it and native-Z is the north Olympic Way entrance and arch. Footprint and aperture are independently mapped. Arch map itself records artistic plan interpolation, therefore only its approximately315m feet and north-side position are used; the22degree geometry comes from the designer. Ground contactY0 preserves feet and playing field, with north stair/entrance grade reconstructed from published views."
   },
   "limitations": [
-    "Static roof covering all seats while keeping the pitch open; movable panel motion, bogie internals, ticket-seat count and event advertisements are outside this exterior model. Structural connection plate schedules, field margins and smaller mullion dimensions are reconstructed from published photographs. The visible arch and roof structure preserve published section dimensions, but no structural analysis certification or engineering survey is claimed."
+    "Static roof covering all seats while keeping the pitch open; movable panel motion, bogie internals, ticket-seat count and event advertisements are outside this exterior model. Structural connection plate schedules, field margins and smaller mullion dimensions are reconstructed from published photographs. The visible arch and roof structure preserve published section dimensions, but no structural analysis certification or engineering survey is claimed.",
+    "Detailed source and imported design-time master retain their complete detail,with an upper-row envelope-fit correction. Four independently authored browser models retain the315m inclined arch,saddle-free open fixed roof,mapped asymmetric envelope,north Olympic Way entrance and three red seating tiers. Individual chairs,handrail hardware,small glazing joints and roof machinery remain in the detailed source or outside exterior scope.",
+    "Skyline uses24 perimeter facets and one solid tapered arch with20segments and six sides. District uses40facets,six aggregated chords,seven diaphragm rings and diagonal bracing. Street uses60facets,twelve physical chord paths with24segments,11diaphragm rings,selected braces,22grouped tread levels and coarse entrance steps. Closeup uses88facets,twelve64segment chords,42diaphragm rings,selected diagonal web/stay members,all81row bands and40entrance steps. Small cables are widened in distant tiers to stay visible.",
+    "Three existing shared256px painted-metal,standing-seam metal and plain-concrete graphs use metric UVs. Red seats,blue-gray glazing,turf and screens use local PBR factors. No private or embedded images. Browser north roof glazing is aggregated into the opaque metal annulus. Seven simple panel divisions represent the stationary covering;moving panels,roof motion and detailed bearing assemblies are not animated.",
+    "Retained anchor[-0.27956525,51.55596295],heading0.003693795533106074,native+X east along the goal axis and+Z south remain unchanged. The arch stands to the north(-Z),inclined22degrees. Mapped pitch and outer/opening polygons remain the controls;playing field and bearing feet useY0. This is an architectural relative datum,not a new terrain or geodetic survey. No new bespoke source or terrain fetch.",
+    "Error settings8/4/2/1m are authoring estimates,not certified whole-mesh Hausdorff distances. Faceting,sparser distant arch members,grouped tread bands and static detail transitions remain visible when levels are forced close. Physical phone/laptop and downtown timing remain unmeasured.",
+    "The full detailed master and browser tiers fit upper seating rows within93.5percent of the retained mapped outer radius. This corrects the earlier rounded-rectangle southern-corner overshoot while keeping all81row bands,individual chair geometry and full structural detail;the approximate chair population is recomputed from the corrected perimeter rather than retained as an exact ticket-seat count. The original pre-fit master hashes and review remain recorded as historical provenance;current masters and browser levels have fresh hashes and render review. The browser perimeter roof truss is explicit geometry."
   ],
   "previewCamera": {
     "position": [
@@ -160,10 +166,254 @@
       ]
     }
   ],
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Inclined pale lattice arch north of a mapped oval glazed/concrete envelope,open mapped roof aperture,three red seating tiers and projecting north Olympic Way entrance."
+  },
+  "mediumFiContext": {
+    "groundY": -0.2,
+    "scale": 3,
+    "neighborStyle": "molen.worldgen.regional.atlantic.apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/gc/gcp/wembley_stadium/models/wembley-browser.mjs",
+    "export": "buildWembleySkyline",
+    "surfaces": {
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.62
+      },
+      "seam": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.72,
+        "metallic": 0.3
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.27,
+        "metallic": 0.12
+      },
+      "plastic": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.8
+      },
+      "turf": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 1
+      }
+    },
+    "errorMeters": 8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildWembleyDistrict",
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62
+          },
+          "seam": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.12
+          },
+          "plastic": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8
+          },
+          "turf": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 4
+      },
+      "street": {
+        "export": "buildWembleyStreet",
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62
+          },
+          "seam": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.12
+          },
+          "plastic": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8
+          },
+          "turf": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 2
+      },
+      "closeup": {
+        "export": "buildWembleyCloseup",
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62
+          },
+          "seam": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.12
+          },
+          "plastic": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8
+          },
+          "turf": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-wembley-skyline",
+      "position": [
+        350,
+        240,
+        -390
+      ],
+      "lookAt": [
+        0,
+        52,
+        -15
+      ],
+      "fov": 50,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-wembley-district",
+      "position": [
+        350,
+        240,
+        -390
+      ],
+      "lookAt": [
+        0,
+        52,
+        -15
+      ],
+      "fov": 50,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-wembley-street",
+      "position": [
+        350,
+        240,
+        -390
+      ],
+      "lookAt": [
+        0,
+        52,
+        -15
+      ],
+      "fov": 50,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-wembley-closeup",
+      "position": [
+        350,
+        240,
+        -390
+      ],
+      "lookAt": [
+        0,
+        52,
+        -15
+      ],
+      "fov": 50,
+      "reviewLod": "closeup"
+    }
+  ],
   "assetId": "molen.worldgen.structure.wembley_stadium",
   "category": "stadium",
   "quality": "detailed",
   "actualBounds": {
+    "min": [
+      -160.6999969482422,
+      0,
+      -171.5
+    ],
+    "max": [
+      160.6999969482422,
+      133.29429626464844,
+      133.54039001464844
+    ]
+  },
+  "mesh": {
+    "triangles": 827246,
+    "vertices": 1736992,
+    "materials": 7,
+    "bytes": 72462592,
+    "sha256": "sha256:4eb0209f0210255192da7fdaf2c0ed50105a0ce920096275a7e7b4aa1a7766c6",
     "min": [
       -160.6999969482422,
       0,

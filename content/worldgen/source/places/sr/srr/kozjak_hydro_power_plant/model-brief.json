@@ -1,0 +1,430 @@
+{
+  "id": "kozjak_hydro_power_plant",
+  "title": "Kozjak Hydro Power Plant",
+  "wikidataId": "Q15440116",
+  "referenceCoordinate": {
+    "longitude": 21.19272217154503,
+    "latitude": 41.877985095930555
+  },
+  "module": "content/worldgen/source/places/sr/srr/kozjak_hydro_power_plant/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "riprap": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw"
+    },
+    "rock": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "concrete_plain"
+    },
+    "house": {
+      "slot": "wall",
+      "graph": "stucco"
+    },
+    "white": {
+      "slot": "trim",
+      "graph": "concrete_plain"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "rail": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "gate": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    }
+  },
+  "exportLabel": "Molen original Kozjak rockfill dam, circular spillway and powerhouse",
+  "expectedDraftMasterHash": "sha256:a498313f358cb19707c9a56490ec389d904cc9c5fd85e5a591519d742781d575",
+  "visualBrief": "Kozjak’s pale rockfill dam with its 302.80 m mapped crest road, circular overflow, white red-roof tower, intake rails and lower two-unit generating complex with ochre walls, red gabled roofs and outdoor electrical equipment.",
+  "heightPolicy": "Signed datum 468 m. The exterior uses an approximate 474.4 m crest and 348.3 m foundation for the stated 126.1 m dam height. The operator gives 459 m maximum operating pool and 432 m minimum. The standard viewer samples 468.65 m headwater and 361.58 m in the lower pool.",
+  "nativeAxes": "+X follows the crest east-northeast and +Z points upstream into Kozjak Reservoir.",
+  "sourceFacts": {
+    "mappedCrestLengthMeters": 302.8009136276473,
+    "structuralHeightMeters": 126.1,
+    "approximateCrestElevationMeters": 474.4,
+    "mainUnits": 2,
+    "normalPoolMaximum": 459,
+    "minimumPool": 432,
+    "terrainTiles": 9
+  },
+  "limitations": [
+    "Signed datum 468 m. The exterior uses an approximate 474.4 m crest and 348.3 m foundation for the stated 126.1 m dam height. The operator gives 459 m maximum operating pool and 432 m minimum. The standard viewer samples 468.65 m headwater and 361.58 m in the lower pool.",
+    "The standard sampled reservoir is 9.65 m above the operator’s maximum pool, submerging the overflow rim. Reference and standard fixtures document this difference; native fit remains pending.",
+    "The main crest is mapped. Powerhouse footprint, switchyard, gallery, intake-rail position and local equipment sizes are approximate exterior layouts from ordinary photos and the native outfall point.",
+    "Rockfill cross-sections, buried foundations and cliff interfaces are approximated against standard terrain. Water, gates and exterior electrical equipment are static. The machinery interior and buried conduits are outside the model."
+  ],
+  "materialMethod": "Shared limestone, gravel, board-formed and plain concrete, ochre stucco, painted steel, red sheet roofing and window grids. Zero embedded images.",
+  "references": [
+    {
+      "url": "https://www.esm.com.mk/?page_id=1831",
+      "observed": "ESM gives 126.1 m rockfill height, two units, 459 m maximum and 432 m minimum operating pool. The exterior photos show pale rockfill, the circular overflow, white tower with red roof and ochre generator hall with red gabled roof and open switchyard."
+    },
+    {
+      "url": "https://gim.mk/en/portfolio/%D0%B1%D1%80%D0%B0%D0%BD%D0%B0-%D0%BA%D0%BE%D0%B7%D1%98%D0%B0%D0%BA/",
+      "observed": "Construction institute photo shows the thick circular weir rim, open center, bank wall, service landing, gallery and white red-roof tower."
+    },
+    {
+      "url": "https://energy.gov.mk/mk-MK/odnosi-so-javnost/soopstenija/bozinovska-vo-terenska-poseta-na-xe-kozjak-primer-za-stratesko-investiranje-vo-obnovlivi-izvori-na-energija",
+      "observed": "Ministry exterior photo shows the intake tower and an inclined pair of gate rails into the reservoir."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The native crest road and straight reservoir edge fix the dam. The circular waterway start and low outfall point locate the spillway and approximate generating site. Building footprints are not supplied in these tiles."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "dam-and-lower-plant",
+      "position": [
+        65,
+        215,
+        -655
+      ],
+      "lookAt": [
+        45,
+        -25,
+        -115
+      ],
+      "fov": 50
+    },
+    {
+      "name": "circular-spillway",
+      "position": [
+        261,
+        59,
+        222
+      ],
+      "lookAt": [
+        194,
+        -6,
+        114
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-and-tower",
+      "position": [
+        -164,
+        47,
+        41
+      ],
+      "lookAt": [
+        28,
+        10,
+        12
+      ],
+      "fov": 50
+    },
+    {
+      "name": "lower-powerhouse",
+      "position": [
+        10,
+        -35,
+        -509
+      ],
+      "lookAt": [
+        53,
+        -94,
+        -386
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upstream-face",
+      "position": [
+        29,
+        94,
+        309
+      ],
+      "lookAt": [
+        18,
+        -11,
+        18
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -120,
+    "scale": 1.3,
+    "focus": {
+      "center": [
+        45,
+        -25,
+        -115
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/srr/kozjak_hydro_power_plant/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "riprap": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw"
+      },
+      "rock": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain"
+      },
+      "house": {
+        "slot": "wall",
+        "graph": "stucco"
+      },
+      "white": {
+        "slot": "trim",
+        "graph": "concrete_plain"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "gate": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "riprap": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw"
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "house": {
+            "slot": "wall",
+            "graph": "stucco"
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "riprap": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw"
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "house": {
+            "slot": "wall",
+            "graph": "stucco"
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "riprap": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw"
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "house": {
+            "slot": "wall",
+            "graph": "stucco"
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "kozjak-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        65,
+        215,
+        -655
+      ],
+      "lookAt": [
+        45,
+        -25,
+        -115
+      ]
+    },
+    {
+      "name": "kozjak-district",
+      "reviewLod": "district",
+      "position": [
+        65,
+        215,
+        -655
+      ],
+      "lookAt": [
+        45,
+        -25,
+        -115
+      ]
+    },
+    {
+      "name": "kozjak-street",
+      "reviewLod": "street",
+      "position": [
+        65,
+        215,
+        -655
+      ],
+      "lookAt": [
+        45,
+        -25,
+        -115
+      ]
+    },
+    {
+      "name": "kozjak-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        65,
+        215,
+        -655
+      ],
+      "lookAt": [
+        45,
+        -25,
+        -115
+      ]
+    }
+  ]
+}

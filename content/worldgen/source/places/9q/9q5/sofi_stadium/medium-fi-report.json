@@ -8,25 +8,27 @@
   },
   "sourceHash": "sha256:02c15fc85159d6965be3840e3e0f668231273c0618f26318af334da71c3770d6",
   "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
-  "fixtureHash": "sha256:10fa6f88913799edc5a4d6d7a36839b9bbc033d413db70980003ffd0559addc5",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 5696,
   "runtimeLods": [
@@ -86,7 +88,7 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:b1b50e1c566fc77206b99d298ad1e25005131b344f06b3fb4df92e3d1ed22c13",
+      "hash": "sha256:c21c6d609016a933802cbcee10aae105257dbe035b9e091e0bb8ed849efa2a68",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -122,7 +124,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -138,7 +140,7 @@
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:ff5d121ea63a2cc57b5f4f8e7d00b4a0d429d786c0f943d77ec6ca75aec3ce4d",
+      "hash": "sha256:f3f6aa0cc55eaf9e05abccc04856cd373b2f2894e84e5f119657d03b7e6a322e",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -174,7 +176,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -190,7 +192,7 @@
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:c81e1f45a599dba11c860bb04c79e0c44670bdc0f633643aa7f3baa5af74ae33",
+      "hash": "sha256:761e4d13c761888b492cd1605c7e65905716fbe91b4f7eb325064cbf9f1aba2e",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -226,7 +228,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -242,7 +244,7 @@
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:ca35fc5453d70f3f63fdc5aa4a498ef72e251506a68a02a11ffafde8a6d20767",
+      "hash": "sha256:ea69f712488c0c8aacc34d70748755550469a2ca6540293c317910fdef3f8edd",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -278,7 +280,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -294,7 +296,7 @@
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:95485d98a902fdec5a8ac08272d28d9facf021273f97b3972701eab50df2cc21",
+      "hash": "sha256:946f0df08e83eff78e20905c14960b2f9946567667421495d8bb0a98766ce7f7",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -330,7 +332,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -346,7 +348,7 @@
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:ef9d1ec2d4b60d465f5b8ad56899bcee86c9a3248597e9300f4d6223de263cee",
+      "hash": "sha256:13090b0af2230216c49f69cda1f417362e02b667fcbf2c433ceed5f8dfcc845e",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -382,7 +384,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -398,7 +400,7 @@
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:9c4e6c7d8183318e052bc58200ee77c1189686702564bed36051f80183387988",
+      "hash": "sha256:e60ba01ded8add946b9e80733710bbd78663c33f8cda6ce385dfdf9ce68291d6",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -434,7 +436,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -450,7 +452,7 @@
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:3e968d46fb70f649935ec999b71061aed224b42d3e7e75130ed13cd81f2c3437",
+      "hash": "sha256:c61fa9eaf5c4d10b375b6fceb957ccc87b8b9c1dd2a15cc5cde9ef5837fa486d",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -486,7 +488,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -502,7 +504,7 @@
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:8d044f658e4424284d0edc2a815fde1d9bd322674c750d5f8bc16fdcfba8b0ea",
+      "hash": "sha256:c3900ef725d13f6c7a1f12a8f36ec4479b6c843c6215f92c95dc491ad2f1e5cc",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -538,7 +540,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -554,7 +556,7 @@
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:32948fbecc0c5ded392f66a3edb535f974f7e4cda8b8b6760bbdb75c4907aac7",
+      "hash": "sha256:b8acae3c44e24ffedc688ac8f6a38dfafe40f648b508f235b8f37baa132f9376",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -590,7 +592,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -606,7 +608,7 @@
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:76d4e30413f56168f099584dff726b2552cee12d9df98cda469a85d0b0e85ac8",
+      "hash": "sha256:6d2b3b339d1a2b50b17799b6557c44a0586348a34b49dd34c8e7d06de1303ee9",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -642,7 +644,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -658,7 +660,7 @@
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:5c186b9241d08c8fdd20d8f44cd7e65c7b2e9ccbfabac6487b419dfbaabff7ed",
+      "hash": "sha256:8d1abb7362c36e4d69751ff2e0b687ae6b3f567ab15228cca0cc05fb7e58222b",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -694,7 +696,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -710,7 +712,7 @@
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:8a664ad63a20cad3fc006cc858f0f9f52d16ae0d0d775d8413757fe8d1a6e8c1",
+      "hash": "sha256:136cc37b0b6898c184b1ffc9848746ec49caee1a3dd2fc4f980f74925830495e",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -746,7 +748,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -762,7 +764,7 @@
     },
     {
       "path": "medium-fi/sunken-four-band-bowl-and-hollow-oval-display.png",
-      "hash": "sha256:8bae0067647bf00f160ddbea8af142e63344d8b32bb7bf70f3391ac6dde216bb",
+      "hash": "sha256:04972feed30381eaab9df0d38ccec8a50626a8a6fdb2b60d889ed53605d62cc1",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -798,7 +800,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -814,7 +816,7 @@
     },
     {
       "path": "medium-fi/open-east-entry-columns-and-branched-roof-supports.png",
-      "hash": "sha256:1d7cfc815b4f1ae6b81a72798b5dd4840c1e0bd6ab59330e363094423e78d72e",
+      "hash": "sha256:3a943872d6f3b77e4db2728b03f08177bfdd632ff19b31659baf7a6fb66b73b7",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -850,7 +852,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -866,7 +868,7 @@
     },
     {
       "path": "medium-fi/covered-plaza-and-connected-theater-exterior.png",
-      "hash": "sha256:115d39b39bfd30ccdb270c26ee6f2cea2dfc0f6e356ff573a39ef329e1c1744c",
+      "hash": "sha256:17969747de6b910166df926e2d647d5cddec2cc38a49e6f645f4083dc7f8b570",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -902,7 +904,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -918,7 +920,7 @@
     },
     {
       "path": "medium-fi/sofi-skyline.png",
-      "hash": "sha256:332745ed3a7499487afca0d3448c4c98f86bbba7a3ddba7bd275ebce1eeef58a",
+      "hash": "sha256:ed0f152b7a14c200af9b2106e17fa2fc9445d71617d581f037da8a3e6264f3ef",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -954,7 +956,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -970,7 +972,7 @@
     },
     {
       "path": "medium-fi/sofi-district.png",
-      "hash": "sha256:dcc5b8d8febc12a624c7194dc3562953781c5d94f082656fdb370cbfd282b64e",
+      "hash": "sha256:684089cce4e98132acbec64b7a404cec85610386115f362f8540ab5975c137ee",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -1006,7 +1008,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -1022,7 +1024,7 @@
     },
     {
       "path": "medium-fi/sofi-street.png",
-      "hash": "sha256:27b26cc7e1683146044ac7efbef7ff59765edb0ddeb7e5f5d3bdf527f30d13e5",
+      "hash": "sha256:03c7f3e59a3a9a5707a42e8934e4fb8d7b1dc5c0db7f1707f9cfca4c0f95a54b",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -1058,7 +1060,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -1074,7 +1076,7 @@
     },
     {
       "path": "medium-fi/sofi-closeup.png",
-      "hash": "sha256:cbb043bf7291b345378c01991789f7b52356e81cb9adf02a61d268c241654f4d",
+      "hash": "sha256:75be3210759a9c4b1b11c07c67795bc644781d47565e4ae1b1c3303e3a8af7c7",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -1110,7 +1112,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -1126,7 +1128,7 @@
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:a7cf96c7c103e429e96d18c64259c67e24a16b664af36031c96218b4c53db314",
+      "hash": "sha256:4f959b248c9e852edd06fb42288157e5d6315959e663d2175b718c879288111f",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -1162,7 +1164,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -1178,7 +1180,7 @@
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:ef9d1ec2d4b60d465f5b8ad56899bcee86c9a3248597e9300f4d6223de263cee",
+      "hash": "sha256:13090b0af2230216c49f69cda1f417362e02b667fcbf2c433ceed5f8dfcc845e",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -1214,7 +1216,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -1230,7 +1232,7 @@
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:5511b0b597d263c61f15344630a1ec52af1f15be42b4a4642d929e223a297b59",
+      "hash": "sha256:d053574d4cc3d8b0438e57f7cd908c6a91a8673ee0c5776fa504688f0a263f45",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -1266,7 +1268,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,
@@ -1282,7 +1284,7 @@
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:ce2d23fc157445501a0fc0addcda8a6aca094f55962e9b5dff2e3e0d6b8c92dc",
+      "hash": "sha256:1046fb09a42b70a38843ec886845c426b7f4282ff32a78c6309e402415e418f2",
       "state": {
         "assetId": "molen.worldgen.structure.sofi_stadium",
         "runtimeHash": "sha256:36d11fde4da98524b25507bafc422d2482feaa7623a500d6ed939e84ad47cb78",
@@ -1318,7 +1320,7 @@
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
         "contextScale": 6,
         "cameraYaw": 0,
-        "reflections": "none",
+        "reflections": "sky-pmrem",
         "groundOpening": {
           "points": 78,
           "outlines": 1,

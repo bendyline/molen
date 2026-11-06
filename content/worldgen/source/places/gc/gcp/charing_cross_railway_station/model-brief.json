@@ -1,0 +1,953 @@
+{
+  "id": "charing_cross_railway_station",
+  "title": "Charing Cross railway station",
+  "wikidataId": "Q801128",
+  "referenceCoordinate": {
+    "longitude": -0.124139261,
+    "latitude": 51.507770233
+  },
+  "module": "content/worldgen/source/places/gc/gcp/charing_cross_railway_station/models/station-model.mjs",
+  "builder": "buildStationLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.9
+    },
+    "blind": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.9
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.9
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.8,
+      "metallic": 0.15
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.85
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.74,
+      "metallic": 0.2
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.42
+    },
+    "doorGlass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.42
+    }
+  },
+  "exportLabel": "Molen original complete Charing Cross station hotel and modern office exterior shared-surface source",
+  "expectedDraftMasterHash": "sha256:e68e6f90303e944184bd517ef65e4d25be906d5d7d1ab7764430c6f922075e8f",
+  "visualBrief": "Complete permanent Charing Cross passenger-building ensemble: historic pale yellow-brick hotel and station entrance, corner pavilions, balconies and low entrance canopy; seven mapped concourse roof folds; the full modern pale-stone office mass, both stepped barrel roofs, arched glazed ends, turquoise oriel, flanking pylons, lateral ranges and elevated station deck. Keep the rail approach, Hungerford Bridge, river, independent city blocks, Embankment tube station and hotel forecourt separate. Exterior only; no trains, copied brands, lettering, figurative sculptures or navigable interior.",
+  "heightPolicy": "All 70 native part heights and min_height facts are retained as inputs. The source has a hotel floor at+.65m, an elevated railway deck at3m and closed upper offices above14m on one common host datum. Native min_height values7/8/9m describe generalized assemblies; photographs require open rail space, thin ledges and supports rather than fully filled cuboids. The central16m/11m mapped blocks become thin upper ledges, and the9-to15m connector has a14m upper closed floor. Peaks30/34m hotel,50/42m barrels and52/44m pylons remain explicit; pylon caps reach their mapped peak. Seven concourse folds plus their cross-roof follow the15m mapped roofs. Only actual lower closed building floors receive ground masks. No parent-wide ground floor, outside plaza or per-part host offsets. One common unchanged native field sample immediately outside the actual hotel entrance at[-91,0],8.782510200000004m,defines Y=0. Native contact remains to review. No per-part host offsets.",
+  "nativeAxes": "+X southeast along tracks toward Hungerford Bridge; -X northwest toward the Strand hotel entrance; +Z southwest toward Northumberland Avenue, -Z northeast toward Villiers Street. +Y up.",
+  "sourceFacts": {
+    "parentNativeId": 35184399127250,
+    "groundIds": [
+      1990,
+      1991,
+      1992,
+      1993,
+      1994,
+      1995,
+      1996,
+      1997,
+      2001,
+      2002,
+      2003,
+      2004,
+      2006,
+      2007,
+      2008,
+      2009,
+      2011,
+      2013,
+      2021,
+      2023,
+      2024,
+      2031,
+      2032,
+      2034,
+      2035,
+      2037,
+      2038,
+      2052,
+      2053,
+      2054,
+      2056,
+      2057
+    ],
+    "authoredLevels": {
+      "hotelFloor": 0.65,
+      "railPlatform": 3,
+      "upperOfficeFloor": 14,
+      "foundation": -6,
+      "hotelMain": 30,
+      "hotelCornerPavilions": 34,
+      "mainBarrelEave": 36,
+      "mainBarrelCrown": 50,
+      "rearBarrelEave": 30,
+      "rearBarrelCrown": 42,
+      "highPylons": 52,
+      "lowPylons": 44,
+      "concourseRoof": 15
+    },
+    "heightPolicy": "All 70 native part heights and min_height facts are retained as inputs. The source has a hotel floor at+.65m, an elevated railway deck at3m and closed upper offices above14m on one common host datum. Native min_height values7/8/9m describe generalized assemblies; photographs require open rail space, thin ledges and supports rather than fully filled cuboids. The central16m/11m mapped blocks become thin upper ledges, and the9-to15m connector has a14m upper closed floor. Peaks30/34m hotel,50/42m barrels and52/44m pylons remain explicit; pylon caps reach their mapped peak. Seven concourse folds plus their cross-roof follow the15m mapped roofs. Only actual lower closed building floors receive ground masks. No parent-wide ground floor, outside plaza or per-part host offsets.",
+    "nativePartFacts": [
+      {
+        "index": 1989,
+        "height": 28,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 1990,
+        "height": 5.5,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 1991,
+        "height": 9,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 1992,
+        "height": 12,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 1993,
+        "height": 14,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 1994,
+        "height": 17,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 1995,
+        "height": 20,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 1996,
+        "height": 16,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 1997,
+        "height": 16,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 1998,
+        "height": 16,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 1999,
+        "height": 11,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2000,
+        "height": 21,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2001,
+        "height": 30,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2002,
+        "height": 34,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2003,
+        "height": 26,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2004,
+        "height": 26,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2005,
+        "height": 12,
+        "minHeight": 8,
+        "kind": "yes"
+      },
+      {
+        "index": 2006,
+        "height": 5,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2007,
+        "height": 6,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2008,
+        "height": 13,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2009,
+        "height": 36,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2010,
+        "height": 40,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2011,
+        "height": 36,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2012,
+        "height": 40,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2013,
+        "height": 36,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2014,
+        "height": 36,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2015,
+        "height": 40,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2016,
+        "height": 51,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2017,
+        "height": 31,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2018,
+        "height": 31,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2019,
+        "height": 36,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2020,
+        "height": 36,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2021,
+        "height": 4,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2022,
+        "height": 7,
+        "minHeight": 6,
+        "kind": "yes"
+      },
+      {
+        "index": 2023,
+        "height": 6,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2024,
+        "height": 13,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2025,
+        "height": 48,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2026,
+        "height": 40,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2027,
+        "height": 48,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2028,
+        "height": 40,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2029,
+        "height": 44,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2030,
+        "height": 52,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2031,
+        "height": 52,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2032,
+        "height": 52,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2033,
+        "height": 44,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2034,
+        "height": 44,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2035,
+        "height": 44,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2036,
+        "height": 40,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2037,
+        "height": 36,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2038,
+        "height": 36,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2039,
+        "height": 6,
+        "minHeight": 0,
+        "kind": "roof"
+      },
+      {
+        "index": 2040,
+        "height": 52,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2041,
+        "height": 42,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2042,
+        "height": 50,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2043,
+        "height": 15,
+        "minHeight": 0,
+        "kind": "roof"
+      },
+      {
+        "index": 2044,
+        "height": 15,
+        "minHeight": 0,
+        "kind": "roof"
+      },
+      {
+        "index": 2045,
+        "height": 15,
+        "minHeight": 0,
+        "kind": "roof"
+      },
+      {
+        "index": 2046,
+        "height": 15,
+        "minHeight": 0,
+        "kind": "roof"
+      },
+      {
+        "index": 2047,
+        "height": 15,
+        "minHeight": 0,
+        "kind": "roof"
+      },
+      {
+        "index": 2048,
+        "height": 15,
+        "minHeight": 0,
+        "kind": "roof"
+      },
+      {
+        "index": 2049,
+        "height": 15,
+        "minHeight": 0,
+        "kind": "roof"
+      },
+      {
+        "index": 2050,
+        "height": 15,
+        "minHeight": 0,
+        "kind": "roof"
+      },
+      {
+        "index": 2051,
+        "height": 15,
+        "minHeight": 9,
+        "kind": "yes"
+      },
+      {
+        "index": 2052,
+        "height": 30,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2053,
+        "height": 34,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2054,
+        "height": 34,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2055,
+        "height": 36,
+        "minHeight": 7,
+        "kind": "yes"
+      },
+      {
+        "index": 2056,
+        "height": 11,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2057,
+        "height": 8,
+        "minHeight": 0,
+        "kind": "yes"
+      },
+      {
+        "index": 2059,
+        "height": 11,
+        "minHeight": 6,
+        "kind": "yes"
+      }
+    ],
+    "authoredMaximumMeters": 52,
+    "terrainTiles": 4,
+    "terrainReferenceLocal": [
+      -91,
+      0
+    ],
+    "occupiedMasks": 7,
+    "ownedNativeParts": 71,
+    "retainedNativeParts": 2923
+  },
+  "limitations": [
+    "Complete permanent Charing Cross passenger-building ensemble: historic pale yellow-brick hotel and station entrance, corner pavilions, balconies and low entrance canopy; seven mapped concourse roof folds; the full modern pale-stone office mass, both stepped barrel roofs, arched glazed ends, turquoise oriel, flanking pylons, lateral ranges and elevated station deck. Keep the rail approach, Hungerford Bridge, river, independent city blocks, Embankment tube station and hotel forecourt separate. Exterior only; no trains, copied brands, lettering, figurative sculptures or navigable interior.",
+    "All 70 native part heights and min_height facts are retained as inputs. The source has a hotel floor at+.65m, an elevated railway deck at3m and closed upper offices above14m on one common host datum. Native min_height values7/8/9m describe generalized assemblies; photographs require open rail space, thin ledges and supports rather than fully filled cuboids. The central16m/11m mapped blocks become thin upper ledges, and the9-to15m connector has a14m upper closed floor. Peaks30/34m hotel,50/42m barrels and52/44m pylons remain explicit; pylon caps reach their mapped peak. Seven concourse folds plus their cross-roof follow the15m mapped roofs. Only actual lower closed building floors receive ground masks. No parent-wide ground floor, outside plaza or per-part host offsets. One common unchanged native field sample immediately outside the actual hotel entrance at[-91,0],8.782510200000004m,defines Y=0. Native contact remains to review. No per-part host offsets.",
+    "Three ordinary photographs inspected: Strand hotel frontage, modern river-side view and modern arched platform-end view. Exact hidden openings, hotel rear, small roof parts, portal inventory and current works remain medium-fi approximations. Current PMTiles supply all 70 nested building parts and their heights/min_height. The modern arches and roof profiles are photo-proportioned within mapped bounds. The separate Eleanor Cross monument and neighboring hotel annex are preserved as independent native features rather than copied or silently claimed. Exterior only. Window inventory, pylon slopes, canopy sections, under-office grades and numerical LOD errors are approximations. Physical-device and dense-city timing remain unmeasured.",
+    "Six existing shared256px limestone,brick,granite,painted-metal,slate andwindow-grid graphs, with at most eight merged semantic groups. Metric UVs and linear colours, no private or embedded images. Skyline retains the full hotel, two barrel masses, pylons and elevated deck; district adds coarse windows; street adds actual recesses and circular pylon windows; close-up adds rails, barrel ribs, arch bracing and roof caps. Master refines facade frames and curves. LOD error values are estimates."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Charing_Cross_station_(new).jpg",
+      "observed": "Ordinary river-side view inspected. Two stepped arched office roof masses, pale square stone cladding, curved dark glass end walls with diagonal structure, tall flanking sloped pylons with round windows, turquoise shallow roof caps and a central cylindrical glazed oriel. Long lateral office ranges have regular windows. River/bridge and foreground trees are independent context."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Charing_Cross_Station_2014-03-23.jpg",
+      "observed": "Ordinary platform-end view inspected. Full lower arched glazed office front with diagonal bracing, round pylon windows, turquoise oriel above the open railway approach, pale lower side blocks and separate platform/stair spaces. Train, copied branding and signage are reference context only. The station is not a solid ground-to-roof box."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Charing_Cross_Station_2020_front.jpg",
+      "observed": "Ordinary 2020 Strand photograph inspected. Long pale yellow-brick historic hotel frontage with stone cornices, lower arched windows, taller middle rectangular windows, paired upper arches, two added attic storeys and a flat stepped roof. Green iron balcony and shallow entrance canopy, glazed corner bays and corner pavilions frame the frontage. Forecourt, separate Eleanor Cross monument and adjacent hotel annex are not claimed as station geometry."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Exact retained way27038418/Q801128 station identity. Current parent1645 and all70 nested building-part families are approximately associated to that same physical station/hotel/office ensemble, not individually Wikidata-tagged. Candidate ownership contains71 of2994 components; actual production replacement remains to verify. Separate bridges, river, hotel forecourt, Eleanor Cross, hotel annex, Embankment tube station and other city blocks remain outside the scoped model."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-hotel-concourse-and-modern-barrels",
+      "position": [
+        -210,
+        135,
+        190
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "modern-river-front-stepped-arches-and-oriel",
+      "position": [
+        160,
+        58,
+        65
+      ],
+      "lookAt": [
+        45,
+        27,
+        3
+      ],
+      "fov": 52
+    },
+    {
+      "name": "hotel-strand-entrance-and-balconies",
+      "position": [
+        -142,
+        24,
+        -8
+      ],
+      "lookAt": [
+        -88,
+        13,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "whole-villiers-side-and-two-roof-levels",
+      "position": [
+        100,
+        85,
+        -140
+      ],
+      "lookAt": [
+        10,
+        22,
+        -4
+      ],
+      "fov": 52
+    },
+    {
+      "name": "open-rail-approach-below-modern-arched-office",
+      "position": [
+        122,
+        4.9,
+        7
+      ],
+      "lookAt": [
+        68,
+        5.5,
+        4
+      ],
+      "fov": 52
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.4,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/gc/gcp/charing_cross_railway_station/models/station-model.mjs",
+    "export": "buildStationSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.9
+      },
+      "blind": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.9
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.9
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.15
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.85
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.74,
+        "metallic": 0.2
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.42
+      },
+      "doorGlass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.42
+      }
+    },
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStationDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "blind": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          }
+        },
+        "errorMeters": 1.2
+      },
+      "street": {
+        "export": "buildStationStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "blind": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          }
+        },
+        "errorMeters": 0.5
+      },
+      "closeup": {
+        "export": "buildStationCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "blind": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          }
+        },
+        "errorMeters": 0.18
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-charing-cross-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -210,
+        135,
+        190
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "whole-charing-cross-district",
+      "reviewLod": "district",
+      "position": [
+        -210,
+        135,
+        190
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "whole-charing-cross-street",
+      "reviewLod": "street",
+      "position": [
+        -210,
+        135,
+        190
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "whole-charing-cross-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -210,
+        135,
+        190
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    }
+  ]
+}

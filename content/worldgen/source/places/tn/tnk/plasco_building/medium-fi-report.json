@@ -1,0 +1,1175 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.plasco_building",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.plasco_building",
+    "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751"
+  },
+  "sourceHash": "sha256:c88b89a7009f3e3f0cae0c325937e40307407126807e6322bea984ff06dff4b4",
+  "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
+    },
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:fde77ae220edfa2ac137b82a7dd93c26763de5d2270412c8eec48db1ddbaf610",
+      "bytes": 82728,
+      "gzipBytes": 19124,
+      "triangles": 862,
+      "cpuBytes": 75336,
+      "gpuBytes": 75336,
+      "errorMeters": 1.3,
+      "drawCalls": 6
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:b1bd31630ebd4e2047ead886bb97769aa0fc9d6f80af1989c8b8ee3ad53eb829",
+      "bytes": 200664,
+      "gzipBytes": 46497,
+      "triangles": 2306,
+      "cpuBytes": 193224,
+      "gpuBytes": 193224,
+      "errorMeters": 0.5,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:9ee2abb34117a27cb9ea26412b8ea618d2343ec2a676cb17030cb7db78ae5c6a",
+      "bytes": 1228440,
+      "gzipBytes": 229480,
+      "triangles": 14774,
+      "cpuBytes": 1220952,
+      "gpuBytes": 1220952,
+      "errorMeters": 0.12,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:6befbc3a71b64160cce10a71559420e4c0971bd973164d3cf6bb48a7e437f511",
+      "bytes": 1907840,
+      "gzipBytes": 356728,
+      "triangles": 22238,
+      "cpuBytes": 1900344,
+      "gpuBytes": 1900344,
+      "errorMeters": 0,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:91375397a9a97fde316376dd3ab48e425de5bbbdf4a109c9f6874b87e9c993b6"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:bcac1b9cd52b6e986d83511d039d8a04eb0c9991b60da37dfdfb706ba35012ce"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:f672cddff66deec267a430d21201c6c66698bfb9b4a847cfce069145875bb551",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:6befbc3a71b64160cce10a71559420e4c0971bd973164d3cf6bb48a7e437f511",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 61248,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          48.0005,
+          53.9,
+          82.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:4e3bb4dbc3ba254150ac634ba790cbe4f091d8135f1581f1b058088bb73a3c72",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:6befbc3a71b64160cce10a71559420e4c0971bd973164d3cf6bb48a7e437f511",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 61248,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          48.0005,
+          53.9,
+          82.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:13b2a9e6d995059ccae39285608d3f30c9c2eb60551a8406f59d2f56b5c52750",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:6befbc3a71b64160cce10a71559420e4c0971bd973164d3cf6bb48a7e437f511",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 61248,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          48.0005,
+          53.9,
+          82.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:d5da60ae8dd1db466823aeee2a75d687fbe37f2ef01ef6fd484fe42f1db1155b",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:6befbc3a71b64160cce10a71559420e4c0971bd973164d3cf6bb48a7e437f511",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 61248,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          48.0005,
+          53.9,
+          82.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:cecf960ba7d0dc56b821ca08bbef801030f5ce3506c976bbdc4661167e12997e",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:b1bd31630ebd4e2047ead886bb97769aa0fc9d6f80af1989c8b8ee3ad53eb829",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 41316,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          97.0005,
+          89.9,
+          167.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:37ae7a4d8b578c0e43cb7c8be40c2fba4c76e3af1457d1e6156350bb59dcf61a",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:b1bd31630ebd4e2047ead886bb97769aa0fc9d6f80af1989c8b8ee3ad53eb829",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 41316,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          97.0005,
+          89.9,
+          167.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:7b38140dbb14aa7d855b582750c6de141506bd651b364d35865a321cbf55f5bd",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:b1bd31630ebd4e2047ead886bb97769aa0fc9d6f80af1989c8b8ee3ad53eb829",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 41316,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          97.0005,
+          89.9,
+          167.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:1e9084f0fe8607b34714ce0c0b3db60b977043f8c73e9f91a00cf0a2442311c5",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:b1bd31630ebd4e2047ead886bb97769aa0fc9d6f80af1989c8b8ee3ad53eb829",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 41316,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          97.0005,
+          89.9,
+          167.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:ae2023df4049712f158a785d8edccdb007494b83fc376079981f4ff79e735d97",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:fde77ae220edfa2ac137b82a7dd93c26763de5d2270412c8eec48db1ddbaf610",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 39872,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          194.0005,
+          127.9,
+          335.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:c91841a543685a78f45847a83944a928cf6f094e1ee16ac0e831af54af107f64",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:fde77ae220edfa2ac137b82a7dd93c26763de5d2270412c8eec48db1ddbaf610",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 39872,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          194.0005,
+          127.9,
+          335.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:ff4c98ee2a2122a1afdfd6a2f6c5e6b979bd2284198497f8fc7febe7e6fea401",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:fde77ae220edfa2ac137b82a7dd93c26763de5d2270412c8eec48db1ddbaf610",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 39872,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          194.0005,
+          127.9,
+          335.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:17846058e8e4ad6ff0e48e1893adadb70ac4b137135241a36b61c0ca20dee434",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:fde77ae220edfa2ac137b82a7dd93c26763de5d2270412c8eec48db1ddbaf610",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 39872,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          194.0005,
+          127.9,
+          335.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:7fd3fcff087906487faefe6a078dce0c78efd7542d2d3851ffec6d38b332c840",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:fde77ae220edfa2ac137b82a7dd93c26763de5d2270412c8eec48db1ddbaf610",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 33632,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          194.0005,
+          127.9,
+          335.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-original-tower-south-entrance-and-steel-elevation.png",
+      "hash": "sha256:3b62d1d5fd8066fd32698165572ae356ba6455e709216735f3dff07cac09850a",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:6befbc3a71b64160cce10a71559420e4c0971bd973164d3cf6bb48a7e437f511",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 61248,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          88,
+          70,
+          -112
+        ],
+        "lookAt": [
+          0,
+          27,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-north-brace-face-and-cement-side.png",
+      "hash": "sha256:c237a5e9fe6e41173fa318c5e1ee79b598bd6f68e87e2d497710838f00978b17",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:6befbc3a71b64160cce10a71559420e4c0971bd973164d3cf6bb48a7e437f511",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 61248,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          -88,
+          65,
+          102
+        ],
+        "lookAt": [
+          0,
+          27,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/complete-original-footprint-roof-and-parapet.png",
+      "hash": "sha256:4cb0484e9ce676b18e0d6fb34d0a614dda239ca53c2454c8afbff2a2a2571fb6",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:6befbc3a71b64160cce10a71559420e4c0971bd973164d3cf6bb48a7e437f511",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 61248,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          63,
+          116,
+          56
+        ],
+        "lookAt": [
+          0,
+          34,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-steel-braces-ceramic-bands-and-glazing.png",
+      "hash": "sha256:56967d36ce9a354d7ee8ee6b1ccbd614819add5efcc80bfcd7db71c694491bfa",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:6befbc3a71b64160cce10a71559420e4c0971bd973164d3cf6bb48a7e437f511",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 61248,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          1,
+          31,
+          -38
+        ],
+        "lookAt": [
+          1,
+          30,
+          -15.612572489336287
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-original-plasco-skyline.png",
+      "hash": "sha256:9dbb942f35774e662e588117f2be1357d3715cf5a31a18ea0b8e3936a6155917",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:fde77ae220edfa2ac137b82a7dd93c26763de5d2270412c8eec48db1ddbaf610",
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 39872,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          88,
+          70,
+          -112
+        ],
+        "lookAt": [
+          0,
+          27,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-original-plasco-district.png",
+      "hash": "sha256:a4046bbec5425ab91be046461a9d2ce9d6efb4115d81a30acc47860aeb186986",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:b1bd31630ebd4e2047ead886bb97769aa0fc9d6f80af1989c8b8ee3ad53eb829",
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 41316,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          88,
+          70,
+          -112
+        ],
+        "lookAt": [
+          0,
+          27,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-original-plasco-street.png",
+      "hash": "sha256:9b869eba01f5a4cc8d5ecaefa837fea925e2c92986d0e3ad7027bb35f3ae3b80",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:9ee2abb34117a27cb9ea26412b8ea618d2343ec2a676cb17030cb7db78ae5c6a",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 53784,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          88,
+          70,
+          -112
+        ],
+        "lookAt": [
+          0,
+          27,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-original-plasco-closeup.png",
+      "hash": "sha256:3b62d1d5fd8066fd32698165572ae356ba6455e709216735f3dff07cac09850a",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:6befbc3a71b64160cce10a71559420e4c0971bd973164d3cf6bb48a7e437f511",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 61248,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          88,
+          70,
+          -112
+        ],
+        "lookAt": [
+          0,
+          27,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:d69c12f40993347b0142837d9544e9a44b9339f3723e226dddd86bb4fc55873a",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:fde77ae220edfa2ac137b82a7dd93c26763de5d2270412c8eec48db1ddbaf610",
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 39872,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          97.0005,
+          89.9,
+          167.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:37ae7a4d8b578c0e43cb7c8be40c2fba4c76e3af1457d1e6156350bb59dcf61a",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:b1bd31630ebd4e2047ead886bb97769aa0fc9d6f80af1989c8b8ee3ad53eb829",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 41316,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          97.0005,
+          89.9,
+          167.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:3373e6b0b0f37f9629d0b93e3bf2e2bf431f58ac22cdc980302b3be374ddd239",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:9ee2abb34117a27cb9ea26412b8ea618d2343ec2a676cb17030cb7db78ae5c6a",
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 53784,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          97.0005,
+          89.9,
+          167.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:a8e245b9332b6ba8716ee76b588a21975ad2eb1cfea63885deaacc1de1c9b18d",
+      "state": {
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "runtimeHash": "sha256:18d881dfe94b7bdaff24d32f992bda195e6228557470bc661eaaa802d7448751",
+        "lodHash": "sha256:6befbc3a71b64160cce10a71559420e4c0971bd973164d3cf6bb48a7e437f511",
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 61248,
+        "groundY": -18,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tnk/plasco_building/terrain-review.height.png"
+        },
+        "position": [
+          97.0005,
+          89.9,
+          167.6287
+        ],
+        "lookAt": [
+          0.0005,
+          38.9,
+          -0.3713
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_boardformed": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

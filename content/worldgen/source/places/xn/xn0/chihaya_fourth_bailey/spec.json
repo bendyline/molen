@@ -1,0 +1,321 @@
+{
+  "planId": "chihaya_fourth_bailey",
+  "id": "chihaya_fourth_bailey",
+  "assetId": "molen.worldgen.structure.chihaya_fourth_bailey",
+  "title": "Chihaya fourth bailey",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 135.65227505000001,
+    "latitude": 34.41645135
+  },
+  "size": [
+    69.63708114624023,
+    10.948094844818115,
+    40.809730529785156
+  ],
+  "actualBounds": {
+    "min": [
+      -106.21881866455078,
+      2.8607048988342285,
+      -75.9031982421875
+    ],
+    "max": [
+      -36.58173751831055,
+      13.808799743652344,
+      -35.093467712402344
+    ]
+  },
+  "visualBrief": "Mapped surviving levelled fourth-bailey earthwork at Chihaya Castle: complete retained20-corner lower precinct ground surface and edge slopes, shaped by original numerical elevation values. No surviving keep is claimed. Upper enclosures, ridge ditch, modern shrine/teahouse, signs, steles, trees, whole natural hill and approach staircase are outside this constituent; whole Chihaya Castle remains unfinished.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2026-11-02",
+    "validFrom": "2026-11-02",
+    "validUntil": "2026-11-03",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:%E5%8D%83%E6%97%A9%E5%9F%8E%E5%9B%9B%E3%81%AE%E4%B8%B8%E8%B7%A1.jpg"
+  ],
+  "stories": [
+    {
+      "id": "chihaya-castle-wp",
+      "url": "https://qualla.com/chihaya-castle/"
+    }
+  ],
+  "referenceInputHash": "sha256:01e531529654091ef4efc2c3cd1e3504e7d7b0352d29d81678152be5e1f83a51",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn0/chihaya_fourth_bailey/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn0/chihaya_fourth_bailey/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.041,
+    "surfaces": {
+      "earth": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "closure": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.02,
+        "surfaces": {
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "closure": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.008,
+        "surfaces": {
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "closure": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.002,
+        "surfaces": {
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "closure": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "gravel",
+    "earth_rammed"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      135.65227505000001,
+      34.41645135
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        135.65227505000001,
+        34.41645135
+      ],
+      "modelHeight": 0,
+      "basis": "Original native-context extent midpoint selected before independent full field or any model/floor/mainsection geometry. GSI ground elevations are factual source data, not measured archaeological construction phases or a surveyed host-terrain tie."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1238889329"
+    ],
+    "source": "https://www.openstreetmap.org/way/1238889329",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0bb8a8cea0081bd3da67b82ab15edd122fe1f144717c8ca8963e1350ec8cc4da",
+    "notes": "Qualla-first53families/zero conflicts. Exact already-published2009creatorPD-self original visually inspected/nativeSHA1matched. Bare ochre ground and low sloping earthwork character used; foreground modern sign/stele, shrine, huts, trees and photograph shadows not modeled. Official village2018newsletter identifies the flat area reached by the long steps as the artificially levelled fourth bailey. Numerical site boundary is contextual mapped extent, not an archaeological survey or certified medieval bank line. Actual source terrain sampled without levelling, invented ramparts, source shifting or host fitting."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Mapped surviving levelled fourth-bailey earthwork at Chihaya Castle: complete retained20-corner lower precinct ground surface and edge slopes, shaped by original numerical elevation values. No surviving keep is claimed. Upper enclosures, ridge ditch, modern shrine/teahouse, signs, steles, trees, whole natural hill and approach staircase are outside this constituent; whole Chihaya Castle remains unfinished.",
+    "Qualla-first53families/zero conflicts. Exact already-published2009creatorPD-self original visually inspected/nativeSHA1matched. Bare ochre ground and low sloping earthwork character used; foreground modern sign/stele, shrine, huts, trees and photograph shadows not modeled. Official village2018newsletter identifies the flat area reached by the long steps as the artificially levelled fourth bailey. Numerical site boundary is contextual mapped extent, not an archaeological survey or certified medieval bank line. Actual source terrain sampled without levelling, invented ramparts, source shifting or host fitting.",
+    "Nominal10m archaeological-edge/identity allowance and2m source-ground uncertainty are authoring allowances, not measured accuracy bounds. Native map outline controls this constituent extent; no assertion that its line is the exact medieval defence edge.",
+    "Original full512m/257x257source field was frozen before geometry. Member inherits the same original native coordinates/anchor/axes and full numerical field byte-for-byte.589of66049data samples use original GSI coarser datasets in the published no-data hierarchy; none are invented. All model-domain samples are separately classified during geometry review.",
+    "Top follows the preserved2m numerical field, with a predeclared0.045m rendering separation. Closed underside is an opaque mesh closure below source minimum, not an excavated/surveyed underground foundation. No flat building floor or wall/roof height is invented. Four authored source-grid clipping densities retain original terrain topology; distant cells merge only within0.041/0.02/0.008m source interpolation tolerance and closeup retains2m cells. Source sampling resolution is not archaeological accuracy.",
+    "Bare earth color/gravel response are coarse material estimates. No photo textures, protected maps, later shrine/teahouse/sign/stele substitutes, trees or whole natural hill. Approximate geographic snapshot has no surveyed vertical tie to live host/Terrarium terrain; current-world activation remains off.",
+    "Skyline retains the full source-conforming upper earthwork surface and all20mapped corners, and drops the buried artificial mesh closure. Other three levels retain the closed rendering underside with increasing edge sampling; the underground closure is not an archaeological wall. Skyline source interpolation tolerance0.041m remains below the original0.045m display separation. No field or pose changed."
+  ],
+  "sourceLicense": "Original deterministic earthwork geometry under repository license. OpenStreetMap original numerical lower precinct coordinates credited ODbL; GSI original factual elevation data credited to the Geospatial Information Authority of Japan. Already published Qualla creatorPD-self photograph informs bare-earth character only. No photographic or map-image texture, restored keep, shrine, teahouse, memorial sign or invented medieval profile.",
+  "qaLodCameras": [
+    {
+      "name": "original-earthwork-skyline",
+      "position": [
+        11.828991623421828,
+        75.55042153357283,
+        21.161441473074042
+      ],
+      "lookAt": [
+        -76.17100837657817,
+        12.55042153357283,
+        -53.83855852692596
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "original-earthwork-district",
+      "position": [
+        11.828991623421828,
+        75.55042153357283,
+        21.161441473074042
+      ],
+      "lookAt": [
+        -76.17100837657817,
+        12.55042153357283,
+        -53.83855852692596
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "original-earthwork-street",
+      "position": [
+        11.828991623421828,
+        75.55042153357283,
+        21.161441473074042
+      ],
+      "lookAt": [
+        -76.17100837657817,
+        12.55042153357283,
+        -53.83855852692596
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "original-earthwork-closeup",
+      "position": [
+        11.828991623421828,
+        75.55042153357283,
+        21.161441473074042
+      ],
+      "lookAt": [
+        -76.17100837657817,
+        12.55042153357283,
+        -53.83855852692596
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-lower-artificial-terrace-and-edge-slopes",
+      "position": [
+        11.828991623421828,
+        75.55042153357283,
+        21.161441473074042
+      ],
+      "lookAt": [
+        -76.17100837657817,
+        12.55042153357283,
+        -53.83855852692596
+      ]
+    },
+    {
+      "name": "opposite-original-lower-bailey-profile",
+      "position": [
+        -161.1710083765782,
+        68.55042153357283,
+        -123.83855852692596
+      ],
+      "lookAt": [
+        -76.17100837657817,
+        12.55042153357283,
+        -53.83855852692596
+      ]
+    },
+    {
+      "name": "original-levelled-upper-surface",
+      "position": [
+        -72.17100837657817,
+        108.55042153357283,
+        -53.73855852692596
+      ],
+      "lookAt": [
+        -76.17100837657817,
+        12.55042153357283,
+        -53.83855852692596
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1594,
+    "vertices": 4782,
+    "materials": 2,
+    "bytes": 320728,
+    "sha256": "sha256:d5c92e248bf2b706a66f61252ab35ca65836b81bf91bddd0c8d177f7f1ede7d6"
+  }
+}

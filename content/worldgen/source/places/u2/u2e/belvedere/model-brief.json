@@ -1,0 +1,535 @@
+{
+  "id": "belvedere",
+  "title": "Belvedere",
+  "wikidataId": "Q211818",
+  "referenceCoordinate": {
+    "longitude": 16.380519444,
+    "latitude": 48.1934
+  },
+  "module": "content/worldgen/source/places/u2/u2e/belvedere/models/belvedere-model.mjs",
+  "builder": "buildBelvedereLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.68,
+      "metallic": 0.22
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.38,
+      "metallic": 0.05
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_painted_lap",
+      "roughness": 0.8,
+      "metallic": 0
+    }
+  },
+  "exportLabel": "Molen original complete Belvedere palaces exterior shared surfaces source",
+  "expectedDraftMasterHash": "sha256:c500e0a9ec0070faf0ea23bf14bd6c25701955e206130ad631d7bcd0b8193424",
+  "visualBrief": "Both individual principal Belvedere palaces: the complete Upper palace with three raised mansard-roofed central blocks and four domed corner pavilions, and the complete Lower palace with raised central hall, red hipped/mansard roofs and its actual bent rear courtyard ranges. Gardens, ponds, detached annexes and city buildings remain native context. Original exterior geometry; no interiors or copied sculpture.",
+  "heightPolicy": "Picture-guided relative palace heights on an approximate182m standard Terrarium reference. Upper threshold194m (pool front195.7m), Lower threshold173.3m. Separate occupied foundations and bounded entry transitions meet the unchanged coarse field; no garden flattening. Lower native central height28m is inconsistent with its photographed one-story frontage/raised hall and is not treated as a surveyed dimension. Historic thresholds and roof heights remain approximate.",
+  "nativeAxes": "+X ENE along theUpper palace; -X WSW; +Z SSE toward theUpper reflecting pool; -Z NNW toward theLower palace/gardens. +Y up.",
+  "sourceFacts": {
+    "mappedLengthMeters": 635.193,
+    "mappedWidthMeters": 128.22,
+    "modelDatumMeters": 182,
+    "ownedMapComponents": 39,
+    "preservedNativeComponents": 484,
+    "principalPalaces": 2,
+    "domedCornerPavilions": 4,
+    "terrainTiles": 2,
+    "heightBasis": "Picture-guided relative palace heights on an approximate182m standard Terrarium reference. Upper threshold194m (pool front195.7m), Lower threshold173.3m. Separate occupied foundations and bounded entry transitions meet the unchanged coarse field; no garden flattening. Lower native central height28m is inconsistent with its photographed one-story frontage/raised hall and is not treated as a surveyed dimension. Historic thresholds and roof heights remain approximate."
+  },
+  "limitations": [
+    "Both individual principal Belvedere palaces: the complete Upper palace with three raised mansard-roofed central blocks and four domed corner pavilions, and the complete Lower palace with raised central hall, red hipped/mansard roofs and its actual bent rear courtyard ranges. Gardens, ponds, detached annexes and city buildings remain native context. Original exterior geometry; no interiors or copied sculpture.",
+    "Picture-guided relative palace heights on an approximate182m standard Terrarium reference. Upper threshold194m (pool front195.7m), Lower threshold173.3m. Separate occupied foundations and bounded entry transitions meet the unchanged coarse field; no garden flattening. Lower native central height28m is inconsistent with its photographed one-story frontage/raised hall and is not treated as a surveyed dimension. Historic thresholds and roof heights remain approximate.",
+    "Fine ornaments, window inventories, concealed roof joins and historic grade are original approximations. No copied statues, heraldry or inscriptions. The coarse global elevation field is not surveyed; bounded thresholds approximate contact, not historic stairs. Physical-device timings and numerical LOD errors remain unmeasured.",
+    "Seven existing256px plaster,limestone,granite,painted metal,ceramic tile,window grid andpainted wood graphs. Original metric UVs andlinear colors; no private or embedded images. Skyline retains both principal silhouettes, openLower forecourt, four Upper domes andthree raised crowns; district adds sparse recessed glazing; street adds frames; close-up adds dormers,pilasters,balustrades andoriginal ornaments. Source preserves finer profiles. Numerical LOD errors3/1.5/.7/.25m andphysical timings are unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://jooinn.com/vienna-belvedere.html",
+      "observed": "Upper-palace aerial actually inspected: four green domed corner pavilions, three raised central green mansard/hipped blocks, long lower wings and terraced garden-facing frontage, projecting pool-side entry. This picture shows the Upper palace, not the whole two-palace campus. Independent annexes and city blocks remain map context."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Belweder_g%C3%B3rny.jpg",
+      "observed": "Pool-side Upper frontage actually inspected: three tall arched central closed entries below a curved white crown, tall rectangular glazing, white/cream pilasters and cornices, three distinct green central roof crowns, green domed corner pavilions, dormers/chimneys and original simplified urn rhythm. No copied sculpture, heraldry or text."
+    },
+    {
+      "url": "https://connectingvienna.com/vienna/museums/lower-belvedere/",
+      "observed": "Lower garden front actually inspected: long white single principal story, red hipped/mansard roofs with small dormers/chimneys, raised central three-window hall, white pierced balustrades and simplified original urns, green closed central/side doors and tall rectangular glazing. PMTiles supplies its bent rear courtyard ranges, which are included; independent western annexes remain native."
+    },
+    {
+      "url": "https://www.openstreetmap.org/way/5887599",
+      "observed": "Standard Protomaps PMTiles direct signed frame: Upper way5887599 andLower way31313338, all four parent fragments andall attached overlapping part fragments, grouped by native identity. Independent western annexes3/7 andurban context retained."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "upper-palace-complete-green-roofs-and-four-domes",
+      "position": [
+        135,
+        70,
+        335
+      ],
+      "lookAt": [
+        -1.5,
+        24,
+        209
+      ],
+      "fov": 55
+    },
+    {
+      "name": "upper-palace-pool-front-crown-and-four-domes",
+      "position": [
+        135,
+        70,
+        335
+      ],
+      "lookAt": [
+        -1.5,
+        24,
+        209
+      ],
+      "fov": 55
+    },
+    {
+      "name": "upper-palace-garden-front-three-mansard-crowns",
+      "position": [
+        -140,
+        76,
+        90
+      ],
+      "lookAt": [
+        -1.5,
+        24,
+        210
+      ],
+      "fov": 55
+    },
+    {
+      "name": "lower-palace-complete-bent-courtyard-ranges",
+      "position": [
+        125,
+        58,
+        -275
+      ],
+      "lookAt": [
+        1,
+        0,
+        -377
+      ],
+      "fov": 55
+    },
+    {
+      "name": "whole-campus-open-courts-and-native-outline",
+      "position": [
+        0,
+        1250,
+        -90
+      ],
+      "lookAt": [
+        0,
+        0,
+        -90
+      ],
+      "fov": 51
+    },
+    {
+      "name": "upper-three-recessed-closed-entries-and-white-crown",
+      "position": [
+        13,
+        17,
+        258
+      ],
+      "lookAt": [
+        -1.7,
+        24,
+        227
+      ],
+      "fov": 60
+    },
+    {
+      "name": "lower-central-hall-balustrade-and-red-roofs",
+      "position": [
+        20,
+        -1,
+        -307
+      ],
+      "lookAt": [
+        3.2,
+        0,
+        -353
+      ],
+      "fov": 58
+    },
+    {
+      "name": "upper-corner-domed-pavilion-and-green-roof",
+      "position": [
+        -84,
+        37,
+        249
+      ],
+      "lookAt": [
+        -56.8,
+        28,
+        221
+      ],
+      "fov": 58
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -8.7,
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u2/u2e/belvedere/models/belvedere-model.mjs",
+    "export": "buildBelvedereSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.22
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.38,
+        "metallic": 0.05
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_painted_lap",
+        "roughness": 0.8,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBelvedereDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.22
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.38,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "street": {
+        "export": "buildBelvedereStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.22
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.38,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.7
+      },
+      "closeup": {
+        "export": "buildBelvedereCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.22
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.38,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.25
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "both-palaces-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        480,
+        440,
+        590
+      ],
+      "lookAt": [
+        0,
+        4,
+        -90
+      ]
+    },
+    {
+      "name": "both-palaces-district",
+      "reviewLod": "district",
+      "position": [
+        480,
+        440,
+        590
+      ],
+      "lookAt": [
+        0,
+        4,
+        -90
+      ]
+    },
+    {
+      "name": "both-palaces-street",
+      "reviewLod": "street",
+      "position": [
+        480,
+        440,
+        590
+      ],
+      "lookAt": [
+        0,
+        4,
+        -90
+      ]
+    },
+    {
+      "name": "both-palaces-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        480,
+        440,
+        590
+      ],
+      "lookAt": [
+        0,
+        4,
+        -90
+      ]
+    }
+  ],
+  "reviewEntities": [
+    {
+      "id": "upper-preview-ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -1.6,
+            210
+          ],
+          "scale": [
+            1500,
+            27,
+            780
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#6b929a",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,540 @@
+{
+  "date": "2026-11-03",
+  "model": "giant_magellan_telescope",
+  "wholeParentCompleted": false,
+  "previousTurnClassification": "progress",
+  "allAppearanceImageryUnused": true,
+  "primaryWrittenSources": [
+    {
+      "url": "https://giantmagellan.org/wp-content/uploads/2024/09/SPIE24.pdf",
+      "localPath": ".artifacts/qualla-batch/next-300/gmt-original-status-2024.pdf",
+      "sha256": "sha256:0cfb6391f3e57a0b51a229c11da17c51870126dcf3302b18c18eec1c4389050a",
+      "use": "Written facts only. Residential and other supporting facilities operational; summit foundation excavation completed; no installed operating enclosure."
+    },
+    {
+      "url": "https://giantmagellan.org/wp-content/uploads/2021/11/GMT-REQ-03215_Rev.-F_GMT-Observatory-Architecture-Document.pdf",
+      "localPath": ".artifacts/qualla-batch/next-300/gmt-original-observatory-architecture-revf.pdf",
+      "sha256": "sha256:708480e4a385c8b50ca5e0d121fd1f1b0518357c03ba593e36e4d981aa3c1f88",
+      "pages": 323,
+      "release": "Rev.F2020-10-13",
+      "usedPages": [
+        67,
+        70
+      ],
+      "use": "Written approximate relative SS1/SS2locations and facility categories only; no figure/plan/CAD/diagram/photo traced/viewed/adopted."
+    }
+  ],
+  "originalMap": {
+    "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=-70.70,-29.065,-70.67,-29.04",
+    "path": ".artifacts/qualla-batch/next-300/gmt-original-summit-and-southern-support-osm-2026-11-03.json",
+    "sha256": "sha256:0a80d5ace9241b72d9edbe6a1f9469e310eb9a046049131e337b376ea0fd5dda",
+    "elements": 942,
+    "constructionSiteWays": [
+      828285596,
+      1491745923
+    ],
+    "telescopeNode": 602392455,
+    "physicalBuildingWays": 0
+  },
+  "originalNumericalBuildings": {
+    "source": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building/part-00009-90fda33b-c2b7-5c8b-b579-a26a6e0e91c6-c000.zstd.parquet",
+    "path": ".artifacts/qualla-batch/next-300/gmt-original-summit-support-building-records-2026-11-03.json",
+    "sha256": "sha256:1600642dadbd91b72c263b0ea3b0952a8082199d6878f422d7ec1da9c7968d2b",
+    "records": 35,
+    "provider": "Google Open Buildings, via Overture2026-10-21",
+    "sourceLicense": "CC-BY4.0 structured numerical data; not appearance imagery",
+    "nativeHeightsAndFloorCountsAbsent": true
+  },
+  "originalHeightLookup": {
+    "manifest": ".artifacts/qualla-batch/next-300/gmt-google-original-temporal-2023-utm19-manifest.json",
+    "path": ".artifacts/qualla-batch/next-300/gmt-original-2023-numerical-building-height-observations-mosaic.json",
+    "sha256": "sha256:d862d560c3563d92cac21c7516e583dd97ae9030e3751c3996013f3410448a3f",
+    "sourceTiles": [
+      "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/9690c_2023_06_30/tile_GmMsOY_vR5k.tif",
+      "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/9690c_2023_06_30/tile_bIm4kpJG2O8.tif"
+    ],
+    "year": 2023,
+    "threshold": 0.7,
+    "sampling": "Uniform4mUTM19S global lattice plus0.25m pixel centers; original tile selected per point. Full native polygons unchanged.",
+    "interpretation": "Learned relative heights at effective4m scale, not surveyed floor/roof profiles; no Chile-specific error bound. Provider confidence is not a per-building probability. No RGB/orthophoto/map images used.",
+    "initialSingleTileLimitation": "Three large outlines cross the selected tile west edge; first observation preserved. Mosaic uses adjoining original tile without changing outline or lowering threshold."
+  },
+  "productionQueue": [
+    {
+      "model": "giant_magellan_northern_support_building",
+      "gersId": "3ce4b908-9c2c-4d86-b4e6-a9034d30cdc7",
+      "originalCorners": 4,
+      "qualifiedHeightSamples": 44,
+      "heightSummary": {
+        "min": 7.5,
+        "median": 10,
+        "max": 12,
+        "q25": 9,
+        "q75": 11
+      },
+      "scope": "Whole independent original source building at inferred GMT personnel SS2. Function/floors/roof/facade/grade estimated; no68/24room identity or whole-project completion claim.",
+      "status": "completed-and-story-linked",
+      "completionEvidence": "research/giant-magellan-northern-support-building-completion-2026-11-03.json"
+    },
+    {
+      "model": "giant_magellan_central_support_building",
+      "gersId": "3a70c7ba-b3da-484e-b389-2eab85313f60",
+      "originalCorners": 8,
+      "qualifiedHeightSamples": 50,
+      "heightSummary": {
+        "min": 4.5,
+        "median": 6.5,
+        "max": 7.5,
+        "q25": 6,
+        "q75": 7
+      },
+      "scope": "Whole independent original source building at inferred GMT personnel SS2. Function/floors/roof/facade/grade estimated; no68/24room identity or whole-project completion claim.",
+      "status": "completed-and-story-linked",
+      "completionEvidence": "research/giant-magellan-central-support-building-completion-2026-11-03.json"
+    },
+    {
+      "model": "giant_magellan_southern_support_building",
+      "gersId": "32814e0c-0fde-4ea4-9d3c-05f99bda3873",
+      "originalCorners": 6,
+      "qualifiedHeightSamples": 22,
+      "heightSummary": {
+        "min": 5,
+        "median": 6,
+        "max": 6.5,
+        "q25": 5.5,
+        "q75": 6
+      },
+      "scope": "Whole independent original source building at inferred GMT personnel SS2. Function/floors/roof/facade/grade estimated; no68/24room identity or whole-project completion claim.",
+      "status": "completed-and-story-linked",
+      "completionEvidence": "research/giant-magellan-southern-support-building-completion-2026-11-03.json"
+    },
+    {
+      "model": "giant_magellan_eastern_support_building",
+      "gersId": "689910ee-d621-4214-a934-d79f7cf5a013",
+      "originalCorners": 4,
+      "qualifiedHeightSamples": 8,
+      "heightSummary": {
+        "min": 7,
+        "median": 7.5,
+        "max": 7.5,
+        "q25": 7.5,
+        "q75": 7.5
+      },
+      "scope": "Whole independent eastern original source building at inferred GMT personnel SS2. Exact function, floors, roof, facade and grade estimated; sparse original numerical heights retained without changing threshold or sampling.",
+      "status": "completed-and-story-linked",
+      "completionEvidence": "research/giant-magellan-eastern-support-building-completion-2026-11-03.json"
+    },
+    {
+      "model": "giant_magellan_northwestern_support_building",
+      "gersId": "250a4680-e5f5-4338-a0ba-50dbc080641f",
+      "originalCorners": 4,
+      "qualifiedHeightSamples": 2,
+      "heightSummary": {
+        "min": 4.5,
+        "median": 4.5,
+        "max": 4.5,
+        "q25": 4.5,
+        "q75": 4.5
+      },
+      "scope": "Whole independent original support-cluster building. SS2membership inferred; function, floors, roof, facade and grade estimated. Sparse learned relative height with nominal uncertainty, not a physical survey or source-confirmed use.",
+      "status": "completed-and-story-linked",
+      "completionEvidence": "research/giant-magellan-northwestern-support-building-completion-2026-11-03.json"
+    },
+    {
+      "model": "giant_magellan_western_support_building",
+      "gersId": "fa80c77f-e380-44a7-b3d2-e35f9dea6444",
+      "originalCorners": 4,
+      "qualifiedHeightSamples": 1,
+      "heightSummary": {
+        "min": 4.5,
+        "median": 4.5,
+        "max": 4.5,
+        "q25": 4.5,
+        "q75": 4.5
+      },
+      "scope": "Whole independent original support-cluster building. SS2membership inferred; function, floors, roof, facade and grade estimated. Sparse learned relative height with nominal uncertainty, not a physical survey or source-confirmed use.",
+      "status": "completed-and-story-linked",
+      "completionEvidence": "research/giant-magellan-western-support-building-completion-2026-11-03.json"
+    },
+    {
+      "model": "giant_magellan_outer_western_support_building",
+      "gersId": "a58a02dc-6d4a-48f5-8fa3-ce559cc4d1a7",
+      "originalCorners": 4,
+      "qualifiedHeightSamples": 1,
+      "heightSummary": {
+        "min": 5,
+        "median": 5,
+        "max": 5,
+        "q25": 5,
+        "q75": 5
+      },
+      "scope": "Whole original independent outer western body in the inferred SS2 cluster, just west of the separately completed western building. One learned height observation; one storey/function/roof/facade/grade are estimates. No named room or whole-project completion claim.",
+      "status": "completed-and-story-linked",
+      "exactFunctionVerified": false,
+      "supportSiteMembership": "SS2-inferred",
+      "appearanceImageryUsed": false,
+      "completionEvidence": "research/giant-magellan-outer-western-support-building-completion-2026-11-03.json"
+    }
+  ],
+  "northernUnrelatedCandidates": {
+    "ways": [
+      136126248,
+      136126273,
+      136126275
+    ],
+    "latitudeRange": [
+      -29.029,
+      -29.026
+    ],
+    "finding": "These2011mapped buildings lie roughly2km north of the GMTsummit, not at the published southern SS1/SS2location. Retained as separate unresolved context; no model transfer or acceptedLasCampanas reopening."
+  },
+  "remaining": "Other original source detections, small ancillary bodies/monitoring structures and actual summit excavation/building works require their own scope decisions. Do not substitute a planned operating enclosure, averaged coordinate, generic site box or a nearest unrelated roof.",
+  "nextTechnicalSupportCandidates": [
+    {
+      "model": "giant_magellan_western_technical_support_building",
+      "gersId": "4f728d51-9ff8-4190-a52b-1a29ea5e9a5b",
+      "originalRecordId": "572FW8X7+XCVV",
+      "anchor": [
+        -70.68645775,
+        -29.0500034
+      ],
+      "originalCorners": 4,
+      "qualifiedHeightSamples": 1,
+      "heightSummary": {
+        "min": 5,
+        "median": 5,
+        "max": 5,
+        "q25": 5,
+        "q75": 5
+      },
+      "allOriginalCornersInsideOriginalConstructionWay": true,
+      "contextWay": 828285596,
+      "supportSite": "SS1-inferred",
+      "individualFunctionVerified": false,
+      "geometryAuthored": false,
+      "frameChosen": false,
+      "terrainAcquired": false,
+      "floorChosen": false,
+      "sectionsChosen": false,
+      "status": "completed-and-story-linked",
+      "limitations": "SS1membership inferred from original construction cluster and operator written relative site location. The landuse outline is context only, never a roof. One learned height observation is not a surveyed profile. Exact function, floors, exterior, historic condition and grade remain estimates; no named-office or instrument identity assigned.",
+      "completionEvidence": "research/giant-magellan-western-technical-support-building-completion-2026-11-03.json"
+    },
+    {
+      "model": "giant_magellan_central_technical_support_building",
+      "gersId": "39915f19-972d-462b-b3ab-0c750aae4861",
+      "originalRecordId": "572FW8X7+XFMJ",
+      "anchor": [
+        -70.68633947500001,
+        -29.0500313
+      ],
+      "originalCorners": 4,
+      "qualifiedHeightSamples": 1,
+      "heightSummary": {
+        "min": 4.5,
+        "median": 4.5,
+        "max": 4.5,
+        "q25": 4.5,
+        "q75": 4.5
+      },
+      "allOriginalCornersInsideOriginalConstructionWay": true,
+      "contextWay": 828285596,
+      "supportSite": "SS1-inferred",
+      "individualFunctionVerified": false,
+      "geometryAuthored": false,
+      "frameChosen": false,
+      "terrainAcquired": false,
+      "floorChosen": false,
+      "sectionsChosen": false,
+      "status": "completed-and-story-linked",
+      "limitations": "SS1membership inferred from original construction cluster and operator written relative site location. The landuse outline is context only, never a roof. One learned height observation is not a surveyed profile. Exact function, floors, exterior, historic condition and grade remain estimates; no named-office or instrument identity assigned.",
+      "completionEvidence": "research/giant-magellan-central-technical-support-building-completion-2026-11-03.json"
+    },
+    {
+      "model": "giant_magellan_eastern_technical_support_building",
+      "gersId": "fce5d5a6-7f47-475c-af1a-ffc469bca729",
+      "originalRecordId": "572FW8X7+XFQ2",
+      "anchor": [
+        -70.68627825,
+        -29.050045750000002
+      ],
+      "originalCorners": 4,
+      "qualifiedHeightSamples": 1,
+      "heightSummary": {
+        "min": 4,
+        "median": 4,
+        "max": 4,
+        "q25": 4,
+        "q75": 4
+      },
+      "allOriginalCornersInsideOriginalConstructionWay": true,
+      "contextWay": 828285596,
+      "supportSite": "SS1-inferred",
+      "individualFunctionVerified": false,
+      "geometryAuthored": false,
+      "frameChosen": false,
+      "terrainAcquired": false,
+      "floorChosen": false,
+      "sectionsChosen": false,
+      "status": "completed-and-story-linked",
+      "limitations": "SS1membership inferred from original construction cluster and operator written relative site location. The landuse outline is context only, never a roof. One learned height observation is not a surveyed profile. Exact function, floors, exterior, historic condition and grade remain estimates; no named-office or instrument identity assigned.",
+      "completionEvidence": "research/giant-magellan-eastern-technical-support-building-completion-2026-11-03.json"
+    }
+  ],
+  "technicalSiteOriginalContext": {
+    "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=-70.70,-29.065,-70.67,-29.04",
+    "originalMapSha256": "sha256:0a80d5ace9241b72d9edbe6a1f9469e310eb9a046049131e337b376ea0fd5dda",
+    "way": {
+      "type": "way",
+      "id": 828285596,
+      "timestamp": "2020-07-20T23:23:36Z",
+      "version": 1,
+      "changeset": 88268413,
+      "user": "GustavoE",
+      "uid": 2500882,
+      "nodes": [
+        7732441484,
+        7732512485,
+        7732512486,
+        7732512487,
+        7732512488,
+        7732512489,
+        7732512490,
+        7732512491,
+        7732512492,
+        7732512493,
+        7732512494,
+        7732441484
+      ],
+      "tags": {
+        "landuse": "construction"
+      }
+    },
+    "nodes": [
+      {
+        "type": "node",
+        "id": 7732441484,
+        "lat": -29.0500292,
+        "lon": -70.6875753,
+        "timestamp": "2020-07-20T23:23:36Z",
+        "version": 1,
+        "changeset": 88268413,
+        "user": "GustavoE",
+        "uid": 2500882
+      },
+      {
+        "type": "node",
+        "id": 7732512485,
+        "lat": -29.0495321,
+        "lon": -70.6866794,
+        "timestamp": "2020-07-20T23:23:36Z",
+        "version": 1,
+        "changeset": 88268413,
+        "user": "GustavoE",
+        "uid": 2500882
+      },
+      {
+        "type": "node",
+        "id": 7732512486,
+        "lat": -29.0497712,
+        "lon": -70.6865078,
+        "timestamp": "2020-07-20T23:23:36Z",
+        "version": 1,
+        "changeset": 88268413,
+        "user": "GustavoE",
+        "uid": 2500882
+      },
+      {
+        "type": "node",
+        "id": 7732512487,
+        "lat": -29.0497806,
+        "lon": -70.6863468,
+        "timestamp": "2020-07-20T23:23:36Z",
+        "version": 1,
+        "changeset": 88268413,
+        "user": "GustavoE",
+        "uid": 2500882
+      },
+      {
+        "type": "node",
+        "id": 7732512488,
+        "lat": -29.0496258,
+        "lon": -70.6860733,
+        "timestamp": "2020-07-20T23:23:36Z",
+        "version": 1,
+        "changeset": 88268413,
+        "user": "GustavoE",
+        "uid": 2500882
+      },
+      {
+        "type": "node",
+        "id": 7732512489,
+        "lat": -29.0500854,
+        "lon": -70.6858211,
+        "timestamp": "2020-07-20T23:23:36Z",
+        "version": 1,
+        "changeset": 88268413,
+        "user": "GustavoE",
+        "uid": 2500882
+      },
+      {
+        "type": "node",
+        "id": 7732512490,
+        "lat": -29.0501933,
+        "lon": -70.6860518,
+        "timestamp": "2020-07-20T23:23:36Z",
+        "version": 1,
+        "changeset": 88268413,
+        "user": "GustavoE",
+        "uid": 2500882
+      },
+      {
+        "type": "node",
+        "id": 7732512491,
+        "lat": -29.0501417,
+        "lon": -70.6861484,
+        "timestamp": "2020-07-20T23:23:36Z",
+        "version": 1,
+        "changeset": 88268413,
+        "user": "GustavoE",
+        "uid": 2500882
+      },
+      {
+        "type": "node",
+        "id": 7732512492,
+        "lat": -29.0500667,
+        "lon": -70.6866151,
+        "timestamp": "2020-07-20T23:23:36Z",
+        "version": 1,
+        "changeset": 88268413,
+        "user": "GustavoE",
+        "uid": 2500882
+      },
+      {
+        "type": "node",
+        "id": 7732512493,
+        "lat": -29.050137,
+        "lon": -70.6870067,
+        "timestamp": "2020-07-20T23:23:36Z",
+        "version": 1,
+        "changeset": 88268413,
+        "user": "GustavoE",
+        "uid": 2500882
+      },
+      {
+        "type": "node",
+        "id": 7732512494,
+        "lat": -29.0503434,
+        "lon": -70.6873554,
+        "timestamp": "2020-07-20T23:23:36Z",
+        "version": 1,
+        "changeset": 88268413,
+        "user": "GustavoE",
+        "uid": 2500882
+      }
+    ],
+    "use": "Original numerical context boundary only; no map pixels and no parcel extrusion."
+  },
+  "summitSiteOriginalContext": {
+    "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=-70.70,-29.065,-70.67,-29.04",
+    "originalMapSha256": "sha256:0a80d5ace9241b72d9edbe6a1f9469e310eb9a046049131e337b376ea0fd5dda",
+    "way": {
+      "type": "way",
+      "id": 1491745923,
+      "timestamp": "2026-03-23T06:54:05Z",
+      "version": 1,
+      "changeset": 180286831,
+      "user": "Mateusz Konieczny",
+      "uid": 1722488,
+      "nodes": [
+        13670953544,
+        13670953545,
+        13670953546,
+        13670953547,
+        13670953544
+      ],
+      "tags": {
+        "landuse": "construction",
+        "name": "Giant Magellan Telescope",
+        "wikidata": "Q652252",
+        "wikipedia": "es:Telescopio Gigante de Magallanes"
+      }
+    },
+    "nodes": [
+      {
+        "type": "node",
+        "id": 13670953544,
+        "lat": -29.0469962,
+        "lon": -70.6837296,
+        "timestamp": "2026-03-23T06:54:05Z",
+        "version": 1,
+        "changeset": 180286831,
+        "user": "Mateusz Konieczny",
+        "uid": 1722488
+      },
+      {
+        "type": "node",
+        "id": 13670953545,
+        "lat": -29.0477621,
+        "lon": -70.6847581,
+        "timestamp": "2026-03-23T06:54:05Z",
+        "version": 1,
+        "changeset": 180286831,
+        "user": "Mateusz Konieczny",
+        "uid": 1722488
+      },
+      {
+        "type": "node",
+        "id": 13670953546,
+        "lat": -29.0496395,
+        "lon": -70.6818774,
+        "timestamp": "2026-03-23T06:54:05Z",
+        "version": 1,
+        "changeset": 180286831,
+        "user": "Mateusz Konieczny",
+        "uid": 1722488
+      },
+      {
+        "type": "node",
+        "id": 13670953547,
+        "lat": -29.048757,
+        "lon": -70.681006,
+        "timestamp": "2026-03-23T06:54:05Z",
+        "version": 1,
+        "changeset": 180286831,
+        "user": "Mateusz Konieczny",
+        "uid": 1722488
+      }
+    ],
+    "use": "Named original GMTQ652252 numerical construction-site context only; no parcel extrusion, no pit boundary or operating-enclosure claim."
+  },
+  "nextSummitSupportCandidates": [
+    {
+      "model": "giant_magellan_eastern_summit_support_building",
+      "gersId": "611084d5-7ff4-4cbc-976a-5a3f0d6f99ac",
+      "originalRecordId": "572FX829+FFP7",
+      "originalCorners": 4,
+      "qualifiedHeightSamples": 1,
+      "heightSummary": {
+        "min": 7,
+        "median": 7,
+        "max": 7,
+        "q25": 7,
+        "q75": 7
+      },
+      "allOriginalCornersInsideNamedGmtConstructionWay": true,
+      "contextWay": 1491745923,
+      "contextQid": "Q652252",
+      "supportSite": "summit",
+      "individualFunctionVerified": false,
+      "frameChosen": true,
+      "terrainAcquired": true,
+      "floorChosen": true,
+      "sectionsChosen": true,
+      "geometryAuthored": true,
+      "status": "completed-and-story-linked",
+      "limitations": "Whole original source body, not a telescope or future enclosure. Numerical detector and one learned relative height are not surveyed architecture. Exact use, floor count, facade/roof and grade remain estimates. Site parcel is context only, not a roof or excavation shape.",
+      "completionEvidence": "research/giant-magellan-eastern-summit-support-building-completion-2026-11-03.json"
+    }
+  ]
+}

@@ -1,0 +1,447 @@
+{
+  "id": "capanda_dam",
+  "title": "Capanda Dam",
+  "wikidataId": "Q2885177",
+  "referenceCoordinate": {
+    "longitude": 15.466341039,
+    "latitude": -9.795258874
+  },
+  "module": "content/worldgen/source/places/kq/kq6/capanda_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "joint": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "lip": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "yellow": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "dirt": {
+      "slot": "foundation",
+      "graph": "gravel"
+    }
+  },
+  "exportLabel": "Molen original Capanda Dam and Cuanza works",
+  "expectedDraftMasterHash": "sha256:52e1b57f7da7214169fb17c6bd2304d6313e6128c9e1bb1d7cafbee93fd1ba16",
+  "visualBrief": "Capanda Dam with both concrete wings, four deep spillway chutes, yellow crest machinery, switchyard, downstream generator hall and walled tailrace.",
+  "heightPolicy": "The shoreline median gives a 956 m reservoir model datum. The crest is modeled at 961 m and the tailrace at 875 m. Runtime positioning samples the nearby 958.33 m land shoulder. Standard inland water sampling from the retained raw field gives roughly 869–890 m for the reservoir, so geographic acceptance remains pending.",
+  "nativeAxes": "+X south-southeast along the broken crest, +Z west-southwest toward the downstream Cuanza gorge and +Y up.",
+  "sourceFacts": {
+    "mappedIdentity": "way/202428441",
+    "nativeReservoirId": 28060063,
+    "nativeRiverId": 97433583,
+    "nativePowerhouseId": 35184574517272,
+    "nativeCrestBridgeId": 35185101788845,
+    "spanMeters": 1245.232,
+    "crestBridgeLengthMeters": 100.0312804712679,
+    "modeledGateBays": 4,
+    "terrainDatum": 956,
+    "terrainGridStep": 16,
+    "terrainTiles": 10,
+    "tailwaterModelY": -81
+  },
+  "materialMethod": "Shared board-formed and plain concrete, gravel, painted metal, standing-seam metal and window graphs with metric UVs and no embedded images.",
+  "limitations": [
+    "The shoreline median gives a 956 m reservoir model datum. The crest is modeled at 961 m and the tailrace at 875 m. Runtime positioning samples the nearby 958.33 m land shoulder. Standard inland water sampling from the retained raw field gives roughly 869–890 m for the reservoir, so geographic acceptance remains pending.",
+    "The standard raw elevation field samples well below the modeled reservoir surface. The authored terrain review places the water at its estimated shoreline level. The normal runtime water mesh currently uses the lower DEM-derived datum.",
+    "Gate machinery, individual switchyard equipment, concrete elevations and tailrace water level are visual approximations.",
+    "The model replaces only its powerhouse and the owned crest bridge. Separate mapped service roads and buildings are retained."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Capanda_01.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:Capanda_01.jpg",
+      "observed": "Downstream overview shows two swept concrete wings, four tall spillway bays, the yellow crest gantry, downstream powerhouse and switchyard on the northern bench."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:%D0%9D%D0%B8%D0%B6%D0%BD%D0%B8%D0%B9_%D0%B1%D1%8C%D0%B5%D1%84.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:%D0%9D%D0%B8%D0%B6%D0%BD%D0%B8%D0%B9_%D0%B1%D1%8C%D0%B5%D1%84.jpg",
+      "observed": "Close view shows deep splitter walls at the curved chute ends and the roofed generator hall at the upstream end of a walled tailrace basin."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The opposite water reaches, photographed four-bay spillway and mapped powerhouse align with the retained Capanda concrete dam."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "dam-and-cuanza-gorge",
+      "position": [
+        415,
+        240,
+        690
+      ],
+      "lookAt": [
+        -60,
+        -37,
+        -12
+      ],
+      "fov": 50
+    },
+    {
+      "name": "reservoir-and-crest",
+      "position": [
+        138,
+        105,
+        -650
+      ],
+      "lookAt": [
+        0,
+        -2,
+        -65
+      ],
+      "fov": 50
+    },
+    {
+      "name": "four-spillway-lanes",
+      "position": [
+        111,
+        57,
+        178
+      ],
+      "lookAt": [
+        22,
+        -36,
+        -35
+      ],
+      "fov": 50
+    },
+    {
+      "name": "splitter-walls-and-powerhouse",
+      "position": [
+        56,
+        -9,
+        217
+      ],
+      "lookAt": [
+        -106,
+        -55,
+        94
+      ],
+      "fov": 50
+    },
+    {
+      "name": "switchyard-and-yellow-gantry",
+      "position": [
+        -329,
+        48,
+        124
+      ],
+      "lookAt": [
+        -165,
+        -15,
+        -24
+      ],
+      "fov": 50
+    },
+    {
+      "name": "powerhouse-and-tailrace",
+      "position": [
+        -54,
+        -19,
+        388
+      ],
+      "lookAt": [
+        -151,
+        -69,
+        183
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -105.2,
+    "scale": 3.1,
+    "focus": {
+      "center": [
+        -50,
+        -35,
+        25
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-site.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/kq/kq6/capanda_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "joint": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "lip": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "yellow": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "dirt": {
+        "slot": "foundation",
+        "graph": "gravel"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "joint": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "lip": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "yellow": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "dirt": {
+            "slot": "foundation",
+            "graph": "gravel"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "joint": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "lip": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "yellow": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "dirt": {
+            "slot": "foundation",
+            "graph": "gravel"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "joint": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "lip": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "yellow": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "dirt": {
+            "slot": "foundation",
+            "graph": "gravel"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "capanda-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        415,
+        240,
+        690
+      ],
+      "lookAt": [
+        -60,
+        -37,
+        -12
+      ]
+    },
+    {
+      "name": "capanda-district",
+      "reviewLod": "district",
+      "position": [
+        415,
+        240,
+        690
+      ],
+      "lookAt": [
+        -60,
+        -37,
+        -12
+      ]
+    },
+    {
+      "name": "capanda-street",
+      "reviewLod": "street",
+      "position": [
+        415,
+        240,
+        690
+      ],
+      "lookAt": [
+        -60,
+        -37,
+        -12
+      ]
+    },
+    {
+      "name": "capanda-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        415,
+        240,
+        690
+      ],
+      "lookAt": [
+        -60,
+        -37,
+        -12
+      ]
+    }
+  ]
+}

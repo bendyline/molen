@@ -1,0 +1,425 @@
+{
+  "planId": "fray_bentos_mill_northwest_hall",
+  "id": "fray_bentos_mill_northwest_hall",
+  "assetId": "molen.worldgen.structure.fray_bentos_mill_northwest_hall",
+  "title": "Fray Bentos mill northwest hall",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -58.25961926666667,
+    "latitude": -33.11015346666667
+  },
+  "size": [
+    80.70217895507812,
+    14.514999628067017,
+    38.666128158569336
+  ],
+  "actualBounds": {
+    "min": [
+      -44.241214752197266,
+      -1.2000000476837158,
+      -14.30919075012207
+    ],
+    "max": [
+      36.46096420288086,
+      13.3149995803833,
+      24.356937408447266
+    ]
+  },
+  "visualBrief": "Whole independently placed northwestern roofed hall inside Planta UPM Fray Bentos: full original six-corner footprint, closed industrial walls and roof, base, estimated service entrances, upper louver bays and modest exposed trim. Separate process plant, chimney, tanks, conveyors, roads and yards remain separate; no whole-factory proxy. Already cleared U.S. Embassy Montevideo original photographs supply factory-level industrial material vocabulary only: light metal/concrete cladding, gray structural trim and dark louvers. They do not identify this specific hall or its roof profile, opening census, doors or attached machinery. Numerical original footprint and 2023 relative heights govern this body; no source satellite photographs, orthophotos, map images, figures or owner report imagery used. Qualla-first 26 families already screened; no rights revalidation or new imagery adopted. Automated footprint has 5 m horizontal uncertainty; numerical height at least 3 m uncertainty, not survey. All six full-precision original roof corners retained. Relative-height median 13 m from 167 of 186 original inside-roof observations; effective source resolution 4 m, height range 9–16 m and interquartile range 12–14.5 m. Distributed 0.5 m pixels do not imply survey accuracy. At least 3 m height uncertainty and 5 m horizontal uncertainty; no surveyed floor or facade census. Photographs are three previously cleared U.S. Embassy Montevideo originals by named government photographer Juan Francisco Casal. They show factory-level silver/gray/white metal, concrete, steel trim and dark louvers, not a full view of this specific north hall. They supply material vocabulary only. No exact photograph-to-building correspondence or process function claimed; image-specific tanks, pipes, staircases, cranes and conveyor are not attached to this hall. Whole hall has an estimated low dual-pitch closed roof, eave 12.6 m and ridge 13.25 m, gray corrugated cladding over a low concrete band, gray standing-seam roof, structural battens/gutters/downpipes, two closed service/personnel entries and fourteen upper louver bays. Roof pitch, opening census, positions, bay rhythm, cladding/roof material, paint and exact 2023 condition are conservative author estimates with 3 m component uncertainty. No sign, logo, machinery, people or adjacent building modeled. Own original 256 m field, 129 x 129 / 16641 height values and 4 raw tiles frozen before floor .25 m, foundation -1.2 m, concrete plinth 2.3 m, eave 12.6 m and ridge 13.25 m. Original field datum 13.9972 m is provider-relative and not surveyed ground. Do not mask, flatten, reframe, replace or fit terrain/floor/main sections to a render. Exact contact remains approximate. Four authored runtime LODs retain the whole original building, full roof/walls/base and both closed entries plus louver cues. Street/closeup add physical louver/door recesses and blade/framing detail. No whole-factory completion credit: process buildings, tanks, conveyors, yards and other independent bodies remain separate. Approximate end-2023 historical preview, current-world eligible false.",
+  "nativeAxes": {
+    "x": "along the longest original numerical roof edge",
+    "y": "up",
+    "z": "perpendicular across the whole hall"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2023-12-31",
+    "validFrom": "2023-01-01",
+    "validUntil": "2024-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Emb._George_visita_UPM_(50408664051).jpg",
+    "https://commons.wikimedia.org/wiki/File:Emb._George_visita_UPM_(50407959643).jpg",
+    "https://commons.wikimedia.org/wiki/File:Emb._George_visita_UPM_(50408818672).jpg"
+  ],
+  "stories": [
+    {
+      "id": "uruguay-river-pulp-mill-dispute-wp",
+      "url": "https://qualla.com/uruguay-river-pulp-mill-dispute/"
+    }
+  ],
+  "referenceInputHash": "sha256:a71f30672de1aeac48d731e47568a656d3b646c677a8d69f1be6d1efd4be646b",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6d/6dn/fray_bentos_mill_northwest_hall/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/6d/6dn/fray_bentos_mill_northwest_hall/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.79,
+        "metallic": 0.25
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.83,
+        "metallic": 0.25
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.25
+      },
+      "door": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.2
+      },
+      "window": {
+        "slot": "window",
+        "graph": "metal_painted",
+        "roughness": 0.9,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.79,
+            "metallic": 0.25
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.25
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.25
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.2
+          },
+          "window": {
+            "slot": "window",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.79,
+            "metallic": 0.25
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.25
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.25
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.2
+          },
+          "window": {
+            "slot": "window",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.01,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.79,
+            "metallic": 0.25
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.25
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.25
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.2
+          },
+          "window": {
+            "slot": "window",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_corrugated",
+    "metal_standing_seam",
+    "metal_painted",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -58.25961926666667,
+      -33.11015346666667
+    ],
+    "heading": -2.866431106562265,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -58.25961926666667,
+        -33.11015346666667
+      ],
+      "modelHeight": 0,
+      "basis": "Original body center fixed before independent source field, floor and main sections; numerical relative roof height supplies no surveyed vertical tie."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "overture/4106d8c7-1ad2-4d65-9755-47b16def09e7"
+    ],
+    "source": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building/part-00067-1181d434-c3af-5678-9485-b9d3425e9dc0-c000.zstd.parquet",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:46ee2792d25c476ffba46f115430a6ee03b2b02dfc01744fec3c3e3f45287e62",
+    "notes": "Whole independently placed northwestern roofed hall inside Planta UPM Fray Bentos: full original six-corner footprint, closed industrial walls and roof, base, estimated service entrances, upper louver bays and modest exposed trim. Separate process plant, chimney, tanks, conveyors, roads and yards remain separate; no whole-factory proxy. Already cleared U.S. Embassy Montevideo original photographs supply factory-level industrial material vocabulary only: light metal/concrete cladding, gray structural trim and dark louvers. They do not identify this specific hall or its roof profile, opening census, doors or attached machinery. Numerical original footprint and 2023 relative heights govern this body; no source satellite photographs, orthophotos, map images, figures or owner report imagery used. Qualla-first 26 families already screened; no rights revalidation or new imagery adopted. Automated footprint has 5 m horizontal uncertainty; numerical height at least 3 m uncertainty, not survey."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole independently placed northwestern roofed hall inside Planta UPM Fray Bentos: full original six-corner footprint, closed industrial walls and roof, base, estimated service entrances, upper louver bays and modest exposed trim. Separate process plant, chimney, tanks, conveyors, roads and yards remain separate; no whole-factory proxy. Already cleared U.S. Embassy Montevideo original photographs supply factory-level industrial material vocabulary only: light metal/concrete cladding, gray structural trim and dark louvers. They do not identify this specific hall or its roof profile, opening census, doors or attached machinery. Numerical original footprint and 2023 relative heights govern this body; no source satellite photographs, orthophotos, map images, figures or owner report imagery used. Qualla-first 26 families already screened; no rights revalidation or new imagery adopted. Automated footprint has 5 m horizontal uncertainty; numerical height at least 3 m uncertainty, not survey.",
+    "All six full-precision original roof corners retained. Relative-height median 13 m from 167 of 186 original inside-roof observations; effective source resolution 4 m, height range 9–16 m and interquartile range 12–14.5 m. Distributed 0.5 m pixels do not imply survey accuracy. At least 3 m height uncertainty and 5 m horizontal uncertainty; no surveyed floor or facade census.",
+    "Photographs are three previously cleared U.S. Embassy Montevideo originals by named government photographer Juan Francisco Casal. They show factory-level silver/gray/white metal, concrete, steel trim and dark louvers, not a full view of this specific north hall. They supply material vocabulary only. No exact photograph-to-building correspondence or process function claimed; image-specific tanks, pipes, staircases, cranes and conveyor are not attached to this hall.",
+    "Whole hall has an estimated low dual-pitch closed roof, eave 12.6 m and ridge 13.25 m, gray corrugated cladding over a low concrete band, gray standing-seam roof, structural battens/gutters/downpipes, two closed service/personnel entries and fourteen upper louver bays. Roof pitch, opening census, positions, bay rhythm, cladding/roof material, paint and exact 2023 condition are conservative author estimates with 3 m component uncertainty. No sign, logo, machinery, people or adjacent building modeled.",
+    "Own original 256 m field, 129 x 129 / 16641 height values and 4 raw tiles frozen before floor .25 m, foundation -1.2 m, concrete plinth 2.3 m, eave 12.6 m and ridge 13.25 m. Original field datum 13.9972 m is provider-relative and not surveyed ground. Do not mask, flatten, reframe, replace or fit terrain/floor/main sections to a render. Exact contact remains approximate.",
+    "Four authored runtime LODs retain the whole original building, full roof/walls/base and both closed entries plus louver cues. Street/closeup add physical louver/door recesses and blade/framing detail. No whole-factory completion credit: process buildings, tanks, conveyors, yards and other independent bodies remain separate. Approximate end-2023 historical preview, current-world eligible false."
+  ],
+  "sourceLicense": "Original deterministic exterior geometry under repository license. Overture / Google Open Buildings full numerical footprint and Google numerical relative heights credited under ODbL. Three already-cleared public-domain U.S. Embassy Montevideo staff photographs inform factory-level material vocabulary only; no photo texture, specific hall correspondence or observed facade/roof census claimed. Exact floor, roof section, openings, trim, condition and ground contact estimated.",
+  "qaLodCameras": [
+    {
+      "name": "whole-industrial-hall-skyline",
+      "position": [
+        104.4578144101108,
+        56.246515451598114,
+        92.40498967048262
+      ],
+      "lookAt": [
+        0,
+        5.300000000000001,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-industrial-hall-district",
+      "position": [
+        104.4578144101108,
+        56.246515451598114,
+        92.40498967048262
+      ],
+      "lookAt": [
+        0,
+        5.300000000000001,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-industrial-hall-street",
+      "position": [
+        104.4578144101108,
+        56.246515451598114,
+        92.40498967048262
+      ],
+      "lookAt": [
+        0,
+        5.300000000000001,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-industrial-hall-closeup",
+      "position": [
+        104.4578144101108,
+        56.246515451598114,
+        92.40498967048262
+      ],
+      "lookAt": [
+        0,
+        5.300000000000001,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-hall-metal-roof-and-louver-facades",
+      "position": [
+        104.4578144101108,
+        56.246515451598114,
+        92.40498967048262
+      ],
+      "lookAt": [
+        0,
+        5.300000000000001,
+        0
+      ]
+    },
+    {
+      "name": "opposite-complete-service-entries-and-concrete-base",
+      "position": [
+        -104.4578144101108,
+        44.99721236127849,
+        -92.40498967048262
+      ],
+      "lookAt": [
+        0,
+        5.300000000000001,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3072,
+    "vertices": 9216,
+    "materials": 6,
+    "bytes": 492216,
+    "sha256": "sha256:0c797a6aff02b4f00d2ffd5369bd46a79c0b55de1dc8af4e56fd4d2841b8b068"
+  }
+}

@@ -1,0 +1,464 @@
+{
+  "id": "banqiao_dam",
+  "title": "Banqiao Dam",
+  "wikidataId": "Q595288",
+  "referenceCoordinate": {
+    "longitude": 113.623333333,
+    "latitude": 32.982777777
+  },
+  "module": "content/worldgen/source/places/wt/wtb/banqiao_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "grass": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "grassB": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_basalt"
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "walk": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "steel": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "dark": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    }
+  },
+  "exportLabel": "Molen original Banqiao Dam and release works",
+  "expectedDraftMasterHash": "sha256:dc770d5a72738382703dbce427282b7eed52df6861e0f6230ae6cebd7abc3e5e",
+  "visualBrief": "Current rebuilt Banqiao Dam with both grass embankment wings, paved crest and toe, steps and lights, modeled release channel and gate crossing, and the reservoir intake hut and catwalk.",
+  "heightPolicy": "The standard Terrarium water reference at local [0, −420] gives a 105.04 m model datum. The 16 m ground field fits the outer toes and release apron. Crest and release elevations are visual estimates.",
+  "nativeAxes": "+X north-northwest along the crest, +Z east toward the downstream Ru River and −Z west into the reservoir. +Y up.",
+  "sourceFacts": {
+    "retainedCrestLengthMeters": 2655.712069126458,
+    "releaseCrossingMeters": 50.04639218719465,
+    "modeledGateBays": 4,
+    "nativeReservoirId": 22027803,
+    "nativeCrestRoadId": 35185317969920,
+    "nativeGateBridgeId": 35185541377734,
+    "terrainDatum": 105.03686425000001,
+    "terrainGridStep": 16,
+    "terrainTiles": 10
+  },
+  "materialMethod": "Shared gravel, basalt, concrete, painted metal, standing-seam metal and window graphs with metric UVs and no embedded images.",
+  "limitations": [
+    "The standard Terrarium water reference at local [0, −420] gives a 105.04 m model datum. The 16 m ground field fits the outer toes and release apron. Crest and release elevations are visual estimates.",
+    "The short release crossing is mapped. The four gate leaves and sill arrangement are interpreted where the ordinary photographs do not resolve the machinery.",
+    "The roofed intake hut follows the visible form, with approximate position and dimensions. The nearby museum and park are separate site components.",
+    "Only the mapped reservoir has a water surface in the review. The native downstream river and side canal remain linework. Live reservoir levels and engineering elevations are unverified."
+  ],
+  "references": [
+    {
+      "url": "https://cwhh.com.cn/project12.html",
+      "imageUrl": "https://cwhh.com.cn/project/12/5.jpg",
+      "observed": "Current cross-view shows long straight crest, pale concrete paving strips on the embankment face, a central stair/road axis and a dark edge above the reservoir."
+    },
+    {
+      "url": "https://hnswszy.org.cn/slwh/sqjy/754954254102597.shtml",
+      "imageUrl": "https://hnswszy.org.cn/prod-api/preview/shuili/resources/image/2025/12/23/754958348152901.png",
+      "observed": "Current oblique view shows the grass-filled downstream levee and wide concrete toe walkway, crest paving, light poles, narrow intake fixture and the separately located flood-control museum."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The named current reservoir, the continuous crest-side road, and the sole short bridge across its downstream release at the candidate coordinate correspond to the current rebuilt structure in the ordinary photographs."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "banqiao-reservoir-crest",
+      "position": [
+        1840,
+        1230,
+        1270
+      ],
+      "lookAt": [
+        280,
+        3,
+        -34
+      ],
+      "fov": 50
+    },
+    {
+      "name": "grass-embankment-and-stair",
+      "position": [
+        -580,
+        146,
+        347
+      ],
+      "lookAt": [
+        -10,
+        6,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "release-crossing",
+      "position": [
+        -292,
+        29,
+        107
+      ],
+      "lookAt": [
+        -240,
+        2,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "intake-and-crest-walk",
+      "position": [
+        326,
+        35,
+        -161
+      ],
+      "lookAt": [
+        420,
+        9,
+        -99
+      ],
+      "fov": 50
+    },
+    {
+      "name": "north-tie",
+      "position": [
+        1400,
+        90,
+        218
+      ],
+      "lookAt": [
+        1370,
+        7,
+        -124
+      ],
+      "fov": 50
+    },
+    {
+      "name": "southern-wing-and-outlet",
+      "position": [
+        -870,
+        116,
+        349
+      ],
+      "lookAt": [
+        -499,
+        4,
+        -71
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -13,
+    "scale": 3.1,
+    "focus": {
+      "center": [
+        -240,
+        5,
+        0
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wt/wtb/banqiao_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "grass": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "grassB": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_basalt"
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "walk": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "steel": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "dark": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "grass": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "grassB": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "grass": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "grassB": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "grass": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "grassB": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "banqiao-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        1840,
+        1230,
+        1270
+      ],
+      "lookAt": [
+        280,
+        3,
+        -34
+      ]
+    },
+    {
+      "name": "banqiao-district",
+      "reviewLod": "district",
+      "position": [
+        1840,
+        1230,
+        1270
+      ],
+      "lookAt": [
+        280,
+        3,
+        -34
+      ]
+    },
+    {
+      "name": "banqiao-street",
+      "reviewLod": "street",
+      "position": [
+        1840,
+        1230,
+        1270
+      ],
+      "lookAt": [
+        280,
+        3,
+        -34
+      ]
+    },
+    {
+      "name": "banqiao-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        1840,
+        1230,
+        1270
+      ],
+      "lookAt": [
+        280,
+        3,
+        -34
+      ]
+    }
+  ]
+}

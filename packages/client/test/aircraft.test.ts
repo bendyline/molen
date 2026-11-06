@@ -185,6 +185,75 @@ it('retains bank in the cockpit quaternion and shortens obstructed chase views',
   ).toBeCloseTo(1.7);
 });
 
+it('leaves cabin parts too small to see out of chase frames without touching their visibility', () => {
+  const model = new THREE.Group(),
+    cockpit = new THREE.Group(),
+    controls = new THREE.Group();
+  cockpit.name = 'bespoke-panel';
+  controls.name = 'flight-controls';
+  const part = (radius: number): THREE.Mesh => {
+    const mesh = new THREE.Mesh(new THREE.SphereGeometry(radius), new THREE.MeshBasicMaterial());
+    mesh.position.fromArray(SPEC.pilotEye);
+    return mesh;
+  };
+  const seat = part(0.5),
+    needle = part(0.01),
+    lever = part(0.01),
+    warning = part(0.01);
+  warning.visible = false;
+  cockpit.add(seat, needle, warning);
+  controls.add(lever);
+  model.add(cockpit, controls);
+  model.position.set(1000, 50, -2000);
+  const visual = createAircraftVisual(model, SPEC);
+  const at = (distance: number): [number, number, number] => [
+    1000 + SPEC.pilotEye[0],
+    50 + SPEC.pilotEye[1],
+    -2000 + SPEC.pilotEye[2] - distance,
+  ];
+  const drawn = (mesh: THREE.Mesh) => mesh.layers.mask !== 0;
+  visual.updateView(at(0));
+  expect([seat, needle, lever, warning].map(drawn)).toEqual([true, true, true, true]);
+  // Fifteen meters back, a centimeter part is about half a pixel: out of the frame, the seat kept.
+  visual.updateView(at(15));
+  expect([seat, needle, lever, warning].map(drawn)).toEqual([true, false, false, false]);
+  expect([cockpit.visible, controls.visible, needle.visible, warning.visible]).toEqual([
+    true,
+    true,
+    true,
+    false,
+  ]);
+  // Within the hysteresis band nothing changes; nearer, the parts come back on their own layers.
+  visual.updateView(at(5.4));
+  expect(drawn(needle)).toBe(false);
+  visual.updateView(at(2));
+  expect([seat, needle, lever, warning].map(drawn)).toEqual([true, true, true, true]);
+  expect(needle.layers.mask).toBe(1);
+  // Far away the whole cabin, flight controls included, is hidden as before.
+  visual.updateView(at(500));
+  expect([cockpit.visible, controls.visible]).toEqual([false, false]);
+  visual.updateView(at(0));
+  expect([cockpit.visible, controls.visible, warning.visible]).toEqual([true, true, false]);
+  visual.dispose();
+});
+
+it('draws double-sided glass in one pass instead of rebuilding its program for each face', () => {
+  const glass = new THREE.MeshStandardMaterial({
+    transparent: true,
+    depthWrite: false,
+    side: THREE.DoubleSide,
+  });
+  const fabric = new THREE.MeshStandardMaterial({ side: THREE.DoubleSide });
+  const canopy = new THREE.Mesh(new THREE.BoxGeometry(), glass);
+  canopy.name = 'canopy';
+  const seat = new THREE.Mesh(new THREE.BoxGeometry(), fabric);
+  const model = new THREE.Group().add(canopy, seat);
+  const visual = createAircraftVisual(model, { ...SPEC, visual: { ...SPEC.visual, rotors: [] } });
+  expect(glass.forceSinglePass).toBe(true);
+  expect(fabric.forceSinglePass).toBe(false);
+  visual.dispose();
+});
+
 it('keeps the chase view upright and defined through the vertical of a loop', () => {
   const pose = (pitch: number) => {
     const rot = new THREE.Quaternion()

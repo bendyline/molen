@@ -1,0 +1,518 @@
+{
+  "planId": "the_strat_hotel_casino_skypod",
+  "id": "the_strat_hotel_casino_skypod",
+  "assetId": "molen.worldgen.structure.the_strat_hotel_casino_skypod",
+  "title": "The STRAT Hotel, Casino & SkyPod",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q845846",
+  "referenceCoordinate": {
+    "longitude": -115.15603,
+    "latitude": 36.14746
+  },
+  "visualBrief": "Complete Las Vegas STRAT resort:350m three-buttress observation tower with real open leg/upper slots,dark sloping glazed pod and lower lattice cone,red-white mast,75m bent hotel slab with white floor bands,broad curved casino,pool wing and mapped rooftop pool.",
+  "size": [
+    365.6269226074219,
+    351.7762370109558,
+    200.72307586669922
+  ],
+  "actualBounds": {
+    "min": [
+      -182.8135223388672,
+      -1.7762370109558105,
+      -100.31307220458984
+    ],
+    "max": [
+      182.8134002685547,
+      350,
+      100.41000366210938
+    ]
+  },
+  "nativeAxes": "+X north-northeast,-X south-southwest;+Z east-southeast toward Las Vegas Boulevard and the observation tower;-Z west-northwest toward the open bent-hotel court;+Y up.",
+  "sourceFacts": {
+    "mappedTowerHeightMeters": 350,
+    "mappedHotelHeightMeters": 75,
+    "mappedLengthMeters": 365.477,
+    "mappedWidthMeters": 200.622,
+    "towerCenter": [
+      15.5,
+      73.75
+    ],
+    "modelDatumMeters": 622,
+    "terrainTiles": 2
+  },
+  "referencePages": [
+    "https://www.westjet.com/content/dam/westjet/images/hotels/las/lasstr-stratosphere-hotel-and-casino/Gallery/lasstr-stratosphere-hotel-and-casino_overview.jpg",
+    "https://www.vegas.com/media/OD7sNn0BSAf2-cs9.jpg",
+    "https://photos.hotelbeds.com/giata/bigger/05/051236/051236a_hb_a_001.jpg",
+    "https://www.openstreetmap.org/way/135456188",
+    "https://thestrat.com/attractions/thrill-rides/big-shot"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      -115.156320367,
+      36.14761239
+    ],
+    "heading": 1.057860167568,
+    "elevationMode": "sea-level",
+    "elevationMeters": 622,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The whole podium skirt,tower leg feet and entrance drum embed into the unmodified native global terrain field. Datum622m and original site grades are approximate,not surveyed.",
+    "groundModelY": 0,
+    "replaceFootprint": true,
+    "bounds": [
+      -115.1582907312162,
+      36.145738848001244,
+      -115.15434906389481,
+      36.14948550373344
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:91bd06475bd1a5407295b41c67c4038aefda48887da0615608be930651d3770d",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://www.openstreetmap.org/way/135456188",
+    "wikidataId": "Q845846",
+    "notes": "Whole Q845846 casino/hotel outline plus separately mapped350m tower and75m bent hotel slab. Tower centerX15.5,Z73.75 lies toward+Z/ESE/Las Vegas Boulevard;hotel court opens-Z/NW. Source includes lower pool-wing,actual mapped pool and approximate native foundation contact. Adjacent25m parking garage remains native map content. Datum622m,casino/low-wing heights,pod/buttress/roof/entry sections and individual threefold leg rotation are photographic/native-field approximations,not surveyed."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Five existing shared concrete,window grid,painted metal,membrane and granite graphs with metric UVs;palette pool water. No private or embedded image copies.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/9q/9qq/the_strat_hotel_casino_skypod/models/strat-model.mjs",
+    "export": "buildStratSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.19,
+        "metallic": 0.17
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.56,
+        "metallic": 0.42
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "water": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.18,
+        "metallic": 0.1
+      }
+    },
+    "errorMeters": 8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStratDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.19,
+            "metallic": 0.17
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.56,
+            "metallic": 0.42
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.18,
+            "metallic": 0.1
+          }
+        },
+        "errorMeters": 4
+      },
+      "street": {
+        "export": "buildStratStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.19,
+            "metallic": 0.17
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.56,
+            "metallic": 0.42
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.18,
+            "metallic": 0.1
+          }
+        },
+        "errorMeters": 2
+      },
+      "closeup": {
+        "export": "buildStratCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.19,
+            "metallic": 0.17
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.56,
+            "metallic": 0.42
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.18,
+            "metallic": 0.1
+          }
+        },
+        "errorMeters": 1
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-resort-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -385,
+        235,
+        590
+      ],
+      "lookAt": [
+        0,
+        135,
+        15
+      ]
+    },
+    {
+      "name": "whole-resort-district",
+      "reviewLod": "district",
+      "position": [
+        -385,
+        235,
+        590
+      ],
+      "lookAt": [
+        0,
+        135,
+        15
+      ]
+    },
+    {
+      "name": "whole-resort-street",
+      "reviewLod": "street",
+      "position": [
+        -385,
+        235,
+        590
+      ],
+      "lookAt": [
+        0,
+        135,
+        15
+      ]
+    },
+    {
+      "name": "whole-resort-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -385,
+        235,
+        590
+      ],
+      "lookAt": [
+        0,
+        135,
+        15
+      ]
+    },
+    {
+      "name": "street-open-supports",
+      "reviewLod": "street",
+      "position": [
+        70,
+        47,
+        135
+      ],
+      "lookAt": [
+        15.5,
+        45,
+        73.75
+      ]
+    },
+    {
+      "name": "closeup-pod-lattice",
+      "reviewLod": "closeup",
+      "position": [
+        93,
+        258,
+        173
+      ],
+      "lookAt": [
+        15.5,
+        251,
+        73.75
+      ]
+    }
+  ],
+  "limitations": [
+    "Complete original exterior reconstructed from three inspected ordinary complex/tower photographs,exact retained OSM/Q845846 complex outline and standard viewer PMTiles/global terrain. No downloaded mesh,private photo texture,bespoke survey or archive research. Interiors,furnished rooms,individual signs/artwork,exact original equipment inventory and surrounding city are excluded.",
+    "The current standard map establishes the whole365.477x200.622m casino complex,75m bent hotel slab,350m circular tower projection and rooftop swimming-pool outline. Tower centerX15.5,Z73.75 and the asymmetrical hotel/court/strip relationship sign the NNE/SSW frame. Adjacent25m northwestern parking garage remains native map content. Casino14m and lower pool-wing24m heights,24 reconstructed hotel rows,pane counts,pod/buttress levels and profiles,entry drum and roof plant are photographic approximations. Overall map heights are generalized,not surveyed schedules.",
+    "Tower has three real tapering buttresses,open lower and upper gaps,central shaft,circular glass entrance drum,separate lattice lower cone and sloping glass observation pod,terraces/roof and red-white lattice mast with thin tip reaching350m. Primary venue Big Shot page gives a921ft platform,used as approximate281m mast base;pod levels are photographic reconstructions. Static simplified carriage/seat forms suggest the mast platform;no ride motion,safety/operations claim or exact ride-equipment replica. Historical external green thrill-ride arms in older photos are not copied.",
+    "Detailed source retains individual hotel panes/recess returns,projecting floor bands,mullions,pod lattice,railings,denser mast braces and original schematic roof plant. Four browser tiers preserve the whole resort and tower. Far tiers aggregate roof plant,rails,mast braces and glazing;skyline uses fewer leg/pod facets. Existing shared256px concrete,window grid,painted metal,roof membrane and granite graphs plus palette pool water use no private or embedded images. Glazing/water are stylized opaque surfaces,not optical interiors or a pool simulation.",
+    "Unmodified129x129/4m field oversamples two standard global DEM tiles. Base reference622m is rounded from the tower-center sample;podium skirts,individual leg feet and entrance drum embed below that field. Exact curb/foundation/roof-pool depths,accessible gradients,original steps and terrain grades remain unsurveyed. Estimated tier errors8/4/2/1m are not certified mesh distances. Physical phone/laptop and dense-city timing remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "complete-resort-tower-and-hotel",
+      "position": [
+        -385,
+        235,
+        590
+      ],
+      "lookAt": [
+        0,
+        135,
+        15
+      ],
+      "fov": 51
+    },
+    {
+      "name": "opposite-hotel-court",
+      "position": [
+        390,
+        240,
+        -530
+      ],
+      "lookAt": [
+        0,
+        120,
+        10
+      ],
+      "fov": 52
+    },
+    {
+      "name": "roof-pool-and-bent-hotel",
+      "position": [
+        -260,
+        245,
+        -250
+      ],
+      "lookAt": [
+        -20,
+        38,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "open-lower-tower-legs",
+      "position": [
+        70,
+        47,
+        135
+      ],
+      "lookAt": [
+        15.5,
+        45,
+        73.75
+      ],
+      "fov": 52
+    },
+    {
+      "name": "pod-lattice-and-observation-glazing",
+      "position": [
+        93,
+        258,
+        173
+      ],
+      "lookAt": [
+        15.5,
+        251,
+        73.75
+      ],
+      "fov": 48
+    },
+    {
+      "name": "upper-slots-and-pod-understructure",
+      "position": [
+        -36,
+        225,
+        119
+      ],
+      "lookAt": [
+        15.5,
+        229,
+        73.75
+      ],
+      "fov": 52
+    },
+    {
+      "name": "hotel-bands-and-native-casino",
+      "position": [
+        -33,
+        30,
+        -120
+      ],
+      "lookAt": [
+        -35,
+        32,
+        -53
+      ],
+      "fov": 52
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 78757,
+    "vertices": 155911,
+    "materials": 6,
+    "bytes": 6561640,
+    "sha256": "sha256:b3128790950131068095a5affe84388936d5765c7166e95a951992e821a38cae"
+  }
+}

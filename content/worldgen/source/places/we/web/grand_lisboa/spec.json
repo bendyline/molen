@@ -1,0 +1,519 @@
+{
+  "planId": "grand_lisboa",
+  "id": "grand_lisboa",
+  "assetId": "molen.worldgen.structure.grand_lisboa",
+  "title": "Grand Lisboa",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q1033099",
+  "referenceCoordinate": {
+    "longitude": 113.543117,
+    "latitude": 22.190644
+  },
+  "visualBrief": "Complete261m Grand Lisboa:gold/slate narrow-waisted lotus/feather hotel tower with stepped curling leaf edges,ogive/globe/open crown,front triangular mirrored ovoid casino,pointed entry arches,blank sign pylon and paired side annex terraces.",
+  "size": [
+    99.88200378417969,
+    267.4583730697632,
+    96.98799896240234
+  ],
+  "actualBounds": {
+    "min": [
+      -49.941001892089844,
+      -6.433653831481934,
+      -48.49399948120117
+    ],
+    "max": [
+      49.941001892089844,
+      261.02471923828125,
+      48.49399948120117
+    ]
+  },
+  "nativeAxes": "+X northeast,-X southwest;+Z southeast,-Z northwest;+Y up. Internal design+U is approximately east,design+V south/front;the casino dome is in front of the taller rear shaft.",
+  "sourceFacts": {
+    "retainedHeightMeters": 261,
+    "mappedParentHeightMeters": 55,
+    "mappedTowerHeightMeters": 210,
+    "mappedLengthMeters": 99.882,
+    "mappedWidthMeters": 96.987,
+    "internalDesignOrigin": [
+      15.25,
+      -12.25
+    ],
+    "internalDesignRotation": 0.7853981633974483,
+    "modelDatumMeters": 11,
+    "terrainTiles": 1
+  },
+  "referencePages": [
+    "https://en.bcdn.biz/Images/2021/6/16/4780b80a-d8ab-43fc-997b-485d289d5587.jpg",
+    "https://pixnio.com/free-images/2024/10/29/2024-10-29-09-14-13-1536x1152.jpg",
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/c2/a8/65/grand-lisboa-exterior.jpg?h=800&s=1&w=1400",
+    "https://www.openstreetmap.org/way/192182404"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      113.543346986,
+      22.190822312
+    ],
+    "heading": 0.770950765704,
+    "elevationMode": "sea-level",
+    "elevationMeters": 11,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Podium/annex/pylon skirts and individual entry-arch feet embed in the unmodified native global field. Datum11m and original site grades remain approximate,not surveyed.",
+    "groundModelY": 0,
+    "replaceFootprint": true,
+    "bounds": [
+      113.5426716318414,
+      22.190197246159105,
+      113.5440223401586,
+      22.1914473778409
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c6aa9fd187c0216e9e9f9611172f15513f1b9518f8383ff3fd6f128727a9ec31",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://www.openstreetmap.org/way/192182404",
+    "wikidataId": "Q1033099",
+    "notes": "Complete Q1033099 tower/casino/annex exterior. The mapped54/55m parent is the lower casino;the separate210m generalized hotel footprint omits the full feather/crown/finial height. Retained261m total guides the whole model. Internal design+U approximately east,+V south/front;the mirrored ovoid sits south of the rear shaft. Original source includes paired side annexes,entrance pylon and open arch/foyer relationships. Datum11m,curved sections,individual leaf/floor counts and native foundation/arch-foot contact remain approximate,not surveyed."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Five existing shared bronze/gold,window grid,polished stainless,painted metal and granite graphs with metric UVs;palette blank sign. No private or embedded image copies.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_polished",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/we/web/grand_lisboa/models/grand-lisboa-model.mjs",
+    "export": "buildLisboaSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.7,
+        "metallic": 0.15
+      },
+      "gold": {
+        "slot": "wall",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.39,
+        "metallic": 0.65
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.2,
+        "metallic": 0.25
+      },
+      "shell": {
+        "slot": "wall",
+        "graph": "metal_stainless_polished",
+        "roughness": 0.21,
+        "metallic": 0.75
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.52,
+        "metallic": 0.45
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "sign": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.6,
+        "metallic": 0.15
+      }
+    },
+    "errorMeters": 6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLisboaDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "gold": {
+            "slot": "wall",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.39,
+            "metallic": 0.65
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.2,
+            "metallic": 0.25
+          },
+          "shell": {
+            "slot": "wall",
+            "graph": "metal_stainless_polished",
+            "roughness": 0.21,
+            "metallic": 0.75
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.52,
+            "metallic": 0.45
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "sign": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.15
+          }
+        },
+        "errorMeters": 3
+      },
+      "street": {
+        "export": "buildLisboaStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "gold": {
+            "slot": "wall",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.39,
+            "metallic": 0.65
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.2,
+            "metallic": 0.25
+          },
+          "shell": {
+            "slot": "wall",
+            "graph": "metal_stainless_polished",
+            "roughness": 0.21,
+            "metallic": 0.75
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.52,
+            "metallic": 0.45
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "sign": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.15
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "closeup": {
+        "export": "buildLisboaCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "gold": {
+            "slot": "wall",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.39,
+            "metallic": 0.65
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.2,
+            "metallic": 0.25
+          },
+          "shell": {
+            "slot": "wall",
+            "graph": "metal_stainless_polished",
+            "roughness": 0.21,
+            "metallic": 0.75
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.52,
+            "metallic": 0.45
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "sign": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.15
+          }
+        },
+        "errorMeters": 0.7
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-landmark-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -182.73989873223326,
+        165,
+        426.1562043356595
+      ],
+      "lookAt": [
+        4.6433982822017885,
+        128,
+        -1.6433982822017867
+      ]
+    },
+    {
+      "name": "whole-landmark-district",
+      "reviewLod": "district",
+      "position": [
+        -182.73989873223326,
+        165,
+        426.1562043356595
+      ],
+      "lookAt": [
+        4.6433982822017885,
+        128,
+        -1.6433982822017867
+      ]
+    },
+    {
+      "name": "whole-landmark-street",
+      "reviewLod": "street",
+      "position": [
+        -182.73989873223326,
+        165,
+        426.1562043356595
+      ],
+      "lookAt": [
+        4.6433982822017885,
+        128,
+        -1.6433982822017867
+      ]
+    },
+    {
+      "name": "whole-landmark-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -182.73989873223326,
+        165,
+        426.1562043356595
+      ],
+      "lookAt": [
+        4.6433982822017885,
+        128,
+        -1.6433982822017867
+      ]
+    },
+    {
+      "name": "street-pointed-entrance",
+      "reviewLod": "street",
+      "position": [
+        -31.41904755831213,
+        12,
+        68.36017305526642
+      ],
+      "lookAt": [
+        -17.98401871576773,
+        12,
+        25.22665940288702
+      ]
+    },
+    {
+      "name": "closeup-leaf-fan-and-crown",
+      "reviewLod": "closeup",
+      "position": [
+        -1.7205627484771213,
+        242,
+        106.54393923933999
+      ],
+      "lookAt": [
+        15.25,
+        234,
+        -12.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Complete original Grand Lisboa exterior reconstructed from three inspected ordinary front/aerial photographs,retained OSM/Q1033099 outline and current standard viewer PMTiles/global terrain. No downloaded mesh,private photo texture,bespoke survey or archive research. Optical/furnished interiors,billboard imagery,exact decorative sculptures/artwork,panel inventory and surrounding city are excluded.",
+    "The mapped54/55m parent outlines the lower casino/annex complex,not the whole261m landmark. Separate210m generalized hotel footprint aligns the rear shaft approximately east/west;the mirrored ovoid and entry face south. Retained261m total guides the crown/finial. Tower design origin is local[15.25,-12.25],internal rotation45degrees. Curved shaft/leaf/dome sections,seven reconstructed leaf tiers per side/front-back set,44 floor rows,side-annex/entrance dimensions and crown ornaments are photographic approximations,not an as-built architectural schedule.",
+    "Detailed master preserves a narrow-waisted curved shaft,individual sweeping pointed leaf solids,glazing/floor bands,center ribs,ogive crown with diamond glazing band,globe and original open finial. Flattened ovoid casino uses geometric triangular mirrored cells with inset seams/recess returns;no dedicated texture atlas. Paired side drums/terraces,pointed front arch ribs,actual near foyer aperture and blank digital-sign pylon complete the exterior. Crown and finial ornament use original simplified geometry,not exact sculpture replicas. Far tiers aggregate facade/entrance detail while retaining the whole unique silhouette.",
+    "Five existing shared256px graphs provide bronze/gold,window grid,polished stainless approximation of mirrored shell,painted-metal seams and granite foundation. A palette blank sign adds no image. Gold/silver/slate/cyan cell colors are original restrained patterns,not an exact panel-by-panel photographic copy. Shared reflective surfaces are stylized opaque materials. Portable fallback surfaces differ from bound viewer graphs. Source master and four authored browser tiers remain separate.",
+    "Unmodified129x129/2m field oversamples one ordinary global terrain tile. Approximate base reference11m is rounded from its center;urban surface returns vary across the site. Podium/annex/pylon skirts and sampled individual arch-foot blocks embed below it;native ground remains visible through entry openings. The source does not flatten terrain or certify original street/foundation/accessibility/entry gradients. Curved facade depths,terrace/pool exclusions and exact site contact remain reconstructed. Estimated tier errors6/3/1.5/.7m are not certified mesh distances;physical laptop/phone and dense-city timing remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "complete-lotus-tower-and-casino",
+      "position": [
+        -182.73989873223326,
+        165,
+        426.1562043356595
+      ],
+      "lookAt": [
+        4.6433982822017885,
+        128,
+        -1.6433982822017867
+      ],
+      "fov": 51
+    },
+    {
+      "name": "opposite-tower-and-annexes",
+      "position": [
+        156.67135623730945,
+        175,
+        -478.9404755831214
+      ],
+      "lookAt": [
+        8.178932188134524,
+        125,
+        -5.1789321881345245
+      ],
+      "fov": 52
+    },
+    {
+      "name": "triangular-ovoid-and-side-terraces",
+      "position": [
+        -154.4556274847714,
+        98,
+        -26.392135623730937
+      ],
+      "lookAt": [
+        -0.30634918610404327,
+        35,
+        3.306349186104047
+      ],
+      "fov": 53
+    },
+    {
+      "name": "pointed-entry-arches-and-pylon",
+      "position": [
+        -31.41904755831213,
+        12,
+        68.36017305526642
+      ],
+      "lookAt": [
+        -17.98401871576773,
+        12,
+        25.22665940288702
+      ],
+      "fov": 53
+    },
+    {
+      "name": "leaf-fans-and-ogive-crown",
+      "position": [
+        -1.7205627484771213,
+        242,
+        106.54393923933999
+      ],
+      "lookAt": [
+        15.25,
+        234,
+        -12.25
+      ],
+      "fov": 48
+    },
+    {
+      "name": "individual-curled-leaf-edges",
+      "position": [
+        37.87741699796953,
+        187,
+        66.94595949289332
+      ],
+      "lookAt": [
+        30.80634918610405,
+        181,
+        11.791630560342613
+      ],
+      "fov": 49
+    },
+    {
+      "name": "waist-floor-bands-and-foyer",
+      "position": [
+        -3.134776310850228,
+        107,
+        57.04646455628166
+      ],
+      "lookAt": [
+        13.835786437626904,
+        112,
+        0.4779220613578552
+      ],
+      "fov": 50
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 115272,
+    "vertices": 279968,
+    "materials": 6,
+    "bytes": 11465948,
+    "sha256": "sha256:2706a1593e00e3cfd07dda3e5174b1038c704036f3689abbeb7ce7773a317bb4"
+  }
+}

@@ -1,0 +1,526 @@
+{
+  "id": "dyke_kokaral",
+  "title": "Dyke Kokaral",
+  "wikidataId": "Q1166032",
+  "referenceCoordinate": {
+    "longitude": 60.79475474,
+    "latitude": 46.098499985
+  },
+  "module": "content/worldgen/source/places/v2/v25/dyke_kokaral/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.93
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_basalt",
+      "roughness": 0.96
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.91
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "trim": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.8
+    },
+    "gravel": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.85
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.74
+    },
+    "dark": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.8
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.43
+    }
+  },
+  "exportLabel": "Molen original Kokaral Dyke and regulator",
+  "expectedDraftMasterHash": "sha256:076e634bb11e8608ae44ef6305991a855a7f206f9621a0941fca0833c3964a9e",
+  "visualBrief": "Whole V-shaped Kokaral embankment at the retained exact map identity, both shoreline tie-ins, the mapped gravel crest, nine-bay regulator with a continuous road crossing, and the separate tapered intake and outlet apron.",
+  "heightPolicy": "The exact retained dyke polygon and current KNA-22 geometry control horizontal placement. The North Aral reservoir is on local negative Z. The southwest regulator flows toward the native outlet. Gates, lamps, bracing and railings follow the ordinary photographs. Terrain-derived crest, sill, tailwater, and foundation levels are visual estimates. The retained 13034m length is distinct from the sampled crest trace and plan extents.",
+  "nativeAxes": "+X southeast between the end controls, +Z southwest toward the downstream channel, and -Z northeast toward the North Aral reservoir. +Y up.",
+  "sourceFacts": {
+    "mappedIdentity": "way/82650638",
+    "retainedLengthMeters": 13034,
+    "sampledCrestLengthMeters": 12759.787980273188,
+    "gateSpanMeters": 57.325404045675775,
+    "gateBays": 9,
+    "terrainTiles": 14,
+    "terrainGridStep": 64,
+    "terrainReferenceLocal": [
+      0,
+      -1000
+    ],
+    "terrainDatum": 38.909220125000004,
+    "retainedNativeParts": 0,
+    "retainedRoadRecords": 27
+  },
+  "materialMethod": "Shared gravel, basalt, concrete and painted metal graphs. Metric UVs, linear tints, and zero embedded images.",
+  "limitations": [
+    "The exact retained dyke polygon and current KNA-22 geometry control horizontal placement. The North Aral reservoir is on local negative Z. The southwest regulator flows toward the native outlet. Gates, lamps, bracing and railings follow the ordinary photographs. Terrain-derived crest, sill, tailwater, and foundation levels are visual estimates. The retained 13034m length is distinct from the sampled crest trace and plan extents.",
+    "The 64 m standard terrain grid constrains the regional fit. The gate cross-section, operating levels, roadway grade and fine transitions between the embankment and shoreline are approximate. The model shows a static regulator and carries no control or navigation simulation."
+  ],
+  "references": [
+    {
+      "url": "https://astana.osce.org/astana/67183",
+      "imageUrl": "https://astana.osce.org/sites/default/files/f/images/hires/6/0/67183.jpg",
+      "observed": "Aiman Smagulova/OSCE aerial shows the low beige dyke, single nine-bay concrete gate crossing, widening upstream water and distinct tapered outlet walls and lower channel. The road crosses the gate tops."
+    },
+    {
+      "url": "https://thewanderingscot.com/photos/2015%20Central%20Asia/Kazakhstan/",
+      "imageUrl": "https://thewanderingscot.com/photos/2015%20Central%20Asia/Kazakhstan/midis/P5040434.jpg",
+      "observed": "Ordinary shore photo shows low concrete piers, red gate bracing, blue rails, thin tall lamps and long low floodwall. Reproduce geometry and shared materials without incorporating photo pixels."
+    },
+    {
+      "url": "https://www.openstreetmap.org/way/82650638",
+      "observed": "Whole V-shaped Kokaral embankment at the retained exact map identity, both shoreline tie-ins, the mapped gravel crest, nine-bay regulator with a continuous road crossing, and the separate tapered intake and outlet apron. The exact retained dyke polygon and current KNA-22 geometry control horizontal placement. The North Aral reservoir is on local negative Z. The southwest regulator flows toward the native outlet. Gates, lamps, bracing and railings follow the ordinary photographs. Terrain-derived crest, sill, tailwater, and foundation levels are visual estimates. The retained 13034m length is distinct from the sampled crest trace and plan extents."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Native road and reservoir and outlet polygons in the retained tile extract."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "nine-gates-from-tailrace",
+      "position": [
+        -1982.0035640043516,
+        17,
+        553.9843056355402
+      ],
+      "lookAt": [
+        -1944.1321519115527,
+        2,
+        474.4937014983379
+      ],
+      "fov": 50
+    },
+    {
+      "name": "whole-v-dyke",
+      "position": [
+        1700,
+        7150,
+        8700
+      ],
+      "lookAt": [
+        0,
+        1,
+        460
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upstream-flared-intake",
+      "position": [
+        -1962.2701662406191,
+        46,
+        342.277921667795
+      ],
+      "lookAt": [
+        -1936.7622954398323,
+        1.6,
+        460.29210948947343
+      ],
+      "fov": 50
+    },
+    {
+      "name": "regulator-and-crest-road",
+      "position": [
+        -2063.3161526829413,
+        26,
+        458.8356696895292
+      ],
+      "lookAt": [
+        -1941.3684557346576,
+        4.8,
+        469.1681044950137
+      ],
+      "fov": 50
+    },
+    {
+      "name": "outlet-and-stilling-apron",
+      "position": [
+        -1927.117164991917,
+        65,
+        621.8995705135322
+      ],
+      "lookAt": [
+        -1961.1749450024056,
+        -0.7,
+        507.33488301883705
+      ],
+      "fov": 50
+    },
+    {
+      "name": "rounded-v-embankment",
+      "position": [
+        460,
+        108,
+        1770
+      ],
+      "lookAt": [
+        43,
+        1,
+        1425
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -5.55,
+    "scale": 1.75,
+    "focus": {
+      "center": [
+        -1945.5140000000001,
+        2,
+        477.1565
+      ]
+    },
+    "cameraYaw": 3.141592653589793,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/v2/v25/dyke_kokaral/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_basalt",
+        "roughness": 0.96
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.91
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "trim": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.8
+      },
+      "gravel": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.85
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.74
+      },
+      "dark": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.8
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.43
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-kokaral-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        1700,
+        7150,
+        8700
+      ],
+      "lookAt": [
+        0,
+        1,
+        460
+      ]
+    },
+    {
+      "name": "whole-kokaral-district",
+      "reviewLod": "district",
+      "position": [
+        1700,
+        7150,
+        8700
+      ],
+      "lookAt": [
+        0,
+        1,
+        460
+      ]
+    },
+    {
+      "name": "whole-kokaral-street",
+      "reviewLod": "street",
+      "position": [
+        1700,
+        7150,
+        8700
+      ],
+      "lookAt": [
+        0,
+        1,
+        460
+      ]
+    },
+    {
+      "name": "whole-kokaral-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        1700,
+        7150,
+        8700
+      ],
+      "lookAt": [
+        0,
+        1,
+        460
+      ]
+    }
+  ]
+}

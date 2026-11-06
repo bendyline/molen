@@ -1,0 +1,440 @@
+{
+  "id": "temple_of_kalabsha",
+  "title": "Temple of Kalabsha",
+  "wikidataId": "Q11704302",
+  "referenceCoordinate": {
+    "longitude": 32.8675,
+    "latitude": 23.960833333
+  },
+  "module": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/models/kalabsha-model.mjs",
+  "builder": "buildKalabshaLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.87,
+      "metallic": 0
+    },
+    "old": {
+      "slot": "wall",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "floor": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.7,
+      "metallic": 0.15
+    }
+  },
+  "exportLabel": "Molen current Kalabsha battered pylons open court roofless column hall rear sanctuary and enclosure source",
+  "expectedDraftMasterHash": "sha256:2cbfd564e09e8fb2084fcd1dc08c745e98808a88addac2c24bf8d62064674f2f",
+  "visualBrief": "Complete current principal temple exterior:two battered broken-top pylon towers and physically open central portal,raised approach/steps,open stone forecourt and three-sided surviving colonnade,high four-column hypostyle screen/open passage and roofless hall,distinct rear vestibule/sanctuary roofs/chambers,lower irregular surrounding enclosure and side postern. Separate nearby Kertassi,Beit el-Wali and other island monuments are excluded and remain native map buildings.",
+  "nativeAxes": "+X ESE toward the lake-facing pylon/entrance,-X WNW toward the rear sanctuary;+Z SSW toward the lakeside flank,-Z NNE toward the island interior;+Y up.",
+  "sourceFacts": {
+    "mappedLengthMeters": 76.511,
+    "mappedWidthMeters": 34.309,
+    "modelDatumMeters": 193,
+    "terrainTiles": 1,
+    "ownedMapComponents": 1,
+    "heightBasis": "No native internal footprints/heights. Pylon15.5m,hall13m,rear roofs10.8m and all columns/doors/screens/broken courses are original photo-proportional approximations scaled to the retained76.511x34.309m footprint,not a surveyed restoration. Exact sculpted reliefs/inscriptions and unobserved inner chambers are excluded."
+  },
+  "limitations": [
+    "Complete current principal temple exterior:two battered broken-top pylon towers and physically open central portal,raised approach/steps,open stone forecourt and three-sided surviving colonnade,high four-column hypostyle screen/open passage and roofless hall,distinct rear vestibule/sanctuary roofs/chambers,lower irregular surrounding enclosure and side postern. Separate nearby Kertassi,Beit el-Wali and other island monuments are excluded and remain native map buildings.",
+    "No native internal footprints/heights. Pylon15.5m,hall13m,rear roofs10.8m and all columns/doors/screens/broken courses are original photo-proportional approximations scaled to the retained76.511x34.309m footprint,not a surveyed restoration. Exact sculpted reliefs/inscriptions and unobserved inner chambers are excluded.",
+    "One unchanged129x129/2m field covers256m,oversampling a coarse global island DEM.193m rounded datum;the field is not a survey of the reconstructed temple platform. Original structural foundations/entry steps connect without flattening. Fine roof/column/relief/course inventories and thresholds/accessibility grades approximate. No full interior reconstruction,landscape/lake/quay/boats/scattered excavation fragments/temporary visitor equipment or separate island temples. Physical device performance unmeasured.",
+    "Four existing256px limestone,weathered stone,granite andpainted-metal graphs;metric UVs andlinear vertex colors,no private/new/embedded images. Abstract disc/borders/floral capitals are original geometry,not exact relief/inscription copies. Skyline/district simplify wall courses,capitals and gate hardware;major courts/portals/hall remain open. Tier errors4/2/1/.35m are estimates,not measured mesh distances."
+  ],
+  "references": [
+    {
+      "url": "https://egymonuments.gov.eg/ar/monuments/kalabsha-temple/",
+      "observed": "Actually inspected frontal courtyard photograph of the hypostyle screen:four full-height columns with varied floral capitals,low relief panels,open central passage and exposed sky behind the lintel. Do not fill the column hall with a solid roof. Fine reliefs are not copied as textures."
+    },
+    {
+      "url": "https://archiqoo.com/locations/temple_of_kalabsha_ar.php",
+      "observed": "Actually inspected frontal pylon photograph:two broad inward-battered sandstone towers,uneven broken upper courses,a lower central portal with deep open doorway and cornice,vertical torus corners/flagstaff recesses,a raised paved approach and shallow steps."
+    },
+    {
+      "url": "https://www.travel-tour-guide.com/egypt/4e_egypt_tour_wadi_es_sebua_kalabsha.htm",
+      "observed": "Actually inspected side of courtyard:free-standing varied floral-capital columns,high rough broken wall behind them,an open side doorway,missing colonnade roof slabs and square stone paving."
+    },
+    {
+      "url": "https://global-geography.org/af/Geography/Africa/Egypt/Pictures/Aswan/Lake_Nasser_-_Temple_of_Kalabsha_1",
+      "observed": "Actually inspected full lakeside oblique exterior:pylon and low central portal on the eastern lake-facing end,broken lower court enclosure behind,high column-hall lintel and separate lower rear sanctuary roofs. Rocky island/lake are host context and are excluded."
+    },
+    {
+      "url": "https://www.openstreetmap.org/way/251212300",
+      "observed": "Retained current individual temple footprint supplies plan envelope only;no native internal heights/subdivisions."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-lake-facing-pylon-and-temple",
+      "position": [
+        118,
+        66,
+        100
+      ],
+      "lookAt": [
+        3,
+        5,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "complete-rear-sanctuary-and-enclosure",
+      "position": [
+        -110,
+        66,
+        -95
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "whole-open-court-and-roofless-hall",
+      "position": [
+        0,
+        135,
+        5
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "pylon-torus-cornice-and-open-portal",
+      "position": [
+        68,
+        15,
+        3
+      ],
+      "lookAt": [
+        34,
+        7,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "court-column-screen-and-floral-capitals",
+      "position": [
+        25,
+        8,
+        1
+      ],
+      "lookAt": [
+        8,
+        6,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "roofless-hall-and-rear-chambers",
+      "position": [
+        -12,
+        27,
+        27
+      ],
+      "lookAt": [
+        -3,
+        6,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "surviving-court-colonnade-and-postern",
+      "position": [
+        27,
+        9,
+        -5
+      ],
+      "lookAt": [
+        19,
+        6,
+        14
+      ],
+      "fov": 51
+    },
+    {
+      "name": "through-open-pylon-and-axis",
+      "position": [
+        47,
+        3,
+        0
+      ],
+      "lookAt": [
+        2,
+        3,
+        0
+      ],
+      "fov": 51
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.35,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ss/ssr/temple_of_kalabsha/models/kalabsha-model.mjs",
+    "export": "buildKalabshaSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "old": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.15
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKalabshaDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "old": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.15
+          }
+        },
+        "errorMeters": 2
+      },
+      "street": {
+        "export": "buildKalabshaStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "old": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.15
+          }
+        },
+        "errorMeters": 1
+      },
+      "closeup": {
+        "export": "buildKalabshaCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "old": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.15
+          }
+        },
+        "errorMeters": 0.35
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "complete-temple-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        118,
+        66,
+        100
+      ],
+      "lookAt": [
+        3,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "complete-temple-district",
+      "reviewLod": "district",
+      "position": [
+        118,
+        66,
+        100
+      ],
+      "lookAt": [
+        3,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "complete-temple-street",
+      "reviewLod": "street",
+      "position": [
+        118,
+        66,
+        100
+      ],
+      "lookAt": [
+        3,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "complete-temple-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        118,
+        66,
+        100
+      ],
+      "lookAt": [
+        3,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "street-open-column-hall",
+      "reviewLod": "street",
+      "position": [
+        25,
+        8,
+        1
+      ],
+      "lookAt": [
+        8,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "closeup-pylon-and-portal",
+      "reviewLod": "closeup",
+      "position": [
+        68,
+        15,
+        3
+      ],
+      "lookAt": [
+        34,
+        7,
+        0
+      ]
+    }
+  ]
+}

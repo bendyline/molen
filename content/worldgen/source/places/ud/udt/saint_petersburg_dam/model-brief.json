@@ -1,0 +1,527 @@
+{
+  "id": "saint_petersburg_dam",
+  "title": "Saint Petersburg Dam",
+  "wikidataId": "Q27632",
+  "referenceCoordinate": {
+    "longitude": 29.74833,
+    "latitude": 60.00639
+  },
+  "module": "content/worldgen/source/places/ud/udt/saint_petersburg_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.93
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_basalt",
+      "roughness": 0.96
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.91
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "trim": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.8
+    },
+    "gravel": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.85
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.74
+    },
+    "dark": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.8
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.43
+    }
+  },
+  "exportLabel": "Molen original Saint Petersburg flood barrier with S-1 and S-2",
+  "expectedDraftMasterHash": "sha256:e9c58cb4c98a38639dd6415389a6f2b5e2b21530dc69702c73a275f9776262c0",
+  "visualBrief": "Both maritime arms of the Saint Petersburg flood barrier, the six raised-gate sluice bridges, S-1 open navigation passage with parked sector gates and tunnel approaches, and the S-2 lift bridge and approach decks.",
+  "heightPolicy": "The named A-118 carriageways and current PMTiles place the corridor and crossings. Official span and gate counts control the architecture. Width profiles and precise wall, gate housing and deck grades are visual estimates. Native Kotlin terrain and roads connect the two arms. Gates are static in the normal open position. The z12 regional field is coarser than a sluice opening. The operator section and centerline lengths describe different extents. Exact bathymetry, shoreline contact and hidden machinery are unverified. Physical-device and dense-scene timing remain unmeasured.",
+  "nativeAxes": "+X trends NE from Bronka to Gorskaya along the two bent barrier arms. +Z is generally toward the inner Neva Bay side. +Y up.",
+  "sourceFacts": {
+    "length": 25400,
+    "embankmentSections": 11,
+    "sluices": 6,
+    "sluiceBays": 64,
+    "navigationPassages": 2,
+    "lanes": 6,
+    "mappedCenterlineMeters": 24395.33340373966,
+    "modeledEmbankmentRuns": 10,
+    "roadDatum": "sea-level",
+    "roadDeck": 6.5,
+    "terrainTiles": 52,
+    "terrainGridStep": 112,
+    "retainedNativeParts": 533,
+    "ownedNativeParts": 0
+  },
+  "materialMethod": "Five shared 256px graphs for basalt, gravel, concrete, standing-seam metal and painted metal. Six near groups and one far palette group use metric UVs and linear color tints with zero embedded images.",
+  "limitations": [
+    "Both maritime arms of the Saint Petersburg flood barrier, the six raised-gate sluice bridges, S-1 open navigation passage with parked sector gates and tunnel approaches, and the S-2 lift bridge and approach decks.",
+    "The named A-118 carriageways and current PMTiles place the corridor and crossings. Official span and gate counts control the architecture. Width profiles and precise wall, gate housing and deck grades are visual estimates. Native Kotlin terrain and roads connect the two arms. Gates are static in the normal open position. The z12 regional field is coarser than a sluice opening. The operator section and centerline lengths describe different extents. Exact bathymetry, shoreline contact and hidden machinery are unverified. Physical-device and dense-scene timing remain unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://dambaspb.ru/kak-ustroen-kzs",
+      "imageUrl": "https://dambaspb.ru/sites/all/themes/maintheme/images/damb_view.jpg",
+      "observed": "Operator photo shows low grass and rock-fill grades, separate highway carriageways, verge lamps and shoreline service road. Reuse the map alignment and retain ordinary native roads outside the modeled corridor."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Navigation_Pass_S-1_of_Saint_Petersburg_Dam.JPG",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Aerial_view_of_Navigation_Pass_S-1_of_Saint_Petersburg_Dam.JPG",
+      "observed": "Ssr aerial, CC BY-SA 3.0. S-1 is a clear wide channel between two flared platforms, with paired white triangular sector gates parked in curved side pockets, service buildings and guide arms. The A-118 runs underneath in a tunnel."
+    },
+    {
+      "url": "https://dambaspb.ru/kak-ustroen-kzs",
+      "imageUrl": "https://dambaspb.ru/sites/all/themes/maintheme/images/komplex_23.jpg",
+      "observed": "Operator aerial shows the six-lane low-profile lift bridge, chunky paired mechanical towers and rounded concrete guide platforms with open water below the deck."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Named A-118 ring road, tagged crossings and operator photographs resolve the corridor. This is a reviewed physical association without an exact-Q mapped way."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-barrier",
+      "position": [
+        6700,
+        14800,
+        17100
+      ],
+      "lookAt": [
+        650,
+        0,
+        500
+      ],
+      "fov": 50
+    },
+    {
+      "name": "s1-open-channel",
+      "position": [
+        -3356.698241456245,
+        310,
+        -124.40080417550473
+      ],
+      "lookAt": [
+        -3281.4932999999996,
+        3,
+        -844.4371513546018
+      ],
+      "fov": 50
+    },
+    {
+      "name": "s1-parked-sector-gates",
+      "position": [
+        -3191.5068221785773,
+        112,
+        -1155.766900492537
+      ],
+      "lookAt": [
+        -3120.5893836749824,
+        4,
+        -936.275135068386
+      ],
+      "fov": 50
+    },
+    {
+      "name": "s2-lift-bridge",
+      "position": [
+        4378.55117721691,
+        140,
+        2034.631688894867
+      ],
+      "lookAt": [
+        4822.288327466094,
+        10,
+        1737.7692080140757
+      ],
+      "fov": 50
+    },
+    {
+      "name": "b1-open-sluice-bays",
+      "position": [
+        -8257.486117430015,
+        42,
+        2568.535160242179
+      ],
+      "lookAt": [
+        -8285.672,
+        4,
+        2357.983207757624
+      ],
+      "fov": 50
+    },
+    {
+      "name": "six-lane-embankment",
+      "position": [
+        9701.321625694984,
+        51,
+        5169.38772226455
+      ],
+      "lookAt": [
+        9953.283371924454,
+        5,
+        5225.57368345141
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.2,
+    "focus": {
+      "center": [
+        -8285.672,
+        4,
+        2357.983207757624
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ud/udt/saint_petersburg_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_basalt",
+        "roughness": 0.96
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.91
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "trim": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.8
+      },
+      "gravel": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.85
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.74
+      },
+      "dark": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.8
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.43
+      }
+    },
+    "errorMeters": 8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 7
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 4
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 1.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-saint-petersburg-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        6700,
+        14800,
+        17100
+      ],
+      "lookAt": [
+        650,
+        0,
+        500
+      ]
+    },
+    {
+      "name": "whole-saint-petersburg-district",
+      "reviewLod": "district",
+      "position": [
+        6700,
+        14800,
+        17100
+      ],
+      "lookAt": [
+        650,
+        0,
+        500
+      ]
+    },
+    {
+      "name": "whole-saint-petersburg-street",
+      "reviewLod": "street",
+      "position": [
+        6700,
+        14800,
+        17100
+      ],
+      "lookAt": [
+        650,
+        0,
+        500
+      ]
+    },
+    {
+      "name": "whole-saint-petersburg-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        6700,
+        14800,
+        17100
+      ],
+      "lookAt": [
+        650,
+        0,
+        500
+      ]
+    }
+  ]
+}

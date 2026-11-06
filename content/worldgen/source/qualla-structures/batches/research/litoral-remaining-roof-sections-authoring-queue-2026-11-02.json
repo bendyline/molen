@@ -1,0 +1,98 @@
+{
+  "date": "2026-11-02",
+  "parent": "litoral_penitentiary",
+  "parentCompleted": false,
+  "acceptedMembers": 99,
+  "imageryUsed": false,
+  "originalSource": "research/litoral-two-competing-original-2023-height-observations-2026-11-02.json",
+  "derivedControls": "research/litoral-remaining-roof-sections-derived-controls-2026-11-02.json",
+  "models": [
+    {
+      "sourceId": "google-open-buildings:6792W3X4+HFPR",
+      "originalSourceArea": 764.4505821949256,
+      "completeUncoveredArea": 595.6354093629897,
+      "pieces": [
+        {
+          "part": 0,
+          "area": 595.6354093629897,
+          "rings": 1,
+          "corners": [
+            10
+          ]
+        }
+      ],
+      "coveredByAccepted": [
+        "litoral_pavilion_10_central_hall"
+      ],
+      "fullSourceHeightSummary": {
+        "min": 4,
+        "median": 6.5,
+        "max": 7.5,
+        "q25": 5.5,
+        "q75": 7
+      }
+    },
+    {
+      "sourceId": "google-open-buildings:6792W3X4+M945",
+      "originalSourceArea": 821.7611546102906,
+      "completeUncoveredArea": 429.557139629605,
+      "pieces": [
+        {
+          "part": 0,
+          "area": 38.43292054515064,
+          "rings": 1,
+          "corners": [
+            4
+          ]
+        },
+        {
+          "part": 1,
+          "area": 386.44484186758217,
+          "rings": 1,
+          "corners": [
+            11
+          ]
+        },
+        {
+          "part": 2,
+          "area": 4.679377216872183,
+          "rings": 1,
+          "corners": [
+            3
+          ]
+        }
+      ],
+      "coveredByAccepted": [
+        "litoral_pavilion_11_central_hall",
+        "litoral_pavilion_11_west_block",
+        "litoral_pavilion_11_southeast_block"
+      ],
+      "fullSourceHeightSummary": {
+        "min": 4.5,
+        "median": 5.5,
+        "max": 6.5,
+        "q25": 5,
+        "q75": 5.5
+      }
+    }
+  ],
+  "decision": "The two high-confidence original whole polygons are not duplicate bodies covered by the current members:595.6354m²and429.5571m²remain outside accepted roofs. Preserve complete original source and mask data. Author actual intrinsic uncovered roof sections with disclosed combined-source/height/condition/interface approximations; do not create duplicate full footprints, discard broad remainders, roof native yards or mark whole prison complete early.",
+  "next": {
+    "model": "litoral_pavilion_10_eastern_roof_extension",
+    "parentModelIdentity": "litoral_penitentiary",
+    "name": "Litoral Pavilion 10 eastern roof extension",
+    "researchCheckpoint": "research/litoral-remaining-roof-sections-authoring-queue-2026-11-02.json",
+    "stage": "complete-derived-uncovered-roof-section-own-frame-and-field-next",
+    "notes": "Build the entire595.6354m² ten-corner uncovered section of original Google HFPR, with original full source/mask relationships retained. It is an intrinsic roof section adjoining accepted central hall, not an independently proven separate building. No duplicate overlap with accepted models and no compound-yard boundary used as roof.31retained2023height values support full-source6.5m nominal median; select relevant outside observations before choosing sections. Qualla first; all imagery remains unused. Preserve accepted members, initial fields/floors and source data. Then cover all three M945outside sections429.5571m² with explicit small competing edge-strip uncertainty; do not silently discard38.4329m²end section or4.6794m²strip."
+  },
+  "frameChosen": false,
+  "terrainAcquired": false,
+  "floorChosen": false,
+  "sectionsChosen": false,
+  "geometryAuthored": true,
+  "stage": "both-complete-source-complements-completed-and-story-linked",
+  "completionCheckpoint": "research/litoral-two-complete-roof-extensions-completion-2026-11-02.json",
+  "newFrameFieldAndSectionsChosen": true,
+  "wholeParentCompleted": false,
+  "nextPhysicalModel": "litoral_north_central_roof_sections"
+}

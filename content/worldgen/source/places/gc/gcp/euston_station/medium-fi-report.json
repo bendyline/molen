@@ -1,0 +1,1450 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.euston_station",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.euston_station",
+    "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba"
+  },
+  "sourceHash": "sha256:73dfafc2e2c7fc3a4730fc8e55c1bd3d9f129b942e3bfdfde09ad8f69fc0502f",
+  "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
+    },
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:b305108f608c4a1ac2d1d6410fe501b62410b104b5c20d3a21b07e7ebdeff88c",
+      "bytes": 55416,
+      "gzipBytes": 12691,
+      "triangles": 670,
+      "cpuBytes": 53988,
+      "gpuBytes": 53988,
+      "errorMeters": 2.5,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:71d523202e393d518cf5c190116fed99d1da14db5b7823dd566ea367d6a0bb69",
+      "bytes": 194748,
+      "gzipBytes": 35072,
+      "triangles": 2204,
+      "cpuBytes": 187320,
+      "gpuBytes": 187320,
+      "errorMeters": 1.2,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:711852b83aa4247fe0d054e09cb4033dfca8a98341ca2fe33bbb9fe45ca83b1d",
+      "bytes": 916748,
+      "gzipBytes": 158536,
+      "triangles": 10346,
+      "cpuBytes": 909300,
+      "gpuBytes": 909300,
+      "errorMeters": 0.5,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:2ec2f982bb57d9bbfc5be58ac8201ccc0e863983644d5284d5c2b9cf1080ce4e",
+      "bytes": 2046644,
+      "gzipBytes": 359624,
+      "triangles": 23520,
+      "cpuBytes": 2039184,
+      "gpuBytes": 2039184,
+      "errorMeters": 0.18,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:af868f8bbe7c17a0ed162d2f98d8b2c906eaa17ce62bddacfcca7b8d38c280b5"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:67581c4540e5adfa25889b4a7128a10fe6cb52c765beacf76e84ffa3f934e824"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:204a7e90ebe18a04f5b2dc734c1b99ecbf6cf8ac7f4b5dfa15d475ac337f170c",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:2ec2f982bb57d9bbfc5be58ac8201ccc0e863983644d5284d5c2b9cf1080ce4e",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 159898,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          67.2789,
+          39.4875,
+          116.11389999999999
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:1e9fe33ea3200207ea649acea269d3b0c18ded98406063db1c8cf1730c31561a",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:2ec2f982bb57d9bbfc5be58ac8201ccc0e863983644d5284d5c2b9cf1080ce4e",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 159898,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          67.2789,
+          39.4875,
+          116.11389999999999
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:8e4da411e01066f7b15439f08f1853b7a5421c2d32be1074c83192edfa6df4a7",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:2ec2f982bb57d9bbfc5be58ac8201ccc0e863983644d5284d5c2b9cf1080ce4e",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 159898,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          67.2789,
+          39.4875,
+          116.11389999999999
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:915ba40397eb9564c601d4f0d731b0b78412a380f17adf8745c7258010b91519",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:2ec2f982bb57d9bbfc5be58ac8201ccc0e863983644d5284d5c2b9cf1080ce4e",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 159898,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          67.2789,
+          39.4875,
+          116.11389999999999
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:4d062d3b5d14debe7f5570697be46cf59a691df374ae8272b3c2084f3ac7a47d",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:71d523202e393d518cf5c190116fed99d1da14db5b7823dd566ea367d6a0bb69",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 138678,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          135.8789,
+          89.8875,
+          235.1139
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:65248589cbafffa655f4eccfd94bef72cbc788ef0dc9bf26f0b6822d1753f02f",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:71d523202e393d518cf5c190116fed99d1da14db5b7823dd566ea367d6a0bb69",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 138678,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          135.8789,
+          89.8875,
+          235.1139
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:f85e8e81208f5bd7f4aa0568f60950636cd47716934e20537d11f359c09965f4",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:71d523202e393d518cf5c190116fed99d1da14db5b7823dd566ea367d6a0bb69",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 138678,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          135.8789,
+          89.8875,
+          235.1139
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:fac48f0c8adff79f82a69e7a7d03d5040425064e128dd32c8b53b86bf404fe2c",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:71d523202e393d518cf5c190116fed99d1da14db5b7823dd566ea367d6a0bb69",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 138678,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          135.8789,
+          89.8875,
+          235.1139
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:65d934519a55eb6dbaa02caea465a495fdf6b7aee128267d343b06f87dacd475",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:b305108f608c4a1ac2d1d6410fe501b62410b104b5c20d3a21b07e7ebdeff88c",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 137144,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          271.67889999999994,
+          143.0875,
+          470.3139
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:9e337d208b4a885ad145d05d94ae2d4d7c7fff1628087a96f0ac70e955d5fba0",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:b305108f608c4a1ac2d1d6410fe501b62410b104b5c20d3a21b07e7ebdeff88c",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 137144,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          271.67889999999994,
+          143.0875,
+          470.3139
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:bab48747f02a5df0a73bcaee1c91ebc5bf8231933730213a920c0ba97ac44d28",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:b305108f608c4a1ac2d1d6410fe501b62410b104b5c20d3a21b07e7ebdeff88c",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 137144,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          271.67889999999994,
+          143.0875,
+          470.3139
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:7a2858f4d435efabf58f825f55b8e14f515fe4fdc7dcfff1ebb07c3c4ea87afb",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:b305108f608c4a1ac2d1d6410fe501b62410b104b5c20d3a21b07e7ebdeff88c",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 137144,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          271.67889999999994,
+          143.0875,
+          470.3139
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:9aca11979a80346db9fedf9d4f509fcaa22e26ea3ea3580d04d2e373596538f1",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:b305108f608c4a1ac2d1d6410fe501b62410b104b5c20d3a21b07e7ebdeff88c",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 131448,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          271.67889999999994,
+          143.0875,
+          470.3139
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/sse-concourse-recessed-glass-and-terrace.png",
+      "hash": "sha256:489d78994d4b93bf85f699a566890419fc77b4204d8792158f0f9597deb54458",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:2ec2f982bb57d9bbfc5be58ac8201ccc0e863983644d5284d5c2b9cf1080ce4e",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 159994,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          290,
+          25,
+          -5
+        ],
+        "lookAt": [
+          183,
+          7,
+          -40
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/complete-rooflights-and-raised-roofs.png",
+      "hash": "sha256:368c9addfc3e3ea2e153aaafa7add5946d3bb7c970fa1ccc628df1af2372ca0a",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:2ec2f982bb57d9bbfc5be58ac8201ccc0e863983644d5284d5c2b9cf1080ce4e",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 159994,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          -220,
+          200,
+          200
+        ],
+        "lookAt": [
+          -15,
+          12,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/open-nnw-rail-approach.png",
+      "hash": "sha256:85213c3bae5aa578775361dd3bba10561be8f8f3af4e8dccc4d2e605fba72fa9",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:2ec2f982bb57d9bbfc5be58ac8201ccc0e863983644d5284d5c2b9cf1080ce4e",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 159994,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          -270,
+          35,
+          -15
+        ],
+        "lookAt": [
+          -65,
+          8,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/under-open-platform-roof.png",
+      "hash": "sha256:4d898396f20564d70ce91802eaefb800149a3799f21a7d36f22110915d21b5dd",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:2ec2f982bb57d9bbfc5be58ac8201ccc0e863983644d5284d5c2b9cf1080ce4e",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 159994,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          -65,
+          2,
+          15
+        ],
+        "lookAt": [
+          45,
+          10,
+          15
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/whole-euston-station-skyline.png",
+      "hash": "sha256:8349e5ea0230efca21948a06adcb5ad4d54c55b5d2c6ac120d1ad55abe4bb110",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:b305108f608c4a1ac2d1d6410fe501b62410b104b5c20d3a21b07e7ebdeff88c",
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 137144,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          380,
+          210,
+          300
+        ],
+        "lookAt": [
+          0,
+          9,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/whole-euston-station-district.png",
+      "hash": "sha256:85fb652ca87eef8e4497efbb48d999ed3209c3dcc3c2260577f894aa45929c80",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:71d523202e393d518cf5c190116fed99d1da14db5b7823dd566ea367d6a0bb69",
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 138678,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          380,
+          210,
+          300
+        ],
+        "lookAt": [
+          0,
+          9,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/whole-euston-station-street.png",
+      "hash": "sha256:c88379e08e642570df6736e732735ccbabb3a27f74815e0d9b153582bb528a74",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:711852b83aa4247fe0d054e09cb4033dfca8a98341ca2fe33bbb9fe45ca83b1d",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 146820,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          380,
+          210,
+          300
+        ],
+        "lookAt": [
+          0,
+          9,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/whole-euston-station-closeup.png",
+      "hash": "sha256:afaaf55000e1f23e72d57951ac36a016516a7dbd584eda2ce0aea3eceb5fe0ee",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:2ec2f982bb57d9bbfc5be58ac8201ccc0e863983644d5284d5c2b9cf1080ce4e",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 159994,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          380,
+          210,
+          300
+        ],
+        "lookAt": [
+          0,
+          9,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:53db3fd93758c37ad4420fef7dd1a34cb1832cc72a3efae9d43faea9dbaddcc8",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:b305108f608c4a1ac2d1d6410fe501b62410b104b5c20d3a21b07e7ebdeff88c",
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 137144,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          135.8789,
+          89.8875,
+          235.1139
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:65248589cbafffa655f4eccfd94bef72cbc788ef0dc9bf26f0b6822d1753f02f",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:71d523202e393d518cf5c190116fed99d1da14db5b7823dd566ea367d6a0bb69",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 138678,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          135.8789,
+          89.8875,
+          235.1139
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:6b97b50af7883d7a98574b88cb2e398c216dd023628ddd8fd611159ef8f9a1a9",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:711852b83aa4247fe0d054e09cb4033dfca8a98341ca2fe33bbb9fe45ca83b1d",
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 146820,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          135.8789,
+          89.8875,
+          235.1139
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:f940e4273a7e60d175e1542ddf32fb517f2e51f2cec2b597ac1ca396a5eab0ac",
+      "state": {
+        "assetId": "molen.worldgen.structure.euston_station",
+        "runtimeHash": "sha256:000f02fe60fe4de47938c459aa95a0250afcfd8f39deaeeb1ec2a508061ef2ba",
+        "lodHash": "sha256:2ec2f982bb57d9bbfc5be58ac8201ccc0e863983644d5284d5c2b9cf1080ce4e",
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 159994,
+        "groundY": -9.420193999999999,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/euston_station/terrain-review.height.png"
+        },
+        "position": [
+          135.8789,
+          89.8875,
+          235.1139
+        ],
+        "lookAt": [
+          0.0789,
+          18.487499999999997,
+          -0.0861
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem",
+        "groundOpening": {
+          "points": 7,
+          "outlines": 1,
+          "surfaces": 1,
+          "coverage": {
+            "probes": 9,
+            "covered": 0
+          },
+          "active": true,
+          "sourceValuesUnchanged": true
+        }
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,332 @@
+{
+  "planId": "fray_bentos_mill_northwest_river_pier",
+  "id": "fray_bentos_mill_northwest_river_pier",
+  "assetId": "molen.worldgen.structure.fray_bentos_mill_northwest_river_pier",
+  "title": "Fray Bentos mill northwest river pier",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -58.262097116666666,
+    "latitude": -33.109047583333336
+  },
+  "size": [
+    19.027158737182617,
+    6.200000047683716,
+    3.7252413034439087
+  ],
+  "actualBounds": {
+    "min": [
+      -7.9201250076293945,
+      -2.4000000953674316,
+      -1.7863376140594482
+    ],
+    "max": [
+      11.107033729553223,
+      3.799999952316284,
+      1.9389036893844604
+    ]
+  },
+  "visualBrief": "Whole independent 6-corner river pier at the named Planta UPM Fray Bentos site: full original closed deck perimeter, an estimated structural deck and supports. No loading machinery, factory building, tank or whole-mill substitute. Previously cleared three U.S. Embassy Montevideo public-domain photographs provide factory-level plain concrete and gray steel material vocabulary only. They do not depict or establish this pier. Native OSM area geometry establishes the deck plan; exact deck elevation/thickness, pile positions, hardware, condition and historical continuity are estimates. No new imagery, orthophotos, report figures, satellite photographs or photo textures used. At least5m horizontal uncertainty for the unsurveyed mapped outline. Represented2023 continuity is approximate. Whole closed native6-corner area-pier perimeter retained at all four levels, including every narrow irregular projection. Mapped pier shares native factory-boundary nodes7739908244/7739908241 and is not inferred from an unrelated rectangle or generic story point. No cargo/crane/pipeline function claimed. Own256m129x129/16641-height numerical field and4 raw source tiles frozen before choosing deck floor3.25m, deck underside2.35m and support bottom-2.4m. Source-field datum0.7684m, absolute range-180.1543–10.4538m. No terrain mask, flattening, bathymetry repair, floor fitting or frame refit. Source terrain may contain shoreline/bathymetry artefacts; neither water level nor pier datum is surveyed. Deck elevation3.25m, thickness.9m, concrete material,2estimated pile positions/radius.28m,1estimated simple mooring posts and thin gray edge trim are conservative engineering appearance estimates with at least3m component/height and5m horizontal uncertainty. They are not an observed support or hardware census. Exact water/ground contact, access tie, historic2023 continuity and condition unverified. No rails, loading machinery, road bridge or whole factory invented. Three already-cleared U.S.Embassy Montevideo public-domain government originals supply factory-level concrete/gray-steel vocabulary only. They do not show this pier. Qualla-first26 source families retained, no new imagery adoption or rights reopening; source orthophotos, satellite pictures, report figures and photo textures unused. Historical2023 preview, current-world eligible false; whole mill unfinished.",
+  "nativeAxes": {
+    "x": "along longest original pier edge",
+    "y": "up",
+    "z": "across the native pier perimeter"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2023-12-31",
+    "validFrom": "2023-01-01",
+    "validUntil": "2024-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Emb._George_visita_UPM_(50408664051).jpg",
+    "https://commons.wikimedia.org/wiki/File:Emb._George_visita_UPM_(50407959643).jpg",
+    "https://commons.wikimedia.org/wiki/File:Emb._George_visita_UPM_(50408818672).jpg"
+  ],
+  "stories": [
+    {
+      "id": "uruguay-river-pulp-mill-dispute-wp",
+      "url": "https://qualla.com/uruguay-river-pulp-mill-dispute/"
+    }
+  ],
+  "referenceInputHash": "sha256:7938f112c98a2859e2c6cd88c22bbdc49c1038c2e7621fbca4cda2b0b9662efe",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6d/6dn/fray_bentos_mill_northwest_river_pier/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/6d/6dn/fray_bentos_mill_northwest_river_pier/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.2,
+    "surfaces": {
+      "deck": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "support": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.2
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "deck": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "support": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "deck": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "support": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.2
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.01,
+        "surfaces": {
+          "deck": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "support": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -58.262097116666666,
+      -33.109047583333336
+    ],
+    "heading": 0.33109190130336946,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -58.262097116666666,
+        -33.109047583333336
+      ],
+      "modelHeight": 0,
+      "basis": "Original pier centre fixed before its independent unmasked numerical ground field, deck floor and main sections. Ground and water vertical tie is not surveyed."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/829188968"
+    ],
+    "source": "https://www.openstreetmap.org/way/829188968",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1c8b2ebed3d54a1c41ed95f0517f88485332e72ad43305105bf494339a31b9de",
+    "notes": "Whole independent 6-corner river pier at the named Planta UPM Fray Bentos site: full original closed deck perimeter, an estimated structural deck and supports. No loading machinery, factory building, tank or whole-mill substitute. Previously cleared three U.S. Embassy Montevideo public-domain photographs provide factory-level plain concrete and gray steel material vocabulary only. They do not depict or establish this pier. Native OSM area geometry establishes the deck plan; exact deck elevation/thickness, pile positions, hardware, condition and historical continuity are estimates. No new imagery, orthophotos, report figures, satellite photographs or photo textures used. At least5m horizontal uncertainty for the unsurveyed mapped outline. Represented2023 continuity is approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole independent 6-corner river pier at the named Planta UPM Fray Bentos site: full original closed deck perimeter, an estimated structural deck and supports. No loading machinery, factory building, tank or whole-mill substitute. Previously cleared three U.S. Embassy Montevideo public-domain photographs provide factory-level plain concrete and gray steel material vocabulary only. They do not depict or establish this pier. Native OSM area geometry establishes the deck plan; exact deck elevation/thickness, pile positions, hardware, condition and historical continuity are estimates. No new imagery, orthophotos, report figures, satellite photographs or photo textures used. At least5m horizontal uncertainty for the unsurveyed mapped outline. Represented2023 continuity is approximate.",
+    "Whole closed native6-corner area-pier perimeter retained at all four levels, including every narrow irregular projection. Mapped pier shares native factory-boundary nodes7739908244/7739908241 and is not inferred from an unrelated rectangle or generic story point. No cargo/crane/pipeline function claimed.",
+    "Own256m129x129/16641-height numerical field and4 raw source tiles frozen before choosing deck floor3.25m, deck underside2.35m and support bottom-2.4m. Source-field datum0.7684m, absolute range-180.1543–10.4538m. No terrain mask, flattening, bathymetry repair, floor fitting or frame refit. Source terrain may contain shoreline/bathymetry artefacts; neither water level nor pier datum is surveyed.",
+    "Deck elevation3.25m, thickness.9m, concrete material,2estimated pile positions/radius.28m,1estimated simple mooring posts and thin gray edge trim are conservative engineering appearance estimates with at least3m component/height and5m horizontal uncertainty. They are not an observed support or hardware census. Exact water/ground contact, access tie, historic2023 continuity and condition unverified. No rails, loading machinery, road bridge or whole factory invented.",
+    "Three already-cleared U.S.Embassy Montevideo public-domain government originals supply factory-level concrete/gray-steel vocabulary only. They do not show this pier. Qualla-first26 source families retained, no new imagery adoption or rights reopening; source orthophotos, satellite pictures, report figures and photo textures unused. Historical2023 preview, current-world eligible false; whole mill unfinished."
+  ],
+  "sourceLicense": "Original deterministic geometry under repository license. OpenStreetMap contributors ODbL-1.0 native closed pier outline retained with credits. Three already-cleared PD U.S.Embassy factory-context originals supply only general concrete/steel material vocabulary. Pier-specific deck section, supports, hardware and condition are unverified estimates; no imagery or photo texture copied.",
+  "qaLodCameras": [
+    {
+      "name": "whole-river-pier-skyline",
+      "position": [
+        17.04843963254483,
+        7.9559384951875876,
+        14.207033027120692
+      ],
+      "lookAt": [
+        0,
+        1.4,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-river-pier-district",
+      "position": [
+        17.04843963254483,
+        7.9559384951875876,
+        14.207033027120692
+      ],
+      "lookAt": [
+        0,
+        1.4,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-river-pier-street",
+      "position": [
+        17.04843963254483,
+        7.9559384951875876,
+        14.207033027120692
+      ],
+      "lookAt": [
+        0,
+        1.4,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-river-pier-closeup",
+      "position": [
+        17.04843963254483,
+        7.9559384951875876,
+        14.207033027120692
+      ],
+      "lookAt": [
+        0,
+        1.4,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-native-pier-deck-and-edge-projections",
+      "position": [
+        17.04843963254483,
+        7.9559384951875876,
+        14.207033027120692
+      ],
+      "lookAt": [
+        0,
+        1.4,
+        0
+      ]
+    },
+    {
+      "name": "opposite-pile-supports-and-estimated-mooring-posts",
+      "position": [
+        -17.04843963254483,
+        5.569156946631311,
+        -14.207033027120692
+      ],
+      "lookAt": [
+        0,
+        1.4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 332,
+    "vertices": 996,
+    "materials": 3,
+    "bytes": 107708,
+    "sha256": "sha256:4162e1a308644783a1ec32bd6879df63899c9ddb04fa755daf9c0dd016808205"
+  }
+}

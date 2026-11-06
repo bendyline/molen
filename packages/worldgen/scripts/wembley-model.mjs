@@ -149,7 +149,7 @@ function boundary(poly, a) {
   if (nearest === 1e9) throw Error('Wembley plan ray missed');
   return [dx * nearest, dz * nearest];
 }
-function rounded(a, hx, hz, r) {
+function rounded(a, hx, hz, r, fitUpperTier = true) {
   const x = Math.sin(a),
     z = Math.cos(a),
     ax = Math.abs(x),
@@ -160,6 +160,14 @@ function rounded(a, hx, hz, r) {
       cz = hz - r,
       d = ax * cx + az * cz;
     t = d + Math.sqrt(Math.max(0, d * d - cx * cx - cz * cz + r * r));
+  }
+  if (fitUpperTier && hx >= 102 && hz >= 84) {
+    // Preserve every upper-tier row and chair while fitting the real, asymmetric envelope.
+    // The unconstrained rounded rectangle otherwise protrudes through the southern roof corners.
+    const inner = Math.hypot(...rounded(a, 102, 84, 40, false)),
+      full = Math.hypot(...rounded(a, 128.52, 110.52, 57.768, false)),
+      limit = Math.min(full, Math.hypot(...boundary(outerPlan, a)) * 0.935);
+    t = inner + ((t - inner) * (limit - inner)) / (full - inner);
   }
   return [x * t, z * t];
 }

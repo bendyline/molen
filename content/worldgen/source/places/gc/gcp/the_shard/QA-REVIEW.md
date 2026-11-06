@@ -48,3 +48,10 @@ Only declared OSM collection members gained an attributed map-frame guard and th
 Previous input: sha256:bc5d70862a33ea90c5d799053d4b2749f2e318940522793a7e133e61c420843f
 
 Current input: sha256:70173985632d8db201d5aa62f793a8d24a56f51d8565e56d75bdbf96d463f9b3
+
+
+## Current Earth context refresh — 2026-10-31
+
+Inspected all 46 fresh images across portable, shared-material/geographic-flat and current-Earth fixtures, including mode, detail and four-tier transition views. The eight sloping planes, unequal separated tips, visible crown bracing, shifted occupied center and eastern podium wings remain intact across all four tiers. Near glazing and exposed crown members remain polygonal and approximate; station blocks and interiors remain outside the asset scope. Corrected whole-building framing uses context scale 7; neighbor buildings and source-local height correction remain synthetic/approximate context. No new terrain, survey, reference-research or physical-device performance claim.
+
+Current generators reproduced the detailed/source and imported masters exactly, and all four runtime tiers retain their previous hashes. Review-camera identifiers were normalized to hyphens and context framing corrected. Portable, shared-material/geographic-flat and Earth-context captures were all freshly rendered and inspected against the current source inputs. Geographic placement and its retained approximate PMTiles contact scope are unchanged. Six unchanged GLBs validate with zero errors/warnings/embedded images. Current hash bindings, four-tier budgets and shared graph hashes pass.

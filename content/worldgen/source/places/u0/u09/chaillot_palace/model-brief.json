@@ -1,0 +1,444 @@
+{
+  "id": "chaillot_palace",
+  "title": "Chaillot Palace",
+  "wikidataId": "Q13360213",
+  "referenceCoordinate": {
+    "longitude": 2.288445526,
+    "latitude": 48.86213832
+  },
+  "originalCandidateReference": {
+    "latitude": 48.86234,
+    "longitude": 2.28807
+  },
+  "module": "content/worldgen/source/places/u0/u09/chaillot_palace/models/chaillot-model.mjs",
+  "builder": "buildChaillotLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.85
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.87
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.85
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.9
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "gravel",
+      "roughness": 0.9
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.55,
+      "metallic": 0.25
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.6,
+      "metallic": 0.2
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.4
+    }
+  },
+  "exportLabel": "Molen original complete Chaillot Palace exterior shared surfaces source",
+  "expectedDraftMasterHash": "sha256:be8b13a23890b711bf3ff18eb8af685c84f30f09d7f99268561209efa26e22b9",
+  "visualBrief": "Complete original medium-fi Chaillot Palace exterior:both exact-map curved wings,both central andterminal pavilions,mapped low service annex,four real open column colonnades with closed recessed glazing behind,stepped flat parapet roofs with picture-guided inset roof wells,andlower central theater/terrace with tall stone piers/closed glazing. Broad central view axis remains open above the terrace;fountains,gardens,statues,bas-reliefs,inscriptions,interiors andindependent city remain native or excluded.",
+  "heightPolicy": "Approximate66m global terrain datum. Central pavilion floors67.3m;terminal floors61.6m;curved wing floors/rooflines grade smoothly between these bounded levels. Heights androof wells are ordinary-picture/native-map interpretations,not a survey. Three unmodified global terrain tiles. Four bounded native-field approaches;no general hill flattening. Lower theater terrace is a picture/path-guided original footprint because current PMTiles does not supply its underground/terrace outline.",
+  "nativeAxes": "+X northeast along the two-wing composition;+Z southeast toward the Trocadero gardens,fountain andEiffel Tower;-Z northwest toward Place du Trocadero.+Y up.",
+  "sourceFacts": {
+    "mappedLengthMeters": 427.565179,
+    "mappedWidthMeters": 131.687356,
+    "modelDatumMeters": 66,
+    "ownedMapComponents": 7,
+    "preservedNativeComponents": 340,
+    "principalGroups": 2,
+    "openCentralAxis": true,
+    "terrainTiles": 3,
+    "heightBasis": "Approximate66m global terrain datum. Central pavilion floors67.3m;terminal floors61.6m;curved wing floors/rooflines grade smoothly between these bounded levels. Heights androof wells are ordinary-picture/native-map interpretations,not a survey. Three unmodified global terrain tiles. Four bounded native-field approaches;no general hill flattening. Lower theater terrace is a picture/path-guided original footprint because current PMTiles does not supply its underground/terrace outline."
+  },
+  "limitations": [
+    "Complete original medium-fi Chaillot Palace exterior:both exact-map curved wings,both central andterminal pavilions,mapped low service annex,four real open column colonnades with closed recessed glazing behind,stepped flat parapet roofs with picture-guided inset roof wells,andlower central theater/terrace with tall stone piers/closed glazing. Broad central view axis remains open above the terrace;fountains,gardens,statues,bas-reliefs,inscriptions,interiors andindependent city remain native or excluded.",
+    "Approximate66m global terrain datum. Central pavilion floors67.3m;terminal floors61.6m;curved wing floors/rooflines grade smoothly between these bounded levels. Heights androof wells are ordinary-picture/native-map interpretations,not a survey. Three unmodified global terrain tiles. Four bounded native-field approaches;no general hill flattening. Lower theater terrace is a picture/path-guided original footprint because current PMTiles does not supply its underground/terrace outline.",
+    "Two actually inspected ordinary pictures:one broad aerial andone central-pavilion end facade. Rear elevations,concealed roof/terrace interfaces,roof well depth,window/column inventory andhistoric levels are approximate. Sculpture,bas-reliefs andtext excluded. No private image textures. Physical-device timings andnumerical LOD errors remain unmeasured.",
+    "Five existing shared256px limestone,granite,gravel,painted-metal andwindow-grid graphs;six material slots. Metric UVs/linear colors;no private or embedded images. Four authored browser tiers preserve both actual curved wings/four pavilions,four open colonnades andlow theater terrace. District window proxies,street closed recesses,close-up cornice/column trim androof wells,fine source mullions/coffers. Skyline simplifies each eight-column portico to four supports. Roof wells are picture-guided andretain aclosed glazed base rather than expose invented interiors. Physical timings andnumerical LOD errors remain unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Palais_chaillot_paris.jpg",
+      "observed": "Actually inspected broad ordinary aerial fromthe Eiffel Tower:two sweeping curved wings,tall central andterminal pavilions with tall column/window rhythm,stepped pale flat parapet roofs/inset dark roof wells,andlow central theater terrace. Central esplanade/view axis is open above the terrace. Gardens/fountain,neighboring city andPalais Iena remain independent. Aerial supplies topology;current native PMTiles suppliesmetric wing fit."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:North_easterly_facade_of_Palais_de_Chaillot.jpg",
+      "observed": "Actually inspected clear ordinary central-pavilion end facade:seven tall narrow closed glass bays behind eight broad square monolithic stone columns;projecting layered cornices with a stepped set-back upper roof. Pale warm limestone,subdued metal frames andglass. Figures,bas-reliefs,text andflags are not copied. This view faces the central esplanade rather than supplying a rear elevation."
+    },
+    {
+      "url": "https://www.openstreetmap.org/relation/6826569",
+      "observed": "Exact relation6826569 native multipart345/346 plus internal roof parts315/316/317/318 andlow service part319. Whole-feature98% masks retain all340 independent components,including nearby aquarium130 andPalais Iena144."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-twin-wings-four-pavilions-and-lower-theater",
+      "position": [
+        -300,
+        160,
+        330
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "whole-rear-twin-wings-and-stepped-roof-wells",
+      "position": [
+        310,
+        140,
+        -240
+      ],
+      "lookAt": [
+        0,
+        14,
+        -5
+      ],
+      "fov": 52
+    },
+    {
+      "name": "eight-real-columns-and-tall-closed-recessed-glazing",
+      "position": [
+        -3,
+        13,
+        -25
+      ],
+      "lookAt": [
+        -35,
+        14,
+        -37
+      ],
+      "fov": 55
+    },
+    {
+      "name": "terminal-four-column-colonnade-and-native-approach",
+      "position": [
+        -195,
+        6,
+        105
+      ],
+      "lookAt": [
+        -196,
+        8,
+        55
+      ],
+      "fov": 51
+    },
+    {
+      "name": "lower-central-theater-terrace-stone-piers-and-glazing",
+      "position": [
+        0,
+        -4,
+        100
+      ],
+      "lookAt": [
+        0,
+        -3,
+        44
+      ],
+      "fov": 54
+    },
+    {
+      "name": "whole-signed-plan-curved-wings-and-open-upper-axis",
+      "position": [
+        0,
+        460,
+        0
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 58
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 1.3,
+    "scale": 1.6,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u0/u09/chaillot_palace/models/chaillot-model.mjs",
+    "export": "buildChaillotSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.87
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.85
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.9
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "gravel",
+        "roughness": 0.9
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.55,
+        "metallic": 0.25
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.2
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.4
+      }
+    },
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildChaillotDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.87
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.25
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "street": {
+        "export": "buildChaillotStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.87
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.25
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          }
+        },
+        "errorMeters": 0.7
+      },
+      "closeup": {
+        "export": "buildChaillotCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.87
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.25
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          }
+        },
+        "errorMeters": 0.25
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-chaillot-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        310,
+        140,
+        -240
+      ],
+      "lookAt": [
+        0,
+        14,
+        -5
+      ]
+    },
+    {
+      "name": "whole-chaillot-district",
+      "reviewLod": "district",
+      "position": [
+        310,
+        140,
+        -240
+      ],
+      "lookAt": [
+        0,
+        14,
+        -5
+      ]
+    },
+    {
+      "name": "whole-chaillot-street",
+      "reviewLod": "street",
+      "position": [
+        310,
+        140,
+        -240
+      ],
+      "lookAt": [
+        0,
+        14,
+        -5
+      ]
+    },
+    {
+      "name": "whole-chaillot-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        310,
+        140,
+        -240
+      ],
+      "lookAt": [
+        0,
+        14,
+        -5
+      ]
+    }
+  ]
+}

@@ -1,0 +1,463 @@
+{
+  "id": "atlantic_bridge",
+  "title": "Atlantic Bridge",
+  "wikidataId": "Q7784787",
+  "referenceCoordinate": {
+    "longitude": -79.918888888,
+    "latitude": 9.308055555
+  },
+  "module": "content/worldgen/source/places/d1/d1x/atlantic_bridge/models/atlantic-model.mjs",
+  "builder": "buildAtlanticLevel",
+  "surfaces": {
+    "skyline": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.85,
+      "metallic": 0,
+      "doubleSided": true
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.24
+    },
+    "cable": {
+      "slot": "trim",
+      "graph": "metal_stainless",
+      "roughness": 0.4,
+      "metallic": 0.65
+    },
+    "paint": {
+      "slot": "door",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9,
+      "metallic": 0
+    }
+  },
+  "exportLabel": "Molen Atlantic Bridge detailed source",
+  "expectedDraftMasterHash": "sha256:6fea76fbd41a2a4df35a1efc2878dc95f41b9e2165dcc4ec7c3ea4c5572266de",
+  "visualBrief": "Two tall pale inverted-Y concrete pylons, double-plane semi-fan stays over the Panama Canal, four-lane concrete box-girder deck with median lyre lighting and asymmetric curved approach viaducts on twin-column piers.",
+  "nativeAxes": "+X east-northeast along the recorded crossing; +Z south-southeast across the deck; +Y up. Curved approach centerline retains the signed map orientation.",
+  "sourceFacts": {
+    "mainSpanMeters": 530,
+    "cableStayedUnitMeters": 1050,
+    "pylonHeightMeters": 212.5,
+    "navigationClearanceMeters": 75,
+    "girderDepthMeters": 2.8,
+    "nominalStaySpacingMeters": 8,
+    "visualizedFullApproachExtentMeters": 3140,
+    "deckWidthMeters": 32,
+    "widthBasis": "Picture-based four-lane reconstruction within the retained26–35m mapped envelope, not a published transverse schedule."
+  },
+  "limitations": [
+    "Distinct reconstruction of the completed Atlantic Bridge exterior, based on three pictures from one contractor project page and the standard viewer map/terrain sources. Construction cranes, temporary platforms, workers, ships and temporary barriers are excluded.",
+    "Published530m main span,1050m cable-stayed unit,212.5m pylons,75m navigation clearance,2.8m girders and approximate8m stay rhythm govern the exterior. The modeled3140m extent follows the retained full bridge envelope with short end caps; the older2820m catalog length is not forced onto the mapped approaches. Project heights are used as approximate sea-level visualization datums, not engineering elevation certificates.",
+    "The current PMTiles canal intervalX-305..155m places the main-span center atX-75m. Paired pylons are atX-340/190m, not symmetrically centered on the catalog anchor. Pylon leg taper, anchorage dimensions, local girder section, viaduct pier rhythm and road furniture are picture-based reconstructions. The number/spacing of the regularized approach piers is not an as-built inventory.",
+    "Deck profile uses standard Mapzen/AWS terrain samples:33.5m west/11.5m east ends,50.5m over the western approach rise,77.8m main deck. A2.8m girder gives75m main-span underside clearance. Native terrain is coarse; exact abutments, foundations, bank retaining structures and grade-break curvature remain approximate. No bespoke terrain or cadastral research.",
+    "Concrete, coated metal, stainless stay cables and aggregate road surfacing use existing shared graphs with metric UVs; gravel approximates asphalt. Paint uses a local palette. No private or embedded texture images. Close-up and master retain cable sheaths/anchor blocks, road marks, twin-arm median lighting and deck diaphragms. Skyline uses broad double-sided cable ribbons; sparse district/street cables aggregate the full pair of fans. Thin road furniture is omitted at distance. Estimated LOD error values8/4/2/1m are not certified whole-mesh distances. Physical ordinary-laptop and phone measurements remain pending. Skyline aggregates paired approach stems into broad single-pier proxies and twelve curved deck sections; district restores the twin-column viaducts."
+  ],
+  "references": [
+    {
+      "url": "https://www.vinci-construction-projets.com/en/realisations/atlantic-bridge/",
+      "observed": "Actually inspected contractor2018 lower-deck/cable photograph, pylon/front photograph and completed approach photograph. Inverted-Y legs, separated cable planes, pale concrete, dark carriageways, median twin-arm lights and curved approaches govern the reconstruction."
+    },
+    {
+      "url": "https://maps.protomaps.com/builds/",
+      "observed": "Standard viewer daily vector archive20261031: named Puente Atlántico one-way road pair and canal water polygon; retained ninez14 tiles offline in pmtiles-map.json."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "full-curved-crossing",
+      "position": [
+        -1900,
+        1700,
+        3000
+      ],
+      "lookAt": [
+        0,
+        60,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "canal-main-span",
+      "position": [
+        -90,
+        260,
+        960
+      ],
+      "lookAt": [
+        -75,
+        95,
+        -45
+      ],
+      "fov": 45
+    },
+    {
+      "name": "inverted-y-pylon",
+      "position": [
+        -460,
+        145,
+        110
+      ],
+      "lookAt": [
+        -340,
+        145,
+        -48
+      ],
+      "fov": 43
+    },
+    {
+      "name": "twin-cable-planes",
+      "position": [
+        -60,
+        120,
+        45
+      ],
+      "lookAt": [
+        -320,
+        160,
+        -45
+      ],
+      "fov": 50
+    },
+    {
+      "name": "four-lane-deck",
+      "position": [
+        150,
+        94,
+        -36
+      ],
+      "lookAt": [
+        -330,
+        90,
+        -48
+      ],
+      "fov": 54
+    },
+    {
+      "name": "western-approach",
+      "position": [
+        -1150,
+        90,
+        200
+      ],
+      "lookAt": [
+        -1120,
+        45,
+        -10
+      ],
+      "fov": 50
+    },
+    {
+      "name": "eastern-viaduct-piers",
+      "position": [
+        920,
+        65,
+        180
+      ],
+      "lookAt": [
+        900,
+        25,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "anchorage-and-barrier",
+      "position": [
+        -498,
+        86,
+        -15
+      ],
+      "lookAt": [
+        -510,
+        79,
+        -33
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 66,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/d1/d1x/atlantic_bridge/models/atlantic-model.mjs",
+    "export": "buildAtlanticSkyline",
+    "surfaces": {
+      "skyline": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0,
+        "doubleSided": true
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.24
+      },
+      "cable": {
+        "slot": "trim",
+        "graph": "metal_stainless",
+        "roughness": 0.4,
+        "metallic": 0.65
+      },
+      "paint": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAtlanticDistrict",
+        "surfaces": {
+          "skyline": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.24
+          },
+          "cable": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.4,
+            "metallic": 0.65
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 4
+      },
+      "street": {
+        "export": "buildAtlanticStreet",
+        "surfaces": {
+          "skyline": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.24
+          },
+          "cable": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.4,
+            "metallic": 0.65
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 2
+      },
+      "closeup": {
+        "export": "buildAtlanticCloseup",
+        "surfaces": {
+          "skyline": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.24
+          },
+          "cable": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.4,
+            "metallic": 0.65
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-atlantic-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -1900,
+        1700,
+        3000
+      ],
+      "lookAt": [
+        0,
+        60,
+        0
+      ]
+    },
+    {
+      "name": "whole-atlantic-district",
+      "reviewLod": "district",
+      "position": [
+        -1900,
+        1700,
+        3000
+      ],
+      "lookAt": [
+        0,
+        60,
+        0
+      ]
+    },
+    {
+      "name": "whole-atlantic-street",
+      "reviewLod": "street",
+      "position": [
+        -1900,
+        1700,
+        3000
+      ],
+      "lookAt": [
+        0,
+        60,
+        0
+      ]
+    },
+    {
+      "name": "whole-atlantic-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -1900,
+        1700,
+        3000
+      ],
+      "lookAt": [
+        0,
+        60,
+        0
+      ]
+    },
+    {
+      "name": "district-dual-fans",
+      "reviewLod": "district",
+      "position": [
+        -90,
+        260,
+        960
+      ],
+      "lookAt": [
+        -75,
+        95,
+        -45
+      ]
+    },
+    {
+      "name": "street-inverted-y",
+      "reviewLod": "street",
+      "position": [
+        -460,
+        145,
+        110
+      ],
+      "lookAt": [
+        -340,
+        145,
+        -48
+      ]
+    }
+  ]
+}

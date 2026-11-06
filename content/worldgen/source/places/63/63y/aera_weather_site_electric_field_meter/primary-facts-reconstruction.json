@@ -1,0 +1,47 @@
+{
+  "format": "molen/primary-facts-reconstruction@1",
+  "case": "auger-primary-AERAWS-CS110-serial1061-2023",
+  "model": "aera_weather_site_electric_field_meter",
+  "structureId": "QS-2ba5044b3ca3",
+  "method": "primary-facts-only",
+  "imageryUsed": false,
+  "primarySources": [
+    {
+      "key": "station",
+      "path": "primary-source/weather-meter-written-facts.json",
+      "url": "https://publikationen.bibliothek.kit.edu/1000180290/158121542",
+      "sha256": "sha256:eff25af865205342e55cdc38bbfb349f1302933fbf733d1b5372a8f6a0cfc471",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-11-02"
+    },
+    {
+      "key": "manufacturer",
+      "path": "primary-source/manufacturer-written-dimensions.json",
+      "url": "https://www.campbellsci.co.uk/cs110",
+      "sha256": "sha256:b486d8f773b3280cfce778cef80dc33d98fdc585c6f223d7512bc556c5c8bd8a",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-11-02"
+    }
+  ],
+  "nativeIdentity": {
+    "path": "native-map/original-station-record.json",
+    "sha256": "sha256:eafe4b2f63ca7afffc8ae02be6213679d5de0d2711460418a3ec1455225b83c9",
+    "featureId": "primary/EFM-1061"
+  },
+  "quallaFirst": {
+    "families": 27,
+    "inventoryHash": "sha256:d2d06b7d1d63c49b366408c9dfbf2ca39d4c7893341605fe2bd1320d86d43cb2",
+    "questionableImageryAdopted": false
+  },
+  "estimates": [
+    "The support is an original estimate: a0.65m-radius three-leg stand,0.05m mast, bracket and footplates, with a nominal0.152x0.152x0.432m sensor envelope arranged vertically. Neither the stand type nor this body orientation is independently verified. It is not asserted to be a CM106BE copy.",
+    "Only the published station point, serial1061,1.75m downward-facing sensor height and nominal manufacturer envelope are bound facts. Absolute yaw, lateral offsets, finish, conduit and grounding-rod pose are schematic estimates.10m anchor and180degree yaw uncertainty are nominal allowances.",
+    "Other weather sensors, power/radio apparatus and site fencing are separate unresolved scope. No solar rack, dish, claimed full weather-station census or whole-observatory proxy is supplied by this instrument model.",
+    "Approximate November2023 historical placement. All source images/figures/diagrams/plans unused; current physical condition unverified. Own unmodified source field fixed before this nominalY0floor and all sections. No cutout, masking, flattening or ground fit."
+  ],
+  "review": {
+    "status": "reviewed-primary-facts",
+    "reviewedOn": "2026-11-02",
+    "notes": "Independent published older sensor identity/point/height; all support details explicit original estimates. No imagery and no whole weather-station proxy."
+  }
+}

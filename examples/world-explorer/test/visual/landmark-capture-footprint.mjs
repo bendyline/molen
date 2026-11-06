@@ -8,8 +8,12 @@ export function sourceLocalFootprint(spec, bytes) {
   const hash = spec.geographicProposal.mapGeometryHash;
   assert(matchesEvidenceText(bytes, hash), `${spec.id}: map frame changed`);
   const frame = JSON.parse(bytes.toString('utf8'));
-  const label = frame.geometryLabel;
-  assert(label === undefined || (typeof label === 'string' && label.length < 200));
+  assert(frame.geometryLabel === undefined || typeof frame.geometryLabel === 'string');
+  // Keep the complete, hashed source description; only the viewer caption is bounded.
+  const label =
+    frame.geometryLabel?.length >= 200
+      ? `${frame.geometryLabel.slice(0, 196)}…`
+      : frame.geometryLabel;
   const evidenceUrl = frame.sourceUrl ?? frame.source;
   assert(
     typeof evidenceUrl === 'string' && /^https?:\/\//.test(evidenceUrl),

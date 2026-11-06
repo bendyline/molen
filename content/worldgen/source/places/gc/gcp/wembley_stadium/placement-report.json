@@ -1,7 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.wembley_stadium",
-  "inputHash": "sha256:856254a57557ee6de88adf318463033136420a8e5c631279371aad3579121d47",
+  "inputHash": "sha256:622af9107025fb2a68870e05ccdeaa8424783e3db068cfa8f9c46d9dcc17e6a7",
+  "status": "passed",
   "placementHash": "sha256:203865565e420a675d37bfe1e6d0d89cf705069a61c0487aa60b70560504c96c",
   "entry": {
     "id": "wembley.stadium",
@@ -25,5 +26,165 @@
     "source": "https://www.openstreetmap.org/way/116539074",
     "note": "Pitch goal axis is east-west, so native+X follows it and native-Z is the north Olympic Way entrance and arch. Footprint and aperture are independently mapped. Arch map itself records artistic plan interpolation, therefore only its approximately315m feet and north-side position are used; the22degree geometry comes from the designer. Ground contactY0 preserves feet and playing field, with north stair/entrance grade reconstructed from published views. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
-  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
+  "reviewedOn": "2026-10-31",
+  "basis": "Mapped roof and aperture loops, pitch axis and arch feet anchor the exterior. North-up placement aligns the long east-west field and north-facing arch/entrance. The designer-established 22-degree north arch inclination is retained; artistic OSM arch heights were not used. Retained anchor[-0.27956525,51.55596295],heading0.003693795533106074,native+X east along the goal axis and+Z south are unchanged. The22degree inclined arch stands north(-Z). The existing independently mapped roof outer/opening polygons and pitch remain the plan controls. No new bespoke engineering research,PMTiles/DEM download or geodetic survey was performed.",
+  "fit": "Actual Molen structure,terrain,worldgen and material/rendering stack on a synthetic flat ground datumY0. All five loaded outputs replace the selected stadium shell while four independent building records and four roads remain unchanged. All1089raw heights and outside-ground probes remain unchanged. The field remains at ground level,with visible turf/markings betweenY0andY0.06;all63inset mapped edge samples find the plaza slab atY0.025. No terrain cutout is required. Hide/show leaves the ground atY0. Failed loading retains all five procedural building records and all roads;unloading leaves zero live model/support geometries and retains original ground. This proves scoped transform/contact/lifecycle behavior,not Wembley terrain heights or current neighboring buildings.",
+  "runtimeVerification": {
+    "path": ".artifacts/wembley-browser-review/native/corrected-report.json",
+    "hash": "sha256:31e26c36b2ce46a2527b03627e31718d0ddb9d7e05d777b69c6285bfbe197409",
+    "status": "passed",
+    "fixture": "retained mapped envelope and axis on synthetic flat ground",
+    "scenarios": [
+      {
+        "level": "master",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": 0,
+        "modelAtPitch": 0.027000000700354576,
+        "plazaSamples": {
+          "count": 63,
+          "min": 0.025000000372528974,
+          "max": 0.02500000037252903
+        },
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": 0
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "skyline",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": 0,
+        "modelAtPitch": 0.019999999552965164,
+        "plazaSamples": {
+          "count": 63,
+          "min": 0.025000000372528974,
+          "max": 0.025000000372529085
+        },
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": 0
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": 0,
+        "modelAtPitch": 0.03200000151991844,
+        "plazaSamples": {
+          "count": 63,
+          "min": 0.02500000037252903,
+          "max": 0.02500000037252903
+        },
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": 0
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": 0,
+        "modelAtPitch": 0.03200000151991844,
+        "plazaSamples": {
+          "count": 63,
+          "min": 0.02500000037252903,
+          "max": 0.02500000037252903
+        },
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": 0
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": 0,
+        "modelAtPitch": 0.03200000151991844,
+        "plazaSamples": {
+          "count": 63,
+          "min": 0.02500000037252903,
+          "max": 0.025000000372529085
+        },
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": 0
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "remainingBuildings": 5,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": 0,
+        "modelAtPitch": null,
+        "plazaSamples": {
+          "count": 63,
+          "min": 0,
+          "max": 0
+        },
+        "hideShow": null,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Static roof covering all seats while keeping the pitch open; movable panel motion, bogie internals, ticket-seat count and event advertisements are outside this exterior model. Structural connection plate schedules, field margins and smaller mullion dimensions are reconstructed from published photographs. The visible arch and roof structure preserve published section dimensions, but no structural analysis certification or engineering survey is claimed.",
+    "Detailed source and imported design-time master retain their complete detail,with an upper-row envelope-fit correction. Four independently authored browser models retain the315m inclined arch,saddle-free open fixed roof,mapped asymmetric envelope,north Olympic Way entrance and three red seating tiers. Individual chairs,handrail hardware,small glazing joints and roof machinery remain in the detailed source or outside exterior scope.",
+    "Skyline uses24 perimeter facets and one solid tapered arch with20segments and six sides. District uses40facets,six aggregated chords,seven diaphragm rings and diagonal bracing. Street uses60facets,twelve physical chord paths with24segments,11diaphragm rings,selected braces,22grouped tread levels and coarse entrance steps. Closeup uses88facets,twelve64segment chords,42diaphragm rings,selected diagonal web/stay members,all81row bands and40entrance steps. Small cables are widened in distant tiers to stay visible.",
+    "Three existing shared256px painted-metal,standing-seam metal and plain-concrete graphs use metric UVs. Red seats,blue-gray glazing,turf and screens use local PBR factors. No private or embedded images. Browser north roof glazing is aggregated into the opaque metal annulus. Seven simple panel divisions represent the stationary covering;moving panels,roof motion and detailed bearing assemblies are not animated.",
+    "Retained anchor[-0.27956525,51.55596295],heading0.003693795533106074,native+X east along the goal axis and+Z south remain unchanged. The arch stands to the north(-Z),inclined22degrees. Mapped pitch and outer/opening polygons remain the controls;playing field and bearing feet useY0. This is an architectural relative datum,not a new terrain or geodetic survey. No new bespoke source or terrain fetch.",
+    "Error settings8/4/2/1m are authoring estimates,not certified whole-mesh Hausdorff distances. Faceting,sparser distant arch members,grouped tread bands and static detail transitions remain visible when levels are forced close. Physical phone/laptop and downtown timing remain unmeasured.",
+    "The full detailed master and browser tiers fit upper seating rows within93.5percent of the retained mapped outer radius. This corrects the earlier rounded-rectangle southern-corner overshoot while keeping all81row bands,individual chair geometry and full structural detail;the approximate chair population is recomputed from the corrected perimeter rather than retained as an exact ticket-seat count. The original pre-fit master hashes and review remain recorded as historical provenance;current masters and browser levels have fresh hashes and render review. The browser perimeter roof truss is explicit geometry."
+  ]
 }

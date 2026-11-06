@@ -1,0 +1,356 @@
+/** Complete named Building1064 office. Native plan retained; sections/details estimated. */
+import '../../../../../../../../packages/worldgen/scripts/install-deterministic-math.mjs';
+import fs from 'node:fs';
+import { MeshBufferBuilder } from '../../../../../../../../packages/worldgen/dist/kernel.mjs';
+import {
+  beam,
+  normalFor,
+} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
+export const P = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));
+export const surfaces = {
+  wall: { slot: 'wall', graph: 'siding_lap', roughness: 0.95, metallic: 0 },
+  trim: { slot: 'trim', graph: 'wood_plain', roughness: 0.94, metallic: 0 },
+  roof: { slot: 'roof', graph: 'shingle_asphalt', roughness: 0.99, metallic: 0 },
+  base: { slot: 'foundation', graph: 'concrete_plain', roughness: 1, metallic: 0 },
+  glass: { slot: 'window', localRef: 'palette:#304d59', roughness: 0.28, metallic: 0 },
+};
+const colors = {
+    wall: rgb('e9e5d9'),
+    trim: rgb('eeeadd'),
+    roof: rgb('70584e'),
+    base: rgb('a6a39c'),
+    glass: rgb('304d59'),
+  },
+  L = P.length / 2,
+  D = P.depth / 2;
+export const componentEvidence = [];
+function face(o, k, p, n) {
+  let N = normalFor(...p);
+  if (n && N.reduce((s, v, i) => s + v * n[i], 0) < 0) {
+    p = [...p].reverse();
+    N = normalFor(...p);
+  }
+  o.addConvexPolygon(k, 'palette:#ffffff', p, N, (q) => [q[0], q[1]], colors[k]);
+}
+function cap(o, k, r, y, up) {
+  const t = new MeshBufferBuilder();
+  if (
+    !t.addCap(
+      k,
+      'palette:#ffffff',
+      r,
+      [],
+      ([x, z]) => (typeof y === 'function' ? y(x, z) : y),
+      [0, up, 0],
+      (p) => p,
+      colors[k],
+    )
+  )
+    throw Error('Invalid cap');
+  const m = t.finalize();
+  for (let i = 0; i < m.indices.length; i += 3)
+    face(
+      o,
+      k,
+      Array.from(m.indices.slice(i, i + 3)).map((j) =>
+        Array.from(m.positions.slice(j * 3, j * 3 + 3)),
+      ),
+      [0, up, 0],
+    );
+}
+const value = (v, p) => (typeof v === 'function' ? v(...p) : v);
+function solid(o, k, r, lo, hi) {
+  for (let i = 0; i < r.length; i++) {
+    const a = r[i],
+      b = r[(i + 1) % r.length];
+    face(
+      o,
+      k,
+      [
+        [a[0], value(lo, a), a[1]],
+        [b[0], value(lo, b), b[1]],
+        [b[0], value(hi, b), b[1]],
+        [a[0], value(hi, a), a[1]],
+      ],
+      [b[1] - a[1], 0, a[0] - b[0]],
+    );
+  }
+  cap(o, k, r, lo, -1);
+  cap(o, k, r, hi, 1);
+}
+const rect = (a, b, c, d) => [
+  [a, b],
+  [c, b],
+  [c, d],
+  [a, d],
+];
+export const roofAt = (z) => P.ridge - ((P.ridge - P.eave) * Math.abs(z)) / (D + P.overhang);
+function window(o, center, u, n, lod) {
+  const w = 1.12,
+    h = 1.65,
+    p = ([x, y], off = 0.024) => center.map((v, i) => v + u[i] * x + [0, y, 0][i] + n[i] * off),
+    corners = [
+      [-w / 2, 0],
+      [w / 2, 0],
+      [w / 2, h],
+      [-w / 2, h],
+    ].map((q) => p(q));
+  face(o, 'glass', corners, n);
+  if (lod > 0) {
+    for (let i = 0; i < 4; i++)
+      beam(o, 'trim', corners[i], corners[(i + 1) % 4], 0.085, 0.09, colors.trim);
+  }
+  if (lod > 1) {
+    beam(o, 'trim', p([0, 0], 0.065), p([0, h], 0.065), 0.045, 0.045, colors.trim);
+    beam(o, 'trim', p([-w / 2, h / 2], 0.065), p([w / 2, h / 2], 0.065), 0.045, 0.045, colors.trim);
+    beam(
+      o,
+      'trim',
+      p([-w / 2 - 0.12, -0.1], 0.08),
+      p([w / 2 + 0.12, -0.1], 0.08),
+      0.12,
+      0.18,
+      colors.trim,
+    );
+  }
+}
+function buildRaw(o, _f, lod = 3) {
+  componentEvidence.length = 0;
+  solid(o, 'base', rect(-L, -D, L, D), P.foundationBottom, P.floor);
+  solid(o, 'wall', rect(-L, -D, L, D), P.floor, P.eave - 0.12);
+  for (const [x, n] of [
+    [-L, [-1, 0, 0]],
+    [L, [1, 0, 0]],
+  ])
+    face(
+      o,
+      'wall',
+      [
+        [x, P.eave - 0.12, -D],
+        [x, P.eave - 0.12, D],
+        [x, P.ridge - P.roofThickness, 0],
+      ],
+      n,
+    );
+  for (const r of [
+    rect(-L - P.overhang, -D - P.overhang, L + P.overhang, 0),
+    rect(-L - P.overhang, 0, L + P.overhang, D + P.overhang),
+  ])
+    solid(
+      o,
+      'roof',
+      r,
+      (_x, z) => roofAt(z) - P.roofThickness,
+      (_x, z) => roofAt(z),
+    );
+  let windows = 0;
+  for (const z of [-D, D])
+    for (const y of [P.floor + 0.9, P.upperFloor + 0.8])
+      for (let i = 0; i < P.sideBays; i++) {
+        window(
+          o,
+          [-L + ((i + 0.5) * P.length) / P.sideBays, y, z],
+          [1, 0, 0],
+          [0, 0, Math.sign(z)],
+          lod,
+        );
+        windows++;
+      }
+  for (const x of [-L, L])
+    for (const y of [P.floor + 0.9, P.upperFloor + 0.8])
+      for (const z of [-D * 0.48, D * 0.48]) {
+        window(o, [x, y, z], [0, 0, 1], [Math.sign(x), 0, 0], lod);
+        windows++;
+      }
+  for (const [x, y, n] of [
+    [-L, P.upperFloor, [-1, 0, 0]],
+    [L, P.floor, [1, 0, 0]],
+  ])
+    face(
+      o,
+      'glass',
+      [
+        [x + n[0] * 0.03, y, -0.48],
+        [x + n[0] * 0.03, y, 0.48],
+        [x + n[0] * 0.03, y + 2.18, 0.48],
+        [x + n[0] * 0.03, y + 2.18, -0.48],
+      ],
+      n,
+    );
+  const landingEnd = -L - P.landingDepth,
+    start = landingEnd - P.stairRun,
+    step = P.stairRun / P.stairTreads,
+    rise = (P.upperFloor - P.floor) / P.stairTreads,
+    W = P.stairWidth / 2;
+  solid(o, 'trim', rect(landingEnd, -W, -L, W), P.upperFloor - 0.14, P.upperFloor);
+  for (let i = 0; i < P.stairTreads; i++) {
+    const x = start + i * step,
+      y = P.floor + (i + 1) * rise;
+    solid(o, 'trim', rect(x, -W, x + step + 0.02, W), y - 0.09, y);
+    if (lod > 1) solid(o, 'trim', rect(x + step - 0.025, -W, x + step + 0.02, W), y - rise, y);
+  }
+  for (const z of [-W, W]) {
+    beam(
+      o,
+      'trim',
+      [start, P.floor - 0.05, z],
+      [landingEnd, P.upperFloor - 0.13, z],
+      0.12,
+      0.24,
+      colors.trim,
+    );
+    beam(
+      o,
+      'trim',
+      [start, P.floor + 1.0, z],
+      [landingEnd, P.upperFloor + 1.0, z],
+      0.075,
+      0.075,
+      colors.trim,
+    );
+    beam(
+      o,
+      'trim',
+      [landingEnd, P.upperFloor + 1, z],
+      [-L, P.upperFloor + 1, z],
+      0.075,
+      0.075,
+      colors.trim,
+    );
+    beam(
+      o,
+      'trim',
+      [landingEnd, P.floor, z],
+      [landingEnd, P.upperFloor + 1, z],
+      0.1,
+      0.1,
+      colors.trim,
+    );
+    if (lod > 0) {
+      for (let i = 0; i <= P.stairTreads; i += lod > 1 ? 2 : 6) {
+        const x = start + i * step,
+          y = P.floor + i * rise;
+        beam(o, 'trim', [x, y, z], [x, y + 1, z], 0.045, 0.045, colors.trim);
+      }
+    }
+  }
+  if (lod > 1) {
+    for (const x of [-L, L]) {
+      for (const z of [-D, D])
+        beam(o, 'trim', [x, P.floor, z], [x, P.eave - 0.1, z], 0.12, 0.12, colors.trim);
+      for (const z of [-D, D])
+        beam(o, 'trim', [x, P.eave - 0.07, z], [x, P.ridge - 0.17, 0], 0.13, 0.13, colors.trim);
+    }
+    for (const z of [-D - P.overhang, D + P.overhang])
+      beam(
+        o,
+        'trim',
+        [-L - P.overhang, P.eave - 0.12, z],
+        [L + P.overhang, P.eave - 0.12, z],
+        0.14,
+        0.16,
+        colors.trim,
+      );
+  }
+  componentEvidence.push({
+    lod,
+    wholeNamedOffice: true,
+    nativeFeatureId: P.nativeFeatureId,
+    originalNativeCorners: 4,
+    twoOccupiedLevels: true,
+    wholeClosedBodyRearAndEnds: true,
+    wholeGablesAndTwoRoofSlopes: true,
+    estimatedWindowPanels: windows,
+    estimatedExteriorStairTreads: P.stairTreads,
+    wholeExteriorStairAndLanding: true,
+    programmeBuildingIdentityVerified: true,
+    allSectionsEstimated: true,
+    heightMeasured: false,
+    photoTextureUsed: false,
+    appearanceReferenceScope: 'broad-original-NPS-architectural-family-only',
+  });
+}
+export function mapPlan(x, z) {
+  const u = x / P.length + 0.5,
+    v = z / P.depth + 0.5,
+    w = [(1 - u) * (1 - v), u * (1 - v), u * v, (1 - u) * v];
+  return [0, 1].map((k) => P.quadCorners.reduce((s, p, i) => s + p[k] * w[i], 0));
+}
+export function buildHouse(o, f, lod = 3) {
+  const b = new MeshBufferBuilder();
+  buildRaw(b, f, lod);
+  const m = b.finalize();
+  for (const g of m.groups)
+    for (let i = g.start; i < g.start + g.count; i += 3) {
+      const p = Array.from(m.indices.slice(i, i + 3)).map((j) => {
+        const [x, z] = mapPlan(m.positions[j * 3], m.positions[j * 3 + 2]);
+        return [x, m.positions[j * 3 + 1], z];
+      });
+      face(o, g.slot, p, normalFor(...p));
+    }
+}
+export const houseSkyline = (o, f) => buildHouse(o, f, 0),
+  houseDistrict = (o, f) => buildHouse(o, f, 1),
+  houseStreet = (o, f) => buildHouse(o, f, 2),
+  houseCloseup = (o, f) => buildHouse(o, f, 3);
+const root = 'content/worldgen/source/places/9q/9q8/golden_gate_raptor_observatory',
+  camera = [41, 22, 35],
+  look = [-2, 4.1, 0];
+export const houseModel = {
+  id: P.model,
+  key: P.model,
+  cell: P.cell,
+  title: P.title,
+  recipe: 'house-model.mjs',
+  surfaces,
+  build: buildHouse,
+  category: 'landmark',
+  quality: 'medium-fi-exterior',
+  reviewStatus: 'review-in-qa.json',
+  geographicStatus: 'historical-proposal',
+  orientationPolicy: 'approximate-visualization',
+  progressLedger: 'qualla-002.PROGRESS.md',
+  brief: P.limitations.join(' '),
+  appearance: {
+    kind: 'historical',
+    representedDate: P.representedDate,
+    validFrom: P.validFrom,
+    validUntil: P.validUntil,
+    currentWorldEligible: false,
+  },
+  camera,
+  lookAt: look,
+  portableGroundY: 0,
+  mediumFiContext: {
+    scale: 1,
+    groundY: 0,
+    terrain: { descriptor: 'terrain-review.terrain.json', heightmap: 'terrain-review.height.png' },
+  },
+  embeddedCanonicalGraphs: ['siding_lap', 'wood_plain', 'shingle_asphalt', 'concrete_plain'],
+  qaCameras: [
+    { name: 'whole-office-two-levels-gables-and-side-windows', position: camera, lookAt: look },
+    { name: 'whole-office-exterior-stair-and-rear', position: [-42, 22, -34], lookAt: look },
+  ],
+  qaLodCameras: ['skyline', 'district', 'street', 'closeup'].map((reviewLod) => ({
+    name: 'whole-named-office-' + reviewLod,
+    position: camera,
+    lookAt: look,
+    reviewLod,
+  })),
+  runtimeLodOverlay: {
+    module: root + '/models/house-model.mjs',
+    level: 'skyline',
+    export: 'houseSkyline',
+    errorMeters: 0.25,
+    surfaces,
+    authoredLevels: {
+      district: { export: 'houseDistrict', errorMeters: 0.15, surfaces },
+      street: { export: 'houseStreet', errorMeters: 0.05, surfaces },
+      closeup: { export: 'houseCloseup', errorMeters: 0.025, surfaces },
+    },
+  },
+  limitations: P.limitations,
+  sourceLicense:
+    'Original deterministic geometry under repository license. Native named whole-building numerical data © OpenStreetMap contributors ODbL-1.0. One exact individually credited NPS public-domain historical context photograph; primary programme office identity and explicit section/detail/finish estimates. No photo texture, borrowed logo/art or exact2021photographic match.',
+};

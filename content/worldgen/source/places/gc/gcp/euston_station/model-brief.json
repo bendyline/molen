@@ -1,0 +1,511 @@
+{
+  "id": "euston_station",
+  "title": "Euston Station",
+  "wikidataId": "Q800751",
+  "referenceCoordinate": {
+    "longitude": -0.134852057,
+    "latitude": 51.529237883
+  },
+  "module": "content/worldgen/source/places/gc/gcp/euston_station/models/station-model.mjs",
+  "builder": "buildStationLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.9
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "membrane",
+      "roughness": 0.86
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.12
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.38
+    },
+    "deck": {
+      "slot": "roof",
+      "graph": "concrete_plain",
+      "roughness": 0.92
+    }
+  },
+  "exportLabel": "Molen original complete existing Euston concourse rooflight field and open platform roof source",
+  "expectedDraftMasterHash": "sha256:73dfafc2e2c7fc3a4730fc8e55c1bd3d9f129b942e3bfdfde09ad8f69fc0502f",
+  "visualBrief": "Complete existing Euston passenger-station ensemble:whole mapped dark flat platform roof,raised secondary roof assemblies,regular pale rooflight field,full enclosed SSE concourse with deep pale fascia,recessed upper glass,narrow terrace/rails,dark lower entrance frontage andlower entry returns;open NNW rail approach with actual structural columns/beams. Preserve independent forecourt kiosks,office towers,city blocks,roads/rails andHS2cleared/temporaryworks. Exterior only;no copied signs,lettering,brands,people,trains or navigable interior/futureHS2proposal.",
+  "heightPolicy": "Scoped main/floor/layer2families supply no numeric heights. All architectural section levels are explicit ordinary-photo estimates:floor+.65m,concourse lower/terrace6.2m,upper glass10.9m,mainroof12.4m,secondaryroofs13.2/13.7m,rooflights+.42m andfoundations-8m. Layer1/2values aremapfacts,not elevations. Preserve the openplatform/rail spaces;Mappedfloor1169 supplies theL-shaped upperfloor. Ordinaryfrontpicture anditsouterbounds define theclosedlowerconcourseenvelope;onlythatlowerfloor receivesagroundmask,whiletheuppervoid staysopen. Column rows regularize wide gaps between current map rail centrelines atX0;they are not a surveyed platform/support inventory. No per-part host offsets. One unchanged standard field sample outside the SSE concourse entry[205,-40],24.420194m,defines commonY=0. Native contact still requires current render review.",
+  "nativeAxes": "+X SSE along tracks toward concourse/forecourt;-X NNW toward rail approach;+Z WSW toward HS2works;-Z ENE toward Eversholt Street.+Yup.",
+  "sourceFacts": {
+    "numericNativeHeightsAvailable": false,
+    "nativePartFacts": [
+      {
+        "index": 100,
+        "id": 35184377049578,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1
+        }
+      },
+      {
+        "index": 612,
+        "id": 35185142166695,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 2
+        }
+      },
+      {
+        "index": 613,
+        "id": 35185142166703,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 2
+        }
+      },
+      {
+        "index": 716,
+        "id": 35184377049578,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1
+        }
+      },
+      {
+        "index": 1169,
+        "id": 35185053508181,
+        "properties": {
+          "kind_detail": "floor",
+          "sort_rank": 400,
+          "kind": "building_part"
+        }
+      },
+      {
+        "index": 1191,
+        "id": 35185142166703,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 2
+        }
+      }
+    ],
+    "authoredLevels": {
+      "floor": 0.65,
+      "foundation": -8,
+      "lowerConcourse": 6.2,
+      "terraceFloor": 6.2,
+      "upperGlassTop": 10.9,
+      "mainRoof": 12.4,
+      "eastRoof": 13.2,
+      "centralRoof": 13.7,
+      "rooflightRise": 0.42
+    },
+    "heightPolicy": "Scoped main/floor/layer2families supply no numeric heights. All architectural section levels are explicit ordinary-photo estimates:floor+.65m,concourse lower/terrace6.2m,upper glass10.9m,mainroof12.4m,secondaryroofs13.2/13.7m,rooflights+.42m andfoundations-8m. Layer1/2values aremapfacts,not elevations. Preserve the openplatform/rail spaces;Mappedfloor1169 supplies theL-shaped upperfloor. Ordinaryfrontpicture anditsouterbounds define theclosedlowerconcourseenvelope;onlythatlowerfloor receivesagroundmask,whiletheuppervoid staysopen. Column rows regularize wide gaps between current map rail centrelines atX0;they are not a surveyed platform/support inventory. No per-part host offsets.",
+    "authoredMaximumMeters": 14.2,
+    "terrainTiles": 5,
+    "terrainReferenceLocal": [
+      205,
+      -40
+    ],
+    "occupiedMasks": 1,
+    "ownedNativeParts": 6,
+    "retainedNativeParts": 1796,
+    "rooflightUnits": 620,
+    "trackCrossings": [
+      -95.08725905458634,
+      -89.77988399454188,
+      -86.4487662099394,
+      -57.12370423151976,
+      -52.476872387249685,
+      -40.46293330561758,
+      -35.93023082462095,
+      -24.161753432003,
+      -17.037757455628885,
+      -5.6955036123708345,
+      -0.6111118008506037,
+      10.361362323711086,
+      15.652918502179151,
+      27.34526590421406,
+      31.021815054245685,
+      40.71408151231289,
+      44.36103040473744,
+      50.50106409414022,
+      56.29973751470361,
+      81.32153574936997
+    ],
+    "supportRows": [
+      -92.43357152456412,
+      -71.78623522072958,
+      -54.800288309384726,
+      -46.469902846433634,
+      -38.196582065119266,
+      -30.045992128311973,
+      -20.599755443815944,
+      -11.36663053399986,
+      -3.153307706610719,
+      4.875125261430242,
+      13.00714041294512,
+      21.499092203196604,
+      29.183540479229872,
+      35.86794828327929,
+      42.53755595852516,
+      47.43104724943883,
+      53.40040080442191,
+      68.81063663203679
+    ]
+  },
+  "materialMethod": "Five existing shared256px graphs:concrete_plain,stone_granite,membrane,metal_painted andwindow_grid. Six merged semantic groups separate concrete facade fromterrace/deck;metric UVs andlinear colors,no private or embedded images.",
+  "limitations": [
+    "Complete existing Euston passenger-station ensemble:whole mapped dark flat platform roof,raised secondary roof assemblies,regular pale rooflight field,full enclosed SSE concourse with deep pale fascia,recessed upper glass,narrow terrace/rails,dark lower entrance frontage andlower entry returns;open NNW rail approach with actual structural columns/beams. Preserve independent forecourt kiosks,office towers,city blocks,roads/rails andHS2cleared/temporaryworks. Exterior only;no copied signs,lettering,brands,people,trains or navigable interior/futureHS2proposal.",
+    "Scoped main/floor/layer2families supply no numeric heights. All architectural section levels are explicit ordinary-photo estimates:floor+.65m,concourse lower/terrace6.2m,upper glass10.9m,mainroof12.4m,secondaryroofs13.2/13.7m,rooflights+.42m andfoundations-8m. Layer1/2values aremapfacts,not elevations. Preserve the openplatform/rail spaces;Mappedfloor1169 supplies theL-shaped upperfloor. Ordinaryfrontpicture anditsouterbounds define theclosedlowerconcourseenvelope;onlythatlowerfloor receivesagroundmask,whiletheuppervoid staysopen. Column rows regularize wide gaps between current map rail centrelines atX0;they are not a surveyed platform/support inventory. No per-part host offsets. One unchanged standard field sample outside the SSE concourse entry[205,-40],24.420194m,defines commonY=0. Native contact still requires current render review.",
+    "Two ordinary concourse/aerial pictures inspected. Aerial isJanuary2023;currentconstructionphase andhidden openings/rooflight/support inventory remain approximate. No more bespoke research. Contemporary PMTiles determines allwholebuilding/roof plans. Do notaddfutureHS2designs,resurrectdemolishedblocks orconsume independentoffice/retail buildings. Exact hidden windows,thresholds,roof section/rib inventory andcurrent works remain approximate. Physical-device timing andnumerical LODerrors remainunmeasured.",
+    "Five existing shared256px graphs:concrete_plain,stone_granite,membrane,metal_painted andwindow_grid. Six merged semantic groups separate concrete facade fromterrace/deck;metric UVs andlinear colors,no private or embedded images. Skyline keepswholeprimary/secondaryroof silhouette,concourse/terrace andopenplatformspace. Districtaddscoarsepanes andsampledrooflights;streetaddsrealrecesses/supportbranches;close-upkeepsall620regularizedrooflightunits andterracerails;masterseparatelyaddsrooflightframes,frame/roof-edge detaildensity andfinerfacadepanels. Heightsandunitinventoryareexplicitapproximations,not survey."
+  ],
+  "references": [
+    {
+      "url": "https://www.eustonluggage.co.uk/luggage-storage-lockers-london",
+      "imageUrl": "https://www.eustonluggage.co.uk/Euston_Station_from_above.jpg",
+      "observed": "Actually inspected ordinary elevated concourse-front picture. Broad dark flat roof with a regular field of small raised pale rooflights;deep pale grey concrete fascia,long recessed upper glazing andnarrow elevated terrace/railing. Lower front has dark grey/black cladding,pillars,recessed glass entrances and low flat-covered retail/entry projections. Neighboring tall office buildings,forecourt kiosks,people,brands andlettering are separate oromitted. The picture is anappearance reference,not a current survey orproof every forecourt unit belongs to the station."
+    },
+    {
+      "url": "https://mediacentre.hs2.org.uk/resources/aerial-view-of-hs2-s-london-euston-station-works-january-2023-2",
+      "imageUrl": "https://cdn.prgloo.com/media/6554fb9ccec34ce48bb7f946c9133002.png?height=1680&width=1120",
+      "observed": "Actually inspected ordinary official January2023 aerial. Existing broad flat-roof passenger station covers many parallel rail/platform spaces with repeated linear/louver-like rooflights andsmall pale units. Rear roof edge/steel supports reveal open rail approach below. The separate large HS2 works site west of the existing station has cleared ground,cranes,temporary works andsite offices. Keep those separate;do not model a future HS2 proposal or resurrect demolished surrounding blocks. Dates/construction phase limit claims about current2026works;current PMTiles supplies physical plans."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Complete existing passenger-building/roof physical association:6 currentcomponents and1796independentneighbors,subjectto actualproductionverification. Parent100/716 islargely anopenplatformroof,not aground-to-roof solid. Mappedfloor1169 isinterpreted asanL-shaped upperfloor,with thephoto-proportioned lowerclosedconcourse spanning itsouterextent. Onlythelowerconcourseenvelope controls groundopenings;theuppervoid remainsopen. Layer2roof612/613/1191 hasno numeric heights;all section elevations,rooflight inventory andsupport layout are explicit photo-proportioned approximations. Preserve independent offices,forecourtkiosks,citybuildings,rails andHS2works."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-existing-euston-concourse-and-roof-field",
+      "position": [
+        380,
+        210,
+        300
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "sse-concourse-recessed-glass-and-terrace",
+      "position": [
+        290,
+        25,
+        -5
+      ],
+      "lookAt": [
+        183,
+        7,
+        -40
+      ],
+      "fov": 52
+    },
+    {
+      "name": "complete-rooflights-and-raised-roofs",
+      "position": [
+        -220,
+        200,
+        200
+      ],
+      "lookAt": [
+        -15,
+        12,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "open-nnw-rail-approach",
+      "position": [
+        -270,
+        35,
+        -15
+      ],
+      "lookAt": [
+        -65,
+        8,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "under-open-platform-roof",
+      "position": [
+        -65,
+        2,
+        15
+      ],
+      "lookAt": [
+        45,
+        10,
+        15
+      ],
+      "fov": 52
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.4,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/gc/gcp/euston_station/models/station-model.mjs",
+    "export": "buildStationSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.9
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.86
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.12
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.38
+      },
+      "deck": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      }
+    },
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStationDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.86
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.38
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          }
+        },
+        "errorMeters": 1.2
+      },
+      "street": {
+        "export": "buildStationStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.86
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.38
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          }
+        },
+        "errorMeters": 0.5
+      },
+      "closeup": {
+        "export": "buildStationCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.86
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.38
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          }
+        },
+        "errorMeters": 0.18
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-euston-station-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        380,
+        210,
+        300
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "whole-euston-station-district",
+      "reviewLod": "district",
+      "position": [
+        380,
+        210,
+        300
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "whole-euston-station-street",
+      "reviewLod": "street",
+      "position": [
+        380,
+        210,
+        300
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "whole-euston-station-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        380,
+        210,
+        300
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    }
+  ]
+}

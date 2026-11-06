@@ -1,0 +1,391 @@
+{
+  "id": "daughters_of_jacob_bridge",
+  "title": "Daughters of Jacob Bridge",
+  "wikidataId": "Q2916595",
+  "referenceCoordinate": {
+    "longitude": 35.62827075,
+    "latitude": 33.01037395
+  },
+  "module": "content/worldgen/source/places/sv/svc/daughters_of_jacob_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-daughters-of-jacob-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "rail": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "walk": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "white": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "yellow": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    }
+  },
+  "exportLabel": "Molen original Daughters of Jacob Bridge master",
+  "expectedDraftMasterHash": "sha256:780bb7c39b52441fa23dbcb8186d1b896f766266a5c00f630b4cf9632115240f",
+  "visualBrief": "Current Route91 Daughters of Jacob Bridge: full low blue plate-girder road deck, transverse floor beams and diaphragms, pale roadside barriers and outer rails, narrow raised verge walks, reinforced-concrete bank abutments and bearings, road center/edge markings. The separate tan lattice old bridge about130m north remains native context; it is not substituted for this crossing.",
+  "heightPolicy": "Fixed65m standard terrain datum; road deck70.4m west to70.1m east with0.08m crown. Approximate photo-guided exterior elevations, kept separate from the unchanged coarse native terrain and sampled river surface. Native contact/approach fit must pass before readiness.",
+  "nativeAxes": "+X east/northeast along retained Route91 bridge way30613435; +Z south/southeast. Current road and northern old crossing remain separate.",
+  "sourceFacts": {
+    "retainedCenterlineMeters": 47.176,
+    "currentPMTilesFeature": 35184402702267,
+    "control": {
+      "id": "daughters_of_jacob_bridge",
+      "anchor": [
+        35.62827075,
+        33.01037395
+      ],
+      "heading": 0.10662267622,
+      "datum": 65,
+      "ends": [
+        -24.5,
+        24.5
+      ],
+      "width": 13.2,
+      "roadHalfWidth": 5.4,
+      "centerZ": 0.11,
+      "deckHeights": [
+        5.4,
+        5.1
+      ],
+      "crown": 0.08,
+      "foundationY": -4,
+      "protectedIds": [
+        35184802951610
+      ]
+    },
+    "protectedOldBridgeFeature": 35184802951610
+  },
+  "limitations": [
+    "Ordinary-picture exterior approximation. The public Jan2020 Yair SarfaTi panorama viewed south from the northern old crossing identifies the low blue road bridge and pale barriers; the older tan lattice photographs are excluded as primary geometry references. Current PMTiles and retained Q2916595/way30613435 control placement and signed axis.",
+    "The source envelope includes short end abutments beyond the47.176m retained centerline. Width, plate-girder depth, floor-beam/bearing details and concealed bank foundations are approximate. No assertion of a surveyed engineering arrangement, no private photo textures, readable signs, vehicles or copied meshes. Native terrain is coarse; physical-device timing remains unmeasured."
+  ],
+  "materialMethod": "Two shared concrete_plain and metal_painted material graphs, metric UVs and linear palette tints. Muted blue steel, pale rails, concrete and neutral road reuse the shared library. Zero embedded image textures.",
+  "references": [
+    {
+      "url": "https://www.google.com/maps/@33.0112611,35.6283283,3a,70y,204h,90t/data=!3m7!1e1!3m5!1sCIHM0ogKEICAgICs2MKoqQE!2e10!7i8192!8i4096",
+      "observations": "Public Jan2020 panorama by Yair SarfaTi - Photography, photographed from33.0112611,35.6283283, viewed approximately south/southwest. The separately visible current Route91 bridge has a low blue girder fascia, pale posts/rails and flat road deck over the river. Plants hide parts of its supports; hidden construction remains approximate. No panorama pixels copied."
+    },
+    {
+      "url": "https://naamoush.wordpress.com/2021/03/02/%D7%9B%D7%91%D7%99%D7%A9-91-%D7%A1%D7%A8%D7%98%D7%95%D7%9F-%D7%9C%D7%9E%D7%98%D7%99%D7%99%D7%9C%D7%99%D7%9D/",
+      "observations": "Ordinary broad site picture: curved approach road, valley and neighboring older bridge. No structural detail inferred from unreadable distant pixels."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-blue-road-bridge",
+      "position": [
+        36,
+        19,
+        45
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "north-blue-girders",
+      "position": [
+        -16,
+        5.8,
+        -29
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "south-fascia-and-barrier",
+      "position": [
+        16,
+        9,
+        25
+      ],
+      "lookAt": [
+        0,
+        4.1,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "open-underdeck",
+      "position": [
+        0,
+        1.5,
+        15
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "bearing-and-abutment",
+      "position": [
+        29,
+        4,
+        15
+      ],
+      "lookAt": [
+        23.4,
+        3.1,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "road-and-pale-rails",
+      "position": [
+        21,
+        8,
+        4
+      ],
+      "lookAt": [
+        0,
+        5.3,
+        0
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.5,
+    "focus": {
+      "center": [
+        0,
+        4,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sv/svc/daughters_of_jacob_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "walk": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "white": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "yellow": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      }
+    },
+    "errorMeters": 0.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "white": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "yellow": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.25
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "white": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "yellow": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.1
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "white": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "yellow": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.035
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "daughters_of_jacob_bridge-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        36,
+        19,
+        45
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "daughters_of_jacob_bridge-district",
+      "reviewLod": "district",
+      "position": [
+        36,
+        19,
+        45
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "daughters_of_jacob_bridge-street",
+      "reviewLod": "street",
+      "position": [
+        36,
+        19,
+        45
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "daughters_of_jacob_bridge-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        36,
+        19,
+        45
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.ponte_coperto_west_stairs",
+  "inputHash": "sha256:4e4a288bf8a7975a67626f353c8cb609ef0d8770d5291e454d60fdde82a56d90",
+  "sourceHash": "sha256:86708bf5419e56f99a286c7dbcd4852a4ac24dea4698c9989cb6bbc74b844684",
+  "runtimeHash": "sha256:7c333fb014337619b7d4ccd5a2e6a174a5dc0b869793c4bcf7b0fc6910741cfe",
+  "fixtureHash": "sha256:5bbe13df90409a7002abe151562f7792e506a2ad436e0fcee36971783452a119",
+  "placementHash": "sha256:eacc85ec22256dde60470e0fb85b6946d1c7cd486968412c4182238ab5dad189",
+  "materialGraphs": {
+    "molen.worldgen.material.brick": {
+      "path": "materials/brick.matgraph.json",
+      "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+    },
+    "molen.worldgen.material.tile_flat": {
+      "path": "materials/tile_flat.matgraph.json",
+      "hash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    },
+    "molen.worldgen.material.wood_plain": {
+      "path": "materials/wood_plain.matgraph.json",
+      "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-group.png",
+      "hash": "sha256:b8d4767270659210634fd2d0b691812d99f60ba5d0156e068ea0d590bc451549",
+      "camera": {
+        "name": "stairs-street-noon-high",
+        "mediumName": "street-noon-high",
+        "group": "stairs",
+        "position": [
+          -96,
+          9,
+          -22
+        ],
+        "lookAt": [
+          -86,
+          4.2,
+          -8
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "ponte.coperto.west.stairs",
+        "group": "stairs",
+        "visibleMemberDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "liveSupportGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "One shared Molen library loads six graphs once for both real placed members: brick, stone_granite, wood_plain, tile_flat, concrete_plain and metal_painted. Main bridge binds five; stair binds three. Skyline omits wood. The image is the exposed-side native member group."
+}

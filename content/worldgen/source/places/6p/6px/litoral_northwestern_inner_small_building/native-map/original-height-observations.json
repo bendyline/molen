@@ -1,0 +1,107 @@
+{
+  "sourceId": "google-open-buildings:6792W3X3+RPQ4",
+  "originalCsvRow": {
+    "latitude": "-2.05042284",
+    "longitude": "-79.94563712",
+    "area_in_meters": "30.3352",
+    "confidence": "0.6537",
+    "geometry": "POLYGON((-79.9456111269303 -2.0504501329279, -79.9456267965779 -2.05038649187141, -79.9456631421948 -2.05039555012171, -79.9456474725483 -2.05045919117894, -79.9456111269303 -2.0504501329279))",
+    "full_plus_code": "6792W3X3+RPQ4"
+  },
+  "footprintConfidence": 0.6537,
+  "pavilion": null,
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -79.9456111269303,
+          -2.0504501329279
+        ],
+        [
+          -79.9456267965779,
+          -2.05038649187141
+        ],
+        [
+          -79.9456631421948,
+          -2.05039555012171
+        ],
+        [
+          -79.9456474725483,
+          -2.05045919117894
+        ],
+        [
+          -79.9456111269303,
+          -2.0504501329279
+        ]
+      ]
+    ]
+  },
+  "heightSource": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/902d4_2023_06_30/tile_FRzHb_Wx0jw.tif",
+  "heightSourceYear": 2023,
+  "heightBand": 1,
+  "presenceBand": 2,
+  "sourceBandDescriptions": [
+    {
+      "sample": 0,
+      "meta": {
+        "DESCRIPTION": "building_fractional_count"
+      }
+    },
+    {
+      "sample": 1,
+      "meta": {
+        "DESCRIPTION": "building_height"
+      }
+    },
+    {
+      "sample": 2,
+      "meta": {
+        "DESCRIPTION": "building_presence"
+      }
+    }
+  ],
+  "samplingStepMeters": 4,
+  "confidenceThreshold": 0.7,
+  "samples": [
+    {
+      "pixel": [
+        11430,
+        11389
+      ],
+      "utm": [
+        617255.25,
+        9773329.25
+      ],
+      "values": [
+        0.010831888765096664,
+        3.5,
+        0.8399999737739563
+      ]
+    },
+    {
+      "pixel": [
+        11430,
+        11397
+      ],
+      "utm": [
+        617255.25,
+        9773325.25
+      ],
+      "values": [
+        0.0012998266611248255,
+        2.5,
+        0.36000001430511475
+      ]
+    }
+  ],
+  "selectedSamples": 1,
+  "heightSummary": {
+    "min": 3.5,
+    "median": 3.5,
+    "max": 3.5,
+    "q25": 3.5,
+    "q75": 3.5
+  },
+  "limitations": "Heights are learned numerical estimates at effective 4 m resolution, not a surveyed roof profile or floor census. Confidence is a relative rank, not a probability. Ecuador performance is not established by the Global North evaluation. Use at least 3 m height uncertainty; all imagery unused."
+}

@@ -1,0 +1,377 @@
+{
+  "id": "tekeze_dam",
+  "title": "Tekezé Dam",
+  "wikidataId": "Q1126184",
+  "referenceCoordinate": {
+    "longitude": 38.74320566654205,
+    "latitude": 13.34681020953687
+  },
+  "module": "content/worldgen/source/places/sf/sf7/tekeze_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "pale": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "wet": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "warm": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "slab": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "dark": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "red": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "door": {
+      "slot": "door",
+      "graph": "metal_painted"
+    }
+  },
+  "exportLabel": "Molen original Tekezé double-curvature arch, headworks and separate intake",
+  "expectedDraftMasterHash": "sha256:e317130c7de17877ad75465632483dd90b10e0e46c2638be41986044303945f3",
+  "visualBrief": "Tekezé Dam’s 420 m double-curvature arch, four recessed midlevel outlets, upstream gate headworks, power intake crane and south thrust block.",
+  "heightPolicy": "The signed vertical origin is 1001.601962 m. The fixed crest is at 1145 m. The design fixture uses 1140 m maximum retention. The representative sample of standard upstream terrain gives 1012.03 m.",
+  "nativeAxes": "+X southwest across the arch, +Z northwest down the Tekezé gorge.",
+  "sourceFacts": {
+    "mappedIdentity": "Q1126184",
+    "nativeWaterIds": [
+      64289273
+    ],
+    "crestLengthMeters": 420,
+    "crestElevation": 1145,
+    "foundationElevation": 957,
+    "maximumRetentionElevation": 1140,
+    "midLevelOutlets": 4,
+    "outletSillElevation": 1057,
+    "outletClearWidth": 5.6,
+    "terrainTiles": 9
+  },
+  "materialMethod": "Shared material graphs for board-formed concrete, plain concrete and painted steel with metric UVs and zero embedded images.",
+  "limitations": [
+    "The signed vertical origin is 1001.601962 m. The fixed crest is at 1145 m. The design fixture uses 1140 m maximum retention. The representative sample of standard upstream terrain gives 1012.03 m.",
+    "The crest follows the river mouth and reservoir-facing rock shoulders. The dam section, approach tie, headwork dimensions and outlet machinery are exterior approximations.",
+    "The retained standard field places the sampled reservoir about 128 m below the design fixture. The design fixture clips water at the modeled upstream face and uses an illustrative downstream corridor based on the mapped river line.",
+    "The underground generating station, bypass tunnels and operating flows are outside the exterior model."
+  ],
+  "references": [
+    {
+      "url": "https://www.ethiopianreview.com/pdf/001/TEKEZE%20INAGURATION%20BULLETIN.pdf",
+      "observed": "Inauguration material identifies the four midlevel outlets, arch shape, thrust block, diversion tunnels and separate power intake."
+    },
+    {
+      "url": "https://www.slideshare.net/slideshow/chapter-4-design-of-hydropower-plantspdf/260476871",
+      "imageUrl": "https://image.slidesharecdn.com/chapter4designofhydropowerplants-230903132833-8625ad15/75/Chapter-4-design-of-hydropower-plants-pdf-1-2048.jpg",
+      "observed": "The upstream photograph shows four raised gate-headwork stacks and orange gantries, the separate cantilevered orange power intake crane and the uninterrupted roadway."
+    },
+    {
+      "url": "https://www.elbalad.news/4875266",
+      "imageUrl": "https://media.elbalad.news/2024/10/large/882/2/969.jpg",
+      "observed": "The construction-era photo establishes the vertical arch sweep and narrow gorge. Temporary work platforms and uncontrolled discharge are outside the current model."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The reservoir edge and river meet at the dam. The separate station POI and approach tunnels corroborate the site."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "downstream-overview",
+      "position": [
+        -2,
+        221,
+        365
+      ],
+      "lookAt": [
+        0,
+        72,
+        23
+      ],
+      "fov": 50
+    },
+    {
+      "name": "four-radial-outlets",
+      "position": [
+        34,
+        93,
+        136
+      ],
+      "lookAt": [
+        34,
+        53,
+        28
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upstream-crest-and-intake",
+      "position": [
+        -214,
+        176,
+        -79
+      ],
+      "lookAt": [
+        -120,
+        128,
+        19
+      ],
+      "fov": 50
+    },
+    {
+      "name": "downstream-thrust-block",
+      "position": [
+        236,
+        179,
+        130
+      ],
+      "lookAt": [
+        151,
+        124,
+        46
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upstream-overview",
+      "position": [
+        14,
+        223,
+        -315
+      ],
+      "lookAt": [
+        8,
+        112,
+        14
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -45,
+    "scale": 2.2,
+    "focus": {
+      "center": [
+        0,
+        65,
+        43
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sf/sf7/tekeze_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "pale": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "wet": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "warm": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "slab": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "red": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "door": {
+        "slot": "door",
+        "graph": "metal_painted"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "pale": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "wet": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "warm": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "slab": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "pale": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "wet": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "warm": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "slab": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "pale": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "wet": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "warm": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "slab": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "tekeze-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -2,
+        221,
+        365
+      ],
+      "lookAt": [
+        0,
+        72,
+        23
+      ]
+    },
+    {
+      "name": "tekeze-district",
+      "reviewLod": "district",
+      "position": [
+        -2,
+        221,
+        365
+      ],
+      "lookAt": [
+        0,
+        72,
+        23
+      ]
+    },
+    {
+      "name": "tekeze-street",
+      "reviewLod": "street",
+      "position": [
+        -2,
+        221,
+        365
+      ],
+      "lookAt": [
+        0,
+        72,
+        23
+      ]
+    },
+    {
+      "name": "tekeze-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -2,
+        221,
+        365
+      ],
+      "lookAt": [
+        0,
+        72,
+        23
+      ]
+    }
+  ]
+}

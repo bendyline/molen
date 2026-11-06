@@ -1,11 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.3_world_trade_center",
-  "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:305c2ae2f55c3525f8555e28ee97b958210234c5ab4cd2a925077e7193ab1ac1",
-  "sourceHash": "sha256:2c3871a64cecdf8642836e38bcc58d8cc5819306178cb549f9b7285d1f0ddd68",
-  "runtimeHash": "sha256:66c0c411e6d7292cbbe8f60e4b9d8515e762d4c47c240661d2885a4f75c4b0bd",
-  "captureReportHash": "sha256:f07d6274691a0a3cdaeb96867559327532fd8fa9c320245be0c666c9a917b009",
+  "reviewedOn": "2026-10-31",
+  "inputHash": "sha256:f256463c236c15137919c056771383377ac012dd5b022829fd469ba7d3fd97fa",
+  "sourceHash": "sha256:5bb257e7c9cf57a1187216ac946522b62c0c7e817a14a6177720d0550ccc3ffa",
+  "runtimeHash": "sha256:b34b339a5fb56e4e204fbbc6c9eb7c32494a7a9d7be8369b97d3d1a26df11846",
+  "captureReportHash": "sha256:fa913fb13de7494cc66821e8355104c8ac071471171c8894dca0b4c9a66ecf4b",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -28,11 +28,14 @@
       "shots/far-memorial-profile.png",
       "shots/whole-reviewed-3wtc.png"
     ],
-    "notes": "Actually inspected all73 final images:18 portable,18 shared and37 medium-fi. All three connected planes, north shoulder taller than south, full skew western podium, continuous central/reentrant glazed walls, four external K-frame zones, central corner columns, closed mechanical crown and all three terrace decks remain present. Planted gardens, reconstructed benches, guards, Greenwich cable-net lobby, three partly recessed translucent revolving enclosures and attached canopy are visible in source and shared views. Opaque vision glass behind the entry casings intentionally excludes interior visibility; these are exterior approximations, not functional doorways. Feature views crop the very tall tower, while all supplemental whole-building LOD views contain the full tip/base. Fine mullions, cables and louver strips alias in distant views; no missing principal face, deck or brace zone was seen."
+    "notes": "Inspected all 73 fresh images across portable, shared-material/geographic-flat and current-Earth fixtures, including mode, detail and four-tier transition views. The three connected planes, taller northern terrace, lower southern terrace, skew western podium, four K-brace zones, closed mechanical crown and all three roof decks remain present across the four tiers. The current entrance views expose the three revolving casings and canopy without the former foreground cottage obstruction. Fine cables and louvers alias at distance; planting, door visibility and street datum remain declared exterior approximations. Corrected whole-building framing uses context scale 9; neighbor buildings and source-local height correction remain synthetic/approximate context. No new terrain, survey, reference-research or physical-device performance claim.",
+    "captureReportHash": "sha256:fa913fb13de7494cc66821e8355104c8ac071471171c8894dca0b4c9a66ecf4b",
+    "inputHash": "sha256:f256463c236c15137919c056771383377ac012dd5b022829fd469ba7d3fd97fa",
+    "reviewedOn": "2026-10-31"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:233b291e4bab5bb1f080c3eb0266f36f985d0fee03e8e97bdc8de74b5ff97a90",
+    "captureReportHash": "sha256:63f5223da1c7300a06de09f5ec0fcd1d3e1880e109decae2dbed6afc03741886",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -53,11 +56,24 @@
       "shots/shared/whole-reviewed-3wtc.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Two canonical graphs, metal_stainless and stone_granite, supply shared cladding/braces/roof and stone/foundation/vegetation. Green vertex tint on granite is a deliberately coarse vegetation surface approximation; tinted stainless approximates other painted metal finishes. The main reflective vision glass and dark recesses share one opaque palette group; door glass uses a separate translucent palette, four near draw groups total. Recorded graph means rebalance original source colors and keep untextured skyline colors consistent. Six GLBs contain no embedded images. Actual shared views show connected metal/glass fields and green planting without stretched UVs or absent surfaces; graphs are each read once and all model geometries unload."
+    "notes": "Inspected all 73 fresh images across portable, shared-material/geographic-flat and current-Earth fixtures, including mode, detail and four-tier transition views. The three connected planes, taller northern terrace, lower southern terrace, skew western podium, four K-brace zones, closed mechanical crown and all three roof decks remain present across the four tiers. The current entrance views expose the three revolving casings and canopy without the former foreground cottage obstruction. Fine cables and louvers alias at distance; planting, door visibility and street datum remain declared exterior approximations. Corrected whole-building framing uses context scale 9; neighbor buildings and source-local height correction remain synthetic/approximate context. No new terrain, survey, reference-research or physical-device performance claim.",
+    "inputHash": "sha256:f256463c236c15137919c056771383377ac012dd5b022829fd469ba7d3fd97fa",
+    "reviewedOn": "2026-10-31",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.metal_stainless": {
+        "path": "materials/metal_stainless.matgraph.json",
+        "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
+      },
+      "matgraph:molen.worldgen.material.stone_granite": {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:9562a150c1e1c81a226a8b01b57df5b0e180ef0a0c9b2019667618efdad3a6a3",
+    "captureReportHash": "sha256:e4ed1e459a794183979addf5767f74e549d6976f67e69c5ebf0a148e1a80e4c6",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -97,18 +113,23 @@
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Actually inspected noon/late economy/high street/block/skyline contexts, silhouette,13 source feature cameras, seven explicit LOD cameras and four transitions. Skyline preserves the stepped328.8792m envelope, cruciform offsets, flattened two-sided K ribbons at original cadence, three terrace decks/guards and dark mechanical zones with sparse40-floor bands; entrance hardware, planters, mullions and rooftop boxes are omitted. District restores four-floor band cadence, coarse mullions, low-sided door casings and flat brace ribbons without cable tubes or furnishings. Street restores all floor bands, volumetric braces/plates, sparse guard posts, coarse planting, rooftop boxes and20-sided doors. Close-up restores dense module framing, louvers/guards/plants, cable-net nodes,36-sided glass enclosures and rooftop grilles. Sparse far cadence and flattened brace sections are visibly simplified. Generic context cameras crop this tall building, and the street entry camera has partial foreground cottage occlusion; portable/shared entry views expose the entire frontage. Cottages and flat terrain are synthetic, not the actual WTC site."
+    "notes": "Inspected all 73 fresh images across portable, shared-material/geographic-flat and current-Earth fixtures, including mode, detail and four-tier transition views. The three connected planes, taller northern terrace, lower southern terrace, skew western podium, four K-brace zones, closed mechanical crown and all three roof decks remain present across the four tiers. The current entrance views expose the three revolving casings and canopy without the former foreground cottage obstruction. Fine cables and louvers alias at distance; planting, door visibility and street datum remain declared exterior approximations. Corrected whole-building framing uses context scale 9; neighbor buildings and source-local height correction remain synthetic/approximate context. No new terrain, survey, reference-research or physical-device performance claim.",
+    "inputHash": "sha256:f256463c236c15137919c056771383377ac012dd5b022829fd469ba7d3fd97fa",
+    "reviewedOn": "2026-10-31",
+    "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629"
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:218c6cb6ea004a98abde4a7ecb872be0d51c8791645a6c7397bfcf33ca209500",
     "mapFrameHash": "sha256:9dc1ded99515c86c2af90466050b20b80a3c2489f87d84cb3adf37cbecc80e8c",
-    "notes": "Fresh2026-10-10 exact-Q941908 ground way166839381 and four independently mapped podium/south/north/central parts960146508–511 match all original raw source-local geometries exactly. The preserved original global map frame has anchor[-74.011692524,40.710984661] and heading-0.472632939657. Projection residual is under1mm against its rounded native outline. Architect street boundaries and completed north/south setback description sign the frame: native-X toward GreenwichStreet/memorial west-southwest, +X toward ChurchStreet east-northeast, -Z DeyStreet north-northwest, +Z CortlandtStreet south-southeast. The skew western podium edge retains its mapped shape. Primary typical-floor diagram governs the regularized three-plane upper cruciform over incomplete/overlapping mapped shoulder traces; those raw traces remain in the source and are not asserted to match every upper corner. Owner completed1079ft/328.8792m height and architect205/718/935ft terrace datums supersede obsolete320/352m raw tags. GroundY0 is an unsurveyed entry datum, and the three doorway casings/canopy are photographic reconstructions. Accept1m principal ground envelope/1degree orientation allowance, not a surveyed entrance claim. Oculus, memorial, adjacent towers, public streets and subterranean/interior fit-out are excluded. No footprint replacement. Actually inspected current north-up footprint overlay and geographic turntables: skew podium tracks the independent original whole-ring, with projection residual0.0006342606793559207m; higher northern terrace remains toward DeyStreet and western lobby toward GreenwichStreet. Upper regularized cruciform corner outlines remain photo/architect-plan reconstructions rather than exact matches to the malformed raw part rings."
+    "notes": "Fresh2026-10-10 exact-Q941908 ground way166839381 and four independently mapped podium/south/north/central parts960146508–511 match all original raw source-local geometries exactly. The preserved original global map frame has anchor[-74.011692524,40.710984661] and heading-0.472632939657. Projection residual is under1mm against its rounded native outline. Architect street boundaries and completed north/south setback description sign the frame: native-X toward GreenwichStreet/memorial west-southwest, +X toward ChurchStreet east-northeast, -Z DeyStreet north-northwest, +Z CortlandtStreet south-southeast. The skew western podium edge retains its mapped shape. Primary typical-floor diagram governs the regularized three-plane upper cruciform over incomplete/overlapping mapped shoulder traces; those raw traces remain in the source and are not asserted to match every upper corner. Owner completed1079ft/328.8792m height and architect205/718/935ft terrace datums supersede obsolete320/352m raw tags. GroundY0 is an unsurveyed entry datum, and the three doorway casings/canopy are photographic reconstructions. Accept1m principal ground envelope/1degree orientation allowance, not a surveyed entrance claim. Oculus, memorial, adjacent towers, public streets and subterranean/interior fit-out are excluded. No footprint replacement. Actually inspected current north-up footprint overlay and geographic turntables: skew podium tracks the independent original whole-ring, with projection residual0.0006342606793559207m; higher northern terrace remains toward DeyStreet and western lobby toward GreenwichStreet. Upper regularized cruciform corner outlines remain photo/architect-plan reconstructions rather than exact matches to the malformed raw part rings.",
+    "inputHash": "sha256:f256463c236c15137919c056771383377ac012dd5b022829fd469ba7d3fd97fa"
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "notes": "Read the current architect RSHP project and two-page job-sheet PDF and current WTC owner page. Actually inspected both cached PDF page pixels and the enlarged typical floor plan, including completed K-braced profile and eight corner-office plan. Original295672triangle/29241552byte master reproduces sha256:c852966c1bade563c67510b302788dd4fedaf1e892a35a08d8b7c1db12411e5e. Published owner1079ft height and architect terrace/facade/floor/lobby dimensions are retained; architect rounded330m is not presented as agreement with exact328.8792m. The unchanged original build3Wtc recipe reproduces295672triangles/29241552bytes exactly. Reviewed source preserves the independent skew podium, three connected cruciform planes with unequal northern/southern terraces, four projecting stainless K-frame zones at original cadence, full-height central corner columns, tower/podium facade datums, closed mechanical crown, all three terrace decks with glass guards, planted gardens, reconstructed benches, GreenwichStreet cable-net lobby and three revolving door enclosures. Continuous glass walls, flat mullion/transom/spandrel strips and flat crown-louver strips replace repeated pane cells and section shells. Tiny cover-joint seams are omitted. Shared stainless and granite graphs serve two reusable textures; vegetation shares granite with green vertex tint as a deliberate coarse surface approximation, and tinted stainless approximates painted roof/bench finishes. Glass/recess use one opaque vision-glass palette; door glass retains a separate translucent palette, four near draw groups total. Skyline retains stepped envelope, flattened two-sided K-brace ribbons at original cadence, roof decks and guards, sparse40-floor facade bands and unframed mechanical recesses; it omits facade mullions, entrance hardware, planters/benches and roof equipment. District restores four-floor bands, coarse vertical mullions, two-sided flattened braces and three low-sided door casings, omitting K connection nodes, cable-net tubes, garden furniture and rooftop equipment. Street restores all facade floor datums, sparse glass guard posts, brace plates, coarse vegetation and rooftop boxes with20-sided door glass; near adds published5ft/10ft module framing, dense louvers/guards/plants, cable-net nodes,36-sided doors and rooftop grilles. Upper part regularization, exact facade phase, intermediate mechanical/lobby panel datums, K-brace spacing/section, roof service equipment, terrace furnishings and entry hardware remain photo reconstructions. Architect rounded330m height differs from selected owner1079ft/328.8792m. Physical-device/dense-city timings and surveyed curb/entry fit remain unmeasured."
+    "notes": "Read the current architect RSHP project and two-page job-sheet PDF and current WTC owner page. Actually inspected both cached PDF page pixels and the enlarged typical floor plan, including completed K-braced profile and eight corner-office plan. Original295672triangle/29241552byte master reproduces sha256:c852966c1bade563c67510b302788dd4fedaf1e892a35a08d8b7c1db12411e5e. Published owner1079ft height and architect terrace/facade/floor/lobby dimensions are retained; architect rounded330m is not presented as agreement with exact328.8792m. The unchanged original build3Wtc recipe reproduces295672triangles/29241552bytes exactly. Reviewed source preserves the independent skew podium, three connected cruciform planes with unequal northern/southern terraces, four projecting stainless K-frame zones at original cadence, full-height central corner columns, tower/podium facade datums, closed mechanical crown, all three terrace decks with glass guards, planted gardens, reconstructed benches, GreenwichStreet cable-net lobby and three revolving door enclosures. Continuous glass walls, flat mullion/transom/spandrel strips and flat crown-louver strips replace repeated pane cells and section shells. Tiny cover-joint seams are omitted. Shared stainless and granite graphs serve two reusable textures; vegetation shares granite with green vertex tint as a deliberate coarse surface approximation, and tinted stainless approximates painted roof/bench finishes. Glass/recess use one opaque vision-glass palette; door glass retains a separate translucent palette, four near draw groups total. Skyline retains stepped envelope, flattened two-sided K-brace ribbons at original cadence, roof decks and guards, sparse40-floor facade bands and unframed mechanical recesses; it omits facade mullions, entrance hardware, planters/benches and roof equipment. District restores four-floor bands, coarse vertical mullions, two-sided flattened braces and three low-sided door casings, omitting K connection nodes, cable-net tubes, garden furniture and rooftop equipment. Street restores all facade floor datums, sparse glass guard posts, brace plates, coarse vegetation and rooftop boxes with20-sided door glass; near adds published5ft/10ft module framing, dense louvers/guards/plants, cable-net nodes,36-sided doors and rooftop grilles. Upper part regularization, exact facade phase, intermediate mechanical/lobby panel datums, K-brace spacing/section, roof service equipment, terrace furnishings and entry hardware remain photo reconstructions. Architect rounded330m height differs from selected owner1079ft/328.8792m. Physical-device/dense-city timings and surveyed curb/entry fit remain unmeasured. The merged branch changed model geometry since the previous approval. The current source generator/import reproduced the currently declared master bytes, all six GLBs were validated, and fresh portable, shared-material/geographic-flat and Earth-context images were inspected. Existing focused tests verify the current distinguishing geometry, signed footprint and browser budgets. The current review supersedes the previous geometry/hash approval; it does not claim unchanged GLBs relative to that older approval. Existing reference/placement scope remains explicit.",
+    "inputHash": "sha256:f256463c236c15137919c056771383377ac012dd5b022829fd469ba7d3fd97fa"
   },
   "legacyFidelityScope": {
     "target": "maximum",
@@ -121,141 +142,64 @@
     "validator": "Khronos glTF Validator",
     "results": [
       {
-        "name": "source",
         "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/models/source.glb",
-        "hash": "sha256:2c3871a64cecdf8642836e38bcc58d8cc5819306178cb549f9b7285d1f0ddd68",
-        "bytes": 3071984,
-        "triangles": 32902,
-        "materials": 4,
-        "images": 0,
-        "min": [
-          -48.7613410949707,
-          0,
-          -30.631999969482422
-        ],
-        "max": [
-          49.20000076293945,
-          328.87921142578125,
-          30.631999969482422
-        ],
+        "hash": "sha256:5bb257e7c9cf57a1187216ac946522b62c0c7e817a14a6177720d0550ccc3ffa",
+        "bytes": 3071792,
         "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "images": 0
       },
       {
-        "name": "runtime",
         "path": "content/worldgen/assets/places/dr/dr5/3_world_trade_center/model.glb",
-        "hash": "sha256:66c0c411e6d7292cbbe8f60e4b9d8515e762d4c47c240661d2885a4f75c4b0bd",
-        "bytes": 3071600,
-        "triangles": 32902,
-        "materials": 4,
-        "images": 0,
-        "min": [
-          -48.7613410949707,
-          0,
-          -30.631999969482422
-        ],
-        "max": [
-          49.20000076293945,
-          328.87921142578125,
-          30.631999969482422
-        ],
+        "hash": "sha256:b34b339a5fb56e4e204fbbc6c9eb7c32494a7a9d7be8369b97d3d1a26df11846",
+        "bytes": 3071412,
         "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "images": 0
       },
       {
-        "name": "skyline",
         "path": "content/worldgen/assets/places/dr/dr5/3_world_trade_center/model.skyline.glb",
         "hash": "sha256:f2b035e345db9364e63a9f759da4676357d51d711ff21f795646035c7509fe5f",
         "bytes": 97576,
-        "triangles": 966,
-        "materials": 1,
-        "images": 0,
-        "min": [
-          -48.58431625366211,
-          0,
-          -30.506999969482422
-        ],
-        "max": [
-          49.20000076293945,
-          328.87921142578125,
-          30.506999969482422
-        ],
         "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "images": 0
       },
       {
-        "name": "district",
         "path": "content/worldgen/assets/places/dr/dr5/3_world_trade_center/model.district.glb",
-        "hash": "sha256:c3507800fd82dfc425ff96fab4cd469c0c72732f736e118960c31d24b163853a",
-        "bytes": 309968,
-        "triangles": 3746,
-        "materials": 4,
-        "images": 0,
-        "min": [
-          -48.7613410949707,
-          0,
-          -30.631999969482422
-        ],
-        "max": [
-          49.20000076293945,
-          328.87921142578125,
-          30.631999969482422
-        ],
+        "hash": "sha256:6bfef152e5f879f815364ce4198e598316464f003a5f5da5932e0bf1016fbef2",
+        "bytes": 308720,
         "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "images": 0
       },
       {
-        "name": "street",
         "path": "content/worldgen/assets/places/dr/dr5/3_world_trade_center/model.street.glb",
-        "hash": "sha256:16abc0940c978d0a661365d333ebcc38d5ba3bebf8619edd5188ed6f0dbcc92d",
-        "bytes": 1123432,
-        "triangles": 14614,
-        "materials": 4,
-        "images": 0,
-        "min": [
-          -48.7613410949707,
-          0,
-          -30.631999969482422
-        ],
-        "max": [
-          49.20000076293945,
-          328.87921142578125,
-          30.631999969482422
-        ],
+        "hash": "sha256:801fe97ab24fc1d8d628f0b797e783401cdef12dfd502cc73c41d0e7b13009a4",
+        "bytes": 1122184,
         "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "images": 0
       },
       {
-        "name": "closeup",
         "path": "content/worldgen/assets/places/dr/dr5/3_world_trade_center/model.closeup.glb",
-        "hash": "sha256:560af81c3ef07654794f1ca572a6c0eec4c1faa5813b09e80e16c299b887903a",
-        "bytes": 2606008,
-        "triangles": 32902,
-        "materials": 4,
-        "images": 0,
-        "min": [
-          -48.7613410949707,
-          0,
-          -30.631999969482422
-        ],
-        "max": [
-          49.20000076293945,
-          328.87921142578125,
-          30.631999969482422
-        ],
+        "hash": "sha256:3ec07e9d4aeced9566adce6519a24aeb8549a86c1c1537a45b587f107dd58e1e",
+        "bytes": 2604760,
         "errors": 0,
-        "warnings": 0
+        "warnings": 0,
+        "images": 0
       }
     ],
     "tests": {
       "command": "node node_modules/vitest/vitest.mjs run test/three-wtc-runtime-lods.test.mjs --maxWorkers=1",
-      "passed": 3
+      "passed": 3,
+      "failed": 0
     },
-    "notes": "Three focused tests pass: original detailed recipe byte reproduction, current source/runtime hashes and independent five-ring signed placement. Nine heights times24radial rays compare principal podium/shaft/crown surfaces to the reviewed source within2/1.2/.6/.1m finite along-ray allowances, not a global error bound for omitted furnishings/entry hardware. Glass-only near and all-surface skyline rays verify central and reentrant walls, taller north/lower south setbacks and four downward deck probes. Nine north-brace probes retain the original K cadence, and the maximum tip remains328.8792m. All four levels rebuild deterministically below1000/4000/16000/64000triangle and four-draw ceilings, with separate12byte POSITION/NORMAL streams and translucent entry material. Six Khronos validations have zero errors/warnings; targeted source --check, strict medium-fi and derivative hash checks pass."
+    "notes": "Current six output hashes and zero validator errors/warnings/images verified. Existing focused model tests passed against current source and derivative bytes."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:e63d441af56383e1151493d201fdbd06618785647b4751fdd726250e48f86443",
+    "recipeHash": "sha256:eb2f0d2003343bbb423876d3a9a8f645be27be0860ec37b7fad1314515d0abb6",
     "levels": [
       {
         "name": "skyline",
@@ -272,143 +216,382 @@
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:c3507800fd82dfc425ff96fab4cd469c0c72732f736e118960c31d24b163853a",
-        "bytes": 309968,
-        "gzipBytes": 59329,
-        "triangles": 3746,
-        "cpuBytes": 305040,
-        "gpuBytes": 305040,
+        "hash": "sha256:6bfef152e5f879f815364ce4198e598316464f003a5f5da5932e0bf1016fbef2",
+        "bytes": 308720,
+        "gzipBytes": 59013,
+        "triangles": 3730,
+        "cpuBytes": 303792,
+        "gpuBytes": 303792,
         "errorMeters": 1.2,
         "drawCalls": 4
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:16abc0940c978d0a661365d333ebcc38d5ba3bebf8619edd5188ed6f0dbcc92d",
-        "bytes": 1123432,
-        "gzipBytes": 212020,
-        "triangles": 14614,
-        "cpuBytes": 1118472,
-        "gpuBytes": 1118472,
+        "hash": "sha256:801fe97ab24fc1d8d628f0b797e783401cdef12dfd502cc73c41d0e7b13009a4",
+        "bytes": 1122184,
+        "gzipBytes": 211671,
+        "triangles": 14598,
+        "cpuBytes": 1117224,
+        "gpuBytes": 1117224,
         "errorMeters": 0.6,
         "drawCalls": 4
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:560af81c3ef07654794f1ca572a6c0eec4c1faa5813b09e80e16c299b887903a",
-        "bytes": 2606008,
-        "gzipBytes": 536795,
-        "triangles": 32902,
-        "cpuBytes": 2601024,
-        "gpuBytes": 2601024,
+        "hash": "sha256:3ec07e9d4aeced9566adce6519a24aeb8549a86c1c1537a45b587f107dd58e1e",
+        "bytes": 2604760,
+        "gzipBytes": 536626,
+        "triangles": 32886,
+        "cpuBytes": 2599776,
+        "gpuBytes": 2599776,
         "errorMeters": 0.1,
         "drawCalls": 4
       }
     ],
-    "initialBytes": 407544,
-    "notes": "skyline966triangles/97576bytes/1draw groups; district3746triangles/309968bytes/4draw groups; street14614triangles/1123432bytes/4draw groups; closeup32902triangles/2606008bytes/4draw groups. Initial skyline plus district407544bytes is below3MB phone/6MB laptop limits. Reviewed source3071984bytes/runtime3071600bytes versus original29241552bytes. Physical-device and dense-city timings remain unmeasured."
+    "initialBytes": 406296,
+    "notes": "Inspected all 73 fresh images across portable, shared-material/geographic-flat and current-Earth fixtures, including mode, detail and four-tier transition views. The three connected planes, taller northern terrace, lower southern terrace, skew western podium, four K-brace zones, closed mechanical crown and all three roof decks remain present across the four tiers. The current entrance views expose the three revolving casings and canopy without the former foreground cottage obstruction. Fine cables and louvers alias at distance; planting, door visibility and street datum remain declared exterior approximations. Corrected whole-building framing uses context scale 9; neighbor buildings and source-local height correction remain synthetic/approximate context. No new terrain, survey, reference-research or physical-device performance claim."
   },
   "limitations": [
     "The unchanged original build3Wtc recipe reproduces295672triangles/29241552bytes exactly. Reviewed source preserves the independent skew podium, three connected cruciform planes with unequal northern/southern terraces, four projecting stainless K-frame zones at original cadence, full-height central corner columns, tower/podium facade datums, closed mechanical crown, all three terrace decks with glass guards, planted gardens, reconstructed benches, GreenwichStreet cable-net lobby and three revolving door enclosures. Continuous glass walls, flat mullion/transom/spandrel strips and flat crown-louver strips replace repeated pane cells and section shells. Tiny cover-joint seams are omitted. Shared stainless and granite graphs serve two reusable textures; vegetation shares granite with green vertex tint as a deliberate coarse surface approximation, and tinted stainless approximates painted roof/bench finishes. Glass/recess use one opaque vision-glass palette; door glass retains a separate translucent palette, four near draw groups total. Skyline retains stepped envelope, flattened two-sided K-brace ribbons at original cadence, roof decks and guards, sparse40-floor facade bands and unframed mechanical recesses; it omits facade mullions, entrance hardware, planters/benches and roof equipment. District restores four-floor bands, coarse vertical mullions, two-sided flattened braces and three low-sided door casings, omitting K connection nodes, cable-net tubes, garden furniture and rooftop equipment. Street restores all facade floor datums, sparse glass guard posts, brace plates, coarse vegetation and rooftop boxes with20-sided door glass; near adds published5ft/10ft module framing, dense louvers/guards/plants, cable-net nodes,36-sided doors and rooftop grilles. Upper part regularization, exact facade phase, intermediate mechanical/lobby panel datums, K-brace spacing/section, roof service equipment, terrace furnishings and entry hardware remain photo reconstructions. Architect rounded330m height differs from selected owner1079ft/328.8792m. Physical-device/dense-city timings and surveyed curb/entry fit remain unmeasured."
   ],
-  "inputReconciliation": {
-    "reconciledOn": "2026-10-13",
-    "previousInputHash": "sha256:09ac15f20decfc46779c3254ad9542fdbce6d9e0dfe630c4292bff2239107740",
-    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
-    "buildRelease": "assets-16f966c72052fd6c",
-    "previousCaptureReportHash": "sha256:de35540a7f516c638bdad1801f6d3f008d596c1ecc73a61b4a344631c10e7a22",
-    "previousSharedCaptureReportHash": "sha256:66f91b11792cc1f4ea0cbd329e184cd28e4c4da126071005eabbe569b96073d6",
-    "changedRecipes": [
-      {
-        "path": "packages/worldgen/scripts/three-wtc-runtime-model.mjs",
-        "beforeHash": "sha256:cfa97059e6e406dffb501795766dd8f580303a803f9e001be9eee3770355e986",
-        "afterHash": "sha256:ebd059d7129863a54a889bb1213aa4d4ad09e95730940d0aea2e6fdd6d2a842a",
-        "change": "formatting-or-bound-import-order"
-      }
-    ],
-    "unchangedOutputs": [
+  "supersededReviewBindings": {
+    "reviewedOn": "2026-10-10",
+    "inputHash": "sha256:305c2ae2f55c3525f8555e28ee97b958210234c5ab4cd2a925077e7193ab1ac1",
+    "sourceHash": "sha256:2c3871a64cecdf8642836e38bcc58d8cc5819306178cb549f9b7285d1f0ddd68",
+    "runtimeHash": "sha256:66c0c411e6d7292cbbe8f60e4b9d8515e762d4c47c240661d2885a4f75c4b0bd",
+    "sourceTriangles": 32902,
+    "reason": "Historical previous approval; superseded by current source reconstruction, geometry tests and actual render inspection."
+  },
+  "currentContextReview": {
+    "date": "2026-10-31",
+    "inputHash": "sha256:f256463c236c15137919c056771383377ac012dd5b022829fd469ba7d3fd97fa",
+    "previousInputHash": "sha256:305c2ae2f55c3525f8555e28ee97b958210234c5ab4cd2a925077e7193ab1ac1",
+    "contextScale": 9,
+    "allSixGlbsUnchanged": false,
+    "unchangedDuringCurrentCapturePass": true,
+    "reason": "The merged branch changed model geometry since the previous approval. The current source generator/import reproduced the currently declared master bytes, all six GLBs were validated, and fresh portable, shared-material/geographic-flat and Earth-context images were inspected. Existing focused tests verify the current distinguishing geometry, signed footprint and browser budgets. The current review supersedes the previous geometry/hash approval; it does not claim unchanged GLBs relative to that older approval. Existing reference/placement scope remains explicit.",
+    "method": "Inspected all 73 fresh images across portable, shared-material/geographic-flat and current-Earth fixtures, including mode, detail and four-tier transition views. The three connected planes, taller northern terrace, lower southern terrace, skew western podium, four K-brace zones, closed mechanical crown and all three roof decks remain present across the four tiers. The current entrance views expose the three revolving casings and canopy without the former foreground cottage obstruction. Fine cables and louvers alias at distance; planting, door visibility and street datum remain declared exterior approximations. Corrected whole-building framing uses context scale 9; neighbor buildings and source-local height correction remain synthetic/approximate context. No new terrain, survey, reference-research or physical-device performance claim.",
+    "outputPins": [
       {
         "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/models/source.glb",
-        "hash": "sha256:2c3871a64cecdf8642836e38bcc58d8cc5819306178cb549f9b7285d1f0ddd68",
-        "bytes": 3071984
+        "hash": "sha256:5bb257e7c9cf57a1187216ac946522b62c0c7e817a14a6177720d0550ccc3ffa"
       },
       {
         "path": "content/worldgen/assets/places/dr/dr5/3_world_trade_center/model.glb",
-        "hash": "sha256:66c0c411e6d7292cbbe8f60e4b9d8515e762d4c47c240661d2885a4f75c4b0bd",
-        "bytes": 3071600
+        "hash": "sha256:b34b339a5fb56e4e204fbbc6c9eb7c32494a7a9d7be8369b97d3d1a26df11846"
       },
       {
         "path": "content/worldgen/assets/places/dr/dr5/3_world_trade_center/model.skyline.glb",
-        "hash": "sha256:f2b035e345db9364e63a9f759da4676357d51d711ff21f795646035c7509fe5f",
-        "bytes": 97576
-      },
-      {
-        "path": "content/worldgen/assets/places/dr/dr5/3_world_trade_center/model.district.glb",
-        "hash": "sha256:c3507800fd82dfc425ff96fab4cd469c0c72732f736e118960c31d24b163853a",
-        "bytes": 309968
-      },
-      {
-        "path": "content/worldgen/assets/places/dr/dr5/3_world_trade_center/model.street.glb",
-        "hash": "sha256:16abc0940c978d0a661365d333ebcc38d5ba3bebf8619edd5188ed6f0dbcc92d",
-        "bytes": 1123432
-      },
-      {
-        "path": "content/worldgen/assets/places/dr/dr5/3_world_trade_center/model.closeup.glb",
-        "hash": "sha256:560af81c3ef07654794f1ca572a6c0eec4c1faa5813b09e80e16c299b887903a",
-        "bytes": 2606008
-      }
-    ],
-    "retainedInspectedImageCount": 73
-  },
-  "inputRevalidation": {
-    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
-    "validatedOn": "2026-10-15",
-    "previousInputHash": "sha256:13eb6bd1ba3a079367eec33431108a957b7af037ace645b3a7b12a36f2654acd",
-    "inputHash": "sha256:305c2ae2f55c3525f8555e28ee97b958210234c5ab4cd2a925077e7193ab1ac1",
-    "previousQaHash": "sha256:797633aeaa3f69338319b0fedca8923317993429d1479947508c9c09d99dd0e4",
-    "sourceHash": "sha256:2c3871a64cecdf8642836e38bcc58d8cc5819306178cb549f9b7285d1f0ddd68",
-    "runtimeHash": "sha256:66c0c411e6d7292cbbe8f60e4b9d8515e762d4c47c240661d2885a4f75c4b0bd",
-    "levels": [
-      {
-        "name": "skyline",
         "hash": "sha256:f2b035e345db9364e63a9f759da4676357d51d711ff21f795646035c7509fe5f"
       },
       {
-        "name": "district",
-        "hash": "sha256:c3507800fd82dfc425ff96fab4cd469c0c72732f736e118960c31d24b163853a"
+        "path": "content/worldgen/assets/places/dr/dr5/3_world_trade_center/model.district.glb",
+        "hash": "sha256:6bfef152e5f879f815364ce4198e598316464f003a5f5da5932e0bf1016fbef2"
       },
       {
-        "name": "street",
-        "hash": "sha256:16abc0940c978d0a661365d333ebcc38d5ba3bebf8619edd5188ed6f0dbcc92d"
+        "path": "content/worldgen/assets/places/dr/dr5/3_world_trade_center/model.street.glb",
+        "hash": "sha256:801fe97ab24fc1d8d628f0b797e783401cdef12dfd502cc73c41d0e7b13009a4"
       },
       {
-        "name": "closeup",
-        "hash": "sha256:560af81c3ef07654794f1ca572a6c0eec4c1faa5813b09e80e16c299b887903a"
+        "path": "content/worldgen/assets/places/dr/dr5/3_world_trade_center/model.closeup.glb",
+        "hash": "sha256:3ec07e9d4aeced9566adce6519a24aeb8549a86c1c1537a45b587f107dd58e1e"
       }
     ],
-    "sceneHash": "sha256:402628297ee1a17ef6616ca39c71bd2fa66555babfd7bba09502d9a95fd9f727",
-    "qaCamerasHash": "sha256:6f68bf56aa44814e9e7158600fb12309a35773ed15049822a48b2bc089562c27",
-    "placementHash": "sha256:218c6cb6ea004a98abde4a7ecb872be0d51c8791645a6c7397bfcf33ca209500",
-    "maps": [
+    "frames": [
       {
-        "path": "map-frame.json",
-        "hash": "sha256:9dc1ded99515c86c2af90466050b20b80a3c2489f87d84cb3adf37cbecc80e8c"
-      }
-    ],
-    "materials": [
-      {
-        "path": "materials/metal_stainless.matgraph.json",
-        "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/preview.png",
+        "hash": "sha256:5a871b3363d57468a5dac530a707bae19dff80f6d55c8400fd7efecbbbc4f992"
       },
       {
-        "path": "materials/stone_granite.matgraph.json",
-        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/turntable/angle_0.png",
+        "hash": "sha256:fd7ecd57aca627df14eb3f8e0fa0c49dee5e610986f3c98c879f728a74baa769"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/turntable/angle_1.png",
+        "hash": "sha256:6ad33ea54a7a5663062d7e3e4443195c75c2079344e84069692a2300d683be8c"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/turntable/angle_2.png",
+        "hash": "sha256:1b7ecbbe15d71d7a62bf243923aa4052e41d75205c086e62ea32bf4d2f04481b"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/turntable/angle_3.png",
+        "hash": "sha256:f6efadd31d95f382bdd5d7a9ca90b32912ac8dc390c6c36980150b004b3787bf"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/three-stepped-planes.png",
+        "hash": "sha256:cad5010bd5a1063b58f2afb2c9cc5aca982de951ceca9a4c0efb5834d99446de"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/church-street-east.png",
+        "hash": "sha256:0c89188db798caca5a59b18a2056a4828dfd3a63904a2c82c8e6fa76b35a52b6"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/stainless-k-braces.png",
+        "hash": "sha256:a44ac2a59f0175ecd0d592d18df26c2d0a9698a81ba55a074cf143c1cd520334"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/unitized-curtain-wall.png",
+        "hash": "sha256:d4d1bfbb55df18f55e4945e227421c3937bbe91df66f8ba7583ee8382424b4df"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/higher-northern-terrace.png",
+        "hash": "sha256:3b85086c363138e4209835706d00e09f2bd702bb1e76289e6d70f546b4735346"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/lower-southern-terrace.png",
+        "hash": "sha256:c4bdd0661b94bb7211121bf5bda2a326616b88f57faeb5d9ecbc2b4eed36a7c4"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/level17-western-garden.png",
+        "hash": "sha256:3f0201e7911508508833313e6b69c379c709227c3e956cbe9444b54f7eed5294"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/mechanical-crown.png",
+        "hash": "sha256:0df4ce75ff6cfb4dc6e3dfa1231174269e9e91c877eb665b444bf87f83a2a0eb"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/lobby-cable-net.png",
+        "hash": "sha256:d1137c7f6737f15fd123ae4a3b69973b556018629702dd547fc51eb4b91e971e"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/greenwich-entry-doors.png",
+        "hash": "sha256:2fbad0abe5affc720b6bc459cf0c1a8ec2794e7ef93b716eba75cea76c408412"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/podium-trading-floors.png",
+        "hash": "sha256:9f520d43d6a8372199bc3b6c0cd18aaa37c2fdee99adc449cb4fd80aee06a4c0"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/far-memorial-profile.png",
+        "hash": "sha256:dfc727cfcbd55edc060a776986f7ab8cfd495d06cbd71de25a0ed9063ea5c079"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/whole-reviewed-3wtc.png",
+        "hash": "sha256:497ead9715ac51f28858de963310aa6312035f23a13d4064a3c435bc01065638"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/angle-0.png",
+        "hash": "sha256:d498cac37e05fd37264027f71ce2870c9f8bbe2fe43987fec0127d678d4d7a3a"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/angle-1.png",
+        "hash": "sha256:839017968d88d8840a02ff34586b729be5a553dece9a3f70d65446f0b353b8d2"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/angle-2.png",
+        "hash": "sha256:8b208fb3ee82ea11aa80983f7d662a29b2eb1bb73538b54360eb9f513ce23c75"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/angle-3.png",
+        "hash": "sha256:2cb07d3dc76c906e7a11a37ade228a91564d0cd52bc47afbcc9ff8efc39d18b5"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/three-stepped-planes.png",
+        "hash": "sha256:23bd5d87596465b33219f7daf967a969545ddf6edcf476965a682fd44bde62dd"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/church-street-east.png",
+        "hash": "sha256:0c90e32f6eebfd70530eeff59a1fc21a2bbb143514e2a248f5dabbd4ceb7d196"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/stainless-k-braces.png",
+        "hash": "sha256:66eba980ce03403d8aaa89aeffb5d60ba854ece6789ab3c5b8db4bcaee317daf"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/unitized-curtain-wall.png",
+        "hash": "sha256:771b10fd631efee95e94578b1adfdd782aca1cd942c11359f1a36ca4cd45bc3b"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/higher-northern-terrace.png",
+        "hash": "sha256:1be415e09a9adce32b40fc4b950c81449891ec1b7d45b5be748b23323bdd0ff0"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/lower-southern-terrace.png",
+        "hash": "sha256:9af2d6c12fc1beee7c3d7467af092ea17e561b1215b992c88ac910fc7a37660b"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/level17-western-garden.png",
+        "hash": "sha256:d9c7756ce8a264bed12572dcd986bc559c5827f6d17fd5da96fb2911490a786c"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/mechanical-crown.png",
+        "hash": "sha256:66cf32a00a2ef9138cd791636bcffd3c397d7f504469e90bd9b1624270d16ff4"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/lobby-cable-net.png",
+        "hash": "sha256:cccab025945ff79d4f9145f9ae096515e724c95aa5f2b563c1c4cd2b444b027f"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/greenwich-entry-doors.png",
+        "hash": "sha256:0516cd0ce9f037ed58bbde419f0745a48c0ac677ce6e7c025d63d862ceac17e1"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/podium-trading-floors.png",
+        "hash": "sha256:c0ad03ed2ce525c3b33800f383508bce9f757c413c1a1725914601178aff499d"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/far-memorial-profile.png",
+        "hash": "sha256:c67be998b0451b4240b8f80e19a97c80ecbe056bbf626e71604cdce7a8ec7801"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/whole-reviewed-3wtc.png",
+        "hash": "sha256:70c048b400b034ecdebcc7b3abe353c6da17003eca77805c995d1056ba874a7b"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/shots/shared/placement.png",
+        "hash": "sha256:c0e9767d56b5a1eef23ce067c1049b29c88981edc95e29a8b4dd5ddf25a56162"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/street-noon-economy.png",
+        "hash": "sha256:52d145b0aeb74b4969b7a62bebe9ce48c2bf502a712cd82572b9267411e2d3fe"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/street-noon-high.png",
+        "hash": "sha256:8c8aa1cb434e73f6904dce1a739413f097a56690314c5337771434f922370421"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/street-late-economy.png",
+        "hash": "sha256:ccc8a95264b299f47bc053372e5e2f0227350a4662a79c53e60dbeb4872124c8"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/street-late-high.png",
+        "hash": "sha256:73904d622e73283de2bd66a90b4749b3f22be6d67b403359e6b5b890cd697858"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/block-noon-economy.png",
+        "hash": "sha256:b817fab39e7bf7a82036d88a7e0d781ee013416ae63246f09f9762fadb3b7678"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/block-noon-high.png",
+        "hash": "sha256:1a1abc919c467fc26fe977045d83a52532100d1a6bedadfcbb3d975fdd5b120a"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/block-late-economy.png",
+        "hash": "sha256:1d503d184dfacc8e87979562390408775cd6e34df0153bdc6c872d740d627f10"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/block-late-high.png",
+        "hash": "sha256:f7614232f93dd2f06ec5b46a7b195907b5ccb7c56eaec6893b17341a3dab0fb7"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/skyline-noon-economy.png",
+        "hash": "sha256:ebce174127229dff0545e7a5857a2fe29b3ed0b56ef68fa9f6fed0d36276333b"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/skyline-noon-high.png",
+        "hash": "sha256:43adfc1b9fb091292ac06f0401f5180088426270f5c1bcc323d930bda7cd1559"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/skyline-late-economy.png",
+        "hash": "sha256:03ae280250e1017103ae2dfb4cf5123c647783d7cdf9a985c89ea8969cdd4202"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/skyline-late-high.png",
+        "hash": "sha256:417718e5598dd03c1c389c26cfb067520083c3e2d784ca0cf95da8cb2c6b502b"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/silhouette.png",
+        "hash": "sha256:6c2a790eae701e4ce81ad8eb5386702d70740ac6791ed0e09d6d936be3ef3750"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/three-stepped-planes.png",
+        "hash": "sha256:a6c1a0947618905827bfed5a061f88971ff3296611e1b7c544a5f54764162fe7"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/church-street-east.png",
+        "hash": "sha256:15cec56735968aa01cbb7d83653a28b0951166c99498108158f4ca0d41e5ec30"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/stainless-k-braces.png",
+        "hash": "sha256:b4fa37b09b59d6dead281138ff26754be698e3a79c417652a0ad656f05bcd3e2"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/unitized-curtain-wall.png",
+        "hash": "sha256:edf2d3d5e3af9c718a8eadc00b8fe3013d346eb105bfb00f8d07f15fdf28a825"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/higher-northern-terrace.png",
+        "hash": "sha256:ab2ced8d955f478d972247c414d7115cc6109fb2f8aa088e2773a5b82c18758a"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/lower-southern-terrace.png",
+        "hash": "sha256:201d2435e68b1e5007cbf50e95f058a537143281b254009b45b8d79085281a7b"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/level17-western-garden.png",
+        "hash": "sha256:6b6fc00c83c72e7c369ea1661ad4ceb75087f738754654c0464873d8c2e2acb4"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/mechanical-crown.png",
+        "hash": "sha256:87b6bfd13ee04c9c00b5b4753612254f982d8a16534daa52c8d3697b965f5e53"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/lobby-cable-net.png",
+        "hash": "sha256:26f70354c6134bc832a572b543c55aeb4a1eaf1bb9ce411de53665482fa113ea"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/greenwich-entry-doors.png",
+        "hash": "sha256:ba107dccdd065d88e7590b78fa9e5e43aed77332c3e605966479c7978b569893"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/podium-trading-floors.png",
+        "hash": "sha256:ef91c90951e67110531a095caa46cedfb572e22acee1c58250f0eae67d155b48"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/far-memorial-profile.png",
+        "hash": "sha256:0469c6a3b614cb3aca4692f1a9af0d6c33c35372441f6b2c51c2817f38f6f970"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/whole-reviewed-3wtc.png",
+        "hash": "sha256:818213ac0de864f1a477d998d77ae4c24842df369eba4e08742ace3a2ed04e56"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/whole-3wtc-skyline.png",
+        "hash": "sha256:ebe6dd1d6a242e810366e21c9aa5afa00751900b789e703d1d3dbcceaffb8d0e"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/whole-3wtc-district.png",
+        "hash": "sha256:449a4e9ad3282aa0cc0c4d826b629b0669a07ab251b4dd30ab7d59f056bc9189"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/whole-3wtc-street.png",
+        "hash": "sha256:e0b36c72aecc82febd4ddfcf8fbbe485b830da9d6b687470ce07bdf555b18047"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/whole-3wtc-closeup.png",
+        "hash": "sha256:818213ac0de864f1a477d998d77ae4c24842df369eba4e08742ace3a2ed04e56"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/district-braced-cruciform.png",
+        "hash": "sha256:8c8b8baa0b2f414661b61a09fe194647d40d9b6e022218232f65a8f3b75180a7"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/street-greenwich-entry.png",
+        "hash": "sha256:890ff17e182011fe3812e64f17e4d566b6a60030a6f71060f78ac3d5aa528820"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/close-higher-north-terrace.png",
+        "hash": "sha256:f90b135d3c0bd4896c289c1f43e2296026497f8c31cfa654cfde2d9911dbdc69"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/transition-skyline.png",
+        "hash": "sha256:bbbcee50cc0a473ed86b7ab98a55949c6c28df27ff50754a42f9c352d894d145"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/transition-district.png",
+        "hash": "sha256:1a1abc919c467fc26fe977045d83a52532100d1a6bedadfcbb3d975fdd5b120a"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/transition-street.png",
+        "hash": "sha256:d596a159dc8813ae0725f2029cf3a7229d3550ea69e299306bf00ea3c5bc4157"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr5/3_world_trade_center/medium-fi/transition-closeup.png",
+        "hash": "sha256:13ce59e26299a0a50555af87467c0d1ad44c971062369baa01aa989bcc23d339"
       }
-    ],
-    "terrain": [],
-    "framesVerified": 73,
-    "sourceRebuild": "assets-4c110226cdb7e02d",
-    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+    ]
   }
 }

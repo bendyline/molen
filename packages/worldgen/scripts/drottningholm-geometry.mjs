@@ -1,5 +1,10 @@
 /** 'drottningholm_palace': connected palace, open courtyards, hipped roofs and two domed ends. */
 import './install-deterministic-math.mjs';
+import {
+  drawDrottningholmArcade,
+  drawDrottningholmGardenSteps,
+  drawDrottningholmRoofPavilion,
+} from './drottningholm-details.mjs';
 import { box, prism, rect } from './khmer-structure-geometry.mjs';
 
 export function buildDrottningholm(face, detail, r) {
@@ -100,10 +105,13 @@ export function buildDrottningholm(face, detail, r) {
     if (detail === 0) prism(wall, 'wall', p, r.foundationY, Y + 9.5);
     else {
       prism(f, 'stone', p, r.foundationY, Y);
-      slab('wall', p, 3.8, 9.5);
+      slab('wall', p, r.lakeArcade ? 5.3 : 3.8, 9.5);
     }
   }
-  if (detail) for (const p of r.lower) slab('wall', p, 0, 3.8);
+  if (detail) {
+    for (const p of r.lakeArcade?.lower ?? r.lower) slab('wall', p, 0, 3.8);
+    if (r.lakeArcade) for (const p of r.lakeArcade.upperBase) slab('wall', p, 3.8, 5.3);
+  }
   for (const p of r.main) slab('wall', p, 9.5, 18.2);
   for (const p of r.pavilions) slab('wall', p.polygon, 9.5, 12.8);
   for (const end of r.ends) slab('wall', end.polygon, 9.5, 11.6);
@@ -125,9 +133,7 @@ export function buildDrottningholm(face, detail, r) {
     hip((x0 + x1) / 2, (z0 + z1) / 2, x1 - x0 + 0.3, z1 - z0 + 0.3, 12.8, 3.2);
   }
   for (const x of [-19.5, 26.5]) {
-    hip(x, -2.8, 10.8, 30.7, 19, 6.4);
-    B('stone', x, 25.35, -2.8, 2.7, 0.5, 3.3);
-    B('roof', x, 25.85, -2.8, 1.7, 1.1, 2.3);
+    drawDrottningholmRoofPavilion(f, detail, r, x);
   }
   // Faceted end domes; closed lower rims and lantern caps keep every LOD watertight.
   const count = detail === 0 ? 8 : detail === 1 ? 12 : 20;
@@ -183,6 +189,8 @@ export function buildDrottningholm(face, detail, r) {
   hip(3.5, -2.8, 2.4, 2.4, 26.3, 1.3);
   B('roof', 3.5, 27.6, -2.8, 0.23, 2.5, 0.23);
   if (!detail) return;
+  drawDrottningholmArcade(f, detail, r);
+  drawDrottningholmGardenSteps(f, detail, r);
   for (const p of r.floors)
     for (const e of edges(p)) {
       if (e.length < 3) continue;
@@ -193,15 +201,29 @@ export function buildDrottningholm(face, detail, r) {
           z = e.a[1] + e.t[1] * u,
           central = x > -25.3 && x < 32.3,
           lake = z < -18 && central,
-          door = Math.hypot(x - r.entry.center[0], z - r.entry.center[1]) < 2.8;
-        if (!door) window(e, u, 1.1, lake ? 3.3 : 2.7, lake);
-        window(e, u, 6.3, 2.7);
+          door = Math.hypot(x - r.entry.center[0], z - r.entry.center[1]) < 2.8,
+          arcade =
+            r.lakeArcade &&
+            x > r.lakeArcade.x0 - 1 &&
+            x < r.lakeArcade.x1 + 1 &&
+            Math.abs(z - r.lakeArcade.front) < 0.25 &&
+            e.n[1] < -0.8,
+          gardenDoor =
+            r.lakeArcade &&
+            Math.abs(x - 3.5) < 2.8 &&
+            Math.abs(z - r.gardenEntryZ) < 0.35 &&
+            e.n[1] > 0.8;
+        if (!door && !arcade) window(e, u, 1.1, lake ? 3.3 : 2.7, lake);
+        if (!gardenDoor) window(e, u, 6.3, 2.7);
         if (detail > 1) {
           const pu = u - e.length / n / 2 + 0.1,
             px = e.a[0] + e.t[0] * pu,
             pz = e.a[1] + e.t[1] * pu;
-          if (Math.hypot(px - r.entry.center[0], pz - r.entry.center[1]) > 2)
-            panel('stone', e, pu, 0.45, 0.15, 9.25, 0.08);
+          if (
+            Math.hypot(px - r.entry.center[0], pz - r.entry.center[1]) > 2 &&
+            !(gardenDoor && Math.abs(px - 3.5) < 2)
+          )
+            panel('stone', e, pu, 0.45, arcade ? 5.35 : 0.15, arcade ? 3.9 : 9.25, 0.08);
           panel('stone', e, u, e.length / n, 5.1, 0.24, 0.08);
         }
       }
@@ -243,7 +265,7 @@ export function buildDrottningholm(face, detail, r) {
     [E.normal[0], 0, E.normal[1]],
   );
   // Closed curved soffit and front spandrels give the rectangular cutout its arched mouth.
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < (r.lakeArcade ? 0 : 8); i++) {
     const a = (i * Math.PI) / 8,
       b = ((i + 1) * Math.PI) / 8,
       u0 = (Math.cos(a) * E.width) / 2,

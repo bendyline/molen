@@ -1,0 +1,160 @@
+{
+  "gersId": "a58a02dc-6d4a-48f5-8fa3-ce559cc4d1a7",
+  "sourceRecord": {
+    "id": "a58a02dc-6d4a-48f5-8fa3-ce559cc4d1a7",
+    "names": null,
+    "sources": [
+      {
+        "property": "",
+        "dataset": "Google Open Buildings",
+        "license": null,
+        "record_id": "572FW8X6+4WG4",
+        "update_time": "2023-05-01T00:00:00.000Z",
+        "confidence": 0.7929,
+        "between": null,
+        "provider": "google",
+        "resource": "open_buildings",
+        "version": "2024-04-16"
+      }
+    ],
+    "level": null,
+    "height": null,
+    "min_height": null,
+    "is_underground": false,
+    "num_floors": null,
+    "num_floors_underground": null,
+    "min_floor": null,
+    "subtype": null,
+    "class": null,
+    "facade_color": null,
+    "facade_material": null,
+    "roof_material": null,
+    "roof_shape": null,
+    "roof_direction": null,
+    "roof_orientation": null,
+    "roof_color": null,
+    "roof_height": null,
+    "has_parts": false,
+    "version": 1,
+    "bbox": {
+      "xmin": -70.68770599365234,
+      "xmax": -70.6876449584961,
+      "ymin": -29.05222511291504,
+      "ymax": -29.052173614501953
+    },
+    "theme": "buildings",
+    "type": "building",
+    "geometry_wkb": "0103000000010000000500000070815F7E02AC51C0BE26B5615E0D3DC0F3EC4D6702AC51C0138DA4935B0D3DC07555A01603AC51C03CB02D4D5B0D3DC0F2E9B12D03AC51C011C9EB1C5E0D3DC070815F7E02AC51C0BE26B5615E0D3DC0"
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -70.6876522,
+          -29.0522214
+        ],
+        [
+          -70.6876467,
+          -29.0521786
+        ],
+        [
+          -70.6876885,
+          -29.0521744
+        ],
+        [
+          -70.687694,
+          -29.0522173
+        ],
+        [
+          -70.6876522,
+          -29.0522214
+        ]
+      ]
+    ]
+  },
+  "heightSources": [
+    "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/9690c_2023_06_30/tile_bIm4kpJG2O8.tif"
+  ],
+  "heightSourceYear": 2023,
+  "heightBand": 1,
+  "presenceBand": 2,
+  "samplingStepMeters": 4,
+  "samplingGrid": "Uniform UTM19S global multiples4m plus0.25m pixel centers; per-point selection of original source tile, no gap/edge fill or vector changes.",
+  "presenceThreshold": 0.7,
+  "samples": [
+    {
+      "source": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/9690c_2023_06_30/tile_bIm4kpJG2O8.tif",
+      "pixel": [
+        24992,
+        16391
+      ],
+      "utm": [
+        335692.25,
+        6785056.25
+      ],
+      "values": [
+        0.004766031168401241,
+        5,
+        0.8799999952316284
+      ]
+    }
+  ],
+  "selectedSamples": 1,
+  "heightSummary": {
+    "min": 5,
+    "median": 5,
+    "max": 5,
+    "q25": 5,
+    "q75": 5
+  },
+  "limitations": "Learned effective4m relative heights, not a survey, floor count or measured error bound. Source footprint confidence is not a probability; no Chile-specific validation claimed. Full original polygon retained; all imagery unused.",
+  "originalTileMetadata": [
+    {
+      "source": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/9690c_2023_06_30/tile_bIm4kpJG2O8.tif",
+      "width": 25000,
+      "height": 25000,
+      "samples": 3,
+      "bands": [
+        {
+          "sample": 0,
+          "meta": {
+            "DESCRIPTION": "building_fractional_count"
+          }
+        },
+        {
+          "sample": 1,
+          "meta": {
+            "DESCRIPTION": "building_height"
+          }
+        },
+        {
+          "sample": 2,
+          "meta": {
+            "DESCRIPTION": "building_presence"
+          }
+        }
+      ],
+      "origin": [
+        323196,
+        6793252,
+        0
+      ],
+      "resolution": [
+        0.5,
+        -0.5,
+        0
+      ],
+      "geoKeys": {
+        "GTModelTypeGeoKey": 1,
+        "GTRasterTypeGeoKey": 1,
+        "GTCitationGeoKey": "WGS 84 / UTM zone 19S",
+        "GeogCitationGeoKey": "WGS 84",
+        "GeogAngularUnitsGeoKey": 9102,
+        "ProjectedCSTypeGeoKey": 32719,
+        "ProjLinearUnitsGeoKey": 9001
+      }
+    }
+  ],
+  "imageryUsed": false
+}

@@ -1,0 +1,67 @@
+{
+  "format": "molen/primary-facts-reconstruction@1",
+  "case": "berlin-original-whole-sbahn-network-alkis-envelopes-and-engineer-operator-2021",
+  "model": "berlin_nord_sud_tunnel",
+  "structureId": "QS-6ba05caeaa77",
+  "method": "primary-facts-only",
+  "imageryUsed": false,
+  "primarySources": [
+    {
+      "key": "engineering",
+      "url": "https://www.berlin.de/ba-friedrichshain-kreuzberg/politik-und-verwaltung/aemter/stadtentwicklungsamt/bebauungsplaene/vi-140cab_k15_tragfahigkeit_s-bahn_tunnel_200430_komp.pdf",
+      "path": "reference-rights/primary-engineering.txt",
+      "sha256": "sha256:94dd554d728a907faa43c836b30efd650bc32486230e18fc49788b7ba4163f04",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-10-31"
+    },
+    {
+      "key": "operator",
+      "url": "https://sbahn.berlin/aktuelles/artikel/unterm-getuemmel-direkt-ins-zentrum/",
+      "path": "reference-rights/primary-operator.txt",
+      "sha256": "sha256:9e389b86b522d9c14def02a06e3c0363a2b9f27dec293371ddca0edf79eb765c",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-10-31"
+    },
+    {
+      "key": "dimensions",
+      "url": "https://www.deutschebahn.com/pr-berlin-de/aktuell/presseinformationen/S-Bahn-Berlin-Nord-Sued-Tunnel-an-zwei-Wochenenden-gesperrt-5879028",
+      "path": "reference-rights/primary-dimensions.txt",
+      "sha256": "sha256:9dd7088ddd92d0bc2bf881c823024a5e065b2dddca86520e10533e38b1be40f1",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-10-31"
+    }
+  ],
+  "nativeIdentity": {
+    "path": "native-map/original-sbahn-network.json",
+    "sha256": "sha256:7e295940ac7d47c24204f49267f209ab8b801d830345ce1e11cbafd97886b709",
+    "envelopesPath": "native-map/reviewed-sbahn-envelopes.json",
+    "envelopesHash": "sha256:7b45d945fc487066bf6708dae53739d32ecf564401fa1b29561f5dd6b263350b",
+    "originalEnvelopePath": "native-map/original-alkis-tunnels.json",
+    "originalEnvelopeHash": "sha256:7abcb6a87f013b7bf052ea3c200a9f2a26bc65d404be6310c2c70b10de495ab4",
+    "portalPath": "native-map/original-portal-heads.json",
+    "portalHash": "sha256:de1ef467be3e67c8018516c75b0ac0b4ada383b8aac14b2f2cf6548f541ffdff",
+    "derivedPlanPath": "native-map/derived-tunnel-plan.json",
+    "derivedPlanHash": "sha256:43ebcf1cab633f6d5e2976a8f7e5a8a63a08fc286b14b83c07c9f5be30a4c450",
+    "derivedInputPath": "native-map/derive-tunnel-input.json",
+    "derivedInputHash": "sha256:6fd794427df1de0de420566f7e98ac8565224338ff9de21175c5fac1aa49466f"
+  },
+  "quallaFirst": {
+    "families": 145,
+    "inventoryHash": "sha256:ffd153e5445a28b4fd39fd3d294c1ae4bcb6f37a23bf40865e5c37191ac80efc",
+    "questionableImageryAdopted": false
+  },
+  "estimates": [
+    "Seventeen actual officialALKISwhole-tunnel/station envelopes plus complete98originalDB6032/6002/6034undergroundrailways and six topology-derived externaltrackheads define whole physicalscope. Both southernbranches, allsixstationwidenings, intrinsicPotsdamerupper/sidingstubs and Nordbahnhofyards retained. Nativeplan765railcontrols and2104cadastralcontrols including42controlPotsdamerinnercadastralvoid retained as source. Mainline/U-Bahn/roadcrossings not adopted. 2026numericaldata only approximates2021registration; no exacthistoricalsurvey or image tracing.",
+    "Some officialcadastralplanreaches are absent, and the Potsdamer2Dvoid has a mapped siding under/through it. Actualrunning/sidingroutes receive an original estimated2.45mhalfwidth corridor only where needed to join/complete the layeredphysicalplan. Booleanunion retains whole officialenvelopes and allactualrailreaches; this is not a surveyedroofplan, and the2Dvoid is not asserted to be a physicalopening through everyverticallevel. Nominalplan/componentuncertainty6m; current rawnativeinputs preserved, no providerfield fitting.",
+    "Independent original8192m129x129field,16641values/144rawtiles,datum40.0238m/range24.4375..64.5947m fixed BEFORE floors/mainsections/geometry.64mreview samples from compositeDEM, not a precise urbanstreet/tunnel survey. Northernactualtrackhead249189056 fixes approachdatum. Original latitudinal grade profile then chosen once: northportal+.2m, Nordbahnhof-8m, Oranienburger-10m, Friedrichstrasse-16m, BrandenburgerTor-11m, Potsdamer-11.5m, Anhalter-12.5m, Landwehr-14.3m, southportals+.2m relativefixed40.0238mproviderdatum. All slopesunder33permille. Every floor/section and originalfield/frame preserved, never cut/masked/flattened/refetched/reframed/refit for renders.",
+    "Railtop+.22mabovebed, nominalinnerceiling4.02mabovebed (3.80mclear above rail); junctionceilings7.26m (7.04mabove rail) nearPotsdamer/Anhalter, .8mroofbuild-up/.35mwall nominal. Original roof/floorplan widths, sectiontransitions, wallthicknesses, completeverticalprofile and all hiddensteel/support/bay census are estimates. WTMactual2020localrolledbeams~.8mhigh do not prove uniformconstruction acrosswhole5.8kmtunnel. Operator5805m/other5884m scalar descriptions are not used torescale actualrailgeometry;18.7km is summednetworktracklength, not tunnelborelength.",
+    "Whole thinroof/floor/sidelining shell with real continuousinteriorrailspace and sixexternalmouths, not a solidpropertyextrusion or arbitraryportal. Originalfulltrackpaths preserved; .35mconcretewalls/.8mroof, rectangularportalframes, roofgirders/columns, railprofile and sparsecloseup sleepers are original estimates from writtenforms. Detachedsurfacestationhouses, exactstreetentryfacades/signage/artwork and unrelatedneighbors excluded. Independentoriginalfield may hide most undergroundstructure or cover/expose mouthbases; portable/shared review views independentlyinspect the completegeometry. Groundcontact/verticalregistration remain unverified.",
+    "Qualla-first145families/zero conflicts; everyimageunused. Protectedhistoric/statearchive/currentphotos, officialengineerfigures/drawings and regionalPD/CC0images are not adopted. OriginaldirectWTMwrittenreport, officialoperatorhistory and explicitly archivedDB2021writtenrelease only. OfficialnumericALKISDL-DE-Zero2.0 and OSMODbL are factualvectorinputs; no rightsrepair/photo-derivedgeometry or imageapprovalclaimed. Exacttrim/finish/colors remain estimates.",
+    "Approximate2021physicaltunnel proposal/currentWorldEligible false. Roof/corridor/lining/sixmouths/allmajorstationwidenings retained in allfourLODs; fine curvature, rails/supports/sleepers reduce atdistance. No modernS21or mainlinetunnelproxy; no surveyedcontact or automaticfootprintreplacement."
+  ],
+  "review": {
+    "status": "reviewed-primary-facts",
+    "reviewedOn": "2026-11-01",
+    "notes": "Whole complete98-way750VDBS-Bahnnetwork/17officialALKISenvelopes/sixexternaltrackheads/allsixstationwidenings/intrinsicstubs. Writtenengineer/officialoperatorfacts; archivedDBrelease explicitlyboundtooriginalURLandcopy, not a livegeometrysurvey. Everyimageunused. Missing/layeredplan/section/grade/finish estimates explicit; originalfield/frame/floors/sections unchanged, no oneportal/mainline/U-Bahn/S21proxy."
+  }
+}

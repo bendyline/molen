@@ -8,6 +8,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readPlacementSources } from '../../../../packages/worldgen-earth/scripts/placement-sources.mjs';
+import { readCurrentReferences } from './member-references.mjs';
 import { inspectLocalModel } from './progress.mjs';
 import { contentHash, loadCatalog } from './scan.mjs';
 import { loadQuallaManager, modelAnnotations, reconcileAnnotation } from './sync-qualla.mjs';
@@ -95,6 +96,31 @@ export function completedPhysicalModelIdentity(entry) {
   return identity;
 }
 
+/** A declared site member can be linked without declaring its whole parent complete. */
+export function completedBatchEntries(batch, ids) {
+  const candidates = batch.entries.flatMap((parent) => [
+    { entry: parent },
+    ...(parent.requiredMembers ?? []).map((entry) => ({ entry, parent })),
+  ]);
+  return [...new Set(ids)].map((id) => {
+    const matches = candidates.filter(({ entry }) => entry.modelIdentity === id);
+    if (matches.length !== 1) throw Error(`Not a completed fixed-batch identity: ${id}`);
+    const { entry, parent } = matches[0];
+    if (!entry.sourcePath || entry.modelState !== 'completed')
+      throw Error(`Not a completed fixed-batch identity: ${id}`);
+    if (
+      parent &&
+      (entry.parentModelIdentity !== parent.modelIdentity ||
+        entry.structureId !== parent.structureId ||
+        entry.workOwner !== batch.id ||
+        !equal([...entry.storyIds].sort(), [...parent.storyIds].sort()) ||
+        !equal(entry.stories, parent.stories))
+    )
+      throw Error(`Site member differs from its declared parent/story scope: ${id}`);
+    return entry;
+  });
+}
+
 export async function syncCompleted({
   ids,
   qualla = path.resolve(root, '../qualla-internal'),
@@ -109,12 +135,33 @@ export async function syncCompleted({
     throw Error('Explicit --ids=model_identity,... required');
   if (!/^qualla-\d{3}$/.test(batchName)) throw Error('Invalid batch name');
   const batch = read(path.join(output, `batches/${batchName}.json`));
-  const entries = [...new Set(ids)].map((id) => {
-    const matches = batch.entries.filter((e) => e.modelIdentity === id);
-    if (matches.length !== 1 || !matches[0].sourcePath || matches[0].modelState !== 'completed')
-      throw Error(`Not a completed fixed-batch identity: ${id}`);
-    return matches[0];
-  });
+  const selected = completedBatchEntries(batch, ids);
+  const collections = selected.filter((entry) => entry.collectionSourcePath);
+  const verifyCollection = async (entry) => {
+    const row = await inspectLocalModel(entry, {
+      repository,
+      project: read(path.join(repository, 'content/worldgen/project.json')),
+      stylepack: read(path.join(repository, 'content/worldgen/stylepack.json')),
+      placements: (
+        await readPlacementSources(path.join(repository, 'content/earth/source/placements'))
+      ).catalog,
+      imageryPolicy: batch.policy?.imagery,
+      qualla,
+    });
+    if (row.readiness !== 'ready')
+      throw Error(
+        `Collection completion evidence rejected: ${entry.modelIdentity}: ${row.blockers.join(', ')}`,
+      );
+    return row;
+  };
+  const collectionInputs = new Map();
+  for (const entry of collections)
+    collectionInputs.set(entry.modelIdentity, (await verifyCollection(entry)).inputHash);
+  // A site links the real independently placed assets, never an invented aggregate asset.
+  const expanded = selected.flatMap((entry) =>
+    entry.collectionSourcePath ? entry.requiredMembers : [entry],
+  );
+  const entries = [...new Map(expanded.map((entry) => [entry.modelIdentity, entry])).values()];
   const structures = fs
     .readFileSync(path.join(output, 'structures.jsonl'), 'utf8')
     .trim()
@@ -147,7 +194,7 @@ export async function syncCompleted({
       placements: (
         await readPlacementSources(path.join(repository, 'content/earth/source/placements'))
       ).catalog,
-      currentReferences: read(path.join(output, `references/${entry.structureId}.json`)),
+      currentReferences: readCurrentReferences(output, entry),
       imageryPolicy: batch.policy?.imagery,
       qualla,
     });
@@ -223,6 +270,11 @@ export async function syncCompleted({
         );
         if (!equal(current.molen3d, change.previous))
           throw Error(`Annotation changed concurrently: ${change.id}; rerun`);
+        for (const entry of collections)
+          if (
+            (await verifyCollection(entry)).inputHash !== collectionInputs.get(entry.modelIdentity)
+          )
+            throw Error(`Collection evidence changed during sync: ${entry.modelIdentity}`);
         for (const proof of verified.filter(({ refs }) =>
           refs.stories.some((s) => s.id === change.id),
         )) {
@@ -237,7 +289,8 @@ export async function syncCompleted({
   }
   return {
     mode: write ? 'write' : check ? 'check' : 'dry-run',
-    modelScope: entries.map((e) => e.modelIdentity),
+    modelScope: selected.map((e) => e.modelIdentity),
+    ...(collections.length ? { physicalModels: entries.map((e) => e.modelIdentity) } : {}),
     linkedStories: desired.size,
     changedArticles: changes.length,
     writtenArticles: written,

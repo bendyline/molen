@@ -1,0 +1,230 @@
+{
+  "sourceUrl": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building/part-00067-1181d434-c3af-5678-9485-b9d3425e9dc0-c000.zstd.parquet",
+  "release": "2026-10-21.0",
+  "sourceLicense": "Overture buildings ODbL-1.0; Google numerical height data dual CC BY 4.0 / ODbL, selected ODbL. Dataset imagery unused.",
+  "modelRecord": {
+    "gersId": "e71c643d-5a7f-45cf-9551-e771a89683f4",
+    "sourceRecord": {
+      "id": "e71c643d-5a7f-45cf-9551-e771a89683f4",
+      "names": null,
+      "sources": [
+        {
+          "property": "",
+          "dataset": "Google Open Buildings",
+          "license": null,
+          "record_id": "48R3VPPV+4GFC",
+          "update_time": "2023-05-01T00:00:00.000Z",
+          "confidence": 0.896,
+          "between": null,
+          "provider": "google",
+          "resource": "open_buildings",
+          "version": "2024-04-16"
+        }
+      ],
+      "level": null,
+      "height": null,
+      "min_height": null,
+      "is_underground": false,
+      "num_floors": null,
+      "num_floors_underground": null,
+      "min_floor": null,
+      "subtype": null,
+      "class": null,
+      "facade_color": null,
+      "facade_material": null,
+      "roof_material": null,
+      "roof_shape": null,
+      "roof_direction": null,
+      "roof_orientation": null,
+      "roof_color": null,
+      "roof_height": null,
+      "has_parts": false,
+      "version": 1,
+      "bbox": {
+        "xmin": -58.256290435791016,
+        "xmax": -58.256134033203125,
+        "ymin": -33.114749908447266,
+        "ymax": -33.1146240234375
+      },
+      "theme": "buildings",
+      "type": "building",
+      "geometry_wkb": "01030000000100000005000000507DD6EBCC204DC0BEDD921CB08E40C09F6E4507C9204DC041F0F8F6AE8E40C0D4957439CA204DC0F55E2118AC8E40C085A4051ECE204DC0724CBB3DAD8E40C0507DD6EBCC204DC0BEDD921CB08E40C0"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -58.2562537,
+            -33.1147495
+          ],
+          [
+            -58.2561349,
+            -33.1147145
+          ],
+          [
+            -58.2561714,
+            -33.1146269
+          ],
+          [
+            -58.2562902,
+            -33.1146619
+          ],
+          [
+            -58.2562537,
+            -33.1147495
+          ]
+        ]
+      ]
+    },
+    "heightSource": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/95a54_2023_06_30/tile_EsiPDABwYnU.tif",
+    "heightSourceYear": 2023,
+    "heightBand": 1,
+    "presenceBand": 2,
+    "sourceBandDescriptions": [
+      {
+        "sample": 0,
+        "meta": {
+          "DESCRIPTION": "building_fractional_count"
+        }
+      },
+      {
+        "sample": 1,
+        "meta": {
+          "DESCRIPTION": "building_height"
+        }
+      },
+      {
+        "sample": 2,
+        "meta": {
+          "DESCRIPTION": "building_presence"
+        }
+      }
+    ],
+    "samplingStepMeters": 4,
+    "confidenceThreshold": 0.7,
+    "samples": [
+      {
+        "pixel": [
+          22169,
+          12733
+        ],
+        "utm": [
+          382796.75,
+          6335301.25
+        ],
+        "values": [
+          0.004766031168401241,
+          5,
+          0.8199999928474426
+        ]
+      },
+      {
+        "pixel": [
+          22177,
+          12733
+        ],
+        "utm": [
+          382800.75,
+          6335301.25
+        ],
+        "values": [
+          0.010398613288998604,
+          5,
+          0.8199999928474426
+        ]
+      },
+      {
+        "pixel": [
+          22161,
+          12741
+        ],
+        "utm": [
+          382792.75,
+          6335297.25
+        ],
+        "values": [
+          0.000433275563409552,
+          0,
+          0.05999999865889549
+        ]
+      },
+      {
+        "pixel": [
+          22169,
+          12741
+        ],
+        "utm": [
+          382796.75,
+          6335297.25
+        ],
+        "values": [
+          0.0012998266611248255,
+          4,
+          0.6600000262260437
+        ]
+      },
+      {
+        "pixel": [
+          22177,
+          12741
+        ],
+        "utm": [
+          382800.75,
+          6335297.25
+        ],
+        "values": [
+          0.0030329290311783552,
+          3.5,
+          0.5600000023841858
+        ]
+      },
+      {
+        "pixel": [
+          22169,
+          12749
+        ],
+        "utm": [
+          382796.75,
+          6335293.25
+        ],
+        "values": [
+          0.000866551126819104,
+          1.5,
+          0.20000000298023224
+        ]
+      },
+      {
+        "pixel": [
+          22177,
+          12749
+        ],
+        "utm": [
+          382800.75,
+          6335293.25
+        ],
+        "values": [
+          0.0021663778461515903,
+          2,
+          0.3199999928474426
+        ]
+      }
+    ],
+    "selectedSamples": 2,
+    "heightSummary": {
+      "min": 5,
+      "median": 5,
+      "max": 5,
+      "q25": 5,
+      "q75": 5
+    },
+    "limitations": "Heights are learned numerical estimates at effective 4 m resolution, not a surveyed roof profile or floor census. Confidence is a relative rank, not a probability. Uruguay performance is not established by the Global North evaluation. Use at least 3 m height uncertainty; all imagery unused."
+  },
+  "wholeFactoryContext": {
+    "path": "native-map/whole-original-factory.json",
+    "featureId": "way/119015899",
+    "role": "Named Planta UPM works identity and containing site only; site boundary is not a roof."
+  },
+  "fullRecordSnapshotHash": "sha256:b1075b1238453b2971176c22acb4883d30eb9daa740f1f74dbd25a4767e30da9",
+  "heightSnapshotHash": "sha256:3f8ebf992f725fbbb3e332dc22e855ae6971c7e5cc108b307f358d2f850b76b1"
+}

@@ -7,13 +7,7 @@ import {
 } from '@bendyline/molen-client';
 import { createMaterialBakeWorkerPool } from '@bendyline/molen-materials';
 import { validateByKind } from '@bendyline/molen-schema';
-import {
-  createTerrainObject,
-  markTerrainGroundSurface,
-  setTerrainGroundCutouts,
-  TerrainGroundCutoutController,
-  terrainGroundSourceGeometry,
-} from '@bendyline/molen-terrain/client';
+import { createTerrainObject } from '@bendyline/molen-terrain/client';
 import { heightfieldFromPng, type TerrainDescriptor } from '@bendyline/molen-terrain/kernel';
 import {
   buffersToObject3D,
@@ -34,8 +28,22 @@ import {
   EARTH_LIGHTING,
   EARTH_SKY_PALETTE,
   EARTH_TONE_MAPPING,
+  EARTH_WATER_COLOR,
 } from '../../../../packages/earth/src/client/look';
+import {
+  markTerrainGroundSurface,
+  setTerrainGroundCutouts,
+  TerrainGroundCutoutController,
+  terrainGroundSourceGeometry,
+} from '../../../../packages/terrain/src/ground-cutout';
 import { mediumFiAsset, mediumFiLodFile } from './medium-fi-asset.mjs';
+import {
+  addReviewWaterBanks,
+  createReviewWater,
+  mediumFiCameraFar,
+  mediumFiCameraNear,
+  mediumFiFocus,
+} from './medium-fi-context.mjs';
 
 declare const __REVIEW_ROOT__: string;
 const base = `/@fs/${__REVIEW_ROOT__}/`;
@@ -70,7 +78,6 @@ if (
     ))
 )
   throw new Error('Invalid model-owned review ground opening');
-const groundCutouts = groundOpening ? new TerrainGroundCutoutController() : undefined;
 const openingSurfaces: Array<{
   mesh: THREE.Mesh;
   source: THREE.BufferGeometry;
@@ -144,7 +151,21 @@ let neighborPositions = [
   [-95, -72],
   [88, -71],
 ].map(([x, z]) => [x * contextScale, z * contextScale]);
-const reviewCenter = terrainDescriptor ? sidecar.bounds.sphere.center : [0, 0, 0];
+const focus = contextOptions.has('focus') ? JSON.parse(contextOptions.get('focus')!) : undefined;
+const reviewCenter = mediumFiFocus(
+  focus,
+  terrainDescriptor ? sidecar.bounds.sphere.center : [0, 0, 0],
+);
+const waterFixture = contextOptions.get('waterFixture');
+const reviewWaterDocument = waterFixture ? await read(waterFixture) : undefined;
+const reviewWater = reviewWaterDocument
+  ? createReviewWater(reviewWaterDocument, EARTH_WATER_COLOR)
+  : undefined;
+if (reviewWater) scene.add(reviewWater);
+const groundCutouts =
+  groundOpening || reviewWater?.userData.reviewWater.shorelineCutouts
+    ? new TerrainGroundCutoutController()
+    : undefined;
 // Source-local review surfaces (such as moat water) accompany the research terrain.
 // Only explicit palette boxes are accepted; no source scripts or asset loads run here.
 const fixtureEntities = JSON.parse(contextOptions.get('fixtureEntities') ?? '[]');
@@ -179,12 +200,20 @@ if (terrainDescriptor || terrainHeightmap) {
   const response = await fetch(base + terrainHeightmap);
   if (!response.ok) throw new Error(`${terrainHeightmap}: ${response.status}`);
   const field = heightfieldFromPng(descriptor, new Uint8Array(await response.arrayBuffer()));
+  if (reviewWater && reviewWaterDocument.clipTerrain === true) {
+    await addReviewWaterBanks(
+      reviewWater,
+      reviewWaterDocument,
+      { heightfield: field, origin: descriptor.origin, tileSize: descriptor.chunkSize },
+      descriptor.layers[0]?.color ?? '#8d8373',
+    );
+  }
   const hill = createTerrainObject(field, descriptor);
   hill.traverse((o) => {
     if ((o as THREE.Mesh).isMesh) {
       o.castShadow = true;
       o.receiveShadow = true;
-      if (groundOpening) {
+      if (groundCutouts) {
         const mesh = o as THREE.Mesh;
         markTerrainGroundSurface(mesh);
         openingSurfaces.push({
@@ -419,6 +448,17 @@ function view(options: View = {}) {
     ];
   camera.position.set(p[0], p[1], p[2]);
   camera.lookAt(look[0], look[1], look[2]);
+  if (focus) {
+    camera.far = mediumFiCameraFar(
+      Math.max(3000, 600 * contextScale, reviewFar),
+      p,
+      look,
+      sidecar.bounds.sphere.radius,
+      true,
+    );
+    camera.near = mediumFiCameraNear(p, look, sidecar.bounds.sphere);
+    camera.updateProjectionMatrix();
+  }
   if (reflections) {
     hemisphere.intensity = EARTH_LIGHTING.dayAmbient;
     reflections.update(reflectionStateFromLights(hemisphere, sun, scene.background, 0));
@@ -449,6 +489,10 @@ function view(options: View = {}) {
     graphReads: { ...graphReads },
     neighborStyle,
     contextScale,
+    reviewCenter: [...reviewCenter],
+    cameraFar: camera.far,
+    cameraNear: camera.near,
+    waterFixture: reviewWater ? { path: waterFixture, ...reviewWater.userData.reviewWater } : null,
     cameraYaw,
     reflections: reflections ? 'sky-pmrem' : 'none',
     ...(groundOpening

@@ -1,0 +1,133 @@
+{
+  "format": "molen/scene@3",
+  "name": "Mubarak Mandi southern upper link context",
+  "seed": "mubarak_mandi_southern_courtyard_upper_link-context",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "mubarak_mandi_southern_courtyard_upper_link",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.mubarak_mandi_southern_courtyard_upper_link",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "mubarak_mandi_southern_west_hall",
+      "components": {
+        "transform": {
+          "pos": [
+            -31.236998276223023,
+            0.039400000000000546,
+            -12.432139230264944
+          ],
+          "rot": [
+            0,
+            0.9413382520718184,
+            0,
+            0.3374645095211846
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.mubarak_mandi_southern_west_hall",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "mubarak_mandi_southern_east_hall",
+      "components": {
+        "transform": {
+          "pos": [
+            20.073957342350496,
+            0.7405999999999722,
+            25.944610019558944
+          ],
+          "rot": [
+            0,
+            0.9414733494543363,
+            0,
+            0.3370874252582455
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.mubarak_mandi_southern_east_hall",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
+            "castShadow": true
+          },
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      100,
+      80,
+      -130
+    ],
+    "lookAt": [
+      -4,
+      6,
+      5
+    ],
+    "fov": 43
+  },
+  "physics": {
+    "engine": "none"
+  },
+  "terrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  }
+}

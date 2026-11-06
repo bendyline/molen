@@ -1,0 +1,47 @@
+{
+  "format": "molen/primary-facts-reconstruction@1",
+  "case": "auger-ground-electric-field-station-guanaCO-2023",
+  "model": "coihueco_electric_field_station",
+  "structureId": "QS-2ba5044b3ca3",
+  "method": "primary-facts-only",
+  "imageryUsed": false,
+  "primarySources": [
+    {
+      "key": "network",
+      "path": "primary-source/electric-field-network-written-facts.json",
+      "url": "https://publikationen.bibliothek.kit.edu/1000180290/158121542",
+      "sha256": "sha256:3b5262829d879568d8d6ae7ef0e3dd6509ccb83ecadf4d24c2903187c6dbbb44",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-11-02"
+    },
+    {
+      "key": "manufacturer",
+      "path": "primary-source/manufacturer-written-dimensions.json",
+      "url": "https://www.campbellsci.co.uk/cs110",
+      "sha256": "sha256:b486d8f773b3280cfce778cef80dc33d98fdc585c6f223d7512bc556c5c8bd8a",
+      "use": "factual-text-only",
+      "retrievedOn": "2026-11-02"
+    }
+  ],
+  "nativeIdentity": {
+    "path": "native-map/original-station-record.json",
+    "sha256": "sha256:91fd4dd91768ea4eecfdbe2e207f823f5ff597611282e3348fdc06e74632900d",
+    "featureId": "primary/EFM-1625"
+  },
+  "quallaFirst": {
+    "families": 27,
+    "inventoryHash": "sha256:d2d06b7d1d63c49b366408c9dfbf2ca39d4c7893341605fe2bd1320d86d43cb2",
+    "questionableImageryAdopted": false
+  },
+  "estimates": [
+    "Original schematic estimates: .05m mast diameter,2.30m mast top,1.15m tripod leg spread, brackets, vertical orientation of the .152x.152x.432m nominal sensor envelope, .84x.60m radio-grid dish,1.2x.67m solar panel and its slope/offset, joinery, cables, colors and all minor fittings. Sensor face remains2m over the original point datum; no lightning rod or guy wires.",
+    "The exact component offsets, yaw, ground registration and graded patch are unverified. Published latitude/longitude rounded to five decimals; datum not separately stated;10m horizontal and180degree orientation uncertainty are nominal estimates.",
+    "Whole independent instrument assembly only. Existing BATATA fencing/new15m field-station fences remain separate because exact boundaries are unprovided. Other detectors, CRS, AERAWS, receiving-tower antenna and entire observatory are not represented by this model.",
+    "Represented November2023 installation after documented battery servicing. Every source photograph, figure, diagram, plan and image-derived description unused. Original source field fixed before these floor/section estimates; no grade cutout/flattening/mask/refit."
+  ],
+  "review": {
+    "status": "reviewed-primary-facts",
+    "reviewedOn": "2026-11-02",
+    "notes": "Researcher original station point and measured2m sensor height; written tripod/equipment/anchoring details. All other shape/finish/placement estimates explicit. No imagery or entire-observatory proxy."
+  }
+}

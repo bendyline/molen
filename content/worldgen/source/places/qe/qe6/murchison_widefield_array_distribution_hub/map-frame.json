@@ -1,0 +1,93 @@
+{
+  "format": "molen/structure-map-frame@1",
+  "candidateId": "QS-73fe16470c60",
+  "title": "Murchison Widefield Array distribution hub",
+  "anchor": [
+    116.67081523611111,
+    -26.705116036123794
+  ],
+  "heading": 0,
+  "coordinateSpace": "model-local-xz",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "axis": "+X east; +Z south; +Y up. Originalwritten hub-to-array-core vector fixes north-up context, not cabinet facing.",
+  "source": "Original MWA as-built engineering paper sections2.1/2.2 and explicitnumericcaption; nofiguregeometryorimageryadopted.",
+  "sourceUrl": "https://arxiv.org/pdf/1206.6945",
+  "identityStatus": "Actualwrittenpower/datahubwithtwoadjacentplinths,200msouthofarraycore. Derivedauthorregistration,notanOSMnodeorbuildingfootprint. Externalsections/facing/2013continuityunverified.",
+  "geometryLabel": "Written hub-to-array-core relativevector only: huborigin[0,0] tocore[0,-200] in +Zsouth frame. This is not a buildingoutline, servicepath, fabricatednativepoint or solidsiteboundary.",
+  "geometry": {
+    "centerlines": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          -200
+        ]
+      ]
+    ]
+  },
+  "features": [
+    {
+      "id": "mwa/2012-distribution-hub-written-control",
+      "role": "written-relative-position-vector-not-building-footprint-or-cable-route",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          -200
+        ]
+      ],
+      "properties": {
+        "derivedAuthorHubPoint": true,
+        "approximate200mSouth": true,
+        "separateAdjacentPlinths": 2
+      }
+    }
+  ],
+  "mappedIdentity": {
+    "name": "Murchison Widefield Array distribution hub",
+    "parentCollection": "murchison_radio_astronomy_observatory",
+    "featureIds": [
+      "mwa/2012-distribution-hub-written-control"
+    ],
+    "nativeHubPointVerified": false,
+    "registrationUncertaintyMeters": 50,
+    "nativeSource": {
+      "path": "native-map/original-hub-primary-control.json",
+      "hash": "sha256:e11e688c02697aa25e0731dbac338ac91e777ad344f8b30c205ea99336d1edfe"
+    }
+  },
+  "orientationControl": {
+    "status": "reviewed-approximation",
+    "reviewedOn": "2026-11-02",
+    "headingRadians": 0,
+    "uncertaintyDegrees": 180,
+    "basis": "Writtennorth-southrelativevector establishes contextaxis. Actualcabinet/padfacingnotstated; cardinalvisualizationfacing isexplicitlyestimated.",
+    "referencePages": [
+      "https://arxiv.org/pdf/1206.6945"
+    ]
+  },
+  "terrainContact": {
+    "local": [
+      0,
+      0
+    ],
+    "modelY": 0,
+    "basis": "Written derivedhubpoint fixed before ownunmaskedfield, floors, pads andmainsections. Not a surveyedfoundationlevel."
+  },
+  "historicalAppearance": {
+    "representedDate": "2013-12-31",
+    "validFrom": "2013-01-01",
+    "validUntil": "2014-01-01"
+  },
+  "notes": "Whole MWA power/data distribution hub: two separate adjacent concrete plinths, compact transformer/LVswitchboardkiosk on one and fibre-patch environmental enclosure on the other. Whole smallapparatus ensemble, not a donga, separateCPF or onecabinetproxy. Written original2012engineeringfacts only; allappearanceimageryunused. Hubpointderivedfromwritten(0,-200)mcaption andnumericarrayorigin, approximately200msouth; no native/surveyedhubpointclaim.50m nominalpositionallowance and180degfacinguncertainty are authorallowances,notmeasurederrorbounds. Cabinet/padsections/spacing/finish and2012-to2013continuity remain estimates, selectedonlyafter ownfield."
+}

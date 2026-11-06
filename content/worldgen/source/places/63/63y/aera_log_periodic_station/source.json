@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.aera_log_periodic_station",
+  "kind": "static-structure",
+  "title": "AERA log-periodic radio station",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.aera_log_periodic_station",
+        "output": "assets/places/63/63y/aera_log_periodic_station/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7514708969ab1e8317ec234a6ed2c3d8a3113f3d613e9dcd0d17c445230bf120"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "primary-facts-reconstruction.json",
+      "primary-source/holt-2018-station-design-text.txt",
+      "primary-source/antenna-written-controls.json",
+      "native-map/original-aera-weather-site-reference.json",
+      "estimated-array-layout.json",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-10053-19800.png",
+      "import-report.json",
+      "geometry-review.json",
+      "instance-placement-manifest.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

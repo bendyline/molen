@@ -1,0 +1,417 @@
+{
+  "id": "mratinje_dam",
+  "title": "Mratinje Dam",
+  "wikidataId": "Q1546929",
+  "referenceCoordinate": {
+    "longitude": 18.842596634,
+    "latitude": 43.27257545
+  },
+  "module": "content/worldgen/source/places/sr/srt/mratinje_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "pale": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "shade": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "damp": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "slab": {
+      "slot": "trim",
+      "graph": "concrete_plain"
+    },
+    "asphalt": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "door": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "rail": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    }
+  },
+  "exportLabel": "Molen original Mratinje Dam, double-curvature arch and approach works",
+  "expectedDraftMasterHash": "sha256:3471ce7f8d127b7154f509f865cf921c71e84e352e582da191ac6912a3507c89",
+  "visualBrief": "Mratinje Dam’s 220 m double-curvature arch, three crest spillways, five recessed outlet mouths, crown road, blue rails, red-roof service buildings, inspection gallery and two approach portals.",
+  "heightPolicy": "The signed vertical origin is 651 m. The crest is fixed at 678 m and the foundation at 458 m. The design fixture uses 675.25 m normal reservoir level and an illustrative 530 m downstream surface.",
+  "nativeAxes": "+X runs northwest along the crest chord and +Z runs downstream into the Piva gorge.",
+  "sourceFacts": {
+    "mappedIdentity": "Q1546929",
+    "nativeWaterIds": [
+      115387003,
+      3421157252
+    ],
+    "crestElevation": 678,
+    "structuralHeightMeters": 220,
+    "documentedCrestLengthMeters": 268,
+    "mappedCrestRoadLengthMeters": 246.83065996016677,
+    "normalPool": 675.25,
+    "spillwayGates": 3,
+    "midlevelOutlets": 3,
+    "foundationOutlets": 2,
+    "terrainTiles": 7
+  },
+  "materialMethod": "Shared board-formed and plain concrete, painted steel, standing seam roofing and glazing with metric UVs and zero embedded images.",
+  "limitations": [
+    "The signed vertical origin is 651 m. The crest is fixed at 678 m and the foundation at 458 m. The design fixture uses 675.25 m normal reservoir level and an illustrative 530 m downstream surface.",
+    "The open crest road follows its 246.83 m native map line. The arch extends beyond that road segment into its modeled abutments. Section widths, the inspection gallery and portal surrounds are exterior approximations.",
+    "The standard Terrarium field places portions of the gorge above the crest and masks much of the native rock fit. The representative stage is 651.65 m upstream and 534.18 m downstream. Full site review is pending.",
+    "The recessed gates depict a static dry configuration. Buried waterways, power station interiors and actual flows are outside the exterior model."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:MratinjeDam.JPG",
+      "observed": "Crest view shows the curved road, three top spillway bays, twin square control huts, red-roof utility buildings, blue rails, and two visible tunnel portals."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Piva_Mratinje_Dam.JPG",
+      "observed": "Downstream view shows projecting spillway piers, board-marked concrete, a lower inspection gallery, recessed circular outlet mouths and the approach beside the cliff."
+    },
+    {
+      "url": "https://www.epcg.com/sites/epcg.com/files/114-16.pdf",
+      "observed": "The owner lists the 678 m crest, 220 m structural height, 268 m crest length, three 13 by 5 m crest bays, three midlevel and two foundation outlets."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The PMTiles crest road, approach tunnels, lake and downstream river give the signed model frame."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "gorge-overview",
+      "position": [
+        54,
+        185,
+        330
+      ],
+      "lookAt": [
+        20,
+        -41,
+        8
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-road",
+      "position": [
+        -73,
+        32,
+        3
+      ],
+      "lookAt": [
+        35,
+        31,
+        -11
+      ],
+      "fov": 50
+    },
+    {
+      "name": "spillways-and-gallery",
+      "position": [
+        32,
+        51,
+        105
+      ],
+      "lookAt": [
+        -6,
+        -18,
+        -15
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upstream-arch",
+      "position": [
+        25,
+        165,
+        -205
+      ],
+      "lookAt": [
+        20,
+        18,
+        -11
+      ],
+      "fov": 50
+    },
+    {
+      "name": "approach-portals",
+      "position": [
+        81,
+        52,
+        28
+      ],
+      "lookAt": [
+        131,
+        32,
+        37
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -194,
+    "scale": 1,
+    "focus": {
+      "center": [
+        20,
+        -42,
+        10
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/srt/mratinje_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "pale": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "shade": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "damp": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "slab": {
+        "slot": "trim",
+        "graph": "concrete_plain"
+      },
+      "asphalt": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "door": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "pale": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "shade": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "damp": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "slab": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "asphalt": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "door": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "pale": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "shade": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "damp": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "slab": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "asphalt": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "door": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "pale": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "shade": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "damp": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "slab": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "asphalt": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "door": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "mratinje-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        54,
+        185,
+        330
+      ],
+      "lookAt": [
+        20,
+        -41,
+        8
+      ]
+    },
+    {
+      "name": "mratinje-district",
+      "reviewLod": "district",
+      "position": [
+        54,
+        185,
+        330
+      ],
+      "lookAt": [
+        20,
+        -41,
+        8
+      ]
+    },
+    {
+      "name": "mratinje-street",
+      "reviewLod": "street",
+      "position": [
+        54,
+        185,
+        330
+      ],
+      "lookAt": [
+        20,
+        -41,
+        8
+      ]
+    },
+    {
+      "name": "mratinje-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        54,
+        185,
+        330
+      ],
+      "lookAt": [
+        20,
+        -41,
+        8
+      ]
+    }
+  ]
+}

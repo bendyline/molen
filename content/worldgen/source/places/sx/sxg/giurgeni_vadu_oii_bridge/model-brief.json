@@ -1,0 +1,504 @@
+{
+  "id": "giurgeni_vadu_oii_bridge",
+  "title": "Giurgeni – Vadu Oii Bridge",
+  "wikidataId": "Q5565306",
+  "referenceCoordinate": {
+    "longitude": 27.876716086,
+    "latitude": 44.75420563
+  },
+  "module": "content/worldgen/source/places/sx/sxg/giurgeni_vadu_oii_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-giurgeni-vadu-oii-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "lamp": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "rail": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "mesh": {
+      "slot": "trim",
+      "graph": "metal_expanded_diamond",
+      "doubleSided": true,
+      "alphaMode": "MASK",
+      "alphaCutoff": 0.3
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "walk": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "mark": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    }
+  },
+  "exportLabel": "Molen original Giurgeni – Vadu Oii Bridge master",
+  "expectedDraftMasterHash": "sha256:31cd5a5fb8a13a734e4af3f2c1b42a9916a038c57de7534546c055f7548b6bd4",
+  "visualBrief": "Complete Giurgeni – Vadu Oii crossing: five haunched main river spans on four battered cutwater piers, long graded smaller-pier approaches, full four-lane roadway, concrete verge walks, W guardrails and shared expanded-metal outer fencing, paired curved two-height streetlight arms and distinct bank abutments. The full1499.943m mapped envelope controls placement; the720m river core is not substituted for the whole crossing.",
+  "heightPolicy": "Fixed3m standard terrain datum; graded road endpoints13.5m west/12.5m east and26m central crest. Monotone cubic deck profile follows the broad hump seen in ordinary pictures. Approximate exterior elevations and support stations require actual native approach, river and independent farm-track clearance checks; standard terrain is not flattened.",
+  "nativeAxes": "+X east/southeast along the retained Giurgeni–Vadu Oii envelope; +Z south/southwest. Bridge direction is fixed against current approach/river geometry.",
+  "sourceFacts": {
+    "retainedEnvelopeMeters": 1499.943,
+    "reportedLengthMeters": 1464,
+    "currentPMTilesFeature": 35184384985535,
+    "control": {
+      "id": "giurgeni_vadu_oii_bridge",
+      "anchor": [
+        27.876716086,
+        44.75420563
+      ],
+      "heading": -0.215051031643,
+      "datum": 3,
+      "ends": [
+        -750,
+        750
+      ],
+      "width": 17.148,
+      "halfWidth": 8.574,
+      "roadHalfWidth": 6.75,
+      "centerZ": 0,
+      "foundationY": -4,
+      "profile": [
+        [
+          -750,
+          10.5
+        ],
+        [
+          -360,
+          20.5
+        ],
+        [
+          -240,
+          22
+        ],
+        [
+          -80,
+          23
+        ],
+        [
+          80,
+          23
+        ],
+        [
+          240,
+          22
+        ],
+        [
+          360,
+          20.5
+        ],
+        [
+          750,
+          9.5
+        ]
+      ],
+      "coreEnds": [
+        -360,
+        360
+      ],
+      "mainPiers": [
+        -240,
+        -80,
+        80,
+        240
+      ],
+      "approachPiers": [
+        -725,
+        -675,
+        -635,
+        -595,
+        -555,
+        -515,
+        -475,
+        -435,
+        -395,
+        395,
+        435,
+        475,
+        515,
+        555,
+        595,
+        635,
+        675,
+        715
+      ],
+      "shorePiers": [
+        -360,
+        360
+      ],
+      "lampStep": 45,
+      "underRoutes": [
+        {
+          "id": 35185191543150,
+          "station": -711.661959044
+        },
+        {
+          "id": 35185191543160,
+          "station": -278.208165915
+        }
+      ],
+      "ownedRoadId": 35184384985535
+    },
+    "independentUnderRouteIds": [
+      35185191543150,
+      35185191543160
+    ]
+  },
+  "limitations": [
+    "Ordinary-picture exterior approximation, not a surveyed engineering model. The river panorama and road photograph control the five-span haunched form, broad four-lane deck, open metal fencing and curved paired lamps. One unrelated stock picture showing a railway/truss crossing is excluded.",
+    "The retained1499.943m envelope includes approach viaducts; reported1464m length is a separate scope measure. Concealed structure, support spacing, haunch depths, profile elevations, bearings and below-ground foundations are photo/map-guided approximations. No copied mesh, private photo texture, vehicles or readable signs. Native terrain is coarse; physical-device timing remains unmeasured."
+  ],
+  "materialMethod": "Three existing shared concrete_plain, metal_painted and alpha-tested metal_expanded_diamond graphs, metric UVs and linear palette tints. Muted gray steel, open fencing, concrete and neutral road reuse the shared library. Four merged material bindings; zero embedded images.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Giurgeni-Vadu_Oii_Bridge.jpg",
+      "observations": "Ordinary river-side panorama: five main haunched steel-girder spans with four tall battered cutwater-ended piers; long lower approach spans and smaller land piers; broad light roadside barrier and paired curved lamp poles. River bank/support details obscured by vegetation remain approximate."
+    },
+    {
+      "url": "https://de-academic.com/dic.nsf/dewiki/2381033",
+      "imageUrl": "https://de-academic.com/pictures/dewiki/82/RO_IL_Giurgeni_Vadu_Oii_bridge_1.jpg",
+      "observations": "Road view: four lanes, double solid center whites, dashed inner dividers, raised verge walks, dark open mesh outer fencing, low W guardrail and two curved lamp arms at different heights. No photo pixels copied."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-haunched-crossing",
+      "position": [
+        0,
+        280,
+        1250
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "main-river-haunches",
+      "position": [
+        -150,
+        42,
+        -255
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "cutwater-pier",
+      "position": [
+        266,
+        10,
+        48
+      ],
+      "lookAt": [
+        240,
+        14,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "western-track-and-approach",
+      "position": [
+        -699,
+        10,
+        48
+      ],
+      "lookAt": [
+        -711,
+        6,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "paired-curved-lamps",
+      "position": [
+        25,
+        35,
+        20
+      ],
+      "lookAt": [
+        0,
+        30,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "four-lane-road",
+      "position": [
+        395,
+        26,
+        4
+      ],
+      "lookAt": [
+        300,
+        23,
+        0
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        12,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sx/sxg/giurgeni_vadu_oii_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "lamp": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "mesh": {
+        "slot": "trim",
+        "graph": "metal_expanded_diamond",
+        "doubleSided": true,
+        "alphaMode": "MASK",
+        "alphaCutoff": 0.3
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "walk": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "mark": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      }
+    },
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "lamp": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "mesh": {
+            "slot": "trim",
+            "graph": "metal_expanded_diamond",
+            "doubleSided": true,
+            "alphaMode": "MASK",
+            "alphaCutoff": 0.3
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "mark": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.8
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "lamp": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "mesh": {
+            "slot": "trim",
+            "graph": "metal_expanded_diamond",
+            "doubleSided": true,
+            "alphaMode": "MASK",
+            "alphaCutoff": 0.3
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "mark": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "lamp": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "mesh": {
+            "slot": "trim",
+            "graph": "metal_expanded_diamond",
+            "doubleSided": true,
+            "alphaMode": "MASK",
+            "alphaCutoff": 0.3
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "mark": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "giurgeni_vadu_oii_bridge-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        0,
+        280,
+        1250
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "giurgeni_vadu_oii_bridge-district",
+      "reviewLod": "district",
+      "position": [
+        0,
+        280,
+        1250
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "giurgeni_vadu_oii_bridge-street",
+      "reviewLod": "street",
+      "position": [
+        0,
+        280,
+        1250
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "giurgeni_vadu_oii_bridge-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        0,
+        280,
+        1250
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    }
+  ]
+}

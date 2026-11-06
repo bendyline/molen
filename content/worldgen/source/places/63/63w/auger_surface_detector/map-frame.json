@@ -1,0 +1,224 @@
+{
+  "format": "molen/structure-map-frame@1",
+  "candidateId": "QS-2ba5044b3ca3",
+  "title": "Pierre Auger water-Cherenkov surface detector",
+  "anchor": [
+    -69.34521842618977,
+    -35.31618206330908
+  ],
+  "heading": 0,
+  "coordinateSpace": "model-local-xz",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "axis": "+X east,+Z south,+Y up. Estimated north-facing solar assembly; actual per-station orientations unresolved.",
+  "source": "Original operator station101 WGS84/UTM19South numeric point and written3.6m tank diameter. Complete event-active station records retained separately.",
+  "sourceUrl": "https://opendata.auger.org/releases/3/auxiliary/sdMap.csv",
+  "identityStatus": "Operator surface station101, original ID and point retained. Shared equipment asset; individual station placements, no observatory centroid proxy.",
+  "geometryLabel": "Derived3.6m tank circle, not mapped or surveyed pad outline.",
+  "geometry": {
+    "polygons": [
+      [
+        [
+          1.8,
+          0
+        ],
+        [
+          1.7654135047258148,
+          0.35116257962903086
+        ],
+        [
+          1.662983158520316,
+          0.6888301782571616
+        ],
+        [
+          1.4966453021445814,
+          1.000026419435284
+        ],
+        [
+          1.2727922061357857,
+          1.2727922061357855
+        ],
+        [
+          1.0000264194352841,
+          1.4966453021445814
+        ],
+        [
+          0.6888301782571618,
+          1.662983158520316
+        ],
+        [
+          0.351162579629031,
+          1.7654135047258148
+        ],
+        [
+          1.1021821192326179e-16,
+          1.8
+        ],
+        [
+          -0.35116257962903075,
+          1.7654135047258148
+        ],
+        [
+          -0.6888301782571615,
+          1.662983158520316
+        ],
+        [
+          -1.0000264194352835,
+          1.4966453021445816
+        ],
+        [
+          -1.2727922061357855,
+          1.2727922061357857
+        ],
+        [
+          -1.4966453021445816,
+          1.000026419435284
+        ],
+        [
+          -1.662983158520316,
+          0.6888301782571619
+        ],
+        [
+          -1.7654135047258148,
+          0.3511625796290315
+        ],
+        [
+          -1.8,
+          2.2043642384652358e-16
+        ],
+        [
+          -1.7654135047258148,
+          -0.3511625796290311
+        ],
+        [
+          -1.6629831585203163,
+          -0.6888301782571613
+        ],
+        [
+          -1.4966453021445818,
+          -1.0000264194352835
+        ],
+        [
+          -1.272792206135786,
+          -1.2727922061357855
+        ],
+        [
+          -1.000026419435284,
+          -1.4966453021445814
+        ],
+        [
+          -0.6888301782571626,
+          -1.6629831585203159
+        ],
+        [
+          -0.3511625796290316,
+          -1.7654135047258146
+        ],
+        [
+          -3.3065463576978537e-16,
+          -1.8
+        ],
+        [
+          0.35116257962903097,
+          -1.7654135047258148
+        ],
+        [
+          0.688830178257162,
+          -1.6629831585203159
+        ],
+        [
+          1.0000264194352833,
+          -1.4966453021445818
+        ],
+        [
+          1.2727922061357853,
+          -1.272792206135786
+        ],
+        [
+          1.4966453021445814,
+          -1.000026419435284
+        ],
+        [
+          1.6629831585203159,
+          -0.6888301782571628
+        ],
+        [
+          1.7654135047258146,
+          -0.3511625796290317
+        ]
+      ]
+    ],
+    "point": [
+      0,
+      0
+    ]
+  },
+  "features": [
+    {
+      "id": "auger-sd/101",
+      "role": "original-operator-surface-station-reference-point",
+      "points": [
+        [
+          0,
+          0
+        ]
+      ],
+      "properties": {
+        "id": 101,
+        "northing": 6091837.98,
+        "easting": 468619.84,
+        "altitude": 1403.75,
+        "start": 741657600,
+        "stop": 1,
+        "sd1500": 1,
+        "sd750": 0,
+        "coordinate": [
+          -69.34521842618977,
+          -35.31618206330908
+        ]
+      }
+    }
+  ],
+  "mappedIdentity": {
+    "name": "Pierre Auger water-Cherenkov surface detector",
+    "featureIds": [
+      "auger-sd/101"
+    ],
+    "parentCollection": "pierre_auger_observatory",
+    "nativeSource": {
+      "path": "native-map/original-station-records.json",
+      "hash": "sha256:88c1e5263fc8570a5d6a4f0625b1eef5ddce4d6afe82699cb7928ee92eaa4405"
+    },
+    "derivedEnvelope": {
+      "diameter": 3.6,
+      "notSurveyedFoundation": true
+    }
+  },
+  "orientationControl": {
+    "status": "reviewed-approximation",
+    "reviewedOn": "2026-11-01",
+    "headingRadians": 0,
+    "uncertaintyDegrees": 180,
+    "basis": "Solar panels illustrated facing north. Actual individual installation bearing not published in position CSV; approximation retained, not capture-fitted.",
+    "referencePages": [
+      "https://arxiv.org/abs/1502.01323"
+    ]
+  },
+  "terrainContact": {
+    "local": [
+      0,
+      0
+    ],
+    "modelY": 0,
+    "basis": "Original operator station101 point fixes field datum before floor/sections. Provider-relative terrain, no surveyed contact claim."
+  },
+  "historicalAppearance": {
+    "representedDate": "2018-08-31",
+    "validFrom": "2018-01-01",
+    "validUntil": "2019-01-01"
+  },
+  "notes": "Whole pre-upgrade3.6m rotomolded tank with curved shoulder/top, three raised service hatches, aluminium electronics cover, two solar panels/brackets, mast/radio/GPS, shaded battery box/conduit and lifting/support lugs. Dimensions of small components/pose/orientation estimates. All imagery unused. This equipment asset cannot complete the whole observatory collection."
+}

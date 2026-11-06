@@ -1268,3 +1268,152 @@ test('a native self-photographed release requires the exact named author, PD-sel
     false,
   );
 });
+
+test('the Coste engraving requires its named creator, actual publication and explicit native expiry grant', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'molen-coste-engraving-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const image = Buffer.from('bound original engraving'),
+    hash = (b, algorithm = 'sha256') => createHash(algorithm).update(b).digest('hex'),
+    title = 'File:Bazar tailors by Pascal Coste.jpg',
+    citation = 'Monuments modernes de la Perse mesurés, dessinés et décrits, éd. Morel, 1867',
+    wiki = `{{Information\n|author={{Creator:Pascal Coste}}\n|date=1840\n|source=${citation}\n}}\n{{PD-Art|PD-old-auto-expired|deathyear=1879}}`,
+    page = {
+      title,
+      revisions: [{ revid: 1, slots: { main: { '*': wiki } } }],
+      imageinfo: [
+        {
+          url: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Coste.jpg',
+          sha1: hash(image, 'sha1'),
+          extmetadata: {
+            Artist: { value: 'Pascal Coste' },
+            LicenseShortName: { value: 'Public domain' },
+            Copyrighted: { value: 'False' },
+            AttributionRequired: { value: 'false' },
+            Restrictions: { value: '' },
+          },
+        },
+      ],
+    },
+    record = {
+      source: `https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo%7Crevisions&titles=${encodeURIComponent(title)}`,
+      query: { pages: { 1: page } },
+    },
+    proof = {
+      kind: 'commons-native-expired-historical-print',
+      recordClass: 'coste-keisaria-1867-engraving',
+      path: 'content/worldgen/source/places/tj/tju/qeysarieh_bazaar_isfahan/reference-rights/native.json',
+      publicationYear: 1867,
+      creatorBorn: 1787,
+      creatorDied: 1879,
+      sourceCitation: citation,
+    },
+    reference = {
+      sourceUrl: `https://commons.wikimedia.org/wiki/${encodeURIComponent(title)}`,
+      artist: 'Pascal Coste',
+      license: 'Public domain',
+      publicDomainEvidence: proof,
+    },
+    file = path.join(root, proof.path),
+    run = (bytes = image) => {
+      const native = Buffer.from(JSON.stringify(record));
+      fs.writeFileSync(file, native);
+      proof.sha256 = hash(native);
+      return inspectQuallaPrimaryRights(reference, bytes, root).eligible;
+    };
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  assert.equal(run(), true);
+  for (const [from, to] of [
+    ['{{Creator:Pascal Coste}}', 'Unknown'],
+    ['|date=1840', '|date=1940'],
+    ['1867', '1967'],
+    ['{{PD-Art|PD-old-auto-expired|deathyear=1879}}', '{{PD-old-assumed}}'],
+    [wiki, `${wiki}\n{{CC-by-sa-4.0}}`],
+  ]) {
+    page.revisions[0].slots.main['*'] = wiki.replace(from, to);
+    assert.equal(run(), false, from);
+  }
+  page.revisions[0].slots.main['*'] = wiki;
+  assert.equal(run(Buffer.from('different engraving')), false);
+  proof.creatorDied = 1979;
+  assert.equal(run(), false);
+});
+
+test('NASA ESRS photographs bind their exact mission frame, agency release and original bytes', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'molen-nasa-rights-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const bytes = Buffer.from('NASA original photograph');
+  const sha = (b, a = 'sha256') => createHash(a).update(b).digest('hex');
+  const rightsPath =
+    'content/worldgen/source/places/r4/r49/processing_hall/reference-rights/native.json';
+  const reference = {
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:ISS038-E-29810_-_View_of_Earth.jpg',
+    artist: 'Earth Science and Remote Sensing Unit, Lyndon B. Johnson Space Center',
+    license: 'Public domain',
+    publicDomainEvidence: {
+      kind: 'commons-native-nasa-esrs-photo',
+      path: rightsPath,
+      mission: 'ISS038',
+      roll: 'E',
+      frame: 29810,
+    },
+  };
+  const page = {
+    title: 'File:ISS038-E-29810 - View of Earth.jpg',
+    revisions: [
+      {
+        revid: 123,
+        slots: {
+          main: {
+            '*': '{{ESRS-image\n|mission=ISS038\n|roll=E\n|frame=29810\n}}\n{{NASA-image|id=ISS038-E-29810|center=JSC}}\n{{PD-USGov-NASA}}',
+          },
+        },
+      },
+    ],
+    imageinfo: [
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/3/32/ISS038-E-29810_-_View_of_Earth.jpg',
+        sha1: sha(bytes, 'sha1'),
+        size: bytes.length,
+        extmetadata: {
+          Artist: { value: reference.artist },
+          LicenseShortName: { value: 'Public domain' },
+          Copyrighted: { value: 'False' },
+          AttributionRequired: { value: 'false' },
+        },
+      },
+    ],
+  };
+  const record = {
+    source:
+      'https://commons.wikimedia.org/w/api.php?action=query&prop=revisions%7Cimageinfo&titles=File%3AISS038-E-29810_-_View_of_Earth.jpg',
+    query: { pages: { 1: page } },
+  };
+  const check = (r = record, ref = reference, image = bytes) => {
+    const file = path.join(root, rightsPath),
+      data = Buffer.from(JSON.stringify(r));
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, data);
+    return inspectQuallaPrimaryRights(
+      { ...ref, publicDomainEvidence: { ...ref.publicDomainEvidence, sha256: sha(data) } },
+      image,
+      root,
+    );
+  };
+  assert.equal(check().eligible, true);
+  assert.equal(
+    check(record, {
+      ...reference,
+      publicDomainEvidence: { ...reference.publicDomainEvidence, frame: 29811 },
+    }).eligible,
+    false,
+  );
+  assert.equal(check(record, reference, Buffer.from('different original')).eligible, false);
+  const restricted = structuredClone(record);
+  restricted.query.pages[1].imageinfo[0].extmetadata.Restrictions = {
+    value: 'Permission required',
+  };
+  assert.equal(check(restricted).eligible, false);
+  const thirdParty = structuredClone(record);
+  thirdParty.query.pages[1].revisions[0].slots.main['*'] += '\n{{cc-by-sa-4.0}}';
+  assert.equal(check(thirdParty).eligible, false);
+});

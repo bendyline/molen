@@ -47,7 +47,8 @@ beforeAll(async () => {
     await writeFile(join(styleDir, path), bytes);
   }
   // This guard catches accidental binary inclusion without coupling the test to a catalog hash.
-  expect(fixtureBytes).toBeLessThan(12 * 1024 * 1024);
+  // Each placed structure adds a ~4.5 KB asset.json, so leave room for catalog growth.
+  expect(fixtureBytes).toBeLessThan(16 * 1024 * 1024);
   expect(paths.some((path) => /\.(glb|gltf|bin|png|ktx2)$/i.test(path))).toBe(false);
   await writeFile(
     join(styleDir, 'molen-pack.source.json'),

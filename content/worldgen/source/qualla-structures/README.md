@@ -17,6 +17,14 @@ visually inspected, integrated, and story-linked in one authoring cycle. The
 separate readiness ledger preserves the completed core100 and makes later batches
 resumable. A broad quality/research campaign is not a prerequisite to continuing.
 
+For a site's independently completed `requiredMembers`, preserve each reviewed selection
+with `referenceManifest: "references/members/<modelIdentity>.json"`. The
+`molen/structure-member-references@1` record binds the member, parent and structure IDs
+and stores the exact accepted manifest in `referenceImages`. `readCurrentReferences`
+uses that selection during readiness and story synchronization; ordinary entries retain
+the shared `references/<structureId>.json` default. Preparing another site member can then
+use different photographs without invalidating accepted geometry or reopening its review.
+
 ## Imagery policy
 
 Use public-domain imagery, starting with images already cleared and published in
@@ -420,6 +428,15 @@ closure performs aggregate consistency and reproducibility checks only; it must 
 second queue of per-model artistic approvals. Additional renders or tests need a specific
 uncovered risk, changed rendered input or observed failure.
 
+A local site collection can complete through its independently approved structures. Declare
+`collectionSourcePath`, `collectionManifest` and all `requiredMembers` in the fixed batch. Its
+`collection-review.json` binds the complete owned inventory, original collective frame/field,
+assembly, inspected collective views and unchanged member approvals. `progress.mjs` verifies
+those bindings; `sync-completed.mjs --ids=<site>` links the actual member assets. This creates
+no aggregate model, extra runtime placement or next1000 reservation. It does not reopen each
+member for another artistic review. Incomplete membership or changed inputs keeps the site
+unfinished.
+
 Shared geometry helpers are fingerprinted in generated specs. Keep source-local Qualla
 references, map controls and declared limitations beside each model. For a selected existing
 source bundle, `node examples/world-explorer/scripts/build-qualla-terrain-evidence.mjs
@@ -463,6 +480,12 @@ renders. The resolved batch entry reuses the existing physical model; it does no
 as a newly built model or add strict-ready credit. A newer ready link is preserved.
 The source and runtime master must match the saved acceptance; differences between
 current derivatives and old LOD approvals are reported without approving those derivatives.
+
+For the explicitly resolved Arena Amazônia and Friday Mosque of Herat aliases, use
+`link-reserved-catalog-stories.mjs --write`, then `--check`. This only records the
+existing catalog's reported readiness in their stories. It preserves the external-device
+reservation, model inputs, QA and runtime bytes; it adds no local completion credit and
+does not renew imagery approval. Unrelated story associations and curation are preserved.
 
 `batches/readiness.json` is the local batch's readiness export; the scanner also reads the
 separate structure catalog ledger. Neither process transfers model ownership. Capture archives remain

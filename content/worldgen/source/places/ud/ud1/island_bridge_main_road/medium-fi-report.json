@@ -1,0 +1,1121 @@
+{
+  "format": "molen/structure-medium-fi-report@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.island_bridge_main_road",
+  "inputHash": "sha256:56ad2b07f060073065684c2c76c2e64258e6e199c4ebadf30b8711f533d817cb",
+  "sourceHash": "sha256:cda652d4ddf1032c9970f76ceeecb1fa23c894b06d35ffb7c76bd3cbda6550fb",
+  "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.island_bridge_main_road",
+    "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd"
+  },
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:2986ab20dae20e06d2236aed8566058b0c11c0439ea70379620b3c1800821104",
+      "bytes": 61512,
+      "gzipBytes": 10418,
+      "triangles": 796,
+      "cpuBytes": 57624,
+      "gpuBytes": 57624,
+      "errorMeters": 1,
+      "drawCalls": 3
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:0570ab567186e0986e156d0b0ad354226615af345e2bf12374829ca90d2b5236",
+      "bytes": 233324,
+      "gzipBytes": 37611,
+      "triangles": 3032,
+      "cpuBytes": 228216,
+      "gpuBytes": 228216,
+      "errorMeters": 0.4,
+      "drawCalls": 4
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:deed751ca2db2b79e3dc034d23cfbf2d94343b18eba3be78a9059a7765e9040b",
+      "bytes": 652296,
+      "gzipBytes": 107973,
+      "triangles": 8624,
+      "cpuBytes": 647184,
+      "gpuBytes": 647184,
+      "errorMeters": 0.12,
+      "drawCalls": 4
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:9f239cd3972ee4e1fe8d37a2a6b2c517e666c917417550533b72945c5ae89cd2",
+      "bytes": 939292,
+      "gzipBytes": 162015,
+      "triangles": 12536,
+      "cpuBytes": 934176,
+      "gpuBytes": 934176,
+      "errorMeters": 0.04,
+      "drawCalls": 4
+    }
+  ],
+  "rig": {
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "fixtureHash": "sha256:e49b58b6661f61c00bc6093bfa23073ffd411bdbc318cf64764556e0af304224",
+  "terrainFixture": {
+    "parent": "../island_bridge/terrain-grid.json",
+    "hash": "sha256:97f6202f941fa6b272f70007dab968e4ed55700c4be5f73b000cf9c4f076b5c9"
+  },
+  "frames": [
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:55efecf94b38383fc74a357a26f7fdc1155aebce7b430dbcddc2f572e475f6b6",
+      "camera": {
+        "name": "main-transition-closeup",
+        "group": "main",
+        "position": [
+          150,
+          18,
+          50
+        ],
+        "lookAt": [
+          145,
+          6,
+          0
+        ],
+        "mediumName": "transition-closeup",
+        "shadows": true,
+        "fov": 55
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:9f239cd3972ee4e1fe8d37a2a6b2c517e666c917417550533b72945c5ae89cd2",
+        "level": "closeup",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 26,
+        "triangles": 724454,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 4,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 0,
+          "island.bridge.small.gallery.nw": 0,
+          "island.bridge.small.gallery.se": 0,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 0,
+          "island.bridge.right.bank.east.viaduct": 0,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 0,
+          "island.bridge.right.bank.walk.se": 0
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:ee4edae700003bdcb27bee603242504f86969be7f8500dcdc16f36696a3560d7",
+      "camera": {
+        "name": "main-silhouette",
+        "group": "main",
+        "position": [
+          150,
+          18,
+          50
+        ],
+        "lookAt": [
+          145,
+          6,
+          0
+        ],
+        "mediumName": "silhouette",
+        "shadows": false,
+        "fov": 55,
+        "silhouette": true
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:9f239cd3972ee4e1fe8d37a2a6b2c517e666c917417550533b72945c5ae89cd2",
+        "level": "closeup",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 26,
+        "triangles": 724454,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 4,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 0,
+          "island.bridge.small.gallery.nw": 0,
+          "island.bridge.small.gallery.se": 0,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 0,
+          "island.bridge.right.bank.east.viaduct": 0,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 0,
+          "island.bridge.right.bank.walk.se": 0
+        },
+        "quality": "economy",
+        "resolutionScale": 1,
+        "silhouette": true
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:423477a3c1c8736e961ac226a60c5f0bd7bc2f651877465b702fb6205ca51bf5",
+      "camera": {
+        "name": "main-transition-street",
+        "group": "main",
+        "position": [
+          150,
+          18,
+          50
+        ],
+        "lookAt": [
+          145,
+          6,
+          0
+        ],
+        "mediumName": "transition-street",
+        "shadows": true,
+        "fov": 55
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:deed751ca2db2b79e3dc034d23cfbf2d94343b18eba3be78a9059a7765e9040b",
+        "level": "street",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 26,
+        "triangles": 715070,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 4,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 0,
+          "island.bridge.small.gallery.nw": 0,
+          "island.bridge.small.gallery.se": 0,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 0,
+          "island.bridge.right.bank.east.viaduct": 0,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 0,
+          "island.bridge.right.bank.walk.se": 0
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:66f523a9f94fe49121d3c88ac05d76919061c72865f21799734cb541cd45d713",
+      "camera": {
+        "name": "main-street-noon-economy",
+        "mediumName": "street-noon-economy",
+        "group": "main",
+        "position": [
+          150,
+          18,
+          50
+        ],
+        "lookAt": [
+          145,
+          6,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:deed751ca2db2b79e3dc034d23cfbf2d94343b18eba3be78a9059a7765e9040b",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 26,
+        "triangles": 715070,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 4,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 0,
+          "island.bridge.small.gallery.nw": 0,
+          "island.bridge.small.gallery.se": 0,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 0,
+          "island.bridge.right.bank.east.viaduct": 0,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 0,
+          "island.bridge.right.bank.walk.se": 0
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:423477a3c1c8736e961ac226a60c5f0bd7bc2f651877465b702fb6205ca51bf5",
+      "camera": {
+        "name": "main-street-noon-high",
+        "mediumName": "street-noon-high",
+        "group": "main",
+        "position": [
+          150,
+          18,
+          50
+        ],
+        "lookAt": [
+          145,
+          6,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:deed751ca2db2b79e3dc034d23cfbf2d94343b18eba3be78a9059a7765e9040b",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 26,
+        "triangles": 715070,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 4,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 0,
+          "island.bridge.small.gallery.nw": 0,
+          "island.bridge.small.gallery.se": 0,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 0,
+          "island.bridge.right.bank.east.viaduct": 0,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 0,
+          "island.bridge.right.bank.walk.se": 0
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:e38d28b7d2d9bf545ecb01652cb31a91d69b7127cac126e1974c2e2717d74a29",
+      "camera": {
+        "name": "main-street-late-economy",
+        "mediumName": "street-late-economy",
+        "group": "main",
+        "position": [
+          150,
+          18,
+          50
+        ],
+        "lookAt": [
+          145,
+          6,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:deed751ca2db2b79e3dc034d23cfbf2d94343b18eba3be78a9059a7765e9040b",
+        "level": "street",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 26,
+        "triangles": 715070,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 4,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 0,
+          "island.bridge.small.gallery.nw": 0,
+          "island.bridge.small.gallery.se": 0,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 0,
+          "island.bridge.right.bank.east.viaduct": 0,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 0,
+          "island.bridge.right.bank.walk.se": 0
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:2b20d8cef152d855e8aecb0a4be2f262799d4708f88d956bcc47daa2ee9fb93c",
+      "camera": {
+        "name": "main-street-late-high",
+        "mediumName": "street-late-high",
+        "group": "main",
+        "position": [
+          150,
+          18,
+          50
+        ],
+        "lookAt": [
+          145,
+          6,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:deed751ca2db2b79e3dc034d23cfbf2d94343b18eba3be78a9059a7765e9040b",
+        "level": "street",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 26,
+        "triangles": 715070,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 4,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 0,
+          "island.bridge.small.gallery.nw": 0,
+          "island.bridge.small.gallery.se": 0,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 0,
+          "island.bridge.right.bank.east.viaduct": 0,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 0,
+          "island.bridge.right.bank.walk.se": 0
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:9957d39a844cc339a07a78cd9dae18b7045f0ff6593952a61400121352558990",
+      "camera": {
+        "name": "main-transition-district",
+        "group": "main",
+        "position": [
+          150,
+          18,
+          50
+        ],
+        "lookAt": [
+          145,
+          6,
+          0
+        ],
+        "mediumName": "transition-district",
+        "shadows": true,
+        "fov": 55
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:0570ab567186e0986e156d0b0ad354226615af345e2bf12374829ca90d2b5236",
+        "level": "district",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 26,
+        "triangles": 705614,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 4,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 0,
+          "island.bridge.small.gallery.nw": 0,
+          "island.bridge.small.gallery.se": 0,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 0,
+          "island.bridge.right.bank.east.viaduct": 0,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 0,
+          "island.bridge.right.bank.walk.se": 0
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:5a628d9c1daba90d2f1cacda5ad0515d7d0e11fc252b3ed5b580df73a8d54db1",
+      "camera": {
+        "name": "main-block-noon-economy",
+        "mediumName": "block-noon-economy",
+        "group": "main",
+        "position": [
+          0,
+          90,
+          410
+        ],
+        "lookAt": [
+          0,
+          6,
+          0
+        ],
+        "fov": 55,
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:0570ab567186e0986e156d0b0ad354226615af345e2bf12374829ca90d2b5236",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 32,
+        "triangles": 706862,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 4,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 0,
+          "island.bridge.small.gallery.nw": 0,
+          "island.bridge.small.gallery.se": 0,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 3,
+          "island.bridge.right.bank.east.viaduct": 0,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 3,
+          "island.bridge.right.bank.walk.se": 0
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:037fe12417c8454fc23a30eab9347f268f2361e9547b28543b18b1eb4b8881c8",
+      "camera": {
+        "name": "main-block-noon-high",
+        "mediumName": "block-noon-high",
+        "group": "main",
+        "position": [
+          0,
+          90,
+          410
+        ],
+        "lookAt": [
+          0,
+          6,
+          0
+        ],
+        "fov": 55,
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:0570ab567186e0986e156d0b0ad354226615af345e2bf12374829ca90d2b5236",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 32,
+        "triangles": 706862,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 4,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 0,
+          "island.bridge.small.gallery.nw": 0,
+          "island.bridge.small.gallery.se": 0,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 3,
+          "island.bridge.right.bank.east.viaduct": 0,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 3,
+          "island.bridge.right.bank.walk.se": 0
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:6cfdaf15fdfb470af1ff491e732bfcf6bb88fcf46ab5fb3f6d4282b3710ce8b4",
+      "camera": {
+        "name": "main-block-late-economy",
+        "mediumName": "block-late-economy",
+        "group": "main",
+        "position": [
+          0,
+          90,
+          410
+        ],
+        "lookAt": [
+          0,
+          6,
+          0
+        ],
+        "fov": 55,
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:0570ab567186e0986e156d0b0ad354226615af345e2bf12374829ca90d2b5236",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 32,
+        "triangles": 706862,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 4,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 0,
+          "island.bridge.small.gallery.nw": 0,
+          "island.bridge.small.gallery.se": 0,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 3,
+          "island.bridge.right.bank.east.viaduct": 0,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 3,
+          "island.bridge.right.bank.walk.se": 0
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:18dd200663fe94bca423693468f6a522c2223714177b70358d30516682ebb506",
+      "camera": {
+        "name": "main-block-late-high",
+        "mediumName": "block-late-high",
+        "group": "main",
+        "position": [
+          0,
+          90,
+          410
+        ],
+        "lookAt": [
+          0,
+          6,
+          0
+        ],
+        "fov": 55,
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:0570ab567186e0986e156d0b0ad354226615af345e2bf12374829ca90d2b5236",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 32,
+        "triangles": 706862,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 4,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 0,
+          "island.bridge.small.gallery.nw": 0,
+          "island.bridge.small.gallery.se": 0,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 3,
+          "island.bridge.right.bank.east.viaduct": 0,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 3,
+          "island.bridge.right.bank.walk.se": 0
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:2f8abfcea8abba82cf68f09d64c0e5490085dac96298130bb1671934e3b1d9a3",
+      "camera": {
+        "name": "main-transition-skyline",
+        "group": "main",
+        "position": [
+          150,
+          18,
+          50
+        ],
+        "lookAt": [
+          145,
+          6,
+          0
+        ],
+        "mediumName": "transition-skyline",
+        "shadows": true,
+        "fov": 55
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:2986ab20dae20e06d2236aed8566058b0c11c0439ea70379620b3c1800821104",
+        "level": "skyline",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 25,
+        "triangles": 702730,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 3,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 0,
+          "island.bridge.small.gallery.nw": 0,
+          "island.bridge.small.gallery.se": 0,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 0,
+          "island.bridge.right.bank.east.viaduct": 0,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 0,
+          "island.bridge.right.bank.walk.se": 0
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:69b31e74a1fffa1785f121ec4920f53317efa8b0ecda917873fc8e5bceb2c725",
+      "camera": {
+        "name": "main-skyline-noon-economy",
+        "mediumName": "skyline-noon-economy",
+        "group": "main",
+        "position": [
+          0,
+          330,
+          1000
+        ],
+        "lookAt": [
+          0,
+          6,
+          0
+        ],
+        "fov": 55,
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:2986ab20dae20e06d2236aed8566058b0c11c0439ea70379620b3c1800821104",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 44,
+        "triangles": 704066,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 3,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 3,
+          "island.bridge.small.gallery.nw": 3,
+          "island.bridge.small.gallery.se": 3,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 2,
+          "island.bridge.right.bank.east.viaduct": 2,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 3,
+          "island.bridge.right.bank.walk.se": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:97f0d69b9bb20c12f52670ca77fc1cc5c4855d1c9dcf164dc6b0b93c57609c9f",
+      "camera": {
+        "name": "main-skyline-noon-high",
+        "mediumName": "skyline-noon-high",
+        "group": "main",
+        "position": [
+          0,
+          330,
+          1000
+        ],
+        "lookAt": [
+          0,
+          6,
+          0
+        ],
+        "fov": 55,
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:2986ab20dae20e06d2236aed8566058b0c11c0439ea70379620b3c1800821104",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 44,
+        "triangles": 704066,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 3,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 3,
+          "island.bridge.small.gallery.nw": 3,
+          "island.bridge.small.gallery.se": 3,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 2,
+          "island.bridge.right.bank.east.viaduct": 2,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 3,
+          "island.bridge.right.bank.walk.se": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:d3e9a73419ca7d562bebd2aa6a4fb0f5303e3c237b26a52623927e36337aeaa9",
+      "camera": {
+        "name": "main-skyline-late-economy",
+        "mediumName": "skyline-late-economy",
+        "group": "main",
+        "position": [
+          0,
+          330,
+          1000
+        ],
+        "lookAt": [
+          0,
+          6,
+          0
+        ],
+        "fov": 55,
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:2986ab20dae20e06d2236aed8566058b0c11c0439ea70379620b3c1800821104",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 44,
+        "triangles": 704066,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 3,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 3,
+          "island.bridge.small.gallery.nw": 3,
+          "island.bridge.small.gallery.se": 3,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 2,
+          "island.bridge.right.bank.east.viaduct": 2,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 3,
+          "island.bridge.right.bank.walk.se": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:59973138fac9e9f3c44ebf5b6bd651fe32ff5ead5aec17c5e4b49383f5466472",
+      "camera": {
+        "name": "main-skyline-late-high",
+        "mediumName": "skyline-late-high",
+        "group": "main",
+        "position": [
+          0,
+          330,
+          1000
+        ],
+        "lookAt": [
+          0,
+          6,
+          0
+        ],
+        "fov": 55,
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.island_bridge_main_road",
+        "runtimeHash": "sha256:9e02dcfe10b0f9ff6c1597a6ad835d412762be59c0d6ffecc091c8c76525bafd",
+        "lodHash": "sha256:2986ab20dae20e06d2236aed8566058b0c11c0439ea70379620b3c1800821104",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "scope": "Native assembly group main",
+        "placementId": "island.bridge.main.road",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 44,
+        "triangles": 704066,
+        "visibleMemberDraws": {
+          "island.bridge.main.road": 3,
+          "island.bridge.main.gallery.nw": 3,
+          "island.bridge.main.gallery.se": 3,
+          "island.bridge.small.daugava.road": 3,
+          "island.bridge.small.gallery.nw": 3,
+          "island.bridge.small.gallery.se": 3,
+          "island.bridge.biekengravis": 0,
+          "island.bridge.left.bank.viaduct": 0,
+          "island.bridge.right.bank.viaduct": 2,
+          "island.bridge.right.bank.east.viaduct": 2,
+          "island.bridge.biekengravis.walk.se": 0,
+          "island.bridge.biekengravis.walk.nw": 0,
+          "island.bridge.right.bank.walk.nw": 3,
+          "island.bridge.right.bank.walk.se": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    }
+  ],
+  "errors": [],
+  "notes": "Current component rendered in its independently placed native assembly group. Three distances, two lighting directions, shadowless reduced-resolution Economy and High, four fixed-camera LOD transitions and flat untextured silhouette. Source materials, terrain and independent map context retained."
+}

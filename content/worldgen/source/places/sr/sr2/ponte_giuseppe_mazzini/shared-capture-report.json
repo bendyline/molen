@@ -1,0 +1,73 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.ponte_giuseppe_mazzini",
+  "inputHash": "sha256:6d31b72e9213048bf9dbecd9f163cd8b852634ebb72ae359b047c8ad7d856df7",
+  "sourceHash": "sha256:9587051830ddeacf97b2a8521d84ece6ae0a1e34f5e961409631d9df0e8863cb",
+  "runtimeHash": "sha256:fdbd92988280736a35d8ba16ab020b1ff17404d7af76726e25e7bbb98fe85808",
+  "fixtureHash": "sha256:7b65ca31d622bf895de949985c3f1ed48ec380ed5f80df2998d5fe705999f54b",
+  "placementHash": "sha256:183382bbf713ae5d70cd3a906dad409c03bbc54e1b1087a1dad404f26ca837b9",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_ashlar": {
+      "path": "materials/stone_ashlar.matgraph.json",
+      "hash": "sha256:f5692cbd995206b1475a803b027d181a664bd3a20df51db34667f205abce8093"
+    },
+    "molen.worldgen.material.metal_bronze_cast": {
+      "path": "materials/metal_bronze_cast.matgraph.json",
+      "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+    },
+    "molen.worldgen.material.stone_travertine": {
+      "path": "materials/stone_travertine.matgraph.json",
+      "hash": "sha256:9dbdc06581500e8a384c4ae72c6bee0a6653dcc7860b85b52fd96a830b420b58"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-bridge.png",
+      "hash": "sha256:e3fe87a71937f63d56c2fb92319f31f0f94b7901187d8ab81a10e4e7aad00160",
+      "camera": {
+        "name": "main-street-noon-high",
+        "mediumName": "street-noon-high",
+        "group": "main",
+        "position": [
+          20,
+          10,
+          45
+        ],
+        "lookAt": [
+          0,
+          7,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "ponte.giuseppe.mazzini",
+        "visibleDraws": 4
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "liveSupportGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The native Molen material library resolves stone_ashlar, stone_travertine, metal_bronze_cast and concrete_plain exactly once each in the near tiers; the skyline omits bronze lamps. Tinted metric surfaces reuse those graphs. This shared-material image reuses an inspected native context frame."
+}

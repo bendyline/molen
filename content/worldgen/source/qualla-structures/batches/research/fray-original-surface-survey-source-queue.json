@@ -1,0 +1,139 @@
+{
+  "date": "2026-11-01",
+  "status": "native-six-factory-mds-tile-links-established-direct-hosts-unresolved",
+  "parentCompleted": false,
+  "officialDocumentation": [
+    {
+      "url": "https://www.gub.uy/infraestructura-datos-espaciales/politicas-y-gestion/geoservicios-ide",
+      "role": "Official vector grid service endpoints."
+    },
+    {
+      "url": "https://www.gub.uy/infraestructura-datos-espaciales/comunicacion/noticias/ide-procura-agilizar-descargas-contenidos-su-visualizador",
+      "role": "March2026 documentation:2017–2018 urban MDS/MDT10cm and national ground model32cm products."
+    }
+  ],
+  "capabilityReceipt": ".artifacts/qualla-batch/next-300/fray-ide-original-grids-capabilities-receipt.json",
+  "next": {
+    "model": "fray_bentos_pulp_mill",
+    "parentModelIdentity": "fray_bentos_pulp_mill",
+    "structureId": "QS-858b3f52d300",
+    "sourcePath": "content/worldgen/source/places/6d/6dn/fray_bentos_pulp_mill",
+    "stage": "original-surface-survey-tile-coverage-and-numerical-process-layout-next",
+    "sourceQueue": "research/fray-original-surface-survey-source-queue.json",
+    "notes": "Continue full parent scope. Official IDE Uruguay MDS/MDT numerical-survey metadata is a new possible source of exact process-body coordinates; inspect native tile coverage and source data license without orthophotos or RGB/LAS colors. No new body/frame/floor/sections chosen. Cleared3PD federal photos and original NDT60m/11m digester dimensions retained; exact tank/conveyor correspondence unresolved. Completed building envelopes preserved; no generic site-centroid vessel placement or whole-parent completion proxy."
+  },
+  "policy": "Structured numerical survey heights/coordinates only, reusable data license required. No orthophotos, colored point-cloud/RGB appearance or raster map images requested, viewed or adopted. Appearance remains from previously cleared3PD government originals.",
+  "urbanTiles": [
+    {
+      "id": "grilla_urbana.2489",
+      "name": "P19C4P6",
+      "remesa": "09",
+      "locality": "FBS"
+    },
+    {
+      "id": "grilla_urbana.2492",
+      "name": "P19C4P9",
+      "remesa": "09",
+      "locality": "FBS"
+    },
+    {
+      "id": "grilla_urbana.2493",
+      "name": "P19C5O4",
+      "remesa": "09",
+      "locality": "FBS"
+    },
+    {
+      "id": "grilla_urbana.2495",
+      "name": "P19C5O7",
+      "remesa": "09",
+      "locality": "FBS"
+    },
+    {
+      "id": "grilla_urbana.2510",
+      "name": "P20A1N3",
+      "remesa": "09",
+      "locality": "FBS"
+    },
+    {
+      "id": "grilla_urbana.2518",
+      "name": "P20A2M1",
+      "remesa": "09",
+      "locality": "FBS"
+    }
+  ],
+  "nationalTiles": [
+    {
+      "id": "grilla_nacional.1191",
+      "name": "P19C4",
+      "remesa": "04"
+    },
+    {
+      "id": "grilla_nacional.1192",
+      "name": "P19C5",
+      "remesa": "04"
+    },
+    {
+      "id": "grilla_nacional.2382",
+      "name": "P20A1",
+      "remesa": "03"
+    },
+    {
+      "id": "grilla_nacional.2383",
+      "name": "P20A2",
+      "remesa": "03"
+    }
+  ],
+  "legacyDownloadHostObservation": "Node DNS for visualizador.ide.uy returned ENOTFOUND. The canonical mapas.ide.uy vector service works. Numerical WCS metadata and official current service endpoints are next; no repeated legacy-host request or imagery fallback.",
+  "nativeMdsGrid": "research/fray-ide-native-factory-mds-grid.json",
+  "nativeGridReceipt": {
+    "url": "https://catalogodatos.gub.uy/dataset/e5e7ef3d-569d-4a86-98bb-4b2b7a037d35/resource/703d702b-d9f8-4db2-8db1-e57eef092179/download/mds_urbana_grilla.geojson",
+    "httpStatus": 200,
+    "bytes": 2370373,
+    "sha256": "2e8f8e1c773ec73599e3d5deebebcfbfc63121a7eb8978223b323f0ba7692f1d",
+    "path": ".artifacts/qualla-batch/next-300/fray-ide-original-mds-urban-grid.geojson",
+    "role": "Native vector tile index only; no height raster or imagery fetched."
+  },
+  "license": {
+    "name": "Licencia de Datos Abiertos – Uruguay",
+    "url": "https://www.gub.uy/agencia-reguladora-compras-estatales/datos-y-estadisticas/datos/licencia-datos-abiertos",
+    "requirements": [
+      "provider name",
+      "license name",
+      "dataset reference",
+      "identify modifications"
+    ],
+    "scope": "Numeric height/survey data and vector metadata only. This license is not used to adopt imagery."
+  },
+  "numericalAccessObservations": [
+    {
+      "date": "2026-11-01",
+      "role": "numeric-geotiff-native-header",
+      "url": "https://visualizador.ide.uy/descargas/datos/CU_Remesa_09/01_MDT_MDS/01_Ciudad_FBS/02_MDS_GeoTIFF_Resolucion_10cm/P19C4P6_MDS_Remesa_09_FBS.tif",
+      "range": true,
+      "file": "fray-ide-native-mds-header.bin",
+      "error": "fetch failed",
+      "cause": "getaddrinfo ENOTFOUND visualizador.ide.uy"
+    },
+    {
+      "date": "2026-11-01",
+      "role": "relieve-workspace-wcs-capabilities",
+      "url": "https://mapas.ide.uy/geoserver-raster/relieve/ows?service=WCS&version=2.0.1&request=GetCapabilities",
+      "file": "fray-ide-relieve-wcs-capabilities.xml",
+      "error": "fetch failed",
+      "cause": "getaddrinfo ENOTFOUND mapas.ide.uy"
+    }
+  ],
+  "trustedClientObservation": "Node and system curl both reported DNS ENOTFOUND/could-not-resolve-host for the published direct raster/relieve metadata hosts. No TLS disable, IP substitution or access bypass. No numerical raster bytes obtained. Six exact factory tiles preserved; no inferred vessel location.",
+  "alternateDistributionMetadataCheck": {
+    "date": "2026-11-01",
+    "sources": [
+      "https://catalogodatos.gub.uy/es/dataset/modelo-digital-de-superficie-2024",
+      "https://catalogodatos.gub.uy/dataset/grilla-modelo-digital-de-superficie-2021",
+      "https://catalogodatos.gub.uy/dataset/ide-ortofotos-urbano/resource/703d702b-d9f8-4db2-8db1-e57eef092179"
+    ],
+    "finding": "A bounded official catalog search for an alternative factory MDS distribution found the existing2017–2018 urban index and new2024/2021 datasets explicitly limited to Montevideo. The latter do not cover the FrayBentos factory; no login, guide/imagery download or point cloud request made. No new usable factory height endpoint found. Existing six exact factory metadata links remain saved, with no repeated failed host requests.",
+    "imageryUsed": false,
+    "status": "closed-no-new-factory-coverage",
+    "next": "Do not repeat this unchanged catalog search or query Montevideo data as a factory substitute."
+  }
+}

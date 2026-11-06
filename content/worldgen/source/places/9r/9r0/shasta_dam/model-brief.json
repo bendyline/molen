@@ -1,0 +1,358 @@
+{
+  "id": "shasta_dam",
+  "title": "Shasta Dam",
+  "wikidataId": "Q1972924",
+  "referenceCoordinate": {
+    "longitude": -122.41956532001495,
+    "latitude": 40.71888375385666
+  },
+  "module": "content/worldgen/source/places/9r/9r0/shasta_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "concrete_plain"
+    },
+    "dark": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    }
+  },
+  "exportLabel": "Molen original Shasta Dam, drum gates, penstocks and powerhouse",
+  "expectedDraftMasterHash": "sha256:ec50f669e7ea362addae7cf2b1e641d5df1e9ed432eafcdee62ff7eee7b9dd9d",
+  "visualBrief": "Shasta Dam’s curved gravity section, three closed drum gates between two towers, eighteen recessed outlets, five sloped penstocks and the separately mapped powerhouse.",
+  "heightPolicy": "The signed vertical origin is 325.421875 m. The crest is fixed at 328.422 m and the foundation at 144.9324 m. The design fixture uses 325.2216 m normal full pool and a representative 179.7 m downstream stage.",
+  "nativeAxes": "+X follows the crest chord southeast and +Z points southwest toward the Sacramento River tailwater.",
+  "sourceFacts": {
+    "mappedIdentity": "Q1972924",
+    "nativeWaterIds": [
+      13286933,
+      13428403
+    ],
+    "crestElevation": 328.422,
+    "foundationElevation": 144.9324,
+    "documentedCrestLengthMeters": 1054.608,
+    "mappedCrestRoadLengthMeters": 918.8881975941027,
+    "normalPool": 325.2216,
+    "gates": 3,
+    "outlets": 18,
+    "penstocks": 5,
+    "powerhouse": 35184522501426,
+    "terrainTiles": 12
+  },
+  "materialMethod": "Shared board-formed and plain concrete, painted steel, standing seam roofing and glazing with metric UVs and zero embedded images.",
+  "limitations": [
+    "The signed vertical origin is 325.421875 m. The crest is fixed at 328.422 m and the foundation at 144.9324 m. The design fixture uses 325.2216 m normal full pool and a representative 179.7 m downstream stage.",
+    "The 918.89 m mapped crest road controls the open portion. The end ties extend the concrete crest to 1,052.44 m, within about 2.2 m of the 1,054.61 m documented length. Wing and apron sections and outlet elevations are photo-based exterior approximations.",
+    "The standard terrain gives 326.07 m upstream and 180.37 m downstream. The narrow central cut keeps native rock shoulders intact. Small terrain intersections can remain at the bank transitions.",
+    "The powerhouse follows its mapped footprint and the penstocks terminate at the upstream wall. Interior machinery, the separate switchyard and flowing water are outside the asset."
+  ],
+  "references": [
+    {
+      "url": "https://www.usgs.gov/media/images/shastadamjpg",
+      "observed": "Bureau of Reclamation front aerial shows the curved crest, three drum gates, two tall flanking towers, the central chute, five exposed penstocks and the powerhouse on the downstream bank."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Shasta_Dam_and_Shasta_Lake_(2019).jpg",
+      "observed": "Aerial view shows the abutments, the sloped pressure pipe routes and the independent access road bridge. Water and switchyard remain separate from the dam asset."
+    },
+    {
+      "url": "https://www.usbr.gov/projects/index.php?id=241/1000",
+      "observed": "Owner lists a 3,460 foot crest, 1,077.5 foot crest elevation, 602 foot structural height and 30 foot crest width."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The curved native crest road and named Shasta Powerplant locate the dam. Shasta Lake and the Sacramento River establish the downstream direction."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "downstream-overview",
+      "position": [
+        12,
+        209,
+        800
+      ],
+      "lookAt": [
+        54,
+        -63,
+        87
+      ],
+      "fov": 50
+    },
+    {
+      "name": "drum-gates",
+      "position": [
+        79,
+        37,
+        70
+      ],
+      "lookAt": [
+        53,
+        -6,
+        3
+      ],
+      "fov": 50
+    },
+    {
+      "name": "chute-outlets",
+      "position": [
+        81,
+        -25,
+        166
+      ],
+      "lookAt": [
+        54,
+        -63,
+        61
+      ],
+      "fov": 50
+    },
+    {
+      "name": "penstocks-and-powerhouse",
+      "position": [
+        -218,
+        9,
+        388
+      ],
+      "lookAt": [
+        -91,
+        -101,
+        192
+      ],
+      "fov": 50
+    },
+    {
+      "name": "reservoir-and-crest",
+      "position": [
+        168,
+        117,
+        -480
+      ],
+      "lookAt": [
+        40,
+        -5,
+        17
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -181,
+    "scale": 1.35,
+    "focus": {
+      "center": [
+        54,
+        -63,
+        87
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/9r/9r0/shasta_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain"
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "shasta-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        12,
+        209,
+        800
+      ],
+      "lookAt": [
+        54,
+        -63,
+        87
+      ]
+    },
+    {
+      "name": "shasta-district",
+      "reviewLod": "district",
+      "position": [
+        12,
+        209,
+        800
+      ],
+      "lookAt": [
+        54,
+        -63,
+        87
+      ]
+    },
+    {
+      "name": "shasta-street",
+      "reviewLod": "street",
+      "position": [
+        12,
+        209,
+        800
+      ],
+      "lookAt": [
+        54,
+        -63,
+        87
+      ]
+    },
+    {
+      "name": "shasta-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        12,
+        209,
+        800
+      ],
+      "lookAt": [
+        54,
+        -63,
+        87
+      ]
+    }
+  ]
+}

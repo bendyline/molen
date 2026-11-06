@@ -38,6 +38,7 @@ import {
   EarthAmbient,
   type EarthAudio,
   EarthAudioTerrain,
+  type EarthDioramaOptions,
   type EarthFleet,
   EarthNightLighting,
   type EarthRoadSigns,
@@ -1264,14 +1265,18 @@ async function main(): Promise<void> {
     (!params.has('freeze') ||
       params.get('dioramas') === '1' ||
       selectedDiorama(params.get('diorama')) !== undefined);
-  let dioramas = createExplorerDioramas(dioramasEnabled);
+  const prepareDiorama: EarthDioramaOptions['prepareObject'] =
+    params.get('warmup') !== '0'
+      ? (object, signal, parent) => viewer.renderer.prepareObject(object, signal, parent)
+      : undefined;
+  let dioramas = createExplorerDioramas(dioramasEnabled, prepareDiorama);
   const dioramaToggle = document.getElementById('dioramas-enabled') as HTMLInputElement;
   const dioramaStatus = document.getElementById('diorama-status') as HTMLParagraphElement;
   dioramaToggle.checked = dioramasEnabled;
   dioramaToggle.disabled = loaded.synthetic;
   dioramaToggle.addEventListener('change', () => {
     dioramas.dispose();
-    dioramas = createExplorerDioramas(dioramaToggle.checked);
+    dioramas = createExplorerDioramas(dioramaToggle.checked, prepareDiorama);
   });
   const requestedDiorama = selectedDiorama(params.get('diorama'));
   let fitDioramaCamera =
@@ -1629,9 +1634,7 @@ async function main(): Promise<void> {
     wildlife = new EarthWildlife(
       worldgen.environment,
       stream.object,
-      (object) => {
-        void viewer.renderer.prepareObject(object);
-      },
+      (object) => viewer.renderer.prepareObject(object),
       loaded.descriptor.surface?.seaLevel ?? 0,
     );
     wildlife.setBudget(

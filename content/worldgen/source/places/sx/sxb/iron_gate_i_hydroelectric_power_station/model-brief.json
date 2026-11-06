@@ -1,0 +1,461 @@
+{
+  "id": "iron_gate_i_hydroelectric_power_station",
+  "title": "Iron Gate I Hydroelectric Power Station",
+  "wikidataId": "Q1289417",
+  "referenceCoordinate": {
+    "longitude": 22.529033389,
+    "latitude": 44.671508243
+  },
+  "module": "content/worldgen/source/places/sx/sxb/iron_gate_i_hydroelectric_power_station/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "edge": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "dark": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "yellow": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    }
+  },
+  "exportLabel": "Molen original Iron Gate I Hydroelectric Power Station and Danube locks",
+  "expectedDraftMasterHash": "sha256:42ac73eaf70eedebece68e2acf4a62afb2032ce9807b8d08f69cddb26ab053ec",
+  "visualBrief": "Iron Gate I international crossing, central spillway, Serbian and Romanian turbine halls, observation tower, both two-stage navigation locks and their approach walls.",
+  "heightPolicy": "The standard Terrarium upstream sample at [0, −520] gives a 58 m model datum. The Danube reference at [10, 570] is 18 m below it. The production water sampler returned 58.65 m upstream and 40.65 m downstream in the retained probe windows.",
+  "nativeAxes": "+X northeast toward Romania across the dam, +Z southeast down the Danube and +Y up.",
+  "sourceFacts": {
+    "mappedIdentity": "way/28270536",
+    "nativeWaterIds": [
+      15712013,
+      15712000
+    ],
+    "nativeFacilityId": 35184400359368,
+    "ownedTransportationIds": [
+      35184406838640,
+      35184494183191
+    ],
+    "crossingSpanMeters": 1027,
+    "modeledGateBays": 14,
+    "lockCount": 2,
+    "chambersPerLock": 2,
+    "terrainDatum": 58,
+    "terrainGridStep": 16,
+    "terrainTiles": 13,
+    "tailwaterModelY": -18
+  },
+  "materialMethod": "Shared board-formed and plain concrete, painted metal, standing-seam metal and window graphs with metric UVs and no embedded images.",
+  "limitations": [
+    "The standard Terrarium upstream sample at [0, −520] gives a 58 m model datum. The Danube reference at [10, 570] is 18 m below it. The production water sampler returned 58.65 m upstream and 40.65 m downstream in the retained probe windows.",
+    "The two navigation chambers per bank, miter gates, passage walls, twin power halls and central barrage use the signed map and visible exterior. Stage levels and the machinery are visual interpretations.",
+    "The standard 16 m terrain and modeled shoreline contacts are approximate. The live viewer samples water independently, while the four review planes show an illustrative lock cycle.",
+    "Only the mapped barrage crossing and owned composite building shell are replaced. The separate Romanian service bridge is preserved at the joint."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Iron_Gate_I_hydroelectric_power_station_-_from_Crucea_lui_Sfantul_Petru_downstream.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:Iron_Gate_I_hydroelectric_power_station_-_from_Crucea_lui_Sfantul_Petru_downstream.jpg",
+      "observed": "Overlook shows the continuous road crest, central gates, broad halls to each side and long separated navigation channels along both banks."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:HE_%C4%90erdap_I_01.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:HE_%C4%90erdap_I_01.jpg",
+      "observed": "Site view shows the tall concrete observation tower, deep vertical fins along the Serbian hall, yellow gantries, rounded spillway chute faces and concrete lock guide walls."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The international road and the two long lock footprints align with the photographed barrage and generating halls. The Danube geometry signs the face downstream."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "barrage-and-two-locks",
+      "position": [
+        380,
+        290,
+        810
+      ],
+      "lookAt": [
+        0,
+        -5,
+        26
+      ],
+      "fov": 50
+    },
+    {
+      "name": "reservoir-side",
+      "position": [
+        -260,
+        114,
+        -657
+      ],
+      "lookAt": [
+        0,
+        -1,
+        -6
+      ],
+      "fov": 50
+    },
+    {
+      "name": "central-spillway",
+      "position": [
+        -110,
+        35,
+        225
+      ],
+      "lookAt": [
+        10,
+        -4,
+        34
+      ],
+      "fov": 50
+    },
+    {
+      "name": "serbian-lock-and-tower",
+      "position": [
+        -374,
+        70,
+        330
+      ],
+      "lookAt": [
+        -450,
+        -5,
+        56
+      ],
+      "fov": 50
+    },
+    {
+      "name": "romanian-lock",
+      "position": [
+        345,
+        68,
+        410
+      ],
+      "lookAt": [
+        438,
+        -5,
+        45
+      ],
+      "fov": 50
+    },
+    {
+      "name": "turbine-hall-and-crest",
+      "position": [
+        -160,
+        42,
+        187
+      ],
+      "lookAt": [
+        -337,
+        7,
+        65
+      ],
+      "fov": 50
+    },
+    {
+      "name": "serbian-chambers-overhead",
+      "position": [
+        -507,
+        155,
+        93
+      ],
+      "lookAt": [
+        -470,
+        -8,
+        -39
+      ],
+      "fov": 50
+    },
+    {
+      "name": "romanian-chambers-overhead",
+      "position": [
+        488,
+        150,
+        88
+      ],
+      "lookAt": [
+        440,
+        -9,
+        -41
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -27.2,
+    "scale": 3.1,
+    "focus": {
+      "center": [
+        0,
+        -4,
+        50
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sx/sxb/iron_gate_i_hydroelectric_power_station/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "edge": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "dark": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "yellow": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "edge": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "yellow": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "edge": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "yellow": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "edge": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "yellow": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "iron-gate-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        380,
+        290,
+        810
+      ],
+      "lookAt": [
+        0,
+        -5,
+        26
+      ]
+    },
+    {
+      "name": "iron-gate-district",
+      "reviewLod": "district",
+      "position": [
+        380,
+        290,
+        810
+      ],
+      "lookAt": [
+        0,
+        -5,
+        26
+      ]
+    },
+    {
+      "name": "iron-gate-street",
+      "reviewLod": "street",
+      "position": [
+        380,
+        290,
+        810
+      ],
+      "lookAt": [
+        0,
+        -5,
+        26
+      ]
+    },
+    {
+      "name": "iron-gate-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        380,
+        290,
+        810
+      ],
+      "lookAt": [
+        0,
+        -5,
+        26
+      ]
+    }
+  ]
+}

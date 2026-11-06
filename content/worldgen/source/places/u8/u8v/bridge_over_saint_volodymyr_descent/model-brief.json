@@ -1,0 +1,521 @@
+{
+  "id": "bridge_over_saint_volodymyr_descent",
+  "title": "Bridge over Saint Volodymyr Descent",
+  "wikidataId": "Q64067623",
+  "referenceCoordinate": {
+    "longitude": 30.528333333,
+    "latitude": 50.455277777
+  },
+  "module": "content/worldgen/source/places/u8/u8v/bridge_over_saint_volodymyr_descent/models/volodymyr-model.mjs",
+  "builder": "buildVolodymyrLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.35
+    },
+    "polished": {
+      "slot": "trim",
+      "graph": "metal_stainless_polished",
+      "roughness": 0.14,
+      "metallic": 1
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.12,
+      "metallic": 0.05,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.24
+      ],
+      "doubleSided": true
+    },
+    "paint": {
+      "slot": "door",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9,
+      "metallic": 0
+    }
+  },
+  "exportLabel": "Molen Volodymyr glass footbridge detailed source",
+  "expectedDraftMasterHash": "sha256:a7b23f7339db63937564d532f0faeb0b1232945de7a26d309e94bf5ed889ab21",
+  "visualBrief": "Three-span bent glass pedestrian/cycle bridge between two hills: widened opposing viewing platforms, real glass floor openings, outward-leaning glass balustrades with kinked metal posts, two mirror-clad rectangular columns and a single tapered spine with cantilever ribs.",
+  "nativeAxes": "+X southeast toward Khreshchatyi Park/Arch; -X northwest toward Volodymyrska Hill. +Z southwest, +Y up. Both mapped viewing bends and asymmetric hill connections remain signed.",
+  "sourceFacts": {
+    "mappedLongestAxisMeters": 201.215,
+    "mappedEnvelopeWidthMeters": 39.898,
+    "originElevationMeters": 142,
+    "deckEndElevationsMeters": [
+      165.066606,
+      156.8932
+    ],
+    "sourceSpineLengthMeters": 209.19239368403896
+  },
+  "limitations": [
+    "Original reconstruction of the completed glass foot/cycle bridge exterior, using four ordinary photographs from one gallery and standard viewer PMTiles/terrain. Adjacent Arch, Volodymyr monument, vegetation, people, street furniture outside the bridge and lower-road infrastructure are excluded.",
+    "The signed201.215m longest map-envelope axis is not a straight bridge length: the retained footpath has three differently oriented spans and two widened viewing bends. Source outline remains the exact retained map polygon. Two rectangular mirror-clad bend columns, single tapered box spine, transverse cantilevers, floor windows, glass balustrades and kinked metal posts follow the pictures. Foundation, section, cable, clamp, panel and connection dimensions are reconstructed, not an engineering schedule.",
+    "Clear floor windows are actual holes in the opaque deck; close/master divide them into12 framed glass panels. Distant tiers aggregate them. Glass has a shared local palette/PBR definition with alpha blending, not a private image; no refraction, physically layered laminated glass or exact optical thickness. Mirrored cladding uses the existing polished stainless graph and shared procedural environment rather than site-specific photographs.",
+    "Native terrain review uses an unmodified65x65/5m grid bilinearly sampled from the ordinary global viewer DEM, with142m sea-level model origin.5m review spacing does not imply5m source resolution or survey accuracy. Hilltop attachments are approximate ground+0.3m and column feet follow the same coarse field; exact bridge elevations, terrain vegetation returns, abutments and original accessible gradients remain unsurveyed. No bespoke DEM or cadastral research.",
+    "Four existing shared256px graphs supply concrete, coated steel, polished stainless and aggregate paving; clear glass is untextured. No private or embedded image copies. Far levels remove thin hardware; street restores cantilevers/posts; close/master retain floor frames and glass clamps, with fine railing wires limited to the nearer tiers. Estimated LOD errors2/1/.5/.25m are not certified whole-mesh distances. Physical ordinary-laptop/phone and dense-city performance remain unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://kiev-foto.info/en/architecture/bridges/2872-glass-pedestrian-bicycle-bridge-in-kyiv",
+      "observed": "Actually inspected gallery photographs01/18/32/57: signed bent deck, two wide platforms, shallow single spine with cantilever ribs, mirror-clad rectangular columns and diagonal stabilizers; outward-leaning glass rail panes and kinked broad metal posts; subdivided clear floor panels with real views below."
+    },
+    {
+      "url": "https://guide.kyivcity.gov.ua/en/places/pishokhidno-velosypednyy-mist",
+      "observed": "Municipal visitor page confirms the hill-to-hill pedestrian/cycle crossing and glass viewing-floor inserts. Map-derived metric envelope governs this reconstruction rather than conflicting rounded tourism lengths."
+    },
+    {
+      "url": "https://maps.protomaps.com/builds/",
+      "observed": "Nine standard viewerz14 tiles retained offline; named foot/cycle bridge and lower descent road establish the signed alignment and preserve the lower crossing."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-bent-crossing",
+      "position": [
+        -110,
+        105,
+        185
+      ],
+      "lookAt": [
+        0,
+        13,
+        2
+      ],
+      "fov": 52
+    },
+    {
+      "name": "three-spans-and-columns",
+      "position": [
+        25,
+        53,
+        135
+      ],
+      "lookAt": [
+        0,
+        12,
+        1
+      ],
+      "fov": 49
+    },
+    {
+      "name": "glass-floor-platform",
+      "position": [
+        -48,
+        27,
+        28
+      ],
+      "lookAt": [
+        -40,
+        21,
+        15.5
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upper-path-and-glass-rails",
+      "position": [
+        -84,
+        25,
+        7
+      ],
+      "lookAt": [
+        -37,
+        21,
+        12
+      ],
+      "fov": 55
+    },
+    {
+      "name": "mirrored-bend-column",
+      "position": [
+        -58,
+        11,
+        35
+      ],
+      "lookAt": [
+        -39,
+        11,
+        11.72
+      ],
+      "fov": 49
+    },
+    {
+      "name": "single-spine-and-cantilevers",
+      "position": [
+        24,
+        6,
+        8
+      ],
+      "lookAt": [
+        35,
+        13,
+        -12
+      ],
+      "fov": 52
+    },
+    {
+      "name": "eastern-viewing-bend",
+      "position": [
+        65,
+        34,
+        45
+      ],
+      "lookAt": [
+        36,
+        16,
+        -12
+      ],
+      "fov": 52
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u8/u8v/bridge_over_saint_volodymyr_descent/models/volodymyr-model.mjs",
+    "export": "buildVolodymyrSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.35
+      },
+      "polished": {
+        "slot": "trim",
+        "graph": "metal_stainless_polished",
+        "roughness": 0.14,
+        "metallic": 1
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.12,
+        "metallic": 0.05,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.24
+        ],
+        "doubleSided": true
+      },
+      "paint": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildVolodymyrDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "polished": {
+            "slot": "trim",
+            "graph": "metal_stainless_polished",
+            "roughness": 0.14,
+            "metallic": 1
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.24
+            ],
+            "doubleSided": true
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1
+      },
+      "street": {
+        "export": "buildVolodymyrStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "polished": {
+            "slot": "trim",
+            "graph": "metal_stainless_polished",
+            "roughness": 0.14,
+            "metallic": 1
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.24
+            ],
+            "doubleSided": true
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.5
+      },
+      "closeup": {
+        "export": "buildVolodymyrCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "polished": {
+            "slot": "trim",
+            "graph": "metal_stainless_polished",
+            "roughness": 0.14,
+            "metallic": 1
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.24
+            ],
+            "doubleSided": true
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.25
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-bridge-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -110,
+        105,
+        185
+      ],
+      "lookAt": [
+        0,
+        13,
+        2
+      ]
+    },
+    {
+      "name": "whole-bridge-district",
+      "reviewLod": "district",
+      "position": [
+        -110,
+        105,
+        185
+      ],
+      "lookAt": [
+        0,
+        13,
+        2
+      ]
+    },
+    {
+      "name": "whole-bridge-street",
+      "reviewLod": "street",
+      "position": [
+        -110,
+        105,
+        185
+      ],
+      "lookAt": [
+        0,
+        13,
+        2
+      ]
+    },
+    {
+      "name": "whole-bridge-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -110,
+        105,
+        185
+      ],
+      "lookAt": [
+        0,
+        13,
+        2
+      ]
+    },
+    {
+      "name": "street-upper-path",
+      "reviewLod": "street",
+      "position": [
+        -84,
+        25,
+        7
+      ],
+      "lookAt": [
+        -37,
+        21,
+        12
+      ]
+    },
+    {
+      "name": "closeup-glass-floor",
+      "reviewLod": "closeup",
+      "position": [
+        -48,
+        27,
+        28
+      ],
+      "lookAt": [
+        -40,
+        21,
+        15.5
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.plasco_building",
+  "kind": "static-structure",
+  "title": "Plasco Building — original tower, Tehran",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.plasco_building",
+        "output": "assets/places/tn/tnk/plasco_building/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:c88b89a7009f3e3f0cae0c325937e40307407126807e6322bea984ff06dff4b4"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "primary-facts-reconstruction.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/original-whole-tower.json",
+      "native-map/original-2016-response.json",
+      "native-map/original-2016-query.txt",
+      "reference-rights/primary-engineering.txt",
+      "reference-rights/primary-structure.txt",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-21064-12901.png",
+      "import-report.json",
+      "geometry-review.json",
+      "shared-capture-report.json",
+      "capture-report.json",
+      "qa.json",
+      "medium-fi-report.json"
+    ]
+  }
+}

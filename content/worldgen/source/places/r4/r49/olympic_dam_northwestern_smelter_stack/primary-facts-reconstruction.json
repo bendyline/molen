@@ -1,0 +1,50 @@
+{
+  "format": "molen/primary-facts-reconstruction@1",
+  "case": "olympic-dam-aip2024-northwestern-smelter-stack-634ft-amsl",
+  "model": "olympic_dam_northwestern_smelter_stack",
+  "structureId": "QS-3ba413609102",
+  "method": "primary-facts-only",
+  "imageryUsed": false,
+  "primarySources": [
+    {
+      "key": "obstacle",
+      "path": "primary-source/original-aip-obstacle-record.json",
+      "url": "https://www.airservicesaustralia.com/aip/current/ersa/FAC_YOLD_28NOV2024.pdf",
+      "sha256": "sha256:4bc52c075ffa2faf2902bedde438baf2077f553665cb2935819935b358b8496d",
+      "use": "original-numerical-data-only",
+      "retrievedOn": "2026-11-03"
+    },
+    {
+      "key": "parent-identity",
+      "path": "primary-source/parent-wikidata-identity.json",
+      "url": "https://www.wikidata.org/wiki/Special:EntityData/Q1473809.json",
+      "sha256": "sha256:6079554b1236d8e20c3bea99694d874e4378d2020596632d8fc0de846a33f3b8",
+      "use": "parent-identity-metadata-only",
+      "retrievedOn": "2026-11-03"
+    }
+  ],
+  "nativeIdentity": {
+    "path": "native-map/original-obstacle-derived-point.json",
+    "sha256": "sha256:b950cbfc5c91626ab21c36e5d710f65410fcb1708299901e8bd046dafa6c6c34",
+    "featureId": "airservices-2024/yold-obstacle-2"
+  },
+  "quallaFirst": {
+    "families": 9,
+    "inventoryHash": "sha256:05471a64c272ff259262acaa847a513393af56848c1d6ad4711ebc38217f037f",
+    "questionableImageryAdopted": false
+  },
+  "estimates": [
+    "Whole single lit smelter-stack obstacle in the original2024Airservices record, at its rounded navigational locus. Process identity, exact physical location, AGLheight, shell section, fittings and historic ground tie remain estimates. Other stacks/buildings and whole mine remain separate. No1997coordinate transfer, nearest-roof selection, image fit or claimed main/acidprocess identity. Original634ftAMSL top is not an AGLheight. Every appearance image unused after Qualla-first screening.",
+    "Original2024published634ftAMSL/193.2432m stack-top elevation is not a measured AGLheight. Initial localfloor.15m and an approximate vertical tie to the independently acquired composite-ground datum106.5566m give nominal shellheight86.53659999999999m. AIPAMSL and source-ground datum/terrain sampling are not surveyed together. Nominal12m height allowance is an estimate, not a measured error bound. Airport elevation is never subtracted from the stack top.",
+    "Original335degMAG/4500m range plus published7degE variation gives342degtrue. The WGS84ellipsoid direct solution fixes a coarse navigational locus before terrain/floor/sections. Nominal100m horizontal allowance is not a measured confidence bound. No relocation, nearest-roof assignment, source-coordinate or image fit.",
+    "Individual process identity remains unverified: do not label this as the main-smelter or acid-plant stack by proximity or top elevation. The two543ft obstacles are separate, not positioned or duplicated by this asset. Historical1997stackassets and proposed upgrades are neither reused nor silently promoted to this2024state.",
+    "Shell radii2.6m atbase/2.2m attop,3.2m inneroutlet diameter, taper, paintedsteelfinish, foundation, maintenance ring/rails/ladder/collars/closedinspectioncover and obstruction-lightfixture cue are original estimates. The light color and mounting are unverified; no operating flashing behavior claimed. No borrowed photograph, plume, logo, adjoining processbuilding or buriedrouting. Short1m innerbore/darkocclusioncap is a visualization simplification.",
+    "Own original256m129x129field/1rawtiles fixed before floor and mainsections. No masking, cutout, flattening, terrain-height/anchor/floor fitting or post-render section changes. Exact historic ground contact and datum tie remain unverified.",
+    "Qualla-first9families/0conflicts. All appearance images unused; only original published numerical obstacle data and a transparent geodesic/datum interpretation. Whole mine and other major site structures remain unfinished."
+  ],
+  "review": {
+    "status": "reviewed-primary-facts",
+    "reviewedOn": "2026-11-03",
+    "notes": "Complete single original2024smelter obstacle at a rounded navigational locus. AMSLtop retained under approximate independent-ground datum conversion; AGLheight/processidentity/shell/fittings/grade explicit estimates. No1997transfer or whole-mine proxy."
+  }
+}

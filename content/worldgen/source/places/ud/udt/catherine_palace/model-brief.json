@@ -1,0 +1,506 @@
+{
+  "id": "catherine_palace",
+  "title": "Catherine Palace",
+  "wikidataId": "Q2854543",
+  "referenceCoordinate": {
+    "longitude": 30.395378699,
+    "latitude": 59.716077264
+  },
+  "module": "content/worldgen/source/places/ud/udt/catherine_palace/models/catherine-model.mjs",
+  "builder": "buildCatherineLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.66,
+      "metallic": 0.25
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.38,
+      "metallic": 0.75
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_painted_lap",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.4,
+      "metallic": 0
+    }
+  },
+  "exportLabel": "Molen original complete principal Catherine Palace exterior shared surfaces source",
+  "expectedDraftMasterHash": "sha256:ec87e63166d3ad94906895fd74790707e9fb148343405150c299b683948c2e67",
+  "visualBrief": "Complete principal Catherine Palace exterior: long blue/white/gold baroque body, returned north and south wings, three raised hall roofs and five projecting crowns, recessed multi-story windows, paired white pilasters, original simplified gilded trim, roof balustrades, supported main forecourt entry and five-domed palace chapel. Detached curved low forecourt ranges, Lyceum/connecting arch, Cameron gallery, garden pavilions and park stay native context. No interiors or copied statues,heraldry or inscriptions.",
+  "heightPolicy": "Approximate84m standard global Terrarium reference, palace exterior floor84.5m. Main eave is16.1m above that floor; main roof rises about20-21m, chapel finial35m. Picture-guided facade proportions are reconciled with native3D part heights. Interior building-biased DEM returns are masked only within occupied palace bounds; surrounding garden/forecourt terrain stays unchanged. Original bounded entrance transition matches sampled coarse field.",
+  "nativeAxes": "+X NNE toward five-domed palace chapel; -X SSW toward south end; +Z ESE formal garden; -Z WNW main forecourt. +Y up.",
+  "sourceFacts": {
+    "mappedLengthMeters": 303.82,
+    "mappedWidthMeters": 84.565,
+    "modelDatumMeters": 84,
+    "nativeCompositeHeightMeters": 11,
+    "ownedMapComponents": 204,
+    "preservedNativeComponents": 182,
+    "chapelDomes": 5,
+    "terrainTiles": 2,
+    "heightBasis": "Approximate84m standard global Terrarium reference, palace exterior floor84.5m. Main eave is16.1m above that floor; main roof rises about20-21m, chapel finial35m. Picture-guided facade proportions are reconciled with native3D part heights. Interior building-biased DEM returns are masked only within occupied palace bounds; surrounding garden/forecourt terrain stays unchanged. Original bounded entrance transition matches sampled coarse field."
+  },
+  "limitations": [
+    "Complete principal Catherine Palace exterior: long blue/white/gold baroque body, returned north and south wings, three raised hall roofs and five projecting crowns, recessed multi-story windows, paired white pilasters, original simplified gilded trim, roof balustrades, supported main forecourt entry and five-domed palace chapel. Detached curved low forecourt ranges, Lyceum/connecting arch, Cameron gallery, garden pavilions and park stay native context. No interiors or copied statues,heraldry or inscriptions.",
+    "Approximate84m standard global Terrarium reference, palace exterior floor84.5m. Main eave is16.1m above that floor; main roof rises about20-21m, chapel finial35m. Picture-guided facade proportions are reconciled with native3D part heights. Interior building-biased DEM returns are masked only within occupied palace bounds; surrounding garden/forecourt terrain stays unchanged. Original bounded entrance transition matches sampled coarse field.",
+    "Original medium-fi interpretation of individual roof transitions, facade/window inventories, gilded ornament and concealed joints. No copied artwork, statues or interior rooms; detached courtyard ranges and independent buildings are outside this principal-palace scope. Exact historic grades, survey accuracy, numerical LOD error and physical-device timings remain unmeasured.",
+    "Six existing shared256px plaster, limestone, granite, painted metal, painted wood and window grid graphs; gold and gray metal share one texture graph with separate PBR tints. Seven draws maximum, metric UVs and linear colors. Skyline retains complete palace body/returns, major roof halls and five chapel domes; district simplifies window rhythm; street has true closed recesses; close-up adds mullions, curved ribbons, paired pillars and open parapets. Detailed source retains finer curves/roof seams. Numerical LOD error estimates3/1.5/.7/.25m and physical timings are unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://gotonature.ru/2034-dvorcy-prigorodov-sankt-peterburga.html",
+      "observed": "Actually inspected full blue/white main range and chapel corner from above. Continuous long principal range has shallow gray hipped roofs, repeated white chimneys/parapet, raised middle halls and end returns. Five gold onion domes crown the NNE chapel; the tan Lyceum and connecting arch are independent. Detached curved low forecourt ranges are separate native buildings, not roofed over into the palace."
+    },
+    {
+      "url": "https://www.tripadvisor.com/AttractionProductReview-g298507-d23877310-The_Catherine_palace_with_the_Amber_room-St_Petersburg_Northwestern_District.html",
+      "observed": "Actually inspected garden side: pale blue plaster, white rusticated lower piers and paired tall white pilasters, two main window stories with small upper attic ovals, gray shallow roofs and white open rooftop balustrade. Gold stucco/cartouche rhythms surround windows; original simplified curved ribbons may suggest these, without copying figures or heraldry. Five gold domes stand at the chapel end."
+    },
+    {
+      "url": "https://itchyfeettraveleraroundtheworld.blogspot.com/2014/09/catherines-palace.html",
+      "observed": "Actually inspected main forecourt close view: tall arched multi-pane lower and upper windows, small upper attic windows and white pilasters, gold capitals/curved ornament; projecting central entry bay has a real closed pale door and broad supported dark steps. Simpler returned blue side range has three rectangular window stories. Recesses need closed backs and real reveals."
+    },
+    {
+      "url": "https://privetpiter.com/programmy-i-stoimost/1/pushkinskij-licej",
+      "observed": "Actually inspected blue chapel/returned range adjacent to tan Lyceum. Gray roof and white parapet/chimneys, gold five-dome cluster behind the corner, white rusticated lower piers and three window rows. Independent tan elevated connecting arch/road passage and Lyceum remain outside the principal-palace model. No copied street signs or text."
+    },
+    {
+      "url": "https://www.openstreetmap.org/relation/17546726",
+      "observed": "Native principal relation17546726 and203 associated mapped building-part fragments contained in its occupied plan. Whole-feature98% replacement preserves all182 independent native components, including Lyceum226, connecting arch331, Cameron/gallery228/310/322-325 and both detached forecourt ranges."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-blue-white-palace-and-five-domed-chapel",
+      "position": [
+        80,
+        56,
+        265
+      ],
+      "lookAt": [
+        0,
+        9,
+        13
+      ],
+      "fov": 49
+    },
+    {
+      "name": "complete-palace-both-returned-wings-and-roof-halls",
+      "position": [
+        -100,
+        125,
+        -220
+      ],
+      "lookAt": [
+        0,
+        8,
+        5
+      ],
+      "fov": 50
+    },
+    {
+      "name": "five-gold-onion-domes-and-supported-drums",
+      "position": [
+        173,
+        39,
+        48
+      ],
+      "lookAt": [
+        144,
+        25,
+        14
+      ],
+      "fov": 57
+    },
+    {
+      "name": "deep-recessed-garden-windows-white-pilasters-and-gilded-ribbons",
+      "position": [
+        -47,
+        9,
+        44
+      ],
+      "lookAt": [
+        -47,
+        9,
+        21.6
+      ],
+      "fov": 57
+    },
+    {
+      "name": "central-closed-entry-and-supported-stair-threshold",
+      "position": [
+        -1,
+        8,
+        -34
+      ],
+      "lookAt": [
+        -0.8,
+        5,
+        -0.4
+      ],
+      "fov": 58
+    },
+    {
+      "name": "south-return-and-native-footprint",
+      "position": [
+        -184,
+        35,
+        56
+      ],
+      "lookAt": [
+        -145,
+        8,
+        12
+      ],
+      "fov": 55
+    },
+    {
+      "name": "open-forecourt-and-independent-lyceum-connection",
+      "position": [
+        110,
+        55,
+        -130
+      ],
+      "lookAt": [
+        30,
+        8,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "whole-native-roof-plan-and-five-chapel-domes",
+      "position": [
+        0,
+        250,
+        14
+      ],
+      "lookAt": [
+        0,
+        0,
+        14
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0.5,
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ud/udt/catherine_palace/models/catherine-model.mjs",
+    "export": "buildCatherineSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.66,
+        "metallic": 0.25
+      },
+      "gold": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.38,
+        "metallic": 0.75
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_painted_lap",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.4,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCatherineDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.25
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.38,
+            "metallic": 0.75
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "street": {
+        "export": "buildCatherineStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.25
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.38,
+            "metallic": 0.75
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.7
+      },
+      "closeup": {
+        "export": "buildCatherineCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.25
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.38,
+            "metallic": 0.75
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.25
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-palace-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -100,
+        125,
+        -220
+      ],
+      "lookAt": [
+        0,
+        8,
+        5
+      ]
+    },
+    {
+      "name": "whole-palace-district",
+      "reviewLod": "district",
+      "position": [
+        -100,
+        125,
+        -220
+      ],
+      "lookAt": [
+        0,
+        8,
+        5
+      ]
+    },
+    {
+      "name": "whole-palace-street",
+      "reviewLod": "street",
+      "position": [
+        -100,
+        125,
+        -220
+      ],
+      "lookAt": [
+        0,
+        8,
+        5
+      ]
+    },
+    {
+      "name": "whole-palace-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -100,
+        125,
+        -220
+      ],
+      "lookAt": [
+        0,
+        8,
+        5
+      ]
+    }
+  ]
+}

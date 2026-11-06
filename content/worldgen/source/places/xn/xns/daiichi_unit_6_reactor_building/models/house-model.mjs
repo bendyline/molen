@@ -1,0 +1,293 @@
+/** Whole Unit6 aboveground reactor; original native envelope and operator written heights. */
+import '../../../../../../../../packages/worldgen/scripts/install-deterministic-math.mjs';
+import fs from 'node:fs';
+import { MeshBufferBuilder } from '../../../../../../../../packages/worldgen/dist/kernel.mjs';
+import {
+  beam,
+  normalFor,
+} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
+export const P = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));
+export const surfaces = {
+  wall: { slot: 'wall', graph: 'concrete_plain', roughness: 0.92, metallic: 0 },
+  upper: { slot: 'wall', graph: 'metal_corrugated', roughness: 0.86, metallic: 0.18 },
+  roof: { slot: 'roof', graph: 'metal_painted', roughness: 0.85, metallic: 0.25 },
+  foundation: { slot: 'foundation', graph: 'concrete_plain', roughness: 0.95, metallic: 0 },
+  steel: { slot: 'trim', graph: 'metal_painted', roughness: 0.68, metallic: 0.35 },
+};
+const colors = {
+    wall: rgb('cfd2cf'),
+    upper: rgb('c0cbd0'),
+    roof: rgb('9ca89f'),
+    foundation: rgb('b3bcb2'),
+    steel: rgb('8d9c92'),
+  },
+  rect = (x0, x1, z0, z1) => [
+    [x0, z0],
+    [x1, z0],
+    [x1, z1],
+    [x0, z1],
+  ];
+export const componentEvidence = [];
+function face(o, k, p, n, tint = colors[k]) {
+  let v = normalFor(...p);
+  if (n && v.reduce((s, a, i) => s + a * n[i], 0) < 0) {
+    p = [...p].reverse();
+    v = normalFor(...p);
+  }
+  o.addConvexPolygon(k, 'palette:#ffffff', p, v, (q) => [q[0], q[1]], tint);
+}
+function cap(o, k, r, y, up, tint) {
+  const b = new MeshBufferBuilder();
+  if (
+    !b.addCap(
+      k,
+      'palette:#ffffff',
+      r,
+      [],
+      (p) => (typeof y === 'function' ? y(p) : y),
+      [0, up, 0],
+      (p) => p,
+      tint ?? colors[k],
+    )
+  )
+    throw Error('Invalid warehouse cap');
+  const m = b.finalize();
+  for (let i = 0; i < m.indices.length; i += 3)
+    face(
+      o,
+      k,
+      Array.from(m.indices.slice(i, i + 3)).map((j) =>
+        Array.from(m.positions.slice(j * 3, j * 3 + 3)),
+      ),
+      [0, up, 0],
+      tint,
+    );
+}
+function prism(o, k, r, y0, y1, tint) {
+  const sg = Math.sign(
+      r.reduce((s, p, i) => {
+        const q = r[(i + 1) % r.length];
+        return s + p[0] * q[1] - p[1] * q[0];
+      }, 0),
+    ),
+    top = (p) => (typeof y1 === 'function' ? y1(p) : y1);
+  for (let i = 0; i < r.length; i++) {
+    const a = r[i],
+      b = r[(i + 1) % r.length];
+    face(
+      o,
+      k,
+      [
+        [a[0], y0, a[1]],
+        [b[0], y0, b[1]],
+        [b[0], top(b), b[1]],
+        [a[0], top(a), a[1]],
+      ],
+      [(b[1] - a[1]) * sg, 0, (a[0] - b[0]) * sg],
+      tint,
+    );
+  }
+  cap(o, k, r, y0, -1, tint);
+  cap(o, k, r, y1, 1, tint);
+}
+const box = (o, k, x, z, w, d, y0, y1, t) =>
+    prism(o, k, rect(x - w / 2, x + w / 2, z - d / 2, z + d / 2), y0, y1, t),
+  strut = (o, k, a, b, w = 0.07, t) => beam(o, k, a, b, w, w, t ?? colors[k]);
+
+function perimeter(o, ring, y0, y1, lod, step = 4) {
+  const sg = Math.sign(
+    ring.reduce((s, a, i) => {
+      const b = ring[(i + 1) % ring.length];
+      return s + a[0] * b[1] - a[1] * b[0];
+    }, 0),
+  );
+  let joints = 0;
+  for (let i = 0; i < ring.length; i++) {
+    const a = ring[i],
+      b = ring[(i + 1) % ring.length],
+      L = Math.hypot(b[0] - a[0], b[1] - a[1]),
+      u = [(b[0] - a[0]) / L, (b[1] - a[1]) / L],
+      n = [u[1] * sg, -u[0] * sg],
+      pt = (t, y, off = 0.06) => [a[0] + u[0] * t + n[0] * off, y, a[1] + u[1] * t + n[1] * off];
+    if (lod >= 1) {
+      strut(o, 'steel', pt(0, y0), pt(0, y1), 0.13);
+      strut(o, 'steel', pt(0, y1), pt(L, y1), 0.13);
+    }
+    if (lod >= 2) {
+      const N = Math.ceil(L / (lod === 3 ? step : step * 2));
+      for (let j = 1; j < N; j++) {
+        strut(
+          o,
+          'steel',
+          pt((L * j) / N, y0 + 0.05),
+          pt((L * j) / N, y1 - 0.05),
+          0.035,
+          rgb('9baeb4'),
+        );
+        joints++;
+      }
+    }
+  }
+  return joints;
+}
+function closedPanel(o, ring, i, t, w, y0, y1, lod, color) {
+  const a = ring[i],
+    b = ring[(i + 1) % ring.length],
+    L = Math.hypot(b[0] - a[0], b[1] - a[1]),
+    u = [(b[0] - a[0]) / L, (b[1] - a[1]) / L],
+    sg = Math.sign(
+      ring.reduce((s, a, i) => {
+        const b = ring[(i + 1) % ring.length];
+        return s + a[0] * b[1] - a[1] * b[0];
+      }, 0),
+    ),
+    n = [u[1] * sg, -u[0] * sg],
+    pt = (x, y, d = 0.09) => [a[0] + u[0] * x + n[0] * d, y, a[1] + u[1] * x + n[1] * d],
+    lo = L * t - w / 2,
+    hi = lo + w;
+  face(o, 'steel', [pt(lo, y0), pt(hi, y0), pt(hi, y1), pt(lo, y1)], [n[0], 0, n[1]], color);
+  if (lod >= 1)
+    for (const [a, b] of [
+      [pt(lo, y0, 0.13), pt(lo, y1, 0.13)],
+      [pt(hi, y0, 0.13), pt(hi, y1, 0.13)],
+      [pt(lo, y1, 0.13), pt(hi, y1, 0.13)],
+    ])
+      strut(o, 'steel', a, b, 0.12);
+}
+
+export function buildHouse(o, _f, lod = 3) {
+  componentEvidence.length = 0;
+  prism(o, 'foundation', P.nativeRing, P.foundationBottom, P.floor);
+  prism(o, 'wall', P.nativeRing, P.floor, P.concreteTop);
+  prism(o, 'upper', P.nativeRing, P.concreteTop, P.mainRoof - 0.25);
+  prism(o, 'roof', P.nativeRing, P.mainRoof - 0.25, P.mainRoof);
+  const joints =
+    perimeter(o, P.nativeRing, P.floor, P.concreteTop, lod, 6) +
+    perimeter(o, P.nativeRing, P.concreteTop, P.mainRoof - 0.25, lod, 3);
+  closedPanel(o, P.nativeRing, 0, 0.55, 3.4, P.floor + 0.03, P.floor + 4.5, lod, rgb('697e83'));
+  closedPanel(o, P.nativeRing, 3, 0.6, 1.2, P.floor + 0.03, P.floor + 2.7, lod, rgb('697e83'));
+  closedPanel(
+    o,
+    P.nativeRing,
+    0,
+    0.5,
+    6,
+    P.operatingFloorY + 2,
+    P.operatingFloorY + 9,
+    lod,
+    rgb('b4c1c5'),
+  );
+  if (lod >= 2)
+    for (const y of P.floorMarkers)
+      for (let i = 0; i < P.nativeRing.length; i++) {
+        const a = P.nativeRing[i],
+          b = P.nativeRing[(i + 1) % P.nativeRing.length];
+        strut(o, 'steel', [a[0], y, a[1]], [b[0], y, b[1]], 0.035, rgb('bac4c4'));
+      }
+  if (lod === 3) {
+    const x0 = Math.min(...P.nativeRing.map((p) => p[0])) + 0.6,
+      x1 = Math.max(...P.nativeRing.map((p) => p[0])) - 0.6,
+      z0 = Math.min(...P.nativeRing.map((p) => p[1])),
+      z1 = Math.max(...P.nativeRing.map((p) => p[1]));
+    for (let z = z0 + 3; z < z1 - 0.5; z += 3) {
+      const intersections = [];
+      for (let i = 0; i < P.nativeRing.length; i++) {
+        const a = P.nativeRing[i],
+          b = P.nativeRing[(i + 1) % P.nativeRing.length];
+        if (a[1] > z !== b[1] > z)
+          intersections.push(a[0] + ((z - a[1]) / (b[1] - a[1])) * (b[0] - a[0]));
+      }
+      intersections.sort((a, b) => a - b);
+      for (let i = 0; i < intersections.length; i += 2)
+        strut(
+          o,
+          'roof',
+          [intersections[i] + 0.15, P.mainRoof + 0.02, z],
+          [intersections[i + 1] - 0.15, P.mainRoof + 0.02, z],
+          0.025,
+          rgb('95a399'),
+        );
+    }
+  }
+  componentEvidence.push({
+    lod,
+    nativeCorners: P.nativeRing.length,
+    wholeBody: true,
+    allExteriorWalls: true,
+    wholeClosedRoof: true,
+    foundation: true,
+    closedEntries: 2,
+    closedUpperPanel: 1,
+    abovegroundOnly: true,
+    undergroundEnlargementOmitted: true,
+    internalContainmentOmitted: true,
+    facadePanelJoints: joints,
+    notWholePlantProxy: true,
+  });
+}
+export const houseSkyline = (o, f) => buildHouse(o, f, 0),
+  houseDistrict = (o, f) => buildHouse(o, f, 1),
+  houseStreet = (o, f) => buildHouse(o, f, 2),
+  houseCloseup = (o, f) => buildHouse(o, f, 3);
+const root = 'content/worldgen/source/places/' + P.cell + '/' + P.model,
+  camera = [100, 85, 120],
+  look = [0, 26, 0];
+export const houseModel = {
+  id: P.model,
+  key: P.model,
+  cell: P.cell,
+  title: P.title,
+  recipe: 'house-model.mjs',
+  surfaces,
+  build: buildHouse,
+  category: 'landmark',
+  quality: 'medium-fi-exterior',
+  reviewStatus: 'review-in-qa.json',
+  geographicStatus: 'historical-proposal',
+  orientationPolicy: 'approximate-visualization',
+  progressLedger: 'qualla-002.PROGRESS.md',
+  brief:
+    'WholeUnit6abovegroundreactor/all8originalnativecorners,operator42.5x45.5mabovegroundbodyand55.65mabovegradeheight,concretemainwalls/steelroof/closedentries/upperpanel. Largerundergroundbaseandinternalcontainmentomitted. Finefinish/roofnotches/2021continuityestimated;allappearanceimagesunused.',
+  appearance: {
+    kind: 'historical',
+    representedDate: P.representedDate,
+    validFrom: P.validFrom,
+    validUntil: P.validUntil,
+    currentWorldEligible: false,
+  },
+  camera,
+  lookAt: look,
+  portableGroundY: -1.23,
+  mediumFiContext: {
+    scale: 1,
+    groundY: 0,
+    terrain: { descriptor: 'terrain-review.terrain.json', heightmap: 'terrain-review.height.png' },
+  },
+  embeddedCanonicalGraphs: ['metal_corrugated', 'metal_painted', 'concrete_plain'],
+  qaCameras: [
+    { name: 'whole-east-reactor-and-closed-entries', position: camera, lookAt: look },
+    { name: 'whole-west-native-notches-and-rear', position: [-100, 82, -120], lookAt: look },
+  ],
+  qaLodCameras: ['skyline', 'district', 'street', 'closeup'].map((reviewLod) => ({
+    name: 'whole-Unit6-reactor-' + reviewLod,
+    position: camera,
+    lookAt: look,
+    reviewLod,
+  })),
+  runtimeLodOverlay: {
+    module: root + '/models/house-model.mjs',
+    level: 'skyline',
+    export: 'houseSkyline',
+    errorMeters: 0.2,
+    surfaces,
+    authoredLevels: {
+      district: { export: 'houseDistrict', errorMeters: 0.12, surfaces },
+      street: { export: 'houseStreet', errorMeters: 0.04, surfaces },
+      closeup: { export: 'houseCloseup', errorMeters: 0.001, surfaces },
+    },
+  },
+  limitations: P.limitations,
+  sourceLicense:
+    'Original proceduralgeometryunderrepositorylicense. OriginalOverture/OpenStreetMapnativegeometryODbL-1.0attributed;operatorwritten/numericalfactsused. Allsourceappearanceimages/reportfigures/plansunused; no phototextures. Finefinishandnominal2021continuityestimated.',
+};

@@ -1,27 +1,34 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.edificio_italia",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.edificio_italia",
+    "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378"
+  },
   "sourceHash": "sha256:e94ca61523b47f87c09352bbd12153489ed910c62712a18ad7f4b56cba98a14c",
   "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 5696,
   "runtimeLods": [
@@ -90,27 +97,30 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:7115620d8cd0c3118e9a7bd4c537d8e75c50fb0f6f0fc9926ab9777dd8ada63e",
+      "hash": "sha256:0032cf81c641cf2ac0956edddc5e1b02f48979e5637aff68421bda649b2b18ef",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 9,
-        "triangles": 53776,
+        "drawCalls": 10,
+        "triangles": 53916,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          48.012,
-          108.5,
-          83.0001
+          192.012,
+          186.5,
+          332.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -122,33 +132,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:80fa29757891b96c98daea06c7216755e9f0bb0d1d787d00dd4436e41a351b9c",
+      "hash": "sha256:2b25d48395560d90e9075aaa0cdc3f5904b3b123617d863db275f70ef12dad2d",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 9,
-        "triangles": 53776,
+        "drawCalls": 10,
+        "triangles": 53916,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          48.012,
-          108.5,
-          83.0001
+          192.012,
+          186.5,
+          332.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -160,33 +174,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:dde8b5c5d862d2e7d514532b992dca9b28ff07faf2e422016fa566555ba01428",
+      "hash": "sha256:2cac6a77efc56fabe8ebce50a12ca6ef7d57ef0bf2c6504d30d772ed59a735e0",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 9,
-        "triangles": 53776,
+        "drawCalls": 10,
+        "triangles": 53916,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          48.012,
-          108.5,
-          83.0001
+          192.012,
+          186.5,
+          332.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -198,33 +216,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:2158196cd98593075f6168e3009410fc0bca26be2b747274c7e040af4d9329ff",
+      "hash": "sha256:ed04ccf1d879fab207c5a577a6396320ceb65e92a239f5e866b5ccb96901b912",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
-        "drawCalls": 9,
-        "triangles": 53776,
+        "drawCalls": 10,
+        "triangles": 53916,
         "groundY": -6,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          48.012,
-          108.5,
-          83.0001
+          192.012,
+          186.5,
+          332.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -236,14 +258,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:aafc25f60ac2868a2edde934b435dc54648312cf43a4b22572f3dd54faa1f070",
+      "hash": "sha256:89fa0965b815b7eefb3add8ac6b63ed82382757b819119c962919008115457ec",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:90d365e57e2c5b492a83367c59bce989196504d736a3fdc135e57d072e7b0c34",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -256,13 +282,13 @@
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          97.012,
-          144.5,
-          168.0001
+          388.012,
+          330.5,
+          672.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -274,14 +300,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:bf531d7e84d63c0e484b6b635c2d841d957809ba444dc677e64e8d84af1c6204",
+      "hash": "sha256:184878f9f8761a62bd822b27b05bab092ea198550b0d5d92e20267b871b179bc",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:90d365e57e2c5b492a83367c59bce989196504d736a3fdc135e57d072e7b0c34",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -294,13 +324,13 @@
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          97.012,
-          144.5,
-          168.0001
+          388.012,
+          330.5,
+          672.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -312,14 +342,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:10d581f11dcb70b989ed27e3ef0d97a99c26afab2fa7851e4938e7acdb300405",
+      "hash": "sha256:f9571f3cb6fd8c5639deca4b6522debc8567986704804362d4d0e1e95eea7cfb",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:90d365e57e2c5b492a83367c59bce989196504d736a3fdc135e57d072e7b0c34",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -332,13 +366,13 @@
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          97.012,
-          144.5,
-          168.0001
+          388.012,
+          330.5,
+          672.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -350,14 +384,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:b7aa40228909b64087f574557ede5a9a89e77d41cf41b69a596988b4c641e67f",
+      "hash": "sha256:a87fa96d026eaae1c3736887c67253167b08efe6a694f24e8b3d7e145eacc8e1",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:90d365e57e2c5b492a83367c59bce989196504d736a3fdc135e57d072e7b0c34",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -370,13 +408,13 @@
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          97.012,
-          144.5,
-          168.0001
+          388.012,
+          330.5,
+          672.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -388,14 +426,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:c1288c35c7f709765729c9f20462f44ddadbe804e75999f4c88950ba58790c94",
+      "hash": "sha256:2fb89916c715819a1b0a3062d5b3313a64b8e33aaf7f36142b9b063c43263669",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:fdfdfca71e8691e8855dbfb450b81748e76e7cb052450be2dd4ca146eca93d3e",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -408,13 +450,13 @@
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          194.012,
-          182.5,
-          336.0001
+          776.012,
+          482.5,
+          1344.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -426,14 +468,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:8729d959e0471f0da8af528f3c5faaf4de4411feb56de2cbeda89e034275c8c6",
+      "hash": "sha256:890c5c2aa4d4525b9547b37374073fce54ecb51c39e1a4ac76e079333082380d",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:fdfdfca71e8691e8855dbfb450b81748e76e7cb052450be2dd4ca146eca93d3e",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -446,13 +492,13 @@
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          194.012,
-          182.5,
-          336.0001
+          776.012,
+          482.5,
+          1344.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -464,14 +510,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:070fe8e5ca826c27f00c242033884f72fb6f0beffc7bfdedc5ce82a00bc90cfa",
+      "hash": "sha256:1e2a5a70225bea1d5fb55486642edc61428c6c9a048931cd726e0d698b1e1e65",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:fdfdfca71e8691e8855dbfb450b81748e76e7cb052450be2dd4ca146eca93d3e",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -484,13 +534,13 @@
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          194.012,
-          182.5,
-          336.0001
+          776.012,
+          482.5,
+          1344.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -502,14 +552,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:217bd46e728109bafc0c739ab0518177adb0478c13750b5df00b9ac1ef0934af",
+      "hash": "sha256:38c5691282f5f226324abc0c83bacb8a87ed02a800502c4820cc63d9c0cc48e7",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:fdfdfca71e8691e8855dbfb450b81748e76e7cb052450be2dd4ca146eca93d3e",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -522,13 +576,13 @@
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          194.012,
-          182.5,
-          336.0001
+          776.012,
+          482.5,
+          1344.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -540,14 +594,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:541b921434ce16230454f6817fdc0b3d81b213cc1b58e363a76a1388850af19d",
+      "hash": "sha256:123252103f0006b8a9b22422704f534c388f344a5e7486b186325d48988a1886",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:fdfdfca71e8691e8855dbfb450b81748e76e7cb052450be2dd4ca146eca93d3e",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -560,13 +618,13 @@
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          194.012,
-          182.5,
-          336.0001
+          776.012,
+          482.5,
+          1344.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -578,14 +636,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/sunshade-cells.png",
-      "hash": "sha256:741e592b78c4d34cb31e1bc38551cd06b22dfec1e55d70c0b9650d66b4203cf1",
+      "hash": "sha256:657a7a3c491fbe250307dbffe12ff05330dda468bd378470d92e81a4a883e43c",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -616,14 +678,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/curved-end.png",
-      "hash": "sha256:94ed0a190c0bcc6bd7b20d5689a6e504f4d10508e62cc8fb568e4f3db6ee757d",
+      "hash": "sha256:a3188c4acabf8467294a0fa2941541077ee36bc2d9af00f3ed2b1506b629135e",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -654,14 +720,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/restaurant-terrace.png",
-      "hash": "sha256:af6aa3d9e9b46a3e65126e65d03ddafb02904bae3ba061181960c3d8b73ef38f",
+      "hash": "sha256:2c7badf93e8777ebbc3e55d4be8a926df34fc7d5defe4ea11a367e23b2777da3",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -692,14 +762,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/ground.png",
-      "hash": "sha256:6627075c610086d4f6c37e93fe4685b2f7f98969ce9e377d2b902bd6ed4e54e8",
+      "hash": "sha256:6f70c62d0b27d3edbc9eba424115a9c5f9a0e97effeb44ff375c4b4d843d2117",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -730,14 +804,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/far-silhouette.png",
-      "hash": "sha256:b710a281e4997e8d6eecfde89fa90d8cc9e338f03a6dce4187fbe20980b8ecbe",
+      "hash": "sha256:071c12d83eff173968d3f1881340539ed946d9f999ce4b90a1224ac07275e5d7",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -768,14 +846,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-edificio_italia-skyline.png",
-      "hash": "sha256:ecacdc84830400ede8e6505d0869ff229fa3ee72ccc1b45f010b6b84d1df8576",
+      "path": "medium-fi/whole-edificio-italia-skyline.png",
+      "hash": "sha256:b7d79b9d6515c97ea390220a70f711c99e0c46591f1bbdf8f49c1fcb342fd8f0",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:fdfdfca71e8691e8855dbfb450b81748e76e7cb052450be2dd4ca146eca93d3e",
         "level": "skyline",
         "distance": "street",
         "time": "noon",
@@ -806,14 +888,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-edificio_italia-district.png",
-      "hash": "sha256:9f654ad21d1e82bb127e31545f8889032dfae39dafacb578c5cc428b844292b8",
+      "path": "medium-fi/whole-edificio-italia-district.png",
+      "hash": "sha256:765c9ec5e0f31c57432ca6b525e12c048358ec0b943854716eb6320371034601",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:90d365e57e2c5b492a83367c59bce989196504d736a3fdc135e57d072e7b0c34",
         "level": "district",
         "distance": "street",
         "time": "noon",
@@ -844,14 +930,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-edificio_italia-street.png",
-      "hash": "sha256:446e741c78c8e78727578f34678307902bb6d8188c8604d7455987cdbeba8013",
+      "path": "medium-fi/whole-edificio-italia-street.png",
+      "hash": "sha256:c38e928e670237810438e8143e42dfa2b0e8ecda75bd07036fd584c7d33198b0",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:e931b1a073eb887bf978784ca7f4e8a3f1601e90fb5544f38edbf010140ebf24",
         "level": "street",
         "distance": "street",
         "time": "noon",
@@ -882,14 +972,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-edificio_italia-closeup.png",
-      "hash": "sha256:46c791adfccacc60502ab5aae380649993b00d2392aa618534c681670c6e2167",
+      "path": "medium-fi/whole-edificio-italia-closeup.png",
+      "hash": "sha256:1fbebc7525f2c626933b39c8f2bf06e93d5b2569611f81d2389cf54171ba790e",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -920,14 +1014,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:7e763281e2c67be5a23f0b799e635078d83f835a6f52430f2113132df193f2f9",
+      "hash": "sha256:a9a116a19251260ca6b4f9190bd2f24246def90ab686401a803db31251486bfe",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:fdfdfca71e8691e8855dbfb450b81748e76e7cb052450be2dd4ca146eca93d3e",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -940,13 +1038,13 @@
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          97.012,
-          144.5,
-          168.0001
+          388.012,
+          330.5,
+          672.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -958,14 +1056,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:bf531d7e84d63c0e484b6b635c2d841d957809ba444dc677e64e8d84af1c6204",
+      "hash": "sha256:184878f9f8761a62bd822b27b05bab092ea198550b0d5d92e20267b871b179bc",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:90d365e57e2c5b492a83367c59bce989196504d736a3fdc135e57d072e7b0c34",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -978,13 +1080,13 @@
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          97.012,
-          144.5,
-          168.0001
+          388.012,
+          330.5,
+          672.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -996,14 +1098,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:c34aee3a58f49bf81ac8879adb13ae4a8446bf3a19e00dd866120d1d0737d3c1",
+      "hash": "sha256:8693c11a2ff82e00662f9dbb07331e7b25863ac459ab27c8a0c66fa35bcd6194",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:e931b1a073eb887bf978784ca7f4e8a3f1601e90fb5544f38edbf010140ebf24",
         "level": "street",
         "distance": "block",
         "time": "noon",
@@ -1016,13 +1122,13 @@
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          97.012,
-          144.5,
-          168.0001
+          388.012,
+          330.5,
+          672.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -1034,14 +1140,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:618315420521cd371aaf0b4edbf483f2e9f48c809689bec2316a7467b8536ca9",
+      "hash": "sha256:3d558ebf39a595e82da3ad9069bb96ac2e342c22f7500fa67d1ae6d3033296b2",
       "state": {
+        "assetId": "molen.worldgen.structure.edificio_italia",
+        "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+        "lodHash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
@@ -1054,13 +1164,13 @@
           "heightmap": "content/worldgen/source/places/6g/6gy/edificio_italia/terrain-fit.height.png"
         },
         "position": [
-          97.012,
-          144.5,
-          168.0001
+          388.012,
+          330.5,
+          672.0001
         ],
         "lookAt": [
           0.012,
-          93.5,
+          126.5,
           0.0001
         ],
         "graphReads": {
@@ -1072,7 +1182,8 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     }

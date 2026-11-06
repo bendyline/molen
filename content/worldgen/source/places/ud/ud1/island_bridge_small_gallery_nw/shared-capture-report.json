@@ -1,0 +1,70 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.island_bridge_small_gallery_nw",
+  "inputHash": "sha256:946dd98d4021e99862b0cb81ef6374afa0368fad87ab83f25e0814f1becf5d4a",
+  "sourceHash": "sha256:62c1eb9ba78c0f066091964098292c86e52966613957e6eade554ba278ba0ded",
+  "runtimeHash": "sha256:fb5d5cf5183bd1582d93456132ed73ce7015334d1f0146bcdeb0f30e1eb930a5",
+  "fixtureHash": "sha256:e49b58b6661f61c00bc6093bfa23073ffd411bdbc318cf64764556e0af304224",
+  "placementHash": "sha256:ff2028f3af504ffeee51e1218f9ff26fcd4b2ec905ec5ff19ff3d8bceec637d2",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-group.png",
+      "hash": "sha256:e09096967de81083871e0ec624623c7dcc46e4cca6970b28a50d7780a0177e30",
+      "camera": {
+        "name": "small-street-noon-high",
+        "mediumName": "street-noon-high",
+        "group": "small",
+        "position": [
+          -570,
+          17,
+          40
+        ],
+        "lookAt": [
+          -580,
+          5,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "island.bridge.small.gallery.nw",
+        "group": "small",
+        "visibleMemberDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "liveSupportGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "One shared Molen material library loads each of three material graphs once for all14 real placed components. The image is this component in its assembly group, not an isolated or synthetic preview."
+}

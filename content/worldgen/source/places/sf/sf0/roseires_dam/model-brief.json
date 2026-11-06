@@ -1,0 +1,456 @@
+{
+  "id": "roseires_dam",
+  "title": "Roseires Dam",
+  "wikidataId": "Q1265064",
+  "referenceCoordinate": {
+    "longitude": 34.387517056,
+    "latitude": 11.798093465
+  },
+  "module": "content/worldgen/source/places/sf/sf0/roseires_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "face": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "head": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "shade": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "deck": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "earth": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "green": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    }
+  },
+  "exportLabel": "Molen original Roseires Dam and Blue Nile powerhouse",
+  "expectedDraftMasterHash": "sha256:c84ed0610c74146ee87ef79e29e06930c690930eed8fc84bad4ce1fddcdb3838",
+  "visualBrief": "Roseires Dam’s signed concrete barrage and approach embankments, photographed buttresses, the central sluice chutes, power hall and downstream apron.",
+  "heightPolicy": "Standard Terrarium samples set the 483.02 m reservoir anchor at [0, −640] and the 451.00 m downstream channel at [0, 208]. The production sampler returns 483.62–483.65 m upstream and 450.48–452.77 m across the sampled downstream polygons.",
+  "nativeAxes": "+X southwest along the crest, +Z northwest toward the downstream Blue Nile and +Y up.",
+  "sourceFacts": {
+    "mappedIdentity": "way/28322101",
+    "nativeWaterIds": [
+      12306853,
+      12305073
+    ],
+    "ownedTransportationId": 35184678884121,
+    "mappedExtentMeters": 934.356,
+    "sluiceCount": 7,
+    "outletRecesses": 12,
+    "terrainDatum": 483.017491,
+    "terrainGridStep": 16,
+    "terrainTiles": 9,
+    "tailwaterModelY": -32.01749100000001
+  },
+  "materialMethod": "Shared board-formed and plain concrete, gravel, painted metal, standing-seam metal and window graphs with metric UVs and no embedded images.",
+  "limitations": [
+    "Standard Terrarium samples set the 483.02 m reservoir anchor at [0, −640] and the 451.00 m downstream channel at [0, 208]. The production sampler returns 483.62–483.65 m upstream and 450.48–452.77 m across the sampled downstream polygons.",
+    "The original model follows the 934 m mapped concrete outline and the adjacent mapped grade ties. More distant perimeter embankments remain in native terrain.",
+    "The visible wall, seven gated lanes and low power hall follow the ordinary reference pictures and PMTiles alignment. Exact current gate, buttress, apron and machinery dimensions are visual interpretations.",
+    "The 16 m terrain and modeled shore grades are approximate. Only the crest crossing is replaced. Both downstream bridges remain native."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Roseires_Dam.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:Roseires_Dam.jpg",
+      "observed": "The panoramic downstream view shows the repeating ochre buttresses, the open center gate chutes, the long low powerhouse with dark tailrace openings and the crest edge structures. The photograph dates to 2012 and includes construction cranes."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Sudan_Roseires_Dam.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:Sudan_Roseires_Dam.jpg",
+      "observed": "An alternate downstream crop confirms the transition from open gates to the powerhouse and narrower right-bank piers."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The retained mapped 934 m concrete barrage lies at the head of the islanded downstream reach. The photographed front is oriented northwest. The separately mapped downstream crossings remain outside the facility."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "blue-nile-overview",
+      "position": [
+        -195,
+        285,
+        830
+      ],
+      "lookAt": [
+        0,
+        -7,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "barrage-and-powerhouse",
+      "position": [
+        6,
+        38,
+        340
+      ],
+      "lookAt": [
+        1,
+        -6,
+        17
+      ],
+      "fov": 50
+    },
+    {
+      "name": "sluice-chutes",
+      "position": [
+        -68,
+        13,
+        131
+      ],
+      "lookAt": [
+        -57,
+        -8,
+        27
+      ],
+      "fov": 50
+    },
+    {
+      "name": "tailrace-apron",
+      "position": [
+        156,
+        8,
+        127
+      ],
+      "lookAt": [
+        91,
+        -12,
+        43
+      ],
+      "fov": 50
+    },
+    {
+      "name": "northeast-buttresses",
+      "position": [
+        -440,
+        32,
+        154
+      ],
+      "lookAt": [
+        -267,
+        -4,
+        17
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-from-reservoir",
+      "position": [
+        71,
+        51,
+        -280
+      ],
+      "lookAt": [
+        62,
+        2,
+        -1
+      ],
+      "fov": 50
+    },
+    {
+      "name": "southwest-wing",
+      "position": [
+        736,
+        66,
+        240
+      ],
+      "lookAt": [
+        493,
+        -3,
+        -12
+      ],
+      "fov": 50
+    },
+    {
+      "name": "northeast-wing",
+      "position": [
+        -1020,
+        98,
+        25
+      ],
+      "lookAt": [
+        -771,
+        -1,
+        -125
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -40.3,
+    "scale": 3.1,
+    "focus": {
+      "center": [
+        0,
+        -3,
+        20
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sf/sf0/roseires_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "face": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "head": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "shade": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "deck": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "earth": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "green": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "face": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "head": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "shade": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "green": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "face": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "head": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "shade": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "green": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "face": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "head": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "shade": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "green": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "roseires-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -195,
+        285,
+        830
+      ],
+      "lookAt": [
+        0,
+        -7,
+        0
+      ]
+    },
+    {
+      "name": "roseires-district",
+      "reviewLod": "district",
+      "position": [
+        -195,
+        285,
+        830
+      ],
+      "lookAt": [
+        0,
+        -7,
+        0
+      ]
+    },
+    {
+      "name": "roseires-street",
+      "reviewLod": "street",
+      "position": [
+        -195,
+        285,
+        830
+      ],
+      "lookAt": [
+        0,
+        -7,
+        0
+      ]
+    },
+    {
+      "name": "roseires-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -195,
+        285,
+        830
+      ],
+      "lookAt": [
+        0,
+        -7,
+        0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,418 @@
+{
+  "id": "el_chocon_dam",
+  "title": "El Chocón Dam",
+  "wikidataId": "Q1287364",
+  "referenceCoordinate": {
+    "longitude": -68.755375264,
+    "latitude": -39.26844115
+  },
+  "module": "content/worldgen/source/places/63/63p/el_chocon_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "rock": {
+      "slot": "foundation",
+      "graph": "stone_basalt_raw"
+    },
+    "earth": {
+      "slot": "foundation",
+      "graph": "earth_rammed"
+    },
+    "deck": {
+      "slot": "trim",
+      "graph": "concrete_plain"
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "apron": {
+      "slot": "foundation",
+      "graph": "concrete_panel"
+    },
+    "rail": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "gate": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    }
+  },
+  "exportLabel": "Molen original El Chocón rockfill dam, spillway and powerhouse",
+  "expectedDraftMasterHash": "sha256:cc03a6a2ce36f4080ca9c10bf875ae4b7c42582017b6c661a1855463b19d0acc",
+  "visualBrief": "El Chocón’s curved rockfill embankment, mapped crest road, four-gate spillway, six-unit powerhouse, three roof portals and reservoir intake platform with connecting footbridge.",
+  "heightPolicy": "Fixed 369.7960245 m local datum and 386 m crest. The standard water sampler yields 370.65 m upstream and 315.43 m in the tailwater. The high-water comparison uses the 380.31 m normal maximum.",
+  "nativeAxes": "+X follows the overall northwest to southeast axis. +Z points upstream into the reservoir.",
+  "sourceFacts": {
+    "registeredCrestLengthMeters": 2250,
+    "mappedCrestRoadLengthMeters": 2103.655,
+    "structuralHeightMeters": 86,
+    "crestElevation": 386,
+    "mainUnits": 6,
+    "spillwayBays": 4,
+    "terrainTiles": 12
+  },
+  "limitations": [
+    "Fixed 369.7960245 m local datum and 386 m crest. The standard water sampler yields 370.65 m upstream and 315.43 m in the tailwater. The high-water comparison uses the 380.31 m normal maximum.",
+    "The authored road follows the continuous 2103.66 m PMTiles span. Published dam lengths include different abutment and structural extents. The landward tie elevations and slope cross-sections are exterior approximations.",
+    "The review heightfield repairs 23 isolated samples below 280 m. The raw standard terrain is retained for comparison. Water levels are fixtures, and the spillway is closed and dry.",
+    "The six-unit hall and intake follow mapped footprints. Internal turbines, submerged penstocks and the wider switchyard are outside the exterior model."
+  ],
+  "materialMethod": "Shared basalt rockfill, compacted earth, concrete panels, board-formed and plain concrete, painted steel, window grid and standing seam roofing. Zero embedded images.",
+  "references": [
+    {
+      "url": "https://www.argentina.gob.ar/orsep/registro-de-presas-fiscalizadas/regional-comahue/el-chocon",
+      "observed": "Regulator gives a 2250 m crest and an 86 m maximum height. The continuous mapped crest road is 2103.66 m between the selected tag endpoints."
+    },
+    {
+      "url": "https://www.aic.gob.ar/sitio/embalses-detalle?a=8&z=1577860616",
+      "observed": "Basin authority lists a 386 m crest, 380.31 m normal maximum water, 372 m normal minimum and 367 m extraordinary minimum. The right-bank spillway has four radial gates and the plant has six units."
+    },
+    {
+      "url": "https://egresadoselectronicaunc.blogspot.com/2016/03/central-hidroelectrica-el-chocon.html",
+      "observed": "Aerial photograph shows the intake platform and walkway, rockfill slopes, the continuous powerhouse windows and three white roof portal frames."
+    },
+    {
+      "url": "https://megaconstrucciones.net/?construccion=represa-el-chocon",
+      "observed": "Close photo shows a concrete crest bridge above steel radial gates, curved dividers and a dry sloped discharge chute."
+    },
+    {
+      "url": "https://www.openstreetmap.org/relation/11219315",
+      "observed": "Retained dam area locates its bent crest and sloping embankment and distinguishes the powerhouse and spillway."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Named crest roads and retained OSM relation 11219315 define the bends and both abutments. Native intake bridge, generator hall and gate polygons locate the structures."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "embankment-and-complex",
+      "position": [
+        -60,
+        455,
+        -1450
+      ],
+      "lookAt": [
+        -65,
+        -10,
+        125
+      ],
+      "fov": 50
+    },
+    {
+      "name": "four-radial-gates",
+      "position": [
+        692,
+        114,
+        -20
+      ],
+      "lookAt": [
+        760,
+        6,
+        144
+      ],
+      "fov": 50
+    },
+    {
+      "name": "powerhouse-and-intake",
+      "position": [
+        -112,
+        100,
+        -330
+      ],
+      "lookAt": [
+        -269,
+        -23,
+        -84
+      ],
+      "fov": 50
+    },
+    {
+      "name": "reservoir-and-crest",
+      "position": [
+        -160,
+        190,
+        790
+      ],
+      "lookAt": [
+        -105,
+        4,
+        115
+      ],
+      "fov": 50
+    },
+    {
+      "name": "spillway-approach",
+      "position": [
+        828,
+        42,
+        200
+      ],
+      "lookAt": [
+        767,
+        -14,
+        52
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -70,
+    "scale": 1.3,
+    "focus": {
+      "center": [
+        -65,
+        -10,
+        125
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/63/63p/el_chocon_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "rock": {
+        "slot": "foundation",
+        "graph": "stone_basalt_raw"
+      },
+      "earth": {
+        "slot": "foundation",
+        "graph": "earth_rammed"
+      },
+      "deck": {
+        "slot": "trim",
+        "graph": "concrete_plain"
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "apron": {
+        "slot": "foundation",
+        "graph": "concrete_panel"
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "gate": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed"
+          },
+          "deck": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "apron": {
+            "slot": "foundation",
+            "graph": "concrete_panel"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed"
+          },
+          "deck": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "apron": {
+            "slot": "foundation",
+            "graph": "concrete_panel"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed"
+          },
+          "deck": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "apron": {
+            "slot": "foundation",
+            "graph": "concrete_panel"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "gate": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "el-chocon-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -60,
+        455,
+        -1450
+      ],
+      "lookAt": [
+        -65,
+        -10,
+        125
+      ]
+    },
+    {
+      "name": "el-chocon-district",
+      "reviewLod": "district",
+      "position": [
+        -60,
+        455,
+        -1450
+      ],
+      "lookAt": [
+        -65,
+        -10,
+        125
+      ]
+    },
+    {
+      "name": "el-chocon-street",
+      "reviewLod": "street",
+      "position": [
+        -60,
+        455,
+        -1450
+      ],
+      "lookAt": [
+        -65,
+        -10,
+        125
+      ]
+    },
+    {
+      "name": "el-chocon-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -60,
+        455,
+        -1450
+      ],
+      "lookAt": [
+        -65,
+        -10,
+        125
+      ]
+    }
+  ]
+}

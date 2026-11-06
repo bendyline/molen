@@ -176,6 +176,12 @@ describe('screen-space terrain pyramid', () => {
                 localCoordinates: true,
               }),
             }),
+            // The worker meshes the graded field too, off the main thread.
+            meshPrepared: vi.fn(async (field: Heightfield) =>
+              buildChunkGeometry(field, surfaceDescriptor(d, address), 0, 0, {
+                localCoordinates: true,
+              }),
+            ),
           }
         : {}),
     };
@@ -200,6 +206,13 @@ describe('screen-space terrain pyramid', () => {
       await stream.whenIdle();
       expect(transformHeightfield).toHaveBeenCalledOnce();
       expect(createTile).toHaveBeenCalledWith(expect.objectContaining({ heightfield: graded }));
+      if (worker)
+        expect(source.meshPrepared).toHaveBeenCalledWith(
+          graded,
+          address,
+          expect.any(AbortSignal),
+          expect.any(Number),
+        );
       expect(original.sampleHeight(2, 2)).toBe(0);
       expect(stream.sampleHeight(2, 2)).toBeCloseTo(10, 5);
       expect(stream.sampleSurfaceHeight(2, 2)).toBeCloseTo(10, 5);
@@ -2104,6 +2117,118 @@ describe('screen-space terrain pyramid', () => {
     ]);
     expect(stream.stats()).toMatchObject({ missing: 1, retrying: 0, failed: 1 });
     stream.dispose();
+  });
+
+  it('tries an abandoned tile again after its cool-down, so an outage leaves no hole', async () => {
+    const d = descriptor({ maxLevel: 1 });
+    let now = 1_000_000;
+    const clock = vi.spyOn(Date, 'now').mockImplementation(() => now);
+    let outage = true;
+    let attempts = 0;
+    const source: TerrainPyramidHeightSource = {
+      async load(address): Promise<Heightfield | undefined> {
+        if (terrainPyramidTileKey(address) !== '1/0/0') return flatTile(d, address);
+        attempts++;
+        // A dropped connection that outlasts the quick retries.
+        if (outage) throw new TypeError('Failed to fetch');
+        return flatTile(d, address);
+      },
+    };
+    const stream = createTerrainPyramidStream(d, source, {
+      initialView: VIEW,
+      maxScreenSpaceError: 1,
+      viewDistance: 100,
+      maxSelectedTiles: 8,
+      maxConcurrentLoads: 4,
+      maxResidentTiles: 16,
+      maxRetries: 1,
+      retryDelayMs: 1,
+      failedRetryDelayMs: 10_000,
+    });
+    try {
+      await stream.whenIdle();
+      expect(attempts).toBe(2);
+      expect(stream.tileFailures()).toMatchObject([
+        { address: { level: 1, x: 0, z: 0 }, state: 'failed', nextAttemptAt: now + 10_000 },
+      ]);
+      // Cooling down: replans leave the source alone.
+      now += 9_999;
+      stream.update(VIEW);
+      await stream.whenIdle();
+      expect(attempts).toBe(2);
+      // The first replan after the cool-down tries again; a further failure waits twice as long.
+      now += 1;
+      stream.update(VIEW);
+      await stream.whenIdle();
+      expect(attempts).toBe(3);
+      expect(stream.tileFailures()[0]?.nextAttemptAt).toBe(now + 20_000);
+      outage = false;
+      now += 10_000;
+      stream.update(VIEW);
+      await stream.whenIdle();
+      expect(attempts).toBe(3);
+      now += 10_000;
+      stream.update(VIEW);
+      await stream.whenIdle();
+      expect(attempts).toBe(4);
+      expect(stream.residentTiles()).toContainEqual({ level: 1, x: 0, z: 0 });
+      expect(stream.tileFailures()).toEqual([]);
+    } finally {
+      stream.dispose();
+      clock.mockRestore();
+    }
+  });
+
+  it('fills in water whose layer failed once the cool-down passes', async () => {
+    const d = descriptor({ maxLevel: 1 });
+    let now = 1_000_000;
+    const clock = vi.spyOn(Date, 'now').mockImplementation(() => now);
+    let outage = true;
+    let attempts = 0;
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 1,
+        viewDistance: 100,
+        maxSelectedTiles: 8,
+        maxResidentTiles: 16,
+        maxConcurrentLoads: 4,
+        maxConcurrentLayerLoads: 4,
+        maxRetries: 0,
+        failedRetryDelayMs: 10_000,
+        layers: [
+          {
+            id: 'water',
+            category: 'hydrology',
+            minLevel: 1,
+            createTile({ address }) {
+              if (address.x !== 0 || address.z !== 0) return new THREE.Group();
+              attempts++;
+              if (outage) throw new TypeError('Failed to fetch');
+              return new THREE.Group();
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await stream.whenIdle();
+      expect(attempts).toBe(1);
+      expect(stream.stats()).toMatchObject({ failedLayers: 1, retryingLayers: 0 });
+      expect(stream.object.getObjectByName('layer:water:1/0/0')).toBeUndefined();
+      outage = false;
+      now += 10_000;
+      stream.update(VIEW);
+      await stream.whenIdle();
+      expect(attempts).toBe(2);
+      expect(stream.stats().failedLayers).toBe(0);
+      expect(stream.object.getObjectByName('layer:water:1/0/0')?.visible).toBe(true);
+    } finally {
+      stream.dispose();
+      clock.mockRestore();
+    }
   });
 
   it('retains the resident parent when one selected child fails', async () => {

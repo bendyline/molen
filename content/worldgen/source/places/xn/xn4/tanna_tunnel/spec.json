@@ -1,0 +1,461 @@
+{
+  "planId": "tanna_tunnel",
+  "id": "tanna_tunnel",
+  "assetId": "molen.worldgen.structure.tanna_tunnel",
+  "title": "Tanna Tunnel — complete original double-track bore and 1936 portals",
+  "category": "transport",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 139.01970393955708,
+    "latitude": 35.10353746304568
+  },
+  "size": [
+    7900.068115234375,
+    25.66644287109375,
+    21.25999927520752
+  ],
+  "actualBounds": {
+    "min": [
+      -3950.013916015625,
+      -174.22630310058594,
+      -10.644746780395508
+    ],
+    "max": [
+      3950.05419921875,
+      -148.5598602294922,
+      10.615252494812012
+    ]
+  },
+  "visualBrief": "Whole original Tanna double-track railway tunnel, both full stone headwalls and open arch mouths/cornices/intrinsic wingwalls, continuous egg-section lining/invert/ballast/four rails and original portal electrification. Original1936PDM ministry portal/lining photographs and complete paired oldMainLine numerical alignment. Dimensions, finish and hidden rail grade are estimated.",
+  "nativeAxes": {
+    "x": "westKannami portal toward eastAtami portal along complete original oldMainLine bore",
+    "y": "up",
+    "z": "perpendicular to whole old tunnel alignment"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1936-03-01",
+    "validFrom": "1936-03-01",
+    "validUntil": "1937-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://ndlsearch.ndl.go.jp/books/R100000002-I000001008956"
+  ],
+  "stories": [
+    {
+      "id": "tanna-tunnel-wp",
+      "url": "https://qualla.com/tanna-tunnel/"
+    }
+  ],
+  "referenceInputHash": "sha256:99ca7d59b82ad2a346155b61e0968e167aa1251343d473167479e0f985f187e5",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn4/tanna_tunnel/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn4/tanna_tunnel/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 1,
+    "surfaces": {
+      "lining": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "door",
+        "graph": "stone_ashlar",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "arch": {
+        "slot": "foundation",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "ballast": {
+        "slot": "roof",
+        "graph": "gravel",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.64,
+        "metallic": 0.35
+      },
+      "sleeper": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.97,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "lining": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "door",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "arch": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "ballast": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.35
+          },
+          "sleeper": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "lining": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "door",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "arch": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "ballast": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.35
+          },
+          "sleeper": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "lining": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "door",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "arch": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "ballast": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.35
+          },
+          "sleeper": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "stone_ashlar",
+    "stone_basalt_raw",
+    "gravel",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "far": 30000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      139.01970393955708,
+      35.10353746304568
+    ],
+    "heading": -0.13302225232844372,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        139.01970393955708,
+        35.10353746304568
+      ],
+      "modelHeight": 0,
+      "basis": "Whole original derived-bore midpoint chosen before independent terrain; provider mountain-surface datum, separately estimated underground rail grade follows only after original field is frozen."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "roads/35184427144710"
+    ],
+    "source": "https://build.protomaps.com/20261029.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fb2b70d4167e527c8c8c0717a30ef00dce1673470751c6bc1dc4f69b3f2ef899",
+    "notes": "Whole original1936phase Tanna single double-track railway bore, complete original westKannami/eastAtami portals/headwalls/stonearchrings/intrinsic wings, continuous full underground liner/invert/ballast bed, four rails and intrinsic portal electrification. Exact original oldMainLine twin-track numeric alignment/both ends, original1936PDMportal/constructed-liner photographs. All hidden dimensions/profile/finish/grade estimates explicit. No one-portal proxy, adjacent memorial/artwork/stationbuildings or1964Shinkansen tunnel substitution."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Whole original1936phase Tanna single double-track railway bore, complete original westKannami/eastAtami portals/headwalls/stonearchrings/intrinsic wings, continuous full underground liner/invert/ballast bed, four rails and intrinsic portal electrification. Exact original oldMainLine twin-track numeric alignment/both ends, original1936PDMportal/constructed-liner photographs. All hidden dimensions/profile/finish/grade estimates explicit. No one-portal proxy, adjacent memorial/artwork/stationbuildings or1964Shinkansen tunnel substitution.",
+    "Original1936RailwayMinistry construction book 丹那隧道工事誌, owningNDL PDMrecord, nativeoriginal eastern/western portal photographs and constructed lining montage are used. Nativephotograph-only regions exclude adjacent memorial artworks; third-party aerial, foreign comparison sections and1952publication unused. Qualla first14families checked; none adopted. No photographic textures or borrowed meshes.",
+    "Whole oldMainLine component retains two original19-control track alignments with four actual surface-railway joins. Whole axis derives from mean original endpoints, length7835.804m versus primary completed25603ft/7803.7944m. Original map coordinates are not stretched to match reported historical length; reused rawtileID resolved by exactoldMainLine name/geometry/connectedcomponent. No1964Shinkansen or separate short tunnels.",
+    "Original8192m/257x257/66049-height/36-raw-tile field is frozen BEFORE all floors/main sections/geometry. Datum243.7303m is midpoint mountain-surface provider datum, not railhead. West floor 84.7480m is original32m-grid ground+0.04m estimate. East floor70.104m uses source230ft construction-start elevation only as approximate rail datum; the source does not certify railhead or a modern vertical-datum conversion. Hidden grade is a linear estimate fixed once. Original east ground87.1960m exceeds estimated railhead by17.09m and may bury the entire portal; retain unmasked terrain rather than refit. No ground-contact/survey/vertical-registration claim.",
+    "Actual constructed lining photograph fixes an egg/horseshoe section, bulging lower sides, rounded crown, continuous invert/central drain, ballast and two electrified tracks. Clearwidth9.2m/height8m/base8.1m/lowerbulge and elliptical crown shape,0.55m lining,0.6m invert and ballast elevations explicitly estimated from photographs; no foreign/future broad-gauge comparison sections adopted. Four rails use nominal1067mm gauge with original mapped track centers; source quantization may exaggerate spacing. Sleepers and cable/catenary repetition simplified, dense detail confined to visible terminal reaches.",
+    "Both complete original stone headwalls are rectangular with true open mouths, voussoir arch rings/coursed masonry, top cornices/flat copings, intrinsic splayed wingwalls, both rails and portal electrification gantries/wires. East date-panel positions use the original photograph but no fabricated readable lettering. Portal widths/heights/depths/hidden sides/gantry sections/wingwall thickness/stone course census and original monochrome-to-color finish are estimates. Whole continuous buried bore/invert/ballast/four rails retained at every LOD; no single portal, memorial, station, mountain or neighboring-bore proxy.",
+    "Historical1936appearance only; currentWorldEligible false. Nominal5m portal plan and3m height uncertainty, broader source DEM/historical registration uncertainty possible. Original field/frame/floors/main sections never cut, masked, flattened, reacquired, reframed or refit for screenshots. Independent operator/station buildings and buried construction/drainage adit interiors are not invented as surface structures."
+  ],
+  "sourceLicense": "Original deterministic procedural geometry under repository license. Original1936RailwayMinistry AtamiOffice construction plates markedPDM by NationalDietLibrary; selectednativeportalphotograph regions exclude memorialartwork/creditedaerial. Original numerical Protomaps/OpenStreetMap alignment ODbL. No borrowed mesh or photograph texture; no survey or current replacement claim.",
+  "qaLodCameras": [
+    {
+      "name": "whole-tanna-skyline",
+      "position": [
+        0,
+        4033.695706327564,
+        5800
+      ],
+      "lookAt": [
+        0,
+        -166.30429367243607,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tanna-district",
+      "position": [
+        0,
+        4033.695706327564,
+        5800
+      ],
+      "lookAt": [
+        0,
+        -166.30429367243607,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tanna-street",
+      "position": [
+        0,
+        4033.695706327564,
+        5800
+      ],
+      "lookAt": [
+        0,
+        -166.30429367243607,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tanna-closeup",
+      "position": [
+        0,
+        4033.695706327564,
+        5800
+      ],
+      "lookAt": [
+        0,
+        -166.30429367243607,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-original-tanna-both1936portals",
+      "position": [
+        0,
+        4033.695706327564,
+        5800
+      ],
+      "lookAt": [
+        0,
+        -166.30429367243607,
+        0
+      ]
+    },
+    {
+      "name": "complete1936-west-kannami-portal",
+      "position": [
+        -3956.9038967789343,
+        -144.98228734487216,
+        24.985252751508597
+      ],
+      "lookAt": [
+        -3917.9038967789343,
+        -154.58228734487216,
+        -0.014747248491403298
+      ]
+    },
+    {
+      "name": "complete1936-east-atami-portal",
+      "position": [
+        3956.8999500479777,
+        -159.62630000000001,
+        24.98525275150837
+      ],
+      "lookAt": [
+        3917.8999500479777,
+        -169.2263,
+        -0.014747248491630671
+      ]
+    },
+    {
+      "name": "true-west-kannami-double-track-mouth",
+      "position": [
+        -3940.9038967789343,
+        -155.28228734487217,
+        -0.01475
+      ],
+      "lookAt": [
+        -3882.9038967789343,
+        -155.28228734487217,
+        -0.01475
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 24398,
+    "vertices": 73194,
+    "materials": 6,
+    "bytes": 3233588,
+    "sha256": "sha256:6bd6cec4da283c7fe60d3c0b2264520747f128c81bc7f53860227c35884faca1"
+  }
+}

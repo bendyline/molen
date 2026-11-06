@@ -11,6 +11,11 @@
     "longitude": 114.161388888
   },
   "visualBrief": "I.M.Pei’s four triangular glass shafts cut down successively into diagonal roof planes, a bold silver triangular mega-frame and paired slender masts at the precisely mapped highest quadrant.",
+  "mediumFiContext": {
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 10
+  },
   "size": [
     54.69828414916992,
     367.3999938964844,
@@ -39,11 +44,14 @@
     "heightToMastsMeters": 367.4,
     "primarySquareMeters": 52,
     "shafts": 4,
-    "architect": "I.M.Pei"
+    "architect": "I.M.Pei",
+    "originalMasterHash": "sha256:7193bb67a6a8939d205e5274f0992b55fc8a48bf7df2d2cc7e2d8150704a7cad",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-next-models.mjs#buildBoc"
   },
   "reconstruction": {
     "plans": "Four independently mapped triangular parts279949066–069; actual roof compass bearings retained, top datum shifted5 m to match operator315 m roof height",
-    "masts": "Mapped distinct centers from279949064/065, normalized367.4 m top"
+    "masts": "Mapped distinct centers from279949064/065, normalized367.4 m top",
+    "browserLevels": "Separate authored continuous glazing facets, retained triangular structural diagonals, inclined roof planes and paired tapered masts. Frame-ring repetition remains in the detailed source master; browser mullions use clipped continuous strips."
   },
   "referencePages": [
     "https://www.pcf-p.com/projects/bank-of-china-tower/",
@@ -52,7 +60,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "reviewed signed map-part fit; approximate terrain contact",
     "anchor": [
       114.16156875,
       22.2792677
@@ -70,7 +78,8 @@
     "mapGeometryHash": "sha256:376a8d85676d5fad8208e7f8719d8d240722ca5705dd60f00a9d048ae8ea76c8",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "All four signed triangular part footprints and compass roof directions are retained. Paired mast centers locate the high quadrant, resolving square-frame rotational ambiguity. GroundY0 and published367.4 m top."
+    "replaceFootprint": true,
+    "notes": "Retained exact-QID way25604760 fixes anchor and metric envelope. Four attributed triangular building parts279949066–069 preserve their separately mapped roof compass bearings. Independent mast centers279949064/065 resolve the square frame rotation and occupy the highest quadrant. Directed heading1.293228519094 and anchor[114.16156875,22.2792677] are unchanged. Published315m roof and367.4m mast datums are retained; mapped roof heights use the existing+5m adjustment. GroundY0 and sloped street/curb contact are unsurveyed. Surrounding water gardens and interiors are excluded. This is retained map/picture registration, not a new terrain survey."
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -97,11 +106,13 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
     "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
-    "Diagonal mega-frame geometry is explicit; exact connection plates and individual spandrel junctions are reconstructed. Mapped53 m envelope includes the facade around the architect52 m structural square. Surrounding sloped water gardens are outside the asset."
+    "Diagonal mega-frame geometry is explicit; exact connection plates and individual spandrel junctions are reconstructed. Mapped53 m envelope includes the facade around the architect52 m structural square. Surrounding sloped water gardens are outside the asset.",
+    "Original156097-triangle source master is preserved byte-for-byte. Browser levels preserve all four independently mapped triangular shafts, roof slopes, primary diagonal mega-frame, lifted banking-hall belt, corner columns and paired masts. Skyline uses planar structural bands and six-sided masts; district restores solid structural members and sparse glazing divisions. Street restores intermediate mullions and roof grid; close-up restores1.55m by4.15m glazing divisions, dense roof framing and mast collars. Shared stainless approximates silver facade cladding; granite is a shared foundation surface; vision glass is opaque PBR. Pane joint recesses and engineered connection plates remain in the source approximation rather than browser microgeometry. Frame widths and floor pitches are reconstructions. No new survey, exact curb/terrain contact or physical-device timing is claimed.",
+    "LOD error values0.8/0.5/0.2/0.1m are authoring estimates, not certified whole-mesh Hausdorff distances. Forced close distant tiers deliberately expose broader frames and coarse masts."
   ],
   "qaCameras": [
     {
@@ -168,6 +179,206 @@
         170,
         0
       ]
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/bank-of-china-runtime-model.mjs",
+    "export": "buildBankOfChinaSkyline",
+    "surfaces": {
+      "metal": {
+        "graph": "metal_stainless",
+        "slot": "trim",
+        "roughness": 0.3,
+        "metallic": 1
+      },
+      "stone": {
+        "graph": "stone_granite",
+        "slot": "foundation",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.2,
+        "metallic": 0.28
+      }
+    },
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBankOfChinaDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildBankOfChinaStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBankOfChinaCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-bank-of-china-skyline",
+      "position": [
+        -285,
+        261,
+        502
+      ],
+      "lookAt": [
+        -4,
+        169,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-bank-of-china-district",
+      "position": [
+        -285,
+        261,
+        502
+      ],
+      "lookAt": [
+        -4,
+        169,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-bank-of-china-street",
+      "position": [
+        -285,
+        261,
+        502
+      ],
+      "lookAt": [
+        -4,
+        169,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-bank-of-china-closeup",
+      "position": [
+        -285,
+        261,
+        502
+      ],
+      "lookAt": [
+        -4,
+        169,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-diagonal-structure",
+      "position": [
+        70,
+        136,
+        116
+      ],
+      "lookAt": [
+        15,
+        120,
+        20
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-stepped-roofs",
+      "position": [
+        149,
+        279,
+        172
+      ],
+      "lookAt": [
+        0,
+        193,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-paired-masts",
+      "position": [
+        64,
+        360,
+        101
+      ],
+      "lookAt": [
+        -14,
+        333,
+        1
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {

@@ -1,0 +1,148 @@
+{
+  "format": "molen/scene@3",
+  "name": "Tate's Cairn Meteorological Station independent building ensemble",
+  "seed": "tate_s_cairn",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "tates_cairn_southwest_service_building",
+      "components": {
+        "transform": {
+          "pos": [
+            0.006321024663235697,
+            -4.814700000000016,
+            -12.897011672482236
+          ],
+          "rot": [
+            0,
+            -0.7214877658190977,
+            0,
+            0.6924271830115907
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.tates_cairn_southwest_service_building",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "tates_cairn_north_service_structure",
+      "components": {
+        "transform": {
+          "pos": [
+            8.083224969427873,
+            -6.285600000000045,
+            -16.14058339518277
+          ],
+          "rot": [
+            0,
+            -0.6732843537659338,
+            0,
+            0.7393836480298904
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.tates_cairn_north_service_structure",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "tates_cairn_main_radar_building",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.tates_cairn_main_radar_building",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
+            "castShadow": true
+          },
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      52,
+      36,
+      53
+    ],
+    "lookAt": [
+      -2,
+      2,
+      -5
+    ],
+    "fov": 43
+  },
+  "terrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

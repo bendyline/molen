@@ -1,0 +1,501 @@
+{
+  "id": "uffizi_gallery",
+  "title": "Uffizi Gallery",
+  "wikidataId": "Q51252",
+  "referenceCoordinate": {
+    "longitude": 11.255542881,
+    "latitude": 43.768424602
+  },
+  "module": "content/worldgen/source/places/sr/srb/uffizi_gallery/models/uffizi-model.mjs",
+  "builder": "buildUffiziLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.25
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.4,
+      "metallic": 0.05
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_painted_lap",
+      "roughness": 0.8,
+      "metallic": 0
+    }
+  },
+  "exportLabel": "Molen original complete Uffizi Gallery exterior shared surfaces source",
+  "expectedDraftMasterHash": "sha256:8e87624dd20e8434b1a7338f105b277ad49c8ba3796ecdb44fb0776fb64bb564",
+  "visualBrief": "Complete individual Uffizi principal galleries and irregular attached ranges, long open piazzale and real flat-lintel ground colonnades with closed rear walls, three open Arno arches, middle pedimented windows, upper glazed gallery, terracotta roofs/skylights and octagonal Tribune lantern. Independent PalazzoVecchio,LoggiadeiLanzi,the river andremote VasariCorridor remain context; no interiors or copied statues.",
+  "heightPolicy": "Original picture-guided relative elevations on an approximate63m standard global Terrarium reference, not a surveyed floor datum. Uniform principal floor60.6m; a bounded original north transition meets both unchanged coarse-field outer corners. Deep occupied foundations seat the Arno facade above the urban/river slope. Exact historic riverbank and threshold heights remain uncertain; no invented staircase across the Arno road, bespoke survey or wider landscape flattening.",
+  "nativeAxes": "+X NNE Piazza della Signoria / open north end; -X SSW Arno loggia; +Z ESE eastern gallery; -Z WNW western gallery. +Y up.",
+  "sourceFacts": {
+    "mappedLengthMeters": 159.121,
+    "mappedWidthMeters": 91.003,
+    "modelDatumMeters": 63,
+    "ownedMapComponents": 3,
+    "preservedNativeComponents": 389,
+    "partiallyRetainedComposite": 391,
+    "terrainTiles": 1,
+    "heightBasis": "Original picture-guided relative elevations on an approximate63m standard global Terrarium reference, not a surveyed floor datum. Uniform principal floor60.6m; a bounded original north transition meets both unchanged coarse-field outer corners. Deep occupied foundations seat the Arno facade above the urban/river slope. Exact historic riverbank and threshold heights remain uncertain; no invented staircase across the Arno road, bespoke survey or wider landscape flattening."
+  },
+  "limitations": [
+    "Complete individual Uffizi principal galleries and irregular attached ranges, long open piazzale and real flat-lintel ground colonnades with closed rear walls, three open Arno arches, middle pedimented windows, upper glazed gallery, terracotta roofs/skylights and octagonal Tribune lantern. Independent PalazzoVecchio,LoggiadeiLanzi,the river andremote VasariCorridor remain context; no interiors or copied statues.",
+    "Original picture-guided relative elevations on an approximate63m standard global Terrarium reference, not a surveyed floor datum. Uniform principal floor60.6m; a bounded original north transition meets both unchanged coarse-field outer corners. Deep occupied foundations seat the Arno facade above the urban/river slope. Exact historic riverbank and threshold heights remain uncertain; no invented staircase across the Arno road, bespoke survey or wider landscape flattening.",
+    "Window/roof/ornament inventories, concealed roofs, niches without copied statues, historic floor/riverbank grades and contact transitions are original approximations. Shared256px material graphs andfour browser tiers; physical-device timings and numerical LOD errors remain unmeasured.",
+    "Seven existing256px plaster,limestone,granite,ceramic tile,painted metal,window grid andpainted wood graphs,metric UVs andlinear colors. Skyline keeps thewhole principal geometry,open colonnade strips,three real river passages andTribune lantern. District adds sparse glazing;street adds facade frames;close-up adds pediments,pier panels andbalusters;source preserves fine column/trim profiles. LOD error estimates3/1.5/.7/.25m andphysical timings areunmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://www.museumsinflorence.com/uffizi/Pal/palazzo.html",
+      "observed": "Roof/aerial picture actually inspected: complete two long parallel terracotta-roofed galleries, narrow open piazzale, transverse Arno-end range with visible central ground passage, irregular attached western/eastern roof blocks, skylights and a distinct octagonal Tribune roof with small pale/green lantern. Palazzo Vecchio is independent. Preserve the whole actual footprint and open street, not two isolated facade strips."
+    },
+    {
+      "url": "https://www.poderesantapia.com/engels/firenze/uffizi.htm",
+      "observed": "Arno facade actually inspected: three deep open ground arches with paired square/Doric supports and lateral column bays, long rectangular upper gallery windows below overhanging tiled eaves, a middle level of closed arched/rectangular timber-framed glazing, pale plaster and gray stone pilasters/cornices, side towers/returned ranges, river embankment below. Independent Palazzo Vecchio tower visible behind; do not add it to the Uffizi model. No copied statues, inscriptions or private decorative graphics."
+    },
+    {
+      "url": "https://homepages.bluffton.edu/~sullivanm/italy/florence/vasariuffizi/vasari.html",
+      "observed": "Actually inspected courtyard-level picture: true deep open flat-lintel colonnade, broad piers alternating with paired Doric columns, closed rear walls/doors, raised supported steps, dark gray stone trim andpale plaster panels, framed mezzanine windows, principal windows withalternating triangular/segmental pediments andsmall sill balusters, upper closed glazed gallery underdeep tiled eaves. Original empty niches, no copied statue meshes."
+    },
+    {
+      "url": "https://www.openstreetmap.org/way/477279033",
+      "observed": "Exact native principal way477279033=124 andattached Tribune347/lantern349. Partial occupied-mask clipping preserves the unmodeled exterior of composite391 including the remote Vasari Corridor. Independent PalazzoVecchio,LoggiadeiLanzi and all other context are retained."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-connected-galleries-piazzale-and-roof-ranges",
+      "position": [
+        198.08059076249108,
+        110,
+        130.34216341300512
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "whole-arno-front-and-irregular-returned-ranges",
+      "position": [
+        -121.85017397852144,
+        82,
+        156.2131079692228
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "open-piazzale-and-whole-native-roof-outline",
+      "position": [
+        0,
+        260,
+        0
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "piazzale-three-story-rhythm-and-arno-passage",
+      "position": [
+        63.27519569322248,
+        3,
+        -9.617671754868711
+      ],
+      "lookAt": [
+        -69.04184898361605,
+        8,
+        11.553055393425453
+      ],
+      "fov": 65
+    },
+    {
+      "name": "deep-western-flat-lintel-portico-and-closed-rear-wall",
+      "position": [
+        9.953401569720391,
+        0.3,
+        -1.086184695108376
+      ],
+      "lookAt": [
+        8.231305107657656,
+        1,
+        -11.849287583000464
+      ],
+      "fov": 68
+    },
+    {
+      "name": "three-open-arno-arches-and-upper-glazed-gallery",
+      "position": [
+        -101.62738983686732,
+        3,
+        29.42573083111782
+      ],
+      "lookAt": [
+        -73.0706067618362,
+        8,
+        11.691297081893792
+      ],
+      "fov": 67
+    },
+    {
+      "name": "tribune-octagonal-roof-and-green-lantern",
+      "position": [
+        -24.291039545150955,
+        48,
+        69.7133086133194
+      ],
+      "lookAt": [
+        -26.262825874999997,
+        23.5,
+        27.334174875
+      ],
+      "fov": 57
+    },
+    {
+      "name": "north-threshold-transition-and-galleries",
+      "position": [
+        98.46757981473387,
+        5,
+        1.4614121352367242
+      ],
+      "lookAt": [
+        78.00780992141972,
+        0,
+        -12.481249587427158
+      ],
+      "fov": 65
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -2.4,
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/srb/uffizi_gallery/models/uffizi-model.mjs",
+    "export": "buildUffiziSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.25
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.4,
+        "metallic": 0.05
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_painted_lap",
+        "roughness": 0.8,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildUffiziDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "street": {
+        "export": "buildUffiziStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.7
+      },
+      "closeup": {
+        "export": "buildUffiziCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.25
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-uffizi-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        198.08059076249108,
+        110,
+        130.34216341300512
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "whole-uffizi-district",
+      "reviewLod": "district",
+      "position": [
+        198.08059076249108,
+        110,
+        130.34216341300512
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "whole-uffizi-street",
+      "reviewLod": "street",
+      "position": [
+        198.08059076249108,
+        110,
+        130.34216341300512
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "whole-uffizi-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        198.08059076249108,
+        110,
+        130.34216341300512
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    }
+  ]
+}

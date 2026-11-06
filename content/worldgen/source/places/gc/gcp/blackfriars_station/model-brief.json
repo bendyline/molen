@@ -1,0 +1,514 @@
+{
+  "id": "blackfriars_station",
+  "title": "Blackfriars station",
+  "wikidataId": "Q284195",
+  "referenceCoordinate": {
+    "longitude": -0.10325980586004257,
+    "latitude": 51.50994847172044
+  },
+  "module": "content/worldgen/source/places/gc/gcp/blackfriars_station/models/station-model.mjs",
+  "builder": "buildStationLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.91
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.91
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.92
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.79,
+      "metallic": 0.2
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.8,
+      "metallic": 0.2
+    },
+    "solar": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.67,
+      "metallic": 0.12
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.48
+    },
+    "doorGlass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.48
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.91
+    }
+  },
+  "exportLabel": "Molen original complete Blackfriars passenger station and river bridge shared-surface source",
+  "expectedDraftMasterHash": "sha256:161b1c729d734d77839af3f7895684bce4cc19887c998cf60c055a5d91137710",
+  "visualBrief": "Complete modern Blackfriars passenger-station exterior and its supporting river bridge: continuous solar sawtooth roof, glazed/open-sided elevated platforms, four rounded stone river piers and five open steel arch spans, both bank entrance buildings, closed entrance glazing, side stair/lift volumes and supported circulation. Keep original Thames water, riverbank paths, native rails, obsolete western railway piers, separate Blackfriars road bridge, northern offices and independent neighbors. No navigable interiors, trains, logos, shop brands or copied signage.",
+  "heightPolicy": "One common unchanged standard river-field datum at local[0,40], -2.1916976666666668m suppliesY=0. Approximate source bridge deck11m, sawtooth roof16.2-18.1m, north entrance floor10.4m/roof16m andsouth entrance floor7.2m/roof11m are photo/map-proportioned stage controls,not surveyed elevations. Native deckmin9/max11m androof15m are retained asmapfacts ratherthan silently overwritten. Preserve original water andbank paths;no artificial river floor,plaza,terrain flattening orper-part host offsets.",
+  "nativeAxes": "+X north along the bridge toward the City entrance,+Z east toward the Tate Modern viewpoint,-Z west toward the separate road bridge,+Y up.",
+  "sourceFacts": {
+    "ownedComponents": 35,
+    "preservedComponents": 701,
+    "roofTileCopies": 2,
+    "deckTileCopies": 2,
+    "nativeElevatedDeck": {
+      "minHeight": 9,
+      "height": 11
+    },
+    "nativeRoofHeight": 15,
+    "retainedOldPiers": [
+      74,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      85
+    ],
+    "retainedOffice": 8,
+    "riverPiers": 4,
+    "bridgeSpans": 5,
+    "photoProportionedMeters": {
+      "bridgeDeck": 11,
+      "roofLow": 16.2,
+      "roofHigh": 18.1,
+      "northEntryFloor": 10.4,
+      "northRoof": 16,
+      "southEntryFloor": 7.2,
+      "southRoof": 11
+    },
+    "authoredMaximumMeters": 19.2,
+    "terrainTiles": 2,
+    "terrainReferenceLocal": [
+      0,
+      40
+    ],
+    "nestedNorthParts": [
+      87,
+      89
+    ]
+  },
+  "limitations": [
+    "Complete modern Blackfriars passenger-station exterior and its supporting river bridge: continuous solar sawtooth roof, glazed/open-sided elevated platforms, four rounded stone river piers and five open steel arch spans, both bank entrance buildings, closed entrance glazing, side stair/lift volumes and supported circulation. Keep original Thames water, riverbank paths, native rails, obsolete western railway piers, separate Blackfriars road bridge, northern offices and independent neighbors. No navigable interiors, trains, logos, shop brands or copied signage.",
+    "One common unchanged standard river-field datum at local[0,40], -2.1916976666666668m suppliesY=0. Approximate source bridge deck11m, sawtooth roof16.2-18.1m, north entrance floor10.4m/roof16m andsouth entrance floor7.2m/roof11m are photo/map-proportioned stage controls,not surveyed elevations. Native deckmin9/max11m androof15m are retained asmapfacts ratherthan silently overwritten. Preserve original water andbank paths;no artificial river floor,plaza,terrain flattening orper-part host offsets.",
+    "Two ordinary photographs plus current viewer PMTiles; no bespoke research or downloaded meshes. Roof bay count, steel sections, hidden entrances and floor levels are photo/map-proportioned medium-fi approximations. Entire connected station exterior andbridge,not the adjacent roadbridge,old westernpiers,northern offices orother neighbors. Hidden north/south circulation,bridge crossmembers andpanel counts are coherent original medium-fi approximations. No logos,brands,trains,copied lettering,construction scaffolding or navigable interiors. Exact tide,bank thresholds,clearance andurban terrain contact remain approximate. Physical-device timings andnumerical LOD errors remain unmeasured.",
+    "Six existing shared256px limestone,granite,brick,painted-metal,window-grid andplain-concrete graphs;seven groups maximum. MetricUVs,linearcolors andzero private/embeddedimages. Skyline retainsallfive open arches,fourpiers,roof andbothbanks. District keeps49roofbays,coarsepiers andclosedbankentrances. Street addsrealdoorrecesses,metalframes,bracing andstairs. Close-up addsfinearchspandrels,rail sleepers,solar-panelgrid,roofmullions androunderpiers. Master separatelyrefines curves andstructuralmembers.",
+    "Current replacement test corrected the initial ownership interpretation: four western pier ends75/76/83/84 lie beneath and support the active broadened bridge and are represented by the four complete transverse source piers. The eight farther-west obsolete pier components remain native. Nested northern parts87 and89 lie wholly inside the station entrance parent64; they are represented explicitly as a closed lift/service core and lower concourse. No independent office,road bridge or neighboring building is removed. Exact service functions and hidden appearance remain original approximations; part89 has no underground layer tag or confirmed separate subway identity."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:London_Blackfriars_Station_from_Tate_Modern.jpg",
+      "observed": "Actually inspected elevated eastern overview: the whole station stretches across the Thames on a five-span steel arch bridge with four broad rounded stone river piers. Long dark solar-panel roof is broken into repeated shallow sawtooth bays with pale edges; open glazed sides have slanting green/gray posts, lower bridge girders and triangular open spandrels. Deck follows the river crossing, not the independent road bridge to the west. The north end is partly obscured by contemporary construction; that construction and nearby offices are not station source geometry."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Blackfriars_station,_south_bank_entrance_2025-06-06.jpg",
+      "observed": "Actually inspected 2025 south-bank entrance detail: broad rounded dark-metal fascia with recessed lights, glazed upper band, pale round entry columns, closed/recessed ground glazing, pale-clad stair/lift circulation beside the elevated platforms. Permanent station structures are modeled without copied logos, lettering, shop brands, people or unrelated high-rises. Hidden north-return and underbridge inventories are coherent original approximations."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Q284195 is the station/site identity. Native layer1 station parent35184520057839, 9-11m deck35185732965836, serrated roof35185732965838 and the two-bank passenger circulation resolve the physical ensemble. Repeated tile fragments are merged. Exactly the explicitly listed station and active support components are replaced. Retain the independent northern office parent8 and its upper parts, detached building114, the eight detached old western railway pier components, the road bridge and neighboring buildings. Encoded tile IDs are not asserted to be exact OSM IDs. Hidden north-end circulation and old/current pier attribution remain approximate photo/map interpretation. Current replacement test corrected the initial ownership interpretation: four western pier ends75/76/83/84 lie beneath and support the active broadened bridge and are represented by the four complete transverse source piers. The eight farther-west obsolete pier components remain native. Nested northern parts87 and89 lie wholly inside the station entrance parent64; they are represented explicitly as a closed lift/service core and lower concourse. No independent office,road bridge or neighboring building is removed. Exact service functions and hidden appearance remain original approximations; part89 has no underground layer tag or confirmed separate subway identity."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-station-five-open-arches-and-both-bank-entrances",
+      "position": [
+        -310,
+        175,
+        330
+      ],
+      "lookAt": [
+        10,
+        8,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "whole-west-return-and-preserved-old-pier-side",
+      "position": [
+        280,
+        145,
+        -290
+      ],
+      "lookAt": [
+        10,
+        8,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "south-bank-rounded-fascia-closed-doors-and-circulation",
+      "position": [
+        -225,
+        15,
+        73
+      ],
+      "lookAt": [
+        -171,
+        9,
+        7
+      ],
+      "fov": 52
+    },
+    {
+      "name": "solar-sawtooth-glazing-and-open-bridge-spandrels",
+      "position": [
+        -32,
+        32,
+        93
+      ],
+      "lookAt": [
+        -5,
+        11,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "north-curved-entrance-and-elevated-transition",
+      "position": [
+        237,
+        26,
+        -97
+      ],
+      "lookAt": [
+        182,
+        12,
+        -25
+      ],
+      "fov": 52
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 2.2,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/gc/gcp/blackfriars_station/models/station-model.mjs",
+    "export": "buildStationSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.91
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.91
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.92
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.2
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.2
+      },
+      "solar": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.67,
+        "metallic": 0.12
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.48
+      },
+      "doorGlass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.48
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.91
+      }
+    },
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStationDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.2
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "solar": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.48
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.48
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          }
+        },
+        "errorMeters": 1
+      },
+      "street": {
+        "export": "buildStationStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.2
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "solar": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.48
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.48
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          }
+        },
+        "errorMeters": 0.4
+      },
+      "closeup": {
+        "export": "buildStationCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.2
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "solar": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.48
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.48
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          }
+        },
+        "errorMeters": 0.15
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-blackfriars-station-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -310,
+        175,
+        330
+      ],
+      "lookAt": [
+        10,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "whole-blackfriars-station-district",
+      "reviewLod": "district",
+      "position": [
+        -310,
+        175,
+        330
+      ],
+      "lookAt": [
+        10,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "whole-blackfriars-station-street",
+      "reviewLod": "street",
+      "position": [
+        -310,
+        175,
+        330
+      ],
+      "lookAt": [
+        10,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "whole-blackfriars-station-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -310,
+        175,
+        330
+      ],
+      "lookAt": [
+        10,
+        8,
+        0
+      ]
+    }
+  ]
+}

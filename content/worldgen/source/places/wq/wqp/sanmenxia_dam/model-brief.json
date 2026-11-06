@@ -1,0 +1,516 @@
+{
+  "id": "sanmenxia_dam",
+  "title": "Sanmenxia Dam",
+  "wikidataId": "Q1555047",
+  "referenceCoordinate": {
+    "longitude": 111.344695197,
+    "latitude": 34.829672083
+  },
+  "module": "content/worldgen/source/places/wq/wqp/sanmenxia_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "dark": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "pale": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "red": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "frame": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "letter": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    }
+  },
+  "exportLabel": "Molen original Sanmenxia Dam and Yellow River generating works",
+  "expectedDraftMasterHash": "sha256:430dec06d4f690e620dc2914853aa1be78367461cad6e88c1f0aee781e941642",
+  "visualBrief": "Sanmenxia’s 713.2 m main gravity dam, two rows of outlet works, the mapped generating hall, downstream divider, red crest gantries and immediate bank ties.",
+  "heightPolicy": "The documented crest is 353 m. The terrain reference is 330.28 m. The standard terrain sampler gives 316.07–316.96 m in the reservoir and 275.83–281.57 m downstream, with 281.57 m at the generating hall and spillway.",
+  "nativeAxes": "+X east-northeast along the crest and +Z south-southeast toward the downstream Yellow River.",
+  "sourceFacts": {
+    "mappedIdentity": "Q1555047",
+    "nativeWaterIds": [
+      44882530,
+      44882533,
+      120232213
+    ],
+    "concreteSpanMeters": 713.2,
+    "westernRecesses": 12,
+    "easternRecesses": 12,
+    "gantryCount": 2,
+    "powerhouseMapId": 35184828388444,
+    "dividerStations": 11,
+    "crestElevation": 353,
+    "terrainDatum": 330.279887,
+    "terrainGridStep": 12,
+    "terrainTiles": 6,
+    "tailwaterModelY": -48.70988699999998
+  },
+  "materialMethod": "Shared board-formed and plain concrete, gravel, painted metal, standing-seam metal and window graphs with metric UVs and no embedded images.",
+  "limitations": [
+    "The documented crest is 353 m. The terrain reference is 330.28 m. The standard terrain sampler gives 316.07–316.96 m in the reservoir and 275.83–281.57 m downstream, with 281.57 m at the generating hall and spillway.",
+    "The main dam, external outlet faces and generating hall follow the photographed arrangement. Recess dimensions, operating gate states and local terraces are exterior interpretations.",
+    "The separately described auxiliary embankment and buried outlet tunnels are outside the retained map scope. The separate downstream crossing and neighboring buildings remain native.",
+    "Nineteen raw terrain samples near the modeled dam are below sea level. The source field is retained unchanged. The two visible inscriptions are original modeled lettering using the photographed wording."
+  ],
+  "references": [
+    {
+      "url": "https://zk.dahe.cn/2025/09-22/1996944.html",
+      "imageUrl": "https://oss.dahe.cn/dahec3/image/jpg/2025/09/22/1758511429356402.jpg",
+      "observed": "Aerial view shows the two distinct discharge lanes, the long powerhouse at the west toe, an elongated splitter wall and the exposed hillside service structures."
+    },
+    {
+      "url": "https://5g.dahe.cn/news/202509181995128",
+      "imageUrl": "https://oss.dahe.cn/dahec3/image/jpg/2025/09/18/1758157558597424.jpg",
+      "observed": "The downstream photo shows the two tall red gantries, the recessed outlet row, glass and white powerhouse facade, crest lift structures and red inscriptions."
+    },
+    {
+      "url": "https://www.hhmz.com.cn/3832/0000/newlist-1.html",
+      "imageUrl": "https://www.hhmz.com.cn/3832/0000/newlist-1.html",
+      "observed": "The operator lists a 713.2 m main dam, maximum height 106 m and crest elevation 353 m."
+    },
+    {
+      "url": "https://www.yrcti.edu.cn/slgcxy/info/1057/5284.htm",
+      "imageUrl": "https://www.yrcti.edu.cn/slgcxy/info/1057/5284.htm",
+      "observed": "The water engineering school distinguishes the main gravity dam, a 144 m earth auxiliary dam, tunnels and the downstream powerhouse."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The cross-river crest path, mapped powerhouse and labeled hydroelectric facility identify Sanmenxia at the reference coordinate."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "main-overview",
+      "position": [
+        72,
+        111,
+        522
+      ],
+      "lookAt": [
+        -13,
+        -3,
+        49
+      ],
+      "fov": 50
+    },
+    {
+      "name": "eastern-outlets-and-divider",
+      "position": [
+        155,
+        24,
+        201
+      ],
+      "lookAt": [
+        177,
+        -28,
+        43
+      ],
+      "fov": 50
+    },
+    {
+      "name": "western-deep-outlets",
+      "position": [
+        -107,
+        34,
+        164
+      ],
+      "lookAt": [
+        -85,
+        -9,
+        23
+      ],
+      "fov": 50
+    },
+    {
+      "name": "mapped-powerhouse",
+      "position": [
+        -79,
+        12,
+        202
+      ],
+      "lookAt": [
+        -27,
+        -34,
+        93
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-gantries-and-inscriptions",
+      "position": [
+        155,
+        72,
+        88
+      ],
+      "lookAt": [
+        150,
+        24,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "western-abutment",
+      "position": [
+        -319,
+        57,
+        143
+      ],
+      "lookAt": [
+        -285,
+        4,
+        31
+      ],
+      "fov": 50
+    },
+    {
+      "name": "downstream-divider",
+      "position": [
+        153,
+        14,
+        382
+      ],
+      "lookAt": [
+        110,
+        -43,
+        192
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -84,
+    "scale": 2.9,
+    "focus": {
+      "center": [
+        55,
+        -9,
+        55
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wq/wqp/sanmenxia_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "dark": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "pale": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "red": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "frame": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "letter": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pale": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "red": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "frame": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "letter": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pale": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "red": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "frame": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "letter": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pale": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "red": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "frame": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "letter": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "sanmenxia-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        72,
+        111,
+        522
+      ],
+      "lookAt": [
+        -13,
+        -3,
+        49
+      ]
+    },
+    {
+      "name": "sanmenxia-district",
+      "reviewLod": "district",
+      "position": [
+        72,
+        111,
+        522
+      ],
+      "lookAt": [
+        -13,
+        -3,
+        49
+      ]
+    },
+    {
+      "name": "sanmenxia-street",
+      "reviewLod": "street",
+      "position": [
+        72,
+        111,
+        522
+      ],
+      "lookAt": [
+        -13,
+        -3,
+        49
+      ]
+    },
+    {
+      "name": "sanmenxia-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        72,
+        111,
+        522
+      ],
+      "lookAt": [
+        -13,
+        -3,
+        49
+      ]
+    }
+  ]
+}

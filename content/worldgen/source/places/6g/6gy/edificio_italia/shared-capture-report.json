@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.edificio_italia",
-  "inputHash": "sha256:73742af71b742ea5dc3c2ae8c151fed7dc95e940fc0ce09f46523b9abe877b12",
+  "inputHash": "sha256:bb33475a35669f0012acce55091628d435475f887be4d1a6b1a7d6d0f91138c1",
   "sourceHash": "sha256:e94ca61523b47f87c09352bbd12153489ed910c62712a18ad7f4b56cba98a14c",
   "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
   "reviewGroundY": 0,
@@ -916,5 +916,37 @@
     "previousReportHash": "sha256:c8ce9fc53fdafc00ae6d8b0c5603002968f6c1ef3ebb8494df79792bd5c4b243",
     "sourceRebuild": "assets-4c110226cdb7e02d",
     "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  },
+  "reviewCameraOnlyRebinding": {
+    "previousInputHash": "sha256:73742af71b742ea5dc3c2ae8c151fed7dc95e940fc0ce09f46523b9abe877b12",
+    "inputHash": "sha256:bb33475a35669f0012acce55091628d435475f887be4d1a6b1a7d6d0f91138c1",
+    "reason": "Only review-camera identifiers were normalized to hyphens and the synthetic Earth-context camera scale was increased to frame the whole tower. All six GLBs, shared-material bindings, portable scene/cameras and geographic placement remain unchanged. Previously inspected portable/shared/map evidence is retained, not relabeled as fresh renders.",
+    "sceneHash": "sha256:28a1698a19cc2a2b02df387a58369df61db7c367ee5dc7a7827dc8c3a501bac5",
+    "outputPins": [
+      {
+        "path": "content/worldgen/source/places/6g/6gy/edificio_italia/models/source.glb",
+        "hash": "sha256:e94ca61523b47f87c09352bbd12153489ed910c62712a18ad7f4b56cba98a14c"
+      },
+      {
+        "path": "content/worldgen/assets/places/6g/6gy/edificio_italia/model.glb",
+        "hash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378"
+      },
+      {
+        "path": "content/worldgen/assets/places/6g/6gy/edificio_italia/model.skyline.glb",
+        "hash": "sha256:fdfdfca71e8691e8855dbfb450b81748e76e7cb052450be2dd4ca146eca93d3e"
+      },
+      {
+        "path": "content/worldgen/assets/places/6g/6gy/edificio_italia/model.district.glb",
+        "hash": "sha256:90d365e57e2c5b492a83367c59bce989196504d736a3fdc135e57d072e7b0c34"
+      },
+      {
+        "path": "content/worldgen/assets/places/6g/6gy/edificio_italia/model.street.glb",
+        "hash": "sha256:e931b1a073eb887bf978784ca7f4e8a3f1601e90fb5544f38edbf010140ebf24"
+      },
+      {
+        "path": "content/worldgen/assets/places/6g/6gy/edificio_italia/model.closeup.glb",
+        "hash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5"
+      }
+    ]
   }
 }

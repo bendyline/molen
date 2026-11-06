@@ -1,0 +1,107 @@
+{
+  "format": "molen/structure-map-frame@1",
+  "candidateId": "QS-2ba5044b3ca3",
+  "title": "Los Leones LIDAR building",
+  "anchor": [
+    -69.44898235,
+    -35.49676745
+  ],
+  "heading": 1.000316602195553,
+  "coordinateSpace": "model-local-xz",
+  "nativeAxes": {
+    "x": "along native first building edge",
+    "y": "up",
+    "z": "perpendicular across whole original building"
+  },
+  "axis": "+X follows original first edge;+Z perpendicular;+Y up. Facade/roof assignments estimated, no image fitting.",
+  "source": "Original named OSM building way120464910/all4corners/mapped2011 near Los Leones FD station. Operator2015 sections9.3.2 describes separate elastic LIDAR at each FD site. Numerical outline and written facts only.",
+  "sourceUrl": "https://www.openstreetmap.org/way/120464910",
+  "identityStatus": "Exact independent named Lidar building way120464910 near Los Leones, separate from main FD semicircle and communication tower. No generic observatory centroid proxy.",
+  "geometryLabel": "Whole original four-corner instrument-building outline, not site fence.",
+  "geometry": {
+    "polygons": [
+      [
+        [
+          -3.341444151400045,
+          -2.373280793982295
+        ],
+        [
+          3.3379210199425375,
+          -2.3732807939822953
+        ],
+        [
+          3.341444150704512,
+          2.373280792898312
+        ],
+        [
+          -3.3379210199425375,
+          2.3732807939822953
+        ]
+      ]
+    ]
+  },
+  "features": [
+    {
+      "id": "way/120464910",
+      "role": "whole-original-independent-LIDAR-instrument-building",
+      "points": [
+        [
+          -3.341444151400045,
+          -2.373280793982295
+        ],
+        [
+          3.3379210199425375,
+          -2.3732807939822953
+        ],
+        [
+          3.341444150704512,
+          2.373280792898312
+        ],
+        [
+          -3.3379210199425375,
+          2.3732807939822953
+        ]
+      ],
+      "properties": {
+        "building": "yes",
+        "name": "Lidar"
+      }
+    }
+  ],
+  "mappedIdentity": {
+    "name": "Lidar",
+    "featureIds": [
+      "way/120464910"
+    ],
+    "parentCollection": "pierre_auger_observatory",
+    "nativeSource": {
+      "path": "native-map/original-building-context.json",
+      "hash": "sha256:9bcb3b9eec5fec573bcd97c3d2ea90f6b2aaf1bdd0a64e8897dc8f6e3ff8b10e"
+    }
+  },
+  "orientationControl": {
+    "status": "reviewed-approximation",
+    "reviewedOn": "2026-11-01",
+    "headingRadians": 1.000316602195553,
+    "uncertaintyDegrees": 15,
+    "basis": "Original first native edge fixes building axis. Exterior door/roof/vent/optical-cover arrangement estimated; exact current instrument housing details unestablished.",
+    "referencePages": [
+      "https://arxiv.org/abs/1502.01323",
+      "https://www.openstreetmap.org/way/120464910"
+    ]
+  },
+  "terrainContact": {
+    "local": [
+      0,
+      0
+    ],
+    "modelY": 0,
+    "basis": "Native whole building centre fixed before independent original field and floor/sections; no surveyed threshold or pad fit."
+  },
+  "historicalAppearance": {
+    "representedDate": "2018-08-31",
+    "validFrom": "2018-01-01",
+    "validUntil": "2019-01-01"
+  },
+  "notes": "Whole independent Los Leones LIDAR building/all4originalcorners/allwalls/fullroof/base and closed exterior service entry/vents. Operator text establishes elastic lidar/steerable laser/three80cm and one20cm mirrors, not exact enclosure roof/height/facade. Interior laser/mirrors not exterior-surveyed; no guessed operating mechanism presented as fact. Exact sections/finish are estimates; all imagery unused, whole observatory remains unfinished."
+}

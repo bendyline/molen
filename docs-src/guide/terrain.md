@@ -141,16 +141,22 @@ do not change residency behavior. HTTP 404 is a stable missing tile; call `retry
 the backing data has changed. A *thrown* error is not: a dropped range request, a 503, or a CORS
 failure is retried with bounded exponential backoff (`maxRetries`, `retryDelayMs`,
 `maxRetryDelayMs`) before the tile is abandoned, and every request carries a `requestTimeoutMs`
-deadline so a stalled connection cannot hold a concurrent load slot. `stats()` counts `missing` and
-`retrying` separately from `failed`, and `tileFailures()` reports each tile's state, attempts, and
-next attempt time, so a host can tell a user "still retrying" rather than "gave up".
+deadline so a stalled connection cannot hold a concurrent load slot. An abandoned tile is set aside,
+not dropped: after `failedRetryDelayMs` (15000 ms by default, doubling with each further failure up
+to eight times as long) the first `update()` that still wants it tries again, so an outage longer
+than the quick retries leaves no permanent holes once it is over. Set it to 0 or Infinity to keep
+abandoned tiles until `retryFailed()`. `stats()` counts `missing` and `retrying` separately from
+`failed`, and `tileFailures()` reports each tile's state, attempts, and next attempt time, so a host
+can tell a user "still retrying" rather than "gave up".
 
 The pyramid streamer applies the same retry policy to semantic layer generation and GPU
 preparation, with a separate `layerTimeoutMs` deadline (120000 ms by default; 0 or Infinity disables
 it). This allows CPU-heavy generation and software shader compilation more time than height
 requests. A stalled layer releases its load slot, and late cancelled results are disposed.
 `stats().retryingLayers` and `stats().failedLayers` report those failures independently from height
-tiles; `retryFailed()` retries both. Disabling a layer or evicting its tile clears its failure state.
+tiles. An abandoned layer is tried again after the same `failedRetryDelayMs`, so a lake whose water
+failed to load fills in on its own; `retryFailed()` retries tiles and layers at once. Disabling a
+layer or evicting its tile clears its failure state.
 
 Adjacent tiles share their border heights, and the streamer keeps their border *normals* continuous
 too: each side recomputes its edge from the neighbouring tile's heights once that neighbour is

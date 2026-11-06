@@ -24,3 +24,10 @@ Accepted medium-fi exterior and approximate picture/PMTiles fit. Inspected cropp
 
 - [Inspected picture 1](https://pkin.pl/wp-content/uploads/2020/08/o-palacu.jpg) — actual pixels inspected; image not redistributed.
 - Standard viewer Protomaps20261008/Mapzen Terrarium PMTiles; controls/hashes retained in pmtiles-fit.json. ©OpenStreetMap contributors/ODbL, elevation attribution retained with the fit data.
+
+
+## Current Earth context refresh — 2026-10-31
+
+Inspected all 27 freshly rendered current-Earth context, mode, detail and four-tier transition images. The complete low complex, both courtyard openings, rounded Congress Hall, stepped clock tower and spire remain present across all four tiers. Close views retain clock hands and representative merlons; exact sculptures, ceramic ornament, window schedules and interior halls remain outside the retained reconstruction scope. Corrected whole-building framing uses context scale 8; neighbor buildings and source-local height correction remain synthetic/approximate context. No new terrain, survey, reference-research or physical-device performance claim.
+
+Only review-camera identifiers were normalized to hyphens and the synthetic Earth-context camera scale was increased to frame the whole tower. All six GLBs, shared-material bindings, portable scene/cameras and geographic placement remain unchanged. Previously inspected portable/shared/map evidence is retained, not relabeled as fresh renders. Six unchanged GLBs validate with zero errors/warnings/embedded images. Current hash bindings, four-tier budgets and shared graph hashes pass.
