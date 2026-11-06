@@ -1,0 +1,1503 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.grunwald_bridge",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.grunwald_bridge",
+    "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299"
+  },
+  "sourceHash": "sha256:ce65a335e6c39333d03c42bddf8d170735758434a64412c0cda264de23b2905a",
+  "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
+    },
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:370e3ffcf33a7830aa6acb5e8429de9be9ef368236c3137b7be03de3bc9c5977",
+      "bytes": 74580,
+      "gzipBytes": 16320,
+      "triangles": 984,
+      "cpuBytes": 73152,
+      "gpuBytes": 73152,
+      "errorMeters": 3,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:dec2e33ae849905bc6bce11ba3376180e1670fa86a132de639adb4d91ef0ea90",
+      "bytes": 228580,
+      "gzipBytes": 43660,
+      "triangles": 3104,
+      "cpuBytes": 222384,
+      "gpuBytes": 222384,
+      "errorMeters": 1.5,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:7fc8216317371ca83844ec53101dffc65513a91a34776c3cd5395bdb43e5e029",
+      "bytes": 641032,
+      "gzipBytes": 133386,
+      "triangles": 8656,
+      "cpuBytes": 633732,
+      "gpuBytes": 633732,
+      "errorMeters": 0.75,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+      "bytes": 2209796,
+      "gzipBytes": 399435,
+      "triangles": 29312,
+      "cpuBytes": 2202456,
+      "gpuBytes": 2202456,
+      "errorMeters": 0.35,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:99eff0b2ecfe0ed02528a8ca572d2819d97960e79511a6355424846475340ca9"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:72d3eb046e718f9a96ed0b1c056ca62a0f539e207500e49dd7b15c0ee781c30b"
+    }
+  },
+  "fixtureEntities": [
+    {
+      "id": "review-water",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0.12,
+            0
+          ],
+          "scale": [
+            115,
+            0.14,
+            320
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#1b4450",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:977e1c5876c4c02c779c7e4c918c4e7dca579a43723c73f86fc8ea2e2ecc9a22",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 43214,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          76.80000000000001,
+          54.7849,
+          131.484
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:9a52f464e17044e54aaf860fcb2ad2d857a37fc2fb9cb5813ee5e0fe5478cf45",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43214,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          76.80000000000001,
+          54.7849,
+          131.484
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:82e88ba28cebddd6421814ef81efe7706e25d8b83e61154d9392795a8bda75d8",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 43214,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          76.80000000000001,
+          54.7849,
+          131.484
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:6b3869a6ca141ae7748fb09813241e3720145418463db37f11b817abc82ce4c8",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43214,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          76.80000000000001,
+          54.7849,
+          131.484
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:0be69fd3ecb34039236e58b47dd729e13341a00bd9c1cb4e346ce63ad031aa04",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:dec2e33ae849905bc6bce11ba3376180e1670fa86a132de639adb4d91ef0ea90",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 17006,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          155.20000000000002,
+          112.3849,
+          267.48400000000004
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:354134f80e95ff847f79d73ff83bfe27074f5061e6cbad2dc9c45a92f27b7d31",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:dec2e33ae849905bc6bce11ba3376180e1670fa86a132de639adb4d91ef0ea90",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 17006,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          155.20000000000002,
+          112.3849,
+          267.48400000000004
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:688c4ddb0e9609bf5bfc235757a338354c0e59e2eac0ed7631284ce3a71e6462",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:dec2e33ae849905bc6bce11ba3376180e1670fa86a132de639adb4d91ef0ea90",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 17006,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          155.20000000000002,
+          112.3849,
+          267.48400000000004
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:65168a12608060b12bb7a54e34dbc90629047560b043e8cd203765fdaaa277f8",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:dec2e33ae849905bc6bce11ba3376180e1670fa86a132de639adb4d91ef0ea90",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 17006,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          155.20000000000002,
+          112.3849,
+          267.48400000000004
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:26c86c48257fdc7ebab31f069752cdda4b5258521ec201ccc8a877e9a0c2822d",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:370e3ffcf33a7830aa6acb5e8429de9be9ef368236c3137b7be03de3bc9c5977",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 14886,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          310.40000000000003,
+          173.1849,
+          536.284
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:9bb44ab13430d889884c6d8048b7347ef33f4c1d19655a6845ddf5343c6bea26",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:370e3ffcf33a7830aa6acb5e8429de9be9ef368236c3137b7be03de3bc9c5977",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 14886,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          310.40000000000003,
+          173.1849,
+          536.284
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:747371edcadf193bb569202211dcfd1f37f5fba5c3a6f9b1100fdec0c851d95c",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:370e3ffcf33a7830aa6acb5e8429de9be9ef368236c3137b7be03de3bc9c5977",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 14886,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          310.40000000000003,
+          173.1849,
+          536.284
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:7bff4b4c0610e43a233aba347782b3aa632397d0cb6096ca562d687802e1808d",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:370e3ffcf33a7830aa6acb5e8429de9be9ef368236c3137b7be03de3bc9c5977",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 14886,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          310.40000000000003,
+          173.1849,
+          536.284
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:76d6d0bb00f41255c146c0dd489f3afa1d3fea6caa8de22fcec20a5d294ec976",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:370e3ffcf33a7830aa6acb5e8429de9be9ef368236c3137b7be03de3bc9c5977",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 4,
+        "triangles": 9190,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          310.40000000000003,
+          173.1849,
+          536.284
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/complete-suspension.png",
+      "hash": "sha256:00434a03d29bc78f7df5d7efef7c2a0e53a60bde00cfda2d8b87e2c1ec383722",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43214,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -145,
+          105,
+          175
+        ],
+        "lookAt": [
+          0,
+          17,
+          -1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/blue-bands-and-stone-gates.png",
+      "hash": "sha256:ca6dd997de28c615a9fae5565a54f2b724f4b060ea818a9fae8bb91b019a8b0c",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43214,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          32,
+          145
+        ],
+        "lookAt": [
+          0,
+          15,
+          -1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-stone-portal.png",
+      "hash": "sha256:2855953ce7848b078bff78223ef067c37475c0a59fdd7c1f3d4384abdcb1f93f",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43214,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -84,
+          16,
+          1
+        ],
+        "lookAt": [
+          -58,
+          18,
+          -1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/upper-band-window.png",
+      "hash": "sha256:964612e84cf51f0a1c12428c7250ae89f199118907d0aa417f150e8e913a5ed6",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43214,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -77,
+          29,
+          16
+        ],
+        "lookAt": [
+          -63.3,
+          22.2,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/suspended-deck-and-trusses.png",
+      "hash": "sha256:f2304479c5c34a5d8594b4387f1ed1584ef7d27682ffc2bedb9c1a1db5b565ea",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43214,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -10,
+          4,
+          34
+        ],
+        "lookAt": [
+          0,
+          8,
+          6
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/tram-track-roadway.png",
+      "hash": "sha256:679bde40300055f7ed528eddeb607c2544165b7b1ed448e48e05b4fec46ef715",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43214,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -39,
+          11,
+          3
+        ],
+        "lookAt": [
+          55,
+          10,
+          -2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/riveted-band-and-hangers.png",
+      "hash": "sha256:84e53d64ec26fbb821f5b4d5b44291034e3afe408f32ceef4b9778a17b901743",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43214,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -31,
+          20,
+          21
+        ],
+        "lookAt": [
+          -28,
+          15,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bridge-skyline.png",
+      "hash": "sha256:4136410d4ed23341272a71dbc419dd4a1d3e594d06ccd3fe235c048156546f93",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:370e3ffcf33a7830aa6acb5e8429de9be9ef368236c3137b7be03de3bc9c5977",
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 14886,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -145,
+          105,
+          175
+        ],
+        "lookAt": [
+          0,
+          17,
+          -1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bridge-district.png",
+      "hash": "sha256:4cee24addbf4cf679f0168ab8444540585aaf2b5ce228fb1fadba7b56bae5bce",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:dec2e33ae849905bc6bce11ba3376180e1670fa86a132de639adb4d91ef0ea90",
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 17006,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -145,
+          105,
+          175
+        ],
+        "lookAt": [
+          0,
+          17,
+          -1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bridge-street.png",
+      "hash": "sha256:93b9ba335ae1df86de8c4368dee1b3ac56d58909d4871d855e746c4d2d2337de",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:7fc8216317371ca83844ec53101dffc65513a91a34776c3cd5395bdb43e5e029",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 22558,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -145,
+          105,
+          175
+        ],
+        "lookAt": [
+          0,
+          17,
+          -1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bridge-closeup.png",
+      "hash": "sha256:00434a03d29bc78f7df5d7efef7c2a0e53a60bde00cfda2d8b87e2c1ec383722",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43214,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -145,
+          105,
+          175
+        ],
+        "lookAt": [
+          0,
+          17,
+          -1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-open-portal.png",
+      "hash": "sha256:b8d0ab15efcfa43e27cc13ff83964ad92e70e3011775f43637f86156d09ce7db",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:7fc8216317371ca83844ec53101dffc65513a91a34776c3cd5395bdb43e5e029",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 22558,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -84,
+          16,
+          1
+        ],
+        "lookAt": [
+          -58,
+          18,
+          -1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/closeup-upper-band-chamber.png",
+      "hash": "sha256:964612e84cf51f0a1c12428c7250ae89f199118907d0aa417f150e8e913a5ed6",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43214,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -77,
+          29,
+          16
+        ],
+        "lookAt": [
+          -63.3,
+          22.2,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:f6c40e518c64419c5f22f390ae1c4d7b699acf1296e180834a57d35811da6b57",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:370e3ffcf33a7830aa6acb5e8429de9be9ef368236c3137b7be03de3bc9c5977",
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 14886,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          155.20000000000002,
+          112.3849,
+          267.48400000000004
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:354134f80e95ff847f79d73ff83bfe27074f5061e6cbad2dc9c45a92f27b7d31",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:dec2e33ae849905bc6bce11ba3376180e1670fa86a132de639adb4d91ef0ea90",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 17006,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          155.20000000000002,
+          112.3849,
+          267.48400000000004
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:41a90ac4fb3e2ab72236e7bf701265b0f43855014c72bda89d7eaf8f175d3ece",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:7fc8216317371ca83844ec53101dffc65513a91a34776c3cd5395bdb43e5e029",
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 22558,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          155.20000000000002,
+          112.3849,
+          267.48400000000004
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:9dad78222246a0539bcbd496a15f90850ccd4ede6d82e531f683fbcfaeebeb02",
+      "state": {
+        "assetId": "molen.worldgen.structure.grunwald_bridge",
+        "runtimeHash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299",
+        "lodHash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7",
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 43214,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3h/grunwald_bridge/terrain-review.height.png"
+        },
+        "position": [
+          155.20000000000002,
+          112.3849,
+          267.48400000000004
+        ],
+        "lookAt": [
+          0,
+          30.7849,
+          -1.316
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "inputHash": "sha256:502cbe18ca9c6a114b77e07cf719c330cbc111c1cfea6a63a4f8495b9dd27a32",
+  "sourceInventoryBinding": {
+    "status": "passed-registration-only",
+    "previousInputHash": "sha256:f3af7d4bcdc84f1b76b8374a1c24aea54086181a2d336a23ce003a8306d17e91",
+    "inputHash": "sha256:502cbe18ca9c6a114b77e07cf719c330cbc111c1cfea6a63a4f8495b9dd27a32",
+    "reason": "The generator terrain inventory now declares all four existing grid input tiles instead of only the sparse-sampling tile. This changes wrapper recipe text and the model input key. All six GLBs, the actual rendered native grid/heightmap/descriptor, material graphs and all 54 actually inspected image bytes are unchanged. No new render or new visual review is claimed.",
+    "terrainTiles": [
+      {
+        "path": "terrain-14-8968-5477.png",
+        "hash": "sha256:3dab9fb34a0620de4ddabe336d693dc62796b2ad53590e2f16f8f90273705acc"
+      },
+      {
+        "path": "terrain-14-8967-5477.png",
+        "hash": "sha256:840bcf1e7c075fc73558040db7e8062d06d85d704db570e637bca3193397f588"
+      },
+      {
+        "path": "terrain-14-8967-5476.png",
+        "hash": "sha256:815f27676a7d6cfe21c5e457aa09d788ecb8eafddb430c49dc4d2942b17afe36"
+      },
+      {
+        "path": "terrain-14-8968-5476.png",
+        "hash": "sha256:2c85e3c25a6af0d0278fc145767964a6c4187a42a2d21ecc0efb90013972767a"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/u3/u3h/grunwald_bridge/models/source.glb",
+        "hash": "sha256:ce65a335e6c39333d03c42bddf8d170735758434a64412c0cda264de23b2905a"
+      },
+      {
+        "path": "content/worldgen/assets/places/u3/u3h/grunwald_bridge/model.glb",
+        "hash": "sha256:ced5db99df3532046ad459dec64e414802f70389006bacd2db1da44873d73299"
+      },
+      {
+        "path": "content/worldgen/assets/places/u3/u3h/grunwald_bridge/model.skyline.glb",
+        "hash": "sha256:370e3ffcf33a7830aa6acb5e8429de9be9ef368236c3137b7be03de3bc9c5977"
+      },
+      {
+        "path": "content/worldgen/assets/places/u3/u3h/grunwald_bridge/model.district.glb",
+        "hash": "sha256:dec2e33ae849905bc6bce11ba3376180e1670fa86a132de639adb4d91ef0ea90"
+      },
+      {
+        "path": "content/worldgen/assets/places/u3/u3h/grunwald_bridge/model.street.glb",
+        "hash": "sha256:7fc8216317371ca83844ec53101dffc65513a91a34776c3cd5395bdb43e5e029"
+      },
+      {
+        "path": "content/worldgen/assets/places/u3/u3h/grunwald_bridge/model.closeup.glb",
+        "hash": "sha256:497983483e9dd4631196c38b80aaeaefe352af9b2b0f9c9d14e3da7a5c6ee3c7"
+      }
+    ]
+  }
+}

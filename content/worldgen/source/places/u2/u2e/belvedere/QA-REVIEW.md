@@ -1,0 +1,9 @@
+# Belvedere — both principal palace exteriors
+
+Reviewed 2026-11-01. Complete Upper palace with three green mansard crowns, four domed corner pavilions, curved white entry crown and both window stories. Complete Lower palace with red roofs, raised glazed central hall, balustrades and bent rear courtyard ranges. Original recessed closed entries and bounded threshold transitions; garden, forecourt, ponds, detached annexes and city remain native.
+
+Source: 82,014 triangles / 9846040 bytes. Browser tiers: 978 / 3848 / 12182 / 47468 triangles. Initial skyline/district total: 451184 bytes; close-up: 4333540 bytes. Seven existing shared256px texture graphs, no private images, separate GPU streams.
+
+Four focused tests verify source/runtime pins, both open spaces, all four domes, three recessed closed entries, outward-facing arch corners, both window stories, Lower roof-skirt contact, supported threshold corners, exact tier reconstruction and actual production replacement of39 native fragments while retaining484 context components. Six GLBs pass the Khronos validator without errors or warnings. All52 final portable, shared, terrain, lighting and tier frames inspected; exact hash-bound evidence in qa.json.
+
+Placement: Q211818 / native ways5887599 and31313338, [16.380519444,48.1934], heading0.1435881427214044, approximate182m global-field reference; separate Upper194m andLower173.3m thresholds. Two occupied masks preserve gardens, ponds and independent annexes. Global terrain and historic grades remain approximate. Portable flat fixtures expose buried foundations; the primary source preview uses a plain separate review-ground block. No garden flattening, interiors, copied statues, heraldry or inscriptions. Fine inventories, physical-device performance and numerical LOD errors remain unmeasured.

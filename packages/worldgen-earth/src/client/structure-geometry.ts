@@ -746,13 +746,41 @@ export function withoutStructureRoads(
             ];
           });
       }
+      // A later member can remove the point an earlier member used as a join.
+      // Do not carry a height hint for discarded geometry into the retained tail.
+      const inheritedConnections = (feature.bridgeConnections ?? []).filter((hint) =>
+        !deckProfile || !outline
+          ? true
+          : lines.some((line) =>
+              line.slice(1).some((b, i) => {
+                const a = line[i] as TerrainSemanticPoint,
+                  dx = b[0] - a[0],
+                  dz = b[1] - a[1],
+                  length2 = dx * dx + dz * dz,
+                  t = length2
+                    ? Math.max(
+                        0,
+                        Math.min(
+                          1,
+                          ((hint.point[0] - a[0]) * dx + (hint.point[1] - a[1]) * dz) / length2,
+                        ),
+                      )
+                    : 0;
+                return (
+                  Math.hypot(hint.point[0] - a[0] - t * dx, hint.point[1] - a[1] - t * dz) *
+                    context.tileSize <=
+                  0.05
+                );
+              }),
+            ),
+      );
       const clipped = {
         ...feature,
         lines,
-        ...(clippedConnections.length
+        ...(clippedConnections.length || feature.bridgeConnections
           ? {
               bridgeConnections: [
-                ...(feature.bridgeConnections ?? []),
+                ...inheritedConnections,
                 ...clippedConnections.map((connection) =>
                   feature.bridge ? connection : { ...connection, radius: 20 },
                 ),
@@ -783,7 +811,14 @@ export function withoutStructureRoads(
         if (lineLength(line) > 32 || !line.some((point) => inside(point, 0.05))) continue;
         for (const point of [line[0], line.at(-1)] as TerrainSemanticPoint[]) {
           if (inside(point, 0.05)) continue;
-          const candidates = deckProfile ? (feature.bridgeConnections ?? []) : connections;
+          // Steps descend between levels. Only their own explicit endpoint may set
+          // the far landing height; a nearby upper-deck cut is not a flat extension.
+          const steps = /steps/.test(`${feature.class} ${feature.subclass ?? ''}`);
+          const candidates = steps
+            ? connections
+            : deckProfile
+              ? (feature.bridgeConnections ?? [])
+              : connections;
           if (!candidates.length) continue;
           const hint = candidates.reduce((best, item) =>
             Math.hypot(point[0] - item.point[0], point[1] - item.point[1]) <
@@ -793,7 +828,7 @@ export function withoutStructureRoads(
           );
           if (
             Math.hypot(point[0] - hint.point[0], point[1] - hint.point[1]) * context.tileSize >
-            32
+            (steps ? 0.5 : 32)
           )
             continue;
           const ground = context.heightfield.sampleHeight(

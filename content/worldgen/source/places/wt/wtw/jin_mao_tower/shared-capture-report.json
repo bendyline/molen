@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.jin_mao_tower",
-  "inputHash": "sha256:54e32fb728f6b86989a12b8d80367e1b89ba7fb48da92a2ab7f5981c0eec41d3",
+  "inputHash": "sha256:d5232ae027d7be47b743c8b4eb62e33c0b94c7e6ab3d21b0356fd4f7af6282a9",
   "sourceHash": "sha256:1eec5337a770b7d2407155ff6f18390365110187c586c234ff14da4dd5af9b3d",
   "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
   "reviewGroundY": 0,
@@ -772,5 +772,37 @@
     "previousReportHash": "sha256:04d47bbbc37269b3774361e1295735a852b965af126133d9b9f8e975de171e41",
     "sourceRebuild": "assets-4c110226cdb7e02d",
     "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  },
+  "reviewCameraOnlyRebinding": {
+    "previousInputHash": "sha256:54e32fb728f6b86989a12b8d80367e1b89ba7fb48da92a2ab7f5981c0eec41d3",
+    "inputHash": "sha256:d5232ae027d7be47b743c8b4eb62e33c0b94c7e6ab3d21b0356fd4f7af6282a9",
+    "reason": "Only review-camera identifiers were normalized to hyphens and the synthetic Earth-context camera scale was increased to frame the whole tower. All six GLBs, shared-material bindings, portable scene/cameras and geographic placement remain unchanged. Previously inspected portable/shared/map evidence is retained, not relabeled as fresh renders.",
+    "sceneHash": "sha256:fb9e73a0f2fb6d9885b3b5a1e808469b7932fd62118cc9ad90f07bfefd7e42fe",
+    "outputPins": [
+      {
+        "path": "content/worldgen/source/places/wt/wtw/jin_mao_tower/models/source.glb",
+        "hash": "sha256:1eec5337a770b7d2407155ff6f18390365110187c586c234ff14da4dd5af9b3d"
+      },
+      {
+        "path": "content/worldgen/assets/places/wt/wtw/jin_mao_tower/model.glb",
+        "hash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433"
+      },
+      {
+        "path": "content/worldgen/assets/places/wt/wtw/jin_mao_tower/model.skyline.glb",
+        "hash": "sha256:948b9fb2d2cc3030af6a0777bffa726b8ad1dc278a57628a17a0263fff11e8dc"
+      },
+      {
+        "path": "content/worldgen/assets/places/wt/wtw/jin_mao_tower/model.district.glb",
+        "hash": "sha256:8301336e45fc69710a80fa3b8610a3ea4bb1c4e5d13b6a0fb53309b9f56262a4"
+      },
+      {
+        "path": "content/worldgen/assets/places/wt/wtw/jin_mao_tower/model.street.glb",
+        "hash": "sha256:65a5f0d1e7b7bfb5ae0c86b56b5b4f6550b74b24a3dd2b93fcad6ddf3da14314"
+      },
+      {
+        "path": "content/worldgen/assets/places/wt/wtw/jin_mao_tower/model.closeup.glb",
+        "hash": "sha256:836c004be72f32ff0d38712b071c6fef63eb2c8a1b6e50c9dc9539298271fc8a"
+      }
+    ]
   }
 }

@@ -24,3 +24,10 @@ Accepted medium-fi exterior with approximate picture/PMTiles fit. Inspected pict
 
 - [Inspected picture 1](https://www.thearchitecturecommunity.com/wp-content/uploads/2019/03/International-Commerce-Centre-_-KPF_04-683x1024.jpg) — actual pixels inspected; image not redistributed.
 - Standard viewer Protomaps20261008/Mapzen Terrarium PMTiles; controls/hashes retained in pmtiles-fit.json. ©OpenStreetMap contributors/ODbL, elevation attribution retained with the fit data.
+
+
+## Current Earth context refresh — 2026-10-31
+
+Inspected all 46 fresh images across portable, shared-material/geographic-flat and current-Earth fixtures, including mode, detail and four-tier transition views. The complete tapered tower, re-entrant corners, four face fins, horizontal mechanical bands, glazed entrance splays and long northern atrium remain connected across the four browser tiers. Fine facade lines alias in distance views; the surrounding Elements complex and surveyed podium or threshold levels remain excluded or approximate. Corrected whole-building framing uses context scale 10; neighbor buildings and source-local height correction remain synthetic/approximate context. No new terrain, survey, reference-research or physical-device performance claim.
+
+Current generators reproduced the detailed/source and imported masters exactly, and all four runtime tiers retain their previous hashes. Review-camera identifiers were normalized to hyphens and context framing corrected. Portable, shared-material/geographic-flat and Earth-context captures were all freshly rendered and inspected against the current source inputs. Geographic placement and its retained approximate PMTiles contact scope are unchanged. Six unchanged GLBs validate with zero errors/warnings/embedded images. Current hash bindings, four-tier budgets and shared graph hashes pass.

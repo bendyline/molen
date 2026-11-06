@@ -1,0 +1,567 @@
+{
+  "id": "farakka_barrage",
+  "title": "Farakka Barrage",
+  "wikidataId": "Q2638941",
+  "referenceCoordinate": {
+    "longitude": 87.933014411,
+    "latitude": 24.804552732
+  },
+  "module": "content/worldgen/source/places/tu/tuq/farakka_barrage/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "dark": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "line": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "earth": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "gate": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "steel": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "paint": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick"
+    }
+  },
+  "exportLabel": "Molen original Farakka Barrage and Farakka Feeder Canal",
+  "expectedDraftMasterHash": "sha256:f26138c2c2a982ea60a48537b53488a9c6adf5c922b57eff812a8256e7756f89",
+  "visualBrief": "The 2,245 m Farakka Barrage, its parallel NH12 and rail decks, bay 25 fish lock, the eleven-bay head regulator, canal control house and existing navigation chamber.",
+  "heightPolicy": "Standard Terrarium places the main pond near 23.00 m and the tailwater near 17.99 m. The production sampler returns 23.48�23.64 m upstream, 18.42 m below the barrage, 25.53 m in the feeder and 25.71 m in the existing lock.",
+  "nativeAxes": "+X northeast along NH12 toward the Malda bank and +Z southeast toward the downstream Ganga.",
+  "sourceFacts": {
+    "mappedIdentity": "Q2638941",
+    "nativeWaterIds": [
+      21085600,
+      21085603,
+      1004971082,
+      2838731902,
+      2838731900,
+      10555266092,
+      607381592,
+      607381590
+    ],
+    "nativeCrestMeters": 2275.75435,
+    "concreteBarrageMeters": 2245,
+    "barrageBays": 109,
+    "barrageGateLeaves": 112,
+    "fishLockBay": 25,
+    "headRegulatorBays": 11,
+    "existingLockWidth": 25.145,
+    "existingLockLength": 181.72042620465106,
+    "terrainDatum": 22.996094,
+    "terrainGridStep": 16,
+    "terrainTiles": 12,
+    "tailwaterModelY": -5.003906000000001
+  },
+  "materialMethod": "Shared brick, board-formed and plain concrete, gravel, painted metal, standing-seam metal and window graphs with metric UVs and no embedded images.",
+  "limitations": [
+    "Standard Terrarium places the main pond near 23.00 m and the tailwater near 17.99 m. The production sampler returns 23.48�23.64 m upstream, 18.42 m below the barrage, 25.53 m in the feeder and 25.71 m in the existing lock.",
+    "The regulator and existing chamber follow the mapped geometry. The newer parallel chamber and the separate feeder rail bridge are outside the modeled scope.",
+    "Gate openings show an illustrative operating state. Approach grades, concrete and gate machinery use observed exterior proportions and standard terrain.",
+    "The terrain fixture keeps the sampled heights. The feeder and lock comparison also reproduces the higher local water estimate from the viewer."
+  ],
+  "references": [
+    {
+      "url": "https://www.jalshakti-dowr.gov.in/static/uploads/2024/05/2023022074.pdf#page=50",
+      "imageUrl": "https://www.jalshakti-dowr.gov.in/static/uploads/2024/05/2023022074.pdf#page=50",
+      "observed": "The photographs distinguish the high steel hoist gallery over rounded concrete noses from the head regulator with a row of enclosed drum housings and its own road crossing."
+    },
+    {
+      "url": "https://sandrp.in/2014/11/25/lessons-from-farakka-as-we-plan-more-barrages-on-ganga/",
+      "imageUrl": "https://sandrp.in/wp-content/uploads/2014/09/farakka.jpg",
+      "observed": "Downward view of the raised gate gallery, repeated open steel trestles, concrete toes, rail deck and red edge rail."
+    },
+    {
+      "url": "https://www.opindia.com/2025/06/ganga-water-treaty-renegotiation-india-bangladesh-2026/",
+      "imageUrl": "https://i0.wp.com/www.opindia.com/wp-content/uploads/2025/06/farakka.jpg?resize=696%2C398&ssl=1",
+      "observed": "Aerial view shows the main barrage road and railway at the west end, the adjoining salmon-colored control building and the separate head regulator aligned toward the feeder."
+    },
+    {
+      "url": "https://www.jalshakti-dowr.gov.in/static/uploads/2024/05/fc00cd887135cf39b2005ccf1539e0e5.pdf",
+      "imageUrl": "https://www.jalshakti-dowr.gov.in/static/uploads/2024/05/fc00cd887135cf39b2005ccf1539e0e5.pdf",
+      "observed": "The project describes 112 main barrage gates, the two-tier fish-lock gates at bay 25, and 11 three-tier head regulator gates."
+    },
+    {
+      "url": "https://iwai.nic.in/sites/default/files/uploads/tender-archives/NavLockVol2combined.pdf",
+      "imageUrl": "https://iwai.nic.in/sites/default/files/uploads/tender-archives/NavLockVol2combined.pdf",
+      "observed": "The existing navigation lock has a roughly 180 m chamber, 25.145 m width and miter gate hardware. Its alignment is taken from the separate native PMTiles chamber polygon."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The primary road and parallel railway cross the Ganga on the candidate line. The named Farakka Feeder Canal branches at the west end."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "main-overview",
+      "position": [
+        -320,
+        185,
+        490
+      ],
+      "lookAt": [
+        -160,
+        -1,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "gate-trestles",
+      "position": [
+        -545,
+        18,
+        -104
+      ],
+      "lookAt": [
+        -453,
+        3,
+        -24
+      ],
+      "fov": 50
+    },
+    {
+      "name": "fish-lock-bay",
+      "position": [
+        -605,
+        14,
+        -71
+      ],
+      "lookAt": [
+        -625,
+        1,
+        -26
+      ],
+      "fov": 50
+    },
+    {
+      "name": "road-and-two-tracks",
+      "position": [
+        -140,
+        18,
+        29
+      ],
+      "lookAt": [
+        -252,
+        7,
+        -12
+      ],
+      "fov": 50
+    },
+    {
+      "name": "head-regulator",
+      "position": [
+        -1066,
+        27,
+        -193
+      ],
+      "lookAt": [
+        -1179,
+        2,
+        -127
+      ],
+      "fov": 50
+    },
+    {
+      "name": "canal-control-house",
+      "position": [
+        -1093,
+        38,
+        67
+      ],
+      "lookAt": [
+        -1175,
+        9,
+        -31
+      ],
+      "fov": 50
+    },
+    {
+      "name": "navigation-lock",
+      "position": [
+        -2348,
+        27,
+        -1832
+      ],
+      "lookAt": [
+        -2334,
+        -1,
+        -1960
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -13,
+    "scale": 4,
+    "focus": {
+      "center": [
+        -140,
+        -1,
+        0
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/tu/tuq/farakka_barrage/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "dark": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "line": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "earth": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "gate": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "steel": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "paint": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "line": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "line": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "line": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "farakka-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -320,
+        185,
+        490
+      ],
+      "lookAt": [
+        -160,
+        -1,
+        0
+      ]
+    },
+    {
+      "name": "farakka-district",
+      "reviewLod": "district",
+      "position": [
+        -320,
+        185,
+        490
+      ],
+      "lookAt": [
+        -160,
+        -1,
+        0
+      ]
+    },
+    {
+      "name": "farakka-street",
+      "reviewLod": "street",
+      "position": [
+        -320,
+        185,
+        490
+      ],
+      "lookAt": [
+        -160,
+        -1,
+        0
+      ]
+    },
+    {
+      "name": "farakka-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -320,
+        185,
+        490
+      ],
+      "lookAt": [
+        -160,
+        -1,
+        0
+      ]
+    }
+  ]
+}

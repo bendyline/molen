@@ -5,7 +5,9 @@
  * retried on its own. Anything thrown — a dropped range request, a 503, a CORS failure, a reader
  * that cannot read a response — is *transient*: retried with bounded exponential backoff and then
  * abandoned, so a streamer distinguishes "still retrying" from "gave up" instead of turning every
- * hiccup into a permanent hole.
+ * hiccup into a permanent hole. An abandoned tile is only set aside: the first replan after its
+ * cool-down tries it again, so an outage longer than the quick retries (a dropped connection, a
+ * restarted server) does not leave holes behind once it is over.
  */
 
 export interface TerrainTileRetryOptions {
@@ -17,6 +19,13 @@ export interface TerrainTileRetryOptions {
   maxRetryDelayMs?: number;
   /** Per-request deadline in milliseconds. Default 20000; 0 or Infinity disables it. */
   requestTimeoutMs?: number;
+  /**
+   * How long an abandoned tile waits before the stream may try it again, doubling with each
+   * further failure up to eight times as long. The attempt starts on the first `update()` after
+   * the wait that still wants the tile. Default 15000; 0 or Infinity keeps it abandoned until
+   * `retryFailed()`.
+   */
+  failedRetryDelayMs?: number;
 }
 
 export interface TerrainTileRetryPolicy {
@@ -24,6 +33,7 @@ export interface TerrainTileRetryPolicy {
   retryDelayMs: number;
   maxRetryDelayMs: number;
   requestTimeoutMs: number;
+  failedRetryDelayMs: number;
 }
 
 /** Why a tile is not resident. `retrying` still has attempts left; `failed` has spent them. */
@@ -34,7 +44,10 @@ export interface TerrainTileFailure<TAddress> {
   state: TerrainTileLoadState;
   /** Completed load attempts. Zero for a missing tile, which was answered, not failed. */
   attempts: number;
-  /** Wall-clock milliseconds of the scheduled next attempt, while one is waiting. */
+  /**
+   * Wall-clock milliseconds of the next attempt, while one is waiting. For an abandoned tile it is
+   * the earliest time an update may try it again.
+   */
   nextAttemptAt?: number;
   /** The last thrown error; absent for a missing tile. */
   error?: unknown;
@@ -47,6 +60,7 @@ export function resolveTerrainTileRetryPolicy(
   const retryDelayMs = options.retryDelayMs ?? 400;
   const maxRetryDelayMs = options.maxRetryDelayMs ?? 8_000;
   const requestTimeoutMs = options.requestTimeoutMs ?? 20_000;
+  const failedRetryDelayMs = options.failedRetryDelayMs ?? 15_000;
   if (!Number.isSafeInteger(maxRetries) || maxRetries < 0) {
     throw new Error('terrain stream maxRetries must be a non-negative safe integer');
   }
@@ -59,13 +73,30 @@ export function resolveTerrainTileRetryPolicy(
   if (Number.isNaN(requestTimeoutMs) || requestTimeoutMs < 0) {
     throw new Error('terrain stream requestTimeoutMs must be zero, positive, or Infinity');
   }
-  return { maxRetries, retryDelayMs, maxRetryDelayMs, requestTimeoutMs };
+  if (Number.isNaN(failedRetryDelayMs) || failedRetryDelayMs < 0) {
+    throw new Error('terrain stream failedRetryDelayMs must be zero, positive, or Infinity');
+  }
+  return { maxRetries, retryDelayMs, maxRetryDelayMs, requestTimeoutMs, failedRetryDelayMs };
 }
 
 /** Backoff for the Nth completed attempt (1-based), doubling up to the configured ceiling. */
 export function terrainTileRetryDelay(policy: TerrainTileRetryPolicy, attempts: number): number {
   const exponent = Math.max(0, attempts - 1);
   return Math.min(policy.maxRetryDelayMs, policy.retryDelayMs * 2 ** exponent);
+}
+
+/**
+ * Cool-down after the Nth completed attempt once the retry budget is spent, or undefined when
+ * abandoned tiles wait for `retryFailed()`. It doubles per further failure, at most three times,
+ * so a lasting outage is probed less and less often.
+ */
+export function terrainTileFailedRetryDelay(
+  policy: TerrainTileRetryPolicy,
+  attempts: number,
+): number | undefined {
+  const delay = policy.failedRetryDelayMs;
+  if (!(delay > 0) || !Number.isFinite(delay)) return undefined;
+  return delay * 2 ** Math.min(3, Math.max(0, attempts - policy.maxRetries - 1));
 }
 
 /** True for both `AbortSignal.timeout` rejections and this module's normalized timeout errors. */
@@ -153,7 +184,9 @@ export class TerrainTileRetryTracker<TAddress> {
 
   /**
    * Record a thrown error. Schedules the next attempt and returns `retrying`, or returns `failed`
-   * once the attempt budget is spent. `onDue` runs when that next attempt may start.
+   * once the attempt budget is spent. `onDue` runs when that next attempt may start. A failed
+   * tile has no timer: it waits out its cool-down until a replan finds it unblocked, so a stream
+   * with abandoned tiles can still go idle.
    */
   markFailed(
     key: string,
@@ -164,7 +197,15 @@ export class TerrainTileRetryTracker<TAddress> {
     const attempts = (this.entries.get(key)?.attempts ?? 0) + 1;
     this.cancelTimer(key);
     if (attempts > this.policy.maxRetries) {
-      this.entries.set(key, { address, state: 'failed', attempts, error, due: false });
+      const cooldown = terrainTileFailedRetryDelay(this.policy, attempts);
+      this.entries.set(key, {
+        address,
+        state: 'failed',
+        attempts,
+        error,
+        due: false,
+        ...(cooldown !== undefined ? { nextAttemptAt: Date.now() + cooldown } : {}),
+      });
       return 'failed';
     }
     const delay = terrainTileRetryDelay(this.policy, attempts);
@@ -186,11 +227,13 @@ export class TerrainTileRetryTracker<TAddress> {
     return 'retrying';
   }
 
-  /** Loading is blocked: the tile is missing, abandoned, or waiting out a backoff delay. */
+  /** Loading is blocked: the tile is missing, or waiting out a backoff delay or cool-down. */
   isBlocked(key: string): boolean {
     const entry = this.entries.get(key);
     if (entry === undefined) return false;
-    return entry.state !== 'retrying' || !entry.due;
+    if (entry.state === 'failed')
+      return entry.nextAttemptAt === undefined || Date.now() < entry.nextAttemptAt;
+    return entry.state === 'missing' || !entry.due;
   }
 
   /** Backoff delays still counting down; the stream is not idle while any remain. */
@@ -198,6 +241,18 @@ export class TerrainTileRetryTracker<TAddress> {
     let count = 0;
     for (const entry of this.entries.values()) if (entry.timer !== undefined) count++;
     return count;
+  }
+
+  /**
+   * Forget tiles whose wait is over but that the stream no longer wants, so the counts describe
+   * holes still in view rather than every failure along a flight. Missing tiles, tiles still
+   * waiting, and tiles kept for `retryFailed()` stay. A forgotten tile that is wanted again starts
+   * over with a fresh retry budget.
+   */
+  forgetUnwanted(wanted: (key: string, address: TAddress) => boolean): void {
+    for (const [key, entry] of this.entries) {
+      if (!this.isBlocked(key) && !wanted(key, entry.address)) this.entries.delete(key);
+    }
   }
 
   /** Forget one tile, after it loads. */
@@ -216,7 +271,7 @@ export class TerrainTileRetryTracker<TAddress> {
     return this.entries.get(key)?.state;
   }
 
-  /** Keys that will not load again on their own: missing tiles and abandoned ones. */
+  /** Keys outside the quick retries: missing tiles, and abandoned ones waiting out a cool-down. */
   stableKeys(): string[] {
     const keys: string[] = [];
     for (const [key, entry] of this.entries) if (entry.state !== 'retrying') keys.push(key);

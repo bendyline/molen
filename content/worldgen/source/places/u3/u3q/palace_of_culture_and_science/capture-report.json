@@ -6,7 +6,7 @@
   "reflectionMode": "sky-pmrem",
   "assetId": "molen.worldgen.structure.palace_of_culture_and_science",
   "qaCamerasHash": "sha256:3a16fb04e1f2dab0c33f84d74f89291210e2b04ed08e74b0a995c4eba6256d76",
-  "inputHash": "sha256:ff8065ec6996f9b98685c5911d227467ce502508e58284b8851575f8c03342cb",
+  "inputHash": "sha256:a03e8f36a2aef29cb5db9d7ccbf5e34770c0e442130f8160cd78d1ee199df551",
   "sourceHash": "sha256:6b9c2cce91eb767927b66630f040edae5c7ea559b26797079beea1b9984119b0",
   "runtimeHash": "sha256:16a694f8b436f191e80e5dbe6114fce287a852c6986e7e26ab502a61492e15fd",
   "sceneHash": "sha256:a28127bf031bfc71c887c492dc9fdd9cd78b1b9a38af4cf22260a45ec7baf3b6",
@@ -77,5 +77,37 @@
     "previousReportHash": "sha256:c8d224c4cb3ef230b803c174c13944a96bb17b49e627d7302863047473ba07da",
     "sourceRebuild": "assets-4c110226cdb7e02d",
     "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  },
+  "reviewCameraOnlyRebinding": {
+    "previousInputHash": "sha256:ff8065ec6996f9b98685c5911d227467ce502508e58284b8851575f8c03342cb",
+    "inputHash": "sha256:a03e8f36a2aef29cb5db9d7ccbf5e34770c0e442130f8160cd78d1ee199df551",
+    "reason": "Only review-camera identifiers were normalized to hyphens and the synthetic Earth-context camera scale was increased to frame the whole tower. All six GLBs, shared-material bindings, portable scene/cameras and geographic placement remain unchanged. Previously inspected portable/shared/map evidence is retained, not relabeled as fresh renders.",
+    "sceneHash": "sha256:a28127bf031bfc71c887c492dc9fdd9cd78b1b9a38af4cf22260a45ec7baf3b6",
+    "outputPins": [
+      {
+        "path": "content/worldgen/source/places/u3/u3q/palace_of_culture_and_science/models/source.glb",
+        "hash": "sha256:6b9c2cce91eb767927b66630f040edae5c7ea559b26797079beea1b9984119b0"
+      },
+      {
+        "path": "content/worldgen/assets/places/u3/u3q/palace_of_culture_and_science/model.glb",
+        "hash": "sha256:16a694f8b436f191e80e5dbe6114fce287a852c6986e7e26ab502a61492e15fd"
+      },
+      {
+        "path": "content/worldgen/assets/places/u3/u3q/palace_of_culture_and_science/model.skyline.glb",
+        "hash": "sha256:863be1ab953ff8174b57cdb354653d81b5ea6cde9aeb82d51193c44cc554af7b"
+      },
+      {
+        "path": "content/worldgen/assets/places/u3/u3q/palace_of_culture_and_science/model.district.glb",
+        "hash": "sha256:286d12f68c8dee41c321b28c6f6a3afbc027a08e1a67f21c90afd69daf1882ed"
+      },
+      {
+        "path": "content/worldgen/assets/places/u3/u3q/palace_of_culture_and_science/model.street.glb",
+        "hash": "sha256:c40c5f0ba23430d3d0b8389e5453769499f27854b3c10fd0e22d1a5cd2dd2ffd"
+      },
+      {
+        "path": "content/worldgen/assets/places/u3/u3q/palace_of_culture_and_science/model.closeup.glb",
+        "hash": "sha256:248cd99782121d1894dcd3530c50739711e1522c627aef74a8f1afbdd3404ddf"
+      }
+    ]
   }
 }

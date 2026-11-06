@@ -13,15 +13,15 @@ import {
   nativePointSourcePath,
   reviewedSourceMapFrame,
 } from '../../../../packages/worldgen-earth/scripts/reviewed-source-map-frame.mjs';
-import { inspectImageryInventory } from './imagery-inventory.mjs';
-import { readCurrentReferences } from './member-references.mjs';
 import { inspectLocalCollection } from './collection-progress.mjs';
+import { inspectImageryInventory } from './imagery-inventory.mjs';
 import {
   inspectImageryPolicy,
   PUBLIC_DOMAIN_POLICY,
   publicDomainReviewMatches,
   verifiedSupplementalSelection,
 } from './imagery-policy.mjs';
+import { readCurrentReferences } from './member-references.mjs';
 import { inspectPrimaryFactsReconstruction } from './primary-facts-reconstruction.mjs';
 import { structureCatalogEntries, structureCatalogMatches } from './work-ownership.mjs';
 

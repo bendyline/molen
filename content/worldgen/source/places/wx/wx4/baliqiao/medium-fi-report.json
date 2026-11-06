@@ -1,0 +1,1362 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.baliqiao",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.baliqiao",
+    "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a"
+  },
+  "sourceHash": "sha256:0aa47c542a799754620e03a62dcdda9dde1bb04675e4fcee78d3950b593b489d",
+  "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
+    },
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:c98c2d4eb115899db143afc3833de630d5fd5c89f75f7a193c121008c86ce893",
+      "bytes": 33884,
+      "gzipBytes": 7061,
+      "triangles": 444,
+      "cpuBytes": 32508,
+      "gpuBytes": 32508,
+      "errorMeters": 2,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:36433a7753615660d7dd702e66f84c57d2ff8e94329ac6fe596de608bf59fb6e",
+      "bytes": 232748,
+      "gzipBytes": 39016,
+      "triangles": 3092,
+      "cpuBytes": 228900,
+      "gpuBytes": 228900,
+      "errorMeters": 1,
+      "drawCalls": 3
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:27c26b9b4a8e378a422b75ca92d8ebdf9fe13712826506a9018f2c2e663ef53f",
+      "bytes": 809668,
+      "gzipBytes": 154677,
+      "triangles": 9812,
+      "cpuBytes": 805800,
+      "gpuBytes": 805800,
+      "errorMeters": 0.5,
+      "drawCalls": 3
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:7a6f2d5e3fbdda77507d8bac0f968ef9036bff36cf8232a25671551f79f893e4",
+      "bytes": 4437200,
+      "gzipBytes": 927058,
+      "triangles": 48488,
+      "cpuBytes": 4433304,
+      "gpuBytes": 4433304,
+      "errorMeters": 0.25,
+      "drawCalls": 3
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:3eadb21d50dd224e4c16a6e39f9c19bf232745ab11b0a5ffd787a67c0e475e56"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:d2c32576bbfdfe8ed1cbdd004e43f0ff3a7242f1f222f2ee3eb2d0271e7502ee"
+    }
+  },
+  "fixtureEntities": [
+    {
+      "id": "review-water",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            1.35,
+            0
+          ],
+          "scale": [
+            50,
+            0.12,
+            160
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#1b4450",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:fe3a1b4c60d87a07b87eafc49f4ed570d40449affb5d3d6a5457514f6c62f8b0",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:7a6f2d5e3fbdda77507d8bac0f968ef9036bff36cf8232a25671551f79f893e4",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 62390,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          72,
+          44.5449,
+          124.5
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:2682d829c9625891653a59ab27c7b578ce2823a03a98293adeedd344b01375b6",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:7a6f2d5e3fbdda77507d8bac0f968ef9036bff36cf8232a25671551f79f893e4",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 62390,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          72,
+          44.5449,
+          124.5
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:8731174c4e7d8053e763fc096f19fd99129002767a0f8e469ad2d2e94fffd14c",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:7a6f2d5e3fbdda77507d8bac0f968ef9036bff36cf8232a25671551f79f893e4",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 62390,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          72,
+          44.5449,
+          124.5
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:20816da6be4e3f386beb49aeac983a845221b2b3675d4e4521d23d8a2278ebc8",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:7a6f2d5e3fbdda77507d8bac0f968ef9036bff36cf8232a25671551f79f893e4",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 62390,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          72,
+          44.5449,
+          124.5
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:8e2510d51cbc13b6b8122f8f9f6f7f75ed6662230bd5636fa11e44656facef2f",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:36433a7753615660d7dd702e66f84c57d2ff8e94329ac6fe596de608bf59fb6e",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 16994,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          145.5,
+          98.5449,
+          252
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:a1aa8cd01fb4df047459ea76c029ac6600eec8eeb6eea17bccc2dec85ce1a92a",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:36433a7753615660d7dd702e66f84c57d2ff8e94329ac6fe596de608bf59fb6e",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 16994,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          145.5,
+          98.5449,
+          252
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:748a81ae6c65cc1383ada293f7a8184315b253e8fa811db19f479214cce8deb2",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:36433a7753615660d7dd702e66f84c57d2ff8e94329ac6fe596de608bf59fb6e",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 16994,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          145.5,
+          98.5449,
+          252
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:d41ca320c7643b99a7ec456283f33ca01a4a046980f7a4a1fccc1764b62c1bec",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:36433a7753615660d7dd702e66f84c57d2ff8e94329ac6fe596de608bf59fb6e",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 16994,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          145.5,
+          98.5449,
+          252
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:3547140ef1ddfb0c70aad7bc6bacd806d73b1a3c1720966e89579d83e81e4204",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:c98c2d4eb115899db143afc3833de630d5fd5c89f75f7a193c121008c86ce893",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 14346,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          291,
+          155.5449,
+          504
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:b62b6585d8cb96a30d63b2c33d6c7b8d86e01b6df0e086dcb397ab73267851f4",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:c98c2d4eb115899db143afc3833de630d5fd5c89f75f7a193c121008c86ce893",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 14346,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          291,
+          155.5449,
+          504
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:70271b183b09f5e9b7ed044c52cf44b860154460e9d9a6d2c531cf232066cd34",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:c98c2d4eb115899db143afc3833de630d5fd5c89f75f7a193c121008c86ce893",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 14346,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          291,
+          155.5449,
+          504
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:495cd75cbffb4bb2aa04fc7e42c7295cccb562d7bc72c43be057a9a724c2e30a",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:c98c2d4eb115899db143afc3833de630d5fd5c89f75f7a193c121008c86ce893",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 14346,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          291,
+          155.5449,
+          504
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:3527fe5374abb067b938ba91014ea25e57d2ca6ffd04fd3007fa03bd8e225ca7",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:c98c2d4eb115899db143afc3833de630d5fd5c89f75f7a193c121008c86ce893",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 4,
+        "triangles": 8650,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          291,
+          155.5449,
+          504
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/three-stone-arches.png",
+      "hash": "sha256:2162d0f2a9f94b745a813df284c3182740bf8549fd306ac9a7a8dbaa72581be5",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:7a6f2d5e3fbdda77507d8bac0f968ef9036bff36cf8232a25671551f79f893e4",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 62390,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          -8,
+          17,
+          48
+        ],
+        "lookAt": [
+          0,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/complete-bridge-and-approaches.png",
+      "hash": "sha256:cd5168abb94e5412f536c27070fae9f0cfdb791f829874afd22b371c148e7626",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:7a6f2d5e3fbdda77507d8bac0f968ef9036bff36cf8232a25671551f79f893e4",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 62390,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          -77,
+          56,
+          82
+        ],
+        "lookAt": [
+          0,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/high-central-tunnel.png",
+      "hash": "sha256:137342ccf81aeaa4e738735fbc5143e20151ed264c8e52bc54f2f01bfb016afe",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:7a6f2d5e3fbdda77507d8bac0f968ef9036bff36cf8232a25671551f79f893e4",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 62390,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          4,
+          14
+        ],
+        "lookAt": [
+          0,
+          6,
+          -2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/side-arch-and-ring.png",
+      "hash": "sha256:5d22fd015744a4a86fed0c3507d918693d72312afe30aa1f1925106e53b30d7c",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:7a6f2d5e3fbdda77507d8bac0f968ef9036bff36cf8232a25671551f79f893e4",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 62390,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          -14,
+          4.8,
+          16
+        ],
+        "lookAt": [
+          -11,
+          2.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/restored-deck-and-lions.png",
+      "hash": "sha256:38d60310747f77cd7eb10eb8137515ece1ada37f47f0e512fbef9d7ef4d55982",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:7a6f2d5e3fbdda77507d8bac0f968ef9036bff36cf8232a25671551f79f893e4",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 62390,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          -18,
+          11.6,
+          4.5
+        ],
+        "lookAt": [
+          5,
+          11.1,
+          6.5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/lion-sculpture-and-panel.png",
+      "hash": "sha256:646c4e70516ad286268e3a8837e83e8cffec93ddd432c4c279c124a586915231",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:7a6f2d5e3fbdda77507d8bac0f968ef9036bff36cf8232a25671551f79f893e4",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 62390,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          -2,
+          11.8,
+          5.7
+        ],
+        "lookAt": [
+          0,
+          11.1,
+          7.52
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/stone-courses-and-soffit.png",
+      "hash": "sha256:4d5514034b50df90dcad70d4eb6af731122a82af3e5354e74ba0a4009f795917",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:7a6f2d5e3fbdda77507d8bac0f968ef9036bff36cf8232a25671551f79f893e4",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 62390,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          5.7,
+          5.7,
+          11.5
+        ],
+        "lookAt": [
+          2.5,
+          6.7,
+          7.8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bridge-skyline.png",
+      "hash": "sha256:52681e5c6336197cb252937ed7446c0204050786f8b70def2b9b45cbc9f3dbd3",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:c98c2d4eb115899db143afc3833de630d5fd5c89f75f7a193c121008c86ce893",
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 14346,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          -8,
+          17,
+          48
+        ],
+        "lookAt": [
+          0,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bridge-district.png",
+      "hash": "sha256:9517c537b428f5061966be50da09e2dbf7e652b5d2c55e8841a28b8c12a71064",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:36433a7753615660d7dd702e66f84c57d2ff8e94329ac6fe596de608bf59fb6e",
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 16994,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          -8,
+          17,
+          48
+        ],
+        "lookAt": [
+          0,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bridge-street.png",
+      "hash": "sha256:dc2b26759daed58587573cff89f1e9b475f3c1d1838f6dc64d55e75a7899315b",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:27c26b9b4a8e378a422b75ca92d8ebdf9fe13712826506a9018f2c2e663ef53f",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 23714,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          -8,
+          17,
+          48
+        ],
+        "lookAt": [
+          0,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bridge-closeup.png",
+      "hash": "sha256:2162d0f2a9f94b745a813df284c3182740bf8549fd306ac9a7a8dbaa72581be5",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:7a6f2d5e3fbdda77507d8bac0f968ef9036bff36cf8232a25671551f79f893e4",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 62390,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          -8,
+          17,
+          48
+        ],
+        "lookAt": [
+          0,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-central-and-side-arches.png",
+      "hash": "sha256:dc2b26759daed58587573cff89f1e9b475f3c1d1838f6dc64d55e75a7899315b",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:27c26b9b4a8e378a422b75ca92d8ebdf9fe13712826506a9018f2c2e663ef53f",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 23714,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          -8,
+          17,
+          48
+        ],
+        "lookAt": [
+          0,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/closeup-lion-and-panel.png",
+      "hash": "sha256:646c4e70516ad286268e3a8837e83e8cffec93ddd432c4c279c124a586915231",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:7a6f2d5e3fbdda77507d8bac0f968ef9036bff36cf8232a25671551f79f893e4",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 62390,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          -2,
+          11.8,
+          5.7
+        ],
+        "lookAt": [
+          0,
+          11.1,
+          7.52
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:989dc437b9d3586532f1553555bdae6254922bb11a87617194cac85207b0ef13",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:c98c2d4eb115899db143afc3833de630d5fd5c89f75f7a193c121008c86ce893",
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 14346,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          145.5,
+          98.5449,
+          252
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:a1aa8cd01fb4df047459ea76c029ac6600eec8eeb6eea17bccc2dec85ce1a92a",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:36433a7753615660d7dd702e66f84c57d2ff8e94329ac6fe596de608bf59fb6e",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 16994,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          145.5,
+          98.5449,
+          252
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:980733e104fdcf5e38eb7a66fd0a9038a0a01578e424637fe1857599abf510ab",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:27c26b9b4a8e378a422b75ca92d8ebdf9fe13712826506a9018f2c2e663ef53f",
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 23714,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          145.5,
+          98.5449,
+          252
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:c86cee24d8ee043b837b7f7aa3bb02ab3b287ba358967e33d22e8501504c4d4f",
+      "state": {
+        "assetId": "molen.worldgen.structure.baliqiao",
+        "runtimeHash": "sha256:ebb5c1336db43efb8d12139ec42756cecc7d7a56d261381be5bdd1ab3aa8ff5a",
+        "lodHash": "sha256:7a6f2d5e3fbdda77507d8bac0f968ef9036bff36cf8232a25671551f79f893e4",
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 62390,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/wx/wx4/baliqiao/terrain-review.height.png"
+        },
+        "position": [
+          145.5,
+          98.5449,
+          252
+        ],
+        "lookAt": [
+          0,
+          22.0449,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.5,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

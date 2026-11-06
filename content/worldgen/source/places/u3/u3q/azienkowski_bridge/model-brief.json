@@ -1,0 +1,411 @@
+{
+  "id": "azienkowski_bridge",
+  "title": "Łazienkowski Bridge",
+  "wikidataId": "Q11785957",
+  "referenceCoordinate": {
+    "longitude": 21.0492,
+    "latitude": 52.2253
+  },
+  "module": "content/worldgen/source/places/u3/u3q/azienkowski_bridge/models/lazienkowski-model.mjs",
+  "builder": "buildLazienkowskiLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.3
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "paint": {
+      "slot": "door",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.85,
+      "metallic": 0
+    }
+  },
+  "exportLabel": "Molen Łazienkowski Bridge detailed source",
+  "expectedDraftMasterHash": "sha256:a7d54c2555463d536ee6076ee2162a83d794416cc8d5261aae006e3b208fca06",
+  "visualBrief": "Pale five-span four-girder Vistula road bridge, six lanes, concrete river piers and asymmetric land viaducts; twin lower pedestrian/cycle paths with signed curved bank accesses and repeated slender road lamps.",
+  "nativeAxes": "+X east-northeast to Praga; +Z south-southeast; +Y up. River steel unit liesX-155.5..267.5; retained long western land approach is at-X.",
+  "sourceFacts": {
+    "riverSpanMeters": 423,
+    "steelDeckWidthMeters": 27.76,
+    "mainSpansMeters": [
+      76.5,
+      90,
+      90,
+      90,
+      76.5
+    ],
+    "fullModeledViaductMeters": 860,
+    "cycleDeckWidthMeters": 3.4,
+    "sourceWaterDatumMeters": 74
+  },
+  "limitations": [
+    "Reconstruction of the completed2015 steel crossing with2017 lower-path additions, based on ordinary project/news photographs and standard viewer map/terrain inputs. Construction cranes, temporary scaffolds, boats, rust/fire damage, people and vehicles in the references are excluded.",
+    "The423m five-span steel unit uses76.5/90/90/90/76.5m rhythm and27.76m deck. The retained mapped866m envelope also covers land approach viaducts, modeled to860m with end transitions. Road junction loops and surrounding independent viaduct ramps are outside scope. Roadway has six traffic lanes and protected median. Four plate girders and regularized transverse beams are reconstructed from visible exterior construction.",
+    "Steel-unit extentX-155.5..267.5 is reconstructed from the envelope width transition and bank map. Main-pier shapes, approach column schedule, section thicknesses, lights and services are approximate picture-based dimensions, not an as-built inventory. Utility pipes are representative exterior services; internal maintenance corridors and bridge bearings are not fully modeled.",
+    "Lower3.4m paths and bank bends retain signed standard-PMTiles coordinates. Vertical ramp profiles, intersection heights and intermediate supports are reconstructed. No certified accessible gradient or curb-perfect riverbank connection is claimed. Standard terrain indicates approximate74m river surface and78–88m banks;source places its origin at74m and river roadway at90.5m. Water levels, DEM contamination near a bridge, exact piers/foundations and bank grade remain unsurveyed. No bespoke terrain or survey download.",
+    "Three existing shared256px graphs supply concrete, coated metal and aggregate/asphalt approximation with metric UVs. Paint is a palette. No private or embedded image copies. Skyline aggregates supports and removes furniture; district retains four girders and lower paths with sparse rails; street/close-up restore rails, lights, lane marks and transverse framing. Close-up uses aggregated railing balusters; the detailed source retains denser pickets. Estimated LOD errors4/2/1/.5m are not certified whole-mesh distances. Physical ordinary-laptop and phone measurements remain pending."
+  ],
+  "references": [
+    {
+      "url": "https://www.pomost.com.pl/realizacje/most-lazienkowski-w-warszawie/",
+      "observed": "Two inspected project photographs show broad transverse concrete piers, pale plate-girder sides and repeated roadway lamps; temporary works and damaged finish excluded. Project page supplies424m steel unit/27.76m width/five spans."
+    },
+    {
+      "url": "https://www.bryla.pl/bryla/7,85301,22237652,kladka-przez-most-lazienkowski-pieszo-i-na-rowerze.html",
+      "observed": "Inspected completed lower-path/bank photo: pale steel girder and overhanging orthotropic deck, lower separate path, two curved bank accesses, silver picket rails and slender twin-arm roadway lights."
+    },
+    {
+      "url": "https://warszawa.wyborcza.pl/warszawa/7,54420,22213771,jak-kladke-polaczyc-z-centrum.html",
+      "observed": "Inspected bank-ramp underside photograph: open lower paths, concrete circular access supports, four main girder lines, paired ramp bends. Reconstruction excludes construction equipment."
+    },
+    {
+      "url": "https://maps.protomaps.com/builds/",
+      "observed": "Nine ordinary viewerz14 tiles retained offline; named road pair, river, water channel and lower-cycleway/path geometry determine fit."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-crossing",
+      "position": [
+        -460,
+        310,
+        610
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "five-river-spans",
+      "position": [
+        45,
+        85,
+        440
+      ],
+      "lookAt": [
+        56,
+        10,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "six-lane-roadway",
+      "position": [
+        -95,
+        23,
+        8
+      ],
+      "lookAt": [
+        155,
+        17,
+        3
+      ],
+      "fov": 57
+    },
+    {
+      "name": "suspended-cycle-deck",
+      "position": [
+        -20,
+        11.2,
+        12.7
+      ],
+      "lookAt": [
+        155,
+        10.2,
+        13.5
+      ],
+      "fov": 54
+    },
+    {
+      "name": "western-bank-ramps",
+      "position": [
+        -180,
+        28,
+        105
+      ],
+      "lookAt": [
+        -125,
+        10,
+        22
+      ],
+      "fov": 50
+    },
+    {
+      "name": "eastern-path-loop",
+      "position": [
+        375,
+        35,
+        62
+      ],
+      "lookAt": [
+        327,
+        11,
+        6
+      ],
+      "fov": 53
+    },
+    {
+      "name": "four-plate-girders",
+      "position": [
+        30,
+        5.5,
+        45
+      ],
+      "lookAt": [
+        50,
+        12.8,
+        0
+      ],
+      "fov": 55
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 18,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u3/u3q/azienkowski_bridge/models/lazienkowski-model.mjs",
+    "export": "buildLazienkowskiSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.3
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "paint": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLazienkowskiDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 2
+      },
+      "street": {
+        "export": "buildLazienkowskiStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1
+      },
+      "closeup": {
+        "export": "buildLazienkowskiCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.5
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "river-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        45,
+        85,
+        440
+      ],
+      "lookAt": [
+        56,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "river-district",
+      "reviewLod": "district",
+      "position": [
+        45,
+        85,
+        440
+      ],
+      "lookAt": [
+        56,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "river-street",
+      "reviewLod": "street",
+      "position": [
+        45,
+        85,
+        440
+      ],
+      "lookAt": [
+        56,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "river-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        45,
+        85,
+        440
+      ],
+      "lookAt": [
+        56,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "street-lower-path",
+      "reviewLod": "street",
+      "position": [
+        -20,
+        11.2,
+        12.7
+      ],
+      "lookAt": [
+        155,
+        10.2,
+        13.5
+      ]
+    }
+  ]
+}

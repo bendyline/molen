@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 
 const tagged = new Map<string, Set<WeakRef<THREE.Object3D>>>();
+const versions = new Map<string, number>();
 
 /**
  * Remember a terrain object a host looks for by kind (`'water'` surfaces, `'parked-vehicles'`
@@ -15,6 +16,15 @@ export function tagTerrainObject(tag: string, object: THREE.Object3D): void {
     tagged.set(tag, set);
   }
   set.add(new WeakRef(object));
+  versions.set(tag, (versions.get(tag) ?? 0) + 1);
+}
+
+/**
+ * Changes whenever an object is tagged `tag`, so a host can keep what it gathered from
+ * {@link taggedTerrainObjects} until then. Objects collected since still drop out of the live set.
+ */
+export function taggedTerrainObjectsVersion(tag: string): number {
+  return versions.get(tag) ?? 0;
 }
 
 /**
@@ -37,6 +47,15 @@ const offsets = new WeakMap<
 >();
 const scratchMatrix = new THREE.Matrix4();
 const IDENTITY_LINEAR = [0, 1, 2, 4, 5, 6, 8, 9, 10] as const;
+
+/** {@link terrainRootOffset}'s answer when it was already found for `root`, without finding it. */
+export function knownTerrainRootOffset(
+  object: THREE.Object3D,
+  root: THREE.Object3D,
+): THREE.Vector3 | null | undefined {
+  const known = offsets.get(object);
+  return known !== undefined && known.root === root ? known.offset : undefined;
+}
 
 /**
  * `object`'s origin in `root`'s frame when only translations lie between them (tile layers under a

@@ -1,7 +1,9 @@
 /** Published station geometry with explicitly estimated anonymous positions and service details. */
+
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { createHash } from 'node:crypto';
+
 const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
 export const aeraAntennaCases = {
   'aera-lpda-Holt2018-whole-station-explicit-layout-estimates': 'aera_log_periodic_station',

@@ -1,0 +1,911 @@
+{
+  "id": "cannon_street_station",
+  "title": "Cannon Street station",
+  "wikidataId": "Q800615",
+  "referenceCoordinate": {
+    "longitude": -0.09069755673408508,
+    "latitude": 51.51038175907405
+  },
+  "module": "content/worldgen/source/places/gc/gcp/cannon_street_station/models/station-model.mjs",
+  "builder": "buildStationLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.9
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.92
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.76
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.18
+    },
+    "louver": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.18
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.4
+    },
+    "doorGlass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.4
+    },
+    "garden": {
+      "slot": "roof",
+      "localRef": "palette:#ffffff",
+      "roughness": 1
+    },
+    "membrane": {
+      "slot": "roof",
+      "graph": "membrane",
+      "roughness": 0.93
+    }
+  },
+  "exportLabel": "Molen original Cannon Street complete modern overbuild and twin riverside tower source",
+  "expectedDraftMasterHash": "sha256:60994fe7772036a213b1c926e3eaa67f8a60a177056357ef96cb5f1e47e8a8e9",
+  "visualBrief": "Complete permanent Cannon Street station overbuild ensemble within mappedparent277:modern north CannonPlace glass-and-exterior-steel volume and recessed street concourse;middle stepped office/core roofs;whole southern curved CannonBridgeHouse over-platform volume with roof-garden abstraction;both original riverside brick/stone towers with arched belfry bays,domed metal caps andspire tips;open elevated mainline approaches. Preserve river,railwaybridge,adjacent independent offices/Dowgate blocks,alleys andstreets. No copied lettering,roundels,logos,people,trains,operational interiors or historic train-shed reconstruction. Glazed entrance box is set behind the outer office/steel tube facade by about4.7m at the north front and4-6m at side edges,with structural overhang columns;no lettering orcopiedgraphics.",
+  "heightPolicy": "Native north overbuild42m,middle38/46m,garden block24m/side23m,curved front16/20m,min13m;two tower shafts35m,cap35–40.5m,tips44m,with21/33.5/34m ledges. Parent277 is an ownership envelope,never a cuboid. Source raised platform/northconcourse7m,north soffit12m,middle underside13m andfootings-8m are explicit architectural estimates;native min-height values are retainedfacts,not surveyed rail/street levels. One unchanged standard global field sample outside the west-middle station side[0,55],6.066517m,defines commonY=0. No per-part runtime offsets or surveyed threshold claim. Raised station deck/northconcourse are fixedsource7m architectural interpretation;the north street field rises toward this level.",
+  "nativeAxes": "+X SSW toward river/railway bridge; -X NNE toward CannonStreet; +Z WNW toward DowgateHill; -Z ESE toward adjacent independent offices; +Yup.",
+  "sourceFacts": {
+    "nativePartFacts": [
+      {
+        "index": 277,
+        "id": 35184512297577,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building"
+        }
+      },
+      {
+        "index": 691,
+        "id": 35184901901900,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 13
+        }
+      },
+      {
+        "index": 692,
+        "id": 35184901901902,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 6,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 38
+        }
+      },
+      {
+        "index": 693,
+        "id": 35184901901903,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 46
+        }
+      },
+      {
+        "index": 695,
+        "id": 35184901901911,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 38
+        }
+      },
+      {
+        "index": 696,
+        "id": 35184901901912,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 33.5,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 34
+        }
+      },
+      {
+        "index": 697,
+        "id": 35184901901913,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 33.5,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 34
+        }
+      },
+      {
+        "index": 858,
+        "id": 35185765081467,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 44
+        }
+      },
+      {
+        "index": 859,
+        "id": 35185765081468,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 44
+        }
+      },
+      {
+        "index": 860,
+        "id": 35185765081469,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 13
+        }
+      },
+      {
+        "index": 861,
+        "id": 35185765081470,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 38,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 40
+        }
+      },
+      {
+        "index": 862,
+        "id": 35185765081471,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 7
+        }
+      },
+      {
+        "index": 863,
+        "id": 35185765081472,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 14
+        }
+      },
+      {
+        "index": 864,
+        "id": 35185765081473,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 14
+        }
+      },
+      {
+        "index": 865,
+        "id": 35185765081474,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 13,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 16
+        }
+      },
+      {
+        "index": 866,
+        "id": 35185765081475,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 13,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 20
+        }
+      },
+      {
+        "index": 867,
+        "id": 35185765081476,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 13,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 20
+        }
+      },
+      {
+        "index": 868,
+        "id": 35185765081477,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 23
+        }
+      },
+      {
+        "index": 869,
+        "id": 35185765081478,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 23
+        }
+      },
+      {
+        "index": 870,
+        "id": 35185765081479,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 13,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 24
+        }
+      },
+      {
+        "index": 871,
+        "id": 35185765081480,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 13,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 14
+        }
+      },
+      {
+        "index": 872,
+        "id": 35185765081481,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 13,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 14
+        }
+      },
+      {
+        "index": 873,
+        "id": 35185765081482,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 13,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 14
+        }
+      },
+      {
+        "index": 874,
+        "id": 35185765081484,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 38
+        }
+      },
+      {
+        "index": 875,
+        "id": 35185765081485,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 38
+        }
+      },
+      {
+        "index": 876,
+        "id": 35185765081486,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 6,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 46
+        }
+      },
+      {
+        "index": 877,
+        "id": 35185765081487,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 42
+        }
+      },
+      {
+        "index": 896,
+        "id": 35185765200409,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 12,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 14
+        }
+      },
+      {
+        "index": 897,
+        "id": 35185765305978,
+        "properties": {
+          "kind_detail": "roof",
+          "min_height": 35,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 40.5
+        }
+      },
+      {
+        "index": 898,
+        "id": 35185765305979,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 21,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 21.5
+        }
+      },
+      {
+        "index": 899,
+        "id": 35185765305980,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 35
+        }
+      },
+      {
+        "index": 900,
+        "id": 35185765305981,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 21,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 21.5
+        }
+      },
+      {
+        "index": 901,
+        "id": 35185765305982,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 35
+        }
+      },
+      {
+        "index": 902,
+        "id": 35185765305983,
+        "properties": {
+          "kind_detail": "roof",
+          "min_height": 35,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 40.5
+        }
+      },
+      {
+        "index": 903,
+        "id": 35185765305984,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 7
+        }
+      },
+      {
+        "index": 904,
+        "id": 35185765305985,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 7
+        }
+      }
+    ],
+    "ownedNativeParts": 36,
+    "retainedNativeParts": 2698,
+    "terminalHeights": [
+      42,
+      38,
+      46,
+      24
+    ],
+    "towerShaftHeight": 35,
+    "towerDomeTop": 40.5,
+    "towerTipTop": 44,
+    "towers": [
+      {
+        "x": 124.98545049999998,
+        "z": 31.279640999999998,
+        "width": 7.367383999999998,
+        "shaftHeight": 35,
+        "domeTop": 40.5,
+        "tipTop": 44
+      },
+      {
+        "x": 124.985445,
+        "z": -23.1164445,
+        "width": 7.367390999999998,
+        "shaftHeight": 35,
+        "domeTop": 40.5,
+        "tipTop": 44
+      }
+    ],
+    "raisedDeckHeight": 7,
+    "concourseFloorHeight": 7,
+    "northUnderside": 12,
+    "gardenTop": 24,
+    "gardenPatches": 6,
+    "terrainReferenceLocal": [
+      0,
+      55
+    ],
+    "terrainTiles": 4,
+    "occupiedMasks": 1,
+    "northConcourseRecess": "Glazed entrance box is set behind the outer office/steel tube facade by about4.7m at the north front and4-6m at side edges,with structural overhang columns;no lettering orcopiedgraphics."
+  },
+  "materialMethod": "Seven existing shared256px graphs:brick,stone_sandstone,stone_granite,metal_standing_seam,metal_painted,window_grid andmembrane;one palette roof group for abstract green planting. At most8mergedsemantic groups,metricUVs,linearcolors;no embedded/private images. Office andconcourse panes usewindow graph;brick/stone/roof/steel retainopaque semantics.",
+  "limitations": [
+    "Complete permanent Cannon Street station overbuild ensemble within mappedparent277:modern north CannonPlace glass-and-exterior-steel volume and recessed street concourse;middle stepped office/core roofs;whole southern curved CannonBridgeHouse over-platform volume with roof-garden abstraction;both original riverside brick/stone towers with arched belfry bays,domed metal caps andspire tips;open elevated mainline approaches. Preserve river,railwaybridge,adjacent independent offices/Dowgate blocks,alleys andstreets. No copied lettering,roundels,logos,people,trains,operational interiors or historic train-shed reconstruction.",
+    "Native north overbuild42m,middle38/46m,garden block24m/side23m,curved front16/20m,min13m;two tower shafts35m,cap35–40.5m,tips44m,with21/33.5/34m ledges. Parent277 is an ownership envelope,never a cuboid. Source raised platform/northconcourse7m,north soffit12m,middle underside13m andfootings-8m are explicit architectural estimates;native min-height values are retainedfacts,not surveyed rail/street levels. One unchanged standard global field sample outside the west-middle station side[0,55],6.066517m,defines commonY=0. No per-part runtime offsets or surveyed threshold claim. Raised station deck/northconcourse are fixedsource7m architectural interpretation;the north street field rises toward this level.",
+    "Two ordinary present-day-family photographs andcurrent PMTiles establish approximate whole-ensemble shape. Fine hidden windows,roof services,exact floor inventory andthreshold/rail grades remain unverified. Roof-garden shapes are regularized lawn/low-hedge abstraction,without plant species/furniture claims. Source has open elevated track approach,not navigable station interior. Physical-device timings andnumericalLODerrors remain unmeasured.",
+    "Seven existing shared256px graphs:brick,stone_sandstone,stone_granite,metal_standing_seam,metal_painted,window_grid andmembrane;one palette roof group for abstract green planting. At most8mergedsemantic groups,metricUVs,linearcolors;no embedded/private images. Office andconcourse panes usewindow graph;brick/stone/roof/steel retainopaque semantics. Skyline keeps complete north/middle/garden massing andboth domed tower silhouettes withcoarse source-derived boundaries. Districtadds glazing/outer steel family,greenroofpatches andtower arches;streetadds recesses/reveals,sampled mullions,openrails andlow-facet tubes;closeupkeeps fullwindowinventory,finer external tubes,domeseams,louvres/gardenrails;masterrefines sourcecurves,frames,soffitstrips andsleepers."
+  ],
+  "references": [
+    {
+      "url": "https://manchesterhistory.net/architecture/2010/cannonplace.html",
+      "imageUrl": "https://manchesterhistory.net/architecture/2010/cannonplace9.jpg",
+      "observed": "Inspected ordinary 2017 north street-corner photograph:recessed tall ground entrance glass under the projecting silver exterior steel-tube/curtain-wall office facade;fine horizontal soffit strips. No lettering,roundels,brands,people orutilityclutter copied."
+    },
+    {
+      "url": "https://www.guidelondon.org.uk/blog/bridges-over-the-river-thames-in-london/",
+      "imageUrl": "https://www.guidelondon.org.uk/wp-content/uploads/2024/03/Cannon-Street-station-seen-from-The-Shard-showing-roof-garden-and-twin-towers.jpg",
+      "observed": "Inspected ordinary complete aerial fromTheShard:both square buffbrick/stone riverside towers with large upper arched recesses,layered cornices,pale ribbed dome caps andthinspires;curving glazed office front between them,whole stepped over-platform roofs/green roof-garden lawns andbrick sidewalls,open elevated track approach. Independent riverfront offices andrailwaybridge remain separate."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Complete permanent Cannon Street station overbuild ensemble within mappedparent277:modern north CannonPlace glass-and-exterior-steel volume and recessed street concourse;middle stepped office/core roofs;whole southern curved CannonBridgeHouse over-platform volume with roof-garden abstraction;both original riverside brick/stone towers with arched belfry bays,domed metal caps andspire tips;open elevated mainline approaches. Preserve river,railwaybridge,adjacent independent offices/Dowgate blocks,alleys andstreets. No copied lettering,roundels,logos,people,trains,operational interiors or historic train-shed reconstruction. Native parent is ownership only,never a solid station cuboid. Exact height/min-height stacks are preserved as architectural controls;fine sections andfloor grades remain approximate."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-station-overbuild-and-river-towers",
+      "position": [
+        320,
+        200,
+        255
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "north-cannon-place-steel-frame",
+      "position": [
+        -190,
+        62,
+        95
+      ],
+      "lookAt": [
+        -89,
+        24,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "north-recessed-concourse",
+      "position": [
+        -154,
+        13,
+        18
+      ],
+      "lookAt": [
+        -112,
+        10,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "south-twin-towers-and-garden",
+      "position": [
+        210,
+        62,
+        95
+      ],
+      "lookAt": [
+        107,
+        26,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "open-elevated-rail-approach",
+      "position": [
+        175,
+        9,
+        5
+      ],
+      "lookAt": [
+        78,
+        10,
+        5
+      ],
+      "fov": 52
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.2,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/gc/gcp/cannon_street_station/models/station-model.mjs",
+    "export": "buildStationSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.9
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.92
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.76
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.18
+      },
+      "louver": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.18
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.4
+      },
+      "doorGlass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.4
+      },
+      "garden": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 1
+      },
+      "membrane": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.93
+      }
+    },
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStationDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "louver": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "garden": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.93
+          }
+        },
+        "errorMeters": 1.2
+      },
+      "street": {
+        "export": "buildStationStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "louver": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "garden": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.93
+          }
+        },
+        "errorMeters": 0.5
+      },
+      "closeup": {
+        "export": "buildStationCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.76
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "louver": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "garden": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.93
+          }
+        },
+        "errorMeters": 0.18
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-cannon-street-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        320,
+        200,
+        255
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "whole-cannon-street-district",
+      "reviewLod": "district",
+      "position": [
+        320,
+        200,
+        255
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "whole-cannon-street-street",
+      "reviewLod": "street",
+      "position": [
+        320,
+        200,
+        255
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    },
+    {
+      "name": "whole-cannon-street-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        320,
+        200,
+        255
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    }
+  ]
+}

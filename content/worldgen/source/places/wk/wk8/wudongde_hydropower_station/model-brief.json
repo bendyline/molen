@@ -1,0 +1,355 @@
+{
+  "id": "wudongde_hydropower_station",
+  "title": "Wudongde Hydropower Station",
+  "wikidataId": "Q908346",
+  "referenceCoordinate": {
+    "longitude": 102.63402758,
+    "latitude": 26.324833519
+  },
+  "module": "content/worldgen/source/places/wk/wk8/wudongde_hydropower_station/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "face": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "liner": {
+      "slot": "trim",
+      "graph": "concrete_plain"
+    },
+    "coping": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "gate": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "rail": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "service": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    }
+  },
+  "exportLabel": "Molen original Wudongde Dam, arch and recessed spillway bays",
+  "expectedDraftMasterHash": "sha256:f81eba3d97db1bc37c6c7a8717c23f4cf1094eaa5b5b84021dc6987af1e688f4",
+  "visualBrief": "Wudongde’s thin double-curved concrete arch, crest railings and service structures, five upper spillway bays and six mid-level recessed outlets.",
+  "heightPolicy": "Fixed absolute crest 988 m and foundation 718 m on a local datum of 913.95816425 m. The visual fixture uses the 975 m normal pool. The standard viewer water sampler yields 870.67 m upstream and 855.32 m immediately downstream.",
+  "nativeAxes": "+X runs east-northeast along the crest chord; +Z points downstream.",
+  "sourceFacts": {
+    "documentedCrestLengthMeters": 326.95,
+    "crestElevation": 988,
+    "structuralHeightMeters": 270,
+    "baseWidthMeters": 51,
+    "upperSpillwayCount": 5,
+    "intermediateOutletCount": 6,
+    "separateRoadBridgeId": 35185254961305,
+    "terrainTiles": 10
+  },
+  "limitations": [
+    "Fixed absolute crest 988 m and foundation 718 m on a local datum of 913.95816425 m. The visual fixture uses the 975 m normal pool. The standard viewer water sampler yields 870.67 m upstream and 855.32 m immediately downstream.",
+    "PMTiles supplies the shoreline break and separate service road ends. The exact crest centerline and buried abutment geometry are inferred within the retained OpenStreetMap dam outline. Crest width, opening sizes and hoist dimensions are exterior approximations.",
+    "Standard viewer terrain water sampling is approximately 104.33 m below normal pool. The two fixtures record that discrepancy. The standalone fixture trims headwater at the arch, while the native viewer data remain untouched.",
+    "Scope is the principal visible dam. Underground powerhouse and bypass interiors, remote outlet architecture, the secondary downstream dam and water discharge are outside this preview."
+  ],
+  "materialMethod": "Shared board-formed and plain concrete, painted metal and standing seam steel. Zero embedded images.",
+  "references": [
+    {
+      "url": "https://www.ctg.com.cn/ctgenglish/news_media/news37/2024080621154872699/index.html",
+      "observed": "Operator supplies 326.95 m crest arc, elevation 988 m, 270 m maximum height and .19 thickness-to-height ratio."
+    },
+    {
+      "url": "https://www.ctgpc.com.cn/jsglj/jpgc71/wddsdz89/index.html",
+      "observed": "Operator supplies five upper bays, six intermediate outlets, three bypass tunnels and underground generating facilities."
+    },
+    {
+      "url": "https://www.openstreetmap.org/way/652591257",
+      "observed": "Retained OSM dam area constrains the inferred crest and abutment sweeps."
+    },
+    {
+      "url": "https://www.gdshe.org/article/18437.html",
+      "observed": "Public overview image depicts the thin curved concrete crest and the concentrated central spillway in a steep terraced gorge."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "PMTiles bounds the dam between opposing reservoir shorelines and service road ends. The crest centerline is inferred inside the retained OSM dam area (way 652591257)."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "downstream-overview",
+      "position": [
+        -44,
+        205,
+        460
+      ],
+      "lookAt": [
+        -23,
+        16,
+        9
+      ],
+      "fov": 50
+    },
+    {
+      "name": "spillway-bays",
+      "position": [
+        11,
+        110,
+        145
+      ],
+      "lookAt": [
+        -20,
+        25,
+        -18
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-and-gate-hoists",
+      "position": [
+        -129,
+        106,
+        58
+      ],
+      "lookAt": [
+        -17,
+        65,
+        -12
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upper-reservoir",
+      "position": [
+        -86,
+        147,
+        -240
+      ],
+      "lookAt": [
+        -23,
+        30,
+        -4
+      ],
+      "fov": 50
+    },
+    {
+      "name": "gorge-and-tailwater",
+      "position": [
+        -140,
+        307,
+        614
+      ],
+      "lookAt": [
+        -23,
+        -25,
+        55
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -196,
+    "scale": 1.3,
+    "focus": {
+      "center": [
+        -23,
+        16,
+        9
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wk/wk8/wudongde_hydropower_station/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "face": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "liner": {
+        "slot": "trim",
+        "graph": "concrete_plain"
+      },
+      "coping": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "gate": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "service": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "face": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "liner": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "coping": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "service": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "face": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "liner": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "coping": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "service": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "face": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "liner": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "coping": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "service": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "wudongde-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -44,
+        205,
+        460
+      ],
+      "lookAt": [
+        -23,
+        16,
+        9
+      ]
+    },
+    {
+      "name": "wudongde-district",
+      "reviewLod": "district",
+      "position": [
+        -44,
+        205,
+        460
+      ],
+      "lookAt": [
+        -23,
+        16,
+        9
+      ]
+    },
+    {
+      "name": "wudongde-street",
+      "reviewLod": "street",
+      "position": [
+        -44,
+        205,
+        460
+      ],
+      "lookAt": [
+        -23,
+        16,
+        9
+      ]
+    },
+    {
+      "name": "wudongde-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -44,
+        205,
+        460
+      ],
+      "lookAt": [
+        -23,
+        16,
+        9
+      ]
+    }
+  ]
+}

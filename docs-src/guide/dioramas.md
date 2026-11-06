@@ -56,6 +56,8 @@ const director = new DioramaDirector({
     // assets: a host-owned AssetCache, when the scene uses glTF refs
     // A large streamed world keeps the diorama's own lights out (see below).
     localLights: false,
+    // Build its shaders before it is shown.
+    prepare: (object, parent) => viewer.renderer.prepareObject(object, undefined, parent),
   }),
   onError: (error, id) => console.error(id, error),
 });
@@ -81,6 +83,11 @@ director.dispose();
 A diorama's point and spot lights light the host scene by default. In a large streamed world, pass
 `localLights: false` (Earth hosts do): three compiles the scene's lights into every lit shader, so a
 light that arrives and leaves with a diorama rebuilds every object in view in one frame.
+
+`prepare` builds a diorama's shaders before it joins `root`: its figures, models and static
+batches otherwise build theirs in the first frame that draws them, and a flight school beside a
+runway stalled a takeoff for a quarter of a second. `EarthDioramaOptions.prepareObject` is the same
+hook for the Earth director; `mountEarthView` passes its renderer's.
 
 The loader is a host callback: use an allowlisted dynamic import, HTTP URL or your pack reader.
 The runtime never chooses content hosts. `loadDioramaScene` fetches the scene and relative `.js`

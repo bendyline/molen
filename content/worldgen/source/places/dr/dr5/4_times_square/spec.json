@@ -1,0 +1,465 @@
+{
+  "planId": "4_times_square",
+  "id": "4_times_square",
+  "assetId": "molen.worldgen.structure.4_times_square",
+  "title": "4 Times Square / One Five One",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q687413",
+  "referenceCoordinate": {
+    "longitude": -73.985806121,
+    "latitude": 40.756018717
+  },
+  "visualBrief": "Complete individual4 Times Square glass-and-masonry stepped tower with80/120/160m trim wings,200m main body,rounded220m neck,four225m sign arms,225m central mechanical roof,open246.5m mast cage andseparate341m segmented broadcast antenna. Whole35m low parent,Nasdaq northwest display cylinder withactual window apertures andsouth42nd Street recessed three-drum entry complete the exterior.",
+  "size": [
+    80.52499771118164,
+    342.39999997615814,
+    66.03996658325195
+  ],
+  "actualBounds": {
+    "min": [
+      -40.25,
+      -1.399999976158142,
+      -32.5899658203125
+    ],
+    "max": [
+      40.27499771118164,
+      341,
+      33.45000076293945
+    ]
+  },
+  "nativeAxes": "+X approximately ESE toward the independent One Bryant Park,-X WNW/Broadway;+Z SSW/West42nd Street,-Z NNE/West43rd Street;+Y up. Nasdaq cylinder occupies the actual northwest(-X,-Z) corner;the341m mast is the central nativepart32,not One Bryant Park's separate taller spire.",
+  "sourceFacts": {
+    "retainedRoofMeters": 246.5,
+    "mappedMastMeters": 341,
+    "mappedMainMeters": 200,
+    "mappedNeckMeters": 220,
+    "mappedArmsMeters": 225,
+    "mappedLowBaseMeters": 35,
+    "mappedLengthMeters": 80.419,
+    "mappedWidthMeters": 64.918,
+    "modelDatumMeters": 17,
+    "terrainTiles": 1
+  },
+  "referencePages": [
+    "https://cdn.production.durst.org/uploads/property_images/larger_images/913/750_-675.jpg",
+    "https://cdn.production.durst.org/uploads/property_images/larger_images/945/2_151_entrance_carousel_zoom_750x500.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/7/7e/Nasdaq_Tower_May_2026.jpg",
+    "https://commons.wikimedia.org/wiki/File:4_times_Square_Building_with_H%26M_logo_(May_2023).JPG",
+    "https://www.openstreetmap.org/way/86121620"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      -73.985806121,
+      40.756018717
+    ],
+    "heading": -0.511202600773,
+    "elevationMode": "sea-level",
+    "elevationMeters": 17,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Complete low-parent foundation samples native terrain.17m rounded datum andoriginal curb/entry/accessibility levels are approximate,not surveyed.",
+    "groundModelY": 0,
+    "replaceFootprint": true,
+    "bounds": [
+      -73.98641649131386,
+      40.75557964528383,
+      -73.98520048183481,
+      40.75645094072527
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3a8960b6a02740140b1a963f3d0420c93dc1150dc60e876b529fb48821ad2f80",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://www.openstreetmap.org/way/86121620",
+    "wikidataId": "Q687413",
+    "notes": "Complete original Q687413 tower,whole35m low parent,Nasdaq northwest display cylinder,stepped/curved upper body,four sign/support arms,open rooftop mast cage and341m segmented broadcast mast. Independent One Bryant Park andother city context excluded. Retained246.5m architectural roof is separate from341m central native antenna. Native200m main body,220m curved neck and225m arms guide original sections. Ordinary daytime photo establishes anopen support cage overthe225m central roof:the245m native central envelope isnot a closed solid box. Cage perimeter reaches246.5m andapex252m;segmented mast reaches341m. Thin native80/120/160m trim wings and35m low base retained. No whole-parent341m extrusion. Original photo-proportional facade rhythms,curtain-wall/masonry division,rounded corner/display apertures,sign frames,roof plant,cage/mast members and42nd Street portal/revolving doors are approximate,not anas-built inventory. Neutral sign panels containno copied advertising. Native17m datum andcurb/entrance/accessibility levels not surveyed. +X approximately ESE toward the independent One Bryant Park,-X WNW/Broadway;+Z SSW/West42nd Street,-Z NNE/West43rd Street;+Y up. Nasdaq cylinder occupies the actual northwest(-X,-Z) corner;the341m mast is the central nativepart32,not One Bryant Park's separate taller spire."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Four existing shared window-grid,painted-metal,membrane andgranite graphs with metric UVs. No private or embedded image copies.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/dr/dr5/4_times_square/models/four-times-square-model.mjs",
+    "export": "buildFourTimesSquareSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.76,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.26,
+        "metallic": 0.17
+      },
+      "metal": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.57,
+        "metallic": 0.24
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "ground": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildFourTimesSquareDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.26,
+            "metallic": 0.17
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.57,
+            "metallic": 0.24
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 4
+      },
+      "street": {
+        "export": "buildFourTimesSquareStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.26,
+            "metallic": 0.17
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.57,
+            "metallic": 0.24
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 2
+      },
+      "closeup": {
+        "export": "buildFourTimesSquareCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.26,
+            "metallic": 0.17
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.57,
+            "metallic": 0.24
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.7
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -390,
+        220,
+        -470
+      ],
+      "lookAt": [
+        0,
+        169,
+        0
+      ]
+    },
+    {
+      "name": "whole-tower-district",
+      "reviewLod": "district",
+      "position": [
+        -390,
+        220,
+        -470
+      ],
+      "lookAt": [
+        0,
+        169,
+        0
+      ]
+    },
+    {
+      "name": "whole-tower-street",
+      "reviewLod": "street",
+      "position": [
+        -390,
+        220,
+        -470
+      ],
+      "lookAt": [
+        0,
+        169,
+        0
+      ]
+    },
+    {
+      "name": "whole-tower-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -390,
+        220,
+        -470
+      ],
+      "lookAt": [
+        0,
+        169,
+        0
+      ]
+    },
+    {
+      "name": "street-display-cylinder-openings",
+      "reviewLod": "street",
+      "position": [
+        -80,
+        25,
+        -85
+      ],
+      "lookAt": [
+        -32,
+        23,
+        -24
+      ]
+    },
+    {
+      "name": "closeup-open-rooftop-cage-and-mast",
+      "reviewLod": "closeup",
+      "position": [
+        105,
+        295,
+        -110
+      ],
+      "lookAt": [
+        8,
+        271,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Complete original Q687413 tower,whole35m low parent,Nasdaq northwest display cylinder,stepped/curved upper body,four sign/support arms,open rooftop mast cage and341m segmented broadcast mast. Independent One Bryant Park andother city context excluded. Original geometry from four actually inspected ordinary photographs plus standard viewer PMTiles/global terrain. No downloaded mesh,private image texture,bespoke survey orarchive research.",
+    "Retained246.5m architectural roof is separate from341m central native antenna. Native200m main body,220m curved neck and225m arms guide original sections. Ordinary daytime photo establishes anopen support cage overthe225m central roof:the245m native central envelope isnot a closed solid box. Cage perimeter reaches246.5m andapex252m;segmented mast reaches341m. Thin native80/120/160m trim wings and35m low base retained. No whole-parent341m extrusion. +X approximately ESE toward the independent One Bryant Park,-X WNW/Broadway;+Z SSW/West42nd Street,-Z NNE/West43rd Street;+Y up. Nasdaq cylinder occupies the actual northwest(-X,-Z) corner;the341m mast is the central nativepart32,not One Bryant Park's separate taller spire.",
+    "Original photo-proportional facade rhythms,curtain-wall/masonry division,rounded corner/display apertures,sign frames,roof plant,cage/mast members and42nd Street portal/revolving doors are approximate,not anas-built inventory. Neutral sign panels containno copied advertising. Native17m datum andcurb/entrance/accessibility levels not surveyed. The sign panels remain neutral andunbranded. Fine mast communications/roof/door member counts are original approximations;no claim ofas-built/current exact antenna inventory. Body246.5m andmapped341m total are modeled separately. Neighboring One Bryant Park isnot included.",
+    "Four existing256px shared window-grid,painted-metal,membrane andgranite graphs withmetric UVs. Restrained colors supply pale masonry/metal andneutral display panels. Shared window binding uses catalog blue grid;portable/shared appearances differ. No private/embedded images,photo-baked shadows,reflections ornight lighting. Glazing is opaque without optical interiors.",
+    "Unmodified129x129/2m field oversamples one standard global urban tile.17m rounded datum and16.6–17.5m corner grades,curb/accessibility/entry thresholds are approximate,not surveyed. Foundation extends into native field without flattening. Tier error estimates8/4/2/.7m are approximate,not certified mesh distances. Physical laptop/phone anddense-city timing remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "complete-tower-and-separate-broadcast-mast",
+      "position": [
+        -390,
+        220,
+        -470
+      ],
+      "lookAt": [
+        0,
+        169,
+        0
+      ],
+      "fov": 38
+    },
+    {
+      "name": "opposite-stone-facades-and-whole-base",
+      "position": [
+        390,
+        215,
+        470
+      ],
+      "lookAt": [
+        0,
+        169,
+        0
+      ],
+      "fov": 38
+    },
+    {
+      "name": "glass-and-masonry-stepped-facades",
+      "position": [
+        -90,
+        155,
+        -140
+      ],
+      "lookAt": [
+        0,
+        137,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "four-sign-frames-open-cage-segmented-mast",
+      "position": [
+        105,
+        295,
+        -110
+      ],
+      "lookAt": [
+        8,
+        271,
+        3
+      ],
+      "fov": 51
+    },
+    {
+      "name": "nasdaq-corner-physical-display-window-apertures",
+      "position": [
+        -80,
+        25,
+        -85
+      ],
+      "lookAt": [
+        -32,
+        23,
+        -24
+      ],
+      "fov": 51
+    },
+    {
+      "name": "42nd-street-recess-and-three-revolving-doors",
+      "position": [
+        6.449999999999999,
+        5,
+        58.45
+      ],
+      "lookAt": [
+        6.449999999999999,
+        5,
+        31.450000000000003
+      ],
+      "fov": 51
+    },
+    {
+      "name": "whole-low-parent-and-northwest-cylinder",
+      "position": [
+        -115,
+        65,
+        -130
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ],
+      "fov": 51
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 71305,
+    "vertices": 206043,
+    "materials": 4,
+    "bytes": 8276172,
+    "sha256": "sha256:2103f03214879d47b5515111da1e26412fcf0a661d4e53473bcf3562094fa761"
+  }
+}

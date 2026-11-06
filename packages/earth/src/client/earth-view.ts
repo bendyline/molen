@@ -1474,9 +1474,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           const created = new EarthWildlife(
             worldgen.environment,
             stream.object,
-            (object) => {
-              void renderer.prepareObject(object);
-            },
+            (object) => renderer.prepareObject(object),
             pkg.surface?.seaLevel ?? 0,
           );
           wildlife = created;
@@ -2381,8 +2379,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     );
     actorDirector.attach(actorStack(stack));
     disposers.push(() => actorDirector.dispose());
-    const dioramaDirector = new EarthDioramaDirector(options.dioramas ?? {}, (error, id) =>
-      report(error, `diorama ${id}`),
+    const dioramaDirector = new EarthDioramaDirector(
+      {
+        prepareObject: (object, signal, parent) => renderer.prepareObject(object, signal, parent),
+        ...options.dioramas,
+      },
+      (error, id) => report(error, `diorama ${id}`),
     );
     disposers.push(() => dioramaDirector.dispose());
     const NO_VIEWER: EarthActorViewer = {

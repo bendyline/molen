@@ -92,4 +92,8 @@ write('scene.json', {
   physics: { engine: 'none' },
 });
 
-console.log({ collection: collection.id, members: members.length, parentCompleted: collection.membershipEvidence.inventoryStatus === 'complete' });
+console.log({
+  collection: collection.id,
+  members: members.length,
+  parentCompleted: collection.membershipEvidence.inventoryStatus === 'complete',
+});

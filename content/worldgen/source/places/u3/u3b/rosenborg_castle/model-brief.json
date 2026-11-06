@@ -1,0 +1,518 @@
+{
+  "id": "rosenborg_castle",
+  "title": "Rosenborg Castle",
+  "wikidataId": "Q206101",
+  "referenceCoordinate": {
+    "longitude": 12.5775,
+    "latitude": 55.685833333
+  },
+  "module": "content/worldgen/source/places/u3/u3b/rosenborg_castle/models/rosenborg-model.mjs",
+  "builder": "buildRosenborgLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "brick_flemish",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "copper": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.57,
+      "metallic": 0.55
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.35,
+      "metallic": 0.08
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.63,
+      "metallic": 0.2
+    }
+  },
+  "exportLabel": "Molen complete current Rosenborg copper roof open lantern towers scroll gables gatehouse and mapped east bridge source",
+  "expectedDraftMasterHash": "sha256:498ecd1fce03b99fde98b214d9684e6beb961bd6a5a0b88d9c303936452a5d89",
+  "visualBrief": "Complete current principal Rosenborg castle exterior and separate northwest gatehouse:long red-brick/stone-banded copper-gabled block,paired NE square towers/central faceted stair dome,tall SW tower with staged open lanterns,scroll gables/dormers/end oriels,chimneys,closed exterior entry doors,gatehouse open arch and skewed native plan,short mapped gatehouse approach,east bridge/rails with original lion/plinth cues,and low perimeter segments. Water/gardens,interiors,future underground treasury and independent park/street buildings are excluded.",
+  "nativeAxes": "+X southeast toward the lion/bridge end,-X northwest toward the separate gatehouse;+Z southwest toward the single tall Great Tower,-Z northeast toward the paired square towers and central faceted stair dome;+Y up.",
+  "sourceFacts": {
+    "mappedLengthMeters": 47.04,
+    "mappedWidthMeters": 23.331,
+    "modelDatumMeters": 8,
+    "terrainTiles": 1,
+    "ownedMapComponents": 2,
+    "originalPhotoProportionalEnvelopes": {
+      "floor": 0.35,
+      "bodyEave": 13.5,
+      "mainRidge": 20.4,
+      "pairedTowerWall": 22.5,
+      "pairedLanternTop": 34.8,
+      "stairWall": 17.3,
+      "stairDomeTop": 21.6,
+      "greatTowerWall": 28.5,
+      "greatLanternTop": 49.2,
+      "gatehouseEave": 7.2,
+      "gatehouseRidge": 10.4
+    },
+    "gatehouseFloorLocalMeters": 0.8,
+    "heightBasis": "No native vertical tags. Original picture-proportional reconstruction scaled to47.04m plan:main eave13.5m/ridge20.4m,paired tower walls22.5m/tips34.8m,central stair dome21.6m and great tower wall28.5m/tip49.2m. These are approximate envelopes,not surveyed as-built heights. Roof/lantern/window/statue/scroll/grade inventories remain original approximations."
+  },
+  "limitations": [
+    "Complete current principal Rosenborg castle exterior and separate northwest gatehouse:long red-brick/stone-banded copper-gabled block,paired NE square towers/central faceted stair dome,tall SW tower with staged open lanterns,scroll gables/dormers/end oriels,chimneys,closed exterior entry doors,gatehouse open arch and skewed native plan,short mapped gatehouse approach,east bridge/rails with original lion/plinth cues,and low perimeter segments. Water/gardens,interiors,future underground treasury and independent park/street buildings are excluded.",
+    "No native vertical tags. Original picture-proportional reconstruction scaled to47.04m plan:main eave13.5m/ridge20.4m,paired tower walls22.5m/tips34.8m,central stair dome21.6m and great tower wall28.5m/tip49.2m. These are approximate envelopes,not surveyed as-built heights. Roof/lantern/window/statue/scroll/grade inventories remain original approximations.",
+    "Native129x129/2m field covers256m,8m rounded datum,one coarse global tile. All foundations/threshold/accessibility grades approximate. Fine bronze lion/statuary/scroll/symbol and window inventories are original simplified cues,not replicas. Perimeter segments are original picture/footway interpretations,not surveyed walls. Near thresholds and bridge decking levels approximate.",
+    "Six existing256px brick,limestone,copper,ceramic-tile,window-grid andpainted-metal graphs;metric UVs/linear vertex colors. No private/new/embedded images or copied lettering/reliefs. Closed opaque original entry doors exclude reconstructed optical interiors. Statuary/lions/scroll/finial/window andchimney inventories simplified original interpretations. Source master preserves denser outlines/roof seams/ornament. Far uses coarse gable/dormer/foundation and lantern-post forms,omits subpixel perimeter/sculpture/rails;district simplifies ornament;actual gatehouse arch and major open lantern stages remain. Error estimates4/2/1/.35m are not measured mesh distances. Physical phone/laptop/dense-city timings remain unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://www.kopenhagen.info/en/palaces/",
+      "observed": "Actually inspected frontal gatehouse photograph. Low red-brick gatehouse has a dark tile hip roof,central sandstone arch and shaped gable;main castle behind has red brick/pale stone gable ornament and open copper lanterns. It is the separate gatehouse,not the principal castle facade."
+    },
+    {
+      "url": "https://denkongeligesamling.dk/en/rosenborg-castle/the-history-of-the-castle/project-the-kingdom-s-treasury/",
+      "observed": "Actually inspected ordinary oblique aerial photograph,not a future project rendering. Complete long copper-gabled principal castle,paired square towers on one long side,round/octagonal stair tower between them and a taller single tower on the opposite side. Curved copper roofs,open staged lanterns,stone bands/window frames,small oriels,chimneys,gatehouse,moat walls and bridge visible. Landscape/water are host context."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Rosenborg_Castle_lions.jpg",
+      "observed": "Actually inspected high-resolution ordinary end-facade photograph:two shallow oriel bays under small pale metal caps,ornate brick/pale stone scroll gable,opposite copper lantern towers,brick perimeter gate,entry bridge and paired bronze lions on carved stone plinths. Fine statuary/carving inventories and sculpted details need original medium-fi approximations."
+    },
+    {
+      "url": "https://imaginoso.com/denmark/copenhagen/rosenborg-castle-southwest-elevation",
+      "observed": "Actually inspected full southwest facade:single tall square tower with three open staged octagonal lanterns,three-level brick main block,steep copper gable roof,two scroll-gabled dormers,paired pale framed windows/pediments,stone quoins/bands,oriel edge and opposite twin lanterns. This signs the tall tower on+Z southwest."
+    },
+    {
+      "url": "https://imaginoso.com/denmark/copenhagen/rosenborg-castle-east-elevation",
+      "observed": "Actually inspected full northeast/east facade:two square towers with flared copper roofs and open two-stage lanterns,lower faceted central stair turret with bulbous copper dome and finial,three-level main walls,steep main roof,chimneys and side gatehouse. This signs paired towers/stair turret on-Z northeast."
+    },
+    {
+      "url": "https://www.openstreetmap.org/way/25524592",
+      "observed": "Retained individual asymmetric castle outline and actual independent gatehouse polygon;no internal height tags. Native footway fragments sign the east bridge and northwest approach."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-northeast-castle-and-gatehouse",
+      "position": [
+        92,
+        62,
+        -105
+      ],
+      "lookAt": [
+        -3,
+        18,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "complete-southwest-great-tower",
+      "position": [
+        -95,
+        65,
+        105
+      ],
+      "lookAt": [
+        -3,
+        18,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "whole-plan-and-native-gatehouse",
+      "position": [
+        0,
+        135,
+        5
+      ],
+      "lookAt": [
+        -4,
+        4,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "end-scroll-gable-and-oriel-windows",
+      "position": [
+        68,
+        29,
+        30
+      ],
+      "lookAt": [
+        20,
+        16,
+        -0.2
+      ],
+      "fov": 51
+    },
+    {
+      "name": "great-tower-open-staged-lanterns",
+      "position": [
+        35,
+        40,
+        56
+      ],
+      "lookAt": [
+        0.03,
+        39,
+        8.37
+      ],
+      "fov": 51
+    },
+    {
+      "name": "paired-towers-and-stair-dome-entry",
+      "position": [
+        20,
+        24,
+        -55
+      ],
+      "lookAt": [
+        0,
+        18,
+        -7
+      ],
+      "fov": 51
+    },
+    {
+      "name": "gatehouse-open-arch-and-native-approach",
+      "position": [
+        -68,
+        12,
+        -15
+      ],
+      "lookAt": [
+        -36,
+        5,
+        -7
+      ],
+      "fov": 51
+    },
+    {
+      "name": "east-bridge-railings-and-lion-cues",
+      "position": [
+        55,
+        9,
+        10
+      ],
+      "lookAt": [
+        30,
+        2,
+        -0.5
+      ],
+      "fov": 51
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u3/u3b/rosenborg_castle/models/rosenborg-model.mjs",
+    "export": "buildRosenborgSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.57,
+        "metallic": 0.55
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.35,
+        "metallic": 0.08
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.63,
+        "metallic": 0.2
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRosenborgDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.57,
+            "metallic": 0.55
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.35,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.63,
+            "metallic": 0.2
+          }
+        },
+        "errorMeters": 2
+      },
+      "street": {
+        "export": "buildRosenborgStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.57,
+            "metallic": 0.55
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.35,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.63,
+            "metallic": 0.2
+          }
+        },
+        "errorMeters": 1
+      },
+      "closeup": {
+        "export": "buildRosenborgCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.57,
+            "metallic": 0.55
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.35,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.63,
+            "metallic": 0.2
+          }
+        },
+        "errorMeters": 0.35
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "complete-castle-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        92,
+        62,
+        -105
+      ],
+      "lookAt": [
+        -3,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "complete-castle-district",
+      "reviewLod": "district",
+      "position": [
+        92,
+        62,
+        -105
+      ],
+      "lookAt": [
+        -3,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "complete-castle-street",
+      "reviewLod": "street",
+      "position": [
+        92,
+        62,
+        -105
+      ],
+      "lookAt": [
+        -3,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "complete-castle-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        92,
+        62,
+        -105
+      ],
+      "lookAt": [
+        -3,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "street-paired-towers-and-stair-dome",
+      "reviewLod": "street",
+      "position": [
+        20,
+        24,
+        -55
+      ],
+      "lookAt": [
+        0,
+        18,
+        -7
+      ]
+    },
+    {
+      "name": "closeup-gatehouse-and-open-arch",
+      "reviewLod": "closeup",
+      "position": [
+        -68,
+        12,
+        -15
+      ],
+      "lookAt": [
+        -36,
+        5,
+        -7
+      ]
+    }
+  ]
+}

@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.ernst_happel_stadion",
   "reviewedOn": "2026-10-20",
-  "inputHash": "sha256:224d98bcd79df77bb0e27dff66436f1a461bef452e52cb70db80549fba0b2f51",
+  "inputHash": "sha256:6befb25c66a7d229021476c111a7a443f74cfab72ed52dc079bf878af51bd69c",
   "sourceHash": "sha256:345ed06562de395d7f515d835fe45ead5f8f7609fc4cccdb755380d362064d54",
   "runtimeHash": "sha256:f683f48745730c813118c068245ded24f59c5f6246335ec5ee8a31a5c12ad4fe",
-  "captureReportHash": "sha256:847976d2df0030be0f1ea3840c2ecc3b2569f6d3620b195974d30f406cb31a7c",
+  "captureReportHash": "sha256:3a5c06894dd6e209233bf8e5485f97ffdabf095a06cea077d163cfff64ef58d3",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -18,7 +18,9 @@
       "shots/pale-green-frontage-and-exposed-concrete-frame.png",
       "shots/annular-roof-outer-collar-and-radial-supports.png"
     ],
-    "notes": "Inspected47 current portable/shared/medium-fi/native-site frames in one ordinary-picture/map/build/inspect/fix round. Specific mapped oval with closed shallow white annular roof and true open pitch, renderable underside/radial beams, outer white collar truss/posts/diagonals, open inner catwalk/guardrail, exposed concrete columns/floor belts/open bays, pale green two-storey curved frontage with windows and main entrance glazing, three covered blue/yellow stepped seating tiers/concourses/radial aisles, blue athletics surface, neutral football field/linework/goals and two supported end boards. Refined entrance glazing and attached board brackets during construction. Accepted views show no unintended missing roof faces, floating screens or closed-over pitch. Flat-facet lighting remains intentionally simplified."
+    "notes": "Inspected47 current portable/shared/medium-fi/native-site frames in one ordinary-picture/map/build/inspect/fix round. Specific mapped oval with closed shallow white annular roof and true open pitch, renderable underside/radial beams, outer white collar truss/posts/diagonals, open inner catwalk/guardrail, exposed concrete columns/floor belts/open bays, pale green two-storey curved frontage with windows and main entrance glazing, three covered blue/yellow stepped seating tiers/concourses/radial aisles, blue athletics surface, neutral football field/linework/goals and two supported end boards. Refined entrance glazing and attached board brackets during construction. Accepted views show no unintended missing roof faces, floating screens or closed-over pitch. Flat-facet lighting remains intentionally simplified.",
+    "captureReportHash": "sha256:3a5c06894dd6e209233bf8e5485f97ffdabf095a06cea077d163cfff64ef58d3",
+    "inputHash": "sha256:6befb25c66a7d229021476c111a7a443f74cfab72ed52dc079bf878af51bd69c"
   },
   "sharedSurfaceReview": {
     "status": "passed",
@@ -29,10 +31,32 @@
       "shots/shared/angle-3.png",
       "shots/shared/open-pitch-blue-track-and-covered-three-tier-bowl.png",
       "shots/shared/pale-green-frontage-and-exposed-concrete-frame.png",
-      "shots/shared/annular-roof-outer-collar-and-radial-supports.png"
+      "shots/shared/annular-roof-outer-collar-and-radial-supports.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Four existing shared256-square graphs: concrete_plain, metal_painted, window_grid and fabric_canvas. Concrete supplies the exposed frame; tinted paint supplies roof, steel, seats, green frontage, track, markings and neutral boards; window-grid supplies closed glazing; canvas grain is an explicit approximation for the green playing surface. Semantic palette roles merge into five near-level draws. Each shared graph is read once and eviction releases model geometry. All six current GLBs contain zero embedded images/copied pixels, canonical shared references, separate runtime POSITION/NORMAL streams and equal counted CPU/GPU geometry bytes. No bespoke bitmap or building photo atlas was created.",
-    "captureReportHash": "sha256:529d44b75608112341c2517f254fdffc163944453c2fbc00e5b09d5587c3a192"
+    "notes": "Four existing shared256-square graphs: concrete_plain, metal_painted, window_grid and fabric_canvas. Concrete supplies the exposed frame; tinted paint supplies roof, steel, seats, green frontage, track, markings and neutral boards; window-grid supplies closed glazing; canvas grain is an explicit approximation for the green playing surface. Semantic palette roles merge into five near-level draws. Each shared graph is read once and eviction releases model geometry. All six current GLBs contain zero embedded images/copied pixels, canonical shared references, separate runtime POSITION/NORMAL streams and equal counted CPU/GPU geometry bytes. No bespoke bitmap or building photo atlas was created. Inspected32 new current Earth frames:8 shared-surface/detail/map views and24 context/mode/LOD views. The open white oval roof, exposed concrete frame, green frontage, blue and yellow seating tiers, blue running track and two supported boards remain coherent. Scale-three context cameras now sit outside the bowl. Flat faces, simplified distant tiers and fine-line aliasing remain visible limitations. All six GLBs,geometry,scene and map placement remain unchanged. Source photographs and native/map fit retain their previously documented scope. No new source research,survey or physical-device timing claim.",
+    "captureReportHash": "sha256:e3afa3c03617097b74484d85e611e0eb1b2e51213b86b1d6cc03d6bd009314fa",
+    "inputHash": "sha256:6befb25c66a7d229021476c111a7a443f74cfab72ed52dc079bf878af51bd69c",
+    "reviewedOn": "2026-10-31",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
@@ -62,8 +86,11 @@
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected24 current medium-fi frames at street/block/skyline distances, noon/late afternoon, Economy/High, neutral silhouette, matched levels and transitions. Skyline retains the annular roof/opening, lower shell, three colored tiers and field; district adds frame/frontage windows and roof collar; street and closeup add radial roof structure, seating rows/aisles, railings, track/field lines and entrance/board/goal details. Initial skyline plus district404640bytes. Synthetic context tests appearance; separate native fixture tests approximate geographic fit. Physical ordinary-laptop/phone and dense-city timing measurements remain pending. Levels752/3790/15958/29762 triangles; at most five draws.",
-    "captureReportHash": "sha256:5581b746efb2738cb7a2542a6752840dce08f2cc40f5d7068b04d087774c1793"
+    "notes": "Inspected32 new current Earth frames:8 shared-surface/detail/map views and24 context/mode/LOD views. The open white oval roof, exposed concrete frame, green frontage, blue and yellow seating tiers, blue running track and two supported boards remain coherent. Scale-three context cameras now sit outside the bowl. Flat faces, simplified distant tiers and fine-line aliasing remain visible limitations. All six GLBs,geometry,scene and map placement remain unchanged. Source photographs and native/map fit retain their previously documented scope. No new source research,survey or physical-device timing claim.",
+    "captureReportHash": "sha256:39fa2f590c92454c0207a7aecb22d68492682719ecad06186dd983d6f4df3655",
+    "inputHash": "sha256:6befb25c66a7d229021476c111a7a443f74cfab72ed52dc079bf878af51bd69c",
+    "reviewedOn": "2026-10-31",
+    "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629"
   },
   "geographicReview": {
     "status": "passed",
@@ -74,7 +101,8 @@
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "notes": "Original medium-fi exterior follows four actually viewed ordinary2010/2014/2016/2017 bowl/exterior/aerial/roof pictures. This is a reference-era appearance; later roof finishes and equipment changes are unverified. Native26.7m height has no qualifying dimension or source. Overall collar26.7m, perimeter floor belts.3/5.8/11.6/18.8m, outer/inner roof20/23m, seating1.2..5.7/6.8..11.4/12.5..17.7m and fine row/column/brace/catwalk/frontage/screen inventory are picture-led estimates. The105x68m football pitch and blue athletics surface use representative permanent-sport dimensions, not an athletics certification or as-built survey. Canvas grain approximates grass. No roof over the field, furnished service/office interior, spectators/event fixtures, copied text/live graphics/photo atlas, adjacent practice grounds or whole-site reconstruction is authored. Coarse DEM contacts are not surveyed foundations, drainage or flood levels."
+    "notes": "Original medium-fi exterior follows four actually viewed ordinary2010/2014/2016/2017 bowl/exterior/aerial/roof pictures. This is a reference-era appearance; later roof finishes and equipment changes are unverified. Native26.7m height has no qualifying dimension or source. Overall collar26.7m, perimeter floor belts.3/5.8/11.6/18.8m, outer/inner roof20/23m, seating1.2..5.7/6.8..11.4/12.5..17.7m and fine row/column/brace/catwalk/frontage/screen inventory are picture-led estimates. The105x68m football pitch and blue athletics surface use representative permanent-sport dimensions, not an athletics certification or as-built survey. Canvas grain approximates grass. No roof over the field, furnished service/office interior, spectators/event fixtures, copied text/live graphics/photo atlas, adjacent practice grounds or whole-site reconstruction is authored. Coarse DEM contacts are not surveyed foundations, drainage or flood levels. Inspected32 new current Earth frames:8 shared-surface/detail/map views and24 context/mode/LOD views. The open white oval roof, exposed concrete frame, green frontage, blue and yellow seating tiers, blue running track and two supported boards remain coherent. Scale-three context cameras now sit outside the bowl. Flat faces, simplified distant tiers and fine-line aliasing remain visible limitations. All six GLBs,geometry,scene and map placement remain unchanged. Source photographs and native/map fit retain their previously documented scope. No new source research,survey or physical-device timing claim.",
+    "inputHash": "sha256:6befb25c66a7d229021476c111a7a443f74cfab72ed52dc079bf878af51bd69c"
   },
   "geometryValidation": {
     "format": "molen/structure-geometry-validation@1",
@@ -586,7 +614,8 @@
         },
         "errors": []
       }
-    ]
+    ],
+    "inputHash": "sha256:6befb25c66a7d229021476c111a7a443f74cfab72ed52dc079bf878af51bd69c"
   },
   "limitations": [
     "Specific Ernst-Happel-Stadion: exact mapped oval roof envelope/opening, closed shallow white annular roof/radial underside beams, white outer collar truss/open inner catwalk, exposed concrete perimeter columns/floor belts, pale green windowed frontage, three covered blue/yellow seating tiers/concourse aisles, blue representative athletics track and football pitch/goals, two supported neutral end boards. Four existing shared concrete/paint/window-grid/canvas graphs. No roof over pitch, unique atlas/copied text/live screens, crowd/event fixtures, furnished offices, neighboring practice ground/railway or whole-site slab.",
@@ -594,5 +623,170 @@
     "OSM/native PMTiles carries26.7m without a qualifying dimension or source. Visualization uses an overall26.7m collar, perimeter floor belts.3/5.8/11.6/18.8m, outer roof20m/inner roof23m, seating1.2..5.7/6.8..11.4/12.5..17.7m. Detailed height allocation, column/row/diagonal counts, catwalk/screens/frontage extent and hidden condition are picture-led estimates. Field105x68m and blue track based on36.5m bends/84.39m straights with representative lane spacing are a neutral sports configuration, not an athletics certification or as-built survey. Later roof finishes/equipment changes beyond the viewed photos are not verified.",
     "Retain original6m standard Mapzen ground, native roads/water and every independent Prater building/practice ground. Replace only the stadium parent shell. Bounded occupied perimeter feet/internal sports floor meet coarse DEM; no outside whole-site slab, parking/railway mesh, terrain flattening or ground/water cutout. Coarse field/foundation/nearby bank heights are not surveyed drainage/flood measurements.",
     "Ordinary2010/2014/2016/2017 bowl/exterior/aerial/roof-detail views inspected. Exact stadium relation/outer roof and central opening control the complete covered bowl;26.7m tag is unqualified. Fine heights/column/row/truss/screen/frontage inventory are estimates. Shared canvas grain approximates grass, blue track is a representative configuration. No roof over pitch, copied sign/live screen atlas, crowd, furnished offices, adjacent railway/grounds or outside-site platform; later roof finish/equipment changes are unverified."
-  ]
+  ],
+  "currentMaterialAndContextReview": {
+    "date": "2026-10-31",
+    "inputHash": "sha256:6befb25c66a7d229021476c111a7a443f74cfab72ed52dc079bf878af51bd69c",
+    "previousInputHash": "sha256:224d98bcd79df77bb0e27dff66436f1a461bef452e52cb70db80549fba0b2f51",
+    "allSixGlbsUnchanged": true,
+    "outputPins": [
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/models/source.glb",
+        "hash": "sha256:345ed06562de395d7f515d835fe45ead5f8f7609fc4cccdb755380d362064d54"
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u2e/ernst_happel_stadion/model.glb",
+        "hash": "sha256:f683f48745730c813118c068245ded24f59c5f6246335ec5ee8a31a5c12ad4fe"
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u2e/ernst_happel_stadion/model.skyline.glb",
+        "hash": "sha256:7f5e18ff1ae3e85612c3dbd4ec69828da1311577a03c96c40ab483679ab74b2b"
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u2e/ernst_happel_stadion/model.district.glb",
+        "hash": "sha256:174b700a50e3412698c8c587d60a703753d495820dc5d1905022a84178af0cd3"
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u2e/ernst_happel_stadion/model.street.glb",
+        "hash": "sha256:0b20d67b8fee7ca19c7f0b01793fdc6b3c1171ea3f535a2dcd7266688cd3f01d"
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u2e/ernst_happel_stadion/model.closeup.glb",
+        "hash": "sha256:4f7a1e3a7dc3a7a1ab4ff18a89b832d4c39190640fb446f12a31dac1f18167ac"
+      }
+    ],
+    "previousContextScale": 1.1,
+    "contextScale": 3,
+    "method": "Inspected32 new current Earth frames:8 shared-surface/detail/map views and24 context/mode/LOD views. The open white oval roof, exposed concrete frame, green frontage, blue and yellow seating tiers, blue running track and two supported boards remain coherent. Scale-three context cameras now sit outside the bowl. Flat faces, simplified distant tiers and fine-line aliasing remain visible limitations. All six GLBs,geometry,scene and map placement remain unchanged. Source photographs and native/map fit retain their previously documented scope. No new source research,survey or physical-device timing claim.",
+    "frames": [
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/shots/shared/angle-0.png",
+        "hash": "sha256:4153db9d2a30ff7f3db0048fdd2c8cde7851d16a539a72e1ed65a67ce9c5ae7f"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/shots/shared/angle-1.png",
+        "hash": "sha256:2d607901b354b4ae5151cf581d0dc514500d8afa71f21e0b1ed301ab98ab805c"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/shots/shared/angle-2.png",
+        "hash": "sha256:5a43eb8bdf87b992e68cd64c9755b2567aadf972aedeb1a95532edf5dd6a56ea"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/shots/shared/angle-3.png",
+        "hash": "sha256:8893d40de9e6df082c276b36e7479210e9861ad25ebd5fb45d61c53220ce9b84"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/shots/shared/open-pitch-blue-track-and-covered-three-tier-bowl.png",
+        "hash": "sha256:2169482ed26d2eb9d59ca2c72c1b745c62428173963b2bc6609ffe4e4d4a00e9"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/shots/shared/pale-green-frontage-and-exposed-concrete-frame.png",
+        "hash": "sha256:621d2af0bc189c30cb10214c2292c70f9f5943172be33d826e2af15363e93e83"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/shots/shared/annular-roof-outer-collar-and-radial-supports.png",
+        "hash": "sha256:68e385b174955d23cb90f615fe235a943c44f5c5ad1b02a2775c7b6ab796673f"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/shots/shared/placement.png",
+        "hash": "sha256:a21272e04b90311c24c39f679c1f21c9e3be0777f1320fb5babec51424ee2d2f"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/street-noon-economy.png",
+        "hash": "sha256:b969790ed9a91f0c1790fabb56b1ad8c755789fc116159418aeaf39933564f41"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/street-noon-high.png",
+        "hash": "sha256:c9d4e532e3eaf9d3f8d00fdef5baffb5c4abdb6a96affd991a1f4975685aec48"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/street-late-economy.png",
+        "hash": "sha256:0670f2e4922b2c8b1e0f4ab78fbffa3a6bfade4949624454a2c7b240eb38f0e6"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/street-late-high.png",
+        "hash": "sha256:e34dea332d71f23d314e6839bcf9cf19e19c3f2178233202ea701dd1ac748e71"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/block-noon-economy.png",
+        "hash": "sha256:f39e4064b8e9515d439fea531dea3c071f48a6de3c08cc5bb13ee6e3f6daf869"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/block-noon-high.png",
+        "hash": "sha256:f979f3c299393072254db800070332107bb600e457a12ef27c665a179ab72877"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/block-late-economy.png",
+        "hash": "sha256:2032937b05d939bde364751901bfc24d7f686f017486278fed52d09eca5f9b00"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/block-late-high.png",
+        "hash": "sha256:e0a10506061833d1467598d9d969e8159309ba61f009cc6d7d399f0aab277a7f"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/skyline-noon-economy.png",
+        "hash": "sha256:eb8cef0c8b3e3461244efb89d8e31f69e75ab91b301e41fdfd23cd91ffe40fb5"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/skyline-noon-high.png",
+        "hash": "sha256:112e7ee7337698252b38dd97d792e25ce22ceeec5fc88b697250a11b46e6092b"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/skyline-late-economy.png",
+        "hash": "sha256:5667e98f5dc16138bd4e33f6c8f45dc5b97a369bf920d1ca0319f494ea29e062"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/skyline-late-high.png",
+        "hash": "sha256:3b3c1b72ef11a90f4c2410297792e4f129d35267d177188145c6d89aa7509698"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/silhouette.png",
+        "hash": "sha256:6026d1202931d2a3516eaade28630c9bfb91aa7e4db1cc43865f870cbd0c0d56"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/open-pitch-blue-track-and-covered-three-tier-bowl.png",
+        "hash": "sha256:48f947463e439508fbf7bb0f9a987c46acc1f807298c358471a563cfbad7daa7"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/pale-green-frontage-and-exposed-concrete-frame.png",
+        "hash": "sha256:05c17df37240a9d7c2ebb065e4ceba17b67a52e5be1e294a970954c98b602026"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/annular-roof-outer-collar-and-radial-supports.png",
+        "hash": "sha256:a1390b21dfb0da2f0677ca280d9868c59e6f82ff702669110d9e3531b7fab132"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/happel-skyline.png",
+        "hash": "sha256:c05c077bc745553808640e2b1b5fbb03ed884f2ce1097b863abadeaaa2e1f7ec"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/happel-district.png",
+        "hash": "sha256:a6114060e114c55a146322b3223e9bcebdb90ed99c5bcb0dbc57edf35d509b1d"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/happel-street.png",
+        "hash": "sha256:0287766c30b15e3a449648f0ea28a6a2eeac3068a5558186c67f91ba31670f91"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/happel-closeup.png",
+        "hash": "sha256:1109f7ea048007f03acd4e43216a07445913fc69c2056e8251137ce5b7e550f3"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/transition-skyline.png",
+        "hash": "sha256:da216b9152e2fcb579bfb18e30828315e82b27e521791773569b91e3adb034a3"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/transition-district.png",
+        "hash": "sha256:f979f3c299393072254db800070332107bb600e457a12ef27c665a179ab72877"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/transition-street.png",
+        "hash": "sha256:b6e2206f14b82bfcd857b56d5b87f91fb7ef83dd37be25e5bce73843c6ad06e4"
+      },
+      {
+        "path": "content/worldgen/source/places/u2/u2e/ernst_happel_stadion/medium-fi/transition-closeup.png",
+        "hash": "sha256:beb97b63712f256c00dd0d2f1fb3f98c64ff2dd77af26f9ae9a1ffac6f917aac"
+      }
+    ]
+  }
 }

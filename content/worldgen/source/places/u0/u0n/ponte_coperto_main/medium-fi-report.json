@@ -1,0 +1,917 @@
+{
+  "format": "molen/structure-medium-fi-report@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.ponte_coperto_main",
+  "inputHash": "sha256:bfb97ba65d946846cd13dd6409ed9142798587d8e77bdbb6f30d1e7228393806",
+  "sourceHash": "sha256:2475cfa2ac27eabb581a7c5327cdc0f28c2526679ffa0c016741fd1e94f102f3",
+  "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.ponte_coperto_main",
+    "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2"
+  },
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:34b919681456878e618246bfec6590280c23e6ab0ec6cbd3f2216221d13e8610",
+      "bytes": 71852,
+      "gzipBytes": 14428,
+      "triangles": 950,
+      "cpuBytes": 66864,
+      "gpuBytes": 66864,
+      "errorMeters": 1,
+      "drawCalls": 4
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:0f260bbd25fad6b9a6b37f42801b08c0268eaa69a140298be21722def5f93842",
+      "bytes": 208312,
+      "gzipBytes": 40260,
+      "triangles": 2936,
+      "cpuBytes": 202080,
+      "gpuBytes": 202080,
+      "errorMeters": 0.35,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:21b710586037c6ec4dfb512ca8a45936a5ff6ffdebf95d2f246f9f6c85b2c1c4",
+      "bytes": 773752,
+      "gzipBytes": 159466,
+      "triangles": 10412,
+      "cpuBytes": 767496,
+      "gpuBytes": 767496,
+      "errorMeters": 0.12,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:c365fcd72e460c3a19017ba24afc108970fd454be58775e826ced66e64becd32",
+      "bytes": 954764,
+      "gzipBytes": 196289,
+      "triangles": 12932,
+      "cpuBytes": 948504,
+      "gpuBytes": 948504,
+      "errorMeters": 0.04,
+      "drawCalls": 5
+    }
+  ],
+  "rig": {
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "fixtureHash": "sha256:5bbe13df90409a7002abe151562f7792e506a2ad436e0fcee36971783452a119",
+  "terrainFixture": {
+    "parent": "../ponte_coperto/terrain-grid.json",
+    "hash": "sha256:13c07114cc3be8c3eb1ce9cd23de7fd31b4e2060a8e14705c56dfdd0bef80440"
+  },
+  "frames": [
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:c05c5d7b07d4fc1d8c0fb16a9cbc7fe811932d2e4d1fd14f34afbc592c5e3f1a",
+      "camera": {
+        "name": "main-transition-skyline",
+        "group": "main",
+        "position": [
+          15,
+          23,
+          70
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "mediumName": "transition-skyline",
+        "shadows": true,
+        "fov": 55
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:34b919681456878e618246bfec6590280c23e6ab0ec6cbd3f2216221d13e8610",
+        "level": "skyline",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 209996,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 4,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:596f9b607a9bd228879d30ab7e38faf7126977f2d135d3a98ee0686eddfd66aa",
+      "camera": {
+        "name": "main-skyline-noon-economy",
+        "mediumName": "skyline-noon-economy",
+        "group": "main",
+        "position": [
+          240,
+          150,
+          440
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "fov": 55,
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:34b919681456878e618246bfec6590280c23e6ab0ec6cbd3f2216221d13e8610",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 209996,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 4,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:156ecbea9b75e7d7d055a11a09a2290a5c4e38af507af08e6f2ef2614ed712ce",
+      "camera": {
+        "name": "main-skyline-noon-high",
+        "mediumName": "skyline-noon-high",
+        "group": "main",
+        "position": [
+          240,
+          150,
+          440
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "fov": 55,
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:34b919681456878e618246bfec6590280c23e6ab0ec6cbd3f2216221d13e8610",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 209996,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 4,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:eca57caf15d3fb13e12ff1cd1fc27947b575ef6b2d2f5d00477ee87589e76198",
+      "camera": {
+        "name": "main-skyline-late-economy",
+        "mediumName": "skyline-late-economy",
+        "group": "main",
+        "position": [
+          240,
+          150,
+          440
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "fov": 55,
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:34b919681456878e618246bfec6590280c23e6ab0ec6cbd3f2216221d13e8610",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 209996,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 4,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:b6eebffbcbc6872b4e244332b2e8dcff8d7fc6bf0a74b5f2a81e2887533324d8",
+      "camera": {
+        "name": "main-skyline-late-high",
+        "mediumName": "skyline-late-high",
+        "group": "main",
+        "position": [
+          240,
+          150,
+          440
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "fov": 55,
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:34b919681456878e618246bfec6590280c23e6ab0ec6cbd3f2216221d13e8610",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 4
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 209996,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 4,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:2e66e8a6854cb142ac2d8a5f02b2a906bf81af3cd99d024e566005639924f392",
+      "camera": {
+        "name": "main-transition-district",
+        "group": "main",
+        "position": [
+          15,
+          23,
+          70
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "mediumName": "transition-district",
+        "shadows": true,
+        "fov": 55
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:0f260bbd25fad6b9a6b37f42801b08c0268eaa69a140298be21722def5f93842",
+        "level": "district",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 5
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 212372,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 5,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:9e9bf78dee84d967cfe67a6cd54400f9281cddc170932e169d2cea05896d9cd3",
+      "camera": {
+        "name": "main-block-noon-economy",
+        "mediumName": "block-noon-economy",
+        "group": "main",
+        "position": [
+          145,
+          75,
+          230
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "fov": 55,
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:0f260bbd25fad6b9a6b37f42801b08c0268eaa69a140298be21722def5f93842",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 5
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 212372,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 5,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:61412faa96bbeabb86c6a5f8fb646b962ac74cf463e6007de73c5ffa923153af",
+      "camera": {
+        "name": "main-block-noon-high",
+        "mediumName": "block-noon-high",
+        "group": "main",
+        "position": [
+          145,
+          75,
+          230
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "fov": 55,
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:0f260bbd25fad6b9a6b37f42801b08c0268eaa69a140298be21722def5f93842",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 5
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 212372,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 5,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:6c0cc31e20e1827d60e4b72803e69f9acca3cb92da2ed866e49f2e69d3d44326",
+      "camera": {
+        "name": "main-block-late-economy",
+        "mediumName": "block-late-economy",
+        "group": "main",
+        "position": [
+          145,
+          75,
+          230
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "fov": 55,
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:0f260bbd25fad6b9a6b37f42801b08c0268eaa69a140298be21722def5f93842",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 5
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 212372,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 5,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:729e473e005b60a917a5380d86e4a05876b26459582631060cb59d6455c11183",
+      "camera": {
+        "name": "main-block-late-high",
+        "mediumName": "block-late-high",
+        "group": "main",
+        "position": [
+          145,
+          75,
+          230
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "fov": 55,
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:0f260bbd25fad6b9a6b37f42801b08c0268eaa69a140298be21722def5f93842",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 5
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 212372,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 5,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:152896b0a407405a0b1ed3d9703ce02fe8a3ee2cc19ebbf43e45269777d695b0",
+      "camera": {
+        "name": "main-transition-street",
+        "group": "main",
+        "position": [
+          15,
+          23,
+          70
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "mediumName": "transition-street",
+        "shadows": true,
+        "fov": 55
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:21b710586037c6ec4dfb512ca8a45936a5ff6ffdebf95d2f246f9f6c85b2c1c4",
+        "level": "street",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 5
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 220316,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 5,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:9b778500c87254b018c2ef61212f45dce1cac9130325362516a2bf79e5ef142f",
+      "camera": {
+        "name": "main-street-noon-economy",
+        "mediumName": "street-noon-economy",
+        "group": "main",
+        "position": [
+          15,
+          23,
+          70
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:21b710586037c6ec4dfb512ca8a45936a5ff6ffdebf95d2f246f9f6c85b2c1c4",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 5
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 220316,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 5,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:152896b0a407405a0b1ed3d9703ce02fe8a3ee2cc19ebbf43e45269777d695b0",
+      "camera": {
+        "name": "main-street-noon-high",
+        "mediumName": "street-noon-high",
+        "group": "main",
+        "position": [
+          15,
+          23,
+          70
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:21b710586037c6ec4dfb512ca8a45936a5ff6ffdebf95d2f246f9f6c85b2c1c4",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 5
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 220316,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 5,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:c3a252eb551a4609702ada286a5911cb59cf279a411af4dbe3b9cb08f6b50a06",
+      "camera": {
+        "name": "main-street-late-economy",
+        "mediumName": "street-late-economy",
+        "group": "main",
+        "position": [
+          15,
+          23,
+          70
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:21b710586037c6ec4dfb512ca8a45936a5ff6ffdebf95d2f246f9f6c85b2c1c4",
+        "level": "street",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 5
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 220316,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 5,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:7ceaa51fd5dcd37f3329d353eee71a232812606b9943801949a44db6793e8666",
+      "camera": {
+        "name": "main-street-late-high",
+        "mediumName": "street-late-high",
+        "group": "main",
+        "position": [
+          15,
+          23,
+          70
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:21b710586037c6ec4dfb512ca8a45936a5ff6ffdebf95d2f246f9f6c85b2c1c4",
+        "level": "street",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 5
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 220316,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 5,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:03146f28b70a87a527f62a2d6ba5d75d6e15e24d99318d55e6efee959f3800b1",
+      "camera": {
+        "name": "main-transition-closeup",
+        "group": "main",
+        "position": [
+          15,
+          23,
+          70
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "mediumName": "transition-closeup",
+        "shadows": true,
+        "fov": 55
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:c365fcd72e460c3a19017ba24afc108970fd454be58775e826ced66e64becd32",
+        "level": "closeup",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 5
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 222836,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 5,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:3ce1fd4aa216a8c5254532b6d6545303b60378a5f8e9770b102cd4f1d85194c2",
+      "camera": {
+        "name": "main-silhouette",
+        "group": "main",
+        "position": [
+          15,
+          23,
+          70
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "mediumName": "silhouette",
+        "shadows": false,
+        "fov": 55,
+        "silhouette": true
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_coperto_main",
+        "runtimeHash": "sha256:9a7b5a0c40de3c61aae3d4db998ffba73e5edea1e77c1933f05790968224eba2",
+        "lodHash": "sha256:c365fcd72e460c3a19017ba24afc108970fd454be58775e826ced66e64becd32",
+        "level": "closeup",
+        "scope": "Native assembly group main",
+        "placementId": "ponte.coperto.main",
+        "visibleMemberDraws": 5
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 222836,
+        "visibleMemberDraws": {
+          "ponte.coperto.main": 5,
+          "ponte.coperto.west.stairs": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 1,
+        "silhouette": true
+      }
+    }
+  ],
+  "errors": [],
+  "notes": "Current component rendered from its exposed side in the actual native assembly. Three distances, two lighting directions, shadowless reduced-resolution Economy and High, four fixed-camera LOD transitions and flat untextured silhouette. Source materials, terrain and independent map context retained."
+}

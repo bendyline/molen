@@ -146,7 +146,10 @@ export interface TerrainStreamStats {
   loading: number;
   loadingLayers: number;
   resident: number;
-  /** Tiles that will not load again without retryFailed(): missing plus abandoned. */
+  /**
+   * Tiles outside the quick retries: missing plus abandoned. An abandoned tile is tried again
+   * after `failedRetryDelayMs`; a missing one only by retryFailed().
+   */
   failed: number;
   /** Tiles the source reported as absent (HTTP 404 / undefined). Stable, never retried. */
   missing: number;
@@ -175,7 +178,7 @@ export interface TerrainStream {
   setLayerVisible(id: string, visible: boolean): void;
   isLayerVisible(id: string): boolean;
   residentTiles(): TerrainTileAddress[];
-  /** Tiles that will not load again on their own: missing plus abandoned. */
+  /** Tiles outside the quick retries: missing plus abandoned (see `failedRetryDelayMs`). */
   failedTiles(): TerrainTileAddress[];
   /** Per-tile missing/retrying/abandoned detail, so a host can say which state a hole is in. */
   tileFailures(): Array<TerrainTileFailure<TerrainTileAddress>>;
@@ -401,6 +404,7 @@ class FixedGridTerrainStream implements TerrainStream {
       const key = terrainTileKey(tile.address);
       return !this.resident.has(key) && !this.pending.has(key) && !this.retries.isBlocked(key);
     });
+    this.retries.forgetUnwanted((key) => this.desired.has(key));
     this.startQueuedLoads();
     this.resolveIdleIfNeeded();
   }

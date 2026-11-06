@@ -49,7 +49,7 @@ export class EarthWildlife {
   constructor(
     private readonly environment: RegionalEnvironment,
     parent: THREE.Object3D,
-    prepare?: (object: THREE.Object3D) => void,
+    prepare?: (object: THREE.Object3D) => unknown,
     seaLevel?: number,
   ) {
     this.habitat = new WildlifeHabitatTiles(parent, seaLevel);

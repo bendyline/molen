@@ -20,6 +20,12 @@ export interface DioramaVisualOptions {
    * scene, so a light arriving or leaving with a diorama rebuilt every object in view in one frame.
    */
   localLights?: boolean;
+  /**
+   * Build the diorama's shaders before it joins `root` (a host passes its renderer's
+   * `prepareObject`). Its figures, models and static batches otherwise built them in the first
+   * frame that drew them: a flight school beside a runway stalled a takeoff for a quarter second.
+   */
+  prepare?: (object: THREE.Object3D, parent: THREE.Object3D) => Promise<void>;
 }
 
 /** Lazy-load the scripting runtime only when a placement is admitted by the director. */
@@ -64,6 +70,7 @@ export async function createDioramaVisual(
     interpolation.push(playback.tick, mirror.transforms(), 0);
     sync();
     await backend.whenReady();
+    await options.prepare?.(root, options.root);
     options.root.add(root);
   } catch (error) {
     dispose();

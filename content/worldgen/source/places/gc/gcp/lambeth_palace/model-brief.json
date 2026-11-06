@@ -1,0 +1,507 @@
+{
+  "id": "lambeth_palace",
+  "title": "Lambeth Palace",
+  "wikidataId": "Q1130266",
+  "referenceCoordinate": {
+    "longitude": -0.119702236,
+    "latitude": 51.4955573
+  },
+  "originalCandidateReference": {
+    "latitude": 51.49556,
+    "longitude": -0.11972
+  },
+  "module": "content/worldgen/source/places/gc/gcp/lambeth_palace/models/lambeth-model.mjs",
+  "builder": "buildLambethLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick_flemish",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.2
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.42,
+      "metallic": 0
+    }
+  },
+  "exportLabel": "Molen original complete Lambeth Palace exterior shared surfaces source",
+  "expectedDraftMasterHash": "sha256:91040af1eee82b9cf2416a18f459bba67855076145d29f2a796efd326d968a76",
+  "visualBrief": "Complete individual historic principal Lambeth Palace exterior: warm-stone Blore residential range with projecting entrance and paired polygonal turrets, red-brick western towers and Great Hall, chapel and returned cloister ranges, the integral separately mapped Morton twin gatehouse, and the low eastern court-edge range. Preserve the small cloister court, open main forecourt, recessed closed main and side gates, and closed window glazing. Original simplified trim; copied heraldry, sculpture, inscriptions and interiors are excluded. Garden Museum/church, detached modern library, shared church-side link, gardens and independent cottages remain native context.",
+  "heightPolicy": "Approximate standard global Terrarium datum 4 m, with common exterior floor 4.8 m. Two unchanged global tiles supply the field. Native gatehouse height 17 m and principal-parent height 14 m guide overall massing; inspected ordinary pictures guide individual tower, roof and window proportions where native height parts are incomplete. Three bounded supported approaches meet the sampled field. Heights and historic grades are approximate.",
+  "nativeAxes": "+X east-northeast along the principal composition; +Z south-southeast toward the main court/gate frontage; -X west-southwest toward the Thames; +Y up. Signed by inspected ordinary pictures and current native map geometry.",
+  "sourceFacts": {
+    "modelDatumMeters": 4,
+    "ownedMapComponents": 17,
+    "preservedNativeComponents": 137,
+    "principalMappedGroups": 3,
+    "actualCloisterCourtyards": 1,
+    "openMainForecourt": true,
+    "terrainTiles": 2,
+    "heightBasis": "Approximate standard global Terrarium datum 4 m, with common exterior floor 4.8 m. Two unchanged global tiles supply the field. Native gatehouse height 17 m and principal-parent height 14 m guide overall massing; inspected ordinary pictures guide individual tower, roof and window proportions where native height parts are incomplete. Three bounded supported approaches meet the sampled field. Heights and historic grades are approximate."
+  },
+  "limitations": [
+    "Complete individual historic principal Lambeth Palace exterior: warm-stone Blore residential range with projecting entrance and paired polygonal turrets, red-brick western towers and Great Hall, chapel and returned cloister ranges, the integral separately mapped Morton twin gatehouse, and the low eastern court-edge range. Preserve the small cloister court, open main forecourt, recessed closed main and side gates, and closed window glazing. Original simplified trim; copied heraldry, sculpture, inscriptions and interiors are excluded. Garden Museum/church, detached modern library, shared church-side link, gardens and independent cottages remain native context.",
+    "Approximate standard global Terrarium datum 4 m, with common exterior floor 4.8 m. Two unchanged global tiles supply the field. Native gatehouse height 17 m and principal-parent height 14 m guide overall massing; inspected ordinary pictures guide individual tower, roof and window proportions where native height parts are incomplete. Three bounded supported approaches meet the sampled field. Heights and historic grades are approximate.",
+    "Three ordinary pictures were inspected: broad oblique aerial, residential courtyard facade and gatehouse front. Rear inventories, concealed joins, exact window counts, roof details, original trim and historic grades are medium-fi approximations. The shared church-side link remains native. Reference pictures stay local and are not textures. Physical device timings and numerical LOD errors remain unmeasured.",
+    "Seven existing shared 256px limestone, brick, granite, slate, painted-metal, wood and window-grid graphs serve eight material slots. Metric UVs and linear colors; no private or embedded images. Skyline preserves all main groups while simplifying small parapet details. District uses window and merlon proxies. Street has closed recesses and simpler pointed arches; close-up adds parapet thickness, mullions, buttress trim and roof detail. The detailed master preserves finer framing and arch curves."
+  ],
+  "references": [
+    {
+      "url": "https://www.discoverbritain.com/destinations/london/tudor-architecture-london/",
+      "observed": "Actually inspected red-brick twin square gatehouse towers, lower central crenellated bridge, large pointed entrance with closed timber gates and separate small side door, stone quoins/bands and mullioned windows. Original simplified details will omit heraldry and inscriptions. Trees partly hide the right tower."
+    },
+    {
+      "url": "https://www.wrightandwright.co.uk/approach/designing-for-future-growth",
+      "observed": "Actually inspected whole oblique aerial. An open round forecourt is enclosed by warm stone crenellated residential ranges, red-brick tower/hall groups and slate-roofed lower returns. The long hall has tall repeated windows, roof dormers and a small roof lantern. A separate stone church/Garden Museum stands beside the southern gatehouse; detached modern library and garden structures remain separate candidates for native context. Slate hips, stepped flat leads, chimneys, pinnacles and turrets define the varied historic ensemble."
+    },
+    {
+      "url": "https://southbank.london/news/lambeth-palace-is-opening-for-tours-in-summer-2025",
+      "observed": "Actually inspected warm pale-stone residential facade with paired slender polygonal corner turrets, battlements, tall mullioned windows, projecting entrance oriel, a closed pointed door and connected lower ranges. Plain original trim will replace heraldry and inscriptions; this crop does not establish the whole rear facade."
+    },
+    {
+      "url": "https://www.openstreetmap.org/relation/1403938",
+      "observed": "Current principal relation1403938 clips72/151, integral Morton gatehouse way1472868037 clips3/71/150, and picture-matched low east court range way97809211 (component22). Ownership uses98% whole-component coverage. Independent Garden Museum/church73/153 and associated parts, church-side link59/140, detached library and estate/context buildings stay native."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-palace-gatehouse-hall-and-stone-ranges",
+      "position": [
+        130,
+        84,
+        145
+      ],
+      "lookAt": [
+        -13,
+        7,
+        4
+      ],
+      "fov": 52
+    },
+    {
+      "name": "whole-rear-roofs-chapel-towers-and-cloister",
+      "position": [
+        -135,
+        83,
+        -125
+      ],
+      "lookAt": [
+        -12,
+        7,
+        5
+      ],
+      "fov": 53
+    },
+    {
+      "name": "morton-twin-towers-recessed-closed-gates-and-approach",
+      "position": [
+        -75.39247781933246,
+        9,
+        67.38135341666465
+      ],
+      "lookAt": [
+        -64.56917722056203,
+        8,
+        43.74121458144087
+      ],
+      "fov": 56
+    },
+    {
+      "name": "blore-oriel-closed-door-and-paired-polygonal-turrets",
+      "position": [
+        10.8,
+        8,
+        23
+      ],
+      "lookAt": [
+        17.8,
+        8,
+        -2.05
+      ],
+      "fov": 57
+    },
+    {
+      "name": "great-hall-tall-windows-roof-dormers-and-lantern",
+      "position": [
+        -1,
+        14,
+        24
+      ],
+      "lookAt": [
+        -35,
+        8,
+        15
+      ],
+      "fov": 55
+    },
+    {
+      "name": "whole-signed-plan-open-forecourt-and-cloister",
+      "position": [
+        -10,
+        220,
+        6
+      ],
+      "lookAt": [
+        -10,
+        0,
+        6
+      ],
+      "fov": 56
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0.8,
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/gc/gcp/lambeth_palace/models/lambeth-model.mjs",
+    "export": "buildLambethSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.2
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.42,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLambethDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.2
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "street": {
+        "export": "buildLambethStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.2
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.7
+      },
+      "closeup": {
+        "export": "buildLambethCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.2
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.25
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-lambeth-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -135,
+        83,
+        -125
+      ],
+      "lookAt": [
+        -12,
+        7,
+        5
+      ]
+    },
+    {
+      "name": "whole-lambeth-district",
+      "reviewLod": "district",
+      "position": [
+        -135,
+        83,
+        -125
+      ],
+      "lookAt": [
+        -12,
+        7,
+        5
+      ]
+    },
+    {
+      "name": "whole-lambeth-street",
+      "reviewLod": "street",
+      "position": [
+        -135,
+        83,
+        -125
+      ],
+      "lookAt": [
+        -12,
+        7,
+        5
+      ]
+    },
+    {
+      "name": "whole-lambeth-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -135,
+        83,
+        -125
+      ],
+      "lookAt": [
+        -12,
+        7,
+        5
+      ]
+    }
+  ]
+}

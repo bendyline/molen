@@ -52,3 +52,10 @@ https://commons.wikimedia.org/wiki/File:Ernst-Happel-Stadion_Dach_01.jpg — Nik
 https://commons.wikimedia.org/wiki/File:Ernst-Happel-Stadion_(4511)_stitch_IMG_0738_-_IMG_0740.jpg — Tokfo; CC0-1.0. Viewed only; no pixels copied.
 
 https://commons.wikimedia.org/wiki/File:Ernst-Happel-Stadion_-_panoramio.jpg — Mister No; CC-BY-3.0. Viewed only; no pixels copied.
+
+
+## Current shared-material/context review —2026-10-31
+
+Inspected32 new current Earth frames:8 shared-surface/detail/map views and24 context/mode/LOD views. The open white oval roof, exposed concrete frame, green frontage, blue and yellow seating tiers, blue running track and two supported boards remain coherent. Scale-three context cameras now sit outside the bowl. Flat faces, simplified distant tiers and fine-line aliasing remain visible limitations. All six GLBs,geometry,scene and map placement remain unchanged. Source photographs and native/map fit retain their previously documented scope. No new source research,survey or physical-device timing claim.
+
+Runtime triangles:752 / 3790 / 15958 / 29762. Initial skyline+district:404640bytes. Current shared graph hashes and all four LOD/mode captures are bound in qa.json. Near views show the actual simplified row bands and material patterns;far tiers intentionally aggregate rows and cladding. Fine lines can alias when a distance tier is forced close.

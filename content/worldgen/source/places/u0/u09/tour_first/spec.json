@@ -1,0 +1,469 @@
+{
+  "planId": "tour_first",
+  "id": "tour_first",
+  "assetId": "molen.worldgen.structure.tour_first",
+  "title": "Tour First",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q1509747",
+  "referenceCoordinate": {
+    "longitude": 2.2517,
+    "latitude": 48.8889
+  },
+  "visualBrief": "Complete modern Tour First:three joined blue-glazed wings with different heights/sloping pale roofs,rounded mapped corners,pale horizontal floor bands,open comb/lattice crest with folded triangular facets,louvers androof seams above thewhole low parent/east entry canopy,physical vestibule andnative-sampled stairs/posts.",
+  "size": [
+    79.0755844116211,
+    232.30258166790009,
+    77.2269401550293
+  ],
+  "actualBounds": {
+    "min": [
+      -37.755149841308594,
+      -1.470626711845398,
+      -34.68693923950195
+    ],
+    "max": [
+      41.3204345703125,
+      230.8319549560547,
+      42.540000915527344
+    ]
+  },
+  "nativeAxes": "+X approximately east-southeast,-X west-northwest;+Z south-southwest,-Z north-northeast;+Y up. Native high main wing extends west-northwest,intermediate wing to northeast andlowest wing to south. Sign the actual retained part geometry;do not rotate from a generic facade convention.",
+  "sourceFacts": {
+    "retainedHeightMeters": 231,
+    "mappedParentHeightMeters": 225,
+    "mappedMiddleWingMeters": 190,
+    "mappedLowerWingMeters": 170,
+    "conflictingThinFinTagsMeters": [
+      240,
+      250
+    ],
+    "mappedLengthMeters": 75.239,
+    "mappedWidthMeters": 69.128,
+    "modelDatumMeters": 42,
+    "terrainTiles": 1
+  },
+  "referencePages": [
+    "https://e1.nmcdn.io/assets/kpf2024/wp-content/uploads/imported-files/Tour-First_H3-2160x1080.webp",
+    "https://e1.nmcdn.io/assets/kpf2024/wp-content/uploads/imported-files/Tour-First_P1R-1440x1999.webp",
+    "https://e1.nmcdn.io/assets/kpf2024/wp-content/uploads/imported-files/Tour-First_P2-2160x1482.webp",
+    "https://e1.nmcdn.io/assets/kpf2024/wp-content/uploads/imported-files/Tour-First_P3L-1440x2000.webp",
+    "https://e1.nmcdn.io/assets/kpf2024/wp-content/uploads/imported-files/Tour-First_P3R-1440x1987.webp",
+    "https://www.openstreetmap.org/way/82466977"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      2.251592115,
+      48.888812545
+    ],
+    "heading": -0.441150290015,
+    "elevationMode": "sea-level",
+    "elevationMeters": 42,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Whole low-parent skirt,entry stairs andcanopy posts sample unmodified native terrain.42m rounded center datum andoriginal La Defense podium/plaza/road/curb/entry grades are approximate,not surveyed.",
+    "groundModelY": 0,
+    "replaceFootprint": true,
+    "bounds": [
+      2.2508775279421958,
+      48.888308497923326,
+      2.2523049375774615,
+      48.889239125649496
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1a4e696dccf73e946304297f2d5364e77becbe7877a3d30347e22659d8b4479e",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://www.openstreetmap.org/way/82466977",
+    "wikidataId": "Q1509747",
+    "notes": "Complete modern three-wing tower and low parent/entrance masses. Public plaza pool,independent neighboring towers andcontext highway bridges excluded. Native small east entrance connector78 is included within the original entry/canopy reconstruction. Complete low native parent17 andboth clipped pedestrian-entry apron pieces47/78 are replaced;original approximate apron slab/support/rail/stair geometry is included. Retained231m maximum controls open high crown. Native parent225m andthin240–250m fin tags are inconsistent;three native main wing plans,190m middle/170m low wing envelopes andcurrent pictures guide reconstructed194–221/176–187/155–167m sloping roof bodies plus10/3/3m open crests.12m podium,door/canopy/floor/seam/fin inventories and42m global center datum remain approximate,not surveyed. +X ESE,+Z SSW;actual native wing plans supply signed relative positions. Historical opaque AXA facade is not the modern tower."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Four existing shared window-grid,painted-metal,membrane andgranite graphs with metric UVs. No private or embedded image copies.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u0/u09/tour_first/models/tour-first-model.mjs",
+    "export": "buildTourFirstSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.75,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.25,
+        "metallic": 0.17
+      },
+      "metal": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.54,
+        "metallic": 0.3
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "ground": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.93,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTourFirstDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.25,
+            "metallic": 0.17
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.54,
+            "metallic": 0.3
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 3
+      },
+      "street": {
+        "export": "buildTourFirstStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.25,
+            "metallic": 0.17
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.54,
+            "metallic": 0.3
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "closeup": {
+        "export": "buildTourFirstCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.25,
+            "metallic": 0.17
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.54,
+            "metallic": 0.3
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.6
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        280,
+        155,
+        380
+      ],
+      "lookAt": [
+        0,
+        112,
+        0
+      ]
+    },
+    {
+      "name": "whole-tower-district",
+      "reviewLod": "district",
+      "position": [
+        280,
+        155,
+        380
+      ],
+      "lookAt": [
+        0,
+        112,
+        0
+      ]
+    },
+    {
+      "name": "whole-tower-street",
+      "reviewLod": "street",
+      "position": [
+        280,
+        155,
+        380
+      ],
+      "lookAt": [
+        0,
+        112,
+        0
+      ]
+    },
+    {
+      "name": "whole-tower-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        280,
+        155,
+        380
+      ],
+      "lookAt": [
+        0,
+        112,
+        0
+      ]
+    },
+    {
+      "name": "street-open-lattice-crown",
+      "reviewLod": "street",
+      "position": [
+        95,
+        243,
+        105
+      ],
+      "lookAt": [
+        0,
+        214,
+        1
+      ]
+    },
+    {
+      "name": "closeup-entry-and-steps",
+      "reviewLod": "closeup",
+      "position": [
+        95.27230230596209,
+        17,
+        3.2919584625982923
+      ],
+      "lookAt": [
+        29.273602090323656,
+        8,
+        2.8777485565265066
+      ]
+    }
+  ],
+  "limitations": [
+    "Complete original modern Tour First three-wing tower andwhole low parent/entrance exterior from five current ordinary KPF exterior/roof/crown pictures plus standard viewer PMTiles/global terrain. A sixth black-and-white historical pre-refurbishment AXA picture was inspected andexplicitly excluded from current geometry/material controls. No downloaded mesh,private image texture,bespoke survey or archival research. Public plaza pool,independent neighboring towers,highway bridges,interiors/branding/landscape are excluded.",
+    "Exact retained Q1509747 whole75.239x69.128m plan andindependent high western,middle northeast andlower southern wing footprints control placement andrelative directions. Native low east entrance connector78 is included within the original entry/canopy reconstruction. Multiple adjacent tile-clipped native components are retained as input butnot double-built.231m retained maximum controls the high open crown;225m whole-parent and240–250m thin fin tags conflict and are not treated as uniform extrusions.",
+    "Reconstructed main194–221m,middle176–187m andlower155–167m sloping roof bodies plus10/3/3m open crest ribs preserve the current staggered silhouette. These roof sections,12m low parent,floor/pane/fin counts,folded panels,louvers,standing seams,entry canopy/doors/stairs andplant are original photo proportions,not anas-built engineering schedule. Entry location is an original approximate reconstruction ofthe east native connector,not a surveyed doorway inventory.",
+    "Detailed source preserves individual pane recess returns,pale horizontal floor bands/slender vertical mullions,three independent sloping pale roofs with standing seams,real diagonal/open crest members andrails,folded pale/glazed triangular crown facets,louvers,whole low parent/plant,andphysical east vestibule/canopy/native stairs/posts. Browser tiers progressively simplify these features while retaining complete geometry/silhouette. Glazing/screens remain opaque approximations without optical interiors ortransparency;no photo reflections orshadows are baked.",
+    "Four existing256px graphs:window grid,painted metal,membrane roof andgranite foundations. Restrained vertex colors supply pale bands/screen facets,blue-gray portable glazing andpaving. Shared window binding uses catalog blue grid. No embedded/private image copies. Portable fallback andshared viewer appearances differ.",
+    "Unmodified129x129/2m field oversamples one ordinary global urban terrain tile.42m rounded center base andoriginal La Defense plaza/podium/road/curb/accessible-entry grades are approximate,not surveyed. Foundation skirt,stair ends andcanopy posts sample this native field;terrain is not flattened. Estimated tier errors6/3/1.5/.6m are approximate,not certified mesh distances. Physical laptop/phone anddense-city timing remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "complete-three-wing-tower-and-crown",
+      "position": [
+        280,
+        155,
+        380
+      ],
+      "lookAt": [
+        0,
+        112,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "opposite-complete-sloping-wings",
+      "position": [
+        -300,
+        150,
+        -370
+      ],
+      "lookAt": [
+        0,
+        112,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "open-lattice-and-folded-crown",
+      "position": [
+        95,
+        243,
+        105
+      ],
+      "lookAt": [
+        0,
+        214,
+        1
+      ],
+      "fov": 51
+    },
+    {
+      "name": "three-sloping-roofs-and-standing-seams",
+      "position": [
+        -115,
+        272,
+        -112
+      ],
+      "lookAt": [
+        0,
+        187,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "east-entry-canopy-and-native-stairs",
+      "position": [
+        95.27230230596209,
+        17,
+        3.2919584625982923
+      ],
+      "lookAt": [
+        29.273602090323656,
+        8,
+        2.8777485565265066
+      ],
+      "fov": 51
+    },
+    {
+      "name": "physical-recessed-entry",
+      "position": [
+        48.273227909977145,
+        7,
+        2.9969908022138387
+      ],
+      "lookAt": [
+        27.273641477728553,
+        6.5,
+        2.865196741190998
+      ],
+      "fov": 54
+    },
+    {
+      "name": "complete-low-parent-and-wing-junctions",
+      "position": [
+        110,
+        56,
+        130
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 51
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 191499,
+    "vertices": 532077,
+    "materials": 4,
+    "bytes": 21455736,
+    "sha256": "sha256:a8f571a974f242ae8f60c3c0dcfe8deae1ed7636a41ea0c246f011dbf77a7a18"
+  }
+}

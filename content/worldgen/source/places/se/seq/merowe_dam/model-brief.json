@@ -1,0 +1,511 @@
+{
+  "id": "merowe_dam",
+  "title": "Merowe Dam",
+  "wikidataId": "Q1921988",
+  "referenceCoordinate": {
+    "longitude": 32.050277777,
+    "latitude": 18.668888888
+  },
+  "module": "content/worldgen/source/places/se/seq/merowe_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "pier": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "shade": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "dirt": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "golden": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "grey": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "seam": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "gate": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "red": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    }
+  },
+  "exportLabel": "Molen original Merowe Dam and Nile generating works",
+  "expectedDraftMasterHash": "sha256:0f931456a228a5397adf015faca52ea0b1d4ac65ceda3a35f14253304ddd35b5",
+  "visualBrief": "Merowe Dam’s west and east embankments, central spillway with twelve low sluices and two surface gates, angled intake dam, ten domed turbine housings, powerhouse and immediate service structures.",
+  "heightPolicy": "Absolute mean-sea-level placement fixes the modeled crest at 303 m. The design full pool is 300 m. With the retained PMTiles shorelines and standard Terrarium terrain, the runtime water sampler gives 252.43–271.86 m in central reservoir tiles and 250.22–255.31 m in the tailwater. Changing the terrain provider does not move the dam.",
+  "nativeAxes": "+X east, +Z south. The crest bends across the north edge of the concrete river crossing. The Nile flows from the reservoir on local -Z toward the tailwater on local +Z.",
+  "sourceFacts": {
+    "mappedIdentity": "Q1921988",
+    "nativeWaterIds": [
+      29379793,
+      28708213
+    ],
+    "draftCrestLengthMeters": 9450.5,
+    "crestElevation": 303,
+    "poolElevation": 300,
+    "originElevation": 261.9753712222222,
+    "terrainGridStep": 24,
+    "terrainTiles": 42,
+    "lowSluices": 12,
+    "overflowGates": 2,
+    "turbineCount": 10
+  },
+  "materialMethod": "Six shared material graphs for board-formed and plain concrete, gravel, standing-seam metal, painted steel and window glazing. Metric UVs. No embedded images.",
+  "limitations": [
+    "Absolute mean-sea-level placement fixes the modeled crest at 303 m. The design full pool is 300 m. With the retained PMTiles shorelines and standard Terrarium terrain, the runtime water sampler gives 252.43–271.86 m in central reservoir tiles and 250.22–255.31 m in the tailwater. Changing the terrain provider does not move the dam.",
+    "The crest follows a 9.45 km traced alignment. End ties, embankment cross sections, the internal structure of the spillway and exterior service machinery are approximate.",
+    "Site fit remains pending with standard runtime data. The sampled reservoir is 28–48 m below design pool, and the near tailwater varies by tile. The design pool is used only in the review fixture.",
+    "Native buildings and service roads retain their geometry. The original terrain stays unchanged outside the explicitly occupied hydraulic openings. Substation equipment away from the dam, buried works and gate operation are outside this asset."
+  ],
+  "references": [
+    {
+      "url": "https://www.stuva.de/en/services/references/tunnelling-construction/details.html?cHash=76507e1a46dc968926f640264723b763&tx_stuvareferences_referencelist%5Breference%5D=323",
+      "imageUrl": "https://www.stuva.de/fileadmin/import/referenzen/Merowe.jpg",
+      "observed": "The spillway photo shows tall sloped buttresses, the downstream maintenance crossing and the golden plant service building with a rounded grey stair tower."
+    },
+    {
+      "url": "https://x.com/UNHumanRights/status/2012233621621330050",
+      "imageUrl": "https://pbs.twimg.com/media/G-zjyyrXIAA5eTz.jpg",
+      "observed": "The roof photo shows the ribbed metal turbine domes along the open-air station, equipment runs between the dam and roof and a walled service platform near the spillway."
+    },
+    {
+      "url": "https://media.business-humanrights.org/media/documents/files/reports-and-materials/Lahmeyer-Merowe-Sudan-project-sheet.pdf",
+      "observed": "The designer records the separate embankments, 154 m spillway, 370 m intake, twelve low-level sluices, two surface gates and ten turbine units."
+    },
+    {
+      "url": "https://www.adfd.ae/en/success-stories/merowe-dam-sudan",
+      "observed": "The project fund lists the 300 m reservoir operating pool."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The Merowe hydroelectric dam is at the pool edge crossing immediately upstream of the mapped Nile tailwater and workers residential area."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "central-crossing",
+      "position": [
+        380,
+        240,
+        720
+      ],
+      "lookAt": [
+        160,
+        12,
+        -40
+      ],
+      "fov": 50
+    },
+    {
+      "name": "overall-embankments",
+      "position": [
+        480,
+        4030,
+        8000
+      ],
+      "lookAt": [
+        -325,
+        15,
+        -280
+      ],
+      "fov": 54
+    },
+    {
+      "name": "spillway",
+      "position": [
+        -106,
+        80,
+        182
+      ],
+      "lookAt": [
+        -4,
+        16,
+        8
+      ],
+      "fov": 48
+    },
+    {
+      "name": "turbine-domes",
+      "position": [
+        492,
+        62,
+        157
+      ],
+      "lookAt": [
+        317,
+        7,
+        -15
+      ],
+      "fov": 48
+    },
+    {
+      "name": "upstream-intakes",
+      "position": [
+        534,
+        136,
+        -385
+      ],
+      "lookAt": [
+        305,
+        21,
+        -68
+      ],
+      "fov": 50
+    },
+    {
+      "name": "western-bank-tie",
+      "position": [
+        -4360,
+        135,
+        -190
+      ],
+      "lookAt": [
+        -4860,
+        42,
+        -520
+      ],
+      "fov": 50
+    },
+    {
+      "name": "eastern-bank-tie",
+      "position": [
+        3830,
+        132,
+        -120
+      ],
+      "lookAt": [
+        4220,
+        42,
+        -460
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -26,
+    "scale": 2.1,
+    "focus": {
+      "center": [
+        112,
+        8,
+        -5
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.siheyuan",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/se/seq/merowe_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "pier": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "shade": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "dirt": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "golden": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "grey": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "seam": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "gate": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "red": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "shade": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "dirt": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "golden": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "grey": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "seam": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "red": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "shade": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "dirt": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "golden": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "grey": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "seam": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "red": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "shade": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "dirt": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "golden": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "grey": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "seam": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "red": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "merowe-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        380,
+        240,
+        720
+      ],
+      "lookAt": [
+        160,
+        12,
+        -40
+      ]
+    },
+    {
+      "name": "merowe-district",
+      "reviewLod": "district",
+      "position": [
+        380,
+        240,
+        720
+      ],
+      "lookAt": [
+        160,
+        12,
+        -40
+      ]
+    },
+    {
+      "name": "merowe-street",
+      "reviewLod": "street",
+      "position": [
+        380,
+        240,
+        720
+      ],
+      "lookAt": [
+        160,
+        12,
+        -40
+      ]
+    },
+    {
+      "name": "merowe-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        380,
+        240,
+        720
+      ],
+      "lookAt": [
+        160,
+        12,
+        -40
+      ]
+    }
+  ]
+}

@@ -1,0 +1,528 @@
+{
+  "id": "belo_monte_dam",
+  "title": "Belo Monte Dam",
+  "wikidataId": "Q816119",
+  "referenceCoordinate": {
+    "longitude": -51.777917853,
+    "latitude": -3.133655434
+  },
+  "module": "content/worldgen/source/places/6z/6z7/belo_monte_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.93
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_basalt",
+      "roughness": 0.96
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.91
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "trim": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.8
+    },
+    "gravel": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.85
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.74
+    },
+    "dark": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.8
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.43
+    }
+  },
+  "exportLabel": "Molen original Belo Monte main dam and powerhouse",
+  "expectedDraftMasterHash": "sha256:14e0dc724013feeafe0c9be9466c81569c8d893467bac46653452acb9359e351",
+  "visualBrief": "Main Belo Monte dam at the retained exact map identity. Both rock-fill arms, intake headwall, eighteen exposed penstocks, the full native green-roof powerhouse including the west wing, river-facing transformer apron, outfall arcade and the mapped tailrace divider.",
+  "heightPolicy": "The reservoir datum comes from the standard Terrarium sample at local [0,620]. The layout uses the exact retained dam polygon and the single current PMTiles powerhouse footprint. Elevations, pipe diameters and grades are picture and standard-terrain estimates. The supplier confirms eighteen main units, and the aerial identifies the exposed penstock arrangement. The separately located Pimental site and diversion corridor are outside this main-dam reconstruction.",
+  "nativeAxes": "+X nearly east along the main powerhouse, +Z south into the intermediate reservoir, -Z north downstream to the Xingu. +Y up.",
+  "sourceFacts": {
+    "planLongExtent": 1793.51,
+    "planWidth": 936.211,
+    "retainedLengthValueMeters": 3.545,
+    "retainedLengthUse": "Suspect source value is retained for provenance and excluded from geometry dimensions.",
+    "mainUnits": 18,
+    "modeledPenstocks": 18,
+    "terrainTiles": 6,
+    "terrainGridStep": 12,
+    "terrainReferenceLocal": [
+      0,
+      620
+    ],
+    "terrainDatum": 64.695191,
+    "retainedNativeParts": 1,
+    "ownedNativeParts": 1
+  },
+  "materialMethod": "Six existing shared 256px graphs for gravel, basalt, concrete, standing-seam metal, painted metal and window grid. One far palette draw and at most seven near groups. Metric UVs, linear tint colors, and no embedded images.",
+  "limitations": [
+    "Main Belo Monte dam at the retained exact map identity. Both rock-fill arms, intake headwall, eighteen exposed penstocks, the full native green-roof powerhouse including the west wing, river-facing transformer apron, outfall arcade and the mapped tailrace divider.",
+    "The reservoir datum comes from the standard Terrarium sample at local [0,620]. The layout uses the exact retained dam polygon and the single current PMTiles powerhouse footprint. Elevations, pipe diameters and grades are picture and standard-terrain estimates. The supplier confirms eighteen main units, and the aerial identifies the exposed penstock arrangement. The separately located Pimental site and diversion corridor are outside this main-dam reconstruction.",
+    "The signed exact main-dam outline and native hall polygon establish the horizontal footprint. The supplier confirms eighteen main units. Pipe spacing, outlet section, transformer equipment and crest and tailwater levels are visual estimates. Pimental and the diversion corridor remain separately scoped. Physical-device and dense-scene timings remain unmeasured.",
+    "The near tailrace correction follows the mapped channel polygon from the powerhouse to local Z -1080. The first native render exposed raised terrain within the photographed water corridor. The correction stops before the separate highway bridge and retains the mapped divider, banks and river beyond this channel reach. Tailwater is illustrative."
+  ],
+  "references": [
+    {
+      "url": "https://www.flickr.com/photos/usinabelomonte/53971701435",
+      "imageUrl": "https://live.staticflickr.com/65535/53971701435_87bee1201e_b.jpg",
+      "observed": "Roney Vieira/Norte Energia oblique aerial of the completed principal powerhouse. Deep green continuous roof, concrete headwall and individual silver penstocks with collars, yellow access platforms, long river-facing transformer apron and low outlet bays. The visible pipe count is cropped on the east. The photograph is an authoring reference and contributes no texture pixels."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Main Belo Monte dam at the retained exact map identity. Both rock-fill arms, intake headwall, eighteen exposed penstocks, the full native green-roof powerhouse including the west wing, river-facing transformer apron, outfall arcade and the mapped tailrace divider. The reservoir datum comes from the standard Terrarium sample at local [0,620]. The layout uses the exact retained dam polygon and the single current PMTiles powerhouse footprint. Elevations, pipe diameters and grades are picture and standard-terrain estimates. The supplier confirms eighteen main units, and the aerial identifies the exposed penstock arrangement. The separately located Pimental site and diversion corridor are outside this main-dam reconstruction."
+    },
+    {
+      "url": "https://www.andritz.com/hydro-en/hydronews/hn34/belo-monte-brazil",
+      "observed": "Supplier confirms eighteen main units at Belo Monte and a separate complementary powerhouse at Pimental."
+    },
+    {
+      "url": "https://www.wikidata.org/wiki/Q106602681",
+      "observed": "Pimental Dam is a separate linked identity and is outside this mapped main-dam source bundle."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-main-dam",
+      "position": [
+        1440,
+        940,
+        -1700
+      ],
+      "lookAt": [
+        0,
+        -18,
+        -70
+      ],
+      "fov": 50
+    },
+    {
+      "name": "green-hall-and-transformer-apron",
+      "position": [
+        -400,
+        126,
+        -813
+      ],
+      "lookAt": [
+        161,
+        -39,
+        -500
+      ],
+      "fov": 50
+    },
+    {
+      "name": "eighteen-penstocks",
+      "position": [
+        -261,
+        119,
+        -641
+      ],
+      "lookAt": [
+        225,
+        -24,
+        -424
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-and-intake-hoods",
+      "position": [
+        610,
+        62,
+        -483
+      ],
+      "lookAt": [
+        205,
+        -8,
+        -395
+      ],
+      "fov": 50
+    },
+    {
+      "name": "tailrace-divider-and-outfalls",
+      "position": [
+        182,
+        -23,
+        -887
+      ],
+      "lookAt": [
+        208,
+        -48,
+        -545
+      ],
+      "fov": 50
+    },
+    {
+      "name": "reservoir-and-rock-fill-arms",
+      "position": [
+        175,
+        442,
+        1100
+      ],
+      "lookAt": [
+        30,
+        -4,
+        -210
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -68,
+    "scale": 1.75,
+    "focus": {
+      "center": [
+        200,
+        -27,
+        -460
+      ]
+    },
+    "cameraYaw": 3.141592653589793,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/6z/6z7/belo_monte_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_basalt",
+        "roughness": 0.96
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.91
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "trim": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.8
+      },
+      "gravel": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.85
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.74
+      },
+      "dark": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.8
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.43
+      }
+    },
+    "errorMeters": 6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 3
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 1
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 0.35
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-belo-monte-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        1440,
+        940,
+        -1700
+      ],
+      "lookAt": [
+        0,
+        -18,
+        -70
+      ]
+    },
+    {
+      "name": "whole-belo-monte-district",
+      "reviewLod": "district",
+      "position": [
+        1440,
+        940,
+        -1700
+      ],
+      "lookAt": [
+        0,
+        -18,
+        -70
+      ]
+    },
+    {
+      "name": "whole-belo-monte-street",
+      "reviewLod": "street",
+      "position": [
+        1440,
+        940,
+        -1700
+      ],
+      "lookAt": [
+        0,
+        -18,
+        -70
+      ]
+    },
+    {
+      "name": "whole-belo-monte-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        1440,
+        940,
+        -1700
+      ],
+      "lookAt": [
+        0,
+        -18,
+        -70
+      ]
+    }
+  ]
+}

@@ -1,0 +1,549 @@
+{
+  "id": "voroshilovsky_bridge",
+  "title": "Voroshilovsky Bridge",
+  "wikidataId": "Q4126008",
+  "referenceCoordinate": {
+    "longitude": 39.722222222,
+    "latitude": 47.214166666
+  },
+  "module": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/models/voroshilovsky-model.mjs",
+  "builder": "buildVoroshilovskyLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.66,
+      "metallic": 0.35
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "paint": {
+      "slot": "door",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.16,
+      "metallic": 0.05,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.24
+      ],
+      "doubleSided": true
+    }
+  },
+  "exportLabel": "Molen Voroshilovsky Bridge detailed source",
+  "expectedDraftMasterHash": "sha256:4d436e378e367f822088885083b45eec593988b283e454dbeb7107cdbbe04ab3",
+  "visualBrief": "Modern paired three-lane decks over the Don, with a real median gap, steel I-girders/haunches, open four-legged concrete river piers, outer pedestrian walks and four triangular glazed bank access enclosures.",
+  "nativeAxes": "+X northwest toward the high city bank and Voroshilovsky Prospekt; -X southeast toward the low left-bank park. +Z northeast, +Y up.",
+  "sourceFacts": {
+    "mappedModernCorridorMeters": 643.6135538926771,
+    "retainedHistoricalReferenceLengthMeters": 620,
+    "mappedWaterCrossingMeters": 248,
+    "pairedRoadCenterSeparationMeters": 16.2865,
+    "modelDatumMeters": -1,
+    "terrainTiles": 2,
+    "bankAccessConnectors": [
+      {
+        "x": -253.94684520014937,
+        "side": -1,
+        "z": -20.936369982486635
+      },
+      {
+        "x": -249.18556261487186,
+        "side": 1,
+        "z": 21.19626487775679
+      },
+      {
+        "x": 152.69707248033063,
+        "side": -1,
+        "z": -18.730024112764816
+      },
+      {
+        "x": 163.41337576037674,
+        "side": 1,
+        "z": 18.69123916757286
+      }
+    ]
+  },
+  "limitations": [
+    "Original exterior reconstruction of the modern twin Voroshilovsky road bridge using three ordinary current bridge pictures and standard viewer PMTiles/terrain. The downloaded aerial reference was identified as the neighboring Temernitsky bridge beside the railway lift span and was excluded. No downloaded mesh, private photo texture, bespoke survey or terrain dataset is used. Surrounding quay walls, boats, park furnishings, traffic and exact lift operation/interiors are outside scope.",
+    "Named paired road centerlines establish a 643.6m modern corridor and roughly 16.3m separation; two outer paths establish the sidewalk envelope. The retained 620m Wikidata length is historical/general and is not forced onto the current map crossing. The map wet interval is about 248m. Eight reconstructed pier stations and a wide main opening preserve the ordinary-picture span rhythm; their precise positions, haunch/bearing sections and original foundations are not an engineering schedule.",
+    "Each carriageway has its own continuous roadway and two principal steel girders, with an actual narrow open median gap, outward pedestrian pavements and separate traffic barriers. Near levels retain I-flanges, cross members, rail posts, lane marks and simple lamps; the master has denser balusters. The four triangular glass stair/lift housings follow separate mapped bank access connectors and retain schematic internal flights and shaft framing near. Optical laminated-glass behavior, elevator mechanisms, exact accessible gradients and structural connections are not modeled.",
+    "The unmodified 129x129/6m review grid comes from two ordinary global viewer terrain tiles. Sampling oversamples the coarse mixed-source DEM and does not imply 6m survey accuracy. The deck follows a continuous approximate crown between ground+0.25m endpoints; river clearance and high-bank approach grades are picture-based visualization approximations. Foundations embed into that coarse field; exact banks, junctions, retaining walls and measured water levels remain unsurveyed. The rectangular water entity is a separately declared schematic review fixture.",
+    "Three existing shared 256px graphs supply concrete, painted metal and aggregate/asphalt approximation. Paint and clear glass use palette/PBR definitions with no private or embedded images. Far levels aggregate piers, girder sections and triangular enclosures and omit thin furniture; near levels restore open framing and transparent glass. Estimated tier errors 3/1.5/.75/.35m are not certified whole-mesh distances. Physical phone/laptop timings and dense-city performance remain unmeasured.",
+    "Submerged river pier footings extend to the model reference water datum Y0 while land piers and lift foundations embed into the retained native field. No measured riverbed or underwater construction is claimed."
+  ],
+  "references": [
+    {
+      "url": "https://privet-rostov.ru/stroitelstvo/93535-ocherednye-vysotki-mogut-postroit-rjadom-s-voroshilovskim-mostom-v-rostove.html",
+      "observed": "Actually inspected modern oblique picture: paired three-lane decks with narrow median gap, outer pavements and rails, long grey haunched girders, open concrete pier legs and low-bank triangular glazed stair/lift housings."
+    },
+    {
+      "url": "https://topgid.net/4554-voroshilovskij-most.html",
+      "observed": "Actually inspected underside picture: four primary longitudinal girder lines, repeated cross members, daylight in the central deck gap, four separate tapered concrete pier legs on a broad base and pale lower leg bands."
+    },
+    {
+      "url": "https://www.1rnd.ru/news/obshchestvo/v-rostove-vklyuchili-lifty-voroshilovskogo-mosta/",
+      "observed": "Actually inspected bank access picture: triangular pitched glazing, silver perimeter and grid framing, a vertical lift shaft and inset stair flights under the bridge edge; simple double-head street lighting."
+    },
+    {
+      "url": "https://maps.protomaps.com/builds/",
+      "observed": "Nine standard viewer z14 PMTiles retained offline. Named paired primary roads/footpaths establish the corridor; four short access connectors establish separate bank/side lift positions. Standard global terrain supplies approximate endpoint/foundation fit."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-twin-crossing",
+      "position": [
+        -445,
+        265,
+        475
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "two-carriageways",
+      "position": [
+        -300,
+        130,
+        75
+      ],
+      "lookAt": [
+        100,
+        33,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "open-river-piers",
+      "position": [
+        -30,
+        5,
+        72
+      ],
+      "lookAt": [
+        67,
+        19,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "low-bank-triangular-lift",
+      "position": [
+        -280,
+        23,
+        46
+      ],
+      "lookAt": [
+        -249,
+        18,
+        21
+      ],
+      "fov": 49
+    },
+    {
+      "name": "city-bank-lift-and-girders",
+      "position": [
+        125,
+        27,
+        -49
+      ],
+      "lookAt": [
+        153,
+        25,
+        -20
+      ],
+      "fov": 48
+    },
+    {
+      "name": "street-deck-and-rails",
+      "position": [
+        -18,
+        34.1,
+        9
+      ],
+      "lookAt": [
+        95,
+        38,
+        8
+      ],
+      "fov": 54
+    },
+    {
+      "name": "underside-cross-girders",
+      "position": [
+        15,
+        21,
+        20
+      ],
+      "lookAt": [
+        35,
+        30,
+        5
+      ],
+      "fov": 51
+    }
+  ],
+  "reviewEntities": [
+    {
+      "id": "review-water",
+      "components": {
+        "transform": {
+          "pos": [
+            25,
+            2.4,
+            0
+          ],
+          "scale": [
+            249,
+            0.14,
+            768
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#25505a",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.4,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/models/voroshilovsky-model.mjs",
+    "export": "buildVoroshilovskySkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.66,
+        "metallic": 0.35
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "paint": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.16,
+        "metallic": 0.05,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.24
+        ],
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildVoroshilovskyDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.35
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.16,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.24
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "street": {
+        "export": "buildVoroshilovskyStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.35
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.16,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.24
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.75
+      },
+      "closeup": {
+        "export": "buildVoroshilovskyCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.66,
+            "metallic": 0.35
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.16,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.24
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.35
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-bridge-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -445,
+        265,
+        475
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "whole-bridge-district",
+      "reviewLod": "district",
+      "position": [
+        -445,
+        265,
+        475
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "whole-bridge-street",
+      "reviewLod": "street",
+      "position": [
+        -445,
+        265,
+        475
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "whole-bridge-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -445,
+        265,
+        475
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "street-open-piers",
+      "reviewLod": "street",
+      "position": [
+        -30,
+        5,
+        72
+      ],
+      "lookAt": [
+        67,
+        19,
+        0
+      ]
+    },
+    {
+      "name": "closeup-triangular-lift",
+      "reviewLod": "closeup",
+      "position": [
+        -280,
+        23,
+        46
+      ],
+      "lookAt": [
+        -249,
+        18,
+        21
+      ]
+    }
+  ]
+}

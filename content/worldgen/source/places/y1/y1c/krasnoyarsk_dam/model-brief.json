@@ -1,0 +1,446 @@
+{
+  "id": "krasnoyarsk_dam",
+  "title": "Krasnoyarsk Dam",
+  "wikidataId": "Q1120899",
+  "referenceCoordinate": {
+    "longitude": 92.294444,
+    "latitude": 55.934722
+  },
+  "module": "content/worldgen/source/places/y1/y1c/krasnoyarsk_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "crest": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_basalt"
+    },
+    "paint": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "steel": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "joint": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    }
+  },
+  "exportLabel": "Molen original Krasnoyarsk Dam and Yenisei ship lift",
+  "expectedDraftMasterHash": "sha256:a469aa9b1b3b7088ffdafcba5834fdbfc838e242137010ff44f7e3e4b5f7d284",
+  "visualBrief": "Krasnoyarsk gravity dam, spillways, crest gantries, right-bank power hall, and northwest ship lift including the upper reach, turntable and mapped descending alignment.",
+  "heightPolicy": "The standard Terrarium reference at local [0, −420] gives a 223.02 m upstream datum. The lower Yenisei reference at [0, 420] is 85.93 m below it. Crest, concrete, rail and caisson elevations are approximate visual fits.",
+  "nativeAxes": "+X northwest along the crest toward the ship-lift bank, +Z northeast down the Yenisei, and +Y up.",
+  "sourceFacts": {
+    "nativeReservoirId": 12728533,
+    "nativeRiverId": 64482123,
+    "nativePowerhouseId": 35185554367336,
+    "nativeCrestRoadId": 35184859541115,
+    "crestLengthMeters": 1035.6862199437426,
+    "modeledGateBays": 7,
+    "terrainDatum": 223.0153305,
+    "terrainGridStep": 16,
+    "terrainTiles": 18,
+    "tailwaterModelY": -85.93230525000001,
+    "terrainSamplesBelow80": 194
+  },
+  "materialMethod": "Shared board-formed and plain concrete, painted metal, standing-seam metal and window graphs with metric UVs and no embedded images.",
+  "limitations": [
+    "The standard Terrarium reference at local [0, −420] gives a 223.02 m upstream datum. The lower Yenisei reference at [0, 420] is 85.93 m below it. Crest, concrete, rail and caisson elevations are approximate visual fits.",
+    "The 16 m standard terrain contains isolated anomalous low samples, especially around shorelines. The raw fixture retains all input values and some bank seams remain visible.",
+    "The visible gate division and parked caisson represent the ordinary photographs and mapped facility. Gate machinery, crane positions, rail heights and caisson dimensions remain approximate.",
+    "The native downstream road bridge and other mapped transportation remain. The modeled lift bed replaces only its own mapped elevated rail segment. Distant switchyards and separate utility buildings remain in the map context."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Krasnoyarsk_Dam_view.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:Krasnoyarsk_Dam_view.jpg",
+      "observed": "Upstream aerial distinguishes the straight crest, long right-bank powerhouse, narrow auxiliary harbor wall, switchyard and separate downstream bridge."
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/File:Elektrownia_wodna_w_Krasnojarsku_2.jpg",
+      "imageUrl": "https://en.wikipedia.org/wiki/File:Elektrownia_wodna_w_Krasnojarsku_2.jpg",
+      "observed": "Downstream view shows steep parallel lift rails on the northwest bank, curved landing walls and a row of guide piers. The concrete dam has a tall face with regular vertical divisions."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The opposing Yenisei water edges, mapped narrow dam crest service way and adjoining powerhouse identify the dam independently of the separate downstream road bridge."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "dam-and-ship-lift",
+      "position": [
+        1500,
+        580,
+        1600
+      ],
+      "lookAt": [
+        140,
+        -38,
+        300
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upstream-crest",
+      "position": [
+        -570,
+        186,
+        -800
+      ],
+      "lookAt": [
+        5,
+        2,
+        4
+      ],
+      "fov": 50
+    },
+    {
+      "name": "powerhouse-and-dam-face",
+      "position": [
+        -470,
+        55,
+        570
+      ],
+      "lookAt": [
+        -130,
+        -35,
+        98
+      ],
+      "fov": 50
+    },
+    {
+      "name": "spillway-gates",
+      "position": [
+        135,
+        51,
+        367
+      ],
+      "lookAt": [
+        255,
+        -29,
+        45
+      ],
+      "fov": 50
+    },
+    {
+      "name": "turntable-and-approach",
+      "position": [
+        930,
+        154,
+        -132
+      ],
+      "lookAt": [
+        711,
+        18,
+        72
+      ],
+      "fov": 50
+    },
+    {
+      "name": "ship-lift-landing",
+      "position": [
+        311,
+        -11,
+        1512
+      ],
+      "lookAt": [
+        550,
+        -60,
+        1035
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -101.2,
+    "scale": 3.1,
+    "focus": {
+      "center": [
+        140,
+        -30,
+        260
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/y1/y1c/krasnoyarsk_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "crest": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_basalt"
+      },
+      "paint": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "steel": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "joint": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "crest": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "joint": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "crest": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "joint": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "crest": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "joint": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "krasnoyarsk-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        1500,
+        580,
+        1600
+      ],
+      "lookAt": [
+        140,
+        -38,
+        300
+      ]
+    },
+    {
+      "name": "krasnoyarsk-district",
+      "reviewLod": "district",
+      "position": [
+        1500,
+        580,
+        1600
+      ],
+      "lookAt": [
+        140,
+        -38,
+        300
+      ]
+    },
+    {
+      "name": "krasnoyarsk-street",
+      "reviewLod": "street",
+      "position": [
+        1500,
+        580,
+        1600
+      ],
+      "lookAt": [
+        140,
+        -38,
+        300
+      ]
+    },
+    {
+      "name": "krasnoyarsk-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        1500,
+        580,
+        1600
+      ],
+      "lookAt": [
+        140,
+        -38,
+        300
+      ]
+    }
+  ]
+}

@@ -35,18 +35,19 @@ export interface ElevationWorkerOptions {
   ownsWorker?: boolean;
   parentFallback?: boolean;
 }
+interface FieldMessage {
+  grid: Float32Array;
+  cols: number;
+  rows: number;
+  origin: [number, number];
+  worldSize: [number, number];
+  height: { min: number; max: number };
+}
 interface PreparedReply {
   kind: 'prepared';
   id: number;
   error?: string;
-  field?: {
-    grid: Float32Array;
-    cols: number;
-    rows: number;
-    origin: [number, number];
-    worldSize: [number, number];
-    height: { min: number; max: number };
-  };
+  field?: FieldMessage;
   geometry?: ChunkGeometry;
 }
 type Request =
@@ -58,6 +59,13 @@ type Request =
       filterElevation?: boolean;
     }
   | { kind: 'prepare'; id: number; address: TerrainPyramidTileAddress; resolution: number }
+  | {
+      kind: 'mesh';
+      id: number;
+      address: TerrainPyramidTileAddress;
+      resolution: number;
+      field: FieldMessage;
+    }
   | { kind: 'cancel'; id: number }
   | { kind: 'archive-result'; id: number; data?: ArrayBuffer; error?: string };
 type Reply =
@@ -77,6 +85,35 @@ export function installTerrainElevationWorker(port: ElevationWorkerLike): void {
   const requests = new Map<number, AbortController>();
   const send = (message: Reply, transfer?: Transferable[]): void =>
     port.postMessage(message, transfer);
+  const mesh = (
+    hf: Heightfield,
+    address: TerrainPyramidTileAddress,
+    resolution: number,
+  ): ChunkGeometry => {
+    if (!descriptor) throw new Error('Elevation worker is not configured');
+    const begin = performance.now();
+    const step = Math.max(1, Math.ceil((descriptor.tileResolution - 1) / (resolution - 1)));
+    const geometry = buildChunkGeometry(
+      hf,
+      surfaceDescriptor(descriptor, address),
+      address.x,
+      address.z,
+      {
+        localCoordinates: true,
+        step,
+      },
+    );
+    // Topology is cached in the worker and must not be detached by transfer.
+    geometry.indices = geometry.indices.slice();
+    send({ kind: 'timing', timing: { stage: 'mesh', milliseconds: performance.now() - begin } });
+    return geometry;
+  };
+  const geometryBuffers = (geometry: ChunkGeometry): Transferable[] => [
+    geometry.positions.buffer,
+    geometry.normals.buffer,
+    geometry.colors.buffer,
+    geometry.indices.buffer,
+  ];
   const archive: TerrainTileArchive = {
     getZxy(level, x, y) {
       const id = ++archiveId;
@@ -114,24 +151,7 @@ export function installTerrainElevationWorker(port: ElevationWorkerLike): void {
           send({ kind: 'prepared', id: request.id });
           return;
         }
-        const begin = performance.now();
-        const step = Math.max(
-          1,
-          Math.ceil((descriptor.tileResolution - 1) / (request.resolution - 1)),
-        );
-        const geometry = buildChunkGeometry(
-          hf,
-          surfaceDescriptor(descriptor, request.address),
-          request.address.x,
-          request.address.z,
-          { localCoordinates: true, step },
-        );
-        // Topology is cached in the worker and must not be detached by transfer.
-        geometry.indices = geometry.indices.slice();
-        send({
-          kind: 'timing',
-          timing: { stage: 'mesh', milliseconds: performance.now() - begin },
-        });
+        const geometry = mesh(hf, request.address, request.resolution);
         const field = {
           grid: hf.copySamples(),
           cols: hf.cols,
@@ -142,15 +162,27 @@ export function installTerrainElevationWorker(port: ElevationWorkerLike): void {
         };
         send({ kind: 'prepared', id: request.id, field, geometry }, [
           field.grid.buffer,
-          geometry.positions.buffer,
-          geometry.normals.buffer,
-          geometry.colors.buffer,
-          geometry.indices.buffer,
+          ...geometryBuffers(geometry),
         ]);
       };
       void prepare()
         .catch((error) => send({ kind: 'prepared', id: request.id, error: String(error) }))
         .finally(() => requests.delete(request.id));
+    } else if (request.kind === 'mesh') {
+      // A field the host changed (see TerrainPyramidHeightSource.meshPrepared): meshed as above.
+      try {
+        const { field } = request;
+        const hf = new Heightfield(field.grid, field.cols, field.rows, {
+          origin: field.origin,
+          worldSize: field.worldSize,
+          height: field.height,
+          validated: true,
+        });
+        const geometry = mesh(hf, request.address, request.resolution);
+        send({ kind: 'prepared', id: request.id, geometry }, geometryBuffers(geometry));
+      } catch (error) {
+        send({ kind: 'prepared', id: request.id, error: String(error) });
+      }
     }
   });
 }
@@ -210,15 +242,13 @@ export function createTerrainElevationWorkerSource(
     parentFallback: options.parentFallback !== false,
     ...(options.filterElevation !== undefined ? { filterElevation: options.filterElevation } : {}),
   } satisfies Request);
-  const loadPrepared: NonNullable<TerrainPyramidHeightSource['loadPrepared']> = async (
-    address,
-    signal,
-    resolution,
-  ) => {
-    if (disposed || signal.aborted) return undefined;
-    if (failure) throw failure;
+  const request = (
+    message: (id: number) => Request,
+    signal: AbortSignal,
+    transfer: Transferable[] = [],
+  ): Promise<PreparedReply> => {
     const id = ++nextId;
-    const reply = await new Promise<PreparedReply>((resolve, reject) => {
+    return new Promise<PreparedReply>((resolve, reject) => {
       const abort = (): void => {
         worker.postMessage({ kind: 'cancel', id });
         pending.delete(id);
@@ -235,8 +265,17 @@ export function createTerrainElevationWorkerSource(
           reject(error);
         },
       });
-      worker.postMessage({ kind: 'prepare', id, address, resolution } satisfies Request);
+      worker.postMessage(message(id), transfer);
     });
+  };
+  const loadPrepared: NonNullable<TerrainPyramidHeightSource['loadPrepared']> = async (
+    address,
+    signal,
+    resolution,
+  ) => {
+    if (disposed || signal.aborted) return undefined;
+    if (failure) throw failure;
+    const reply = await request((id) => ({ kind: 'prepare', id, address, resolution }), signal);
     if (disposed || signal.aborted || !reply.field || !reply.geometry) return undefined;
     const f = reply.field;
     return {
@@ -250,8 +289,34 @@ export function createTerrainElevationWorkerSource(
       geometry: reply.geometry,
     };
   };
+  const meshPrepared: NonNullable<TerrainPyramidHeightSource['meshPrepared']> = async (
+    heightfield,
+    address,
+    signal,
+    resolution,
+  ) => {
+    if (disposed || signal.aborted) return undefined;
+    if (failure) throw failure;
+    // A copy crosses: the caller keeps its field for sampling and layers.
+    const grid = heightfield.copySamples();
+    const field: FieldMessage = {
+      grid,
+      cols: heightfield.cols,
+      rows: heightfield.rows,
+      origin: heightfield.origin,
+      worldSize: heightfield.worldSize,
+      height: heightfield.heightRange,
+    };
+    const reply = await request(
+      (id) => ({ kind: 'mesh', id, address, resolution, field }),
+      signal,
+      [grid.buffer],
+    );
+    return disposed || signal.aborted ? undefined : reply.geometry;
+  };
   return {
     loadPrepared,
+    meshPrepared,
     async load(address, signal) {
       return (await loadPrepared(address, signal, descriptor.tileResolution))?.heightfield;
     },

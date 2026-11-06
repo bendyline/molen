@@ -1,0 +1,501 @@
+{
+  "id": "kainji_dam",
+  "title": "Kainji Dam",
+  "wikidataId": "Q15043618",
+  "referenceCoordinate": {
+    "longitude": 4.606956596,
+    "latitude": 9.859472954
+  },
+  "module": "content/worldgen/source/places/s1/s1g/kainji_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "dark": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "earth": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "gate": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "paint": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    }
+  },
+  "exportLabel": "Molen original Kainji Dam and Niger navigation works",
+  "expectedDraftMasterHash": "sha256:1a007f3a97af9767337bcda735e342e8c7cf0dddc729c465e7fae73d02d54e3b",
+  "visualBrief": "Kainji Dam’s mapped rock-fill embankments, four radial spillway bays, generating hall and tailrace, and the two navigation locks on the bypass canal.",
+  "heightPolicy": "Standard Terrarium sets the reservoir at 139.00 m and the near-tailwater review plane at 108.42 m. The production sampler returns 139.51–139.65 m upstream and 103.15–109.05 m downstream across the retained windows.",
+  "nativeAxes": "+X northeast along the embankment toward the navigation cut, +Z southeast toward the downstream Niger, +Y up.",
+  "sourceFacts": {
+    "mappedIdentity": "way/481361068",
+    "nativeWaterIds": [
+      1087623,
+      20814303,
+      408515100
+    ],
+    "ownedBuildingId": 35185208211409,
+    "mappedExtentMeters": 3437.708,
+    "radialGates": 4,
+    "lockCount": 2,
+    "lockLengths": [
+      113.84199576606166,
+      111.07204868912791
+    ],
+    "terrainDatum": 139,
+    "terrainGridStep": 16,
+    "terrainTiles": 8,
+    "tailwaterModelY": -30.57777546875002
+  },
+  "materialMethod": "Shared board-formed and plain concrete, gravel, painted metal, standing-seam metal and window graphs with metric UVs and no embedded images.",
+  "limitations": [
+    "Standard Terrarium sets the reservoir at 139.00 m and the near-tailwater review plane at 108.42 m. The production sampler returns 139.51–139.65 m upstream and 103.15–109.05 m downstream across the retained windows.",
+    "The site-specific model covers the 3.44 km mapped embankment, four radial gates, the main power hall and both navigation chambers. The separate road bridges and surrounding buildings remain native.",
+    "The standard terrain and mapped canal establish plan and local grade. Lock leaf sizes, machinery, exact gate opening heights and the staged water surfaces are visual interpretations.",
+    "The local downstream water sampler varies by branch and window. The review planes show an illustrative lock cycle and do not drive native world water levels."
+  ],
+  "references": [
+    {
+      "url": "https://www.tralat.com/assets/img/portfolio/kainjidambig.png",
+      "imageUrl": "https://www.tralat.com/assets/img/portfolio/kainjidambig.png",
+      "observed": "Downstream view shows four large gated chutes divided by deep piers, with a separate adjacent power outlet and low masonry shoulders."
+    },
+    {
+      "url": "https://www.evolutio.museum/static/upload/imp/impianto-idroelettrico-di-kainji_gallery_03.jpg",
+      "imageUrl": "https://www.evolutio.museum/static/upload/imp/impianto-idroelettrico-di-kainji_gallery_03.jpg",
+      "observed": "The power-channel view shows a glazed hall end, a tall wing wall, square concrete frames and a narrow maintenance ledge."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The reservoir is northwest of the mapped embankment. The west concrete generating hall and separate east spillway line meet the Niger tailrace, while the bypass canal continues around the eastern bank."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "niger-dam-overview",
+      "position": [
+        870,
+        405,
+        1130
+      ],
+      "lookAt": [
+        620,
+        -5,
+        -98
+      ],
+      "fov": 50
+    },
+    {
+      "name": "four-spillway-bays",
+      "position": [
+        995,
+        40,
+        74
+      ],
+      "lookAt": [
+        989,
+        -12,
+        -116
+      ],
+      "fov": 50
+    },
+    {
+      "name": "generating-hall-and-tailrace",
+      "position": [
+        858,
+        31,
+        89
+      ],
+      "lookAt": [
+        725,
+        -12,
+        -77
+      ],
+      "fov": 50
+    },
+    {
+      "name": "gated-chute-foot",
+      "position": [
+        1021,
+        -2,
+        31
+      ],
+      "lookAt": [
+        986,
+        -17,
+        -95
+      ],
+      "fov": 50
+    },
+    {
+      "name": "western-rockfill-crest",
+      "position": [
+        -741,
+        99,
+        208
+      ],
+      "lookAt": [
+        -345,
+        -4,
+        28
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upper-navigation-lock",
+      "position": [
+        1643,
+        52,
+        -23
+      ],
+      "lookAt": [
+        1714,
+        -5,
+        -100
+      ],
+      "fov": 50
+    },
+    {
+      "name": "lower-navigation-lock",
+      "position": [
+        954,
+        20,
+        947
+      ],
+      "lookAt": [
+        991,
+        -18,
+        882
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upstream-concrete-crest",
+      "position": [
+        795,
+        67,
+        -550
+      ],
+      "lookAt": [
+        796,
+        -5,
+        -114
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -43,
+    "scale": 3.8,
+    "focus": {
+      "center": [
+        790,
+        -8,
+        -50
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/s1/s1g/kainji_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "dark": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "earth": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "gate": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "paint": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "kainji-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        870,
+        405,
+        1130
+      ],
+      "lookAt": [
+        620,
+        -5,
+        -98
+      ]
+    },
+    {
+      "name": "kainji-district",
+      "reviewLod": "district",
+      "position": [
+        870,
+        405,
+        1130
+      ],
+      "lookAt": [
+        620,
+        -5,
+        -98
+      ]
+    },
+    {
+      "name": "kainji-street",
+      "reviewLod": "street",
+      "position": [
+        870,
+        405,
+        1130
+      ],
+      "lookAt": [
+        620,
+        -5,
+        -98
+      ]
+    },
+    {
+      "name": "kainji-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        870,
+        405,
+        1130
+      ],
+      "lookAt": [
+        620,
+        -5,
+        -98
+      ]
+    }
+  ]
+}

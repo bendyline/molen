@@ -1,4 +1,8 @@
-import { EarthDioramaDirector, type EarthDioramaSpec } from '@bendyline/molen-earth/client';
+import {
+  EarthDioramaDirector,
+  type EarthDioramaOptions,
+  type EarthDioramaSpec,
+} from '@bendyline/molen-earth/client';
 import catalog from '../../../content/dioramas/placements.json';
 import { loadDiorama } from './load-diorama.js';
 
@@ -18,9 +22,16 @@ export function dioramaPlacements(): EarthDioramaSpec[] {
 }
 
 /** World Explorer composes its own terrain loop, so it uses the same Earth director directly. */
-export function createExplorerDioramas(enabled: boolean): EarthDioramaDirector {
+export function createExplorerDioramas(
+  enabled: boolean,
+  prepareObject?: EarthDioramaOptions['prepareObject'],
+): EarthDioramaDirector {
   return new EarthDioramaDirector(
-    { placements: enabled ? dioramaPlacements() : [], maxActive: 2 },
+    {
+      placements: enabled ? dioramaPlacements() : [],
+      maxActive: 2,
+      ...(prepareObject ? { prepareObject } : {}),
+    },
     (error, id) => console.warn(`Diorama ${id}:`, error),
   );
 }

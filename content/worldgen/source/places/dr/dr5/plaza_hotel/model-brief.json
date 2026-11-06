@@ -1,0 +1,480 @@
+{
+  "id": "plaza_hotel",
+  "title": "Plaza Hotel",
+  "wikidataId": "Q1066676",
+  "referenceCoordinate": {
+    "longitude": -73.974444444,
+    "latitude": 40.764527777
+  },
+  "module": "content/worldgen/source/places/dr/dr5/plaza_hotel/models/plaza-model.mjs",
+  "builder": "buildPlazaLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "wall",
+      "graph": "metal_painted",
+      "roughness": 0.6,
+      "metallic": 0.25
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.25,
+      "metallic": 0.12
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.95,
+      "metallic": 0
+    }
+  },
+  "exportLabel": "Molen Plaza Hotel complete exterior detailed source",
+  "expectedDraftMasterHash": "sha256:1f24025bc1c259a6ff0724266b5cba7060b58b0ef485055a9790c931bf3b880a",
+  "visualBrief": "Complete New York Plaza Hotel:stepped pale masonry hotel with punched windows/rusticated base,green mansard and dormer rows,paired pointed gables,rounded corner bays with ribbed domed caps,ornate cornices/balconies,roofwell/plant and signed Fifth Avenue and park-side canopies.",
+  "nativeAxes": "+X east-southeast toward Fifth Avenue/Grand Army Plaza and primary entrance;-X west-northwest toward adjacent separate church;+Z south-southwest toward58th Street;-Z north-northeast toward Central Park South;+Y up.",
+  "sourceFacts": {
+    "retainedHeightMeters": 76,
+    "mappedHeightMeters": 85,
+    "mappedCorniceMeters": 60,
+    "mappedLengthMeters": 89.551,
+    "mappedWidthMeters": 64.666,
+    "modelDatumMeters": 16,
+    "terrainTiles": 2
+  },
+  "limitations": [
+    "Complete original Plaza Hotel New York exterior reconstructed from two actually inspected ordinary elevated photographs,exact retained OSM/Q1066676 outline and standard viewer PMTiles/global terrain. No downloaded mesh,private photo texture,bespoke survey or archival research. Adjacent church,interiors,furnishings,street furniture,flags and surrounding city are excluded.",
+    "Signed+X/ESE main entry faces Fifth Avenue/Grand Army Plaza;-Z/NNE long facade faces Central Park South. Exact stepped89.551x64.666m whole outline controls the ground mass.76m retained total differs from generalized85m mapped height;55.5m cornice,72.5m mansard and75.9m finials are photo-proportional reconstruction,not a certified as-built height schedule. Original roof/bay/dormer/floor inventory and western/southern details are approximate.",
+    "Detailed master retains punched-window frames/recess returns,sills,molded cornices,upper balconies,rusticated lower bands,rounded eastern corner bays and ribbed domed caps,paired gables,steep green mansard with two dormer rows,inset skylight strips,visible shallow roofwell/plant,primary canopy/recessed vestibule and secondary north canopy. Far tiers aggregate facade,roof ornaments and openings while preserving the stepped whole mass and recognizable roof silhouette.",
+    "Five existing256px graphs provide limestone,slate approximation of green patterned roof,painted-metal patina,window grid and granite foundation. Named stone and trim share one graph;no private or embedded images. Green roof material/color is a stylized catalog approximation,not a forensic identification. Shared glass is opaque patterned glazing with no optical interiors. Portable fallback differs from shared viewer binding. Detailed source remains separate from four browser tiers.",
+    "Unmodified129x129/1.5m field oversamples two ordinary global terrain tiles.16m base is rounded from its center;urban returns across the building are roughly15–16m. Foundation skirt embeds below that field and entrance stairs sample it. Original curb/foundation/accessible-entry gradients are unsurveyed. Estimated tier errors3/1.5/.7/.25m are approximate,not certified mesh distances. Physical laptop/phone and dense-city timing remain unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/6621720ba61fe3260990548a/bb174fea-1a18-48e8-a495-d9f3afe86585/IMG_1151%2BContrast.jpg",
+      "observed": "Inspected complete elevated view:short Fifth Avenue entrance face with projecting central canopy;rounded end bays with dark domed caps;paired steep pale gables inset from the ends;green mansard with two dormer rows and a continuous inset upper glazing strip;long perpendicular pale masonry facade with many punched windows,lower rusticated storeys,upper cornices/balconies;flat roof well and plant behind the mansard."
+    },
+    {
+      "url": "https://www.nicholsonandgalloway.com/wp-content/uploads/2019/05/DSC0060-1024x685.jpg",
+      "observed": "Inspected broader roof/streets view:hotel stands immediately east of the adjacent spired church,which is a separate structure. Long street facade faces Central Park South;short entrance facade faces Grand Army Plaza/Fifth Avenue. Paired gables,turrets,mansard and roofwell are visible;rear massing more restrained. No church geometry belongs to this hotel."
+    },
+    {
+      "url": "https://www.openstreetmap.org/relation/9771573",
+      "observed": "Exact stepped Q1066676 hotel outline and rounded east corners;standard PMTiles supplies native component outlines and street relationships.85m general height differs from retained76m total;recorded as an unresolved source discrepancy."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-fifth-avenue-and-park-facades",
+      "position": [
+        180,
+        115,
+        -170
+      ],
+      "lookAt": [
+        0,
+        37,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "opposite-complete-hotel",
+      "position": [
+        -170,
+        110,
+        160
+      ],
+      "lookAt": [
+        0,
+        37,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "mansard-gables-turrets-and-roofwell",
+      "position": [
+        108,
+        117,
+        -81
+      ],
+      "lookAt": [
+        5,
+        62,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "fifth-avenue-entry-canopy",
+      "position": [
+        69,
+        6.5,
+        -15
+      ],
+      "lookAt": [
+        44,
+        4,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "native-entrance-and-recessed-doors",
+      "position": [
+        54,
+        2.5,
+        4
+      ],
+      "lookAt": [
+        43.5,
+        2.8,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "corner-turret-and-gable-relief",
+      "position": [
+        66,
+        67,
+        -51
+      ],
+      "lookAt": [
+        38,
+        62,
+        -24
+      ],
+      "fov": 49
+    },
+    {
+      "name": "park-facade-punched-window-details",
+      "position": [
+        9,
+        44,
+        -53
+      ],
+      "lookAt": [
+        3,
+        44,
+        -31
+      ],
+      "fov": 49
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/dr/dr5/plaza_hotel/models/plaza-model.mjs",
+    "export": "buildPlazaSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.25
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.25,
+        "metallic": 0.12
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.95,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPlazaDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.25,
+            "metallic": 0.12
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "street": {
+        "export": "buildPlazaStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.25,
+            "metallic": 0.12
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.7
+      },
+      "closeup": {
+        "export": "buildPlazaCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.25,
+            "metallic": 0.12
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.25
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-hotel-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        180,
+        115,
+        -170
+      ],
+      "lookAt": [
+        0,
+        37,
+        0
+      ]
+    },
+    {
+      "name": "whole-hotel-district",
+      "reviewLod": "district",
+      "position": [
+        180,
+        115,
+        -170
+      ],
+      "lookAt": [
+        0,
+        37,
+        0
+      ]
+    },
+    {
+      "name": "whole-hotel-street",
+      "reviewLod": "street",
+      "position": [
+        180,
+        115,
+        -170
+      ],
+      "lookAt": [
+        0,
+        37,
+        0
+      ]
+    },
+    {
+      "name": "whole-hotel-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        180,
+        115,
+        -170
+      ],
+      "lookAt": [
+        0,
+        37,
+        0
+      ]
+    },
+    {
+      "name": "street-entry-canopy",
+      "reviewLod": "street",
+      "position": [
+        69,
+        6.5,
+        -15
+      ],
+      "lookAt": [
+        44,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "closeup-turret-and-gables",
+      "reviewLod": "closeup",
+      "position": [
+        66,
+        67,
+        -51
+      ],
+      "lookAt": [
+        38,
+        62,
+        -24
+      ]
+    }
+  ]
+}

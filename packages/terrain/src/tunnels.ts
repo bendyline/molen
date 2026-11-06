@@ -15,7 +15,7 @@ import {
   type TerrainSemanticTile,
   type TerrainTransportationFeature,
 } from './semantic-types';
-import { terrainRootOffset } from './tagged-objects';
+import { knownTerrainRootOffset, terrainRootOffset } from './tagged-objects';
 import { clipTerrainSurfacePolygon } from './terrain-drape';
 import { transportKind, transportSurfaceLift, transportWidth } from './transport-features';
 
@@ -47,14 +47,24 @@ export function sampleTerrainTunnel(
   y: number,
   z: number,
 ): TerrainTunnelClearance | undefined {
-  root.updateWorldMatrix(true, false);
-  const worldPoint = new THREE.Vector3(x, y, z).applyMatrix4(root.matrixWorld);
+  // Only a bore placed by more than a translation needs world space. The root's chain was refreshed
+  // and a point allocated for every query: each of an aircraft's ground probes, every tick.
+  let worldPoint: THREE.Vector3 | undefined;
   let result: TerrainTunnelClearance | undefined;
   for (const ref of objects) {
     const object = ref.deref();
     if (!object) {
       objects.delete(ref);
       continue;
+    }
+    // Outside a bore's tile, found before: no need to walk its parents for visibility. A city's
+    // bores are a few hundred tiles at every level, asked about for each probe.
+    const known = knownTerrainRootOffset(object, root);
+    if (known) {
+      const tileSize = tileSizes.get(object) ?? Infinity;
+      const lx = x - known.x,
+        lz = z - known.z;
+      if (lx < -1e-8 || lx > tileSize + 1e-8 || lz < -1e-8 || lz > tileSize + 1e-8) continue;
     }
     let visible = false;
     for (let p: THREE.Object3D | null = object; p; p = p.parent) {
@@ -72,6 +82,10 @@ export function sampleTerrainTunnel(
     let local: THREE.Vector3;
     if (offset !== null) local = scratchLocal.set(x - offset.x, y - offset.y, z - offset.z);
     else {
+      if (worldPoint === undefined) {
+        root.updateWorldMatrix(true, false);
+        worldPoint = new THREE.Vector3(x, y, z).applyMatrix4(root.matrixWorld);
+      }
       object.updateWorldMatrix(true, false);
       local = object.worldToLocal(worldPoint.clone());
     }

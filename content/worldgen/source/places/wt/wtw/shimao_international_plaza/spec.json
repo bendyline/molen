@@ -1,0 +1,493 @@
+{
+  "planId": "shimao_international_plaza",
+  "id": "shimao_international_plaza",
+  "assetId": "molen.worldgen.structure.shimao_international_plaza",
+  "title": "Shimao International Plaza",
+  "category": "skyscraper",
+  "quality": "detailed",
+  "wikidataId": "Q1161278",
+  "referenceCoordinate": {
+    "longitude": 121.471667,
+    "latitude": 31.234444
+  },
+  "visualBrief": "Complete Shimao hotel/mall:triangular blue-gray glazed tower with pale vertical/diagonal spines,sloping lower shoulders,recessed triangular crown and twin333.3m spires above the whole low horizontal mall podium,roof pavilions/plant and original lattice entry canopy.",
+  "size": [
+    164.37489318847656,
+    336.5095052719116,
+    76.77597427368164
+  ],
+  "actualBounds": {
+    "min": [
+      -86.07308959960938,
+      -3.209517478942871,
+      -38.38797378540039
+    ],
+    "max": [
+      78.30180358886719,
+      333.29998779296875,
+      38.38800048828125
+    ]
+  },
+  "nativeAxes": "+X approximately east-northeast along the full mall,-X west-southwest toward Middle Xizang Road;+Z south-southeast toward Jiujiang Road,-Z north-northwest toward Nanjing Road;+Y up. Triangular hotel tip is west(-X);the broad lower wing is east(+X). Original lattice canopy is reconstructed on the western approach;exact entrance inventory is not surveyed.",
+  "sourceFacts": {
+    "retainedHeightMeters": 333.3,
+    "mappedParentHeightMeters": 333,
+    "mappedUpperHeightMeters": 246,
+    "mappedOuterWingHeightMeters": 185,
+    "mappedLengthMeters": 155.906,
+    "mappedWidthMeters": 76.075,
+    "modelDatumMeters": 10,
+    "terrainTiles": 1,
+    "referenceMismatchMeters": 250
+  },
+  "referencePages": [
+    "https://images.skyscrapercenter.com/building/shimao-international-plaza_daniel-safarik3.jpg",
+    "https://s3.amazonaws.com/images.skyscrapercenter.com/thumbs/40567_500x650.jpg",
+    "https://www.building.am/buildingimages/bigimages/465/3.jpg",
+    "https://build.protomaps.com/20261031.pmtiles"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      121.471232578,
+      31.236348944
+    ],
+    "heading": 0.278612723552,
+    "elevationMode": "sea-level",
+    "elevationMeters": 10,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The complete mall skirt,western stair ends and canopy posts attach to the retained native field.10m center datum is approximate;raised eastern urban returns partly bury lower podium floors. Original street/base/accessibility gradients are unsurveyed.",
+    "groundModelY": 0,
+    "replaceFootprint": true,
+    "bounds": [
+      121.47025223125249,
+      31.23580474744743,
+      121.47213442678739,
+      31.23687394084804
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6bda6f691eede5ef2537ad943b3944de6391afdaec314ed674939322cb852eb7",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261031.pmtiles",
+    "wikidataId": "Q1161278",
+    "notes": "Complete original Shimao hotel/mall exterior. Stored Wikidata reference point lies roughly250m south;standardz15 PMTiles names Conrad Shanghai within the333m whole parent and supplies independent triangular tower/shoulder/mast parts. Whole155.906x76.075m parent is the low mall,not a333m extrusion. West triangle tip-X,wide lower wing+X;Nanjing Road-Z,Jiujiang Road+Z. Retained333.3m mast tops and mapped plan controls;photo-proportional285/246/220/185m roof sections,35m podium,western canopy,facade inventory and native grades remain approximate. Urban DEM returns partly bury the eastern lower podium;original city/entry levels are unsurveyed."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Five existing shared window grid,painted metal,concrete,membrane and granite graphs with metric UVs. No private or embedded image copies.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_grid",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wt/wtw/shimao_international_plaza/models/shimao-model.mjs",
+    "export": "buildShimaoSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.75,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.23,
+        "metallic": 0.17
+      },
+      "metal": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.53,
+        "metallic": 0.3
+      },
+      "podium": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "ground": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildShimaoDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.23,
+            "metallic": 0.17
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.53,
+            "metallic": 0.3
+          },
+          "podium": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 3
+      },
+      "street": {
+        "export": "buildShimaoStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.23,
+            "metallic": 0.17
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.53,
+            "metallic": 0.3
+          },
+          "podium": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "closeup": {
+        "export": "buildShimaoCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.23,
+            "metallic": 0.17
+          },
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.53,
+            "metallic": 0.3
+          },
+          "podium": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.6
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-complex-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -430,
+        200,
+        410
+      ],
+      "lookAt": [
+        -2,
+        160,
+        0
+      ]
+    },
+    {
+      "name": "whole-complex-district",
+      "reviewLod": "district",
+      "position": [
+        -430,
+        200,
+        410
+      ],
+      "lookAt": [
+        -2,
+        160,
+        0
+      ]
+    },
+    {
+      "name": "whole-complex-street",
+      "reviewLod": "street",
+      "position": [
+        -430,
+        200,
+        410
+      ],
+      "lookAt": [
+        -2,
+        160,
+        0
+      ]
+    },
+    {
+      "name": "whole-complex-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -430,
+        200,
+        410
+      ],
+      "lookAt": [
+        -2,
+        160,
+        0
+      ]
+    },
+    {
+      "name": "street-lattice-canopy",
+      "reviewLod": "street",
+      "position": [
+        -131.80273419181123,
+        15,
+        14.253993658198903
+      ],
+      "lookAt": [
+        -76.80193925171363,
+        6,
+        3.7224906335905135
+      ]
+    },
+    {
+      "name": "closeup-spires-and-crown",
+      "reviewLod": "closeup",
+      "position": [
+        -150,
+        317,
+        45
+      ],
+      "lookAt": [
+        -5,
+        289,
+        4
+      ]
+    }
+  ],
+  "limitations": [
+    "Complete original Shimao International Plaza hotel/mall exterior reconstructed from three inspected ordinary photos and current standard viewer PMTiles/global terrain. No downloaded mesh,private photo texture,bespoke survey or archival research. Current hotel/shop branding,digital advertising,interiors,furnishings,street furniture and surrounding city are excluded.",
+    "The stored121.471667,31.234444 reference point is roughly250m south. Standardz15 PMTiles identifies the actual Conrad Shanghai hotel POIs within a333m parent and separate triangular tower/shoulder and two mast polygons. Whole parent155.906x76.075m controls the low mall;the triangle tip lies west(-X),broad lower wing east(+X).+X is approximatelyENE,+Z SSE/Jiujiang Road,-Z NNW/Nanjing Road. Western lattice canopy is an original photo-proportional placement,not a surveyed doorway inventory.",
+    "Retained333.3m total controls equal mast tops. Independent185m/246m generalized parts guide major sections;the reconstructed top profile246/285/220/185m supplies the recessed triangular crown and sloping shoulders.285m and220m sections,35m eight-level podium,roof pavilions,canopy,truss/door details,60 reconstructed facade rows and individual pane/ornament inventories are approximate photo proportions,not anas-built engineering schedule. The upper dark roof triangles are opaque capped surfaces,not an optical atrium/interior replica.",
+    "Detailed source preserves individual panes/recess returns,fine mullions/floor bands,pale vertical/diagonal spines,triangular roof facets,twin tapered mast shafts/collars/braces,complete low horizontally banded podium and roof pavilions/plant,large lattice canopy with real diagonal members,physical vestibule recess,landing and native-sampled stairs/posts. Four browser tiers simplify small details while retaining the complete triangular/spire/podium silhouette. Shared patterned glazing is opaque;canopy panes approximate glass without optical transparency.",
+    "Five existing256px graphs provide window grid,painted-metal cladding/frames/masts,plain concrete podium,membrane roofs and granite foundation. Restrained vertex colors provide pale spines,brown roof pavilions andblue-gray portable glazing. Window binding uses the catalog blue grid. No private or embedded images. Source master and four browser tiers are separate;portable fallback differs from shared viewer surfaces.",
+    "Unmodified129x129/2m native field oversamples one ordinary global terrain tile.10m center base is approximate;native urban surface returns within the parent vary roughly6–36m absolute,andintersect several lower eastern podium storeys. Western foundations/stair ends/posts attach to the retained field;the east-side lower-floor visibility and original curb,foundation,accessible-entry gradients are not certified. Geometry is not distorted or terrain flattened to conceal that DEM limitation. Estimated tier errors6/3/1.5/.6m are approximate,not certified mesh distances;physical laptop/phone anddense-city timing remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "complete-triangular-hotel-and-mall",
+      "position": [
+        -430,
+        200,
+        410
+      ],
+      "lookAt": [
+        -2,
+        160,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "opposite-complete-complex",
+      "position": [
+        430,
+        195,
+        -410
+      ],
+      "lookAt": [
+        -2,
+        160,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "twin-spires-and-recessed-crown",
+      "position": [
+        -150,
+        317,
+        45
+      ],
+      "lookAt": [
+        -5,
+        289,
+        4
+      ],
+      "fov": 51
+    },
+    {
+      "name": "sloping-shoulders-and-pale-spines",
+      "position": [
+        80,
+        225,
+        75
+      ],
+      "lookAt": [
+        8,
+        220,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "western-lattice-entry-canopy",
+      "position": [
+        -131.80273419181123,
+        15,
+        14.253993658198903
+      ],
+      "lookAt": [
+        -76.80193925171363,
+        6,
+        3.7224906335905135
+      ],
+      "fov": 51
+    },
+    {
+      "name": "recessed-vestibule-and-native-stairs",
+      "position": [
+        -85.26522761620758,
+        3.4,
+        7.379367724691775
+      ],
+      "lookAt": [
+        -71.40007546295405,
+        3.3,
+        2.6881465865307606
+      ],
+      "fov": 54
+    },
+    {
+      "name": "complete-low-podium-and-terraces",
+      "position": [
+        -145,
+        100,
+        -185
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "fov": 51
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 81399,
+    "vertices": 162169,
+    "materials": 5,
+    "bytes": 6818300,
+    "sha256": "sha256:bdb84775b84b83cf413722e7d6b76272ad0863ff07103026a044487a5d075dbc"
+  }
+}

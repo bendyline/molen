@@ -1,0 +1,531 @@
+{
+  "id": "philadelphia_city_hall",
+  "title": "Philadelphia City Hall",
+  "wikidataId": "Q1138183",
+  "referenceCoordinate": {
+    "longitude": -75.163894,
+    "latitude": 39.952247
+  },
+  "module": "content/worldgen/source/places/dr/dr4/philadelphia_city_hall/models/philadelphia-model.mjs",
+  "builder": "buildPhiladelphiaLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_marble",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "ground": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.87,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.28,
+      "metallic": 0.12
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.5,
+      "metallic": 0.3
+    },
+    "bronze": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.66,
+      "metallic": 0.7
+    }
+  },
+  "exportLabel": "Molen complete Philadelphia City Hall courtyard wings mansard pavilions open portals clock tower and Penn original detailed source",
+  "expectedDraftMasterHash": "sha256:994c4a0c715e62188dd37a19e78e53e13d3bbab028479e0f492e102fd467dc19",
+  "visualBrief": "Complete pale-stone Second Empire City Hall: entire square low ensemble with three retained courtyard openings, dark slate mansards/dormers and eight raised portal/corner pavilions, four open arched passages, paired south-court round turrets, separately located north shaft/colonnade/four clock dials, pale ribbed tapered crown/open deck and original dark167m Penn likeness.",
+  "nativeAxes": "+X NNE along Broad Street toward the clock tower and north portal,-X SSW toward south Broad Street and the south portal;+Z ESE along Market Street,-Z WNW toward Dilworth Park;+Y up. Clock tower is near[35.5,-0.1],not centered over the open courtyard.",
+  "sourceFacts": {
+    "mappedLowParentMeters": 30,
+    "mappedTowerPartMeters": 137.77,
+    "mappedCrownPartMeters": 155.8,
+    "retainedTotalHeightMeters": 167,
+    "mappedLengthMeters": 142.405,
+    "mappedWidthMeters": 135.282,
+    "modelDatumMeters": 14,
+    "terrainTiles": 1
+  },
+  "limitations": [
+    "Complete original exterior: full retained low square ensemble and all three courtyard holes, projecting corner/portal pavilions, dark mansard roofs/dormers, south-court paired round turrets, all four open entry passages and the separate north clock tower/colonnade/four dials/tapered crown/Penn likeness. Neighboring buildings, Dilworth landscape, underground transit, temporary installations and optical interiors are excluded. Original geometry from eleven actually inspected ordinary photographs and attributed map/standard viewer terrain. No downloaded meshes, bespoke surveys, PDFs or archive research.",
+    "167m retained identity height is the final Penn envelope, not the height of the whole native30m low parent.137.77m native tower part17 and155.8m crown part38 are generalized map envelopes. The original staged shaft/clock/roof proportions must be matched against ordinary pictures; do not extrude the whole footprint to167m or present proposed floor/roof levels as surveyed. Original source uses a30m cornice,37m long mansards,47–53m portal/corner roof masses,47–74m shaft,74.5–95m colonnade,98.3–119m clock stage,119–147m pale tapered crown,147–155.8m upper deck/pedestal and155.8–167m Penn likeness. Fine levels are photo-proportional, not certified surveys. +X NNE along Broad Street toward the clock tower and north portal,-X SSW toward south Broad Street and the south portal;+Z ESE along Market Street,-Z WNW toward Dilworth Park;+Y up. Clock tower is near[35.5,-0.1],not centered over the open courtyard.",
+    "All proposed intermediate levels, fine roof/window/dormer/portal/column/sculpture counts and current street/door/floor/accessibility grades are original approximations, not as-built certification. The167m total is retained identity evidence. Standard129x129/2m field oversamples one coarse global urban DEM tile; datum14m is rounded. Terrain must not be flattened. Current visual/geographic acceptance is recorded separately in qa.json. Main courtyard and both service-court holes remain open; all four entry passages are physically open. The original inner bay/turret, dormer, facade, entrance and sculpture counts/proportions are approximate. Gates, transit works, temporary installations, neighboring buildings and landscape are excluded.",
+    "Six existing256px marble, granite, slate, window-grid, painted-metal and cast-bronze graphs are reused with metric UVs and linear vertex colors. No new/private/embedded image copies, baked shadows, photographic reflections, lettering or night lighting. Glazing is opaque; portable and shared appearances differ. The Penn figure and small stone ornaments are original medium-fi likenesses; no claim of exact sculptural reproduction or complete250-sculpture inventory.",
+    "Unmodified129x129/2m terrain covers256m across one ordinary global urban DEM tile;14m rounded center datum. Foundation/column contact retained without flattening. Original floor, curb, passage/door threshold and accessibility levels are approximate, not surveyed. District facade/clock/roof detail and far curves aggregate visibly. Tier errors10/5/2/.7m are estimates, not certified mesh distances. Physical phone/laptop and dense-city timings remain unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://homepages.bluffton.edu/~sullivanm/pennsylvania/philadelphia/cityhall/cityhall.html",
+      "observed": "South Broad Street complete tower and south entrance: pale stone base and ornate projecting entrance, dark mansards and dormers, separate tall clock tower with columned gallery, pale tapering crown and dark Penn statue. Neighbors and street traffic are excluded."
+    },
+    {
+      "url": "https://homepages.bluffton.edu/~sullivanm/pennsylvania/philadelphia/cityhall/cityhall.html",
+      "observed": "South facade upper detail: paired round columns, pediments, a projecting three-bay entrance pavilion, dark curved/sloping mansard panels, dormers and pale sculpture silhouettes. Fine ornament inventories are original approximations."
+    },
+    {
+      "url": "https://homepages.bluffton.edu/~sullivanm/pennsylvania/philadelphia/cityhall/cityhall.html",
+      "observed": "South entry close: a physically open large round-headed passage, pale voussoirs, rusticated ground stone, paired columns and multiple cornice levels. Gates/advertising/traffic fixtures are excluded."
+    },
+    {
+      "url": "https://homepages.bluffton.edu/~sullivanm/pennsylvania/philadelphia/cityhall/cityhall.html",
+      "observed": "Clock and crown: pale square clock stage with four large dark circular dials, corner columns and curved pediments; tall tapering white ribbed roof, dark sculpture silhouettes, upper circular viewing railing/pedestal and dark broad-brimmed Penn figure."
+    },
+    {
+      "url": "https://homepages.bluffton.edu/~sullivanm/pennsylvania/philadelphia/cityhall/cityhall.html",
+      "observed": "Tower lower gallery and clock: long straight square stone shaft below an open outer colonnade around recessed tall arched glazing, strong projecting cornices and a separate clock cube. Preserve the separation of these stages."
+    },
+    {
+      "url": "https://www.visitphilly.com/things-to-do/attractions/city-hall/",
+      "observed": "Elevated south view shows complete square ensemble: four projecting corner roof pavilions, taller south portal mansard, long lower slate roofs/dormers, rear courtyard wings and separate north clock tower. Independent neighboring towers are excluded."
+    },
+    {
+      "url": "https://www.visitphilly.com/things-to-do/attractions/city-hall/",
+      "observed": "High Penn/crown view: original figure has broad hat, coat, separated legs and one extended hand; circular railed observation deck and ribbed pale tapered pedestal sit below it. The figure will be an original polygonal likeness, not a downloaded scan or claim of exact sculptural reproduction."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:2013%20Philadelphia%20City%20Hall%20courtyard%20view%20to%20northwest.jpg",
+      "observed": "Northwest courtyard: large open court, simpler pale inner walls, dark mansard strips/dormers, round projecting bay and ground entrances. Fine window/air-conditioning inventories are approximate; landscape and temporary fittings are excluded."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:2013%20Philadelphia%20City%20Hall%20courtyard%20view%20to%20south.jpg",
+      "observed": "South courtyard portal: two round staircase turrets with conical dark roofs flank a central upper arched window and an open low pedestrian passage. Keep the courtyard and passage physically open."
+    },
+    {
+      "url": "https://homepages.bluffton.edu/~sullivanm/pennsylvania/philadelphia/cityhall/cityhall.html",
+      "observed": "West facade complete: long pale two-principal-floor base, dormer row, dark mansard strips, raised entrance and corner pavilions, lower inner roofs and separate north clock tower. Full ensemble must remain present in all tiers."
+    },
+    {
+      "url": "https://homepages.bluffton.edu/~sullivanm/pennsylvania/philadelphia/cityhall/cityhall.html",
+      "observed": "Northwest distant overall: north portal, broad low ensemble, stepped tower shaft/colonnade/clock/tapering crown and Penn. Clock tower is on the north wing rather than the center of the courtyard."
+    },
+    {
+      "url": "https://www.openstreetmap.org/relation/4720912",
+      "observed": "Retained Q1138183 complete building outline and three courtyard holes. Standard PMTiles contain40 actual owned components, including clipped duplicates; north tower is near local[35.5,-.1]."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-southwest-ensemble-and-north-clock-tower",
+      "position": [
+        -250,
+        150,
+        -240
+      ],
+      "lookAt": [
+        0,
+        70,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "complete-northeast-ensemble",
+      "position": [
+        240,
+        135,
+        240
+      ],
+      "lookAt": [
+        0,
+        65,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "open-courtyard-and-three-retained-holes",
+      "position": [
+        -20,
+        200,
+        -10
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "south-portal-paired-columns-and-mansard",
+      "position": [
+        -110,
+        24,
+        15
+      ],
+      "lookAt": [
+        -64,
+        21,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "south-courtyard-twin-round-stair-turrets",
+      "position": [
+        15,
+        14,
+        0
+      ],
+      "lookAt": [
+        -24,
+        20,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "open-north-clock-colonnade-and-four-dials",
+      "position": [
+        86,
+        107,
+        -52
+      ],
+      "lookAt": [
+        35.5,
+        100,
+        -0.1
+      ],
+      "fov": 51
+    },
+    {
+      "name": "ribbed-crown-open-deck-and-penn",
+      "position": [
+        95,
+        170,
+        75
+      ],
+      "lookAt": [
+        35.5,
+        146,
+        -0.1
+      ],
+      "fov": 51
+    },
+    {
+      "name": "through-the-open-west-pedestrian-portal",
+      "position": [
+        -2.3,
+        3,
+        -79
+      ],
+      "lookAt": [
+        -2.3,
+        3,
+        -20
+      ],
+      "fov": 51
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/dr/dr4/philadelphia_city_hall/models/philadelphia-model.mjs",
+    "export": "buildPhiladelphiaSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_marble",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "ground": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.28,
+        "metallic": 0.12
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.5,
+        "metallic": 0.3
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.66,
+        "metallic": 0.7
+      }
+    },
+    "errorMeters": 10,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPhiladelphiaDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.28,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.5,
+            "metallic": 0.3
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.66,
+            "metallic": 0.7
+          }
+        },
+        "errorMeters": 5
+      },
+      "street": {
+        "export": "buildPhiladelphiaStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.28,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.5,
+            "metallic": 0.3
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.66,
+            "metallic": 0.7
+          }
+        },
+        "errorMeters": 2
+      },
+      "closeup": {
+        "export": "buildPhiladelphiaCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.28,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.5,
+            "metallic": 0.3
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.66,
+            "metallic": 0.7
+          }
+        },
+        "errorMeters": 0.7
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "complete-city-hall-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -250,
+        150,
+        -240
+      ],
+      "lookAt": [
+        0,
+        70,
+        0
+      ]
+    },
+    {
+      "name": "complete-city-hall-district",
+      "reviewLod": "district",
+      "position": [
+        -250,
+        150,
+        -240
+      ],
+      "lookAt": [
+        0,
+        70,
+        0
+      ]
+    },
+    {
+      "name": "complete-city-hall-street",
+      "reviewLod": "street",
+      "position": [
+        -250,
+        150,
+        -240
+      ],
+      "lookAt": [
+        0,
+        70,
+        0
+      ]
+    },
+    {
+      "name": "complete-city-hall-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -250,
+        150,
+        -240
+      ],
+      "lookAt": [
+        0,
+        70,
+        0
+      ]
+    },
+    {
+      "name": "street-open-west-portal",
+      "reviewLod": "street",
+      "position": [
+        -2.3,
+        3,
+        -79
+      ],
+      "lookAt": [
+        -2.3,
+        3,
+        -20
+      ]
+    },
+    {
+      "name": "closeup-clock-crown-and-penn",
+      "reviewLod": "closeup",
+      "position": [
+        95,
+        170,
+        75
+      ],
+      "lookAt": [
+        35.5,
+        146,
+        -0.1
+      ]
+    }
+  ]
+}

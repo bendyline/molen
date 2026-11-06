@@ -1,0 +1,497 @@
+{
+  "id": "livadia_palace",
+  "title": "Livadia Palace",
+  "wikidataId": "Q1055311",
+  "referenceCoordinate": {
+    "longitude": 34.143560624,
+    "latitude": 44.467644481
+  },
+  "module": "content/worldgen/source/places/sz/szb/livadia_palace/models/livadia-model.mjs",
+  "builder": "buildLivadiaLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.83,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.67,
+      "metallic": 0.15
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.35,
+      "metallic": 0.07
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_painted_lap",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "water": {
+      "slot": "roof",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.25,
+      "metallic": 0.08
+    }
+  },
+  "exportLabel": "Molen complete Livadia white palace four open courts Italian arcades garden loggia square tower through entrance flat terrace balustrades rounded bay shared surfaces source",
+  "expectedDraftMasterHash": "sha256:fac4c53f65a1199ae3b93f46aec43367f866a771d6ce9c63bf728888f98b0166",
+  "visualBrief": "Complete principal white palace exterior:irregular two-storey ranges,four mapped open courtyard/lightwell voids,actual deep Italian-court arcades andupper gallery,long open garden loggia,three-light square tower/open base passage,raised middle garden pavilion,rounded ESE bay,flat roof terraces/balustrades andcourtyard fountain. Independent church,service blocks andwider park remain native context.",
+  "nativeAxes": "+X ESE rounded-bay end;-X WNW tower/Italian-courtyard end;+Z SSW rear/service side;-Z NNE garden loggia. +Y up.",
+  "sourceFacts": {
+    "mappedLengthMeters": 85.923,
+    "mappedWidthMeters": 57.598,
+    "modelDatumMeters": 151,
+    "ownedMapComponents": 1,
+    "terrainTiles": 2,
+    "heightBasis": "Approximate151m sea-level datum from unchanged129x129/2m standard viewer global Terrarium field(two tiles). Exterior foundations follow field-.35m;Italian-gallery floors follow field+.12m under common spring4.5m/ceiling6.9m. Bounded garden terrace at+.4m has visible retaining faces andthree broad flights toward the unchanged field. Tower entrance floor ramps from terrace tothe field. Original photo-proportional main eave12.1m,pavilion14.4m,tower22.2m/cap23.55m;generalized native11m height is not surveyed. No terrain flattening. Exact historic levels/thresholds/accessibility approximate."
+  },
+  "limitations": [
+    "Complete principal white palace exterior:irregular two-storey ranges,four mapped open courtyard/lightwell voids,actual deep Italian-court arcades andupper gallery,long open garden loggia,three-light square tower/open base passage,raised middle garden pavilion,rounded ESE bay,flat roof terraces/balustrades andcourtyard fountain. Independent church,service blocks andwider park remain native context.",
+    "The roof cap subtracts all four mapped openings. Main Italian court opens beyond its column line into three-meter-deep real galleries;upper rooms remain behind the balustraded terrace. Actual curved arch soffits andround columns replace opaque wall infill. The northern tower passage crosses the full mapped entrance block. All external windows face the actual corresponding masonry edge.",
+    "Approximate151m sea-level datum from unchanged129x129/2m standard viewer global Terrarium field(two tiles). Exterior foundations follow field-.35m;Italian-gallery floors follow field+.12m under common spring4.5m/ceiling6.9m. Bounded garden terrace at+.4m has visible retaining faces andthree broad flights toward the unchanged field. Tower entrance floor ramps from terrace tothe field. Original photo-proportional main eave12.1m,pavilion14.4m,tower22.2m/cap23.55m;generalized native11m height is not surveyed. No terrain flattening. Exact historic levels/thresholds/accessibility approximate.",
+    "Original interpretation of three ordinary pictures andstandard PMTiles/global terrain. Fine window/frieze/baluster/lantern/fountain inventories,roof joins andhistoric grades approximate. All four mapped roof/court voids retained;small lightwell interiors andoptical room interiors not authored. Independent church/service blocks,park planting andfurniture excluded. Shared graph tint/metric UVs only;no private/embedded images orcopied inscriptions/sculpture. Physical laptop/phone/dense-city timings unmeasured.",
+    "Five existing256px plaster,limestone,painted-metal,window-grid andpainted-wood graphs;metric UVs/linear colors. Small fountain water uses a flat shared-color material,not a private image. Skyline preserves all four voids,tower/gate,gallery volumes,garden loggia andcentral fountain while simplifying arches to broad openings andomitting glazing/ornament. District has coarse curved arcades andsparse glazing;street adds actual4/5court bays,eight garden bays andflat frames/railings;close-up keeps shaped balusters,denser curved soffits andflat curved frame ribbons;master keeps denser round profiles andfull curved frame sections. Error estimates3/1.5/.7/.25m are not measured mesh errors. Physical device timing unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://putidorogi-nn.ru/evropa/611-livadijskij-dvorets",
+      "observed": "Whole white principal palace,flat roof terraces,Italian courtyard,three smaller lightwells,lower long garden loggia,asymmetrical tower,end pavilion andindependent auxiliary blocks."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Patio_of_the_Livadia_Palace,_Crimea.jpg",
+      "observed": "Actual curved open Tuscan arcade,column capitals andarch soffits/deep gallery,closed windowed back wall,balustraded upper gallery andfountain."
+    },
+    {
+      "url": "https://novikov-architect.ru/livadia_dvorets.htm",
+      "observed": "Long two-storey white south garden front with actual lower loggia columns,tall arched windows,pilaster/frieze/cornice orders,three-light square tower andopen ground arch."
+    },
+    {
+      "url": "https://www.openstreetmap.org/relation/3903608",
+      "observed": "Retained85.923x57.598m individual outline with four mapped holes. Square tower/Italian court at-X end androunded bay at+X establish signed heading;recessed long-Z garden face carries original loggia. Native11m height is a generalized envelope only."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-garden-loggia-square-tower-and-palace",
+      "position": [
+        -71,
+        69,
+        -115
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "whole-rear-ranges-rounded-bay-and-four-voids",
+      "position": [
+        110,
+        64,
+        87
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "whole-native-palace-four-courtyard-plan",
+      "position": [
+        0,
+        174,
+        1
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "italian-court-fountain-arcades-and-upper-gallery",
+      "position": [
+        -13,
+        4.8,
+        8
+      ],
+      "lookAt": [
+        -13,
+        6,
+        -5
+      ],
+      "fov": 65
+    },
+    {
+      "name": "open-west-gallery-columns-and-arch-soffits",
+      "position": [
+        -23,
+        4.5,
+        6.08
+      ],
+      "lookAt": [
+        -17,
+        4.9,
+        6.08
+      ],
+      "fov": 65
+    },
+    {
+      "name": "long-open-garden-loggia-and-balustraded-terrace",
+      "position": [
+        8,
+        4.2,
+        -34
+      ],
+      "lookAt": [
+        8,
+        4,
+        -20
+      ],
+      "fov": 58
+    },
+    {
+      "name": "square-three-light-tower-and-through-passage",
+      "position": [
+        -51,
+        10,
+        -49
+      ],
+      "lookAt": [
+        -37.6,
+        11,
+        -24
+      ],
+      "fov": 51
+    },
+    {
+      "name": "flat-roof-balustrades-and-retained-lightwells",
+      "position": [
+        35,
+        61,
+        48
+      ],
+      "lookAt": [
+        -8,
+        9,
+        3
+      ],
+      "fov": 51
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sz/szb/livadia_palace/models/livadia-model.mjs",
+    "export": "buildLivadiaSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.83,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.67,
+        "metallic": 0.15
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.35,
+        "metallic": 0.07
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_painted_lap",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "water": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.25,
+        "metallic": 0.08
+      }
+    },
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLivadiaDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.35,
+            "metallic": 0.07
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.25,
+            "metallic": 0.08
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "street": {
+        "export": "buildLivadiaStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.35,
+            "metallic": 0.07
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.25,
+            "metallic": 0.08
+          }
+        },
+        "errorMeters": 0.7
+      },
+      "closeup": {
+        "export": "buildLivadiaCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.35,
+            "metallic": 0.07
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_painted_lap",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.25,
+            "metallic": 0.08
+          }
+        },
+        "errorMeters": 0.25
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-palace-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -71,
+        69,
+        -115
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "whole-palace-district",
+      "reviewLod": "district",
+      "position": [
+        -71,
+        69,
+        -115
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "whole-palace-street",
+      "reviewLod": "street",
+      "position": [
+        -71,
+        69,
+        -115
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "whole-palace-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -71,
+        69,
+        -115
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "street-italian-court-open-arcades",
+      "reviewLod": "street",
+      "position": [
+        -13,
+        4.8,
+        8
+      ],
+      "lookAt": [
+        -13,
+        6,
+        -5
+      ]
+    },
+    {
+      "name": "closeup-west-gallery-soffits",
+      "reviewLod": "closeup",
+      "position": [
+        -23,
+        4.5,
+        6.08
+      ],
+      "lookAt": [
+        -17,
+        4.9,
+        6.08
+      ]
+    }
+  ]
+}

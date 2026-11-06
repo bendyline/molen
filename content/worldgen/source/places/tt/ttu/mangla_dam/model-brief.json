@@ -1,0 +1,489 @@
+{
+  "id": "mangla_dam",
+  "title": "Mangla Dam",
+  "wikidataId": "Q1286541",
+  "referenceCoordinate": {
+    "longitude": 73.645213113,
+    "latitude": 33.128735667
+  },
+  "module": "content/worldgen/source/places/tt/ttu/mangla_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "rock": {
+      "slot": "foundation",
+      "graph": "stone_basalt"
+    },
+    "rockLight": {
+      "slot": "foundation",
+      "graph": "stone_basalt"
+    },
+    "gravel": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "chute": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "steel": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "rail": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    }
+  },
+  "exportLabel": "Molen original Mangla Dam and Jhelum works",
+  "expectedDraftMasterHash": "sha256:b33b368e31be8a64685677bde6a989719e661380bd5c3d3b03fc75d5323c451f",
+  "visualBrief": "Mangla’s curved rock-fill embankment and crest road, the separate western main spillway with chute and stepped stilling basin, and the mapped lower powerhouse and outlet works.",
+  "heightPolicy": "The reservoir shoreline and native crest-side service road establish the embankment plan. The west ridge and grades are interpolated from standard viewer terrain and the aerial reference. The tail basin and separate east-side powerhouse are tied to the current PMTiles. The western gate span, approach and chute profile are estimates from public photos and the downstream channel. The basin water elevations are static visual estimates.",
+  "nativeAxes": "+X east, +Z south, +Y up. The western leg faces the lake to the east and bends into the southern leg, which faces the lake to the north. The western spillway follows the basin toward the south.",
+  "sourceFacts": {
+    "mappedReservoirFeatureId": 105517553,
+    "mappedCrestRoadId": 35184619964780,
+    "selectedCrestLengthMeters": 3350.9576337729286,
+    "retainedLengthMeters": 3140,
+    "retainedHeightMeters": 147,
+    "westGateBays": 9,
+    "terrainDatum": 334.99723592708335,
+    "terrainGridStep": 48,
+    "terrainTiles": 49,
+    "nativePowerhouseId": 35184617155299,
+    "retainedDownstreamBridgeId": 35184559886796
+  },
+  "materialMethod": "Shared basalt, gravel, concrete, painted metal, window-grid and standing-seam graphs with metric UVs, linear tints and no embedded images.",
+  "limitations": [
+    "The reservoir shoreline and native crest-side service road establish the embankment plan. The west ridge and grades are interpolated from standard viewer terrain and the aerial reference. The tail basin and separate east-side powerhouse are tied to the current PMTiles. The western gate span, approach and chute profile are estimates from public photos and the downstream channel. The basin water elevations are static visual estimates.",
+    "The 48 m terrain review reproduces the original viewer elevations, including ten anomalous low cells in the regional extract. Elevation outliers are excluded only from authoring the local toe heights. Exact western gate coordinates, operating levels, observed road grades, precise embankment ties and auxiliary structures require follow-up. This static exterior shows the main complex in a dry spillway state."
+  ],
+  "references": [
+    {
+      "url": "https://jang.com.pk/news/1470516",
+      "imageUrl": "https://jang.com.pk/assets/uploads/updates/2025-05-13/1470516_9140182_News3_updates.jpg",
+      "observed": "Broad, light rock-fill downstream faces meet at a pronounced curve, with a thin dark crest road and irregular rock toes. Reservoir upstream of both faces."
+    },
+    {
+      "url": "https://www.dawn.com/news/1576681",
+      "imageUrl": "https://i.dawn.com/primary/2020/08/5f4754160200e.jpg",
+      "observed": "Separate concrete main spillway with tapered triangular buttresses, dark gate openings, a curved ogee chute, flared retaining banks and a fenced tailwater walkway."
+    },
+    {
+      "url": "https://www.travelmypakistan.com/mangla/",
+      "imageUrl": "https://www.travelmypakistan.com/wp-content/uploads/2014/03/MANGLA-DAM.jpg",
+      "observed": "Oblique crest view shows the drop into the broad stilling pool, two flared structural walls, the concrete baffle geometry and the long downstream channel. Pale rock-fill slopes stand to the left downstream. This is a visual control on the relative layout, not a georeferenced image."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The mapped shoreline, service road, separate powerhouse and tail channel establish the site. The northward embankment leg is sampled from the shoreline and terrain ridge. The modeled western gate frame is provisional."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-mangla-complex",
+      "position": [
+        1950,
+        2230,
+        2200
+      ],
+      "lookAt": [
+        -210,
+        -21,
+        -1290
+      ],
+      "fov": 50
+    },
+    {
+      "name": "main-curved-embankment",
+      "position": [
+        -1100,
+        680,
+        760
+      ],
+      "lookAt": [
+        -245,
+        13,
+        -950
+      ],
+      "fov": 50
+    },
+    {
+      "name": "western-spillway-face",
+      "position": [
+        -908,
+        82,
+        -2140
+      ],
+      "lookAt": [
+        -884,
+        2,
+        -2460
+      ],
+      "fov": 50
+    },
+    {
+      "name": "spillway-crest-to-basin",
+      "position": [
+        -898,
+        110,
+        -2593
+      ],
+      "lookAt": [
+        -910,
+        -39,
+        -2310
+      ],
+      "fov": 50
+    },
+    {
+      "name": "powerhouse-and-outlet",
+      "position": [
+        184,
+        83,
+        430
+      ],
+      "lookAt": [
+        -101,
+        -49,
+        183
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-road-bend",
+      "position": [
+        -570,
+        89,
+        -550
+      ],
+      "lookAt": [
+        -200,
+        35,
+        -395
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -89.2,
+    "scale": 5.25,
+    "focus": {
+      "center": [
+        -879,
+        -22,
+        -2395
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/tt/ttu/mangla_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "rock": {
+        "slot": "foundation",
+        "graph": "stone_basalt"
+      },
+      "rockLight": {
+        "slot": "foundation",
+        "graph": "stone_basalt"
+      },
+      "gravel": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "chute": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "steel": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "rail": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "rockLight": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "chute": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "rockLight": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "chute": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "rockLight": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "chute": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "mangla-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        1950,
+        2230,
+        2200
+      ],
+      "lookAt": [
+        -210,
+        -21,
+        -1290
+      ]
+    },
+    {
+      "name": "mangla-district",
+      "reviewLod": "district",
+      "position": [
+        1950,
+        2230,
+        2200
+      ],
+      "lookAt": [
+        -210,
+        -21,
+        -1290
+      ]
+    },
+    {
+      "name": "mangla-street",
+      "reviewLod": "street",
+      "position": [
+        1950,
+        2230,
+        2200
+      ],
+      "lookAt": [
+        -210,
+        -21,
+        -1290
+      ]
+    },
+    {
+      "name": "mangla-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        1950,
+        2230,
+        2200
+      ],
+      "lookAt": [
+        -210,
+        -21,
+        -1290
+      ]
+    }
+  ]
+}

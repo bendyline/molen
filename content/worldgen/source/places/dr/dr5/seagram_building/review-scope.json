@@ -1,0 +1,295 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json"
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 5
+  },
+  "sourceFacts": {
+    "architects": [
+      "Ludwig Mies van der Rohe",
+      "Philip Johnson",
+      "Kahn & Jacobs"
+    ],
+    "completed": 1958,
+    "heightMeters": 157,
+    "floors": 38,
+    "structuralBayMeters": 8.4582,
+    "curtainWallModuleMeters": 1.4097,
+    "bronzeMullionSectionMeters": [
+      0.1143,
+      0.1524
+    ],
+    "mainStructuralGrid": [
+      5,
+      3
+    ],
+    "rearExtraBay": 1,
+    "plazaSetbackMeters": 30.48,
+    "plazaRisers": 3,
+    "rearWingStories": 5,
+    "rearBustleStories": 10,
+    "originalMasterHash": "sha256:708547d760a77815f7e2aa590550e632f6c64411f5f64eed88aedb66d361b819",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-seagram-model.mjs#buildSeagram"
+  },
+  "reconstruction": {
+    "geometry": "LPC measured structural and curtain-wall modules control the43.2054×26.2890m exterior slab and full-height rear extra bay. Exact mapped tower and separate low/bustle parts corroborate the footprint. Original MoMA plans distinguish the narrow recessed lobby, open columns, rear volumes and two pools. Current owner stack plans confirm fifth- and eleventh-floor planted terraces.",
+    "facade": "Actual0.1143×0.1524m bronze I-section geometry, dark Muntz spandrels, translucent pink-gray panes and explicit45-degree blind slats at three stops. Owner exterior photographs govern bronze patina and low canopy details; intermediate floor and mechanical crown datums are reconstructed inside157m.",
+    "browserLevels": "Separate authored tiers retain full-height rear extra bay, unequal lower wings/bustle,157m crown, recessed lobby with open colonnade, Muntz marquee, raised pink plaza and two depressed reflecting pools. Dense hidden blind slats are represented by three pane-level blind stops rather than layered subpixel geometry."
+  },
+  "geographic": {
+    "heading": -2.076276720887223,
+    "reviewStatus": "reviewed retained signed map/picture placement; unsurveyed curb grades",
+    "replaceFootprint": true,
+    "notes": "Main slab center and signed facade frame are registered independently of the attached rear projection. Park Avenue plaza faces+Z/WNW,52nd Street lies+X/SSW and the low wings/bustle extend east to−Z. The exact parent footprint and named shaft parts agree with LPC/MoMA plans. Lowest local curbY0; raised granite plaza and reconstructed street fall are included. Existing source-local map-frame.json is retained byte-for-byte. Native+Z follows Park Avenue WNW and+X52nd Street SSW; the rear extra bay/bustle resolves the frame rotation. Plaza and street fall are architectural reconstructions rather than surveyed terrain; flat procedural Earth context does not verify native grades."
+  },
+  "geographicNote": "Main slab center and signed facade frame are registered independently of the attached rear projection. Park Avenue plaza faces+Z/WNW,52nd Street lies+X/SSW and the low wings/bustle extend east to−Z. The exact parent footprint and named shaft parts agree with LPC/MoMA plans. Lowest local curbY0; raised granite plaza and reconstructed street fall are included. Existing source-local map-frame.json is retained byte-for-byte. Native+Z follows Park Avenue WNW and+X52nd Street SSW; the rear extra bay/bustle resolves the frame rotation. Plaza and street fall are architectural reconstructions rather than surveyed terrain; flat procedural Earth context does not verify native grades.",
+  "limitations": [
+    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
+    "Curtain-wall modules and I sections follow measured published dimensions; internal floor heights, the mechanical crown split, individual blind settings, bronze patina, terrace planting and curb-grade reconstruction follow public images. Permanent pool hardware is modeled without frozen water jets. Temporary public sculpture, flags, tenant lettering, interiors and subterranean parking are excluded.",
+    "Detailed286644-triangle source master remains byte-identical, including original I-section extrusions,45-degree blind slats, fountain hardware, planting and lobby detail. Separate browser levels retain the distinctive slab, rear extra bay, unequal wings/bustle, mechanical crown, open columns/recessed opaque lobby, canopy, raised plaza and paired depressed pools. Skyline aggregates facade glazing/crown and omits trees, fine rails, pool rims and door cases. District restores sparse bronze mullions/floor bands and faceted trees. Street restores all37 main office bands, intermediate mullions, pool rims, steps, door cases, terrace railings and roof planting. Close-up restores original114.3×152.4mm bronze I-section dimensions and three-stop blind patterns as pane faces; individual blind slats and translucent layered interiors remain in the source master. Bronze and granite use shared graphs; foliage and opaque glass use local PBR colors without bitmap copies. Shared granite approximates the small travertine/marble surfaces and roof; tree shapes, bronze patina, applied blinds and revolving-door cases remain exterior approximations. Source-local map frame, surveyed module dimensions and architecture-relative grades are retained; exact native terrain/curb fit and physical laptop/phone timing remain unmeasured. Error values8/4/2/1m are authoring estimates, not certified whole-mesh errors."
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/seagram-runtime-model.mjs",
+    "export": "buildSeagramSkyline",
+    "surfaces": {
+      "bronze": {
+        "graph": "metal_bronze_cast",
+        "slot": "trim",
+        "roughness": 0.65,
+        "metallic": 0.7
+      },
+      "stone": {
+        "graph": "stone_granite",
+        "slot": "foundation",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.2,
+        "metallic": 0.28
+      },
+      "foliage": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSeagramDistrict",
+        "surfaces": {
+          "bronze": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.7
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 4
+      },
+      "street": {
+        "export": "buildSeagramStreet",
+        "surfaces": {
+          "bronze": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.7
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 2
+      },
+      "closeup": {
+        "export": "buildSeagramCloseup",
+        "surfaces": {
+          "bronze": {
+            "graph": "metal_bronze_cast",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.7
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-seagram-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        190,
+        152,
+        310
+      ],
+      "lookAt": [
+        0,
+        77,
+        -4
+      ]
+    },
+    {
+      "name": "whole-seagram-district",
+      "reviewLod": "district",
+      "position": [
+        190,
+        152,
+        310
+      ],
+      "lookAt": [
+        0,
+        77,
+        -4
+      ]
+    },
+    {
+      "name": "whole-seagram-street",
+      "reviewLod": "street",
+      "position": [
+        190,
+        152,
+        310
+      ],
+      "lookAt": [
+        0,
+        77,
+        -4
+      ]
+    },
+    {
+      "name": "whole-seagram-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        190,
+        152,
+        310
+      ],
+      "lookAt": [
+        0,
+        77,
+        -4
+      ]
+    },
+    {
+      "name": "district-open-colonnade",
+      "reviewLod": "district",
+      "position": [
+        32,
+        5,
+        24
+      ],
+      "lookAt": [
+        5,
+        5,
+        10
+      ]
+    },
+    {
+      "name": "street-pools-and-plaza",
+      "reviewLod": "street",
+      "position": [
+        -38,
+        16,
+        61
+      ],
+      "lookAt": [
+        0,
+        3,
+        27
+      ]
+    },
+    {
+      "name": "close-bronze-extrusions",
+      "reviewLod": "closeup",
+      "position": [
+        3.5,
+        32.8,
+        15.4
+      ],
+      "lookAt": [
+        2.55,
+        32.9,
+        13.1445
+      ]
+    },
+    {
+      "name": "street-rear-volumes",
+      "reviewLod": "street",
+      "position": [
+        92,
+        70,
+        -147
+      ],
+      "lookAt": [
+        0,
+        35,
+        -24
+      ]
+    }
+  ]
+}

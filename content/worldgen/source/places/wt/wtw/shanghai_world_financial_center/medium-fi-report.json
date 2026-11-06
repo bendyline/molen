@@ -1,27 +1,34 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+    "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985"
+  },
   "sourceHash": "sha256:dcc6c7893926b740e19aa905f55dbf00e8b61d06bff7c943dd6838b9573efeab",
   "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 5696,
   "runtimeLods": [
@@ -90,27 +97,30 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:8cf8eebb826d44df1557c1896e03ae68b17768f0f8d3458923dca156d20377e1",
+      "hash": "sha256:6365345ada37aa20a159f215d4b9ee04330ccad7b923a6359e304f7f30ca2936",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:9e1b79fb673780559cb1ba43c54dc8928bc0b9e16fed6b97e4c58867ec64ee05",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 3,
-        "triangles": 27386,
+        "drawCalls": 9,
+        "triangles": 53906,
         "groundY": -2,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          48,
-          272,
-          83
+          480,
+          506,
+          830
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -121,33 +131,37 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:8da09649fc7b909e9e142caadf7ae80478096f5739d5d2dae3f03e6ddbfcf097",
+      "hash": "sha256:64772820d09b97a3608b60513ad30fe12ef0fd929665bf5e74745e2b37038e16",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:9e1b79fb673780559cb1ba43c54dc8928bc0b9e16fed6b97e4c58867ec64ee05",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 3,
-        "triangles": 27386,
+        "drawCalls": 9,
+        "triangles": 53906,
         "groundY": -2,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          48,
-          272,
-          83
+          480,
+          506,
+          830
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -158,33 +172,37 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:7c8939d68640751569926fbca825632a6c1c87d3a5382e4d18a7c14e688463ca",
+      "hash": "sha256:c7a3ecc83e33185e11fb00e67d8d5f884dabdccde9a24b74a5851447863c6e87",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:9e1b79fb673780559cb1ba43c54dc8928bc0b9e16fed6b97e4c58867ec64ee05",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 3,
-        "triangles": 27386,
+        "drawCalls": 9,
+        "triangles": 53906,
         "groundY": -2,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          48,
-          272,
-          83
+          480,
+          506,
+          830
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -195,33 +213,37 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:7e1724adea5a3556422497b05348ae54004fc3b2225090eae03bcff0befed77d",
+      "hash": "sha256:76d01ee5dd757d1bf9329a8855a83eee3cd51d40528821707b729c632298707e",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:9e1b79fb673780559cb1ba43c54dc8928bc0b9e16fed6b97e4c58867ec64ee05",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
-        "drawCalls": 3,
-        "triangles": 27386,
+        "drawCalls": 9,
+        "triangles": 53906,
         "groundY": -2,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          48,
-          272,
-          83
+          480,
+          506,
+          830
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -232,33 +254,37 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:bef1e3783f0b7d4cf439859d12fc8123a0655a62a70c2500ca96243861869eaa",
+      "hash": "sha256:d498513d5ab3520c182bdf2b2685ff02ca74539ee113605c88b15e8b6ab88475",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:c0c6fe5e83838ca69fc01317accd118b3e83684719684e6e704946da0f48f9b6",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 8,
-        "triangles": 30242,
+        "drawCalls": 9,
+        "triangles": 30266,
         "groundY": -2,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          97,
-          308,
-          168
+          970,
+          866,
+          1680
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -269,33 +295,37 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:701e3b4b8ec85825a0d453301717b4c5a7dc82ef7eb264f4fa4ed86ebfd8625d",
+      "hash": "sha256:4e8fad614c8fa25692c921df7d375ebeeead8c5f9b98c8aa94c2455ea6ecadc3",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:c0c6fe5e83838ca69fc01317accd118b3e83684719684e6e704946da0f48f9b6",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 30242,
+        "drawCalls": 9,
+        "triangles": 30266,
         "groundY": -2,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          97,
-          308,
-          168
+          970,
+          866,
+          1680
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -306,33 +336,37 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:fb60f31d358517741460c1eb4f0c56b2d50fe7aa911bd00ebf8ff1f735a84902",
+      "hash": "sha256:df2f221f8758c104063abb3f4853608e466ab53d0b366afaccbeb83161939dd2",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:c0c6fe5e83838ca69fc01317accd118b3e83684719684e6e704946da0f48f9b6",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 8,
-        "triangles": 30242,
+        "drawCalls": 9,
+        "triangles": 30266,
         "groundY": -2,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          97,
-          308,
-          168
+          970,
+          866,
+          1680
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -343,33 +377,37 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:a6533418bd92597b6700a7b08dcd20262981f64506042b841df2db28d8ea817a",
+      "hash": "sha256:10ac9edbace44c38b65588e7aed0e1fd30a3bb77816b1153d790861dc97f587d",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:c0c6fe5e83838ca69fc01317accd118b3e83684719684e6e704946da0f48f9b6",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 30242,
+        "drawCalls": 9,
+        "triangles": 30266,
         "groundY": -2,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          97,
-          308,
-          168
+          970,
+          866,
+          1680
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -380,14 +418,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:78a6a9f44719639fbfa19b0dc4d07097a3ab3c658b1af4ff85066b5f5f4897a4",
+      "hash": "sha256:5c8eaf7aeb532e5cbea33328c8daf8a898a38ff671053286d61c3efe8754086b",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:b50e080689c23041d94cc8583827b4d1eb33200a5fdfa896476b6e346a8960b6",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -400,13 +442,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          194,
-          346,
-          336
+          1940,
+          1246,
+          3360
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -417,14 +459,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:ba2a5e3ab3be889abbb5caa8f28e187fd9a1d7621efeadcb1dccfbf6eca5a9c5",
+      "hash": "sha256:23c7a8534d4ee9111bd183efe23807cc461af26f36171d8d20dda1fdc3ce247d",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:b50e080689c23041d94cc8583827b4d1eb33200a5fdfa896476b6e346a8960b6",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -437,13 +483,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          194,
-          346,
-          336
+          1940,
+          1246,
+          3360
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -454,14 +500,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:f384760861c749cc7f706c9b25ac7e1ac6a002d1abfebd717222025826dcca18",
+      "hash": "sha256:e7893447c37546b4ddd90a5946561bdaab909088f6397d25d68d2ecde127863e",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:b50e080689c23041d94cc8583827b4d1eb33200a5fdfa896476b6e346a8960b6",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -474,13 +524,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          194,
-          346,
-          336
+          1940,
+          1246,
+          3360
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -491,14 +541,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:7657082c7a2b906916369248b208dec8ff7fa82eaec8af44379ffb9de5e9b5e8",
+      "hash": "sha256:49648c94e57492fa8193fb6abb7590a5bbc8b78e147e27ad8cbb50ac75828f8b",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:b50e080689c23041d94cc8583827b4d1eb33200a5fdfa896476b6e346a8960b6",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -511,13 +565,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          194,
-          346,
-          336
+          1940,
+          1246,
+          3360
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -528,14 +582,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:2db731836233c0bb2bb42e21dc5a3dbfa0072f0fa1f5034bc4172122dc4484e1",
+      "hash": "sha256:75ef6ee005b8d6ba752bb724fc5e7722f010e71a3103eaabab5aac988e1bde24",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:b50e080689c23041d94cc8583827b4d1eb33200a5fdfa896476b6e346a8960b6",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -548,13 +606,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          194,
-          346,
-          336
+          1940,
+          1246,
+          3360
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -565,14 +623,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/crown-front.png",
-      "hash": "sha256:94820b4c7554107359b8d1b307c7eeaf3a98b76d0e61d6d29ba1f120edcbe60d",
+      "hash": "sha256:517b81ca6296dc5717ae322a1aadd33e7f72d978b43e5456470da4cee877a858",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:9e1b79fb673780559cb1ba43c54dc8928bc0b9e16fed6b97e4c58867ec64ee05",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -602,14 +664,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/crown-side.png",
-      "hash": "sha256:bb8faed106e934ce4905d6f0dd487ef2dbf4af7762e2642713790edc0fb7675e",
+      "hash": "sha256:236f0866a64086e23a808c08c00152c8dc6aa5f5f91593b89d3876ce1c0ae5b4",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:9e1b79fb673780559cb1ba43c54dc8928bc0b9e16fed6b97e4c58867ec64ee05",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -639,14 +705,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/near-facade.png",
-      "hash": "sha256:5d4a612c662980d016d0a9e6b863ea15b1c97ff8a5720d192bdea369d6f80b48",
+      "hash": "sha256:50d46a559ef9dfa5d3b2a6d0e59e6c8ae04f5b8ac7eb6ae27baca03d0aab90e6",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:9e1b79fb673780559cb1ba43c54dc8928bc0b9e16fed6b97e4c58867ec64ee05",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -676,14 +746,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/lobby.png",
-      "hash": "sha256:8c9369deacf34b3e4d4722ec0dd9c5f7949fffec6d4411ef3d8668edc0dd23cc",
+      "hash": "sha256:9d52cee945c245373d5f573ab41b0eb7f4759b3e08b454679b9503673a012de9",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:9e1b79fb673780559cb1ba43c54dc8928bc0b9e16fed6b97e4c58867ec64ee05",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -713,14 +787,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/far-silhouette.png",
-      "hash": "sha256:f3068cc383f4c53e801f19625f23f79d1eb9295271969ad95185b87b307ab642",
+      "hash": "sha256:573d33638c7d21a8982f9464745f13e577e4d5964a0178aa0d52802c7bd66d15",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:9e1b79fb673780559cb1ba43c54dc8928bc0b9e16fed6b97e4c58867ec64ee05",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -750,14 +828,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-shanghai_world_financial_center-skyline.png",
-      "hash": "sha256:ae124716799e9fb8e5706aff07199dac27ba5344be5b45aff5d419b004142f97",
+      "path": "medium-fi/whole-shanghai-world-financial-center-skyline.png",
+      "hash": "sha256:f7ffc1c3288c94370da33c269a0151d7bfda5bfab9d418d0ee5a9cb7d9626064",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:b50e080689c23041d94cc8583827b4d1eb33200a5fdfa896476b6e346a8960b6",
         "level": "skyline",
         "distance": "street",
         "time": "noon",
@@ -787,14 +869,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-shanghai_world_financial_center-district.png",
-      "hash": "sha256:ca751ca50a4a32eb2a0be5c0fd4365d79bced6af66ac8206b32055d520bc2bb4",
+      "path": "medium-fi/whole-shanghai-world-financial-center-district.png",
+      "hash": "sha256:f6a31ed2a0c7b21f81bf92e9d63d15d4bb62d2bb7c2f2579efc5dac73026a852",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:c0c6fe5e83838ca69fc01317accd118b3e83684719684e6e704946da0f48f9b6",
         "level": "district",
         "distance": "street",
         "time": "noon",
@@ -824,14 +910,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-shanghai_world_financial_center-street.png",
-      "hash": "sha256:a93c91a5f0e947e6e67d5d7ba159a4f059d7e1c2259e0de5ae93e2484734c818",
+      "path": "medium-fi/whole-shanghai-world-financial-center-street.png",
+      "hash": "sha256:1ff965c351d5a54bbd0dfb2524f51721d52063fab8a1a9d7c4d99fb0b8409f27",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:f0bf21c7a5b26b4681e70a41784a56bcf12eb1196a230886ac882c6b1f3ea5af",
         "level": "street",
         "distance": "street",
         "time": "noon",
@@ -861,14 +951,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-shanghai_world_financial_center-closeup.png",
-      "hash": "sha256:c5d340c82227b213650e744c740d131f2f773da1fd520886966a9208e3416154",
+      "path": "medium-fi/whole-shanghai-world-financial-center-closeup.png",
+      "hash": "sha256:b4db1994ee15eb71dcd2808afc00ec1424fa8fa1b4f58fb1fbc9fa99f3b01414",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:9e1b79fb673780559cb1ba43c54dc8928bc0b9e16fed6b97e4c58867ec64ee05",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -898,14 +992,18 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:6873c631534b1c7f48f06a191dbb268b7e206431564d942c0c1ed99b964a2d16",
+      "hash": "sha256:5c7b1f12857647d9f21246204ceb80b12f0f2b326f3abb90b6d36e8e0bafceb5",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:b50e080689c23041d94cc8583827b4d1eb33200a5fdfa896476b6e346a8960b6",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -918,13 +1016,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          97,
-          308,
-          168
+          970,
+          866,
+          1680
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -935,33 +1033,37 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:701e3b4b8ec85825a0d453301717b4c5a7dc82ef7eb264f4fa4ed86ebfd8625d",
+      "hash": "sha256:4e8fad614c8fa25692c921df7d375ebeeead8c5f9b98c8aa94c2455ea6ecadc3",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:c0c6fe5e83838ca69fc01317accd118b3e83684719684e6e704946da0f48f9b6",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 30242,
+        "drawCalls": 9,
+        "triangles": 30266,
         "groundY": -2,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          97,
-          308,
-          168
+          970,
+          866,
+          1680
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -972,33 +1074,37 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:0b13cca05c7a986faa429f20f2e39a18f61f3dc0809ce5e069786dba7146e011",
+      "hash": "sha256:05c345368e701f87cdf2cae18e17dbebf691416d5c060c2c82a6d97781755822",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:f0bf21c7a5b26b4681e70a41784a56bcf12eb1196a230886ac882c6b1f3ea5af",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 36374,
+        "drawCalls": 9,
+        "triangles": 36398,
         "groundY": -2,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          97,
-          308,
-          168
+          970,
+          866,
+          1680
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -1009,33 +1115,37 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:b11efbffb7f387db8b2fd711790dcde9d59ceb9567da4b0a002517edf5050e7f",
+      "hash": "sha256:f67caa5abd619a75a613dd467b28a18ec390329daa49aab3f4ed5ec1380389fe",
       "state": {
+        "assetId": "molen.worldgen.structure.shanghai_world_financial_center",
+        "runtimeHash": "sha256:b551ab6f3d8a1e4c8deecdf05805f0e3240da30427308de797099a296b4b4985",
+        "lodHash": "sha256:9e1b79fb673780559cb1ba43c54dc8928bc0b9e16fed6b97e4c58867ec64ee05",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 53882,
+        "drawCalls": 9,
+        "triangles": 53906,
         "groundY": -2,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/shanghai_world_financial_center/terrain-fit.height.png"
         },
         "position": [
-          97,
-          308,
-          168
+          970,
+          866,
+          1680
         ],
         "lookAt": [
           0,
-          257,
+          356,
           0
         ],
         "graphReads": {
@@ -1046,7 +1156,8 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     }

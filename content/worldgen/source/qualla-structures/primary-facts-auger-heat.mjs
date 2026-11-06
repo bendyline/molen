@@ -1,7 +1,9 @@
 /** Bind the original independent HEAT outlines and operator-described parked construction. */
+
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { createHash } from 'node:crypto';
+
 const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
 export const augerHeatCases = {
   'auger-primary-whole-HEAT-way213400124-2018': 'coihueco_heat_telescope_1',

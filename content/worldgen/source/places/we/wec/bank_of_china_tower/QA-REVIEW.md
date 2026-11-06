@@ -1,0 +1,7 @@
+# Bank of China Tower — current exterior review
+
+Reviewed2026-10-31. Inspected49 current images:10 portable,10 shared-material/map-overlay and29 Earth-context images. All four successively truncated triangular shafts, silver triangular mega-frame, inclined glazed roofs, banking-hall belt and two roof-connected tapered masts remain coherent. Explicit same-camera skyline/district/street/close-up views were inspected at their actual recorded LODs. Near tiers restore clipped mullions, roof grids and mast collars; distant tiers deliberately aggregate those details. Shared stainless/granite use metric UVs without private images. Opaque vision glass, reconstructed connection sizes, coarse distant mast faceting and estimated LOD errors remain explicit. Geographic acceptance covers the retained signed map footprint and roof/mast quadrants; flat procedural review ground is not surveyed street or hillside fit.
+
+The detailed156,097-triangle source master is byte-identical. Browser triangles: 460 / 2110 / 3196 / 7648. Initial skyline+district download:221,216 bytes;close-up:620,328 bytes. Each level has three draws. Six GLBs validate with zero errors/warnings/images;three focused tests pass. Source/input/recipe and exact output hashes are in qa.json.
+
+Geographic anchor[114.16156875,22.2792677],heading1.293228519094. Exact mapped footprint replacement remains enabled. Surrounding water gardens, interiors and surveyed curb/terrain contact remain outside scope. No new bespoke research or terrain download.

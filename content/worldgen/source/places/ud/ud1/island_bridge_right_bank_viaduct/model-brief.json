@@ -1,0 +1,329 @@
+{
+  "id": "island_bridge_right_bank_viaduct",
+  "collectionId": "island_bridge",
+  "title": "Island Bridge — right-bank railway viaduct",
+  "wikidataId": "Q2498125",
+  "referenceCoordinate": {
+    "longitude": 24.127850465402506,
+    "latitude": 56.9377183424545
+  },
+  "module": "content/worldgen/source/places/ud/ud1/island_bridge_right_bank_viaduct/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-island-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_granite"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "walk": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "paintWall": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "mark": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    }
+  },
+  "exportLabel": "Molen original Island Bridge — right-bank railway viaduct master",
+  "expectedDraftMasterHash": "sha256:3b3c9ae9b635d9f932473729130eab1b1e5826ffb120d6d8ae4e0fd9445f229d",
+  "visualBrief": "Island Bridge — right-bank railway viaduct. Original, individually controlled member of the complete Island Bridge system. Complete controlled road span, soffit, open portal piers or bank abutments, individual railings, median and lamps; applicable upper or detached footbridges are geometry.",
+  "heightPolicy": "Absolute component origin 5m; lower galleries are supported by the upper roadway. Current native fit, original terrain/water and lower routes reviewed together in the parent assembly report. Elevations remain standard-map/terrain visualization approximations.",
+  "nativeAxes": "Signed parent-frame +X northeast and +Z southeast; component center 372.35,-5.2",
+  "sourceFacts": {
+    "component": {
+      "id": "island_bridge_right_bank_viaduct",
+      "title": "Island Bridge — right-bank railway viaduct",
+      "anchor": [
+        24.123876366,
+        56.93517095
+      ],
+      "heading": 0.851669109885,
+      "datum": 5,
+      "foundationY": -5,
+      "crown": 0.07,
+      "boxDepth": 1.15,
+      "haunch": 0.15,
+      "pierTopOffset": 1.7,
+      "halfWidth": 13.7095,
+      "roadHalfWidth": 11.95,
+      "galleryInner": 10.35,
+      "galleryDrop": 3.55,
+      "deckHeights": [
+        7.5,
+        7.2
+      ],
+      "piers": [
+        349,
+        396
+      ],
+      "ends": [
+        342.6,
+        402.1
+      ],
+      "center": [
+        372.35,
+        -5.2
+      ],
+      "part": "road",
+      "pierMaterial": "concrete",
+      "upperWalks": false,
+      "extraWalks": [],
+      "curveZ": [
+        [
+          342.6,
+          -5.2
+        ],
+        [
+          372.35,
+          -5.9
+        ],
+        [
+          402.1,
+          -5.8
+        ]
+      ],
+      "originY": 0,
+      "maskHalfWidth": 9.4,
+      "maskEndInset": 2,
+      "edgeOpenings": [
+        {
+          "side": -1,
+          "start": 390,
+          "end": 403
+        }
+      ]
+    },
+    "fullSystemReportedLengthMeters": 1795,
+    "mainRiverRetainedOutlineLengthMeters": 555.731
+  },
+  "limitations": [
+    "Ordinary-photo medium-fi exterior approximation. Span stations, deck heights, concealed bearing/foundation sections and modern renovation details are estimates; current standard map geometry controls position and extent.",
+    "The complete through-route inventory and current native placement are reviewed in qa.json and the parent assembly report; source geometry alone does not establish readiness.",
+    "No photograph textures, readable graffiti or signage, downloaded meshes, interiors, traffic or engineering-clearance certification. Physical laptop/phone timings remain unmeasured."
+  ],
+  "materialMethod": "Three shared concrete/granite/painted-metal graphs with metric UVs, linear palette tints and four semantic bindings; zero embedded images or private copied textures.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Salu_tilts_Riga,_08-2011.jpg",
+      "observations": "Ordinary exterior shape, sheltered pedestrian gallery and bridge/pier context. No image pixels copied."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Island_Bridge_(2).jpg",
+      "observations": "Ordinary exterior shape, sheltered pedestrian gallery and bridge/pier context. No image pixels copied."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Island_Bridge_(3).jpg",
+      "observations": "Ordinary exterior shape, sheltered pedestrian gallery and bridge/pier context. No image pixels copied."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Island_Bridge.jpg",
+      "observations": "Ordinary exterior shape, sheltered pedestrian gallery and bridge/pier context. No image pixels copied."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Aerial_view,_sun_and_clouds_in_Riga.jpg",
+      "observations": "Ordinary exterior shape, sheltered pedestrian gallery and bridge/pier context. No image pixels copied."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-component",
+      "position": [
+        0,
+        15,
+        50.574999999999996
+      ],
+      "lookAt": [
+        0,
+        6.209161758422852,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "support-and-parapet",
+      "position": [
+        10,
+        9,
+        25.709500312805176
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 50
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ud/ud1/island_bridge_right_bank_viaduct/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "walk": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "paintWall": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "mark": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      }
+    },
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "paintWall": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "mark": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.4
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "paintWall": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "mark": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.12
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "paintWall": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "mark": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.04
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.5,
+    "focus": {
+      "center": [
+        0,
+        6.209161758422852,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": []
+}

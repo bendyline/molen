@@ -1,7 +1,9 @@
 /** Bind the post2013 whole forty-foot CLF housing to its written construction and site records. */
+
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { createHash } from 'node:crypto';
+
 const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
 export function inspectAugerClfPrimaryFacts({ dir, proof, controls: P, frame: f }) {
   const fail = (reason) => ({ status: 'needs-review', reason });

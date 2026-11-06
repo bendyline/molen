@@ -20,7 +20,18 @@ import {
   type ModelSignalVisual,
 } from './model-signals';
 import type { VehicleCameraOptions, VehicleCameraPose } from './vehicle-camera';
+import { drawGlassInOnePass } from './vehicle-glass';
 import { createVehicleInteriorVisual, type VehicleInteriorVisual } from './vehicle-interior';
+
+/** The group the cockpit-controls generator adds beside a model's cockpit: levers and legends. */
+const FLIGHT_CONTROLS_NODE = 'flight-controls';
+/**
+ * Angular radius (radians) below which a cabin part is left out of the frame: under four pixels
+ * across in a 1080p view with a 60° field of view. From a chase camera fifteen meters back,
+ * gauges, needles and switches are each smaller than that behind the canopy, and each was a draw:
+ * the P-51's cockpit, 415 meshes, was a quarter of a takeoff's draws in chase view.
+ */
+const CABIN_DETAIL_ANGLE = 0.002;
 
 export interface AircraftVisual {
   setLivery(data: LiveryData | undefined): void;
@@ -37,10 +48,12 @@ export interface AircraftVisual {
     timeSeconds?: number,
   ): void;
   /**
-   * The camera, in the coordinates of `object.position`. Cabin nodes (the spec's interior) are
-   * drawn only near it: from farther away a cockpit is a few pixels behind the canopy, yet it held
-   * most of an aircraft's draw calls, and as many again in the shadow pass. Boarded and chase
-   * views are always near enough.
+   * The camera, in the coordinates of `object.position`. Cabin nodes (the spec's interior and the
+   * generated flight controls) are drawn only near it: from farther away a cockpit is a few pixels
+   * behind the canopy, yet it held most of an aircraft's draw calls, and as many again in the
+   * shadow pass. Boarded and chase views are always near enough, but within the cabin a part too
+   * small to see from the camera (CABIN_DETAIL_ANGLE) leaves the frame through its render layers,
+   * so a binding's or damage's own `visible` is never overridden.
    */
   updateView(camera: readonly [number, number, number]): void;
   dispose(): void;
@@ -76,6 +89,7 @@ export function createAircraftVisual(
     if (o instanceof THREE.Mesh) {
       o.castShadow = !o.name.includes('canopy') && !o.name.includes('bubble');
       o.receiveShadow = true;
+      drawGlassInOnePass(o);
     }
     const list = moving.get(o.name) ?? [];
     list.push(o);
@@ -85,7 +99,9 @@ export function createAircraftVisual(
     for (const node of moving.get(name) ?? []) node.rotation[axis] = angle;
   };
   let appearance = livery === undefined ? undefined : applyLivery(model, livery);
-  const cabin = (spec.visual.interior?.nodes ?? []).flatMap((name) => moving.get(name) ?? []);
+  const cabin = [...(spec.visual.interior?.nodes ?? []), FLIGHT_CONTROLS_NODE].flatMap(
+    (name) => moving.get(name) ?? [],
+  );
   // Nobody walks into a cockpit (boarding mounts the seat), and its hundreds of small parts made
   // the walker's collision tree beside a parked aircraft take a third of a second to build.
   for (const node of cabin)
@@ -96,6 +112,26 @@ export function createAircraftVisual(
   const damage = createAircraftDamageVisual(model, spec);
   let propellers = createAircraftPropellers(model, spec);
   let cabinShown = true;
+  // Cabin parts, farthest-seen first, with the camera distance from the pilot's eye beyond which
+  // each is too small to draw. The first `detailed` are drawn; the rest keep their layers here.
+  model.updateMatrixWorld(true);
+  const modelScale = model.matrixWorld.getMaxScaleOnAxis();
+  const details: { mesh: THREE.Mesh; reach: number; layers: number }[] = [];
+  const listed = new Set<THREE.Object3D>();
+  for (const node of cabin)
+    node.traverse((object) => {
+      const mesh = object as THREE.Mesh;
+      if (!mesh.isMesh || listed.has(mesh)) return;
+      listed.add(mesh);
+      if (mesh.geometry.boundingSphere === null) mesh.geometry.computeBoundingSphere();
+      const radius =
+        ((mesh.geometry.boundingSphere?.radius ?? 0) * mesh.matrixWorld.getMaxScaleOnAxis()) /
+        modelScale;
+      details.push({ mesh, reach: radius / CABIN_DETAIL_ANGLE, layers: mesh.layers.mask });
+    });
+  details.sort((a, b) => b.reach - a.reach);
+  let detailed = details.length;
+  const eye = new THREE.Vector3();
   return {
     setLivery(data) {
       propellers.dispose();
@@ -242,9 +278,23 @@ export function createAircraftVisual(
       const distance = Math.hypot(p.x - camera[0], p.y - camera[1], p.z - camera[2]);
       // A little hysteresis, so a camera at the edge does not flicker the cabin.
       const shown = distance < cabinRange * (cabinShown ? 1.1 : 1);
-      if (shown === cabinShown) return;
-      cabinShown = shown;
-      for (const node of cabin) node.visible = shown;
+      if (shown !== cabinShown) {
+        cabinShown = shown;
+        for (const node of cabin) node.visible = shown;
+      }
+      if (!shown) return;
+      eye.fromArray(spec.pilotEye).applyQuaternion(model.quaternion).add(p);
+      const near = Math.hypot(eye.x - camera[0], eye.y - camera[1], eye.z - camera[2]);
+      // The same hysteresis per part: drawn again within its reach, left out beyond a tenth more.
+      for (let next = details[detailed]; next !== undefined && near < next.reach; ) {
+        next.mesh.layers.mask = next.layers;
+        next = details[++detailed];
+      }
+      for (let last = details[detailed - 1]; last !== undefined && near > last.reach * 1.1; ) {
+        last.layers = last.mesh.layers.mask;
+        last.mesh.layers.mask = 0;
+        last = details[--detailed - 1];
+      }
     },
     dispose() {
       damage.reset();

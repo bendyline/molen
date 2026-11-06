@@ -1,0 +1,479 @@
+{
+  "id": "salto_grande_dam",
+  "title": "Salto Grande Dam",
+  "wikidataId": "Q2116393",
+  "referenceCoordinate": {
+    "longitude": -57.938498675,
+    "latitude": -31.274731806
+  },
+  "module": "content/worldgen/source/places/6d/6dq/salto_grande_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "light": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "shade": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "deck": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "gravel": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "bank": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "steel": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "ochre": {
+      "slot": "door",
+      "graph": "metal_painted"
+    }
+  },
+  "exportLabel": "Molen original Salto Grande Dam and Uruguay River crossing",
+  "expectedDraftMasterHash": "sha256:782789f6c8d38fde5b5d19a2e2a58b144b1578d48d5e5680aa214b5d4c2688d1",
+  "visualBrief": "Salto Grande Dam’s 852 m concrete crossing, nineteen-bay spillway, paired 236 m generating halls, both earthfill wings, yellow crest cranes, and combined international road and rail deck.",
+  "heightPolicy": "The modeled road crown is approximately 39.5 m at the main crossing. The fixed absolute vertical origin is 32.0116 m. Normal level 14 and 15 tile probes sample 32.13–32.65 m in the reservoir and 3.46–3.56 m below the dam.",
+  "nativeAxes": "+X southeast along the combined road and rail crossing from Argentina toward Uruguay. +Z southwest down the Uruguay River.",
+  "sourceFacts": {
+    "mappedIdentity": "Q2116393",
+    "nativeWaterIds": [
+      4091073,
+      11017923
+    ],
+    "concreteLengthMeters": 852,
+    "spillwayLengthMeters": 361,
+    "spillwayBays": 19,
+    "generatingHallLengthMeters": 236,
+    "turbinesPerHall": 7,
+    "publishedEarthfillLengthsMeters": [
+      849,
+      786
+    ],
+    "modeledCrossingLengthMeters": 2466.87586,
+    "modeledCrestElevation": 39.5,
+    "terrainTiles": 11
+  },
+  "materialMethod": "Six shared material graphs for board-formed and plain concrete, gravel, standing-seam metal, painted steel and window glazing, with metric UVs and zero embedded images.",
+  "limitations": [
+    "The modeled road crown is approximately 39.5 m at the main crossing. The fixed absolute vertical origin is 32.0116 m. Normal level 14 and 15 tile probes sample 32.13–32.65 m in the reservoir and 3.46–3.56 m below the dam.",
+    "The main shape, crossing alignment and channel fit use standard PMTiles and the photographed exterior. Exact gate settings, trim and embankment grades are approximate.",
+    "The model shows the disused rail as static track. Interiors, generating equipment below the turbine deck and the separately planned navigation system are outside this exterior.",
+    "The deck follows retained map centerlines and approximates the surveyed end grades with standard terrain. Host terrain and water levels can vary."
+  ],
+  "references": [
+    {
+      "url": "https://www.iatasa.com/Obra/Detalle/18",
+      "imageUrl": "https://www.iatasa.com/files/obras/obra-18-5.webp",
+      "observed": "Downstream aerial photo shows central spillway, two covered generating halls, pale roof strips and yellow cranes, divider piers and rock embankments."
+    },
+    {
+      "url": "https://saltogrande.org/ficha_tecnica.php",
+      "observed": "The operator gives 852 m concrete length, 361 m spillway with 19 spans, 236 m engine room, 786 and 849 m earthfill wings, and 14 turbines."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The road and disused rail deck meet the main dam across both reservoir and tailwater shores at the candidate coordinates."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "central-crossing",
+      "position": [
+        183,
+        126,
+        420
+      ],
+      "lookAt": [
+        0,
+        -2,
+        34
+      ],
+      "fov": 50
+    },
+    {
+      "name": "whole-site",
+      "position": [
+        90,
+        710,
+        1800
+      ],
+      "lookAt": [
+        0,
+        -4,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "spillway",
+      "position": [
+        -40,
+        60,
+        145
+      ],
+      "lookAt": [
+        0,
+        -9,
+        16
+      ],
+      "fov": 50
+    },
+    {
+      "name": "argentina-powerhouse",
+      "position": [
+        -348,
+        47,
+        169
+      ],
+      "lookAt": [
+        -299,
+        -5,
+        44
+      ],
+      "fov": 50
+    },
+    {
+      "name": "uruguay-powerhouse",
+      "position": [
+        369,
+        48,
+        169
+      ],
+      "lookAt": [
+        293,
+        -5,
+        47
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-road-and-rail",
+      "position": [
+        134,
+        45,
+        -53
+      ],
+      "lookAt": [
+        0,
+        0,
+        -2
+      ],
+      "fov": 50
+    },
+    {
+      "name": "argentina-road-joint",
+      "position": [
+        -1300,
+        28,
+        53
+      ],
+      "lookAt": [
+        -1235,
+        4,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "uruguay-road-joint",
+      "position": [
+        1262,
+        27,
+        50
+      ],
+      "lookAt": [
+        1190,
+        4,
+        0
+      ],
+      "fov": 52
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -57,
+    "scale": 2.8,
+    "focus": {
+      "center": [
+        0,
+        -4,
+        45
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/6d/6dq/salto_grande_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "light": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "shade": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "deck": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "gravel": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "bank": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "steel": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "ochre": {
+        "slot": "door",
+        "graph": "metal_painted"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "light": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "shade": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "bank": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "ochre": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "light": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "shade": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "bank": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "ochre": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "light": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "shade": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "bank": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "ochre": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "salto-grande-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        183,
+        126,
+        420
+      ],
+      "lookAt": [
+        0,
+        -2,
+        34
+      ]
+    },
+    {
+      "name": "salto-grande-district",
+      "reviewLod": "district",
+      "position": [
+        183,
+        126,
+        420
+      ],
+      "lookAt": [
+        0,
+        -2,
+        34
+      ]
+    },
+    {
+      "name": "salto-grande-street",
+      "reviewLod": "street",
+      "position": [
+        183,
+        126,
+        420
+      ],
+      "lookAt": [
+        0,
+        -2,
+        34
+      ]
+    },
+    {
+      "name": "salto-grande-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        183,
+        126,
+        420
+      ],
+      "lookAt": [
+        0,
+        -2,
+        34
+      ]
+    }
+  ]
+}

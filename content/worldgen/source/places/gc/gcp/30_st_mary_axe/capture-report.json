@@ -6,7 +6,7 @@
   "reflectionMode": "sky-pmrem",
   "assetId": "molen.worldgen.structure.30_st_mary_axe",
   "qaCamerasHash": "sha256:7479b1fc23c7f16bca32ff66e0d42c525ec84af5125e8867d94472b7165aa629",
-  "inputHash": "sha256:b6d3c3d94d71a2af1c4e1a33303d9ce4c7f98a29b1f6946d7a7495e5f4cf52d1",
+  "inputHash": "sha256:98df0e5aebb96051e2c603f3d0e21abb55ac2d27a1dc1268a981a8f559047e31",
   "sourceHash": "sha256:5e124fd1e7d1ce6554f91a4eb20fb5035fc8fa0788bd5aa2b6984971fda0b16f",
   "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
   "sceneHash": "sha256:7621bd063555d52dda2bfbebc9dbdfb4a0290c6c25352907a1c5da7f9c25cbd3",
@@ -73,5 +73,37 @@
     "previousReportHash": "sha256:cfb48d0c0cf91bcce34a3375f5ef3068b0bf93bbd0b0b8274d3b08089159b1da",
     "sourceRebuild": "assets-4c110226cdb7e02d",
     "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  },
+  "reviewCameraOnlyRebinding": {
+    "previousInputHash": "sha256:b6d3c3d94d71a2af1c4e1a33303d9ce4c7f98a29b1f6946d7a7495e5f4cf52d1",
+    "inputHash": "sha256:98df0e5aebb96051e2c603f3d0e21abb55ac2d27a1dc1268a981a8f559047e31",
+    "reason": "Only review-camera identifiers were normalized to hyphens and the synthetic Earth-context camera scale was increased to frame the whole tower. All six GLBs, shared-material bindings, portable scene/cameras and geographic placement remain unchanged. Previously inspected portable/shared/map evidence is retained, not relabeled as fresh renders.",
+    "sceneHash": "sha256:7621bd063555d52dda2bfbebc9dbdfb4a0290c6c25352907a1c5da7f9c25cbd3",
+    "outputPins": [
+      {
+        "path": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/models/source.glb",
+        "hash": "sha256:5e124fd1e7d1ce6554f91a4eb20fb5035fc8fa0788bd5aa2b6984971fda0b16f"
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/30_st_mary_axe/model.glb",
+        "hash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3"
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/30_st_mary_axe/model.skyline.glb",
+        "hash": "sha256:660f3fd979b7a6dfdc00f2337ea9ed6649a755d618157df7ff9620e6f93b352a"
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/30_st_mary_axe/model.district.glb",
+        "hash": "sha256:e0b78e4078e907b623d45c91c6f7b5a70077c9a3afb7b9f17752ddcd8054a1fb"
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/30_st_mary_axe/model.street.glb",
+        "hash": "sha256:d8c357798cd15336d87ef96298155e1343689a958a4ddb69cd049ca12d5ce348"
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/30_st_mary_axe/model.closeup.glb",
+        "hash": "sha256:5ca3c86045539c8dd84998e36d31c83819b6cb40b72a80f6d55fd69f44b1ab5c"
+      }
+    ]
   }
 }

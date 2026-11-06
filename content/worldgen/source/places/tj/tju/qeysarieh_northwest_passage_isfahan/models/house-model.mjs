@@ -4,8 +4,8 @@ import fs from 'node:fs';
 import { MeshBufferBuilder } from '../../../../../../../../packages/worldgen/dist/kernel.mjs';
 import {
   beam,
-  normalFor,
   cross,
+  normalFor,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
 export const P = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url))),
@@ -126,9 +126,20 @@ function cap(o, k, holes, offset, up) {
   }
 }
 function floorStrip(o, offset, up) {
-  for (let i=0;i<R.length-1;i++) {
-    const a=sectionAt(P.distances[i]),b=sectionAt(P.distances[i+1]);
-    face(o,'base',[a.point(-P.halfWidth,offset),b.point(-P.halfWidth,offset),b.point(P.halfWidth,offset),a.point(P.halfWidth,offset)],[0,up,0]);
+  for (let i = 0; i < R.length - 1; i++) {
+    const a = sectionAt(P.distances[i]),
+      b = sectionAt(P.distances[i + 1]);
+    face(
+      o,
+      'base',
+      [
+        a.point(-P.halfWidth, offset),
+        b.point(-P.halfWidth, offset),
+        b.point(P.halfWidth, offset),
+        a.point(P.halfWidth, offset),
+      ],
+      [0, up, 0],
+    );
   }
 }
 function longFace(o, k, side, a, b, y0, y1, n = P.halfWidth) {
@@ -251,7 +262,8 @@ export const bayCentres = Array.from(
 export function buildHouse(o, _f, lod = 3) {
   componentEvidence.length = 0;
   cache.clear();
-  for(const [i,pair] of planEdges.entries())for(const p of pair)cache.set(p.join(','),P.floorControls[i]);
+  for (const [i, pair] of planEdges.entries())
+    for (const p of pair) cache.set(p.join(','), P.floorControls[i]);
   const N = [0, 6, 8, 16][lod],
     holes = lod
       ? bayCentres.map((c) =>
@@ -261,8 +273,8 @@ export function buildHouse(o, _f, lod = 3) {
           ]),
         )
       : [];
-  floorStrip(o,-P.foundationDepth,-1);
-  floorStrip(o,0,1);
+  floorStrip(o, -P.foundationDepth, -1);
+  floorStrip(o, 0, 1);
   cap(o, 'roof', holes, P.roofHeight, 1);
   for (const side of [-1, 1]) {
     for (let i = 0; i < P.distances.length - 1; i++)
@@ -278,7 +290,17 @@ export function buildHouse(o, _f, lod = 3) {
   for (const s of [0, P.lengthMeters]) {
     const a = sectionAt(s),
       n = s === 0 ? a.t.map((v) => -v) : a.t;
-    face(o,'base',[a.point(-P.halfWidth,-P.foundationDepth),a.point(P.halfWidth,-P.foundationDepth),a.point(P.halfWidth,0),a.point(-P.halfWidth,0)],[n[0],0,n[1]]);
+    face(
+      o,
+      'base',
+      [
+        a.point(-P.halfWidth, -P.foundationDepth),
+        a.point(P.halfWidth, -P.foundationDepth),
+        a.point(P.halfWidth, 0),
+        a.point(-P.halfWidth, 0),
+      ],
+      [n[0], 0, n[1]],
+    );
     for (const side of [-1, 1])
       face(
         o,
@@ -381,7 +403,7 @@ const root = 'content/worldgen/source/places/tj/tju/qeysarieh_northwest_passage_
   look = [0, 3, 0],
   west = sectionAt(0),
   east = sectionAt(P.lengthMeters),
-  j = sectionAt(P.junctions[Math.min(3,P.junctions.length-1)]?.distance ?? P.lengthMeters / 2);
+  j = sectionAt(P.junctions[Math.min(3, P.junctions.length - 1)]?.distance ?? P.lengthMeters / 2);
 export const houseModel = {
   id: P.model,
   key: P.model,
@@ -455,5 +477,6 @@ export const houseModel = {
     },
   },
   limitations: P.limitations,
-  sourceLicense: 'Original deterministic geometry/repository license. Original OSM tunnel-tagged northwest annex,4 native controls plus derived accepted-core seam, full original records and ODbL attribution retained. Same exact cleared Coste engraving public domain. Width/height/vertical profile/roof census/finish are explicit unsurveyed estimates; no protected image pixels.',
+  sourceLicense:
+    'Original deterministic geometry/repository license. Original OSM tunnel-tagged northwest annex,4 native controls plus derived accepted-core seam, full original records and ODbL attribution retained. Same exact cleared Coste engraving public domain. Width/height/vertical profile/roof census/finish are explicit unsurveyed estimates; no protected image pixels.',
 };

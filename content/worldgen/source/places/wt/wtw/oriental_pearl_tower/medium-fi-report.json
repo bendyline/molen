@@ -1,27 +1,34 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+    "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a"
+  },
   "sourceHash": "sha256:9f16c039d90dd9495feaf1f248772ab924d04f78da164364584c872f266872ee",
   "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 5696,
   "runtimeLods": [
@@ -90,27 +97,30 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:c1453d0a05c3103a2921e9f205c1e14bfa30e579a081cdd064ad4514d839c766",
+      "hash": "sha256:932b982a12459bb3c501f32aeef4ebf182ca0d2a553a1316da734d6dec73d583",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:38bcdca4e368941bd19c41651e47b88d09d8455e52aa307b65302499c45a7b3d",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 5,
-        "triangles": 60318,
+        "drawCalls": 11,
+        "triangles": 87374,
         "groundY": -8,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          48,
-          260,
-          68.75
+          480,
+          494,
+          815.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -122,33 +132,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:f1977a067ed8261643b390093ce9f80aa56595657523da4c431983eaaea3a697",
+      "hash": "sha256:06c80448ee8308c106f6c6465f47e55eb3c57a4f7ff2bdb0e2a6a81ae82cea2c",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:38bcdca4e368941bd19c41651e47b88d09d8455e52aa307b65302499c45a7b3d",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 5,
-        "triangles": 60318,
+        "drawCalls": 11,
+        "triangles": 87374,
         "groundY": -8,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          48,
-          260,
-          68.75
+          480,
+          494,
+          815.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -160,33 +174,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:59cee725b6b8c59309bd0f6c2408e3a12dd1801462e259072421eba0014cbd1e",
+      "hash": "sha256:12cb2123489ffaa5dfa3e6b7c8302dc956f047b5c218827fe2a636d28432397f",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:38bcdca4e368941bd19c41651e47b88d09d8455e52aa307b65302499c45a7b3d",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 5,
-        "triangles": 60318,
+        "drawCalls": 11,
+        "triangles": 87374,
         "groundY": -8,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          48,
-          260,
-          68.75
+          480,
+          494,
+          815.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -198,33 +216,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:b1f45dc8cdd67db70c30aa9b2fd6de64b951c56683094c130c8eff6da3d15cc0",
+      "hash": "sha256:8637fb4ce23cf78989459beeadfac5a8b649e248e803fb4e3323002b046325a2",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:38bcdca4e368941bd19c41651e47b88d09d8455e52aa307b65302499c45a7b3d",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
-        "drawCalls": 5,
-        "triangles": 60318,
+        "drawCalls": 11,
+        "triangles": 87374,
         "groundY": -8,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          48,
-          260,
-          68.75
+          480,
+          494,
+          815.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -236,33 +258,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:3459f64065ff976329a2b103d16b7be90663a4861dab40ca9163b656c020a8c7",
+      "hash": "sha256:c4ec936e30000f8f02013e2fda1c718670c808a3913b60fed121b0faa6d285ce",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:aaf9fb6fd8cc00e77561d3aba6bc7cd419cc6143426a5545379917af4eb41e3d",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 9,
-        "triangles": 27730,
+        "drawCalls": 11,
+        "triangles": 27998,
         "groundY": -8,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          97,
-          296,
-          153.75
+          970,
+          854,
+          1665.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -274,33 +300,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:94741eff1711ba4c5786e88fd079737a6f660565eaa8040b70aa4ad5f9c1fa38",
+      "hash": "sha256:944971e3e0870d36149cd49d79ba6299d316592777525a326fa40a0e27348142",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:aaf9fb6fd8cc00e77561d3aba6bc7cd419cc6143426a5545379917af4eb41e3d",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 9,
-        "triangles": 27730,
+        "drawCalls": 11,
+        "triangles": 27998,
         "groundY": -8,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          97,
-          296,
-          153.75
+          970,
+          854,
+          1665.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -312,33 +342,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:a58664ec6cc31eb34bb1772d27d31aa0d9718d5f53249b0a45a298d5076de23d",
+      "hash": "sha256:aca5778b67609220b4ee9c29e41de71b8a6beba5e26da32ca66ce60b950d1859",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:aaf9fb6fd8cc00e77561d3aba6bc7cd419cc6143426a5545379917af4eb41e3d",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 9,
-        "triangles": 27730,
+        "drawCalls": 11,
+        "triangles": 27998,
         "groundY": -8,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          97,
-          296,
-          153.75
+          970,
+          854,
+          1665.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -350,33 +384,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:1b53ee258a0229e8f03ba461edd8c9962eb788e6c8d26a3dd2e950e3f448fa9f",
+      "hash": "sha256:19823b7ec083610d60962f2a00c4b8e1023130d7d90a7847fe13c0fa21c8fe79",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:aaf9fb6fd8cc00e77561d3aba6bc7cd419cc6143426a5545379917af4eb41e3d",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
-        "drawCalls": 9,
-        "triangles": 27730,
+        "drawCalls": 11,
+        "triangles": 27998,
         "groundY": -8,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          97,
-          296,
-          153.75
+          970,
+          854,
+          1665.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -388,14 +426,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:09ef27af2a326bfd40cfe310ac15f784e7a498fa369212526cd1b7a0348aea93",
+      "hash": "sha256:05376816330132e8f258b76c34c1d4e76a6165d697fb2ddc176503363f6b2a81",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:15c6cd4129d2bc94f21835039f7001c0d1e2a6f03f7b4e8bad742c38773895a8",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -408,13 +450,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          194,
-          334,
-          321.75
+          1940,
+          1234,
+          3345.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -426,14 +468,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:792c580e4fc1b59dd060e84bda892fa97550f3be4c4d2bbc7b7898ae64bf38ad",
+      "hash": "sha256:2371657fba3cb755d952c896c5f0b6e32504d1b18645161a59649590f2b4ede7",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:15c6cd4129d2bc94f21835039f7001c0d1e2a6f03f7b4e8bad742c38773895a8",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -446,13 +492,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          194,
-          334,
-          321.75
+          1940,
+          1234,
+          3345.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -464,14 +510,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:3b8ad9edbd86bf14ca367b6e9f65c17ee0713f8d18cfccb0252f5d891e462159",
+      "hash": "sha256:8b280dc0d1544314438b8bf47a9eba25c37918868767f1324f7f735a75ae32b8",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:15c6cd4129d2bc94f21835039f7001c0d1e2a6f03f7b4e8bad742c38773895a8",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -484,13 +534,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          194,
-          334,
-          321.75
+          1940,
+          1234,
+          3345.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -502,14 +552,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:42504ece7d6f46eac1e10173770d25e73a6dc9ca415dcf60fb7890ea53f30bc5",
+      "hash": "sha256:9b04257d9d85addad02d565ca54315d1a1d23b2cecf9ac8e7f828702a00942da",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:15c6cd4129d2bc94f21835039f7001c0d1e2a6f03f7b4e8bad742c38773895a8",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -522,13 +576,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          194,
-          334,
-          321.75
+          1940,
+          1234,
+          3345.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -540,14 +594,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:b5c989c3c7255f2c48e82291ba8c45f33fec615ab3a00e5275085a3a9ac54260",
+      "hash": "sha256:cc91e3679b1d642d16f4d6bd4d033670503dc5f7808b870097273ccc552e01b7",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:15c6cd4129d2bc94f21835039f7001c0d1e2a6f03f7b4e8bad742c38773895a8",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -560,13 +618,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          194,
-          334,
-          321.75
+          1940,
+          1234,
+          3345.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -578,14 +636,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/lower-pearl.png",
-      "hash": "sha256:19484b36acd1a932f3ac6802ab0f392e066d9dbfef91ce7b8ca39216781c85f8",
+      "hash": "sha256:f5fe787be4d47fdc40fafc1fc0c912a9c2d4b39e6b0ef445715e45f6e52ad559",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:38bcdca4e368941bd19c41651e47b88d09d8455e52aa307b65302499c45a7b3d",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -616,14 +678,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/upper-pearl.png",
-      "hash": "sha256:af4150da8c2f7c86226a7036de37dbc35ae0a82617b99e1c940ffe6ebb0c7371",
+      "hash": "sha256:762b67eb2cfd793c894d1c9578f2bbcc7e0ca7f42dc056f9bb77d11813e5c6a5",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:38bcdca4e368941bd19c41651e47b88d09d8455e52aa307b65302499c45a7b3d",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -654,14 +720,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/tripod-base.png",
-      "hash": "sha256:215e1daf96fc5ab80e9d9644f14523d26fdec57564e505424c321f5c05b44d42",
+      "hash": "sha256:94bce0a3be0f71984addb8ab07f102a4b32d8fcad939efe6650ebe98561520b5",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:38bcdca4e368941bd19c41651e47b88d09d8455e52aa307b65302499c45a7b3d",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -692,14 +762,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/spire-capsule.png",
-      "hash": "sha256:b73e912d2cd1b4bcb1f6932b08dab29b1a4ba96013ab2a0872a424e87719f1b0",
+      "hash": "sha256:f5017b6ed5f2c413b0ef2cef1442be38c0b43789fd96168699bcf702580bfccb",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:38bcdca4e368941bd19c41651e47b88d09d8455e52aa307b65302499c45a7b3d",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -730,14 +804,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/far-silhouette.png",
-      "hash": "sha256:d459cc461b739940db1304ce3563f9dbaeea1d5b7de9ed4e67681d4d35f08aeb",
+      "hash": "sha256:613e19120c0ecc02742911c590f74092edea654dd4347b2a2cf18c40bde1480a",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:38bcdca4e368941bd19c41651e47b88d09d8455e52aa307b65302499c45a7b3d",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -768,14 +846,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-oriental_pearl_tower-skyline.png",
-      "hash": "sha256:91835ea91ce95d2d676d6fce44849bb4beba79fe34d351e44b930aca8dc00ddd",
+      "path": "medium-fi/whole-oriental-pearl-tower-skyline.png",
+      "hash": "sha256:8e19137d6525c500c89dcd5ef845a287fc7ae10cbfa3d369dd3a544ce93a5c28",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:15c6cd4129d2bc94f21835039f7001c0d1e2a6f03f7b4e8bad742c38773895a8",
         "level": "skyline",
         "distance": "street",
         "time": "noon",
@@ -806,14 +888,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-oriental_pearl_tower-district.png",
-      "hash": "sha256:7a2e02f8964dce01999c082c756f358e511c8d54baba481b3ed78942f95cf1da",
+      "path": "medium-fi/whole-oriental-pearl-tower-district.png",
+      "hash": "sha256:58300dc275b76556b73fd96344d6a4eeb138a1f6d2b0d49eaeab27a31dfa04b2",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:aaf9fb6fd8cc00e77561d3aba6bc7cd419cc6143426a5545379917af4eb41e3d",
         "level": "district",
         "distance": "street",
         "time": "noon",
@@ -844,14 +930,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-oriental_pearl_tower-street.png",
-      "hash": "sha256:0987c4aca9bc569a99a3cb4d6f991a4bb2dc157168f4fb8262e4c07ea5c2ce30",
+      "path": "medium-fi/whole-oriental-pearl-tower-street.png",
+      "hash": "sha256:ab29144f3ade99cc9323f608754e86a810f2e3ec2ee94ee46e2e393bcc5fd17c",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:05cdfd9b2071144be8de802058a1a7b9de20ac40ef0e2ce56b2f9cc0480d0550",
         "level": "street",
         "distance": "street",
         "time": "noon",
@@ -882,14 +972,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-oriental_pearl_tower-closeup.png",
-      "hash": "sha256:40f691b16afe27fc1b89b187396efcd03875796191b0cd77fd4841ba85aeaf23",
+      "path": "medium-fi/whole-oriental-pearl-tower-closeup.png",
+      "hash": "sha256:193a7e84a95af848a9f7f035acd59d8afc9ad5492c346acf74d12d8c8d8c5cb0",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:38bcdca4e368941bd19c41651e47b88d09d8455e52aa307b65302499c45a7b3d",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -920,14 +1014,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:2d8a24c1bd03b5f19f1638f668c1970a45c62d92d4d1785079f38bddfa67484c",
+      "hash": "sha256:c19c3ee192152576baa33a89a5567eacc97433cd1d445637dca549375a505157",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:15c6cd4129d2bc94f21835039f7001c0d1e2a6f03f7b4e8bad742c38773895a8",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -940,13 +1038,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          97,
-          296,
-          153.75
+          970,
+          854,
+          1665.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -958,33 +1056,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:94741eff1711ba4c5786e88fd079737a6f660565eaa8040b70aa4ad5f9c1fa38",
+      "hash": "sha256:944971e3e0870d36149cd49d79ba6299d316592777525a326fa40a0e27348142",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:aaf9fb6fd8cc00e77561d3aba6bc7cd419cc6143426a5545379917af4eb41e3d",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 9,
-        "triangles": 27730,
+        "drawCalls": 11,
+        "triangles": 27998,
         "groundY": -8,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          97,
-          296,
-          153.75
+          970,
+          854,
+          1665.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -996,33 +1098,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:1f1f8d149371edc65e80a15652c12ca369ea11daa3eeccd26bcb0c017ac6cb6b",
+      "hash": "sha256:0804bdba1fe9762837e39be8355677a55cceb81d46b7af6e82d3ce121e4a2d79",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:05cdfd9b2071144be8de802058a1a7b9de20ac40ef0e2ce56b2f9cc0480d0550",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 38270,
+        "drawCalls": 11,
+        "triangles": 38542,
         "groundY": -8,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          97,
-          296,
-          153.75
+          970,
+          854,
+          1665.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -1034,33 +1140,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:7fd8fd1634f272cb6943d153024171717727273cfe84ae4a65917f66730c1064",
+      "hash": "sha256:fc9e0a9775930656c419bb8ddd2979015bf0cd746c3b0bed99a842bc68866f5b",
       "state": {
+        "assetId": "molen.worldgen.structure.oriental_pearl_tower",
+        "runtimeHash": "sha256:7e4e7791a3763fa40c2c1b33fcc59294a394125371443d26aa8fdf67a878d60a",
+        "lodHash": "sha256:38bcdca4e368941bd19c41651e47b88d09d8455e52aa307b65302499c45a7b3d",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 86814,
+        "drawCalls": 11,
+        "triangles": 87374,
         "groundY": -8,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/oriental_pearl_tower/terrain-fit.height.png"
         },
         "position": [
-          97,
-          296,
-          153.75
+          970,
+          854,
+          1665.75
         ],
         "lookAt": [
           0,
-          245,
+          344,
           -14.25
         ],
         "graphReads": {
@@ -1072,7 +1182,8 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 10,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     }

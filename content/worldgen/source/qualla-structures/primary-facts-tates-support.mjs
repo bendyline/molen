@@ -1,7 +1,9 @@
 /** Whole independent Tate's Cairn station service buildings from original numerical records. */
+
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { createHash } from 'node:crypto';
+
 const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
 export const tatesSupportCases = {
   'tates-primary-whole-service-4046724307T20050430-2019': 'tates_cairn_southwest_service_building',

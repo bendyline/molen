@@ -30,6 +30,15 @@ export interface EarthDioramaOptions {
   maxActive?: number;
   /** Optional host-owned glTF cache for dioramas that reference vehicle/prop models. */
   assets?: AssetCache;
+  /**
+   * Builds a diorama's shaders before it is shown: pass the renderer's `prepareObject`. Without
+   * it, each new figure or model builds its own in the frame that first draws it.
+   */
+  prepareObject?: (
+    object: THREE.Object3D,
+    signal?: AbortSignal,
+    parent?: THREE.Object3D,
+  ) => Promise<void>;
 }
 
 export interface EarthDioramas {
@@ -127,6 +136,12 @@ export class EarthDioramaDirector implements EarthDioramas {
             assets: this.options.assets,
             // A diorama's own light, arriving and leaving with it, rebuilt every lit shader in view.
             localLights: false,
+            ...(this.options.prepareObject
+              ? {
+                  prepare: (object: THREE.Object3D, parent: THREE.Object3D) =>
+                    this.options.prepareObject?.(object, undefined, parent) ?? Promise.resolve(),
+                }
+              : {}),
           }),
         onError: this.onError,
       });

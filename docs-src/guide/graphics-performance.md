@@ -176,8 +176,9 @@ shared with drawn meshes (every building's wall) reported its ready program whil
 variant was still linking, and that variant's first draw waited for the link, 130 ms in flight.
 Content that appears beside the viewer is prepared before it shows as well: building interiors
 (`InteriorStreamingOptions.prepare`, which the Earth renderers pass their `prepareObject`; the
-entrance covers stay until it settles), ambient pedestrians and ambient aircraft stay hidden until
-their shaders are built.
+entrance covers stay until it settles), ambient pedestrians, ambient aircraft and wildlife (when
+`EarthWildlife`'s `prepare` returns a promise) stay hidden until their shaders are built, and
+dioramas are prepared before they join the scene (see [Dioramas](dioramas.md)).
 
 Main-thread work that runs as tiles stream in beneath a fast aircraft is kept small. Ambient
 aircraft parse and merge each type once into a template, in 3 ms slices, without the cabin (its
@@ -186,9 +187,12 @@ its glyph vertices (`MeshBufferBuilder.addFlatMesh`). The worldgen tile cache ke
 by a fast hash of its JSON (the cache never leaves the session) rather than SHA-256, which spent up
 to 20 ms on a dense town tile. Ground cutouts read positions straight from their arrays and pass
 over triangles whose corners share a side outside every opening, or that one of a convex opening's
-edges separates from it. Parked cars bake from their template arrays, and
-`EarthAudioTerrain.sample` skips map features whose bounds cannot come nearer than the nearest
-found.
+edges separates from it, and find the openings near a triangle without building and sorting a set
+for it. Parked cars bake from their template arrays, and `EarthAudioTerrain.sample` skips map
+features whose bounds cannot come nearer than the nearest found. An aircraft's ground probes (a
+few hundred a tick) find airport pavement among meshes indexed by their bounds once per tagging,
+not by walking every pavement mesh ever tagged; a tunnel query skips bores whose tile it is
+outside before looking up their visibility.
 
 For custom streamed geometry, call `await renderer.prepareObject(object, signal, parent)` before
 publication. Connect the same queue to terrain, which passes each layer's tile group as `parent`:
@@ -202,6 +206,12 @@ const terrain = await createTerrainPackagePyramidStream(packageDescriptor, {
   onElevationTiming: sample => { /* decode, resample, mesh; milliseconds */ },
 });
 ```
+
+A `transformHeightfield` replacement (Earth's airport grading) is meshed by the same worker through
+the source's `meshPrepared`; meshed on the main thread, each graded tile beside an airport was one
+admitted job of up to 20 ms. The grading itself finds each sample row's polygon crossings and nearby
+ground edges once, instead of testing every edge of an airport's grounds for every sample: a tenth
+of a second a tile over Boeing Field.
 
 The worker entry calls `installTerrainElevationWorker(self)`, exported from
 `@bendyline/molen-terrain/client` (use the worker-scope type cast shown by World Explorer when
@@ -308,8 +318,9 @@ behind that parent. Cached LODs reuse their prepared geometry.
 
 Previously unvisited ground can show its base surface immediately; its enabled layers appear
 together once settled. Empty layer results count as ready. Failed replacement layers preserve
-the old tiles until `retryFailed()` succeeds or the layer is disabled; on cold ground, successful
-layers can still appear after another layer fails. Hidden layers do not delay a handoff. This
+the old tiles until a later attempt (after `failedRetryDelayMs`, or `retryFailed()`) succeeds or the
+layer is disabled; on cold ground, successful layers can still appear after another layer fails.
+Hidden layers do not delay a handoff. This
 stages scene geometry rather than rendering a second full-screen image, and retains old visual
 coverage under residency pressure until its replacement can safely take over.
 

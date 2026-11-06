@@ -1,0 +1,471 @@
+{
+  "id": "edinburgh_waverley_railway_station",
+  "title": "Edinburgh Waverley railway station",
+  "wikidataId": "Q800716",
+  "referenceCoordinate": {
+    "longitude": -3.1904205679893494,
+    "latitude": 55.95190154504826
+  },
+  "module": "content/worldgen/source/places/gc/gcv/edinburgh_waverley_railway_station/models/station-model.mjs",
+  "builder": "buildStationLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.91
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.9
+    },
+    "blind": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.9
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "membrane",
+      "roughness": 0.9
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.16
+    },
+    "canopy": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.16
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.4
+    },
+    "doorGlass": {
+      "slot": "window",
+      "graph": "storefront",
+      "roughness": 0.42
+    }
+  },
+  "exportLabel": "Molen original complete Edinburgh Waverley passenger station shared-surface source",
+  "expectedDraftMasterHash": "sha256:7f20d213c6cbe5254b172c2c84bd1672f9cbc0e223e58669d5eddc9cb9fa19aa",
+  "visualBrief": "Complete permanent Edinburgh Waverley station exterior: full mapped pitched/glazed five-row roof field with central opening,western classical entrance pavilions and descending links,all six internal stone passenger/service ranges,central booking-hall rooflight,long arched Market Street stone frontage,upper street office,curved glass entrance pavilion and two descending glazed stair roofs. Preserve independent Waverley Market,Balmoral/other hotels,bridges,roads,rails andplatform space. No trains,buses,brands,sculptures or navigable interiors.",
+  "heightPolicy": "Native8m booking/eastern ranges and5m narrow range remain map facts. Source lower floor+.65m,upper street entrances+7.5m,main pitched-roof eaves9.5m/crowns11.5–13.5m,main booking hall8m/rooflight10.2m and Market Street office20m. Unknown small-range roofs use5.5m/6m. The source deliberately models upper-street to lower-station connections rather than placing every floor at one height. Exact rail floor and historic threshold elevations remain approximate. One unchanged standard host sample outside the eastern station roof,local[315,10], 52.695071999999996m supplies one common datum. Source foundations/support feet-6m,lower occupied floor+.65m andupper entry floors+7.5m. No per-part host offsets or artificial surrounding plaza. The prepared urban field rises over the lower station and must be reviewed explicitly;the rounded63m grid-center sample isnot a lower-platform datum.",
+  "nativeAxes": "+X east-northeast along railway/station roof ridges,+Z south-southeast toward Market Street,-Z north-northwest toward Princes Street/Balmoral. +Y up.",
+  "sourceFacts": {
+    "wikidata": "Q800716",
+    "nativeStationPoi": 17599336042612,
+    "identityStatus": "Named station POI plus approximate mapped roof/passenger-range family;no exact Wikidata-tagged building match asserted.",
+    "mainRoofLayer": 1,
+    "nativeBookingHallHeight": 8,
+    "nativeEasternRangeHeight": 8,
+    "nativeNarrowRangeHeight": 5,
+    "photoProportionedMeters": {
+      "lowerFloor": 0.65,
+      "upperEntrances": 7.5,
+      "mainEaves": 9.5,
+      "largestRidge": 13.5,
+      "bookingHall": 8,
+      "bookingRooflight": 10.2,
+      "MarketStreetOffice": 20,
+      "curvedEntranceRoof": 12.3
+    },
+    "heightPolicy": "Native8m booking/eastern ranges and5m narrow range remain map facts. Source lower floor+.65m,upper street entrances+7.5m,main pitched-roof eaves9.5m/crowns11.5–13.5m,main booking hall8m/rooflight10.2m and Market Street office20m. Unknown small-range roofs use5.5m/6m. The source deliberately models upper-street to lower-station connections rather than placing every floor at one height. Exact rail floor and historic threshold elevations remain approximate.",
+    "authoredMaximumMeters": 20.15,
+    "terrainTiles": 4,
+    "terrainReferenceLocal": [
+      315,
+      10
+    ],
+    "occupiedMasks": 10,
+    "pitchedRoofRows": 5,
+    "roofSlopePolygons": 16,
+    "upperEntrances": 4,
+    "modernGlazedStairs": 2
+  },
+  "limitations": [
+    "Complete permanent Edinburgh Waverley station exterior: full mapped pitched/glazed five-row roof field with central opening,western classical entrance pavilions and descending links,all six internal stone passenger/service ranges,central booking-hall rooflight,long arched Market Street stone frontage,upper street office,curved glass entrance pavilion and two descending glazed stair roofs. Preserve independent Waverley Market,Balmoral/other hotels,bridges,roads,rails andplatform space. No trains,buses,brands,sculptures or navigable interiors.",
+    "Native8m booking/eastern ranges and5m narrow range remain map facts. Source lower floor+.65m,upper street entrances+7.5m,main pitched-roof eaves9.5m/crowns11.5–13.5m,main booking hall8m/rooflight10.2m and Market Street office20m. Unknown small-range roofs use5.5m/6m. The source deliberately models upper-street to lower-station connections rather than placing every floor at one height. Exact rail floor and historic threshold elevations remain approximate. One unchanged standard host sample outside the eastern station roof,local[315,10], 52.695071999999996m supplies one common datum. Source foundations/support feet-6m,lower occupied floor+.65m andupper entry floors+7.5m. No per-part host offsets or artificial surrounding plaza. The prepared urban field rises over the lower station and must be reviewed explicitly;the rounded63m grid-center sample isnot a lower-platform datum.",
+    "Two adequate ordinary exterior pictures inspected. Main roof arrangement,stone frontage and multilevel Market Street entrance are observed. Exact hidden opening inventory,rooflight form,western descending links,rib counts,threshold levels and detailed stair construction are coherent original medium-fi approximations. No bespoke terrain or archival research. Retained station POI androof/passenger polygons are approximate physical matches,not exact Wikidata-tagged individual buildings. Mainroof overplatforms staysopen below. Closedancillary floors andupperentry buildings aredistinct fromopen platforms andwesternstairlinks. Modern glazed stairwells haveactual stepped closed bases;openwesternlinks do not maskground. Mapped outer-roof duplicates803/2229 are replaced alongside1560/2648;source roofpanels arecutback aroundthe modernentry andstairwells ratherthan occluding them. Exacthistoric railfloor,bridgeclearances andstreet/threshold levels remainunverified. Preserve allnative roads,rails andindependent bridges. Physical-device timing andnumericalLODerrors remainunmeasured.",
+    "Six existing shared256px sandstone,granite,membrane,painted-metal,window-grid andstorefront graphs;seven semanticgroups maximum because paintedmetal hasroof andstructural slots. MetricUVs,linearcolors andno private/embeddedimages. Skyline retainsallfivepitchedroofrows,thecentralopening,six internalranges,westernpavilions andboth MarketStreetentryelements,withtrue slopingstairlinks. Districtaddscoarseclosedglazing androofstructure. Streetaddsactualrecesses,blindstonearches androofribs. Close-upaddsfullwindowinventory,frames,stairtreads andfiner curvedentranceroof. Master separatelyrefinescurves androofribspacing. Straightroofslopes are notneedlessly subdivided."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Edinburgh_Waverley_railway_station_roof_from_above_(geograph_4589145_by_Martin_Dawes).jpg",
+      "observed": "Actually inspected ordinary Scott Monument overview: complete broad pale glazed/pitched station roof field with repeated transverse gables,fine roof ribs, two long internal strips/openings with low stone passenger ranges, western classical arched entrances facing Waverley Bridge, and long south/Market Street stone frontage. Existing North Bridge spans above the eastern station. Separate Balmoral hotel, Waverley Market/green mall roof and independent buildings remain outside the station model. No buses,trains,brand signs,public artworks or neighboring blocks copied."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Edinburgh_Waverley_Railway_Station_inc_Market_Street_entrance_from_North_Bridge.jpg",
+      "observed": "Actually inspected Market Street entrance from North Bridge: tall two-level stone station office at street edge, long stone station facade with repeated blind/relieved arches, modern curved glass-and-pale-metal entrance pavilion and rooflights, glazed pitched roofs over descending stairs/escalators to lower station, stone boundary piers and clear level changes between upper street and railway floor. Exact hidden entrances,roof framing and interior/service inventory remain approximate. Do not flatten this stepped station into one street-level slab."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Named station POI establishes approximate identity/center. Main layer1 roof1560 andtilecopy2648 plus internal closed passenger components856/857/942/1284/1285/1334 andtilecopy2538 are preliminary physical matches,not exact Wikidata-tagged building matches. The main roof has a hole/opening that must remain represented. Preserve separate Waverley Market1566 (layer-1,mall), Balmoral/nearby hotel parts including1576 andother native buildings. Preserve Waverley Bridge andNorth Bridge roads/rails;the model should not absorb these independent bridges. Ground masks belong only to actual closed occupied floors,never the full layer1 platform-roof exterior. Also replace alternate outer-roof803 andits tilecopy2229 (same layer1 field,without the relation hole). These are duplicate roof representations,not independent neighbors. Source retains the real central booking-hall opening andrefines the modern entrance/stair cutouts fromthe ordinary picture."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-five-pitched-roof-rows-and-station-entrances",
+      "position": [
+        -280,
+        155,
+        235
+      ],
+      "lookAt": [
+        110,
+        7,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "whole-eastern-roof-field-and-internal-stone-ranges",
+      "position": [
+        360,
+        170,
+        -245
+      ],
+      "lookAt": [
+        110,
+        8,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "western-classical-arched-entrance-and-descending-link",
+      "position": [
+        -130,
+        16,
+        -55
+      ],
+      "lookAt": [
+        -65,
+        10,
+        -43
+      ],
+      "fov": 52
+    },
+    {
+      "name": "market-street-curved-glass-entry-office-and-roofed-stairs",
+      "position": [
+        277,
+        23,
+        91
+      ],
+      "lookAt": [
+        239,
+        9,
+        47
+      ],
+      "fov": 52
+    },
+    {
+      "name": "central-booking-hall-rooflight-and-open-shed-space",
+      "position": [
+        180,
+        39,
+        -110
+      ],
+      "lookAt": [
+        130,
+        8,
+        -5
+      ],
+      "fov": 52
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.8,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/gc/gcv/edinburgh_waverley_railway_station/models/station-model.mjs",
+    "export": "buildStationSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.91
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.9
+      },
+      "blind": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.9
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.9
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.16
+      },
+      "canopy": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.16
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.4
+      },
+      "doorGlass": {
+        "slot": "window",
+        "graph": "storefront",
+        "roughness": 0.42
+      }
+    },
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStationDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9
+          },
+          "blind": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.16
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.42
+          }
+        },
+        "errorMeters": 1
+      },
+      "street": {
+        "export": "buildStationStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9
+          },
+          "blind": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.16
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.42
+          }
+        },
+        "errorMeters": 0.4
+      },
+      "closeup": {
+        "export": "buildStationCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9
+          },
+          "blind": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.16
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.42
+          }
+        },
+        "errorMeters": 0.15
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-edinburgh-waverley-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -280,
+        155,
+        235
+      ],
+      "lookAt": [
+        110,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "whole-edinburgh-waverley-district",
+      "reviewLod": "district",
+      "position": [
+        -280,
+        155,
+        235
+      ],
+      "lookAt": [
+        110,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "whole-edinburgh-waverley-street",
+      "reviewLod": "street",
+      "position": [
+        -280,
+        155,
+        235
+      ],
+      "lookAt": [
+        110,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "whole-edinburgh-waverley-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -280,
+        155,
+        235
+      ],
+      "lookAt": [
+        110,
+        7,
+        0
+      ]
+    }
+  ]
+}

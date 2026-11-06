@@ -1,0 +1,69 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.giurgeni_vadu_oii_bridge",
+  "inputHash": "sha256:ac47a64328799adb4782544be6059d84fa032e82234d200597e6decbe8be877b",
+  "sourceHash": "sha256:31cd5a5fb8a13a734e4af3f2c1b42a9916a038c57de7534546c055f7548b6bd4",
+  "runtimeHash": "sha256:575cdc3f15f499d585646c8aa20e9318555f68a8bd4598997471f23ffeb67852",
+  "fixtureHash": "sha256:13aa20ac067f83c44128018dc4d89b73df85b6a05f76d50150bf2c2265d34d63",
+  "placementHash": "sha256:146c53bead1f67ee689bbc7d3ba03ca45f6c289989791aeb5b776ef7615b073a",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    },
+    "molen.worldgen.material.metal_expanded_diamond": {
+      "path": "materials/metal_expanded_diamond.matgraph.json",
+      "hash": "sha256:a3b768484f8dceec1839ac211f4e80da5cfb0b2cd9abd3ae05b1952e411bee03"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-bridge.png",
+      "hash": "sha256:023db4451250e9f39a831711e34f80b21f3a7478dcca0ff00451e97c1e4bae8c",
+      "camera": {
+        "name": "main-street-noon-high",
+        "mediumName": "street-noon-high",
+        "group": "main",
+        "position": [
+          245,
+          32,
+          80
+        ],
+        "lookAt": [
+          240,
+          16,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "giurgeni.vadu.oii.bridge",
+        "visibleDraws": 4
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "liveSupportGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The native Molen material library resolves concrete_plain, metal_painted and metal_expanded_diamond exactly once each. Tinted metric surfaces reuse those graphs. This shared-material image reuses an inspected native context frame."
+}

@@ -1,0 +1,435 @@
+{
+  "id": "bratsk_hydroelectric_power_station",
+  "title": "Bratsk Hydroelectric Power Station",
+  "wikidataId": "Q1965517",
+  "referenceCoordinate": {
+    "longitude": 101.786825702,
+    "latitude": 56.28641663
+  },
+  "module": "content/worldgen/source/places/y6/y60/bratsk_hydroelectric_power_station/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "dark": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "light": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "steel": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "warm": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    }
+  },
+  "exportLabel": "Molen original Bratsk Hydroelectric Power Station and Angara crossing",
+  "expectedDraftMasterHash": "sha256:ccb46b1f9934f7a45ce9d444f0a25abf9c1ba431d9c6aaeceda9f3f02e78cb6a",
+  "visualBrief": "Bratsk concrete gravity wall, deep crest ribs, highway and electrified double-track railway, crest gantry, generator hall, and downstream retaining spur.",
+  "heightPolicy": "The standard Terrarium upstream sample at [0, −480] gives a 390.99 m model datum. The Angara reference at [155, 420] is 99.95 m below it. The wall, crest, hall and transition levels are visual fits.",
+  "nativeAxes": "+X northwest along the dam, +Z northeast down the Angara, and +Y up.",
+  "sourceFacts": {
+    "mappedIdentity": "way/113557354",
+    "nativeReservoirId": 1670433,
+    "nativeRiverId": 56514063,
+    "ownedBuildingIds": [
+      35185186242865,
+      35185186242866
+    ],
+    "ownedTransportationIds": [
+      35184427568909,
+      35184427568910,
+      35185689010881
+    ],
+    "roadwaySpanMeters": 1169.9448,
+    "railSpanMeters": 1489.8326,
+    "modeledRibBays": 39,
+    "terrainDatum": 390.994294,
+    "terrainGridStep": 16,
+    "terrainTiles": 21,
+    "tailwaterModelY": -99.94986560937502,
+    "terrainSamplesBelow220": 10
+  },
+  "materialMethod": "Shared board-formed and plain concrete, painted metal, standing-seam metal and window graphs with metric UVs and no embedded images.",
+  "limitations": [
+    "The standard Terrarium upstream sample at [0, −480] gives a 390.99 m model datum. The Angara reference at [155, 420] is 99.95 m below it. The wall, crest, hall and transition levels are visual fits.",
+    "The slope, ribs, powerhouse, railway and crest gantry follow ordinary photographs and PMTiles. The exact rib spacing, crest equipment and engineering elevations are approximate.",
+    "The mapped highway, double-track rail and sidewalk are replaced only across the owned crossing. Native continuation and neighboring transportation remain mapped.",
+    "The standard 16 m raw terrain contains isolated height anomalies. The occupied spur cut clips nearby shore curtains within the model footprint."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bratsk_HPS.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:Bratsk_HPS.jpg",
+      "observed": "The current downstream view shows deep repeating brackets under the crossing, a continuous sloped concrete face, a long narrow light powerhouse and a transverse retaining spur."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:RIAN_archive_154495_Dam_of_Bratsk_hydroelectric_power_plant.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:RIAN_archive_154495_Dam_of_Bratsk_hydroelectric_power_plant.jpg",
+      "observed": "The detailed downstream view distinguishes separate crest pavement and rail catenary, deep vertical ribs, sloped slabs with construction joints, a tall white crest gantry and the powerhouse end wall with a large glazing grid."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The mapped plant, crossing and parallel main railway align with the photographed concrete frontage and turbine hall. Positive Z faces the Angara tailwater."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "dam-and-angara",
+      "position": [
+        -1230,
+        435,
+        1020
+      ],
+      "lookAt": [
+        80,
+        -28,
+        -56
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upstream-highway-and-rail",
+      "position": [
+        680,
+        150,
+        -780
+      ],
+      "lookAt": [
+        150,
+        -7,
+        -106
+      ],
+      "fov": 50
+    },
+    {
+      "name": "downstream-ribs",
+      "position": [
+        -476,
+        25,
+        206
+      ],
+      "lookAt": [
+        -166,
+        -36,
+        -72
+      ],
+      "fov": 50
+    },
+    {
+      "name": "powerhouse-and-spur",
+      "position": [
+        -198,
+        -13,
+        285
+      ],
+      "lookAt": [
+        98,
+        -77,
+        -27
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-gantry-and-tracks",
+      "position": [
+        165,
+        64,
+        -232
+      ],
+      "lookAt": [
+        380,
+        12,
+        -110
+      ],
+      "fov": 50
+    },
+    {
+      "name": "northwest-approach",
+      "position": [
+        891,
+        52,
+        140
+      ],
+      "lookAt": [
+        595,
+        -8,
+        -106
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -112.2,
+    "scale": 3.1,
+    "focus": {
+      "center": [
+        80,
+        -35,
+        -45
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/y6/y60/bratsk_hydroelectric_power_station/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "dark": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "light": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "steel": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "warm": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "light": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "warm": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "light": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "warm": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "light": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "warm": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "bratsk-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -1230,
+        435,
+        1020
+      ],
+      "lookAt": [
+        80,
+        -28,
+        -56
+      ]
+    },
+    {
+      "name": "bratsk-district",
+      "reviewLod": "district",
+      "position": [
+        -1230,
+        435,
+        1020
+      ],
+      "lookAt": [
+        80,
+        -28,
+        -56
+      ]
+    },
+    {
+      "name": "bratsk-street",
+      "reviewLod": "street",
+      "position": [
+        -1230,
+        435,
+        1020
+      ],
+      "lookAt": [
+        80,
+        -28,
+        -56
+      ]
+    },
+    {
+      "name": "bratsk-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -1230,
+        435,
+        1020
+      ],
+      "lookAt": [
+        80,
+        -28,
+        -56
+      ]
+    }
+  ]
+}

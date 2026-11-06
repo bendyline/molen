@@ -1,0 +1,535 @@
+{
+  "planId": "baliqiao",
+  "id": "baliqiao",
+  "assetId": "molen.worldgen.structure.baliqiao",
+  "title": "Baliqiao (Yongtong Bridge)",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q2566752",
+  "referenceCoordinate": {
+    "longitude": 116.614166666,
+    "latitude": 39.906666666
+  },
+  "visualBrief": "Historic three-arch stone bridge with a tall narrow central opening, two small side arches, gently raised restored slab deck, ashlar/arch rings, solid carved parapet panels and33 paired sitting-lion posts.",
+  "size": [
+    130,
+    12.004502683877945,
+    16.5
+  ],
+  "actualBounds": {
+    "min": [
+      -65,
+      -0.4573339521884918,
+      -8.25
+    ],
+    "max": [
+      65,
+      11.547168731689453,
+      8.25
+    ]
+  },
+  "nativeAxes": "+X north-northwest toward the north park; -X south-southeast. +Z east-northeast; +Y up.",
+  "sourceFacts": {
+    "retainedStoneBodyLengthMeters": 50,
+    "reconstructedBodyWidthMeters": 16,
+    "mappedApproachLineMeters": 149.1315,
+    "reportedArchCrownHeightsMeters": [
+      3.5,
+      8.5,
+      3.5
+    ],
+    "reconstructedClearSpansMeters": [
+      5,
+      6.8,
+      5
+    ],
+    "lionPosts": 66,
+    "modelDatumMeters": 21
+  },
+  "referencePages": [
+    "https://xinwen.bjd.com.cn/content/s6661316ee4b0115c9f8593fe.html",
+    "https://m.bjnews.com.cn/detail/1720269018129009.html",
+    "https://www.beijing.gov.cn/renwen/sy/whkb/202212/t20221222_2882382.html",
+    "https://xinwen.bjd.com.cn/content/s665eb0cce4b035c6ca5e58f4.html",
+    "https://maps.protomaps.com/builds/"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      116.61446774250331,
+      39.90655028368594
+    ],
+    "heading": 1.7187748077935978,
+    "elevationMode": "sea-level",
+    "elevationMeters": 21,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Absolute model reference Y0 is21m sea-level, derived from the retained ordinary viewer terrain. The stone body extends to this reference foundation plane; bounded approach paving has shallow foundations below it where the unmodified native field falls lower. Endpoint tops follow native ground+0.25m. This is an approximate host-terrain datum and contact construction, not surveyed original bridge/bank grades.",
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 130,
+      "width": 17,
+      "outline": [
+        [
+          -65,
+          -8.5
+        ],
+        [
+          65,
+          -8.5
+        ],
+        [
+          65,
+          8.5
+        ],
+        [
+          -65,
+          8.5
+        ]
+      ],
+      "includeConnectedApproaches": true,
+      "deckEndpoints": [
+        [
+          -65,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "deckHeights": [
+        25.624064,
+        21.174584
+      ],
+      "deckProfile": [
+        [
+          -65,
+          25.624064,
+          0
+        ],
+        [
+          -45,
+          27.337032,
+          0
+        ],
+        [
+          -25,
+          29.05,
+          0
+        ],
+        [
+          -15,
+          30.073999999999998,
+          0
+        ],
+        [
+          -3.4,
+          30.6204064,
+          0
+        ],
+        [
+          0,
+          30.65,
+          0
+        ],
+        [
+          3.4,
+          30.6204064,
+          0
+        ],
+        [
+          15,
+          30.073999999999998,
+          0
+        ],
+        [
+          25,
+          29.05,
+          0
+        ],
+        [
+          45,
+          25.112292,
+          0
+        ],
+        [
+          65,
+          21.174584,
+          0
+        ]
+      ]
+    },
+    "bounds": [
+      116.61425995586704,
+      39.90596183330703,
+      116.61467552913957,
+      39.907138734064844
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4d7d28893f8cc536bb8552aa0246bb78adefef9c94bd1c102373a25eaa401cef",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://build.protomaps.com/20261031.pmtiles",
+    "wikidataId": "Q2566752",
+    "notes": "Historic named 永通桥 centerline and Tonghui canal crossing; three-arch stone body and33 paired lion posts, distinct from the new western road bridge. Native global terrain is coarse; paved tails, wing/footing geometry and original bridge grades are approximate rather than surveyed."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Two existing shared stone graphs in three material groups with metric UVs, original modeled masonry/sculpture and palette mineral tints. No private or embedded image copies.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/baliqiao/models/baliqiao-model.mjs",
+    "export": "buildBaliqiaoSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "sculpture": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBaliqiaoDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "sculpture": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1
+      },
+      "street": {
+        "export": "buildBaliqiaoStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "sculpture": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.5
+      },
+      "closeup": {
+        "export": "buildBaliqiaoCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "sculpture": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.25
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-bridge-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -8,
+        17,
+        48
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "whole-bridge-district",
+      "reviewLod": "district",
+      "position": [
+        -8,
+        17,
+        48
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "whole-bridge-street",
+      "reviewLod": "street",
+      "position": [
+        -8,
+        17,
+        48
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "whole-bridge-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -8,
+        17,
+        48
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "street-central-and-side-arches",
+      "reviewLod": "street",
+      "position": [
+        -8,
+        17,
+        48
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "closeup-lion-and-panel",
+      "reviewLod": "closeup",
+      "position": [
+        -2,
+        11.8,
+        5.7
+      ],
+      "lookAt": [
+        0,
+        11.1,
+        7.52
+      ]
+    }
+  ],
+  "limitations": [
+    "Original reconstruction of historic Baliqiao/Yongtong Bridge exterior using ordinary current/restoration photographs and standard viewer PMTiles/terrain. The separate modern western bridge, urban buildings, trees, full embankment/quay complex, traffic, streetlights, operating infrastructure and exact underwater foundations are excluded. No downloaded mesh or private photo texture is used.",
+    "The named149.13m PMTiles service bridge includes approaches; it is not treated as the50m stone body. About16m body width,6.8m central clear span,5m side spans, arch springs and mild deck crown are picture reconstructions. The reported8.5m central and3.5m side arch heights are retained relative to the model reference footing plane, not certified current-water clearances. The center forms a tall narrow opening with vertical legs, distinct from a wide low generic arch. All three tunnels remain physically open through the full width.",
+    "The restored stone deck, parapet panels and33 paired lion posts follow inspected pictures.66 original stylized sitting lions retain body/haunches, forelegs/paws, muzzle/jaw, ears, mane tufts and tail near; master adds brows/toes and finer curls. Several modest poses are reconstructed rather than claiming66 replicas of individual historic carvings. Panels have simple inset/frame relief; original inscriptions, damaged/bullet details, exact lotus patterns and unverified heraldry are not invented. The skyline aggregates rail caps;district aggregates posts without sculpture detail.",
+    "Two shared256px graphs supply continuous raw limestone for modeled masonry/sculptures and granite paving, bound through three material groups. Near wall courses and arch voussoirs are geometry with modest mineral tint variation. The graphs are shared across the library;no private or embedded images. No lighting/contact shadows are baked into colors. Estimated LOD errors2/1/.5/.25m are not certified whole-mesh distances.",
+    "A retained65x65/2.5m review grid samples one ordinary global Terrarium tile. Its spacing oversamples coarse urban terrain and does not imply survey accuracy. The field is unmodified. The datum21m is a coarse center sample; short original bridge grades cannot be recovered from it. Bounded paved tails along the retained named approach line extend toX±65m with endpoint ground+0.25m, while the50m body keeps its reconstructed exterior. Transition grades and bank/arch-bed fit remain approximate; no accessible/walkable-grade certification. The water rectangle is a separately declared schematic review fixture. Physical phone/laptop timings remain pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "three-stone-arches",
+      "position": [
+        -8,
+        17,
+        48
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "complete-bridge-and-approaches",
+      "position": [
+        -77,
+        56,
+        82
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "high-central-tunnel",
+      "position": [
+        0,
+        4,
+        14
+      ],
+      "lookAt": [
+        0,
+        6,
+        -2
+      ],
+      "fov": 54
+    },
+    {
+      "name": "side-arch-and-ring",
+      "position": [
+        -14,
+        4.8,
+        16
+      ],
+      "lookAt": [
+        -11,
+        2.5,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "restored-deck-and-lions",
+      "position": [
+        -18,
+        11.6,
+        4.5
+      ],
+      "lookAt": [
+        5,
+        11.1,
+        6.5
+      ],
+      "fov": 54
+    },
+    {
+      "name": "lion-sculpture-and-panel",
+      "position": [
+        -2,
+        11.8,
+        5.7
+      ],
+      "lookAt": [
+        0,
+        11.1,
+        7.52
+      ],
+      "fov": 46
+    },
+    {
+      "name": "stone-courses-and-soffit",
+      "position": [
+        5.7,
+        5.7,
+        11.5
+      ],
+      "lookAt": [
+        2.5,
+        6.7,
+        7.8
+      ],
+      "fov": 49
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 135780,
+    "vertices": 310924,
+    "materials": 3,
+    "bytes": 12825076,
+    "sha256": "sha256:0aa47c542a799754620e03a62dcdda9dde1bb04675e4fcee78d3950b593b489d"
+  }
+}

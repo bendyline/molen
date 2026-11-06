@@ -319,10 +319,15 @@ try {
           boundNorth - boundSouth,
         );
         const queryDiagonal = Math.hypot((east - west) * longitudeScale, north - south);
-        // A square review tile can surround a long narrow bridge. Keep its query
-        // local to the declared extent while retaining the ordinary point limit.
+        // A square review tile can surround a long narrow bridge or station whose
+        // anchor lies near one end. Include that anchor's offset from the bounds
+        // center when checking locality; keep the declared extent itself intact.
+        const anchorOffset = Math.hypot(
+          (placement.anchor[0] - (boundWest + boundEast) / 2) * longitudeScale,
+          placement.anchor[1] - (boundSouth + boundNorth) / 2,
+        );
         assert(
-          queryDiagonal <= 2 * declaredDiagonal + 0.002,
+          queryDiagonal <= 2 * declaredDiagonal + 2 * Math.SQRT2 * anchorOffset + 0.002,
           'Bounded review query must remain local to the structure extent',
         );
         assert(

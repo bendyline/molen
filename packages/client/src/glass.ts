@@ -134,6 +134,9 @@ export function createGlassVisual(model: THREE.Object3D, data: GlassData): Glass
         opacity: 0.36,
         depthWrite: false,
         side: THREE.DoubleSide,
+        // One pass, not back then front faces with a program change before each (see
+        // drawGlassInOnePass): a thin pane looks the same either way.
+        forceSinglePass: true,
       });
       const { geometry, centers, edges } = cells(spec);
       const mesh = new THREE.Mesh(geometry, material);

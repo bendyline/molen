@@ -1,7 +1,9 @@
 /** Exact original tower technical table identities; no imagery approval. */
+
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { createHash } from 'node:crypto';
+
 const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
 export const augerTowerCases = {
   'auger-primary-whole-coihueco-communications-tower-2005-records-2018':

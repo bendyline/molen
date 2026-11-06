@@ -1,0 +1,538 @@
+{
+  "id": "taipei_main_station",
+  "title": "Taipei Main Station",
+  "wikidataId": "Q700588",
+  "referenceCoordinate": {
+    "longitude": 121.517113786,
+    "latitude": 25.047715127
+  },
+  "module": "content/worldgen/source/places/ws/wsq/taipei_main_station/models/station-model.mjs",
+  "builder": "buildStationLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.9
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.9
+    },
+    "base": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.93
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.88
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.87
+    },
+    "canopy": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.84
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.79
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.42
+    },
+    "doorGlass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.42
+    }
+  },
+  "exportLabel": "Molen original complete Taipei Main Station source",
+  "expectedDraftMasterHash": "sha256:bd17fb03388f9a2000490b4f2f19141d57a83839862245945272d56c251f298f",
+  "visualBrief": "Complete individual above-ground Taipei Main Station terminal: whole exact-Q main headhouse footprint,all four facades and colonnades,large four-sided curved red hipped roof and pale upper collar,central six-gable glazed main-hall roof,visible rooftop service blocks and simplified structural communications frames. Underground railway/metro rooms,public MRT/mall entrances and forecourt canopies,external elevated roads and independent surrounding buildings remain separate;no trains,people,lettering,emblems,adverts or navigable interiors.",
+  "heightPolicy": "Retained exact-Q way/23641610 supplies Q700588,footprint and undirected axis. Current standard PMTiles whole building35184395730442 has native height30m. Retained tags also give7above-ground levels,4underground levels and roof:height18m;these are source facts,not independent proof of visible eave/crest levels. Ordinary2007roof-overview and September2026southern-front pictures agree on the main hipped/collar roof and stacked beige facade grids;hidden roof details and intermediate levels remain picture-based estimates. Resolve visible wall/roof proportions explicitly before final authoring. +X ESE follows the long facade;+Z SSW faces Zhongxiao West Road;-Z NNE faces Beiping Road and the current independent QSquare building. The older roof photograph includes neighboring construction that is excluded from this model. Source exterior proportions use estimated eaves22m,curved hip inner edge38m and pale collar42m,with central glazed gables to40m and simplified communications frames to48m. The native30m envelope and18m roof-height tag are retained as conflicting coarse map controls rather than treated as surveyed visible levels;seven levels do not establish seven exposed facade rows. Pictures show three strong visible facade bands,which the model retains. Main floor+.65m uses one unchanged outside western street datum[-90,-60],5.704483m absolute. Exact wall/roof heights,threshold steps,hidden facade bays,current rooftop equipment and native contact remain unverified. The original southern sample [0,90] is27.724827m, inconsistent with two western street samples [-90,-60]5.704483m and[-60,-80]5.923095m. Use the single western street reference; retain the unmodified field and explicit native-contact uncertainty.",
+  "nativeAxes": "+X ESE along the long terminal facade;-X WNW;+Z SSW toward Zhongxiao West Road and the southern forecourt;-Z NNE toward Beiping Road and independent QSquare;+Y up.",
+  "sourceFacts": {
+    "nativePartFacts": [
+      {
+        "index": 0,
+        "id": 35184395730442,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 30
+        }
+      }
+    ],
+    "ownedNativeParts": 1,
+    "retainedNativeParts": 1090,
+    "exactTerminalWay": "way/23641610",
+    "mainBuildingId": 35184395730442,
+    "originalCandidateReference": [
+      121.517222222,
+      25.047777777
+    ],
+    "retainedTags": {
+      "addr:city": "臺北市",
+      "addr:country": "TW",
+      "addr:district": "中正區",
+      "addr:full": "10041臺北市中正區北平西路3號",
+      "addr:housenumber": "3",
+      "addr:postcode": "10041",
+      "addr:street": "北平西路",
+      "alt_name": "台北車站",
+      "alt_name:nan": "台北車頭",
+      "building": "train_station",
+      "building:levels": "7",
+      "building:levels:underground": "4",
+      "building:material": "plaster",
+      "height": "30",
+      "name": "臺北車站",
+      "name:en": "Taipei main station",
+      "name:ja": "台北駅",
+      "name:ko": "타이베이역",
+      "name:nan": "Tâi-pak Chhia-thâu",
+      "name:zh": "臺北車站",
+      "name:zh-Latn-pinyin": "Tǎiběi Huǒchēzhàn",
+      "operator": "臺灣鐵路管理局;台灣高速鐵路股份有限公司",
+      "roof:height": "18",
+      "roof:material": "brick",
+      "roof:shape": "pyramidal",
+      "short_name": "北車",
+      "start_date": "1989-09-02",
+      "wikidata": "Q700588",
+      "wikipedia": "zh:臺北車站"
+    },
+    "floorHeight": 0.65,
+    "mappedEnvelope": 30,
+    "mappedRoofHeight": 18,
+    "estimatedEaves": 22,
+    "estimatedInnerRoof": 38,
+    "estimatedCollarTop": 42,
+    "estimatedCentralGable": 40,
+    "estimatedMast": 48,
+    "terrainReferenceLocal": [
+      -90,
+      -60
+    ],
+    "terrainTiles": 2,
+    "occupiedMasks": 1
+  },
+  "materialMethod": "Seven existing shared 256px graphs: stone_ashlar, concrete_plain, stone_limestone, tile_flat, metal_standing_seam, metal_painted and window_grid. Seven merged near groups and one far palette group, metric UVs and linear colours. No embedded/private images. Beige facade masonry, pale collar/coping, muted red tile slopes, service-box metal, painted structural frames and actual glazing retain semantic slots.",
+  "limitations": [
+    "Complete individual above-ground Taipei Main Station terminal: whole exact-Q main headhouse footprint,all four facades and colonnades,large four-sided curved red hipped roof and pale upper collar,central six-gable glazed main-hall roof,visible rooftop service blocks and simplified structural communications frames. Underground railway/metro rooms,public MRT/mall entrances and forecourt canopies,external elevated roads and independent surrounding buildings remain separate;no trains,people,lettering,emblems,adverts or navigable interiors.",
+    "Retained exact-Q way/23641610 supplies Q700588,footprint and undirected axis. Current standard PMTiles whole building35184395730442 has native height30m. Retained tags also give7above-ground levels,4underground levels and roof:height18m;these are source facts,not independent proof of visible eave/crest levels. Ordinary2007roof-overview and September2026southern-front pictures agree on the main hipped/collar roof and stacked beige facade grids;hidden roof details and intermediate levels remain picture-based estimates. Resolve visible wall/roof proportions explicitly before final authoring. +X ESE follows the long facade;+Z SSW faces Zhongxiao West Road;-Z NNE faces Beiping Road and the current independent QSquare building. The older roof photograph includes neighboring construction that is excluded from this model. Source exterior proportions use estimated eaves22m,curved hip inner edge38m and pale collar42m,with central glazed gables to40m and simplified communications frames to48m. The native30m envelope and18m roof-height tag are retained as conflicting coarse map controls rather than treated as surveyed visible levels;seven levels do not establish seven exposed facade rows. Pictures show three strong visible facade bands,which the model retains. Main floor+.65m uses one unchanged outside western street datum[-90,-60],5.704483m absolute. Exact wall/roof heights,threshold steps,hidden facade bays,current rooftop equipment and native contact remain unverified. The original southern sample [0,90] is27.724827m, inconsistent with two western street samples [-90,-60]5.704483m and[-60,-80]5.923095m. Use the single western street reference; retain the unmodified field and explicit native-contact uncertainty.",
+    "Two ordinary whole-roof and current southern-front photographs, retained exact-Q footprint and current standard PMTiles. Native height 30m, roof-height tag 18m and seven above-ground levels remain source facts; visible eaves, curved hip, collar, central gables and communication-frame levels are explicit picture-based estimates. Hidden elevations, facade bay inventory, current rooftop services, threshold steps and native terrain contact remain unverified. Independent underground rail/MRT/mall parts, entrances, forecourt shelters, elevated roads and surrounding buildings remain separate. Physical-device/dense-city timing and numerical LOD errors remain unmeasured.",
+    "Seven existing shared 256px graphs: stone_ashlar, concrete_plain, stone_limestone, tile_flat, metal_standing_seam, metal_painted and window_grid. Seven merged near groups and one far palette group, metric UVs and linear colours. No embedded/private images. Beige facade masonry, pale collar/coping, muted red tile slopes, service-box metal, painted structural frames and actual glazing retain semantic slots. All four tiers preserve the whole headhouse, all four colonnade facades and visible horizontal bands, complete curved four-sided red hip, pale solid collar and six complete central glazed gables. Near tiers add recessed windows, actual lattice members, piers/base blocks, steps, coping, roof framing/seams, rooftop boxes and simplified communication frames. Rooftop equipment uses the dated overview as an explicit visual interpretation."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:TaipeiMainStation.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/TaipeiMainStation.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "observed": "2007 ordinary elevated whole-roof view inspected. Rectangular main headhouse,large continuous four-sided red/orange tiled sloping roof with slightly concave transitions,white/light-grey outer coping and high rectangular inner collar. A terrace/service ring lies within the collar;central main-hall roof has six long parallel pale glazed gables,with boxy equipment and two visible lattice communication frames. Tall repeated square entrance piers and beige grid/frieze bands continue along both visible facades. Separate forecourt canopies,subway entrance structures,elevated road and neighboring construction are not the terminal body. No copied signs,emblems,vehicles,people or neighboring construction."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Taipei_Main_Station_and_Zhongxiao_West_Road_20260928.jpg",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Taipei_Main_Station_and_Zhongxiao_West_Road_20260928.jpg/1920px-Taipei_Main_Station_and_Zhongxiao_West_Road_20260928.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "observed": "September2026 ordinary southern-front view inspected. The red hipped roof/high pale collar remains;outer pale coping has strong projecting eaves with soffit panels. Beige/grey tiled or plaster-faced facade has tall lower columns/recessed glass,deep upper rectangular lattice grids and horizontal perforated/frieze bands. Current nearby metro entrance shelters and bus canopies remain separate from the main terminal. No copied lettering,emblems,flags,vehicles,people or signs. The frontage photo does not verify current rooftop equipment inventory."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Complete individual above-ground Taipei Main Station terminal: whole exact-Q main headhouse footprint,all four facades and colonnades,large four-sided curved red hipped roof and pale upper collar,central six-gable glazed main-hall roof,visible rooftop service blocks and simplified structural communications frames. Underground railway/metro rooms,public MRT/mall entrances and forecourt canopies,external elevated roads and independent surrounding buildings remain separate;no trains,people,lettering,emblems,adverts or navigable interiors. Retained exact-Q way/23641610 supplies Q700588,footprint and undirected axis. Current standard PMTiles whole building35184395730442 has native height30m. Retained tags also give7above-ground levels,4underground levels and roof:height18m;these are source facts,not independent proof of visible eave/crest levels. Ordinary2007roof-overview and September2026southern-front pictures agree on the main hipped/collar roof and stacked beige facade grids;hidden roof details and intermediate levels remain picture-based estimates. Resolve visible wall/roof proportions explicitly before final authoring. +X ESE follows the long facade;+Z SSW faces Zhongxiao West Road;-Z NNE faces Beiping Road and the current independent QSquare building. The older roof photograph includes neighboring construction that is excluded from this model. Source exterior proportions use estimated eaves22m,curved hip inner edge38m and pale collar42m,with central glazed gables to40m and simplified communications frames to48m. The native30m envelope and18m roof-height tag are retained as conflicting coarse map controls rather than treated as surveyed visible levels;seven levels do not establish seven exposed facade rows. Pictures show three strong visible facade bands,which the model retains. Main floor+.65m uses one unchanged outside southern forecourt datum[0,90],27.724827m absolute. Exact wall/roof heights,threshold steps,hidden facade bays,current rooftop equipment and native contact remain unverified."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-hipped-roof",
+      "position": [
+        180,
+        140,
+        220
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "south-front",
+      "position": [
+        110,
+        48,
+        160
+      ],
+      "lookAt": [
+        0,
+        15,
+        45
+      ],
+      "fov": 52
+    },
+    {
+      "name": "north-front",
+      "position": [
+        -150,
+        65,
+        -175
+      ],
+      "lookAt": [
+        0,
+        18,
+        -30
+      ],
+      "fov": 52
+    },
+    {
+      "name": "six-central-gables",
+      "position": [
+        -80,
+        100,
+        35
+      ],
+      "lookAt": [
+        0,
+        38,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "south-colonnade",
+      "position": [
+        45,
+        7,
+        92
+      ],
+      "lookAt": [
+        20,
+        8,
+        60
+      ],
+      "fov": 52
+    },
+    {
+      "name": "curved-roof-and-coping",
+      "position": [
+        102,
+        58,
+        99
+      ],
+      "lookAt": [
+        45,
+        28,
+        43
+      ],
+      "fov": 52
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.7,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ws/wsq/taipei_main_station/models/station-model.mjs",
+    "export": "buildStationSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.9
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.9
+      },
+      "base": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.93
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.88
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.87
+      },
+      "canopy": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.84
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.79
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.42
+      },
+      "doorGlass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.42
+      }
+    },
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStationDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.87
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.79
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          }
+        },
+        "errorMeters": 1.2
+      },
+      "street": {
+        "export": "buildStationStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.87
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.79
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          }
+        },
+        "errorMeters": 0.5
+      },
+      "closeup": {
+        "export": "buildStationCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.87
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.79
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          }
+        },
+        "errorMeters": 0.18
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-taipei-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        180,
+        140,
+        220
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "whole-taipei-district",
+      "reviewLod": "district",
+      "position": [
+        180,
+        140,
+        220
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "whole-taipei-street",
+      "reviewLod": "street",
+      "position": [
+        180,
+        140,
+        220
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "whole-taipei-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        180,
+        140,
+        220
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    }
+  ]
+}

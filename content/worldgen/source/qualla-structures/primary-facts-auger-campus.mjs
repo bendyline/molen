@@ -1,7 +1,9 @@
 /** Whole original main and rear campus outlines; no photographic reference is approved. */
+
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { createHash } from 'node:crypto';
+
 const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
 export const augerCampusCases = {
   'auger-primary-whole-campus-east-service-way313007097-2018':

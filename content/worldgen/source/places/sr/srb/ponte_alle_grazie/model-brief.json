@@ -1,0 +1,523 @@
+{
+  "id": "ponte_alle_grazie",
+  "title": "Ponte alle Grazie",
+  "wikidataId": "Q2517000",
+  "referenceCoordinate": {
+    "longitude": 11.258731,
+    "latitude": 43.766211
+  },
+  "module": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/models/grazie-model.mjs",
+  "builder": "buildGrazieLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.3
+    },
+    "paint": {
+      "slot": "door",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9,
+      "metallic": 0
+    }
+  },
+  "exportLabel": "Molen Ponte alle Grazie detailed source",
+  "expectedDraftMasterHash": "sha256:1ccbe92c21be64e06ea33f198d733a99b838cddba166f15f0f0c2b2bfd484153",
+  "visualBrief": "Current five shallow pale concrete arches across the Arno,with four unequal map-derived warm stone cutwaters,projecting pedestrian overlooks,stone pavements and open metal guardrails.",
+  "nativeAxes": "+X north-northeast toward Via de Benci; -X south-southwest toward Piazza dei Mozzi. +Z east-southeast/upstream, +Y up.",
+  "sourceFacts": {
+    "mappedLengthMeters": 140.852,
+    "mappedMaximumWidthMeters": 19.87,
+    "roundedReferenceLengthMeters": 150,
+    "reconstructedArches": 5,
+    "mappedPierStations": [
+      -48.415499999999994,
+      -18.880499999999998,
+      10.768,
+      42.852
+    ],
+    "modelDatumMeters": 46,
+    "approximateDeckRiseMeters": 9,
+    "terrainTiles": 1
+  },
+  "limitations": [
+    "Original exterior of the current five-arch Ponte alle Grazie from three actually inspected ordinary side/oblique pictures and retained exact map controls. No downloaded mesh,private photo texture,bespoke architectural/terrain survey or archive research. The medieval bridge,traffic,exact public artworks,signs,graffiti,village/city buildings,full native quay walls and submerged foundations are outside scope.",
+    "The exact OSM/Q2517000 bridge envelope is140.852m long,about15.6m across the main deck and19.87m across cutwater projections. It is not forced to the rounded150m reference or an unrelated reported open-span length. Paired projecting map tips establish four asymmetric pier stations and five unequal openings. Pier shaft widths,arch spring/crown/sections,deck crown and abutment construction remain photographic reconstructions,not an engineering span schedule.",
+    "Each shallow concrete arch has a physically open passage across the entire deck width. Continuous exterior strip surfaces avoid overlapping internal arch-slice caps. Four warm sandstone-clad piers retain mapped pointed cutwaters up to deck level;the rail outline follows those projections. Separate road,curbed stone pavements,open metal guardrails,pier lamps and approximate dashed traffic paint are present near. Master adds dense original ashlar-block relief and paving joints;these are not replicas of individual historic stones. Far levels omit thin rails,lamps,joints and fine paving. The mapped south-end transverse crossing is represented by the authored deck and approximate bounded zebra paint;the native crossing overlay is replaced explicitly.",
+    "Model datum46m and approximate9m deck rise plus0.2m crown preserve the observed proportions. The unmodified129x129/2m field oversamples one coarse ordinary global DEM tile. Foundation/abutment embedding is checked,but the field places the bank-edge road well below the picture-reconstructed quay/bridge level. The fixture does not verify elevated urban quay crests,external road grades,original river levels or certified arch clearances. The river rectangle is a separately declared schematic fixture,not an exact bank polygon.",
+    "Five existing shared256px graphs provide concrete,sandstone,granite,compact-gravel/asphalt approximation and painted metal;traffic paint uses a palette definition. No private or embedded images. Four browser tiers preserve all five physical openings;near tiers restore finer railings,coursing and paving. Estimated tier errors2/1/.5/.2m are not certified whole-mesh distances. Physical phone/laptop timings and dense-city performance are still unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://flashpackingitaly.com/ponte-alle-grazie-florence/",
+      "observed": "Actually inspected side photograph:five shallow pale concrete arches,stone cutwater piers continuing to deck level,open metal railing and flat gently crowned road."
+    },
+    {
+      "url": "https://tour.florence.it/de/florenz/was-zu-sehen-ist/details/ponte-alle-grazie",
+      "observed": "Actually inspected oblique picture:full-width shallow solid arch haunches,four pointed dark stone cutwaters,raised bank abutments,thin open guardrail and separate pedestrian pavements."
+    },
+    {
+      "url": "https://www.celebritycruises.com/blog/bridges-of-florence-italy",
+      "observed": "Actually inspected large river/city photograph:current five unequal openings,continuous pale concrete span faces,individual warm brown masonry piers and small projecting guardrail platforms;not a medieval nine-arch reconstruction."
+    },
+    {
+      "url": "https://www.openstreetmap.org/way/167368139",
+      "observed": "Retained exact Q2517000 outline includes four paired projecting cutwater tips;standard PMTiles named bridge road and paired footpaths corroborate the current crossing."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "five-shallow-arches",
+      "position": [
+        -20,
+        14,
+        128
+      ],
+      "lookAt": [
+        0,
+        4.5,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "complete-oblique-crossing",
+      "position": [
+        -110,
+        58,
+        115
+      ],
+      "lookAt": [
+        0,
+        4.5,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "mapped-stone-cutwater",
+      "position": [
+        -29,
+        5.5,
+        25
+      ],
+      "lookAt": [
+        -18.88,
+        5,
+        7.7
+      ],
+      "fov": 48
+    },
+    {
+      "name": "open-concrete-arch-soffit",
+      "position": [
+        -4,
+        3.6,
+        15
+      ],
+      "lookAt": [
+        -4,
+        6.5,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "pavements-road-and-rails",
+      "position": [
+        -53,
+        11.7,
+        6.1
+      ],
+      "lookAt": [
+        8,
+        9.6,
+        6.1
+      ],
+      "fov": 54
+    },
+    {
+      "name": "triangular-overlook-and-railing",
+      "position": [
+        5,
+        12,
+        16
+      ],
+      "lookAt": [
+        10.8,
+        9.9,
+        8.8
+      ],
+      "fov": 48
+    },
+    {
+      "name": "south-landing-crosswalk",
+      "position": [
+        -61,
+        14.2,
+        12
+      ],
+      "lookAt": [
+        -69.3,
+        9.4,
+        0
+      ],
+      "fov": 51
+    }
+  ],
+  "reviewEntities": [
+    {
+      "id": "review-water",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            1.48,
+            0
+          ],
+          "scale": [
+            133,
+            0.1,
+            256
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#1b4450",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.25,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/models/grazie-model.mjs",
+    "export": "buildGrazieSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.3
+      },
+      "paint": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGrazieDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1
+      },
+      "street": {
+        "export": "buildGrazieStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.5
+      },
+      "closeup": {
+        "export": "buildGrazieCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-bridge-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -110,
+        58,
+        115
+      ],
+      "lookAt": [
+        0,
+        4.5,
+        0
+      ]
+    },
+    {
+      "name": "whole-bridge-district",
+      "reviewLod": "district",
+      "position": [
+        -110,
+        58,
+        115
+      ],
+      "lookAt": [
+        0,
+        4.5,
+        0
+      ]
+    },
+    {
+      "name": "whole-bridge-street",
+      "reviewLod": "street",
+      "position": [
+        -110,
+        58,
+        115
+      ],
+      "lookAt": [
+        0,
+        4.5,
+        0
+      ]
+    },
+    {
+      "name": "whole-bridge-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -110,
+        58,
+        115
+      ],
+      "lookAt": [
+        0,
+        4.5,
+        0
+      ]
+    },
+    {
+      "name": "street-open-arch",
+      "reviewLod": "street",
+      "position": [
+        -4,
+        3.6,
+        15
+      ],
+      "lookAt": [
+        -4,
+        6.5,
+        0
+      ]
+    },
+    {
+      "name": "closeup-cutwater",
+      "reviewLod": "closeup",
+      "position": [
+        -29,
+        5.5,
+        25
+      ],
+      "lookAt": [
+        -18.88,
+        5,
+        7.7
+      ]
+    }
+  ]
+}

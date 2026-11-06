@@ -1,0 +1,505 @@
+{
+  "id": "beijing_railway_station",
+  "title": "Beijing railway station",
+  "wikidataId": "Q285141",
+  "referenceCoordinate": {
+    "longitude": 116.421111111,
+    "latitude": 39.902222222
+  },
+  "module": "content/worldgen/source/places/wx/wx4/beijing_railway_station/models/station-model.mjs",
+  "builder": "buildStationLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.9
+    },
+    "blind": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.9
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.9
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_glazed",
+      "roughness": 0.46
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.14
+    },
+    "canopy": {
+      "slot": "roof",
+      "graph": "metal_corrugated",
+      "roughness": 0.8,
+      "metallic": 0.12
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.42
+    },
+    "doorGlass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.42
+    }
+  },
+  "exportLabel": "Molen original complete Beijing station passenger building and open canopy source",
+  "expectedDraftMasterHash": "sha256:52a026e80ee8e11e13948a2237296febbc5974017f5930d4136a20e6efdb40e2",
+  "visualBrief": "Complete permanent Beijing railway station passenger ensemble: monumental north facade, both square clock towers with three-tier glazed Chinese roofs and finials, deep central glazed bays and rounded columns, full lateral wings and corner roof pavilions, two genuine courtyard voids, all mapped canopy bounds represented by open platform-roof wings, and the elevated connector with stairs. Preserve the native forecourt, independent service buildings, streets, rails and urban context. Exterior only; no copied signs, lettering, branding, figurative ornament, people, trains or navigable interior.",
+  "heightPolicy": "All architectural heights and grades are original photo-proportioned controls because scoped map families have no numeric height fields. Layer1/2/3 values are retained as map facts, not heights. Closed main floor+.65m and foundation-10m share one unchanged host datum. Wings21.5m,central24.5m,clock finials43.3m,corner roofs27.8m; open canopy centres6.4m/eaves7.8m and connector floor4m/roof7.2m. Preserve open courtyards and rail/sky spaces; no blanket parent or canopy ground floor and no per-part host offsets. One unchanged standard field sample outside the north entrance[-12,-57],48.08290055999999m,defines one common Y=0. Native contact still requires current render review.",
+  "nativeAxes": "+X east along the monumental north facade; +Z south toward the railway platforms; -Z north toward the forecourt and Beijing Station East/West Street. +Y up.",
+  "sourceFacts": {
+    "numericNativeHeightsAvailable": false,
+    "nativeLayers": {
+      "main": 1,
+      "canopy": 3,
+      "connector": 2
+    },
+    "authoredLevels": {
+      "floor": 0.65,
+      "foundation": -10,
+      "wing": 21.5,
+      "centralHall": 24.5,
+      "portico": 6.3,
+      "clockShaft": 29,
+      "clockFaceTop": 35.5,
+      "clockRoofTop": 41.6,
+      "clockFinial": 43.3,
+      "cornerPavilion": 27.8,
+      "canopyCentre": 6.4,
+      "canopyEdge": 7.8,
+      "connectorFloor": 4,
+      "connectorRoof": 7.2
+    },
+    "heightPolicy": "All architectural heights and grades are original photo-proportioned controls because scoped map families have no numeric height fields. Layer1/2/3 values are retained as map facts, not heights. Closed main floor+.65m and foundation-10m share one unchanged host datum. Wings21.5m,central24.5m,clock finials43.3m,corner roofs27.8m; open canopy centres6.4m/eaves7.8m and connector floor4m/roof7.2m. Preserve open courtyards and rail/sky spaces; no blanket parent or canopy ground floor and no per-part host offsets.",
+    "authoredMaximumMeters": 43.3,
+    "terrainTiles": 1,
+    "terrainReferenceLocal": [
+      -12,
+      -57
+    ],
+    "occupiedMasks": 3,
+    "courtyardVoids": 2,
+    "canopyRows": 8,
+    "ownedNativeParts": 13,
+    "retainedNativeParts": 350
+  },
+  "limitations": [
+    "Complete permanent Beijing railway station passenger ensemble: monumental north facade, both square clock towers with three-tier glazed Chinese roofs and finials, deep central glazed bays and rounded columns, full lateral wings and corner roof pavilions, two genuine courtyard voids, all mapped canopy bounds represented by open platform-roof wings, and the elevated connector with stairs. Preserve the native forecourt, independent service buildings, streets, rails and urban context. Exterior only; no copied signs, lettering, branding, figurative ornament, people, trains or navigable interior.",
+    "All architectural heights and grades are original photo-proportioned controls because scoped map families have no numeric height fields. Layer1/2/3 values are retained as map facts, not heights. Closed main floor+.65m and foundation-10m share one unchanged host datum. Wings21.5m,central24.5m,clock finials43.3m,corner roofs27.8m; open canopy centres6.4m/eaves7.8m and connector floor4m/roof7.2m. Preserve open courtyards and rail/sky spaces; no blanket parent or canopy ground floor and no per-part host offsets. One unchanged standard field sample outside the north entrance[-12,-57],48.08290055999999m,defines one common Y=0. Native contact still requires current render review.",
+    "Two adequate ordinary front and selected-platform photographs inspected. Full map outlines and two court holes are retained. Hidden rear windows, canopy module inventory/sky-slot widths, detailed roof ornament and current renovation phase remain medium-fi approximations. The eight canopy rows are regularized around native rail gaps plus two inferred edge rows; they are not a surveyed inventory. The central facade is regularized to preserve all three photographed glazed bays. Exact hidden ornament, thresholds, platform levels and present works remain approximate. No copied lettering or photographic textures. Physical-device timing and numerical LOD errors remain unmeasured.",
+    "Six existing shared256px limestone,granite,glazed-tile,painted-metal,corrugated-metal andwindow-grid graphs. Six merged semantic groups,metric UVs andlinear colours,no embedded or private textures. Skyline preserves the full passenger mass,clock silhouettes,courts andallcanopyrows. District addscoarsepanes;street addsrealrecesses;close-up addsroofcurves,branchsupports,clocks andstairs;master separatelyrefinesframes andcurves. LODerrors areestimates."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Beijing_Railway_Station_(20210521181346).jpg",
+      "observed": "Actually inspected ordinary 2021 north-front photograph. Warm pale stone monumental facade; two central square clock towers with black clock faces, three-tier orange/gold Chinese hip roofs and finials; larger recessed glazed central bays with heavy rounded columns, curved upper cornice and green/gold eaves. Long low wings have large recessed vertical glazing with curved tops, small upper windows and ornamental eaves; small corner roof pavilions sit at the far ends. Temporary red forecourt shelters, flags, signs, lettering, people and branding remain separate. Exact hidden rear openings and roof inventory are unverified."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:CRH380BG-5822@BJI_(20211019142030).jpg",
+      "observed": "Inspected train-approach photograph. It shows an independent urban rail viaduct and surrounding skyline, not the station platform canopy. Do not use it as canopy-shape evidence."
+    },
+    {
+      "url": "https://news.bjd.com.cn/2025/12/31/11496170.shtml",
+      "observed": "Actually inspected ordinary published2025 platform photograph. Open longitudinal rail/sky slots separate long shallow canopy wings. The canopy underside is ivory with gold-toned edge/ceiling bands, slender grey columns and branching steel support arms; transverse trusses and an elevated connector with stairs are visible. The picture shows only a selected platform section, not a complete module inventory. Use current PMTiles for whole bounds; preserve open spaces rather than filling a ground-to-roof station cuboid. Do not copy lettering, medallions, LED notices, people or trains."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Approximate physical association: parent80/238, four mapped roof/tower pavilions10/11/13/15, complete layer3 canopy56/118/188/243 and layer2 connector75/149. Parent has two genuine courtyard holes; preserve them in walls, roofs, floors and masks. PMTiles supply no numeric heights for these scoped families. Do not turn layer numbers into surveyed platform heights or claim an exact Wikidata-tagged parent. Source includes an approximately0.72m central facade projection to keep all three observed glazed bays and columns continuous between the clock towers; original map part edges are generalized. Two actual court voids remain open. All heights are original photo-proportioned approximations."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-passenger-building-and-open-canopy-fields",
+      "position": [
+        -380,
+        240,
+        -460
+      ],
+      "lookAt": [
+        0,
+        13,
+        90
+      ],
+      "fov": 52
+    },
+    {
+      "name": "full-north-clock-towers-and-monumental-entrance",
+      "position": [
+        -45,
+        55,
+        -235
+      ],
+      "lookAt": [
+        -10,
+        18,
+        -15
+      ],
+      "fov": 52
+    },
+    {
+      "name": "rear-wings-and-two-open-courts",
+      "position": [
+        -150,
+        120,
+        30
+      ],
+      "lookAt": [
+        -12,
+        14,
+        -10
+      ],
+      "fov": 52
+    },
+    {
+      "name": "whole-eight-roof-rows-and-connector",
+      "position": [
+        390,
+        150,
+        330
+      ],
+      "lookAt": [
+        0,
+        5,
+        125
+      ],
+      "fov": 52
+    },
+    {
+      "name": "under-open-canopy-wings-and-elevated-connector",
+      "position": [
+        -100,
+        3,
+        123
+      ],
+      "lookAt": [
+        -30,
+        5,
+        123
+      ],
+      "fov": 52
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.6,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/beijing_railway_station/models/station-model.mjs",
+    "export": "buildStationSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.9
+      },
+      "blind": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.9
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.9
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_glazed",
+        "roughness": 0.46
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.14
+      },
+      "canopy": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.8,
+        "metallic": 0.12
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.42
+      },
+      "doorGlass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.42
+      }
+    },
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStationDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "blind": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.46
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.14
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.8,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          }
+        },
+        "errorMeters": 1.2
+      },
+      "street": {
+        "export": "buildStationStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "blind": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.46
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.14
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.8,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          }
+        },
+        "errorMeters": 0.5
+      },
+      "closeup": {
+        "export": "buildStationCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "blind": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.46
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.14
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.8,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42
+          }
+        },
+        "errorMeters": 0.18
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-beijing-station-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -380,
+        240,
+        -460
+      ],
+      "lookAt": [
+        0,
+        13,
+        90
+      ]
+    },
+    {
+      "name": "whole-beijing-station-district",
+      "reviewLod": "district",
+      "position": [
+        -380,
+        240,
+        -460
+      ],
+      "lookAt": [
+        0,
+        13,
+        90
+      ]
+    },
+    {
+      "name": "whole-beijing-station-street",
+      "reviewLod": "street",
+      "position": [
+        -380,
+        240,
+        -460
+      ],
+      "lookAt": [
+        0,
+        13,
+        90
+      ]
+    },
+    {
+      "name": "whole-beijing-station-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -380,
+        240,
+        -460
+      ],
+      "lookAt": [
+        0,
+        13,
+        90
+      ]
+    }
+  ]
+}

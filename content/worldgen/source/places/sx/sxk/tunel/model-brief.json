@@ -1,0 +1,495 @@
+{
+  "id": "tunel",
+  "title": "Tünel funicular system",
+  "wikidataId": "Q387264",
+  "referenceCoordinate": {
+    "longitude": 28.97404119372368,
+    "latitude": 41.025611774588604
+  },
+  "module": "content/worldgen/source/places/sx/sxk/tunel/models/station-model.mjs",
+  "builder": "buildStationLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.9
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.9
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.8
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.14
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.4
+    },
+    "doorGlass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.4
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.92
+    }
+  },
+  "exportLabel": "Molen original Tünel two-terminal exterior and approximate underground route source",
+  "expectedDraftMasterHash": "sha256:a3dc4997a9d478f9b037a994d02b6c3ff9fa06f3805471a5ea82720fc60ee583",
+  "visualBrief": "ConnectedTünelfunicular system visualization:both mapped terminal-host exteriors andthecurrent undergroundmainline/passingloop envelope. Upper26m Metrohan house:classical pale/pink multistorey corner mass,arched lowerbays/pilasters,rectangular upperwindows,deepcornices andwraparound canopy. LowerKarakoy host:light two-level entrance mass,large recessed rectangular doorway,upper archedpanes andsteppedcornice. Preserve everyintervening independentbuilding andoriginal terrain outsideactualclosedterminalfloors. No copiedsigns,photobanners,logos,flags,anniversarydecorations,people,vehicles,train/interior operationalclaims orfutureworks.",
+  "heightPolicy": "Upper host uses native26m relative architectural height. Lower host9m is a two-level entrance interpretation; full hidden upper/rear extent is unverified. One standard lower outside sample 15.8102388m defines commonY=0; upper source grade 53.33291019999999m uses the unchanged upper outside field. Floors are grade+.65m; unsurveyed thresholds. Explicit illustrative underground envelope. Native horizontal mainline/passing-loop retained without length rescaling; rail bed follows the lower of a terminal-to-terminal linear grade and the unchanged global terrain minus 6.2m. This is not a surveyed tunnel section, alignment depth or operational interior.",
+  "nativeAxes": "+X north/uphill towardBeyoglu; -X south/downhill towardKarakoy; +Z east; -Z west; +Yup.",
+  "sourceFacts": {
+    "nativePartFacts": [
+      {
+        "index": 1217,
+        "id": 35184537611513,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 26
+        }
+      },
+      {
+        "index": 2070,
+        "id": 35184941794271,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building"
+        }
+      }
+    ],
+    "ownedNativeParts": 2,
+    "retainedNativeParts": 3182,
+    "nativeRouteId": 35185042266560,
+    "nativeRouteProperties": {
+      "name": "Tünel (F2)",
+      "kind_detail": "funicular",
+      "is_tunnel": true,
+      "sort_rank": 400,
+      "kind": "rail",
+      "min_zoom": 15
+    },
+    "retainedLengthFactMeters": 573,
+    "mappedMainlineLengthMeters": 610.2320645185501,
+    "routeSectionNodes": [
+      79,
+      19
+    ],
+    "terminalGrades": [
+      53.33291019999999,
+      0
+    ],
+    "terminalFloors": [
+      53.98291019999999,
+      0.65
+    ],
+    "terminalHeights": [
+      26,
+      9
+    ],
+    "estimatedLowerHeight": true,
+    "terrainTiles": 2,
+    "terrainReferenceLocal": [
+      -314,
+      -10
+    ],
+    "occupiedMasks": 2
+  },
+  "materialMethod": "Seven existing shared256px graphs:plaster_lime,stone_limestone,stone_granite,metal_standing_seam,metal_painted,window_grid andbrick; seven merged semantic groups. MetricUVs,linear colors; opaque walls/roof/casing and dedicated window panes. No private or embedded images; no lettering/photobanners.",
+  "limitations": [
+    "ConnectedTünelfunicular system visualization:both mapped terminal-host exteriors andthecurrent undergroundmainline/passingloop envelope. Upper26m Metrohan house:classical pale/pink multistorey corner mass,arched lowerbays/pilasters,rectangular upperwindows,deepcornices andwraparound canopy. LowerKarakoy host:light two-level entrance mass,large recessed rectangular doorway,upper archedpanes andsteppedcornice. Preserve everyintervening independentbuilding andoriginal terrain outsideactualclosedterminalfloors. No copiedsigns,photobanners,logos,flags,anniversarydecorations,people,vehicles,train/interior operationalclaims orfutureworks.",
+    "Upper host uses native26m relative architectural height. Lower host9m is a two-level entrance interpretation; full hidden upper/rear extent is unverified. One standard lower outside sample 15.8102388m defines commonY=0; upper source grade 53.33291019999999m uses the unchanged upper outside field. Floors are grade+.65m; unsurveyed thresholds. Explicit illustrative underground envelope. Native horizontal mainline/passing-loop retained without length rescaling; rail bed follows the lower of a terminal-to-terminal linear grade and the unchanged global terrain minus 6.2m. This is not a surveyed tunnel section, alignment depth or operational interior.",
+    "The lower photograph only establishes the entrance portion, not the full host roof/height. Rear window inventory is regularized; exact terminal associations/orientation, hidden rooms, tunnel depth, section and junction geometry are approximate. The original subterranean-identity rejection remains a readiness blocker until the complete new scope is accepted. No operational or navigable underground interior. Physical laptop/phone timing and numerical LOD errors remain unmeasured.",
+    "Seven existing shared256px graphs:plaster_lime,stone_limestone,stone_granite,metal_standing_seam,metal_painted,window_grid andbrick; seven merged semantic groups. MetricUVs,linear colors; opaque walls/roof/casing and dedicated window panes. No private or embedded images; no lettering/photobanners. Skyline/district retain both complete terminal silhouettes and entry-canopy family; underground geometry is omitted while occluded. Street/closeup add mapped mainline and passing-loop casings/railbeds without deleting the city above; source master additionally retains denser arch facets, window trims and sleepers."
+  ],
+  "references": [
+    {
+      "url": "https://en.wikipedia.org/wiki/T%C3%BCnel",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d1/IstanbulT%C3%BCnel_%284%29.JPG",
+      "observed": "Inspected ordinary upper Beyoglu entrance photo:full multistorey pale/pink stone-and-render corner building,deep cornices,pilasters,rows oflarge rectangular windows,lower arched panes andentrances,wraparound metal canopy. Front andside facade arevisible. Photo banners,lettering,flags,people,cars andutility/airconditioning clutter areomitted ratherthancopied."
+    },
+    {
+      "url": "https://x.com/ietttr/status/821280195218964480",
+      "imageUrl": "https://pbs.twimg.com/media/C2XFyRTWgAISnqn.jpg",
+      "observed": "Inspected ordinary official2017 lower Karakoy entrance photograph:light cream rendered/stone piers,large upper arched glazed panels,open rectangular entrance andstepped fascia/cornice. Itshows only thelower entrance portion ofahost building. Anniversarygarlands,lettering,logos,archival photo panels,people andstreetprops aretransient/graphic andnot copied. Awhole-building mass must stillfollowcurrent PMTiles andadequateordinaryimage context."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Systemscope:two complete endpoint-host exterior volumes plus mappedmainline/passingloop casing;preserve allinterveningindependentbuildings andShishane layer-2undergroundconcourse2518. Prior single-station-at-midpoint proposal remainsinvalid;current physicalscope mustpass actualsource/runtime/production/geographic review before replacing thatrecommendation."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "both-terminals-and-buried-route-frame",
+      "position": [
+        550,
+        360,
+        490
+      ],
+      "lookAt": [
+        0,
+        29,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "beyoglu-metrohan-north-east-corner",
+      "position": [
+        360,
+        95,
+        65
+      ],
+      "lookAt": [
+        295,
+        65,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "beyoglu-open-entry-and-canopy",
+      "position": [
+        334,
+        58,
+        25
+      ],
+      "lookAt": [
+        310,
+        57,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "karakoy-south-west-entrance",
+      "position": [
+        -346,
+        12,
+        -38
+      ],
+      "lookAt": [
+        -306,
+        4,
+        -5
+      ],
+      "fov": 52
+    },
+    {
+      "name": "approximate-buried-route-profile",
+      "position": [
+        -40,
+        2,
+        95
+      ],
+      "lookAt": [
+        -5,
+        18,
+        0
+      ],
+      "fov": 52
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.4,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sx/sxk/tunel/models/station-model.mjs",
+    "export": "buildStationSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.9
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.8
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.14
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.4
+      },
+      "doorGlass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.4
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.92
+      }
+    },
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStationDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92
+          }
+        },
+        "errorMeters": 1.2
+      },
+      "street": {
+        "export": "buildStationStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92
+          }
+        },
+        "errorMeters": 0.5
+      },
+      "closeup": {
+        "export": "buildStationCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.4
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92
+          }
+        },
+        "errorMeters": 0.18
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "both-tunel-terminals-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        550,
+        360,
+        490
+      ],
+      "lookAt": [
+        0,
+        29,
+        0
+      ]
+    },
+    {
+      "name": "both-tunel-terminals-district",
+      "reviewLod": "district",
+      "position": [
+        550,
+        360,
+        490
+      ],
+      "lookAt": [
+        0,
+        29,
+        0
+      ]
+    },
+    {
+      "name": "both-tunel-terminals-street",
+      "reviewLod": "street",
+      "position": [
+        550,
+        360,
+        490
+      ],
+      "lookAt": [
+        0,
+        29,
+        0
+      ]
+    },
+    {
+      "name": "both-tunel-terminals-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        550,
+        360,
+        490
+      ],
+      "lookAt": [
+        0,
+        29,
+        0
+      ]
+    }
+  ]
+}

@@ -1,13 +1,17 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.wembley_stadium",
-  "inputHash": "sha256:856254a57557ee6de88adf318463033136420a8e5c631279371aad3579121d47",
-  "captureReportHash": "sha256:b7d47ccee6c6e71c80fde5e89a87fb0d19e7faab76dd0c7a9980c903da1977ba",
+  "reviewedOn": "2026-10-31",
+  "inputHash": "sha256:622af9107025fb2a68870e05ccdeaa8424783e3db068cfa8f9c46d9dcc17e6a7",
+  "sourceHash": "sha256:4eb0209f0210255192da7fdaf2c0ed50105a0ce920096275a7e7b4aa1a7766c6",
+  "runtimeHash": "sha256:67ac173fc0a5bbc8345242c28a718ed529b19891676ff1db5d5e09662130863b",
+  "captureReportHash": "sha256:f84792a966e85bd7a92b32eb9a9efc83b97f8b541e0c65e341f18f8ad7359ed2",
   "visualReview": {
     "status": "passed",
-    "scope": "Detailed published exterior and open bowl.",
+    "inputHash": "sha256:622af9107025fb2a68870e05ccdeaa8424783e3db068cfa8f9c46d9dcc17e6a7",
+    "captureReportHash": "sha256:f84792a966e85bd7a92b32eb9a9efc83b97f8b541e0c65e341f18f8ad7359ed2",
     "inspectedFrames": [
-      "preview.png",
+      "shots/scene-preview.png",
       "shots/turntable/angle_0.png",
       "shots/turntable/angle_1.png",
       "shots/turntable/angle_2.png",
@@ -19,27 +23,12 @@
       "shots/near-bowl-royal-box.png",
       "shots/far-open-roof.png"
     ],
-    "notes": "All eleven portable and eleven shared frames inspected, including full-resolution arch lattice and roof cables. The tapered twelve-chord arch, stays, catenaries, north entrance and three red tiers are coherent. Roof hardware is clipped at the actual roof bounds; the corrected north strip is milky translucent rather than clear glazing."
+    "notes": "Inspected68 final current frames:11 portable and11 shared-material views of the corrected detailed master,27 Earth/context/LOD views and19 actual Molen runtime-placement views. The inclined north-side315m arch,the open mapped roof,the glazed/precast envelope,north Olympic Way entrance/steps and three red seating tiers remain recognizable. Browser skyline has a solid tapered arch;district has six aggregated chord paths;street and closeup retain twelve. Street has22grouped tread levels;closeup has all81row bands,42arch diaphragm rings,selected braces/stays,roof framing,perimeter truss,screens,royal-box volume and40entrance steps. Initial review caught the missing browser perimeter truss and upper seating protruding through southern corners. Both the detailed source and browser geometry now fit the upper tiers inside the mapped envelope;final overhead and side renders confirm the correction."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:bc850db1a9d524c174a53d7ba809e211e53dfb9571d405e85bfbfc80bbe6a4ba",
-    "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
-    "materialGraphs": {
-      "matgraph:molen.worldgen.material.metal_standing_seam": {
-        "path": "materials/metal_standing_seam.matgraph.json",
-        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
-      },
-      "matgraph:molen.worldgen.material.metal_painted": {
-        "path": "materials/metal_painted.matgraph.json",
-        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
-      },
-      "matgraph:molen.worldgen.material.concrete_plain": {
-        "path": "materials/concrete_plain.matgraph.json",
-        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
-      }
-    },
+    "inputHash": "sha256:622af9107025fb2a68870e05ccdeaa8424783e3db068cfa8f9c46d9dcc17e6a7",
+    "captureReportHash": "sha256:ff14d4625fdb689bc1d188a487211564acf64c274ddb223e59c6edd4cee10e42",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -53,17 +42,767 @@
       "shots/shared/far-open-roof.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Shared painted metal, concrete and standing-seam cladding retain metric surface scale. The translucent north strip uses a local alpha material so the common graph does not override transparency. Actual geographic placement, sky-PMREM and unload assertions pass."
+    "notes": "Three shared256px metal_painted,metal_standing_seam and concrete_plain graphs with metric UVs and linear vertex colors. Seating,blue-gray glazing,turf and dark screens use local PBR palette factors. No private or embedded images. All four browser tiers use six draws. Each shared graph is loaded once in each fixture. Browser north roof glazing is represented by opaque standing-seam cladding;the detailed master retains its translucent north strip. Fine rails/cables,seat counts and panel machinery are deliberately aggregated or omitted from browser levels.",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    }
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inputHash": "sha256:622af9107025fb2a68870e05ccdeaa8424783e3db068cfa8f9c46d9dcc17e6a7",
+    "captureReportHash": "sha256:1e8bdfef28daa5fa0f20116e37fa6234566195e3aa02e10cd35238a01428a2cc",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-north-entrance.png",
+      "medium-fi/near-arch-lattice.png",
+      "medium-fi/near-pencil-bearing.png",
+      "medium-fi/near-roof-cables.png",
+      "medium-fi/near-bowl-royal-box.png",
+      "medium-fi/far-open-roof.png",
+      "medium-fi/whole-wembley-skyline.png",
+      "medium-fi/whole-wembley-district.png",
+      "medium-fi/whole-wembley-street.png",
+      "medium-fi/whole-wembley-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected68 final current frames:11 portable and11 shared-material views of the corrected detailed master,27 Earth/context/LOD views and19 actual Molen runtime-placement views. The inclined north-side315m arch,the open mapped roof,the glazed/precast envelope,north Olympic Way entrance/steps and three red seating tiers remain recognizable. Browser skyline has a solid tapered arch;district has six aggregated chord paths;street and closeup retain twelve. Street has22grouped tread levels;closeup has all81row bands,42arch diaphragm rings,selected braces/stays,roof framing,perimeter truss,screens,royal-box volume and40entrance steps. Initial review caught the missing browser perimeter truss and upper seating protruding through southern corners. Both the detailed source and browser geometry now fit the upper tiers inside the mapped envelope;final overhead and side renders confirm the correction. Detailed master retains full component/seating representation with827,246triangles /72,462,592source bytes. The old832,058-triangle master had a rounded-rectangle upper-row corner overshoot;fitting those rows recomputes their approximate chair population,without simplifying individual chairs,removing row bands or reducing structural detail. Browser triangles 744 / 3706 / 15914 / 62710,bytes 62176 / 284316 / 1114476 / 4188656. Initial skyline+district 346492bytes;closeup 4188656bytes. Every ceiling and eight-draw maximum passes;POSITION/NORMAL streams are separate. Error settings8/4/2/1m are authoring estimates,not certified Hausdorff bounds. Physical laptop/phone and downtown timing remain unmeasured.",
+    "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629"
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:203865565e420a675d37bfe1e6d0d89cf705069a61c0487aa60b70560504c96c",
-    "notes": "Mapped roof and aperture loops, pitch axis and arch feet anchor the exterior. North-up placement aligns the long east-west field and north-facing arch/entrance. The designer-established 22-degree north arch inclination is retained; artistic OSM arch heights were not used."
+    "notes": "Mapped roof and aperture loops, pitch axis and arch feet anchor the exterior. North-up placement aligns the long east-west field and north-facing arch/entrance. The designer-established 22-degree north arch inclination is retained; artistic OSM arch heights were not used. Retained anchor[-0.27956525,51.55596295],heading0.003693795533106074,native+X east along the goal axis and+Z south are unchanged. The22degree inclined arch stands north(-Z). The existing independently mapped roof outer/opening polygons and pitch remain the plan controls. No new bespoke engineering research,PMTiles/DEM download or geodetic survey was performed. Actual Molen structure,terrain,worldgen and material/rendering stack on a synthetic flat ground datumY0. All five loaded outputs replace the selected stadium shell while four independent building records and four roads remain unchanged. All1089raw heights and outside-ground probes remain unchanged. The field remains at ground level,with visible turf/markings betweenY0andY0.06;all63inset mapped edge samples find the plaza slab atY0.025. No terrain cutout is required. Hide/show leaves the ground atY0. Failed loading retains all five procedural building records and all roads;unloading leaves zero live model/support geometries and retains original ground. This proves scoped transform/contact/lifecycle behavior,not Wembley terrain heights or current neighboring buildings."
   },
   "fidelityReview": {
-    "target": "maximum",
     "status": "passed",
-    "scope": "Detailed published exterior in Molen shared material style.",
-    "notes": "The operator facts and structural designer paper govern the 315m arch span, 133m height, 7.4m exterior diameter, twelve 457mm chords, diaphragm rings and main roof support system. Published photographs establish precast/glazing, red bowl and Olympic Way entrance. Connection plates, seat layout and roof bay subdivisions are photo reconstructions; changing advertising and enclosed service rooms are outside the modeled exterior."
+    "target": "medium-fi",
+    "notes": "Inspected68 final current frames:11 portable and11 shared-material views of the corrected detailed master,27 Earth/context/LOD views and19 actual Molen runtime-placement views. The inclined north-side315m arch,the open mapped roof,the glazed/precast envelope,north Olympic Way entrance/steps and three red seating tiers remain recognizable. Browser skyline has a solid tapered arch;district has six aggregated chord paths;street and closeup retain twelve. Street has22grouped tread levels;closeup has all81row bands,42arch diaphragm rings,selected braces/stays,roof framing,perimeter truss,screens,royal-box volume and40entrance steps. Initial review caught the missing browser perimeter truss and upper seating protruding through southern corners. Both the detailed source and browser geometry now fit the upper tiers inside the mapped envelope;final overhead and side renders confirm the correction. Detailed master retains full component/seating representation with827,246triangles /72,462,592source bytes. The old832,058-triangle master had a rounded-rectangle upper-row corner overshoot;fitting those rows recomputes their approximate chair population,without simplifying individual chairs,removing row bands or reducing structural detail. Browser triangles 744 / 3706 / 15914 / 62710,bytes 62176 / 284316 / 1114476 / 4188656. Initial skyline+district 346492bytes;closeup 4188656bytes. Every ceiling and eight-draw maximum passes;POSITION/NORMAL streams are separate. Error settings8/4/2/1m are authoring estimates,not certified Hausdorff bounds. Physical laptop/phone and downtown timing remain unmeasured."
+  },
+  "detailedMasterReview": {
+    "status": "passed",
+    "target": "maximum",
+    "sourceHash": "sha256:4eb0209f0210255192da7fdaf2c0ed50105a0ce920096275a7e7b4aa1a7766c6",
+    "runtimeHash": "sha256:67ac173fc0a5bbc8345242c28a718ed529b19891676ff1db5d5e09662130863b",
+    "notes": "Current full-detail master was corrected and freshly reviewed in this pass. All81row bands,individual chair geometry,arch chords/diaphragms/stays,roof trusses,glazing,stairs and exterior fittings remain. Exact ticket-seat counts and hidden rooms are excluded. Original pre-fit source/import hashes and maximum-fidelity review retained below as historical provenance,not an unchanged-current-master claim.",
+    "previousSourceHash": "sha256:0c4255d381daea870ee3c36d9c992038b6a244dd3c3ec4b48098eb6301242dd6",
+    "previousRuntimeHash": "sha256:1fd63d0f0415bf6ad8c1ef5d22b0ab8aafc16483ebdc3c587994c67242dc7ba4",
+    "previousTriangles": 832058,
+    "triangles": 827246,
+    "previousReview": {
+      "target": "maximum",
+      "status": "passed",
+      "scope": "Detailed published exterior in Molen shared material style.",
+      "notes": "The operator facts and structural designer paper govern the 315m arch span, 133m height, 7.4m exterior diameter, twelve 457mm chords, diaphragm rings and main roof support system. Published photographs establish precast/glazing, red bowl and Olympic Way entrance. Connection plates, seat layout and roof bay subdivisions are photo reconstructions; changing advertising and enclosed service rooms are outside the modeled exterior."
+    }
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/models/source.glb",
+        "hash": "sha256:4eb0209f0210255192da7fdaf2c0ed50105a0ce920096275a7e7b4aa1a7766c6",
+        "bytes": 72462592,
+        "triangles": 827246,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -160.6999969482422,
+          0,
+          -171.5
+        ],
+        "max": [
+          160.6999969482422,
+          133.29429626464844,
+          133.54039001464844
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/gc/gcp/wembley_stadium/model.glb",
+        "hash": "sha256:67ac173fc0a5bbc8345242c28a718ed529b19891676ff1db5d5e09662130863b",
+        "bytes": 72461996,
+        "triangles": 827246,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -160.6999969482422,
+          0,
+          -171.5
+        ],
+        "max": [
+          160.6999969482422,
+          133.29429626464844,
+          133.54039001464844
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/gc/gcp/wembley_stadium/model.skyline.glb",
+        "hash": "sha256:5e154179cbbd4b046c607ac4849aa96b85460b12a811b8d1decea6f3f05e28cf",
+        "bytes": 62176,
+        "triangles": 744,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -160.6999969482422,
+          0,
+          -157.12689208984375
+        ],
+        "max": [
+          160.6999969482422,
+          132.8451385498047,
+          133.54039001464844
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/gc/gcp/wembley_stadium/model.district.glb",
+        "hash": "sha256:8a115b9052f9501bc317db5560e6d98732dd4b928d2e899c460d922e4ff7f631",
+        "bytes": 284316,
+        "triangles": 3706,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -160.6999969482422,
+          0,
+          -171.5
+        ],
+        "max": [
+          160.6999969482422,
+          133.16152954101562,
+          133.54039001464844
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/gc/gcp/wembley_stadium/model.street.glb",
+        "hash": "sha256:faa59e89fb8a389b16161dcb5fb5347c5dd1d0c3fbdc361d7ceac66ee423e9cf",
+        "bytes": 1114476,
+        "triangles": 15914,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -160.6999969482422,
+          -0.23375000059604645,
+          -171.5
+        ],
+        "max": [
+          160.6999969482422,
+          133.27420043945312,
+          133.54039001464844
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/gc/gcp/wembley_stadium/model.closeup.glb",
+        "hash": "sha256:9448d0f824e98d4379977bca4b1fddc40ed55cbbf8ae6e9f267639e4afaba443",
+        "bytes": 4188656,
+        "triangles": 62710,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -160.6999969482422,
+          0,
+          -171.5
+        ],
+        "max": [
+          160.6999969482422,
+          133.28057861328125,
+          133.54039001464844
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "checks": [
+      {
+        "check": "six-clean-current-Khronos-GLBs",
+        "passed": true
+      },
+      {
+        "check": "three-focused-arch-field-tiers-upper-seat-containment-plaza-budget-material-and-GPU-layout-tests",
+        "passed": true
+      },
+      {
+        "check": "scene-validation-and30ticks",
+        "passed": true,
+        "hash": "sha256:3cb0ef6ee1b99b41796132f9ff68a88e1bb66df6a9d97aa19c39e6ecabe63d22"
+      }
+    ]
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:418d7499855aac583eb27010c24c311b46eca9e2e8684ce1240554abdac1c669",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:5e154179cbbd4b046c607ac4849aa96b85460b12a811b8d1decea6f3f05e28cf",
+        "bytes": 62176,
+        "gzipBytes": 19214,
+        "triangles": 744,
+        "cpuBytes": 55152,
+        "gpuBytes": 55152,
+        "errorMeters": 8,
+        "drawCalls": 6
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:8a115b9052f9501bc317db5560e6d98732dd4b928d2e899c460d922e4ff7f631",
+        "bytes": 284316,
+        "gzipBytes": 83583,
+        "triangles": 3706,
+        "cpuBytes": 277260,
+        "gpuBytes": 277260,
+        "errorMeters": 4,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:faa59e89fb8a389b16161dcb5fb5347c5dd1d0c3fbdc361d7ceac66ee423e9cf",
+        "bytes": 1114476,
+        "gzipBytes": 326761,
+        "triangles": 15914,
+        "cpuBytes": 1107372,
+        "gpuBytes": 1107372,
+        "errorMeters": 2,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:9448d0f824e98d4379977bca4b1fddc40ed55cbbf8ae6e9f267639e4afaba443",
+        "bytes": 4188656,
+        "gzipBytes": 1254986,
+        "triangles": 62710,
+        "cpuBytes": 4181532,
+        "gpuBytes": 4181532,
+        "errorMeters": 1,
+        "drawCalls": 6
+      }
+    ],
+    "initialBytes": 346492,
+    "notes": "Detailed master retains full component/seating representation with827,246triangles /72,462,592source bytes. The old832,058-triangle master had a rounded-rectangle upper-row corner overshoot;fitting those rows recomputes their approximate chair population,without simplifying individual chairs,removing row bands or reducing structural detail. Browser triangles 744 / 3706 / 15914 / 62710,bytes 62176 / 284316 / 1114476 / 4188656. Initial skyline+district 346492bytes;closeup 4188656bytes. Every ceiling and eight-draw maximum passes;POSITION/NORMAL streams are separate. Error settings8/4/2/1m are authoring estimates,not certified Hausdorff bounds. Physical laptop/phone and downtown timing remain unmeasured."
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:622af9107025fb2a68870e05ccdeaa8424783e3db068cfa8f9c46d9dcc17e6a7",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Actual Molen structure,terrain,worldgen and material/rendering stack on a synthetic flat ground datumY0. All five loaded outputs replace the selected stadium shell while four independent building records and four roads remain unchanged. All1089raw heights and outside-ground probes remain unchanged. The field remains at ground level,with visible turf/markings betweenY0andY0.06;all63inset mapped edge samples find the plaza slab atY0.025. No terrain cutout is required. Hide/show leaves the ground atY0. Failed loading retains all five procedural building records and all roads;unloading leaves zero live model/support geometries and retains original ground. This proves scoped transform/contact/lifecycle behavior,not Wembley terrain heights or current neighboring buildings."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:622af9107025fb2a68870e05ccdeaa8424783e3db068cfa8f9c46d9dcc17e6a7",
+      "reviewedOn": "2026-10-31",
+      "method": "Inspected68 final current frames:11 portable and11 shared-material views of the corrected detailed master,27 Earth/context/LOD views and19 actual Molen runtime-placement views. The inclined north-side315m arch,the open mapped roof,the glazed/precast envelope,north Olympic Way entrance/steps and three red seating tiers remain recognizable. Browser skyline has a solid tapered arch;district has six aggregated chord paths;street and closeup retain twelve. Street has22grouped tread levels;closeup has all81row bands,42arch diaphragm rings,selected braces/stays,roof framing,perimeter truss,screens,royal-box volume and40entrance steps. Initial review caught the missing browser perimeter truss and upper seating protruding through southern corners. Both the detailed source and browser geometry now fit the upper tiers inside the mapped envelope;final overhead and side renders confirm the correction.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/scene-preview.png",
+          "hash": "sha256:6e12ce9d044c4d23d47dee784b69d318b88be00ffd92ef9373ee1b4cb92a2ab7"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/turntable/angle_0.png",
+          "hash": "sha256:07a4a562b24dba09620125fe7effbb5073953ec0adbb826776da40ce6ead063a"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/turntable/angle_1.png",
+          "hash": "sha256:83aba2c7904d1c374db63f8b8b9c9faf91b00e97d921519d6c5b5e1cfaf3d286"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/turntable/angle_2.png",
+          "hash": "sha256:dabc58807f2661ef7a9ab8dfe2432d9073343d9feba4b7f4a000e16a31357466"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/turntable/angle_3.png",
+          "hash": "sha256:0e62c5b7b97407f36d7d638668ca3a96b213a875ba8544a40c1e9a54bf0349dd"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/near-north-entrance.png",
+          "hash": "sha256:e53a19128f03c57102d9f494335f218ddbd3b689356f44d170d0c836eb327a96"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/near-arch-lattice.png",
+          "hash": "sha256:2a285e06eb2f7267fbeef53f0ea59d6e58f736048681f0815f7171cd91b3ba33"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/near-pencil-bearing.png",
+          "hash": "sha256:59c96381b578c2f1718cec2d96b3cf7ea165a9213af06f91c923b7f8b17c0dc3"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/near-roof-cables.png",
+          "hash": "sha256:575d6a924c9a25be13d3ee9ebc3d59525e961107dfc4ec9608fd65abbf972042"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/near-bowl-royal-box.png",
+          "hash": "sha256:0014fc378671778972c1d52ddcb077774bb9aeda9b26374e2ed8e28baa37e0ed"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/far-open-roof.png",
+          "hash": "sha256:1a506561205f95f57b7bafd0db813d62fdaa641378ac871078e2a928d3220810"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/shared/angle-0.png",
+          "hash": "sha256:ce0301ee036c225f323428064d59b8b4fc0d6894b992a86f6f7f929a708f44df"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/shared/angle-1.png",
+          "hash": "sha256:f370e95845392cb9dceb24f6d7d2f8e77495cb8f38c45435a5f4753046b49a20"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/shared/angle-2.png",
+          "hash": "sha256:2d3b352b5040fa93ba853a70d7a025dfb6ea8034daff3bcc94998e0cd3ca313f"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/shared/angle-3.png",
+          "hash": "sha256:b550407c52ee181767172ed3056b24f52a39c089cf82fb74905aec989f3e2d40"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/shared/near-north-entrance.png",
+          "hash": "sha256:9f9812246b0422367e189e7aee6e4316660d5236840d07ac50a1f2270efd6d4e"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/shared/near-arch-lattice.png",
+          "hash": "sha256:9f15e0353261b15b2010680eb5f893411cb712b815fb45781390a0964be08f41"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/shared/near-pencil-bearing.png",
+          "hash": "sha256:5eb00a7855f96e7fb687caad8e897fdf969684cd7cda44d120caf82eb522fab3"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/shared/near-roof-cables.png",
+          "hash": "sha256:3726a02eee8568388355c71c9b283bae8763936b12bd357b7dc669a0d16ecd6a"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/shared/near-bowl-royal-box.png",
+          "hash": "sha256:2d0fd78aa02f6a30a600b8de923310b750d36030a9cc9dfc04427b40a0fa3631"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/shared/far-open-roof.png",
+          "hash": "sha256:7e2499f5908527340441dab54cc565cc8ae2d6635f527a50e17be2bb6e8470c2"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/shots/shared/placement.png",
+          "hash": "sha256:a70787676373bf5a4ecdf2b59c359f520096681235867699ec6a779228890e06"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/street-noon-economy.png",
+          "hash": "sha256:58775f79d36fe3c6482d8f7ce18f03bf8c267974279ee45f492027917fdf5650"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/street-noon-high.png",
+          "hash": "sha256:63dca5e8a11def57413fe61acf6ad3ed5fee5a39172502a100d0a41a086dc0cb"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/street-late-economy.png",
+          "hash": "sha256:2d2285417df5f202b0045a839a67fb1870db0cb07f77ca5d3fd1eb2b55f500e4"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/street-late-high.png",
+          "hash": "sha256:4dda6804db6e0da6861cb9570db99dbcaf0afdb56bc3c6e8091bf6666a7fc4f4"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/block-noon-economy.png",
+          "hash": "sha256:dccec0a6634054425892c778909361e5aa0e95a6f4bc797291441e7f7096f698"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/block-noon-high.png",
+          "hash": "sha256:32b362399c8ac493476d24dbba3f6ff3f2fb89ea833d2f163b51de077e2e9936"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/block-late-economy.png",
+          "hash": "sha256:c1283855edafec805211093e5f16fcb96bdd31c16a9fbc2cf4d6cb7328b23d45"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/block-late-high.png",
+          "hash": "sha256:c8ee72f1f017caefa0d5c6b08ad6cf4f53600a1aa1a98451cf72288bf328eb23"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:870e0b89e5174f377f99a0ba0b3e1afabb8a76bdc3108ba546164fc3d41fef3e"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:e324826730f578c132c7d7e09163ed25bd37844f7cad8e45881496bbccb032b5"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:b77c700d4c60781c02728f695a864652c899cd2346799f58057714911062af35"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/skyline-late-high.png",
+          "hash": "sha256:188da0950b75e8d3a488e9da99f5a49d480adbb789454a96659dcf1eca69a14a"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/silhouette.png",
+          "hash": "sha256:4a2bb161eb735bc1d3839c3978d0d6fcee1844df144cae47fb9094308fadadd6"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/near-north-entrance.png",
+          "hash": "sha256:7875d4fb58c2ab011d600fc1a04ce0309bf30c1ea9859e041667420792ecde70"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/near-arch-lattice.png",
+          "hash": "sha256:8f093865f25bc8d249282c4d263ae81a40b2f7dba6093f7156c9406a8aa0be1e"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/near-pencil-bearing.png",
+          "hash": "sha256:390cd567cd1c7f9d8b69dedab86fc76859f7e092b732944c59ab19369731388f"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/near-roof-cables.png",
+          "hash": "sha256:760c4e4a99cadf434792e60892cd9becc6474927585348a6e993fb8c5a08d0d1"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/near-bowl-royal-box.png",
+          "hash": "sha256:9792b92da276ace93c0647c725482f3f4ec87dafbda00b3b07cef587aa2b6954"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/far-open-roof.png",
+          "hash": "sha256:0c470d561cd7065b16d3f4c24e8cf06cbd6bd123d65b9aa362d5c07736937d4e"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/whole-wembley-skyline.png",
+          "hash": "sha256:fc2267aae55f2da03a0eba2175a24e5fd0169f3ce826adc308376ac7897035fa"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/whole-wembley-district.png",
+          "hash": "sha256:331faa0f8ec1e0052b637e5f954504b1b54bf2fcb0a58f58cc7ba6eb31195af9"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/whole-wembley-street.png",
+          "hash": "sha256:d81feb05ec56347baf565c120a1682d76746554756bdb6104f24f72c462f9b6d"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/whole-wembley-closeup.png",
+          "hash": "sha256:96ec79393c862b6bbbc44b76177d48eda6e214c63ba181bc4143779840d8d6e8"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/transition-skyline.png",
+          "hash": "sha256:6594f111e414a49ae6653d3f79640de73e4d82d7093816da8f1850f204472f22"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/transition-district.png",
+          "hash": "sha256:32b362399c8ac493476d24dbba3f6ff3f2fb89ea833d2f163b51de077e2e9936"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/transition-street.png",
+          "hash": "sha256:2ad76e75a45193b54dc8647f80d7f48df541c94b078917afc06f9e06375c75d4"
+        },
+        {
+          "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/medium-fi/transition-closeup.png",
+          "hash": "sha256:f75181c2ea092eed13d94daa37432a9d5b9a909c5fd721eeac1a3845ad9a21ba"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-master-whole-inclined-arch-open-roof.png",
+          "hash": "sha256:b9da8b9e0866aeced68c762b8a705a1e6d7ceb3b9def2238d420569bc67e4619"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-master-arch-lattice-and-stays.png",
+          "hash": "sha256:7252ec40ae89449d5d3933ddc2123b0dd05de253c27c32a9a5f9429f81381914"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-master-north-entrance-and-steps.png",
+          "hash": "sha256:baf578fe1797dbc96e3400b762849c6edfe64d7fda8366fe9d4e8c5c6b1b319e"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-master-three-tier-bowl-royal-box.png",
+          "hash": "sha256:ace10d6ecd03d770009652cbf79bfbc30a8559c2352b53f21336213ff31cc467"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-master-mapped-roof-aperture-and-field.png",
+          "hash": "sha256:b227b8764cd9292743840ab4a3b90a102054bde4b6e788b17e19d8d171e6a5d3"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-master-district-context.png",
+          "hash": "sha256:b854d0bd48c7f3cd8f25d49eadde30510a3cf4a5e986ab592db1e180982e4060"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-skyline-skyline-context.png",
+          "hash": "sha256:083dfa40c8f172dc50b3da117d6088d9f18585469be4e30a194f0ffda172d7a7"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-district-district-context.png",
+          "hash": "sha256:9fca779e7dea4da07700444c7c053aa9de69ba8672b2652f6b20ce628dc629b3"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-street-whole-inclined-arch-open-roof.png",
+          "hash": "sha256:5d97d4aaacfd2200f746e32ec5aecfc5f90b2f91fb15d1e78cf8bf03a1f4b5a7"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-street-arch-lattice-and-stays.png",
+          "hash": "sha256:88ba5535b0c9b073d45e18ed16a01b60ecb6a4048734287902d321ae3eb33003"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-street-north-entrance-and-steps.png",
+          "hash": "sha256:d6fe620575505c138e089cef214411cd04fe2788a906d689de661f24a09ecab1"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-street-three-tier-bowl-royal-box.png",
+          "hash": "sha256:457822e3c10562da0c33216848dbbad2d528ff8f8bc63a1e0e3114ca30dc64a3"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-closeup-whole-inclined-arch-open-roof.png",
+          "hash": "sha256:3e9a36748a24ef95eaca040c008c664776766281e42f8a826d0c090c53b28fdf"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-closeup-arch-lattice-and-stays.png",
+          "hash": "sha256:efca6ac24a6998f46f30675ffba4f88f902781d08c56f90bbf087e4139e4040f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-closeup-north-entrance-and-steps.png",
+          "hash": "sha256:44af6a45d8e6e77379fdca663bdd3a50ca6cec3a48742de3df420904bac18c45"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-closeup-three-tier-bowl-royal-box.png",
+          "hash": "sha256:f16230d4f318210fa54955d3adac4986673262e0485e37b19bf5f945bc15fb3c"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-closeup-mapped-roof-aperture-and-field.png",
+          "hash": "sha256:7fc0d624d5d45e8128d9fdc22189eb8a505eb1432b46901d9d8cd8d06e3b59c5"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-closeup-district-context.png",
+          "hash": "sha256:4bacec790b62f2e8953522ca6393721d7190989f9badd4e3f533ef5f06d96951"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\wembley-browser-review/native/shots/corrected-failure-whole-inclined-arch-open-roof.png",
+          "hash": "sha256:03c7ccd6eb3b50601b68ff8f4a23ab93dfc0a745ec5238d373a71e07e1885c72"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "Actual Molen structure,terrain,worldgen and material/rendering stack on a synthetic flat ground datumY0. All five loaded outputs replace the selected stadium shell while four independent building records and four roads remain unchanged. All1089raw heights and outside-ground probes remain unchanged. The field remains at ground level,with visible turf/markings betweenY0andY0.06;all63inset mapped edge samples find the plaza slab atY0.025. No terrain cutout is required. Hide/show leaves the ground atY0. Failed loading retains all five procedural building records and all roads;unloading leaves zero live model/support geometries and retains original ground. This proves scoped transform/contact/lifecycle behavior,not Wembley terrain heights or current neighboring buildings."
+    },
+    "nativeReport": {
+      "path": ".artifacts/wembley-browser-review/native/corrected-report.json",
+      "hash": "sha256:31e26c36b2ce46a2527b03627e31718d0ddb9d7e05d777b69c6285bfbe197409"
+    },
+    "reports": [
+      {
+        "level": "master",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": 0,
+        "modelAtPitch": 0.027000000700354576,
+        "plazaSamples": {
+          "count": 63,
+          "min": 0.025000000372528974,
+          "max": 0.02500000037252903
+        },
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": 0
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "skyline",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": 0,
+        "modelAtPitch": 0.019999999552965164,
+        "plazaSamples": {
+          "count": 63,
+          "min": 0.025000000372528974,
+          "max": 0.025000000372529085
+        },
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": 0
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": 0,
+        "modelAtPitch": 0.03200000151991844,
+        "plazaSamples": {
+          "count": 63,
+          "min": 0.02500000037252903,
+          "max": 0.02500000037252903
+        },
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": 0
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": 0,
+        "modelAtPitch": 0.03200000151991844,
+        "plazaSamples": {
+          "count": 63,
+          "min": 0.02500000037252903,
+          "max": 0.02500000037252903
+        },
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": 0
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": 0,
+        "modelAtPitch": 0.03200000151991844,
+        "plazaSamples": {
+          "count": 63,
+          "min": 0.02500000037252903,
+          "max": 0.025000000372529085
+        },
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": 0
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "remainingBuildings": 5,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": 0,
+        "modelAtPitch": null,
+        "plazaSamples": {
+          "count": 63,
+          "min": 0,
+          "max": 0
+        },
+        "hideShow": null,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Static roof covering all seats while keeping the pitch open; movable panel motion, bogie internals, ticket-seat count and event advertisements are outside this exterior model. Structural connection plate schedules, field margins and smaller mullion dimensions are reconstructed from published photographs. The visible arch and roof structure preserve published section dimensions, but no structural analysis certification or engineering survey is claimed.",
+    "Detailed source and imported design-time master retain their complete detail,with an upper-row envelope-fit correction. Four independently authored browser models retain the315m inclined arch,saddle-free open fixed roof,mapped asymmetric envelope,north Olympic Way entrance and three red seating tiers. Individual chairs,handrail hardware,small glazing joints and roof machinery remain in the detailed source or outside exterior scope.",
+    "Skyline uses24 perimeter facets and one solid tapered arch with20segments and six sides. District uses40facets,six aggregated chords,seven diaphragm rings and diagonal bracing. Street uses60facets,twelve physical chord paths with24segments,11diaphragm rings,selected braces,22grouped tread levels and coarse entrance steps. Closeup uses88facets,twelve64segment chords,42diaphragm rings,selected diagonal web/stay members,all81row bands and40entrance steps. Small cables are widened in distant tiers to stay visible.",
+    "Three existing shared256px painted-metal,standing-seam metal and plain-concrete graphs use metric UVs. Red seats,blue-gray glazing,turf and screens use local PBR factors. No private or embedded images. Browser north roof glazing is aggregated into the opaque metal annulus. Seven simple panel divisions represent the stationary covering;moving panels,roof motion and detailed bearing assemblies are not animated.",
+    "Retained anchor[-0.27956525,51.55596295],heading0.003693795533106074,native+X east along the goal axis and+Z south remain unchanged. The arch stands to the north(-Z),inclined22degrees. Mapped pitch and outer/opening polygons remain the controls;playing field and bearing feet useY0. This is an architectural relative datum,not a new terrain or geodetic survey. No new bespoke source or terrain fetch.",
+    "Error settings8/4/2/1m are authoring estimates,not certified whole-mesh Hausdorff distances. Faceting,sparser distant arch members,grouped tread bands and static detail transitions remain visible when levels are forced close. Physical phone/laptop and downtown timing remain unmeasured.",
+    "The full detailed master and browser tiers fit upper seating rows within93.5percent of the retained mapped outer radius. This corrects the earlier rounded-rectangle southern-corner overshoot while keeping all81row bands,individual chair geometry and full structural detail;the approximate chair population is recomputed from the corrected perimeter rather than retained as an exact ticket-seat count. The original pre-fit master hashes and review remain recorded as historical provenance;current masters and browser levels have fresh hashes and render review. The browser perimeter roof truss is explicit geometry."
+  ],
+  "sourceIndexReconciliation": {
+    "date": "2026-10-31",
+    "previousInputHash": "sha256:622af9107025fb2a68870e05ccdeaa8424783e3db068cfa8f9c46d9dcc17e6a7",
+    "inputHash": "sha256:622af9107025fb2a68870e05ccdeaa8424783e3db068cfa8f9c46d9dcc17e6a7",
+    "note": "Source-navigation correction only: authoring-index.json now explicitly lists the source-local browser recipe already recorded in spec.runtimeLodOverlay and the accepted runtime recipe hash. All six output hashes, original reports, every reviewed image, shared graph hashes and the current LOD recipe hash were verified unchanged. Existing actual render inspection is retained; no new rendering or architectural approval is claimed.",
+    "outputPins": [
+      {
+        "path": "content/worldgen/source/places/gc/gcp/wembley_stadium/models/source.glb",
+        "hash": "sha256:4eb0209f0210255192da7fdaf2c0ed50105a0ce920096275a7e7b4aa1a7766c6"
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/wembley_stadium/model.glb",
+        "hash": "sha256:67ac173fc0a5bbc8345242c28a718ed529b19891676ff1db5d5e09662130863b"
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/wembley_stadium/model.skyline.glb",
+        "hash": "sha256:5e154179cbbd4b046c607ac4849aa96b85460b12a811b8d1decea6f3f05e28cf"
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/wembley_stadium/model.district.glb",
+        "hash": "sha256:8a115b9052f9501bc317db5560e6d98732dd4b928d2e899c460d922e4ff7f631"
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/wembley_stadium/model.street.glb",
+        "hash": "sha256:faa59e89fb8a389b16161dcb5fb5347c5dd1d0c3fbdc361d7ceac66ee423e9cf"
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/wembley_stadium/model.closeup.glb",
+        "hash": "sha256:9448d0f824e98d4379977bca4b1fddc40ed55cbbf8ae6e9f267639e4afaba443"
+      }
+    ]
   }
 }

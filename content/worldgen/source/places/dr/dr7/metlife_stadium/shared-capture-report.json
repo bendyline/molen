@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.metlife_stadium",
-  "inputHash": "sha256:efe0df6febfe8080bfb7893be6feaa19723e47df1faff3b0702953f569a23786",
+  "inputHash": "sha256:a08c0d6719b0e6c58e3d7c6891e3bbb35cf6a5330a79b5257b4dd46bda94aa3b",
   "sourceHash": "sha256:b87eef2100088d6360b324d3268f87558855428b85a86d9007a33ffa871d642a",
   "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
   "reviewGroundY": 0,
-  "fixtureHash": "sha256:7602608105f3d55798b8e573ee16fbb6b58dd3c8834f0a9e3ba65a3b00360afa",
+  "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
   "footprintEvidenceHash": "sha256:8dca195d28af4e981b1ef27dcae19c41443d32c06da4c63ab30cdd2435b71225",
   "reflectionMode": "sky-pmrem",
   "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
   "placementHash": "sha256:7eeee68994952ff33021d890f500b13434ff67424312667f5f900efbbb93f1d6",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.concrete_plain": {
@@ -25,40 +26,42 @@
     },
     "matgraph:molen.worldgen.material.window_grid": {
       "path": "materials/window_grid.matgraph.json",
-      "hash": "sha256:be487d8aaf9268a0dd9682d3dd86bfb960e24a92a2dc288c117610c335aa3b85"
+      "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:3d9d809e8fe3ec013045bf540417ba4bafb434e6aedfd1fa0e14cb46c29cf2bf",
+      "hash": "sha256:f42969b08923714d54ca181ab6ccd8fff734ce83d9ba0b935ee66154489a7ea3",
       "camera": {
         "name": "angle-0",
-        "angle": 0.6,
-        "position": [
-          370.87089731717566,
-          226.44844485282894,
-          541.9903683799374
-        ],
-        "lookAt": [
-          0.07612991333007812,
-          29.441603422164917,
-          0.00115966796875
-        ]
+        "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.metlife_stadium",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "metlife.stadium",
         "position": [
+          -183.00207333965227,
           0,
-          0,
-          0
+          -183.00207333965227
         ],
         "heading": 0,
         "meshes": 4,
         "triangles": 55482,
         "bounds": {
+          "min": [
+            -120.26983457012102,
+            -1.1250557899475098,
+            -144.00968747539446
+          ],
+          "max": [
+            120.4220904787071,
+            60.008262634277344,
+            144.01199526386335
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -120.26983642578125,
             -1.1250557899475098,
@@ -72,16 +75,33 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "2ed54efa-55fa-48d9-b097-a07641445c88",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "b07fe595-e488-47c3-b9d0-ec56494a9407",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c8d94735-14e0-4115-9587-d7c45d0b4ea9",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "61ca6c1c-7709-4aee-9045-2cc1cf7b2f97"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a2cbba76-9534-4b59-a2d6-d7b4fa35e1a5",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "da00db44-eb72-4fe8-81b8-55582d8500ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "548ee487-62eb-4cea-8ad2-c130cda29a0e",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "495b5707-8b04-4d82-a1b5-cbdf12f98317"
         },
         "loads": [
           "molen.worldgen.structure.metlife_stadium"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -74.07651894123218,
+          40.811880081038126,
+          -74.07217473676783,
+          40.81516795222815
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "metlife.stadium",
+            "coordinate": [
+              -74.074346839,
+              40.813524037
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "metlife.stadium"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
@@ -97,34 +117,36 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:ed790ccc649672e86b7f18c227afc91de6fe1dd812b95caaac3fed250c94f26c",
+      "hash": "sha256:e24a9337f21fdda2bd915e4d17d657545a6d2117746a1eb2a2acaba947fe45f1",
       "camera": {
         "name": "angle-1",
-        "angle": 2.1707963267948966,
-        "position": [
-          542.0653386252988,
-          226.44844485282894,
-          -370.79360773587683
-        ],
-        "lookAt": [
-          0.07612991333007812,
-          29.441603422164917,
-          0.00115966796875
-        ]
+        "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.metlife_stadium",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "metlife.stadium",
         "position": [
+          -183.00207333965227,
           0,
-          0,
-          0
+          -183.00207333965227
         ],
         "heading": 0,
         "meshes": 4,
         "triangles": 55482,
         "bounds": {
+          "min": [
+            -120.26983457012102,
+            -1.1250557899475098,
+            -144.00968747539446
+          ],
+          "max": [
+            120.4220904787071,
+            60.008262634277344,
+            144.01199526386335
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -120.26983642578125,
             -1.1250557899475098,
@@ -138,16 +160,33 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "2ed54efa-55fa-48d9-b097-a07641445c88",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "b07fe595-e488-47c3-b9d0-ec56494a9407",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c8d94735-14e0-4115-9587-d7c45d0b4ea9",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "61ca6c1c-7709-4aee-9045-2cc1cf7b2f97"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a2cbba76-9534-4b59-a2d6-d7b4fa35e1a5",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "da00db44-eb72-4fe8-81b8-55582d8500ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "548ee487-62eb-4cea-8ad2-c130cda29a0e",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "495b5707-8b04-4d82-a1b5-cbdf12f98317"
         },
         "loads": [
           "molen.worldgen.structure.metlife_stadium"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -74.07651894123218,
+          40.811880081038126,
+          -74.07217473676783,
+          40.81516795222815
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "metlife.stadium",
+            "coordinate": [
+              -74.074346839,
+              40.813524037
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "metlife.stadium"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
@@ -163,34 +202,36 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:7972c7fbb1f1a0b82d38b41e03d2cfeec67d270171ab16f8050a16fefd626b61",
+      "hash": "sha256:b81e7b7a0a4e61c64486e32e16fdd02c9a142f547f745d957c5f4e75189302d0",
       "camera": {
         "name": "angle-2",
-        "angle": 3.741592653589793,
-        "position": [
-          -370.7186374905155,
-          226.44844485282894,
-          -541.9880490439999
-        ],
-        "lookAt": [
-          0.07612991333007812,
-          29.441603422164917,
-          0.00115966796875
-        ]
+        "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.metlife_stadium",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "metlife.stadium",
         "position": [
+          -183.00207333965227,
           0,
-          0,
-          0
+          -183.00207333965227
         ],
         "heading": 0,
         "meshes": 4,
         "triangles": 55482,
         "bounds": {
+          "min": [
+            -120.26983457012102,
+            -1.1250557899475098,
+            -144.00968747539446
+          ],
+          "max": [
+            120.4220904787071,
+            60.008262634277344,
+            144.01199526386335
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -120.26983642578125,
             -1.1250557899475098,
@@ -204,16 +245,33 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "2ed54efa-55fa-48d9-b097-a07641445c88",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "b07fe595-e488-47c3-b9d0-ec56494a9407",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c8d94735-14e0-4115-9587-d7c45d0b4ea9",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "61ca6c1c-7709-4aee-9045-2cc1cf7b2f97"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a2cbba76-9534-4b59-a2d6-d7b4fa35e1a5",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "da00db44-eb72-4fe8-81b8-55582d8500ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "548ee487-62eb-4cea-8ad2-c130cda29a0e",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "495b5707-8b04-4d82-a1b5-cbdf12f98317"
         },
         "loads": [
           "molen.worldgen.structure.metlife_stadium"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -74.07651894123218,
+          40.811880081038126,
+          -74.07217473676783,
+          40.81516795222815
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "metlife.stadium",
+            "coordinate": [
+              -74.074346839,
+              40.813524037
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "metlife.stadium"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
@@ -229,34 +287,36 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:61fb1c69f9bdb33a5540293689e0b3d80b8c3926bb9254824c6fe1268e365828",
+      "hash": "sha256:1ccf09cfebe77cb424984b4bfd2f66c119bd1f48fb0243face686484ed60fa2c",
       "camera": {
         "name": "angle-3",
-        "angle": 5.312388980384689,
-        "position": [
-          -541.9130787986387,
-          226.44844485282894,
-          370.79592707181405
-        ],
-        "lookAt": [
-          0.07612991333007812,
-          29.441603422164917,
-          0.00115966796875
-        ]
+        "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.metlife_stadium",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "metlife.stadium",
         "position": [
+          -183.00207333965227,
           0,
-          0,
-          0
+          -183.00207333965227
         ],
         "heading": 0,
         "meshes": 4,
         "triangles": 55482,
         "bounds": {
+          "min": [
+            -120.26983457012102,
+            -1.1250557899475098,
+            -144.00968747539446
+          ],
+          "max": [
+            120.4220904787071,
+            60.008262634277344,
+            144.01199526386335
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -120.26983642578125,
             -1.1250557899475098,
@@ -270,16 +330,33 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "2ed54efa-55fa-48d9-b097-a07641445c88",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "b07fe595-e488-47c3-b9d0-ec56494a9407",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c8d94735-14e0-4115-9587-d7c45d0b4ea9",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "61ca6c1c-7709-4aee-9045-2cc1cf7b2f97"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a2cbba76-9534-4b59-a2d6-d7b4fa35e1a5",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "da00db44-eb72-4fe8-81b8-55582d8500ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "548ee487-62eb-4cea-8ad2-c130cda29a0e",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "495b5707-8b04-4d82-a1b5-cbdf12f98317"
         },
         "loads": [
           "molen.worldgen.structure.metlife_stadium"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -74.07651894123218,
+          40.811880081038126,
+          -74.07217473676783,
+          40.81516795222815
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "metlife.stadium",
+            "coordinate": [
+              -74.074346839,
+              40.813524037
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "metlife.stadium"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
@@ -295,7 +372,7 @@
     },
     {
       "path": "shots/shared/open-three-tier-bowl-field-and-four-corner-boards.png",
-      "hash": "sha256:f0d590cbd0fb4c2389472d80b5cbb555d3c7bd231844ef877b2a29bd5f6a4dc4",
+      "hash": "sha256:65d8c11bdfd168a99f66b05e4da117847aa4f78758a937b131645d9e2ce7727f",
       "camera": {
         "name": "open-three-tier-bowl-field-and-four-corner-boards",
         "position": [
@@ -312,17 +389,29 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.metlife_stadium",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "metlife.stadium",
         "position": [
+          -183.00207333965227,
           0,
-          0,
-          0
+          -183.00207333965227
         ],
         "heading": 0,
         "meshes": 4,
         "triangles": 55482,
         "bounds": {
+          "min": [
+            -120.26983457012102,
+            -1.1250557899475098,
+            -144.00968747539446
+          ],
+          "max": [
+            120.4220904787071,
+            60.008262634277344,
+            144.01199526386335
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -120.26983642578125,
             -1.1250557899475098,
@@ -336,16 +425,33 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "2ed54efa-55fa-48d9-b097-a07641445c88",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "b07fe595-e488-47c3-b9d0-ec56494a9407",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c8d94735-14e0-4115-9587-d7c45d0b4ea9",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "61ca6c1c-7709-4aee-9045-2cc1cf7b2f97"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a2cbba76-9534-4b59-a2d6-d7b4fa35e1a5",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "da00db44-eb72-4fe8-81b8-55582d8500ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "548ee487-62eb-4cea-8ad2-c130cda29a0e",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "495b5707-8b04-4d82-a1b5-cbdf12f98317"
         },
         "loads": [
           "molen.worldgen.structure.metlife_stadium"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -74.07651894123218,
+          40.811880081038126,
+          -74.07217473676783,
+          40.81516795222815
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "metlife.stadium",
+            "coordinate": [
+              -74.074346839,
+              40.813524037
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "metlife.stadium"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
@@ -361,7 +467,7 @@
     },
     {
       "path": "shots/shared/silver-louvers-recessed-entry-and-glazed-base.png",
-      "hash": "sha256:c125e6f47cf0bb4f984ed6fdfd6f551775eebd1cd24ac534f07a7e71ec4c240b",
+      "hash": "sha256:39a813d310716c8454cc6199e5c6c7cff2b49043a0aa3462a02d5556a71f0a56",
       "camera": {
         "name": "silver-louvers-recessed-entry-and-glazed-base",
         "position": [
@@ -378,17 +484,29 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.metlife_stadium",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "metlife.stadium",
         "position": [
+          -183.00207333965227,
           0,
-          0,
-          0
+          -183.00207333965227
         ],
         "heading": 0,
         "meshes": 4,
         "triangles": 55482,
         "bounds": {
+          "min": [
+            -120.26983457012102,
+            -1.1250557899475098,
+            -144.00968747539446
+          ],
+          "max": [
+            120.4220904787071,
+            60.008262634277344,
+            144.01199526386335
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -120.26983642578125,
             -1.1250557899475098,
@@ -402,16 +520,33 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "2ed54efa-55fa-48d9-b097-a07641445c88",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "b07fe595-e488-47c3-b9d0-ec56494a9407",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c8d94735-14e0-4115-9587-d7c45d0b4ea9",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "61ca6c1c-7709-4aee-9045-2cc1cf7b2f97"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a2cbba76-9534-4b59-a2d6-d7b4fa35e1a5",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "da00db44-eb72-4fe8-81b8-55582d8500ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "548ee487-62eb-4cea-8ad2-c130cda29a0e",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "495b5707-8b04-4d82-a1b5-cbdf12f98317"
         },
         "loads": [
           "molen.worldgen.structure.metlife_stadium"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -74.07651894123218,
+          40.811880081038126,
+          -74.07217473676783,
+          40.81516795222815
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "metlife.stadium",
+            "coordinate": [
+              -74.074346839,
+              40.813524037
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "metlife.stadium"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
@@ -427,7 +562,7 @@
     },
     {
       "path": "shots/shared/upper-tiers-corner-screen-and-open-lighting-rim.png",
-      "hash": "sha256:76b8429024f38deace1fe6293b6964aad7490a8a03bca00c3975bfb646dc1e23",
+      "hash": "sha256:fce5d6e704527d17f6ebd9e3e1b46ccec1575aaadd98ee3c2a295292fa3d7bc8",
       "camera": {
         "name": "upper-tiers-corner-screen-and-open-lighting-rim",
         "position": [
@@ -444,17 +579,29 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.metlife_stadium",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "metlife.stadium",
         "position": [
+          -183.00207333965227,
           0,
-          0,
-          0
+          -183.00207333965227
         ],
         "heading": 0,
         "meshes": 4,
         "triangles": 55482,
         "bounds": {
+          "min": [
+            -120.26983457012102,
+            -1.1250557899475098,
+            -144.00968747539446
+          ],
+          "max": [
+            120.4220904787071,
+            60.008262634277344,
+            144.01199526386335
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -120.26983642578125,
             -1.1250557899475098,
@@ -468,16 +615,33 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "2ed54efa-55fa-48d9-b097-a07641445c88",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "b07fe595-e488-47c3-b9d0-ec56494a9407",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "c8d94735-14e0-4115-9587-d7c45d0b4ea9",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "61ca6c1c-7709-4aee-9045-2cc1cf7b2f97"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a2cbba76-9534-4b59-a2d6-d7b4fa35e1a5",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "da00db44-eb72-4fe8-81b8-55582d8500ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "548ee487-62eb-4cea-8ad2-c130cda29a0e",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "495b5707-8b04-4d82-a1b5-cbdf12f98317"
         },
         "loads": [
           "molen.worldgen.structure.metlife_stadium"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -74.07651894123218,
+          40.811880081038126,
+          -74.07217473676783,
+          40.81516795222815
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "metlife.stadium",
+            "coordinate": [
+              -74.074346839,
+              40.813524037
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "metlife.stadium"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "groundCutoutProbes": 0,
@@ -488,6 +652,91 @@
           "molen.worldgen.material.window_grid": 1
         },
         "draws": 5,
+        "renderedTriangles": 55484
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:586b83f6f8aee96c20a77bb006509daa7db6bf81aee199341a5addfc873e712e",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.metlife_stadium",
+        "mode": "geographic-flat-terrain",
+        "placementId": "metlife.stadium",
+        "position": [
+          -183.00207333965227,
+          0,
+          -183.00207333965227
+        ],
+        "heading": 0,
+        "meshes": 4,
+        "triangles": 55482,
+        "bounds": {
+          "min": [
+            -120.26983457012102,
+            -1.1250557899475098,
+            -144.00968747539446
+          ],
+          "max": [
+            120.4220904787071,
+            60.008262634277344,
+            144.01199526386335
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -120.26983642578125,
+            -1.1250557899475098,
+            -144.0096893310547
+          ],
+          "max": [
+            120.4220962524414,
+            60.008262634277344,
+            144.0120086669922
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "a2cbba76-9534-4b59-a2d6-d7b4fa35e1a5",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "da00db44-eb72-4fe8-81b8-55582d8500ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "548ee487-62eb-4cea-8ad2-c130cda29a0e",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "495b5707-8b04-4d82-a1b5-cbdf12f98317"
+        },
+        "loads": [
+          "molen.worldgen.structure.metlife_stadium"
+        ],
+        "selectionBounds": [
+          -74.07651894123218,
+          40.811880081038126,
+          -74.07217473676783,
+          40.81516795222815
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "metlife.stadium",
+            "coordinate": [
+              -74.074346839,
+              40.813524037
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "metlife.stadium"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
+        "surfaceReads": {
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.window_grid": 1
+        },
+        "draws": 6,
         "renderedTriangles": 55484
       }
     }

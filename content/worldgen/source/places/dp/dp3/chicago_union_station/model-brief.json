@@ -1,0 +1,528 @@
+{
+  "id": "chicago_union_station",
+  "title": "Chicago Union Station",
+  "wikidataId": "Q1155989",
+  "referenceCoordinate": {
+    "longitude": -87.640405599,
+    "latitude": 41.878665607
+  },
+  "module": "content/worldgen/source/places/dp/dp3/chicago_union_station/models/station-model.mjs",
+  "builder": "buildStationLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.89
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.89
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.89
+    },
+    "base": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.94
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.86
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.78
+    },
+    "clock": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.78
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.43
+    },
+    "doorGlass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.43
+    }
+  },
+  "exportLabel": "Molen original Chicago Union Station historic headhouse and roof court",
+  "expectedDraftMasterHash": "sha256:248987e8dcd2d981bd18a68f961acf53524c4d71211dd2f7547f3fe10db9529e",
+  "visualBrief": "Whole individual above-ground Chicago Union Station historic headhouse and physically attached mapped Canal Street arcade/canopy. Preserve the separate underground concourse east of Canal, independent modern offices, public roads and surrounding buildings. Author all four exterior fronts and the actual roof/service masses after resolving the roof layout; no invented extra station platforms, copied lettering, advertising, people, trains or navigable interiors.",
+  "heightPolicy": "Retained exact-Q way/203442440 identifies Q1155989. The long axis is N/S: signed +X south toward Jackson Boulevard; -X north toward Adams Street; +Z west toward Clinton; -Z east toward Canal Street. Current PMTiles supplies the whole main building35184575531272 with height26m and attached long Canal strip35184815348058,layer1. The two ordinary street photographs show the Canal lower pilaster/door front and Jackson round-column colonnade, heavy entablature/friezes, arched corner entries, corner clocks, upper repeated rectangular windows/pilasters, narrow attic windows and a stepped rooftop service block. They do not establish the complete hidden roof/courtyard inventory; resolve that with an ordinary roof picture or available map geometry before authoring. Retained8levels and current native26m envelope are source controls, not surveyed facade/tower levels. Two additional ordinary rooftop photographs were inspected: a segmental barrel-vaulted Great Hall skylight is recessed inside four surrounding office wings. Model roof court x+-35,z+-25 and glass x+-33,z+-15 are picture-scale interpretations; hidden services and exact measured dimensions remain unverified. Use estimated exterior parapet35.2m,penthouse39m,skylight eaves21.5m/crest28.5m; native26m remains a conflicting coarse map control. One unchanged outside Jackson/Canal street reference[66,-55],179.7933694m absolute,sets Y=0. No bespoke surveys or archival research.",
+  "nativeAxes": "+X S toward Jackson Boulevard;-X N toward Adams Street;+Z W toward Clinton Street;-Z E toward Canal Street;+Y up.",
+  "sourceFacts": {
+    "nativePartFacts": [
+      {
+        "index": 44,
+        "id": 35184575531272,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "height": 26
+        }
+      },
+      {
+        "index": 58,
+        "id": 35184815348058,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1
+        }
+      }
+    ],
+    "ownedNativeParts": 2,
+    "retainedNativeParts": 233,
+    "exactTerminalWay": "way/203442440",
+    "mainBuildingId": 35184575531272,
+    "arcadeBuildingId": 35184815348058,
+    "originalCandidateReference": [
+      -87.64025,
+      41.878638888
+    ],
+    "floorHeight": 0.65,
+    "nativeEnvelope": 26,
+    "retainedLevels": 8,
+    "estimatedEntablature": 14.8,
+    "estimatedCornice": 34.4,
+    "estimatedParapet": 35.2,
+    "estimatedPenthouse": 39,
+    "estimatedSkylightEaves": 21.5,
+    "estimatedSkylightCrest": 28.5,
+    "terrainReferenceLocal": [
+      66,
+      -55
+    ],
+    "terrainTiles": 1,
+    "occupiedMasks": 1
+  },
+  "materialMethod": "Five existing shared256px graphs:stone_limestone,concrete_plain,metal_standing_seam,metal_painted,window_grid. Five merged near material groups and one far palette group,metric UVs and linear colours,zero embedded/private images. Limestone walls/cornices,concrete bases,roof/service metal,painted skylight/window frames and actual glazing keep semantic slots.",
+  "limitations": [
+    "Whole individual above-ground Chicago Union Station historic headhouse and physically attached mapped Canal Street arcade/canopy. Preserve the separate underground concourse east of Canal, independent modern offices, public roads and surrounding buildings. Author all four exterior fronts and the actual roof/service masses after resolving the roof layout; no invented extra station platforms, copied lettering, advertising, people, trains or navigable interiors.",
+    "Retained exact-Q way/203442440 identifies Q1155989. The long axis is N/S: signed +X south toward Jackson Boulevard; -X north toward Adams Street; +Z west toward Clinton; -Z east toward Canal Street. Current PMTiles supplies the whole main building35184575531272 with height26m and attached long Canal strip35184815348058,layer1. The two ordinary street photographs show the Canal lower pilaster/door front and Jackson round-column colonnade, heavy entablature/friezes, arched corner entries, corner clocks, upper repeated rectangular windows/pilasters, narrow attic windows and a stepped rooftop service block. They do not establish the complete hidden roof/courtyard inventory; resolve that with an ordinary roof picture or available map geometry before authoring. Retained8levels and current native26m envelope are source controls, not surveyed facade/tower levels. Two additional ordinary rooftop photographs were inspected: a segmental barrel-vaulted Great Hall skylight is recessed inside four surrounding office wings. Model roof court x+-35,z+-25 and glass x+-33,z+-15 are picture-scale interpretations; hidden services and exact measured dimensions remain unverified. Use estimated exterior parapet35.2m,penthouse39m,skylight eaves21.5m/crest28.5m; native26m remains a conflicting coarse map control. One unchanged outside Jackson/Canal street reference[66,-55],179.7933694m absolute,sets Y=0. No bespoke surveys or archival research.",
+    "Historic above-ground headhouse only. Four ordinary street/roof pictures and current standard PMTiles; exact-Q way identifies the whole block. Native height26m and8levels are coarse source facts; parapet35.2m,penthouse39m,glass eaves21.5m/crest28.5m,upper-floor levels and roof-court dimensions are explicit picture-scale estimates. Hidden north/west bays and rooftop services are interpreted,not surveyed. Independent underground concourse,modern offices,roads,rail platforms and urban furniture remain separate. No lettering,emblems,ads,people,vehicles or navigable interiors. Physical-device/dense-city timing and numerical LOD errors remain unmeasured.",
+    "Five existing shared256px graphs:stone_limestone,concrete_plain,metal_standing_seam,metal_painted,window_grid. Five merged near material groups and one far palette group,metric UVs and linear colours,zero embedded/private images. Limestone walls/cornices,concrete bases,roof/service metal,painted skylight/window frames and actual glazing keep semantic slots. All four tiers preserve the whole headhouse,deep central roof court,continuous segmental barrel-vault skylight,four office-wing roofs,Canal projecting arcade,round-column end porticoes,corner entry piers and stepped rooftop service block. Near tiers add actual recessed/arched openings,clocks,window/roof framing,cornices,pilasters,attic windows and simplified dentils. Hidden facade inventory is explicitly interpreted."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Chicago_Union_Station.jpg",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Chicago_Union_Station.jpg/1920px-Chicago_Union_Station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "observed": "Ordinary Canal/east-front photograph inspected. Pale limestone headhouse with massive lower entablature, tall rectangular lower pilasters and recessed door/window bays, horizontal stone/frieze bands, segmental-headed openings above the lower mass, stacked upper rectangular windows between tall pilasters, narrow attic windows below a projecting cornice/parapet, a raised rooftop service mass, and corner clock discs. Independent taller office buildings remain separate. No copied signs, lettering, traffic furniture, people or vehicles. This street view does not verify the whole roof plan."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Chicago_Union_Station_exterior,_July_2019.jpg",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Chicago_Union_Station_exterior%2C_July_2019.jpg/1920px-Chicago_Union_Station_exterior%2C_July_2019.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "observed": "July2019 Canal/Jackson corner view inspected. Canal lower pilaster front differs from the deep Jackson/southern round-column colonnade. Tall round-arched corner entries, heavy entablature, decorative banding, upper window/pilaster rhythm and twin corner clocks are visible. Hidden north/west and central roof geometry are not established. No copied lettering, adverts, cars or people."
+    },
+    {
+      "url": "https://www.theb1m.com/video/restoring-chicagos-union-station-skylight",
+      "imageUrl": "https://www.theb1m.com/assets/images/Chicago%2BUnion%2BStation%2BSkylight%2BCUR%2Bglass%2Broof%2Bon%2Btop.jpg",
+      "observed": "Segmental barrel-vaulted glazed roof recessed within four surrounding office wings, visible longitudinal and transverse metal grid, lower perimeter roof terrace and inward-facing masonry/window walls. The image does not survey exact overall roof location or heights; model uses explicit picture-scale estimates."
+    },
+    {
+      "url": "https://www.wconline.com/articles/92195-goettsch-partners-complete-restoration-of-chicagos-union-station",
+      "imageUrl": "https://www.wconline.com/ext/resources/Chicago-Union-Station-Great-Hall_New-Skylight.jpg",
+      "observed": "Segmental barrel-vaulted glazed roof recessed within four surrounding office wings, visible longitudinal and transverse metal grid, lower perimeter roof terrace and inward-facing masonry/window walls. The image does not survey exact overall roof location or heights; model uses explicit picture-scale estimates."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Whole individual above-ground Chicago Union Station historic headhouse and physically attached mapped Canal Street arcade/canopy. Preserve the separate underground concourse east of Canal, independent modern offices, public roads and surrounding buildings. Author all four exterior fronts and the actual roof/service masses after resolving the roof layout; no invented extra station platforms, copied lettering, advertising, people, trains or navigable interiors. Retained exact-Q way/203442440 identifies Q1155989. The long axis is N/S: signed +X south toward Jackson Boulevard; -X north toward Adams Street; +Z west toward Clinton; -Z east toward Canal Street. Current PMTiles supplies the whole main building35184575531272 with height26m and attached long Canal strip35184815348058,layer1. The two ordinary street photographs show the Canal lower pilaster/door front and Jackson round-column colonnade, heavy entablature/friezes, arched corner entries, corner clocks, upper repeated rectangular windows/pilasters, narrow attic windows and a stepped rooftop service block. They do not establish the complete hidden roof/courtyard inventory; resolve that with an ordinary roof picture or available map geometry before authoring. Retained8levels and current native26m envelope are source controls, not surveyed facade/tower levels. Two additional ordinary rooftop photographs were inspected: a segmental barrel-vaulted Great Hall skylight is recessed inside four surrounding office wings. Model roof court x+-35,z+-25 and glass x+-33,z+-15 are picture-scale interpretations; hidden services and exact measured dimensions remain unverified. Use estimated exterior parapet35.2m,penthouse39m,skylight eaves21.5m/crest28.5m; native26m remains a conflicting coarse map control. One unchanged outside Jackson/Canal street reference[66,-55],179.7933694m absolute,sets Y=0. No bespoke surveys or archival research."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "canal-and-jackson",
+      "position": [
+        155,
+        110,
+        -170
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "north-and-west",
+      "position": [
+        -155,
+        110,
+        170
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "roof-court-and-skylight",
+      "position": [
+        80,
+        145,
+        -100
+      ],
+      "lookAt": [
+        0,
+        24,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "jackson-portico",
+      "position": [
+        105,
+        8,
+        15
+      ],
+      "lookAt": [
+        57,
+        7,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "canal-front",
+      "position": [
+        30,
+        8,
+        -95
+      ],
+      "lookAt": [
+        0,
+        8,
+        -48
+      ],
+      "fov": 52
+    },
+    {
+      "name": "clock-and-frieze",
+      "position": [
+        75,
+        19,
+        -77
+      ],
+      "lookAt": [
+        54,
+        13,
+        -47
+      ],
+      "fov": 52
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.7,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/dp/dp3/chicago_union_station/models/station-model.mjs",
+    "export": "buildStationSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.89
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.89
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.89
+      },
+      "base": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.86
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.78
+      },
+      "clock": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.78
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.43
+      },
+      "doorGlass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.43
+      }
+    },
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStationDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.89
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.89
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.89
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "clock": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 1.2
+      },
+      "street": {
+        "export": "buildStationStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.89
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.89
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.89
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "clock": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 0.5
+      },
+      "closeup": {
+        "export": "buildStationCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.89
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.89
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.89
+          },
+          "base": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "clock": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.78
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 0.18
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-chicago-union-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        155,
+        110,
+        -170
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "whole-chicago-union-district",
+      "reviewLod": "district",
+      "position": [
+        155,
+        110,
+        -170
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "whole-chicago-union-street",
+      "reviewLod": "street",
+      "position": [
+        155,
+        110,
+        -170
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "whole-chicago-union-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        155,
+        110,
+        -170
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    }
+  ]
+}

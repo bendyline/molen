@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.metlife_stadium",
   "reviewedOn": "2026-10-20",
-  "inputHash": "sha256:efe0df6febfe8080bfb7893be6feaa19723e47df1faff3b0702953f569a23786",
+  "inputHash": "sha256:a08c0d6719b0e6c58e3d7c6891e3bbb35cf6a5330a79b5257b4dd46bda94aa3b",
   "sourceHash": "sha256:b87eef2100088d6360b324d3268f87558855428b85a86d9007a33ffa871d642a",
   "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
-  "captureReportHash": "sha256:54930ce55ae88ea0f1205c9bf8c26cded64d9e768d20d63dea1726cb1f8515c7",
+  "captureReportHash": "sha256:a9f5472933a61def3064ae40cbd66832507fd439e7bfca7092a88a70466e5fca",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -18,7 +18,9 @@
       "shots/silver-louvers-recessed-entry-and-glazed-base.png",
       "shots/upper-tiers-corner-screen-and-open-lighting-rim.png"
     ],
-    "notes": "Inspected all47 current portable/shared/medium-fi/native-map views. Complete native-shaped open stadium: three stepped seating tiers/radial concrete aisles, suite/concourse bands, closed football field/runoff/linework/two goalposts, four supported inward-facing corner boards, horizontal silver louvers/unblocked entrance groups and attached neutral display pylons, glazed lower bands and open lighting rim. Corrected supported field closure, broad entrance clearance and the geometry budgets during construction. Three ordinary2012/2024/2026 exterior/interior pictures guide shape/materials. Rows are grouped, faces remain visibly polygonal and lighting changes across facets. No invented field roof, missing tier, copied screen/text/team atlas, crowd, service interior or neighboring complex platform."
+    "notes": "Inspected all47 current portable/shared/medium-fi/native-map views. Complete native-shaped open stadium: three stepped seating tiers/radial concrete aisles, suite/concourse bands, closed football field/runoff/linework/two goalposts, four supported inward-facing corner boards, horizontal silver louvers/unblocked entrance groups and attached neutral display pylons, glazed lower bands and open lighting rim. Corrected supported field closure, broad entrance clearance and the geometry budgets during construction. Three ordinary2012/2024/2026 exterior/interior pictures guide shape/materials. Rows are grouped, faces remain visibly polygonal and lighting changes across facets. No invented field roof, missing tier, copied screen/text/team atlas, crowd, service interior or neighboring complex platform.",
+    "captureReportHash": "sha256:a9f5472933a61def3064ae40cbd66832507fd439e7bfca7092a88a70466e5fca",
+    "inputHash": "sha256:a08c0d6719b0e6c58e3d7c6891e3bbb35cf6a5330a79b5257b4dd46bda94aa3b"
   },
   "sharedSurfaceReview": {
     "status": "passed",
@@ -29,10 +31,32 @@
       "shots/shared/angle-3.png",
       "shots/shared/open-three-tier-bowl-field-and-four-corner-boards.png",
       "shots/shared/silver-louvers-recessed-entry-and-glazed-base.png",
-      "shots/shared/upper-tiers-corner-screen-and-open-lighting-rim.png"
+      "shots/shared/upper-tiers-corner-screen-and-open-lighting-rim.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Four existing256-square concrete_plain/metal_painted/window_grid/fabric_canvas graphs; all canonical refs, zero embedded images or unique texture atlas. Common canvas grain is tinted green as a low-frequency synthetic-turf approximation, not a literal grass-blade surface. Concrete, silver slats, gray seating, neutral screen panels/goalposts and glass use shared graphs with semantic tints. Actual shared loader reads each graph once and releases all model geometry on unload. At most four near-level draws/one skyline draw, separate POSITION/NORMAL GPU streams and equal CPU/GPU geometry byte accounting.",
-    "captureReportHash": "sha256:9a7068798f6a395f4d1ac89ded7c77ea37158251bb84ead72e8bd31e2ee4abda"
+    "notes": "Four existing256-square concrete_plain/metal_painted/window_grid/fabric_canvas graphs; all canonical refs, zero embedded images or unique texture atlas. Common canvas grain is tinted green as a low-frequency synthetic-turf approximation, not a literal grass-blade surface. Concrete, silver slats, gray seating, neutral screen panels/goalposts and glass use shared graphs with semantic tints. Actual shared loader reads each graph once and releases all model geometry on unload. At most four near-level draws/one skyline draw, separate POSITION/NORMAL GPU streams and equal CPU/GPU geometry byte accounting. Inspected32 new current Earth frames:8 shared-surface/detail/map views and24 context/mode/LOD views. The open three-tier gray bowl, field, four inward corner boards, silver louvers, entry pylons and glazed base remain coherent. Scale-three context cameras sit outside the bowl. Far tiers deliberately aggregate rows and facade bands; fine-line aliasing remains visible when detailed tiers are forced into distance views. All six GLBs,geometry,scene and map placement remain unchanged. Source photographs and native/map fit retain their previously documented scope. No new source research,survey or physical-device timing claim.",
+    "captureReportHash": "sha256:7ecb50af81b3d2f479077e8b2bbf398cea20c05557b762539b6d7e62a027b47e",
+    "inputHash": "sha256:a08c0d6719b0e6c58e3d7c6891e3bbb35cf6a5330a79b5257b4dd46bda94aa3b",
+    "reviewedOn": "2026-10-31",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
@@ -62,8 +86,11 @@
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Levels756/3290/15722/55482triangles; bytes73940/287684/1329232/4689624. Initial skyline+district361624bytes, below3MB phone/6MB laptop targets. Detailed source master55482triangles/6660796bytes retained; closeup4689624bytes is requested only near the stadium. Four independently authored levels retain the open three-tier bowl, footprint and corner boards; distant levels group rows/louvers and omit small posts/markings, with street budget met by15 row groups/10 louver bands. Closeup has60 row groups/28 louver bands. All four ceilings1000/4000/16000/64000 pass. Economy/high noon/late-afternoon, silhouettes/transitions and detail frames inspected. Physical devices and dense-city performance remain pending. Levels756/3290/15722/55482 triangles; at most four draws.",
-    "captureReportHash": "sha256:857dedad2c8956d9a303833ac05fd62bb72a0cd1adfe9c1175ddba24dcb8bee7"
+    "notes": "Inspected32 new current Earth frames:8 shared-surface/detail/map views and24 context/mode/LOD views. The open three-tier gray bowl, field, four inward corner boards, silver louvers, entry pylons and glazed base remain coherent. Scale-three context cameras sit outside the bowl. Far tiers deliberately aggregate rows and facade bands; fine-line aliasing remains visible when detailed tiers are forced into distance views. All six GLBs,geometry,scene and map placement remain unchanged. Source photographs and native/map fit retain their previously documented scope. No new source research,survey or physical-device timing claim.",
+    "captureReportHash": "sha256:7fe9fb4c2c31477bc83b453c653c3eb88dac37918a67a3e8d21f9ab3a3a02b24",
+    "inputHash": "sha256:a08c0d6719b0e6c58e3d7c6891e3bbb35cf6a5330a79b5257b4dd46bda94aa3b",
+    "reviewedOn": "2026-10-31",
+    "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629"
   },
   "geographicReview": {
     "status": "passed",
@@ -74,7 +101,8 @@
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "notes": "Accepted medium-fi visualization of the complete stadium envelope and visible bowl. No qualified height is retained. Field.3m/lower tier2..19m/middle24..33m/upper38..54m/shell47.5m/open rim58.5m, row/section counts, screens/entry/rim inventory and fine elevations are picture-led estimates. Football rectangle109.728x48.768m is a neutral representative configuration, not an event-specific survey. Seats use merged stepped bands rather than individual chairs; changing team/sponsor lettering/live screens, crowds, service rooms, temporary FIFA/soccer/concert fixtures, adjacent venues and parking are outside the asset scope. Terrain/field datum/roofless stadium drainage are approximate, not surveyed foundation/flood or as-built measurements."
+    "notes": "Accepted medium-fi visualization of the complete stadium envelope and visible bowl. No qualified height is retained. Field.3m/lower tier2..19m/middle24..33m/upper38..54m/shell47.5m/open rim58.5m, row/section counts, screens/entry/rim inventory and fine elevations are picture-led estimates. Football rectangle109.728x48.768m is a neutral representative configuration, not an event-specific survey. Seats use merged stepped bands rather than individual chairs; changing team/sponsor lettering/live screens, crowds, service rooms, temporary FIFA/soccer/concert fixtures, adjacent venues and parking are outside the asset scope. Terrain/field datum/roofless stadium drainage are approximate, not surveyed foundation/flood or as-built measurements. Inspected32 new current Earth frames:8 shared-surface/detail/map views and24 context/mode/LOD views. The open three-tier gray bowl, field, four inward corner boards, silver louvers, entry pylons and glazed base remain coherent. Scale-three context cameras sit outside the bowl. Far tiers deliberately aggregate rows and facade bands; fine-line aliasing remains visible when detailed tiers are forced into distance views. All six GLBs,geometry,scene and map placement remain unchanged. Source photographs and native/map fit retain their previously documented scope. No new source research,survey or physical-device timing claim.",
+    "inputHash": "sha256:a08c0d6719b0e6c58e3d7c6891e3bbb35cf6a5330a79b5257b4dd46bda94aa3b"
   },
   "geometryValidation": {
     "format": "molen/structure-geometry-validation@1",
@@ -1114,7 +1142,8 @@
         },
         "errors": []
       }
-    ]
+    ],
+    "inputHash": "sha256:a08c0d6719b0e6c58e3d7c6891e3bbb35cf6a5330a79b5257b4dd46bda94aa3b"
   },
   "limitations": [
     "Specific MetLife Stadium: native asymmetric oval shell and field opening, three stepped open seating tiers/radial concrete aisles, suite/concourse bands, neutral standard football field/linework/two goalposts, four supported inward-facing corner boards, closed silver horizontal louver shell/recessed glazed entry bands/four major portal groups, continuous open steel lighting rim. Shared concrete/paint/window-grid/canvas graphs; canvas grain is a low-frequency artificial-turf approximation. No roof over field, furnished service interior, crowd, copied live screen/text/team/sponsor atlas, temporary event setup, other venue or whole parking lot/platform.",
@@ -1122,5 +1151,170 @@
     "No qualified height is retained. Picture-led visualization uses field.3m, lower tier2..19m, middle tier24..33m, upper tier38..54m, outer shell47.5m and open lighting rim58.5m. Corner boards, entries, concourses/row counts, louver pitch and fine reverse inventory are estimates, not measured seat counts or an as-built survey. Standard football rectangle109.728x48.768m is a neutral representative configuration; temporary soccer/concert field markings and changing event branding are excluded.",
     "Retain original6m standard Mapzen terrain/native roads/water and all independent buildings/parking context. Replace only the native stadium parent shell and137 wholly contained grandstand parts. Bounded feet under the occupied shell and an internal stadium floor meet coarse native grade; no entire-complex slab, outside parking mesh, terrain flattening or ground/water cutout. Nearby venues/road structures remain native. Contact/field elevation are visualization fits, not surveyed foundations or drainage/flood measurements.",
     "Ordinary2012/2024/2026 exterior/interior pictures inspected. Native outer outline and parent field hole control the complete open stadium; no qualified height is retained. Tier elevations, rows, portals, boards and lighting inventory are estimates. Shared canvas grain approximates synthetic turf. No live screen/text/team atlas, crowd, temporary event furniture, service interior, other venue or parking-complex platform."
-  ]
+  ],
+  "currentMaterialAndContextReview": {
+    "date": "2026-10-31",
+    "inputHash": "sha256:a08c0d6719b0e6c58e3d7c6891e3bbb35cf6a5330a79b5257b4dd46bda94aa3b",
+    "previousInputHash": "sha256:efe0df6febfe8080bfb7893be6feaa19723e47df1faff3b0702953f569a23786",
+    "allSixGlbsUnchanged": true,
+    "outputPins": [
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/models/source.glb",
+        "hash": "sha256:b87eef2100088d6360b324d3268f87558855428b85a86d9007a33ffa871d642a"
+      },
+      {
+        "path": "content/worldgen/assets/places/dr/dr7/metlife_stadium/model.glb",
+        "hash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e"
+      },
+      {
+        "path": "content/worldgen/assets/places/dr/dr7/metlife_stadium/model.skyline.glb",
+        "hash": "sha256:78d70a16aee058058e1e604ba739352cfe7732e76e7d1143defb71175137b249"
+      },
+      {
+        "path": "content/worldgen/assets/places/dr/dr7/metlife_stadium/model.district.glb",
+        "hash": "sha256:a2aea3028bc90d8c63b21ad62dc687474915fbe6a1db960ba37478c64cf6accc"
+      },
+      {
+        "path": "content/worldgen/assets/places/dr/dr7/metlife_stadium/model.street.glb",
+        "hash": "sha256:b703910954e62dd22d474a8917f64e7811bc103f25dd115b6a7f784c07ae44c3"
+      },
+      {
+        "path": "content/worldgen/assets/places/dr/dr7/metlife_stadium/model.closeup.glb",
+        "hash": "sha256:e22f2f474190d97d6918fd9e5636d3c9773bf3571721fd7407e77144635909a6"
+      }
+    ],
+    "previousContextScale": 1.1,
+    "contextScale": 3,
+    "method": "Inspected32 new current Earth frames:8 shared-surface/detail/map views and24 context/mode/LOD views. The open three-tier gray bowl, field, four inward corner boards, silver louvers, entry pylons and glazed base remain coherent. Scale-three context cameras sit outside the bowl. Far tiers deliberately aggregate rows and facade bands; fine-line aliasing remains visible when detailed tiers are forced into distance views. All six GLBs,geometry,scene and map placement remain unchanged. Source photographs and native/map fit retain their previously documented scope. No new source research,survey or physical-device timing claim.",
+    "frames": [
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/shots/shared/angle-0.png",
+        "hash": "sha256:f42969b08923714d54ca181ab6ccd8fff734ce83d9ba0b935ee66154489a7ea3"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/shots/shared/angle-1.png",
+        "hash": "sha256:e24a9337f21fdda2bd915e4d17d657545a6d2117746a1eb2a2acaba947fe45f1"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/shots/shared/angle-2.png",
+        "hash": "sha256:b81e7b7a0a4e61c64486e32e16fdd02c9a142f547f745d957c5f4e75189302d0"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/shots/shared/angle-3.png",
+        "hash": "sha256:1ccf09cfebe77cb424984b4bfd2f66c119bd1f48fb0243face686484ed60fa2c"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/shots/shared/open-three-tier-bowl-field-and-four-corner-boards.png",
+        "hash": "sha256:65d8c11bdfd168a99f66b05e4da117847aa4f78758a937b131645d9e2ce7727f"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/shots/shared/silver-louvers-recessed-entry-and-glazed-base.png",
+        "hash": "sha256:39a813d310716c8454cc6199e5c6c7cff2b49043a0aa3462a02d5556a71f0a56"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/shots/shared/upper-tiers-corner-screen-and-open-lighting-rim.png",
+        "hash": "sha256:fce5d6e704527d17f6ebd9e3e1b46ccec1575aaadd98ee3c2a295292fa3d7bc8"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/shots/shared/placement.png",
+        "hash": "sha256:586b83f6f8aee96c20a77bb006509daa7db6bf81aee199341a5addfc873e712e"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/street-noon-economy.png",
+        "hash": "sha256:4a74ecb55dd17be5ad5f3663d9d1711ef836bb6998c2a9ddb48bfb2a8f974596"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/street-noon-high.png",
+        "hash": "sha256:91e9df133da4836d2255696feff7cb168f86eafccc6869ddb1a31f3ae151444b"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/street-late-economy.png",
+        "hash": "sha256:cc284b5622569967eb822f61612eb59bc056fc92a9c839c1499cb7e817521006"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/street-late-high.png",
+        "hash": "sha256:d833d92c57b33d662e4e69f623d9d918d63c23a3df8421e8ecf52b45445163cc"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/block-noon-economy.png",
+        "hash": "sha256:f2255952f74135c7414042138c47cdf3de068ff48ff28519c7e68ab73fe135ce"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/block-noon-high.png",
+        "hash": "sha256:81179fcce014608e2011506e2d7f829015b84fe765d964aa51b794944251e09c"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/block-late-economy.png",
+        "hash": "sha256:793c9914a703dfffdb889988bdfa9cb5344ccfa770665e57269a8edad528aa79"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/block-late-high.png",
+        "hash": "sha256:c2d4a44f2df4972d44bb4d9a6a3e47cff79cb325c78e34c33e17c44774af825c"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/skyline-noon-economy.png",
+        "hash": "sha256:e7724dcdfe698a2119c632d4d4f21ff1ddb75c00d070738c5fbf7fd7ec0aa593"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/skyline-noon-high.png",
+        "hash": "sha256:dc919e80a68b27daccf0f6b0dcaff5bb344dc4d973fe0419c24da9f786d4c220"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/skyline-late-economy.png",
+        "hash": "sha256:9370ad35dae70965b9b145a7f7c111df4a198dc33a136bd4f14fb4b4b0c14bc7"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/skyline-late-high.png",
+        "hash": "sha256:c54ac5318bd8c146c319275b5bfd35ffb65158bb82cefe0b97ce20dffbb1c0d3"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/silhouette.png",
+        "hash": "sha256:36236d2a83da1c10cb00c144c27c0b41f23f31680a701d95a98c54548ac87b91"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/open-three-tier-bowl-field-and-four-corner-boards.png",
+        "hash": "sha256:d56050232a6d97886f4a54240ff06ec341e1977112a74414d066b73588b6bb76"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/silver-louvers-recessed-entry-and-glazed-base.png",
+        "hash": "sha256:90a78964b204064072075228a0d203de6d142ca4390fd467c8e07677e5e77ee7"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/upper-tiers-corner-screen-and-open-lighting-rim.png",
+        "hash": "sha256:97fa888b1a57b8cdbc501ef2237eb1caf2bfc0b7e86cf57ea87cdedffc024e92"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/metlife-skyline.png",
+        "hash": "sha256:50591763ce422c7aaba12a80dab3b7156e3f4207bf30be844bf672145106aa06"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/metlife-district.png",
+        "hash": "sha256:469227c23f8cfc3b9ca5657fb79f776b98269b4f2583a130e2a7aa583bc6c05f"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/metlife-street.png",
+        "hash": "sha256:9f2ea8c93bef64674c2e108e3aa68910857c8527040f1374a360108c18c67d60"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/metlife-closeup.png",
+        "hash": "sha256:3e873ba1988251d00e3fb7e92cf1b637b782221eecd857f48545924f4f416880"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/transition-skyline.png",
+        "hash": "sha256:ad853f3b717285a278633420db4ada8048ee134cce692265dfef71b1eff9a53d"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/transition-district.png",
+        "hash": "sha256:81179fcce014608e2011506e2d7f829015b84fe765d964aa51b794944251e09c"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/transition-street.png",
+        "hash": "sha256:19933d7d598d4f7c66af3cfed87f30067b0894dc52c86c0c87ba2912a8a06495"
+      },
+      {
+        "path": "content/worldgen/source/places/dr/dr7/metlife_stadium/medium-fi/transition-closeup.png",
+        "hash": "sha256:fce956ea02c72f00a5302f6657988dd8aac05a17cdb9198f219cc347fe76b79c"
+      }
+    ]
+  }
 }

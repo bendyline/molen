@@ -24,7 +24,7 @@ const hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 const fixtureHash = hash(
   Buffer.concat(
     await Promise.all(
-      ['medium-fi.ts', 'medium-fi.html', 'medium-fi-asset.mjs'].map((p) =>
+      ['medium-fi.ts', 'medium-fi.html', 'medium-fi-asset.mjs', 'medium-fi-context.mjs'].map((p) =>
         readFile(resolve(here, p)),
       ),
     ),
@@ -73,8 +73,23 @@ try {
     await mkdir(out, { recursive: true });
     const page = await browser.newPage({ viewport: { width: 1200, height: 760 } });
     page.on('pageerror', (e) => errors.push(e.message));
-    const { terrain: separateTerrain, ...contextOptions } = spec.mediumFiContext ?? {};
+    const {
+      terrain: separateTerrain,
+      focus,
+      water,
+      ...contextOptions
+    } = spec.mediumFiContext ?? {};
     const context = new URLSearchParams(contextOptions);
+    if (focus) context.set('focus', JSON.stringify(focus));
+    let waterFixture;
+    if (water) {
+      const local = resolve(dir, water.path),
+        sourceRelative = relative(dir, local).replaceAll('\\', '/');
+      if (isAbsolute(sourceRelative) || sourceRelative === '..' || sourceRelative.startsWith('../'))
+        throw new Error('Water fixture escapes source');
+      waterFixture = { path: water.path, hash: hash(await readFile(local)) };
+      context.set('waterFixture', relative(root, local).replaceAll('\\', '/'));
+    }
     if (process.argv.includes('--reflections')) context.set('reflections', '1');
     const sourceScene = JSON.parse(await readFile(resolve(dir, 'scene.json')));
     const reviewScope = await readFile(resolve(dir, 'review-scope.json'), 'utf8')
@@ -109,17 +124,18 @@ try {
       }
     }
     const floor = spec.geographicProposal?.groundCutout?.minHeight;
+    const openingOutlines = spec.geographicProposal?.groundCutout?.outlines ?? [
+      spec.geographicProposal?.groundCutout?.outline,
+      ...(spec.geographicProposal?.groundCutout?.additionalOutlines ?? []),
+    ];
     // The isolated flat stage lies below a bridge's bank cap; native fitting exercises it.
     const groundOpening =
       floor === undefined || reviewTerrain || (spec.mediumFiContext?.groundY ?? 0) > floor
-        ? spec.geographicProposal?.groundCutout?.outline
+        ? openingOutlines[0]
         : undefined;
     if (groundOpening) {
       context.set('groundOpening', JSON.stringify(groundOpening));
-      context.set(
-        'additionalGroundOpenings',
-        JSON.stringify(spec.geographicProposal.groundCutout.additionalOutlines ?? []),
-      );
+      context.set('additionalGroundOpenings', JSON.stringify(openingOutlines.slice(1)));
     }
     await page.goto(
       `http://127.0.0.1:${server.httpServer.address().port}/medium-fi.html?id=${encodeURIComponent(id)}&${context}`,
@@ -172,6 +188,8 @@ try {
       neighborTriangles: await page.evaluate(() => window.mediumFi.neighborTriangles),
       runtimeLods: sidecar.runtimeLods.levels,
       terrainFixture,
+      waterFixture,
+      focus,
       fixtureEntities,
       context: reviewTerrain
         ? 'Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.'

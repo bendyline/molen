@@ -1,0 +1,1452 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+    "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c"
+  },
+  "sourceHash": "sha256:1ccbe92c21be64e06ea33f198d733a99b838cddba166f15f0f0c2b2bfd484153",
+  "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
+    },
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "neighborTriangles": 9870,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:44527749e71923fa90368e6097f0b2ecef2e7b7aa07da44ee7b75e3323b3f7db",
+      "bytes": 48700,
+      "gzipBytes": 11967,
+      "triangles": 676,
+      "cpuBytes": 47256,
+      "gpuBytes": 47256,
+      "errorMeters": 2,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:ce72d54f7cdc2754876fb070d32d22f419f5cf22aa26378aa52ce0b9d1096f39",
+      "bytes": 269432,
+      "gzipBytes": 59770,
+      "triangles": 3508,
+      "cpuBytes": 262104,
+      "gpuBytes": 262104,
+      "errorMeters": 1,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:53c20e150684fa27aeed40e5af154b3f0885927b82fc9fa5289914d11e38ea55",
+      "bytes": 832068,
+      "gzipBytes": 164771,
+      "triangles": 10876,
+      "cpuBytes": 824712,
+      "gpuBytes": 824712,
+      "errorMeters": 0.5,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:b0e958c4fba007bea511ed7e158347a43c78a45bbe7413b71875b43ae6b9e040",
+      "bytes": 3354824,
+      "gzipBytes": 571927,
+      "triangles": 43536,
+      "cpuBytes": 3347424,
+      "gpuBytes": 3347424,
+      "errorMeters": 0.2,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:909e7662877318e07f54d2ed0afa05309d76c0b52b7d5b047290c6f9ce38f2f8"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:5b945dfb7243f280b9fe81f0e1d78f013e554814bf7307174aba446fd5292e74"
+    }
+  },
+  "fixtureEntities": [
+    {
+      "id": "review-water",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            1.48,
+            0
+          ],
+          "scale": [
+            133,
+            0.1,
+            256
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#1b4450",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:ea440676ee3e75beb8af9f8227de22478a5eb5fd9686137cfd333cc4f39c930e",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:b0e958c4fba007bea511ed7e158347a43c78a45bbe7413b71875b43ae6b9e040",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 86188,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          60,
+          38.4889,
+          103.75
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:c875fff0007d3af66600db7baa95f43a31055ecd4646916074964f70279eb803",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:b0e958c4fba007bea511ed7e158347a43c78a45bbe7413b71875b43ae6b9e040",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 86188,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          60,
+          38.4889,
+          103.75
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:2aadcd5ecf09454607a6cc990b925eb1d4a011afe4459aab1ec4444cdb275f7b",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:b0e958c4fba007bea511ed7e158347a43c78a45bbe7413b71875b43ae6b9e040",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 86188,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          60,
+          38.4889,
+          103.75
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:96ea0bbabdb904ae0d77048c003f17754f746a118b75a77cbf62caf493c54bed",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:b0e958c4fba007bea511ed7e158347a43c78a45bbe7413b71875b43ae6b9e040",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 86188,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          60,
+          38.4889,
+          103.75
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:e010e980bf34dba59ab86e48e82ae8ffbf2e1a92e015d88018f421d965e7134c",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:ce72d54f7cdc2754876fb070d32d22f419f5cf22aa26378aa52ce0b9d1096f39",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 46160,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          121.25,
+          83.4889,
+          210
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:2958e9e240498c89d4b6b58b341544dd1b12f30ecf657388558fbfe883707c84",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:ce72d54f7cdc2754876fb070d32d22f419f5cf22aa26378aa52ce0b9d1096f39",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 46160,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          121.25,
+          83.4889,
+          210
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:5750d7dd5f2c11943d57232a6b9acc3c0404e17e5fee1944d6447a9740dd2230",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:ce72d54f7cdc2754876fb070d32d22f419f5cf22aa26378aa52ce0b9d1096f39",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 46160,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          121.25,
+          83.4889,
+          210
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:7122d219b23087f71ba74c671af4f6f876970690a7cfd6e6805809b671a5e4f3",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:ce72d54f7cdc2754876fb070d32d22f419f5cf22aa26378aa52ce0b9d1096f39",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 46160,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          121.25,
+          83.4889,
+          210
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:8b86e9f16f178aa7e614b333147eae9f66bf3a5ca9f5eff02acab463e1c6fb33",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:44527749e71923fa90368e6097f0b2ecef2e7b7aa07da44ee7b75e3323b3f7db",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 43328,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          242.5,
+          130.9889,
+          420
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:e00ed1f604405379757efd755260cedff92b5bc1ac4ea15276dfb68a10958540",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:44527749e71923fa90368e6097f0b2ecef2e7b7aa07da44ee7b75e3323b3f7db",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 43328,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          242.5,
+          130.9889,
+          420
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:796e20ffb27ead8a3ea8bac10a244223f059a2eaf4c7d9e4dd7d3361c967f41d",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:44527749e71923fa90368e6097f0b2ecef2e7b7aa07da44ee7b75e3323b3f7db",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 43328,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          242.5,
+          130.9889,
+          420
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:446502254fed56a87bf317f35fc4f71715437d193ebf51a25631e09803267fa8",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:44527749e71923fa90368e6097f0b2ecef2e7b7aa07da44ee7b75e3323b3f7db",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 43328,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          242.5,
+          130.9889,
+          420
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:5377bf5160f46239f19caae413216a83e69cf75b44ca8d707067c0eae82b217b",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:44527749e71923fa90368e6097f0b2ecef2e7b7aa07da44ee7b75e3323b3f7db",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 4,
+        "triangles": 33458,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          242.5,
+          130.9889,
+          420
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/five-shallow-arches.png",
+      "hash": "sha256:2da6e6723463f050101f358fe3b334baa6a7065391e05ae7ca0e056d101b8e04",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:b0e958c4fba007bea511ed7e158347a43c78a45bbe7413b71875b43ae6b9e040",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 86188,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          -20,
+          14,
+          128
+        ],
+        "lookAt": [
+          0,
+          4.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/complete-oblique-crossing.png",
+      "hash": "sha256:b4ebf4b088525b8cc5ddc90ec372955f2115994512a9046eb2e127e82d0e66a5",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:b0e958c4fba007bea511ed7e158347a43c78a45bbe7413b71875b43ae6b9e040",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 86188,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          -110,
+          58,
+          115
+        ],
+        "lookAt": [
+          0,
+          4.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/mapped-stone-cutwater.png",
+      "hash": "sha256:102c0595ca3309b1eb7c6903e99a0b53370fd62e810de1a16b832a9b6ee4014f",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:b0e958c4fba007bea511ed7e158347a43c78a45bbe7413b71875b43ae6b9e040",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 86188,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          -29,
+          5.5,
+          25
+        ],
+        "lookAt": [
+          -18.88,
+          5,
+          7.7
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-concrete-arch-soffit.png",
+      "hash": "sha256:0a34a2b5a1b9a6715929bab18ef454925d67cbb1e32b7b800d7c5283348b259f",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:b0e958c4fba007bea511ed7e158347a43c78a45bbe7413b71875b43ae6b9e040",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 86188,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          -4,
+          3.6,
+          15
+        ],
+        "lookAt": [
+          -4,
+          6.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/pavements-road-and-rails.png",
+      "hash": "sha256:b09249deb6fb1d2b8cd2f68408bc2c65436b7e1e665549c27df0ab23fdb8b85c",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:b0e958c4fba007bea511ed7e158347a43c78a45bbe7413b71875b43ae6b9e040",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 86188,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          -53,
+          11.7,
+          6.1
+        ],
+        "lookAt": [
+          8,
+          9.6,
+          6.1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/triangular-overlook-and-railing.png",
+      "hash": "sha256:6aa2d25dd00bf054576736f9c7ffd6794336bdde2245af048b20125dd1a3b114",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:b0e958c4fba007bea511ed7e158347a43c78a45bbe7413b71875b43ae6b9e040",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 86188,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          5,
+          12,
+          16
+        ],
+        "lookAt": [
+          10.8,
+          9.9,
+          8.8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/south-landing-crosswalk.png",
+      "hash": "sha256:318a60018a637ee83649c6f09d5e47a46fbe022c3fd934d4275e58460489d19f",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:b0e958c4fba007bea511ed7e158347a43c78a45bbe7413b71875b43ae6b9e040",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 86188,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          -61,
+          14.2,
+          12
+        ],
+        "lookAt": [
+          -69.3,
+          9.4,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bridge-skyline.png",
+      "hash": "sha256:0112acd923f6380337b6025eb64ba2029d0ad9a632ed2e155833ff5d352fb63f",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:44527749e71923fa90368e6097f0b2ecef2e7b7aa07da44ee7b75e3323b3f7db",
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 43328,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          -110,
+          58,
+          115
+        ],
+        "lookAt": [
+          0,
+          4.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bridge-district.png",
+      "hash": "sha256:1961a25df0dd63316d8614837041782423ad3c0b4be9edc2473252e7ab1877be",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:ce72d54f7cdc2754876fb070d32d22f419f5cf22aa26378aa52ce0b9d1096f39",
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 46160,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          -110,
+          58,
+          115
+        ],
+        "lookAt": [
+          0,
+          4.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bridge-street.png",
+      "hash": "sha256:745a9ae760b124d3df0c8b18475ff4f1219e0cdf823f588fd37498fadbcdcf94",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:53c20e150684fa27aeed40e5af154b3f0885927b82fc9fa5289914d11e38ea55",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 53528,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          -110,
+          58,
+          115
+        ],
+        "lookAt": [
+          0,
+          4.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bridge-closeup.png",
+      "hash": "sha256:b4ebf4b088525b8cc5ddc90ec372955f2115994512a9046eb2e127e82d0e66a5",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:b0e958c4fba007bea511ed7e158347a43c78a45bbe7413b71875b43ae6b9e040",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 86188,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          -110,
+          58,
+          115
+        ],
+        "lookAt": [
+          0,
+          4.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-open-arch.png",
+      "hash": "sha256:d37761dd572bd962f3ace06369e7e7cd2cd11bfa161b5ac8a29c1bbbe1f2854c",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:53c20e150684fa27aeed40e5af154b3f0885927b82fc9fa5289914d11e38ea55",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 53528,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          -4,
+          3.6,
+          15
+        ],
+        "lookAt": [
+          -4,
+          6.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/closeup-cutwater.png",
+      "hash": "sha256:102c0595ca3309b1eb7c6903e99a0b53370fd62e810de1a16b832a9b6ee4014f",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:b0e958c4fba007bea511ed7e158347a43c78a45bbe7413b71875b43ae6b9e040",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 86188,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          -29,
+          5.5,
+          25
+        ],
+        "lookAt": [
+          -18.88,
+          5,
+          7.7
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:7412292e53355f42a7872c19690fa75a6ad8f146dcead48642f2114b0574b6e5",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:44527749e71923fa90368e6097f0b2ecef2e7b7aa07da44ee7b75e3323b3f7db",
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 43328,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          121.25,
+          83.4889,
+          210
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:2958e9e240498c89d4b6b58b341544dd1b12f30ecf657388558fbfe883707c84",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:ce72d54f7cdc2754876fb070d32d22f419f5cf22aa26378aa52ce0b9d1096f39",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 46160,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          121.25,
+          83.4889,
+          210
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:07354715b0c650497a17a4855e2d44f1c51038d15b890e28517e9526197855d3",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:53c20e150684fa27aeed40e5af154b3f0885927b82fc9fa5289914d11e38ea55",
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 53528,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          121.25,
+          83.4889,
+          210
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:4aebdc7589d6887896202e78d9c4f4dd0eb404835c98f08af1f7e0c7e3d25a9f",
+      "state": {
+        "assetId": "molen.worldgen.structure.ponte_alle_grazie",
+        "runtimeHash": "sha256:b292cec9cb0f6ece2673826c4369ab45c2a76caacddb111fc3959e145568a06c",
+        "lodHash": "sha256:b0e958c4fba007bea511ed7e158347a43c78a45bbe7413b71875b43ae6b9e040",
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 86188,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/srb/ponte_alle_grazie/terrain-review.height.png"
+        },
+        "position": [
+          121.25,
+          83.4889,
+          210
+        ],
+        "lookAt": [
+          0,
+          19.7389,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.25,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

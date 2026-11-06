@@ -1,7 +1,9 @@
 /** Whole native Los Leones LIDAR housing; instrument facts do not establish roof dimensions. */
+
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { createHash } from 'node:crypto';
+
 const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
 export function inspectAugerLidarPrimaryFacts({ dir, proof, controls: P, frame: f }) {
   const fail = (reason) => ({ status: 'needs-review', reason });

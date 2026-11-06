@@ -1,0 +1,45 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.ponte_coperto",
+  "kind": "static-structure",
+  "title": "Ponte Coperto",
+  "files": {
+    "definitions": [
+      "component-layout.json",
+      "map-frame.json"
+    ],
+    "models": [
+      {
+        "path": "models/assembly-master.glb",
+        "sha256": "sha256:3fadcdbef625b2997de4ea56bde8b5c14e5585d627434c6343fea684367c16a1"
+      }
+    ],
+    "generators": [
+      {
+        "id": "ponte_coperto",
+        "path": "models/kit.mjs"
+      },
+      {
+        "id": "covered_bridge",
+        "path": "models/bridge-model.mjs"
+      },
+      {
+        "id": "west_stairs",
+        "path": "models/west-stairs.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "terrain-grid.json",
+      "terrain-review.height.png",
+      "terrain-review.terrain.json",
+      "pmtiles-map.json",
+      "reference-observations.json",
+      "preview.png",
+      "native-fit-report.json",
+      "QA-REVIEW.md"
+    ]
+  }
+}

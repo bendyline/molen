@@ -1,0 +1,423 @@
+{
+  "id": "karakaya_dam",
+  "title": "Karakaya Dam",
+  "wikidataId": "Q152556",
+  "referenceCoordinate": {
+    "longitude": 39.13481220602989,
+    "latitude": 38.22573566468985
+  },
+  "module": "content/worldgen/source/places/sy/syg/karakaya_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "chute": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_basalt"
+    },
+    "gate": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "rails": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "machinery": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    }
+  },
+  "exportLabel": "Molen original Karakaya Dam, spillways and lower plant",
+  "expectedDraftMasterHash": "sha256:2edbf6cba75b6689310a6a254bee51055df7925c20104aa424bf400b83240669",
+  "visualBrief": "Signed PMTiles arc across the Euphrates, ten central ogee spillway chutes and crest machinery. The mapped lower powerhouse, stepped concrete terraces, and crest machinery complete the visible complex.",
+  "heightPolicy": "The signed native reservoir edge and photo match establish the arch and downstream facing. A standard terrain sample at local [0, −360] provides one 681 m datum. The crest is 16 m above that datum, and the downstream reach is modeled 120 m below it. Surveyed operational elevations, chute thickness and exact rock contacts are approximate.",
+  "nativeAxes": "+X southeast from the northwest to southeast shoulder, -Z northeast toward the reservoir, +Z southwest toward the native downstream bridge. +Y up.",
+  "sourceFacts": {
+    "chordMeters": 382.11192,
+    "sampledReservoirArcMeters": 478.5261329797547,
+    "retainedLengthMeters": 462,
+    "authoredCenterlineMeters": 473.62685897303186,
+    "gateBays": 10,
+    "terrainDatum": 681,
+    "terrainGridStep": 12,
+    "terrainTiles": 8,
+    "nativePowerhouseId": 35184583045645,
+    "retainedDownstreamBridgeId": 35184544332953
+  },
+  "materialMethod": "Shared concrete, basalt paving, painted metal and window-grid graphs with metric UVs, linear tints and no embedded images.",
+  "limitations": [
+    "The signed native reservoir edge and photo match establish the arch and downstream facing. A standard terrain sample at local [0, −360] provides one 681 m datum. The crest is 16 m above that datum, and the downstream reach is modeled 120 m below it. Surveyed operational elevations, chute thickness and exact rock contacts are approximate.",
+    "A static medium-fi exterior with a dry spillway state. Chute invert, gate mechanisms, powerhouse facade, abutment and access platform details are interpreted from two ordinary photos and 12 m terrain samples. Only the near dam structures are modeled. The existing downstream bridge and unrelated buildings remain native."
+  ],
+  "references": [
+    {
+      "url": "https://www.trthaber.com/foto-galeri/hidroelektrik-santrallerinden-ekonomiye-dev-katki/21225.html",
+      "imageUrl": "https://trthaberstatic.cdn.wp.trt.com.tr/resimler/1054000/1055803.jpg",
+      "observed": "Pale upstream-convex concrete arch with a central array of narrow ogee spillway chutes, regular piers and teal gate mechanisms. Smooth flanking wall panels tie into steep rock abutments. Yellow machinery sits at the southeast crest edge with a downstream power-yard deck."
+    },
+    {
+      "url": "https://www.gap.gov.tr/galeri/gap-yatirimlari/",
+      "imageUrl": "https://www.gap.gov.tr/Album/Large/www.gap.gov.tr-16-MB1E75MACKGA.JPG",
+      "observed": "Downstream view resolves ten crest gate bays, the tapered and stepped spillway toe, sloping outer wings, stepped near-bank platforms and power-yard equipment, and the DSİ mark on the northwest wing. Use a static dry operating state to show the actual chute profiles."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Reviewed unique site association from the reservoir arc, mapped outlet and powerhouse, and photo landmarks. The PMTiles feature is a reservoir polygon rather than a separately tagged dam object."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "karakaya-and-euphrates",
+      "position": [
+        235,
+        101,
+        390
+      ],
+      "lookAt": [
+        0,
+        -42,
+        -24
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-gates-and-gantry",
+      "position": [
+        82,
+        56,
+        -18
+      ],
+      "lookAt": [
+        -3,
+        10,
+        -109
+      ],
+      "fov": 50
+    },
+    {
+      "name": "from-upstream-reservoir",
+      "position": [
+        -153,
+        72,
+        -480
+      ],
+      "lookAt": [
+        0,
+        -18,
+        -40
+      ],
+      "fov": 50
+    },
+    {
+      "name": "chute-runout-and-plant",
+      "position": [
+        96,
+        -56,
+        170
+      ],
+      "lookAt": [
+        8,
+        -95,
+        34
+      ],
+      "fov": 50
+    },
+    {
+      "name": "downstream-ten-chutes",
+      "position": [
+        -28,
+        -13,
+        335
+      ],
+      "lookAt": [
+        0,
+        -64,
+        -17
+      ],
+      "fov": 50
+    },
+    {
+      "name": "northwest-abutment",
+      "position": [
+        -194,
+        65,
+        83
+      ],
+      "lookAt": [
+        -111,
+        -20,
+        -69
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -142.2,
+    "scale": 3.25,
+    "focus": {
+      "center": [
+        -18,
+        -47,
+        -69
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sy/syg/karakaya_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "chute": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_basalt"
+      },
+      "gate": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "rails": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "machinery": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "chute": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "rails": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "machinery": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "chute": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "rails": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "machinery": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "chute": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_basalt"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "rails": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "machinery": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "karakaya-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        235,
+        101,
+        390
+      ],
+      "lookAt": [
+        0,
+        -42,
+        -24
+      ]
+    },
+    {
+      "name": "karakaya-district",
+      "reviewLod": "district",
+      "position": [
+        235,
+        101,
+        390
+      ],
+      "lookAt": [
+        0,
+        -42,
+        -24
+      ]
+    },
+    {
+      "name": "karakaya-street",
+      "reviewLod": "street",
+      "position": [
+        235,
+        101,
+        390
+      ],
+      "lookAt": [
+        0,
+        -42,
+        -24
+      ]
+    },
+    {
+      "name": "karakaya-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        235,
+        101,
+        390
+      ],
+      "lookAt": [
+        0,
+        -42,
+        -24
+      ]
+    }
+  ]
+}

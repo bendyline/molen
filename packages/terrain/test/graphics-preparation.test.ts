@@ -5,6 +5,7 @@ import {
   type ElevationWorkerLike,
   installTerrainElevationWorker,
 } from '../src/elevation-worker';
+import { Heightfield } from '../src/heightfield';
 import { buildChunkGeometry, terrainTopology } from '../src/mesh';
 import { createTerrainPackagePyramidHeightSource } from '../src/package-client';
 import type { TerrainPackageDescriptor } from '../src/package-types';
@@ -132,6 +133,60 @@ describe('terrain graphics preparation', () => {
     const aborted = new AbortController();
     aborted.abort();
     expect(await source.load({ level: 0, x: 0, z: 0 }, aborted.signal)).toBeUndefined();
+    source.dispose?.();
+  });
+
+  it('meshes a field the host changed in the worker, as it meshes its own, keeping the host copy', async () => {
+    const descriptor: TerrainPyramidDescriptor = {
+      name: 'graded',
+      origin: [100, 200],
+      rootSize: 100,
+      minLevel: 0,
+      maxLevel: 2,
+      tileResolution: 5,
+      height: { min: 0, max: 100 },
+      layers: [],
+      skirts: true,
+    };
+    const pkg = { tileMatrix: { scheme: 'xyz' } } as TerrainPackageDescriptor;
+    const [host, thread] = ports();
+    installTerrainElevationWorker(thread);
+    const timings: ElevationStageTiming[] = [];
+    const source = createTerrainElevationWorkerSource(
+      host,
+      pkg,
+      descriptor,
+      { getZxy: async () => undefined },
+      { onTiming: (timing) => timings.push(timing) },
+    );
+    const address = { level: 1, x: 1, z: 0 };
+    const field = new Heightfield(
+      Float32Array.from({ length: 25 }, (_, i) => (i % 7) / 10),
+      5,
+      5,
+      { origin: [150, 200], worldSize: [50, 50], height: descriptor.height },
+    );
+    for (const resolution of [5, 3]) {
+      const geometry = await source.meshPrepared?.(
+        field,
+        address,
+        new AbortController().signal,
+        resolution,
+      );
+      expect(geometry).toEqual(
+        buildChunkGeometry(field, surfaceDescriptor(descriptor, address), 1, 0, {
+          localCoordinates: true,
+          step: resolution === 5 ? 1 : 2,
+        }),
+      );
+    }
+    // The host's field still samples: only a copy of its heights crossed.
+    expect(field.sampleHeight(150, 200)).toBeCloseTo(0, 5);
+    expect(field.copySamples()).toHaveLength(25);
+    expect(timings.filter((t) => t.stage === 'mesh')).toHaveLength(2);
+    const aborted = new AbortController();
+    aborted.abort();
+    expect(await source.meshPrepared?.(field, address, aborted.signal, 5)).toBeUndefined();
     source.dispose?.();
   });
 

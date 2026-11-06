@@ -1,6 +1,6 @@
 import { validate } from '@bendyline/molen-schema';
 import * as THREE from 'three';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import type { TerrainDescriptor } from '../src/descriptor-types';
 import { Heightfield } from '../src/heightfield';
 import { registerTerrainSchemas } from '../src/schema';
@@ -304,6 +304,43 @@ describe('fixed-grid terrain streaming', () => {
     await stream.whenIdle();
     expect(attempts).toBe(3);
     stream.dispose();
+  });
+
+  it.each([
+    { failedRetryDelayMs: 5_000, recovers: true },
+    { failedRetryDelayMs: 0, recovers: false },
+  ])('tries an abandoned tile again after failedRetryDelayMs $failedRetryDelayMs', async ({
+    failedRetryDelayMs,
+    recovers,
+  }) => {
+    const d = descriptor({ gridSize: [1, 1] });
+    let now = 1_000_000;
+    const clock = vi.spyOn(Date, 'now').mockImplementation(() => now);
+    let attempts = 0;
+    const source: TerrainHeightTileSource = {
+      async load(address): Promise<Heightfield> {
+        attempts++;
+        if (attempts === 1) throw new TypeError('Failed to fetch');
+        return flatTile(d, address);
+      },
+    };
+    const stream = createTerrainStream(d, source, {
+      cameraPos: [5, 5, 5],
+      maxRetries: 0,
+      failedRetryDelayMs,
+    });
+    try {
+      await stream.whenIdle();
+      expect(stream.stats()).toMatchObject({ failed: 1, retrying: 0 });
+      now += 60_000;
+      stream.update([5, 5, 5]);
+      await stream.whenIdle();
+      expect(attempts).toBe(recovers ? 2 : 1);
+      expect(stream.stats().resident).toBe(recovers ? 1 : 0);
+    } finally {
+      stream.dispose();
+      clock.mockRestore();
+    }
   });
 
   it('times out a stalled request instead of pinning a load slot forever', async () => {

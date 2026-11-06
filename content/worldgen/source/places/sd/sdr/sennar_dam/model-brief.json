@@ -1,0 +1,400 @@
+{
+  "id": "sennar_dam",
+  "title": "Sennar Dam",
+  "wikidataId": "Q1313871",
+  "referenceCoordinate": {
+    "longitude": 33.635197691647626,
+    "latitude": 13.547626120624546
+  },
+  "module": "content/worldgen/source/places/sd/sdr/sennar_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "ashlar": {
+      "slot": "wall",
+      "graph": "stone_sandstone"
+    },
+    "darkStone": {
+      "slot": "wall",
+      "graph": "stone_sandstone"
+    },
+    "slope": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "cap": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "earth": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "rail": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "gate": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "crane": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    }
+  },
+  "exportLabel": "Molen original Sennar masonry gravity wall, traveling gantry and canal works",
+  "expectedDraftMasterHash": "sha256:fddc2bded276c640e63fd912224967f68b36243e7651422468770bd190eaa871",
+  "visualBrief": "Sennar Dam’s 600 m sandstone masonry wall, 80 lower sluices, 72 upper arched bays, crest rail and traveling gantry, approximate embankments, and the two mapped irrigation intakes.",
+  "heightPolicy": "The signed vertical origin is 423.544849 m. The 425.4 m crest is inferred from the standard terrain and the reservoir level. The reference fixture uses 421.7 m upstream, an illustrative 410.3 m tailwater, and 416 m for the canals.",
+  "nativeAxes": "+X runs west along the crest rail, and +Z runs north-northwest downstream on the Blue Nile.",
+  "sourceFacts": {
+    "mappedIdentity": "Q1313871",
+    "nativeWaterIds": [
+      181553933,
+      181553930,
+      6039701452,
+      6998037822,
+      8144972960
+    ],
+    "masonrySpanMeters": 600,
+    "crestElevation": 425.4,
+    "foundationElevation": 399.4,
+    "lowSluices": 80,
+    "upperArches": 72,
+    "maximumPoolElevation": 421.7,
+    "mappedRailLengthMeters": 1779.0168192489878,
+    "terrainTiles": 9
+  },
+  "materialMethod": "Shared material graphs for sandstone, board-formed and plain concrete, gravel and painted steel with metric UVs and zero embedded images.",
+  "limitations": [
+    "The signed vertical origin is 423.544849 m. The 425.4 m crest is inferred from the standard terrain and the reservoir level. The reference fixture uses 421.7 m upstream, an illustrative 410.3 m tailwater, and 416 m for the canals.",
+    "The crest rail follows the 1779.02 m mapped bridge centerline. The masonry span, embankment shoulders, gate forms, traveling gantry position and headworks are reconstructed exterior approximations.",
+    "The standard upstream field samples 423.58 m. The canal reaches sample 423.65 m and 423.10 m in the comparison windows. The design fixture separates the native river polygon at the wall to show the reservoir and tailwater independently.",
+    "The dry shut gates are static. Submerged hydraulic works and operating discharge are outside this model."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:SnrDam.JPG",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5a/SnrDam.JPG",
+      "observed": "Downstream photo shows brown masonry, rounded upper apertures, lower mouths in the sloping apron, pier interruptions and a cross-braced traveling gantry."
+    },
+    {
+      "url": "https://documents1.worldbank.org/curated/en/377141468778504847/pdf/multi-page.pdf",
+      "observed": "Site report identifies the 600 m masonry section, 80 low sluices, 26 m maximum section and 421.7 m upper operating stage."
+    },
+    {
+      "url": "https://nilebasin.org/sites/default/files/2023-09/33%2520SDN_FIN_Flood_Risk_Mapping.pdf",
+      "observed": "Nile Basin flood assessment lists 72 working spillway gates and the 413.8 m sill."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The rail bridge crosses the same west-to-east dam crest at the reservoir transition. Two irrigation canals on the western bank help distinguish the site."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "downstream-overview",
+      "position": [
+        -10,
+        121,
+        490
+      ],
+      "lookAt": [
+        20,
+        -8,
+        8
+      ],
+      "fov": 50
+    },
+    {
+      "name": "masonry-and-gantry",
+      "position": [
+        -161,
+        17,
+        64
+      ],
+      "lookAt": [
+        -147,
+        -5,
+        12
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-rail",
+      "position": [
+        -222,
+        12,
+        16
+      ],
+      "lookAt": [
+        -103,
+        1,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "gezira-intake",
+      "position": [
+        923,
+        28,
+        125
+      ],
+      "lookAt": [
+        918,
+        -1,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "entire-crossing",
+      "position": [
+        50,
+        450,
+        1280
+      ],
+      "lookAt": [
+        155,
+        0,
+        4
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -25,
+    "scale": 2.2,
+    "focus": {
+      "center": [
+        20,
+        0,
+        0
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sd/sdr/sennar_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_sandstone"
+      },
+      "darkStone": {
+        "slot": "wall",
+        "graph": "stone_sandstone"
+      },
+      "slope": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "cap": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "earth": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "gate": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "crane": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_sandstone"
+          },
+          "darkStone": {
+            "slot": "wall",
+            "graph": "stone_sandstone"
+          },
+          "slope": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "cap": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "crane": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_sandstone"
+          },
+          "darkStone": {
+            "slot": "wall",
+            "graph": "stone_sandstone"
+          },
+          "slope": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "cap": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "crane": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_sandstone"
+          },
+          "darkStone": {
+            "slot": "wall",
+            "graph": "stone_sandstone"
+          },
+          "slope": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "cap": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "crane": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "sennar-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -10,
+        121,
+        490
+      ],
+      "lookAt": [
+        20,
+        -8,
+        8
+      ]
+    },
+    {
+      "name": "sennar-district",
+      "reviewLod": "district",
+      "position": [
+        -10,
+        121,
+        490
+      ],
+      "lookAt": [
+        20,
+        -8,
+        8
+      ]
+    },
+    {
+      "name": "sennar-street",
+      "reviewLod": "street",
+      "position": [
+        -10,
+        121,
+        490
+      ],
+      "lookAt": [
+        20,
+        -8,
+        8
+      ]
+    },
+    {
+      "name": "sennar-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -10,
+        121,
+        490
+      ],
+      "lookAt": [
+        20,
+        -8,
+        8
+      ]
+    }
+  ]
+}

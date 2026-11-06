@@ -24,6 +24,10 @@ export function createFlightInstrumentPanel(enabled = true): {
   let renderer: THREE.WebGLRenderer | undefined;
   let model: THREE.Object3D | undefined;
   let views: AircraftInstrumentView[] = [];
+  // The views whose shaders are built. The panel draws in its own context, and its first draw
+  // after boarding built every program there in one frame: a hitch of up to 90 ms.
+  let compiled: AircraftInstrumentView[] | undefined;
+  let compiling: AircraftInstrumentView[] | undefined;
   let lastFrame = -Infinity;
   let unavailable = false;
   return {
@@ -57,8 +61,8 @@ export function createFlightInstrumentPanel(enabled = true): {
         );
         lastFrame = -Infinity;
       }
-      panel.hidden = views.length === 0;
-      if (panel.hidden || nowMs - lastFrame < 50) return;
+      panel.hidden = views.length === 0 || compiled !== views;
+      if (views.length === 0 || nowMs - lastFrame < 50) return;
       lastFrame = nowMs;
       if (!renderer) {
         try {
@@ -75,6 +79,21 @@ export function createFlightInstrumentPanel(enabled = true): {
       if (canvas.width !== Math.round(size * views.length * renderer.getPixelRatio()))
         renderer.setSize(size * views.length, size, false);
       source.model.updateWorldMatrix(true, true);
+      if (compiled !== views) {
+        if (compiling !== views) {
+          const pending = views;
+          compiling = pending;
+          for (const view of pending) view.sync();
+          // Shown once built; a failed build draws anyway, as before.
+          const done = (): void => {
+            if (views === pending) compiled = pending;
+          };
+          void Promise.all(
+            pending.map((view) => renderer?.compileAsync(view.scene, view.camera)),
+          ).then(done, done);
+        }
+        return;
+      }
       renderer.setScissorTest(true);
       for (const [index, view] of views.entries()) {
         view.sync();

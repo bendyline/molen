@@ -1,0 +1,1380 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.kingkey_100",
+  "reviewedOn": "2026-10-31",
+  "inputHash": "sha256:59dfc3295939ea42552ff588dd77094a2cfca6f32226608da45411c92b861427",
+  "sourceHash": "sha256:9920de28a4f21903a8e1fcf7e255056f9ce422a71f6e3564e1fae5588a627822",
+  "runtimeHash": "sha256:d60fc17fdbcaf7fcd11b6256d37716f7b6c6d38de3e0c70d77da5dc15e24b51c",
+  "captureReportHash": "sha256:c9c90247c5e57ada85507701957950fdbfdf9547394925799c3e73bd252249b4",
+  "visualReview": {
+    "status": "passed",
+    "inputHash": "sha256:59dfc3295939ea42552ff588dd77094a2cfca6f32226608da45411c92b861427",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/complete-bowed-tower-and-south-entry.png",
+      "shots/opposite-complete-tower.png",
+      "shots/curved-crown-and-roof-plant.png",
+      "shots/mechanical-belts-and-vertical-fins.png",
+      "shots/south-arch-and-diamond-hood.png",
+      "shots/recessed-revolving-door-lobby.png",
+      "shots/watercourt-and-complete-arch.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "preview.png",
+        "hash": "sha256:21f869653231f29393aa703ea043dc0f99843ebde81cc749f5c748b77993e446"
+      },
+      {
+        "path": "shots/turntable/angle_0.png",
+        "hash": "sha256:37036d935c0b5cea436d39310692c493e9356902ea7532a4abb899559eb8c4aa"
+      },
+      {
+        "path": "shots/turntable/angle_1.png",
+        "hash": "sha256:65412981a0dad8ed7b56d1b2ff0ee45493c0e42c6a7bfb5d42bb141476e7e35f"
+      },
+      {
+        "path": "shots/turntable/angle_2.png",
+        "hash": "sha256:f9a5d925d300e1bed57d93fdb5c0ae48c35dc7e847837832ba65bdc580c955a3"
+      },
+      {
+        "path": "shots/turntable/angle_3.png",
+        "hash": "sha256:f76259ef46f56441cb2c0ee97959b245e901f2410c78be2c9c43d69158822641"
+      },
+      {
+        "path": "shots/complete-bowed-tower-and-south-entry.png",
+        "hash": "sha256:21f869653231f29393aa703ea043dc0f99843ebde81cc749f5c748b77993e446"
+      },
+      {
+        "path": "shots/opposite-complete-tower.png",
+        "hash": "sha256:0ad43cc889483533f33dc9ca90ca74e822b5b7e9e6a215eeadde6bc422aa90d1"
+      },
+      {
+        "path": "shots/curved-crown-and-roof-plant.png",
+        "hash": "sha256:97e6623a6ec33dce14a709a1ca1aa9355c3f5d7b62ae98c561c27746d5b607af"
+      },
+      {
+        "path": "shots/mechanical-belts-and-vertical-fins.png",
+        "hash": "sha256:7ae407c7aa0cacb2cafb0062e37e8b332f5792eb9b581e01378cb4f366f0c5d5"
+      },
+      {
+        "path": "shots/south-arch-and-diamond-hood.png",
+        "hash": "sha256:1c9cb82e4c1f2a2eb298a91662e213ce6414d4401c6f4baffe8e900952572714"
+      },
+      {
+        "path": "shots/recessed-revolving-door-lobby.png",
+        "hash": "sha256:405aa17cd7d7ee54e7c347cfdb4c36bb2c0625b8d6e9a46282e51570e436520f"
+      },
+      {
+        "path": "shots/watercourt-and-complete-arch.png",
+        "hash": "sha256:b7ce16f7cc454ae75214334f80f7acb9d5e0ea92efede213b49220f6bda7fe06"
+      }
+    ],
+    "notes": "Inspected54 final current frames:12 portable,12 shared-material/flat-map and30 Earth-rig/native-field/four-tier views. Complete original442m Kingkey100 tower includes its bowed curtain-wall enclosure,pale vertical fins/floor rails,four dark mechanical belts,curved crown andsmall reconstructed roof plant,deep arched south glazed hood with actual diagonal lattice/transverse ribs,a recessed curved lobby with three physical revolving-door assemblies,andcircular reflecting pool/nozzles. Source preserves pane recess returns andfine grids;four browser tiers simplify details while retaining the whole silhouette. The exact retained Q1470046 plan plus independent native441.8m shaft and24–44m south hood fix scale andorientation. Anchor[114.101581167,22.545691754],heading.001116525734,+X east,+Z south entry/watercourt,-Z north independent KK Mall. Native mall andadjacent bank/residential towers are separate context,not a442m podium extrusion. Retained442m total includes the small roof plant;bowed profile,mechanical belt levels,104 reconstructed rows,fin/pane/lattice/door/pool counts andsections are original photo proportions,not anas-built schedule. First render inspection caught a floating-point endpoint resetting one crown ring to ground dimensions;the final profile/row boundary correction removes this spurious thin roof shelf andhas a regression assertion. Four focused tests prove byte-exact master reconstruction,signed source-map frame andplacement,native terrain hash/sampling,whole curved crown/arch/watercourt geometry,physical near doorway recess/ceiling,andfour exact budgeted LODs with shared materials and separate GPU streams. Production viewer removes the three actual native tower/entrance parts while preserving four real neighbors,including independently mapped northern KK Mall. Six GLBs have zero validator errors/warnings andzero embedded images. Four existing256px window-grid,painted-metal,membrane andgranite graphs are shared with other models. Restrained vertex colors supply pale fins,dark belts andportable blue-gray glazing;shared window binding uses the catalog blue grid. Pool uses a low-cost opaque tinted shared surface. Glass/canopy/pool are opaque approximations without optical interior/transparency/water simulation;portable fallback andshared viewer appearance differ. No private texture copies,baked highlights or downloaded geometry. Unmodified129x129/2m field oversamples one standard global urban terrain tile.18m rounded center datum androughly14–20m native corners remain approximate. Foundation skirt embeds in retained terrain;raised eastern native returns visibly intersect the eastern sector of the reflecting pool andright lobby edge. Lower pool visibility andoriginal site grades are not certified;this global-DEM obstruction remains explicit. Original curb,pool,accessible-entry andas-built foundation grades are not surveyed or certified;terrain is not flattened. Interior,branding,tree/planter/landscape context andindependent surrounding buildings are excluded. Generic synthetic close cameras crop the tall tower;custom whole/crown/hood/lobby andexplicit tier cameras establish coverage. Minor facet/shadow/LOD differences,certified mesh-distance errors andphysical-device/dense-city timing remain unmeasured."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inputHash": "sha256:59dfc3295939ea42552ff588dd77094a2cfca6f32226608da45411c92b861427",
+    "capturePath": "shared-capture-report.json",
+    "captureReportHash": "sha256:ba4dfd28a300766c39346662955cad4491f37717ca0ae2c145a9faacaa10f9db",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "placementHash": "sha256:504bf61ea461d407714e16d0757179763cef03444cd099a3353b0c13acb12c36",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
+      },
+      "matgraph:molen.worldgen.material.stone_granite": {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/complete-bowed-tower-and-south-entry.png",
+      "shots/shared/opposite-complete-tower.png",
+      "shots/shared/curved-crown-and-roof-plant.png",
+      "shots/shared/mechanical-belts-and-vertical-fins.png",
+      "shots/shared/south-arch-and-diamond-hood.png",
+      "shots/shared/recessed-revolving-door-lobby.png",
+      "shots/shared/watercourt-and-complete-arch.png",
+      "shots/shared/placement.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:de52f1a108857bc8ef3d73ca9734ab374fda2e7ff81df0dc134d8ae6eecd90de",
+        "camera": {
+          "name": "angle-0",
+          "angle": 0.6
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.kingkey_100",
+          "mode": "geographic-flat-terrain",
+          "placementId": "kingkey.100",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 4,
+          "triangles": 232218,
+          "bounds": {
+            "min": [
+              -30.21149444580078,
+              13.69198226928711,
+              -28.99707794189453
+            ],
+            "max": [
+              30.204238891601562,
+              460,
+              66.39996337890625
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -30.211495424125918,
+              13.69198226928711,
+              -28.99707981327867
+            ],
+            "max": [
+              30.204238001973994,
+              460,
+              66.39996013777574
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "a7068256-a469-48dc-93ac-a5d91a5811cf",
+            "worldgen:matgraph:molen.worldgen.material.membrane": "dd28f094-f5af-4f0d-bb74-8c060e562a03",
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "e84de67b-baf4-4ed6-98f6-03552353f3dc",
+            "worldgen:matgraph:molen.worldgen.material.window_grid": "c8b92683-acf4-40f9-827e-909374f52d10"
+          },
+          "loads": [
+            "molen.worldgen.structure.kingkey_100"
+          ],
+          "selectionBounds": [
+            114.1003361736487,
+            22.544541905646483,
+            114.10282616035133,
+            22.546841592773703
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "kingkey.100"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "draws": 5,
+          "renderedTriangles": 232220
+        }
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:e6ab5adfa221e1e78e4fa96dc3329194b44f6eef42fb89a6014c60289c537b30",
+        "camera": {
+          "name": "angle-1",
+          "angle": 2.1707963267948966
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.kingkey_100",
+          "mode": "geographic-flat-terrain",
+          "placementId": "kingkey.100",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 4,
+          "triangles": 232218,
+          "bounds": {
+            "min": [
+              -30.21149444580078,
+              13.69198226928711,
+              -28.99707794189453
+            ],
+            "max": [
+              30.204238891601562,
+              460,
+              66.39996337890625
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -30.211495424125918,
+              13.69198226928711,
+              -28.99707981327867
+            ],
+            "max": [
+              30.204238001973994,
+              460,
+              66.39996013777574
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "a7068256-a469-48dc-93ac-a5d91a5811cf",
+            "worldgen:matgraph:molen.worldgen.material.membrane": "dd28f094-f5af-4f0d-bb74-8c060e562a03",
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "e84de67b-baf4-4ed6-98f6-03552353f3dc",
+            "worldgen:matgraph:molen.worldgen.material.window_grid": "c8b92683-acf4-40f9-827e-909374f52d10"
+          },
+          "loads": [
+            "molen.worldgen.structure.kingkey_100"
+          ],
+          "selectionBounds": [
+            114.1003361736487,
+            22.544541905646483,
+            114.10282616035133,
+            22.546841592773703
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "kingkey.100"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "draws": 5,
+          "renderedTriangles": 232220
+        }
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:b18e384a120173200665809da4ac90413a0118b4ff6700b4a799f3c74d4b4725",
+        "camera": {
+          "name": "angle-2",
+          "angle": 3.741592653589793
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.kingkey_100",
+          "mode": "geographic-flat-terrain",
+          "placementId": "kingkey.100",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 4,
+          "triangles": 232218,
+          "bounds": {
+            "min": [
+              -30.21149444580078,
+              13.69198226928711,
+              -28.99707794189453
+            ],
+            "max": [
+              30.204238891601562,
+              460,
+              66.39996337890625
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -30.211495424125918,
+              13.69198226928711,
+              -28.99707981327867
+            ],
+            "max": [
+              30.204238001973994,
+              460,
+              66.39996013777574
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "a7068256-a469-48dc-93ac-a5d91a5811cf",
+            "worldgen:matgraph:molen.worldgen.material.membrane": "dd28f094-f5af-4f0d-bb74-8c060e562a03",
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "e84de67b-baf4-4ed6-98f6-03552353f3dc",
+            "worldgen:matgraph:molen.worldgen.material.window_grid": "c8b92683-acf4-40f9-827e-909374f52d10"
+          },
+          "loads": [
+            "molen.worldgen.structure.kingkey_100"
+          ],
+          "selectionBounds": [
+            114.1003361736487,
+            22.544541905646483,
+            114.10282616035133,
+            22.546841592773703
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "kingkey.100"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "draws": 5,
+          "renderedTriangles": 232220
+        }
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:f54acc26a9a064c9aaf5172705ba5cc30b99a7d1c34092e1970412107adc8d15",
+        "camera": {
+          "name": "angle-3",
+          "angle": 5.312388980384689
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.kingkey_100",
+          "mode": "geographic-flat-terrain",
+          "placementId": "kingkey.100",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 4,
+          "triangles": 232218,
+          "bounds": {
+            "min": [
+              -30.21149444580078,
+              13.69198226928711,
+              -28.99707794189453
+            ],
+            "max": [
+              30.204238891601562,
+              460,
+              66.39996337890625
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -30.211495424125918,
+              13.69198226928711,
+              -28.99707981327867
+            ],
+            "max": [
+              30.204238001973994,
+              460,
+              66.39996013777574
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "a7068256-a469-48dc-93ac-a5d91a5811cf",
+            "worldgen:matgraph:molen.worldgen.material.membrane": "dd28f094-f5af-4f0d-bb74-8c060e562a03",
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "e84de67b-baf4-4ed6-98f6-03552353f3dc",
+            "worldgen:matgraph:molen.worldgen.material.window_grid": "c8b92683-acf4-40f9-827e-909374f52d10"
+          },
+          "loads": [
+            "molen.worldgen.structure.kingkey_100"
+          ],
+          "selectionBounds": [
+            114.1003361736487,
+            22.544541905646483,
+            114.10282616035133,
+            22.546841592773703
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "kingkey.100"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "draws": 5,
+          "renderedTriangles": 232220
+        }
+      },
+      {
+        "path": "shots/shared/complete-bowed-tower-and-south-entry.png",
+        "hash": "sha256:e0f22e6294d6cdf6041c605787cd8026a508f3124e53f9a4a6e8ee655776a819",
+        "camera": {
+          "name": "complete-bowed-tower-and-south-entry",
+          "position": [
+            420,
+            260,
+            630
+          ],
+          "lookAt": [
+            0,
+            216,
+            0
+          ],
+          "fov": 51
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.kingkey_100",
+          "mode": "geographic-flat-terrain",
+          "placementId": "kingkey.100",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 4,
+          "triangles": 232218,
+          "bounds": {
+            "min": [
+              -30.21149444580078,
+              13.69198226928711,
+              -28.99707794189453
+            ],
+            "max": [
+              30.204238891601562,
+              460,
+              66.39996337890625
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -30.211495424125918,
+              13.69198226928711,
+              -28.99707981327867
+            ],
+            "max": [
+              30.204238001973994,
+              460,
+              66.39996013777574
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "a7068256-a469-48dc-93ac-a5d91a5811cf",
+            "worldgen:matgraph:molen.worldgen.material.membrane": "dd28f094-f5af-4f0d-bb74-8c060e562a03",
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "e84de67b-baf4-4ed6-98f6-03552353f3dc",
+            "worldgen:matgraph:molen.worldgen.material.window_grid": "c8b92683-acf4-40f9-827e-909374f52d10"
+          },
+          "loads": [
+            "molen.worldgen.structure.kingkey_100"
+          ],
+          "selectionBounds": [
+            114.1003361736487,
+            22.544541905646483,
+            114.10282616035133,
+            22.546841592773703
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "kingkey.100"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "draws": 5,
+          "renderedTriangles": 232220
+        }
+      },
+      {
+        "path": "shots/shared/opposite-complete-tower.png",
+        "hash": "sha256:88a4657919d7396367d5ea6e6c006554c5baba7afa6efb423461bfa6cf9ac4bc",
+        "camera": {
+          "name": "opposite-complete-tower",
+          "position": [
+            -430,
+            270,
+            -640
+          ],
+          "lookAt": [
+            0,
+            216,
+            0
+          ],
+          "fov": 51
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.kingkey_100",
+          "mode": "geographic-flat-terrain",
+          "placementId": "kingkey.100",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 4,
+          "triangles": 232218,
+          "bounds": {
+            "min": [
+              -30.21149444580078,
+              13.69198226928711,
+              -28.99707794189453
+            ],
+            "max": [
+              30.204238891601562,
+              460,
+              66.39996337890625
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -30.211495424125918,
+              13.69198226928711,
+              -28.99707981327867
+            ],
+            "max": [
+              30.204238001973994,
+              460,
+              66.39996013777574
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "a7068256-a469-48dc-93ac-a5d91a5811cf",
+            "worldgen:matgraph:molen.worldgen.material.membrane": "dd28f094-f5af-4f0d-bb74-8c060e562a03",
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "e84de67b-baf4-4ed6-98f6-03552353f3dc",
+            "worldgen:matgraph:molen.worldgen.material.window_grid": "c8b92683-acf4-40f9-827e-909374f52d10"
+          },
+          "loads": [
+            "molen.worldgen.structure.kingkey_100"
+          ],
+          "selectionBounds": [
+            114.1003361736487,
+            22.544541905646483,
+            114.10282616035133,
+            22.546841592773703
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "kingkey.100"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "draws": 5,
+          "renderedTriangles": 232220
+        }
+      },
+      {
+        "path": "shots/shared/curved-crown-and-roof-plant.png",
+        "hash": "sha256:f209ad0a12c17cd90f1f9c701af60025cd69449aefe108ecfa03ee231d27ca6b",
+        "camera": {
+          "name": "curved-crown-and-roof-plant",
+          "position": [
+            140,
+            455,
+            140
+          ],
+          "lookAt": [
+            0,
+            409,
+            -5
+          ],
+          "fov": 51
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.kingkey_100",
+          "mode": "geographic-flat-terrain",
+          "placementId": "kingkey.100",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 4,
+          "triangles": 232218,
+          "bounds": {
+            "min": [
+              -30.21149444580078,
+              13.69198226928711,
+              -28.99707794189453
+            ],
+            "max": [
+              30.204238891601562,
+              460,
+              66.39996337890625
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -30.211495424125918,
+              13.69198226928711,
+              -28.99707981327867
+            ],
+            "max": [
+              30.204238001973994,
+              460,
+              66.39996013777574
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "a7068256-a469-48dc-93ac-a5d91a5811cf",
+            "worldgen:matgraph:molen.worldgen.material.membrane": "dd28f094-f5af-4f0d-bb74-8c060e562a03",
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "e84de67b-baf4-4ed6-98f6-03552353f3dc",
+            "worldgen:matgraph:molen.worldgen.material.window_grid": "c8b92683-acf4-40f9-827e-909374f52d10"
+          },
+          "loads": [
+            "molen.worldgen.structure.kingkey_100"
+          ],
+          "selectionBounds": [
+            114.1003361736487,
+            22.544541905646483,
+            114.10282616035133,
+            22.546841592773703
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "kingkey.100"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "draws": 4,
+          "renderedTriangles": 231824
+        }
+      },
+      {
+        "path": "shots/shared/mechanical-belts-and-vertical-fins.png",
+        "hash": "sha256:58753dbfd26831c24be3c6ce27d590ea30218716e592d5ae143b9b9bfe2cc7d8",
+        "camera": {
+          "name": "mechanical-belts-and-vertical-fins",
+          "position": [
+            145,
+            235,
+            145
+          ],
+          "lookAt": [
+            0,
+            235,
+            0
+          ],
+          "fov": 49
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.kingkey_100",
+          "mode": "geographic-flat-terrain",
+          "placementId": "kingkey.100",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 4,
+          "triangles": 232218,
+          "bounds": {
+            "min": [
+              -30.21149444580078,
+              13.69198226928711,
+              -28.99707794189453
+            ],
+            "max": [
+              30.204238891601562,
+              460,
+              66.39996337890625
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -30.211495424125918,
+              13.69198226928711,
+              -28.99707981327867
+            ],
+            "max": [
+              30.204238001973994,
+              460,
+              66.39996013777574
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "a7068256-a469-48dc-93ac-a5d91a5811cf",
+            "worldgen:matgraph:molen.worldgen.material.membrane": "dd28f094-f5af-4f0d-bb74-8c060e562a03",
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "e84de67b-baf4-4ed6-98f6-03552353f3dc",
+            "worldgen:matgraph:molen.worldgen.material.window_grid": "c8b92683-acf4-40f9-827e-909374f52d10"
+          },
+          "loads": [
+            "molen.worldgen.structure.kingkey_100"
+          ],
+          "selectionBounds": [
+            114.1003361736487,
+            22.544541905646483,
+            114.10282616035133,
+            22.546841592773703
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "kingkey.100"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "draws": 3,
+          "renderedTriangles": 231798
+        }
+      },
+      {
+        "path": "shots/shared/south-arch-and-diamond-hood.png",
+        "hash": "sha256:7ad9e8db7ff6f27a899efe74f9acbe95e2a41e21920cd20febe3771743797c7b",
+        "camera": {
+          "name": "south-arch-and-diamond-hood",
+          "position": [
+            72,
+            29,
+            105
+          ],
+          "lookAt": [
+            0,
+            19,
+            23
+          ],
+          "fov": 51
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.kingkey_100",
+          "mode": "geographic-flat-terrain",
+          "placementId": "kingkey.100",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 4,
+          "triangles": 232218,
+          "bounds": {
+            "min": [
+              -30.21149444580078,
+              13.69198226928711,
+              -28.99707794189453
+            ],
+            "max": [
+              30.204238891601562,
+              460,
+              66.39996337890625
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -30.211495424125918,
+              13.69198226928711,
+              -28.99707981327867
+            ],
+            "max": [
+              30.204238001973994,
+              460,
+              66.39996013777574
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "a7068256-a469-48dc-93ac-a5d91a5811cf",
+            "worldgen:matgraph:molen.worldgen.material.membrane": "dd28f094-f5af-4f0d-bb74-8c060e562a03",
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "e84de67b-baf4-4ed6-98f6-03552353f3dc",
+            "worldgen:matgraph:molen.worldgen.material.window_grid": "c8b92683-acf4-40f9-827e-909374f52d10"
+          },
+          "loads": [
+            "molen.worldgen.structure.kingkey_100"
+          ],
+          "selectionBounds": [
+            114.1003361736487,
+            22.544541905646483,
+            114.10282616035133,
+            22.546841592773703
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "kingkey.100"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "draws": 4,
+          "renderedTriangles": 232194
+        }
+      },
+      {
+        "path": "shots/shared/recessed-revolving-door-lobby.png",
+        "hash": "sha256:9a1de4abbbbc85e4d202b49d8ca1cf7bdb7a0b8e62d52d95e591851c01d68381",
+        "camera": {
+          "name": "recessed-revolving-door-lobby",
+          "position": [
+            0,
+            6,
+            70
+          ],
+          "lookAt": [
+            0,
+            6,
+            17
+          ],
+          "fov": 54
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.kingkey_100",
+          "mode": "geographic-flat-terrain",
+          "placementId": "kingkey.100",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 4,
+          "triangles": 232218,
+          "bounds": {
+            "min": [
+              -30.21149444580078,
+              13.69198226928711,
+              -28.99707794189453
+            ],
+            "max": [
+              30.204238891601562,
+              460,
+              66.39996337890625
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -30.211495424125918,
+              13.69198226928711,
+              -28.99707981327867
+            ],
+            "max": [
+              30.204238001973994,
+              460,
+              66.39996013777574
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "a7068256-a469-48dc-93ac-a5d91a5811cf",
+            "worldgen:matgraph:molen.worldgen.material.membrane": "dd28f094-f5af-4f0d-bb74-8c060e562a03",
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "e84de67b-baf4-4ed6-98f6-03552353f3dc",
+            "worldgen:matgraph:molen.worldgen.material.window_grid": "c8b92683-acf4-40f9-827e-909374f52d10"
+          },
+          "loads": [
+            "molen.worldgen.structure.kingkey_100"
+          ],
+          "selectionBounds": [
+            114.1003361736487,
+            22.544541905646483,
+            114.10282616035133,
+            22.546841592773703
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "kingkey.100"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "draws": 4,
+          "renderedTriangles": 232194
+        }
+      },
+      {
+        "path": "shots/shared/watercourt-and-complete-arch.png",
+        "hash": "sha256:47173e5b3a8a1bce61ec1aa27ef517aad0b811b1f5af8776b5332f7f266b39ab",
+        "camera": {
+          "name": "watercourt-and-complete-arch",
+          "position": [
+            60,
+            36,
+            92
+          ],
+          "lookAt": [
+            0,
+            9,
+            38
+          ],
+          "fov": 51
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.kingkey_100",
+          "mode": "geographic-flat-terrain",
+          "placementId": "kingkey.100",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 4,
+          "triangles": 232218,
+          "bounds": {
+            "min": [
+              -30.21149444580078,
+              13.69198226928711,
+              -28.99707794189453
+            ],
+            "max": [
+              30.204238891601562,
+              460,
+              66.39996337890625
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -30.211495424125918,
+              13.69198226928711,
+              -28.99707981327867
+            ],
+            "max": [
+              30.204238001973994,
+              460,
+              66.39996013777574
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "a7068256-a469-48dc-93ac-a5d91a5811cf",
+            "worldgen:matgraph:molen.worldgen.material.membrane": "dd28f094-f5af-4f0d-bb74-8c060e562a03",
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "e84de67b-baf4-4ed6-98f6-03552353f3dc",
+            "worldgen:matgraph:molen.worldgen.material.window_grid": "c8b92683-acf4-40f9-827e-909374f52d10"
+          },
+          "loads": [
+            "molen.worldgen.structure.kingkey_100"
+          ],
+          "selectionBounds": [
+            114.1003361736487,
+            22.544541905646483,
+            114.10282616035133,
+            22.546841592773703
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "kingkey.100"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "draws": 4,
+          "renderedTriangles": 232194
+        }
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:0360a5013e619224b3c93643bf74718fc1f4ddc882e169c8cf517ec8c1c8c0a1",
+        "camera": {
+          "name": "placement",
+          "placement": true
+        },
+        "state": {
+          "asset": "molen.worldgen.structure.kingkey_100",
+          "mode": "geographic-flat-terrain",
+          "placementId": "kingkey.100",
+          "position": [
+            -128,
+            0,
+            -128
+          ],
+          "heading": 0,
+          "meshes": 4,
+          "triangles": 232218,
+          "bounds": {
+            "min": [
+              -30.21149444580078,
+              13.69198226928711,
+              -28.99707794189453
+            ],
+            "max": [
+              30.204238891601562,
+              460,
+              66.39996337890625
+            ]
+          },
+          "expectedBoundedPlacementBounds": {
+            "min": [
+              -30.211495424125918,
+              13.69198226928711,
+              -28.99707981327867
+            ],
+            "max": [
+              30.204238001973994,
+              460,
+              66.39996013777574
+            ]
+          },
+          "reviewGroundY": 0,
+          "surfaces": {
+            "worldgen:matgraph:molen.worldgen.material.metal_painted": "a7068256-a469-48dc-93ac-a5d91a5811cf",
+            "worldgen:matgraph:molen.worldgen.material.membrane": "dd28f094-f5af-4f0d-bb74-8c060e562a03",
+            "worldgen:matgraph:molen.worldgen.material.stone_granite": "e84de67b-baf4-4ed6-98f6-03552353f3dc",
+            "worldgen:matgraph:molen.worldgen.material.window_grid": "c8b92683-acf4-40f9-827e-909374f52d10"
+          },
+          "loads": [
+            "molen.worldgen.structure.kingkey_100"
+          ],
+          "selectionBounds": [
+            114.1003361736487,
+            22.544541905646483,
+            114.10282616035133,
+            22.546841592773703
+          ],
+          "terrainSamples": [],
+          "visibleStructures": [
+            "kingkey.100"
+          ],
+          "groundCutoutActive": false,
+          "groundCoversCutoutProbe": null,
+          "groundCutoutProbes": 0,
+          "surfaceReads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.membrane": 1,
+            "molen.worldgen.material.stone_granite": 1,
+            "molen.worldgen.material.window_grid": 1
+          },
+          "draws": 6,
+          "renderedTriangles": 232220
+        }
+      }
+    ],
+    "notes": "Inspected54 final current frames:12 portable,12 shared-material/flat-map and30 Earth-rig/native-field/four-tier views. Complete original442m Kingkey100 tower includes its bowed curtain-wall enclosure,pale vertical fins/floor rails,four dark mechanical belts,curved crown andsmall reconstructed roof plant,deep arched south glazed hood with actual diagonal lattice/transverse ribs,a recessed curved lobby with three physical revolving-door assemblies,andcircular reflecting pool/nozzles. Source preserves pane recess returns andfine grids;four browser tiers simplify details while retaining the whole silhouette. The exact retained Q1470046 plan plus independent native441.8m shaft and24–44m south hood fix scale andorientation. Anchor[114.101581167,22.545691754],heading.001116525734,+X east,+Z south entry/watercourt,-Z north independent KK Mall. Native mall andadjacent bank/residential towers are separate context,not a442m podium extrusion. Retained442m total includes the small roof plant;bowed profile,mechanical belt levels,104 reconstructed rows,fin/pane/lattice/door/pool counts andsections are original photo proportions,not anas-built schedule. First render inspection caught a floating-point endpoint resetting one crown ring to ground dimensions;the final profile/row boundary correction removes this spurious thin roof shelf andhas a regression assertion. Four focused tests prove byte-exact master reconstruction,signed source-map frame andplacement,native terrain hash/sampling,whole curved crown/arch/watercourt geometry,physical near doorway recess/ceiling,andfour exact budgeted LODs with shared materials and separate GPU streams. Production viewer removes the three actual native tower/entrance parts while preserving four real neighbors,including independently mapped northern KK Mall. Six GLBs have zero validator errors/warnings andzero embedded images. Four existing256px window-grid,painted-metal,membrane andgranite graphs are shared with other models. Restrained vertex colors supply pale fins,dark belts andportable blue-gray glazing;shared window binding uses the catalog blue grid. Pool uses a low-cost opaque tinted shared surface. Glass/canopy/pool are opaque approximations without optical interior/transparency/water simulation;portable fallback andshared viewer appearance differ. No private texture copies,baked highlights or downloaded geometry. Unmodified129x129/2m field oversamples one standard global urban terrain tile.18m rounded center datum androughly14–20m native corners remain approximate. Foundation skirt embeds in retained terrain;raised eastern native returns visibly intersect the eastern sector of the reflecting pool andright lobby edge. Lower pool visibility andoriginal site grades are not certified;this global-DEM obstruction remains explicit. Original curb,pool,accessible-entry andas-built foundation grades are not surveyed or certified;terrain is not flattened. Interior,branding,tree/planter/landscape context andindependent surrounding buildings are excluded. Generic synthetic close cameras crop the tall tower;custom whole/crown/hood/lobby andexplicit tier cameras establish coverage. Minor facet/shadow/LOD differences,certified mesh-distance errors andphysical-device/dense-city timing remain unmeasured."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "inputHash": "sha256:59dfc3295939ea42552ff588dd77094a2cfca6f32226608da45411c92b861427",
+    "placementHash": "sha256:504bf61ea461d407714e16d0757179763cef03444cd099a3353b0c13acb12c36",
+    "scope": "Retained Q1470046 tower plan plus native441.8m shaft and24–44m south entrance sign placement. Native northern mall andindependent neighboring towers preserved. Approximate18m center/global-terrain contact,not surveyed.",
+    "notes": "Inspected54 final current frames:12 portable,12 shared-material/flat-map and30 Earth-rig/native-field/four-tier views. Complete original442m Kingkey100 tower includes its bowed curtain-wall enclosure,pale vertical fins/floor rails,four dark mechanical belts,curved crown andsmall reconstructed roof plant,deep arched south glazed hood with actual diagonal lattice/transverse ribs,a recessed curved lobby with three physical revolving-door assemblies,andcircular reflecting pool/nozzles. Source preserves pane recess returns andfine grids;four browser tiers simplify details while retaining the whole silhouette. The exact retained Q1470046 plan plus independent native441.8m shaft and24–44m south hood fix scale andorientation. Anchor[114.101581167,22.545691754],heading.001116525734,+X east,+Z south entry/watercourt,-Z north independent KK Mall. Native mall andadjacent bank/residential towers are separate context,not a442m podium extrusion. Retained442m total includes the small roof plant;bowed profile,mechanical belt levels,104 reconstructed rows,fin/pane/lattice/door/pool counts andsections are original photo proportions,not anas-built schedule. First render inspection caught a floating-point endpoint resetting one crown ring to ground dimensions;the final profile/row boundary correction removes this spurious thin roof shelf andhas a regression assertion. Four focused tests prove byte-exact master reconstruction,signed source-map frame andplacement,native terrain hash/sampling,whole curved crown/arch/watercourt geometry,physical near doorway recess/ceiling,andfour exact budgeted LODs with shared materials and separate GPU streams. Production viewer removes the three actual native tower/entrance parts while preserving four real neighbors,including independently mapped northern KK Mall. Six GLBs have zero validator errors/warnings andzero embedded images. Four existing256px window-grid,painted-metal,membrane andgranite graphs are shared with other models. Restrained vertex colors supply pale fins,dark belts andportable blue-gray glazing;shared window binding uses the catalog blue grid. Pool uses a low-cost opaque tinted shared surface. Glass/canopy/pool are opaque approximations without optical interior/transparency/water simulation;portable fallback andshared viewer appearance differ. No private texture copies,baked highlights or downloaded geometry. Unmodified129x129/2m field oversamples one standard global urban terrain tile.18m rounded center datum androughly14–20m native corners remain approximate. Foundation skirt embeds in retained terrain;raised eastern native returns visibly intersect the eastern sector of the reflecting pool andright lobby edge. Lower pool visibility andoriginal site grades are not certified;this global-DEM obstruction remains explicit. Original curb,pool,accessible-entry andas-built foundation grades are not surveyed or certified;terrain is not flattened. Interior,branding,tree/planter/landscape context andindependent surrounding buildings are excluded. Generic synthetic close cameras crop the tall tower;custom whole/crown/hood/lobby andexplicit tier cameras establish coverage. Minor facet/shadow/LOD differences,certified mesh-distance errors andphysical-device/dense-city timing remain unmeasured."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "inputHash": "sha256:59dfc3295939ea42552ff588dd77094a2cfca6f32226608da45411c92b861427",
+    "notes": "Inspected54 final current frames:12 portable,12 shared-material/flat-map and30 Earth-rig/native-field/four-tier views. Complete original442m Kingkey100 tower includes its bowed curtain-wall enclosure,pale vertical fins/floor rails,four dark mechanical belts,curved crown andsmall reconstructed roof plant,deep arched south glazed hood with actual diagonal lattice/transverse ribs,a recessed curved lobby with three physical revolving-door assemblies,andcircular reflecting pool/nozzles. Source preserves pane recess returns andfine grids;four browser tiers simplify details while retaining the whole silhouette. The exact retained Q1470046 plan plus independent native441.8m shaft and24–44m south hood fix scale andorientation. Anchor[114.101581167,22.545691754],heading.001116525734,+X east,+Z south entry/watercourt,-Z north independent KK Mall. Native mall andadjacent bank/residential towers are separate context,not a442m podium extrusion. Retained442m total includes the small roof plant;bowed profile,mechanical belt levels,104 reconstructed rows,fin/pane/lattice/door/pool counts andsections are original photo proportions,not anas-built schedule. First render inspection caught a floating-point endpoint resetting one crown ring to ground dimensions;the final profile/row boundary correction removes this spurious thin roof shelf andhas a regression assertion. Four focused tests prove byte-exact master reconstruction,signed source-map frame andplacement,native terrain hash/sampling,whole curved crown/arch/watercourt geometry,physical near doorway recess/ceiling,andfour exact budgeted LODs with shared materials and separate GPU streams. Production viewer removes the three actual native tower/entrance parts while preserving four real neighbors,including independently mapped northern KK Mall. Six GLBs have zero validator errors/warnings andzero embedded images. Four existing256px window-grid,painted-metal,membrane andgranite graphs are shared with other models. Restrained vertex colors supply pale fins,dark belts andportable blue-gray glazing;shared window binding uses the catalog blue grid. Pool uses a low-cost opaque tinted shared surface. Glass/canopy/pool are opaque approximations without optical interior/transparency/water simulation;portable fallback andshared viewer appearance differ. No private texture copies,baked highlights or downloaded geometry. Unmodified129x129/2m field oversamples one standard global urban terrain tile.18m rounded center datum androughly14–20m native corners remain approximate. Foundation skirt embeds in retained terrain;raised eastern native returns visibly intersect the eastern sector of the reflecting pool andright lobby edge. Lower pool visibility andoriginal site grades are not certified;this global-DEM obstruction remains explicit. Original curb,pool,accessible-entry andas-built foundation grades are not surveyed or certified;terrain is not flattened. Interior,branding,tree/planter/landscape context andindependent surrounding buildings are excluded. Generic synthetic close cameras crop the tall tower;custom whole/crown/hood/lobby andexplicit tier cameras establish coverage. Minor facet/shadow/LOD differences,certified mesh-distance errors andphysical-device/dense-city timing remain unmeasured."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inputHash": "sha256:59dfc3295939ea42552ff588dd77094a2cfca6f32226608da45411c92b861427",
+    "captureReportHash": "sha256:350bbf63a79c6a6528321261baa175d5c42456e9a1645d9d4342a17a11ba56f3",
+    "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/complete-bowed-tower-and-south-entry.png",
+      "medium-fi/opposite-complete-tower.png",
+      "medium-fi/curved-crown-and-roof-plant.png",
+      "medium-fi/mechanical-belts-and-vertical-fins.png",
+      "medium-fi/south-arch-and-diamond-hood.png",
+      "medium-fi/recessed-revolving-door-lobby.png",
+      "medium-fi/watercourt-and-complete-arch.png",
+      "medium-fi/whole-tower-skyline.png",
+      "medium-fi/whole-tower-district.png",
+      "medium-fi/whole-tower-street.png",
+      "medium-fi/whole-tower-closeup.png",
+      "medium-fi/street-diamond-hood.png",
+      "medium-fi/closeup-curved-crown.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected54 final current frames:12 portable,12 shared-material/flat-map and30 Earth-rig/native-field/four-tier views. Complete original442m Kingkey100 tower includes its bowed curtain-wall enclosure,pale vertical fins/floor rails,four dark mechanical belts,curved crown andsmall reconstructed roof plant,deep arched south glazed hood with actual diagonal lattice/transverse ribs,a recessed curved lobby with three physical revolving-door assemblies,andcircular reflecting pool/nozzles. Source preserves pane recess returns andfine grids;four browser tiers simplify details while retaining the whole silhouette. The exact retained Q1470046 plan plus independent native441.8m shaft and24–44m south hood fix scale andorientation. Anchor[114.101581167,22.545691754],heading.001116525734,+X east,+Z south entry/watercourt,-Z north independent KK Mall. Native mall andadjacent bank/residential towers are separate context,not a442m podium extrusion. Retained442m total includes the small roof plant;bowed profile,mechanical belt levels,104 reconstructed rows,fin/pane/lattice/door/pool counts andsections are original photo proportions,not anas-built schedule. First render inspection caught a floating-point endpoint resetting one crown ring to ground dimensions;the final profile/row boundary correction removes this spurious thin roof shelf andhas a regression assertion. Four focused tests prove byte-exact master reconstruction,signed source-map frame andplacement,native terrain hash/sampling,whole curved crown/arch/watercourt geometry,physical near doorway recess/ceiling,andfour exact budgeted LODs with shared materials and separate GPU streams. Production viewer removes the three actual native tower/entrance parts while preserving four real neighbors,including independently mapped northern KK Mall. Six GLBs have zero validator errors/warnings andzero embedded images. Four existing256px window-grid,painted-metal,membrane andgranite graphs are shared with other models. Restrained vertex colors supply pale fins,dark belts andportable blue-gray glazing;shared window binding uses the catalog blue grid. Pool uses a low-cost opaque tinted shared surface. Glass/canopy/pool are opaque approximations without optical interior/transparency/water simulation;portable fallback andshared viewer appearance differ. No private texture copies,baked highlights or downloaded geometry. Unmodified129x129/2m field oversamples one standard global urban terrain tile.18m rounded center datum androughly14–20m native corners remain approximate. Foundation skirt embeds in retained terrain;raised eastern native returns visibly intersect the eastern sector of the reflecting pool andright lobby edge. Lower pool visibility andoriginal site grades are not certified;this global-DEM obstruction remains explicit. Original curb,pool,accessible-entry andas-built foundation grades are not surveyed or certified;terrain is not flattened. Interior,branding,tree/planter/landscape context andindependent surrounding buildings are excluded. Generic synthetic close cameras crop the tall tower;custom whole/crown/hood/lobby andexplicit tier cameras establish coverage. Minor facet/shadow/LOD differences,certified mesh-distance errors andphysical-device/dense-city timing remain unmeasured."
+  },
+  "siteIntegrationReview": {
+    "status": "passed-approximate-contact-with-eastern-pool-dem-obstruction",
+    "inputHash": "sha256:59dfc3295939ea42552ff588dd77094a2cfca6f32226608da45411c92b861427",
+    "terrainFixture": {
+      "descriptor": {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:eba651b6686bfc1974acfa184875e275cd9768e9db10ffffbb3385b3bc60758e"
+      },
+      "heightmap": {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:3ae1f6bb6618de73dcd45d00143c6c0d560b22056e059aadc30fdec09e26ddf0"
+      }
+    },
+    "gridHash": "sha256:50970053ac4393199ff47e2a53d74e7a564ec12b909a525043936c36b2181700",
+    "source": "Standard viewerz15 PMTiles andone global Terrarium tile;no bespoke research.",
+    "notes": "Unmodified native field;18m rounded center reference. Foundation skirt embeds approximately. Eastern native surface returns visibly obscure part of thepool andright lobby edge;original entrance/curb/pool/accessibility levels are not surveyed. Three actual native tower/entrance parts replaced;four real neighbors including northern mall preserved."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/ws/ws1/kingkey_100/models/source.glb",
+        "hash": "sha256:9920de28a4f21903a8e1fcf7e255056f9ce422a71f6e3564e1fae5588a627822",
+        "bytes": 25184032,
+        "triangles": 232218,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -30.18000030517578,
+          -4.308017730712891,
+          -28.964000701904297
+        ],
+        "max": [
+          30.18000030517578,
+          442,
+          66.4000015258789
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/ws/ws1/kingkey_100/model.glb",
+        "hash": "sha256:d60fc17fdbcaf7fcd11b6256d37716f7b6c6d38de3e0c70d77da5dc15e24b51c",
+        "bytes": 25183556,
+        "triangles": 232218,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -30.18000030517578,
+          -4.308017730712891,
+          -28.964000701904297
+        ],
+        "max": [
+          30.18000030517578,
+          442,
+          66.4000015258789
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/ws/ws1/kingkey_100/model.skyline.glb",
+        "hash": "sha256:37e0e5bef4d6d7fb5a189c83b2b2ebda8b8c9b019a575b9480ce18788a65ef58",
+        "bytes": 29328,
+        "triangles": 346,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -29.799999237060547,
+          -4.308017730712891,
+          -28.55900001525879
+        ],
+        "max": [
+          29.799999237060547,
+          441.79998779296875,
+          66.4000015258789
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/ws/ws1/kingkey_100/model.district.glb",
+        "hash": "sha256:5424b8531978c010e50bd19e1ee8c89d53fbbe46d45001b08fa1b8208798c6cf",
+        "bytes": 285048,
+        "triangles": 3988,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -30.18000030517578,
+          -4.308017730712891,
+          -28.964000701904297
+        ],
+        "max": [
+          30.18000030517578,
+          441.8793640136719,
+          66.4000015258789
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/ws/ws1/kingkey_100/model.street.glb",
+        "hash": "sha256:b9026e09d0db73877d8df118d9e6ce30bf950cc1bcef8f26c5532fb6f95747fa",
+        "bytes": 1051092,
+        "triangles": 15842,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -30.18000030517578,
+          -4.308017730712891,
+          -28.964000701904297
+        ],
+        "max": [
+          30.18000030517578,
+          441.8800048828125,
+          66.4000015258789
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/ws/ws1/kingkey_100/model.closeup.glb",
+        "hash": "sha256:25a5111badf95f6f8041b50aba0fc99a204d2ca2cc3565a84bfed27cff5ac415",
+        "bytes": 3645592,
+        "triangles": 55074,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -30.18000030517578,
+          -4.308017730712891,
+          -28.964000701904297
+        ],
+        "max": [
+          30.18000030517578,
+          442,
+          66.4000015258789
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "node node_modules/vitest/vitest.mjs run test/kingkey-100-lods.test.mjs --maxWorkers=1",
+      "passed": 4,
+      "failed": 0
+    }
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:90fc9d46499e2b15fb94dd3a7c573c0e6421726485b28f2db74a53e6f3a472a2",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:37e0e5bef4d6d7fb5a189c83b2b2ebda8b8c9b019a575b9480ce18788a65ef58",
+        "bytes": 29328,
+        "gzipBytes": 7892,
+        "triangles": 346,
+        "cpuBytes": 27888,
+        "gpuBytes": 27888,
+        "errorMeters": 6,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:5424b8531978c010e50bd19e1ee8c89d53fbbe46d45001b08fa1b8208798c6cf",
+        "bytes": 285048,
+        "gzipBytes": 72093,
+        "triangles": 3988,
+        "cpuBytes": 279996,
+        "gpuBytes": 279996,
+        "errorMeters": 3,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:b9026e09d0db73877d8df118d9e6ce30bf950cc1bcef8f26c5532fb6f95747fa",
+        "bytes": 1051092,
+        "gzipBytes": 257963,
+        "triangles": 15842,
+        "cpuBytes": 1046028,
+        "gpuBytes": 1046028,
+        "errorMeters": 1.5,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:25a5111badf95f6f8041b50aba0fc99a204d2ca2cc3565a84bfed27cff5ac415",
+        "bytes": 3645592,
+        "gzipBytes": 920873,
+        "triangles": 55074,
+        "cpuBytes": 3640488,
+        "gpuBytes": 3640488,
+        "errorMeters": 0.6,
+        "drawCalls": 4
+      }
+    ],
+    "initialBytes": 314376,
+    "notes": "Four authored browser tiers;at most four draws;four shared texture graphs;no embedded/private images;separate position/normal streams. Detailed source master remains separate. Physical-device timing unmeasured."
+  },
+  "authoringIndexReview": {
+    "status": "metadata-only-rebind",
+    "oldInput": "sha256:dffdbf00fede95ef0570060e463621dd5ca06798e05abe3252f86b1d0c170c4c",
+    "inputHash": "sha256:59dfc3295939ea42552ff588dd77094a2cfca6f32226608da45411c92b861427",
+    "reason": "First registration ofthe existing,already rendered/tested generator andmodel module in authoring-index.json adds two recipe entries to modelInputHash. Exact old bundle-only hash proves all original source inputs unchanged. All six GLBs,scene/cameras,placement/frame,material graphs,terrain and54 inspected image bytes remain exact.",
+    "recipes": [
+      {
+        "path": "content/worldgen/source/places/ws/ws1/kingkey_100/models/kingkey-model.mjs",
+        "hash": "sha256:720ff09e8adf80ea29283adc1eaf6f58c82e8523e8192a0edd5454f3c44ff3a1"
+      },
+      {
+        "path": "packages/worldgen/scripts/generate-kingkey-100.mjs",
+        "hash": "sha256:b6dbe3609e572be53d856e11bbd11da4237d1b71cef52f2c7d4bd8d74d34401b"
+      }
+    ]
+  }
+}

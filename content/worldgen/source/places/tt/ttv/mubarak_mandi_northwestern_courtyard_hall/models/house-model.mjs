@@ -1,31 +1,343 @@
 /** Whole original six-corner shell. Architectural family/details are explicit estimates. */
 import '../../../../../../../../packages/worldgen/scripts/install-deterministic-math.mjs';
 import fs from 'node:fs';
-import {MeshBufferBuilder} from '../../../../../../../../packages/worldgen/dist/kernel.mjs';
-import {beam,normalFor} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-import {rgb} from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
-export const P=JSON.parse(fs.readFileSync(new URL('../plan-controls.json',import.meta.url)));
-export const surfaces={wall:{slot:'wall',graph:'plaster_lime',roughness:.98,metallic:0},stone:{slot:'trim',graph:'stone_limestone_raw',roughness:.97,metallic:0},roof:{slot:'roof',graph:'concrete_plain',roughness:1,metallic:0},wood:{slot:'trim',graph:'wood_plain',roughness:.95,metallic:0},steel:{slot:'trim',graph:'metal_painted',roughness:.8,metallic:.55}};
-const colors={wall:rgb('d1c2ac'),stone:rgb('dfd6c3'),roof:rgb('aaa395'),wood:rgb('3b3931'),steel:rgb('545657')};
-export const componentEvidence=[];
-function face(o,k,p,n){let N=normalFor(...p);if(n&&N.reduce((s,v,i)=>s+v*n[i],0)<0){p=[...p].reverse();N=normalFor(...p)}o.addConvexPolygon(k,'palette:#ffffff',p,N,q=>[q[0],q[1]],colors[k]);}
-function cap(o,k,r,y,up){const t=new MeshBufferBuilder();if(!t.addCap(k,'palette:#ffffff',r,[],()=>y,[0,up,0],p=>p,colors[k]))throw Error('Invalid six-corner cap');const m=t.finalize();for(let i=0;i<m.indices.length;i+=3)face(o,k,Array.from(m.indices.slice(i,i+3)).map(j=>Array.from(m.positions.slice(j*3,j*3+3))),[0,up,0]);}
-function solid(o,k,r,lo,hi){const area=r.reduce((s,a,i)=>{const b=r[(i+1)%r.length];return s+a[0]*b[1]-b[0]*a[1]},0),sg=area<0?1:-1;for(let i=0;i<r.length;i++){const a=r[i],b=r[(i+1)%r.length];face(o,k,[[a[0],lo,a[1]],[b[0],lo,b[1]],[b[0],hi,b[1]],[a[0],hi,a[1]]],[-sg*(b[1]-a[1]),0,sg*(b[0]-a[0])]);}cap(o,k,r,lo,-1);cap(o,k,r,hi,1);}
-export function edgeFrame(i){const a=P.nativeRing[i],b=P.nativeRing[(i+1)%6],L=Math.hypot(b[0]-a[0],b[1]-a[1]),e=[(b[0]-a[0])/L,(b[1]-a[1])/L],n=[-e[1],e[0]];return{a,b,L,e,n,point:(t,y,d=0)=>[a[0]+e[0]*t+n[0]*d,y,a[1]+e[1]*t+n[1]*d]};}
-export function balconyPlan(){const f=edgeFrame(0),a=f.point(.6,0,0),b=f.point(f.L-.6,0,0),c=f.point(f.L-.6,0,P.balconyProjection),d=f.point(.6,0,P.balconyProjection);return[a,b,c,d].map(p=>[p[0],p[2]])}
-function window(o,f,t,sill,lod){const w=P.windowWidth,h=P.windowHeight,spring=sill+h-.85,segments=[1,1,4,6][lod],p=[[-w/2,sill],[w/2,sill],[w/2,spring]];for(let j=1;j<=segments;j++){const q=j/segments;p.push([w/2*(1-q),spring+.85*Math.sqrt(1-(-1+.5*q)*(-1+.5*q))/Math.sqrt(.75)]);}for(let j=segments-1;j>=0;j--){const q=j/segments;p.push([-w/2*(1-q),spring+.85*Math.sqrt(1-(-1+.5*q)*(-1+.5*q))/Math.sqrt(.75)]);}const points=p.map(([x,y])=>f.point(t+x,y,.026));face(o,'wood',points,[f.n[0],0,f.n[1]]);
- if(lod>0)for(let i=0;i<points.length;i++){const a=points[i],b=points[(i+1)%points.length];beam(o,'stone',a,b,lod>1?.13:.09,.10,colors.stone)}
- if(lod>1){beam(o,'wood',f.point(t,sill,.07),f.point(t,spring+.75,.07),.07,.08,colors.wood);beam(o,'stone',f.point(t-w/2-.17,sill-.1,.09),f.point(t+w/2+.17,sill-.1,.09),.17,.21,colors.stone);}
+import { MeshBufferBuilder } from '../../../../../../../../packages/worldgen/dist/kernel.mjs';
+import {
+  beam,
+  normalFor,
+} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
+export const P = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));
+export const surfaces = {
+  wall: { slot: 'wall', graph: 'plaster_lime', roughness: 0.98, metallic: 0 },
+  stone: { slot: 'trim', graph: 'stone_limestone_raw', roughness: 0.97, metallic: 0 },
+  roof: { slot: 'roof', graph: 'concrete_plain', roughness: 1, metallic: 0 },
+  wood: { slot: 'trim', graph: 'wood_plain', roughness: 0.95, metallic: 0 },
+  steel: { slot: 'trim', graph: 'metal_painted', roughness: 0.8, metallic: 0.55 },
+};
+const colors = {
+  wall: rgb('d1c2ac'),
+  stone: rgb('dfd6c3'),
+  roof: rgb('aaa395'),
+  wood: rgb('3b3931'),
+  steel: rgb('545657'),
+};
+export const componentEvidence = [];
+function face(o, k, p, n) {
+  let N = normalFor(...p);
+  if (n && N.reduce((s, v, i) => s + v * n[i], 0) < 0) {
+    p = [...p].reverse();
+    N = normalFor(...p);
+  }
+  o.addConvexPolygon(k, 'palette:#ffffff', p, N, (q) => [q[0], q[1]], colors[k]);
 }
-export function buildHouse(o,_frame,lod=3){componentEvidence.length=0;const r=P.nativeRing;solid(o,'stone',r,P.foundationBottom,P.floor);solid(o,'wall',r,P.floor,P.roof-.2);solid(o,'roof',r,P.roof-.2,P.roof);
- let windows=0;for(let i=0;i<6;i++){const f=edgeFrame(i),inner=[f.a,[f.a[0]-f.n[0]*.28,f.a[1]-f.n[1]*.28],[f.b[0]-f.n[0]*.28,f.b[1]-f.n[1]*.28],f.b];solid(o,'wall',inner,P.roof,P.parapetTop);const bays=i===0?P.frontBays:(f.L>8?Math.max(1,Math.floor(f.L/5.8)):0);for(let j=0;j<bays;j++)for(const sill of[P.floor+.85,P.upperFloor+.7]){window(o,f,f.L*(j+.5)/bays,sill,lod);windows++;}
- if(lod>1)beam(o,'stone',f.point(0,P.upperFloor-.28,.025),f.point(f.L,P.upperFloor-.28,.025),.15,.12,colors.stone);}
- solid(o,'roof',balconyPlan(),P.upperFloor-P.balconyThickness,P.upperFloor);const f=edgeFrame(0);for(let i=0;i<=P.frontBays;i++){const t=.7+(f.L-1.4)*i/P.frontBays;beam(o,'steel',f.point(t,P.upperFloor-.38,-.14),f.point(t,P.upperFloor-.38,P.balconyProjection-.08),.12,.24,colors.steel);if(lod>1){beam(o,'steel',f.point(t,P.upperFloor-.49,-.14),f.point(t,P.upperFloor-.49,P.balconyProjection-.08),.22,.05,colors.steel);}}
- for(const h of[P.upperFloor+.12,P.upperFloor+1.02])beam(o,'steel',f.point(.65,h,P.balconyProjection-.05),f.point(f.L-.65,h,P.balconyProjection-.05),.055,.055,colors.steel);
- const rails=lod>1?P.frontBays*3:P.frontBays;for(let i=0;i<=rails;i++){const t=.65+(f.L-1.3)*i/rails;beam(o,'steel',f.point(t,P.upperFloor+.12,P.balconyProjection-.05),f.point(t,P.upperFloor+1.02,P.balconyProjection-.05),.04,.04,colors.steel);}
- const t=f.L/2;face(o,'wood',[f.point(t-.8,P.floor,.04),f.point(t+.8,P.floor,.04),f.point(t+.8,P.floor+2.6,.04),f.point(t-.8,P.floor+2.6,.04)],[f.n[0],0,f.n[1]]);
- componentEvidence.push({lod,wholeNativeSixCornerHall:true,originalNativeCorners:6,rearStepNotchRetained:true,nativeFeatureId:P.nativeFeatureId,closedWholeRoof:true,closedRearAndEnds:true,storeys:2,estimatedFrontWindowBaysPerStorey:P.frontBays,totalEstimatedPointedWindows:windows,wholeConcreteBalcony:true,estimatedCantileverGirders:P.frontBays+1,allAppearanceImagesUnused:true,allSectionsEstimated:true,exactHistoricBlockNameVerified:false,reportedDamageLocationVerified:false,parentPalaceNotCompleted:true,windowArchSegmentsPerSide:[1,1,4,6][lod]});
+function cap(o, k, r, y, up) {
+  const t = new MeshBufferBuilder();
+  if (
+    !t.addCap(
+      k,
+      'palette:#ffffff',
+      r,
+      [],
+      () => y,
+      [0, up, 0],
+      (p) => p,
+      colors[k],
+    )
+  )
+    throw Error('Invalid six-corner cap');
+  const m = t.finalize();
+  for (let i = 0; i < m.indices.length; i += 3)
+    face(
+      o,
+      k,
+      Array.from(m.indices.slice(i, i + 3)).map((j) =>
+        Array.from(m.positions.slice(j * 3, j * 3 + 3)),
+      ),
+      [0, up, 0],
+    );
 }
-export const houseSkyline=(o,f)=>buildHouse(o,f,0),houseDistrict=(o,f)=>buildHouse(o,f,1),houseStreet=(o,f)=>buildHouse(o,f,2),houseCloseup=(o,f)=>buildHouse(o,f,3);
-const root='content/worldgen/source/places/tt/ttv/mubarak_mandi_northwestern_courtyard_hall',camera=[67,34,57],look=[0,4.3,0];
-export const houseModel={id:P.model,key:P.model,cell:P.cell,title:P.title,recipe:'house-model.mjs',surfaces,build:buildHouse,category:'landmark',quality:'medium-fi-exterior',reviewStatus:'review-in-qa.json',geographicStatus:'historical-proposal',orientationPolicy:'approximate-visualization',progressLedger:'qualla-002.PROGRESS.md',brief:P.limitations.join(' '),appearance:{kind:'historical',representedDate:P.representedDate,validFrom:P.validFrom,validUntil:P.validUntil,currentWorldEligible:false},camera,lookAt:look,portableGroundY:0,mediumFiContext:{scale:1,groundY:0,terrain:{descriptor:'terrain-review.terrain.json',heightmap:'terrain-review.height.png'}},embeddedCanonicalGraphs:['plaster_lime','stone_limestone_raw','concrete_plain','wood_plain','metal_painted'],qaCameras:[{name:'whole-six-corner-hall-pointed-windows-balcony',position:camera,lookAt:look},{name:'whole-rear-step-and-closed-roof',position:[-65,38,-55],lookAt:look}],qaLodCameras:['skyline','district','street','closeup'].map(reviewLod=>({name:'whole-northwestern-hall-'+reviewLod,position:camera,lookAt:look,reviewLod})),runtimeLodOverlay:{module:root+'/models/house-model.mjs',level:'skyline',export:'houseSkyline',errorMeters:.35,surfaces,authoredLevels:{district:{export:'houseDistrict',errorMeters:.2,surfaces},street:{export:'houseStreet',errorMeters:.08,surfaces},closeup:{export:'houseCloseup',errorMeters:.04,surfaces}}},limitations:P.limitations,sourceLicense:'Original deterministic geometry under repository license. Original numerical building © OpenStreetMap contributors ODbL-1.0. Primary author written architectural family and explicit original estimates only; every appearance image/figure/plan unused. Exact named court identity and damage profile unverified; whole palace unfinished.'};
+function solid(o, k, r, lo, hi) {
+  const area = r.reduce((s, a, i) => {
+      const b = r[(i + 1) % r.length];
+      return s + a[0] * b[1] - b[0] * a[1];
+    }, 0),
+    sg = area < 0 ? 1 : -1;
+  for (let i = 0; i < r.length; i++) {
+    const a = r[i],
+      b = r[(i + 1) % r.length];
+    face(
+      o,
+      k,
+      [
+        [a[0], lo, a[1]],
+        [b[0], lo, b[1]],
+        [b[0], hi, b[1]],
+        [a[0], hi, a[1]],
+      ],
+      [-sg * (b[1] - a[1]), 0, sg * (b[0] - a[0])],
+    );
+  }
+  cap(o, k, r, lo, -1);
+  cap(o, k, r, hi, 1);
+}
+export function edgeFrame(i) {
+  const a = P.nativeRing[i],
+    b = P.nativeRing[(i + 1) % 6],
+    L = Math.hypot(b[0] - a[0], b[1] - a[1]),
+    e = [(b[0] - a[0]) / L, (b[1] - a[1]) / L],
+    n = [-e[1], e[0]];
+  return {
+    a,
+    b,
+    L,
+    e,
+    n,
+    point: (t, y, d = 0) => [a[0] + e[0] * t + n[0] * d, y, a[1] + e[1] * t + n[1] * d],
+  };
+}
+export function balconyPlan() {
+  const f = edgeFrame(0),
+    a = f.point(0.6, 0, 0),
+    b = f.point(f.L - 0.6, 0, 0),
+    c = f.point(f.L - 0.6, 0, P.balconyProjection),
+    d = f.point(0.6, 0, P.balconyProjection);
+  return [a, b, c, d].map((p) => [p[0], p[2]]);
+}
+function window(o, f, t, sill, lod) {
+  const w = P.windowWidth,
+    h = P.windowHeight,
+    spring = sill + h - 0.85,
+    segments = [1, 1, 4, 6][lod],
+    p = [
+      [-w / 2, sill],
+      [w / 2, sill],
+      [w / 2, spring],
+    ];
+  for (let j = 1; j <= segments; j++) {
+    const q = j / segments;
+    p.push([
+      (w / 2) * (1 - q),
+      spring + (0.85 * Math.sqrt(1 - (-1 + 0.5 * q) * (-1 + 0.5 * q))) / Math.sqrt(0.75),
+    ]);
+  }
+  for (let j = segments - 1; j >= 0; j--) {
+    const q = j / segments;
+    p.push([
+      (-w / 2) * (1 - q),
+      spring + (0.85 * Math.sqrt(1 - (-1 + 0.5 * q) * (-1 + 0.5 * q))) / Math.sqrt(0.75),
+    ]);
+  }
+  const points = p.map(([x, y]) => f.point(t + x, y, 0.026));
+  face(o, 'wood', points, [f.n[0], 0, f.n[1]]);
+  if (lod > 0)
+    for (let i = 0; i < points.length; i++) {
+      const a = points[i],
+        b = points[(i + 1) % points.length];
+      beam(o, 'stone', a, b, lod > 1 ? 0.13 : 0.09, 0.1, colors.stone);
+    }
+  if (lod > 1) {
+    beam(
+      o,
+      'wood',
+      f.point(t, sill, 0.07),
+      f.point(t, spring + 0.75, 0.07),
+      0.07,
+      0.08,
+      colors.wood,
+    );
+    beam(
+      o,
+      'stone',
+      f.point(t - w / 2 - 0.17, sill - 0.1, 0.09),
+      f.point(t + w / 2 + 0.17, sill - 0.1, 0.09),
+      0.17,
+      0.21,
+      colors.stone,
+    );
+  }
+}
+export function buildHouse(o, _frame, lod = 3) {
+  componentEvidence.length = 0;
+  const r = P.nativeRing;
+  solid(o, 'stone', r, P.foundationBottom, P.floor);
+  solid(o, 'wall', r, P.floor, P.roof - 0.2);
+  solid(o, 'roof', r, P.roof - 0.2, P.roof);
+  let windows = 0;
+  for (let i = 0; i < 6; i++) {
+    const f = edgeFrame(i),
+      inner = [
+        f.a,
+        [f.a[0] - f.n[0] * 0.28, f.a[1] - f.n[1] * 0.28],
+        [f.b[0] - f.n[0] * 0.28, f.b[1] - f.n[1] * 0.28],
+        f.b,
+      ];
+    solid(o, 'wall', inner, P.roof, P.parapetTop);
+    const bays = i === 0 ? P.frontBays : f.L > 8 ? Math.max(1, Math.floor(f.L / 5.8)) : 0;
+    for (let j = 0; j < bays; j++)
+      for (const sill of [P.floor + 0.85, P.upperFloor + 0.7]) {
+        window(o, f, (f.L * (j + 0.5)) / bays, sill, lod);
+        windows++;
+      }
+    if (lod > 1)
+      beam(
+        o,
+        'stone',
+        f.point(0, P.upperFloor - 0.28, 0.025),
+        f.point(f.L, P.upperFloor - 0.28, 0.025),
+        0.15,
+        0.12,
+        colors.stone,
+      );
+  }
+  solid(o, 'roof', balconyPlan(), P.upperFloor - P.balconyThickness, P.upperFloor);
+  const f = edgeFrame(0);
+  for (let i = 0; i <= P.frontBays; i++) {
+    const t = 0.7 + ((f.L - 1.4) * i) / P.frontBays;
+    beam(
+      o,
+      'steel',
+      f.point(t, P.upperFloor - 0.38, -0.14),
+      f.point(t, P.upperFloor - 0.38, P.balconyProjection - 0.08),
+      0.12,
+      0.24,
+      colors.steel,
+    );
+    if (lod > 1) {
+      beam(
+        o,
+        'steel',
+        f.point(t, P.upperFloor - 0.49, -0.14),
+        f.point(t, P.upperFloor - 0.49, P.balconyProjection - 0.08),
+        0.22,
+        0.05,
+        colors.steel,
+      );
+    }
+  }
+  for (const h of [P.upperFloor + 0.12, P.upperFloor + 1.02])
+    beam(
+      o,
+      'steel',
+      f.point(0.65, h, P.balconyProjection - 0.05),
+      f.point(f.L - 0.65, h, P.balconyProjection - 0.05),
+      0.055,
+      0.055,
+      colors.steel,
+    );
+  const rails = lod > 1 ? P.frontBays * 3 : P.frontBays;
+  for (let i = 0; i <= rails; i++) {
+    const t = 0.65 + ((f.L - 1.3) * i) / rails;
+    beam(
+      o,
+      'steel',
+      f.point(t, P.upperFloor + 0.12, P.balconyProjection - 0.05),
+      f.point(t, P.upperFloor + 1.02, P.balconyProjection - 0.05),
+      0.04,
+      0.04,
+      colors.steel,
+    );
+  }
+  const t = f.L / 2;
+  face(
+    o,
+    'wood',
+    [
+      f.point(t - 0.8, P.floor, 0.04),
+      f.point(t + 0.8, P.floor, 0.04),
+      f.point(t + 0.8, P.floor + 2.6, 0.04),
+      f.point(t - 0.8, P.floor + 2.6, 0.04),
+    ],
+    [f.n[0], 0, f.n[1]],
+  );
+  componentEvidence.push({
+    lod,
+    wholeNativeSixCornerHall: true,
+    originalNativeCorners: 6,
+    rearStepNotchRetained: true,
+    nativeFeatureId: P.nativeFeatureId,
+    closedWholeRoof: true,
+    closedRearAndEnds: true,
+    storeys: 2,
+    estimatedFrontWindowBaysPerStorey: P.frontBays,
+    totalEstimatedPointedWindows: windows,
+    wholeConcreteBalcony: true,
+    estimatedCantileverGirders: P.frontBays + 1,
+    allAppearanceImagesUnused: true,
+    allSectionsEstimated: true,
+    exactHistoricBlockNameVerified: false,
+    reportedDamageLocationVerified: false,
+    parentPalaceNotCompleted: true,
+    windowArchSegmentsPerSide: [1, 1, 4, 6][lod],
+  });
+}
+export const houseSkyline = (o, f) => buildHouse(o, f, 0),
+  houseDistrict = (o, f) => buildHouse(o, f, 1),
+  houseStreet = (o, f) => buildHouse(o, f, 2),
+  houseCloseup = (o, f) => buildHouse(o, f, 3);
+const root = 'content/worldgen/source/places/tt/ttv/mubarak_mandi_northwestern_courtyard_hall',
+  camera = [67, 34, 57],
+  look = [0, 4.3, 0];
+export const houseModel = {
+  id: P.model,
+  key: P.model,
+  cell: P.cell,
+  title: P.title,
+  recipe: 'house-model.mjs',
+  surfaces,
+  build: buildHouse,
+  category: 'landmark',
+  quality: 'medium-fi-exterior',
+  reviewStatus: 'review-in-qa.json',
+  geographicStatus: 'historical-proposal',
+  orientationPolicy: 'approximate-visualization',
+  progressLedger: 'qualla-002.PROGRESS.md',
+  brief: P.limitations.join(' '),
+  appearance: {
+    kind: 'historical',
+    representedDate: P.representedDate,
+    validFrom: P.validFrom,
+    validUntil: P.validUntil,
+    currentWorldEligible: false,
+  },
+  camera,
+  lookAt: look,
+  portableGroundY: 0,
+  mediumFiContext: {
+    scale: 1,
+    groundY: 0,
+    terrain: { descriptor: 'terrain-review.terrain.json', heightmap: 'terrain-review.height.png' },
+  },
+  embeddedCanonicalGraphs: [
+    'plaster_lime',
+    'stone_limestone_raw',
+    'concrete_plain',
+    'wood_plain',
+    'metal_painted',
+  ],
+  qaCameras: [
+    { name: 'whole-six-corner-hall-pointed-windows-balcony', position: camera, lookAt: look },
+    { name: 'whole-rear-step-and-closed-roof', position: [-65, 38, -55], lookAt: look },
+  ],
+  qaLodCameras: ['skyline', 'district', 'street', 'closeup'].map((reviewLod) => ({
+    name: 'whole-northwestern-hall-' + reviewLod,
+    position: camera,
+    lookAt: look,
+    reviewLod,
+  })),
+  runtimeLodOverlay: {
+    module: root + '/models/house-model.mjs',
+    level: 'skyline',
+    export: 'houseSkyline',
+    errorMeters: 0.35,
+    surfaces,
+    authoredLevels: {
+      district: { export: 'houseDistrict', errorMeters: 0.2, surfaces },
+      street: { export: 'houseStreet', errorMeters: 0.08, surfaces },
+      closeup: { export: 'houseCloseup', errorMeters: 0.04, surfaces },
+    },
+  },
+  limitations: P.limitations,
+  sourceLicense:
+    'Original deterministic geometry under repository license. Original numerical building © OpenStreetMap contributors ODbL-1.0. Primary author written architectural family and explicit original estimates only; every appearance image/figure/plan unused. Exact named court identity and damage profile unverified; whole palace unfinished.',
+};

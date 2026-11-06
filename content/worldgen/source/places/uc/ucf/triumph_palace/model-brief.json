@@ -1,0 +1,487 @@
+{
+  "id": "triumph_palace",
+  "title": "Triumph Palace",
+  "wikidataId": "Q80367",
+  "referenceCoordinate": {
+    "longitude": 37.520833333,
+    "latitude": 55.798333333
+  },
+  "module": "content/worldgen/source/places/uc/ucf/triumph_palace/models/triumph-model.mjs",
+  "builder": "buildTriumphLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "clad": {
+      "slot": "wall",
+      "graph": "stone_travertine",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "infill": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.23,
+      "metallic": 0.16
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.16
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "land": {
+      "slot": "door",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    }
+  },
+  "exportLabel": "Molen Triumph Palace detailed source",
+  "expectedDraftMasterHash": "sha256:95b84ed0f425afed8474679bd1157010fbee21f2cbe385a72de23271510aadb4",
+  "visualBrief": "Complete stepped Moscow residential complex:264m central spire and crown,paired tall shoulders,connected lower towers and wings,cream pilasters over warm infill,dark window grids,large roof court,open end court and colonnaded podium with paired porticoes.",
+  "nativeAxes": "+X north-northeast; -X south-southwest. +Z east-southeast, -Z west-northwest; +Y up. Spire center is X31.75m,Z−0.25m;the broad low roof court lies toward −X and the open end court toward +X.",
+  "sourceFacts": {
+    "retainedHeightMeters": 264,
+    "mappedLengthMeters": 262.268,
+    "mappedWidthMeters": 106.533,
+    "mappedHeightParts": 32,
+    "spireCenter": [
+      31.75,
+      -0.25
+    ],
+    "modelDatumMeters": 160,
+    "terrainTiles": 1
+  },
+  "limitations": [
+    "Original complete exterior reconstruction using two independent inspected ordinary oblique pictures,one wider crop of the first image,and standard viewer PMTiles/global terrain. No downloaded mesh,private photo texture,bespoke cadastral/architectural/terrain survey or archive research. Interiors,exact apartment/window inventories,signs,individual ornaments,city buildings,vehicles and the full surrounding park are outside scope.",
+    "Exact retained OSM/Q80367 plan is262.268m by106.533m. Thirty-two selected PMTiles height parts establish the complete podium,connected lower wings,160m shoulders,185m main shaft and200/220m crown stages. Map coordinates are snapped to0.25m to remove projection/MVT noise;these generalized heights are not an engineering schedule. The retained264m total adds a picture-reconstructed spire centeredX31.75,Z−0.25. The long frame is signed NNE/SSW;the broad low roof court is−X and the open end court+X.",
+    "The lower podium is reconstructed with setback infill/glazing and188 pale columns,two projecting porticoes and approximate entry stairs. The broad10m roof court stays open above its floor;the end court remains outside the building. Near tiers preserve physical lower arcades. Far tiers aggregate that lower storey and rooftop volumes,omitting narrow openings and furniture. The source master has dense pilasters,individual window panes/sills,layered cornices and original schematic roof-garden beds. Exact column,window and stonework counts/sections are not claimed.",
+    "Five existing shared256px graphs provide travertine-like pale cladding,lime-plaster approximation of warm ceramic/terracotta infill,window grid,painted metal roofs and granite paving. Palette beds add no images. Individual windows use opaque shared patterned surfaces,not true interiors or optical glazing. Far tiers aggregate façade bays;street uses window ribbons/flat pilaster relief;close-up restores individual panes,columns/capitals and simpler cornices;master preserves denser sills/bands/profiles. No private or embedded textures.",
+    "The unmodified129x129/3m grid comes from one ordinary global viewer DEM tile. Base reference160m is approximate;foundation skirts embed into the coarse field and both stair ends sample that field. Local slope,curbs,original foundations and accessible/as-built entry gradients remain unsurveyed. Sampling oversamples the underlying DEM;the model does not flatten native ground or claim surveyed absolute elevations. Estimated tier errors6/3/1.5/.8m are not certified mesh distances. Physical laptop/phone timings and dense-city performance remain unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://zhiloy-kompleks-triumf-palas.ru/",
+      "observed": "Actually inspected main full oblique:stepped central shaft/spire,tall shoulders,connected lower side towers,continuous pale colonnaded podium,projecting columned entry canopy,warm infill,cream vertical pilasters,dark glazing and broad layered roof cornices."
+    },
+    {
+      "url": "https://nikoliersdom.ru/blog/samye-vysokie-doma-v-moskve",
+      "observed": "Actually inspected wider crop of the same main photograph,used only as context rather than counted as an independent view."
+    },
+    {
+      "url": "https://kudago.com/msk/place/triumf2-palas/",
+      "observed": "Actually inspected independent opposite oblique:complete connected wings and lower towers,low roof-court/landscape openings,base colonnades,green-grey roof equipment and layered cornices."
+    },
+    {
+      "url": "https://www.openstreetmap.org/relation/2138132",
+      "observed": "Exact retained Q80367 plan and current standard viewer PMTiles individual height parts establish the asymmetric complete complex and both open court relationships."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-stepped-main-face",
+      "position": [
+        -205,
+        152,
+        -335
+      ],
+      "lookAt": [
+        0,
+        105,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "opposite-connected-wings",
+      "position": [
+        -245,
+        165,
+        320
+      ],
+      "lookAt": [
+        0,
+        100,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "roof-court-and-open-end",
+      "position": [
+        215,
+        330,
+        -265
+      ],
+      "lookAt": [
+        0,
+        70,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "lower-open-colonnade",
+      "position": [
+        -83,
+        4.3,
+        -58
+      ],
+      "lookAt": [
+        -68,
+        4.3,
+        -51.8
+      ],
+      "fov": 52
+    },
+    {
+      "name": "projecting-entry-portico",
+      "position": [
+        32,
+        6.8,
+        -54
+      ],
+      "lookAt": [
+        32,
+        5,
+        -18
+      ],
+      "fov": 53
+    },
+    {
+      "name": "stepped-crown-and-spire",
+      "position": [
+        90,
+        236,
+        -105
+      ],
+      "lookAt": [
+        31.75,
+        218,
+        -0.25
+      ],
+      "fov": 46
+    },
+    {
+      "name": "cream-pilasters-and-infill",
+      "position": [
+        8,
+        68,
+        -36
+      ],
+      "lookAt": [
+        8,
+        67,
+        -14.25
+      ],
+      "fov": 48
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucf/triumph_palace/models/triumph-model.mjs",
+    "export": "buildTriumphSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "clad": {
+        "slot": "wall",
+        "graph": "stone_travertine",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "infill": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.23,
+        "metallic": 0.16
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.16
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "land": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTriumphDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "clad": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "infill": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.23,
+            "metallic": 0.16
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.16
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "land": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 3
+      },
+      "street": {
+        "export": "buildTriumphStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "clad": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "infill": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.23,
+            "metallic": 0.16
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.16
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "land": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "closeup": {
+        "export": "buildTriumphCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "clad": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "infill": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.23,
+            "metallic": 0.16
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.16
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "land": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.8
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-complex-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -205,
+        152,
+        -335
+      ],
+      "lookAt": [
+        0,
+        105,
+        0
+      ]
+    },
+    {
+      "name": "whole-complex-district",
+      "reviewLod": "district",
+      "position": [
+        -205,
+        152,
+        -335
+      ],
+      "lookAt": [
+        0,
+        105,
+        0
+      ]
+    },
+    {
+      "name": "whole-complex-street",
+      "reviewLod": "street",
+      "position": [
+        -205,
+        152,
+        -335
+      ],
+      "lookAt": [
+        0,
+        105,
+        0
+      ]
+    },
+    {
+      "name": "whole-complex-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -205,
+        152,
+        -335
+      ],
+      "lookAt": [
+        0,
+        105,
+        0
+      ]
+    },
+    {
+      "name": "street-open-colonnade",
+      "reviewLod": "street",
+      "position": [
+        -83,
+        4.3,
+        -58
+      ],
+      "lookAt": [
+        -68,
+        4.3,
+        -51.8
+      ]
+    },
+    {
+      "name": "closeup-stepped-crown",
+      "reviewLod": "closeup",
+      "position": [
+        90,
+        236,
+        -105
+      ],
+      "lookAt": [
+        31.75,
+        218,
+        -0.25
+      ]
+    }
+  ]
+}

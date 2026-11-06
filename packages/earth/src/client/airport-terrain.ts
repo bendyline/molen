@@ -2,9 +2,7 @@
 import type { TerrainPyramidStreamOptions } from '@bendyline/molen-terrain/client';
 import {
   Heightfield,
-  pointInPolygon,
   type TerrainSemanticPoint,
-  type TerrainSemanticPolygon,
   terrainPyramidAddressAt,
   terrainPyramidTileKey,
   webMercatorToWgs84,
@@ -16,7 +14,12 @@ type Grading = NonNullable<TerrainPyramidStreamOptions['transformHeightfield']>;
 type Point = TerrainSemanticPoint;
 interface AirportGround {
   strips: { a: Point; b: Point; radius: number }[];
-  polygons: TerrainSemanticPolygon[];
+  /** Every ground ring's edges, polygon by polygon and outer ring first: ax, az, bx, bz each. */
+  edges: Float64Array;
+  /** Each edge's ring, numbered in the same order. */
+  edgeRings: Uint32Array;
+  /** How many rings (the outer one, then its holes) each ground polygon has. */
+  polygonRings: number[];
   bounds: [number, number, number, number];
   height?: number;
 }
@@ -27,29 +30,79 @@ const SHOULDER = 80;
 const BLEND = 120;
 const MAX_TILE_SIZE = 100_000;
 
-function segmentDistance(x: number, z: number, a: Point, b: Point): number {
-  const dx = b[0] - a[0],
-    dz = b[1] - a[1];
+function segmentDistance(
+  x: number,
+  z: number,
+  ax: number,
+  az: number,
+  bx: number,
+  bz: number,
+): number {
+  const dx = bx - ax,
+    dz = bz - az;
   const length2 = dx * dx + dz * dz;
-  const t = length2 ? Math.max(0, Math.min(1, ((x - a[0]) * dx + (z - a[1]) * dz) / length2)) : 0;
-  return Math.hypot(x - a[0] - t * dx, z - a[1] - t * dz);
+  const t = length2 ? Math.max(0, Math.min(1, ((x - ax) * dx + (z - az) * dz) / length2)) : 0;
+  return Math.hypot(x - ax - t * dx, z - az - t * dz);
 }
 
-function distance(ground: AirportGround, x: number, z: number): number {
-  let nearest = Infinity;
-  for (const strip of ground.strips)
-    nearest = Math.min(nearest, segmentDistance(x, z, strip.a, strip.b) - strip.radius);
-  if (nearest <= 0) return 0;
-  for (const polygon of ground.polygons) {
-    if (pointInPolygon([x, z], polygon)) return 0;
-    for (const ring of [polygon.outer, ...(polygon.holes ?? [])])
-      for (let i = 0; i < ring.length; i++)
-        nearest = Math.min(
-          nearest,
-          segmentDistance(x, z, ring[i] as Point, ring[(i + 1) % ring.length] as Point),
-        );
+/**
+ * Distance from each sample of the row at `z`, visited west to east, to an airport's runway
+ * strips and mapped grounds: zero inside them, and exact up to BLEND, beyond which a sample keeps
+ * its height whatever the distance. A ground edge farther than that across the row or along it
+ * cannot be the nearest one that matters, and containment is the even-odd test of
+ * `pointInPolygon` with each ring's crossings found once per row. Testing every edge of Boeing
+ * Field's grounds for every sample took a tenth of a second for each tile meshed near it, on the
+ * main thread.
+ */
+function rowDistance(ground: AirportGround, z: number): (x: number) => number {
+  const { strips, edges, edgeRings, polygonRings } = ground;
+  const rings = polygonRings.reduce((sum, count) => sum + count, 0);
+  const crossings: number[][] = Array.from({ length: rings }, () => []);
+  const near: number[] = [];
+  for (let e = 0, k = 0; k < edges.length; e++, k += 4) {
+    const ax = edges[k] as number,
+      az = edges[k + 1] as number,
+      bx = edges[k + 2] as number,
+      bz = edges[k + 3] as number;
+    if (Math.min(az, bz) - BLEND <= z && z <= Math.max(az, bz) + BLEND) near.push(k);
+    // pointInRing's crossing, the edge's far end as its current point and its near end as the
+    // previous one, so every sample's test agrees with it to the bit.
+    if (bz > z !== az > z)
+      (crossings[edgeRings[e] as number] as number[]).push(((ax - bx) * (z - bz)) / (az - bz) + bx);
   }
-  return Math.max(0, nearest);
+  for (const list of crossings) list.sort((a, b) => a - b);
+  // Crossings at or west of the current sample, per ring; samples only move east.
+  const passed = new Uint32Array(rings);
+  const inRing = (ring: number, x: number): boolean => {
+    const list = crossings[ring] as number[];
+    let count = passed[ring] as number;
+    while (count < list.length && (list[count] as number) <= x) count++;
+    passed[ring] = count;
+    return (list.length - count) % 2 === 1;
+  };
+  return (x) => {
+    let nearest = Infinity;
+    for (const { a, b, radius } of strips)
+      nearest = Math.min(nearest, segmentDistance(x, z, a[0], a[1], b[0], b[1]) - radius);
+    if (nearest <= 0) return 0;
+    for (let polygon = 0, ring = 0; polygon < polygonRings.length; polygon++) {
+      const end = ring + (polygonRings[polygon] as number);
+      let inside = inRing(ring, x);
+      for (let hole = ring + 1; inside && hole < end; hole++) if (inRing(hole, x)) inside = false;
+      if (inside) return 0;
+      ring = end;
+    }
+    for (const k of near) {
+      const ax = edges[k] as number,
+        bx = edges[k + 2] as number;
+      if (x < Math.min(ax, bx) - BLEND || x > Math.max(ax, bx) + BLEND) continue;
+      nearest = Math.min(
+        nearest,
+        segmentDistance(x, z, ax, edges[k + 1] as number, bx, edges[k + 3] as number),
+      );
+    }
+    return Math.max(0, nearest);
+  };
 }
 
 /**
@@ -106,14 +159,25 @@ export function createAirportTerrainGrading(airports: EarthAirports): Grading {
         .filter((l) => l.id === airport.id)
         .flatMap((l) => l.tile.landcover.filter((f) => f.class === 'aerodrome'))
         .flatMap((f) => f.polygons)
-        .map((p) => ({
-          outer: p.outer.map(project),
-          ...(p.holes ? { holes: p.holes.map((h) => h.map(project)) } : {}),
-        }));
-      const points = [...strips.flatMap((s) => [s.a, s.b]), ...polygons.flatMap((p) => p.outer)];
+        .map((p) => [p.outer, ...(p.holes ?? [])].map((ring) => ring.map(project)));
+      const rings = polygons.flat();
+      const edges = new Float64Array(rings.reduce((sum, ring) => sum + ring.length, 0) * 4);
+      const edgeRings = new Uint32Array(edges.length / 4);
+      for (let r = 0, e = 0; r < rings.length; r++) {
+        const ring = rings[r] as Point[];
+        for (let i = 0; i < ring.length; i++, e++) {
+          const a = ring[i] as Point,
+            b = ring[(i + 1) % ring.length] as Point;
+          edges.set([a[0], a[1], b[0], b[1]], e * 4);
+          edgeRings[e] = r;
+        }
+      }
+      const points = [...strips.flatMap((s) => [s.a, s.b]), ...polygons.flatMap((p) => p[0] ?? [])];
       const ground: AirportGround = {
         strips,
-        polygons,
+        edges,
+        edgeRings,
+        polygonRings: polygons.map((p) => p.length),
         bounds: [
           Math.min(...points.map((p) => p[0])) - margin,
           Math.min(...points.map((p) => p[1])) - margin,
@@ -171,18 +235,25 @@ export function createAirportTerrainGrading(airports: EarthAirports): Grading {
     const { min, max } = heightfield.heightRange;
     for (let row = 0; row < heightfield.rows; row++) {
       const z = origin[1] + row * heightfield.cellSize[1];
+      const distances = grounds.map((ground) =>
+        ground.height === undefined || z < ground.bounds[1] || z > ground.bounds[3]
+          ? undefined
+          : rowDistance(ground, z),
+      );
+      if (distances.every((distance) => distance === undefined)) continue;
       for (let col = 0; col < heightfield.cols; col++) {
         const x = origin[0] + col * heightfield.cellSize[0];
         let weight = 0,
           target = 0;
-        for (const ground of grounds) {
-          const b = ground.bounds;
-          if (ground.height === undefined || x < b[0] || x > b[2] || z < b[1] || z > b[3]) continue;
-          const t = Math.min(1, distance(ground, x, z) / BLEND);
+        for (let g = 0; g < grounds.length; g++) {
+          const ground = grounds[g] as AirportGround,
+            distance = distances[g];
+          if (distance === undefined || x < ground.bounds[0] || x > ground.bounds[2]) continue;
+          const t = Math.min(1, distance(x) / BLEND);
           const influence = 1 - t * t * (3 - 2 * t);
           if (influence > weight) {
             weight = influence;
-            target = ground.height;
+            target = ground.height as number;
           }
         }
         if (weight === 0) continue;

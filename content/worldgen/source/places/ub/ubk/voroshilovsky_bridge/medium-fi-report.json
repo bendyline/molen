@@ -1,0 +1,1392 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+    "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49"
+  },
+  "sourceHash": "sha256:4d436e378e367f822088885083b45eec593988b283e454dbeb7107cdbbe04ab3",
+  "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
+    },
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:7f2996461a3c09a2022808450d7d50e56cbb63684180943b6c57f6e8c619f065",
+      "bytes": 44244,
+      "gzipBytes": 8171,
+      "triangles": 560,
+      "cpuBytes": 42816,
+      "gpuBytes": 42816,
+      "errorMeters": 3,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:3916283be5eb45367b38ec4150bc42043f643138d72a7140485f07eb6208f2f1",
+      "bytes": 219084,
+      "gzipBytes": 37581,
+      "triangles": 2888,
+      "cpuBytes": 215184,
+      "gpuBytes": 215184,
+      "errorMeters": 1.5,
+      "drawCalls": 3
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:e4a6172bd5e0047c2bef2a4c8251d389f7c137b51a8894f739a61cd22a5e0c24",
+      "bytes": 1074468,
+      "gzipBytes": 183702,
+      "triangles": 14544,
+      "cpuBytes": 1068300,
+      "gpuBytes": 1068300,
+      "errorMeters": 0.75,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:468c3964b465752828196c84c22898abaa5ffeac9baa1c3949bbfc509c9dc61f",
+      "bytes": 3280128,
+      "gzipBytes": 569602,
+      "triangles": 44288,
+      "cpuBytes": 3273924,
+      "gpuBytes": 3273924,
+      "errorMeters": 0.35,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:8a23a82f2e1c352a783c21124725caa8bc26b39fa2e462d551707b8693aa39a7"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:0763f031f5ec226bd718f549571a6b4deb7362ba32dd63b1b8eb67a2ac216b6b"
+    }
+  },
+  "fixtureEntities": [
+    {
+      "id": "review-water",
+      "components": {
+        "transform": {
+          "pos": [
+            25,
+            2.4,
+            0
+          ],
+          "scale": [
+            249,
+            0.14,
+            768
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#25505a",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:633007b52757fe5af3e9f6be08968cadbba631b5ebf720b97a67133817e75c42",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:468c3964b465752828196c84c22898abaa5ffeac9baa1c3949bbfc509c9dc61f",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 82798,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          67.19989999999999,
+          62.1562,
+          116.3299
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:fab7c5684bfb9a31c6aefde43ea066c96eb17e5296a3a216737b69967b5f15fa",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:468c3964b465752828196c84c22898abaa5ffeac9baa1c3949bbfc509c9dc61f",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 82798,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          67.19989999999999,
+          62.1562,
+          116.3299
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:8901427c54a1a028eaa56c43d858a301ba747b39c8445100821439a0657d1f56",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:468c3964b465752828196c84c22898abaa5ffeac9baa1c3949bbfc509c9dc61f",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 82798,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          67.19989999999999,
+          62.1562,
+          116.3299
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:39a43e8e20c412e64fcf19aebbfa1f31d4a2a93a9d90496d0dd607afd0c296d8",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:468c3964b465752828196c84c22898abaa5ffeac9baa1c3949bbfc509c9dc61f",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 82798,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          67.19989999999999,
+          62.1562,
+          116.3299
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:345a26ba8b9a2dd7dd48b400318b1ff1a6511cfe4effe05d64453595c153eed7",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:3916283be5eb45367b38ec4150bc42043f643138d72a7140485f07eb6208f2f1",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 41366,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          135.79989999999998,
+          112.55619999999999,
+          235.32989999999998
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:387d1871e83b3b741c8fcd4b0d28336eceea4659a4fda1a73341b8d41649d01b",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:3916283be5eb45367b38ec4150bc42043f643138d72a7140485f07eb6208f2f1",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 41366,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          135.79989999999998,
+          112.55619999999999,
+          235.32989999999998
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:ac387d76fc0bf48455c7996e869f9fa749f0a49ac0e5799e6ee3740e40949b8f",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:3916283be5eb45367b38ec4150bc42043f643138d72a7140485f07eb6208f2f1",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 41366,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          135.79989999999998,
+          112.55619999999999,
+          235.32989999999998
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:4f225d100b272004944b7c5805b2552571fcc6f4f665dd38c18e4601d5b940dd",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:3916283be5eb45367b38ec4150bc42043f643138d72a7140485f07eb6208f2f1",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 41366,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          135.79989999999998,
+          112.55619999999999,
+          235.32989999999998
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:9dc5653d414b4b5e07f8afb0d7411a41aa2624b64095ecb6e0d9265dd7883b70",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:7f2996461a3c09a2022808450d7d50e56cbb63684180943b6c57f6e8c619f065",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 39038,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          271.5999,
+          165.7562,
+          470.5299
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:3c63dc82f3178b039db7ff7cbfe57ab64611d7719f8570f9abd6c6ef941f287e",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:7f2996461a3c09a2022808450d7d50e56cbb63684180943b6c57f6e8c619f065",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 39038,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          271.5999,
+          165.7562,
+          470.5299
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:92190c8cca9151440ed7cd8896fd6637d805172ccc66c49d453bc6813052ba80",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:7f2996461a3c09a2022808450d7d50e56cbb63684180943b6c57f6e8c619f065",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 39038,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          271.5999,
+          165.7562,
+          470.5299
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:4ae30ca928f49d0dbb7b6e122ffcdf330d99775676ed00e647c692cb1ae24ff1",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:7f2996461a3c09a2022808450d7d50e56cbb63684180943b6c57f6e8c619f065",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 39038,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          271.5999,
+          165.7562,
+          470.5299
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:784f53d29faecf813a3ab57f060a923defa137fe79aa0709efd39acde201518f",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:7f2996461a3c09a2022808450d7d50e56cbb63684180943b6c57f6e8c619f065",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 4,
+        "triangles": 33342,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          271.5999,
+          165.7562,
+          470.5299
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/complete-twin-crossing.png",
+      "hash": "sha256:94de230e36c8254a8e021502324bae209c27d6c846ad80873f6f3950d7225608",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:468c3964b465752828196c84c22898abaa5ffeac9baa1c3949bbfc509c9dc61f",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 82798,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -445,
+          265,
+          475
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/two-carriageways.png",
+      "hash": "sha256:8b6e42cfcc65d7d134c7252d08e26c51ce640cb40f04db1ddd9d1e765a64d424",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:468c3964b465752828196c84c22898abaa5ffeac9baa1c3949bbfc509c9dc61f",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 82798,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -300,
+          130,
+          75
+        ],
+        "lookAt": [
+          100,
+          33,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-river-piers.png",
+      "hash": "sha256:352c116857a1aac025f8056411d84b76437ba418646a5ce0056a9bc6d0636812",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:468c3964b465752828196c84c22898abaa5ffeac9baa1c3949bbfc509c9dc61f",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 82798,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -30,
+          5,
+          72
+        ],
+        "lookAt": [
+          67,
+          19,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/low-bank-triangular-lift.png",
+      "hash": "sha256:2ab2bf8e0ac703985fd65d4c8a53813aeea03ca8cd092d1b646c1350b35debc8",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:468c3964b465752828196c84c22898abaa5ffeac9baa1c3949bbfc509c9dc61f",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 82798,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -280,
+          23,
+          46
+        ],
+        "lookAt": [
+          -249,
+          18,
+          21
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/city-bank-lift-and-girders.png",
+      "hash": "sha256:170099683efde7ea8194961c5bf0901d9f488f8d2481ee9c6cbc8a1befd9486a",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:468c3964b465752828196c84c22898abaa5ffeac9baa1c3949bbfc509c9dc61f",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 82798,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          125,
+          27,
+          -49
+        ],
+        "lookAt": [
+          153,
+          25,
+          -20
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-deck-and-rails.png",
+      "hash": "sha256:c4b770c8547f9ff59f38fcb3288d7b000717eb74820681729a33077dd0574f6a",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:468c3964b465752828196c84c22898abaa5ffeac9baa1c3949bbfc509c9dc61f",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 82798,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -18,
+          34.1,
+          9
+        ],
+        "lookAt": [
+          95,
+          38,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/underside-cross-girders.png",
+      "hash": "sha256:1d76c221ca0987ff586e05c3dda5c9123bd0984d268c2c33cde1c031968e1643",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:468c3964b465752828196c84c22898abaa5ffeac9baa1c3949bbfc509c9dc61f",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 82798,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          15,
+          21,
+          20
+        ],
+        "lookAt": [
+          35,
+          30,
+          5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bridge-skyline.png",
+      "hash": "sha256:16af200988274d7e317175211db6acde0390ef2d7d9795d45c1ae86c35778f95",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:7f2996461a3c09a2022808450d7d50e56cbb63684180943b6c57f6e8c619f065",
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 39038,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -445,
+          265,
+          475
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bridge-district.png",
+      "hash": "sha256:9f82137bc13ef645504bb48f88c9ff2438b706ebaaedaf65097059340d6e5a24",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:3916283be5eb45367b38ec4150bc42043f643138d72a7140485f07eb6208f2f1",
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 41366,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -445,
+          265,
+          475
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bridge-street.png",
+      "hash": "sha256:1e779623fa5246901508216ff59c1eb6d8f008231522d4c88f10e91cbdf5c6ac",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:e4a6172bd5e0047c2bef2a4c8251d389f7c137b51a8894f739a61cd22a5e0c24",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 53054,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -445,
+          265,
+          475
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bridge-closeup.png",
+      "hash": "sha256:94de230e36c8254a8e021502324bae209c27d6c846ad80873f6f3950d7225608",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:468c3964b465752828196c84c22898abaa5ffeac9baa1c3949bbfc509c9dc61f",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 82798,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -445,
+          265,
+          475
+        ],
+        "lookAt": [
+          0,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-open-piers.png",
+      "hash": "sha256:ab144b9430983f501b38cbf65e8337c389e0cf2c387b7e75e067e6585aef2df2",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:e4a6172bd5e0047c2bef2a4c8251d389f7c137b51a8894f739a61cd22a5e0c24",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 53054,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -30,
+          5,
+          72
+        ],
+        "lookAt": [
+          67,
+          19,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/closeup-triangular-lift.png",
+      "hash": "sha256:2ab2bf8e0ac703985fd65d4c8a53813aeea03ca8cd092d1b646c1350b35debc8",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:468c3964b465752828196c84c22898abaa5ffeac9baa1c3949bbfc509c9dc61f",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 82798,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          -280,
+          23,
+          46
+        ],
+        "lookAt": [
+          -249,
+          18,
+          21
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:976301e222ac4e2d2bfa5061c07d9bb997d47572949d5009619b026e35ef60f7",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:7f2996461a3c09a2022808450d7d50e56cbb63684180943b6c57f6e8c619f065",
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 39038,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          135.79989999999998,
+          112.55619999999999,
+          235.32989999999998
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:387d1871e83b3b741c8fcd4b0d28336eceea4659a4fda1a73341b8d41649d01b",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:3916283be5eb45367b38ec4150bc42043f643138d72a7140485f07eb6208f2f1",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 41366,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          135.79989999999998,
+          112.55619999999999,
+          235.32989999999998
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:b68b0d9cc26f48897352d5c12fb9efd380ba55ffa303de5f061c7dbff899c429",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:e4a6172bd5e0047c2bef2a4c8251d389f7c137b51a8894f739a61cd22a5e0c24",
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 53054,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          135.79989999999998,
+          112.55619999999999,
+          235.32989999999998
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:fdb128a559c66f9f7f35a752f1c050f64ac57757f6f0adc2545a125046339430",
+      "state": {
+        "assetId": "molen.worldgen.structure.voroshilovsky_bridge",
+        "runtimeHash": "sha256:60b068af7036e9c5c0897bd81ae4bcfb66570a2324b332d53e0982241cae9d49",
+        "lodHash": "sha256:468c3964b465752828196c84c22898abaa5ffeac9baa1c3949bbfc509c9dc61f",
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 82798,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ub/ubk/voroshilovsky_bridge/terrain-review.height.png"
+        },
+        "position": [
+          135.79989999999998,
+          112.55619999999999,
+          235.32989999999998
+        ],
+        "lookAt": [
+          -0.0001,
+          41.1562,
+          0.1299
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.4,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

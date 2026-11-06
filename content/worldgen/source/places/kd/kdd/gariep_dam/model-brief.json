@@ -1,0 +1,527 @@
+{
+  "id": "gariep_dam",
+  "title": "Gariep Dam",
+  "wikidataId": "Q1494266",
+  "referenceCoordinate": {
+    "longitude": 25.505942247,
+    "latitude": -30.624113651
+  },
+  "module": "content/worldgen/source/places/kd/kdd/gariep_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.93
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_basalt",
+      "roughness": 0.96
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.91
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.91
+    },
+    "gravel": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.85
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.74
+    },
+    "dark": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.8
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.43
+    }
+  },
+  "exportLabel": "Molen original Gariep Dam concrete arch and hydroelectric bank",
+  "expectedDraftMasterHash": "sha256:b178c7feb1828c7b799fd0590f7cf363508285cf59da6698d522468752533068",
+  "visualBrief": "Curved concrete arch, both solid gravity wings, fifteen visually interpreted spillway openings, continuous mapped crest deck, stepped side outlet, paired low round outlets, and the separate hydroelectric bank with two covered runs, raised powerhouse, and lower outlet portals.",
+  "heightPolicy": "The exact-Q dam outline and current crest bridge establish horizontal shape and facing. The named powerhouse location and two ordinary photographs control the approximate extent and features of the industrial bank. The retained 88 m height and 914 m length are distinct from the visible arch profile and sampled crest trace. One standard reservoir reference supplies the datum. Crest, sill, foundation, floor and tailwater levels are approximate.",
+  "nativeAxes": "+X SSE along the retained dam axis, +Z WSW downstream, -Z ENE into the reservoir; +Y up.",
+  "sourceFacts": {
+    "retainedHeight": 88,
+    "retainedLength": 914,
+    "selectedCrestLength": 851.6845801133315,
+    "planLongExtent": 676.267,
+    "planWidth": 237.054,
+    "interpretedSpillwayBays": 15,
+    "coveredRuns": 2,
+    "pairedRoundOutlets": 2,
+    "terrainTiles": 4,
+    "terrainGridStep": 8,
+    "terrainReferenceLocal": [
+      0,
+      -280
+    ],
+    "terrainDatum": 1260.965851,
+    "retainedNativeParts": 29,
+    "ownedNativeParts": 0
+  },
+  "materialMethod": "Four existing shared 256px graphs for concrete, standing-seam metal, painted metal and window grid. One far palette draw and at most five near groups. Metric UVs, linear tint colors, and no embedded images.",
+  "limitations": [
+    "Curved concrete arch, both solid gravity wings, fifteen visually interpreted spillway openings, continuous mapped crest deck, stepped side outlet, paired low round outlets, and the separate hydroelectric bank with two covered runs, raised powerhouse, and lower outlet portals.",
+    "The exact-Q dam outline and current crest bridge establish horizontal shape and facing. The named powerhouse location and two ordinary photographs control the approximate extent and features of the industrial bank. The retained 88 m height and 914 m length are distinct from the visible arch profile and sampled crest trace. One standard reservoir reference supplies the datum. Crest, sill, foundation, floor and tailwater levels are approximate.",
+    "The exact dam plan and signed terrain context are retained. The open bay count, visible powerhouse bank and outlets are photo interpretations. Powerhouse and side outlet floor plans, crest grades, operating reservoir level and concealed machinery remain approximate. The separate downstream bridge and all 29 independent native building components remain. Physical-device and dense-scene timings remain unmeasured.",
+    "Bounded near-dam tailwater correction follows only the retained Orange River polygon from the dam toe to local Z235. Standard terrain rises through this photo-visible water in the first reach. The clipped region leaves all mapped banks, islands, the downstream road bridge and the open river beyond the reviewed pool untouched. Water level is an illustrative estimate."
+  ],
+  "references": [
+    {
+      "url": "https://artefacts.co.za/main/Buildings/bldgframes_mob.php?bldgid=11463",
+      "imageUrl": "https://artefacts.co.za/imgcat/11463_17.jpg",
+      "observed": "Annelise Lange downstream photo: curved concrete arch below a repeating open pier/crest-deck spillway; dark gate or sill structure, thick solid abutments and a pair of low round outlets at right. The river continues past both banks."
+    },
+    {
+      "url": "https://artefacts.co.za/main/Buildings/bldgframes_mob.php?bldgid=11463",
+      "imageUrl": "https://artefacts.co.za/imgcat/11463_02.jpg",
+      "observed": "Annelise Lange oblique photo: preserve the curved wall, elevated crest deck openings and separate solid gravity wings. On the powerhouse bank, two long sloping covered runs descend beside a raised bank platform and planted median; a row of lower outlet portals and large glazed facade are visible. Keep native hills, downstream river, islands and independent access bridge."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Curved concrete arch, both solid gravity wings, fifteen visually interpreted spillway openings, continuous mapped crest deck, stepped side outlet, paired low round outlets, and the separate hydroelectric bank with two covered runs, raised powerhouse, and lower outlet portals. The exact-Q dam outline and current crest bridge establish horizontal shape and facing. The named powerhouse location and two ordinary photographs control the approximate extent and features of the industrial bank. The retained 88 m height and 914 m length are distinct from the visible arch profile and sampled crest trace. One standard reservoir reference supplies the datum. Crest, sill, foundation, floor and tailwater levels are approximate."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-arch-and-powerhouse",
+      "position": [
+        385,
+        325,
+        540
+      ],
+      "lookAt": [
+        0,
+        -17,
+        64
+      ],
+      "fov": 50
+    },
+    {
+      "name": "fifteen-open-spillway-bays",
+      "position": [
+        0,
+        41,
+        240
+      ],
+      "lookAt": [
+        -39,
+        -14,
+        -80
+      ],
+      "fov": 50
+    },
+    {
+      "name": "mapped-crest-deck",
+      "position": [
+        -161,
+        41,
+        11
+      ],
+      "lookAt": [
+        75,
+        5,
+        -78
+      ],
+      "fov": 50
+    },
+    {
+      "name": "powerhouse-and-covered-runs",
+      "position": [
+        -90,
+        24,
+        350
+      ],
+      "lookAt": [
+        128,
+        -35,
+        151
+      ],
+      "fov": 50
+    },
+    {
+      "name": "paired-low-outlets",
+      "position": [
+        70,
+        -24,
+        107
+      ],
+      "lookAt": [
+        98,
+        -49,
+        26
+      ],
+      "fov": 50
+    },
+    {
+      "name": "reservoir-and-solid-wings",
+      "position": [
+        310,
+        142,
+        -384
+      ],
+      "lookAt": [
+        -20,
+        -2,
+        -61
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -78,
+    "scale": 1.35,
+    "focus": {
+      "center": [
+        70,
+        -32,
+        100
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/kd/kdd/gariep_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_basalt",
+        "roughness": 0.96
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.91
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.91
+      },
+      "gravel": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.85
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.74
+      },
+      "dark": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.8
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.43
+      }
+    },
+    "errorMeters": 6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 3
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 1
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 0.35
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-gariep-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        385,
+        325,
+        540
+      ],
+      "lookAt": [
+        0,
+        -17,
+        64
+      ]
+    },
+    {
+      "name": "whole-gariep-district",
+      "reviewLod": "district",
+      "position": [
+        385,
+        325,
+        540
+      ],
+      "lookAt": [
+        0,
+        -17,
+        64
+      ]
+    },
+    {
+      "name": "whole-gariep-street",
+      "reviewLod": "street",
+      "position": [
+        385,
+        325,
+        540
+      ],
+      "lookAt": [
+        0,
+        -17,
+        64
+      ]
+    },
+    {
+      "name": "whole-gariep-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        385,
+        325,
+        540
+      ],
+      "lookAt": [
+        0,
+        -17,
+        64
+      ]
+    }
+  ]
+}

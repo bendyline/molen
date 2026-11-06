@@ -1,0 +1,502 @@
+{
+  "id": "supung_dam",
+  "title": "Supung Dam",
+  "wikidataId": "Q708579",
+  "referenceCoordinate": {
+    "longitude": 124.962054994,
+    "latitude": 40.461438194
+  },
+  "module": "content/worldgen/source/places/wz/wz0/supung_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "pale": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "dark": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "gate": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "frame": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "red": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    }
+  },
+  "exportLabel": "Molen original Supung Dam and Yalu generating works",
+  "expectedDraftMasterHash": "sha256:77ba35a7817afadff5dc891907d44de4c98426c77314a5a55585d57987e021d3",
+  "visualBrief": "Sup’ung Dam’s 899.5 m gravity wall, 26 spillway bays, three crest gantries, five sealed log sluices, the seven-section powerhouse and both concrete abutments.",
+  "heightPolicy": "The documented crest is 126.4 m and operating pool 123.3 m. The standard terrain reference is 81.30 m and the production sampler on the retained windows gives 80.38–88.39 m in the reservoir and 31.16–33.15 m downstream.",
+  "nativeAxes": "+X southeast along the crest toward the Korean bank and +Z southwest along the downstream Yalu.",
+  "sourceFacts": {
+    "mappedIdentity": "way/74727575",
+    "nativeWaterIds": [
+      487003,
+      2370981972
+    ],
+    "mappedExtentMeters": 875.493,
+    "concreteSpanMeters": 899.5,
+    "spillwayBays": 26,
+    "powerhouseSections": 7,
+    "gantryCount": 3,
+    "sealedLogSluices": 5,
+    "crestElevation": 126.4,
+    "operatingPoolElevation": 123.3,
+    "terrainDatum": 81.29844916666666,
+    "terrainGridStep": 12,
+    "terrainTiles": 9,
+    "tailwaterModelY": -50.13844916666666
+  },
+  "materialMethod": "Shared board-formed and plain concrete, gravel, painted metal, standing-seam metal and window graphs with metric UVs and no embedded images.",
+  "limitations": [
+    "The documented crest is 126.4 m and operating pool 123.3 m. The standard terrain reference is 81.30 m and the production sampler on the retained windows gives 80.38–88.39 m in the reservoir and 31.16–33.15 m downstream.",
+    "The model preserves the mapped placement and documented concrete wall height. In the sampled-water fixture the upstream water lies about 35–43 m below the operating pool, exposing much more of the upstream wall.",
+    "The standard Terrarium field contains isolated anomalous elevations at the apron and nearby shore. The raw source terrain is preserved and runtime site acceptance remains pending.",
+    "Gate settings, the closed log sluice panels and the powerhouse facade are exterior reconstructions. The separately mapped service building and the downstream road and rail crossing remain native."
+  ],
+  "references": [
+    {
+      "url": "https://www.hani.co.kr/arti/politics/defense/1110714.html",
+      "imageUrl": "https://flexible.img.hani.co.kr/flexible/normal/800/533/imgdb/original/2023/1003/20231003502493.jpg",
+      "observed": "Dry downstream face shows three elevated crest gantries, a steep broad spillway across the northwest run and the low flat-roofed generating hall at the southeast toe."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:SupongDam2010.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/SupongDam2010.jpg",
+      "observed": "Recessed gates and individual sloped chutes form a continuous gated run. A tall side wall divides the spillway from the generating hall."
+    },
+    {
+      "url": "https://m.fx361.com/news/2012/0313/19885190.html",
+      "imageUrl": "https://m.fx361.com/news/2012/0313/19885190.html",
+      "observed": "Engineering evaluation describes the 899.5 m gravity dam, 126.4 m crest, 123.3 m operating pool, 26 spillway bays, seven generating sections and five sealed log sluices."
+    },
+    {
+      "url": "https://www.neidri.com.cn/projects/electricity/60",
+      "imageUrl": "https://www.neidri.com.cn/projects/electricity/60",
+      "observed": "The engineering firm confirms the 899.5 m dam length and generating station on the international Yalu."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The reservoir is northeast of the mapped dam. The low generating hall adjoins the southeast abutment and faces the downstream Yalu."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "main-overview",
+      "position": [
+        -260,
+        130,
+        510
+      ],
+      "lookAt": [
+        -30,
+        1,
+        -10
+      ],
+      "fov": 50
+    },
+    {
+      "name": "spillway-and-chutes",
+      "position": [
+        -224,
+        42,
+        177
+      ],
+      "lookAt": [
+        -145,
+        17,
+        -38
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-gantries",
+      "position": [
+        -155,
+        70,
+        -148
+      ],
+      "lookAt": [
+        -80,
+        45,
+        -75
+      ],
+      "fov": 50
+    },
+    {
+      "name": "southeast-generating-hall",
+      "position": [
+        154,
+        11,
+        135
+      ],
+      "lookAt": [
+        167,
+        -34,
+        31
+      ],
+      "fov": 50
+    },
+    {
+      "name": "sealed-log-sluices",
+      "position": [
+        -375,
+        60,
+        2
+      ],
+      "lookAt": [
+        -375,
+        38,
+        -65
+      ],
+      "fov": 50
+    },
+    {
+      "name": "southeast-bank-tie",
+      "position": [
+        395,
+        83,
+        97
+      ],
+      "lookAt": [
+        375,
+        35,
+        -40
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -62,
+    "scale": 3,
+    "focus": {
+      "center": [
+        -55,
+        -2,
+        -18
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wz/wz0/supung_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "pale": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "dark": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "gate": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "frame": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "red": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pale": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "frame": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "red": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pale": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "frame": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "red": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "pale": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "frame": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "red": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "supung-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -260,
+        130,
+        510
+      ],
+      "lookAt": [
+        -30,
+        1,
+        -10
+      ]
+    },
+    {
+      "name": "supung-district",
+      "reviewLod": "district",
+      "position": [
+        -260,
+        130,
+        510
+      ],
+      "lookAt": [
+        -30,
+        1,
+        -10
+      ]
+    },
+    {
+      "name": "supung-street",
+      "reviewLod": "street",
+      "position": [
+        -260,
+        130,
+        510
+      ],
+      "lookAt": [
+        -30,
+        1,
+        -10
+      ]
+    },
+    {
+      "name": "supung-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -260,
+        130,
+        510
+      ],
+      "lookAt": [
+        -30,
+        1,
+        -10
+      ]
+    }
+  ]
+}

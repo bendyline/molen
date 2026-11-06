@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { sampleAirportPavement } from '../src/airport-surfaces';
 import { Heightfield } from '../src/heightfield';
 import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
@@ -156,5 +156,42 @@ describe('airport surfaces', () => {
     root.remove(group);
     expect(sampleAirportPavement(root, 1500, 2500, 5)).toBeUndefined();
     disposeTerrainSurfaceObject(group);
+  });
+
+  it('finds pavement published after it was first asked for, and tiles tagged later', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.transportation.push({
+      class: 'runway',
+      width: 60,
+      lines: [
+        [
+          [0.5, 0.1],
+          [0.5, 0.9],
+        ],
+      ],
+    });
+    const root = new THREE.Group();
+    const first = createTerrainSurfaceObject(tile, context());
+    first.position.set(1000, 5, 2000);
+    // Built but not yet under the stream: nothing to stand on, and it stays a candidate.
+    let now = 1000;
+    const clock = vi.spyOn(performance, 'now').mockImplementation(() => now);
+    expect(sampleAirportPavement(root, 1500, 2500, 5)).toBeUndefined();
+    const tileGroup = new THREE.Group();
+    root.add(tileGroup);
+    tileGroup.add(first);
+    // Waiting tiles are tried again a tenth of a second apart, not for every question.
+    expect(sampleAirportPavement(root, 1500, 2500, 5)).toBeUndefined();
+    now += 100;
+    expect(sampleAirportPavement(root, 1500, 2500, 5)).toBeCloseTo(5.55, 5);
+    clock.mockRestore();
+    // Another tile beside it, built after the first question: its pavement is found as well.
+    const second = createTerrainSurfaceObject(tile, context());
+    second.position.set(2000, 7, 2000);
+    root.add(second);
+    expect(sampleAirportPavement(root, 2500, 2500, 7)).toBeCloseTo(7.55, 5);
+    expect(sampleAirportPavement(root, 1500, 2500, 5)).toBeCloseTo(5.55, 5);
+    disposeTerrainSurfaceObject(first);
+    disposeTerrainSurfaceObject(second);
   });
 });

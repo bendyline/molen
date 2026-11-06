@@ -15,6 +15,7 @@ export { aircraftObstacleContacts as vehicleObstacleContacts } from './aircraft-
 import { createGlassVisual, type GlassVisual } from './glass';
 import { applyLivery } from './livery';
 import { createModelSignalVisual, type ModelSignalVisual } from './model-signals';
+import { drawGlassInOnePass } from './vehicle-glass';
 import {
   createVehicleInteriorVisual,
   type VehicleInteriorSignals,
@@ -120,6 +121,7 @@ export function createVehicleVisual(
       // A material array only draws through geometry groups: keep a single material single, or
       // a mesh without groups renders nothing at all.
       object.material = Array.isArray(object.material) ? cloned : (cloned[0] as THREE.Material);
+      drawGlassInOnePass(object);
     }
   });
   model.updateMatrixWorld(true);

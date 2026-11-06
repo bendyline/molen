@@ -1,24 +1,231 @@
 /** Whole original mapped perimeter; numerical source only, dimensions/finish estimated. */
 import '../../../../../../../../packages/worldgen/scripts/install-deterministic-math.mjs';
-import fs from'node:fs';
-import{beam,normalFor}from'../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-import{rgb}from'../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
-export const P=JSON.parse(fs.readFileSync(new URL('../plan-controls.json',import.meta.url)));
-export const surfaces={wall:{slot:'wall',graph:'stucco',roughness:.95,metallic:0},foundation:{slot:'foundation',graph:'concrete_plain',roughness:.96,metallic:0},coping:{slot:'trim',graph:'concrete_plain',roughness:.94,metallic:0},gate:{slot:'door',graph:'metal_painted',roughness:.9,metallic:.12}};
-const colors={wall:rgb('d9d8cc'),foundation:rgb('a2a69d'),coping:rgb('bec1b5'),gate:rgb('758786')};
-export const componentEvidence=[];
-function face(o,k,p,n){let normal=normalFor(...p);if(n&&normal.reduce((s,v,i)=>s+v*n[i],0)<0){p=[...p].reverse();normal=normalFor(...p)}o.addConvexPolygon(k,'palette:#ffffff',p,normal,q=>[q[0],q[1]],colors[k]);}
-function section(o,k,left0,right0,left1,right1,b0,b1,t0,t1){
- const a=[left0[0],b0,left0[1]],b=[right0[0],b0,right0[1]],c=[right1[0],b1,right1[1]],d=[left1[0],b1,left1[1]],A=[left0[0],t0,left0[1]],B=[right0[0],t0,right0[1]],C=[right1[0],t1,right1[1]],D=[left1[0],t1,left1[1]],dx=left1[0]-left0[0],dz=left1[1]-left0[1];
- face(o,k,[a,d,D,A],[-dz,0,dx]);face(o,k,[b,B,C,c],[dz,0,-dx]);face(o,k,[A,D,C,B],[0,1,0]);face(o,k,[a,b,c,d],[0,-1,0]);face(o,k,[a,A,B,b],[-dx,0,-dz]);face(o,k,[d,c,C,D],[dx,0,dz]);
+import fs from 'node:fs';
+import {
+  beam,
+  normalFor,
+} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
+export const P = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));
+export const surfaces = {
+  wall: { slot: 'wall', graph: 'stucco', roughness: 0.95, metallic: 0 },
+  foundation: { slot: 'foundation', graph: 'concrete_plain', roughness: 0.96, metallic: 0 },
+  coping: { slot: 'trim', graph: 'concrete_plain', roughness: 0.94, metallic: 0 },
+  gate: { slot: 'door', graph: 'metal_painted', roughness: 0.9, metallic: 0.12 },
+};
+const colors = {
+  wall: rgb('d9d8cc'),
+  foundation: rgb('a2a69d'),
+  coping: rgb('bec1b5'),
+  gate: rgb('758786'),
+};
+export const componentEvidence = [];
+function face(o, k, p, n) {
+  let normal = normalFor(...p);
+  if (n && normal.reduce((s, v, i) => s + v * n[i], 0) < 0) {
+    p = [...p].reverse();
+    normal = normalFor(...p);
+  }
+  o.addConvexPolygon(k, 'palette:#ffffff', p, normal, (q) => [q[0], q[1]], colors[k]);
 }
-function edges(points,width){return points.map((p,i)=>{const a=points[(i+points.length-1)%points.length],b=points[(i+1)%points.length],l0=Math.hypot(p.x-a.x,p.z-a.z),l1=Math.hypot(b.x-p.x,b.z-p.z),n0=[-(p.z-a.z)/l0,(p.x-a.x)/l0],n1=[-(b.z-p.z)/l1,(b.x-p.x)/l1],sum=[n0[0]+n1[0],n0[1]+n1[1]],len=Math.hypot(...sum),m=sum.map(v=>v/len),amount=width/2/(m[0]*n1[0]+m[1]*n1[1]);return{left:[p.x+m[0]*amount,p.z+m[1]*amount],right:[p.x-m[0]*amount,p.z-m[1]*amount]};});}
-export function buildHouse(o,_frame,lod=3){
- componentEvidence.length=0;const ps=P.profiles[lod],es=edges(ps,P.wallThickness),cs=edges(ps,P.wallThickness+.12);let gateSegments=0;
- for(let i=0;i<ps.length;i++){const a=ps[i],b=ps[(i+1)%ps.length],u=es[i],v=es[(i+1)%ps.length],g=a.edge===P.gate.edge&&a.distance>=P.gate.centerDistance-P.gate.width/2-1e-7&&a.distance<P.gate.centerDistance+P.gate.width/2-1e-7,k=g?'gate':'wall';if(g)gateSegments++;section(o,'foundation',u.left,u.right,v.left,v.right,a.ground+P.foundationBottom,b.ground+P.foundationBottom,a.ground+P.floor,b.ground+P.floor);section(o,k,u.left,u.right,v.left,v.right,a.ground+P.floor,b.ground+P.floor,a.ground+P.floor+P.wallHeight,b.ground+P.floor+P.wallHeight);if(lod>0&&!g){const A=cs[i],B=cs[(i+1)%ps.length];section(o,'coping',A.left,A.right,B.left,B.right,a.ground+P.floor+P.wallHeight,b.ground+P.floor+P.wallHeight,a.ground+P.floor+P.wallHeight+P.copingHeight,b.ground+P.floor+P.wallHeight+P.copingHeight);}}
- let piers=0;if(lod>1){for(let i=0;i<ps.length;i++){const p=ps[i];if(i%(lod===2?2:1)!==0||p.edge===P.gate.edge&&Math.abs(p.distance-P.gate.centerDistance)<P.gate.width/2+.6)continue;beam(o,'wall',[p.x,p.ground+P.floor,p.z],[p.x,p.ground+P.floor+P.wallHeight+.12,p.z],.62,.62,colors.wall);piers++;}}
- componentEvidence.push({lod,wholeOriginalClosedWall:true,nativeControls:8,wallSegments:ps.length,closedGate:gateSegments>0,gateSegments,openInterior:true,noRoofCap:true,noFloorSlab:true,foundation:true,estimatedPiers:piers,notWholePrisonProxy:true});
+function section(o, k, left0, right0, left1, right1, b0, b1, t0, t1) {
+  const a = [left0[0], b0, left0[1]],
+    b = [right0[0], b0, right0[1]],
+    c = [right1[0], b1, right1[1]],
+    d = [left1[0], b1, left1[1]],
+    A = [left0[0], t0, left0[1]],
+    B = [right0[0], t0, right0[1]],
+    C = [right1[0], t1, right1[1]],
+    D = [left1[0], t1, left1[1]],
+    dx = left1[0] - left0[0],
+    dz = left1[1] - left0[1];
+  face(o, k, [a, d, D, A], [-dz, 0, dx]);
+  face(o, k, [b, B, C, c], [dz, 0, -dx]);
+  face(o, k, [A, D, C, B], [0, 1, 0]);
+  face(o, k, [a, b, c, d], [0, -1, 0]);
+  face(o, k, [a, A, B, b], [-dx, 0, -dz]);
+  face(o, k, [d, c, C, D], [dx, 0, dz]);
 }
-export const houseSkyline=(o,f)=>buildHouse(o,f,0),houseDistrict=(o,f)=>buildHouse(o,f,1),houseStreet=(o,f)=>buildHouse(o,f,2),houseCloseup=(o,f)=>buildHouse(o,f,3);
-const root='content/worldgen/source/places/'+P.cell+'/'+P.model,camera=[660,420,690],look=[0,0,0],minY=Math.min(...P.profiles[3].map(p=>p.ground+P.foundationBottom));
-export const houseModel={id:P.model,key:P.model,cell:P.cell,title:P.title,recipe:'house-model.mjs',surfaces,build:buildHouse,category:'landmark',quality:'medium-fi-exterior',reviewStatus:'review-in-qa.json',geographicStatus:'historical-proposal',orientationPolicy:'approximate-visualization',progressLedger:'qualla-002.PROGRESS.md',brief:P.limitations.join(' '),appearance:{kind:'historical',representedDate:P.representedDate,validFrom:P.validFrom,validUntil:P.validUntil,currentWorldEligible:false},camera,lookAt:look,portableGroundY:minY-.2,mediumFiContext:{scale:1,groundY:0,far:20000,terrain:{descriptor:'terrain-review.terrain.json',heightmap:'terrain-review.height.png'}},embeddedCanonicalGraphs:['stucco','concrete_plain','metal_painted'],qaCameras:[{name:'whole-original-perimeter-and-open-interior',position:camera,lookAt:look},{name:'closed-mapped-gate-and-wall-coping',position:[P.gate.projectionLocal[0]+25,18,P.gate.projectionLocal[1]+35],lookAt:[P.gate.projectionLocal[0],3,P.gate.projectionLocal[1]]}],qaLodCameras:['skyline','district','street','closeup'].map(reviewLod=>({name:'whole-perimeter-'+reviewLod,position:camera,lookAt:look,reviewLod})),runtimeLodOverlay:{module:root+'/models/house-model.mjs',level:'skyline',export:'houseSkyline',errorMeters:P.errorBudgets[0],surfaces,authoredLevels:{district:{export:'houseDistrict',errorMeters:P.errorBudgets[1],surfaces},street:{export:'houseStreet',errorMeters:P.errorBudgets[2],surfaces},closeup:{export:'houseCloseup',errorMeters:.01,surfaces}}},limitations:P.limitations,sourceLicense:'Original deterministic wall geometry under repository license. OSM original numerical nodes and tags ODbL-1.0; every appearance image unused. Wall/gate dimensions, grade tie, finish, piers and historical continuity explicitly estimated.'};
+function edges(points, width) {
+  return points.map((p, i) => {
+    const a = points[(i + points.length - 1) % points.length],
+      b = points[(i + 1) % points.length],
+      l0 = Math.hypot(p.x - a.x, p.z - a.z),
+      l1 = Math.hypot(b.x - p.x, b.z - p.z),
+      n0 = [-(p.z - a.z) / l0, (p.x - a.x) / l0],
+      n1 = [-(b.z - p.z) / l1, (b.x - p.x) / l1],
+      sum = [n0[0] + n1[0], n0[1] + n1[1]],
+      len = Math.hypot(...sum),
+      m = sum.map((v) => v / len),
+      amount = width / 2 / (m[0] * n1[0] + m[1] * n1[1]);
+    return {
+      left: [p.x + m[0] * amount, p.z + m[1] * amount],
+      right: [p.x - m[0] * amount, p.z - m[1] * amount],
+    };
+  });
+}
+export function buildHouse(o, _frame, lod = 3) {
+  componentEvidence.length = 0;
+  const ps = P.profiles[lod],
+    es = edges(ps, P.wallThickness),
+    cs = edges(ps, P.wallThickness + 0.12);
+  let gateSegments = 0;
+  for (let i = 0; i < ps.length; i++) {
+    const a = ps[i],
+      b = ps[(i + 1) % ps.length],
+      u = es[i],
+      v = es[(i + 1) % ps.length],
+      g =
+        a.edge === P.gate.edge &&
+        a.distance >= P.gate.centerDistance - P.gate.width / 2 - 1e-7 &&
+        a.distance < P.gate.centerDistance + P.gate.width / 2 - 1e-7,
+      k = g ? 'gate' : 'wall';
+    if (g) gateSegments++;
+    section(
+      o,
+      'foundation',
+      u.left,
+      u.right,
+      v.left,
+      v.right,
+      a.ground + P.foundationBottom,
+      b.ground + P.foundationBottom,
+      a.ground + P.floor,
+      b.ground + P.floor,
+    );
+    section(
+      o,
+      k,
+      u.left,
+      u.right,
+      v.left,
+      v.right,
+      a.ground + P.floor,
+      b.ground + P.floor,
+      a.ground + P.floor + P.wallHeight,
+      b.ground + P.floor + P.wallHeight,
+    );
+    if (lod > 0 && !g) {
+      const A = cs[i],
+        B = cs[(i + 1) % ps.length];
+      section(
+        o,
+        'coping',
+        A.left,
+        A.right,
+        B.left,
+        B.right,
+        a.ground + P.floor + P.wallHeight,
+        b.ground + P.floor + P.wallHeight,
+        a.ground + P.floor + P.wallHeight + P.copingHeight,
+        b.ground + P.floor + P.wallHeight + P.copingHeight,
+      );
+    }
+  }
+  let piers = 0;
+  if (lod > 1) {
+    for (let i = 0; i < ps.length; i++) {
+      const p = ps[i];
+      if (
+        i % (lod === 2 ? 2 : 1) !== 0 ||
+        (p.edge === P.gate.edge &&
+          Math.abs(p.distance - P.gate.centerDistance) < P.gate.width / 2 + 0.6)
+      )
+        continue;
+      beam(
+        o,
+        'wall',
+        [p.x, p.ground + P.floor, p.z],
+        [p.x, p.ground + P.floor + P.wallHeight + 0.12, p.z],
+        0.62,
+        0.62,
+        colors.wall,
+      );
+      piers++;
+    }
+  }
+  componentEvidence.push({
+    lod,
+    wholeOriginalClosedWall: true,
+    nativeControls: 8,
+    wallSegments: ps.length,
+    closedGate: gateSegments > 0,
+    gateSegments,
+    openInterior: true,
+    noRoofCap: true,
+    noFloorSlab: true,
+    foundation: true,
+    estimatedPiers: piers,
+    notWholePrisonProxy: true,
+  });
+}
+export const houseSkyline = (o, f) => buildHouse(o, f, 0),
+  houseDistrict = (o, f) => buildHouse(o, f, 1),
+  houseStreet = (o, f) => buildHouse(o, f, 2),
+  houseCloseup = (o, f) => buildHouse(o, f, 3);
+const root = 'content/worldgen/source/places/' + P.cell + '/' + P.model,
+  camera = [660, 420, 690],
+  look = [0, 0, 0],
+  minY = Math.min(...P.profiles[3].map((p) => p.ground + P.foundationBottom));
+export const houseModel = {
+  id: P.model,
+  key: P.model,
+  cell: P.cell,
+  title: P.title,
+  recipe: 'house-model.mjs',
+  surfaces,
+  build: buildHouse,
+  category: 'landmark',
+  quality: 'medium-fi-exterior',
+  reviewStatus: 'review-in-qa.json',
+  geographicStatus: 'historical-proposal',
+  orientationPolicy: 'approximate-visualization',
+  progressLedger: 'qualla-002.PROGRESS.md',
+  brief: P.limitations.join(' '),
+  appearance: {
+    kind: 'historical',
+    representedDate: P.representedDate,
+    validFrom: P.validFrom,
+    validUntil: P.validUntil,
+    currentWorldEligible: false,
+  },
+  camera,
+  lookAt: look,
+  portableGroundY: minY - 0.2,
+  mediumFiContext: {
+    scale: 1,
+    groundY: 0,
+    far: 20000,
+    terrain: { descriptor: 'terrain-review.terrain.json', heightmap: 'terrain-review.height.png' },
+  },
+  embeddedCanonicalGraphs: ['stucco', 'concrete_plain', 'metal_painted'],
+  qaCameras: [
+    { name: 'whole-original-perimeter-and-open-interior', position: camera, lookAt: look },
+    {
+      name: 'closed-mapped-gate-and-wall-coping',
+      position: [P.gate.projectionLocal[0] + 25, 18, P.gate.projectionLocal[1] + 35],
+      lookAt: [P.gate.projectionLocal[0], 3, P.gate.projectionLocal[1]],
+    },
+  ],
+  qaLodCameras: ['skyline', 'district', 'street', 'closeup'].map((reviewLod) => ({
+    name: 'whole-perimeter-' + reviewLod,
+    position: camera,
+    lookAt: look,
+    reviewLod,
+  })),
+  runtimeLodOverlay: {
+    module: root + '/models/house-model.mjs',
+    level: 'skyline',
+    export: 'houseSkyline',
+    errorMeters: P.errorBudgets[0],
+    surfaces,
+    authoredLevels: {
+      district: { export: 'houseDistrict', errorMeters: P.errorBudgets[1], surfaces },
+      street: { export: 'houseStreet', errorMeters: P.errorBudgets[2], surfaces },
+      closeup: { export: 'houseCloseup', errorMeters: 0.01, surfaces },
+    },
+  },
+  limitations: P.limitations,
+  sourceLicense:
+    'Original deterministic wall geometry under repository license. OSM original numerical nodes and tags ODbL-1.0; every appearance image unused. Wall/gate dimensions, grade tie, finish, piers and historical continuity explicitly estimated.',
+};

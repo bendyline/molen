@@ -20,7 +20,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+Retained exact-QID way25604760 fixes anchor and metric envelope. Four attributed triangular building parts279949066–069 preserve their separately mapped roof compass bearings. Independent mast centers279949064/065 resolve the square frame rotation and occupy the highest quadrant. Directed heading1.293228519094 and anchor[114.16156875,22.2792677] are unchanged. Published315m roof and367.4m mast datums are retained; mapped roof heights use the existing+5m adjustment. GroundY0 and sloped street/curb contact are unsurveyed. Surrounding water gardens and interiors are excluded. This is retained map/picture registration, not a new terrain survey.
 
 ## Reproduce
 
@@ -30,5 +30,7 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=bank_of_
 
 - Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
 - Diagonal mega-frame geometry is explicit; exact connection plates and individual spandrel junctions are reconstructed. Mapped53 m envelope includes the facade around the architect52 m structural square. Surrounding sloped water gardens are outside the asset.
+- Original156097-triangle source master is preserved byte-for-byte. Browser levels preserve all four independently mapped triangular shafts, roof slopes, primary diagonal mega-frame, lifted banking-hall belt, corner columns and paired masts. Skyline uses planar structural bands and six-sided masts; district restores solid structural members and sparse glazing divisions. Street restores intermediate mullions and roof grid; close-up restores1.55m by4.15m glazing divisions, dense roof framing and mast collars. Shared stainless approximates silver facade cladding; granite is a shared foundation surface; vision glass is opaque PBR. Pane joint recesses and engineered connection plates remain in the source approximation rather than browser microgeometry. Frame widths and floor pitches are reconstructions. No new survey, exact curb/terrain contact or physical-device timing is claimed.
+- LOD error values0.8/0.5/0.2/0.1m are authoring estimates, not certified whole-mesh Hausdorff distances. Forced close distant tiers deliberately expose broader frames and coarse masts.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

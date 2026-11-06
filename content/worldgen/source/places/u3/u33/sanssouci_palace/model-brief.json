@@ -1,0 +1,565 @@
+{
+  "id": "sanssouci_palace",
+  "title": "Sanssouci Palace",
+  "wikidataId": "Q151330",
+  "referenceCoordinate": {
+    "longitude": 13.038420787,
+    "latitude": 52.404345701
+  },
+  "module": "content/worldgen/source/places/u3/u33/sanssouci_palace/models/sanssouci-model.mjs",
+  "builder": "buildSanssouciLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.87,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.74,
+      "metallic": 0.15
+    },
+    "copper": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.65,
+      "metallic": 0.5
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.38,
+      "metallic": 0.06
+    },
+    "trellis": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.7,
+      "metallic": 0.15
+    }
+  },
+  "exportLabel": "Molen complete Sanssouci principal palace offset bowed copper dome wings paired open north colonnades trellis gazebos and walks source",
+  "expectedDraftMasterHash": "sha256:e16da2cc8d39497586bf63b94ed0e322b2a3f8f9f62f6585871087ca8f3b66aa",
+  "visualBrief": "Complete principal Sanssouci palace exterior and attached side wings,north open paired-row curved colonnades with entablature/balustrades/urns,offset bowed south pavilion/copper dome with roof oculi/crown,long south window/herm rhythm,north giant order/entrance,round end bays,two end trellis gazebos and two low wing-front trellis walks. Separate New Chambers,Picture Gallery,windmill and broader vineyard terraces/fountains/gardens/optical interiors excluded.",
+  "nativeAxes": "+X east and slightly north,-X west;+Z south toward vineyard terraces,-Z north forecourt/colonnades;+Y up.",
+  "sourceFacts": {
+    "mappedLengthMeters": 152.645,
+    "mappedWidthMeters": 62.364,
+    "modelDatumMeters": 51,
+    "terrainTiles": 1,
+    "ownedMapComponents": 14,
+    "originalPhotoProportionalEnvelopes": {
+      "floor": 1.3,
+      "eave": 9.1,
+      "cornice": 9.55,
+      "roofRidge": 10.3,
+      "columnTop": 7.8,
+      "colonnadeTop": 9.55,
+      "balustradeTop": 10.55,
+      "domeCenter": [
+        -0.045,
+        25.67
+      ],
+      "domeRadius": [
+        7.9,
+        5.55
+      ],
+      "domeTop": 14.4,
+      "crownTop": 15.05,
+      "solidParts": [
+        5,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193
+      ],
+      "colonnades": [
+        9,
+        10
+      ],
+      "roundEndBays": [
+        [
+          42,
+          19.5,
+          4.05,
+          4.15
+        ],
+        [
+          -43.2,
+          20.5,
+          4.05,
+          4.2
+        ]
+      ],
+      "gazebos": [
+        [
+          82.7,
+          17.25,
+          3.1
+        ],
+        [
+          -83.275,
+          19.02,
+          3
+        ]
+      ],
+      "trellises": [
+        15,
+        16
+      ],
+      "bayMeters": 3.6,
+      "originalColumnStationsPerArc": 22
+    },
+    "heightBasis": "Native8m principal/child heights are generalized envelopes,not detailed cornice/dome heights. Original photo-proportional floor1.3m above51m approximate datum,eave9.1m,cornice9.55m,low roof10.3m,dome14.4m/crown15.05m. Colonnade entablature7.8..9.55m;individual column bases/plinth strips follow unchanged native field+.15m rather than raising the whole forecourt. Gazebos/trellises follow local field with original5.8m/4m envelopes. Exact historical thresholds,terrace/accessibility grades and vertical dimensions approximate."
+  },
+  "limitations": [
+    "Complete principal Sanssouci palace exterior and attached side wings,north open paired-row curved colonnades with entablature/balustrades/urns,offset bowed south pavilion/copper dome with roof oculi/crown,long south window/herm rhythm,north giant order/entrance,round end bays,two end trellis gazebos and two low wing-front trellis walks. Separate New Chambers,Picture Gallery,windmill and broader vineyard terraces/fountains/gardens/optical interiors excluded.",
+    "Retained152.645x62.364m parent includes long palace/wings and curved open colonnades. Never extrude this whole composite as a solid block. Main palace is in the southern portion of the retained frame,not centered at local[0,0]. Native5 bowed south pavilion bounds[-7.8,20.23,7.71,31.11];native189 main bar[-36.44,11.85,36.36,25.19]. Actual curved colonnade polygons9/10 are geometric strip controls for paired open column rows;the forecourt stays open.",
+    "Native8m principal/child heights are generalized envelopes,not detailed cornice/dome heights. Original photo-proportional floor1.3m above51m approximate datum,eave9.1m,cornice9.55m,low roof10.3m,dome14.4m/crown15.05m. Colonnade entablature7.8..9.55m;individual column bases/plinth strips follow unchanged native field+.15m rather than raising the whole forecourt. Gazebos/trellises follow local field with original5.8m/4m envelopes. Exact historical thresholds,terrace/accessibility grades and vertical dimensions approximate.",
+    "Original exterior interpretation from four ordinary photographs and standard map/global terrain. Fine sculptural/heraldic/urn/window/column inventories and roof junctions approximate. No downloaded meshes,bespoke survey,PDF/archive research or copied reliefs/lettering. One unchanged129x129/2m field covers256m at51m datum. Main structural floor1.3m and variable-depth foundations adapt to it;colonnade plinths/column bases follow native field+.15m under a common entablature. Exact historic threshold/terrace/stair/accessibility grades unmeasured;no terrain flattening. Trellis walk and gazebo frames modeled structurally;foliage/furniture and wider gardens/fountains/independent buildings excluded. Closed exterior doors/window panes exclude optical interiors. Physical phone/laptop timings unmeasured.",
+    "Five existing256px plaster,limestone,copper,window-grid andpainted-metal graphs across six material groups;metric UVs/linear vertex colors. No private/new/embedded images,baked light or copied sculpted art/lettering. Parent footprint is composite;seven actual closed palace/range polygons and two open curved strip controls are differentiated. Window/door panes are closed. Ordinary south/front sculpture and corinthian capitals/urns are original simplified cues;fine window/column/urn/sculpture inventory approximate. Source keeps denser dome curves/seams,column capitals,window grids/frames and sculpture. Skyline aggregates closed massing,copper dome,round bays and gazebos,reduces paired-column stations/curves and omits subpixel trellis walks/ornament. District aggregates profiles/urns and keeps paired open colonnades;street uses flat frames and simplified herm/column profiles;close-up preserves denser windows/sculpture/rails. Error estimates4/2/1/.35m are not measured mesh distances. Physical laptop/phone/dense-city timings unmeasured."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Sanssouci_von_oben,_2008.jpg",
+      "observed": "Actually inspected complete south aerial:long yellow principal palace with bowed central green dome,low connecting roofs/two service wings,north open forecourt enclosed by two curved colonnades and a central gap;two small end trellis pavilions. Separate New Chambers/windmill towest and Picture Gallery toeast are independent. Vineyard terraces/large lower fountain remain host landscape."
+    },
+    {
+      "url": "https://www.techno-science.net/glossaire-definition/Palais-de-Sanssouci-page-3.html",
+      "observed": "Actually inspected close bowed south pavilion:tall white-framed round-arched window/doors,paired original sculpture/herm cues supporting cornice,stone balustrade,low green copper dome with decorative circular windows and urns/crown,steps. Exact figures/lettering/reliefs require simplified original interpretation."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Potsdam_Schloss_Sanssouci_1748.jpg",
+      "observed": "Actually inspected north entrance forecourt:simpler yellow wall and tall white-framed arched windows/doors,fluted giant columns/pilasters,garlands/rooftop urns and curved open colonnade attachment. Forecourt itself is uncovered."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Ehrenhofkolonnade_Sanssouci.jpg",
+      "observed": "Actually inspected open curved north colonnade:paired rows of tall columns with ornate capitals,deep entablature/roof strip,upper balustrade/urns and open bays. Do not render native curved building polygons as solid walls."
+    },
+    {
+      "url": "https://www.openstreetmap.org/way/142038726",
+      "observed": "Retained152.645x62.364m composite footprint,actual seven solid palace/range parts,two curved colonnade strips and trellis gazebo/walk polygons. Bowed south pavilion centered[-.045,25.67],north entrance and paired-row colonnades sign actual orientation.8m native tags generalized."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-south-palace-wings-and-trellises",
+      "position": [
+        190,
+        100,
+        165
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "complete-north-court-and-colonnades",
+      "position": [
+        -174,
+        105,
+        -165
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "whole-native-ensemble-plan",
+      "position": [
+        0,
+        220,
+        1
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "south-bowed-dome-oculi-and-herms",
+      "position": [
+        21,
+        15,
+        58
+      ],
+      "lookAt": [
+        0,
+        8,
+        26
+      ],
+      "fov": 51
+    },
+    {
+      "name": "north-court-paired-open-column-rows",
+      "position": [
+        0,
+        5.5,
+        -13
+      ],
+      "lookAt": [
+        25,
+        4,
+        -21
+      ],
+      "fov": 62
+    },
+    {
+      "name": "outer-colonnade-bays-and-soffit",
+      "position": [
+        56,
+        6,
+        -7
+      ],
+      "lookAt": [
+        32,
+        4,
+        -10
+      ],
+      "fov": 62
+    },
+    {
+      "name": "east-wing-trellis-walk-and-gazebo",
+      "position": [
+        100,
+        15,
+        40
+      ],
+      "lookAt": [
+        64,
+        6,
+        12
+      ],
+      "fov": 51
+    },
+    {
+      "name": "west-wing-round-bay-and-trellis",
+      "position": [
+        -103,
+        15,
+        43
+      ],
+      "lookAt": [
+        -61,
+        6,
+        14
+      ],
+      "fov": 51
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u3/u33/sanssouci_palace/models/sanssouci-model.mjs",
+    "export": "buildSanssouciSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.74,
+        "metallic": 0.15
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.65,
+        "metallic": 0.5
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.38,
+        "metallic": 0.06
+      },
+      "trellis": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.15
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSanssouciDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.15
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.65,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.38,
+            "metallic": 0.06
+          },
+          "trellis": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.15
+          }
+        },
+        "errorMeters": 2
+      },
+      "street": {
+        "export": "buildSanssouciStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.15
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.65,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.38,
+            "metallic": 0.06
+          },
+          "trellis": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.15
+          }
+        },
+        "errorMeters": 1
+      },
+      "closeup": {
+        "export": "buildSanssouciCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.15
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.65,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.38,
+            "metallic": 0.06
+          },
+          "trellis": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.15
+          }
+        },
+        "errorMeters": 0.35
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "complete-ensemble-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        190,
+        100,
+        165
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "complete-ensemble-district",
+      "reviewLod": "district",
+      "position": [
+        190,
+        100,
+        165
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "complete-ensemble-street",
+      "reviewLod": "street",
+      "position": [
+        190,
+        100,
+        165
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "complete-ensemble-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        190,
+        100,
+        165
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "street-paired-open-colonnades",
+      "reviewLod": "street",
+      "position": [
+        0,
+        5.5,
+        -13
+      ],
+      "lookAt": [
+        25,
+        4,
+        -21
+      ]
+    },
+    {
+      "name": "closeup-bowed-dome-and-herms",
+      "reviewLod": "closeup",
+      "position": [
+        21,
+        15,
+        58
+      ],
+      "lookAt": [
+        0,
+        8,
+        26
+      ]
+    }
+  ]
+}

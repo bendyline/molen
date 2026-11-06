@@ -1,0 +1,65 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.daughters_of_jacob_bridge",
+  "inputHash": "sha256:605fc73185f7f0069904124d2480cf03959e990e45b454fb74ca92b5d298c1c5",
+  "sourceHash": "sha256:780bb7c39b52441fa23dbcb8186d1b896f766266a5c00f630b4cf9632115240f",
+  "runtimeHash": "sha256:cf35abf5825a0159f401a4fc0bc10ffea282ab55afa19874bce5b160a2867516",
+  "fixtureHash": "sha256:d81a44ba160a80483b3fe33c8236d4e7a64c6e4e359ff5deb471e84ddbc8d241",
+  "placementHash": "sha256:9c91bd9a72bac8d0372df6f76d639ab2b546bb68e46330c33e73564872e9026a",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-bridge.png",
+      "hash": "sha256:4f83f5850564b30c92900ecc71a6bdda32865019421409dafc3e61c2abbcb7ef",
+      "camera": {
+        "name": "main-street-noon-high",
+        "mediumName": "street-noon-high",
+        "group": "main",
+        "position": [
+          12,
+          10,
+          28
+        ],
+        "lookAt": [
+          0,
+          4,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "daughters.of.jacob.bridge",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "liveSupportGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The native Molen material library resolves concrete_plain and metal_painted exactly once each. Tinted metric surfaces reuse those graphs. This shared-material image reuses an inspected native context frame."
+}

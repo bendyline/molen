@@ -1,7 +1,9 @@
 /** Exact original named outlines and bounded six-telescope building reconstruction. */
+
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { createHash } from 'node:crypto';
+
 const hash = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
 export const augerFdCases = {
   'auger-primary-whole-FD-building-way118753321-2018': 'los_leones_fluorescence_building',

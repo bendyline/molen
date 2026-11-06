@@ -3,8 +3,8 @@ import '../../../../../../../../packages/worldgen/scripts/install-deterministic-
 import fs from 'node:fs';
 import { MeshBufferBuilder } from '../../../../../../../../packages/worldgen/dist/kernel.mjs';
 import {
-  normalFor,
   beam,
+  normalFor,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
 export const P = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));

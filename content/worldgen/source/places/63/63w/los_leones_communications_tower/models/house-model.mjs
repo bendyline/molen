@@ -118,7 +118,8 @@ function antennaPanel(o, a, lod) {
       [q(-w, s * h, -d), q(w, s * h, -d), q(w, s * h, d), q(-w, s * h, d)],
       [0, s, 0],
     );
-  for (const y of lod === 0 ? [] : [-0.8, 0.8]) strut(o, 'steel', q(0, y, -d), q(0, y, -0.55), 0.06);
+  for (const y of lod === 0 ? [] : [-0.8, 0.8])
+    strut(o, 'steel', q(0, y, -d), q(0, y, -0.55), 0.06);
   if (lod >= 2) {
     strut(o, 'steel', q(0, -1.5, -0.45), q(0, 1.5, -0.45), 0.09);
     strut(o, 'steel', q(-0.15, -1.5, -0.4), q(0.15, -1.5, -0.4), 0.05);

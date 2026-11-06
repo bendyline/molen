@@ -49,3 +49,10 @@ Only declared OSM collection members gained an attributed map-frame guard and th
 Previous input: sha256:8dfb5fd5e9f4d8d0fd705b374e7b7e6fa0e3b68944977e2a2e72d46fc6fd0427
 
 Current input: sha256:68fa0d5e0a5773776f0203447f31226036a0037063d999aa2e2fa139cfbfd2f4
+
+
+## Current Earth context refresh — 2026-10-31
+
+Inspected all 46 fresh images across portable, shared-material/geographic-flat and current-Earth fixtures, including mode, detail and four-tier transition views. All current views retain the curved opposing cutbacks, thin side profile, ridge orientation and fully open trapezoidal crown aperture. Four tiers keep the same envelope and opening; closer tiers restore facade courses and the representative entrance canopy. The wider retail podium remains excluded. Corrected whole-building framing uses context scale 10; neighbor buildings and source-local height correction remain synthetic/approximate context. No new terrain, survey, reference-research or physical-device performance claim.
+
+Current generators reproduced the detailed/source and imported masters exactly, and all four runtime tiers retain their previous hashes. Review-camera identifiers were normalized to hyphens and context framing corrected. Portable, shared-material/geographic-flat and Earth-context captures were all freshly rendered and inspected against the current source inputs. Geographic placement and its retained approximate PMTiles contact scope are unchanged. Six unchanged GLBs validate with zero errors/warnings/embedded images. Current hash bindings, four-tier budgets and shared graph hashes pass.

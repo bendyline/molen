@@ -295,7 +295,8 @@ export const houseModel = {
   quality: 'medium-fi-exterior',
   reviewStatus: 'review-in-qa.json',
   geographicStatus: 'historical-proposal',
-  groundContactBasis: "Reviewed nominal Y=0 contact at the original published instrument point and unchanged original elevation field. The ground rod extends0.55m below this plane; feet/cairns meet nominal grade. Sensor face2m above the plane. Historic soil grading and exact vertical registration are explicitly approximate, not surveyed.",
+  groundContactBasis:
+    'Reviewed nominal Y=0 contact at the original published instrument point and unchanged original elevation field. The ground rod extends0.55m below this plane; feet/cairns meet nominal grade. Sensor face2m above the plane. Historic soil grading and exact vertical registration are explicitly approximate, not surveyed.',
   orientationPolicy: 'approximate-visualization',
   progressLedger: 'qualla-002.PROGRESS.md',
   brief: P.limitations.join(' '),

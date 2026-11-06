@@ -1,0 +1,964 @@
+{
+  "id": "warsaw_central_railway_station",
+  "title": "Warsaw Central railway station",
+  "wikidataId": "Q693034",
+  "referenceCoordinate": {
+    "longitude": 21.003055555,
+    "latitude": 52.228611111
+  },
+  "module": "content/worldgen/source/places/u3/u3q/warsaw_central_railway_station/models/station-model.mjs",
+  "builder": "buildStationLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.88
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.88
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.92
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.3
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_corrugated",
+      "roughness": 0.7,
+      "metallic": 0.35
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.35
+    },
+    "doorGlass": {
+      "slot": "window",
+      "graph": "storefront",
+      "roughness": 0.4
+    }
+  },
+  "exportLabel": "Molen original Warsaw Central bowed roof and complete passenger ensemble source",
+  "expectedDraftMasterHash": "sha256:f0343eff8fbb7639cc0b609d40b870e3a6cf389eb67508e256c951751b156982",
+  "visualBrief": "Complete permanent aboveground Warsaw Central passenger ensemble: full bowed metal cantilever roof and lower soffit shell,both end/mezzanine/clerestory ranges,central glazed hall,closed lower entrance footprint,all28 mapped tall pillars,west entrance stairs andtwo north-side open low canopies. Preserve the independent Zlote Tarasy mall,bridges/service buildings,office/hotel towers,streets,rail/tunnels andsurrounding small kiosks. Exterior only;no copied signs,lettering,brands,people,trains or navigable underground platforms/interior.",
+  "heightPolicy": "Numeric source heights retained explicitly. Use the18m upper/16.5m lower roof stacks as curved shells and28 fifteen-metre supports,not parent-wide solid boxes. Actual lower hall floor+.65m/foundations-8m and photo-proportioned bowed shell/beam/stair sections are architectural approximations on one common terrain datum. The layer-1 parent is an ownership envelope,not a surveyed aboveground mass or platform elevation. No per-part offsets. One unchanged standard field sample outside the west entrance[-48,-19],112.21711068m,defines commonY=0. Current native contact requires render review.",
+  "nativeAxes": "+X ENE along the long roof edges toward Emilii Plater; -X WSW toward Jana Pawla II and the short main facade; +Z SSE toward Aleje Jerozolimskie; -Z NNW toward Zlote Tarasy. +Y up.",
+  "sourceFacts": {
+    "mainRoof": {
+      "height": 18,
+      "min_height": 16.5
+    },
+    "innerRoof": {
+      "height": 16.5,
+      "min_height": 15
+    },
+    "lowerHall": {
+      "height": 3.3
+    },
+    "centralHall": {
+      "height": 15,
+      "min_height": 3.3
+    },
+    "mezzanines": {
+      "height": 11.5,
+      "min_height": 3.3,
+      "layer": 1
+    },
+    "clerestories": {
+      "height": 15,
+      "min_height": 11.5,
+      "layer": 2
+    },
+    "columns": {
+      "height": 15,
+      "count": 28
+    },
+    "lowCanopies": {
+      "height": 4,
+      "layer": 1
+    },
+    "parent": {
+      "height": 11,
+      "layer": -1
+    },
+    "heightPolicy": "Numeric source heights retained explicitly. Use the18m upper/16.5m lower roof stacks as curved shells and28 fifteen-metre supports,not parent-wide solid boxes. Actual lower hall floor+.65m/foundations-8m and photo-proportioned bowed shell/beam/stair sections are architectural approximations on one common terrain datum. The layer-1 parent is an ownership envelope,not a surveyed aboveground mass or platform elevation. No per-part offsets.",
+    "authoredLevels": {
+      "mainFloor": 0.65,
+      "foundation": -8,
+      "lowerRoof": 3.3,
+      "mezzanineFloor": 3.3,
+      "mezzanineTop": 11.5,
+      "clerestoryFloor": 11.5,
+      "clerestoryTop": 15,
+      "columnTop": 15,
+      "roofUnderside": 15,
+      "roofTop": 18,
+      "lowCanopies": 4
+    },
+    "authoredMaximumMeters": 18,
+    "terrainTiles": 4,
+    "terrainReferenceLocal": [
+      -48,
+      -19
+    ],
+    "occupiedMasks": 1,
+    "ownedNativeParts": 47,
+    "retainedNativeParts": 1736,
+    "numericNativeHeightsAvailable": true,
+    "nativePartFacts": [
+      {
+        "index": 123,
+        "id": 35184395118640,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 3.3
+        }
+      },
+      {
+        "index": 206,
+        "id": 35184581778380,
+        "properties": {
+          "kind_detail": "roof",
+          "min_height": 16.5,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 18
+        }
+      },
+      {
+        "index": 216,
+        "id": 35184598244859,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 217,
+        "id": 35184598244860,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 218,
+        "id": 35184598244861,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 219,
+        "id": 35184598244862,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 220,
+        "id": 35184598244863,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 221,
+        "id": 35184598244864,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 222,
+        "id": 35184598244865,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 223,
+        "id": 35184598244866,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 224,
+        "id": 35184598244867,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 225,
+        "id": 35184598244868,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 226,
+        "id": 35184598244869,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 227,
+        "id": 35184598244870,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 228,
+        "id": 35184598244871,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 229,
+        "id": 35184598244872,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 230,
+        "id": 35184598244873,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 231,
+        "id": 35184598244874,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 232,
+        "id": 35184598244875,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 233,
+        "id": 35184598244876,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 234,
+        "id": 35184598244877,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 235,
+        "id": 35184598244878,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 236,
+        "id": 35184598244879,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 237,
+        "id": 35184598244880,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 238,
+        "id": 35184598244881,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 239,
+        "id": 35184598244882,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 240,
+        "id": 35184598244883,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 241,
+        "id": 35184598244884,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 242,
+        "id": 35184598244885,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 243,
+        "id": 35184598244886,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 244,
+        "id": 35184598244887,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 3.3,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 15
+        }
+      },
+      {
+        "index": 245,
+        "id": 35184598244888,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 11.5,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "layer": 2,
+          "height": 15
+        }
+      },
+      {
+        "index": 246,
+        "id": 35184598244889,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 11.5,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "layer": 2,
+          "height": 15
+        }
+      },
+      {
+        "index": 247,
+        "id": 35184598244890,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 3.3,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "layer": 1,
+          "height": 11.5
+        }
+      },
+      {
+        "index": 248,
+        "id": 35184598244891,
+        "properties": {
+          "kind_detail": "yes",
+          "min_height": 3.3,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "layer": 1,
+          "height": 11.5
+        }
+      },
+      {
+        "index": 251,
+        "id": 35184598861662,
+        "properties": {
+          "kind_detail": "roof",
+          "min_height": 15,
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 16.5
+        }
+      },
+      {
+        "index": 363,
+        "id": 35184612082711,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1,
+          "height": 4
+        }
+      },
+      {
+        "index": 364,
+        "id": 35184612082712,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": 1,
+          "height": 4
+        }
+      },
+      {
+        "index": 394,
+        "id": 35184661024367,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 3.3
+        }
+      },
+      {
+        "index": 395,
+        "id": 35184661024372,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 3.3
+        }
+      },
+      {
+        "index": 396,
+        "id": 35184661024376,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 3.3
+        }
+      },
+      {
+        "index": 397,
+        "id": 35184661024380,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 3.3
+        }
+      },
+      {
+        "index": 398,
+        "id": 35184661024381,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 3.3
+        }
+      },
+      {
+        "index": 413,
+        "id": 35184739580624,
+        "properties": {
+          "sort_rank": 400,
+          "kind": "building",
+          "layer": -1,
+          "height": 11
+        }
+      },
+      {
+        "index": 698,
+        "id": 35185801204460,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 3.3
+        }
+      },
+      {
+        "index": 699,
+        "id": 35185801204463,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 3.3
+        }
+      },
+      {
+        "index": 700,
+        "id": 35185801204464,
+        "properties": {
+          "kind_detail": "yes",
+          "sort_rank": 400,
+          "kind": "building_part",
+          "height": 3.3
+        }
+      }
+    ]
+  },
+  "materialMethod": "Six existing shared256px concrete_plain,stone_granite,metal_painted,metal_corrugated,window_grid andstorefront graphs;six merged semanticgroups,metric UVs,linear colors,no private or embedded images.",
+  "limitations": [
+    "Complete permanent aboveground Warsaw Central passenger ensemble: full bowed metal cantilever roof and lower soffit shell,both end/mezzanine/clerestory ranges,central glazed hall,closed lower entrance footprint,all28 mapped tall pillars,west entrance stairs andtwo north-side open low canopies. Preserve the independent Zlote Tarasy mall,bridges/service buildings,office/hotel towers,streets,rail/tunnels andsurrounding small kiosks. Exterior only;no copied signs,lettering,brands,people,trains or navigable underground platforms/interior.",
+    "Numeric source heights retained explicitly. Use the18m upper/16.5m lower roof stacks as curved shells and28 fifteen-metre supports,not parent-wide solid boxes. Actual lower hall floor+.65m/foundations-8m and photo-proportioned bowed shell/beam/stair sections are architectural approximations on one common terrain datum. The layer-1 parent is an ownership envelope,not a surveyed aboveground mass or platform elevation. No per-part offsets. One unchanged standard field sample outside the west entrance[-48,-19],112.21711068m,defines commonY=0. Current native contact requires render review.",
+    "Two ordinary entrance/aerial pictures inspected. Silver-grey shared metal is authored neutrally;warm gold andblue in references are lighting,not copied paint colors. Subtle roof curvature,rib/panel inventory,hidden thresholds andcurrent works remain original medium-fi approximations. Source map layer values do not establish underground or platform elevations. Exact hidden windows,thresholds,roof section/rib inventory andcurrent works remain approximate. Physical-device timing andnumerical LODerrors remainunmeasured.",
+    "Six existing shared256px concrete_plain,stone_granite,metal_painted,metal_corrugated,window_grid andstorefront graphs;six merged semanticgroups,metric UVs,linear colors,no private or embedded images. Skyline keepscomplete silhouette,bothendmasses,28tallpillarsandtwoopenlowcanopies,usingoneshelltoapproximatebothlaminatesandmerginghiddenlowerpods. Districtexposesglazing;streetaddsrecesses/branches;close-upaddsmullions,fasciaribsandsoffitseams;masterseparatelyrefinescurves/frames/panels."
+  ],
+  "references": [
+    {
+      "url": "https://www.inyourpocket.com/warsaw/warsaw-then-now_74815f",
+      "imageUrl": "https://s.inyourpocket.com/gallery/177440.jpg",
+      "observed": "Actually inspected ordinary oblique entrance photograph. Broad metal roof with a deep cantilever, gently bowed underside and raised edges; slim tall rounded external pillars with capital/beam attachments. Recessed glass upper entrance and long facade bands sit below a dark grey metal fascia. Roof underside has parallel panel seams/ribs. Roof gold tone is warm sunlight, not evidence of gold material. No copied lettering/signs/brands."
+    },
+    {
+      "url": "https://culture.pl/en/article/9-architectural-icons-of-communist-poland",
+      "imageUrl": "https://api.culture.pl/sites/default/files/images/imported/architektura/galerie/gl%20mies%20van%20der%20rohe%20award%202013/mies%20van%20der%20rohe%20award%201_6687250.jpg",
+      "observed": "Actually inspected ordinary aerial nighttime overview. Complete broad blue-lit rectangular roof with subtle long seams and shaped/folded short edges; recessed upper glazing and low opaque band; both end/side entry fronts; tall external supports; broad shallow entrance stair flights. Low long canopy/covered walk runs beside the bus bays. Neighboring tower/mall/bus/taxi context is independent. Blue roof is nighttime lighting, not a daytime blue paint observation."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Approximate physical association, not an exact tagged PMTiles parent. Scope includes the whole permanent aboveground main hall, both shell roof outlines, all mapped tall columns, nested lower/mezzanine/clerestory masses and two north-side low platform/covered-walk roofs. Preserve the independent Zlote Tarasy mall and its bridge/service structures, hotels, office towers, streets, native rail/tunnels and small surrounding kiosks. Layer-1 parent is an ownership envelope, not permission to fill an aboveground cuboid or mask the whole roof footprint."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-bowed-roof-hall-and-low-canopies",
+      "position": [
+        -135,
+        95,
+        125
+      ],
+      "lookAt": [
+        10,
+        8,
+        -23
+      ],
+      "fov": 52
+    },
+    {
+      "name": "west-recessed-entrance-and-soffit",
+      "position": [
+        -100,
+        22,
+        30
+      ],
+      "lookAt": [
+        -25,
+        8,
+        -20
+      ],
+      "fov": 52
+    },
+    {
+      "name": "north-low-canopies-and-long-facade",
+      "position": [
+        120,
+        38,
+        -130
+      ],
+      "lookAt": [
+        10,
+        7,
+        -30
+      ],
+      "fov": 52
+    },
+    {
+      "name": "under-west-cantilever",
+      "position": [
+        -51,
+        3,
+        -4
+      ],
+      "lookAt": [
+        -35,
+        12,
+        -19
+      ],
+      "fov": 52
+    },
+    {
+      "name": "east-stacked-entrance-and-pillars",
+      "position": [
+        130,
+        19,
+        40
+      ],
+      "lookAt": [
+        57,
+        8,
+        -18
+      ],
+      "fov": 52
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.4,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u3/u3q/warsaw_central_railway_station/models/station-model.mjs",
+    "export": "buildStationSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.88
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.88
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.92
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.3
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.7,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.35
+      },
+      "doorGlass": {
+        "slot": "window",
+        "graph": "storefront",
+        "roughness": 0.4
+      }
+    },
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStationDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.7,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.35
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.4
+          }
+        },
+        "errorMeters": 1.2
+      },
+      "street": {
+        "export": "buildStationStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.7,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.35
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.4
+          }
+        },
+        "errorMeters": 0.5
+      },
+      "closeup": {
+        "export": "buildStationCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.7,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.35
+          },
+          "doorGlass": {
+            "slot": "window",
+            "graph": "storefront",
+            "roughness": 0.4
+          }
+        },
+        "errorMeters": 0.18
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-warsaw-central-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -135,
+        95,
+        125
+      ],
+      "lookAt": [
+        10,
+        8,
+        -23
+      ]
+    },
+    {
+      "name": "whole-warsaw-central-district",
+      "reviewLod": "district",
+      "position": [
+        -135,
+        95,
+        125
+      ],
+      "lookAt": [
+        10,
+        8,
+        -23
+      ]
+    },
+    {
+      "name": "whole-warsaw-central-street",
+      "reviewLod": "street",
+      "position": [
+        -135,
+        95,
+        125
+      ],
+      "lookAt": [
+        10,
+        8,
+        -23
+      ]
+    },
+    {
+      "name": "whole-warsaw-central-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -135,
+        95,
+        125
+      ],
+      "lookAt": [
+        10,
+        8,
+        -23
+      ]
+    }
+  ]
+}

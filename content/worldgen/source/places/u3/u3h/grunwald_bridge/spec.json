@@ -1,0 +1,587 @@
+{
+  "planId": "grunwald_bridge",
+  "id": "grunwald_bridge",
+  "assetId": "molen.worldgen.structure.grunwald_bridge",
+  "title": "Grunwald Bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q745733",
+  "referenceCoordinate": {
+    "longitude": 17.05277778,
+    "latitude": 51.10944444
+  },
+  "visualBrief": "Light-blue flat-band suspension bridge with two massive granite arched gateways, open upper suspension-band chambers, vertical hangers, lower deck trusses, twin tram tracks and separate pedestrian rails.",
+  "size": [
+    178.60000610351562,
+    26.369844436645508,
+    24.18105125427246
+  ],
+  "actualBounds": {
+    "min": [
+      -89.30000305175781,
+      0,
+      -13.40649127960205
+    ],
+    "max": [
+      89.30000305175781,
+      26.369844436645508,
+      10.77455997467041
+    ]
+  },
+  "nativeAxes": "+X northeast toward plac Grunwaldzki; -X southwest toward the old-city bank. +Z southeast; +Y up. Road and tram alignment retain the signed mild cross-deck drift.",
+  "sourceFacts": {
+    "suspendedRoadwayMeters": 112.5,
+    "mappedEnvelopeMeters": 114.472,
+    "portalAxisSeparationMeters": 126.6,
+    "modeledApproachExtentMeters": 176,
+    "modelDatumMeters": 110,
+    "roadWidthMeters": 11,
+    "sourceWidthBasis": "Photo-based road/pedestrian layout within the retained22m envelope; portal and footing dimensions reconstructed.",
+    "reconstructedPortalHeightAboveRoadMeters": 16
+  },
+  "referencePages": [
+    "https://www.wroclaw.pl/dla-mieszkanca/richard-pluddemann-zaprojektowal-most-grunwaldzki-mija-rocznica-smierci-wybitnego-architekta",
+    "https://podroze.gazeta.pl/podroze/7,114158,32093590,chca-przywrocic-niemiecki-napis-na-wroclawskim-moscie-w-sieci.html",
+    "https://travelstoke.matadornetwork.com/experiences/RKrN8eKB/grunwald-bridge/",
+    "https://maps.protomaps.com/builds/"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      17.052553228,
+      51.109484456
+    ],
+    "heading": 0.347095676446,
+    "elevationMode": "sea-level",
+    "elevationMeters": 110,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 176,
+      "width": 20,
+      "outline": [
+        [
+          -88,
+          -10.355994111607696
+        ],
+        [
+          88,
+          -12.27593792150015
+        ],
+        [
+          88,
+          7.72406207849985
+        ],
+        [
+          -88,
+          9.644005888392304
+        ]
+      ],
+      "includeConnectedApproaches": true,
+      "deckEndpoints": [
+        [
+          -88,
+          -0.355994
+        ],
+        [
+          88,
+          -2.275938
+        ]
+      ],
+      "deckHeights": [
+        118.869844,
+        118.050993
+      ],
+      "deckProfile": [
+        [
+          -88,
+          118.869844,
+          -0.3559941116076962
+        ],
+        [
+          -63.3,
+          118.769844,
+          -0.6254407712914667
+        ],
+        [
+          -56.25,
+          118.789844,
+          -0.702347611403636
+        ],
+        [
+          0,
+          118.7104185,
+          -1.315966016553923
+        ],
+        [
+          56.25,
+          117.97099299999999,
+          -1.9295844217042104
+        ],
+        [
+          63.3,
+          117.950993,
+          -2.0064912618163797
+        ],
+        [
+          88,
+          118.050993,
+          -2.2759379215001503
+        ]
+      ]
+    },
+    "bounds": [
+      17.05128645463832,
+      51.10912055719591,
+      17.05380719127799,
+      51.10987058788389
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f421838d9ede48969bfad12c0047987ca6e59005efb54d7bc2ef21baf39c9fe7",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://www.openstreetmap.org/way/367355594",
+    "wikidataId": "Q745733",
+    "notes": "Signed named road/paired tram path;112.5m suspended deck, two stone portals and rear suspension anchorages. Native-terrain bridge/approach fit is approximate; bank road junctions, quay walls and foundations are not surveyed."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Existing shared concrete, aggregate, stainless and coated-metal graphs with metric UVs; palette road paint. No private or embedded image copies.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u3/u3h/grunwald_bridge/models/grunwald-model.mjs",
+    "export": "buildGrunwaldSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.32
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_stainless",
+        "roughness": 0.4,
+        "metallic": 0.7
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "walk": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "paint": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      }
+    },
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGrunwaldDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.32
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.4,
+            "metallic": 0.7
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 1.5
+      },
+      "street": {
+        "export": "buildGrunwaldStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.32
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.4,
+            "metallic": 0.7
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.75
+      },
+      "closeup": {
+        "export": "buildGrunwaldCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.32
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.4,
+            "metallic": 0.7
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        },
+        "errorMeters": 0.35
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.6,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-bridge-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -145,
+        105,
+        175
+      ],
+      "lookAt": [
+        0,
+        17,
+        -1
+      ]
+    },
+    {
+      "name": "whole-bridge-district",
+      "reviewLod": "district",
+      "position": [
+        -145,
+        105,
+        175
+      ],
+      "lookAt": [
+        0,
+        17,
+        -1
+      ]
+    },
+    {
+      "name": "whole-bridge-street",
+      "reviewLod": "street",
+      "position": [
+        -145,
+        105,
+        175
+      ],
+      "lookAt": [
+        0,
+        17,
+        -1
+      ]
+    },
+    {
+      "name": "whole-bridge-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -145,
+        105,
+        175
+      ],
+      "lookAt": [
+        0,
+        17,
+        -1
+      ]
+    },
+    {
+      "name": "street-open-portal",
+      "reviewLod": "street",
+      "position": [
+        -84,
+        16,
+        1
+      ],
+      "lookAt": [
+        -58,
+        18,
+        -1
+      ]
+    },
+    {
+      "name": "closeup-upper-band-chamber",
+      "reviewLod": "closeup",
+      "position": [
+        -77,
+        29,
+        16
+      ],
+      "lookAt": [
+        -63.3,
+        22.2,
+        8
+      ]
+    }
+  ],
+  "limitations": [
+    "Original reconstruction of the present Grunwald suspension bridge exterior, using three ordinary city/river/road pictures and standard viewer PMTiles/terrain. Adjacent buildings, complete quay walls, traffic, exact heraldic/inscription detail and temporary signs are outside scope; no historical lettering is invented.",
+    "The112.5m suspended roadway and114.472m retained map envelope are distinct from the126.6m reconstructed portal-axis separation. Rear bands and short road approaches extend toX±88m. The two massive granite gateways have genuinely open main arches and nearer upper band chambers. Street/near geometry includes broad paired flat bands rather than round cables, open lower deck trusses, vertical hangers and rear anchors. Pylon dimensions, arch profiles, masonry joints, exact bearing hardware, hanger/rivet rhythm and anchorage depths are picture-based reconstructions, not an as-built schedule.",
+    "The named PMTiles road and two tram centerlines set the signed crossing. Twin tracks use1.435m gauge; approach track geometry is a linear continuation of the mapped river portion. Overhead wires, contact support and lights are visual static approximations, not an operational tram power system. Sidewalks and rails terminate against the gateway bodies; exact kerb and road-junction grading remain approximate.",
+    "The110m model datum comes from the retained global viewer river terrain. Road profile uses bank approach-end samples plus a small deck lift/crown; coarse DEM over the river does not falsely drag the deck down to water. Native heightfield is unmodified, but5m review sampling oversamples coarse source data. Masonry foundation masses extend to datum and embed in the approximate banks. Exact water level, river clearance, quay/abutment/foundation geometry and connecting junctions remain unsurveyed. No bespoke terrain or cadastral research.",
+    "Five existing shared256px graphs supply granite, coated blue metal, stainless rails, concrete pavement and aggregate/asphalt approximation. No private or embedded image copies. Source/near models retain masonry relief, panel seams, arch stones and band rivet groups; distance levels aggregate them and remove thin wires. Far upper band windows are solid proxies while the large main arches stay open. Estimated LOD errors3/1.5/.75/.35m are not certified whole-mesh distances. Physical ordinary-laptop/phone and dense-city timings remain unmeasured."
+  ],
+  "qaCameras": [
+    {
+      "name": "complete-suspension",
+      "position": [
+        -145,
+        105,
+        175
+      ],
+      "lookAt": [
+        0,
+        17,
+        -1
+      ],
+      "fov": 53
+    },
+    {
+      "name": "blue-bands-and-stone-gates",
+      "position": [
+        0,
+        32,
+        145
+      ],
+      "lookAt": [
+        0,
+        15,
+        -1
+      ],
+      "fov": 52
+    },
+    {
+      "name": "open-stone-portal",
+      "position": [
+        -84,
+        16,
+        1
+      ],
+      "lookAt": [
+        -58,
+        18,
+        -1
+      ],
+      "fov": 54
+    },
+    {
+      "name": "upper-band-window",
+      "position": [
+        -77,
+        29,
+        16
+      ],
+      "lookAt": [
+        -63.3,
+        22.2,
+        8
+      ],
+      "fov": 46
+    },
+    {
+      "name": "suspended-deck-and-trusses",
+      "position": [
+        -10,
+        4,
+        34
+      ],
+      "lookAt": [
+        0,
+        8,
+        6
+      ],
+      "fov": 50
+    },
+    {
+      "name": "tram-track-roadway",
+      "position": [
+        -39,
+        11,
+        3
+      ],
+      "lookAt": [
+        55,
+        10,
+        -2
+      ],
+      "fov": 57
+    },
+    {
+      "name": "riveted-band-and-hangers",
+      "position": [
+        -31,
+        20,
+        21
+      ],
+      "lookAt": [
+        -28,
+        15,
+        8
+      ],
+      "fov": 47
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 59512,
+    "vertices": 120480,
+    "materials": 6,
+    "bytes": 5055176,
+    "sha256": "sha256:ce65a335e6c39333d03c42bddf8d170735758434a64412c0cda264de23b2905a"
+  }
+}

@@ -1,27 +1,34 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.30_st_mary_axe",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.30_st_mary_axe",
+    "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3"
+  },
   "sourceHash": "sha256:5e124fd1e7d1ce6554f91a4eb20fb5035fc8fa0788bd5aa2b6984971fda0b16f",
   "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 5696,
   "runtimeLods": [
@@ -90,27 +97,30 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:463c2475770e411a8a8f55f6199967eefc7a72741faeaaa318c89d44ebfe485d",
+      "hash": "sha256:5738c3dccde2373852f9045090107cfcf21ea7c693f9e117088440d621989178",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:5ca3c86045539c8dd84998e36d31c83819b6cb40b72a80f6d55fd69f44b1ab5c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 8,
-        "triangles": 77138,
+        "drawCalls": 9,
+        "triangles": 77230,
         "groundY": -8,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          48,
-          115.9619,
-          83
+          192,
+          193.9619,
+          332
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -121,33 +131,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:3efde3306cbc60de63b407f6560ae9bc05d45da0988ab96abb49ccc1c245e4d1",
+      "hash": "sha256:86f7e98acb102c60b0ff062d8f198ebcd74cd0b90460373d58282198613bce14",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:5ca3c86045539c8dd84998e36d31c83819b6cb40b72a80f6d55fd69f44b1ab5c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 77138,
+        "drawCalls": 9,
+        "triangles": 77230,
         "groundY": -8,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          48,
-          115.9619,
-          83
+          192,
+          193.9619,
+          332
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -158,33 +172,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:389ee5ab2ad22ab1865a97cb4105e673d81529ece90b943882c1deac45326bfd",
+      "hash": "sha256:834e8268211f84ffdd4c447f69f98b3d87d1aa218d6ab5074e86ca1e44c37147",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:5ca3c86045539c8dd84998e36d31c83819b6cb40b72a80f6d55fd69f44b1ab5c",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 8,
-        "triangles": 77138,
+        "drawCalls": 9,
+        "triangles": 77230,
         "groundY": -8,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          48,
-          115.9619,
-          83
+          192,
+          193.9619,
+          332
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -195,33 +213,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:90ed9b98f91c2fb6afb0a9e5e34d9c1306cf7f0e74584c15f75e46d131a62a89",
+      "hash": "sha256:82289859a1610833099404b65695e0ccaee13d0092bcc3aec9bdc59ff489bc7e",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:5ca3c86045539c8dd84998e36d31c83819b6cb40b72a80f6d55fd69f44b1ab5c",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 77138,
+        "drawCalls": 9,
+        "triangles": 77230,
         "groundY": -8,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          48,
-          115.9619,
-          83
+          192,
+          193.9619,
+          332
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -232,14 +254,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:fc48672287f8b7e68f2a558b74f79daf60477711052fcc64b3d7bc26e4d0d019",
+      "hash": "sha256:5b81fadf12392595ebbd464ff9e8b0bef5595d686a3328d62eadfe5cd7238ef8",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:e0b78e4078e907b623d45c91c6f7b5a70077c9a3afb7b9f17752ddcd8054a1fb",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -252,13 +278,13 @@
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          97,
-          151.9619,
-          168
+          388,
+          337.9619,
+          672
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -269,14 +295,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:88161537b13a1fb322fcd2d83348d8d78116acd94810f664010f565f8a0f6b85",
+      "hash": "sha256:e98d529af58d82a15d37251831d47e43e32eed1047f7213867d5dc15a47cdca4",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:e0b78e4078e907b623d45c91c6f7b5a70077c9a3afb7b9f17752ddcd8054a1fb",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -289,13 +319,13 @@
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          97,
-          151.9619,
-          168
+          388,
+          337.9619,
+          672
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -306,14 +336,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:3cfc1440f41bde3ca6b6cfc01446cb4d854b66ed22df90fd29188b33cc8d7129",
+      "hash": "sha256:143ad6720462ee9f04fb4d4fdaa72e07bf15b3ba68d7493834a9eb299aa0228d",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:e0b78e4078e907b623d45c91c6f7b5a70077c9a3afb7b9f17752ddcd8054a1fb",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -326,13 +360,13 @@
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          97,
-          151.9619,
-          168
+          388,
+          337.9619,
+          672
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -343,14 +377,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:6421dd7cabfa22f20229ce70be2f7cb3c5b4a44c72846e56bc218a9d53cf3b8c",
+      "hash": "sha256:a16e54f46f8556fed4d861a2864e1b2581651ac3283c2135aece2d20df8c1ee9",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:e0b78e4078e907b623d45c91c6f7b5a70077c9a3afb7b9f17752ddcd8054a1fb",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -363,13 +401,13 @@
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          97,
-          151.9619,
-          168
+          388,
+          337.9619,
+          672
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -380,14 +418,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:b6d120a6a0668611a44f9cda21723859aefc9501bd093c64c6591ec216490a12",
+      "hash": "sha256:20d1a86355659f2b998e6cac553c61c4d7a5adced8920af2beadf9a6a4ab141a",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:660f3fd979b7a6dfdc00f2337ea9ed6649a755d618157df7ff9620e6f93b352a",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -400,13 +442,13 @@
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          194,
-          189.9619,
-          336
+          776,
+          489.9619,
+          1344
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -417,14 +459,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:b91a21c6f7597162583ba42901d5f465e1251eeebbfe18aa9dc5228152c9694b",
+      "hash": "sha256:64d0321829f23d8db130f308f322d50c0dc33b2cf7bbd3cd39bf69c697f0958f",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:660f3fd979b7a6dfdc00f2337ea9ed6649a755d618157df7ff9620e6f93b352a",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -437,13 +483,13 @@
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          194,
-          189.9619,
-          336
+          776,
+          489.9619,
+          1344
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -454,14 +500,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:89ce67c358f8d7915cb199154efe6206acb94306f5882776a2fbdd8f83cf08c3",
+      "hash": "sha256:f9808a40664870aa1b57bbee9c29b8b57e6cb9825943599c9cba261d9cf839d5",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:660f3fd979b7a6dfdc00f2337ea9ed6649a755d618157df7ff9620e6f93b352a",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -474,13 +524,13 @@
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          194,
-          189.9619,
-          336
+          776,
+          489.9619,
+          1344
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -491,14 +541,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:357ff3b3dc40d6bb2cfdb483b115561deb18605b65c89e7aef4874cf35fa0c0b",
+      "hash": "sha256:0e54a9649913fa8f6135181e5560facba4aa14328570740c2f53cd52bb82e30a",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:660f3fd979b7a6dfdc00f2337ea9ed6649a755d618157df7ff9620e6f93b352a",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -511,13 +565,13 @@
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          194,
-          189.9619,
-          336
+          776,
+          489.9619,
+          1344
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -528,14 +582,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:1dfd2aaf15fff2a4ccec2928fece14cce8b76b5a1466358d7494da8a3e0350e0",
+      "hash": "sha256:ff48f46b62a0fa97ff9d01f98451a0f012f3af16f8b621b5c523e4b7fcf6d197",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:660f3fd979b7a6dfdc00f2337ea9ed6649a755d618157df7ff9620e6f93b352a",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -548,13 +606,13 @@
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          194,
-          189.9619,
-          336
+          776,
+          489.9619,
+          1344
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -565,14 +623,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/diagrid.png",
-      "hash": "sha256:8005ebbce1ec1aff232a0d08be777e243940b3b1f178d589ca02045a3a4caf6d",
+      "hash": "sha256:6dea51cdcabfab564ef18cec3c0d1f194053f77ba9ecd5f73828a205387865f8",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:5ca3c86045539c8dd84998e36d31c83819b6cb40b72a80f6d55fd69f44b1ab5c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -602,14 +664,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/ground.png",
-      "hash": "sha256:8e944aec095dcae6a50c59b0a24aba90cdbcc5af360897cb39f48cba91fd42c7",
+      "hash": "sha256:5c4b8be12d59cfbd3c6b22a2d64926013d5533b940983d418f9ba6529ca5119d",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:5ca3c86045539c8dd84998e36d31c83819b6cb40b72a80f6d55fd69f44b1ab5c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -639,14 +705,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/crown.png",
-      "hash": "sha256:3ca5bbc82b2df30a909ef5f42fea285477c0c6a6134c45f0dd248a1cfec5057e",
+      "hash": "sha256:304186e3ea86bb99266d352fc57a3c602df61d6207fece506f8ece7e256a88e6",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:5ca3c86045539c8dd84998e36d31c83819b6cb40b72a80f6d55fd69f44b1ab5c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -676,14 +746,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/reverse.png",
-      "hash": "sha256:9be2818512e79661445a6d6a0694b62a210f0e0caa2fbe2ba649a5a62daa317f",
+      "hash": "sha256:984b23520beca8de6717c41ec37ca9884b91d191879d9008231ceaf34691c924",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:5ca3c86045539c8dd84998e36d31c83819b6cb40b72a80f6d55fd69f44b1ab5c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -713,14 +787,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/far-silhouette.png",
-      "hash": "sha256:06c90d01f5bfda151795fc28fc7284c33b4c6c3fc163c7dbdd804e5ba5853a89",
+      "hash": "sha256:dc0c33d73394c9f6eba68d9c3ec1b295c8b78d83aa81719e63df3d3b7d41078d",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:5ca3c86045539c8dd84998e36d31c83819b6cb40b72a80f6d55fd69f44b1ab5c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -750,14 +828,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-30_st_mary_axe-skyline.png",
-      "hash": "sha256:c3071e939eb123f74784e2bfb3e9938de09dc60cd8ba1244b5be1fca95310de7",
+      "path": "medium-fi/whole-30-st-mary-axe-skyline.png",
+      "hash": "sha256:1f14180f95f3f4ff9242e1d8eb6fafbf8da5cfba31112648ab0f7f82f8e0ac6a",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:660f3fd979b7a6dfdc00f2337ea9ed6649a755d618157df7ff9620e6f93b352a",
         "level": "skyline",
         "distance": "street",
         "time": "noon",
@@ -787,14 +869,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-30_st_mary_axe-district.png",
-      "hash": "sha256:0120d6c8eb0457e8038ed94049791c02efbcbe8f18f343948705b5df83acffe1",
+      "path": "medium-fi/whole-30-st-mary-axe-district.png",
+      "hash": "sha256:7f02720cca940c673305b06aa9ee5ec4c6179dcb4103d909c563861aac5475eb",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:e0b78e4078e907b623d45c91c6f7b5a70077c9a3afb7b9f17752ddcd8054a1fb",
         "level": "district",
         "distance": "street",
         "time": "noon",
@@ -824,14 +910,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-30_st_mary_axe-street.png",
-      "hash": "sha256:3978fc588ea548b6eaec2dbb6c80780214d218191616a898aa1a0c7600a0b623",
+      "path": "medium-fi/whole-30-st-mary-axe-street.png",
+      "hash": "sha256:b94166484fe155f270e0c1b8d01760b3ce5934bba557eb92662a1473b25f35c2",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:d8c357798cd15336d87ef96298155e1343689a958a4ddb69cd049ca12d5ce348",
         "level": "street",
         "distance": "street",
         "time": "noon",
@@ -861,14 +951,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-30_st_mary_axe-closeup.png",
-      "hash": "sha256:6c7a89e1256c6e6a85d8fd181c7544661692e9572615eec54a6181c6683f3c20",
+      "path": "medium-fi/whole-30-st-mary-axe-closeup.png",
+      "hash": "sha256:03d12f286c49993709bbf0f84c4a07a64b672d0cf015ddd77d8168165b482d88",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:5ca3c86045539c8dd84998e36d31c83819b6cb40b72a80f6d55fd69f44b1ab5c",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -898,14 +992,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:6e08da4e3c72602a4b35230e2f53d8ec8631137c2fade0d68ce3edf5a810a327",
+      "hash": "sha256:46f62cf99247bec4c9d179a1029d26335d64bfeeb184e3cccb342924a4667f1d",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:660f3fd979b7a6dfdc00f2337ea9ed6649a755d618157df7ff9620e6f93b352a",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -918,13 +1016,13 @@
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          97,
-          151.9619,
-          168
+          388,
+          337.9619,
+          672
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -935,14 +1033,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:88161537b13a1fb322fcd2d83348d8d78116acd94810f664010f565f8a0f6b85",
+      "hash": "sha256:e98d529af58d82a15d37251831d47e43e32eed1047f7213867d5dc15a47cdca4",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:e0b78e4078e907b623d45c91c6f7b5a70077c9a3afb7b9f17752ddcd8054a1fb",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -955,13 +1057,13 @@
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          97,
-          151.9619,
-          168
+          388,
+          337.9619,
+          672
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -972,14 +1074,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:3c8089e313d8bd71590fd97abf521bac028b6224a2c3bc88cb15b96cecee55ae",
+      "hash": "sha256:ebe8d628995bcc602d0253d6cb946c4f231c7fa7f35c640cf9f8822e2ccc996d",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:d8c357798cd15336d87ef96298155e1343689a958a4ddb69cd049ca12d5ce348",
         "level": "street",
         "distance": "block",
         "time": "noon",
@@ -992,13 +1098,13 @@
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          97,
-          151.9619,
-          168
+          388,
+          337.9619,
+          672
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -1009,14 +1115,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:036020ba67d94e56b9da70583872e4a06b4673311d3061b9a853290858a56ada",
+      "hash": "sha256:f464ec86b76ccf30e134078857acef950b0473a6650fa6ec0f84ea55ee9e0a4c",
       "state": {
+        "assetId": "molen.worldgen.structure.30_st_mary_axe",
+        "runtimeHash": "sha256:0ed993a138bed526cc761822b30e866f7fa2af718198deb9e4d0728b2f4697e3",
+        "lodHash": "sha256:5ca3c86045539c8dd84998e36d31c83819b6cb40b72a80f6d55fd69f44b1ab5c",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
@@ -1029,13 +1139,13 @@
           "heightmap": "content/worldgen/source/places/gc/gcp/30_st_mary_axe/terrain-fit.height.png"
         },
         "position": [
-          97,
-          151.9619,
-          168
+          388,
+          337.9619,
+          672
         ],
         "lookAt": [
           0,
-          100.9619,
+          133.9619,
           0
         ],
         "graphReads": {
@@ -1046,7 +1156,8 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 4,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     }

@@ -1,26 +1,380 @@
 /** Whole mapped western C5 warehouse; source-informed 2015 exterior, unsurveyed sections. */
 import '../../../../../../../../packages/worldgen/scripts/install-deterministic-math.mjs';
 import fs from 'node:fs';
-import {MeshBufferBuilder} from '../../../../../../../../packages/worldgen/dist/kernel.mjs';
-import {beam,normalFor} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
-import {rgb} from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
-export const P=JSON.parse(fs.readFileSync(new URL('../plan-controls.json',import.meta.url)));
-export const surfaces={wall:{slot:'wall',graph:'stucco',roughness:.96,metallic:0},roof:{slot:'roof',graph:'metal_corrugated',roughness:.85,metallic:.2},foundation:{slot:'foundation',graph:'concrete_plain',roughness:.94,metallic:0},steel:{slot:'trim',graph:'metal_painted',roughness:.66,metallic:.28},brick:{slot:'trim',graph:'brick',roughness:.98,metallic:0}};
-const colors={wall:rgb('a4a08c'),roof:rgb('454b50'),foundation:rgb('98998c'),steel:rgb('657271'),brick:rgb('99694f')},rect=(x0,x1,z0,z1)=>[[x0,z0],[x1,z0],[x1,z1],[x0,z1]];
-export const componentEvidence=[];
-function face(o,k,p,n,tint=colors[k]){let v=normalFor(...p);if(n&&v.reduce((s,a,i)=>s+a*n[i],0)<0){p=[...p].reverse();v=normalFor(...p)}o.addConvexPolygon(k,'palette:#ffffff',p,v,q=>[q[0],q[1]],tint)}
-function cap(o,k,r,y,up){const b=new MeshBufferBuilder();if(!b.addCap(k,'palette:#ffffff',r,[],p=>typeof y==='function'?y(p):y,[0,up,0],p=>p,colors[k]))throw Error('Invalid C5warehouse cap');const m=b.finalize();for(let i=0;i<m.indices.length;i+=3)face(o,k,Array.from(m.indices.slice(i,i+3)).map(j=>Array.from(m.positions.slice(j*3,j*3+3))),[0,up,0]);}
-function prism(o,k,r,y0,y1,tint){const sign=Math.sign(r.reduce((s,a,i)=>{const b=r[(i+1)%r.length];return s+a[0]*b[1]-a[1]*b[0]},0)),top=p=>typeof y1==='function'?y1(p):y1;for(let i=0;i<r.length;i++){const a=r[i],b=r[(i+1)%r.length];face(o,k,[[a[0],y0,a[1]],[b[0],y0,b[1]],[b[0],top(b),b[1]],[a[0],top(a),a[1]]],[(b[1]-a[1])*sign,0,(a[0]-b[0])*sign],tint)}cap(o,k,r,y0,-1);cap(o,k,r,y1,1)}
-const box=(o,k,x,z,w,d,y0,y1,tint)=>prism(o,k,rect(x-w/2,x+w/2,z-d/2,z+d/2),y0,y1,tint),strut=(o,k,a,b,w=.08,tint)=>beam(o,k,a,b,w,w,tint??colors[k]);
-function split(r,keep){const out=[];for(let i=0;i<r.length;i++){const a=r[i],b=r[(i+1)%r.length],aa=keep(a[0]),bb=keep(b[0]);if(aa)out.push(a);if(aa!==bb){const t=-a[0]/(b[0]-a[0]);out.push([0,a[1]+t*(b[1]-a[1])])}}return out}
-function sidePanel(o,x,n,z,w,y0,y1,tint){face(o,'steel',[[x,y0,z-w/2],[x,y0,z+w/2],[x,y1,z+w/2],[x,y1,z-w/2]],[n,0,0],tint)}
-function panelFrame(o,x,z,w,y0,y1,lod,window){for(const zz of[z-w/2,z+w/2])box(o,'foundation',x,zz,.14,.16,y0-.09,y1+.09);for(const y of[y0,y1])box(o,'foundation',x,z,.14,w+.2,y-.08,y+.08);if(lod>=1&&window){strut(o,'steel',[x+.025,y0,z],[x+.025,y1,z],.065);strut(o,'steel',[x+.025,(y0+y1)/2,z-w/2],[x+.025,(y0+y1)/2,z+w/2],.065)}if(lod===3&&!window)for(let i=1;i<12;i++){const y=y0+(y1-y0)*i/12;strut(o,'steel',[x+.025,y,z-w/2],[x+.025,y,z+w/2],.035,rgb('818b86'))}}
-export function buildHouse(o,_frame,lod=3){componentEvidence.length=0;const r=P.nativeRing,x0=Math.min(...r.map(p=>p[0])),x1=Math.max(...r.map(p=>p[0])),z0=Math.min(...r.map(p=>p[1])),z1=Math.max(...r.map(p=>p[1])),half=(x1-x0)/2,roof=p=>P.eave+(P.ridge-P.eave)*(1-Math.abs(p[0])/half),body=[];prism(o,'foundation',r,P.foundationBottom,P.floor);
-for(let i=0;i<r.length;i++){const a=r[i],b=r[(i+1)%r.length];body.push(a);if(a[0]*b[0]<0){const t=-a[0]/(b[0]-a[0]);body.push([0,a[1]+t*(b[1]-a[1])])}}
-const sign=Math.sign(r.reduce((s,a,i)=>{const b=r[(i+1)%r.length];return s+a[0]*b[1]-a[1]*b[0]},0));for(let i=0;i<body.length;i++){const a=body[i],b=body[(i+1)%body.length];face(o,'wall',[[a[0],P.floor,a[1]],[b[0],P.floor,b[1]],[b[0],roof(b),b[1]],[a[0],roof(a),a[1]]],[(b[1]-a[1])*sign,0,(a[0]-b[0])*sign])}cap(o,'wall',r,P.floor,-1);const over=P.roofOverhang,roofRing=rect(x0-over,x1+over,z0-over,z1+over);for(const keep of[x=>x<=0,x=>x>=0])cap(o,'roof',split(roofRing,keep),p=>roof(p)+.12,1);
-let windows=0,rollers=0,pilasters=0;for(const side of[-1,1]){const x=side<0?x0-.05:x1+.05,n=side,at=x+n*.12;box(o,'foundation',x,0,.24,z1-z0,P.eave-.48,P.eave-.27);box(o,'foundation',x,0,.25,z1-z0,P.eave-.12,P.eave+.03);for(let i=0;i<=P.longwallBays;i++){const z=z0+(z1-z0)*i/P.longwallBays;box(o,'foundation',x,z,.3,.3,P.floor,P.eave);pilasters++}for(let i=0;i<P.longwallBays;i++){const z=z0+(z1-z0)*(i+.5)/P.longwallBays,isDoor=i===2||i===5,w=isDoor?2.45:2.1,y0=isDoor?P.floor+.03:1.05,y1=isDoor?3.5:3.45;sidePanel(o,at,n,z,w,y0,y1,isDoor?rgb('838c86'):rgb('294959'));if(side<0){if(isDoor)rollers++;else windows++}if(lod>=1)panelFrame(o,at+n*.04,z,w,y0,y1,lod,!isDoor);if(lod>=2&&i%2===0){face(o,'brick',[[at+n*.005,.3,z-1.3],[at+n*.005,.3,z-.55],[at+n*.005,.58,z-.55],[at+n*.005,.58,z-1.3]],[n,0,0]);}}}
-for(const z of[z0-.07,z1+.07]){const n=z>0?1:-1;for(const x of[x0+.15,x1-.15])box(o,'foundation',x,z,.3,.22,P.floor,P.eave);box(o,'foundation',0,z,x1-x0,.2,P.eave-.47,P.eave-.28);face(o,'steel',[[-1.35,P.floor+.02,z+n*.05],[1.35,P.floor+.02,z+n*.05],[1.35,3.3,z+n*.05],[-1.35,3.3,z+n*.05]],[0,0,n],rgb('657371'));if(lod>=1){for(const x of[-1.43,1.43])box(o,'foundation',x,z+n*.1,.16,.18,P.floor,3.43);box(o,'foundation',0,z+n*.1,3.02,.18,3.27,3.43);}for(const side of[-1,1])strut(o,'steel',[0,P.ridge+.12,z+n*over],[side*(half+over),P.eave-.02,z+n*over],lod?.16:.12,rgb('383f41'))}
-if(lod>=1)strut(o,'steel',[0,P.ridge+.15,z0-over],[0,P.ridge+.15,z1+over],.14,rgb('586165'));if(lod>=2)for(const x of[x0-over,x1+over]){strut(o,'steel',[x,P.eave-.05,z0-over],[x,P.eave-.05,z1+over],.15);for(const z of[z0+.4,z1-.4])strut(o,'steel',[x,P.eave-.08,z],[x,P.floor+.05,z],.075)}if(lod===3)for(let i=0;i<=60;i++){const z=z0-over+(z1-z0+2*over)*i/60;for(const side of[-1,1])strut(o,'roof',[0,P.ridge+.15,z],[side*(half+over),roof([side*(half+over),z])+.15,z],.026,rgb('525a5c'))}
-componentEvidence.push({lod,nativeCorners:4,wholeBody:true,allWalls:true,fullGabledRoof:true,fullGableEnds:true,foundation:true,longwallPilasters:pilasters,observedSideWindowPanels:windows,observedSideRollerDoors:rollers,hiddenNorthPatternEstimated:true,closedGableServiceEntries:2,notWholeC5OrPier2Proxy:true});}
-export const houseSkyline=(o,f)=>buildHouse(o,f,0),houseDistrict=(o,f)=>buildHouse(o,f,1),houseStreet=(o,f)=>buildHouse(o,f,2),houseCloseup=(o,f)=>buildHouse(o,f,3);
-const root='content/worldgen/source/places/'+P.cell+'/'+P.model,camera=[-45,30,52],look=[0,4,0];export const houseModel={id:P.model,key:P.model,cell:P.cell,title:P.title,recipe:'house-model.mjs',surfaces,build:buildHouse,category:'landmark',quality:'medium-fi-exterior',reviewStatus:'review-in-qa.json',geographicStatus:'historical-proposal',orientationPolicy:'approximate-visualization',progressLedger:'qualla-002.PROGRESS.md',brief:P.limitations.join(' '),appearance:{kind:'historical',representedDate:P.representedDate,validFrom:P.validFrom,validUntil:P.validUntil,currentWorldEligible:false},camera,lookAt:look,portableGroundY:P.foundationBottom-.03,mediumFiContext:{scale:1,groundY:0,terrain:{descriptor:'terrain-review.terrain.json',heightmap:'terrain-review.height.png'}},embeddedCanonicalGraphs:['stucco','metal_corrugated','concrete_plain','metal_painted','brick'],qaCameras:[{name:'whole-observed-southwall-windows-rollers-and-roof',position:[-45,23,38],lookAt:look},{name:'whole-northwall-estimated-rear-and-gable',position:[42,26,-43],lookAt:look}],qaLodCameras:['skyline','district','street','closeup'].map(reviewLod=>({name:'whole-c5west-warehouse-'+reviewLod,position:camera,lookAt:look,reviewLod})),runtimeLodOverlay:{module:root+'/models/house-model.mjs',level:'skyline',export:'houseSkyline',errorMeters:.3,surfaces,authoredLevels:{district:{export:'houseDistrict',errorMeters:.2,surfaces},street:{export:'houseStreet',errorMeters:.06,surfaces},closeup:{export:'houseCloseup',errorMeters:.01,surfaces}}},limitations:P.limitations,sourceLicense:'Original deterministic geometry/repository license; original OSM numericalC5footprint ODbLattribution retained. Exactdirectphotographer53500205916/137596559@N07/2015-11-29CC0original forwarehousearchitecture. Section/facadecensus/hiddennorthside estimates; no protectedimagepixels/signs/art/people/phototextures.'};
+import { MeshBufferBuilder } from '../../../../../../../../packages/worldgen/dist/kernel.mjs';
+import {
+  beam,
+  normalFor,
+} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
+export const P = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));
+export const surfaces = {
+  wall: { slot: 'wall', graph: 'stucco', roughness: 0.96, metallic: 0 },
+  roof: { slot: 'roof', graph: 'metal_corrugated', roughness: 0.85, metallic: 0.2 },
+  foundation: { slot: 'foundation', graph: 'concrete_plain', roughness: 0.94, metallic: 0 },
+  steel: { slot: 'trim', graph: 'metal_painted', roughness: 0.66, metallic: 0.28 },
+  brick: { slot: 'trim', graph: 'brick', roughness: 0.98, metallic: 0 },
+};
+const colors = {
+    wall: rgb('a4a08c'),
+    roof: rgb('454b50'),
+    foundation: rgb('98998c'),
+    steel: rgb('657271'),
+    brick: rgb('99694f'),
+  },
+  rect = (x0, x1, z0, z1) => [
+    [x0, z0],
+    [x1, z0],
+    [x1, z1],
+    [x0, z1],
+  ];
+export const componentEvidence = [];
+function face(o, k, p, n, tint = colors[k]) {
+  let v = normalFor(...p);
+  if (n && v.reduce((s, a, i) => s + a * n[i], 0) < 0) {
+    p = [...p].reverse();
+    v = normalFor(...p);
+  }
+  o.addConvexPolygon(k, 'palette:#ffffff', p, v, (q) => [q[0], q[1]], tint);
+}
+function cap(o, k, r, y, up) {
+  const b = new MeshBufferBuilder();
+  if (
+    !b.addCap(
+      k,
+      'palette:#ffffff',
+      r,
+      [],
+      (p) => (typeof y === 'function' ? y(p) : y),
+      [0, up, 0],
+      (p) => p,
+      colors[k],
+    )
+  )
+    throw Error('Invalid C5warehouse cap');
+  const m = b.finalize();
+  for (let i = 0; i < m.indices.length; i += 3)
+    face(
+      o,
+      k,
+      Array.from(m.indices.slice(i, i + 3)).map((j) =>
+        Array.from(m.positions.slice(j * 3, j * 3 + 3)),
+      ),
+      [0, up, 0],
+    );
+}
+function prism(o, k, r, y0, y1, tint) {
+  const sign = Math.sign(
+      r.reduce((s, a, i) => {
+        const b = r[(i + 1) % r.length];
+        return s + a[0] * b[1] - a[1] * b[0];
+      }, 0),
+    ),
+    top = (p) => (typeof y1 === 'function' ? y1(p) : y1);
+  for (let i = 0; i < r.length; i++) {
+    const a = r[i],
+      b = r[(i + 1) % r.length];
+    face(
+      o,
+      k,
+      [
+        [a[0], y0, a[1]],
+        [b[0], y0, b[1]],
+        [b[0], top(b), b[1]],
+        [a[0], top(a), a[1]],
+      ],
+      [(b[1] - a[1]) * sign, 0, (a[0] - b[0]) * sign],
+      tint,
+    );
+  }
+  cap(o, k, r, y0, -1);
+  cap(o, k, r, y1, 1);
+}
+const box = (o, k, x, z, w, d, y0, y1, tint) =>
+    prism(o, k, rect(x - w / 2, x + w / 2, z - d / 2, z + d / 2), y0, y1, tint),
+  strut = (o, k, a, b, w = 0.08, tint) => beam(o, k, a, b, w, w, tint ?? colors[k]);
+function split(r, keep) {
+  const out = [];
+  for (let i = 0; i < r.length; i++) {
+    const a = r[i],
+      b = r[(i + 1) % r.length],
+      aa = keep(a[0]),
+      bb = keep(b[0]);
+    if (aa) out.push(a);
+    if (aa !== bb) {
+      const t = -a[0] / (b[0] - a[0]);
+      out.push([0, a[1] + t * (b[1] - a[1])]);
+    }
+  }
+  return out;
+}
+function sidePanel(o, x, n, z, w, y0, y1, tint) {
+  face(
+    o,
+    'steel',
+    [
+      [x, y0, z - w / 2],
+      [x, y0, z + w / 2],
+      [x, y1, z + w / 2],
+      [x, y1, z - w / 2],
+    ],
+    [n, 0, 0],
+    tint,
+  );
+}
+function panelFrame(o, x, z, w, y0, y1, lod, window) {
+  for (const zz of [z - w / 2, z + w / 2])
+    box(o, 'foundation', x, zz, 0.14, 0.16, y0 - 0.09, y1 + 0.09);
+  for (const y of [y0, y1]) box(o, 'foundation', x, z, 0.14, w + 0.2, y - 0.08, y + 0.08);
+  if (lod >= 1 && window) {
+    strut(o, 'steel', [x + 0.025, y0, z], [x + 0.025, y1, z], 0.065);
+    strut(
+      o,
+      'steel',
+      [x + 0.025, (y0 + y1) / 2, z - w / 2],
+      [x + 0.025, (y0 + y1) / 2, z + w / 2],
+      0.065,
+    );
+  }
+  if (lod === 3 && !window)
+    for (let i = 1; i < 12; i++) {
+      const y = y0 + ((y1 - y0) * i) / 12;
+      strut(o, 'steel', [x + 0.025, y, z - w / 2], [x + 0.025, y, z + w / 2], 0.035, rgb('818b86'));
+    }
+}
+export function buildHouse(o, _frame, lod = 3) {
+  componentEvidence.length = 0;
+  const r = P.nativeRing,
+    x0 = Math.min(...r.map((p) => p[0])),
+    x1 = Math.max(...r.map((p) => p[0])),
+    z0 = Math.min(...r.map((p) => p[1])),
+    z1 = Math.max(...r.map((p) => p[1])),
+    half = (x1 - x0) / 2,
+    roof = (p) => P.eave + (P.ridge - P.eave) * (1 - Math.abs(p[0]) / half),
+    body = [];
+  prism(o, 'foundation', r, P.foundationBottom, P.floor);
+  for (let i = 0; i < r.length; i++) {
+    const a = r[i],
+      b = r[(i + 1) % r.length];
+    body.push(a);
+    if (a[0] * b[0] < 0) {
+      const t = -a[0] / (b[0] - a[0]);
+      body.push([0, a[1] + t * (b[1] - a[1])]);
+    }
+  }
+  const sign = Math.sign(
+    r.reduce((s, a, i) => {
+      const b = r[(i + 1) % r.length];
+      return s + a[0] * b[1] - a[1] * b[0];
+    }, 0),
+  );
+  for (let i = 0; i < body.length; i++) {
+    const a = body[i],
+      b = body[(i + 1) % body.length];
+    face(
+      o,
+      'wall',
+      [
+        [a[0], P.floor, a[1]],
+        [b[0], P.floor, b[1]],
+        [b[0], roof(b), b[1]],
+        [a[0], roof(a), a[1]],
+      ],
+      [(b[1] - a[1]) * sign, 0, (a[0] - b[0]) * sign],
+    );
+  }
+  cap(o, 'wall', r, P.floor, -1);
+  const over = P.roofOverhang,
+    roofRing = rect(x0 - over, x1 + over, z0 - over, z1 + over);
+  for (const keep of [(x) => x <= 0, (x) => x >= 0])
+    cap(o, 'roof', split(roofRing, keep), (p) => roof(p) + 0.12, 1);
+  let windows = 0,
+    rollers = 0,
+    pilasters = 0;
+  for (const side of [-1, 1]) {
+    const x = side < 0 ? x0 - 0.05 : x1 + 0.05,
+      n = side,
+      at = x + n * 0.12;
+    box(o, 'foundation', x, 0, 0.24, z1 - z0, P.eave - 0.48, P.eave - 0.27);
+    box(o, 'foundation', x, 0, 0.25, z1 - z0, P.eave - 0.12, P.eave + 0.03);
+    for (let i = 0; i <= P.longwallBays; i++) {
+      const z = z0 + ((z1 - z0) * i) / P.longwallBays;
+      box(o, 'foundation', x, z, 0.3, 0.3, P.floor, P.eave);
+      pilasters++;
+    }
+    for (let i = 0; i < P.longwallBays; i++) {
+      const z = z0 + ((z1 - z0) * (i + 0.5)) / P.longwallBays,
+        isDoor = i === 2 || i === 5,
+        w = isDoor ? 2.45 : 2.1,
+        y0 = isDoor ? P.floor + 0.03 : 1.05,
+        y1 = isDoor ? 3.5 : 3.45;
+      sidePanel(o, at, n, z, w, y0, y1, isDoor ? rgb('838c86') : rgb('294959'));
+      if (side < 0) {
+        if (isDoor) rollers++;
+        else windows++;
+      }
+      if (lod >= 1) panelFrame(o, at + n * 0.04, z, w, y0, y1, lod, !isDoor);
+      if (lod >= 2 && i % 2 === 0) {
+        face(
+          o,
+          'brick',
+          [
+            [at + n * 0.005, 0.3, z - 1.3],
+            [at + n * 0.005, 0.3, z - 0.55],
+            [at + n * 0.005, 0.58, z - 0.55],
+            [at + n * 0.005, 0.58, z - 1.3],
+          ],
+          [n, 0, 0],
+        );
+      }
+    }
+  }
+  for (const z of [z0 - 0.07, z1 + 0.07]) {
+    const n = z > 0 ? 1 : -1;
+    for (const x of [x0 + 0.15, x1 - 0.15]) box(o, 'foundation', x, z, 0.3, 0.22, P.floor, P.eave);
+    box(o, 'foundation', 0, z, x1 - x0, 0.2, P.eave - 0.47, P.eave - 0.28);
+    face(
+      o,
+      'steel',
+      [
+        [-1.35, P.floor + 0.02, z + n * 0.05],
+        [1.35, P.floor + 0.02, z + n * 0.05],
+        [1.35, 3.3, z + n * 0.05],
+        [-1.35, 3.3, z + n * 0.05],
+      ],
+      [0, 0, n],
+      rgb('657371'),
+    );
+    if (lod >= 1) {
+      for (const x of [-1.43, 1.43])
+        box(o, 'foundation', x, z + n * 0.1, 0.16, 0.18, P.floor, 3.43);
+      box(o, 'foundation', 0, z + n * 0.1, 3.02, 0.18, 3.27, 3.43);
+    }
+    for (const side of [-1, 1])
+      strut(
+        o,
+        'steel',
+        [0, P.ridge + 0.12, z + n * over],
+        [side * (half + over), P.eave - 0.02, z + n * over],
+        lod ? 0.16 : 0.12,
+        rgb('383f41'),
+      );
+  }
+  if (lod >= 1)
+    strut(
+      o,
+      'steel',
+      [0, P.ridge + 0.15, z0 - over],
+      [0, P.ridge + 0.15, z1 + over],
+      0.14,
+      rgb('586165'),
+    );
+  if (lod >= 2)
+    for (const x of [x0 - over, x1 + over]) {
+      strut(o, 'steel', [x, P.eave - 0.05, z0 - over], [x, P.eave - 0.05, z1 + over], 0.15);
+      for (const z of [z0 + 0.4, z1 - 0.4])
+        strut(o, 'steel', [x, P.eave - 0.08, z], [x, P.floor + 0.05, z], 0.075);
+    }
+  if (lod === 3)
+    for (let i = 0; i <= 60; i++) {
+      const z = z0 - over + ((z1 - z0 + 2 * over) * i) / 60;
+      for (const side of [-1, 1])
+        strut(
+          o,
+          'roof',
+          [0, P.ridge + 0.15, z],
+          [side * (half + over), roof([side * (half + over), z]) + 0.15, z],
+          0.026,
+          rgb('525a5c'),
+        );
+    }
+  componentEvidence.push({
+    lod,
+    nativeCorners: 4,
+    wholeBody: true,
+    allWalls: true,
+    fullGabledRoof: true,
+    fullGableEnds: true,
+    foundation: true,
+    longwallPilasters: pilasters,
+    observedSideWindowPanels: windows,
+    observedSideRollerDoors: rollers,
+    hiddenNorthPatternEstimated: true,
+    closedGableServiceEntries: 2,
+    notWholeC5OrPier2Proxy: true,
+  });
+}
+export const houseSkyline = (o, f) => buildHouse(o, f, 0),
+  houseDistrict = (o, f) => buildHouse(o, f, 1),
+  houseStreet = (o, f) => buildHouse(o, f, 2),
+  houseCloseup = (o, f) => buildHouse(o, f, 3);
+const root = 'content/worldgen/source/places/' + P.cell + '/' + P.model,
+  camera = [-45, 30, 52],
+  look = [0, 4, 0];
+export const houseModel = {
+  id: P.model,
+  key: P.model,
+  cell: P.cell,
+  title: P.title,
+  recipe: 'house-model.mjs',
+  surfaces,
+  build: buildHouse,
+  category: 'landmark',
+  quality: 'medium-fi-exterior',
+  reviewStatus: 'review-in-qa.json',
+  geographicStatus: 'historical-proposal',
+  orientationPolicy: 'approximate-visualization',
+  progressLedger: 'qualla-002.PROGRESS.md',
+  brief: P.limitations.join(' '),
+  appearance: {
+    kind: 'historical',
+    representedDate: P.representedDate,
+    validFrom: P.validFrom,
+    validUntil: P.validUntil,
+    currentWorldEligible: false,
+  },
+  camera,
+  lookAt: look,
+  portableGroundY: P.foundationBottom - 0.03,
+  mediumFiContext: {
+    scale: 1,
+    groundY: 0,
+    terrain: { descriptor: 'terrain-review.terrain.json', heightmap: 'terrain-review.height.png' },
+  },
+  embeddedCanonicalGraphs: [
+    'stucco',
+    'metal_corrugated',
+    'concrete_plain',
+    'metal_painted',
+    'brick',
+  ],
+  qaCameras: [
+    {
+      name: 'whole-observed-southwall-windows-rollers-and-roof',
+      position: [-45, 23, 38],
+      lookAt: look,
+    },
+    { name: 'whole-northwall-estimated-rear-and-gable', position: [42, 26, -43], lookAt: look },
+  ],
+  qaLodCameras: ['skyline', 'district', 'street', 'closeup'].map((reviewLod) => ({
+    name: 'whole-c5west-warehouse-' + reviewLod,
+    position: camera,
+    lookAt: look,
+    reviewLod,
+  })),
+  runtimeLodOverlay: {
+    module: root + '/models/house-model.mjs',
+    level: 'skyline',
+    export: 'houseSkyline',
+    errorMeters: 0.3,
+    surfaces,
+    authoredLevels: {
+      district: { export: 'houseDistrict', errorMeters: 0.2, surfaces },
+      street: { export: 'houseStreet', errorMeters: 0.06, surfaces },
+      closeup: { export: 'houseCloseup', errorMeters: 0.01, surfaces },
+    },
+  },
+  limitations: P.limitations,
+  sourceLicense:
+    'Original deterministic geometry/repository license; original OSM numericalC5footprint ODbLattribution retained. Exactdirectphotographer53500205916/137596559@N07/2015-11-29CC0original forwarehousearchitecture. Section/facadecensus/hiddennorthside estimates; no protectedimagepixels/signs/art/people/phototextures.',
+};

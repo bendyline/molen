@@ -1,0 +1,479 @@
+{
+  "id": "tishrin_dam",
+  "title": "Tishrin Dam",
+  "wikidataId": "Q594024",
+  "referenceCoordinate": {
+    "longitude": 38.184086288,
+    "latitude": 36.380875047
+  },
+  "module": "content/worldgen/source/places/sy/sy7/tishrin_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "edge": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "dark": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "blue": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "ceramic": {
+      "slot": "door",
+      "graph": "metal_painted"
+    }
+  },
+  "exportLabel": "Molen original Tishrin Dam and Euphrates powerhouse",
+  "expectedDraftMasterHash": "sha256:6b5ad3a98f770cfc05e58d3d611e401078f9e537a2fc904bdf0c86dbfd8ae456",
+  "visualBrief": "Tishrin Dam’s curved embankment, west concrete section, six curved blue powerhouse roof bays, service galleries, switchyard and the crest road.",
+  "heightPolicy": "The standard Terrarium reservoir sample at [0, −640] sets 326.55 m. The downstream review plane is 316.64 m. The production sampler returns 327.20 m upstream and 304.96–314.82 m downstream across the retained windows.",
+  "nativeAxes": "+X east along the long dam, +Z south toward downstream Euphrates and +Y up.",
+  "sourceFacts": {
+    "mappedIdentity": "relation/11009910",
+    "nativeWaterIds": [
+      11423863,
+      11423860,
+      11424073
+    ],
+    "crestRoadId": 35184700061250,
+    "approachRoadId": 35184544948640,
+    "mappedExtentMeters": 1721.612,
+    "concreteReachMeters": 227.90348834539589,
+    "roofBays": 6,
+    "outletRecesses": 6,
+    "terrainDatum": 326.550781,
+    "terrainGridStep": 16,
+    "terrainTiles": 9,
+    "tailwaterModelY": -9.90771371874996
+  },
+  "materialMethod": "Shared board-formed and plain concrete, gravel, painted metal, standing-seam metal and window graphs with metric UVs and no embedded images.",
+  "limitations": [
+    "The standard Terrarium reservoir sample at [0, −640] sets 326.55 m. The downstream review plane is 316.64 m. The production sampler returns 327.20 m upstream and 304.96–314.82 m downstream across the retained windows.",
+    "The original exterior follows the signed crest, reservoir and tailrace outlines and six photographed blue powerhouse bays. Foundation grades, electrical equipment and outlet recess dimensions are interpreted.",
+    "PMTiles groups the separated upper reservoir and upper tailrace under feature 11423860. The review fixture uses the signed components and measured terrain, while the live viewer determines water elevations per polygon and tile. Downstream datum is pending.",
+    "The retained map includes divided crest lanes and separate service roads. This model leaves the native transportation and building layers present. Plant grades and the exact distance of the buried pipe runs are unknown."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:%D8%B3%D8%AF_%D8%AA%D8%B4%D8%B1%D9%8A%D9%86.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:%D8%B3%D8%AF_%D8%AA%D8%B4%D8%B1%D9%8A%D9%86.jpg",
+      "observed": "The broad upstream panorama shows the position of the low gate structure, control tower and long embankment."
+    },
+    {
+      "url": "https://www.trthaber.com/foto-galeri/suriye-ordusu-teror-orgutu-ypgnin-isgalindeki-tisrin-barajini-kontrol-altina-aldi/75403.html",
+      "imageUrl": "https://www.trthaber.com/foto-galeri/suriye-ordusu-teror-orgutu-ypgnin-isgalindeki-tisrin-barajini-kontrol-altina-aldi/75403.html",
+      "observed": "January 2026 views show the pale deck and painted curb, gray slope, six pale blue curved roofs, concrete generator galleries, light administrative wing, recessed downstream face and the apron electrical yard."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The crossing arc, reservoir side and downstream gorge match the pictured dam. The offset western river opening and arc embankment are distinct sections."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "tishrin-euphrates-overview",
+      "position": [
+        560,
+        255,
+        840
+      ],
+      "lookAt": [
+        -70,
+        -6,
+        -16
+      ],
+      "fov": 50
+    },
+    {
+      "name": "reservoir-crest-road",
+      "position": [
+        -120,
+        95,
+        -700
+      ],
+      "lookAt": [
+        -100,
+        -4,
+        -34
+      ],
+      "fov": 50
+    },
+    {
+      "name": "blue-powerhouse-roofs",
+      "position": [
+        -217,
+        42,
+        260
+      ],
+      "lookAt": [
+        -495,
+        1,
+        -25
+      ],
+      "fov": 50
+    },
+    {
+      "name": "powerhouse-gallery",
+      "position": [
+        -347,
+        48,
+        153
+      ],
+      "lookAt": [
+        -501,
+        -1,
+        15
+      ],
+      "fov": 50
+    },
+    {
+      "name": "outlet-apron-and-pylons",
+      "position": [
+        -529,
+        13,
+        173
+      ],
+      "lookAt": [
+        -496,
+        -5,
+        76
+      ],
+      "fov": 50
+    },
+    {
+      "name": "western-wing-and-bank",
+      "position": [
+        -684,
+        54,
+        189
+      ],
+      "lookAt": [
+        -581,
+        -2,
+        83
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-and-curb",
+      "position": [
+        -370,
+        47,
+        -72
+      ],
+      "lookAt": [
+        -125,
+        4,
+        -134
+      ],
+      "fov": 50
+    },
+    {
+      "name": "eastern-embankment",
+      "position": [
+        548,
+        101,
+        213
+      ],
+      "lookAt": [
+        273,
+        0,
+        3
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -22,
+    "scale": 3.1,
+    "focus": {
+      "center": [
+        -130,
+        0,
+        -10
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sy/sy7/tishrin_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "edge": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "dark": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "blue": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "ceramic": {
+        "slot": "door",
+        "graph": "metal_painted"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "edge": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "blue": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "ceramic": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "edge": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "blue": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "ceramic": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "edge": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "blue": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "ceramic": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "tishrin-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        560,
+        255,
+        840
+      ],
+      "lookAt": [
+        -70,
+        -6,
+        -16
+      ]
+    },
+    {
+      "name": "tishrin-district",
+      "reviewLod": "district",
+      "position": [
+        560,
+        255,
+        840
+      ],
+      "lookAt": [
+        -70,
+        -6,
+        -16
+      ]
+    },
+    {
+      "name": "tishrin-street",
+      "reviewLod": "street",
+      "position": [
+        560,
+        255,
+        840
+      ],
+      "lookAt": [
+        -70,
+        -6,
+        -16
+      ]
+    },
+    {
+      "name": "tishrin-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        560,
+        255,
+        840
+      ],
+      "lookAt": [
+        -70,
+        -6,
+        -16
+      ]
+    }
+  ]
+}

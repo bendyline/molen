@@ -1,0 +1,422 @@
+{
+  "id": "kolnbrein_dam",
+  "title": "Kölnbrein Dam",
+  "wikidataId": "Q378432",
+  "referenceCoordinate": {
+    "longitude": 13.340500295162201,
+    "latitude": 47.079574985917674
+  },
+  "module": "content/worldgen/source/places/u2/u23/kolnbrein_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "body": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "concrete_plain"
+    },
+    "deck": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "glazing": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "glass_frit_triangular",
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        0.77,
+        0.92,
+        0.93,
+        0.28
+      ],
+      "doubleSided": true,
+      "roughness": 0.2
+    }
+  },
+  "exportLabel": "Molen original Kölnbrein Dam, reinforced arch and glazed Airwalk",
+  "expectedDraftMasterHash": "sha256:cd8e1651254c802bbb5ae9cf9186a8ed2257bb8c46e1589872648fcb25de7fbe",
+  "visualBrief": "Kölnbrein Dam’s 626 m double-curved arch, 70 m downstream reinforcement, mapped inspection cabins and the cantilevered steel-and-glass Airwalk.",
+  "heightPolicy": "The signed vertical origin is 1892.17406225 m. The modeled crest is approximately 1906.2 m and foundation 1706.2 m. The review compares 1902 m full pool with the sampled 1892.80 m reservoir stage. The Galgenbichl forebay uses 1701.30 m in both fixtures.",
+  "nativeAxes": "+X follows the crest east-northeast and +Z points downstream into the Malta valley.",
+  "sourceFacts": {
+    "mappedIdentity": "Q378432",
+    "nativeWaterIds": [
+      38689262,
+      38689042
+    ],
+    "crestElevation": 1906.2,
+    "structuralHeightMeters": 200,
+    "documentedCrestLengthMeters": 626,
+    "mappedCrestRoadLengthMeters": 607.7877211029293,
+    "crestWidthMeters": 7.6,
+    "baseWidthMeters": 36,
+    "buttressHeightMeters": 70,
+    "normalPool": 1902,
+    "terrainTiles": 13
+  },
+  "materialMethod": "Shared board-formed and plain concrete, painted steel, standing seam roofing and glazing. The Airwalk uses the shared fritted glass graph with a blended material. No images are embedded.",
+  "limitations": [
+    "The signed vertical origin is 1892.17406225 m. The modeled crest is approximately 1906.2 m and foundation 1706.2 m. The review compares 1902 m full pool with the sampled 1892.80 m reservoir stage. The Galgenbichl forebay uses 1701.30 m in both fixtures.",
+    "The 607.79 m mapped crest road controls the arch, with short tangential extensions into both shoulders to reach 626 m. Crest grade and the shape of the lower concrete sections are exterior approximations.",
+    "The Airwalk plan follows the mapped ring and stair lines. The section, steel connections and depth of the glass deck are approximated from ordinary reference views.",
+    "The terrain remains native at both shoulders and over the lower support. The full and sampled pool stages differ by 9.20 m, reflecting different water-level fixtures. No operating releases are modeled."
+  ],
+  "references": [
+    {
+      "url": "https://visit.verbund.com/de/malta/fuehrungen-und-ausstellungen",
+      "observed": "Operator photos and page show the 200 m arch, 626 m crest, downstream support, stair access, open steel cantilever and glass Airwalk deck."
+    },
+    {
+      "url": "https://www.verbund.com/de-at/ueber-verbund/kraftwerke/unsere-kraftwerke/malta-oberstufe",
+      "observed": "Operator identifies the double-curvature wall and 1902 m full reservoir. Galgenbichl generating facilities are downstream and separate."
+    },
+    {
+      "url": "https://tugraz.elsevierpure.com/ws/portalfiles/portal/80727345/Seismic_20Analysis_20of_20K_F6lnbrein_20Dam.pdf",
+      "observed": "Engineering study identifies the 7.6 m crest, 36 m arch base and 70 m reinforcement height."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The curved native crest road fixes the arch alignment. The Airwalk point, path and stair lines bound the lookout in plan."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "downstream-overview",
+      "position": [
+        -81,
+        131,
+        525
+      ],
+      "lookAt": [
+        -55,
+        -51,
+        33
+      ],
+      "fov": 50
+    },
+    {
+      "name": "airwalk-and-glass",
+      "position": [
+        21,
+        35,
+        38
+      ],
+      "lookAt": [
+        -1.5,
+        12,
+        7.8
+      ],
+      "fov": 50
+    },
+    {
+      "name": "thrust-block-and-cabins",
+      "position": [
+        -32,
+        -52,
+        181
+      ],
+      "lookAt": [
+        -70,
+        -139,
+        54
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upper-reservoir",
+      "position": [
+        -40,
+        110,
+        -345
+      ],
+      "lookAt": [
+        -65,
+        1,
+        43
+      ],
+      "fov": 50
+    },
+    {
+      "name": "crest-and-abutments",
+      "position": [
+        261,
+        54,
+        183
+      ],
+      "lookAt": [
+        -67,
+        7,
+        2
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -187,
+    "scale": 1.3,
+    "focus": {
+      "center": [
+        -52,
+        -52,
+        40
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u2/u23/kolnbrein_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "body": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain"
+      },
+      "deck": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glazing": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "glass_frit_triangular",
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          0.77,
+          0.92,
+          0.93,
+          0.28
+        ],
+        "doubleSided": true,
+        "roughness": 0.2
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "body": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "deck": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              0.77,
+              0.92,
+              0.93,
+              0.28
+            ],
+            "doubleSided": true,
+            "roughness": 0.2
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "body": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "deck": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              0.77,
+              0.92,
+              0.93,
+              0.28
+            ],
+            "doubleSided": true,
+            "roughness": 0.2
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "body": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain"
+          },
+          "deck": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "glass_frit_triangular",
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              0.77,
+              0.92,
+              0.93,
+              0.28
+            ],
+            "doubleSided": true,
+            "roughness": 0.2
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "kolnbrein-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -81,
+        131,
+        525
+      ],
+      "lookAt": [
+        -55,
+        -51,
+        33
+      ]
+    },
+    {
+      "name": "kolnbrein-district",
+      "reviewLod": "district",
+      "position": [
+        -81,
+        131,
+        525
+      ],
+      "lookAt": [
+        -55,
+        -51,
+        33
+      ]
+    },
+    {
+      "name": "kolnbrein-street",
+      "reviewLod": "street",
+      "position": [
+        -81,
+        131,
+        525
+      ],
+      "lookAt": [
+        -55,
+        -51,
+        33
+      ]
+    },
+    {
+      "name": "kolnbrein-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -81,
+        131,
+        525
+      ],
+      "lookAt": [
+        -55,
+        -51,
+        33
+      ]
+    }
+  ]
+}

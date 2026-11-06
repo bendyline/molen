@@ -1,0 +1,70 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.island_bridge_left_bank_viaduct",
+  "inputHash": "sha256:0d1f77fa70fa8c640eb0facf8f3c92467e22012a5bd84cdec62791d9f6b6999f",
+  "sourceHash": "sha256:4b2a2ef5412d430dda673228936c5807acd254879e90586e0d3be93c6251d347",
+  "runtimeHash": "sha256:05a28150006adf1771b0ffc8144c7ffe3a79febbb4e7b5dd921827094d0ae392",
+  "fixtureHash": "sha256:e49b58b6661f61c00bc6093bfa23073ffd411bdbc318cf64764556e0af304224",
+  "placementHash": "sha256:2205b7f939d78dcd365d6eadc79fcab2ed2255f5621584350ffea1519599ef61",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-group.png",
+      "hash": "sha256:2b5503671b0c171f555e4fa0626016fe05ea27451725d1a4dc88b45b98b5e5c2",
+      "camera": {
+        "name": "left-bank-street-noon-high",
+        "mediumName": "street-noon-high",
+        "group": "left-bank",
+        "position": [
+          -1650,
+          20,
+          60
+        ],
+        "lookAt": [
+          -1640,
+          6,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "island.bridge.left.bank.viaduct",
+        "group": "left-bank",
+        "visibleMemberDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "liveSupportGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "One shared Molen material library loads each of three material graphs once for all14 real placed components. The image is this component in its assembly group, not an isolated or synthetic preview."
+}

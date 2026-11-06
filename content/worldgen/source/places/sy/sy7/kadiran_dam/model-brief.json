@@ -1,0 +1,465 @@
+{
+  "id": "kadiran_dam",
+  "title": "Kadiran Dam",
+  "wikidataId": "Q2885439",
+  "referenceCoordinate": {
+    "longitude": 38.747195011,
+    "latitude": 35.885219106
+  },
+  "module": "content/worldgen/source/places/sy/sy7/kadiran_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "dark": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "rock": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "rust": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "steel": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "green": {
+      "slot": "door",
+      "graph": "metal_painted"
+    }
+  },
+  "exportLabel": "Molen original Kadiran Dam and Euphrates generating station",
+  "expectedDraftMasterHash": "sha256:966c2b4017caf84583f4810988d485deb7264b83bfdddbbc7e7f2a387e6c85cf",
+  "visualBrief": "Kadiran Dam’s 2.56 km mapped regulating crest, concrete spillway and rust-painted gate works, crest road with curved lamps, the mapped powerhouse, its service apron and the adjacent tailrace.",
+  "heightPolicy": "The fixed vertical origin is 253.0441 m in the standard terrain frame. The road follows approximate sampled grades and reaches 263.35 m beside the powerhouse. Nearby level 14 and 15 water probes give 253.64–253.66 m for the pool and 246.75–247.50 m for the tailwater.",
+  "nativeAxes": "+X northwest along the Baath Dam crest road and +Z northeast, downstream along the Euphrates.",
+  "sourceFacts": {
+    "mappedIdentity": "Q2885439",
+    "nativeWaterIds": [
+      124182003,
+      127528973
+    ],
+    "crestSpanMeters": 2564.81728,
+    "spillwayModeledBays": 5,
+    "spillwayBayCountStatus": "exterior interpretation",
+    "powerhouseMapId": 35184696276561,
+    "independentBridgeMapId": 35185073880352,
+    "standardTerrainDatum": 253.04405774999998,
+    "terrainTiles": 11
+  },
+  "materialMethod": "Six shared material graphs for board-formed and plain concrete, gravel, standing-seam metal, painted steel and window glazing, with metric UVs and zero embedded images.",
+  "limitations": [
+    "The fixed vertical origin is 253.0441 m in the standard terrain frame. The road follows approximate sampled grades and reaches 263.35 m beside the powerhouse. Nearby level 14 and 15 water probes give 253.64–253.66 m for the pool and 246.75–247.50 m for the tailwater.",
+    "The five modeled spillway bays are an exterior interpretation of the photographed works. Exact bay count and gate operation remain unconfirmed.",
+    "The powerhouse footprint is mapped. Its roof height, window layout, paved apron, and tailrace portals are exterior approximations fitted to the standard terrain and waterways.",
+    "The separate downstream bridge and service roads remain native. Operating equipment and interiors are outside the exterior asset."
+  ],
+  "references": [
+    {
+      "url": "https://www.wikidata.org/wiki/Q2885439",
+      "observed": "Candidate identity and current Kadiran name. The PMTiles Baath Dam road denotes the same crest."
+    },
+    {
+      "url": "https://hawarnews.com/ar/15400275009314",
+      "imageUrl": "https://hawarnews.com/ar/uploads/images/201810/171116_reqa-sida-kideran-28129.webp",
+      "observed": "The operator interview photo shows the low upstream road, curved street lamps, steel fence panels and rust-painted maintenance gates and hoists."
+    },
+    {
+      "url": "https://sana.sy/video/2486017/",
+      "imageUrl": "https://cdn.sananews.sy/2026/05/غلفا-موقع-1.png",
+      "observed": "The downstream still shows sloped buttresses, inset gates and a tall rectangular crest gantry."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The named Baath Dam crest road at the Kadiran candidate coordinates, powerhouse footprint and Euphrates reservoir identify the regulating dam downstream of Tabqa."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "spillway",
+      "position": [
+        -290,
+        48,
+        172
+      ],
+      "lookAt": [
+        -365,
+        0,
+        27
+      ],
+      "fov": 50
+    },
+    {
+      "name": "overall",
+      "position": [
+        -420,
+        410,
+        1460
+      ],
+      "lookAt": [
+        -120,
+        -2,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "road-and-hoists",
+      "position": [
+        -448,
+        26,
+        -21
+      ],
+      "lookAt": [
+        -342,
+        6,
+        19
+      ],
+      "fov": 50
+    },
+    {
+      "name": "powerhouse",
+      "position": [
+        -1007,
+        25,
+        99
+      ],
+      "lookAt": [
+        -1038,
+        6,
+        47
+      ],
+      "fov": 50
+    },
+    {
+      "name": "northwest-tie",
+      "position": [
+        1400,
+        43,
+        70
+      ],
+      "lookAt": [
+        1370,
+        3,
+        -2
+      ],
+      "fov": 50
+    },
+    {
+      "name": "southeast-tie",
+      "position": [
+        -1158,
+        34,
+        39
+      ],
+      "lookAt": [
+        -1101,
+        7,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "tailrace",
+      "position": [
+        -882,
+        22,
+        117
+      ],
+      "lookAt": [
+        -905,
+        -3,
+        33
+      ],
+      "fov": 52
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -9.2,
+    "scale": 1.4,
+    "focus": {
+      "center": [
+        -370,
+        -2,
+        25
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sy/sy7/kadiran_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "dark": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "rock": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "rust": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "steel": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "green": {
+        "slot": "door",
+        "graph": "metal_painted"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "rust": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "green": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "rust": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "green": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "rust": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "steel": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "green": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "kadiran-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -290,
+        48,
+        172
+      ],
+      "lookAt": [
+        -365,
+        0,
+        27
+      ]
+    },
+    {
+      "name": "kadiran-district",
+      "reviewLod": "district",
+      "position": [
+        -290,
+        48,
+        172
+      ],
+      "lookAt": [
+        -365,
+        0,
+        27
+      ]
+    },
+    {
+      "name": "kadiran-street",
+      "reviewLod": "street",
+      "position": [
+        -290,
+        48,
+        172
+      ],
+      "lookAt": [
+        -365,
+        0,
+        27
+      ]
+    },
+    {
+      "name": "kadiran-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -290,
+        48,
+        172
+      ],
+      "lookAt": [
+        -365,
+        0,
+        27
+      ]
+    }
+  ]
+}

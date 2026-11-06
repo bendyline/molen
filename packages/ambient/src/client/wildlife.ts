@@ -32,7 +32,12 @@ export class WildlifeRenderer {
   private cursor = 0;
   private budget: WildlifeRenderBudget = { animals: 32, radius: 180, posesPerFrame: 16 };
 
-  constructor(private readonly prepare?: (object: THREE.Object3D) => void) {
+  /**
+   * `prepare` builds an animal's shaders (a renderer's `prepareObject`). When it returns a
+   * promise, a new animal stays hidden until that settles: drawn at once, the first animal of a
+   * flight built its skinned program mid-frame, for well over 100 ms.
+   */
+  constructor(private readonly prepare?: (object: THREE.Object3D) => unknown) {
     this.group.name = 'ambient:wildlife';
   }
   setBudget(budget: Partial<WildlifeRenderBudget>): void {
@@ -112,7 +117,14 @@ export class WildlifeRenderer {
           object.userData.walkIgnore = true;
         });
         this.group.add(root);
-        this.prepare?.(root);
+        const prepared = this.prepare?.(root);
+        if (prepared instanceof Promise) {
+          root.visible = false;
+          const show = (): void => {
+            root.visible = true;
+          };
+          void prepared.then(show, show);
+        }
         animal = { root, mesh, bones, geometry, key, seen: this.frame };
         this.active.set(agent.id, animal);
       }

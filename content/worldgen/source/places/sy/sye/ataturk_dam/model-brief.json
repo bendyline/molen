@@ -1,0 +1,537 @@
+{
+  "id": "ataturk_dam",
+  "title": "Atatürk Dam",
+  "wikidataId": "Q753776",
+  "referenceCoordinate": {
+    "longitude": 38.317982723,
+    "latitude": 37.480715157
+  },
+  "module": "content/worldgen/source/places/sy/sye/ataturk_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.93
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_basalt",
+      "roughness": 0.96
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.91
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.91
+    },
+    "gravel": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.85
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.74
+    },
+    "dark": {
+      "slot": "door",
+      "graph": "metal_painted",
+      "roughness": 0.8
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.43
+    }
+  },
+  "exportLabel": "Molen original Ataturk Dam complete hydraulic complex",
+  "expectedDraftMasterHash": "sha256:ba9096057a08c6042023e8e587443eb0c78c19e902bd6ec0cfc4f6f962e1eb1f",
+  "visualBrief": "Whole curved Ataturk rock-fill barrier and mapped crest road,eight exposed penstocks with intake headwall and lower saddles,long native-plan powerhouse and adjacent control house,and the separate eastern gated spillway with broad divided chute and stilling-basin retaining walls. Independent terraced hills,roads,settlement,transmission infrastructure and river islands remain native context. Static closed gates;no lettering,logos,people,vehicles or fluid simulation.",
+  "heightPolicy": "One common Y=0 reference equals the standard viewer reservoir sample at local[0,-700],530m. Estimated crest+14m and foundation-155m retain the169m height fact as an overall illustrative envelope,not a surveyed crest/base pair. Tailwater-143m,hall floor-130m,12m hall height,13m control-house height,penstock paths and spillway profile are picture-scale interpretations. No independent component terrain snapping or surrounding field flattening.",
+  "nativeAxes": "+X southeast along the barrier;+Z southwest downstream;-Z northeast toward reservoir;+Y up.",
+  "sourceFacts": {
+    "wikidata": "Q753776",
+    "exactFeature": "way/45183487",
+    "retainedHeight": 169,
+    "retainedLength": 1820,
+    "selectedPlanExtent": 1842.967,
+    "estimatedPipeRadius": 3.4,
+    "exposedPenstocks": 8,
+    "interpretedGateBays": 6,
+    "ownedNativeParts": 2,
+    "retainedNativeParts": 100,
+    "crest": 14,
+    "foundation": -155,
+    "estimatedTailwater": -143,
+    "powerhouseFloor": -130,
+    "powerhouseHeight": 12,
+    "controlHouseHeight": 13,
+    "terrainTiles": 15,
+    "terrainGridStep": 20,
+    "terrainReferenceLocal": [
+      0,
+      -700
+    ],
+    "terrainDatum": 530,
+    "estimatedSpillwaySill": -4,
+    "estimatedGateCenter": 4,
+    "crestBridgeDeck": 15
+  },
+  "materialMethod": "Six existing shared256px graphs:gravel,stone_basalt,concrete_plain,metal_standing_seam,metal_painted,window_grid. Seven near material groups maximum and one far palette group;metric UVs,linear colours,zero embedded/private images. Gravel/stone rock fill,concrete hydraulic walls/road,industrial roof metal,painted penstock/gate steel and actual shared glazing retain semantic slots. No common-library edits invalidate other models.",
+  "limitations": [
+    "Whole curved Ataturk rock-fill barrier and mapped crest road,eight exposed penstocks with intake headwall and lower saddles,long native-plan powerhouse and adjacent control house,and the separate eastern gated spillway with broad divided chute and stilling-basin retaining walls. Independent terraced hills,roads,settlement,transmission infrastructure and river islands remain native context. Static closed gates;no lettering,logos,people,vehicles or fluid simulation.",
+    "One common Y=0 reference equals the standard viewer reservoir sample at local[0,-700],530m. Estimated crest+14m and foundation-155m retain the169m height fact as an overall illustrative envelope,not a surveyed crest/base pair. Tailwater-143m,hall floor-130m,12m hall height,13m control-house height,penstock paths and spillway profile are picture-scale interpretations. No independent component terrain snapping or surrounding field flattening.",
+    "Exact-Q retained dam way45183487,current standard PMTiles and two ordinary aerials. Retained169m height and1820m length are source facts;selected1842.967m longitudinal plan extent is a different control. Crest,foundation,water levels,industrial bays,penstock paths/radii,six gate bays,spillway profile and concealed machinery are explicitly approximate. The model omits copied DSI lettering,logos,people,vehicles and interiors. Native terraced hills and100 independent building components remain context. No bespoke survey research. Physical-device/dense-city timings and numerical LOD errors remain unmeasured.",
+    "Six existing shared256px graphs:gravel,stone_basalt,concrete_plain,metal_standing_seam,metal_painted,window_grid. Seven near material groups maximum and one far palette group;metric UVs,linear colours,zero embedded/private images. Gravel/stone rock fill,concrete hydraulic walls/road,industrial roof metal,painted penstock/gate steel and actual shared glazing retain semantic slots. No common-library edits invalidate other models. Every tier retains whole curved embankment,mapped crest road,eight separate exposed penstocks,intake headwall,native-plan powerhouse/control house,six gates,divided spillway and open stilling basin. Near tiers add actual recesses/outfall openings,pipe collars/saddles,crest rails,roof services and gate head details. Numerical LOD errors12/6/2/.7m are unmeasured authoring guidance.",
+    "Gate threshold corrected toY=-4 and closed-gate centerY=4 below the unchangedY=15 crest bridge. Lower chute outlet remainsY=-142. The floor stays below the visible gate faces;all elevations remain illustrative estimates."
+  ],
+  "references": [
+    {
+      "url": "https://www.anews.com.tr/turkey/2024/12/31/turkiye-launches-5-year-action-plan-for-southeastern-anatolia-project/amp",
+      "imageUrl": "https://i.tmgrup.com.tr/anews/v1/2024/12/31/turkey-launches-5-year-action-plan-for-southeastern-anatolia-project-1735638239527.jpeg",
+      "observed": "Ordinary aerial inspected:whole broad curved rock-fill barrier,crest road,eight exposed parallel penstocks descending the western/southwestern side toward a long low powerhouse,gate tower and broad divided eastern spillway chute,tailrace channels and separate terraced slopes/service roads. Current standard PMTiles resolves reservoir northeast and downstream southwest in the retained frame. No copied DSI lettering or logos;exact heights,bay counts and water levels remain estimates."
+    },
+    {
+      "url": "https://www.ngazete.com/ekonomiye-yillik-17-milyar-dolar-katki-saglayan-ataturk-baraji-32-yasinda-192377h.htm",
+      "imageUrl": "https://www.ngazete.com/d/news/190010.jpg",
+      "observed": "Ordinary aerial inspected:whole broad curved rock-fill barrier,crest road,eight exposed parallel penstocks descending the western/southwestern side toward a long low powerhouse,gate tower and broad divided eastern spillway chute,tailrace channels and separate terraced slopes/service roads. Current standard PMTiles resolves reservoir northeast and downstream southwest in the retained frame. No copied DSI lettering or logos;exact heights,bay counts and water levels remain estimates."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "Whole curved Ataturk rock-fill barrier and mapped crest road,eight exposed penstocks with intake headwall and lower saddles,long native-plan powerhouse and adjacent control house,and the separate eastern gated spillway with broad divided chute and stilling-basin retaining walls. Independent terraced hills,roads,settlement,transmission infrastructure and river islands remain native context. Static closed gates;no lettering,logos,people,vehicles or fluid simulation. One common Y=0 reference equals the standard viewer reservoir sample at local[0,-700],530m. Estimated crest+14m and foundation-155m retain the169m height fact as an overall illustrative envelope,not a surveyed crest/base pair. Tailwater-143m,hall floor-130m,12m hall height,13m control-house height,penstock paths and spillway profile are picture-scale interpretations. No independent component terrain snapping or surrounding field flattening."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-hydraulic-complex",
+      "position": [
+        1300,
+        1100,
+        1600
+      ],
+      "lookAt": [
+        0,
+        -45,
+        130
+      ],
+      "fov": 50
+    },
+    {
+      "name": "rock-fill-and-crest",
+      "position": [
+        -300,
+        320,
+        650
+      ],
+      "lookAt": [
+        0,
+        -35,
+        -100
+      ],
+      "fov": 50
+    },
+    {
+      "name": "eight-penstocks",
+      "position": [
+        -100,
+        160,
+        250
+      ],
+      "lookAt": [
+        -620,
+        -65,
+        50
+      ],
+      "fov": 50
+    },
+    {
+      "name": "powerhouse-and-control",
+      "position": [
+        -100,
+        -60,
+        400
+      ],
+      "lookAt": [
+        -380,
+        -122,
+        200
+      ],
+      "fov": 50
+    },
+    {
+      "name": "six-gates-and-spillway",
+      "position": [
+        600,
+        100,
+        500
+      ],
+      "lookAt": [
+        795,
+        8,
+        192
+      ],
+      "fov": 50
+    },
+    {
+      "name": "upstream-reservoir",
+      "position": [
+        0,
+        350,
+        -1200
+      ],
+      "lookAt": [
+        0,
+        -30,
+        -200
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -160,
+    "scale": 2.5,
+    "focus": {
+      "center": [
+        -560,
+        -60,
+        100
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sy/sye/ataturk_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_basalt",
+        "roughness": 0.96
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.91
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.91
+      },
+      "gravel": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.98
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.85
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.74
+      },
+      "dark": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.8
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.43
+      }
+    },
+    "errorMeters": 12,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 2
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.74
+          },
+          "dark": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.43
+          }
+        },
+        "errorMeters": 0.7
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-ataturk-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        1300,
+        1100,
+        1600
+      ],
+      "lookAt": [
+        0,
+        -45,
+        130
+      ]
+    },
+    {
+      "name": "whole-ataturk-district",
+      "reviewLod": "district",
+      "position": [
+        1300,
+        1100,
+        1600
+      ],
+      "lookAt": [
+        0,
+        -45,
+        130
+      ]
+    },
+    {
+      "name": "whole-ataturk-street",
+      "reviewLod": "street",
+      "position": [
+        1300,
+        1100,
+        1600
+      ],
+      "lookAt": [
+        0,
+        -45,
+        130
+      ]
+    },
+    {
+      "name": "whole-ataturk-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        1300,
+        1100,
+        1600
+      ],
+      "lookAt": [
+        0,
+        -45,
+        130
+      ]
+    }
+  ]
+}

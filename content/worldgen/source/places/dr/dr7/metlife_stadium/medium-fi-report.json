@@ -8,25 +8,27 @@
   },
   "sourceHash": "sha256:b87eef2100088d6360b324d3268f87558855428b85a86d9007a33ffa871d642a",
   "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
-  "fixtureHash": "sha256:10fa6f88913799edc5a4d6d7a36839b9bbc033d413db70980003ffd0559addc5",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 5696,
   "runtimeLods": [
@@ -95,7 +97,7 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:58321c994cc6d3e918618a835655f2141aa2637b180694633014bc9f5e53c867",
+      "hash": "sha256:4a74ecb55dd17be5ad5f3663d9d1711ef836bb6998c2a9ddb48bfb2a8f974596",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -112,13 +114,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          52.8761,
-          58.0416,
-          91.30120000000001
+          144.0761,
+          107.4416,
+          249.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -131,14 +133,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:3051b24b35825b877705081e6f1a0e369d903179ff9d50324a6bd929b411f530",
+      "hash": "sha256:91e9df133da4836d2255696feff7cb168f86eafccc6869ddb1a31f3ae151444b",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -155,13 +157,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          52.8761,
-          58.0416,
-          91.30120000000001
+          144.0761,
+          107.4416,
+          249.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -174,14 +176,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:87afed60c98f2b176d962fb4a7f57407ba4e432e85e640d2319744b138f49ca8",
+      "hash": "sha256:cc284b5622569967eb822f61612eb59bc056fc92a9c839c1499cb7e817521006",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -198,13 +200,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          52.8761,
-          58.0416,
-          91.30120000000001
+          144.0761,
+          107.4416,
+          249.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -217,14 +219,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:c3577e6e2afc06ad7f96c07947394623fa1a1dd55b9edb2dcfcb48c4497ede21",
+      "hash": "sha256:d833d92c57b33d662e4e69f623d9d918d63c23a3df8421e8ecf52b45445163cc",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -241,13 +243,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          52.8761,
-          58.0416,
-          91.30120000000001
+          144.0761,
+          107.4416,
+          249.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -260,14 +262,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:a29abbb48a69122dc9482ed71768cb4c6da10b9ea8dd8e996c10fe6f3d4bc7d5",
+      "hash": "sha256:f2255952f74135c7414042138c47cdf3de068ff48ff28519c7e68ab73fe135ce",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -284,13 +286,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          106.7761,
-          97.64160000000001,
-          184.80120000000002
+          291.0761,
+          215.4416,
+          504.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -303,14 +305,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:1af2608a393e4a9f6dffef99a4d393a2e54962cc20651a2b2a49b9416773da45",
+      "hash": "sha256:81179fcce014608e2011506e2d7f829015b84fe765d964aa51b794944251e09c",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -327,13 +329,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          106.7761,
-          97.64160000000001,
-          184.80120000000002
+          291.0761,
+          215.4416,
+          504.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -346,14 +348,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:fe2acb27fd0d590023a9ed7b670614afc68c4a3b01318cc7cdad646163842a31",
+      "hash": "sha256:793c9914a703dfffdb889988bdfa9cb5344ccfa770665e57269a8edad528aa79",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -370,13 +372,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          106.7761,
-          97.64160000000001,
-          184.80120000000002
+          291.0761,
+          215.4416,
+          504.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -389,14 +391,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:9b53ce4367936db54b577c92a457cfa3539b612e0b2ce52f47e0a98c1a4b5e10",
+      "hash": "sha256:c2d4a44f2df4972d44bb4d9a6a3e47cff79cb325c78e34c33e17c44774af825c",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -413,13 +415,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          106.7761,
-          97.64160000000001,
-          184.80120000000002
+          291.0761,
+          215.4416,
+          504.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -432,14 +434,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:c66bd0adc8946233f2b92c3eba185e1eff73733f5b138696d2c4abfa4e8167c6",
+      "hash": "sha256:e7724dcdfe698a2119c632d4d4f21ff1ddb75c00d070738c5fbf7fd7ec0aa593",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -456,13 +458,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          213.4761,
-          139.44160000000002,
-          369.6012
+          582.0761,
+          329.4416,
+          1008.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -475,14 +477,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:9e3e391776cc059917e5856fc1b069e0aeaeb6cd33e7ab10813d6e0d0ab2a192",
+      "hash": "sha256:dc919e80a68b27daccf0f6b0dcaff5bb344dc4d973fe0419c24da9f786d4c220",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -499,13 +501,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          213.4761,
-          139.44160000000002,
-          369.6012
+          582.0761,
+          329.4416,
+          1008.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -518,14 +520,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:c3a8f1c771b2ef3372e97e81912e282280c17bc202ce599eda01231427e1ba05",
+      "hash": "sha256:9370ad35dae70965b9b145a7f7c111df4a198dc33a136bd4f14fb4b4b0c14bc7",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -542,13 +544,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          213.4761,
-          139.44160000000002,
-          369.6012
+          582.0761,
+          329.4416,
+          1008.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -561,14 +563,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:db6a2f9f86a2a00342198a3f8e35364e6fc60683858eaf81c62aa9b0fb414a29",
+      "hash": "sha256:c54ac5318bd8c146c319275b5bfd35ffb65158bb82cefe0b97ce20dffbb1c0d3",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -585,13 +587,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          213.4761,
-          139.44160000000002,
-          369.6012
+          582.0761,
+          329.4416,
+          1008.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -604,14 +606,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:6fb3582e497be6364080781cfb68eaa7849ad99b916bd2810e6f9bed4913299f",
+      "hash": "sha256:36236d2a83da1c10cb00c144c27c0b41f23f31680a701d95a98c54548ac87b91",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -628,13 +630,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          213.4761,
-          139.44160000000002,
-          369.6012
+          582.0761,
+          329.4416,
+          1008.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -647,14 +649,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/open-three-tier-bowl-field-and-four-corner-boards.png",
-      "hash": "sha256:7e242318717378082b3a921a6c9cc7c872a1c3cc618c039a888edba5e9162748",
+      "hash": "sha256:d56050232a6d97886f4a54240ff06ec341e1977112a74414d066b73588b6bb76",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -690,14 +692,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silver-louvers-recessed-entry-and-glazed-base.png",
-      "hash": "sha256:4eda6f80837c326c279d27ed6ce154d8cfc697ff5600d2c0c9e3e49b218f557b",
+      "hash": "sha256:90a78964b204064072075228a0d203de6d142ca4390fd467c8e07677e5e77ee7",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -733,14 +735,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/upper-tiers-corner-screen-and-open-lighting-rim.png",
-      "hash": "sha256:f65e85d2c66b56429a2cff04368acf1e0b52d9078f8449c14363083ef4518e8c",
+      "hash": "sha256:97fa888b1a57b8cdbc501ef2237eb1caf2bfc0b7e86cf57ea87cdedffc024e92",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -776,14 +778,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/metlife-skyline.png",
-      "hash": "sha256:bc58a2b26af2bc82fa02aca10f18e8e7ad86231d2c955fc93b045af96973aa40",
+      "hash": "sha256:50591763ce422c7aaba12a80dab3b7156e3f4207bf30be844bf672145106aa06",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -819,14 +821,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/metlife-district.png",
-      "hash": "sha256:787f567ee2ba05478bb68739836cd3fee6fb88187ee420b07ac76b425c5e9dc0",
+      "hash": "sha256:469227c23f8cfc3b9ca5657fb79f776b98269b4f2583a130e2a7aa583bc6c05f",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -862,14 +864,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/metlife-street.png",
-      "hash": "sha256:e574de5f080fba265b50d798c8c3cfef3cd60a871172129ec7714825561ab5b5",
+      "hash": "sha256:9f2ea8c93bef64674c2e108e3aa68910857c8527040f1374a360108c18c67d60",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -905,14 +907,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/metlife-closeup.png",
-      "hash": "sha256:942f18bf344a8d65b242c671e284c49180ce5f22fc594a9bb23affbf3678ba74",
+      "hash": "sha256:3e873ba1988251d00e3fb7e92cf1b637b782221eecd857f48545924f4f416880",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -948,14 +950,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:577e452e73d4595baccac0b33540c73b4875ec962c30fe4b23f5cdbb66c83c24",
+      "hash": "sha256:ad853f3b717285a278633420db4ada8048ee134cce692265dfef71b1eff9a53d",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -972,13 +974,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          106.7761,
-          97.64160000000001,
-          184.80120000000002
+          291.0761,
+          215.4416,
+          504.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -991,14 +993,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:1af2608a393e4a9f6dffef99a4d393a2e54962cc20651a2b2a49b9416773da45",
+      "hash": "sha256:81179fcce014608e2011506e2d7f829015b84fe765d964aa51b794944251e09c",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -1015,13 +1017,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          106.7761,
-          97.64160000000001,
-          184.80120000000002
+          291.0761,
+          215.4416,
+          504.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -1034,14 +1036,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:96089fa0dc4b90d7c83d438c2a4ade998cdd502e96fd6585bf474cae6231d7d6",
+      "hash": "sha256:19933d7d598d4f7c66af3cfed87f30067b0894dc52c86c0c87ba2912a8a06495",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -1058,13 +1060,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          106.7761,
-          97.64160000000001,
-          184.80120000000002
+          291.0761,
+          215.4416,
+          504.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -1077,14 +1079,14 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:2dc9928fa28c0af019b40c9cf3e526f871cc766ef7777262ba4f13cd91e472b3",
+      "hash": "sha256:fce956ea02c72f00a5302f6657988dd8aac05a17cdb9198f219cc347fe76b79c",
       "state": {
         "assetId": "molen.worldgen.structure.metlife_stadium",
         "runtimeHash": "sha256:b3fc84b6b0485e45d12f3a20f52e38463456e4181c27a02cd1d40d12e15a577e",
@@ -1101,13 +1103,13 @@
           "heightmap": "content/worldgen/source/places/dr/dr7/metlife_stadium/terrain-review.height.png"
         },
         "position": [
-          106.7761,
-          97.64160000000001,
-          184.80120000000002
+          291.0761,
+          215.4416,
+          504.0012
         ],
         "lookAt": [
           0.0761,
-          41.5416,
+          62.4416,
           0.0012
         ],
         "graphReads": {
@@ -1120,7 +1122,7 @@
           "molen.worldgen.material.window_grid": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1.1,
+        "contextScale": 3,
         "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }

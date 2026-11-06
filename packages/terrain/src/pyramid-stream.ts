@@ -97,6 +97,17 @@ export interface TerrainPyramidHeightSource {
     signal: AbortSignal,
     maxResolution: number,
   ): Promise<{ heightfield: Heightfield; geometry: ChunkGeometry } | undefined>;
+  /**
+   * Mesh a field this source did not produce, a `transformHeightfield` replacement, the way
+   * `loadPrepared` meshes its own (the elevation worker's source does it off the main thread).
+   * Undefined leaves the stream to mesh the field itself.
+   */
+  meshPrepared?(
+    heightfield: Heightfield,
+    address: TerrainPyramidTileAddress,
+    signal: AbortSignal,
+    maxResolution: number,
+  ): Promise<ChunkGeometry | undefined>;
   dispose?(): void;
 }
 
@@ -177,9 +188,10 @@ export interface TerrainPyramidStreamOptions
   surfaceColor?: TerrainSurfaceColor;
   /**
    * Grade source heights before publishing terrain or creating layers. Return the original
-   * field when unchanged to retain worker-prepared geometry. A replacement rebuilds the mesh
-   * and becomes the field shared by surface sampling and every layer. `source` is unmodified,
-   * for stable reference samples; work must respect the context's cancellation signal.
+   * field when unchanged to retain worker-prepared geometry. A replacement is meshed again (by
+   * the source's `meshPrepared` when it has one, otherwise on the main thread) and becomes the
+   * field shared by surface sampling and every layer. `source` is unmodified, for stable
+   * reference samples; work must respect the context's cancellation signal.
    */
   transformHeightfield?: (
     context: TerrainPyramidTileLayerContext,
@@ -228,7 +240,7 @@ export interface TerrainPyramidStreamStats extends TerrainStreamStats {
   preloading: number;
   /** Future-view leaves with terrain and all enabled layers prepared for display. */
   preloaded: number;
-  /** Semantic layer requests that exhausted their retry budget. */
+  /** Semantic layer requests that exhausted their retry budget and wait out a cool-down. */
   failedLayers: number;
   /** Semantic layer requests waiting for or performing another attempt. */
   retryingLayers: number;
@@ -301,7 +313,7 @@ export interface TerrainPyramidStream {
   isLayerVisible(id: string): boolean;
   residentTiles(): TerrainPyramidTileAddress[];
   displayedTiles(): TerrainPyramidTileAddress[];
-  /** Tiles that will not load again on their own: missing plus abandoned. */
+  /** Tiles outside the quick retries: missing plus abandoned (see `failedRetryDelayMs`). */
   failedTiles(): TerrainPyramidTileAddress[];
   /** Per-tile missing/retrying/abandoned detail, so a host can say which state a hole is in. */
   tileFailures(): Array<TerrainTileFailure<TerrainPyramidTileAddress>>;
@@ -1439,6 +1451,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           a.address.z - b.address.z ||
           a.address.x - b.address.x,
       );
+    this.retries.forgetUnwanted((key) => loadWanted.has(key));
     this.updateVisibility();
     this.evictUnused();
     this.startQueuedLoads();
@@ -1873,7 +1886,16 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             },
             this.source,
           );
-          return heightfield === prepared.heightfield ? prepared : { heightfield };
+          if (heightfield === prepared.heightfield) return prepared;
+          // Graded ground beside an airport was meshed on the main thread, up to 20 ms a tile in one
+          // admitted job, while a takeoff streamed in every tile around the field.
+          const geometry = await this.source.meshPrepared?.(
+            heightfield,
+            wanted.address,
+            signal,
+            resolution,
+          );
+          return geometry === undefined ? { heightfield } : { heightfield, geometry };
         },
         controller.signal,
         this.retryPolicy.requestTimeoutMs,
@@ -2285,6 +2307,17 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         this.pendingLayers.delete(key);
       }
     }
+    this.layerRetries.forgetUnwanted((_key, { address, layerId }) => {
+      const tileKey = terrainPyramidTileKey(address);
+      return (
+        layerId !== undefined &&
+        this.layerVisibility.get(layerId) === true &&
+        (displayed.has(tileKey) ||
+          this.wanted.has(tileKey) ||
+          this.replacementTiles.has(tileKey) ||
+          this.displayedLayers.get(layerId)?.has(tileKey) === true)
+      );
+    });
     this.startQueuedLayerLoads();
   }
 

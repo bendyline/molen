@@ -1,13 +1,17 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.beijing_national_stadium",
-  "inputHash": "sha256:a047950580061a82e9cd1622c354471a0cd6e94e2753a7f0a57cad4ffea0b424",
-  "captureReportHash": "sha256:8a068a8bba8b58ecf5ee329143ce3dd5a0f6c5d26f65100798da5d684d3b7c38",
+  "reviewedOn": "2026-10-31",
+  "inputHash": "sha256:e3d7a7ad279dd92b4cf5c8a16e42a1ca782e7e21f97da78d98bec3b679ec80a9",
+  "sourceHash": "sha256:24a3be75c462e0549e8b96960dbdf1447abbcef0814149cd8e0231d666e60af1",
+  "runtimeHash": "sha256:05a3a96bc409f54a983c0937c55f7db0fd7b1c8084466f2d58396ce3c246faea",
+  "captureReportHash": "sha256:c8014e493b6d75e93189464dc03c23aebd47397d34093e9ea33917a862ba8faf",
   "visualReview": {
     "status": "passed",
-    "scope": "Detailed exterior and open bowl in Molen shared material style.",
+    "inputHash": "sha256:e3d7a7ad279dd92b4cf5c8a16e42a1ca782e7e21f97da78d98bec3b679ec80a9",
+    "captureReportHash": "sha256:c8014e493b6d75e93189464dc03c23aebd47397d34093e9ea33917a862ba8faf",
     "inspectedFrames": [
-      "preview.png",
+      "shots/scene-preview.png",
       "shots/turntable/angle_0.png",
       "shots/turntable/angle_1.png",
       "shots/turntable/angle_2.png",
@@ -20,27 +24,12 @@
       "shots/near-oval-track.png",
       "shots/far-saddle.png"
     ],
-    "notes": "All twelve portable and twelve shared frames inspected; full-resolution leaf support and public stair views confirm clean continuous promenade edges and unobstructed stair wells. No inverted membrane, unsupported slab-edge columns or repeated internal wedge faces remain. Distinct saddle, open steel lattice, red inner bowl, three seating tiers, track and oval aperture are present."
+    "notes": "Inspected71 current images:12 portable and12 shared-material views of the preserved detailed master,28 Earth/context/LOD frames and19 actual Molen runtime-cutout views. All four browser tiers retain the saddle,24 primary support units,open crisscross pale steel,red inner bowl,three seating tiers,fixed oval roof opening,track and depressed field. District diagonal density was increased after the first images;upper seating boundaries now join continuously. Street groups19 tread levels and has coarse stair flights;closeup retains89 row bands,80 secondary facade ribbons,roof truss webs,selected secondary roof lines,two screens and grouped stair treads. The close-view roof and rails are deliberately simpler than the master. Forced-close distant levels show faceting,sparser ribbons and visible detail switches;fine steel aliases at some angles."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:52f25be20e0616269a3829360100ea7520872b94f87ad2b51983d03bfbfaba3e",
-    "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
-    "materialGraphs": {
-      "matgraph:molen.worldgen.material.membrane": {
-        "path": "materials/membrane.matgraph.json",
-        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
-      },
-      "matgraph:molen.worldgen.material.metal_painted": {
-        "path": "materials/metal_painted.matgraph.json",
-        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
-      },
-      "matgraph:molen.worldgen.material.concrete_plain": {
-        "path": "materials/concrete_plain.matgraph.json",
-        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
-      }
-    },
+    "inputHash": "sha256:e3d7a7ad279dd92b4cf5c8a16e42a1ca782e7e21f97da78d98bec3b679ec80a9",
+    "captureReportHash": "sha256:7ee9b356a7bfb19d8c0a7085e38f84b604a916b83859531e82c9727c4dd82f41",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -55,17 +44,1482 @@
       "shots/shared/far-saddle.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Physical UV concrete, pale painted steel and membrane surfaces are coherent in geographic sky-PMREM renders. Local roof transparency is preserved. Terrain cutout, restoration and unload assertions passed."
+    "notes": "Three existing shared256px metal_painted,concrete_plain and membrane graphs,with metric UVs and linear vertex colors. Seating,track,turf and dark screens use local PBR palette factors. No private or embedded images. Five draws in skyline/district,six in street/closeup. Every used shared graph is read once in each loaded fixture. The opaque browser membrane aggregates the detailed clear ETFE/acoustic PTFE layers. This is a declared browser approximation;the master remains unchanged.",
+    "fixtureHash": "sha256:226c60fd4dad28afd758f6f72895bf130045d5602ea5706903ef49d3ae1ed754",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    }
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inputHash": "sha256:e3d7a7ad279dd92b4cf5c8a16e42a1ca782e7e21f97da78d98bec3b679ec80a9",
+    "captureReportHash": "sha256:3932a1f8a98c06ce23c481d3094d79a186bad06d497d0a3518c820f2f7a8fd91",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-open-steel-skin.png",
+      "medium-fi/near-leaf-support.png",
+      "medium-fi/near-public-stairs.png",
+      "medium-fi/near-tangent-roof.png",
+      "medium-fi/near-three-tier-bowl.png",
+      "medium-fi/near-oval-track.png",
+      "medium-fi/far-saddle.png",
+      "medium-fi/whole-birds-nest-skyline.png",
+      "medium-fi/whole-birds-nest-district.png",
+      "medium-fi/whole-birds-nest-street.png",
+      "medium-fi/whole-birds-nest-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected71 current images:12 portable and12 shared-material views of the preserved detailed master,28 Earth/context/LOD frames and19 actual Molen runtime-cutout views. All four browser tiers retain the saddle,24 primary support units,open crisscross pale steel,red inner bowl,three seating tiers,fixed oval roof opening,track and depressed field. District diagonal density was increased after the first images;upper seating boundaries now join continuously. Street groups19 tread levels and has coarse stair flights;closeup retains89 row bands,80 secondary facade ribbons,roof truss webs,selected secondary roof lines,two screens and grouped stair treads. The close-view roof and rails are deliberately simpler than the master. Forced-close distant levels show faceting,sparser ribbons and visible detail switches;fine steel aliases at some angles. Preserved detailed source master:1,434,126triangles /134,021,220bytes. Browser triangles 890 / 3520 / 15932 / 63512,bytes 71568 / 274584 / 1174408 / 4628132. Initial skyline+district 346152bytes;closeup 4628132bytes. All four ceilings and eight-draw limits pass. POSITION/NORMAL use separate GPU streams. Error values8/4/2/1m are authoring estimates,not certified Hausdorff measurements. Physical phones/laptops and downtown timing remain unmeasured.",
+    "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629"
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:b4b471f22c01597470010554eed8c2b326416996c709d3dcb9712d140b48f32d",
-    "notes": "Exact mapped pitch polygon area centroid sets origin and its southward long axis sets heading. Published structural envelope matches the orthographic mapped outline within the documented mapping discrepancy. Native Y0 is the plaza; the below-grade athletics floor is protected by the terrain cutout."
+    "notes": "Exact mapped pitch polygon area centroid sets origin and its southward long axis sets heading. Published structural envelope matches the orthographic mapped outline within the documented mapping discrepancy. Native Y0 is the plaza; the below-grade athletics floor is protected by the terrain cutout. Retained anchor[116.39027285127406,39.99141197188173],heading0.02719713994063493 and native+Z south are unchanged. Existing exact-QID mapped envelope and pitch-axis controls remain the basis. The original hand-mapped footprint/published-envelope discrepancy and approximate plaza-to-field height remain explicit;no new PMTiles/DEM or geodetic survey is claimed. Actual Molen structure,terrain,worldgen and shared-material rendering on a synthetic flat plaza datum. The selected stadium shell is replaced while four independent building records and four roads remain unchanged. All1089raw heights and outside-ground probes remain unchanged. At every loaded tier the covering ground is cut above the depressed field and all120inset cutout-edge probes hit the plaza atY0(master) orY0.01(browser). The center turf/marking height lies betweenY-5.05 andY-4.90. Hide/show restores then removes pitch ground. Failed loading retains all five procedural building records and four roads;unload restores original ground geometry and leaves zero live model/support geometries. This proves scoped transform/cutout/lifecycle behavior,not Beijing terrain accuracy or current surrounding buildings."
   },
   "fidelityReview": {
-    "target": "maximum",
     "status": "passed",
-    "scope": "Detailed published exterior in Molen shared material style.",
-    "notes": "Primary Arup engineering drawings and Beijing construction chronicle govern the saddle dimensions, 24 leaf supports, 1.2m continuous facade ribbons, primary trusses, fixed ETFE/PTFE roof and red bowl. Secondary member phases, stair flights, individual seats and ground-to-field offset are architectural reconstructions from the published diagrams; no claim of an exact fabrication-junction inventory is made. Temporary event content and enclosed service rooms are outside exterior scope."
+    "target": "medium-fi",
+    "notes": "Inspected71 current images:12 portable and12 shared-material views of the preserved detailed master,28 Earth/context/LOD frames and19 actual Molen runtime-cutout views. All four browser tiers retain the saddle,24 primary support units,open crisscross pale steel,red inner bowl,three seating tiers,fixed oval roof opening,track and depressed field. District diagonal density was increased after the first images;upper seating boundaries now join continuously. Street groups19 tread levels and has coarse stair flights;closeup retains89 row bands,80 secondary facade ribbons,roof truss webs,selected secondary roof lines,two screens and grouped stair treads. The close-view roof and rails are deliberately simpler than the master. Forced-close distant levels show faceting,sparser ribbons and visible detail switches;fine steel aliases at some angles. Preserved detailed source master:1,434,126triangles /134,021,220bytes. Browser triangles 890 / 3520 / 15932 / 63512,bytes 71568 / 274584 / 1174408 / 4628132. Initial skyline+district 346152bytes;closeup 4628132bytes. All four ceilings and eight-draw limits pass. POSITION/NORMAL use separate GPU streams. Error values8/4/2/1m are authoring estimates,not certified Hausdorff measurements. Physical phones/laptops and downtown timing remain unmeasured."
+  },
+  "retainedDetailedMasterReview": {
+    "sourceHash": "sha256:24a3be75c462e0549e8b96960dbdf1447abbcef0814149cd8e0231d666e60af1",
+    "runtimeHash": "sha256:05a3a96bc409f54a983c0937c55f7db0fd7b1c8084466f2d58396ce3c246faea",
+    "unchanged": true,
+    "originalMaximumFidelityReview": {
+      "target": "maximum",
+      "status": "passed",
+      "scope": "Detailed published exterior in Molen shared material style.",
+      "notes": "Primary Arup engineering drawings and Beijing construction chronicle govern the saddle dimensions, 24 leaf supports, 1.2m continuous facade ribbons, primary trusses, fixed ETFE/PTFE roof and red bowl. Secondary member phases, stair flights, individual seats and ground-to-field offset are architectural reconstructions from the published diagrams; no claim of an exact fabrication-junction inventory is made. Temporary event content and enclosed service rooms are outside exterior scope."
+    }
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/models/source.glb",
+        "hash": "sha256:24a3be75c462e0549e8b96960dbdf1447abbcef0814149cd8e0231d666e60af1",
+        "bytes": 134021220,
+        "triangles": 1434126,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -152.38829040527344,
+          -5.039999961853027,
+          -170.1354217529297
+        ],
+        "max": [
+          152.320556640625,
+          69.02808380126953,
+          170.1883544921875
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/wx/wx4/beijing_national_stadium/model.glb",
+        "hash": "sha256:05a3a96bc409f54a983c0937c55f7db0fd7b1c8084466f2d58396ce3c246faea",
+        "bytes": 134020616,
+        "triangles": 1434126,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -152.38829040527344,
+          -5.039999961853027,
+          -170.1354217529297
+        ],
+        "max": [
+          152.320556640625,
+          69.02808380126953,
+          170.1883544921875
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/wx/wx4/beijing_national_stadium/model.skyline.glb",
+        "hash": "sha256:dee4a0b3505ae630ff3e141d56f75b49b9e6d6940acbb7469f17863e36c9a9ef",
+        "bytes": 71568,
+        "triangles": 890,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -150.20510864257812,
+          -5.039999961853027,
+          -167.754150390625
+        ],
+        "max": [
+          150.20510864257812,
+          69.09021759033203,
+          167.754150390625
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/wx/wx4/beijing_national_stadium/model.district.glb",
+        "hash": "sha256:01ae74f6e51755620e61ce8c71c01c3b4a8593140b84ae89ce3e537b2865111e",
+        "bytes": 274584,
+        "triangles": 3520,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -150.18299865722656,
+          -5.039999961853027,
+          -167.72711181640625
+        ],
+        "max": [
+          150.18299865722656,
+          69.04973602294922,
+          167.72711181640625
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/wx/wx4/beijing_national_stadium/model.street.glb",
+        "hash": "sha256:e7ad6cb2d48c7ebdda7e7d6c5bce23a64d9e9afd8e07cef22884867b7313acaa",
+        "bytes": 1174408,
+        "triangles": 15932,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -151.90982055664062,
+          -5.733333110809326,
+          -169.67535400390625
+        ],
+        "max": [
+          151.90982055664062,
+          69.02912902832031,
+          169.67535400390625
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/wx/wx4/beijing_national_stadium/model.closeup.glb",
+        "hash": "sha256:b4c851dd784e69dc248f92f0ff6783cc8b9d8605c737bb9e5c66670cde1fe219",
+        "bytes": 4628132,
+        "triangles": 63512,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -152.3883056640625,
+          -5.039999961853027,
+          -170.09913635253906
+        ],
+        "max": [
+          152.2886199951172,
+          69.028564453125,
+          170.18780517578125
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "checks": [
+      {
+        "check": "six-clean-current-Khronos-GLBs",
+        "passed": true
+      },
+      {
+        "check": "three-focused-aperture-saddle-tiers-cutout-budget-material-and-GPU-stream-tests",
+        "passed": true
+      },
+      {
+        "check": "scene-validation-and30ticks",
+        "passed": true,
+        "hash": "sha256:687adddf2c0a8ad5242f597a4ed5aa8271009fb5a760519a015be8224f14ff10"
+      }
+    ]
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:19c245ff276845e097f0d9f81b50143c4a6ce834fc125611ee2ba8527595d140",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:dee4a0b3505ae630ff3e141d56f75b49b9e6d6940acbb7469f17863e36c9a9ef",
+        "bytes": 71568,
+        "gzipBytes": 21600,
+        "triangles": 890,
+        "cpuBytes": 65748,
+        "gpuBytes": 65748,
+        "errorMeters": 8,
+        "drawCalls": 5
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:01ae74f6e51755620e61ce8c71c01c3b4a8593140b84ae89ce3e537b2865111e",
+        "bytes": 274584,
+        "gzipBytes": 83754,
+        "triangles": 3520,
+        "cpuBytes": 268728,
+        "gpuBytes": 268728,
+        "errorMeters": 4,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:e7ad6cb2d48c7ebdda7e7d6c5bce23a64d9e9afd8e07cef22884867b7313acaa",
+        "bytes": 1174408,
+        "gzipBytes": 384657,
+        "triangles": 15932,
+        "cpuBytes": 1167384,
+        "gpuBytes": 1167384,
+        "errorMeters": 2,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:b4c851dd784e69dc248f92f0ff6783cc8b9d8605c737bb9e5c66670cde1fe219",
+        "bytes": 4628132,
+        "gzipBytes": 1539553,
+        "triangles": 63512,
+        "cpuBytes": 4621080,
+        "gpuBytes": 4621080,
+        "errorMeters": 1,
+        "drawCalls": 6
+      }
+    ],
+    "initialBytes": 346152,
+    "notes": "Preserved detailed source master:1,434,126triangles /134,021,220bytes. Browser triangles 890 / 3520 / 15932 / 63512,bytes 71568 / 274584 / 1174408 / 4628132. Initial skyline+district 346152bytes;closeup 4628132bytes. All four ceilings and eight-draw limits pass. POSITION/NORMAL use separate GPU streams. Error values8/4/2/1m are authoring estimates,not certified Hausdorff measurements. Physical phones/laptops and downtown timing remain unmeasured."
+  },
+  "siteIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:e3d7a7ad279dd92b4cf5c8a16e42a1ca782e7e21f97da78d98bec3b679ec80a9",
+    "visualFit": {
+      "status": "passed",
+      "basis": "Actual Molen structure,terrain,worldgen and shared-material rendering on a synthetic flat plaza datum. The selected stadium shell is replaced while four independent building records and four roads remain unchanged. All1089raw heights and outside-ground probes remain unchanged. At every loaded tier the covering ground is cut above the depressed field and all120inset cutout-edge probes hit the plaza atY0(master) orY0.01(browser). The center turf/marking height lies betweenY-5.05 andY-4.90. Hide/show restores then removes pitch ground. Failed loading retains all five procedural building records and four roads;unload restores original ground geometry and leaves zero live model/support geometries. This proves scoped transform/cutout/lifecycle behavior,not Beijing terrain accuracy or current surrounding buildings."
+    },
+    "frameReview": {
+      "status": "inspected",
+      "inputHash": "sha256:e3d7a7ad279dd92b4cf5c8a16e42a1ca782e7e21f97da78d98bec3b679ec80a9",
+      "reviewedOn": "2026-10-31",
+      "method": "Inspected71 current images:12 portable and12 shared-material views of the preserved detailed master,28 Earth/context/LOD frames and19 actual Molen runtime-cutout views. All four browser tiers retain the saddle,24 primary support units,open crisscross pale steel,red inner bowl,three seating tiers,fixed oval roof opening,track and depressed field. District diagonal density was increased after the first images;upper seating boundaries now join continuously. Street groups19 tread levels and has coarse stair flights;closeup retains89 row bands,80 secondary facade ribbons,roof truss webs,selected secondary roof lines,two screens and grouped stair treads. The close-view roof and rails are deliberately simpler than the master. Forced-close distant levels show faceting,sparser ribbons and visible detail switches;fine steel aliases at some angles.",
+      "frames": [
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/scene-preview.png",
+          "hash": "sha256:29045cfd127fd2b467673c65514682c9cf6065b678b69a897a549f006c7187c9"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/turntable/angle_0.png",
+          "hash": "sha256:8f3c8af07d23f1ecc4d56a11f03a89f11d457ad0d9d925d43b85183345ade8ac"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/turntable/angle_1.png",
+          "hash": "sha256:f9de63ba6f91e8f9a89134cca341ac00a055a31673356799fc339e0f2623ff04"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/turntable/angle_2.png",
+          "hash": "sha256:a83252e4c746afddfa9a69257d9d8f0461135ab2b15f31aef3b5fe7dfd92901a"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/turntable/angle_3.png",
+          "hash": "sha256:ce8a25128ac56cc9f2f1f6b9e5bd8302c2b56292f87f96295852337d2d356f3b"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/near-open-steel-skin.png",
+          "hash": "sha256:af1e34279ca62d327d6f40170c68640baead0608b28072182e361baa0d3df727"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/near-leaf-support.png",
+          "hash": "sha256:e2fa4d9ccb1462bae4ab37fedd583259c6bdd695d74b3d05e24577668d08c411"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/near-public-stairs.png",
+          "hash": "sha256:c34b5df206c258d9159645478e08b35bfd38cc2338f16968385f1911b775a1fb"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/near-tangent-roof.png",
+          "hash": "sha256:9259e7fd2b999c5417ad0067fcd3e657af7a5c533949771928f99f0ca77d7441"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/near-three-tier-bowl.png",
+          "hash": "sha256:b07fdca11aa8624cfdd1e712e0c1a17ecd7ed37e1f76594d014ea13a2bb0f4de"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/near-oval-track.png",
+          "hash": "sha256:40bf5fd4ae99d5385cb3a1e0ca23419ff049926b2251333531954f83fdac5649"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/far-saddle.png",
+          "hash": "sha256:417e07e07614f806f319af433167fd681cb99ac150c0fef53bd3db640883e500"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/shared/angle-0.png",
+          "hash": "sha256:44508385df27d85ee95d828e1a39bfbecd7c97057016c16cc08822575cdf223e"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/shared/angle-1.png",
+          "hash": "sha256:28eace3a1dd521b350e77b5fed1d9de557b78206574537fa2a7cc276f28cb9e5"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/shared/angle-2.png",
+          "hash": "sha256:b47abd6de8b0f06e53d8cdfbcb87e33cc7a13c3df413537075577d7dd5d5cf36"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/shared/angle-3.png",
+          "hash": "sha256:cf49baafdfd7560c6a8f5035a7b25c1654ed144743e90f17ad2c49432a5f6cb9"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/shared/near-open-steel-skin.png",
+          "hash": "sha256:293905119f98a7d8c2b9fb468f62e11ae57e5560e5c74fcd8010e01f755572eb"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/shared/near-leaf-support.png",
+          "hash": "sha256:a7a36e0ab631162d31072aaef9451852334f2ea2ec5bfcbd16fdbca9129d91d8"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/shared/near-public-stairs.png",
+          "hash": "sha256:e5b7d409020cd17f4c352d7ba00427fd3a1f56692863e667297df44565fccb39"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/shared/near-tangent-roof.png",
+          "hash": "sha256:bc64604d84ab84e834bc8536b9fa8a3feea545ec8c1095ce5a98757bc281dc87"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/shared/near-three-tier-bowl.png",
+          "hash": "sha256:7c4adca4587ce530c71e320654423138f1eb98efe65d621db15f20b1ea4f178f"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/shared/near-oval-track.png",
+          "hash": "sha256:eb431f07c6d96322210e2196367e936d214fe61408a39c6151eef0ac179b0626"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/shared/far-saddle.png",
+          "hash": "sha256:73a510d262e223c2c325d2fa46a796812e6d331687b79aa3125af0aa4ea71bd1"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/shots/shared/placement.png",
+          "hash": "sha256:44a0024c7f6388fa3ca962325c581158f53fd9dc689045361f4e0043c6fcaa02"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/street-noon-economy.png",
+          "hash": "sha256:5fa1cc3ad4edee405501ee4a5c1420fd95825841015f1e49f3913f2b3f06adf9"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/street-noon-high.png",
+          "hash": "sha256:333fc522810542306366f7fdaaebe120162af5027cc749312783d787efe77f41"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/street-late-economy.png",
+          "hash": "sha256:256cbb82ead04ee63ed48b3184997968caee489979089f49a5cba8d833a1cc0b"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/street-late-high.png",
+          "hash": "sha256:4141481847077258a0d38941e1abdd30f76ebe2ced46a6d3ee040bb87a5d5dc1"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/block-noon-economy.png",
+          "hash": "sha256:e7577cf7052194882c34cc7dff8c5fc2214b48332bbbf0eaef6c508d9602d1a4"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/block-noon-high.png",
+          "hash": "sha256:0015d9fb62b279cd7f0f2ed875c1b0f9ce73e7503571b8f42015c8b8bcac2ebc"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/block-late-economy.png",
+          "hash": "sha256:6907216ccc8bb542c4ea870ce660a71f33ddaf8cb66e4ce9c91789aa60d31fa1"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/block-late-high.png",
+          "hash": "sha256:9a43151abbb1bb27c7dfea9a1c89edcdc62deb9a99311caab3b38689c9b3e12e"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/skyline-noon-economy.png",
+          "hash": "sha256:7412339a6efc81a25f910da26bf3b79cc9be4552fc8978627e34d15297062abe"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/skyline-noon-high.png",
+          "hash": "sha256:4abae6ec3f6428d46f04f49fc199f8c36baee78ca6f19abf36b01d8d35a01667"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/skyline-late-economy.png",
+          "hash": "sha256:42c2f2d9d14a33e7ead343e0cb2bdf21f0086569dc59d1daf31d83769aaff92b"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/skyline-late-high.png",
+          "hash": "sha256:7a412db01a2e858158ecc2b45e737b2d1b7f73c0dee6e381ebeb47bcc7be4b61"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/silhouette.png",
+          "hash": "sha256:c4e366bb34ca87445c7c22b5a2a3654451104fed6480fc544afb3a2346694736"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/near-open-steel-skin.png",
+          "hash": "sha256:d24fae74a4321eddeed59f34fb5b146b12f5b8ec47ac9f5d942ef43920415b97"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/near-leaf-support.png",
+          "hash": "sha256:8eeedde3743347151a69e3d47e1552020a76cd184156f1a89cdee144a77fbcc5"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/near-public-stairs.png",
+          "hash": "sha256:25bb02afb75864f516ce6aa5c3f8174a664b9d2930cfb0f3ca1c64e631779ac9"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/near-tangent-roof.png",
+          "hash": "sha256:f71aa71b8927104601062c5fc60144b87067c27c17115cae5c28a326f7aa01d9"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/near-three-tier-bowl.png",
+          "hash": "sha256:9ff7e72587094823262ae8ef4f19bfaa6a6c9cd763e11692c0a9c135c5c4a310"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/near-oval-track.png",
+          "hash": "sha256:2a4e2a8b740af484ee49dfb26b7ee9b769dbd3c4d655965737bbdef2a065ecf1"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/far-saddle.png",
+          "hash": "sha256:ad9c198f87ba9a3a7e3f7a79a997576446f671c3823d3e1d3391d601b7702b06"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/whole-birds-nest-skyline.png",
+          "hash": "sha256:cddf2f864f84ea4b0901f2d0b36798d53758c056bb8e2daa5fe3dc96b18b8414"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/whole-birds-nest-district.png",
+          "hash": "sha256:72434e410b1db5432a9b9705d4cb80e6f24b4acac634a802a8806764a3e4cd28"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/whole-birds-nest-street.png",
+          "hash": "sha256:a519e380e3f56e3f8efb6dac4b0aa19c07509f199d2c88fa53393e5dc89cbf84"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/whole-birds-nest-closeup.png",
+          "hash": "sha256:92fe449c0a33494f1c3fe78e9cd056b2359f1630dcd4e1c9556b15a7df424f3c"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/transition-skyline.png",
+          "hash": "sha256:1d83eb8977ee074ec6ac3d9d2d911c495fdbdfacd7837c904273afc75a951324"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/transition-district.png",
+          "hash": "sha256:0015d9fb62b279cd7f0f2ed875c1b0f9ce73e7503571b8f42015c8b8bcac2ebc"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/transition-street.png",
+          "hash": "sha256:2aeab31938e1a9981d40e7116dbf675f97ec18c703ff7b2c980efe8a4ffb71ff"
+        },
+        {
+          "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/medium-fi/transition-closeup.png",
+          "hash": "sha256:b1c4fb890015ef6105b7b5564a2021fe0f86edaf4647f1c7fa702cc65139394d"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-master-whole-open-saddle.png",
+          "hash": "sha256:bb9ad17b9b4900d384caa7a07c6b902dd6675352c917bf3dbf880d6a42634afa"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-master-east-steel-and-red-bowl.png",
+          "hash": "sha256:8bd0b6087dfe315e8627a9b6c68ca128d7d6727592240c84f9ff4aaca43b2515"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-master-three-tier-bowl.png",
+          "hash": "sha256:35c9235c81c5b9cc626dc2f5074c3f44d152a18a0103391a8200ab07fe068a17"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-master-north-valley-opening.png",
+          "hash": "sha256:68d9b3e2489608ea22a72bab865a640442273f8271fdd055904da11a12d3c243"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-master-oval-aperture-track-and-plaza.png",
+          "hash": "sha256:dfa116cfb6f417985975c9ec338e96c64988cbe44c4432c09266e5637e4e41ad"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-master-district-context.png",
+          "hash": "sha256:fb794e0119636c559122ea0f545bb337807f4561b314e888481b27165e7d8bca"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-skyline-skyline-context.png",
+          "hash": "sha256:77041b53a39b871c3e23312ba9824eb3e7b8611dda4cdeccf80d72c0119c4381"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-district-district-context.png",
+          "hash": "sha256:6d71a9316a2441f6fec757e5f2749b7708dcaedd0e95416c7d1729f730a995f4"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-street-whole-open-saddle.png",
+          "hash": "sha256:3b77abe9cedcaed67b0244c235be3179c02fbc88880e8d0911f64c5c63d7e063"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-street-east-steel-and-red-bowl.png",
+          "hash": "sha256:7999f80b19d9f37e2e8417df54acfdd4146ca8db32e67abafd1b041e71a920ae"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-street-three-tier-bowl.png",
+          "hash": "sha256:ed9842904698bcd6e2528520926d4c6c7ee664ec57d858eed84a09a2c06e8d8f"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-street-north-valley-opening.png",
+          "hash": "sha256:678a0c2bfb1905d11325476c41028d64b6c95473c129a1da84b49c28e8c32838"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-closeup-whole-open-saddle.png",
+          "hash": "sha256:30c3c3274d69d0b322ea8235f47dcf802d381baeccac3d8bc7b34cfe9bbc62a9"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-closeup-east-steel-and-red-bowl.png",
+          "hash": "sha256:cae373ac76184370e7782578ae505906bc9ab612fcbff9d020b9cb6c58793385"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-closeup-three-tier-bowl.png",
+          "hash": "sha256:e85980ce927b141edaab100e32be5d73618dac6dd150b6418fbbc4726f830076"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-closeup-north-valley-opening.png",
+          "hash": "sha256:ac80d1f15ec47d4afc786467c4aa553449045a5d1445049813ea39d333526aed"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-closeup-oval-aperture-track-and-plaza.png",
+          "hash": "sha256:6b9b88d114df2a61ae8b56dc6a06463d6066c8f07e6c2bf6a4f53df85925926c"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-closeup-district-context.png",
+          "hash": "sha256:dc426afc52fb54001bed96914d0bd191d37c0421f5896b2cdbb6484be0a44c0c"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\beijing-browser-review/native/shots/accepted-failure-whole-open-saddle.png",
+          "hash": "sha256:6719fe60afa161dc663dd150b7dabb33260ee79646f86fbd6a9d21f8b18c9008"
+        }
+      ]
+    },
+    "runtimePreservation": {
+      "status": "passed",
+      "notes": "Actual Molen structure,terrain,worldgen and shared-material rendering on a synthetic flat plaza datum. The selected stadium shell is replaced while four independent building records and four roads remain unchanged. All1089raw heights and outside-ground probes remain unchanged. At every loaded tier the covering ground is cut above the depressed field and all120inset cutout-edge probes hit the plaza atY0(master) orY0.01(browser). The center turf/marking height lies betweenY-5.05 andY-4.90. Hide/show restores then removes pitch ground. Failed loading retains all five procedural building records and four roads;unload restores original ground geometry and leaves zero live model/support geometries. This proves scoped transform/cutout/lifecycle behavior,not Beijing terrain accuracy or current surrounding buildings."
+    },
+    "nativeReport": {
+      "path": ".artifacts/beijing-browser-review/native/accepted-report.json",
+      "hash": "sha256:e5dace4dc99dd56d8e2f25b1de26a1f151e03ea33d2283dc2ded11a9035d8a37"
+    },
+    "reports": [
+      {
+        "level": "master",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": null,
+        "modelAtPitch": -4.9730000495910645,
+        "streetEdgeSamples": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": null
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "skyline",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": null,
+        "modelAtPitch": -4.989999771118164,
+        "streetEdgeSamples": [
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582
+        ],
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": null
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "district",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": null,
+        "modelAtPitch": -4.929999828338623,
+        "streetEdgeSamples": [
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482638,
+          0.009999999776482638,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482638,
+          0.009999999776482638,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582
+        ],
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": null
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "street",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": null,
+        "modelAtPitch": -4.929999828338623,
+        "streetEdgeSamples": [
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582
+        ],
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": null
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "closeup",
+        "remainingBuildings": 4,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": null,
+        "modelAtPitch": -4.929999828338623,
+        "streetEdgeSamples": [
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582
+        ],
+        "hideShow": {
+          "hiddenGround": 0,
+          "shownGround": null
+        },
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      },
+      {
+        "level": "failure",
+        "remainingBuildings": 5,
+        "remainingRoads": 4,
+        "independentBuildingsPreserved": true,
+        "independentRoadsPreserved": true,
+        "groundAtPitch": 0,
+        "modelAtPitch": null,
+        "streetEdgeSamples": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "hideShow": null,
+        "unloaded": {
+          "groundRetained": true,
+          "waterRetained": true,
+          "liveGeometries": 0,
+          "liveSupportGeometries": 0
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "This is an architectural reconstruction of the final fixed-roof exterior, not a shop-drawing inventory of every welded junction. Secondary steel plane families, connection phase and stair flights preserve the designer’s construction logic but are reconstructed from the published drawings/photos. Individual seat counts, temporary event overlays and inaccessible service interiors are excluded. Native field grade is scaled from the engineer section; the7.1m basement story is a separate published dimension. The open red concrete bowl, gray1.2m bands,24leaf supports and saddle envelope are explicit mesh geometry.",
+    "Original detailed source and imported design-time master remain byte-identical. Four separately authored browser levels retain the saddle envelope,24 primary support units,open crisscross lattice,red inner bowl,three seating tiers,oval fixed-roof aperture,athletics track and below-plaza field. Distant ribbons are wider and seating is aggregated;small welded junctions,individual seats,handrails and private service rooms remain outside browser detail.",
+    "Skyline uses24 perimeter facets and double-sided broad ribbon faces;district36 facets and reduced square-section ribbon families;street60 facets,19 grouped tread levels and sloping stair flights;closeup80 facets,all89 row bands,24 diamond supports,80 secondary facade ribbons,selected roof web/secondary lines and grouped stair treads. Individual seat counts and fine steel phasing remain source approximations.",
+    "Three existing shared256px painted metal,plain concrete and membrane graphs use metric UVs. Seating,turf,track and screens use local palette factors. No private or embedded images. The browser roof aggregates the transparent ETFE/acoustic PTFE system into opaque pale membrane faces;its fixed oval aperture stays open. This is a deliberate browser representation;the detailed master retains the layers.",
+    "Retained mapped pitch centroid[116.39027285127406,39.99141197188173],heading0.02719713994063493 and native+Z south remain unchanged. Native plazaY0 and fieldY-5 are retained architectural relative grades,not a new terrain or geodetic survey. Existing120-point elliptical cutout remains enclosed by the plaza annulus at every browser tier. No new bespoke reference or terrain fetch.",
+    "LOD error values8/4/2/1m are authoring estimates rather than certified whole-mesh Hausdorff errors. Faceting,coarse distant ribbon density,grouped treads and static transitions remain visible when tiers are forced close. Physical phone/laptop and downtown timing remain unmeasured."
+  ],
+  "sourceFormattingReview": {
+    "status": "passed",
+    "inputHash": "sha256:e3d7a7ad279dd92b4cf5c8a16e42a1ca782e7e21f97da78d98bec3b679ec80a9",
+    "previousInputHash": "sha256:333458032f6bb6ef1107a9674ccf34a3fc7e5a62349f8fe9f9bdd5c6e3e0ac12",
+    "allSixGlbsUnchanged": true,
+    "executableTokensUnchanged": true
+  },
+  "sourceIndexReconciliation": {
+    "date": "2026-10-31",
+    "previousInputHash": "sha256:e3d7a7ad279dd92b4cf5c8a16e42a1ca782e7e21f97da78d98bec3b679ec80a9",
+    "inputHash": "sha256:e3d7a7ad279dd92b4cf5c8a16e42a1ca782e7e21f97da78d98bec3b679ec80a9",
+    "note": "Source-navigation correction only: authoring-index.json now explicitly lists the source-local browser recipe already recorded in spec.runtimeLodOverlay and the accepted runtime recipe hash. All six output hashes, original reports, every reviewed image, shared graph hashes and the current LOD recipe hash were verified unchanged. Existing actual render inspection is retained; no new rendering or architectural approval is claimed.",
+    "outputPins": [
+      {
+        "path": "content/worldgen/source/places/wx/wx4/beijing_national_stadium/models/source.glb",
+        "hash": "sha256:24a3be75c462e0549e8b96960dbdf1447abbcef0814149cd8e0231d666e60af1"
+      },
+      {
+        "path": "content/worldgen/assets/places/wx/wx4/beijing_national_stadium/model.glb",
+        "hash": "sha256:05a3a96bc409f54a983c0937c55f7db0fd7b1c8084466f2d58396ce3c246faea"
+      },
+      {
+        "path": "content/worldgen/assets/places/wx/wx4/beijing_national_stadium/model.skyline.glb",
+        "hash": "sha256:dee4a0b3505ae630ff3e141d56f75b49b9e6d6940acbb7469f17863e36c9a9ef"
+      },
+      {
+        "path": "content/worldgen/assets/places/wx/wx4/beijing_national_stadium/model.district.glb",
+        "hash": "sha256:01ae74f6e51755620e61ce8c71c01c3b4a8593140b84ae89ce3e537b2865111e"
+      },
+      {
+        "path": "content/worldgen/assets/places/wx/wx4/beijing_national_stadium/model.street.glb",
+        "hash": "sha256:e7ad6cb2d48c7ebdda7e7d6c5bce23a64d9e9afd8e07cef22884867b7313acaa"
+      },
+      {
+        "path": "content/worldgen/assets/places/wx/wx4/beijing_national_stadium/model.closeup.glb",
+        "hash": "sha256:b4c851dd784e69dc248f92f0ff6783cc8b9d8605c737bb9e5c66670cde1fe219"
+      }
+    ]
   }
 }

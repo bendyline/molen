@@ -1,0 +1,572 @@
+{
+  "id": "hirakud_dam",
+  "title": "Hirakud Dam",
+  "wikidataId": "Q1940209",
+  "referenceCoordinate": {
+    "longitude": 83.869445,
+    "latitude": 21.530007
+  },
+  "module": "content/worldgen/source/places/tg/tgg/hirakud_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "far": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff"
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "dark": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "earth": {
+      "slot": "foundation",
+      "graph": "gravel"
+    },
+    "gate": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "paint": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "cream": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "white": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "teal": {
+      "slot": "door",
+      "graph": "metal_painted"
+    }
+  },
+  "exportLabel": "Molen original Hirakud Dam and Burla powerhouse",
+  "expectedDraftMasterHash": "sha256:a54bfe8a4a6128decfdbdffb82579eefad899f9374f8db487fffb8320797d2ac",
+  "visualBrief": "Hirakud’s roughly 4.8 km main crest, southwest and northeast gate banks, central embankment, Burla generating hall and the two terminal minars.",
+  "heightPolicy": "Standard Terrarium samples set the reservoir anchor at 188.00 m and the downstream model plane at 153.42 m. Production water samples returned 188.59–188.65 m upstream and 152.89–155.83 m downstream.",
+  "nativeAxes": "+X northeast from Burla toward Gandhi Minar, +Z southeast toward downstream Mahanadi and +Y up.",
+  "sourceFacts": {
+    "mappedCrestId": 35184736306759,
+    "nativeWaterIds": [
+      19311463,
+      4968462222
+    ],
+    "ownedBuildingId": 35184602584087,
+    "spanMeters": 4780,
+    "modeledUpperGateBanks": [
+      13,
+      21
+    ],
+    "towerNames": [
+      "Nehru Minar",
+      "Gandhi Minar"
+    ],
+    "terrainDatum": 188.003906,
+    "terrainGridStep": 12,
+    "terrainTiles": 15,
+    "tailwaterModelY": -34.584808666666675
+  },
+  "materialMethod": "Shared board-formed and plain concrete, gravel, painted metal, brick, standing-seam metal and window graphs with metric UVs and no embedded images.",
+  "limitations": [
+    "Standard Terrarium samples set the reservoir anchor at 188.00 m and the downstream model plane at 153.42 m. Production water samples returned 188.59–188.65 m upstream and 152.89–155.83 m downstream.",
+    "The exterior includes the approximately 4.8 km main crest, both gate banks, Burla generating hall and the two end viewpoints. Remote perimeter dikes remain in native terrain.",
+    "Gate pitch, lower port layout, terrace footprints and equipment dimensions are visually interpreted. Native PMTiles has no distinct water polygon for the small Burla outlet basin.",
+    "The fixture retains all standard height values, including isolated anomalous samples away from the occupied works. It uses the two mapped Mahanadi reaches. The model masks only the mapped Burla building and occupied ground."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Hirakud_Dam_Viewpoint,_Sambalpur.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:Hirakud_Dam_Viewpoint,_Sambalpur.jpg",
+      "observed": "The December 2025 viewpoint shows a continuous straight crest and the long pinkish beige Burla generating hall with a dark roof, its taller cream control block and the downstream retaining wall."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Hirakud_dam.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:Hirakud_dam.jpg",
+      "observed": "The downstream floodgate view shows recessed upper apertures, repeated sloping concrete faces, low outlet ports and the crest lamps. The temporary flood plume is excluded."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Gandhi_Minar.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:Gandhi_Minar.jpg",
+      "observed": "Gandhi Minar has a cream tapering cylindrical shaft, inset window slots and a dark teal observation cab with a broad cap."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Hirakud_Dam_Observation_Tower.jpg",
+      "imageUrl": "https://commons.wikimedia.org/wiki/File:Hirakud_Dam_Observation_Tower.jpg",
+      "observed": "The Burla hilltop view shows Nehru Minar beside the generating hall. The white shaft, broad deck and underside colonnade are distinct from Gandhi Minar."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The continuous crest joins the viewpoints at the southwest and northeast ends. The powerhouse is on the Burla end. The raised walls are viewed from the reservoir and the downstream river banks."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "mahanadi-overview",
+      "position": [
+        96,
+        975,
+        3300
+      ],
+      "lookAt": [
+        0,
+        -16,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "burla-powerhouse",
+      "position": [
+        -2470,
+        40,
+        184
+      ],
+      "lookAt": [
+        -2250,
+        -14,
+        58
+      ],
+      "fov": 50
+    },
+    {
+      "name": "southwest-gate-bank",
+      "position": [
+        -1830,
+        37,
+        237
+      ],
+      "lookAt": [
+        -2000,
+        -13,
+        24
+      ],
+      "fov": 50
+    },
+    {
+      "name": "northeast-gate-bank",
+      "position": [
+        778,
+        40,
+        285
+      ],
+      "lookAt": [
+        774,
+        -13,
+        22
+      ],
+      "fov": 50
+    },
+    {
+      "name": "reservoir-crest",
+      "position": [
+        620,
+        175,
+        -820
+      ],
+      "lookAt": [
+        130,
+        -5,
+        4
+      ],
+      "fov": 50
+    },
+    {
+      "name": "main-earthwork",
+      "position": [
+        -416,
+        90,
+        316
+      ],
+      "lookAt": [
+        -571,
+        -7,
+        28
+      ],
+      "fov": 50
+    },
+    {
+      "name": "gandhi-minar",
+      "position": [
+        2469,
+        99,
+        29
+      ],
+      "lookAt": [
+        2499,
+        84,
+        2
+      ],
+      "fov": 50
+    },
+    {
+      "name": "nehru-minar",
+      "position": [
+        -2498,
+        80,
+        27
+      ],
+      "lookAt": [
+        -2527,
+        62,
+        -3.5
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -48.7,
+    "scale": 5.7,
+    "focus": {
+      "center": [
+        -540,
+        -8,
+        24
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/tg/tgg/hirakud_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "far": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff"
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "dark": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "earth": {
+        "slot": "foundation",
+        "graph": "gravel"
+      },
+      "gate": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "paint": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "cream": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "white": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "teal": {
+        "slot": "door",
+        "graph": "metal_painted"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "cream": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "white": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "teal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "cream": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "white": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "teal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "far": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff"
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "dark": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "gravel"
+          },
+          "gate": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "paint": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "cream": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "white": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "teal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "hirakud-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        96,
+        975,
+        3300
+      ],
+      "lookAt": [
+        0,
+        -16,
+        0
+      ]
+    },
+    {
+      "name": "hirakud-district",
+      "reviewLod": "district",
+      "position": [
+        96,
+        975,
+        3300
+      ],
+      "lookAt": [
+        0,
+        -16,
+        0
+      ]
+    },
+    {
+      "name": "hirakud-street",
+      "reviewLod": "street",
+      "position": [
+        96,
+        975,
+        3300
+      ],
+      "lookAt": [
+        0,
+        -16,
+        0
+      ]
+    },
+    {
+      "name": "hirakud-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        96,
+        975,
+        3300
+      ],
+      "lookAt": [
+        0,
+        -16,
+        0
+      ]
+    }
+  ]
+}

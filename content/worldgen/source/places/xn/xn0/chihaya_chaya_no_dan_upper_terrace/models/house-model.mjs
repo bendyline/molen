@@ -405,5 +405,6 @@ export const houseModel = {
     },
   },
   limitations: P.limitations,
-  sourceLicense: 'Original deterministic present-earthwork geometry under repository license. Original OSM numerical route and building context credited ODbL, GSI factual elevation data credited to GSI. Precinct perimeters are explicit new estimates from primary textual identity/order and native context, not traced plans or measured medieval roof outlines. Exact published Qualla creatorPD-self originals supply ground character; no photographic texture or restored keep/moat/shrine proxy.',
+  sourceLicense:
+    'Original deterministic present-earthwork geometry under repository license. Original OSM numerical route and building context credited ODbL, GSI factual elevation data credited to GSI. Precinct perimeters are explicit new estimates from primary textual identity/order and native context, not traced plans or measured medieval roof outlines. Exact published Qualla creatorPD-self originals supply ground character; no photographic texture or restored keep/moat/shrine proxy.',
 };

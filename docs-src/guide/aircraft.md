@@ -201,7 +201,10 @@ Exposed airplane propellers fade from individual blades into a translucent, soft
 between 20 and 60 rad/s (about 190–570 RPM). The disk follows actual shaft speed, including
 independent engines and spool-down, so blades cannot appear frozen at normal operating RPM.
 Its size and radial colors come from the blade geometry and materials; separate central hubs stay solid.
-This render-only effect needs no model changes and works with WebGL and WebGPU. Helicopter
+This render-only effect needs no model changes and works with WebGL and WebGPU. Fading blades use
+transparent copies of their materials, listed in `userData.materialVariants`: a preparing renderer
+builds them on request, and the blades stay solid until they are built rather than stalling the
+frame the engine starts. Helicopter
 rotors and enclosed jet fans retain their existing animation.
 
 For powered lift, declare `spec.poweredLift` with positive `transitTime`, `controlFadeSpeed`,
@@ -520,8 +523,15 @@ Hosts pass the camera to `visual.updateView(camera)` each frame (in the coordina
 `visual.object.position`). The cabin, the interior's `nodes`, is drawn only within three times
 the aircraft's length or span of it (at least 60 m): cockpits held most of an aircraft's draw calls
 and as many again in the shadow pass, yet from farther away they are a few pixels behind the canopy.
-Boarded and chase views are always near enough. Earth views and the world explorer also prepare an
-aircraft's shaders before its model joins the scene.
+Boarded and chase views are always near enough, but within the cabin a part too small to see from
+the camera (an angular radius under 0.002 rad, a few pixels at 1080p) leaves the frame: from a chase
+camera a P-51's 415 cockpit meshes were a quarter of a takeoff's draws. That culling uses the
+part's render layers, so the `visible` that bindings and damage set is never overridden. A
+`flight-controls` group (the generated cockpit controls) counts as cabin too. Earth views and the
+world explorer also prepare an aircraft's shaders before its model joins the scene.
+
+Double-sided transparent materials (canopies, windscreens, instrument covers) draw in one pass:
+three otherwise draws each such pane twice and builds a program before each face, every frame.
 
 `createAircraftVisual` exposes `cockpit`, a mesh picker and control inventory derived from the
 interior's authored primary-input bindings and glTF node `extras.aircraftControl` metadata.

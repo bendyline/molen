@@ -1,0 +1,405 @@
+{
+  "id": "stone_bridge",
+  "title": "Stone Bridge",
+  "wikidataId": "Q1967331",
+  "referenceCoordinate": {
+    "longitude": 30.31907715,
+    "latitude": 59.9304588
+  },
+  "module": "content/worldgen/source/places/ud/udt/stone_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-stone-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_granite"
+    },
+    "joint": {
+      "slot": "wall",
+      "graph": "stone_granite"
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_granite"
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "walk": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    }
+  },
+  "exportLabel": "Molen original Stone Bridge master",
+  "expectedDraftMasterHash": "sha256:a869056561fa21460e3798ead5b534b3320155e3f322a75b4e81cc2a89221f5d",
+  "visualBrief": "Stone Bridge (Saint Petersburg) exterior: a single broad granite arch with a continuous open masonry vault, wedge-shaped arch ring, coursed spandrels, rounded cornice, cambered two-carriageway deck, two outer walks, ten capped granite parapet piers and iron oval-loop railing panels. Short skewed bearing aprons meet mapped approaches.",
+  "heightPolicy": "Fixed 25 m model datum, approximate 28.5 m end deck and 0.55 m center crown fit the standard viewer field, whose city surface returns are biased above sea level. Standard review water samples 23.437 m. Heights, arch profile and masonry sections are ordinary-photo visualization approximations, not surveyed elevations.",
+  "nativeAxes": "+X crosses southeast along Gorokhovaya Street; -X faces northwest. +Z faces the southwestern canal reach.",
+  "sourceFacts": {
+    "mappedLengthMeters": 19.466,
+    "mappedWidthMeters": 14.329,
+    "skewedOutline": [
+      [
+        8.347,
+        7.164
+      ],
+      [
+        8.467,
+        5.941
+      ],
+      [
+        8.901,
+        1.448
+      ],
+      [
+        9.215,
+        -1.801
+      ],
+      [
+        9.636,
+        -6.2
+      ],
+      [
+        9.733,
+        -7.164
+      ],
+      [
+        -8.356,
+        -7.095
+      ],
+      [
+        -8.467,
+        -6.016
+      ],
+      [
+        -8.865,
+        -1.649
+      ],
+      [
+        -9.198,
+        1.607
+      ],
+      [
+        -9.601,
+        5.791
+      ],
+      [
+        -9.733,
+        7.164
+      ],
+      [
+        8.347,
+        7.164
+      ]
+    ],
+    "openArches": 1,
+    "graniteParapetPiers": 10,
+    "centerCrownMeters": 0.55,
+    "discardedCandidateLengthMeters": 197,
+    "deckElevationMeters": 28.5
+  },
+  "limitations": [
+    "Fixed 25 m model datum, approximate 28.5 m end deck and 0.55 m center crown fit the standard viewer field, whose city surface returns are biased above sea level. Standard review water samples 23.437 m. Heights, arch profile and masonry sections are ordinary-photo visualization approximations, not surveyed elevations.",
+    "Original picture-led medium-fi exterior. The 197 m candidate quantity is incompatible with the exact-QID 19.466 m mapped plan. Granite blocks, railing pattern, arch profile and submerged foundations are approximations. Independent canal walls, street lamps, signs, surrounding buildings and vehicles remain separate map context. No copied photo pixels, downloaded mesh or interiors; physical laptop and phone timings remain pending."
+  ],
+  "materialMethod": "Three reusable graphs supply granite masonry and trim, painted iron, gray road and walk surfaces through four semantic bindings, with metric UVs and zero embedded images.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Kamenny_most.jpg",
+      "observations": "One short open granite arch over the canal; voussoir wedges, coursed spandrels, rounded cornice, cambered deck, granite parapet posts with projecting caps, black iron vertical oval loops and two outside walks. Ordinary shape reference only; no pixels incorporated."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "canal-side",
+      "position": [
+        3,
+        9,
+        32
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "northwest-road",
+      "position": [
+        -18,
+        10,
+        0
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "open-vault",
+      "position": [
+        1,
+        -0.5,
+        23
+      ],
+      "lookAt": [
+        0.55,
+        1.5,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "parapet-detail",
+      "position": [
+        1,
+        7.5,
+        10
+      ],
+      "lookAt": [
+        0,
+        4.8,
+        6.96
+      ],
+      "fov": 50
+    },
+    {
+      "name": "cambered-deck",
+      "position": [
+        15,
+        12,
+        11
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "opposite-canal",
+      "position": [
+        -3,
+        10,
+        -31
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -2,
+    "scale": 0.6,
+    "focus": {
+      "center": [
+        0,
+        2.4,
+        0
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ud/udt/stone_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite"
+      },
+      "joint": {
+        "slot": "wall",
+        "graph": "stone_granite"
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_granite"
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "walk": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      }
+    },
+    "errorMeters": 0.9,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite"
+          },
+          "joint": {
+            "slot": "wall",
+            "graph": "stone_granite"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.35
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite"
+          },
+          "joint": {
+            "slot": "wall",
+            "graph": "stone_granite"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.12
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite"
+          },
+          "joint": {
+            "slot": "wall",
+            "graph": "stone_granite"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_granite"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.04
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "stone-bridge-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        3,
+        9,
+        32
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "stone-bridge-district",
+      "reviewLod": "district",
+      "position": [
+        3,
+        9,
+        32
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "stone-bridge-street",
+      "reviewLod": "street",
+      "position": [
+        3,
+        9,
+        32
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "stone-bridge-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        3,
+        9,
+        32
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    }
+  ]
+}

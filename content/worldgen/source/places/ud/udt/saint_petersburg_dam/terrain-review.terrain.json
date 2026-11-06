@@ -1,0 +1,42 @@
+{
+  "format": "molen/terrain@2",
+  "name": "Saint Petersburg barrier standard viewer terrain",
+  "origin": [
+    -14336,
+    -14336
+  ],
+  "chunkSize": 28672,
+  "tileResolution": 257,
+  "gridSize": [
+    1,
+    1
+  ],
+  "height": {
+    "min": -23,
+    "max": 95
+  },
+  "tiles": {
+    "heightUrl": "terrain-review.height.png"
+  },
+  "layers": [
+    {
+      "name": "review-ground",
+      "color": "#638b8b",
+      "tiling": 1
+    }
+  ],
+  "lod": {
+    "levels": 1,
+    "distanceBands": [],
+    "skirts": false
+  },
+  "streaming": {
+    "loadRadius": 1,
+    "unloadRadius": 2,
+    "maxConcurrentLoads": 1,
+    "maxResidentTiles": 1
+  },
+  "collision": {
+    "enabled": true
+  }
+}

@@ -224,15 +224,16 @@ export function buildHouse(o, _frame, lod = 3) {
           ? a * (1 - u - v) + b * u + c * v
           : b * (1 - v) + c * (1 - u) + d * (u + v - 1);
       };
-    let error = 0, maximumUnderrun = 0;
+    let error = 0,
+      maximumUnderrun = 0;
     if (size > 2)
       for (let px = x; px <= x + size; px += 2)
-        for (let pz = z; pz <= z + size; pz += 2)
-          {
-            const source=sourceGround(px,pz),approx=at(px,pz);
-            error=Math.max(error,Math.abs(approx-source));
-            maximumUnderrun=Math.max(maximumUnderrun,source-approx);
-          }
+        for (let pz = z; pz <= z + size; pz += 2) {
+          const source = sourceGround(px, pz),
+            approx = at(px, pz);
+          error = Math.max(error, Math.abs(approx - source));
+          maximumUnderrun = Math.max(maximumUnderrun, source - approx);
+        }
     if (size > 2 && (error > tolerance || (lod === 0 && maximumUnderrun > 0.025))) {
       const n = size / 2;
       for (const dx of [0, n]) for (const dz of [0, n]) cell(x + dx, z + dz, n);
@@ -272,7 +273,9 @@ export function buildHouse(o, _frame, lod = 3) {
         );
       for (const p of full
         ? [tri]
-        : mergeConvex(convexPieces.map((piece) => clipped(piece, tri)).filter((p) => p.length >= 3))) {
+        : mergeConvex(
+            convexPieces.map((piece) => clipped(piece, tri)).filter((p) => p.length >= 3),
+          )) {
         surfaceCap(o, 'earth', p, (x, z) => at(x, z) + P.sourceSurfaceSeparationMeters, 1);
         topPieces++;
         for (const q of p)
@@ -409,5 +412,6 @@ export const houseModel = {
     },
   },
   limitations: P.limitations,
-  sourceLicense: 'Original deterministic present-earthwork geometry under repository license. Original OSM numerical route and building context credited ODbL, GSI factual elevation data credited to GSI. Precinct perimeters are explicit new estimates from primary textual identity/order and native context, not traced plans or measured medieval roof outlines. Exact published Qualla creatorPD-self originals supply ground character; no photographic texture or restored keep/moat/shrine proxy.',
+  sourceLicense:
+    'Original deterministic present-earthwork geometry under repository license. Original OSM numerical route and building context credited ODbL, GSI factual elevation data credited to GSI. Precinct perimeters are explicit new estimates from primary textual identity/order and native context, not traced plans or measured medieval roof outlines. Exact published Qualla creatorPD-self originals supply ground character; no photographic texture or restored keep/moat/shrine proxy.',
 };

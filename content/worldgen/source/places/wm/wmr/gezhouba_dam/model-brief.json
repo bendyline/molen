@@ -1,0 +1,474 @@
+{
+  "id": "gezhouba_dam",
+  "title": "Gezhouba Dam",
+  "wikidataId": "Q1521211",
+  "referenceCoordinate": {
+    "longitude": 111.27196732487181,
+    "latitude": 30.73910240285595
+  },
+  "module": "content/worldgen/source/places/wm/wmr/gezhouba_dam/models/dam-model.mjs",
+  "builder": "buildDamLevel",
+  "surfaces": {
+    "body": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "bank": {
+      "slot": "wall",
+      "graph": "concrete_boardformed"
+    },
+    "cap": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "white": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "red": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    }
+  },
+  "exportLabel": "Molen original Gezhouba Dam, spillways, powerhouses and ship locks",
+  "expectedDraftMasterHash": "sha256:bb6f459e6a52a947d98a10e599af907d0cf9fb4c4b06008215decd51c97fb096",
+  "visualBrief": "Gezhouba Dam’s 2,606.5 m Yangtze crossing with 42 gates in three groups, two mapped powerhouse wings, red traveling gantries, and three separately oriented ship locks.",
+  "heightPolicy": "The signed vertical origin is 62.58556 m. The crest is fixed at 70 m. The design fixture uses a 66 m headwater and a 39 m navigable tailwater; lock chamber stages are illustrative.",
+  "nativeAxes": "+X follows the main crest east-southeast and +Z crosses the dam toward the lower Yangtze reaches.",
+  "sourceFacts": {
+    "mappedIdentity": "Q1521211",
+    "nativeWaterIds": [
+      23087843,
+      31516913,
+      4524174572,
+      4524174560
+    ],
+    "crestLengthMeters": 2606.5,
+    "crestElevation": 70,
+    "headwaterElevation": 66,
+    "tailwaterElevation": 39,
+    "gateGroups": [
+      {
+        "name": "Dajiang silt sluices",
+        "count": 9,
+        "width": 12,
+        "sill": 41.5,
+        "height": 19.5
+      },
+      {
+        "name": "Erjiang spillway",
+        "count": 27,
+        "width": 12,
+        "sill": 37,
+        "height": 24
+      },
+      {
+        "name": "Sanjiang silt sluices",
+        "count": 6,
+        "width": 12,
+        "sill": 43,
+        "height": 10.5
+      }
+    ],
+    "locks": [
+      {
+        "id": 35184824506290,
+        "width": 34,
+        "length": 280,
+        "closed": false
+      },
+      {
+        "id": 35184824506294,
+        "width": 34,
+        "length": 280,
+        "closed": false
+      },
+      {
+        "id": 35184824507899,
+        "width": 18,
+        "length": 120,
+        "closed": true
+      }
+    ],
+    "terrainTiles": 11
+  },
+  "materialMethod": "Shared board-formed and plain concrete, painted steel, standing seam roofing and glazing with metric UVs and zero embedded images.",
+  "limitations": [
+    "The signed vertical origin is 62.58556 m. The crest is fixed at 70 m. The design fixture uses a 66 m headwater and a 39 m navigable tailwater; lock chamber stages are illustrative.",
+    "The powerhouse footprints and lock axes follow PMTiles. Approach ties, exposed wall heights, equipment spacing and exterior dimensions without mapped controls are approximations.",
+    "Representative standard terrain gives 62.62 m upstream and 42.78 m downstream. The design water fixture is reviewed independently of the terrain-derived viewer stages.",
+    "Lock 3 depicts the mapped legacy chamber with closed gates. The active expansion and temporary cofferdams are outside this exterior asset."
+  ],
+  "references": [
+    {
+      "url": "https://www.jiemian.com/article/13153469.html",
+      "observed": "Wide night aerial distinguishes the main plant, guide islands and separate locks."
+    },
+    {
+      "url": "https://finance.sina.com.cn/jjxw/2024-08-02/doc-inchhhnu1686379.shtml",
+      "observed": "Daylight aerial shows Lock 1’s chamber and gate towers, main spillway, two powerhouse sections, divider walls and red gantries."
+    },
+    {
+      "url": "https://eps.ctg.com.cn/cms/channel/2ywgg1/240612832.htm",
+      "observed": "Operator procurement notice records the 27, 9 and 6 gate groups and their bay and sill dimensions."
+    },
+    {
+      "url": "https://www.ctg.com.cn/ztxw/sxsyxtd/qwjd/2026061116090875890/index.html",
+      "observed": "Operator navigation guide distinguishes all three locks."
+    },
+    {
+      "url": "https://www.ctg.com.cn/sxjt/xwzx55/jtyw44/2024081105135562526/index.html",
+      "observed": "Operator lists a 70 m crest, 66 m upstream design stage and 39 m minimum navigable downstream stage."
+    },
+    {
+      "url": "https://www.shuizhishi.cn/c/2020-04-09/520307.shtml",
+      "observed": "Water reference records a 2606.5 m crossing."
+    },
+    {
+      "url": "https://www.mot.gov.cn/xinwen/jiaotongyaowen/202610/t20261012_4225691.html",
+      "observed": "October 2026 notice records the start of Lock 3 expansion and closure of the original lock. Future works are outside the fixture."
+    },
+    {
+      "url": "https://build.protomaps.com/20261031.pmtiles",
+      "observed": "The standard crest road, two powerhouse wings and three named ship-lock axes define the signed model frame."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "downstream-overview",
+      "position": [
+        130,
+        220,
+        825
+      ],
+      "lookAt": [
+        200,
+        -7,
+        50
+      ],
+      "fov": 50
+    },
+    {
+      "name": "main-sluices",
+      "position": [
+        180,
+        46,
+        145
+      ],
+      "lookAt": [
+        264,
+        -4,
+        10
+      ],
+      "fov": 50
+    },
+    {
+      "name": "first-lock",
+      "position": [
+        -540,
+        65,
+        290
+      ],
+      "lookAt": [
+        -628,
+        1,
+        117
+      ],
+      "fov": 50
+    },
+    {
+      "name": "eastern-locks",
+      "position": [
+        1323,
+        132,
+        430
+      ],
+      "lookAt": [
+        1210,
+        -1,
+        114
+      ],
+      "fov": 50
+    },
+    {
+      "name": "entire-crossing",
+      "position": [
+        203,
+        680,
+        1830
+      ],
+      "lookAt": [
+        210,
+        -4,
+        24
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -42,
+    "scale": 1,
+    "focus": {
+      "center": [
+        210,
+        0,
+        45
+      ]
+    },
+    "cameraYaw": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    },
+    "water": {
+      "path": "native-water.json"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wm/wmr/gezhouba_dam/models/dam-model.mjs",
+    "export": "buildDamSkyline",
+    "surfaces": {
+      "body": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "bank": {
+        "slot": "wall",
+        "graph": "concrete_boardformed"
+      },
+      "cap": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "white": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "red": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      }
+    },
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDamDistrict",
+        "surfaces": {
+          "body": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "bank": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "cap": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "white": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 1.6
+      },
+      "street": {
+        "export": "buildDamStreet",
+        "surfaces": {
+          "body": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "bank": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "cap": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "white": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "closeup": {
+        "export": "buildDamCloseup",
+        "surfaces": {
+          "body": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "bank": {
+            "slot": "wall",
+            "graph": "concrete_boardformed"
+          },
+          "cap": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "white": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "gezhouba-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        130,
+        220,
+        825
+      ],
+      "lookAt": [
+        200,
+        -7,
+        50
+      ]
+    },
+    {
+      "name": "gezhouba-district",
+      "reviewLod": "district",
+      "position": [
+        130,
+        220,
+        825
+      ],
+      "lookAt": [
+        200,
+        -7,
+        50
+      ]
+    },
+    {
+      "name": "gezhouba-street",
+      "reviewLod": "street",
+      "position": [
+        130,
+        220,
+        825
+      ],
+      "lookAt": [
+        200,
+        -7,
+        50
+      ]
+    },
+    {
+      "name": "gezhouba-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        130,
+        220,
+        825
+      ],
+      "lookAt": [
+        200,
+        -7,
+        50
+      ]
+    }
+  ]
+}

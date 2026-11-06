@@ -1,7 +1,8 @@
 /** Complete a site through its independently approved assets, without an aggregate GLB. */
+
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { createHash } from 'node:crypto';
 import { validateStructureCollections } from '../../../../packages/worldgen/scripts/structure-collections.mjs';
 import { readCurrentReferences } from './member-references.mjs';
 

@@ -1,27 +1,34 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.jin_mao_tower",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.jin_mao_tower",
+    "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433"
+  },
   "sourceHash": "sha256:1eec5337a770b7d2407155ff6f18390365110187c586c234ff14da4dd5af9b3d",
   "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
   "rig": {
     "palette": {
-      "dayZenith": "#2f7fd3",
-      "dayHorizon": "#c4dcec",
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
       "twilight": "#f78753",
       "nightZenith": "#020510",
       "nightHorizon": "#121c32",
-      "ground": "#7a7258",
-      "sun": "#fff1d8",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
       "moon": "#dae5f5"
     },
     "lighting": {
-      "sunIntensity": 3.5,
-      "dayAmbient": 2,
-      "nightAmbient": 0.05
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
     },
-    "toneMapping": "neutral",
-    "exposure": 1
+    "toneMapping": "aces",
+    "exposure": 1.05
   },
   "neighborTriangles": 5696,
   "runtimeLods": [
@@ -90,27 +97,30 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:1b087c9148b85fd956e6cf0ba924b0641eeb01e1e507848e5fb68325b8600ef9",
+      "hash": "sha256:3e70b1e326a7ebb28a8771a199e02050c19733883ed1749fcd6def9defc1357b",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:836c004be72f32ff0d38712b071c6fef63eb2c8a1b6e50c9dc9539298271fc8a",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 3,
-        "triangles": 29495,
+        "drawCalls": 9,
+        "triangles": 56099,
         "groundY": -14,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          48,
-          236.25,
-          83
+          432,
+          444.25,
+          747
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -121,33 +131,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:e34cf2fd2418e5deab40af7eea3bd4401a9ec4ec6c03b0d1770d33e15122d491",
+      "hash": "sha256:6bd3c00503ad272e81e1861a894db0fb453484bf2a5f1b30a1ddc6214d3e3862",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:836c004be72f32ff0d38712b071c6fef63eb2c8a1b6e50c9dc9539298271fc8a",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 3,
-        "triangles": 29495,
+        "drawCalls": 9,
+        "triangles": 56099,
         "groundY": -14,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          48,
-          236.25,
-          83
+          432,
+          444.25,
+          747
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -158,33 +172,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:b8165f5090ca55575c022a6a6a0e05d63e98405e931c5867e7d6e89c83c7f525",
+      "hash": "sha256:8f0ca2826372d819ef940ec83a894aa6a267a158c5c84a40e42d103a8c14b4b7",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:836c004be72f32ff0d38712b071c6fef63eb2c8a1b6e50c9dc9539298271fc8a",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 3,
-        "triangles": 29495,
+        "drawCalls": 9,
+        "triangles": 56099,
         "groundY": -14,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          48,
-          236.25,
-          83
+          432,
+          444.25,
+          747
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -195,33 +213,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:6b9dace0821cc1af7e4912d6fc69ef2a94c6150219296432c0f312b2e6c61988",
+      "hash": "sha256:74f16f9a195df4d4da9c35975e437f567a9eb5b2b214a0027d809a0eb24dc14a",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:836c004be72f32ff0d38712b071c6fef63eb2c8a1b6e50c9dc9539298271fc8a",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
-        "drawCalls": 3,
-        "triangles": 29495,
+        "drawCalls": 9,
+        "triangles": 56099,
         "groundY": -14,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          48,
-          236.25,
-          83
+          432,
+          444.25,
+          747
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -232,33 +254,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:f2c584433a1303d2ebf074f4b356633215a932074af0297be06b2883ee7a9d77",
+      "hash": "sha256:6147179a9e181bdb67a22db7cec997394656cec70a60a167f6ba42df35aff3aa",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:8301336e45fc69710a80fa3b8610a3ea4bb1c4e5d13b6a0fb53309b9f56262a4",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 8,
-        "triangles": 29497,
+        "drawCalls": 9,
+        "triangles": 29605,
         "groundY": -14,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          97,
-          272.25,
-          168
+          873,
+          768.25,
+          1512
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -269,33 +295,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:6bc914a9bb2e7f1f10f64e087843bfc6b96b1108c8a68808f028b40755805a93",
+      "hash": "sha256:b9fd3e72efca4c4b70e5fa2c80511040f29a304cb76a7b1612ede024b6e9185e",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:8301336e45fc69710a80fa3b8610a3ea4bb1c4e5d13b6a0fb53309b9f56262a4",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 29497,
+        "drawCalls": 9,
+        "triangles": 29605,
         "groundY": -14,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          97,
-          272.25,
-          168
+          873,
+          768.25,
+          1512
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -306,33 +336,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:df7d0db96bdc699bf31bf91e2e72907611083a61be8c3a4af6a46e64b8d96671",
+      "hash": "sha256:ace48c4435bd7cd62f4b9d2c1d82657d64e92f212fefcdbaeb4ac3383ef101ee",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:8301336e45fc69710a80fa3b8610a3ea4bb1c4e5d13b6a0fb53309b9f56262a4",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 8,
-        "triangles": 29497,
+        "drawCalls": 9,
+        "triangles": 29605,
         "groundY": -14,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          97,
-          272.25,
-          168
+          873,
+          768.25,
+          1512
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -343,33 +377,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:83f4412e893af4afabafefecf1a769c98f2e1cb977e7bbd7a8511dab04b63331",
+      "hash": "sha256:fda03e09c7bc82226489bb1be8d718e39111dcd00ff3690b3c865a323a9154de",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:8301336e45fc69710a80fa3b8610a3ea4bb1c4e5d13b6a0fb53309b9f56262a4",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 29497,
+        "drawCalls": 9,
+        "triangles": 29605,
         "groundY": -14,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          97,
-          272.25,
-          168
+          873,
+          768.25,
+          1512
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -380,14 +418,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:e82f324f7403f596b8935b997bb3a41bb4342e5ee5136496ec8f2aa40d2ece02",
+      "hash": "sha256:674da1daa27652c8c37aeeb5094a2a32a1bc729401e5fa77ddf01762450e1a2c",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:948b9fb2d2cc3030af6a0777bffa726b8ad1dc278a57628a17a0263fff11e8dc",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -400,13 +442,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          194,
-          310.25,
-          336
+          1746,
+          1110.25,
+          3024
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -417,14 +459,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:cbacf144bc3e69af67bf10a650db917ae8fdbfece38134463b1b4f227fda46dc",
+      "hash": "sha256:13697ee7858e9fbb489532ad7405d435921cc167aee30663ef5b48ed03389981",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:948b9fb2d2cc3030af6a0777bffa726b8ad1dc278a57628a17a0263fff11e8dc",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -437,13 +483,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          194,
-          310.25,
-          336
+          1746,
+          1110.25,
+          3024
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -454,14 +500,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:e3a98a7431c6a8eacfe0531d1519da079e0cb977ec591cbef1e39e964ef8119a",
+      "hash": "sha256:57f94d87cb59acc3ae17d859dee0a8fee60ff12b5968defe84b7d6b4fd51bb0f",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:948b9fb2d2cc3030af6a0777bffa726b8ad1dc278a57628a17a0263fff11e8dc",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -474,13 +524,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          194,
-          310.25,
-          336
+          1746,
+          1110.25,
+          3024
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -491,14 +541,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:1268810671ec8ce9b7b93dd817daf8a88fff70d0a8b5b928fbc40c18d89fff6a",
+      "hash": "sha256:2106132e01afa039c8ffbc4475b934afdf5aeb7ecd185f81eecf680aacc27eee",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:948b9fb2d2cc3030af6a0777bffa726b8ad1dc278a57628a17a0263fff11e8dc",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -511,13 +565,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          194,
-          310.25,
-          336
+          1746,
+          1110.25,
+          3024
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -528,14 +582,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:266ea7d08a9431159b86f4d152788d3c96347192e02f8da7465cea207cfa14ad",
+      "hash": "sha256:f02391f8c4bec0170255447098d618320c6bb7fdb15f379dc039db07eff8ea98",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:948b9fb2d2cc3030af6a0777bffa726b8ad1dc278a57628a17a0263fff11e8dc",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -548,13 +606,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          194,
-          310.25,
-          336
+          1746,
+          1110.25,
+          3024
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -565,14 +623,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/pagoda-setbacks.png",
-      "hash": "sha256:967a3d1c3c9c9a923f4dc304efcc708f5ac963080d132020731ad5779499e474",
+      "hash": "sha256:e70afff4b1cbde6bb8a2393d3a1ba631a4a4c3b416d70b94734c35c13ce629af",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:836c004be72f32ff0d38712b071c6fef63eb2c8a1b6e50c9dc9539298271fc8a",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -602,14 +664,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/curtain-wall.png",
-      "hash": "sha256:42ab08f8c372afdb8de7f883c1c28003d431e4afbb6081a9c2b78f2300ea7e2b",
+      "hash": "sha256:32b6116fc70b9662c47110c7f0cc99fe7efb2651a9ac89c2d872e8db775b8e0a",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:836c004be72f32ff0d38712b071c6fef63eb2c8a1b6e50c9dc9539298271fc8a",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -639,14 +705,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/braced-crown.png",
-      "hash": "sha256:ce6874c003cefff8c837496c91b06013846b9e7568d43070f472fdf7889f8e26",
+      "hash": "sha256:58c918219abeb56deae36632846e90fd99ea1a398adc109432a952f2aff5bab4",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:836c004be72f32ff0d38712b071c6fef63eb2c8a1b6e50c9dc9539298271fc8a",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -676,14 +746,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/ground.png",
-      "hash": "sha256:fb9c96ce735405133aa8f4c5a9aad291307a11efd29a2410c1ec0b7db49b22d3",
+      "hash": "sha256:85bdb3ea92d1b9258f345723d1afe181d7395990e38889464c3a81db8dd9b24b",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:836c004be72f32ff0d38712b071c6fef63eb2c8a1b6e50c9dc9539298271fc8a",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -713,14 +787,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/far-silhouette.png",
-      "hash": "sha256:9ba9278ad8e6266b7df447cf3dde2bfa422a5f8439bb0641289c4a3ba88dde2e",
+      "hash": "sha256:83a666d57781ab7455c4fe3647240a6736ce4f88a27b355652a3e3360e7e62f7",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:836c004be72f32ff0d38712b071c6fef63eb2c8a1b6e50c9dc9539298271fc8a",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -750,14 +828,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-jin_mao_tower-skyline.png",
-      "hash": "sha256:326231d4b7493224abe5f318fa1ca6460cc0831154e96b881d4fe21376e9e776",
+      "path": "medium-fi/whole-jin-mao-tower-skyline.png",
+      "hash": "sha256:5cd4509e46a5c7391d4252281b357e2ae843df60bfbbb9c849952556e3e3af35",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:948b9fb2d2cc3030af6a0777bffa726b8ad1dc278a57628a17a0263fff11e8dc",
         "level": "skyline",
         "distance": "street",
         "time": "noon",
@@ -787,14 +869,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-jin_mao_tower-district.png",
-      "hash": "sha256:68ab30c1004cde5ffd04a208f40142e18168a39ad7cf6a493ac31a0e8a83337a",
+      "path": "medium-fi/whole-jin-mao-tower-district.png",
+      "hash": "sha256:83602ff28977747047ebf7ac1bc0d61c04d1e9826c7c199936f89c4544d8a4a6",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:8301336e45fc69710a80fa3b8610a3ea4bb1c4e5d13b6a0fb53309b9f56262a4",
         "level": "district",
         "distance": "street",
         "time": "noon",
@@ -824,14 +910,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-jin_mao_tower-street.png",
-      "hash": "sha256:91875258cba8dff92c26c64ecf21c497459d2fb492cd6882ac66b9b469cc0d1f",
+      "path": "medium-fi/whole-jin-mao-tower-street.png",
+      "hash": "sha256:7de2caa17ed1411c218b49c46dd3b2b54585f775bd3cbae3be1530938e31bf2d",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:65a5f0d1e7b7bfb5ae0c86b56b5b4f6550b74b24a3dd2b93fcad6ddf3da14314",
         "level": "street",
         "distance": "street",
         "time": "noon",
@@ -861,14 +951,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/whole-jin_mao_tower-closeup.png",
-      "hash": "sha256:5f115b942c0e217770f4da2aa42e30dbb50cb02398362dd3e61caa3b0c93a590",
+      "path": "medium-fi/whole-jin-mao-tower-closeup.png",
+      "hash": "sha256:e92b7496a610f6b1388374f6cb3db6238fef2cee0c58e26bf163b65768980ba9",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:836c004be72f32ff0d38712b071c6fef63eb2c8a1b6e50c9dc9539298271fc8a",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
@@ -898,14 +992,18 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:d766e0044791fa292ed3105dd5daa313741bd4597487c0a7aeaf65942bea3950",
+      "hash": "sha256:aba96442bd230fa21a83385868567f973de750f170423c37496a30aaf9b7bfec",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:948b9fb2d2cc3030af6a0777bffa726b8ad1dc278a57628a17a0263fff11e8dc",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -918,13 +1016,13 @@
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          97,
-          272.25,
-          168
+          873,
+          768.25,
+          1512
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -935,33 +1033,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:6bc914a9bb2e7f1f10f64e087843bfc6b96b1108c8a68808f028b40755805a93",
+      "hash": "sha256:b9fd3e72efca4c4b70e5fa2c80511040f29a304cb76a7b1612ede024b6e9185e",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:8301336e45fc69710a80fa3b8610a3ea4bb1c4e5d13b6a0fb53309b9f56262a4",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 29497,
+        "drawCalls": 9,
+        "triangles": 29605,
         "groundY": -14,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          97,
-          272.25,
-          168
+          873,
+          768.25,
+          1512
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -972,33 +1074,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:5c1edb30a2d0be08418b0307ebc5c0c201610934bf82372246e74207257b9c26",
+      "hash": "sha256:1381dcd47dfc707c7abf699951eff3fa1f1db7d94825aa7fd4e0fecd3aa72125",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:65a5f0d1e7b7bfb5ae0c86b56b5b4f6550b74b24a3dd2b93fcad6ddf3da14314",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 42115,
+        "drawCalls": 9,
+        "triangles": 42223,
         "groundY": -14,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          97,
-          272.25,
-          168
+          873,
+          768.25,
+          1512
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -1009,33 +1115,37 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:f18e83906fa3d90d1c59e2ca2d2a354180a3362f7d28fa72655034362221d31a",
+      "hash": "sha256:22dfebc912a831e82bbc79273d69ace3ebd3363991f4ff5cab987282818468ee",
       "state": {
+        "assetId": "molen.worldgen.structure.jin_mao_tower",
+        "runtimeHash": "sha256:802dea977bb090de11c0ec5ddf2bda3f33863cfea638bc134cda60ea2bfae433",
+        "lodHash": "sha256:836c004be72f32ff0d38712b071c6fef63eb2c8a1b6e50c9dc9539298271fc8a",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 55991,
+        "drawCalls": 9,
+        "triangles": 56099,
         "groundY": -14,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.terrain.json",
           "heightmap": "content/worldgen/source/places/wt/wtw/jin_mao_tower/terrain-fit.height.png"
         },
         "position": [
-          97,
-          272.25,
-          168
+          873,
+          768.25,
+          1512
         ],
         "lookAt": [
           0,
-          221.25,
+          309.25,
           0
         ],
         "graphReads": {
@@ -1046,7 +1156,8 @@
           "molen.worldgen.material.stone_granite": 1
         },
         "neighborStyle": "molen.worldgen.catalog.modern_apartments",
-        "contextScale": 1,
+        "contextScale": 9,
+        "cameraYaw": 0,
         "reflections": "sky-pmrem"
       }
     }
