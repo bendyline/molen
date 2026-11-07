@@ -1,3 +1,9 @@
+## @bendyline/molen-client [0.0.13](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.12...@bendyline/molen-client@0.0.13) (2026-11-07)
+
+### Bug Fixes
+
+* File and test updates ([6493ef1](https://github.com/bendyline/molen/commit/6493ef1c3ebe516c825a1907ba2679ae867dd65d))
+
 ## @bendyline/molen-client [0.0.12](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.11...@bendyline/molen-client@0.0.12) (2026-10-31)
 
 ### Bug Fixes

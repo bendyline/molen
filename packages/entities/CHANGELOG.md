@@ -1,3 +1,9 @@
+## @bendyline/molen-entities [0.0.14](https://github.com/bendyline/molen/compare/@bendyline/molen-entities@0.0.13...@bendyline/molen-entities@0.0.14) (2026-11-07)
+
+### Bug Fixes
+
+* Update timeout for unit test ([ed24e67](https://github.com/bendyline/molen/commit/ed24e67f55a2bc96aabb83c71adf1deb05cc7697))
+
 ## @bendyline/molen-entities [0.0.13](https://github.com/bendyline/molen/compare/@bendyline/molen-entities@0.0.12...@bendyline/molen-entities@0.0.13) (2026-10-31)
 
 ### Bug Fixes
