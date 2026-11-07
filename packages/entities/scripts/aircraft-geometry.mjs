@@ -5,6 +5,8 @@
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import * as T from 'three';
 import { a400Frame, buildA400M } from './aircraft/a400m.mjs';
+import { a220Frame, buildA220 } from './aircraft/airbus-a220-300.mjs';
+import { a320Frame, buildA320 } from './aircraft/airbus-a320neo.mjs';
 import { buildH125, h125Frame } from './aircraft/airbus-h125.mjs';
 import { buildH145, h145Frame } from './aircraft/airbus-h145.mjs';
 import { an124Frame, buildAn124 } from './aircraft/an-124.mjs';
@@ -16,6 +18,7 @@ import { beech18Frame, buildBeech18 } from './aircraft/beech-18.mjs';
 import { bell206Frame, buildBell206 } from './aircraft/bell-206.mjs';
 import { bell407Frame, buildBell407 } from './aircraft/bell-407.mjs';
 import { bell412Frame, buildBell412 } from './aircraft/bell-412.mjs';
+import { b737Frame, buildB737 } from './aircraft/boeing-737-800.mjs';
 import { bonanzaFrame, buildBonanza } from './aircraft/bonanza-g36.mjs';
 import { buildC5M, c5Frame } from './aircraft/c-5m.mjs';
 import { buildC17A, c17Frame } from './aircraft/c-17a.mjs';
@@ -26,10 +29,13 @@ import { buildCessna182, cessna182Frame } from './aircraft/cessna-182t.mjs';
 import { buildCH47, ch47Frame } from './aircraft/ch-47.mjs';
 import { buildCherokee, cherokeeFrame } from './aircraft/cherokee.mjs';
 import { buildCirrus, cirrusFrame } from './aircraft/cirrus-sr22t.mjs';
+import { buildCJ4, cj4Frame } from './aircraft/citation-cj4.mjs';
+import { buildQ400, q400Frame } from './aircraft/dash-8-q400.mjs';
 import { buildDC3, dc3Frame } from './aircraft/dc-3.mjs';
 import { beaverFrame, buildBeaver } from './aircraft/dhc-2.mjs';
 import { buildTwinOtter, twinOtterFrame } from './aircraft/dhc-6.mjs';
 import { buildDiamond, diamondFrame } from './aircraft/diamond-da42.mjs';
+import { buildE175, e175Frame } from './aircraft/embraer-e175.mjs';
 import { buildF14D, f14Frame } from './aircraft/f-14d.mjs';
 import { buildF15C, f15Frame } from './aircraft/f-15c.mjs';
 import { buildF16B, f16Frame } from './aircraft/f-16b.mjs';
@@ -37,6 +43,7 @@ import { buildF22A, f22Frame } from './aircraft/f-22a.mjs';
 import { buildF35A, f35Frame } from './aircraft/f-35a.mjs';
 import { buildFA18C, fa18Frame } from './aircraft/fa-18c.mjs';
 import { buildGripenC, gripenFrame } from './aircraft/gripen-c.mjs';
+import { buildG650, g650Frame } from './aircraft/gulfstream-g650er.mjs';
 import { buildHuey, hueyFrame } from './aircraft/huey.mjs';
 import { buildKingAir, kingAirFrame } from './aircraft/king-air-350i.mjs';
 import { buildMiG29A, mig29Frame } from './aircraft/mig-29a.mjs';
@@ -67,6 +74,15 @@ const pi = Math.PI;
 const material = (name, color, metalness = 0.15, roughness = 0.55, extra = {}) =>
   new T.MeshStandardMaterial({ name, color, metalness, roughness, flatShading: true, ...extra });
 export function aircraftFrame(s) {
+  // The kit transports have their own builders (transport-kit.mjs). The transport-profiles frame
+  // stays as the fallback for a profiled type without one; today every profiled type has one.
+  if (s.slug === 'embraer-e175') return e175Frame();
+  if (s.slug === 'a220-300') return a220Frame();
+  if (s.slug === 'gulfstream-g650er') return g650Frame();
+  if (s.slug === 'citation-cj4') return cj4Frame();
+  if (s.slug === 'dash-8-q400') return q400Frame();
+  if (s.slug === 'boeing-737-800') return b737Frame();
+  if (s.slug === 'airbus-a320neo') return a320Frame();
   const transport = transportFrame(s);
   if (transport) return transport;
   if (s.slug === 'atr-72-600') return atr72Frame();
@@ -269,6 +285,13 @@ function ellipsoid(d, at, size, mat, segments = 24) {
 }
 
 export function buildAircraft(s) {
+  if (s.slug === 'embraer-e175') return buildE175(s);
+  if (s.slug === 'a220-300') return buildA220(s);
+  if (s.slug === 'gulfstream-g650er') return buildG650(s);
+  if (s.slug === 'citation-cj4') return buildCJ4(s);
+  if (s.slug === 'dash-8-q400') return buildQ400(s);
+  if (s.slug === 'boeing-737-800') return buildB737(s);
+  if (s.slug === 'airbus-a320neo') return buildA320(s);
   if (s.slug === 'atr-72-600') return buildATR72(s);
   if (s.slug === 'dc-3') return buildDC3(s);
   if (s.slug === 'beech-18') return buildBeech18(s);

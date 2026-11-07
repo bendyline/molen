@@ -14,7 +14,8 @@
       "title": "A400M flight deck,ILA2014",
       "author": "Oleg Belyakov",
       "license": "CC BY-SA3.0 https://creativecommons.org/licenses/by-sa/3.0/",
-      "scope": "Six main screens plus two pedestal screens, sidesticks, FCU/radio shelf, throttle bank, keyboards and roof-mounted HUDs. Local cropped/rectified comparison only; no photo pixels in model. Dimensions and planar correction estimated."
+      "scope": "Six main screens plus two pedestal screens, sidesticks, FCU/radio shelf, throttle bank, keyboards and roof-mounted HUDs. Local cropped/rectified comparison only; no photo pixels in model. Dimensions and planar correction estimated. Banks slope back from just over the displays; the pilot sits between the two outer displays.",
+      "local": ".artifacts/aircraft/references/a400m/cockpit-ila2014.jpg"
     },
     {
       "url": "https://commons.wikimedia.org/wiki/File:Cockpit_of_a_RAF_A400M_Atlas_MOD_45163798.jpg",
@@ -47,8 +48,8 @@
     ],
     "lookAt": [
       0,
-      4.54,
-      19.45
+      4.8,
+      19.6
     ],
     "fov": 84
   },
@@ -57,10 +58,10 @@
     "mode": "top-down-ortho",
     "center": [
       0,
-      -4.7
+      -4.96
     ],
     "viewHeight": 2.05,
-    "cameraHeight": 10.65
+    "cameraHeight": 10.5
   },
   "instrumentState": {
     "trueAirspeed": 0,
@@ -249,7 +250,11 @@
       "Replaced the generic transport with a dedicated A400M shell, rounded nose/radome, six window panes, swept anhedral wing, staggered nacelles, swept T-tail, probe, sponsons and six twin-wheel main legs. Overlay review corrected the rudder outline and nose width. Close renders corrected overlapping nose surfaces, floating skin fittings and a cargo floor extending through the rising rear body.",
       "Eight individually shaped blades per propeller,5.334m diameter, correctly handed down-between-engines rotation. Both visual signs and aircraft engine rotation metadata match; full-scale simulated propeller speed is860rpm from EASA P.012.",
       "Six main screens and two sloped pedestal screens, narrow standby strip, FCU/radio shelf, roof-mounted HUD assemblies, sidesticks with boots, pedals, folding trays, four throttles, keyboards/trackballs, overhead fire guards and blue/gray seats with harnesses. Standby horizon uses a real panel aperture to avoid masking neighbouring instruments.",
-      "Shared bounded expressions drive units, signs, heading cards, digit decoding and availability; each engine gauge reads its own normalized simulated RPM and converts it to configured shaft RPM. Unsupported core/system quantities stay blank. Tests check actual rotor directions, control trailing-edge directions and fixed swept/canted hinge axes."
+      "Shared bounded expressions drive units, signs, heading cards, digit decoding and availability; each engine gauge reads its own normalized simulated RPM and converts it to configured shaft RPM. Unsupported core/system quantities stay blank. Tests check actual rotor directions, control trailing-edge directions and fixed swept/canted hinge axes.",
+      "The seats stood 0.74 m aft of the eye and 1.3 m under it. Eye moved to [0.83, 5.42, 18.75]; floor raised 0.65 m to 4.05, with seats, pedals, sticks, pedestal, side consoles, door and stair following, so the cushion is under the eye at 0.76 m. The panel and glareshield stay where they were.",
+      "HUD: the 0.34 m frame on two heavy arms is replaced as on the C-130J: 20 by 16 cm combiner on the pilot's own centerline, 0.33 m ahead of the eye, carried by a thin C-frame from a small roof projector.",
+      "Wiper parked along the sill. The metal bar in the upper view is the outside refuelling probe, not a cockpit fault.",
+      "Primary display brought into the entry view: panel 0.26 m up and 0.15 m forward, so the deep deck between panel and sill shrinks. The control banks now slope back from just over the displays, as in the ILA 2014 photograph, and a thin sloped hood runs from them to the sill. Panel corners trimmed to stay inside the nose."
     ],
     "independentDimensions": "Airbus2025 brochure labels length45.10m, span42.40m and height14.70m; three views compared at independent uniform scales. Cargo floor length17.70m and approximately3.9m internal height cross-check the published17.70m/3.85–4.00m envelope. EASA P.012 independently specifies eight blades and5.334m propeller diameter. Engine offsets6.85/12.85m and tailspan19m are estimates sampled from the Airbus illustrations, not independent engineering dimensions. Panel width2.38m across the six displays is a photographic estimate.",
     "visual": "Personally inspected final-hash side/top/front/panel overlays, all eight standard views and13 detail/state captures: zero, cruise, limits, negative altitude, missing telemetry, console, overhead, close exterior, gear-up, tail, both control extremes and seats. Twenty-five instrument tests, targeted geometry/sightline/hash checks and byte-identical regeneration passed. Panel homography inputs and assumptions are recorded explicitly.",
@@ -261,13 +266,52 @@
       "Gear retracts through translation/hiding; flaps rotate without full Fowler travel. Cargo ramp stays closed, hold furnishings are minimal, and skin fasteners are selective rather than a manufacturing rivet schedule. Assisted flight tuning is not certified A400M performance."
     ]
   },
-  "sourceHash": "sha256:1b3c59db102a20ec3274aa73fa6b83f01570af960bdaabf43581c0d9593d8a3d",
-  "runtimeHash": "sha256:4cd8915ff22bcd40a1569d2b537fa2f6c0fcc3afa6f23b5743473052fdd05dc0",
+  "sourceHash": "sha256:4f5e4cb3f5fb7636b801601fb319904f19e33595fd20964d3ba659f5dbc3a8f6",
+  "runtimeHash": "sha256:a62b8390b210c215508d81564606b846eb8432eabcb6e77362f20f72bc143db1",
   "limitations": [
     "The dimensioned Airbus views are general-arrangement illustrations with small inter-view discrepancies, not engineering cross-sections. Nose glazing, fuselage sections, airfoils, nacelles and local fairings are reconstructed. Window corners and the top of the tail remain approximate.",
     "Cockpit width and depth are estimated from perspective photographs. The panel overlay uses a documented planar rectification of the six-screen row; it does not prove metric cockpit accuracy. Overhead, seats, sidewalls and ancillary controls retain simplified geometry and switch arrangements.",
     "Display symbology is an original simulator adaptation. Speed is true airspeed, altitude is geometric and heading is true. Navigation/maps, flight management, autopilot, radios, electrical/hydraulic systems and collimated HUD symbology are not implemented.",
     "Engine gauges show each simulated propeller shaft speed against the configured860rpm full scale. FADEC speed modes, torque, ITT, NG, fuel, oil and engine failure annunciations are not simulated and remain blank. Propeller pitch, feathering and reverse are not animated.",
-    "Gear retracts through translation/hiding; flaps rotate without full Fowler travel. Cargo ramp stays closed, hold furnishings are minimal, and skin fasteners are selective rather than a manufacturing rivet schedule. Assisted flight tuning is not certified A400M performance."
-  ]
+    "Gear retracts through translation/hiding; flaps rotate without full Fowler travel. Cargo ramp stays closed, hold furnishings are minimal, and skin fasteners are selective rather than a manufacturing rivet schedule. Assisted flight tuning is not certified A400M performance.",
+    "Raised floor height is set from the eye, not from a drawing of the flight deck. The nose panes keep their faceted framing, so the outside share is 39 percent."
+  ],
+  "cockpitSweep": {
+    "method": "packages/entities/scripts/cockpit-sweep.mjs from spec.pilotEye at the runtime camera; seat, nose and front views rendered and inspected. World-explorer enters the seat at lookPitch -0.18, so the frame runs +19.7 to -40.3 degrees. The primary display has to sit near -30 and close to straight ahead.",
+    "columns": "outside%, overNose degrees, headroom, wall, panel, cushion, seatback (m)",
+    "before": [
+      36,
+      -1,
+      0.64,
+      0.84,
+      0.67,
+      1.9,
+      1.06
+    ],
+    "after": [
+      39,
+      -11,
+      0.4,
+      0.63,
+      0.81,
+      0.76,
+      0.39
+    ],
+    "attitudeDisplay": {
+      "sweepColumn": {
+        "before": -42,
+        "after": -25
+      },
+      "cardCenterElevationAndYaw": {
+        "before": [
+          -46.3,
+          16.4
+        ],
+        "after": [
+          -30.3,
+          13.6
+        ]
+      }
+    }
+  }
 }

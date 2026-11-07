@@ -1,0 +1,84 @@
+{
+  "variant": "Boeing 737-800 with blended winglets (737-800W), CFM56-7B, clean, gear down, static on ground",
+  "status": "exterior-reference-reviewed; visual acceptance pending owner review",
+  "references": [
+    {
+      "url": "https://www.boeing.com/content/dam/boeing/v2/airports/acaps/737NG_REV_C.pdf",
+      "title": "737NG Airplane Characteristics for Airport Planning, D6-58325-7 Rev C, October 2025",
+      "author": "Boeing",
+      "license": "Public manufacturer document; local study only, no diagram pixels redistributed",
+      "scope": "2.2.6 general dimensions, 2.3.3 ground clearances, 2.5.1 cross section, 2.7.1 and 2.7.5 door drawings. Line art is vector and was read numerically. Section 4.4 visibility figure: pilot eye 2.49 m aft of the nose tip, 0.51 m off the centerline, 3.74 m high; 15 degrees down and 18 up through the main window."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:KLM_Boeing_737-800_PH-BGB_taxiing_after_landing_on_runway_18R_pic2.jpg",
+      "title": "KLM 737-800 PH-BGB taxiing, pics 2 and 3",
+      "author": "Alf van Beem",
+      "license": "Public domain; reference only, no pixels embedded",
+      "scope": "Oblique ground views: fin height, windshield extent, nacelle lip, exposed main wheels. Airline livery ignored."
+    }
+  ],
+  "calibration": "Vector page units: 0.6590 m/unit along the body from 39.47 m, 0.9285 m/unit vertically from 12.55 m, which also return 4.06 m body depth (published 4.01). Heights are then rebased to the annotated tables.",
+  "dimensionsChecked": [
+    {
+      "name": "overall length",
+      "reference": 39.47,
+      "model": 39.41
+    },
+    {
+      "name": "overall span",
+      "reference": 35.8,
+      "model": 35.82
+    },
+    {
+      "name": "overall height",
+      "reference": 12.55,
+      "model": 12.6
+    }
+  ],
+  "reviewNotes": {
+    "comparisons": [
+      "Side and top renders overlaid with the ACAP vector outlines: plan agrees within line width; nose, crown, keel, wing and winglet lie on the drawing.",
+      "Three-quarter render inspected beside the KLM photographs. No matched-camera overlay was made."
+    ],
+    "corrections": [
+      "Generic needle nose replaced: body depth 2 m aft of the nose is now 2.90 m against 1.22 m in the generic body.",
+      "Stance from sills: 2.74 m forward and 3.12 m aft over 26.4 m is 0.82 degrees nose down; crown-to-floor 2.49 m from 2.5.1 reproduces 5.23 m forward and the tabulated 5.56 m aft.",
+      "General arrangement draws the fin 7.6 m above the crown; tables 2.3.3 leave 6.9 m and the photographs agree, so fin heights are compressed onto the annotated value. Stabilizer tip likewise follows the table.",
+      "Windshield extended to u 3.4 from drawing 2.7.1 after the small general arrangement stopped at 2.94.",
+      "Seated eye moved from u 3.30 to the published 2.49, and up to h 2.76 (1.21 m over the floor). The old eye sat 0.8 m aft, which is what made the windows look low and the crown hang in the view.",
+      "The sill stood at h 2.63 at the nose, level with the eye, where 2.2.6 draws the front pane corner at 2.36. It now crosses the nose at 2.38, so something solid no longer sits dead ahead.",
+      "Kit changes: glass clear from the seat and tinted from outside, as on the Bendy airliner. The thick glareshield slab and its large FLIGHT GUIDANCE lettering are replaced by a thin sloped hood with a rolled lip over a slim mode control strip. The panel, floor and overhead take their reach from the nose skin, and a dark coaming lines the inside of the nose.",
+      "Published eye stations for four kit types sit 0.8 m ahead of where the kit had put them, and the same bias was removed here."
+    ]
+  },
+  "sourceHash": "sha256:a11ba014abc39e0020bde65c0afd5dd50be40b8ad214c06dab4e10bdafa842a0",
+  "runtimeHash": "sha256:44b447f572bbacdc0ee694902decc283788acc370240ff50efbc8587c84fef91",
+  "limitations": [
+    "Annotated stance is taken 72 percent from MTW to OEW to match the quoted 12.55 m; real attitude varies with load.",
+    "Airfoil, wing-body fairing and flap-track shapes are approximate; gear legs are simplified and thinner than the real oleos; gear doors omitted.",
+    "The kit's elliptical nose section is rounder than the real faceted windscreen, so the sill at the pilot's line is matched by raising the eye 0.1 m over the drawing rather than by the surface itself. The windscreen reads -17/+22 against the published -15/+18.",
+    "Sanity pass only: seating, glass and visibility. The panel, hood and pedestal remain the shared kit interior fitted to the nose, not compared with this type's real flight deck."
+  ],
+  "cockpitSweep": {
+    "method": "packages/entities/scripts/cockpit-sweep.mjs from spec.pilotEye at the runtime camera; seat, nose and front views rendered and inspected.",
+    "columns": "outside%, overNose degrees, headroom, wall, panel, cushion, seatback (m)",
+    "before": [
+      42,
+      -1,
+      0.48,
+      0.66,
+      0.75,
+      0.68,
+      0.41
+    ],
+    "after": [
+      64,
+      -17,
+      0.36,
+      0.34,
+      0.76,
+      0.74,
+      0.36
+    ]
+  }
+}

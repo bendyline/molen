@@ -115,9 +115,9 @@ const STICKS: NonNullable<InputProfile['axes']> = [
  * drive use E to interact (board or leave a vehicle), Space to jump or brake, Shift to sprint
  * or pull the handbrake, and V to switch the vehicle view. Pilot flies an aircraft: W/S (or ↑/↓) pitch the nose down/up, A/D (or ←/→)
  * bank, Z/C work the rudder or pedals, =/− (or numpad +/−, Page Up/Down) set throttle or
- * collective, I toggles the engine, G the gear, F the flaps, R recovers after an impact, Space
- * brakes, V switches the view and E leaves. T toggles travel boost in walk, drive and pilot.
- * Hosts may replace any profile through
+ * collective, and Ctrl stays free for browser shortcuts such as Ctrl+W. I toggles the engine, G
+ * the gear, F the flaps, R recovers after an impact, Space brakes, V switches the view and E
+ * leaves. T toggles travel boost in walk, drive and pilot. Hosts may replace any profile through
  * `InputMap.defineProfile`.
  */
 export function navigationInputProfiles(): Record<NavigationProfileName, InputProfile> {

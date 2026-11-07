@@ -50,6 +50,13 @@
       "author": "Danish Defence",
       "license": "Factual dimensional cross-check",
       "scope": "Overall length15.03m and height5.09m; rounded values checked against drawing."
+    },
+    {
+      "url": "https://web.archive.org/web/2011/http://alternatewars.com/SAC/F-16A_Block_15_Falcon_SAC_-_March_1984.pdf",
+      "title": "Standard Aircraft Characteristics F-16A Block 15, March 1984",
+      "author": "US Air Force",
+      "license": "Publicly archived US federal technical publication; local study only",
+      "scope": "Three-view at 54.7 px/m and clean inboard profile at 93.5 px/m. A-model canopy, so only the shared forebody was measured."
     }
   ],
   "cabinCamera": {
@@ -288,8 +295,8 @@
       }
     }
   },
-  "sourceHash": "sha256:047f239a79d0d17415ac255657e6fcd1a40501b88b3c4027a74bcbe4cbac34c5",
-  "runtimeHash": "sha256:8fcfe7d57ce701c9f7d2e076ea4d270013fd9461c5282115f2b1656a5dc1770d",
+  "sourceHash": "sha256:19aaceefb368e049fe6392f956d46dc83d80eeb2585b67a17b2a80547725dc67",
+  "runtimeHash": "sha256:00b68f72e290e9afcae62ec806eda69673d913cc1bfb18706e07a8634094fc5d",
   "limitations": [
     "Polygonal interpretation of an original analog Block 15 F-16B; reference B photograph depicts a later MLU airframe and only informs external canopy/body shape.",
     "Panel dimensions, seating, side-console switch identities, duct depth, landing-gear folding and detailed skin/fastener positions remain approximations; not every rivet is reproduced.",
@@ -297,5 +304,81 @@
     "Unsupported engine fuel/temperature/oil/RPM and navigation/radar displays are blank or INOP. HUD glass has no collimated display. Flight controls do not implement the real FLCS or automatic leading-edge flap logic.",
     "Flight smoke establishes controllability in the shared simplified dynamics, not certification of F-16 performance. No external stores or weapons systems.",
     "The publicly hosted flight manual carries reproduction restrictions: its diagrams remain local study evidence and are not redistributed in the model or preview."
-  ]
+  ],
+  "proportionReview": {
+    "date": "2026-11-06",
+    "outcome": "Radome stations corrected only; rest of the airframe left as it was.",
+    "method": "Drawing resampled into model metres from two control points and overlaid on the rasterized GLB; dark-pixel runs per row and column turned outlines into numbers. Photographs solved as a pinhole camera with nose and canopy held out of the fit, then the imported model rendered through that camera and blended with the photograph.",
+    "calibration": {
+      "profile": "Inboard profile 93.5 px/m from the 4.01 m wheelbase, using its own ground line through both tire contacts.",
+      "plan": "54.7 px/m from the 49.49 ft length bar; the plan is too small for anything but half-breadths.",
+      "vertical": "SAC 16.43 ft height against the manual 16 ft 8.5 in; the drawn side view is 1 to 3 percent tall, so the profile, not the small side view, set heights."
+    },
+    "landmarks": {
+      "halfBreadthAtZ8_25": {
+        "before": 0.16,
+        "after": 0.27,
+        "sac": 0.27
+      },
+      "halfBreadthAtZ7_6": {
+        "before": 0.32,
+        "after": 0.42,
+        "sac": 0.42
+      },
+      "depthAtZ8": {
+        "before": 0.4,
+        "sac": 0.525
+      },
+      "canopyCrown": {
+        "model": 3.1,
+        "sacAModel": 3.04,
+        "note": "Not an error; the SAC canopy is filled black and is an A canopy."
+      }
+    },
+    "corrections": [
+      "Five radome rows replaced. The nose was a needle; it is a full ogive. Station count and indices unchanged."
+    ],
+    "limitations": [
+      "No photograph was solved for this aircraft; the correction rests on one SAC sheet. Tandem B canopy is not covered by this drawing.",
+      "Ventral tank in the small side view hides the belly, so the keel aft of the intake was not re-measured."
+    ],
+    "note": "instrumentReview captures predate this exterior rework; cockpit instruments, eye points and controls were not moved, only the tub liner rises to the new rail. Targeted aircraft tests were rerun."
+  },
+  "cockpitSweep": {
+    "tool": "packages/entities/scripts/cockpit-sweep.mjs",
+    "finding": "The front seat stood too close to the eye, which was inside the headbox zone of the 30 degree seat. The eye is in the front seat. The stick and throttle stood behind the hip, and the HUD sat wholly below the horizon line.",
+    "before": {
+      "outside": 82.0,
+      "horizon": 100.0,
+      "overNose": -9.0,
+      "headroom": 0.26,
+      "wall": 0.35,
+      "panel": 0.88,
+      "cushion": 0.37,
+      "seatback": 0.04,
+      "dial": 104.0,
+      "poked": 0.0
+    },
+    "after": {
+      "outside": 81.94,
+      "horizon": 100,
+      "overNose": -14,
+      "headroom": 0.26,
+      "wall": 0.35,
+      "panel": 0.86,
+      "cushion": 0.62,
+      "seatback": 0.19,
+      "dial": 103.76,
+      "poked": 0
+    },
+    "changes": [
+      "Front seat aft 0.15 m and up 0.01 m; the rear seat is unchanged.",
+      "Side-stick forward 0.27 m and throttle forward 0.15 m, in both cockpits.",
+      "Combiner extended upward so the horizon line crosses it, with side rails only and no rail across the top."
+    ],
+    "limitations": [
+      "Seat, stick, pedal and throttle positions come from seated-eye ergonomic targets and cockpit photographs, not a dimensioned installation drawing.",
+      "On this 30 degree seat the straight seatback and cushion rays read low by geometry: 0.19 and 0.62 m correspond to an eye about 0.30 m clear of the back along its normal."
+    ]
+  }
 }

@@ -55,7 +55,7 @@
     "lookAt": [
       0,
       1.35,
-      2.88
+      2.92
     ],
     "fov": 86
   },
@@ -63,7 +63,7 @@
     "mode": "top-down-ortho",
     "center": [
       0,
-      -1.39
+      -1.37
     ],
     "viewHeight": 1.2,
     "cameraHeight": 7.5
@@ -157,7 +157,7 @@
       ],
       "modelAnchor": [
         0,
-        -1.52
+        -1.5
       ],
       "scaleControls": {
         "pixels": 100,
@@ -193,12 +193,13 @@
     ],
     "visual": "Individually inspected four calibrated overlays, all four turntable views, lit three-quarter view, forward pilot sightline, downward cockpit and centered cabin captures. Rechecked final front/panel overlays after wiper correction. No panel/window clipping detected; forward clearance test passes."
   },
-  "sourceHash": "sha256:907c541269f31bbbeffcc6de0f6df9ad040ace258532ad4433de66f4955b5f83",
-  "runtimeHash": "sha256:51d6ecdb3d66c12750f1e6462fb87b8a5ea25c5590f1f2f26e937189e7d2677d",
+  "sourceHash": "sha256:7d35367ac4ec9c9c180848d9f4696d9d624a214abe3d89fa73e1d6a15753b5df",
+  "runtimeHash": "sha256:86db5af756a6cee62c61b2792f1108951596a4d87d4d49798a429aff8441b89c",
   "limitations": [
     "Exterior drawing is low-resolution and depicts a 13.77m body; selected short-nose body uses 13.53m per operator/type-certificate data. Rotor clocking, blade droop and landing-gear compression differ between drawings/photos.",
     "Cockpit absolute scale uses estimated edges of nominal 8-inch display units. Panel face layout is photo-matched; coaming depth, side-panel curvature, seat adjustment and pedestal depth remain estimates.",
-    "Selected cockpit includes the center chart installation shown in the 2013 Ornge photograph and EASA lower cockpit photo. The transport cabin does not reproduce Ornge medical equipment. Switch legends and display graphics are simplified original geometry."
+    "Selected cockpit includes the center chart installation shown in the 2013 Ornge photograph and EASA lower cockpit photo. The transport cabin does not reproduce Ornge medical equipment. Switch legends and display graphics are simplified original geometry.",
+    "Only the display tops show at the runtime camera with the head level; the panel needs a glance down, as on the aircraft."
   ],
   "controlReview": {
     "checked": "2026-10-22",
@@ -217,6 +218,42 @@
       "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
       "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
       "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  },
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "Rays from the pilotEye through source.glb (cockpit-sweep), seat view at the runtime camera (+Z, 60 degrees vertical), an exterior nose render, and sections through the pilot plane and at hood height, each checked against a photograph of the real aircraft.",
+    "findings": [
+      "The panel scale is sound: it comes from the 8 by 10 in display units. The hood ran through the windscreen at its forward edge, and nose skin showed between hood and glass from the seat.",
+      "The pedestal was mounted with the wrong sign of tilt: it ran forward and down into the nose, with its controls facing the floor. The Ahunt photograph shows it sloping aft between the seats.",
+      "The eye stood 0.91 m over the cushion and the sweep cushion reading of 0.63 m was the cyclic grip."
+    ],
+    "before": {
+      "eye": [
+        -0.48,
+        1.82,
+        2.24
+      ],
+      "eyeToPanelMeters": 0.64,
+      "headroomMeters": 0.26,
+      "eyeAboveCushionMeters": 0.91,
+      "hoodDepthMeters": 0.31
+    },
+    "after": {
+      "eye": [
+        -0.48,
+        1.79,
+        2.24
+      ],
+      "eyeToPanelMeters": 0.68,
+      "headroomMeters": 0.28,
+      "eyeAboveCushionMeters": 0.78,
+      "hoodDepthMeters": 0.19
+    },
+    "corrections": [
+      "Hood depth cut to 0.19 m with its forward end dropped along the windscreen rake; panel moved 0.04 m forward and lowered 0.02 m; layout and bindings unchanged.",
+      "Pedestal tilt corrected, landing on the floor between the seats.",
+      "Eye lowered 0.03 m; crew seats raised 0.1 m with the cyclic and collective, and cyclic grip moved forward of the eye line."
     ]
   }
 }

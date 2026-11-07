@@ -51,19 +51,19 @@
       -2.36
     ],
     "viewHeight": 1.14,
-    "cameraHeight": 5.7
+    "cameraHeight": 5.8
   },
   "cabinCamera": {
     "mode": "fixed",
     "position": [
       0,
-      3.12,
-      3.92
+      3.02,
+      3.95
     ],
     "lookAt": [
       0,
       2.44,
-      4.75
+      4.65
     ],
     "fov": 78
   },
@@ -225,13 +225,53 @@
       "Console switch grouping, maintenance markings and selected fasteners are simplified; no full electrical system, canopy opening, speedbrake or weapons. Reference pixels remain local and are not distributed."
     ]
   },
-  "sourceHash": "sha256:d5d919b54db64d7ad1627211131661d67b87c9361a62086ac14f0f80134cbe93",
-  "runtimeHash": "sha256:d301f5fce57e957bbf62def06d55b5a6a35e1f1cee971bfa040cb35cc01946b5",
+  "sourceHash": "sha256:1709ac26263d4b5cd771cb3a3ae4a7e46fc2fd2d13fa230bb8ae5309dc57eda4",
+  "runtimeHash": "sha256:9cfc68d51203bf0fb23c2d6a81d27375dc7d0498b45ba259b694149f1af022ce",
   "limitations": [
     "The Navy manual is an illustrative arrangement, not a manufacturing drawing. Its front view has a different implied height and relative body/wing placement from its side view. No nonuniform image warping was used; printed dimensions and the side/plan/photo evidence take precedence. Detailed frontal contour accuracy remains lower confidence.",
     "Fuselage transverse sections, intake curvature, nozzle bend radius, wing incidence, canopy section, seat hardware and absolute cockpit dimensions are estimates; no station drawings or cockpit survey were found.",
     "Nozzles cover the simulator-supported0–90degree range. Actual beyond-vertical travel, automatic flap scheduling, reaction-control plumbing, nozzle asymmetry and real engine thermodynamics are not simulated. Gear travel is a simplified translation/hide animation.",
     "MPCD flight/heading pages are clearly marked SIM; no navigation/radar page or collimated HUD. TAS substitutes for unmodeled indicated airspeed, geometric altitude for pressure altitude, true for magnetic heading, and normalized engine RPM for actual engine-core RPM. Unsupported fuel,JPT,oil,AOA,radio and hydraulic values remain unavailable.",
     "Console switch grouping, maintenance markings and selected fasteners are simplified; no full electrical system, canopy opening, speedbrake or weapons. Reference pixels remain local and are not distributed."
-  ]
+  ],
+  "cockpitSweep": {
+    "tool": "packages/entities/scripts/cockpit-sweep.mjs",
+    "finding": "The eye was 0.09 m from the canopy, so the panel sat very low in the view. The seat was also too far aft, the pedals were behind the panel, and the hood and side panels came through the fuselage skin.",
+    "before": {
+      "outside": 82.0,
+      "horizon": 85.0,
+      "overNose": -8.0,
+      "headroom": 0.09,
+      "wall": 0.16,
+      "panel": 0.93,
+      "cushion": 1.17,
+      "seatback": null,
+      "dial": 69.0,
+      "poked": 4.4
+    },
+    "after": {
+      "outside": 75.78,
+      "horizon": 85.37,
+      "overNose": -5,
+      "headroom": 0.21,
+      "wall": 0.27,
+      "panel": 0.75,
+      "cushion": 0.79,
+      "seatback": 0.28,
+      "dial": 68.71,
+      "poked": 0.2
+    },
+    "changes": [
+      "Eye lowered 3.14 to 3.02 m; seat forward 0.34 m; seat rails shortened clear of the canopy.",
+      "Stick forward 0.24 m and 0.12 m taller; throttle and nozzle levers forward 0.31 m; pedals aft 0.25 m and up 0.04 m.",
+      "Panel moved aft 0.10 m to z 4.65; hood tapered; lower side panels cut to the tub width; HYD and RWR repeaters moved onto the panel.",
+      "Attitude aperture reduced from 148 by 112 to 122 by 92 drawing pixels, so its backing stays on the panel.",
+      "Combiner raised 0.12 m so the horizon line crosses it."
+    ],
+    "limitations": [
+      "Seat, stick, pedal and throttle positions come from seated-eye ergonomic targets and cockpit photographs, not a dimensioned installation drawing.",
+      "The real side panels are wider than this fuselage allows at the panel station, so the HYD and RWR repeaters are not at their foldout positions.",
+      "Over-the-nose reads -5 degrees because of the FLIR fairing on top of the nose; the eye cannot rise further with the canopy as modeled."
+    ]
+  }
 }

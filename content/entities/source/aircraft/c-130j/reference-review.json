@@ -11,44 +11,57 @@
     },
     {
       "url": "https://www.lockheedmartin.com/content/dam/lockheed-martin/aero/documents/C-130J/C130JPocketGuide.pdf",
-      "title": "C-130J Pocket Guide, pp6–7,22–25",
+      "title": "C-130J Pocket Guide, pp6-7, 20, 22-25",
       "author": "Lockheed Martin",
       "license": "Copyright Lockheed Martin; local reference only",
-      "scope": "Manufacturer flight-station panel, overhead and console drawings; FOUR CMDUs. Exterior arrangement is stretched J-30, used only for shared components and cross-checks, not fuselage length."
+      "scope": "Manufacturer flight-station panel, overhead and console drawings; FOUR CMDUs. Exterior arrangement is stretched J-30, used only for shared components and cross-checks, not fuselage length. P20 side and plan views traced for the forebody crown, belly, half width and window block; the forebody is shared with the short J. P22 head-on photograph shows hood, panel and console proportions.",
+      "local": ".artifacts/aircraft/references/c-130j/pocket-guide.pdf"
     },
     {
       "url": "https://commons.wikimedia.org/wiki/File:120316-F-LR266-986_C-130J_Hercules_Cockpit_Ramstein_Air_Base_2012.jpg",
       "title": "C-130J cockpit at Ramstein, 16 March 2012",
       "author": "USAF / Staff Sgt. Chris Willis",
       "license": "Public domain US federal government work",
-      "scope": "Occupied flight station, console, seats, overhead and forward glazing. Perspective/crew obstruction."
+      "scope": "Occupied flight station, console, seats, overhead and forward glazing. Perspective/crew obstruction. Shows the centre windscreen pane between two posts, upper and lower side window rows, seat base and stowed HUD arm.",
+      "local": ".artifacts/aircraft/references/c-130j/cockpit-ramstein.jpg"
     },
     {
       "url": "https://commons.wikimedia.org/wiki/File:40th_Airlift_Squadron_C-130J_Super_Hercules_cockpit.jpg",
       "title": "C-130J flight preparation, 18 February 2023",
       "author": "USAF / Airman 1st Class Courtney Sebastianelli",
       "license": "Public domain US federal government work",
-      "scope": "Right sidewall/glazing, overhead, HUD mounting, seat/harness and live display appearance; occupied oblique night view."
+      "scope": "Right sidewall/glazing, overhead, HUD mounting, seat/harness and live display appearance; occupied oblique night view.",
+      "local": ".artifacts/aircraft/references/c-130j/cockpit-40th.jpg"
     },
     {
       "url": "https://commons.wikimedia.org/wiki/File:Lockheed_Martin_C-130J_Hercules_C5_(code_ZH883)_of_the_RAF_arrives_Fairford_7Jul2016_arp.jpg",
       "title": "Short-body Hercules C5 ZH883, Fairford, 7 July 2016",
       "author": "Adrian Pingstone",
       "license": "Released to public domain by photographer",
-      "scope": "Actual short-body J exterior, nacelles, ramp profile, fin, six-blade props, cockpit glazing and tandem gear. RAF markings not copied."
+      "scope": "Actual short-body J exterior, nacelles, ramp profile, fin, six-blade props, cockpit glazing and tandem gear. RAF markings not copied. Side-on crop calibrated on the nose wheel at 3.5 m from the tip: confirms the steep crown and a window block 3.6 to 4.4 m high ending near z 12.",
+      "local": ".artifacts/aircraft/references/c-130j/zh883.jpg"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:RAF_C-130_Hercules_Pilot_MOD_45154865.jpg",
+      "title": "RAF C-130J pilot on approach to Kabul",
+      "author": "Cpl Dek Traylor, UK MOD",
+      "license": "Open Government Licence v1.0",
+      "licenseUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/1/",
+      "local": ".artifacts/aircraft/references/c-130j/raf-pilot.jpg",
+      "scope": "HUD installation: a roof hinge beside the overhead, a thin C-shaped arm and a framed glass in front of the eye. Used to judge the cockpit; no pixels shipped."
     }
   ],
   "cabinCamera": {
     "mode": "fixed",
     "position": [
       0,
-      4.38,
-      10
+      4.15,
+      11.35
     ],
     "lookAt": [
       0,
-      3.58,
-      11.42
+      3.4,
+      12.92
     ],
     "fov": 84
   },
@@ -56,10 +69,10 @@
     "mode": "top-down-ortho",
     "center": [
       0,
-      -3.67
+      -3.45
     ],
-    "viewHeight": 1.75,
-    "cameraHeight": 9.1
+    "viewHeight": 1.15,
+    "cameraHeight": 7.28
   },
   "instrumentState": {
     "trueAirspeed": 0,
@@ -185,12 +198,12 @@
       ],
       "modelAnchor": [
         0,
-        -3.62
+        -3.442
       ],
       "scaleControls": {
         "pixels": 450,
-        "meters": 2.12,
-        "description": "Manufacturer panel diagram; estimated overall width2.12m, not a certified cockpit dimension."
+        "meters": 1.456,
+        "description": "Guide p22 drawing: the CMDU bezel is 100 by 138 px of a 717 px panel. Lockheed's 8 x 11 in CMDU therefore gives 1.456 m, and the standby attitude bezel comes out at 85 mm against a 3 in indicator. The earlier 2.12 m estimate was 1.46 times too large."
       },
       "scope": "Four CMDUs, standby instruments, shelf and lower controls. Absolute panel scale remains estimated."
     }
@@ -212,15 +225,59 @@
       "CMDU symbology is an original simulator adaptation. Readings are true airspeed, geometric altitude and true heading; no pitot/static, magnetic, radio/navigation, HUD collimation, terrain map or autopilot simulation is implied.",
       "NP displays use each simulated engine normalized rotor speed, not a detailed constant-speed propeller governor. Torque, ITT, gas-generator speed, oil, fuel, hydraulics, bleed-air and failures have no modeled telemetry and remain blank/INOP.",
       "Gear retracts by simplified translation and hiding; flaps rotate without full Fowler-track extension. Cargo ramp stays closed; cargo furnishings, optional tanks, mission equipment and external weapons are omitted. Seams/fasteners are selective rather than a manufacturing rivet schedule."
-    ]
+    ],
+    "cockpitPass": {
+      "problem": "The side view showed the crown up to 0.7 m low at z 12.4 and the whole window block and flight deck about 1.5 m too far aft. The eye had been raised to clear that nose, leaving 1.15 m above the cushion. The flat slab was a glareshield box stopping 0.6 m short of the wall. The black box on legs in the middle of the windscreen was the pilot's HUD: projector and two struts drawn at 0.7 m ahead of the eye, at 0.67 m lateral.",
+      "corrections": [
+        "Forebody re-traced from the pocket guide p20 side and plan views and checked on the ZH883 photograph: new smooth forebody, level sill at 3.5 m, row divider, top rail, centre pane between two posts, side windows ending at z 11.95 as drawn, not 9.25.",
+        "Flight deck moved 1.5 m forward. Eye lowered 0.36 m to 3.97 m, which sits 0.79 m over the existing cushion on the existing 2.72 m floor, so seat and floor were right and the eye was the error.",
+        "Panel scaled by 0.687 from the 8 x 11 in CMDU. Slab replaced by one flat hood meeting the skin below the glass, with blanking panels to the walls. Console scaled 0.8 and overhead 0.85 from the guide; the overhead is now tilted along the roof, and pilots moved inboard to 0.55 m so they sit on their displays.",
+        "HUDs rebuilt from the RAF photograph: a roof projector beside the overhead, a thin C-arm, and a 200 x 160 mm combiner 0.33 m ahead of each eye. Static and deployed; no symbology is drawn or implied."
+      ],
+      "measured": {
+        "before": {
+          "eye": [
+            0.67,
+            4.33,
+            10.55
+          ],
+          "eyeToPanelFaceM": 0.87,
+          "eyeAboveCushionM": 1.15,
+          "panelWidthM": 2.12,
+          "cmduBezelWidthMm": 297,
+          "crownAtZ12_4M": 3.7,
+          "windowsAftEndZ": 9.25,
+          "eyeForwardFirstSolidM": 0.61
+        },
+        "after": {
+          "eye": [
+            0.55,
+            3.97,
+            12.05
+          ],
+          "eyeToPanelFaceM": 0.87,
+          "headroomToHudProjectorM": 0.35,
+          "eyeAboveCushionM": 0.79,
+          "panelWidthM": 1.456,
+          "cmduBezelWidthMm": 204,
+          "crownAtZ12_4M": 4.4,
+          "windowsAftEndZ": 11.95,
+          "overHoodAngleDeg": 14,
+          "combinerAheadOfEyeM": 0.33
+        }
+      },
+      "visual": "Inspected the runtime seat view (dead ahead, 60 degrees vertical), look-down, look-right and an aisle view, plus exterior front, both quarters, low and side, after the final rebuild. Rays fanned from above over the nose and roof hit only skin, glass and exterior frames.",
+      "assumptions": "The eye's z comes from the side window position in the guide and photographs, and its height from the existing floor and cushion; no published C-130J design eye or flight deck floor height was found."
+    }
   },
-  "sourceHash": "sha256:7e91cd81ce77025945616f69e29847bc50bdc53afdb14cc0a46bddf4944d4118",
-  "runtimeHash": "sha256:7f5fe609326ac9f0e9d0493a44324b69d6ba5195cdab3f5fa2dcb015804c4c09",
+  "sourceHash": "sha256:152be22c2cc0a880516ccf4419697235ec62d54dd87c4e3cf3324b805e4d79f2",
+  "runtimeHash": "sha256:e396c4fd0e6fdaa80a1472fd5be8ec52910e8b1164f8feb853ea07677ca4e7f5",
   "limitations": [
     "The Air Force dimensional drawing is a low-resolution schematic: front fin height, top-view length and printed prop-to-nose dimension disagree with the independent dimensions and other views. The model uses consistent overall dimensions; overlay alignment is not an engineering-tolerance claim.",
     "Body sections, cockpit scale and depth, nacelle contours and glass frames are estimated from drawings and photographs. The simplified seats, sidewalls, overhead controls and lower panel do not reproduce every switch or installation variation.",
     "CMDU symbology is an original simulator adaptation. Readings are true airspeed, geometric altitude and true heading; no pitot/static, magnetic, radio/navigation, HUD collimation, terrain map or autopilot simulation is implied.",
     "NP displays use each simulated engine normalized rotor speed, not a detailed constant-speed propeller governor. Torque, ITT, gas-generator speed, oil, fuel, hydraulics, bleed-air and failures have no modeled telemetry and remain blank/INOP.",
-    "Gear retracts by simplified translation and hiding; flaps rotate without full Fowler-track extension. Cargo ramp stays closed; cargo furnishings, optional tanks, mission equipment and external weapons are omitted. Seams/fasteners are selective rather than a manufacturing rivet schedule."
+    "Gear retracts by simplified translation and hiding; flaps rotate without full Fowler-track extension. Cargo ramp stays closed; cargo furnishings, optional tanks, mission equipment and external weapons are omitted. Seams/fasteners are selective rather than a manufacturing rivet schedule.",
+    "The lower cheek windows beside the rudder pedals are not modeled; the front panes are curved on the skin rather than flat; and the HUD combiner is plain glass, always deployed, with no symbology. Flight deck stations are reconstructed from a small manufacturer drawing and photographs, and the panel outboard of the display block is blank."
   ]
 }

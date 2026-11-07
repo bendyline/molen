@@ -52,6 +52,7 @@ import {
 import type * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import type { EarthWorldgenContent } from './content';
+import { createGarageFurnisher } from './garage-cars';
 import { hasOnlyEmbeddedImages } from './structure-image-ownership';
 
 /** Factories for module workers; each is optional and its work runs in-thread without it. */
@@ -343,7 +344,10 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     quality: options.quality,
     ...(options.compact === true ? { compact: true } : {}),
     lodPolicy: options.lodPolicy,
-    interiors: options.interiors ?? true,
+    interiors:
+      (options.interiors ?? true)
+        ? { furnish: createGarageFurnisher(options.content.parkedVehicles ?? []) }
+        : false,
     propLod: options.propLod ?? true,
     ...(options.landcoverColors !== undefined || options.groundMaterial !== undefined
       ? {

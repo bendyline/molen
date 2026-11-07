@@ -17,7 +17,7 @@ export function beech18Cockpit(root, m) {
     yellow = mat('Beech18-prop-control', '#ce991e');
   const k = 1.16205 / 725,
     x = (u) => (1018 - u) * k,
-    y = (v) => 1.85 + (450 - v) * k,
+    y = (v) => 1.79 + (450 - v) * k,
     z = 3,
     at = (u, v, dz = 0) => [x(u), y(v), z + dz];
   const edge = [
@@ -50,7 +50,7 @@ export function beech18Cockpit(root, m) {
     [0, 0, 1],
   );
   outline(d, edge, 0.009, green);
-  d.box([1.14, 0.027, 0.23], [0, 1.85, 3.11], m.dark);
+  d.box([1.14, 0.027, 0.23], [0, 1.79, 3.11], m.dark);
   const sources = {};
   for (const [name, component, path] of [
     ['trueAirspeed', 'aircraftState', ['airspeed']],
@@ -243,6 +243,29 @@ export function beech18Cockpit(root, m) {
     [1205, 405],
   ])
     d.add(new T.SphereGeometry(0.004, 6, 4), m.metal, at(u, v, -0.014));
+  // Starter and landing gear switches on the panel's lower edge, right of centre and under the
+  // engine temperature gauges. From the seat the quadrant's levers and the pilot's wheel hide the
+  // lower centre, where the systems module's middle stood (cockpit-controls.mjs).
+  for (const [u, name, label, action, engine] of [
+    [1068, 'Beech18-starter-1', 'START L', 'engine', 'engine-1'],
+    [1110, 'Beech18-starter-2', 'START R', 'engine', 'engine-2'],
+    [1152, 'Beech18-gear-switch', 'GEAR', 'gear'],
+  ]) {
+    d.box([0.03, 0.026, 0.004], at(u, 683, -0.003), black);
+    d.text(label, at(u, 667, -0.006), 0.0055, Math.PI, ink);
+    const g = group(cabin, name, at(u, 683, -0.005)),
+      gd = detailKit(g, name);
+    gd.rod([0, 0, 0], [0, 0.006, -0.024], 0.0028, m.metal);
+    if (action === 'gear')
+      gd.add(new T.CylinderGeometry(0.008, 0.008, 0.006, 12), black, [0, 0.007, -0.027]);
+    else gd.add(new T.SphereGeometry(0.0045, 8, 6), black, [0, 0.006, -0.025]);
+    gd.finish();
+    g.userData.aircraftControl = {
+      action,
+      ...(engine ? { engine } : {}),
+      motion: { property: 'rotation', axis: 'x', scale: -0.5 },
+    };
+  }
   // Downward-tilted switch subpanels, flanking the centre quadrant.
   for (const side of [-1, 1]) {
     const sub = group(cabin, `Beech18-subpanel-${side}`, [side * 0.38, 1.37, 2.93]);
@@ -296,11 +319,11 @@ export function beech18Cockpit(root, m) {
   qd.finish();
   // Paired bow-tie wheels on individual columns; pitch shaft and wheel roll are separate.
   for (const side of [-1, 1]) {
-    const pitch = group(cabin, `Beech18-column-${side}`, [side * 0.36, 1.42, 2.38]),
+    const pitch = group(cabin, `Beech18-column-${side}`, [side * 0.36, 1.62, 2.66]),
       roll = group(pitch, `Beech18-wheel-${side}`),
       wd = detailKit(roll, roll.name),
       material = side === 1 ? wood : m.dark;
-    d.rod([side * 0.36, 1.42, 2.45], [side * 0.36, 1.42, 3], 0.037, green);
+    d.rod([side * 0.36, 1.62, 2.72], [side * 0.36, 1.62, 3], 0.037, green);
     const points = [
       [-0.2, 0.13],
       [-0.23, 0.1],
@@ -353,7 +376,7 @@ export function beech18Cockpit(root, m) {
     d.box([0.033, 0.6, 1.3], [side * 0.65, 1.32, 1.85], green);
     d.rod([side * 0.63, 1.51, 2.5], [side * 0.63, 1.51, 2.11], 0.016, m.dark);
     // Small panel corner fans, with static blades and wire cage.
-    const fg = group(cabin, `Beech18-fan-${side}`, [side * 0.54, 1.76, 2.96]),
+    const fg = group(cabin, `Beech18-fan-${side}`, [side * 0.54, 1.7, 2.96]),
       fd = detailKit(fg, fg.name);
     fd.rod([0, -0.15, 0.02], [0, 0, 0], 0.012, m.metal);
     fd.ring(0.065, 0.002, [0, 0, -0.015], m.metal);
@@ -393,14 +416,16 @@ export function beech18Cockpit(root, m) {
       [0, 1, 0],
     );
   }
-  for (const zz of [2.12, 1.05, -0.05, -1.15])
+  for (const zz of [2.18, 1.05, -0.05, -1.15])
     for (const side of [-1, 1]) {
+      // Pilot seats stand tall on their pedestals, so the eye clears the panel and the long nose.
       const xx = side * (zz < 0 ? 0.28 : 0.34),
-        lift = Math.max(0, (1.0 - (zz + 0.55)) * 0.14);
+        lift = zz > 2 ? 0.305 : Math.max(0, (1.0 - (zz + 0.55)) * 0.14),
+        foot = zz > 2 ? 0 : lift;
       beveledBox(d, [0.43, 0.11, 0.45], [xx, 0.96 + lift, zz], green, 0.04);
       beveledBox(d, [0.43, 0.65, 0.13], [xx, 1.29 + lift, zz - 0.21], green, 0.04);
       for (const sx of [-1, 1])
-        d.rod([xx + sx * 0.18, 0.73 + lift, zz], [xx + sx * 0.18, 0.92 + lift, zz], 0.017, m.metal);
+        d.rod([xx + sx * 0.18, 0.73 + foot, zz], [xx + sx * 0.18, 0.92 + lift, zz], 0.017, m.metal);
       d.rod([xx - 0.18, 1.03 + lift, zz - 0.13], [xx + 0.18, 1.03 + lift, zz + 0.13], 0.012, liner);
       d.box([0.045, 0.014, 0.033], [xx + 0.03, 1.044 + lift, zz + 0.02], m.metal);
     }
@@ -428,7 +453,7 @@ export function beech18Cockpit(root, m) {
       -0.11,
     ]);
   od.finish();
-  ins.headingDrum('compass', [0, 1.99, 2.78], 0.038, 'trueHeading');
+  ins.headingDrum('compass', [0, 1.93, 2.78], 0.038, 'trueHeading');
   for (const zz of [1.1, 0, -1.1]) d.box([0.16, 0.016, 0.06], [0, 2.11, zz], liner);
   d.finish();
   return { nodes: ['cockpit'], sources, derived, bindings };

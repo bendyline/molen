@@ -42,6 +42,7 @@ export class Heightfield {
   readonly cellSize: [number, number];
   private readonly hmin: number;
   private readonly hrange: number;
+  private extent: { min: number; max: number } | undefined;
 
   /** grid holds normalized [0,1] heights, row-major, length = cols*rows. */
   constructor(
@@ -110,6 +111,20 @@ export class Heightfield {
     const cc = c < 0 ? 0 : c >= this.cols ? this.cols - 1 : c;
     const rr = r < 0 ? 0 : r >= this.rows ? this.rows - 1 : r;
     return this.grid[rr * this.cols + cc] as number;
+  }
+
+  /** The lowest and highest ground actually in this field, unlike the range it is encoded in. */
+  heightExtent(): { min: number; max: number } {
+    if (this.extent === undefined) {
+      let low = Number.POSITIVE_INFINITY;
+      let high = Number.NEGATIVE_INFINITY;
+      for (const value of this.grid) {
+        if (value < low) low = value;
+        if (value > high) high = value;
+      }
+      this.extent = { min: this.hmin + low * this.hrange, max: this.hmin + high * this.hrange };
+    }
+    return this.extent;
   }
 
   /** Independent normalized samples for transfer to a worker; the resident field stays intact. */

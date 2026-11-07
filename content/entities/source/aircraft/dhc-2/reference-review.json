@@ -229,13 +229,56 @@
       "Clean landplane only. Cabin trim, fastening and rib spacing are polygonal approximations, not complete engineering fabrication data. No reference image pixels are embedded."
     ]
   },
-  "sourceHash": "sha256:349bd4be1b7b8365084f0fe4784ff6423894bec74e83d65b39313542d196621c",
-  "runtimeHash": "sha256:231d3fcc7cc3580672c6d3ec690a06b33e7615c242133f35deed4befa5c5ec17",
+  "sourceHash": "sha256:a52b838f017af8c7c37b5d8aef409ccc7a9499d3f58b1417e3b05aa3e0228752",
+  "runtimeHash": "sha256:505e5ccb1a5877f2f2c20240df9b0b15e72ebad5c347ae958bb3afbf1fa5f52b",
   "limitations": [
     "The manual drawing has about 3 percent plan span/length inconsistency. Printed dimensions take priority; scan is rigidly rotated and uniformly scaled, never warped. Nominal 9ft tail height uses a sloping ground datum rather than flight-datum bounding height.",
     "The static 9.43-degree tailwheel stance is baked into geometry. Current simulation does not resolve dynamic tailwheel ground pitch; attitude gauge explicitly uses simulation datum.",
     "Cockpit diagram is perspective and undimensioned; scale/depth estimates are approximate. Modern photo is an independent hardware check, not the original panel arrangement.",
     "TAS is not IAS; altitude is geometric feet and heading true. Simulated normalized RPM is scaled to the declared engine RPM, without a separate prop governor. Fuel, manifold pressure, oil, CHT, carb temperature and navigation readings are unavailable and blank/--.",
     "Clean landplane only. Cabin trim, fastening and rib spacing are polygonal approximations, not complete engineering fabrication data. No reference image pixels are embedded."
-  ]
+  ],
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "packages/entities/scripts/cockpit-sweep.mjs rays from pilotEye through source.glb, then seat, pitched-down and exterior nose renders inspected at the runtime camera (+Z, 60 degrees vertical).",
+    "before": {
+      "eye": [
+        0.34,
+        2.551,
+        1.879
+      ],
+      "outside": 51,
+      "horizon": 95,
+      "overNose": -5,
+      "headroom": 0.15,
+      "wall": 0.23,
+      "panel": 1.03,
+      "cushion": 1.32,
+      "seatback": null,
+      "poked": 1
+    },
+    "after": {
+      "eye": [
+        0.34,
+        2.499,
+        1.867
+      ],
+      "outside": 51,
+      "horizon": 95,
+      "overNose": -3,
+      "headroom": 0.2,
+      "wall": 0.28,
+      "panel": 1,
+      "cushion": 0.81,
+      "seatback": 0.27,
+      "poked": 0.4
+    },
+    "corrections": [
+      "Seats sat 1.3 m below the eye. Front seats raised 0.455 m and moved forward 0.06 m; pedals raised 0.24 m on a new sloped toe board.",
+      "Eye lowered 0.05 m for headroom. Throw-over column moved 0.12 m forward and 0.25 m up to stay ahead of the chest and clear of the knees."
+    ],
+    "limitations": [
+      "Front seat and toe-board heights are inferred from the eye and the windscreen, not from a drawing."
+    ]
+  }
 }

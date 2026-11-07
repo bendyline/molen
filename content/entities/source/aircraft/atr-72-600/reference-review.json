@@ -16,15 +16,15 @@
       "title": "ATR72-600 technical fact sheet,June2015",
       "author": "ATR CM Marketing",
       "license": "Copyright ATR; public manufacturer document mirrored by SKYbrary. Local comparison only.",
-      "local": ".artifacts/aircraft/references/atr72-2015.pdf",
-      "scope": "Page2 original dimensioned three-view. Top view rigidly rotated45degrees; no nonuniform scaling.2015 cabin plan70seats differs from modeled2020plan72."
+      "local": ".artifacts/aircraft/references/atr-72-600/atr72-2015.pdf",
+      "scope": "Page2 original dimensioned three-view. Top view rigidly rotated45degrees; no nonuniform scaling.2015 cabin plan70seats differs from modeled2020plan72. Side and plan outlines traced at high zoom for the nose stations and the window band."
     },
     {
       "url": "https://cockpitseeker.com/wp-content/uploads/goodies/ac/atr/600/cockpit%20layout-72-600_V14_secured.pdf",
       "title": "ATR Training Center72-600 cockpit layout,V14,November2015",
       "author": "ATR Training Center",
       "license": "Copyright ATR; publicly accessible manufacturer training poster, reference-only, not redistributed.",
-      "local": ".artifacts/aircraft/references/atr72-cockpit.pdf",
+      "local": ".artifacts/aircraft/references/atr-72-600/atr72-cockpit.pdf",
       "scope": "Main panel,overhead,pedestal and side-console arrangement. Poster is an unfolded projection, not surveyed three-dimensional cockpit measurements."
     },
     {
@@ -43,30 +43,48 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
       "local": ".artifacts/aircraft/references/atr72-flight.jpg",
       "scope": "External shell, belly sponsons, cabin apertures, engine/propeller silhouette, black leading edges, flap-track fairings and window framing."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Brand_new_3rd_ATR_72-600_aircraft_for_Air_Astra._S2-STF._Cockpit.jpg",
+      "title": "ATR 72-600 S2-STF nose, close three-quarter view",
+      "author": "Blinkerx0",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "local": ".artifacts/aircraft/references/atr-72-600/cockpit-airastra.jpg",
+      "scope": "Blunt rounded nose and radome, level window sill, three panes per side, dark window surround, pilot's head height in the side window. Used to judge the nose and cockpit; no pixels shipped."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Virgin_Australia_ATR_cockpit_in_hangar_-_Brisbane_Airport.jpg",
+      "title": "ATR 72-600 flight deck, head-on from the aisle, Brisbane",
+      "author": "Aviationbystirling",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "local": ".artifacts/aircraft/references/atr-72-600/cockpit-va-hangar.jpg",
+      "scope": "Panel width, display spacing and scale, gull-wing coaming, thin lip at the windscreen sill, yoke and pedestal proportions, overhead width. Used to judge the cockpit; no pixels shipped."
     }
   ],
   "panelCamera": {
     "mode": "top-down-ortho",
     "center": [
       0,
-      -2.68
+      -2.57
     ],
-    "viewHeight": 1.7,
-    "cameraHeight": 8.8
+    "viewHeight": 1.12,
+    "cameraHeight": 8.5
   },
   "cabinCamera": {
     "mode": "fixed",
     "position": [
       0,
-      3.18,
-      10.2
+      3.2,
+      10.32
     ],
     "lookAt": [
       0,
-      2.5,
-      11.4
+      2.55,
+      11.68
     ],
-    "fov": 91
+    "fov": 84
   },
   "instrumentState": {
     "trueAirspeed": 0,
@@ -188,12 +206,12 @@
       ],
       "modelAnchor": [
         0,
-        -2.55
+        -2.511
       ],
       "scaleControls": {
         "pixels": 1242,
-        "meters": 2.04,
-        "description": "Estimated main-panel width2.04m from available shell volume and photograph. Relative layout follows manufacturer poster."
+        "meters": 1.369,
+        "description": "Poster has no scale. The 140-pixel display is set to the published 6 x 8 in LCD and the display spacing checked against the head-on Virgin Australia photograph (poster pixel 1.10 mm, panel 1.37 m); the earlier 2.04 m estimate left every display 1.5 times too large. Relative layout follows the manufacturer poster."
       },
       "edgeMode": "photo",
       "scope": "Five portraitdisplays, raised AFCS glareshield, standbyattitude,left/rightflightclusters and centralgear/pressurecontrols."
@@ -235,16 +253,57 @@
       "Working indications use simulated true airspeed in knots, geometric altitude in feet, true heading, pitch/roll, vertical speed, flap position, gear position and independent normalized engine RPM percentages. IAS, barometric altitude, magnetic variation, air-data errors and propeller governor dynamics are not simulated.",
       "Torque, ITT, NH, fuel, oil, electrical/hydraulic/pressurization systems, clocks, radios, navigation, FMS and AFCS lack simulation telemetry and remain blank or explicitly unavailable. The overhead, condition levers and trim controls are static. Power levers follow the shared throttle input.",
       "Retracting gear and moving controls follow simulation state, with simplified linkages and travel. No operational cockpit-system fidelity is claimed. No source photograph or diagram pixels are embedded in the model or redistributed."
-    ]
+    ],
+    "cockpitPass": {
+      "problem": "Eye jammed into the roof corner; the nose in plan ran 0.25 to 0.3 m too narrow forward of the barrel, so it looked long and sharp; the panel was built 1.5 times oversize and stood high in a diamond-shaped opening, with a dark hood poking through the glazing and hanging off the nose.",
+      "corrections": [
+        "Nose stations and window band re-traced from the 2015 manufacturer side and plan outlines. The nose is now a smooth 40-column surface with true apertures: level sill, level header, three panes per side, dark surround, as in the S2-STF photograph.",
+        "Panel, coaming and all instruments scaled by 0.67 about their own layout (6 x 8 in displays), moved to z 11.68 and lowered. Hood replaced by one flat deck meeting the skin below the glass; blanking panels close the nose bay. Bindings and node names unchanged.",
+        "Flight deck moved 0.22 m forward and the eye lowered 0.26 m. Seats, yokes, pedals, pedestal, FMS, side shelves and overhead re-placed around it. Added a flight deck floor and a door bulkhead at the plan's 3.4 m from the nose."
+      ],
+      "measured": {
+        "before": {
+          "eye": [
+            0.52,
+            3.28,
+            10.7
+          ],
+          "eyeToPanelFaceM": 0.7,
+          "headroomM": 0.16,
+          "sideWallM": 0.21,
+          "eyeAboveCushionM": 1.29,
+          "panelWidthM": 2.04,
+          "displayWidthMm": 230
+        },
+        "after": {
+          "eye": [
+            0.5,
+            3.02,
+            10.92
+          ],
+          "eyeToPanelFaceM": 0.76,
+          "headroomToOverheadM": 0.39,
+          "sideWallM": 0.51,
+          "eyeAboveCushionM": 0.78,
+          "panelWidthM": 1.37,
+          "displayWidthMm": 154,
+          "overNoseAngleDeg": 14,
+          "cockpitVerticesOutsideSkin": 0
+        }
+      },
+      "visual": "Inspected the runtime seat view (dead ahead, 60 degrees vertical), look-down, look-right and an aisle view, plus exterior front, both quarters, low and side, after the final rebuild. Rays fanned from above over the nose hit only skin, glass and exterior frames.",
+      "assumptions": "Eye height is taken at mid-window from the drawing, and z from the pilot's head in the S2-STF photograph after allowing for parallax. The 1.78 m flight deck floor is inferred from that eye and normal seat geometry; no published floor height or ATR eye position was found."
+    }
   },
-  "sourceHash": "sha256:e3b6f49cd618336faa20cfdfff140bd66de97ca6573f3977ecab650f49202a60",
-  "runtimeHash": "sha256:abfde78eee361e1b90945fe0276c8f6d06af07df409cd6710a6735a4b5be14ed",
+  "sourceHash": "sha256:7567154f91c2afb41cd0833db41f7871f2a81ca1fefc07fd18a889c3f2c42222",
+  "runtimeHash": "sha256:baba0a51fa6cb3bc76a8dedbbad9d0819646649b3358f4887858b8631136f351",
   "limitations": [
     "Manufacturer marketing drawings contain small discrepancies between views; printed dimensions take priority. Overlays use uniform scales and recorded rigid rotations, without nonuniform fitting. Fine surface/rivet detail is representative rather than an airframe production drawing.",
     "The 2015 drawing shows a 70-seat cabin; this model uses the later 2020 manufacturer 72-seat plan. Operator furnishings, avionics options and exact serial-number equipment are not represented.",
     "The cockpit poster is an unfolded projection. Panel width, depth, mounting angles and pilot viewpoint are estimates checked against the manufacturer photograph and shell volume, not surveyed ergonomic measurements. Small switch labels and overhead circuitry are simplified.",
     "Working indications use simulated true airspeed in knots, geometric altitude in feet, true heading, pitch/roll, vertical speed, flap position, gear position and independent normalized engine RPM percentages. IAS, barometric altitude, magnetic variation, air-data errors and propeller governor dynamics are not simulated.",
     "Torque, ITT, NH, fuel, oil, electrical/hydraulic/pressurization systems, clocks, radios, navigation, FMS and AFCS lack simulation telemetry and remain blank or explicitly unavailable. The overhead, condition levers and trim controls are static. Power levers follow the shared throttle input.",
-    "Retracting gear and moving controls follow simulation state, with simplified linkages and travel. No operational cockpit-system fidelity is claimed. No source photograph or diagram pixels are embedded in the model or redistributed."
+    "Retracting gear and moving controls follow simulation state, with simplified linkages and travel. No operational cockpit-system fidelity is claimed. No source photograph or diagram pixels are embedded in the model or redistributed.",
+    "Flight deck stations (eye, 1.78 m floor, panel z) are reconstructed from drawings and photographs; ATR's published design eye and cut-off angle were not found. The windscreen panes are gently curved on the skin rather than the real flat panes, the side sliding window has no handle or frame detail, and the cockpit walls are bare skin with no liner, sun visors or standby compass."
   ]
 }

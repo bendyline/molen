@@ -1,3 +1,24 @@
+# Performance evaluation
+
+## Streaming under flight
+
+`run-flight-streaming.mjs` flies a scripted camera through the real explorer and reports what the
+camera faces by distance band, and how many tile builds repeated work the cache should have kept:
+
+```sh
+node test/performance/run-flight-streaming.mjs --flight=circle --tier=3 --shots=0 --label=before
+```
+
+`--flight` is `circle` (over Bellevue, repeated laps) or `straight` (Bellevue across the lake into
+Seattle). Results go to the ignored `.artifacts/flight-streaming/`. `--tier` holds one adaptive
+tier so runs compare like with like; without it Auto can change tier mid-flight. `--profile=N`
+records N seconds of main-thread CPU. Runs vary, so compare several and read the flight at the
+same point on its path rather than one summary number.
+
+It needs an installed Chrome, because Playwright's Chromium finds no WebGPU adapter headless. The
+flights themselves are the explorer's `?autopilot=` URL parameter, which also works by hand:
+`/?mode=human&autopilot=circle&speed=250&alt=900&radius=4000`.
+
 # Landmark performance evaluation
 
 **Decision, 2026-10-03:** keep the high-detail source masters, but develop separately

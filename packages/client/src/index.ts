@@ -86,6 +86,14 @@ export type { EnvironmentData } from './three/environment';
 export { applyEnvironment, defaultEnvironment } from './three/environment';
 export type { GpuFrameTimer, GpuFrameTimerOptions } from './three/gpu-frame-timer';
 export { createGpuFrameTimer } from './three/gpu-frame-timer';
+export {
+  INSTANCE_BATCH_COLOR,
+  INSTANCE_BATCH_MATRIX_COLUMNS,
+  InstanceBatch,
+  InstanceMatrixAttribute,
+  isInstanceBatch,
+  isInstanceBatchGeometry,
+} from './three/instance-batch';
 export type {
   KindContext,
   KindHandle,

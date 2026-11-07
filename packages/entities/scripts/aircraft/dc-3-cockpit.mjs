@@ -13,22 +13,23 @@ export function dc3Cockpit(root, m) {
     liner = mat('DC3-cabin-liner', '#c4bca5'),
     cloth = mat('DC3-seat-cloth', '#6b7c6f'),
     blue = mat('DC3-prop-controls', '#366ba0');
-  const k = 1.95 / 1145,
+  const deck = 2.9,
+    k = 1.95 / 1145,
     x = (u) => (925 - u) * k,
-    y = (v) => 3.95 + (500 - v) * k,
+    y = (v) => 3.85 + (500 - v) * k,
     z = 8.15,
     at = (u, v, dz = 0) => [x(u), y(v), z + dz];
   const edge = [
-    [370, 500],
+    [395, 500],
     [778, 415],
     [1095, 415],
-    [1515, 492],
-    [1515, 807],
+    [1490, 492],
+    [1490, 807],
     [1115, 807],
     [1115, 870],
     [778, 870],
     [778, 825],
-    [370, 825],
+    [395, 825],
   ].map((q) => at(...q));
   const circle = (u, v, r) =>
     Array.from({ length: 40 }, (_, i) => [
@@ -231,11 +232,11 @@ export function dc3Cockpit(root, m) {
     'FLAP',
   );
   // Central magnetic-compass housing; engine supplies no magnetic variation, so label true.
-  // It hangs under the windscreen centre post, inside the roof (it stood 0.24 m through it).
-  beveledBox(d, [0.21, 0.2, 0.16], [0, 4.15, 8.17], m.dark, 0.025);
-  ins.headingDrum('compass', [0, 4.16, 8.078], 0.068, 'trueHeading');
-  d.text('TRUE', [0, 4.07, 8.07], 0.016, Math.PI, ink, 'display');
-  const q = group(cabin, 'DC3-quadrant', [0, 2.91, 7.65]),
+  // It hangs inside the roof behind the windscreen centre post (it once stood through the skin).
+  beveledBox(d, [0.14, 0.17, 0.12], [0, 4.3, 7.97], m.dark, 0.02);
+  ins.headingDrum('compass', [0, 4.31, 7.904], 0.045, 'trueHeading');
+  d.text('TRUE', [0, 4.238, 7.905], 0.012, Math.PI, ink, 'display');
+  const q = group(cabin, 'DC3-quadrant', [0, 3.16, 7.65]),
     qd = detailKit(q, q.name);
   beveledBox(qd, [0.43, 0.48, 0.66], [0, 0, 0], m.dark, 0.025);
   for (const [i, xx, label, color, signal] of [
@@ -269,11 +270,11 @@ export function dc3Cockpit(root, m) {
   qd.rod([0, -0.32, -0.35], [0, -0.42, -0.38], 0.016, m.metal);
   qd.finish();
   for (const side of [-1, 1]) {
-    const pitch = group(cabin, `DC3-column-${side}`, [side * 0.56, 2.28, 7.3]),
+    const pitch = group(cabin, `DC3-column-${side}`, [side * 0.56, deck, 7.92]),
       pd = detailKit(pitch, pitch.name);
-    pd.rod([0, 0, 0], [0, 0.93, -0.09], 0.038, m.dark);
+    pd.rod([0, 0, 0], [0, 0.76, -0.05], 0.038, m.dark);
     pd.finish();
-    const roll = group(pitch, `DC3-wheel-${side}`, [0, 0.93, -0.09]),
+    const roll = group(pitch, `DC3-wheel-${side}`, [0, 0.76, -0.05]),
       wd = detailKit(roll, roll.name),
       points = Array.from({ length: 35 }, (_, i) => {
         const a = ((140 + (i * 260) / 34) * Math.PI) / 180;
@@ -294,7 +295,11 @@ export function dc3Cockpit(root, m) {
       { node: roll.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: -0.75 },
     );
     for (const sign of [-1, 1]) {
-      const g = group(cabin, `DC3-pedal-${side}-${sign}`, [side * 0.56 + sign * 0.16, 2.35, 7.98]),
+      const g = group(cabin, `DC3-pedal-${side}-${sign}`, [
+          side * 0.56 + sign * 0.16,
+          deck + 0.1,
+          7.98,
+        ]),
         dd = detailKit(g, g.name);
       dd.box([0.23, 0.18, 0.1], [0, 0, 0], m.dark);
       for (let i = 0; i < 6; i++)
@@ -308,18 +313,18 @@ export function dc3Cockpit(root, m) {
         scale: sign * 0.05,
       });
     }
-    beveledBox(d, [0.57, 0.15, 0.62], [side * 0.58, 2.65, 6.95], cloth, 0.055);
-    beveledBox(d, [0.57, 0.75, 0.16], [side * 0.58, 3.05, 6.68], cloth, 0.06);
+    beveledBox(d, [0.57, 0.15, 0.62], [side * 0.58, 3.345, 7.42], cloth, 0.055);
+    beveledBox(d, [0.57, 0.75, 0.16], [side * 0.58, 3.745, 7.15], cloth, 0.06);
     for (const xx of [-0.22, 0.22])
-      d.rod([side * 0.58 + xx, 2.18, 6.97], [side * 0.58 + xx, 2.55, 6.97], 0.022, m.metal);
-    d.rod([side * 0.58 - 0.23, 2.75, 6.87], [side * 0.58 + 0.23, 2.75, 7.12], 0.018, liner);
-    d.box([0.055, 0.019, 0.04], [side * 0.58, 2.76, 7], m.metal);
+      d.rod([side * 0.58 + xx, deck, 7.44], [side * 0.58 + xx, 3.25, 7.44], 0.022, m.metal);
+    d.rod([side * 0.58 - 0.23, 3.445, 7.34], [side * 0.58 + 0.23, 3.445, 7.59], 0.018, liner);
+    d.box([0.055, 0.019, 0.04], [side * 0.58, 3.455, 7.47], m.metal);
     for (let row = 0; row < 4; row++)
-      for (let col = 0; col < 9; col++) {
+      for (let col = 0; col < 4; col++) {
         const zz = 6.35 + col * 0.18,
-          yy = 2.5 + row * 0.19;
-        d.rod([side * 1.12, yy, zz], [side * 1.12, yy + 0.18, zz + 0.18], 0.0025, cloth);
-        d.rod([side * 1.12, yy + 0.18, zz], [side * 1.12, yy, zz + 0.18], 0.0025, cloth);
+          yy = deck + 0.06 + row * 0.19;
+        d.rod([side * 1.05, yy, zz], [side * 1.05, yy + 0.18, zz + 0.18], 0.0025, cloth);
+        d.rod([side * 1.05, yy + 0.18, zz], [side * 1.05, yy, zz + 0.18], 0.0025, cloth);
       }
   }
   for (const side of [-1, 1])
@@ -336,10 +341,10 @@ export function dc3Cockpit(root, m) {
       [-side, 0, 0],
     );
   // Original overhead: paired ignition selectors in the middle, electrical switches at the sides.
-  // Scaled across to the roof's width at the header (its corners stood through the skin).
-  const oh = group(cabin, 'DC3-overhead', [0, 4.3, 7.63]);
-  oh.scale.x = 0.66;
-  oh.rotation.x = 0.5;
+  // It lies along the sloping roof behind the header, narrowed to fit under the curved ceiling.
+  const oh = group(cabin, 'DC3-overhead', [0, 4.43, 7.77]);
+  oh.rotation.x = -1.314;
+  oh.scale.x = 0.72;
   const od = detailKit(oh, oh.name);
   sheet(
     od,
@@ -380,14 +385,26 @@ export function dc3Cockpit(root, m) {
       }
   }
   od.finish();
-  // Cockpit floor follows the nose taper. Twenty-one seats follow the manual's 2+1 plan.
+  // Flight deck stands a step above the cabin floor, level with the seats, column bases and pedals.
+  // Twenty-one seats follow the manual's 2+1 plan.
+  sheet(
+    d,
+    [
+      [-1, 2.19, 6.4],
+      [1, 2.19, 6.4],
+      [1, deck, 6.4],
+      [-1, deck, 6.4],
+    ],
+    m.dark,
+    [0, 0, -1],
+  );
   for (const [a, b] of [
     [
-      [8.48, 0.61, 2.44],
-      [7.7, 0.85, 2.27],
+      [8.3, 0.82, deck],
+      [6.4, 1, deck],
     ],
     [
-      [7.7, 0.85, 2.27],
+      [6.4, 1, 2.19],
       [6.1, 1, 2.19],
     ],
   ])

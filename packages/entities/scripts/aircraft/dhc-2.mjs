@@ -165,9 +165,10 @@ export const beaverFrame = () => ({
   radius: 0.75,
   cy: 1.7,
   ry: 0.9,
-  cabinZ: pose([0, 2.68, 2.35])[2],
+  cabinZ: pose([0, 2.63, 2.33])[2],
   cabinWidth: 1.4,
-  eye: pose([0.34, 2.68, 2.35]),
+  // The front seats sit high behind the radial; eye over the cushion and clear of the roof.
+  eye: pose([0.34, 2.63, 2.33]),
   panelZ: pose([0, 2.1, 3.14])[2],
   floor: 1.04,
 });
@@ -884,9 +885,9 @@ function beaverCockpit(root, m, sections) {
         d.rod(at(u - 35, v - 4 + j * 7, -0.025), at(u + 35, v - 4 + j * 7, -0.025), 0.0008, ink);
   }
   // Throw-over column and one control wheel, neutral left seat configuration.
-  const col = group(cabin, 'Beaver-column', [0, 1.16, 2.5]),
+  const col = group(cabin, 'Beaver-column', [0, 1.41, 2.62]),
     cd = detailKit(col, col.name);
-  cd.rod([0, 0, 0], [0, 0.45, 0], 0.052, m.metal);
+  cd.rod([0, -0.25, 0], [0, 0.45, 0], 0.052, m.metal);
   ellipsoid(cd, [0, 0.4, 0], [0.11, 0.2, 0.11], black, 16);
   cd.rod([0, 0.44, 0], [0.38, 0.67, 0.04], 0.047, liner);
   cd.finish();
@@ -942,13 +943,25 @@ function beaverCockpit(root, m, sections) {
   });
   d.add(new T.CylinderGeometry(0.067, 0.067, 0.06, 20), m.accent, [-0.2, 1.14, 2.65]);
   fittedFloor(d, sections, m.dark, { y: 1.09, front: 3.2, back: 0.025, width: 1.33 });
+  // Raised toe board: the pedals come up with the high front seats.
+  sheet(
+    d,
+    [
+      [-0.62, 1.09, 2.5],
+      [0.62, 1.09, 2.5],
+      [0.62, 1.34, 3.1],
+      [-0.62, 1.34, 3.1],
+    ],
+    m.dark,
+    [0, 1, -1],
+  );
   for (const side of [-1, 1]) {
     d.box([0.025, 0.3, 1.2], [side * 0.7, 1.4, 2.1], liner);
     d.rod([side * 0.67, 1.68, 2.6], [side * 0.67, 1.68, 2.12], 0.021, m.dark);
     for (const sign of [-1, 1]) {
       const pedal = group(cabin, `Beaver-pedal-${side}-${sign}`, [
           side * 0.33 + sign * 0.09,
-          1.16,
+          1.4,
           3.02,
         ]),
         dd = detailKit(pedal, pedal.name);
@@ -971,19 +984,20 @@ function beaverCockpit(root, m, sections) {
     }
   }
   for (const [x, z] of [
-    [0.34, 2.1],
-    [-0.34, 2.1],
+    [0.34, 2.16],
+    [-0.34, 2.16],
     [0.34, 1.15],
     [-0.34, 1.15],
     [0.34, 0.25],
     [-0.34, 0.25],
   ]) {
-    beveledBox(d, [0.48, 0.11, 0.45], [x, 1.32, z], seat, 0.04);
-    beveledBox(d, [0.46, 0.6, 0.13], [x, 1.65, z - 0.2], seat, 0.04);
+    const lift = z > 2 ? 0.455 : 0;
+    beveledBox(d, [0.48, 0.11, 0.45], [x, 1.32 + lift, z], seat, 0.04);
+    beveledBox(d, [0.46, 0.6, 0.13], [x, 1.65 + lift, z - 0.2], seat, 0.04);
     for (const side of [-1, 1])
-      d.rod([x + side * 0.19, 1.07, z], [x + side * 0.19, 1.28, z], 0.018, m.metal);
-    d.rod([x - 0.2, 1.4, z - 0.14], [x + 0.18, 1.4, z + 0.13], 0.013, liner);
-    d.box([0.05, 0.014, 0.03], [x + 0.04, 1.415, z + 0.04], m.metal);
+      d.rod([x + side * 0.19, 1.07, z], [x + side * 0.19, 1.28 + lift, z], 0.018, m.metal);
+    d.rod([x - 0.2, 1.4 + lift, z - 0.14], [x + 0.18, 1.4 + lift, z + 0.13], 0.013, liner);
+    d.box([0.05, 0.014, 0.03], [x + 0.04, 1.415 + lift, z + 0.04], m.metal);
   }
   d.finish();
   return { nodes: ['cockpit'], sources, derived, bindings };

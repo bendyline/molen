@@ -25,11 +25,11 @@ export const c5Frame = () => ({
   radius: 3.55,
   cy: 5.6,
   ry: 4.1,
-  cabinZ: 31.0,
+  cabinZ: 31.25,
   cabinWidth: 3.1,
-  eye: [0.86, 8.8, 31],
-  panelZ: 32,
-  floor: 6.95,
+  eye: [0.86, 8.76, 31.25],
+  panelZ: 32.1,
+  floor: 7.45,
 });
 const rect = (x, y, w, h, z) => [
   [x - w / 2, y - h / 2, z],
@@ -239,10 +239,10 @@ export function buildC5M(s) {
       [0.1, 0.5, 0.05, 0.45],
       [0.1, 0.5, 0.53, 0.92],
     ]);
-    // Wipers parked on the front panes.
+    // Wiper parked along the sill below the front pane, off the glass the pilot looks through.
     const lift = (q) => [q[0], q[1] + 0.02, q[2] + 0.012];
-    d.rod(lift(front(0.3, 0.14)), lift(front(0.55, 0.42)), 0.013, dark);
-    d.rod(lift(front(0.55, 0.42)), lift(front(0.78, 0.7)), 0.011, dark);
+    d.rod(lift(front(0.22, 0.065)), lift(front(0.47, 0.065)), 0.013, dark);
+    d.rod(lift(front(0.47, 0.065)), lift(front(0.72, 0.06)), 0.011, dark);
   }
   // Main plane with five degrees of anhedral, sweep and rounded outer corners.
   const ws = [
@@ -709,8 +709,8 @@ function cockpit(root, m) {
   });
   // Pixel coordinates from the frontal AMP photograph; panel width3.1m is estimated.
   const px = (u) => ((360 - u) * 3.1) / 690,
-    py = (v) => 8.06 + ((170 - v) * 3.1) / 690,
-    z = 32,
+    py = (v) => 8.22 + ((170 - v) * 3.1) / 690,
+    z = 32.1,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz];
   const contour = [
     [15, 237],
@@ -941,25 +941,39 @@ function cockpit(root, m) {
   ])
     pt.knob(px(u), py(v), z - 0.02, 0.021);
   // High shelf with two radio/autoflight units and four distinctive striped fire-handle plates.
-  d.box([2.17, 0.2, 0.44], [0, 8.53, 31.99], m.dark);
+  // C-5M_Cockpit.jpg: the plates are black and yellow, about 0.19 by 0.15 m, and the red handles
+  // about 5 cm wide. It ends at the pilot's primary display, which sits outboard of it under a low
+  // hood, and the radios stand beside the fire plates.
+  d.box([1.64, 0.16, 0.3], [0, 8.54, 32.15], m.dark);
   for (const side of [-1, 1]) {
-    d.box([0.46, 0.19, 0.025], [side * 0.84, 8.58, 31.75], face);
-    d.box([0.4, 0.055, 0.006], [side * 0.84, 8.62, 31.731], black);
-    d.text('COM --', [side * 0.84, 8.62, 31.725], 0.014, Math.PI, green, 'display');
-    for (let j = 0; j < 4; j++) pt.knob(side * 0.84 - 0.15 + j * 0.1, 8.53, 31.72, 0.017);
+    d.box([0.36, 0.15, 0.025], [side * 0.61, 8.54, 32], face);
+    d.box([0.31, 0.055, 0.006], [side * 0.61, 8.57, 31.981], black);
+    d.text('COM --', [side * 0.61, 8.57, 31.975], 0.014, Math.PI, green, 'display');
+    for (let j = 0; j < 4; j++) pt.knob(side * 0.61 - 0.12 + j * 0.08, 8.5, 31.97, 0.017);
+    sheet(
+      d,
+      [
+        [side * 0.82, 8.53, 31.9],
+        [side * 1.5, 8.53, 31.9],
+        [side * 1.3, 8.53, 32.34],
+        [side * 0.82, 8.53, 32.34],
+      ],
+      m.dark,
+      [0, 1, 0],
+    );
   }
   for (let i = 0; i < 4; i++) {
-    const x = 0.39 - i * 0.26;
-    d.box([0.23, 0.21, 0.022], [x, 8.58, 31.75], ink);
+    const x = 0.3 - i * 0.2;
+    d.box([0.19, 0.15, 0.022], [x, 8.54, 32], black);
     for (let j = 0; j < 4; j++) {
-      const xx = x - 0.09 + j * 0.055;
-      d.rod([xx - 0.035, 8.49, 31.732], [xx + 0.035, 8.67, 31.732], 0.015, amber);
+      const xx = x - 0.066 + j * 0.044;
+      d.rod([xx - 0.018, 8.475, 31.986], [xx + 0.018, 8.605, 31.986], 0.007, amber);
     }
-    beveledBox(d, [0.08, 0.16, 0.045], [x, 8.58, 31.7], ins.red, 0.01);
-    d.text(String(i + 1), [x, 8.58, 31.673], 0.018, Math.PI, ink);
+    beveledBox(d, [0.05, 0.12, 0.04], [x, 8.54, 31.96], ins.red, 0.008);
+    d.text(String(i + 1), [x, 8.54, 31.938], 0.012, Math.PI, ink);
   }
   // Pedestal: wide four-engine quadrant, paired FMS keypads and aft radio panels.
-  const ped = group(cabin, 'C5-center-console', [0, 7.53, 30.9]);
+  const ped = group(cabin, 'C5-center-console', [0, 7.83, 30.7]);
   ped.rotation.x = Math.PI / 2;
   const td = detailKit(ped, ped.name),
     tp = panelTools(td);
@@ -1037,9 +1051,9 @@ function cockpit(root, m) {
   // Full-height columns, U-shaped handwheels, rudder pedals and cloth-covered seats.
   for (const side of [-1, 1]) {
     const x = side * 0.86;
-    const col = group(cabin, `C5-column-${side}`, [x, 7.08, 31.35]),
+    const col = group(cabin, `C5-column-${side}`, [x, 7.46, 31.65]),
       cd = detailKit(col, col.name);
-    cd.rod([0, 0, 0], [0, 0.83, 0.02], 0.06, m.dark);
+    cd.rod([0, 0, 0], [0, 0.62, 0.02], 0.06, m.dark);
     for (let j = 0; j < 5; j++)
       beveledBox(cd, [0.25 - j * 0.02, 0.045, 0.23 - j * 0.018], [0, j * 0.05, 0.01], m.dark, 0.01);
     cd.finish();
@@ -1050,7 +1064,7 @@ function cockpit(root, m) {
       axis: 'x',
       scale: -0.18,
     });
-    const yoke = group(col, `C5-yoke-${side}`, [0, 0.86, 0.02]),
+    const yoke = group(col, `C5-yoke-${side}`, [0, 0.65, 0.02]),
       yd = detailKit(yoke, yoke.name);
     outline(
       yd,
@@ -1081,7 +1095,7 @@ function cockpit(root, m) {
       scale: 0.65,
     });
     for (const dx of [-0.18, 0.18]) {
-      const pg = group(cabin, `C5-pedal-${side}-${Math.sign(dx)}`, [x + dx, 7.18, 31.95]),
+      const pg = group(cabin, `C5-pedal-${side}-${Math.sign(dx)}`, [x + dx, 7.62, 31.95]),
         pd = detailKit(pg, pg.name);
       pd.box([0.23, 0.28, 0.05], [0, 0, 0], m.metal);
       for (let j = 0; j < 7; j++)
@@ -1095,9 +1109,9 @@ function cockpit(root, m) {
         scale: Math.sign(dx) * 0.055,
       });
     }
-    d.box([0.47, 0.35, 0.57], [x, 7.15, 30.1], m.metal);
-    beveledBox(d, [0.67, 0.17, 0.72], [x, 7.45, 30.1], cushion, 0.035);
-    const back = group(cabin, `C5-seat-${side}`, [x, 7.98, 29.74]);
+    d.box([0.47, 0.35, 0.57], [x, 7.65, 31.07], m.metal);
+    beveledBox(d, [0.67, 0.17, 0.72], [x, 7.95, 31.07], cushion, 0.035);
+    const back = group(cabin, `C5-seat-${side}`, [x, 8.48, 30.71]);
     back.rotation.x = -0.12;
     const bd = detailKit(back, back.name);
     beveledBox(bd, [0.67, 1.02, 0.19], [0, 0, 0], seat, 0.035);
@@ -1105,20 +1119,20 @@ function cockpit(root, m) {
     for (const dx of [-0.18, 0.18]) bd.rod([dx, 0.49, 0.13], [dx * 0.4, -0.46, 0.15], 0.027, belt);
     bd.finish();
     for (const dx of [-0.37, 0.37])
-      beveledBox(d, [0.08, 0.08, 0.43], [x + dx, 7.68, 30.08], seat, 0.01);
-    d.rod([x - 0.27, 7.55, 29.95], [x + 0.22, 7.55, 30.25], 0.027, belt);
-    d.box([0.18, 0.55, 2.7], [side * 1.55, 7.55, 30.3], liner);
+      beveledBox(d, [0.08, 0.08, 0.43], [x + dx, 8.18, 31.05], seat, 0.01);
+    d.rod([x - 0.27, 8.05, 30.92], [x + 0.22, 8.05, 31.22], 0.027, belt);
+    d.box([0.18, 0.55, 2.7], [side * 1.55, 8.05, 30.3], liner);
     for (let j = 0; j < 8; j++)
       d.rod(
-        [side * 1.45, 7.9 + j * 0.027, 30.2],
-        [side * 1.45, 7.9 + j * 0.027, 30.55],
+        [side * 1.45, 8.4 + j * 0.027, 30.2],
+        [side * 1.45, 8.4 + j * 0.027, 30.55],
         0.006,
         m.dark,
       );
   }
-  d.box([3.15, 0.08, 5.3], [0, 6.91, 29.7], m.dark);
+  d.box([3.15, 0.08, 5.3], [0, 7.41, 29.7], m.dark);
   // Aft engineer's station keeps the cabin volume and console mass visible from the crew seats.
-  const engineer = group(cabin, 'C5-engineer-station', [-1.28, 7.98, 28.4]);
+  const engineer = group(cabin, 'C5-engineer-station', [-1.28, 8.48, 28.4]);
   engineer.rotation.y = -Math.PI / 2;
   const ed = detailKit(engineer, engineer.name),
     ep = panelTools(ed);
@@ -1132,7 +1146,7 @@ function cockpit(root, m) {
       if (row === 3) ep.knob(x, y - 0.08, -0.08, 0.02);
     }
   ed.finish();
-  sheet(d, m.bulkhead, liner, [0, 0, 1], [rect(0.7, 7.55, 0.8, 1.9, 26.95)]);
+  sheet(d, m.bulkhead, liner, [0, 0, 1], [rect(0.7, 8.05, 0.8, 1.9, 26.95)]);
   d.box([5.75, 0.06, 31], [0, 2.7, 10], liner);
   d.finish();
   for (const b of bindings) b.source = b.source.replace('C5-copilot.', 'C5-pilot.');

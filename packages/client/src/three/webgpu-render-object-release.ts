@@ -1,5 +1,6 @@
-import type { EventDispatcher, Object3D } from 'three';
+import type { BufferGeometry, EventDispatcher, Object3D } from 'three';
 import type { WebGPURenderer } from 'three/webgpu';
+import { isInstanceBatchGeometry } from './instance-batch';
 
 // Three r184–r186 internals: the renderer's `RenderObjects` factory and `RenderObject`.
 type DisposeTarget = EventDispatcher<{ dispose: object }>;
@@ -91,13 +92,25 @@ export function installWebGpuRenderObjectRelease(renderer: WebGPURenderer): void
   };
 }
 
-/** A stand-in that reads the live render object while it exists and its last attributes after. */
+/**
+ * A stand-in that reads the live render object while it exists and its last attributes after.
+ * An instance batch's geometry shares its model's buffers with every other batch of that model;
+ * it hides them while it is disposed (see `InstanceBatch.dispose`), and only what it still holds
+ * is freed.
+ */
 function geometryOwner(renderObject: RenderObject): GeometryOwner {
   const ref = new WeakRef(renderObject);
   const attributes = renderObject.getAttributes();
+  const geometry = renderObject.geometry as unknown as BufferGeometry;
+  const batch = isInstanceBatchGeometry(geometry);
   return {
     geometry: renderObject.geometry,
-    getAttributes: () => ref.deref()?.getAttributes() ?? attributes,
+    getAttributes: () => {
+      const listed = ref.deref()?.getAttributes() ?? attributes;
+      if (!batch) return listed;
+      const held = new Set<unknown>(Object.values(geometry.attributes));
+      return listed.filter((attribute) => held.has(attribute));
+    },
   };
 }
 

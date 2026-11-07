@@ -57,6 +57,9 @@ describe('sparse graphics work', () => {
     const third = queue.run(() => published.push(3), { bytes: 80 });
     queue.flush();
     expect(published).toEqual([1]);
+    // The first job ran a millisecond over its budget, repaid from this frame.
+    queue.flush();
+    expect(published).toEqual([1]);
     queue.flush();
     expect(published).toEqual([1, 2]);
     const abort = new AbortController();
@@ -167,8 +170,55 @@ describe('sparse graphics work', () => {
     expect(order).toEqual(['big1', 'small']);
     queue.flush();
     expect(order).toEqual(['big1', 'small', 'big2']);
+    // big2 ran 8 ms past the budget with work still waiting: two frames repay it.
+    queue.flush();
+    queue.flush();
+    expect(order).toEqual(['big1', 'small', 'big2']);
     queue.flush();
     expect(order).toEqual(['big1', 'small', 'big2', 'after']);
+    queue.dispose();
+  });
+
+  it('repays a job past its budget from later frames, so the budget holds on average', () => {
+    let time = 0;
+    const queue = new FrameAdmissionQueue({
+      maxMilliseconds: 8,
+      now: () => time,
+      schedule: () => {},
+    });
+    const ran: number[] = [];
+    let frames = 0;
+    for (let job = 0; job < 4; job++) {
+      void queue.run(() => {
+        time += 22;
+        ran.push(frames);
+      });
+    }
+    while (queue.pending > 0 && frames < 64) {
+      queue.flush();
+      frames++;
+    }
+    // 22 ms is 14 past the 8 ms budget: a build, then two frames repaying it, then the next.
+    expect(ran).toEqual([0, 3, 6, 9]);
+    queue.dispose();
+  });
+
+  it('forgets an overrun once nothing is waiting', () => {
+    let time = 0;
+    const queue = new FrameAdmissionQueue({
+      maxMilliseconds: 8,
+      now: () => time,
+      schedule: () => {},
+    });
+    const ran: string[] = [];
+    void queue.run(() => {
+      time += 40;
+      ran.push('long');
+    });
+    queue.flush();
+    void queue.run(() => ran.push('next'));
+    queue.flush();
+    expect(ran).toEqual(['long', 'next']);
     queue.dispose();
   });
 

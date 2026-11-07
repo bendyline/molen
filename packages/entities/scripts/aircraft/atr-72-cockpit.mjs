@@ -1,9 +1,10 @@
 /** ATR Training Center V14 (11-2015) panel arrangement, cross-checked with ATR's
  * published cockpit photograph. Geometry only; no copyrighted image pixels shipped.
+ * The poster has no scale. Its main display spacing matches a head-on photograph of a -600 panel
+ * once the 140-pixel display is the published 6 x 8 in LCD, so the panel is built in poster
+ * coordinates and carried by one scaled group.
  */
-
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
-import { atr72Nose } from './atr-72-shape.mjs';
 import { instrumentGeometry } from './instrument-geometry.mjs';
 import {
   beveledBox,
@@ -16,7 +17,9 @@ import {
   sheet,
   T,
 } from './mesh-kit.mjs';
-import { transportCoaming } from './transport-profiles.mjs';
+
+/** Flight deck stations: the seated eye, the panel face and the raised floor over the nose gear. */
+export const atr72Deck = { eye: [0.5, 3.02, 10.92], panelZ: 11.68, floor: 1.78 };
 
 const rect = (x, y, w, h, z) => [
   [x - w / 2, y - h / 2, z],
@@ -26,16 +29,18 @@ const rect = (x, y, w, h, z) => [
 ];
 export function buildATR72Cockpit(root, m, sections) {
   const cabin = group(root, 'cockpit'),
-    panelRoot = group(cabin, 'ATR72-instrument-panel', [0, 0, -0.38]),
-    ins = instrumentGeometry(panelRoot, 'ATR72'),
-    { bindings, derived, ink, black } = ins;
-  let d = detailKit(panelRoot, 'ATR72-panel');
-  // The poster is an unfolded layout; its full width cannot be used at the
-  // narrower forward fuselage station occupied by the installed dashboard.
-  panelRoot.scale.x = 0.87;
-  const pt = panelTools(d);
+    { eye, panelZ, floor } = atr72Deck;
+  // 0.67 sets the 140-pixel display to 154 mm; 3.026 is the coaming peak, set at 2.83 m.
+  const scale = 0.67,
+    panel = group(cabin, 'ATR72-main-panel', [0, 2.83 - scale * 3.026, panelZ - scale * 11.4]);
+  panel.scale.setScalar(scale);
+  const d = detailKit(panel, 'ATR72-panel-face'),
+    cd = detailKit(cabin, 'ATR72-cabin'),
+    ins = instrumentGeometry(panel, 'ATR72'),
+    { bindings, derived, ink, black } = ins,
+    pt = panelTools(d);
   const face = mat('ATR72-panel', '#627d8c'),
-    liner = mat('ATR72-liner', '#d2d7d3'),
+    liner = mat('ATR72-liner', '#d2d7d3', { side: T.DoubleSide }),
     seat = mat('ATR72-upholstery', '#677477'),
     green = mat('ATR72-panel-print', '#83a99b');
   const k = 2.04 / 1242,
@@ -87,12 +92,6 @@ export function buildATR72Cockpit(root, m, sections) {
   outline(d, coaming, 0.018, m.dark);
   // The unfolded training poster separates these surfaces; the actual panel joins them.
   d.box([2.04, 0.15, 0.05], [0, py(665), z + 0.07], face);
-  transportCoaming(
-    cabin,
-    { length: 27.166 },
-    { profile: atr72Nose, eye: [0, 3.235, 10.45], panelZ: 11.02 },
-    m.dark,
-  );
   const sources = {};
   for (const [name, component, path] of [
     ['trueAirspeed', 'aircraftState', ['airspeed']],
@@ -177,7 +176,7 @@ export function buildATR72Cockpit(root, m, sections) {
             0.0007,
             ink,
           );
-      const rose = group(cabin, `ATR72-PFD-${i}-rose`, [x, yy - 0.071, z - 0.014]),
+      const rose = group(panel, `ATR72-PFD-${i}-rose`, [x, yy - 0.071, z - 0.014]),
         rd = detailKit(rose, rose.name);
       for (let deg = 0; deg < 360; deg += 10) {
         const a = (deg * Math.PI) / 180,
@@ -282,7 +281,7 @@ export function buildATR72Cockpit(root, m, sections) {
       d.box([0.018, 0.018, 0.007], at(529 + side * 14, 839 + j * 24, -0.014), black);
       d.box([0.011, 0.004, 0.003], at(529 + side * 14, 835 + j * 24, -0.02), ink);
     }
-  const gear = group(panelRoot, 'ATR72-gear-lever', at(803, 822, -0.027)),
+  const gear = group(panel, 'ATR72-gear-lever', at(803, 822, -0.027)),
     gd = detailKit(gear, gear.name);
   gd.rod([0, 0, 0], [0, -0.035, -0.035], 0.006, m.metal);
   gd.add(
@@ -299,7 +298,7 @@ export function buildATR72Cockpit(root, m, sections) {
     scale: 0.65,
   });
   for (let j = 0; j < 3; j++) {
-    const g = group(panelRoot, `ATR72-gear-lamp-${j}`, at(787 + j * 16, 772, -0.02)),
+    const g = group(panel, `ATR72-gear-lamp-${j}`, at(787 + j * 16, 772, -0.02)),
       dd = detailKit(g, g.name);
     sheet(
       dd,
@@ -332,13 +331,12 @@ export function buildATR72Cockpit(root, m, sections) {
       d.box([0.012, 0.005, 0.004], at(u - w * 0.37 + j * w * 0.148, v - 12, -0.04), black);
     }
   }
-  d.finish();
-  d = detailKit(cabin, 'ATR72-cabin');
   // Two independent pitch columns and rectangular ram-horn wheels with top-mounted switches.
   for (const side of [-1, 1]) {
-    const column = group(cabin, `ATR72-column-${side}`, [side * 0.58, 1.66, 10.9]),
-      cd = detailKit(column, column.name);
-    beveledBox(cd, [0.11, 0.65, 0.13], [0, 0.28, -0.06], face);
+    const pilotX = side * eye[0];
+    const column = group(cabin, `ATR72-column-${side}`, [pilotX, floor + 0.065, panelZ - 0.2]),
+      kit = detailKit(column, column.name);
+    beveledBox(kit, [0.11, 0.65, 0.13], [0, 0.28, -0.06], face);
     const wheel = group(column, `ATR72-yoke-${side}`, [0, 0.61, -0.14]),
       wd = detailKit(wheel, wheel.name);
     outline(
@@ -364,16 +362,16 @@ export function buildATR72Cockpit(root, m, sections) {
       wd.box([0.015, 0.006, 0.012], [sign * 0.18, 0.18, -0.008], ink);
     }
     wd.finish();
-    cd.finish();
+    kit.finish();
     bindings.push(
       { node: column.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.12 },
       { node: wheel.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.65 },
     );
     for (const off of [-0.12, 0.12]) {
       const g = group(cabin, `ATR72-pedal-${side}-${off < 0 ? 'a' : 'b'}`, [
-          side * 0.58 + off,
-          1.72,
-          11.45,
+          pilotX + off,
+          floor + 0.16,
+          panelZ + 0.12,
         ]),
         dd = detailKit(g, g.name);
       dd.box([0.18, 0.12, 0.04], [0, 0, 0], m.metal);
@@ -394,44 +392,26 @@ export function buildATR72Cockpit(root, m, sections) {
       });
     }
     // Side shelf, oxygen mask, sill, chart holder and tiller on the captain's side.
-    d.box([0.2, 0.05, 1.2], [side * 0.94, 2.03, 10.55], face);
-    // Continuous kick panel and shelf return, joined to the floor and forward firewall.
-    quad(
-      d,
-      [side * 0.9, 1.57, 9.95],
-      [side * 0.9, 2.03, 9.95],
-      [side * 0.9, 2.03, 11.35],
-      [side * 0.9, 1.57, 11.35],
-      liner,
-      [-side, 0, 0],
-    );
-    quad(
-      d,
-      [side * 0.9, 1.57, 11.35],
-      [side * 0.9, 2.32, 11.35],
-      [0, 2.32, 11.55],
-      [0, 1.57, 11.55],
-      liner,
-      [0, 0, -1],
-    );
-    d.box([0.17, 0.17, 0.06], [side * 1.02, 2.13, 10.94], m.dark);
-    d.rod([side * 1.08, 2.1, 10.9], [side * 0.98, 2.16, 10.77], 0.018, m.accent);
-    d.box([0.16, 0.13, 0.02], [side * 0.94, 2.45, 11.23], m.dark);
+    cd.box([0.22, 0.05, 1.0], [side * 1.06, 2.33, 11.0], face);
+    cd.box([0.15, 0.15, 0.06], [side * 1.08, 2.42, 11.42], m.dark);
+    cd.rod([side * 1.1, 2.4, 11.4], [side * 1.04, 2.46, 11.27], 0.018, m.accent);
+    cd.box([0.16, 0.13, 0.02], [side * 0.9, 2.5, panelZ - 0.012], m.dark);
     for (let j = 0; j < 4; j++)
-      d.rod(
-        [side * 0.94 - 0.05, 2.48 - j * 0.02, 11.217],
-        [side * 0.94 + 0.05, 2.48 - j * 0.02, 11.217],
+      cd.rod(
+        [side * 0.9 - 0.05, 2.53 - j * 0.02, panelZ - 0.024],
+        [side * 0.9 + 0.05, 2.53 - j * 0.02, panelZ - 0.024],
         0.001,
         ink,
       );
     if (side > 0) {
-      d.ring(0.075, 0.014, [side * 1.01, 2.13, 10.35], black);
-      d.rod([side * 0.94, 2.1, 10.35], [side * 1.01, 2.13, 10.35], 0.013, black);
+      cd.ring(0.075, 0.014, [side * 1.03, 2.43, 11.1], black, 'y');
+      cd.rod([side * 1.03, 2.36, 11.1], [side * 1.03, 2.43, 11.1], 0.013, black);
     }
   }
   // Front sloping avionics pedestal: two FMS keyboards and central weather radar panel.
-  const fms = group(cabin, 'ATR72-FMS', [0, 2.14, 11.16]);
+  const fms = group(cabin, 'ATR72-FMS', [0, 2.3, panelZ - 0.18]);
   fms.rotation.x = 0.6;
+  fms.scale.setScalar(0.7);
   const fd = detailKit(fms, fms.name);
   beveledBox(fd, [0.66, 0.35, 0.1], [0, 0, 0], face);
   for (const side of [-1, 1]) {
@@ -454,8 +434,10 @@ export function buildATR72Cockpit(root, m, sections) {
   fd.box([0.17, 0.08, 0.012], [0, 0.08, -0.057], black);
   fd.text('RADAR --', [0, 0.08, -0.064], 0.01, Math.PI, ink, 'display');
   fd.finish();
-  const ped = group(cabin, 'ATR72-pedestal', [0, 1.99, 10.55]);
+  const ped = group(cabin, 'ATR72-pedestal', [0, 2.17, panelZ - 0.83]);
   ped.rotation.x = Math.PI / 2;
+  ped.scale.setScalar(0.85);
+  cd.box([0.42, 0.35, 1.04], [0, floor + 0.175, panelZ - 0.83], face);
   const pd = detailKit(ped, ped.name),
     pp = panelTools(pd);
   beveledBox(pd, [0.53, 1.25, 0.14], [0, 0, 0], face);
@@ -510,8 +492,8 @@ export function buildATR72Cockpit(root, m, sections) {
   }
   pd.finish();
   // Overhead uses the four-column ATR arrangement. Switch positions are static decoration.
-  const oh = group(cabin, 'ATR72-overhead', [0, 3.34, 10.62]);
-  oh.rotation.x = -Math.PI / 2;
+  const oh = group(cabin, 'ATR72-overhead', [0, 3.36, 11.18]);
+  oh.rotation.x = -Math.PI / 2 + 0.25;
   const od = detailKit(oh, oh.name),
     op = panelTools(od);
   beveledBox(od, [0.81, 0.68, 0.045], [0, 0, 0], face);
@@ -539,14 +521,107 @@ export function buildATR72Cockpit(root, m, sections) {
     od.text(`ENG ${side > 0 ? '1' : '2'} FIRE`, [side * 0.3, 0.3, -0.054], 0.008, Math.PI, ink);
   }
   od.finish();
+  // Glareshield deck: one flat plane from the panel top down to where it meets the skin, which
+  // always falls below the glass, so nothing stands in front of the windscreen from outside.
+  const wall = (zz, yy) => m.skinX(zz, yy) * 0.992,
+    deckEdge = wall(panelZ, m.sill(panelZ) - 0.03),
+    deckFall = (2.83 - (m.sill(panelZ) - 0.03)) / deckEdge,
+    deckDrop = 0.1,
+    deck = (x, zz) => 2.83 - deckFall * x - deckDrop * (zz - panelZ),
+    meet = (zz) => {
+      let x = 0.5;
+      for (let i = 0; i < 12; i++) x = wall(zz, deck(x, zz)) * 0.96;
+      return x;
+    };
+  let deckTip = panelZ;
+  while (deckTip < 12.3 && meet(deckTip + 0.01) > 0.08) deckTip += 0.01;
+  const deckOutline = [[0, 2.83, panelZ]];
+  for (let i = 0; i <= 12; i++) {
+    const zz = panelZ + ((deckTip - panelZ) * i) / 12,
+      x = i === 12 ? 0 : meet(zz);
+    deckOutline.push([x, deck(x, zz), zz]);
+  }
+  for (const side of [-1, 1]) {
+    sheet(
+      cd,
+      deckOutline.map(([x, y, zz]) => [side * x, y, zz]),
+      black,
+      [side * deckFall, 1, deckDrop],
+    );
+    // Blanking panels close the nose bay beside the panel and over the foot wells.
+    const lower = 2.3,
+      toe = 12.02;
+    sheet(
+      cd,
+      [
+        [side * 0.66, lower, panelZ + 0.01],
+        [side * wall(panelZ, lower), lower, panelZ + 0.01],
+        [side * deckEdge, deck(deckEdge, panelZ), panelZ + 0.01],
+        [side * 0.634, 2.73, panelZ + 0.01],
+      ],
+      face,
+      [0, 0, -1],
+    );
+    quad(
+      cd,
+      [0, lower, panelZ],
+      [side * wall(panelZ, lower), lower, panelZ],
+      [side * wall(toe, lower), lower, toe],
+      [0, lower, toe],
+      m.dark,
+      [0, -1, 0],
+    );
+    sheet(
+      cd,
+      [
+        [0, floor, toe],
+        [side * wall(toe, floor), floor, toe],
+        [side * wall(toe, 2.05), 2.05, toe],
+        [side * wall(toe, lower), lower, toe],
+        [0, lower, toe],
+      ],
+      m.dark,
+      [0, 0, -1],
+    );
+    // Raised flight deck floor over the nose gear bay, ending at the door bulkhead.
+    sheet(
+      cd,
+      [
+        [0, floor, 10.15],
+        [side * wall(10.15, floor), floor, 10.15],
+        [side * wall(10.8, floor), floor, 10.8],
+        [side * wall(11.4, floor), floor, 11.4],
+        [side * wall(toe, floor), floor, toe],
+        [0, floor, toe],
+      ],
+      m.dark,
+      [0, 1, 0],
+    );
+  }
+  // Solid door bulkhead behind the seats, drawn at the plan's 3.4 m from the nose.
+  sheet(
+    cd,
+    Array.from({ length: 25 }, (_, i) => {
+      const yy = 1.53 + (i * (3.57 - 1.53)) / 24;
+      return [wall(10.16, yy), yy, 10.16];
+    }).concat(
+      Array.from({ length: 25 }, (_, i) => {
+        const yy = 3.57 - (i * (3.57 - 1.53)) / 24;
+        return [-wall(10.16, yy), yy, 10.16];
+      }),
+    ),
+    liner,
+    [0, 0, 1],
+  );
+  outline(cd, rect(0, 2.55, 0.74, 1.54, 10.14), 0.008, m.dark);
   // Cabin follows the 72-seat, 29-inch-pitch manufacturer plan and 2.57 m cross section.
-  fittedFloor(d, sections, m.dark, { y: 1.57, front: 11.6, back: -8.25, width: 2.24 });
-  d.box([0.05, 1.5, 0.055], [1.04, 2.31, 8.75], liner);
-  d.box([0.05, 1.5, 0.055], [-1.04, 2.31, 8.75], liner);
+  fittedFloor(cd, sections, m.dark, { y: 1.57, front: 10.15, back: -8.25, width: 2.24 });
+  cd.box([0.05, 1.5, 0.055], [1.04, 2.31, 8.75], liner);
+  cd.box([0.05, 1.5, 0.055], [-1.04, 2.31, 8.75], liner);
   for (const side of [-1, 1]) {
     // Forward baggage compartment separates flight deck from passenger rows.
     sheet(
-      d,
+      cd,
       [
         [side * 0.39, 1.56, 8.1],
         [side * 1.06, 1.56, 8.1],
@@ -556,30 +631,43 @@ export function buildATR72Cockpit(root, m, sections) {
       liner,
       [0, 0, 1],
     );
-    d.box([0.3, 0.3, 13.2], [side * 0.8, 2.98, -0.3], liner);
+    cd.box([0.3, 0.3, 13.2], [side * 0.8, 2.98, -0.3], liner);
     for (let row = 0; row < 18; row++) {
       const zz = 5.65 - row * 0.7366;
-      d.rod([side * 0.71, 3.04, zz], [side * 1.12, 3.04, zz], 0.002, m.dark);
+      cd.rod([side * 0.71, 3.04, zz], [side * 1.12, 3.04, zz], 0.002, m.dark);
     }
   }
   const seats = [
-    [0.57, 10.3, true],
-    [-0.57, 10.3, true],
+    // A seated eye is about 0.3 m ahead of the seatback.
+    [eye[0], eye[2] - 0.12, true],
+    [-eye[0], eye[2] - 0.12, true],
   ];
   for (let row = 0; row < 18; row++)
     for (const x of [-0.94, -0.44, 0.44, 0.94]) seats.push([x, 5.65 - row * 0.7366, false]);
   for (const [x, zz, pilot] of seats) {
-    const w = pilot ? 0.47 : 0.44;
-    beveledBox(d, [w, 0.1, 0.44], [x, 1.94, zz], seat, 0.025);
-    beveledBox(d, [w, 0.64, 0.1], [x, 2.28, zz - 0.21], seat, 0.025);
-    beveledBox(d, [w * 0.72, 0.16, 0.11], [x, 2.67, zz - 0.21], seat, 0.025);
+    const w = pilot ? 0.47 : 0.44,
+      lift = pilot ? floor - 1.53 : 0;
+    beveledBox(cd, [w, 0.1, 0.44], [x, 1.94 + lift, zz], seat, 0.025);
+    beveledBox(cd, [w, 0.64, 0.1], [x, 2.28 + lift, zz - 0.21], seat, 0.025);
+    beveledBox(cd, [w * 0.72, 0.16, 0.11], [x, 2.67 + lift, zz - 0.21], seat, 0.025);
     for (const side of [-1, 1]) {
-      d.rod([x + side * w * 0.4, 1.57, zz], [x + side * w * 0.4, 1.89, zz], 0.014, m.metal);
-      d.box([0.045, 0.04, 0.33], [x + side * w * 0.52, 2.15, zz - 0.015], liner);
+      cd.rod(
+        [x + side * w * 0.4, 1.57 + lift, zz],
+        [x + side * w * 0.4, 1.89 + lift, zz],
+        0.014,
+        m.metal,
+      );
+      cd.box([0.045, 0.04, 0.33], [x + side * w * 0.52, 2.15 + lift, zz - 0.015], liner);
     }
-    d.rod([x - w * 0.38, 2.003, zz - 0.13], [x + w * 0.36, 2.003, zz + 0.13], 0.009, m.dark);
-    d.box([0.04, 0.011, 0.03], [x + 0.04, 2.015, zz + 0.04], m.metal);
+    cd.rod(
+      [x - w * 0.38, 2.003 + lift, zz - 0.13],
+      [x + w * 0.36, 2.003 + lift, zz + 0.13],
+      0.009,
+      m.dark,
+    );
+    cd.box([0.04, 0.011, 0.03], [x + 0.04, 2.015 + lift, zz + 0.04], m.metal);
   }
   d.finish();
+  cd.finish();
   return { nodes: ['cockpit'], sources, derived, bindings };
 }

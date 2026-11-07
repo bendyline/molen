@@ -327,6 +327,47 @@ Protomaps deliberately includes a subset of OSM features. Its documented `landus
 kinds do not currently include parking, while roads may carry `parking_aisle` detail.
 See the [Protomaps layer reference](https://docs.protomaps.com/basemaps/layers).
 
+### Parking garages
+
+The same archive identifies multi-storey car parks, though it drops `building=parking` and
+`parking=multi-storey`. A `parking` POI keeps the source id of its OSM element, so a footprint that
+shares its id is one element tagged both `building=*` and `amenity=parking`. Failing that, a POI
+inside exactly one footprint counts if its name claims a structure ("garage", "car park",
+"Parkhaus", "立体駐車場"), since an unnamed one is as likely a tower's basement. Footprints under
+450 m² or over 48 m tall are left alone: small roofed lots, and towers with parking in them.
+
+Height gives the number of decks: Protomaps derives a missing height as `3 × levels + 2`, so
+`(height - 2) / 3` recovers `building:levels`. An unmapped height is assumed to be three decks.
+`parking_entrance` POIs within 6 m of the walls place the doors. `applyParkingStructure` then
+requests the `molen.worldgen.use.parking_garage` style and modeled decks, ramps and cars; see
+[Inferred building interiors](building-interiors.md#car-parks). A style pack without that style
+keeps its usual architecture.
+
+## Building use
+
+Stock Protomaps footprints say only `building`. `kind_detail` is empty on all of them, and in the
+regional archives between 3% and 22% carry a height. So the use of a building is argued from what
+surrounds it, strongest evidence first:
+
+1. A POI with the footprint's source id is the same OSM element, so the building is that thing: a
+   `hotel`, `school`, `place_of_worship`, `fire_station` and so on.
+2. A POI inside exactly one footprint names it when it is an institution (`hotel`, `hospital`,
+   `school`, `mall`, `library`, `museum`). A cinema or a chapel inside a tower does not.
+3. Eight or more shops and restaurants in a footprint of 5,000 m² or more make a mall.
+4. The land use under it: `school`, `university`, `college` and `hospital` land.
+5. Its shape on that land: at 15 m or more on `commercial` land it is offices, at 12 m or more on
+   `residential` land it is flats, at 45 m or more a tower, and at 60 m or more on anything but
+   residential land a skyscraper.
+
+`associateBuildingUses` returns the use and which of these decided it, and `applyBuildingUse` puts
+the use ahead of any tenant in the interior's labels, so a cafe in the lobby does not make the tower
+a cafe. It also requests a matching style from the `molen.worldgen.use.*` family, and a style pack
+without one keeps its usual architecture. Styles in that family are chosen by a building's use, so
+they are not part of the [structure library](structure-library.md).
+
+Everything else, most buildings by far, stays with the style rules. Use
+`?synthetic=1&uses=1` in world explorer for a street with one of each.
+
 ## Tunnels
 
 World explorer and `mountEarthView` render mapped `tunnel: true` corridors in Human mode.

@@ -1,0 +1,123 @@
+{
+  "format": "molen/archstyle@1",
+  "id": "molen.worldgen.use.parking_garage",
+  "title": "Open-deck parking garage",
+  "doc": "A precast parking structure: concrete panel spandrels, a continuous slab edge at every deck and a flat, parked-on roof with a solid parapet. Bays between piers are real openings where interiors are generated; these dark ribbons stand in for them on budget facades and at a distance.",
+  "version": 1,
+  "applicability": {
+    "classes": ["parking_garage", "parking"]
+  },
+  "massing": {
+    "floorHeight": { "min": 3, "max": 3 },
+    "heightFallback": [{ "levels": { "min": 3, "max": 3 } }],
+    "groundFit": "platform-max",
+    "foundation": { "height": { "min": 0.2, "max": 0.3 }, "exposeOnSlope": true },
+    "wings": {
+      "split": "none",
+      "maxWingSpan": 300,
+      "minWingArea": 1,
+      "secondaryHeightScale": { "min": 1, "max": 1 }
+    },
+    "setbacks": [],
+    "respectMinHeight": true
+  },
+  "roof": {
+    "perWing": false,
+    "ridge": "long-axis",
+    "overhang": { "min": 0, "max": 0 },
+    "complexFootprint": "flat",
+    "choices": [
+      {
+        "type": "flat",
+        "weight": 1,
+        "parapet": { "height": { "min": 1.1, "max": 1.1 }, "thickness": 0.3 }
+      }
+    ],
+    "fallback": "flat"
+  },
+  "facade": {
+    "bays": { "width": { "min": 7.8, "max": 7.8 }, "cornerMargin": 0.7 },
+    "windows": {
+      "style": "ribbon",
+      "width": { "min": 7, "max": 7 },
+      "height": { "min": 1.5, "max": 1.5 },
+      "sill": { "min": 1, "max": 1 },
+      "probabilityPerBay": 1,
+      "groundFloor": "same"
+    },
+    "bands": { "base": { "height": { "min": 0, "max": 0 } }, "floorLines": true }
+  },
+  "materials": {
+    "wall": {
+      "choices": [{ "ref": "matgraph:molen.worldgen.material.concrete_panel", "weight": 1 }],
+      "palette": "wall",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [4, 4],
+      "uvOffset": "none",
+      "uvMirror": false
+    },
+    "roof": {
+      "choices": [{ "ref": "matgraph:molen.worldgen.material.concrete_plain", "weight": 1 }],
+      "palette": "roof",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [4, 4],
+      "uvOffset": "none",
+      "uvMirror": false
+    },
+    "trim": {
+      "choices": [{ "ref": "palette:#ffffff", "weight": 1 }],
+      "palette": "trim",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false
+    },
+    "foundation": {
+      "choices": [{ "ref": "palette:#ffffff", "weight": 1 }],
+      "palette": "wall",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false
+    },
+    "window": {
+      "choices": [{ "ref": "palette:#ffffff", "weight": 1 }],
+      "palette": "gap",
+      "tint": "multiply",
+      "uv": "cell",
+      "uvOffset": "none",
+      "uvMirror": false
+    }
+  },
+  "palettes": {
+    "wall": {
+      "entries": [
+        { "color": "#b9b5aa", "weight": 3 },
+        { "color": "#ada99d", "weight": 2 },
+        { "color": "#c4c0b4", "weight": 1 }
+      ],
+      "jitter": { "hue": 0.003, "saturation": 0.02, "lightness": 0.04 }
+    },
+    "roof": {
+      "entries": [{ "color": "#8a8982", "weight": 1 }],
+      "jitter": { "hue": 0, "saturation": 0.01, "lightness": 0.03 }
+    },
+    "trim": {
+      "entries": [{ "color": "#a29e93", "weight": 1 }],
+      "jitter": { "hue": 0, "saturation": 0.01, "lightness": 0.02 }
+    },
+    "gap": {
+      "entries": [{ "color": "#2d3538", "weight": 1 }],
+      "jitter": { "hue": 0, "saturation": 0, "lightness": 0.02 }
+    }
+  },
+  "props": [],
+  "lod": {
+    "tiers": [
+      { "minTier": 0, "keep": ["roof-shape", "facade-texture", "facade-bands"] },
+      { "minTier": 2, "keep": ["roof-shape", "facade-texture"] }
+    ]
+  }
+}

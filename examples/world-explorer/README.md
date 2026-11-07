@@ -256,6 +256,11 @@ use `?antialias=0` only for a controlled performance comparison. Worldgen textur
 mipmaps and anisotropic filtering. Worldgen, land-cover and road/parking construction run in
 separate workers.
 
+`?autopilot=circle` or `?autopilot=straight` flies a repeatable path from the URL's start
+(`speed` in m/s, `radius` in meters, `dive` in radians, `start` seconds to wait first), for
+reproducing a streaming problem exactly; `?tier=N` holds one adaptive tier while comparing runs.
+See [the flight measurements](test/performance/README.md).
+
 The performance HUD reports frame/p90 and optional asynchronous GPU timing, actual rendered
 draws/triangles, resolution and memory budgets. Streaming selection runs at 10 Hz; navigation runs
 every frame. Walking collision rebuilds only for nearby changes or movement. Frustum culling and

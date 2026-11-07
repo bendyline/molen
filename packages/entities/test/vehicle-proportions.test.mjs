@@ -33,6 +33,10 @@ const hatchbacks = [
 ];
 
 describe('road vehicle proportions', () => {
+  it('covers the whole road fleet', () => {
+    expect(recipes.length).toBeGreaterThanOrEqual(100);
+  });
+
   it.each(
     recipes.filter(({ recipe }) => hatchbacks.includes(recipe.bodyStyle)),
   )('$slug ends in a tailgate, not a sedan deck', ({ recipe }) => {
@@ -44,11 +48,24 @@ describe('road vehicle proportions', () => {
   });
 
   it.each(
+    recipes.filter(({ recipe }) => ['offroad', 'van'].includes(recipe.bodyStyle)),
+  )('$slug stands its tailgate glass near vertical', ({ recipe }) => {
+    const { length: L, form: f } = recipe;
+    // Off-roaders and vans are boxes: the rear glass leans in a hand's width, not a coupe slope.
+    expect((f.roofRear - f.rearBase) * L).toBeLessThanOrEqual(0.35);
+  });
+
+  it.each(
     recipes.filter(({ recipe }) => recipe.bodyStyle === 'pickup'),
   )('$slug stands its cab and bed on a frame', ({ recipe }) => {
-    const { wheelRadius: R, form: f } = recipe;
+    const { wheelRadius: R, height: H, form: f } = recipe;
     // Sills sit near axle height (the builder's default is the wheel radius).
     expect(f.clearance ?? R).toBeGreaterThanOrEqual(0.25);
+    // A truck body stands taller than a car's: its belt clears 0.95 m, above the hood's front
+    // edge, and the cab's back glass leans in from its base to the roof.
+    expect(f.belt * H).toBeGreaterThan(0.95);
+    expect(f.belt).toBeGreaterThan(f.nose);
+    expect(f.rearBase).toBeLessThan(f.roofRear);
   });
 
   it.each(

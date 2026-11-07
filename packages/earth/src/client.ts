@@ -155,7 +155,9 @@ export {
   earthPerformanceTier,
   earthPixelRatio,
   earthQualityLevel,
+  earthTerrainBudget,
   earthTerrainCacheBudget,
+  earthWorldgenCacheBytes,
 } from './client/performance';
 export {
   createEarthPrefetcher,

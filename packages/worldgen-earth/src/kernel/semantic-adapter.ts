@@ -34,12 +34,14 @@ import {
   type InferredBuildingFeature,
   inferBuildingFootprints,
 } from './building-infill';
-import { buildingPieces } from './building-parts';
+import { type BuildingPiece, buildingPieces } from './building-parts';
+import { applyBuildingUse, associateBuildingUses, type BuildingUseEvidence } from './building-use';
 import { applyBusinessAppearance, associateBusinesses } from './businesses';
 import { withDistrictLevels } from './district-heights';
 import { corridor } from './infill-geometry';
 import { contextLabelForPolygon, isLandcoverDesignation, landcoverLabel } from './labels';
 import { mappedPropExclusions, mappedPropRequests } from './mapped-props';
+import { applyParkingStructure, associateParkingStructures } from './parking-structures';
 import type { PlacesContent } from './places';
 import { type RegionResolver, regionScatterId, regionStyleRules } from './region';
 import type { RegionAtlasDoc } from './region-atlas-types';
@@ -280,6 +282,16 @@ export function semanticTileToBatch(
             options.places.businesses,
           )
         : new Map();
+    const parkingStructures =
+      geom.levelBelowMax === 0 && !tile.buildingsGeneralized
+        ? associateParkingStructures(tile, pieces, size)
+        : new Map();
+    const finest = geom.levelBelowMax === 0 && !tile.buildingsGeneralized;
+    const buildingUses: ReadonlyMap<BuildingPiece, BuildingUseEvidence> = finest
+      ? associateBuildingUses(tile, pieces, size, (piece) =>
+          contextLabelForPolygon(piece.polygon, ringCentroid(piece.polygon.outer), tile.landcover),
+        )
+      : new Map();
     for (const piece of pieces) {
       const { feature, labels, polygon: source, polygonIndex } = piece;
       const decision = analyzeTileEdge(source, buffer);
@@ -353,6 +365,11 @@ export function semanticTileToBatch(
       const occupants = businesses.get(piece);
       if (occupants !== undefined)
         applyBusinessAppearance(request, piece, occupants, tile, size, options.pack.archstyles);
+      const parkingStructure = parkingStructures.get(piece);
+      const use = buildingUses.get(piece);
+      if (parkingStructure !== undefined)
+        applyParkingStructure(request, parkingStructure, size, options.pack.archstyles);
+      else if (use !== undefined) applyBuildingUse(request, use, options.pack.archstyles);
       buildings.push(request);
     }
   }

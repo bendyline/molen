@@ -1,3 +1,4 @@
+import { InstanceBatch } from '@bendyline/molen-client/instancing';
 import { createParkedVehicleBatch } from '@bendyline/molen-client/vehicles';
 import type { FontLibrary } from '@bendyline/molen-materials/text';
 import type { VehiclePlacement } from '@bendyline/molen-schema';
@@ -318,8 +319,8 @@ export function createTerrainSurfaceWorkerBridge(
       let mesh: THREE.Mesh;
       if (data.matrices) {
         // Zero initial instances avoids allocating/initializing matrices we will replace.
-        const instances = new THREE.InstancedMesh(box, fixtureMaterial, 0);
-        instances.instanceMatrix = new THREE.InstancedBufferAttribute(data.matrices, 16);
+        const instances = new InstanceBatch(box, fixtureMaterial, 0);
+        instances.setInstanceMatrices(data.matrices);
         instances.count = data.matrices.length / 16;
         if (data.instanceColors)
           instances.instanceColor = new THREE.InstancedBufferAttribute(data.instanceColors, 3);

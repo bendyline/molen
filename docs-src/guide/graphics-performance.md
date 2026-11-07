@@ -71,7 +71,9 @@ const viewer = await createViewer({
 ```
 
 The queue limits synchronous work started per animation frame. One oversized indivisible job
-runs alone and is reported as over budget. `setLimits` changes the budget from the next frame on.
+runs alone and is reported as over budget, and the frames after it repay the excess, so the budget
+holds on average: a 20 ms instanced shader build every third frame rather than every frame at half
+the frame rate, for the same throughput. `setLimits` changes the budget from the next frame on.
 A job's `priority` is `'normal'`, `'background'` (only in budget normal jobs leave) or `'urgent'`
 (ahead of normal jobs, in its own order): the terrain stream admits ground that way, and marks a
 tile group `userData.admissionPriority = 'urgent'` so `prepareObject` queues its upload the same
@@ -342,6 +344,14 @@ replacement stay protected. Speculative tiles yield to displayed
 coverage under memory pressure; oversized speculative tiles back off instead of rebuilding on
 every update. `preloading` and `preloaded` in stream stats distinguish requested and ready leaves.
 
+Independently of those views, the stream builds ahead along the track of the positions passed to
+`update`, from spare capacity only (`lookAhead`, see [terrain](terrain.md)). For a moving camera,
+layer work is ordered for where the camera will be when it finishes, and bare ground comes before
+more detail for ground that has some. At speed, refinement stops at tiles the camera crosses in
+under `lookAhead.minTileSeconds`, for the current selection and the predicted views alike. Layer
+work for a tile the camera has left finishes into the warm cache rather than being cancelled: a
+cancelled request leaves its worker job running with nothing to show for it.
+
 Earth's automatic render tiers retain at least four height and eight layer jobs, including at
 Minimum: serializing landcover, water and buildings behind one job could never keep up with a
 jet. Eight layer slots let a four-tile approach family prepare while current coverage advances.
@@ -356,10 +366,11 @@ it runs once after the admission flush, together with eviction. Reads that depen
 displayed (`displayedTiles`, `sampleHeight`, `isAreaReady`, `stats`, `pressure`) run a pending
 pass first. A fast flight publishes dozens of tiles and layers per frame, and each had run the
 whole handoff, layer, cutout and byte pass. The warm cache keeps most resident tiles hidden; a
-hidden tile's subtree is left out of the scene's per-frame world-matrix walk (three walks hidden
-objects too), and a rebase above it is applied when it shows again. `stats()` walks every resident
-tile's objects for exact byte totals; a live panel passes `{ geometry: 'tracked' }` for the
-retained estimate and visible-only counts. Ground cutouts stay on hidden tiles while their
+hidden tile leaves the scene graph (three walks hidden objects in every world-matrix update and
+traversal) but keeps its `parent`, so world matrices still resolve while its layers prepare, and a
+rebase above it is applied when it shows again. `stats()` walks every displayed tile's objects for
+exact byte totals and adds hidden tiles' tracked buffers; a live panel passes
+`{ geometry: 'tracked' }` for the retained estimate and visible-only counts. Ground cutouts stay on hidden tiles while their
 openings remain, keep the source grid's indices for triangles away from every opening, and
 re-count only the tiles whose ground they changed.
 

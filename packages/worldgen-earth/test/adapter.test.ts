@@ -262,7 +262,9 @@ describe('semantic adapter', () => {
       regions,
       features: { scatter: false },
     });
-    expect(output.records.every((r) => r.styleId.endsWith('.commercial'))).toBe(true);
+    // Neither reads as a house; a footprint big enough to teach in gets the school itself.
+    expect(output.records.every((r) => !r.styleId.includes('.house'))).toBe(true);
+    expect(output.records.some((r) => r.styleId === 'molen.worldgen.use.school')).toBe(true);
   });
 
   it('preserves mapped parts, raised clearance, uncovered outlines, and a shared ground platform', () => {

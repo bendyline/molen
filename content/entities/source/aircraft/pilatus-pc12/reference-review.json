@@ -42,7 +42,7 @@
     "mode": "top-down-ortho",
     "center": [
       0,
-      -2.16
+      -2.12
     ],
     "viewHeight": 1,
     "cameraHeight": 7.85
@@ -226,8 +226,8 @@
     ],
     "statesInspected": true
   },
-  "sourceHash": "sha256:70d0c3f96f1f7e82c344f301e4ee0c5b8311bd09316c805b3d6a41f65b95e602",
-  "runtimeHash": "sha256:7610c472a137d1a3cc652e7c4fa09adee0efa3afba70a81c764eb7f04b5d69a5",
+  "sourceHash": "sha256:11c3b99d3304e570ab5aaa16662c18736505c14a3719501dfa155883aaa2b744",
+  "runtimeHash": "sha256:fad35ece7bcad1ba850e44dc688c3e09c20e12200542eb298d8873aaae1b86c4",
   "limitations": [
     "The uniformly scaled POH drawing places the nose axle about 0.1m aft of the printed 3.48m wheelbase. Printed dimensions take precedence. Small tail, aft-strake, windshield and wingtip outline residuals remain; total geometry bounds include the simplified antenna/strake extremities.",
     "Compound fuselage, cockpit shoulder, nacelle and fairing curvature remains a finite polygonal approximation. Cockpit glazing framing is simplified. Fine service stencils, flush fastener spacing and gear-door mechanisms are approximate rather than maintenance drawings.",
@@ -270,5 +270,46 @@
       "sha256": "sha256:4041ac2d3cac00714aaeb0668c97ebc90d08ad8404d1b250563a42665615ceeb",
       "inspected": true
     }
+  },
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "packages/entities/scripts/cockpit-sweep.mjs rays from pilotEye through source.glb, then seat, pitched-down and exterior nose renders inspected at the runtime camera (+Z, 60 degrees vertical).",
+    "before": {
+      "eye": [
+        0.35,
+        2.65,
+        2.05
+      ],
+      "outside": 40,
+      "horizon": 95,
+      "overNose": -7,
+      "headroom": 0.16,
+      "wall": 0.32,
+      "panel": 0.88,
+      "cushion": 1.01,
+      "seatback": 0.4,
+      "poked": 0
+    },
+    "after": {
+      "eye": [
+        0.35,
+        2.62,
+        2.05
+      ],
+      "outside": 48,
+      "horizon": 95,
+      "overNose": -10,
+      "headroom": 0.19,
+      "wall": 0.38,
+      "panel": 0.84,
+      "cushion": 0.81,
+      "seatback": 0.4,
+      "poked": 0
+    },
+    "corrections": [
+      "Eye lowered 0.03 m out of the roof; crew seats raised 0.17 m so the eye is 0.81 m over the cushion. Panel lowered 0.04 m.",
+      "Glareshield hood ran level out through the windscreen. It now drops 0.13 m to z 3.12 and is narrower. Overhead laid flatter against the ceiling at the same size."
+    ],
+    "limitations": []
   }
 }

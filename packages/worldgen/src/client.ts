@@ -25,6 +25,7 @@ export {
 export type { ModelLoader, PreparedModel } from './client/instanced-models';
 export { ModelLibrary, mergeSceneGeometry } from './client/instanced-models';
 export {
+  type InteriorElevatorStop,
   InteriorStreamer,
   type InteriorStreamingOptions,
   type InteriorStreamingStats,

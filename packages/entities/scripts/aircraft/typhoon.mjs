@@ -890,17 +890,17 @@ function typhoonCockpit(root, m) {
       cd.box([0.013, 0.012, 0.006], [side * 0.102, 0.012 - i * 0.022, -0.043], black);
   cd.finish();
   // HUD optics only. A true collimated flight HUD requires a separate optical/rendering model.
-  const hud = group(cabin, 'Typhoon-HUD', [0, 2.92, 5.8]),
+  const hud = group(cabin, 'Typhoon-HUD', [0, 2.9, 5.72]),
     ud = detailKit(hud, hud.name);
   hud.rotation.x = -0.15;
   const hc = Array.from({ length: 32 }, (_, i) => {
     const a = (i * Math.PI) / 16;
-    return [Math.sin(a) * 0.165, 0.14 + Math.cos(a) * 0.15, 0];
+    return [Math.sin(a) * 0.165, 0.115 + Math.cos(a) * 0.125, 0];
   });
   sheet(ud, hc, m.glass, [0, 0, -1]);
   outline(ud, hc, 0.0028, black);
   for (const side of [-1, 1])
-    ud.rod([side * 0.13, -0.1, -0.08], [side * 0.164, 0.12, 0], 0.007, button);
+    ud.rod([side * 0.13, -0.1, -0.08], [side * 0.164, 0.1, 0], 0.007, button);
   beveledBox(ud, [0.25, 0.065, 0.21], [0, -0.1, 0.04], black, 0.008);
   ud.finish();
   const keypad = group(cabin, 'Typhoon-left-keypad', [0.364, 2.68, z - 0.012]),
@@ -995,8 +995,8 @@ function typhoonCockpit(root, m) {
       panel,
       [-side, 0, 0],
     );
-    d.box([0.18, 0.15, 1.5], [side * 0.36, 2.09, 4.65], panel);
-    const g = group(cabin, `Typhoon-console-${side}`, [side * 0.36, 2.17, 4.55]);
+    d.box([0.18, 0.25, 1.5], [side * 0.36, 2.14, 4.65], panel);
+    const g = group(cabin, `Typhoon-console-${side}`, [side * 0.36, 2.27, 4.55]);
     g.rotation.x = Math.PI / 2;
     const gd = detailKit(g, g.name);
     for (const [i, label] of (side === 1
@@ -1040,7 +1040,7 @@ function typhoonCockpit(root, m) {
     }
     gd.finish();
   }
-  const sg = group(cabin, 'Typhoon-Mk16A', [0, 1.92, 4.12]);
+  const sg = group(cabin, 'Typhoon-Mk16A', [0, 2.2, 4.55]);
   sg.rotation.x = -0.2;
   const sd = detailKit(sg, sg.name);
   beveledBox(sd, [0.47, 0.13, 0.5], [0, 0, 0.18], seat);
@@ -1087,20 +1087,20 @@ function typhoonCockpit(root, m) {
     ]);
   }
   sd.finish();
-  const stick = group(cabin, 'Typhoon-stick', [0, 1.87, 4.99]),
+  const stick = group(cabin, 'Typhoon-stick', [0, 1.87, 5.17]),
     st = detailKit(stick, stick.name);
   st.add(new T.CylinderGeometry(0.047, 0.067, 0.15, 16), black, [0, 0.075, 0]);
-  st.rod([0, 0.14, 0], [0, 0.38, -0.035], 0.022, black);
-  beveledBox(st, [0.083, 0.155, 0.063], [0, 0.44, -0.035], button, 0.012);
+  st.rod([0, 0.14, 0], [0, 0.5, -0.05], 0.022, black);
+  beveledBox(st, [0.083, 0.155, 0.063], [0, 0.56, -0.05], button, 0.012);
   for (const [x, y] of [
-    [-0.026, 0.49],
-    [0.024, 0.48],
-    [0, 0.415],
+    [-0.026, 0.61],
+    [0.024, 0.6],
+    [0, 0.535],
   ])
     st.add(new T.CylinderGeometry(0.012, 0.012, 0.007, 10).rotateX(Math.PI / 2), black, [
       x,
       y,
-      -0.07,
+      -0.085,
     ]);
   st.finish();
   bindings.push(
@@ -1108,7 +1108,7 @@ function typhoonCockpit(root, m) {
     { node: stick.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.17 },
   );
   for (let i = 0; i < 2; i++) {
-    const g = group(cabin, `Typhoon-throttle-${i}`, [0.3 + i * 0.06, 2.17, 4.66]),
+    const g = group(cabin, `Typhoon-throttle-${i}`, [0.3 + i * 0.06, 2.27, 4.95]),
       gd = detailKit(g, g.name);
     gd.rod([0, 0, 0], [0, 0.1, 0], 0.012, black);
     beveledBox(gd, [0.055, 0.07, 0.105], [0, 0.13, 0], black, 0.009);
@@ -1123,7 +1123,7 @@ function typhoonCockpit(root, m) {
     });
   }
   for (const side of [-1, 1]) {
-    const g = group(cabin, `Typhoon-pedal-${side}`, [side * 0.15, 1.89, 5.58]),
+    const g = group(cabin, `Typhoon-pedal-${side}`, [side * 0.15, 1.89, 5.42]),
       gd = detailKit(g, g.name);
     gd.box([0.13, 0.15, 0.025], [0, 0, 0], m.metal);
     for (let i = 0; i < 5; i++) gd.box([0.11, 0.006, 0.006], [0, -0.06 + i * 0.03, -0.016], black);

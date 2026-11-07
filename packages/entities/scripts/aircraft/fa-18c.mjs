@@ -29,6 +29,174 @@ export const fa18Frame = () => ({
   panelZ: 6.65,
   floor: 1.66,
 });
+// Tables are traced from the NASA TM-4786 three-view at 84.4 px/m, which the 56 ft bar, the 5.38 m
+// wheelbase and the 10.5 ft canopy bar all agree on. Its drawn fin stands 5% over the annotated
+// 15.3 ft, and a photograph solved from gear and fins shows the same ratio; the annotated NATOPS
+// height is kept. Its rear view is not to the same scale, so it sets no heights. The LEX edge comes
+// from that photograph: it runs well down the flank, leaving tall body sides under the canopy.
+const lookup = (rows, z) => {
+  if (z >= rows[0][0]) return rows[0][1];
+  for (let i = 1; i < rows.length; i++)
+    if (z >= rows[i][0]) {
+      const [z0, v0] = rows[i - 1],
+        [z1, v1] = rows[i];
+      return v1 + ((v0 - v1) * (z - z1)) / (z0 - z1);
+    }
+  return rows.at(-1)[1];
+};
+/** Nose to windscreen: z, half-breadth, keel, crown. */
+const forebody = [
+  [10.9, 0.008, 1.5, 1.53],
+  [10.7, 0.131, 1.44, 1.665],
+  [10.4, 0.215, 1.371, 1.817],
+  [10, 0.31, 1.311, 1.96],
+  [9.6, 0.385, 1.294, 2.085],
+  [9.15, 0.418, 1.29, 2.205],
+  [8.7, 0.446, 1.294, 2.33],
+  [8.2, 0.464, 1.3, 2.462],
+  [7.8, 0.47, 1.312, 2.57],
+];
+/** Canopy: z, half-width at the rail, rail height, crown. 10 ft 6 in peak over the seat. */
+const canopy = [
+  [7.62, 0.025, 2.6, 2.62],
+  [7.2, 0.24, 2.6, 2.847],
+  [6.8, 0.34, 2.635, 3.026],
+  [6.5, 0.39, 2.66, 3.13],
+  [6.1, 0.43, 2.705, 3.19],
+  [5.7, 0.44, 2.75, 3.2004],
+  [5.2, 0.43, 2.811, 3.19],
+  [4.8, 0.4, 2.853, 3.165],
+  [4.4, 0.33, 2.901, 3.115],
+  [4.05, 0.2, 2.96, 3.085],
+  [3.8, 0.02, 3.06, 3.075],
+];
+const breadth = [
+  [7.8, 0.47],
+  [7.2, 0.5],
+  [6.6, 0.53],
+  [5.7, 0.565],
+  [4.8, 0.59],
+  [4, 0.61],
+  [3.25, 0.64],
+  [2.4, 0.66],
+  [1.4, 0.66],
+  [-0.8, 0.58],
+  [-3.1, 0.42],
+  [-5, 0.14],
+  [-5.75, 0.03],
+];
+const keel = [
+  [7.8, 1.312],
+  [6.4, 1.317],
+  [5.2, 1.341],
+  [4.4, 1.353],
+  [3.6, 1.4],
+  [2.8, 1.436],
+  [1.4, 1.44],
+  [-0.8, 1.5],
+  [-3.1, 1.7],
+  [-5, 1.9],
+  [-5.75, 2.02],
+];
+/** Dorsal crown aft of the canopy. A full spine carries the canopy line back to the tails. */
+const spine = [
+  [3.25, 3.08],
+  [2.4, 3.06],
+  [1.6, 3.014],
+  [0.8, 2.972],
+  [0, 2.93],
+  [-0.8, 2.895],
+  [-2, 2.79],
+  [-3.1, 2.7],
+  [-4, 2.64],
+  [-5, 2.5],
+  [-5.75, 2.2],
+];
+const SHOULDER = 0.58,
+  RING = 40,
+  CAP = 3,
+  QUARTER = RING / 4;
+const station = (z, w, b, sw, sy, f) => ({
+  z,
+  w,
+  b,
+  sw,
+  sy,
+  m: b + f * (sy - b),
+});
+const stations = [
+  ...forebody.map(([z, w, b, t], i) =>
+    station(z, w, b, 0, t, 0.5 + (0.08 * i) / (forebody.length - 1)),
+  ),
+  ...canopy.map(([z, sw, sy]) => station(z, lookup(breadth, z), lookup(keel, z), sw, sy, SHOULDER)),
+  ...spine.map(([z, t]) => station(z, lookup(breadth, z), lookup(keel, z), 0, t, SHOULDER)),
+];
+// A flat cap to the rail, a shoulder to maximum breadth, then a full lower lobe.
+const ringPoint = (s, k) => {
+  if (k <= CAP) return [(s.sw * k) / CAP, s.sy];
+  if (k <= QUARTER) {
+    const a = ((k - CAP) / (QUARTER - CAP)) * (Math.PI / 2);
+    return [s.sw + (s.w - s.sw) * Math.sin(a), s.m + (s.sy - s.m) * Math.cos(a)];
+  }
+  const a = ((k - QUARTER) / QUARTER) * (Math.PI / 2);
+  return [
+    s.w * Math.pow(Math.max(0, Math.cos(a)), 0.8),
+    s.m - (s.m - s.b) * Math.pow(Math.sin(a), 0.9),
+  ];
+};
+const ring3d = (s) =>
+  Array.from({ length: RING }, (_, i) => {
+    const k = i <= RING / 2 ? i : RING - i,
+      [x, y] = ringPoint(s, k);
+    return [i <= RING / 2 ? x : -x, y, s.z];
+  });
+const same = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]) < 1e-7;
+const distinct = (points) =>
+  points.filter((p, i) => !same(p, points[(i + points.length - 1) % points.length]));
+/** Ruled skin between rings of 3D points; unlike loft, each point carries its own z. */
+function ruled(d, rings, material, skip = () => false) {
+  const n = rings[0].length;
+  for (let i = 0; i < rings.length - 1; i++) {
+    const center = rings[i].reduce((s, q) => [s[0] + q[0] / n, s[1] + q[1] / n], [0, 0]);
+    for (let j = 0; j < n; j++) {
+      if (skip(i, j)) continue;
+      const p = distinct([
+        rings[i][j],
+        rings[i + 1][j],
+        rings[i + 1][(j + 1) % n],
+        rings[i][(j + 1) % n],
+      ]);
+      if (p.length < 3) continue;
+      const normal = [0, 0, 0];
+      for (let k = 0; k < p.length; k++) {
+        const a = p[k],
+          b = p[(k + 1) % p.length];
+        normal[0] += (a[1] - b[1]) * (a[2] + b[2]);
+        normal[1] += (a[2] - b[2]) * (a[0] + b[0]);
+        normal[2] += (a[0] - b[0]) * (a[1] + b[1]);
+      }
+      if (Math.hypot(...normal) < 1e-6) continue;
+      const out = (p[0][0] + p[1][0]) / 2 - center[0],
+        up = (p[0][1] + p[1][1]) / 2 - center[1];
+      sheet(d, p, material, normal[0] * out + normal[1] * up < 0 ? normal.map((v) => -v) : normal);
+    }
+  }
+}
+/** Inlet to tail fairing: z, center, half-breadth, bottom, top. The F404s sit 1.04 m apart and
+ * the fairings narrow hard behind the wing, rising to meet the nozzles rather than sagging. */
+const ENGINE_X = 0.52;
+const fairing = [
+  [2.08, 0.72, 0.5, 1.22, 2.1],
+  [1.6, 0.71, 0.52, 1.21, 2.26],
+  [0.8, 0.69, 0.54, 1.234, 2.38],
+  [-0.4, 0.64, 0.56, 1.258, 2.48],
+  [-1.2, 0.6, 0.56, 1.282, 2.52],
+  [-1.7, 0.55, 0.48, 1.33, 2.54],
+  [-2.3, 0.49, 0.44, 1.38, 2.55],
+  [-3.2, 0.485, 0.44, 1.478, 2.57],
+  [-4, 0.5, 0.46, 1.6, 2.55],
+  [-4.85, 0.52, 0.455, 1.78, 2.45],
+];
 export function buildFA18C(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -36,7 +204,10 @@ export function buildFA18C(s) {
     upper = mat('FA18-upper', '#7e8b96', { side: T.DoubleSide }),
     dark = mat('FA18-seals', '#292e31'),
     metal = mat('FA18-alloy', '#aeb4b6', { metalness: 0.75 }),
-    nozzle = mat('FA18-nozzle', '#696862', { metalness: 0.7, side: T.DoubleSide }),
+    nozzle = mat('FA18-nozzle', '#696862', {
+      metalness: 0.7,
+      side: T.DoubleSide,
+    }),
     lining = mat('FA18-duct', '#242627', { side: T.DoubleSide }),
     glass = mat('FA18-glass', '#a6c5c9', {
       transparent: true,
@@ -48,51 +219,41 @@ export function buildFA18C(s) {
   const d = detailKit(root, 'FA18-airframe'),
     bindings = [];
   // Radome and cabin shell taper independently from the aft paired engines.
-  // The radome is a full ogive whose tip sits about 0.35 m above the flat keel (NASA three-view
-  // and photographs), not a spike drooping along the chin line.
-  const sections = [
-    [10.9, 0.05, 1.63, 1.69],
-    [10.45, 0.22, 1.45, 1.9],
-    [9.8, 0.345, 1.375, 2.1],
-    [9.15, 0.44, 1.34, 2.27],
-    [8.5, 0.47, 1.34, 2.45],
-    [7.75, 0.49, 1.34, 2.58],
-    [6.6, 0.55, 1.35, 2.63],
-    [5.7, 0.58, 1.35, 2.68],
-    [4.0, 0.61, 1.36, 2.85],
-    [3.25, 0.67, 1.35, 2.94],
-    [1.4, 0.66, 1.32, 2.86],
-    [-0.8, 0.58, 1.35, 2.73],
-    [-3.1, 0.4, 1.55, 2.6],
-    [-5.0, 0.12, 1.78, 2.46],
-    [-5.7, 0.03, 1.99, 2.2],
-  ];
-  const rings = sections.map(([z, w, b, t]) => ({
-    z,
-    points: Array.from({ length: 24 }, (_, j) => [
-      Math.sin((j * Math.PI) / 12) * w,
-      (b + t) / 2 + (Math.cos((j * Math.PI) / 12) * (t - b)) / 2,
-    ]),
-  }));
-  loft(d, rings, paint, { skip: (i, j) => i < 3 || (i >= 5 && i < 8 && (j < 5 || j >= 19)) });
-  loft(d, rings.slice(0, 4), mat('FA18-radome', '#a6afb4'));
-  for (const i of [3, 4, 9, 10, 12])
+  const rings = stations.map(ring3d),
+    index = (z) => stations.findIndex((q) => q.z === z),
+    radome = index(9.15),
+    open = [index(7.2), index(4.05)],
+    outer = (i) => distinct(rings[i].filter((_, j) => j >= CAP && j <= RING - CAP)),
+    radomePaint = mat('FA18-radome', '#a6afb4', { side: T.DoubleSide });
+  ruled(d, rings.slice(0, radome + 1), radomePaint);
+  ruled(
+    d,
+    rings.slice(radome),
+    paint,
+    (i, j) => i + radome >= open[0] && i + radome < open[1] && (j < CAP || j >= RING - CAP),
+  );
+  sheet(d, distinct(rings[0]), radomePaint, [0, 0, 1]);
+  sheet(d, distinct(rings.at(-1)), paint, [0, 0, -1]);
+  for (const z of [9.15, 8.2, 3.25, 1.6, -0.8])
     outline(
       d,
-      rings[i].points.map(([x, y]) => [x * 1.005, y, rings[i].z]),
+      outer(index(z)).map(([x, y, q]) => [x * 1.005, y, q]),
       0.0025,
       dark,
     );
-  // The bubble crown stands about 3.3 m up (NASA three-view); sills stay on the shoulder rails.
-  const canopy = [
-    [7.7, 0.025, 2.56, 2.58],
-    [7.05, 0.3, 2.59, 2.9],
-    [6.5, 0.42, 2.62, 3.24],
-    [6.2, 0.44, 2.64, 3.3],
-    [5.45, 0.44, 2.7, 3.27],
-    [4.5, 0.35, 2.78, 3.15],
-    [3.9, 0.025, 2.87, 2.9],
-  ];
+  // Anti-glare deck under the windscreen, ahead of the aperture.
+  sheet(
+    d,
+    [
+      ...canopy.slice(0, 2).map(([z, w, y]) => [w, y + 0.006, z]),
+      ...canopy
+        .slice(0, 2)
+        .reverse()
+        .map(([z, w, y]) => [-w, y + 0.006, z]),
+    ],
+    dark,
+    [0, 1, 0],
+  );
   const cr = canopy.map(([z, w, b, t]) => ({
     z,
     points: Array.from({ length: 17 }, (_, j) => [
@@ -101,11 +262,12 @@ export function buildFA18C(s) {
     ]),
   }));
   loft(d, cr, glass, { caps: false, skip: (_, j) => j === 16 });
-  for (const i of [0, 2, 6])
+  const bow = canopy.findIndex(([z]) => z === 6.5);
+  for (const i of [0, bow, cr.length - 1])
     outline(
       d,
       cr[i].points.map((p) => [...p, cr[i].z]),
-      i === 2 ? 0.02 : 0.013,
+      i === bow ? 0.02 : 0.013,
       paint,
       false,
     );
@@ -117,40 +279,18 @@ export function buildFA18C(s) {
       paint,
       false,
     );
-  // Shoulder patches close the shell outside the true canopy opening.
-  for (const side of [-1, 1])
-    for (let i = 0; i < 3; i++) {
-      const a = rings[5 + i],
-        b = rings[6 + i],
-        j = side === 1 ? 5 : 19;
-      const rail = [
-        [0.025, 2.56, 7.75],
-        [0.42, 2.62, 6.6],
-        [0.44, 2.68, 5.7],
-        [0.05, 2.86, 4.0],
-      ];
-      quad(
-        d,
-        [...a.points[j], a.z],
-        [...b.points[j], b.z],
-        [side * rail[i + 1][0], rail[i + 1][1], rail[i + 1][2]],
-        [side * rail[i][0], rail[i][1], rail[i][2]],
-        paint,
-        [side, 1, 0],
-      );
-    }
   for (let j = 0; j < 17; j++) {
-    const p = cr[2].points[j];
-    d.add(new T.SphereGeometry(0.0035, 5, 3), metal, [p[0], p[1] + 0.01, 6.5]);
+    const p = cr[bow].points[j];
+    d.add(new T.SphereGeometry(0.0035, 5, 3), metal, [p[0], p[1] + 0.01, canopy[bow][0]]);
   }
   // Curved LEX, round-sided subsonic inlet lips and tightly paired F404 fairings.
   for (const side of [-1, 1]) {
     const lex = [
-      [0.47, 2.57, 7.65, 0.46, 2.52],
-      [0.7, 2.52, 6.95, 0.5, 2.49],
-      [0.93, 2.45, 5.65, 0.54, 2.5],
-      [1.2, 2.35, 3.75, 0.58, 2.61],
-      [1.39, 2.29, 2.3, 0.59, 2.61],
+      [0.47, 2.24, 7.6, 0.46, 2.3],
+      [0.72, 2.19, 6.95, 0.5, 2.29],
+      [0.93, 2.15, 5.65, 0.54, 2.28],
+      [1.2, 2.08, 3.75, 0.58, 2.3],
+      [1.36, 2.03, 2.3, 0.6, 2.36],
     ];
     // The underside is a wedge that drops to the fuselage side, so the LEX reads as the thick
     // shadowed shelf seen from the ground, not a blade. [lower root x, drop below the root].
@@ -188,10 +328,10 @@ export function buildFA18C(s) {
       );
     quad(
       d,
-      [side * 0.6, 2.6, 2.3],
-      [side * 1.39, 2.29, 2.3],
-      [side * 1.3, 2.26, -1.81],
-      [side * 0.6, 2.65, -1.81],
+      [side * 0.6, 2.36, 2.3],
+      [side * 1.36, 2.03, 2.3],
+      [side * 1.3, 2.3, -1.81],
+      [side * 0.6, 2.6, -1.81],
       upper,
       [0, 1, 0],
     );
@@ -206,62 +346,58 @@ export function buildFA18C(s) {
     sheet(
       d,
       [
-        [side * 0.99, 2.44, 2.4],
-        [side * 0.99, 2.67, 2.1],
-        [side * 0.99, 2.67, 1.45],
-        [side * 0.99, 2.43, 1.35],
+        [side * 0.99, 2.15, 2.4],
+        [side * 0.99, 2.42, 2.1],
+        [side * 0.99, 2.42, 1.45],
+        [side * 0.99, 2.25, 1.35],
       ],
       paint,
       [side, 0, 0],
     );
-    const ng = group(root, `FA18-engine-${side}`, [side * 0.58, 0, 0]),
+    const ng = group(root, `FA18-engine-${side}`, [side * ENGINE_X, 0, 0]),
       nd = detailKit(ng, ng.name);
-    // Inlets and trunks are rounded rectangles (superellipse exponent e) that relax to the
-    // round engine bays; head-on each mouth is a tall rounded box beside the radome.
-    const nr = [
-      [2.08, 0.68, 1.16, 2.29, 0.55],
-      [1.2, 0.7, 1.1, 2.39, 0.6],
-      [-0.7, 0.64, 1.12, 2.5, 0.85],
-      [-2.5, 0.6, 1.23, 2.54, 1],
-      [-4.95, 0.5, 1.49, 2.49, 1],
-    ].map(([z, w, b, t, e]) => ({
-      z,
-      points: Array.from({ length: 24 }, (_, j) => {
-        const s = Math.sin((j * Math.PI) / 12),
-          c = Math.cos((j * Math.PI) / 12);
-        return [
-          Math.sign(s) * Math.pow(Math.abs(s), e) * w,
-          (b + t) / 2 + (Math.sign(c) * Math.pow(Math.abs(c), e) * (t - b)) / 2,
-        ];
-      }),
-    }));
-    loft(nd, nr, paint, { caps: false });
-    const lip = nr[0].points.map(([x, y]) => [x, y, 2.08 + 0.1 * (y - 1.7)]),
-      back = nr[0].points.map(([x, y]) => [x * 0.79, 1.75 + (y - 1.75) * 0.79, 1.2]);
+    const circle = (rx, ry, x, y, z) =>
+      Array.from({ length: 24 }, (_, j) => [
+        x + Math.sin((j * Math.PI) / 12) * rx,
+        y + Math.cos((j * Math.PI) / 12) * ry,
+        z,
+      ]);
+    const nr = fairing.map(([z, cx, w, b, t]) =>
+      circle(w, (t - b) / 2, side * (cx - ENGINE_X), (b + t) / 2, z),
+    );
+    ruled(nd, nr, paint);
+    // Round-lipped inlet under the LEX; only its outboard half shows beside the fuselage.
+    const lip = nr[0].map(([x, y]) => [x, y, 2.08 + 0.1 * (y - 1.7)]),
+      back = nr[0].map(([x, y]) => [x * 0.79, 1.66 + (y - 1.66) * 0.79, 1.2]);
     for (let j = 0; j < 24; j++)
       quad(nd, lip[j], lip[(j + 1) % 24], back[(j + 1) % 24], back[j], lining, [0, 0, 1]);
     sheet(nd, back, lining, [0, 0, 1]);
     outline(nd, lip, 0.035, paint);
-    const ring = (r, z) => ({
+    // F404 nozzle axis droops slightly: the photograph puts it at y 2.15 at the base, 1.99 aft.
+    const ring = (r, z, y) => ({
       z,
       points: Array.from({ length: 24 }, (_, j) => [
         Math.sin((j * Math.PI) / 12) * r,
-        1.99 + Math.cos((j * Math.PI) / 12) * r,
+        y + Math.cos((j * Math.PI) / 12) * r,
       ]),
     });
-    loft(nd, [ring(0.5, -4.95), ring(0.52, -5.15), ring(0.42, -5.72)], nozzle, { caps: false });
-    loft(nd, [ring(0.405, -5.72), ring(0.38, -5.03)], lining, { caps: false });
+    loft(nd, [ring(0.455, -4.85, 2.115), ring(0.47, -5.05, 2.11), ring(0.4, -5.72, 2.04)], nozzle, {
+      caps: false,
+    });
+    loft(nd, [ring(0.385, -5.72, 2.04), ring(0.36, -5.03, 2.11)], lining, {
+      caps: false,
+    });
     sheet(
       nd,
-      ring(0.38, -5.03).points.map((p) => [...p, -5.03]),
+      ring(0.36, -5.03, 2.11).points.map((p) => [...p, -5.03]),
       lining,
       [0, 0, -1],
     );
-    for (let j = 0; j < 24; j++) {
+    for (let j = 0; j < 24; j += 2) {
       const a = (j * Math.PI) / 12;
       nd.rod(
-        [Math.sin(a) * 0.516, 1.99 + Math.cos(a) * 0.516, -5.15],
-        [Math.sin(a) * 0.425, 1.99 + Math.cos(a) * 0.425, -5.72],
+        [Math.sin(a) * 0.466, 2.11 + Math.cos(a) * 0.466, -5.1],
+        [Math.sin(a) * 0.405, 2.04 + Math.cos(a) * 0.405, -5.72],
         0.003,
         dark,
       );
@@ -269,9 +405,9 @@ export function buildFA18C(s) {
     nd.finish();
     // Fixed trapezoid wing: separate leading flaps, inboard trailing flap and outer aileron.
     const stations = [
-      [1.3, 2.26, 2.34, -1.81, 0.09],
-      [3.95, 2.1, 1.0, -1.7, 0.065],
-      [5.65, 2.0, 0.14, -1.62, 0.025],
+      [1.3, 2.18, 2.34, -1.81, 0.16],
+      [3.95, 2.06, 1.0, -1.7, 0.075],
+      [5.65, 1.98, 0.14, -1.62, 0.025],
     ];
     for (let j = 0; j < 2; j++) {
       const pair = stations.slice(j, j + 2),
@@ -337,18 +473,16 @@ export function buildFA18C(s) {
       }
     }
     // Empty launch rail is part of the clean wing outline, not a missile.
-    d.box([0.13, 0.1, 1.75], [side * 5.65, 2.0, -0.73], paint);
-    d.box([0.04, 0.045, 1.5], [side * 5.7, 1.94, -0.73], metal);
-    // Stabilators hang at the bottom of the tail booms, just below the nozzle centreline
-    // (NASA Dryden three-view: 1.88m above ground against 1.96m for the nozzle axis).
-    const tg = group(root, `FA18-stabilator-${side}`, [side * 1.05, 1.9, -3.8]),
+    d.box([0.13, 0.1, 1.75], [side * 5.65, 1.98, -0.73], paint);
+    d.box([0.04, 0.045, 1.5], [side * 5.7, 1.92, -0.73], metal);
+    const tg = group(root, `FA18-stabilator-${side}`, [side * 0.95, 2.12, -3.8]),
       td = detailKit(tg, tg.name);
     wing(
       td,
       [
         [0, 0, 1.45, -1.97, 0.055],
-        [side * 2.0, -0.03, -1.2, -2.3688, 0.035],
-        [side * 2.24184, -0.04, -1.35, -2.25, 0.012],
+        [side * 2.1, -0.03, -1.2, -2.3688, 0.035],
+        [side * 2.34184, -0.04, -1.35, -2.25, 0.012],
       ],
       upper,
     );
@@ -360,19 +494,25 @@ export function buildFA18C(s) {
       axis: 'x',
       scale: 1,
     });
-    const fg = group(root, `FA18-fin-${side}`, [side * 1.06, 2.5, -0.85]);
+    const fg = group(root, `FA18-fin-${side}`, [side * 0.97, 2.5, -0.85]);
     fg.rotation.z = (-side * 20 * Math.PI) / 180;
+    // The fixed tip overhangs a rudder confined to the lower two thirds, as photographed. The root
+    // runs down into the fairing, which narrows inboard of the fin behind the wing.
     const fd = detailKit(fg, fg.name),
       height = (4.6482 - 2.5) / Math.cos((20 * Math.PI) / 180),
+      HINGE = [
+        [0.15, -2.15],
+        [1.575, -2.65],
+      ],
       contour = [
-        [0, 0, 0],
+        [0, -0.25, 0.22],
         [0, height, -2.02],
-        [0, height, -3.03],
-        [0, height - 0.1, -3.02],
-        [0, height - 0.1, -2.68],
-        [0, 0.15, -2.3],
-        [0, 0.15, -2.76],
-        [0, 0, -2.75],
+        [0, height, -3.15],
+        [0, 1.575, -3.15],
+        [0, ...HINGE[1]],
+        [0, ...HINGE[0]],
+        [0, 0.15, -2.75],
+        [0, -0.25, -2.75],
       ];
     for (const x of [-0.035, 0.035])
       sheet(
@@ -391,19 +531,22 @@ export function buildFA18C(s) {
         paint,
         [0, contour[i][1], contour[i][2]],
       );
-    const rg = group(fg, `FA18-rudder-${side}`, [0, 0.15, -2.3]),
-      rd = detailKit(rg, rg.name);
-    sheet(
-      rd,
-      [
-        [0, 0, 0],
-        [0, height - 0.25, -0.38],
-        [0, height - 0.25, -0.72],
-        [0, 0, -0.46],
-      ],
-      upper,
-      [1, 0, 0],
-    );
+    // The hinge runs up the fin's sweep, so the group is tilted to put local y on it.
+    const tilt = Math.atan2(HINGE[1][1] - HINGE[0][1], HINGE[1][0] - HINGE[0][0]),
+      hinge = group(fg, `FA18-rudder-hinge-${side}`, [0, ...HINGE[0]]);
+    hinge.rotation.x = tilt;
+    const rg = group(hinge, `FA18-rudder-${side}`),
+      rd = detailKit(rg, rg.name),
+      toHinge = ([y, z]) => {
+        const dy = y - HINGE[0][0],
+          dz = z - HINGE[0][1];
+        return [
+          0,
+          dy * Math.cos(tilt) + dz * Math.sin(tilt),
+          -dy * Math.sin(tilt) + dz * Math.cos(tilt),
+        ];
+      };
+    sheet(rd, [HINGE[0], HINGE[1], [1.5, -3], [0.2, -2.72]].map(toHinge), upper, [1, 0, 0]);
     rd.finish();
     bindings.push({
       node: rg.name,
@@ -412,38 +555,36 @@ export function buildFA18C(s) {
       axis: 'y',
       scale: 0.38,
     });
-    fd.rod([side * 0.041, 0.15, -2.3], [side * 0.041, height - 0.1, -2.68], 0.003, dark);
-    for (let j = 0; j < 3; j++)
-      fd.rod(
-        [0, height - 0.07 - j * 0.13, -2.9],
-        [0, height - 0.07 - j * 0.13, -3.13],
-        0.035,
-        paint,
-      );
+    fd.rod([side * 0.041, ...HINGE[0]], [side * 0.041, ...HINGE[1]], 0.003, dark);
+    for (const y of [height - 0.12, 1.82, 1.66]) fd.rod([0, y, -2.95], [0, y, -3.27], 0.035, paint);
     // Exterior operator identifiers are supplied by the selected livery.
     fd.finish();
-    // Retractable main gear: wide trailing arm and one wheel per side. The splayed oleo and
-    // arm are as stout as in head-on photographs, not wire struts.
+    // Retractable main gear: wide trailing arm and one wheel per side.
     const gg = group(root, `FA18-gear-${side}`, [side * 0.66, 1.35, 0.22]),
       gd = detailKit(gg, gg.name);
     gd.rod([0, 0, 0], [side * 0.35, -0.68, -0.05], 0.085, metal);
-    gd.rod([side * 0.35, -0.68, -0.05], [side * 0.82, -0.96, -0.22], 0.09, paint);
+    gd.rod([side * 0.35, -0.68, -0.05], [side * 0.895, -0.97, -0.22], 0.09, paint);
     gd.rod([0, -0.1, 0.48], [side * 0.4, -0.68, -0.05], 0.048, metal);
-    gd.add(new T.CylinderGeometry(0.39, 0.39, 0.23, 24).rotateZ(Math.PI / 2), dark, [
-      side * 0.82,
-      -0.96,
+    gd.add(new T.CylinderGeometry(0.38, 0.38, 0.27, 24).rotateZ(Math.PI / 2), dark, [
+      side * 0.895,
+      -0.97,
       -0.22,
     ]);
-    gd.add(new T.CylinderGeometry(0.23, 0.23, 0.24, 24).rotateZ(Math.PI / 2), metal, [
-      side * 0.82,
-      -0.96,
+    gd.add(new T.CylinderGeometry(0.21, 0.21, 0.28, 24).rotateZ(Math.PI / 2), metal, [
+      side * 0.895,
+      -0.97,
       -0.22,
     ]);
     const door = group(gg, `FA18-main-door-${side}`),
       doorKit = detailKit(door, door.name);
     doorKit.box([0.035, 0.6, 0.75], [side * 0.11, -0.23, 0.1], paint);
     doorKit.finish();
-    bindings.push({ node: door.name, source: 'gearExposed', property: 'visible', scale: 1 });
+    bindings.push({
+      node: door.name,
+      source: 'gearExposed',
+      property: 'visible',
+      scale: 1,
+    });
     gd.finish();
     bindings.push({
       node: gg.name,
@@ -470,30 +611,43 @@ export function buildFA18C(s) {
       offset: 0.8,
     });
     // Once shut, the opaque bay hides the assembly; do not render it through the cabin tub.
-    bindings.push({ node: gg.name, source: 'gearExposed', property: 'visible', scale: 1 });
+    bindings.push({
+      node: gg.name,
+      source: 'gearExposed',
+      property: 'visible',
+      scale: 1,
+    });
   }
   const ng = group(root, 'FA18-gear-nose', [0, 1.4, 5.38]),
     nd = detailKit(ng, ng.name);
-  nd.rod([0, 0, 0], [0, -1.08, 0], 0.052, metal);
+  nd.rod([0, 0, 0], [0, -1.12, 0], 0.052, metal);
   nd.rod([0, -0.15, -0.7], [0, -0.78, 0], 0.035, metal);
+  nd.rod([-0.16, -1.12, 0], [0.16, -1.12, 0], 0.03, metal);
   for (const side of [-1, 1]) {
-    nd.add(new T.CylinderGeometry(0.32, 0.32, 0.13, 24).rotateZ(Math.PI / 2), dark, [
-      side * 0.13,
-      -1.08,
+    nd.add(new T.CylinderGeometry(0.28, 0.28, 0.17, 24).rotateZ(Math.PI / 2), dark, [
+      side * 0.16,
+      -1.12,
       0,
     ]);
-    nd.add(new T.CylinderGeometry(0.19, 0.19, 0.14, 20).rotateZ(Math.PI / 2), metal, [
-      side * 0.13,
-      -1.08,
+    nd.add(new T.CylinderGeometry(0.15, 0.15, 0.18, 20).rotateZ(Math.PI / 2), metal, [
+      side * 0.16,
+      -1.12,
       0,
     ]);
   }
-  nd.rod([0, -0.76, 0.06], [0, -1.02, 0.42], 0.03, metal);
+  nd.rod([0, -0.76, 0.06], [0, -1.06, 0.42], 0.03, metal);
   const noseDoor = group(ng, 'FA18-nose-door'),
     noseDoorKit = detailKit(noseDoor, noseDoor.name);
-  noseDoorKit.box([0.03, 0.65, 0.85], [0.23, -0.25, -0.24], paint);
+  // The forward bay door hangs ahead of the leg, with a long low strip door behind it.
+  noseDoorKit.box([0.03, 0.34, 0.86], [0.26, -0.26, 1.48], paint);
+  noseDoorKit.box([0.03, 0.14, 1], [0.26, -0.16, 0.5], paint);
   noseDoorKit.finish();
-  bindings.push({ node: noseDoor.name, source: 'gearExposed', property: 'visible', scale: 1 });
+  bindings.push({
+    node: noseDoor.name,
+    source: 'gearExposed',
+    property: 'visible',
+    scale: 1,
+  });
   nd.finish();
   bindings.push({
     node: ng.name,
@@ -511,39 +665,44 @@ export function buildFA18C(s) {
     scale: -0.75,
     offset: 0.75,
   });
-  bindings.push({ node: ng.name, source: 'gearExposed', property: 'visible', scale: 1 });
-  const hook = group(root, 'arresting-hook', [0, 1.43, -3]);
+  bindings.push({
+    node: ng.name,
+    source: 'gearExposed',
+    property: 'visible',
+    scale: 1,
+  });
+  const hook = group(root, 'arresting-hook', [0, 1.62, -3.2]);
   const hd = detailKit(hook, 'hook-skin');
-  hd.rod([0, 0, 0], [0, -0.23, -2.2], 0.029, metal);
-  hd.rod([0, -0.23, -2.2], [0, -0.18, -2.43], 0.045, metal);
+  hd.rod([0, 0, 0], [0, -0.32, -2.1], 0.029, metal);
+  hd.rod([0, -0.32, -2.1], [0, -0.28, -2.3], 0.045, metal);
   hd.finish();
   // Speed-brake outline, spine antennae, access seams and selected maintenance marks.
   outline(
     d,
     [
-      [-0.4, 2.62, -2.4],
-      [0.4, 2.62, -2.4],
-      [0.35, 2.49, -4.6],
-      [-0.35, 2.49, -4.6],
+      [-0.3, lookup(spine, -2.4) + 0.012, -2.4],
+      [0.3, lookup(spine, -2.4) + 0.012, -2.4],
+      [0.1, lookup(spine, -4.2) + 0.012, -4.2],
+      [-0.1, lookup(spine, -4.2) + 0.012, -4.2],
     ],
     0.004,
     dark,
   );
-  for (const z of [3.5, 1.4])
+  for (const z of [3.2, 1.4])
     sheet(
       d,
       [
-        [0, 2.92, z + 0.15],
-        [0, 3.14, z + 0.1],
-        [0, 3.1, z - 0.12],
-        [0, 2.9, z - 0.18],
+        [0, lookup(spine, z) - 0.02, z + 0.15],
+        [0, lookup(spine, z) + 0.2, z + 0.1],
+        [0, lookup(spine, z) + 0.16, z - 0.12],
+        [0, lookup(spine, z) - 0.02, z - 0.18],
       ],
       paint,
       [1, 0, 0],
     );
   for (const side of [-1, 1]) {
-    d.text('RESCUE', [side * 0.505, 2.23, 7.55], 0.09, (side * Math.PI) / 2, dark);
-    d.text('DANGER', [side * 1.29, 1.66, 1.7], 0.095, (side * Math.PI) / 2, dark);
+    d.text('RESCUE', [side * 0.495, 2.0, 7.55], 0.09, (side * Math.PI) / 2, dark);
+    d.text('DANGER', [side * 1.24, 1.7, 0.9], 0.095, (side * Math.PI) / 2, dark);
     for (let i = 0; i < canopy.length - 1; i++)
       for (let j = 0; j < 5; j++) {
         const a = canopy[i],
@@ -556,7 +715,7 @@ export function buildFA18C(s) {
         ]);
       }
     for (let j = 0; j < 5; j++)
-      d.box([0.008, 0.035, 0.09], [side * 0.5, 1.88, 8.8 - j * 0.13], dark);
+      d.box([0.008, 0.035, 0.09], [side * 0.455, 1.88, 8.8 - j * 0.13], dark);
   }
   d.finish();
   const interior = fa18Cockpit(root, { paint, dark, metal, glass });
@@ -571,8 +730,8 @@ export function buildFA18C(s) {
     root,
     frame: fa18Frame(),
     enginePoints: [
-      { id: 'engine-1', position: [0.58, 1.99, -4.9] },
-      { id: 'engine-2', position: [-0.58, 1.99, -4.9] },
+      { id: 'engine-1', position: [ENGINE_X, 2.1, -4.9] },
+      { id: 'engine-2', position: [-ENGINE_X, 2.1, -4.9] },
     ],
     visual: {
       rotors: [],
@@ -599,7 +758,10 @@ function fa18Cockpit(root, m) {
   const panel = mat('FA18-panel', '#51595c', { side: T.DoubleSide }),
     seat = mat('FA18-seat', '#60634a'),
     belt = mat('FA18-harness', '#919583'),
-    green = mat('FA18-display', '#71d488', { emissive: '#2a6038', emissiveIntensity: 0.7 });
+    green = mat('FA18-display', '#71d488', {
+      emissive: '#2a6038',
+      emissiveIntensity: 0.7,
+    });
   const sources = Object.fromEntries(
     [
       'airspeed',
@@ -721,7 +883,9 @@ function fa18Cockpit(root, m) {
     text(label, u, v - h * 0.37, 6, green);
   };
   display(499, 456, 192, 188, 'ATT / SIM', true);
-  ins.horizon('DDI-attitude', at(499, 451, 0.012), 0.085, 0.06, { blankBackdrop: true });
+  ins.horizon('DDI-attitude', at(499, 451, 0.012), 0.085, 0.06, {
+    blankBackdrop: true,
+  });
   ins.readout('DDI-speed', at(458, 510, -0.028), 'knots', 3, 0.01, green);
   text('TAS', 458, 497, 5, green, 'display');
   ins.readout('DDI-altitude', at(535, 510, -0.028), 'feet', 5, 0.008, green, true, true);
@@ -750,7 +914,10 @@ function fa18Cockpit(root, m) {
   ins.available('heading', 'trueHeading', hg.name);
   text('TRUE', 710, 782, 6, green, 'display');
   d.rod(at(710, 653, -0.03), at(710, 665, -0.03), 0.001, ink);
-  ins.horizon('standby', at(887, 652, 0.01), 0.068, 0.068, { round: true, blankBackdrop: true });
+  ins.horizon('standby', at(887, 652, 0.01), 0.068, 0.068, {
+    round: true,
+    blankBackdrop: true,
+  });
   ins.dial(
     'standby-speed',
     at(866, 738, -0.007),
@@ -767,7 +934,10 @@ function fa18Cockpit(root, m) {
     ],
     [0, 100, 200, 300, 400, 600, 800],
     'TAS',
-    { tickLabels: { 0: 0, 100: 1, 200: 2, 300: 3, 400: 4, 600: 6, 800: 8 }, minorStep: 20 },
+    {
+      tickLabels: { 0: 0, 100: 1, 200: 2, 300: 3, 400: 4, 600: 6, 800: 8 },
+      minorStep: 20,
+    },
   );
   ins.altimeter('standby-altitude', at(939, 738, -0.007), 32 * k, 'feet');
   ins.dial(
@@ -782,7 +952,17 @@ function fa18Cockpit(root, m) {
     ],
     [-6000, -4000, -2000, 0, 2000, 4000, 6000],
     'FPM',
-    { tickLabels: { '-6000': -6, '-4000': -4, '-2000': -2, 0: 0, 2000: 2, 4000: 4, 6000: 6 } },
+    {
+      tickLabels: {
+        '-6000': -6,
+        '-4000': -4,
+        '-2000': -2,
+        0: 0,
+        2000: 2,
+        4000: 4,
+        6000: 6,
+      },
+    },
   );
   pt.gauge(...at(997, 652).slice(0, 2), z - 0.008, 43 * k, black, false);
   text('RWR', 997, 640, 7);
@@ -897,15 +1077,17 @@ function fa18Cockpit(root, m) {
   // HUD glass is a physical combiner. Symbology needs a separate collimated implementation.
   const hud = [
     [616, 278],
-    [624, 193],
-    [788, 193],
+    [624, -38],
+    [640, -54],
+    [772, -54],
+    [788, -38],
     [800, 278],
   ].map((p) => at(...p, -0.1));
   sheet(d, hud, m.glass, [0, 0, -1]);
   outline(d, hud, 0.006, black);
   box(707, 285, 203, 12, black, 0.12);
   for (const side of [-1, 1])
-    d.rod(at(707 + side * 89, 281, -0.11), at(707 + side * 80, 197, -0.11), 0.008, m.metal);
+    d.rod(at(707 + side * 89, 281, -0.11), at(707 + side * 80, -34, -0.11), 0.008, m.metal);
   for (const [u, v, r, label] of [
     [778, 990, 33, 'CLOCK'],
     [778, 1060, 33, 'CABIN'],
@@ -918,20 +1100,49 @@ function fa18Cockpit(root, m) {
   }
   // Distinct console layout from FO-5 sheet2: throttle and communication left; power/ECS/lights right.
   d.box([0.82, 0.03, 2.45], [0, 1.66, 5.5], black);
+  d.box([0.86, 0.96, 0.03], [0, 2.14, 5], black);
+  sheet(
+    d,
+    [
+      [0.43, 2.61, 5],
+      [0.4, 2.61, 4.4],
+      [0.365, 2.61, 4.05],
+      [-0.365, 2.61, 4.05],
+      [-0.4, 2.61, 4.4],
+      [-0.43, 2.61, 5],
+    ],
+    panel,
+    [0, 1, 0],
+  );
   for (const side of [-1, 1]) {
     sheet(
       d,
       [
-        [side * 0.44, 1.66, 4.2],
+        [side * 0.44, 1.66, 4.05],
         [side * 0.44, 1.66, 6.8],
-        [side * 0.44, 2.48, 6.8],
-        [side * 0.44, 2.5, 4.2],
+        [side * 0.44, 2.45, 6.8],
+        [side * 0.44, 2.45, 4.05],
       ],
       panel,
       [-side, 0, 0],
     );
-    d.box([0.2, 0.22, 1.65], [side * 0.33, 1.96, 5.55], panel);
-    const cg = group(cabin, `FA18-console-${side}`, [side * 0.33, 2.075, 5.55]);
+    // Liner from the shelf to the rail, which climbs aft, so the hollow body never shows.
+    const rails = canopy.filter(([z]) => z <= 6.8 && z >= 4.05);
+    for (let i = 0; i < rails.length - 1; i++) {
+      const [z0, w0, y0] = rails[i],
+        [z1, w1, y1] = rails[i + 1];
+      quad(
+        d,
+        [side * 0.44, 2.45, z0],
+        [side * 0.44, 2.45, z1],
+        [side * (w1 - 0.012), y1 - 0.004, z1],
+        [side * (w0 - 0.012), y0 - 0.004, z0],
+        panel,
+        [-side, 0.2, 0],
+      );
+    }
+    d.box([0.2, 0.32, 1.65], [side * 0.33, 2.01, 5.55], panel);
+    const cg = group(cabin, `FA18-console-${side}`, [side * 0.33, 2.175, 5.55]);
     cg.rotation.x = Math.PI / 2;
     const cd = detailKit(cg, cg.name);
     const labels =
@@ -984,14 +1195,14 @@ function fa18Cockpit(root, m) {
     }
     cd.finish();
   }
-  const sg = group(cabin, 'FA18-SJU17', [0, 1.91, 5.13]);
+  const sg = group(cabin, 'FA18-SJU17', [0, 2.1, 5.54]);
   sg.rotation.x = -0.2;
   const sd = detailKit(sg, sg.name);
   beveledBox(sd, [0.45, 0.12, 0.49], [0, 0, 0.2], seat);
   beveledBox(sd, [0.43, 0.72, 0.13], [0, 0.4, -0.07], seat);
-  beveledBox(sd, [0.31, 0.25, 0.17], [0, 0.94, -0.07], black);
+  beveledBox(sd, [0.31, 0.25, 0.17], [0, 0.9, -0.07], black);
   for (const side of [-1, 1]) {
-    sd.rod([side * 0.24, -0.1, -0.15], [side * 0.24, 1.08, -0.15], 0.024, m.metal);
+    sd.rod([side * 0.24, -0.1, -0.15], [side * 0.24, 0.95, -0.15], 0.024, m.metal);
     sheet(
       sd,
       [
@@ -1008,23 +1219,35 @@ function fa18Cockpit(root, m) {
   sd.box([0.06, 0.04, 0.025], [0, 0.12, 0.15], m.metal);
   sd.ring(0.045, 0.009, [0, 0.13, 0.43], amber);
   sd.finish();
-  const stick = group(cabin, 'FA18-stick', [0, 1.72, 5.95]),
+  const stick = group(cabin, 'FA18-stick', [0, 1.72, 6.15]),
     st = detailKit(stick, stick.name);
-  st.rod([0, 0, 0], [0, 0.35, -0.04], 0.022, black);
-  beveledBox(st, [0.075, 0.115, 0.07], [0, 0.41, -0.05], black, 0.01);
+  st.rod([0, 0, 0], [0, 0.55, -0.05], 0.022, black);
+  beveledBox(st, [0.075, 0.115, 0.07], [0, 0.61, -0.06], black, 0.01);
   for (const p of [
-    [-0.025, 0.46, -0.08],
-    [0.025, 0.45, -0.08],
-    [0, 0.42, -0.09],
+    [-0.025, 0.66, -0.09],
+    [0.025, 0.65, -0.09],
+    [0, 0.62, -0.1],
   ])
     st.add(new T.SphereGeometry(0.009, 8, 6), panel, p);
   st.finish();
   bindings.push(
-    { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.22 },
-    { node: stick.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.22 },
+    {
+      node: stick.name,
+      source: 'pitchInput',
+      property: 'rotation',
+      axis: 'x',
+      scale: -0.22,
+    },
+    {
+      node: stick.name,
+      source: 'rollInput',
+      property: 'rotation',
+      axis: 'z',
+      scale: 0.22,
+    },
   );
   for (const side of [-1, 1]) {
-    const g = group(cabin, `FA18-pedal-${side}`, [side * 0.13, 1.78, 6.67]),
+    const g = group(cabin, `FA18-pedal-${side}`, [side * 0.13, 1.8, 6.4]),
       gd = detailKit(g, g.name);
     gd.box([0.13, 0.15, 0.035], [0, 0, 0], m.metal);
     for (let j = 0; j < 5; j++) gd.box([0.11, 0.004, 0.004], [0, -0.06 + j * 0.03, -0.02], black);
@@ -1038,7 +1261,7 @@ function fa18Cockpit(root, m) {
     });
   }
   for (let j = 0; j < 2; j++) {
-    const g = group(cabin, `FA18-throttle-${j}`, [0.28 + j * 0.07, 2.1, 5.91]),
+    const g = group(cabin, `FA18-throttle-${j}`, [0.28 + j * 0.07, 2.2, 5.91]),
       gd = detailKit(g, g.name);
     gd.rod([0, 0, 0], [0, 0.1, 0], 0.012, black);
     gd.box([0.06, 0.05, 0.09], [0, 0.11, 0], black);

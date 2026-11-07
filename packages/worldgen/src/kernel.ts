@@ -49,6 +49,11 @@ export {
   generateInteriorGeometry,
   generateInteriorGeometrySteps,
 } from './kernel/interior-geometry';
+export {
+  createParkingSite,
+  type ParkingSitePlan,
+  planParkingSite,
+} from './kernel/interior-parking-site';
 export { generateInteriorPlan, generateInteriorPlanSteps } from './kernel/interior-plan';
 export { interiorToLocal, interiorToWorld } from './kernel/interior-site';
 export type {

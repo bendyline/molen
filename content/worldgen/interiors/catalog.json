@@ -5,7 +5,10 @@
     {
       "id": "grocery",
       "version": 1,
-      "labels": ["supermarket", "grocery"],
+      "labels": [
+        "supermarket",
+        "grocery"
+      ],
       "algorithm": "aisles",
       "furnishing": "shelf",
       "moduleWidth": 1.1,
@@ -22,7 +25,10 @@
     {
       "id": "fast-food",
       "version": 1,
-      "labels": ["fast_food", "fast-food"],
+      "labels": [
+        "fast_food",
+        "fast-food"
+      ],
       "algorithm": "dining",
       "furnishing": "table",
       "moduleWidth": 2.3,
@@ -39,7 +45,10 @@
     {
       "id": "restaurant",
       "version": 1,
-      "labels": ["restaurant", "food_court"],
+      "labels": [
+        "restaurant",
+        "food_court"
+      ],
       "algorithm": "dining",
       "furnishing": "table",
       "moduleWidth": 2.5,
@@ -56,7 +65,10 @@
     {
       "id": "cafe",
       "version": 1,
-      "labels": ["cafe", "coffee_shop"],
+      "labels": [
+        "cafe",
+        "coffee_shop"
+      ],
       "algorithm": "dining",
       "furnishing": "table",
       "moduleWidth": 1.8,
@@ -73,7 +85,10 @@
     {
       "id": "pharmacy",
       "version": 1,
-      "labels": ["pharmacy", "chemist"],
+      "labels": [
+        "pharmacy",
+        "chemist"
+      ],
       "algorithm": "aisles",
       "furnishing": "shelf",
       "moduleWidth": 0.9,
@@ -90,7 +105,12 @@
     {
       "id": "retail",
       "version": 1,
-      "labels": ["retail", "shop", "department_store", "commercial"],
+      "labels": [
+        "retail",
+        "shop",
+        "department_store",
+        "commercial"
+      ],
       "algorithm": "aisles",
       "furnishing": "shelf",
       "moduleWidth": 1.1,
@@ -142,12 +162,16 @@
     },
     {
       "id": "apartments",
-      "version": 1,
-      "labels": ["apartments", "hotel", "dormitory"],
-      "algorithm": "rooms",
+      "version": 2,
+      "labels": [
+        "apartments",
+        "apartment_tower",
+        "dormitory"
+      ],
+      "algorithm": "tower",
       "furnishing": "bed",
-      "moduleWidth": 4.4,
-      "moduleDepth": 5,
+      "moduleWidth": 7,
+      "moduleDepth": 8.5,
       "aisleWidth": 1.8,
       "density": 0.9,
       "palette": {
@@ -155,46 +179,71 @@
         "wall": "#e2ddcf",
         "wood": "#856249",
         "accent": "#536b66"
+      },
+      "tower": {
+        "plate": "flat",
+        "elevators": 2,
+        "lobby": 6
       }
     },
     {
       "id": "office",
-      "version": 1,
-      "labels": ["office", "offices"],
-      "algorithm": "workplace",
+      "version": 2,
+      "labels": [
+        "office",
+        "offices"
+      ],
+      "algorithm": "tower",
       "furnishing": "desk",
-      "moduleWidth": 2.4,
-      "moduleDepth": 2.1,
-      "aisleWidth": 1.5,
+      "moduleWidth": 7.2,
+      "moduleDepth": 6.5,
+      "aisleWidth": 1.8,
       "density": 0.9,
       "palette": {
         "floor": "#78848c",
         "wall": "#e0e4e1",
         "wood": "#b8a17c",
         "accent": "#4e6379"
+      },
+      "tower": {
+        "plate": "open",
+        "elevators": 3,
+        "lobby": 9
       }
     },
     {
       "id": "school",
-      "version": 1,
-      "labels": ["school", "university", "college"],
-      "algorithm": "rooms",
+      "version": 2,
+      "labels": [
+        "school",
+        "university",
+        "college"
+      ],
+      "algorithm": "tower",
       "furnishing": "desk",
-      "moduleWidth": 6,
-      "moduleDepth": 7,
-      "aisleWidth": 2.4,
+      "moduleWidth": 8.5,
+      "moduleDepth": 8.2,
+      "aisleWidth": 3,
       "density": 0.9,
       "palette": {
         "floor": "#b9b2a2",
         "wall": "#e2ddcf",
         "wood": "#856249",
         "accent": "#536b66"
+      },
+      "tower": {
+        "plate": "class",
+        "elevators": 1,
+        "lobby": 6
       }
     },
     {
       "id": "clinic",
-      "version": 1,
-      "labels": ["clinic", "hospital", "doctors"],
+      "version": 2,
+      "labels": [
+        "clinic",
+        "doctors"
+      ],
       "algorithm": "rooms",
       "furnishing": "bed",
       "moduleWidth": 4.2,
@@ -209,9 +258,34 @@
       }
     },
     {
+      "id": "parking-garage",
+      "version": 1,
+      "labels": [
+        "parking_garage",
+        "parking"
+      ],
+      "algorithm": "parking",
+      "furnishing": "bench",
+      "moduleWidth": 2.6,
+      "moduleDepth": 5.2,
+      "aisleWidth": 6.4,
+      "density": 0.72,
+      "palette": {
+        "floor": "#8e9396",
+        "wall": "#b6bcc0",
+        "wood": "#7c8085",
+        "accent": "#d0a93a"
+      }
+    },
+    {
       "id": "warehouse",
       "version": 1,
-      "labels": ["warehouse", "industrial", "storage", "hangar"],
+      "labels": [
+        "warehouse",
+        "industrial",
+        "storage",
+        "hangar"
+      ],
       "algorithm": "storage",
       "furnishing": "rack",
       "moduleWidth": 1.8,
@@ -228,7 +302,10 @@
     {
       "id": "library",
       "version": 1,
-      "labels": ["library", "books"],
+      "labels": [
+        "library",
+        "books"
+      ],
       "algorithm": "aisles",
       "furnishing": "shelf",
       "moduleWidth": 0.8,
@@ -244,8 +321,10 @@
     },
     {
       "id": "assembly",
-      "version": 1,
-      "labels": ["church", "place_of_worship", "theatre", "community_centre"],
+      "version": 2,
+      "labels": [
+        "community_centre"
+      ],
       "algorithm": "hall",
       "furnishing": "bench",
       "moduleWidth": 3.2,
@@ -257,6 +336,262 @@
         "wall": "#e2ddcf",
         "wood": "#856249",
         "accent": "#536b66"
+      }
+    },
+    {
+      "id": "skyscraper",
+      "version": 1,
+      "labels": [
+        "skyscraper"
+      ],
+      "algorithm": "tower",
+      "furnishing": "desk",
+      "moduleWidth": 7.2,
+      "moduleDepth": 7.5,
+      "aisleWidth": 2,
+      "density": 0.92,
+      "palette": {
+        "floor": "#6f7a82",
+        "wall": "#dfe3e2",
+        "wood": "#b8a17c",
+        "accent": "#3f5468"
+      },
+      "tower": {
+        "plate": "open",
+        "elevators": 6,
+        "lobby": 14
+      }
+    },
+    {
+      "id": "hotel",
+      "version": 1,
+      "labels": [
+        "hotel"
+      ],
+      "algorithm": "tower",
+      "furnishing": "bed",
+      "moduleWidth": 3.8,
+      "moduleDepth": 7.4,
+      "aisleWidth": 1.8,
+      "density": 0.95,
+      "palette": {
+        "floor": "#8c7664",
+        "wall": "#e3dccd",
+        "wood": "#7a5a40",
+        "accent": "#7a4b3c"
+      },
+      "tower": {
+        "plate": "guest",
+        "elevators": 3,
+        "lobby": 12
+      }
+    },
+    {
+      "id": "hospital",
+      "version": 1,
+      "labels": [
+        "hospital"
+      ],
+      "algorithm": "tower",
+      "furnishing": "bed",
+      "moduleWidth": 4.4,
+      "moduleDepth": 6,
+      "aisleWidth": 2.8,
+      "density": 0.95,
+      "palette": {
+        "floor": "#c9cfcc",
+        "wall": "#eef0ec",
+        "wood": "#a9b0ad",
+        "accent": "#4f8a8b"
+      },
+      "tower": {
+        "plate": "ward",
+        "elevators": 4,
+        "lobby": 10
+      }
+    },
+    {
+      "id": "civic",
+      "version": 1,
+      "labels": [
+        "civic"
+      ],
+      "algorithm": "tower",
+      "furnishing": "desk",
+      "moduleWidth": 7,
+      "moduleDepth": 6,
+      "aisleWidth": 2.4,
+      "density": 0.85,
+      "palette": {
+        "floor": "#a39a8a",
+        "wall": "#e6e1d4",
+        "wood": "#7d6a54",
+        "accent": "#5a4f6b"
+      },
+      "tower": {
+        "plate": "open",
+        "elevators": 1,
+        "lobby": 10
+      }
+    },
+    {
+      "id": "mall",
+      "version": 1,
+      "labels": [
+        "mall",
+        "shopping_centre",
+        "shopping_center",
+        "outlet_mall"
+      ],
+      "algorithm": "atrium",
+      "furnishing": "rack",
+      "moduleWidth": 11,
+      "moduleDepth": 16,
+      "aisleWidth": 14,
+      "density": 1,
+      "palette": {
+        "floor": "#c8c3b6",
+        "wall": "#ece8dd",
+        "wood": "#8a6a4d",
+        "accent": "#b9593f"
+      }
+    },
+    {
+      "id": "theatre",
+      "version": 1,
+      "labels": [
+        "theatre",
+        "concert_hall"
+      ],
+      "algorithm": "auditorium",
+      "furnishing": "seat-row",
+      "moduleWidth": 1,
+      "moduleDepth": 1.15,
+      "aisleWidth": 1.8,
+      "density": 1,
+      "palette": {
+        "floor": "#5a3c3a",
+        "wall": "#6e2f33",
+        "wood": "#6b4a35",
+        "accent": "#8e2f35"
+      }
+    },
+    {
+      "id": "cinema",
+      "version": 1,
+      "labels": [
+        "cinema"
+      ],
+      "algorithm": "auditorium",
+      "furnishing": "seat-row",
+      "moduleWidth": 1,
+      "moduleDepth": 1.1,
+      "aisleWidth": 1.6,
+      "density": 1,
+      "palette": {
+        "floor": "#3d3a3f",
+        "wall": "#2e2c33",
+        "wood": "#403a3a",
+        "accent": "#7a2730"
+      }
+    },
+    {
+      "id": "place-of-worship",
+      "version": 1,
+      "labels": [
+        "place_of_worship",
+        "church"
+      ],
+      "algorithm": "auditorium",
+      "furnishing": "pew",
+      "moduleWidth": 1,
+      "moduleDepth": 1.25,
+      "aisleWidth": 2.4,
+      "density": 1,
+      "palette": {
+        "floor": "#a79e8c",
+        "wall": "#e8e1d0",
+        "wood": "#6d4a2e",
+        "accent": "#7a2f35"
+      }
+    },
+    {
+      "id": "museum",
+      "version": 1,
+      "labels": [
+        "museum",
+        "gallery"
+      ],
+      "algorithm": "gallery",
+      "furnishing": "plinth",
+      "moduleWidth": 9,
+      "moduleDepth": 9,
+      "aisleWidth": 4,
+      "density": 1,
+      "palette": {
+        "floor": "#a89f90",
+        "wall": "#f0ece2",
+        "wood": "#7d6a54",
+        "accent": "#546a75"
+      }
+    },
+    {
+      "id": "sports-hall",
+      "version": 1,
+      "labels": [
+        "sports_hall"
+      ],
+      "algorithm": "court",
+      "furnishing": "hoop",
+      "moduleWidth": 2,
+      "moduleDepth": 2,
+      "aisleWidth": 2,
+      "density": 1,
+      "palette": {
+        "floor": "#8f9396",
+        "wall": "#d4d7d4",
+        "wood": "#a07a50",
+        "accent": "#2f5f8f"
+      }
+    },
+    {
+      "id": "station",
+      "version": 1,
+      "labels": [
+        "station",
+        "train_station",
+        "terminal"
+      ],
+      "algorithm": "concourse",
+      "furnishing": "bench",
+      "moduleWidth": 2.2,
+      "moduleDepth": 3,
+      "aisleWidth": 6,
+      "density": 1,
+      "palette": {
+        "floor": "#b7b2a5",
+        "wall": "#e6e1d3",
+        "wood": "#7d6a54",
+        "accent": "#2f5f8f"
+      }
+    },
+    {
+      "id": "fire-station",
+      "version": 1,
+      "labels": [
+        "fire_station"
+      ],
+      "algorithm": "apparatus",
+      "furnishing": "fire-engine",
+      "moduleWidth": 3.6,
+      "moduleDepth": 9,
+      "aisleWidth": 2,
+      "density": 1,
+      "palette": {
+        "floor": "#8e8f8a",
+        "wall": "#d3cfc3",
+        "wood": "#7a5a40",
+        "accent": "#b3261e"
       }
     },
     {

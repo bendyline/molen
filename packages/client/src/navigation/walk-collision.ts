@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { isInstanceBatch } from '../three/instance-batch';
 import { CollisionTree } from './collision-tree';
 import { forEachIndexedTriangle, triangleIndexFor } from './triangle-index';
 
@@ -290,7 +291,8 @@ export class WalkCollision {
       bounds.min.y <= maxY &&
       bounds.max.y >= minY;
     for (const { mesh, matrix, count } of meshes) {
-      const geometry = mesh.geometry;
+      // A batch's model, whose spatial index every batch of that model shares.
+      const geometry = isInstanceBatch(mesh) ? mesh.sourceGeometry : mesh.geometry;
       const position = geometry.getAttribute('position');
       if (position === undefined) continue;
       geometryBounds(geometry);

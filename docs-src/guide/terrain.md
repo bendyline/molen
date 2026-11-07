@@ -183,8 +183,13 @@ movement trigger coherent grid-snapped rebases for every engine-owned object aut
 `terrainStreamBudgetForQuality('economy' | 'balanced' | 'high')` returns portable residency and
 concurrency budgets. `stream.stats()` reports decoded samples, geometry bytes, triangles, draw
 calls, instances, loading/failure counts, and evictions for live quality diagnostics. It walks
-every resident tile's objects to count them, so call it for diagnostics, not every frame:
-`stream.loading()` (tiles and layers loading now) and `stream.pressure()` are constant-time.
+the displayed tiles' objects to count them, so call it for diagnostics, not every frame:
+`stream.loading()` (tiles and layers loading now) and `stream.pressure()` are constant-time. On the
+pyramid stream, `stats()` also counts `builtTiles`/`builtLayers` and how many of those repeated an
+earlier build (`rebuiltTiles`/`rebuiltLayers`), which is the cache missing. `stream.viewCoverage`
+reports how finished the view is by distance, a tile count per band of tiles `complete`, drawn from
+another level (`stale`), drawn with layers missing (`bare`) and undrawn (`empty`), and the
+`onLayerTiming` option reports where each layer's build time went.
 
 ## 4. Screenshot it headlessly
 
@@ -387,8 +392,35 @@ detail (`peripheralDetail`, default 0.4, weighs their error), with hydrology pre
 turning the camera reveals ground and mapped water that are already there. Buildings and vegetation
 build once the tile is in view. In-flight surface
 requests finish into a bounded warm cache instead of being restarted on every small camera turn;
-hidden cached tiles are evicted only when capacity is needed. Sparse descendants also share a
-bounded decoded-ancestor cache, avoiding repeated PNG decode/resample work while panning.
+hidden cached tiles are evicted only when capacity is needed, farthest first in tile widths from
+the camera rather than least recently used, because a circling camera returns to the ground it saw
+longest ago. A hidden tile leaves the scene graph as well as the draw list, so a large cache costs
+memory and no frame time. Sparse descendants also share a bounded decoded-ancestor cache, avoiding
+repeated PNG decode/resample work while panning.
+
+Refinement measures a tile's distance from the ground it holds. Until a tile or an ancestor has
+loaded it can reach anywhere in the package's height range, and a camera inside that range has no
+height above it; `tileHeight` on `selectTerrainPyramidTiles` supplies the same knowledge to your
+own selection.
+
+A camera that travels gets its tiles before it arrives. The stream follows the track of the
+positions passed to `update`, as a speed and a turn rate, so an aircraft in a steady turn is
+predicted along its arc. No host wiring is needed, and it works for whatever moves the camera.
+
+- Work is ordered for where the camera will be when it finishes, so a fast camera does not spend
+  its capacity on the ground beneath it. Ground with no layers on it comes before more detail for
+  ground that has some.
+- Tiles the track reaches within `lookAhead.seconds` (default 3, 6, 12 and 20) are built hidden
+  from spare capacity, with one layer slot kept free and only while the frame queue has no backlog.
+  They appear finished when selected, and are the first thing given up under memory pressure.
+- Refinement stops at tiles the camera crosses in under `lookAhead.minTileSeconds` (default 5):
+  the finest level is most of the work and at speed the briefest on screen. It returns when the
+  camera slows.
+
+`lookAhead: false` turns all of this off. A camera has to hold a track for most of a second before
+any of it applies. A teleport starts the track over, and so does a second without an `update`, so a
+host that updates only while the camera moves still gets full detail when it stops. `stats()` reports `aheadTiles`, `aheadReady`,
+`cameraSpeed` and `speedLevel`.
 
 With `shadows: true` every tile surface and layer mesh receives sun shadows, and layer meshes
 taller than `shadowCasterHeight` (default 1.5 m: buildings, trees, landmarks) cast them. A layer

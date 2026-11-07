@@ -383,6 +383,36 @@ A serialized generation request: labeled building outlines, optional labeled pol
               "minLength": 1
             }
           },
+          "parking": {
+            "type": "object",
+            "properties": {
+              "levels": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 16,
+                "description": "Storeys below the roof deck."
+              },
+              "entrances": {
+                "maxItems": 8,
+                "type": "array",
+                "items": {
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "description": "[x, z] in local meters."
+                },
+                "description": "Mapped vehicle entrances near the footprint, strongest first."
+              }
+            },
+            "required": [
+              "levels"
+            ],
+            "additionalProperties": false,
+            "description": "Model a multi-storey car park: decks, ramps and bays instead of rooms."
+          },
           "outline": {
             "minItems": 3,
             "type": "array",

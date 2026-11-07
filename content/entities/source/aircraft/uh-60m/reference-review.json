@@ -55,7 +55,7 @@
     "lookAt": [
       0,
       1.38,
-      3.18
+      3.4
     ],
     "fov": 80
   },
@@ -63,10 +63,10 @@
     "mode": "top-down-ortho",
     "center": [
       0,
-      -1.47
+      -1.37
     ],
-    "viewHeight": 1.45,
-    "cameraHeight": 7.05
+    "viewHeight": 0.85,
+    "cameraHeight": 6.85
   },
   "overlays": [
     {
@@ -161,12 +161,12 @@
       ],
       "modelAnchor": [
         0,
-        -1.63
+        -1.58
       ],
       "scaleControls": {
         "pixels": 1660,
-        "meters": 1.63,
-        "description": "Assumed main panel width of 1.63m; relative layout only."
+        "meters": 1.25,
+        "description": "Panel width from display size: the four displays are 6 by 8 in MFDs, making the face 1.25 m wide."
       },
       "edgeMode": "photo",
       "scope": "Nearly frontal Army photograph, no lens correction. Screens/case positions are photo-matched; absolute cockpit scale and curved coaming depth are estimates."
@@ -226,14 +226,15 @@
     ],
     "visual": "Inspected four overlays, four turntables, lit three-quarter, pilot forward and close cockpit views and wide cabin against Army/M photos. Rechecked final tail side/cant, parked blade angle and coaming closure."
   },
-  "sourceHash": "sha256:10b3b5d21cb3ec6db149c213d976eaef0393b9f7848e58d3428945cccd1fb54e",
-  "runtimeHash": "sha256:7d907fed64fccd685bc342afeef3b7bc39446b1c25535512ccf6818b70d25824",
+  "sourceHash": "sha256:37080e760ac3d719d9dc1c239d3ac4463ba6c326d05dbe230203dfd15b5fdfbf",
+  "runtimeHash": "sha256:dda5f8f4abfea8a10e88d57285059c4880faa423bd22ec80d0859ee6517d89f3",
   "limitations": [
     "Dimensioned Army drawings depict A/L variants. Shared fuselage dimensions are used; blade chord, exhaust, avionics and optional external stores are resolved from M photographs.",
     "Top-view recognition drawing is low resolution and schematic. Its body planform is a coarse cross-check, not a detailed M engineering drawing.",
     "Panel width 1.63m is an estimate. Near-frontal photo supplies relative positions with uncorrected perspective and lens effects; coaming depth and seat installation remain approximate.",
     "Screens and overhead switch banks are simplified original geometry; detailed electrical systems, mission equipment and all placards are not reproduced.",
-    "Reference photographs are local analysis only; no source pixels shipped."
+    "Reference photographs are local analysis only; no source pixels shipped.",
+    "Display tops only show at the runtime camera with the head level. Wipers set the sweep overNose reading at -12 degrees; the hood itself sits about 20 degrees below level."
   ],
   "controlReview": {
     "checked": "2026-10-22",
@@ -252,6 +253,59 @@
       "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
       "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
       "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  },
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "Rays from the pilotEye through source.glb (cockpit-sweep), seat view at the runtime camera (+Z, 60 degrees vertical), an exterior nose render, and sections through the pilot plane and at hood height, each checked against a photograph of the real aircraft.",
+    "findings": [
+      "The panel was 0.43 m from the eye, inside the seated pilot, and its brow rose to 0.09 m below the eye. From the seat it filled the lower view as a black wedge with no display in sight.",
+      "An assumed 1.63 m face drew the MFDs 1.3 times too large: 0.264 by 0.202 m.",
+      "The eye stood 0.97 m over the cushion; the floor lies low in the airframe and the sweep cushion reading of 0.65 m was the cyclic grip.",
+      "Two metal rods at 1.67 m stood clear of the nose and through the side glass; no photograph shows them. The V-shaped wipers in the seat view are real, as the front photograph shows."
+    ],
+    "before": {
+      "eye": [
+        -0.56,
+        1.91,
+        2.75
+      ],
+      "eyeToPanelMeters": 0.43,
+      "headroomMeters": 0.22,
+      "eyeAboveCushionMeters": 0.97,
+      "displayMeters": [
+        0.264,
+        0.202
+      ],
+      "panelMeters": [
+        1.63,
+        0.42
+      ],
+      "hoodTopHeightMeters": 1.82
+    },
+    "after": {
+      "eye": [
+        -0.56,
+        1.91,
+        2.68
+      ],
+      "eyeToPanelMeters": 0.72,
+      "headroomMeters": 0.23,
+      "eyeAboveCushionMeters": 0.8,
+      "displayMeters": [
+        0.203,
+        0.155
+      ],
+      "panelMeters": [
+        1.25,
+        0.32
+      ],
+      "hoodTopHeightMeters": 1.665
+    },
+    "corrections": [
+      "Panel rescaled from the MFD size and moved 0.22 m forward under a shallower scallop; layout and bindings unchanged.",
+      "Eye moved 0.07 m aft; crew seats raised 0.17 m with cyclic, collective and pedals. Console follows the panel.",
+      "Unsupported rods removed."
     ]
   }
 }

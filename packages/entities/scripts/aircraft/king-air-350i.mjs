@@ -1343,8 +1343,9 @@ function kingAirCockpit(root, m) {
     pd.add(new T.CylinderGeometry(0.035, 0.035, 0.025, 16), black, [side * 0.125, 0.2, -0.41]);
   pd.finish();
   // Overhead electrical panel follows its own inclined frame; dead meters are explicitly marked.
-  const overhead = group(cabin, 'KingAir-overhead', [0, 2.6, 2.3]);
-  overhead.rotation.x = -0.45;
+  // It lies against the ceiling behind the windshield header, not hanging into the view.
+  const overhead = group(cabin, 'KingAir-overhead', [0, 2.645, 2.2]);
+  overhead.rotation.x = -1.35;
   const od = detailKit(overhead, overhead.name),
     op = panelTools(od);
   beveledBox(od, [0.72, 0.21, 0.025], [0, 0, 0], face, 0.02);
@@ -1384,7 +1385,8 @@ function kingAirCockpit(root, m) {
     [4, -2.94, 0],
   ])
     for (const side of [-1, 1]) {
-      const g = group(cabin, `KingAir-seat-${row}-${side}`, [side * 0.36, 1.46, zz]);
+      const crew = row === 0 ? 0.07 : 0,
+        g = group(cabin, `KingAir-seat-${row}-${side}`, [side * 0.36, 1.46 + crew, zz]);
       g.rotation.y = facing;
       const sd = detailKit(g, g.name);
       beveledBox(sd, [0.49, 0.15, 0.52], [0, 0, 0], leather, 0.045);
@@ -1393,7 +1395,7 @@ function kingAirCockpit(root, m) {
       beveledBox(sd, [0.32, 0.17, 0.12], [0, 0.75, -0.21], leather, 0.03);
       for (const s of [-1, 1]) {
         sd.rod([s * 0.205, 0.2, -0.17], [s * 0.205, 0.2, 0.16], 0.027, leather);
-        sd.rod([s * 0.15, -0.21, 0], [s * 0.15, -0.05, 0], 0.014, m.metal);
+        sd.rod([s * 0.15, -0.21 - crew, 0], [s * 0.15, -0.05, 0], 0.014, m.metal);
         sd.rod([s * 0.09, 0.66, -0.21], [s * 0.09, 0.7, -0.21], 0.008, m.metal);
       }
       sd.rod([-0.17, 0.085, -0.12], [0.17, 0.085, 0.12], 0.014, black);

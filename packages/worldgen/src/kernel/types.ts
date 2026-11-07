@@ -111,6 +111,13 @@ export interface BuildingYard {
   /** Open segments: the caller reserves gaps at paths, driveways and public corridors. */
   fence?: { kind: YardFenceKind; height: number; segments: Array<[Vec2, Vec2]> };
 }
+/** A footprint that is a multi-storey car park rather than an occupied building. */
+export interface BuildingParkingRequest {
+  /** Storeys below the roof deck, which is parked on too. */
+  levels: number;
+  /** Mapped vehicle entrances near the footprint, in local meters, strongest first. */
+  entrances?: Vec2[];
+}
 export interface BuildingRequest {
   /** Optional lot decoration, owned once by the main house rather than by each building part. */
   yard?: BuildingYard;
@@ -146,6 +153,8 @@ export interface BuildingRequest {
   storefronts?: StorefrontRequest[];
   /** Confirmed ground-floor use, independent of the exterior building classification. */
   interiorLabels?: string[];
+  /** Model decks, ramps and bays instead of rooms. */
+  parking?: BuildingParkingRequest;
 }
 
 export interface ScatterPolygon {

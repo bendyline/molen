@@ -23,6 +23,31 @@ import {
 import { World } from '../src/world';
 
 const flat = { groundHeight: () => 0 };
+
+describe('stacked decks', () => {
+  it('asks for the surface at the height of the vehicle', () => {
+    const asked: (number | undefined)[] = [];
+    const deck = (_x: number, _z: number, y?: number): number => {
+      asked.push(y);
+      return (y ?? 0) > 2 ? 3 : 0;
+    };
+    const t = {
+      pos: [0, 3, 0] as [number, number, number],
+      rot: [0, 0, 0, 1] as [number, number, number, number],
+    };
+    const result = stepVehicle(
+      t,
+      { ...initialVehicleState(0), speed: 1 },
+      { throttle: 0, steering: 0, brake: false },
+      SEDAN,
+      1 / 60,
+      { groundHeight: deck },
+    );
+    expect(asked.every((y) => y !== undefined && y > 2)).toBe(true);
+    // Held up by the deck it is on, not dropped to the road below.
+    expect(result.transform.pos[1]).toBeCloseTo(3, 5);
+  });
+});
 const SEDAN: VehicleSpec = {
   label: 'Test sedan',
   width: 1.82,

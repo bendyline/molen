@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises';
-import { Raycaster, Vector3 } from 'three';
+import { Box3, Raycaster, Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { GLTFLoader } from './helpers/gltf-loader.mjs';
 
@@ -106,26 +106,26 @@ describe.each(['source', 'imported'])('aircraft cabin enclosure (%s)', (version)
   });
   it('encloses both OH-6 door bottoms and the cabin roof with solid panels', async () => {
     const scene = await load('oh6', version);
-    // The arched OH-6A door glazing reaches lower than the old rectangular window.
+    // The door windows run down to WL 20.6; below them the doors are solid to the WL 14 floor.
     for (const side of [-1, 1])
-      for (const y of [1.06, 1.1, 1.14])
+      for (const y of [0.82, 0.86, 0.9])
         for (const z of [-0.1, 0.45, 0.85]) {
           const surface = hit(scene, [side * 3, y, z], [-side, 0, 0]);
           expect(surface.object.material.transparent).toBe(false);
-          expect(Math.abs(surface.point.x)).toBeGreaterThan(0.65);
+          expect(Math.abs(surface.point.x)).toBeGreaterThan(0.55);
         }
     const cabin = scene.getObjectByName('cabin-panels');
     expect(cabin).toBeDefined();
-    const roof = hit(cabin, [0.3, 3.5, 0.1], [0, -1, 0]);
+    // Behind the tinted roof panels: crown WL 67, which sits 2.1 m up rather than the old 2.45 m.
+    const roof = hit(cabin, [0.3, 3.5, -0.1], [0, -1, 0]);
     expect(roof.object.material.transparent).toBe(false);
-    // The real OH-6A egg is low: its roof is about 2.0 m up, under a 2.48 m rotor hub.
-    expect(roof.point.y).toBeGreaterThan(1.85);
+    expect(roof.point.y).toBeGreaterThan(1.9);
     const normal = roof.face.normal.clone().transformDirection(roof.object.matrixWorld);
     expect(normal.y).toBeGreaterThan(0);
   });
   it.each([
     ['p51d', MUSTANG_EYE, turn([0.15, 0, 1])],
-    ['oh6', [-0.38, 1.7, 0.6], [0.15, 0, 1]],
+    ['oh6', [-0.38, 1.82, 0.3], [0.15, 0, 1]],
   ])('keeps forward visibility through the %s windscreen', async (kind, eye, ahead) => {
     const scene = await load(kind, version);
     // Look just beside the central windscreen divider, along the airframe's datum.
@@ -140,6 +140,7 @@ describe.each(['source', 'imported'])('reference aircraft details (%s)', (versio
     const scene = await load('oh6', version);
     const main = scene.getObjectByName('main-rotor');
     const tail = scene.getObjectByName('tail-rotor');
+    // Emergency-jettison articulation wraps each blade in its own release group.
     const mainBlades = [],
       tailBlades = [];
     main.traverse((node) => {
@@ -150,8 +151,14 @@ describe.each(['source', 'imported'])('reference aircraft details (%s)', (versio
     });
     expect(mainBlades).toHaveLength(4);
     expect(tailBlades).toHaveLength(2);
-    expect(scene.getObjectByName('tail-brace--1')).toBeDefined();
-    expect(scene.getObjectByName('tail-brace-1')).toBeDefined();
+    // One raised stabilizer on the right, one strut to the fin: TM 55-1520-214-23 para 2-405.
+    // Damage parts bind them as `tail-stabilizer--1` and `tail-brace--1`, and the lower fin and
+    // its tail skid as `tail-stabilizer-1` and `tail-brace-1`.
+    for (const name of ['tail-stabilizer--1', 'tail-brace--1', 'tail-stabilizer-1', 'tail-brace-1'])
+      expect(scene.getObjectByName(name)).toBeDefined();
+    const stabilizer = new Box3().setFromObject(scene.getObjectByName('tail-stabilizer--1'));
+    expect(stabilizer.max.x).toBeLessThan(0.1);
+    expect(stabilizer.min.x).toBeLessThan(-0.9);
     expect(scene.getObjectByName('t-tail')).toBeUndefined();
   });
   it('gives each aircraft its own mechanical cockpit', async () => {
@@ -166,7 +173,7 @@ describe.each(['source', 'imported'])('reference aircraft details (%s)', (versio
     // Gauges face the pilot, rather than being hidden behind the panel's back face.
     for (const [scene, eye, gaugeId] of [
       [mustang, MUSTANG_EYE, 'airspeed-instrument'],
-      [cayuse, [-0.38, 1.7, 0.6], 'airspeed-instrument'],
+      [cayuse, [-0.38, 1.82, 0.3], 'airspeed-instrument'],
     ]) {
       const gauge = scene.getObjectByName(gaugeId);
       const target = new Vector3();

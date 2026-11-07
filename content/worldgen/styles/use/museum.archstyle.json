@@ -1,0 +1,295 @@
+{
+  "format": "molen/archstyle@1",
+  "id": "molen.worldgen.use.museum",
+  "title": "Museum",
+  "doc": "Tall top-lit galleries behind blank limestone walls: a civic plinth, a deep cornice, and very few windows.",
+  "version": 1,
+  "applicability": {
+    "classes": [
+      "museum",
+      "gallery"
+    ]
+  },
+  "massing": {
+    "floorHeight": {
+      "min": 6,
+      "max": 6
+    },
+    "groundFloorHeight": {
+      "min": 7,
+      "max": 7
+    },
+    "heightFallback": [
+      {
+        "levels": {
+          "min": 1,
+          "max": 2
+        }
+      }
+    ],
+    "groundFit": "platform-max",
+    "foundation": {
+      "height": {
+        "min": 0.3,
+        "max": 0.6
+      },
+      "exposeOnSlope": true
+    },
+    "wings": {
+      "split": "none",
+      "maxWingSpan": 300,
+      "minWingArea": 1,
+      "secondaryHeightScale": {
+        "min": 1,
+        "max": 1
+      }
+    },
+    "setbacks": [],
+    "respectMinHeight": true
+  },
+  "roof": {
+    "perWing": false,
+    "ridge": "long-axis",
+    "overhang": {
+      "min": 0,
+      "max": 0
+    },
+    "complexFootprint": "flat",
+    "choices": [
+      {
+        "type": "flat",
+        "weight": 1,
+        "parapet": {
+          "height": {
+            "min": 1.2,
+            "max": 1.2
+          },
+          "thickness": 0.4
+        }
+      }
+    ],
+    "fallback": "flat"
+  },
+  "facade": {
+    "bays": {
+      "width": {
+        "min": 6,
+        "max": 6
+      },
+      "cornerMargin": 0.8
+    },
+    "windows": {
+      "style": "none",
+      "width": {
+        "min": 3,
+        "max": 3
+      },
+      "height": {
+        "min": 3,
+        "max": 3
+      },
+      "sill": {
+        "min": 1,
+        "max": 1
+      },
+      "probabilityPerBay": 1,
+      "groundFloor": "storefront"
+    },
+    "bands": {
+      "base": {
+        "height": {
+          "min": 0.9,
+          "max": 0.9
+        }
+      },
+      "floorLines": false,
+      "cornice": {
+        "height": 0.7
+      }
+    }
+  },
+  "materials": {
+    "wall": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.stone_limestone",
+          "weight": 1
+        }
+      ],
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false,
+      "palette": "wall",
+      "uvScale": [
+        4,
+        4
+      ]
+    },
+    "roof": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.membrane",
+          "weight": 1
+        }
+      ],
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false,
+      "palette": "roof",
+      "uvScale": [
+        6,
+        6
+      ]
+    },
+    "trim": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.stone_limestone",
+          "weight": 1
+        }
+      ],
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false,
+      "palette": "trim",
+      "uvScale": [
+        4,
+        4
+      ]
+    },
+    "foundation": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.stone_granite",
+          "weight": 1
+        }
+      ],
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false,
+      "palette": "trim",
+      "uvScale": [
+        3,
+        3
+      ]
+    },
+    "window": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.storefront",
+          "weight": 1
+        }
+      ],
+      "tint": "none",
+      "uv": "cell",
+      "uvOffset": "none",
+      "uvMirror": false
+    }
+  },
+  "palettes": {
+    "wall": {
+      "entries": [
+        {
+          "color": "#cfc6b3",
+          "weight": 3
+        },
+        {
+          "color": "#c3b9a4",
+          "weight": 2
+        },
+        {
+          "color": "#d8d0be",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.004,
+        "saturation": 0.02,
+        "lightness": 0.03
+      }
+    },
+    "roof": {
+      "entries": [
+        {
+          "color": "#6f7270",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.004,
+        "saturation": 0.02,
+        "lightness": 0.02
+      }
+    },
+    "trim": {
+      "entries": [
+        {
+          "color": "#9b9e9d",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.004,
+        "saturation": 0.02,
+        "lightness": 0.02
+      }
+    }
+  },
+  "props": [
+    {
+      "id": "hvac",
+      "model": "molen.worldgen.prop.rooftop.hvac",
+      "anchor": "roof-flat",
+      "probability": 0.9,
+      "count": {
+        "min": 2,
+        "max": 10
+      },
+      "perAreaM2": 220,
+      "roof": [
+        "flat"
+      ],
+      "spacing": 4,
+      "margin": 2,
+      "scale": {
+        "min": 1.1,
+        "max": 1.6
+      },
+      "yaw": "align-wall",
+      "lodTier": 0
+    }
+  ],
+  "lod": {
+    "tiers": [
+      {
+        "minTier": 0,
+        "keep": [
+          "roof-shape",
+          "roof-features",
+          "facade-texture",
+          "facade-bands",
+          "props"
+        ]
+      },
+      {
+        "minTier": 1,
+        "keep": [
+          "roof-shape",
+          "facade-texture",
+          "facade-bands"
+        ]
+      },
+      {
+        "minTier": 2,
+        "keep": [
+          "roof-shape",
+          "facade-texture"
+        ]
+      }
+    ]
+  }
+}

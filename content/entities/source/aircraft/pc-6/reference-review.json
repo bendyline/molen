@@ -225,13 +225,57 @@
       "Clean landplane with six passenger seats; no floats, skis or opening doors. Upholstery, fastener spacing and flap mechanisms remain polygonal approximations. No source image pixels are distributed."
     ]
   },
-  "sourceHash": "sha256:d95f2f42ed6036dd9f221c8a3996e40d2bfbb0e1058de9f6e6daa64a6a51e50f",
-  "runtimeHash": "sha256:b95ccaadc1ab5710cca115fb9f8d1f6ba58fb0580aea75e8e9c9bd3c17c60430",
+  "sourceHash": "sha256:554216c86afc1b059264ab4bdaa7e82cdf2a1855db5a71450cccfd2d52c923d1",
+  "runtimeHash": "sha256:13518d87e3468fb707f20430ee39c1976625b279f7349b0e3efaa6da1097d385",
   "limitations": [
     "Manufacturer model-building drawing has inconsistent cross-view details: front gear track is narrower than printed3m, and brochure tail-span5.70m disagrees with its imperial equivalent and plan. Model prioritizes printed main dimensions,1.27m section and an approximately5.12m horizontal tail including horns. Clipped half of plan is not extrapolated for comparison.",
     "Static10.84-degree tailwheel stance is baked into the model; simulation does not resolve tailwheel ground pitch. Attitude uses labeled simulation datum. Pilot view is a high forward eye position to clear the long cowling, not a surveyed ergonomic datum.",
     "Cockpit reference is perspective, partly occluded and only tentatively identified as F-GSAC. Uniform estimated scale and rigid7.5-degree image rotation establish relative layout, not exact panel dimensions.",
     "TAS replaces IAS, altitude is geometric, heading true; engine gauge explicitly shows normalized simulated RPM percent. Torque, ITT, Ng, oil, fuel, radio and navigation readings remain blank/--. Prop/condition levers, electrical switches and cabin lighting do not simulate unsupported systems.",
     "Clean landplane with six passenger seats; no floats, skis or opening doors. Upholstery, fastener spacing and flap mechanisms remain polygonal approximations. No source image pixels are distributed."
-  ]
+  ],
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "packages/entities/scripts/cockpit-sweep.mjs rays from pilotEye through source.glb, then seat, pitched-down and exterior nose renders inspected at the runtime camera (+Z, 60 degrees vertical).",
+    "before": {
+      "eye": [
+        0.3,
+        2.349,
+        1.688
+      ],
+      "outside": 64,
+      "horizon": 90,
+      "overNose": -1,
+      "headroom": 0.08,
+      "wall": 0.21,
+      "panel": 0.69,
+      "cushion": 0.82,
+      "seatback": null,
+      "poked": 8.3
+    },
+    "after": {
+      "eye": [
+        0.37,
+        2.232,
+        1.609
+      ],
+      "outside": 56,
+      "horizon": 76,
+      "overNose": 0,
+      "headroom": 0.18,
+      "wall": 0.26,
+      "panel": 0.73,
+      "cushion": 0.77,
+      "seatback": 0.26,
+      "poked": 0
+    },
+    "corrections": [
+      "The gauge box is real: the F-GSAC photograph shows a housing clamped to the tube along the panel top. It had been modeled forward of the windscreen base, outside the glass, which caused the 8.3 percent reading. It now sits inside on a short bracket at the same size.",
+      "Eye moved aft and down, out of the roof. In the airframe datum it is [0.37, 1.89, 2.0].",
+      "Crew seats raised 0.2 m, moved forward 0.06 m and outboard 0.05 m. Sticks moved 0.35 m forward, out of the seat cushions, and lengthened 0.17 m to suit."
+    ],
+    "limitations": [
+      "The eye sits 0.02 m outboard of the seat center: at the 10.8 degree stance the level sightline only just passes the cowling crown. Seat height is inferred from the eye."
+    ]
+  }
 }

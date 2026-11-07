@@ -907,7 +907,7 @@ function gripenCockpit(root, m) {
     }
     gd.finish();
   }
-  const seat = group(cabin, 'Gripen-Mk10L-seat', [0, 1.46, 2.35]),
+  const seat = group(cabin, 'Gripen-Mk10L-seat', [0, 1.51, 2.82]),
     sd = detailKit(seat, seat.name);
   seat.rotation.x = -0.24;
   beveledBox(sd, [0.47, 0.13, 0.53], [0, 0.05, 0.08], button, 0.03);
@@ -964,7 +964,7 @@ function gripenCockpit(root, m) {
     offset: -0.3,
   });
   for (const side of [-1, 1]) {
-    const g = group(cabin, `Gripen-pedal-${side}`, [side * 0.14, 1.31, 3.9]),
+    const g = group(cabin, `Gripen-pedal-${side}`, [side * 0.14, 1.31, 3.62]),
       gd = detailKit(g, g.name);
     gd.box([0.12, 0.14, 0.025], [0, 0, 0], m.metal);
     for (let i = 0; i < 5; i++)

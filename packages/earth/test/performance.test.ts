@@ -8,7 +8,9 @@ import {
   earthPerformanceTier,
   earthPixelRatio,
   earthQualityLevel,
+  earthTerrainBudget,
   earthTerrainCacheBudget,
+  earthWorldgenCacheBytes,
 } from '../src/client/performance';
 
 const MIB = 1024 * 1024;
@@ -174,5 +176,41 @@ describe('earth device detail policy', () => {
     }
     for (const dpr of [0, -1, Number.NaN, Number.POSITIVE_INFINITY])
       expect(() => earthPixelRatio(2, 1280, 720, dpr)).toThrow();
+  });
+});
+
+describe('earth terrain cache budget', () => {
+  const MIB = 1024 * 1024;
+
+  it('keeps ground just left warm up to the device budget at every level', () => {
+    for (let level = 0; level <= 5; level++) {
+      const budget = earthTerrainBudget(earthPerformanceTier(level).terrain, 768 * MIB);
+      expect(budget.maxResidentBytes).toBe(768 * MIB);
+      expect(budget.maxResidentTiles).toBe(768);
+    }
+  });
+
+  it('never lowers a preset below its own limits', () => {
+    const tier = earthPerformanceTier(5).terrain;
+    const small = earthTerrainBudget(tier, 192 * MIB);
+    expect(small.maxResidentBytes).toBe(tier.maxResidentBytes);
+    expect(small.maxResidentTiles).toBe(tier.maxResidentTiles);
+  });
+
+  it('stops counting tiles past what memory would hold', () => {
+    const budget = earthTerrainBudget(earthPerformanceTier(3).terrain, 8_000 * MIB);
+    expect(budget.maxResidentBytes).toBe(8_000 * MIB);
+    expect(budget.maxResidentTiles).toBe(1024);
+  });
+
+  it('keeps ground a little past the view loaded, for a turn', () => {
+    const budget = earthTerrainBudget(earthPerformanceTier(3).terrain, 512 * MIB);
+    expect(budget.peripheralDegrees).toBeGreaterThan(0);
+    expect(budget.peripheralDetail).toBeGreaterThan(0);
+  });
+
+  it('keeps a quarter of the device budget of generated buildings, or the tier amount', () => {
+    expect(earthWorldgenCacheBytes(48 * MIB, 768 * MIB)).toBe(192 * MIB);
+    expect(earthWorldgenCacheBytes(128 * MIB, 192 * MIB)).toBe(128 * MIB);
   });
 });

@@ -1,4 +1,7 @@
 /** Standard, unstretched C-130J. USAF rescue drawing and Lockheed flight-station layout.
+ * Forebody crown and window block traced from the Lockheed pocket guide side and plan views and
+ * checked against the ZH883 side photograph; the old crown ran up to 0.7 m low and left the
+ * flight deck 1.5 m too far aft.
  * Meter geometry, +Y up, +Z nose, +X pilot left. Reference stations remain approximate.
  */
 import { aircraftPanelTools as panelTools } from '../vehicle-interiors.mjs';
@@ -17,6 +20,9 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
+
+/** Forward travel of the whole flight deck from the stations it was first authored at. */
+const deckShift = 1.5;
 export const c130Frame = () => ({
   heli: false,
   fighter: false,
@@ -24,10 +30,10 @@ export const c130Frame = () => ({
   radius: 1.89,
   cy: 2.83,
   ry: 2.07,
-  cabinZ: 10.55,
+  cabinZ: deckShift + 10.55,
   cabinWidth: 2.5,
-  eye: [0.67, 4.33, 10.55],
-  panelZ: 11.42,
+  eye: [0.55, 3.97, deckShift + 10.55],
+  panelZ: deckShift + 11.42,
   floor: 2.72,
 });
 const rectangle = (x, y, w, h, z) => [
@@ -61,6 +67,38 @@ function hingedWing(root, name, stations, material, bindings, source, scale) {
   bindings.push({ node: g.name, source, property: 'rotation', axis: 'x', scale });
   return g;
 }
+/** The forebody is a smooth moulding; share area-weighted normals between coincident vertices. */
+function smoothNormals(mesh) {
+  const g = mesh.geometry,
+    p = g.getAttribute('position'),
+    n = g.getAttribute('normal'),
+    index = g.index,
+    key = (i) =>
+      `${Math.round(p.getX(i) * 2e3)},${Math.round(p.getY(i) * 2e3)},${Math.round(p.getZ(i) * 2e3)}`,
+    sums = new Map(),
+    a = new T.Vector3(),
+    b = new T.Vector3(),
+    c = new T.Vector3();
+  for (let i = 0; i < index.count; i += 3) {
+    const ids = [index.getX(i), index.getX(i + 1), index.getX(i + 2)];
+    a.fromBufferAttribute(p, ids[0]);
+    b.fromBufferAttribute(p, ids[1]).sub(a);
+    c.fromBufferAttribute(p, ids[2]).sub(a);
+    b.cross(c);
+    for (const id of ids) {
+      const sum = sums.get(key(id)) ?? [0, 0, 0];
+      sum[0] += b.x;
+      sum[1] += b.y;
+      sum[2] += b.z;
+      sums.set(key(id), sum);
+    }
+  }
+  for (let i = 0; i < n.count; i++) {
+    const [x, y, z] = sums.get(key(i)) ?? [n.getX(i), n.getY(i), n.getZ(i)],
+      length = Math.sqrt(x * x + y * y + z * z);
+    if (length > 0) n.setXYZ(i, x / length, y / length, z / length);
+  }
+}
 export function buildC130J(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -77,18 +115,33 @@ export function buildC130J(s) {
       roughness: 0.18,
     });
   const d = detailKit(root, 'C130J-exterior'),
+    noseKit = detailKit(root, 'C130J-forebody'),
     bindings = [],
     rotors = [],
     enginePoints = [];
-  // Blunt lower radome, raised flight deck, constant cargo barrel, upswept ramp and tail cone.
+  // Blunt lower radome, steep windscreen slope, constant cargo barrel, upswept ramp and tail cone.
+  // Forward of 10.65 m: pocket guide p20 side crown and belly, and plan half width. The plan was
+  // fitted to a 3.78 m barrel; the barrel is now 4.12 m (CC0 3-view), so it scales by 2.06 / 1.89.
+  const plan = 2.06 / 1.89;
   const sections = [
-    [14.895, 0.025, 2.18, 2.43],
-    [14.65, 0.5, 1.81, 2.7],
-    [14.05, 0.88, 1.44, 2.93],
-    [13.2, 1.22, 1.12, 3.56],
-    [12.35, 1.55, 0.89, 4.27],
-    [11.35, 1.86, 0.78, 4.63],
-    [10.65, 1.98, 0.76, 4.82],
+    ...[
+      [14.895, 0.04, 2.05, 2.25],
+      [14.8, 0.25, 1.81, 2.46],
+      [14.65, 0.4, 1.63, 2.65],
+      [14.39, 0.54, 1.49, 2.78],
+      [14.16, 0.66, 1.39, 2.86],
+      [13.93, 0.77, 1.3, 2.92],
+      [13.65, 0.91, 1.19, 3.03],
+      [13.47, 0.99, 1.13, 3.27],
+      [13.24, 1.09, 1.05, 3.57],
+      [13.0, 1.2, 0.97, 3.88],
+      [12.77, 1.31, 0.9, 4.12],
+      [12.41, 1.45, 0.86, 4.4],
+      [12.19, 1.53, 0.8, 4.56],
+      [11.84, 1.65, 0.77, 4.7],
+      [11.36, 1.76, 0.77, 4.83],
+      [10.65, 1.84, 0.76, 4.86],
+    ].map(([z, w, b, t]) => [z, w * plan, b, t]),
     [9.25, 2.06, 0.76, 4.86],
     [7.4, 2.06, 0.76, 4.86],
     [4.6, 2.06, 0.76, 4.86],
@@ -102,32 +155,8 @@ export function buildC130J(s) {
     [-14.5, 0.55, 4.45, 4.88],
     [-14.895, 0.2, 4.58, 4.72],
   ];
-  // The radome rings (0-3) are round, as the bulbous nose of the head-on photographs; the flight
-  // deck and cargo barrel keep the boxy fitted section. Index order is unchanged.
-  const rings = sections.map(([z, w, b, t], i) => {
+  const rings = sections.map(([z, w, b, t]) => {
     const h = t - b;
-    if (i < 4) {
-      const mid = b + 0.45 * h,
-        up = (a) => [
-          w * Math.pow(Math.sin(a), 2 / 2.1),
-          mid + (t - mid) * Math.pow(Math.cos(a), 2 / 2.1),
-        ],
-        down = (a) => [
-          w * Math.pow(Math.sin(a), 2 / 2.3),
-          mid - (mid - b) * Math.pow(Math.cos(a), 2 / 2.3),
-        ],
-        right = [up(0), up(0.5), up(0.98), up(1.42), down(1.42), down(0.98), down(0.5), down(0)];
-      return {
-        z,
-        points: [
-          ...right,
-          ...right
-            .slice(1, 7)
-            .map(([x, y]) => [-x, y])
-            .reverse(),
-        ],
-      };
-    }
     return {
       z,
       points: [
@@ -148,238 +177,228 @@ export function buildC130J(s) {
       ],
     };
   });
-  const p = (i, j) => [...rings[i].points[(j + 14) % 14], rings[i].z],
-    lerp = (a, b, t) => a.map((v, k) => v + (b[k] - v) * t);
-  const windowFace = (i, j) =>
-    ([3, 4].includes(i) && [0, 1, 12, 13].includes(j)) ||
-    (i === 3 && [2, 11].includes(j)) ||
-    ([5, 6].includes(i) && [1, 2, 11, 12].includes(j));
-  // Blunt radome tip: domed rings between the tip and the first station instead of a cone point.
-  const tipY = (rings[0].points[0][1] + rings[0].points[7][1]) / 2,
-    firstY = (rings[1].points[0][1] + rings[1].points[7][1]) / 2,
-    dome = [0.02, 0.08, 0.25, 0.52].map((f) => {
-      const s = Math.sqrt(1 - (1 - f) * (1 - f)),
-        y = tipY + (firstY - tipY) * f;
-      return {
-        z: rings[0].z + (rings[1].z - rings[0].z) * f,
-        points: rings[1].points.map(([x, yy]) => [x * s, y + (yy - firstY) * s]),
-      };
-    });
-  loft(d, [rings[0], ...dome, ...rings.slice(1)], paint, {
-    skip: (i, j) => windowFace(i - dome.length, j),
+  const noseEnd = sections.findIndex(([z]) => z === 10.65);
+  loft(d, rings, paint, { skip: (i) => i < noseEnd });
+  // Smooth forebody over the same sections: the sides stay flat between a super-elliptic crown
+  // (exponent 2.7 fits the ring corners above) and belly (3.4), and it relaxes onto those rings
+  // by 10.65 m so the barrel meets it vertex for vertex.
+  const section = (z, k) => {
+    for (let i = 0; i < noseEnd; i++)
+      if (z <= sections[i][0] && z >= sections[i + 1][0]) {
+        const t = (sections[i][0] - z) / (sections[i][0] - sections[i + 1][0]);
+        return sections[i][k] * (1 - t) + sections[i + 1][k] * t;
+      }
+    return sections[noseEnd][k];
+  };
+  const crownBase = (z) => section(z, 3) - 0.28 * (section(z, 3) - section(z, 2));
+  const crownHeight = (z) => 0.28 * (section(z, 3) - section(z, 2));
+  /** Half width of the skin at a height on the upper body. */
+  const skinX = (z, y) => {
+    const v = (y - crownBase(z)) / crownHeight(z);
+    if (v <= 0) return section(z, 1);
+    return section(z, 1) * Math.pow(Math.max(0, 1 - Math.pow(Math.min(1, v), 2.7)), 1 / 2.7);
+  };
+  /** Height of the crown skin at a lateral offset. */
+  const skinY = (z, x) =>
+    crownBase(z) +
+    crownHeight(z) *
+      Math.pow(Math.max(0, 1 - Math.pow(Math.min(1, x / section(z, 1)), 2.7)), 1 / 2.7);
+  // Window block from the guide and the photograph: a level sill, a row divider and a level top
+  // ending at one aft post. The glass columns bend onto these lines at every station.
+  const sillY = 3.5,
+    dividerY = 4.08,
+    topY = 4.32,
+    frontZ = 12.75,
+    midZ = 12.35,
+    aftZ = 11.95,
+    tipZ = 13.3;
+  const upperAngle = (z, y) => {
+    const v = Math.max(0, Math.min(1, (y - crownBase(z)) / crownHeight(z)));
+    return Math.acos(Math.pow(v, 2.7 / 2));
+  };
+  const cornerAngles = rings[noseEnd].points.slice(1, 3).map(([, y]) => {
+    const [, , b, t] = sections[noseEnd],
+      base = t - 0.28 * (t - b);
+    return Math.acos(Math.pow((y - base) / (0.28 * (t - b)), 2.7 / 2));
   });
-  // A glazed patch of the shell (nu x nv facets from station i0, section point j0 on the right)
-  // is triangulated with its grid nodes as Steiner points, so the painted frames and the pane
-  // edges follow the shell and keep its smooth normals.
-  const normalAt = (i, j) => {
-    const q = p(i, j),
-      mid = (rings[i].points[0][1] + rings[i].points[7][1]) / 2,
-      n = new T.Vector3(...p(i, j + 1))
-        .sub(new T.Vector3(...p(i, j - 1)))
-        .cross(new T.Vector3(...p(Math.max(i - 1, 0), j)).sub(new T.Vector3(...p(i + 1, j))))
-        .normalize();
-    return n.dot(new T.Vector3(q[0], q[1] - mid, 0)) < 0 ? n.negate().toArray() : n.toArray();
+  const upperColumns = (z, zone) => {
+    if (zone === 'plain') {
+      const stops = [0, ...cornerAngles, Math.PI / 2];
+      return Array.from({ length: 13 }, (_, k) => {
+        const m = Math.min(2, Math.floor(k / 4));
+        return stops[m] + ((stops[m + 1] - stops[m]) * (k - m * 4)) / 4;
+      });
+    }
+    const crown =
+        zone === 'front' ? 0 : Math.max(upperAngle(z, topY), upperAngle(z, skinY(z, 0.75))),
+      divider = Math.max(crown, upperAngle(z, dividerY)),
+      sill = Math.max(divider, upperAngle(z, sillY)),
+      stops = [0, crown, divider, sill, Math.PI / 2],
+      out = [];
+    [2, 2, 3, 5].forEach((count, part) => {
+      for (let k = 0; k < count; k++)
+        out.push(stops[part] + ((stops[part + 1] - stops[part]) * k) / count);
+    });
+    out.push(Math.PI / 2);
+    return out;
   };
-  const glazePatch = (i0, j0, nu, nv, side, panes) => {
-    const m = (q) => [q[0] * side, q[1], q[2]],
-      cell = (U, V) => {
-        const cu = Math.min(Math.floor(U), nu - 1),
-          cv = Math.min(Math.floor(V), nv - 1);
-        return [i0 + cv, j0 + cu, U - cu, V - cv];
-      },
-      blend = (f, U, V) => {
-        const [i, j, fu, fv] = cell(U, V);
-        return lerp(lerp(f(i, j), f(i + 1, j), fv), lerp(f(i, j + 1), f(i + 1, j + 1), fv), fu);
-      },
-      at = (U, V) => m(blend(p, U, V)),
-      normal = (U, V) => new T.Vector3(...m(blend(normalAt, U, V))).normalize(),
-      // Pane edges also get a vertex wherever they cross a station or section line.
-      dense = (poly) =>
-        poly.flatMap((q, k) => {
-          const r = poly[(k + 1) % poly.length],
-            ts = [0, 1 / 3, 2 / 3];
-          for (const [c, n] of [
-            [0, nu],
-            [1, nv],
-          ])
-            for (let g = 1; g < n; g++) {
-              const t = (g - q[c]) / (r[c] - q[c]);
-              if (t > 0.02 && t < 0.98) ts.push(t);
-            }
-          return ts
-            .sort((a, b) => a - b)
-            .filter((t, i, a) => i === 0 || t - a[i - 1] > 0.01)
-            .map((t) => lerp(q, r, t));
-        }),
-      outer = [
-        ...Array.from({ length: 4 * nu }, (_, s) => [s / 4, 0]),
-        ...Array.from({ length: 4 * nv }, (_, s) => [nu, s / 4]),
-        ...Array.from({ length: 4 * nu }, (_, s) => [nu - s / 4, nv]),
-        ...Array.from({ length: 4 * nv }, (_, s) => [0, nv - s / 4]),
+  const ringPoints = (z, zone) => {
+    const w = section(z, 1),
+      b = section(z, 2),
+      t = section(z, 3),
+      h = t - b,
+      facet = Math.min(1, Math.max(0, (11.6 - z) / (11.6 - 10.65))),
+      side = b + 0.25 * h,
+      corners = [
+        [0, t],
+        [0.58 * w, t - 0.025 * h],
+        [0.9 * w, t - 0.115 * h],
+        [w, t - 0.28 * h],
       ],
-      holes = panes.map(dense),
-      clear = ([u, v], gap) =>
-        holes.every((h) => {
-          let inside = false,
-            near = Infinity;
-          for (let k = 0, l = h.length - 1; k < h.length; l = k++) {
-            const [ax, ay] = h[k],
-              [bx, by] = h[l];
-            if (ay > v !== by > v && u < ((bx - ax) * (v - ay)) / (by - ay) + ax) inside = !inside;
-            const t = Math.max(
-              0,
-              Math.min(
-                1,
-                ((u - ax) * (bx - ax) + (v - ay) * (by - ay)) /
-                  ((bx - ax) * (bx - ax) + (by - ay) * (by - ay)),
-              ),
-            );
-            near = Math.min(near, Math.hypot(u - ax - t * (bx - ax), v - ay - t * (by - ay)));
-          }
-          return !inside && near > gap;
-        }),
-      steiner = [];
-    // A coarse interior grid, plus close points along the station and section lines where the
-    // shell bends, so no triangle bridges a bend and sags below the neighbouring skin.
-    for (let s = 1; s < 4 * nu; s++)
-      for (let t = 1; t < 4 * nv; t++)
-        if (s % 4 && t % 4 && clear([s / 4, t / 4], 0.06)) steiner.push([[s / 4, t / 4]]);
-    for (let s = 0; s < 25 * Math.max(nu, nv); s++) {
-      const f = (s + 0.3) / 25;
-      for (let k = 1; k < nv; k++) if (f < nu && clear([f, k], 0.012)) steiner.push([[f, k]]);
-      for (let k = 1; k < nu; k++) if (f < nv && clear([k, f], 0.012)) steiner.push([[k, f]]);
+      belly = [
+        [w, side],
+        [0.86 * w, b + 0.06 * h],
+        [0.5 * w, b],
+        [0, b - 0.008 * h],
+      ],
+      out = upperColumns(z, zone).map((a, k) => {
+        const x = w * Math.pow(Math.sin(a), 2 / 2.7),
+          y = crownBase(z) + crownHeight(z) * Math.pow(Math.cos(a), 2 / 2.7);
+        if (facet === 0 || zone !== 'plain') return [x, y];
+        const m = Math.min(2, Math.floor(k / 4)),
+          f = (k - m * 4) / 4,
+          cx = corners[m][0] + (corners[m + 1][0] - corners[m][0]) * f,
+          cy = corners[m][1] + (corners[m + 1][1] - corners[m][1]) * f;
+        return [x + (cx - x) * facet, y + (cy - y) * facet];
+      });
+    for (let k = 0; k <= 6; k++) {
+      const a = (k * Math.PI) / 12,
+        x = w * Math.pow(Math.cos(a), 2 / 3.4),
+        y = side - 0.25 * h * Math.pow(Math.sin(a), 2 / 3.4),
+        m = Math.min(2, Math.floor(k / 2)),
+        f = (k - m * 2) / 2,
+        cx = belly[m][0] + (belly[m + 1][0] - belly[m][0]) * f,
+        cy = belly[m][1] + (belly[m + 1][1] - belly[m][1]) * f;
+      out.push([x + (cx - x) * facet, y + (cy - y) * facet]);
     }
-    // Triangulate the projected shell positions: grid points along a bent station edge are not
-    // collinear there, so the triangulator keeps them and the patch meets its neighbours.
-    const plane = new T.Vector3();
-    for (let k = 0; k < outer.length; k++)
-      plane.add(
-        new T.Vector3(...at(...outer[k])).cross(
-          new T.Vector3(...at(...outer[(k + 1) % outer.length])),
-        ),
-      );
-    plane.normalize();
-    const ax = new T.Vector3(...at(nu, 0)).sub(new T.Vector3(...at(0, 0))).normalize(),
-      ay = plane.clone().cross(ax).normalize(),
-      uv = [outer, ...holes, ...steiner].flat(),
-      flat = (q) => {
-        const p3 = new T.Vector3(...at(...q));
-        return new T.Vector2(p3.dot(ax), p3.dot(ay));
-      },
-      index = T.ShapeUtils.triangulateShape(
-        outer.map(flat),
-        [...holes, ...steiner].map((h) => h.map(flat)),
-      ).flat();
-    for (let k = 0; k < index.length; k += 3) {
-      const [pa, pb, pc] = index.slice(k, k + 3).map((n) => new T.Vector3(...at(...uv[n])));
-      if (
-        pb
-          .sub(pa)
-          .cross(pc.sub(pa))
-          .dot(normal(...uv[index[k]])) < 0
-      )
-        [index[k + 1], index[k + 2]] = [index[k + 2], index[k + 1]];
+    return out;
+  };
+  const noseStations = [
+    ...[...new Set([...sections.slice(0, noseEnd).map((q) => q[0]), 13.3, 13.15, 12.95, 12.85])]
+      .filter((z) => z > frontZ)
+      .sort((a, b) => b - a)
+      .map((z) => [z, 'front']),
+    [frontZ, 'front'],
+    [frontZ, 'side'],
+    [12.55, 'side'],
+    [midZ, 'side'],
+    [12.15, 'side'],
+    [aftZ, 'side'],
+    [aftZ, 'plain'],
+    [11.84, 'plain'],
+    [11.6, 'plain'],
+    [11.36, 'plain'],
+    [11, 'plain'],
+    [10.65, 'plain'],
+  ].map(([z, zone]) => ({ z, zone, points: ringPoints(z, zone) }));
+  const shell = new Map();
+  const facet = (material, a, b, c, centre) => {
+    const pa = new T.Vector3(...a),
+      n = new T.Vector3(...b).sub(pa).cross(new T.Vector3(...c).sub(pa));
+    if (n.lengthSq() < 1e-14) return;
+    const out = (a[0] + b[0] + c[0]) * n.x + (a[1] + b[1] + c[1] - 3 * centre) * n.y;
+    const list = shell.get(material) ?? [];
+    list.push(...(out >= 0 ? [...a, ...b, ...c] : [...a, ...c, ...b]));
+    shell.set(material, list);
+  };
+  for (const sign of [-1, 1])
+    for (let i = 0; i < noseStations.length - 1; i++) {
+      const fore = noseStations[i],
+        aft = noseStations[i + 1];
+      if (fore.z === aft.z) continue;
+      const mid = (fore.z + aft.z) / 2,
+        centre = (section(mid, 2) + section(mid, 3)) / 2,
+        lit = fore.zone !== 'plain' && aft.zone !== 'plain';
+      for (let k = 0; k < fore.points.length - 1; k++) {
+        const at = (ring, c) => [sign * ring.points[c][0], ring.points[c][1], ring.z],
+          material = lit && k >= 2 && k < 7 ? glass : paint,
+          a = at(fore, k),
+          b = at(aft, k),
+          c = at(aft, k + 1),
+          e = at(fore, k + 1);
+        facet(material, a, b, c, centre);
+        facet(material, a, c, e, centre);
+      }
     }
+  for (const [material, list] of shell) {
     const geometry = new T.BufferGeometry();
-    geometry.setAttribute(
-      'position',
-      new T.Float32BufferAttribute(
-        uv.flatMap((q) => at(...q)),
-        3,
-      ),
-    );
-    geometry.setAttribute(
-      'normal',
-      new T.Float32BufferAttribute(
-        uv.flatMap((q) => normal(...q).toArray()),
-        3,
-      ),
-    );
-    geometry.setIndex(index);
-    d.add(geometry, paint);
-    for (const h of holes) {
-      const pane = h.map((q) => at(...q)),
-        c = h.reduce((s, q) => [s[0] + q[0] / h.length, s[1] + q[1] / h.length], [0, 0]);
-      sheet(d, pane, glass, normal(...c).toArray());
-      outline(d, pane, 0.025, dark);
-    }
-    return { at, normal };
-  };
-  // Skin point at a height on the side of the fitted shell.
-  const skin = (side, y, z, off = 0.015) => {
-    let i = 0;
-    while (i < rings.length - 2 && z < rings[i + 1].z) i++;
-    const t = (rings[i].z - z) / (rings[i].z - rings[i + 1].z),
-      r = rings[i].points.map((q, j) => lerp(q, rings[i + 1].points[j], t));
-    for (let j = 0; j < 7; j++) {
-      const [x0, y0] = r[j],
-        [x1, y1] = r[j + 1];
-      if (y <= y0 && y >= y1) return [side * (x0 + ((x1 - x0) * (y - y0)) / (y1 - y0) + off), y, z];
-    }
-    return [side * off, y, z];
-  };
+    geometry.setAttribute('position', new T.Float32BufferAttribute(list, 3));
+    geometry.computeVertexNormals();
+    noseKit.add(geometry, material);
+  }
+  noseKit.finish();
+  // Frames stand on the skin: posts, sills, the row divider and the top rail of the side windows.
+  const frame = (points) => outline(d, points, 0.022, dark, false);
+  const span = (from, to, count, at) =>
+    Array.from({ length: count + 1 }, (_, i) => at(from + ((to - from) * i) / count));
   for (const side of [-1, 1]) {
-    // Two windscreen panes either side of the center post and an angled corner pane, two small
-    // chin windows below, then the sliding side window, a rear side window and eyebrow windows.
-    const front = glazePatch(3, 0, 2, 2, side, [
-      [
-        [0.08, 0.5],
-        [0.08, 1.62],
-        [0.94, 1.62],
-        [0.94, 0.5],
-      ],
-      [
-        [1.07, 0.56],
-        [1.07, 1.62],
-        [1.9, 1.62],
-        [1.9, 0.6],
-      ],
-    ]);
-    glazePatch(3, 2, 1, 1, side, [
-      [
-        [0.12, 0.42],
-        [0.12, 0.86],
-        [0.62, 0.86],
-        [0.62, 0.42],
-      ],
-    ]);
-    glazePatch(5, 1, 2, 2, side, [
-      [
-        [0.62, 0.1],
-        [0.62, 0.9],
-        [1.72, 0.9],
-        [1.72, 0.1],
-      ],
-      [
-        [0.62, 1.08],
-        [0.62, 1.48],
-        [1.72, 1.48],
-        [1.72, 1.08],
-      ],
-      [
-        [0.1, 0.16],
-        [0.1, 0.84],
-        [0.46, 0.84],
-        [0.46, 0.16],
-      ],
-      [
-        [0.1, 1.08],
-        [0.1, 1.42],
-        [0.46, 1.42],
-        [0.46, 1.08],
-      ],
-    ]);
-    const wiper = (u, v) =>
-      new T.Vector3(...front.at(u, v)).addScaledVector(front.normal(u, v), 0.02).toArray();
-    d.rod(wiper(0.2, 0.62), wiper(0.55, 1.15), 0.016, dark);
-    d.rod(wiper(0.55, 1.15), wiper(0.8, 1.5), 0.012, dark);
-    d.rod(skin(side, 2.55, 13.94, 0.01), skin(side, 2.9, 13.5, 0.01), 0.012, seam);
-    const probe = skin(side, 3.2, 13.6, 0.07);
-    d.rod(skin(side, 3.15, 13.07, 0), probe, 0.018, metal);
-    d.rod(probe, [probe[0], probe[1], 14.05], 0.012, metal);
+    const onCrown = (x, z) => [side * x, skinY(z, x) + 0.004, z],
+      atLevel = (y) => (z) => [side * (skinX(z, y) + 0.004), y, z],
+      topRail = (z) => {
+        const y = Math.min(topY, skinY(z, 0.75));
+        return [side * (skinX(z, y) + 0.004), y, z];
+      };
+    // The front sill runs out from the centre at a level height, so it is sampled across the nose.
+    const sillStation = (x) => {
+      let low = frontZ,
+        high = tipZ + 0.1;
+      for (let i = 0; i < 24; i++) {
+        const middle = (low + high) / 2;
+        if (skinY(middle, x) > sillY) low = middle;
+        else high = middle;
+      }
+      return low;
+    };
+    frame(
+      span(0, skinX(frontZ, sillY), 8, (x) => {
+        const z = sillStation(x);
+        return [side * x, skinY(z, x) + 0.004, z];
+      }),
+    );
+    frame(span(frontZ, aftZ, 4, atLevel(sillY)));
+    frame(span(frontZ, aftZ, 4, atLevel(dividerY)));
+    frame(span(frontZ, aftZ, 4, topRail));
+    // Header across the front panes, then the posts of the centre and flanking panes.
+    frame(span(0, skinX(frontZ, sillY), 6, (x) => [side * x, skinY(frontZ, x) + 0.004, frontZ]));
+    for (const x of [0.28, 0.8]) {
+      let fore = frontZ;
+      while (skinY(fore + 0.01, x) > sillY && fore < tipZ) fore += 0.01;
+      frame(span(fore, frontZ, 4, (z) => onCrown(x, z)));
+    }
+    for (const z of [midZ, aftZ]) frame([topRail(z), atLevel(dividerY)(z), atLevel(sillY)(z)]);
+    // Wipers on the flanking panes and the two pitot masts on the cheek, as photographed.
+    d.rod(onCrown(0.74, 13.0), onCrown(0.74, 12.82), 0.011, dark);
+    for (const y of [2.02, 2.36]) {
+      const root = [side * section(12.85, 1), y, 12.85];
+      d.rod(root, [root[0] + side * 0.1, y + 0.03, 13.12], 0.013, metal);
+    }
   }
   // Selected seams and fasteners follow the actual faceted shell.
-  for (const i of [2, 3, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]) {
+  // Radome joint, carried on the skin itself.
+  for (const sign of [-1, 1])
+    outline(
+      d,
+      ringPoints(13.68, 'plain').map(([x, y]) => [
+        sign * x * 1.004,
+        (section(13.68, 2) + section(13.68, 3)) / 2 +
+          (y - (section(13.68, 2) + section(13.68, 3)) / 2) * 1.004,
+        13.68,
+      ]),
+      0.006,
+      seam,
+      false,
+    );
+  for (const i of rings.flatMap(({ z }, k) => (z <= 9.3 && z > -12.4 ? [k] : []))) {
     const pts = rings[i].points.map(([x, y]) => [x * 1.002, 2.83 + (y - 2.83) * 1.002, rings[i].z]);
     outline(d, pts, 0.006, seam);
     for (let j = 0; j < pts.length; j++)
@@ -747,7 +766,9 @@ export function buildC130J(s) {
   const bz = 8.6,
     bi = rings.findIndex((r) => r.z < bz),
     bt = (rings[bi - 1].z - bz) / (rings[bi - 1].z - rings[bi].z),
-    bring = rings[bi - 1].points.map((q, j) => lerp(q, rings[bi].points[j], bt)),
+    bring = rings[bi - 1].points.map((q, j) =>
+      q.map((v, k) => v + (rings[bi].points[j][k] - v) * bt),
+    ),
     bmid = (bring[0][1] + bring[7][1]) / 2,
     bulkhead = [10, 11, 12, 13, 0, 1, 2, 3, 4].map((j) => [
       bring[j][0] * 0.95,
@@ -755,8 +776,9 @@ export function buildC130J(s) {
       bz,
     ]);
   bulkhead.push([1.7, 1.1, bz], [-1.7, 1.1, bz]);
-  const interior = cockpit(root, { paint, dark, metal, glass, bulkhead });
+  const interior = cockpit(root, { paint, dark, metal, glass, skinX, skinY, section, bulkhead });
   cleanGeometry(root);
+  smoothNormals(root.getObjectByName('C130J-forebody-C130J-airframe'));
   return {
     root,
     frame: c130Frame(),
@@ -772,15 +794,31 @@ export function buildC130J(s) {
 
 function cockpit(root, m) {
   const cabin = group(root, 'cockpit'),
-    d = detailKit(cabin, 'C130J-cabin'),
+    deck = group(cabin, 'C130J-flight-deck', [0, 0, deckShift]);
+  // Panel scale: the guide's CMDU bezel is 100 px by 138 px against 717 px of panel, and the
+  // CMDU is 8 x 11 in, which makes the panel 1.456 m rather than the 2.12 m first estimated. The
+  // standby attitude bezel then comes out at 85 mm against a real 3 in indicator.
+  const scale = 0.687,
+    panel = group(deck, 'C130J-main-panel', [0, 3.72 - scale * 4.025, 11.42 * (1 - scale)]);
+  panel.scale.setScalar(scale);
+  const d = detailKit(panel, 'C130J-panel-face'),
+    cd = detailKit(deck, 'C130J-cabin'),
+    hold = detailKit(cabin, 'C130J-hold'),
     pt = panelTools(d),
-    ins = instrumentGeometry(cabin, 'C130J'),
+    ins = instrumentGeometry(panel, 'C130J'),
     { bindings, derived, ink, black, amber } = ins;
   const face = mat('C130J-panel', '#394344', { side: T.DoubleSide }),
     liner = mat('C130J-liner', '#7e8781', { side: T.DoubleSide }),
     seat = mat('C130J-seat', '#505b5a'),
     belt = mat('C130J-harness', '#aab3a2'),
-    green = mat('C130J-display-green', '#70e894', { emissive: '#247747', emissiveIntensity: 0.6 });
+    green = mat('C130J-display-green', '#70e894', { emissive: '#247747', emissiveIntensity: 0.6 }),
+    combiner = mat('C130J-combiner', '#a8e8c8', {
+      transparent: true,
+      opacity: 0.17,
+      depthWrite: false,
+      side: T.DoubleSide,
+      roughness: 0.1,
+    });
   const sources = Object.fromEntries(
     ['airspeed', 'pitch', 'roll', 'yaw', 'verticalSpeed', 'gearPosition', 'flapPosition'].map(
       (k) => [
@@ -837,7 +875,6 @@ function cockpit(root, m) {
   );
   sheet(d, contour, face, [0, 0, -1], holes);
   outline(d, contour, 0.014, m.dark);
-  d.box([2.18, 0.06, 0.35], [0, 4.035, 11.56], m.dark);
   for (const { u, kind } of screens) {
     const x = px(u),
       y = py(277),
@@ -860,7 +897,7 @@ function cockpit(root, m) {
     for (const side of [-1, 1]) pt.knob(x + side * 0.112, y - 0.175, z - 0.02, 0.012);
     if (kind === 'PFD') {
       const label = u === 107 ? 'pilot' : 'copilot',
-        g = group(cabin, `C130J-${label}-display`, [x, y, z + 0.018]),
+        g = group(panel, `C130J-${label}-display`, [x, y, z + 0.018]),
         dd = detailKit(g, g.name),
         ii = instrumentGeometry(g, `C130J-${label}`);
       ii.horizon('horizon', [0, 0.058, 0], 0.15, 0.135, { blankBackdrop: true });
@@ -958,7 +995,7 @@ function cockpit(root, m) {
       d.text('TRQ ITT NG OIL --', [x, y - 0.145, z], 0.007, Math.PI, green, 'display');
     } else {
       sheet(d, rectangle(x, y, w, h, z + 0.008), black, [0, 0, -1]);
-      const g = group(cabin, 'C130J-navigation-heading', [x, y + 0.02, z]),
+      const g = group(panel, 'C130J-navigation-heading', [x, y + 0.02, z]),
         rr = detailKit(g, g.name);
       for (let deg = 0; deg < 360; deg += 10) {
         const a = (deg * Math.PI) / 180,
@@ -1064,7 +1101,7 @@ function cockpit(root, m) {
         d.rod([xx, yy, z - 0.026], [xx, yy + 0.012, z - 0.045], 0.003, m.metal);
       }
   }
-  const gearLamp = group(cabin, 'C130J-gear-down', at(318, 352, -0.025)),
+  const gearLamp = group(panel, 'C130J-gear-down', at(318, 352, -0.025)),
     gd = detailKit(gearLamp, gearLamp.name);
   for (const x of [-0.025, 0, 0.025]) gd.box([0.014, 0.014, 0.003], [x, 0, 0], green);
   gd.finish();
@@ -1075,8 +1112,12 @@ function cockpit(root, m) {
     scale: 1,
     missing: 'hide',
   });
-  const ped = group(cabin, 'C130J-center-console', [0, 3.02, 10.23]);
+  // The console and overhead were authored about 1.2 times oversize; the guide's Dzus rails, 146 mm
+  // apart, make the overhead 0.82 x 1.09 m.
+  const ped = group(deck, 'C130J-center-console', [0, 3.06, 10.53]);
   ped.rotation.x = Math.PI / 2;
+  ped.scale.setScalar(0.8);
+  cd.box([0.46, 0.3, 1.7], [0, 2.87, 10.53], face);
   const td = detailKit(ped, ped.name),
     tp = panelTools(td);
   beveledBox(td, [0.62, 2.18, 0.2], [0, 0, 0.05], face);
@@ -1132,8 +1173,9 @@ function cockpit(root, m) {
   });
   td.text('POWER', [0, 0.6, -0.08], 0.014, Math.PI, ink);
   td.finish();
-  const overhead = group(cabin, 'C130J-overhead', [0, 4.62, 10.25]);
-  overhead.rotation.x = -Math.PI / 2;
+  const overhead = group(deck, 'C130J-overhead', [0, 4.46, 10.46]);
+  overhead.rotation.x = -Math.PI / 2 + 0.44;
+  overhead.scale.setScalar(0.85);
   const od = detailKit(overhead, overhead.name),
     op = panelTools(od);
   beveledBox(od, [0.93, 1.4, 0.065], [0, 0, 0], face);
@@ -1160,23 +1202,39 @@ function cockpit(root, m) {
   for (let i = 0; i < 4; i++)
     beveledBox(od, [0.044, 0.08, 0.025], [-0.1 + i * 0.067, 0.4, -0.067], od.red, 0.005);
   od.finish();
+  // Head-up displays: a small projector in the roof beside the overhead, and a hinged arm dropping
+  // a framed combiner in front of each pilot's eye, 0.33 m ahead of it. Static, deployed glass.
+  const eye = { y: 3.97, z: 10.55 };
   for (const side of [-1, 1]) {
-    const x = side * 0.67;
-    d.box([0.26, 0.12, 0.27], [x, 4.48, 11.26], m.dark);
-    for (const dx of [-0.13, 0.13])
-      d.rod([x + dx, 4.45, 11.32], [x + dx, 4.13, 11.7], 0.015, m.dark);
-    sheet(
-      d,
+    const x = side * 0.55,
+      c = { y: eye.y + 0.04, z: eye.z + 0.33 },
+      tilt = 0.25,
+      w = 0.1,
+      h = 0.08,
+      corner = (dx, dy) => [x + dx, c.y + dy * Math.cos(tilt), c.z + dy * Math.sin(tilt)],
+      rim = [corner(-w, -h), corner(w, -h), corner(w, h), corner(-w, h)],
+      outboard = x + side * (w + 0.012);
+    sheet(cd, rim, combiner, [0, Math.sin(tilt), -Math.cos(tilt)]);
+    // A hinged C-frame carries the glass on its top and outboard edges only.
+    const [low, high, far] = side > 0 ? [rim[1], rim[2], rim[3]] : [rim[0], rim[3], rim[2]];
+    outline(cd, [low, high, far], 0.005, black, false);
+    outline(cd, [rim[0], rim[1]], 0.002, m.dark, false);
+    outline(cd, [far, side > 0 ? rim[0] : rim[1]], 0.002, m.dark, false);
+    beveledBox(cd, [0.14, 0.09, 0.3], [x, 4.36, eye.z + 0.08], m.dark, 0.015);
+    cd.box([0.05, 0.05, 0.05], [outboard, 4.3, eye.z + 0.22], m.dark);
+    outline(
+      cd,
       [
-        [x - 0.13, 4.17, 11.7],
-        [x + 0.13, 4.17, 11.7],
-        [x + 0.13, 4.45, 11.43],
-        [x - 0.13, 4.45, 11.43],
+        [outboard, 4.29, eye.z + 0.22],
+        [outboard + side * 0.008, 4.23, eye.z + 0.37],
+        [outboard + side * 0.008, 4.14, eye.z + 0.37],
+        corner(side * (w + 0.012), h * 0.4),
       ],
-      m.glass,
-      [0, 1, -1],
+      0.011,
+      m.dark,
+      false,
     );
-    const yg = group(cabin, `C130J-yoke-${side}`, [x, 3.4, 10.75]),
+    const yg = group(deck, `C130J-yoke-${side}`, [x, 3.4, 10.97]),
       yd = detailKit(yg, yg.name);
     yd.rod([0, -0.65, 0.28], [0, 0, 0], 0.045, m.metal);
     outline(
@@ -1201,7 +1259,7 @@ function cockpit(root, m) {
       { node: yg.name, source: 'pitchInput', property: 'position', axis: 'z', scale: -0.09 },
     );
     for (const dx of [-0.16, 0.16]) {
-      const g = group(cabin, `C130J-pedal-${side}-${Math.sign(dx)}`, [x + dx, 2.86, 11.3]),
+      const g = group(deck, `C130J-pedal-${side}-${Math.sign(dx)}`, [x + dx, 2.86, 11.46]),
         dd = detailKit(g, g.name);
       dd.box([0.19, 0.08, 0.13], [0, 0, 0], m.dark);
       for (let j = 0; j < 5; j++)
@@ -1215,32 +1273,114 @@ function cockpit(root, m) {
         scale: Math.sign(dx) * 0.045,
       });
     }
-    d.box([0.43, 0.24, 0.48], [x, 2.88, 10.13], m.metal);
-    beveledBox(d, [0.58, 0.14, 0.6], [x, 3.11, 10.13], seat, 0.04);
-    const sg = group(cabin, `C130J-seat-back-${side}`, [x, 3.57, 9.86]);
+    cd.box([0.43, 0.24, 0.48], [x, 2.88, 10.5], m.metal);
+    beveledBox(cd, [0.5, 0.14, 0.56], [x, 3.11, 10.5], seat, 0.04);
+    const sg = group(deck, `C130J-seat-back-${side}`, [x, 3.57, 10.23]);
     sg.rotation.x = -0.1;
     const sd = detailKit(sg, sg.name);
-    beveledBox(sd, [0.57, 0.81, 0.17], [0, 0, 0], seat, 0.05);
-    beveledBox(sd, [0.43, 0.23, 0.17], [0, 0.5, 0], seat, 0.035);
+    beveledBox(sd, [0.5, 0.81, 0.17], [0, 0, 0], seat, 0.05);
+    beveledBox(sd, [0.4, 0.23, 0.17], [0, 0.5, 0], seat, 0.035);
     for (const dx of [-0.16, 0.16]) {
       sd.rod([dx, 0.49, 0.095], [dx * 0.45, -0.35, 0.11], 0.024, belt);
       sd.rod([dx, 0.22, -0.1], [dx, -0.32, -0.1], 0.025, m.metal);
     }
     sd.finish();
-    d.rod([x - 0.26, 3.22, 9.98], [x + 0.23, 3.22, 10.3], 0.025, belt);
-    d.box([0.075, 0.025, 0.055], [x + 0.02, 3.24, 10.16], m.metal);
-    for (const dx of [-0.32, 0.32])
-      beveledBox(d, [0.07, 0.08, 0.37], [x + dx, 3.38, 10.05], seat, 0.016);
-    d.box([0.13, 0.53, 1.8], [side * 1.31, 3.15, 10.24], face);
-    d.box([0.1, 0.21, 0.22], [side * 1.23, 3.6, 10.14], black);
-    d.rod([side * 1.25, 3.65, 10.29], [side * 1.22, 3.38, 10.4], 0.014, m.dark);
+    cd.rod([x - 0.23, 3.22, 10.35], [x + 0.2, 3.22, 10.67], 0.025, belt);
+    cd.box([0.075, 0.025, 0.055], [x + 0.02, 3.24, 10.53], m.metal);
+    for (const dx of [-0.28, 0.28])
+      beveledBox(cd, [0.07, 0.08, 0.37], [x + dx, 3.38, 10.42], seat, 0.016);
+    // Side consoles, wall stowage and the nose wheel tiller at the pilot's left hand.
+    cd.box([0.13, 0.5, 1.5], [side * 1.28, 3.1, 10.1], face);
+    cd.box([0.1, 0.21, 0.22], [side * 1.23, 3.6, 10.02], black);
+    cd.rod([side * 1.25, 3.65, 10.17], [side * 1.22, 3.38, 10.28], 0.014, m.dark);
+    if (side > 0) {
+      cd.ring(0.1, 0.012, [1.02, 3.52, 10.95], black, 'y');
+      cd.rod([1.02, 3.36, 10.95], [1.02, 3.52, 10.95], 0.014, m.dark);
+      cd.box([0.2, 0.05, 0.3], [1.03, 3.35, 10.95], face);
+    }
   }
-  d.box([2.5, 0.07, 2.8], [0, 2.71, 10.2], m.dark);
-  sheet(d, m.bulkhead, liner, [0, 0, 1], [rectangle(0, 2.13, 0.68, 1.9, 8.6)]);
+  // Hood: a flat plane from the panel top falling to the skin ahead, which it reaches below the
+  // glass. Blanking panels then close the nose bay beside the panel and above the foot wells.
+  const panelZ = deckShift + 11.42,
+    top = 3.72,
+    wall = (zz, yy) => m.skinX(zz, yy) * 0.95,
+    edge = wall(panelZ, 3.64),
+    fall = (top - 3.64) / edge,
+    drop = 0.9,
+    hood = (x, zz) => top - fall * x - drop * (zz - panelZ),
+    meet = (zz) => {
+      let x = 0.5;
+      for (let i = 0; i < 12; i++) x = wall(zz, hood(x, zz));
+      return x;
+    };
+  let hoodTip = panelZ;
+  while (hoodTip < 13.4 && meet(hoodTip + 0.01) > 0.08) hoodTip += 0.01;
+  const hoodOutline = [[0, top, panelZ]];
+  for (let i = 0; i <= 12; i++) {
+    const zz = panelZ + ((hoodTip - panelZ) * i) / 12,
+      x = i === 12 ? 0 : meet(zz);
+    hoodOutline.push([x, hood(x, zz), zz]);
+  }
+  const shift = ([x, y, zz]) => [x, y, zz - deckShift];
+  for (const side of [-1, 1]) {
+    const flip = ([x, y, zz]) => shift([side * x, y, zz]);
+    sheet(cd, hoodOutline.map(flip), black, [side * fall, 1, drop]);
+    const lower = 3.17,
+      toe = 13.2;
+    sheet(
+      cd,
+      [
+        [0.725, lower, panelZ + 0.01],
+        [wall(panelZ, lower), lower, panelZ + 0.01],
+        [edge, hood(edge, panelZ), panelZ + 0.01],
+        [0.725, 3.68, panelZ + 0.01],
+      ].map(flip),
+      face,
+      [0, 0, -1],
+    );
+    quad(
+      cd,
+      flip([0, lower, panelZ]),
+      flip([wall(panelZ, lower), lower, panelZ]),
+      flip([wall(toe, lower), lower, toe]),
+      flip([0, lower, toe]),
+      m.dark,
+      [0, -1, 0],
+    );
+    sheet(
+      cd,
+      [
+        [0, 2.75, toe],
+        [wall(toe, 2.75), 2.75, toe],
+        [wall(toe, lower), lower, toe],
+        [0, lower, toe],
+      ].map(flip),
+      m.dark,
+      [0, 0, -1],
+    );
+    // Flight deck floor, fitted to the walls forward of the barrel.
+    sheet(
+      hold,
+      [
+        [0, 2.745, 8.8],
+        [side * 2.03, 2.745, 8.8],
+        [side * (m.section(10.65, 1) - 0.04), 2.745, 10.65],
+        [side * (m.section(11.6, 1) - 0.03), 2.745, 11.6],
+        [side * (m.section(12.3, 1) - 0.03), 2.745, 12.3],
+        [side * wall(toe, 2.75), 2.745, toe],
+        [0, 2.745, toe],
+      ],
+      m.dark,
+      [0, 1, 0],
+    );
+  }
+  sheet(hold, m.bulkhead, liner, [0, 0, 1], [rectangle(0, 2.13, 0.68, 1.9, 8.6)]);
   for (let i = 0; i < 4; i++)
-    d.box([0.64, 0.08, 0.28], [0, 2.5 - i * 0.35, 8.55 - i * 0.28], m.dark);
-  d.box([2.95, 0.04, 10.75], [0, 1.1, 2.775], liner);
+    hold.box([0.64, 0.08, 0.28], [0, 2.5 - i * 0.35, 8.55 - i * 0.28], m.dark);
+  hold.box([2.95, 0.04, 10.75], [0, 1.1, 2.775], liner);
   d.finish();
+  cd.finish();
+  hold.finish();
   // The two display faces use one telemetry graph, including digit decoding and validity.
   // There is no second simulated AHRS or air-data computer behind the copilot screen.
   for (const binding of bindings)

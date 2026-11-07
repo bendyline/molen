@@ -127,7 +127,7 @@ function center(node) {
 function tires(node) {
   const meshes = [];
   node.traverse((n) => {
-    if (n.isMesh && /tire|rubber/i.test(n.material?.name ?? '')) meshes.push(n);
+    if (n.isMesh && /tire|tyre|rubber/i.test(n.material?.name ?? '')) meshes.push(n);
   });
   expect(meshes.length).toBeGreaterThan(0);
   const bounds = new Box3();

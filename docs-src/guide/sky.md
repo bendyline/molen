@@ -98,6 +98,8 @@ shadow-map texels so edges do not shimmer; `setShadowFocus(undefined)` restores 
 `sun.visible`/`moon.visible` control the disks independently of lighting. Use the corresponding
 light intensity to disable illumination. `sun.size` and `moon.size` are visual multipliers;
 the default 1 preserves real angular size. Larger values help stylized scenes and small displays.
+A soft glare surrounds the Sun disk, so it reads as a bright source at that real size; `sun.visible`
+and `sun.size` apply to it as well.
 
 ## Ambient occlusion
 
@@ -178,7 +180,9 @@ and render its `scene`/`camera` as a background pass before your scene. Dispose 
 `palette` also accepts `ground`, `sun`, and `moon`. `dome.brightness` (default 1) scales only the
 drawn dome, not the sky light or reflections taken from the palette: under filmic tone mapping a
 clear sky lit at the palette's brightness renders pale, and the Earth look draws it at about half
-(`EARTH_SKY_DOME`). `moon.earthshine` controls the dark side's subtle visibility. Stars support `enabled`, `magnitudeLimit` (up to the catalog limit of 6.5),
+(`EARTH_SKY_DOME`). `moon.earthshine` controls the dark side's subtle visibility at night. By day
+the Moon's light adds to the sky in front of it, so its unlit side matches the sky around it while
+the disk still covers the Sun. Stars support `enabled`, `magnitudeLimit` (up to the catalog limit of 6.5),
 `intensity` and visual angular `size`. Stars disappear below the horizon and fade through
 twilight; a bright visible Moon reduces their contrast. Moon disks occlude stars behind them.
 

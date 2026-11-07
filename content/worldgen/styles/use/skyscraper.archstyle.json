@@ -1,0 +1,300 @@
+{
+  "format": "molen/archstyle@1",
+  "id": "molen.worldgen.use.skyscraper",
+  "title": "Glass skyscraper",
+  "doc": "A curtain-walled tower: floor-to-ceiling glazing behind slim dark mullions, a double-height lobby, and a screened plant crown at the top.",
+  "version": 1,
+  "applicability": {
+    "classes": [
+      "skyscraper",
+      "tower"
+    ]
+  },
+  "massing": {
+    "floorHeight": {
+      "min": 3.9,
+      "max": 3.9
+    },
+    "groundFloorHeight": {
+      "min": 6.5,
+      "max": 6.5
+    },
+    "heightFallback": [
+      {
+        "levels": {
+          "min": 24,
+          "max": 40
+        }
+      }
+    ],
+    "groundFit": "platform-max",
+    "foundation": {
+      "height": {
+        "min": 0.3,
+        "max": 0.6
+      },
+      "exposeOnSlope": true
+    },
+    "wings": {
+      "split": "none",
+      "maxWingSpan": 300,
+      "minWingArea": 1,
+      "secondaryHeightScale": {
+        "min": 1,
+        "max": 1
+      }
+    },
+    "setbacks": [],
+    "respectMinHeight": true
+  },
+  "roof": {
+    "perWing": false,
+    "ridge": "long-axis",
+    "overhang": {
+      "min": 0,
+      "max": 0
+    },
+    "complexFootprint": "flat",
+    "choices": [
+      {
+        "type": "flat",
+        "weight": 1,
+        "parapet": {
+          "height": {
+            "min": 3.0,
+            "max": 3.0
+          },
+          "thickness": 0.5
+        }
+      }
+    ],
+    "fallback": "flat"
+  },
+  "facade": {
+    "bays": {
+      "width": {
+        "min": 3,
+        "max": 3
+      },
+      "cornerMargin": 0.35
+    },
+    "windows": {
+      "style": "ribbon",
+      "width": {
+        "min": 3,
+        "max": 3
+      },
+      "height": {
+        "min": 3.0,
+        "max": 3.0
+      },
+      "sill": {
+        "min": 0.35,
+        "max": 0.35
+      },
+      "probabilityPerBay": 1,
+      "groundFloor": "storefront"
+    },
+    "bands": {
+      "base": {
+        "height": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "floorLines": true
+    }
+  },
+  "materials": {
+    "wall": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.metal_painted",
+          "weight": 1
+        }
+      ],
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false,
+      "palette": "wall",
+      "uvScale": [
+        3,
+        3
+      ]
+    },
+    "roof": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.membrane",
+          "weight": 1
+        }
+      ],
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false,
+      "palette": "roof",
+      "uvScale": [
+        6,
+        6
+      ]
+    },
+    "trim": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.metal_painted",
+          "weight": 1
+        }
+      ],
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false,
+      "palette": "trim",
+      "uvScale": [
+        3,
+        3
+      ]
+    },
+    "foundation": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.stone_granite",
+          "weight": 1
+        }
+      ],
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false,
+      "palette": "trim",
+      "uvScale": [
+        3,
+        3
+      ]
+    },
+    "window": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.window_grid",
+          "weight": 1
+        }
+      ],
+      "tint": "none",
+      "uv": "cell",
+      "uvOffset": "none",
+      "uvMirror": false
+    }
+  },
+  "palettes": {
+    "wall": {
+      "entries": [
+        {
+          "color": "#3f474d",
+          "weight": 2
+        },
+        {
+          "color": "#343c42",
+          "weight": 2
+        },
+        {
+          "color": "#4a5258",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.004,
+        "saturation": 0.02,
+        "lightness": 0.03
+      }
+    },
+    "roof": {
+      "entries": [
+        {
+          "color": "#6f7270",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.004,
+        "saturation": 0.02,
+        "lightness": 0.02
+      }
+    },
+    "trim": {
+      "entries": [
+        {
+          "color": "#3f474d",
+          "weight": 2
+        },
+        {
+          "color": "#343c42",
+          "weight": 2
+        },
+        {
+          "color": "#4a5258",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.004,
+        "saturation": 0.02,
+        "lightness": 0.03
+      }
+    }
+  },
+  "props": [
+    {
+      "id": "hvac",
+      "model": "molen.worldgen.prop.rooftop.hvac",
+      "anchor": "roof-flat",
+      "probability": 0.9,
+      "count": {
+        "min": 2,
+        "max": 10
+      },
+      "perAreaM2": 220,
+      "roof": [
+        "flat"
+      ],
+      "spacing": 4,
+      "margin": 2,
+      "scale": {
+        "min": 1.1,
+        "max": 1.6
+      },
+      "yaw": "align-wall",
+      "lodTier": 0
+    }
+  ],
+  "lod": {
+    "tiers": [
+      {
+        "minTier": 0,
+        "keep": [
+          "roof-shape",
+          "roof-features",
+          "facade-texture",
+          "facade-bands",
+          "props"
+        ]
+      },
+      {
+        "minTier": 1,
+        "keep": [
+          "roof-shape",
+          "facade-texture",
+          "facade-bands"
+        ]
+      },
+      {
+        "minTier": 2,
+        "keep": [
+          "roof-shape",
+          "facade-texture"
+        ]
+      }
+    ]
+  }
+}

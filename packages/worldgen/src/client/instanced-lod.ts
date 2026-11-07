@@ -1,4 +1,5 @@
 /** Spatial batches keep instancing while giving the camera useful culling and detail bounds. */
+import { InstanceBatch } from '@bendyline/molen-client/instancing';
 import * as THREE from 'three';
 import { PLACEMENT_STRIDE, type PlacementSet } from '../kernel/types';
 import { createInstancedPlacements } from './instanced-box';
@@ -124,10 +125,9 @@ function unshadowedMaterial(
 }
 
 /**
- * One instanced mesh whose shared geometry follows a projected-error LOD choice. WebGPU builds a
- * node program per InstancedMesh (Three keys instanced render objects by object), so a set drawn
- * as three level meshes paid three builds, about 10 ms of main thread each, for one visible draw.
- * Levels here share the attribute layout, so swapping the geometry keeps the program; a level
+ * One instanced mesh whose shared geometry follows a projected-error LOD choice. A set drawn as
+ * three level meshes drew one of them and kept three meshes' worth of render state. Levels here
+ * share the attribute layout, so swapping the geometry keeps the program; a level
  * without leaf cards swaps to the material's opaque twin (one more program, built when a batch
  * first draws that level); a level without geometry hides the mesh. The distant level never
  * casts shadows.
@@ -150,7 +150,7 @@ class InstancedDetailSwitch extends THREE.LOD {
   constructor(
     readonly policy: ScreenSpaceLodPolicy,
     readonly bounds: THREE.Box3,
-    readonly mesh: THREE.InstancedMesh,
+    readonly mesh: InstanceBatch,
     private readonly geometries: readonly (THREE.BufferGeometry | undefined)[],
     private readonly errors: readonly number[],
     private readonly materials: readonly THREE.Material[] = [],
@@ -237,7 +237,9 @@ class InstancedDetailSwitch extends THREE.LOD {
     if (this.mesh.castShadow !== this.appliedShadow) this.castsShadow = this.mesh.castShadow;
     const geometry = this.geometries[level];
     this.mesh.visible = geometry !== undefined && !this.vanished;
-    if (geometry !== undefined && this.mesh.geometry !== geometry) this.mesh.geometry = geometry;
+    // TEMP-AB-INSTANCING
+    if (geometry !== undefined && (this.mesh.sourceGeometry ?? this.mesh.geometry) !== geometry)
+      this.mesh.geometry = geometry;
     const material = this.materials[level];
     if (material !== undefined && this.mesh.material !== material) this.mesh.material = material;
     this.mesh.castShadow = level < this.geometries.length - 1 && this.castsShadow;
@@ -442,11 +444,14 @@ export function createInstancedPlacementLod(
         else lod.addLevel(nothing, (distances[level - 1] as number) + radius, 0.15);
         break;
       }
-      const mesh = new THREE.InstancedMesh(
-        model.geometry,
-        levelMaterial(model.material, model.geometry),
-        0,
-      );
+      // TEMP-AB-INSTANCING
+      const mesh = (globalThis as { __molenPlainInstancing?: boolean }).__molenPlainInstancing
+        ? (new THREE.InstancedMesh(
+            model.geometry,
+            levelMaterial(model.material, model.geometry),
+            0,
+          ) as unknown as InstanceBatch)
+        : new InstanceBatch(model.geometry, levelMaterial(model.material, model.geometry), 0);
       mesh.count = first.count;
       mesh.instanceMatrix = first.instanceMatrix;
       mesh.instanceColor = first.instanceColor;

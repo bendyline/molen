@@ -38,6 +38,13 @@ frames. Brief takeoff/streaming stalls do not immediately undo an upgrade. The e
 view retains its separate default ceiling of Balanced (`maxQualityLevel: 3`) and its initial
 12 s calibration policy; hosts can explicitly raise that ceiling.
 
+A level change rebuilds detail across the view, and that burst of work can outlast the controller's
+default cooldown, read as overload, and step down again until the view reaches the lowest level.
+Earth hosts therefore calibrate quickly and then hold: once a level has lasted
+`EARTH_QUALITY_CALIBRATION_MS` (12 s), they replace the controller with one using
+`EARTH_STICKY_QUALITY`, which needs 2.5 s of sustained overload to step down, 20 s of headroom to
+step up, and keeps changes at least 6 s apart.
+
 The explorer applies each tier to drawing-buffer resolution, terrain screen-space error and
 range, selected/resident tile limits, terrain and semantic request concurrency, worldgen cache
 bytes, object LOD error, and surface decoration budgets. Every tier keeps at least 12 terrain and 24
@@ -55,6 +62,11 @@ ultrawide displays. CPU caches and resident geometry have separate limits:
 | Balanced | 1,800,000 | 3.5 px | 64 | 288 MiB | 64 MiB |
 | High | 2,800,000 | 2.4 px | 96 | 400 MiB | 96 MiB |
 | Ultra | 4,000,000 | 1.75 px | 128 | 544 MiB | 128 MiB |
+
+Those are each tier's own limits. Hosts pass them through `earthTerrainBudget` and
+`earthWorldgenCacheBytes`, which raise the resident limits to the device's memory budget and the
+worldgen cache to a quarter of it: one view of a dense city can pass a tier's cap alone, and a cache
+with no room for hidden tiles loses everything the moment it leaves the view.
 
 Each tier also names its sun shadow quality (`EarthPerformanceTier.shadows`): off at Minimum and
 Low, medium at Medium, and high from Balanced up. On WebGPU the main pass keeps its render bundles
@@ -89,10 +101,10 @@ bytes over the fixed device budget (`earthMemoryBudget()`, as Earth view does), 
 reclaimable warm cache does not prevent recovery. It does not measure them against the tier's own
 resident cap: each step down shrinks that cap, so a dense city's buildings would cascade every
 step to the lowest tier while the view stayed the same. Total resident bytes
-still control eviction. After asynchronous surface replacements settle, `refreshMemoryUsage()`
-updates the cached estimates; the explorer passes `'displayed'`, re-counting only tiles on
-screen, where surface detail changes in place. Its HUD shows displayed bytes ("shown") beside the
-resident total. Existing surface grids keep their resolution
+still control eviction, farthest tiles first. After asynchronous surface replacements settle,
+`refreshMemoryUsage()` updates the cached estimates; the explorer passes `'displayed'`,
+re-counting only tiles on screen, where surface detail changes in place. Its HUD shows displayed
+bytes ("shown") beside the resident total. Existing surface grids keep their resolution
 to preserve drape alignment; newly admitted terrain uses the current cap.
 
 ## Object detail and visibility

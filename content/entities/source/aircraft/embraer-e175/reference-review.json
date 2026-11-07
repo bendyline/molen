@@ -1,0 +1,90 @@
+{
+  "variant": "Embraer 175 (ERJ 170-200) with enhanced wingtip, CF34-8E, clean, gear down, static on ground",
+  "status": "exterior-reference-reviewed; visual acceptance pending owner review",
+  "references": [
+    {
+      "url": "https://www.embraercommercialaviation.com/wp-content/uploads/2017/06/E175-APM_APM_175-1.pdf",
+      "title": "Embraer 175 Airport Planning Manual, APM 2259 Rev 22, Nov 29/24",
+      "author": "Embraer",
+      "license": "Public manufacturer document; local study only, no diagram pixels redistributed",
+      "scope": "Figure 2.2 and table 2.2 ground clearances. Retrieved through the Internet Archive. Figure 4.5: pilot eye 2.92 m aft of the nose tip, 0.53 m off the centerline, 3.91 m high, 0.75 m over the fuselage horizontal; 15 degrees down, 27.8 up."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:BrAAnd_new_E175_for_AA_(9510875500).jpg",
+      "title": "American Eagle E175 N401YX on the ramp",
+      "author": "Cory W. Watts",
+      "license": "CC BY-SA 2.0; reference only, no pixels embedded",
+      "scope": "Near side-on: window spacing and overall proportions. Livery ignored."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Alaska_Airlines_E175_departing_Fairbanks_(Quintin_Soloviev).jpg",
+      "title": "Alaska E175 wing from the cabin",
+      "author": "Quintin Soloviev",
+      "license": "CC BY-SA 4.0; reference only, no pixels embedded",
+      "scope": "Enhanced wingtip shape only."
+    }
+  ],
+  "calibration": "Printed views are not mutually to scale: 18.69 px/m along the body, 19.3 px/m across it, 19.9 px/m in the front view, each from its own dimension bar.",
+  "dimensionsChecked": [
+    {
+      "name": "overall length",
+      "reference": 31.68,
+      "model": 31.68
+    },
+    {
+      "name": "overall span",
+      "reference": 28.65,
+      "model": 28.66
+    },
+    {
+      "name": "overall height",
+      "reference": 9.86,
+      "model": 9.77
+    }
+  ],
+  "reviewNotes": {
+    "comparisons": [
+      "Traced tables regenerated into side and three-quarter renders and inspected beside the photograph. No overlay image was made."
+    ],
+    "corrections": [
+      "Stance 0.5 degrees nose up from table 2.2, opposite in sign to the 737: forward door 2.54 to 2.58 m, aft 2.38 to 2.42 m.",
+      "Flight deck moved aft to u 3.7 after the overhead panel and a sidewall came through the steep nose.",
+      "Window pitch 0.72 m from the photograph; the APM schematic draws 0.95 m.",
+      "Seated eye moved from u 3.70 to the published 2.92. Window top lowered from 2.76 to 2.66, matching the pillar head in photograph N401YX, which gives about the published upward view.",
+      "The stray post from 1.98 to 2.30 crossed the forward view and is gone: N401YX shows a pillar starting at 2.28, so that post became the windscreen pillar and the post at 2.62 was dropped.",
+      "Kit changes: glass clear from the seat and tinted from outside, as on the Bendy airliner. The thick glareshield slab and its large FLIGHT GUIDANCE lettering are replaced by a thin sloped hood with a rolled lip over a slim mode control strip. The panel, floor and overhead take their reach from the nose skin, and a dark coaming lines the inside of the nose.",
+      "Published eye stations for four kit types sit 0.8 m ahead of where the kit had put them, and the same bias was removed here."
+    ]
+  },
+  "sourceHash": "sha256:ee4150b76307dc8cc73b07eb43a5018bd645f892ae2fc96d7ff4cdddad262bda",
+  "runtimeHash": "sha256:877a4b182dc9d67e3e9db9337c2f0150b8f6eebd45b6da97da6cdee15928f534",
+  "limitations": [
+    "Crown between u 1.5 and 2 is interpolated because dimension lines overprint the outline there.",
+    "Window run positions are approximate.",
+    "Exterior only: shared interior, refitted but not compared with an E-Jet flight deck.",
+    "The pillar's upper end stands at 2.85 against about 2.52 in N401YX, to stay outboard of the pilot on the elliptical section.",
+    "Sanity pass only: seating, glass and visibility. The panel, hood and pedestal remain the shared kit interior fitted to the nose, not compared with this type's real flight deck."
+  ],
+  "cockpitSweep": {
+    "method": "packages/entities/scripts/cockpit-sweep.mjs from spec.pilotEye at the runtime camera; seat, nose and front views rendered and inspected.",
+    "columns": "outside%, overNose degrees, headroom, wall, panel, cushion, seatback (m)",
+    "before": [
+      46,
+      -7,
+      0.48,
+      0.6,
+      0.75,
+      0.68,
+      0.41
+    ],
+    "after": [
+      71,
+      -15,
+      0.25,
+      0.31,
+      0.75,
+      0.74,
+      0.35
+    ]
+  }
+}

@@ -1,4 +1,5 @@
 /** Instanced, self-lit signal lenses. Placement stays data-only for the surface worker. */
+import { InstanceBatch } from '@bendyline/molen-client/instancing';
 import * as THREE from 'three';
 
 export type TerrainTrafficSignalColor = 'red' | 'amber' | 'green';
@@ -53,9 +54,9 @@ export function appendTerrainSignalLenses(
 ): void {
   object.userData.trafficSignalHeads = heads;
   if (!heads.length) return;
-  const dark = new THREE.InstancedMesh(LENS, DARK, heads.length * 3);
+  const dark = new InstanceBatch(LENS, DARK, heads.length * 3);
   dark.name = 'surface:signal-lenses';
-  const lit = new THREE.InstancedMesh(LENS, LIT, heads.length);
+  const lit = new InstanceBatch(LENS, LIT, heads.length);
   lit.name = 'surface:signal-lit';
   lit.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
   for (const [i, head] of heads.entries())

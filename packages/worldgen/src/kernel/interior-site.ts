@@ -27,7 +27,8 @@ export function createInteriorSite(
       [...(request.interiorLabels ?? []), ...request.labels, request.context ?? ''],
       catalog,
     ).algorithm === 'residential';
-  if (request.access?.garage) return undefined;
+  // A car park that cannot hold its aisles is not a room: it keeps a solid shell instead.
+  if (request.access?.garage || request.parking) return undefined;
   const anchor = request.access?.to ?? request.storefronts?.[0]?.at;
   let best: { edge: number; length: number; score: number } | undefined;
   for (let edge = 0; edge < outline.length; edge++) {
@@ -150,13 +151,13 @@ export function createInteriorSite(
   };
 }
 
-export function interiorToWorld(site: InteriorSite, p: Vec2): Vec2 {
+export function interiorToWorld(site: Pick<InteriorSite, 'entrance' | 'inward'>, p: Vec2): Vec2 {
   return [
     site.entrance[0] + site.inward[1] * p[0] + site.inward[0] * p[1],
     site.entrance[1] - site.inward[0] * p[0] + site.inward[1] * p[1],
   ];
 }
-export function interiorToLocal(site: InteriorSite, p: Vec2): Vec2 {
+export function interiorToLocal(site: Pick<InteriorSite, 'entrance' | 'inward'>, p: Vec2): Vec2 {
   const x = p[0] - site.entrance[0],
     z = p[1] - site.entrance[1];
   return [x * site.inward[1] - z * site.inward[0], x * site.inward[0] + z * site.inward[1]];

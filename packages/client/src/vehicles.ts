@@ -333,6 +333,59 @@ export function createParkedVehicleBatch(
   return group;
 }
 
+/**
+ * Dormant cars as one instanced mesh per body size, for a car park of hundreds where a merged
+ * batch would cost more than the building. Each mesh keeps the batch's `vehicleIds` contract:
+ * instance `i` belongs to `userData.vehicleIds[i]`, and `setParkedVehicleHidden` hides it.
+ */
+export function createParkedVehicleInstances(
+  placements: readonly VehiclePlacement[],
+  origin: [number, number] = [0, 0],
+): THREE.Group {
+  const group = new THREE.Group();
+  group.name = 'surface:parked-cars';
+  const sizes = new Map<string, VehiclePlacement[]>();
+  for (const placement of placements) {
+    const { width, length, height, wheelbase } = placement.spec;
+    const key = `${width}:${length}:${height}:${wheelbase}`;
+    const size = sizes.get(key);
+    if (size) size.push(placement);
+    else sizes.set(key, [placement]);
+  }
+  const matrix = new THREE.Matrix4();
+  const rotation = new THREE.Quaternion();
+  const position = new THREE.Vector3();
+  const scale = new THREE.Vector3(1, 1, 1);
+  const euler = new THREE.Euler(0, 0, 0, 'YXZ');
+  const paint = new THREE.Color();
+  for (const size of sizes.values()) {
+    const first = size[0] as VehiclePlacement;
+    const mesh = new THREE.InstancedMesh(
+      vehicleProxyGeometry(first.spec),
+      vehicleProxyMaterial,
+      size.length,
+    );
+    size.forEach((placement, index) => {
+      position.set(
+        placement.position[0] - origin[0],
+        placement.position[1],
+        placement.position[2] - origin[1],
+      );
+      euler.set(placement.pitch ?? 0, placement.yaw, placement.roll ?? 0);
+      rotation.setFromEuler(euler);
+      mesh.setMatrixAt(index, matrix.compose(position, rotation, scale));
+      mesh.setColorAt(index, paint.set(placement.color));
+    });
+    mesh.computeBoundingBox();
+    mesh.computeBoundingSphere();
+    mesh.name = 'vehicle:parked';
+    mesh.userData.vehicleIds = size.map((placement) => placement.id);
+    mesh.receiveShadow = true;
+    group.add(mesh);
+  }
+  return group;
+}
+
 /** Whether `setParkedVehicleHidden` currently hides car `index` of a parked batch. */
 export function isParkedVehicleHidden(batch: THREE.Mesh, index: number): boolean {
   return (
@@ -345,6 +398,8 @@ export function isParkedVehicleHidden(batch: THREE.Mesh, index: number): boolean
  * model or a driven entity stands in for it. Returns whether the geometry changed.
  */
 export function setParkedVehicleHidden(batch: THREE.Mesh, index: number, hidden: boolean): boolean {
+  if ((batch as THREE.InstancedMesh).isInstancedMesh)
+    return setInstanceHidden(batch as THREE.InstancedMesh, index, hidden);
   const ranges = batch.userData.vehicleRanges as Uint32Array | undefined;
   const start = ranges?.[index * 2];
   const count = ranges?.[index * 2 + 1];
@@ -368,5 +423,27 @@ export function setParkedVehicleHidden(batch: THREE.Mesh, index: number, hidden:
   }
   attribute.addUpdateRange(from, to - from);
   attribute.needsUpdate = true;
+  return true;
+}
+
+/** A zero matrix collapses the instance to a point, as a hidden batch car does. */
+function setInstanceHidden(mesh: THREE.InstancedMesh, index: number, hidden: boolean): boolean {
+  if (index < 0 || index >= mesh.count) return false;
+  let saved = mesh.userData.vehicleHidden as Map<number, Float32Array> | undefined;
+  if (saved === undefined) {
+    saved = new Map();
+    mesh.userData.vehicleHidden = saved;
+  }
+  if (saved.has(index) === hidden) return false;
+  const array = mesh.instanceMatrix.array as Float32Array;
+  const from = index * 16;
+  if (hidden) {
+    saved.set(index, array.slice(from, from + 16));
+    array.fill(0, from, from + 16);
+  } else {
+    array.set(saved.get(index) as Float32Array, from);
+    saved.delete(index);
+  }
+  mesh.instanceMatrix.needsUpdate = true;
   return true;
 }

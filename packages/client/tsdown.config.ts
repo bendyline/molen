@@ -7,6 +7,7 @@ export default defineConfig({
     'src/vite.ts',
     'src/vehicles.ts',
     'src/glass.ts',
+    'src/instancing.ts',
     'src/aircraft.ts',
     'src/navigation.ts',
     'src/markers.ts',

@@ -234,6 +234,41 @@ export function earthMemoryBudget(device: EarthDeviceMemory = browserDeviceMemor
   return mib * MIB;
 }
 
+/** Ground kept loaded past each side of the view, degrees, so a turn reveals terrain at once. */
+const PERIPHERAL_DEGREES = 20;
+/** How much of the view's detail that ground keeps, so it stays a level or two coarser. */
+const PERIPHERAL_DETAIL = 0.4;
+/** Tiles the terrain cache keeps at most; bytes normally stop it first. */
+const MAX_RESIDENT_TILES = 1024;
+
+/**
+ * A terrain budget for an Earth view, from a tier's or a preset's. Ground just left must stay warm
+ * up to the device's memory budget, whatever the level. A dense city's view alone can pass a
+ * tier's own byte cap, and with no room for hidden tiles everything leaves the cache the moment it
+ * leaves the view: a circle at 250 m/s then rebuilt 70% of its tiles, and the capacity that took
+ * was not spent on the ground ahead.
+ */
+export function earthTerrainBudget(
+  base: TerrainPyramidBudget,
+  memoryBudget: number,
+): TerrainPyramidBudget {
+  return {
+    ...base,
+    peripheralDegrees: PERIPHERAL_DEGREES,
+    peripheralDetail: PERIPHERAL_DETAIL,
+    maxResidentBytes: Math.max(base.maxResidentBytes ?? 0, memoryBudget),
+    maxResidentTiles: Math.max(
+      base.maxResidentTiles,
+      Math.min(MAX_RESIDENT_TILES, Math.round(memoryBudget / MIB)),
+    ),
+  };
+}
+
+/** Generated buildings kept in CPU memory: what a tile's return needs after leaving the cache. */
+export function earthWorldgenCacheBytes(tierBytes: number, memoryBudget: number): number {
+  return Math.max(tierBytes, memoryBudget / 4);
+}
+
 /**
  * The adaptive level a view starts at before measuring frames: 1 (Low) on touch devices and at
  * 2 GiB or less, 2 (Medium) at 4 GiB, otherwise 3 (Balanced). Calibration then moves it, so a

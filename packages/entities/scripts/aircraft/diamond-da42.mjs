@@ -30,7 +30,7 @@ export const diamondFrame = () => ({
   ry: 0.73,
   cabinZ: 0.35,
   cabinWidth: 1.06,
-  eye: [0.28, 1.8, 0.35],
+  eye: [0.28, 1.75, 0.35],
   panelZ: 1.18,
   floor: 0.76,
 });
@@ -589,7 +589,7 @@ function cockpit(root, m) {
   // Manufacturer 1023px NXi photograph; 164px = 10.4-inch 4:3 active display width.
   const k = 0.211328 / 164,
     px = (u) => (500 - u) * k,
-    py = (v) => 1.42 - (v - 327) * k,
+    py = (v) => 1.4 - (v - 327) * k,
     z = 1.18,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz];
   const rect = (x, y, w, h, zz = z) => [
@@ -646,7 +646,7 @@ function cockpit(root, m) {
   for (let i = 1; i < brow.length - 1; i++) {
     const a = brow[i],
       b = brow[i + 1];
-    quad(d, a, b, [b[0] * 0.8, 1.45, 1.55], [a[0] * 0.8, 1.45, 1.55], m.dark, [0, 1, 0]);
+    quad(d, a, b, [b[0] * 0.72, 1.47, 1.42], [a[0] * 0.72, 1.47, 1.42], m.dark, [0, 1, 0]);
   }
   addG1000Bezels(d, centers, z, black, m.accent);
   const sources = addG1000Readouts({
@@ -1022,8 +1022,6 @@ function cockpit(root, m) {
     beveledBox(d, [0.025, 0.25, 1.5], [side * 0.54, 1.06, -0.1], leather, 0.008);
     d.rod([side * 0.51, 1.15, 0.46], [side * 0.51, 1.15, -0.1], 0.024, m.dark);
     d.box([0.019, 0.03, 0.11], [side * 0.51, 1.09, 0.23], red);
-    d.box([0.21, 0.014, 0.2], [side * 0.25, 1.89, 0.48], m.dark);
-    d.rod([side * 0.38, 1.895, 0.44], [side * 0.3, 1.9, 0.44], 0.005, m.metal);
   }
   d.box([1.02, 0.027, 2.38], [0, 0.76, 0.1], m.dark);
   // The firewall and molded side panels close the footwells below the dashboard.
@@ -1047,7 +1045,7 @@ function cockpit(root, m) {
     [2, 0.29, -0.71],
     [3, -0.29, -0.71],
   ]) {
-    const sg = group(cabin, `DA42-seat-${n}`, [x, 0.96, zz]),
+    const sg = group(cabin, `DA42-seat-${n}`, [x, n < 2 ? 0.93 : 0.96, zz]),
       sd = detailKit(sg, sg.name);
     beveledBox(sd, [0.44, 0.1, 0.48], [0, 0, 0], leather, 0.036);
     beveledBox(sd, [0.31, 0.02, 0.36], [0, 0.06, 0.02], m.dark, 0.017);

@@ -73,7 +73,7 @@
     "mode": "top-down-ortho",
     "center": [
       0,
-      -1.65
+      -1.59
     ],
     "viewHeight": 0.92,
     "cameraHeight": 7.6
@@ -254,13 +254,57 @@
       "Rivets, fabric ribs and radio faces are selective geometric details. No reference photograph or drawing pixels are embedded. Paint is an original ivory/blue scheme, not N522B livery."
     ]
   },
-  "sourceHash": "sha256:ea008b1d691b9ead50a979c962d08ecf7101235bf3e5775e46c86fbaa1f4d0da",
-  "runtimeHash": "sha256:ee5aad111be424627b587ee7e317a14900b237a968d45058d20627ce51d52226",
+  "sourceHash": "sha256:4ee380db3a699396197f7d62f7ceba33b68cd854c665442ade4191e92de66122",
+  "runtimeHash": "sha256:f5992cea612cd177fb2d00894fc15eb58b95ded29f259c9dbf43c4a3aa2d29a4",
   "limitations": [
     "Exterior three-view is Art Mills/Paul Matt drawing6-59-A of a postwar-modified1940 Model18, not an exact D18S blueprint. Beech D18S numeric dimensions take precedence; small residual outline differences and clipped opposite wing/tail edges are documented.",
     "The N522B cockpit photograph is perspective and partially occluded. Panel scale uses the45.75in width in the D18S trainer specification, while civilian instruments differ. Control-depth and eye coordinates remain estimates, not surveyed ergonomics.",
     "Static12.283-degree tailwheel stance is baked into geometry and rigidly removed for drawing comparisons. The simplified simulation does not articulate the fuselage from ground stance into a separate flight datum. The operator eye is high/forward to preserve the horizontal sightline.",
     "RPM converts each normalized engine state to2300rpm; this is the simulation abstraction, not a complete piston-engine/governor model. Speed is explicitly TAS, altitude geometric and heading true. Manifold pressure, oil, fuel, temperature, navigation, clock, mixture and prop-governor indications are unavailable and remain unanimated/blank.",
     "Rivets, fabric ribs and radio faces are selective geometric details. No reference photograph or drawing pixels are embedded. Paint is an original ivory/blue scheme, not N522B livery."
-  ]
+  ],
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "packages/entities/scripts/cockpit-sweep.mjs rays from pilotEye through source.glb, then seat, pitched-down and exterior nose renders inspected at the runtime camera (+Z, 60 degrees vertical).",
+    "before": {
+      "eye": [
+        0.34,
+        2.734,
+        2.444
+      ],
+      "outside": 26,
+      "horizon": 83,
+      "overNose": 0,
+      "headroom": 0.03,
+      "wall": 0.08,
+      "panel": 0.57,
+      "cushion": 0.72,
+      "seatback": null,
+      "poked": 0
+    },
+    "after": {
+      "eye": [
+        0.34,
+        2.594,
+        2.249
+      ],
+      "outside": 32,
+      "horizon": 66,
+      "overNose": 0,
+      "headroom": 0.16,
+      "wall": 0.29,
+      "panel": 0.76,
+      "cushion": 0.8,
+      "seatback": 0.24,
+      "poked": 0
+    },
+    "corrections": [
+      "Eye sat over the wheel, 1 m ahead of the seat and just behind the windscreen header. It moved aft and down in the airframe datum to [0.34, 2.655, 2.88], under the flat roof, so the view is the windscreen rather than the roof.",
+      "Pilot seats slid forward 0.06 m and raised 0.305 m on taller pedestals; wheels moved 0.28 m forward and 0.2 m up to stay ahead of the chest and clear of the knees.",
+      "Panel, shelf, compass and fans lowered 0.06 m; panel height was an assumption from a perspective photograph."
+    ],
+    "limitations": [
+      "Headroom stays 0.16 m: at the 12.3 degree tail-down stance the level sightline must clear the nose, and that sets the eye height. Seat height over the floor, about 0.6 m, is inferred from the eye rather than documented."
+    ]
+  }
 }

@@ -24,11 +24,11 @@ export const c17Frame = () => ({
   radius: 3.43,
   cy: 4.03,
   ry: 3.35,
-  cabinZ: 22.55,
+  cabinZ: 22.75,
   cabinWidth: 3.25,
-  eye: [0.87, 5.39, 22.55],
-  panelZ: 23.38,
-  floor: 3.8,
+  eye: [0.87, 5.52, 22.75],
+  panelZ: 23.58,
+  floor: 4.22,
 });
 const rect = (x, y, w, h, z) => [
   [x - w / 2, y - h / 2, z],
@@ -774,6 +774,13 @@ function cockpit(root, m) {
     seat = mat('C17-seat-blue', '#546f7c'),
     cushion = mat('C17-seat-cushion', '#807f73'),
     belt = mat('C17-harness', '#a0b7bc'),
+    combiner = mat('C17-combiner', '#a8e8c8', {
+      transparent: true,
+      opacity: 0.17,
+      depthWrite: false,
+      side: T.DoubleSide,
+      roughness: 0.1,
+    }),
     green = mat('C17-green-display', '#7bcda5', { emissive: '#285c42', emissiveIntensity: 0.5 });
   const sources = Object.fromEntries(
     ['airspeed', 'pitch', 'roll', 'yaw', 'verticalSpeed', 'gearPosition', 'flapPosition'].map(
@@ -803,8 +810,8 @@ function cockpit(root, m) {
   });
   // Layout coordinates sampled from Landmark9254's 2012 photograph. Width2.70m is estimated.
   const px = (u) => ((955 - u) * 2.7) / 1440,
-    py = (v) => 5.16 + ((690 - v) * 2.7) / 1440,
-    z = 23.38,
+    py = (v) => 5.45 + ((690 - v) * 2.7) / 1440,
+    z = 23.58,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz];
   const contour = [
     [235, 780],
@@ -1008,18 +1015,41 @@ function cockpit(root, m) {
     'FPM',
   );
   // Separate glareshield: AFCS controls between two radio-management modules, four fire handles above.
-  d.box([2.7, 0.18, 0.29], [0, 5.535, 23.4], m.dark);
+  // The strip stands just over the displays, so they sit under it in the pilot's line of sight, and
+  // its top stays under the view over the nose. Heights are cabin-local: world plus 0.5.
+  const gy = 0.13,
+    gz = 0.31;
+  d.box([2.7, 0.11, 0.2], [0, 5.755, 23.65], m.dark);
+  // Dark coaming from the glareshield out to the windscreen sill, so the long nose ahead of the
+  // panel does not show as bare inner skin.
+  const coaming = detailKit(root, 'C17-coaming');
+  sheet(
+    coaming,
+    [
+      [-1.3, 5.2, 23.72],
+      [1.3, 5.2, 23.72],
+      [1.3, 5.08, 24.4],
+      [0.95, 5.03, 24.68],
+      [0.5, 4.977, 24.98],
+      [-0.5, 4.977, 24.98],
+      [-0.95, 5.03, 24.68],
+      [-1.3, 5.08, 24.4],
+    ],
+    m.dark,
+    [0, 1, 0.177],
+  );
+  coaming.finish();
   for (const u of [689, 1242]) {
     const x = px(u);
-    d.box([0.285, 0.195, 0.022], [x, 5.59, 23.228], face);
-    d.box([0.19, 0.14, 0.008], [x + 0.015, 5.595, 23.212], black);
-    d.text('COM --', [x + 0.015, 5.6, 23.205], 0.013, Math.PI, green, 'display');
+    d.box([0.285, 0.195, 0.022], [x, 5.59 + gy, 23.228 + gz], face);
+    d.box([0.19, 0.14, 0.008], [x + 0.015, 5.595 + gy, 23.212 + gz], black);
+    d.text('COM --', [x + 0.015, 5.6 + gy, 23.205 + gz], 0.013, Math.PI, green, 'display');
     for (let row = 0; row < 5; row++)
       for (const dx of [-0.115, 0.115])
-        d.box([0.016, 0.013, 0.007], [x + dx, 5.65 - row * 0.029, 23.202], m.dark);
-    pt.knob(x - 0.12, 5.535, 23.198, 0.014);
+        d.box([0.016, 0.013, 0.007], [x + dx, 5.65 + gy - row * 0.029, 23.202 + gz], m.dark);
+    pt.knob(x - 0.12, 5.535 + gy, 23.198 + gz, 0.014);
   }
-  d.box([0.72, 0.18, 0.025], [0, 5.59, 23.227], m.dark);
+  d.box([0.72, 0.18, 0.025], [0, 5.59 + gy, 23.227 + gz], m.dark);
   for (const [u, v] of [
     [802, 522],
     [859, 532],
@@ -1030,24 +1060,24 @@ function cockpit(root, m) {
     [1093, 522],
     [1127, 520],
   ])
-    pt.knob(px(u), 5.59 + (526 - v) * 0.001, 23.205, 0.017);
+    pt.knob(px(u), 5.59 + gy + (526 - v) * 0.001, 23.205 + gz, 0.017);
   for (let j = 0; j < 11; j++)
-    d.box([0.025, 0.023, 0.009], [0.29 - j * 0.055, 5.53, 23.201], m.dark);
+    d.box([0.025, 0.023, 0.009], [0.29 - j * 0.055, 5.53 + gy, 23.201 + gz], m.dark);
   for (const [x, label] of [
     [0.25, 'SPD'],
     [0.08, 'HDG'],
     [-0.11, 'VS'],
     [-0.27, 'ALT'],
   ]) {
-    d.box([0.12, 0.03, 0.006], [x, 5.652, 23.209], black);
-    d.text('--', [x, 5.652, 23.203], 0.011, Math.PI, ink);
-    d.text(label, [x, 5.623, 23.2], 0.009, Math.PI, ink);
+    d.box([0.12, 0.03, 0.006], [x, 5.652 + gy, 23.209 + gz], black);
+    d.text('--', [x, 5.652 + gy, 23.203 + gz], 0.011, Math.PI, ink);
+    d.text(label, [x, 5.623 + gy, 23.2 + gz], 0.009, Math.PI, ink);
   }
   for (let i = 0; i < 4; i++) {
     const x = 0.27 - i * 0.18;
-    d.box([0.16, 0.055, 0.035], [x, 5.73, 23.23], face);
-    d.box([0.137, 0.033, 0.015], [x, 5.73, 23.205], ins.red);
-    d.text(String(i + 1), [x, 5.73, 23.195], 0.014, Math.PI, ink);
+    d.box([0.16, 0.055, 0.035], [x, 5.73 + gy, 23.23 + gz], face);
+    d.box([0.137, 0.033, 0.015], [x, 5.73 + gy, 23.205 + gz], ins.red);
+    d.text(String(i + 1), [x, 5.73 + gy, 23.195 + gz], 0.014, Math.PI, ink);
   }
   for (const u of [373, 1493, 716, 1154]) {
     d.box([0.08, 0.065, 0.012], at(u, 604, -0.02), black);
@@ -1068,26 +1098,38 @@ function cockpit(root, m) {
     );
   sheet(d, rect(px(952), py(783), 0.22, 0.11, z - 0.014), black, [0, 0, -1]);
   d.text('SYSTEMS --', at(952, 783, -0.018), 0.011, Math.PI, green, 'display');
-  // HUDs are physical projector/combiner assemblies. Collimated symbology is not simulated.
+  // HUDs are physical projector/combiner assemblies. Collimated symbology is not simulated. The
+  // projector sits on the glareshield and a bracket holds a 20 by 16 cm combiner on the pilot's own
+  // centerline, 0.33 m ahead of the eye. Heights here are cabin-local: world plus 0.5.
+  const eye = { y: 6.02, z: 22.75 };
   for (const side of [-1, 1]) {
-    const x = side * 0.87;
-    // The projector is suspended above the combiner, clear of the pilot's eye line.
-    d.box([0.33, 0.055, 0.25], [x, 5.94, 23.12], m.dark);
-    d.box([0.26, 0.014, 0.19], [x, 5.905, 23.12], black);
-    const pts = [
-      [x - 0.14, 5.27, 23.12],
-      [x + 0.14, 5.27, 23.12],
-      [x + 0.165, 5.83, 23.3],
-      [x - 0.165, 5.83, 23.3],
-    ];
-    sheet(d, pts, m.glass, [0, 1, -1]);
-    outline(d, pts, 0.009, m.dark);
-    for (const dx of [-0.18, 0.18]) {
-      d.rod([x + dx, 5.53, 23.2], [x + dx, 5.83, 23.3], 0.012, m.dark);
-      d.rod([x + dx, 5.83, 23.3], [x + dx, 5.94, 23.12], 0.01, m.dark);
-    }
+    const x = side * 0.87,
+      c = { y: eye.y + 0.04, z: eye.z + 0.33 },
+      tilt = 0.25,
+      w = 0.1,
+      h = 0.08,
+      corner = (dx, dy) => [x + dx, c.y + dy * Math.cos(tilt), c.z + dy * Math.sin(tilt)],
+      rim = [corner(-w, -h), corner(w, -h), corner(w, h), corner(-w, h)],
+      outboard = x + side * (w + 0.012);
+    sheet(d, rim, combiner, [0, Math.sin(tilt), -Math.cos(tilt)]);
+    // A hinged C-frame carries the glass on its top and outboard edges only.
+    const [low, high, far] = side > 0 ? [rim[1], rim[2], rim[3]] : [rim[0], rim[3], rim[2]];
+    outline(d, [low, high, far], 0.005, black, false);
+    outline(d, [far, side > 0 ? rim[0] : rim[1]], 0.002, m.dark, false);
+    d.box([0.18, 0.06, 0.16], [x, 5.8, 23.52], m.dark);
+    outline(
+      d,
+      [
+        [outboard, 5.8, 23.48],
+        [outboard + side * 0.008, 5.88, 23.3],
+        corner(side * (w + 0.012), -h * 0.6),
+      ],
+      0.008,
+      m.dark,
+      false,
+    );
   }
-  const ped = group(cabin, 'C17-center-console', [0, 4.63, 22.28]);
+  const ped = group(cabin, 'C17-center-console', [0, 5.07, 22.28]);
   ped.rotation.x = Math.PI / 2;
   const td = detailKit(ped, ped.name),
     tp = panelTools(td);
@@ -1187,7 +1229,7 @@ function cockpit(root, m) {
   // Two short control sticks, rudder pedals, blue seat shells and contrasting cushions.
   for (const side of [-1, 1]) {
     const x = side * 0.87;
-    const sg = group(cabin, `C17-stick-${side}`, [x, 4.62, 22.86]),
+    const sg = group(cabin, `C17-stick-${side}`, [x, 4.99, 23.12]),
       sd = detailKit(sg, sg.name);
     sd.box([0.17, 0.24, 0.19], [0, 0.05, 0], m.dark);
     sd.rod([0, 0.13, 0], [0, 0.47, -0.055], 0.024, m.metal);
@@ -1200,7 +1242,7 @@ function cockpit(root, m) {
       { node: sg.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.2 },
     );
     for (const dx of [-0.16, 0.16]) {
-      const pg = group(cabin, `C17-pedal-${side}-${Math.sign(dx)}`, [x + dx, 4.39, 23.55]),
+      const pg = group(cabin, `C17-pedal-${side}-${Math.sign(dx)}`, [x + dx, 4.83, 23.55]),
         pd = detailKit(pg, pg.name);
       pd.box([0.19, 0.085, 0.15], [0, 0, 0], m.dark);
       for (let j = 0; j < 5; j++)
@@ -1214,15 +1256,15 @@ function cockpit(root, m) {
         scale: Math.sign(dx) * 0.055,
       });
     }
-    for (const zz of [22.1, 20.6]) {
+    for (const zz of [22.58, 20.6]) {
       const sx = zz < 21 ? side * 1.03 : x;
       for (const dx of [-0.22, 0.22])
-        d.rod([sx + dx, 4.33, zz - 0.45], [sx + dx, 4.33, zz + 0.45], 0.025, m.metal);
-      d.box([0.44, 0.3, 0.5], [sx, 4.5, zz], m.metal);
-      beveledBox(d, [0.63, 0.16, 0.64], [sx, 4.75, zz], cushion, 0.035);
+        d.rod([sx + dx, 4.77, zz - 0.45], [sx + dx, 4.77, zz + 0.45], 0.025, m.metal);
+      d.box([0.44, 0.3, 0.5], [sx, 4.94, zz], m.metal);
+      beveledBox(d, [0.63, 0.16, 0.64], [sx, 5.19, zz], cushion, 0.035);
       const back = group(cabin, `C17-seat-${side}-${zz < 21 ? 'observer' : 'pilot'}`, [
         sx,
-        5.21,
+        5.65,
         zz - 0.32,
       ]);
       back.rotation.x = -0.08;
@@ -1234,18 +1276,18 @@ function cockpit(root, m) {
         dd.rod([dx, 0.49, 0.115], [dx * 0.4, -0.36, 0.15], 0.025, belt);
       dd.finish();
       for (const dx of [-0.34, 0.34])
-        beveledBox(d, [0.07, 0.08, 0.42], [sx + dx, 5.03, zz - 0.06], seat, 0.014);
-      d.rod([sx - 0.28, 4.84, zz - 0.15], [sx + 0.23, 4.84, zz + 0.15], 0.025, belt);
-      d.box([0.08, 0.027, 0.06], [sx, 4.86, zz], m.metal);
+        beveledBox(d, [0.07, 0.08, 0.42], [sx + dx, 5.47, zz - 0.06], seat, 0.014);
+      d.rod([sx - 0.28, 5.28, zz - 0.15], [sx + 0.23, 5.28, zz + 0.15], 0.025, belt);
+      d.box([0.08, 0.027, 0.06], [sx, 5.3, zz], m.metal);
     }
-    d.box([0.2, 0.4, 2.3], [side * 1.6, 4.68, 22.24], face);
-    d.box([0.15, 0.2, 0.22], [side * 1.53, 4.99, 22.39], black);
-    d.rod([side * 1.54, 5.08, 22.47], [side * 1.51, 4.89, 22.54], 0.014, m.dark);
+    d.box([0.2, 0.4, 2.3], [side * 1.6, 5.12, 22.24], face);
+    d.box([0.15, 0.2, 0.22], [side * 1.53, 5.43, 22.39], black);
+    d.rod([side * 1.54, 5.52, 22.47], [side * 1.51, 5.33, 22.54], 0.014, m.dark);
   }
-  d.box([3.4, 0.07, 4.4], [0, 4.28, 21.55], m.dark);
-  sheet(d, rect(0, 4.95, 4.4, 3.0, 19.2), liner, [0, 0, 1], [rect(-1.35, 4.4, 0.8, 1.7, 19.2)]);
+  d.box([3.4, 0.07, 4.4], [0, 4.72, 21.55], m.dark);
+  sheet(d, rect(0, 4.95, 4.4, 3.0, 19.2), liner, [0, 0, 1], [rect(-1.35, 4.84, 0.8, 1.7, 19.2)]);
   for (let j = 0; j < 7; j++)
-    d.box([0.76, 0.08, 0.27], [-1.35, 4.1 - j * 0.34, 19.08 - j * 0.26], m.dark);
+    d.box([0.76, 0.08, 0.27], [-1.35, 4.54 - j * 0.34, 19.08 - j * 0.26], m.dark);
   // The cargo floor ends at the ramp hinge, inside the upswept beaver tail.
   d.box([5.4, 0.05, 16], [0, 2.22, 6.5], liner);
   d.finish();

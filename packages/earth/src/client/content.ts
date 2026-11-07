@@ -80,6 +80,8 @@ export const EARTH_PACK_IDS: {
 
 /** Worldgen style, region atlas and recognizable places, resolved from the packs. */
 export interface EarthWorldgenContent {
+  /** Vehicles that may stand in a car park's stalls; none leaves its decks empty. */
+  parkedVehicles?: readonly TerrainParkedVehicle[];
   fonts?: FontLibrary;
   pack: ResolvedStylePack;
   /** Pack id of the style pack, for addressing its assets. */
@@ -501,6 +503,22 @@ export async function loadEarthContent(
           earthPack.manifest.provides.atlas?.[0] ?? 'world.atlas.json',
         )))
       : undefined;
+  const parkedVehicles: TerrainParkedVehicle[] =
+    types
+      ?.idsWith('vehicle')
+      .filter((id) => types.component<VehicleData>(id, 'vehicle').spec.cycle === undefined)
+      // Player-controllable transit must not become ordinary curbside parked cars.
+      .filter((id) => {
+        const role = (types.components(id).ambientRole as { role?: string } | undefined)?.role;
+        return role === undefined || role === 'car';
+      })
+      .map((id) => ({
+        id,
+        spec: types.component<VehicleData>(id, 'vehicle').spec,
+        ...((types.components(id).ambientRole as { colors?: string[] } | undefined)?.colors
+          ? { colors: (types.components(id).ambientRole as { colors: string[] }).colors }
+          : {}),
+      })) ?? [];
   return {
     packs,
     ...(airports ? { airports } : {}),
@@ -510,27 +528,12 @@ export async function loadEarthContent(
     ...(fleetCatalogs.length
       ? { fleet: { catalogs: fleetCatalogs, ...(fleetAtlas ? { atlas: fleetAtlas } : {}) } }
       : {}),
-    parkedVehicles:
-      types
-        ?.idsWith('vehicle')
-        .filter((id) => types.component<VehicleData>(id, 'vehicle').spec.cycle === undefined)
-        // Player-controllable transit must not become ordinary curbside parked cars.
-        .filter((id) => {
-          const role = (types.components(id).ambientRole as { role?: string } | undefined)?.role;
-          return role === undefined || role === 'car';
-        })
-        .map((id) => ({
-          id,
-          spec: types.component<VehicleData>(id, 'vehicle').spec,
-          ...((types.components(id).ambientRole as { colors?: string[] } | undefined)?.colors
-            ? { colors: (types.components(id).ambientRole as { colors: string[] }).colors }
-            : {}),
-        })) ?? [],
+    parkedVehicles,
     assets: {
       load: (ref, options) => packs.readBytes(styleIndex[ref] ?? ref, options),
       loadText: (ref, options) => packs.readText(styleIndex[ref] ?? ref, options),
     },
-    ...(worldgen !== undefined ? { worldgen } : {}),
+    ...(worldgen !== undefined ? { worldgen: { ...worldgen, parkedVehicles } } : {}),
     ...(worldgenError !== undefined ? { worldgenError } : {}),
     stars: () => {
       const sky = byId.get(EARTH_PACK_IDS.sky);

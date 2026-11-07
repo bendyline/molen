@@ -93,10 +93,13 @@ g load, power, engine/gear/flap state, stall alerts and terrain waiting status. 
 KTAS from equivalent airspeed (KEAS), shows local Mach and afterburner percentage, and flags
 airframe/surface overspeed and developed departures. KEAS is not calibrated indicated airspeed.
 Propellers, both helicopter
-rotors, controls, gear, flaps, ailerons, elevators and rudder animate from simulation state. The
-Mustang's gear takes 12 seconds: its inner wheel doors open, each main leg swings inboard into a
-well in the wing root, the tail wheel folds forward into the fuselage, and the doors close behind
-them. Its flaps take 13 seconds to run down to 50°.
+rotors, controls, gear, flaps, ailerons, elevators and rudder animate from simulation state. A
+rotor turning too fast for a display to sample fades from blades into a translucent disc, so a
+propeller at full power cannot alias into looking stopped; the hub stays solid, and the disc's size
+comes from the model (see the blur details below). The Mustang's gear takes 12 seconds: its inner
+wheel doors open, each main leg swings inboard into a well in the wing root, the tail wheel folds
+forward into the fuselage, and the doors close behind them. Its flaps take 13 seconds to run down
+to 50°.
 
 ## Collisions and breakable sections
 
@@ -204,8 +207,9 @@ Its size and radial colors come from the blade geometry and materials; separate 
 This render-only effect needs no model changes and works with WebGL and WebGPU. Fading blades use
 transparent copies of their materials, listed in `userData.materialVariants`: a preparing renderer
 builds them on request, and the blades stay solid until they are built rather than stalling the
-frame the engine starts. Helicopter
-rotors and enclosed jet fans retain their existing animation.
+frame the engine starts. Every other rotor (helicopter main and tail rotors, and fans a jet model
+binds as rotors) blurs between 35 and 78 rad/s instead: its blades fade into a faint disc with a
+slightly darker tip ring, sized from the model, and its hub stays solid.
 
 For powered lift, declare `spec.poweredLift` with positive `transitTime`, `controlFadeSpeed`,
 `pitchAuthority`, `rollAuthority`, `yawAuthority` and `damping`, and mark the participating

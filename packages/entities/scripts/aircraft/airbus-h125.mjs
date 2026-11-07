@@ -26,10 +26,11 @@ export const h125Frame = () => ({
   radius: 0.935,
   cy: 1.4,
   ry: 0.8,
-  cabinZ: 1.45,
+  cabinZ: 1.38,
   cabinWidth: 1.7,
-  eye: [-0.42, 2.03, 1.45],
-  panelZ: 2.0,
+  // 0.8 m over the cushion and 0.3 m under the roof, where side photographs put the pilot's head.
+  eye: [-0.42, 1.87, 1.38],
+  panelZ: 2.06,
   floor: 0.7,
   mainRotorPosition: [0, 3.16, 0],
 });
@@ -412,10 +413,11 @@ function cockpit(root, m, shell, apertures) {
     face = mat('H125-panel', '#3b4247'),
     seat = mat('H125-seats', '#3d474d'),
     belt = mat('H125-belts', '#a6abad'),
-    z = 2.0,
+    z = 2.06,
     k = 0.230378 / 480;
+  // The hood top stands 0.27 m below the eye: side photographs show no hood above the door sill.
   const px = (u) => (800 - u) * k,
-    py = (v) => 1.9 - (v - 200) * k,
+    py = (v) => 1.6 - (v - 200) * k,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz],
     tools = panelTools(d);
   const contour = [
@@ -528,12 +530,13 @@ function cockpit(root, m, shell, apertures) {
     [866, 210],
   ])
     d.add(new T.CircleGeometry(0.003, 8).rotateY(Math.PI), m.metal, at(u, v, -0.004));
-  const pg = group(cabin, 'H125-console', [0.02, 1.26, 1.75]);
-  pg.rotation.x = 0.62;
+  // The console slopes from the panel's lower edge down to the floor between the seats.
+  const pg = group(cabin, 'H125-console', [0.02, 1.02, 1.745]);
+  pg.rotation.x = 0.9;
   const pd = detailKit(pg, 'H125-console'),
     pt = panelTools(pd);
   pd.box([0.3, 0.75, 0.17], [0, 0, 0.06], face);
-  d.box([0.28, 0.35, 0.45], [0.02, 0.9, 1.63], face);
+  d.box([0.28, 0.22, 0.4], [0.02, 0.83, 1.85], face);
   for (let i = 0; i < 6; i++) {
     const x = (i - 2.5) * 0.044;
     pd.rod([x, 0.31, -0.033], [x, 0.33, -0.06], 0.004, i === 0 ? pd.red : m.metal);

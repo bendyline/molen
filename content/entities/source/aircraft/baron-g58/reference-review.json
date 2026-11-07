@@ -56,7 +56,7 @@
     "mode": "top-down-ortho",
     "center": [
       0,
-      -1.46
+      -1.39
     ],
     "viewHeight": 0.82,
     "cameraHeight": 9.7
@@ -233,8 +233,8 @@
     ],
     "statesInspected": true
   },
-  "sourceHash": "sha256:89dec984d69b06c01eb1953a2988ec10b0045203a08dc664e131bccd03eb06bc",
-  "runtimeHash": "sha256:618d20ae7e10a24e460de00b7306822b12e07de0da14e0d858bb95095ce2bd5e",
+  "sourceHash": "sha256:8c586f4983a91c03bbd403fecce4956b894320912f070687033cfbd334c839a9",
+  "runtimeHash": "sha256:f03b2af7fee3f3802858e92951dbf9baffff5a1be39034f3b77f7a17b63da91c",
   "limitations": [
     "Manufacturer three-view consists of perspective renderings rather than consistent orthographic drawings. The printed 2.9718 m height is retained; uniform side scale implies about 2.72 m and front scale about 3.58 m. Horizontal tail elevation follows the side/cabin relationships rather than the raised front-view projection. No reference was stretched to conceal residuals.",
     "Curved wing-root fillets, tips, fuselage cross-section, windscreen and nacelle transitions remain polygonal approximations; small aft-body, side-window and tailplane contour residuals remain. Rivet lines follow visible panel divisions, not a manufacturing fastener map.",
@@ -265,5 +265,46 @@
       "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
       "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
     ]
+  },
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "packages/entities/scripts/cockpit-sweep.mjs rays from pilotEye through source.glb, then seat, pitched-down and exterior nose renders inspected at the runtime camera (+Z, 60 degrees vertical).",
+    "before": {
+      "eye": [
+        0.28,
+        1.88,
+        0.35
+      ],
+      "outside": 59,
+      "horizon": 95,
+      "overNose": -4,
+      "headroom": 0.17,
+      "wall": 0.34,
+      "panel": 0.82,
+      "cushion": 0.85,
+      "seatback": 0.35,
+      "poked": 2.6
+    },
+    "after": {
+      "eye": [
+        0.28,
+        1.84,
+        0.35
+      ],
+      "outside": 60,
+      "horizon": 90,
+      "overNose": -6,
+      "headroom": 0.21,
+      "wall": 0.34,
+      "panel": 0.82,
+      "cushion": 0.81,
+      "seatback": 0.35,
+      "poked": 0
+    },
+    "corrections": [
+      "Eye lowered 0.04 m out of the headliner. Panel lowered 0.07 m with it.",
+      "Glareshield hood rose forward and came through the windscreen base. It now slopes down to z 1.38 inside the glass, which cleared the 2.6 percent reading."
+    ],
+    "limitations": []
   }
 }

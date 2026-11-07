@@ -12,6 +12,16 @@ import { type EarthSkyState, evaluateEarthSky, skyDirection, skyTimeMs } from '.
 const RAD = Math.PI / 180;
 /** Sky motion (radians) before the dome and stars redraw: about half a pixel at 70 degrees. */
 const SKY_REDRAW_ANGLE = 4e-4;
+/** The dome's vertex grid, which `domeColor` samples. */
+const DOME_COLUMNS = 96;
+const DOME_ROWS = 48;
+/** How far the Sun's glare reaches, in Sun disk radii. */
+const GLARE_SPREAD = 16;
+/**
+ * The Sun's color multiplier, past what tone mapping can show. WebGPU blends before tone mapping,
+ * so the glare needs it too: at plain Sun color it would top out grey around a white disk.
+ */
+const SUN_RADIANCE = 2.5;
 const clamp = (x: number): number => Math.max(0, Math.min(1, x));
 const rgb = (color: THREE.Color): [number, number, number] => [color.r, color.g, color.b];
 function smooth(a: number, b: number, x: number): number {
@@ -85,6 +95,30 @@ function mesh(
   return result;
 }
 
+/**
+ * The Sun's glare, which is what makes the real disk look far larger than its half degree: a unit
+ * disk facing +Z whose vertex alpha falls with the inverse square of the angle, as veiling glare
+ * does in the eye, windowed to reach zero at the rim. The material sets its color and strength.
+ * It draws over the disk, which would otherwise tone map dimmer than the glare around it, and
+ * under the Moon, which can cover it.
+ */
+function sunGlare(): ReturnType<typeof mesh> {
+  const glare = mesh(new THREE.RingGeometry(0, 1, 32, 16), -65, true);
+  glare.material.blending = THREE.AdditiveBlending;
+  const positions = glare.geometry.getAttribute('position');
+  const colors = glare.geometry.getAttribute('color');
+  for (let i = 0; i < positions.count; i++) {
+    const x = positions.getX(i);
+    const y = positions.getY(i);
+    // Squaring crowds the rings toward the center, where the falloff is steepest.
+    const ring = Math.hypot(x, y);
+    const r = ring * ring;
+    positions.setXY(i, x * ring, y * ring);
+    colors.setXYZW(i, 1, 1, 1, (1 - r * r) ** 2 / (1 + (r / 0.12) ** 2));
+  }
+  return glare;
+}
+
 interface CatalogStar {
   direction: THREE.Vector3;
   color: THREE.Color;
@@ -126,8 +160,9 @@ export class SkyVisual {
   readonly moonLight: THREE.DirectionalLight = new THREE.DirectionalLight();
   readonly ambientLight: THREE.HemisphereLight = new THREE.HemisphereLight();
   readonly data: SkyData;
-  private readonly dome = mesh(new THREE.SphereGeometry(2, 96, 48), -100);
+  private readonly dome = mesh(new THREE.SphereGeometry(2, DOME_COLUMNS, DOME_ROWS), -100);
   private readonly sun = mesh(new THREE.SphereGeometry(1, 32, 16), -70, true);
+  private readonly glare = sunGlare();
   private readonly moon = mesh(new THREE.SphereGeometry(1, 64, 32), -60, true);
   private readonly stars: ReturnType<typeof mesh>;
   private catalog: readonly CatalogStar[];
@@ -163,6 +198,7 @@ export class SkyVisual {
     this.scene.name = 'molen:sky';
     this.lights.name = 'molen:sky-lights';
     this.dome.name = 'molen:sky-dome';
+    this.glare.name = 'molen:sky-sun-glare';
     this.sun.name = 'molen:sky-sun';
     this.moon.name = 'molen:sky-moon';
     // Each star is a small six-segment radial splat in one mesh, including a soft alpha edge.
@@ -171,7 +207,7 @@ export class SkyVisual {
     this.stars = mesh(starGeometry(this.catalog.length), -80, true);
     this.stars.material.blending = THREE.AdditiveBlending;
     this.stars.name = 'molen:sky-stars';
-    this.scene.add(this.dome, this.stars, this.sun, this.moon);
+    this.scene.add(this.dome, this.stars, this.sun, this.glare, this.moon);
     this.lights.add(
       this.ambientLight,
       this.sunLight,
@@ -278,6 +314,7 @@ export class SkyVisual {
     this.updateDome(altitude, sunVector, daylight);
     this.updateBody(this.sun, sunVector, sunDiameterDeg * (data.sun?.size ?? 1), sunVector, false);
     this.sun.visible = data.sun?.visible !== false && this.sun.visible;
+    this.updateGlare(sunVector, altitude);
     this.moon.visible = false;
     if (moonVector && data.moon?.visible !== false)
       this.updateBody(
@@ -468,31 +505,72 @@ export class SkyVisual {
     body.visible = direction.y + radius > 0;
     const positions = body.geometry.getAttribute('position');
     const colors = body.geometry.getAttribute('color');
-    const base = lunar
-      ? this.palette.moon
-      : this.palette.sun.clone().lerp(this.palette.twilight, 1 - smooth(0, 0.2, direction.y));
+    const base = lunar ? this.palette.moon : this.sunColor(direction);
+    const earthshine = (this.data.moon?.earthshine ?? 0.025) * (1 - this.currentFrame.daylight);
     const normal = new THREE.Vector3();
+    const toward = new THREE.Vector3();
+    const behind = new THREE.Color(0, 0, 0);
     for (let i = 0; i < positions.count; i++) {
       normal.fromBufferAttribute(positions, i).normalize();
-      const illumination = lunar
-        ? (this.data.moon?.earthshine ?? 0.025) + Math.max(0, normal.dot(sun)) * 0.975
-        : 2.5;
+      const illumination = lunar ? earthshine + Math.max(0, normal.dot(sun)) * 0.975 : SUN_RADIANCE;
       // Subtle procedural albedo variation; an artistic moon surface, not a lunar atlas.
       const albedo = lunar
         ? 0.85 +
           0.15 * Math.sin(normal.x * 27 + Math.sin(normal.y * 19) * 2) * Math.sin(normal.z * 21)
         : 1;
+      // The bright air in front of the Moon adds to its light, so a daytime Moon's unlit side
+      // matches the sky beside it. It stays opaque, and so still covers the Sun and stars.
+      if (lunar) {
+        toward.copy(direction).addScaledVector(normal, radius).normalize();
+        this.domeColor(toward, behind);
+      }
       colors.setXYZW(
         i,
-        base.r * illumination * albedo,
-        base.g * illumination * albedo,
-        base.b * illumination * albedo,
+        behind.r + base.r * illumination * albedo,
+        behind.g + base.g * illumination * albedo,
+        behind.b + base.b * illumination * albedo,
         smooth(-0.0003, 0.0003, direction.y + normal.y * radius),
       );
     }
     colors.needsUpdate = true;
     // A sphere must show only its near-facing surface for correct lunar phases.
     body.material.side = THREE.FrontSide;
+  }
+
+  private sunColor(direction: THREE.Vector3): THREE.Color {
+    return this.palette.sun.clone().lerp(this.palette.twilight, 1 - smooth(0, 0.2, direction.y));
+  }
+
+  private updateGlare(sun: THREE.Vector3, altitude: number): void {
+    this.glare.visible = this.sun.visible;
+    this.glare.position.copy(sun);
+    this.glare.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), sun);
+    this.glare.scale.setScalar(this.sun.scale.x * GLARE_SPREAD);
+    this.glare.material.color.copy(this.sunColor(sun)).multiplyScalar(SUN_RADIANCE);
+    this.glare.material.opacity = smooth(-2, 5, altitude);
+  }
+
+  /** The drawn dome's color toward a unit direction, interpolated across its vertex grid. */
+  private domeColor(direction: THREE.Vector3, target: THREE.Color): void {
+    const colors = this.dome.geometry.getAttribute('color');
+    const across = ((Math.atan2(direction.z, -direction.x) / (2 * Math.PI) + 1) % 1) * DOME_COLUMNS;
+    const down = (Math.acos(Math.max(-1, Math.min(1, direction.y))) / Math.PI) * DOME_ROWS;
+    const column = Math.floor(across);
+    const row = Math.min(DOME_ROWS - 1, Math.floor(down));
+    const right = across - column;
+    const lower = down - row;
+    target.setRGB(0, 0, 0);
+    for (const [dx, dy, weight] of [
+      [0, 0, (1 - right) * (1 - lower)],
+      [1, 0, right * (1 - lower)],
+      [0, 1, (1 - right) * lower],
+      [1, 1, right * lower],
+    ] as const) {
+      const vertex = (row + dy) * (DOME_COLUMNS + 1) + column + dx;
+      target.r += colors.getX(vertex) * weight;
+      target.g += colors.getY(vertex) * weight;
+      target.b += colors.getZ(vertex) * weight;
+    }
   }
 
   /**
@@ -595,7 +673,7 @@ export class SkyVisual {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
-    for (const object of [this.dome, this.sun, this.moon, this.stars]) {
+    for (const object of [this.dome, this.sun, this.glare, this.moon, this.stars]) {
       object.geometry.dispose();
       object.material.dispose();
     }

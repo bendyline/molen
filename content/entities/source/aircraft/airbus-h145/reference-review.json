@@ -14,6 +14,13 @@
       "author": "Airbus Helicopters",
       "license": "Copyright Airbus; local analysis only.",
       "scope": "Five-blade D3 three-quarter exterior and full Helionix cockpit photographs."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:RAF_H145_Jupiter_Helicopter_MOD_45166205.jpg",
+      "author": "Ian Forshaw / UK Ministry of Defence",
+      "license": "Open Government Licence",
+      "licenseUrl": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "scope": "Front quarter: a compact black hood really is visible through the windscreen at about shoulder height, with the pilot seated high."
     }
   ],
   "cabinCamera": {
@@ -25,8 +32,8 @@
     ],
     "lookAt": [
       0,
-      1.55,
-      2.12
+      1.62,
+      2.24
     ],
     "fov": 82
   },
@@ -34,10 +41,10 @@
     "mode": "top-down-ortho",
     "center": [
       0,
-      -1.53
+      -1.66
     ],
-    "viewHeight": 1.02,
-    "cameraHeight": 8.3
+    "viewHeight": 0.6,
+    "cameraHeight": 8
   },
   "overlays": [
     {
@@ -132,8 +139,8 @@
       ],
       "scaleControls": {
         "pixels": 1157.4382022471912,
-        "meters": 1.16,
-        "description": "Assumed 1.16m overall panel width; relative layout only, no claim of measured interior scale."
+        "meters": 0.7397,
+        "description": "Panel width from display size: screens drawn 0.239 m wide are 6 by 8 in Helionix MFDs, making the face 0.74 m wide."
       },
       "edgeMode": "photo",
       "scope": "Nearly frontal cockpit photo, with perspective uncorrected; flat panel positions and contour compared. Callout labels are ignored."
@@ -191,13 +198,14 @@
     ],
     "visual": "Inspected all four overlays, four turntables, lit three-quarter, pilot operator, close cockpit and cabin-wide renders. Corrected geometry from comparisons and rechecked the final fan and pedestal attachment."
   },
-  "sourceHash": "sha256:b9a6371a912289be3305c9ec0ba55f9517f71f82990c6c44f684d2a31492d95e",
-  "runtimeHash": "sha256:d1e9b9dc6c8a9cdd93a5f3bc3e2d6a203e3b11bdbfbaa29e5001f90aad6a40c4",
+  "sourceHash": "sha256:303c666b1ce008c5c93d8734a3524ed6c267bcac507558ea0e90afc3dc8481d1",
+  "runtimeHash": "sha256:02e16b53cd31e7a94a807f4a30293a9ed90371cdd7e245a9daba4044816dd566",
   "limitations": [
     "Cabin and engine-fairing compound curves are deliberately faceted; the drawing projections differ slightly in vertical proportions. Printed dimensions govern.",
     "Panel width of 1.16m is an explicit estimate: the nearly frontal source photo supplies relative positions, not a measured cockpit installation. Perspective, coaming depth and seat dimensions remain approximate.",
     "Manufacturer photo shows more equipment detail than the simplified original display graphics and modeled overhead switches. Optional mission fittings and liveries vary.",
-    "Reference pictures remain local research material; no source pixels are distributed."
+    "Reference pictures remain local research material; no source pixels are distributed.",
+    "The eye stands 0.07 m outboard of the rescaled panel edge, so the sweep finds no panel dead ahead; the pilot display lies just inboard. The sweep dial reading of 49 mm is the attitude line on the displays, not a round instrument. Wipers still cross the forward view at about 5 degrees below level."
   ],
   "controlReview": {
     "checked": "2026-10-22",
@@ -216,6 +224,55 @@
       "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
       "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
       "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  },
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "Rays from the pilotEye through source.glb (cockpit-sweep), seat view at the runtime camera (+Z, 60 degrees vertical), an exterior nose render, and sections through the pilot plane and at hood height, each checked against a photograph of the real aircraft.",
+    "findings": [
+      "A black hood through the windscreen is real, as the RAF photograph shows, but the model drew it 1.57 times too large: an assumed 1.16 m face made the 6 by 8 in screens 0.239 by 0.323 m.",
+      "The eye stood 1.11 m over the cushion, while the headroom was right. The floor lay on the belly; the RAF photograph shows the crew seated high against the roof.",
+      "The sweep cushion reading of 0.85 m was the cyclic grip, not the seat."
+    ],
+    "before": {
+      "eye": [
+        -0.43,
+        2.08,
+        1.55
+      ],
+      "eyeToPanelMeters": 0.57,
+      "headroomMeters": 0.29,
+      "eyeAboveCushionMeters": 1.11,
+      "displayMeters": [
+        0.239,
+        0.323
+      ],
+      "panelMeters": [
+        1.16,
+        0.62
+      ]
+    },
+    "after": {
+      "eye": [
+        -0.43,
+        2.08,
+        1.55
+      ],
+      "eyeToPanelMeters": 0.69,
+      "headroomMeters": 0.29,
+      "eyeAboveCushionMeters": 0.8,
+      "displayMeters": [
+        0.152,
+        0.206
+      ],
+      "panelMeters": [
+        0.74,
+        0.4
+      ]
+    },
+    "corrections": [
+      "Panel group rescaled from the display size, moved 0.12 m forward, hood depth cut to 0.2 m; top height, layout and bindings unchanged.",
+      "Floor, seats, cyclic, collective, pedals and pedestal raised 0.3 m; cyclic moved 0.07 m forward of the eye line."
     ]
   }
 }

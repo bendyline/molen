@@ -722,14 +722,14 @@ function rafaleCockpit(root, m) {
     txt = (t, x, y, h = 0.008, color = ink, dz = -0.03) =>
       d.text(t, [x, y, z + dz], h, Math.PI, color);
   const edge = [
-    [-0.46, 2.27],
-    [-0.48, 2.52],
+    [-0.41, 2.27],
+    [-0.43, 2.52],
     [-0.32, 2.69],
     [-0.17, 2.72],
     [0.17, 2.72],
     [0.32, 2.69],
-    [0.48, 2.52],
-    [0.46, 2.27],
+    [0.43, 2.52],
+    [0.41, 2.27],
     [0.14, 2.27],
     [0.1, 2.03],
     [-0.1, 2.03],
@@ -740,7 +740,7 @@ function rafaleCockpit(root, m) {
     edge.map((p) => [...p, z]),
     panel,
     [0, 0, -1],
-    [rect(0.236, 2.57, 0.093, 0.068), rect(0, 2.51, 0.31, 0.32), rect(-0.4, 2.36, 0.052, 0.042)],
+    [rect(0.236, 2.57, 0.093, 0.068), rect(0, 2.51, 0.31, 0.32), rect(-0.355, 2.36, 0.052, 0.042)],
   );
   outline(
     d,
@@ -755,8 +755,8 @@ function rafaleCockpit(root, m) {
       d,
       [...a, z],
       [...b, z],
-      [b[0] * 0.83, b[1] - 0.02, z + 0.32],
-      [a[0] * 0.83, a[1] - 0.02, z + 0.32],
+      [b[0] * 0.74, b[1] - 0.02, z + 0.32],
+      [a[0] * 0.74, a[1] - 0.02, z + 0.32],
       button,
       [0, 1, 0],
     );
@@ -849,15 +849,15 @@ function rafaleCockpit(root, m) {
   // Standby and side strips shown in the manufacturer's early cockpit photograph.
   sheet(
     d,
-    rect(-0.4, 2.36, 0.077, 0.068, -0.01),
+    rect(-0.355, 2.36, 0.077, 0.068, -0.01),
     black,
     [0, 0, -1],
-    [rect(-0.4, 2.36, 0.052, 0.042, -0.01)],
+    [rect(-0.355, 2.36, 0.052, 0.042, -0.01)],
   );
-  ins.horizon('standby-attitude', [-0.4, 2.36, z + 0.01], 0.05, 0.04, { blankBackdrop: true });
+  ins.horizon('standby-attitude', [-0.355, 2.36, z + 0.01], 0.05, 0.04, { blankBackdrop: true });
   for (const side of [-1, 1]) {
     for (let i = 0; i < 5; i++) {
-      const x = side * (0.365 + (i % 2) * 0.035),
+      const x = side * (0.335 + (i % 2) * 0.03),
         y = 2.62 - Math.floor(i / 2) * 0.045;
       d.box([0.023, 0.019, 0.006], [x, y, z - 0.018], black);
       txt(['COM', 'NAV', 'SYS', 'TEST', 'LTS'][i], x, y, 0.0045);
@@ -870,9 +870,12 @@ function rafaleCockpit(root, m) {
       ]);
     }
   }
-  const lower = group(cabin, 'Rafale-lower-control-panel', [0, 2.23, z - 0.16]),
+  // The keypad sits on the lower left of the panel, under the left display and clear of the
+  // gear lamp. The panel's foot below the HLD carries the systems module (cockpit-controls.mjs):
+  // the seat cushion, moved forward under the eye, hides anything lower.
+  const lower = group(cabin, 'Rafale-lower-control-panel', [0.265, 2.375, z - 0.022]),
     ld = detailKit(lower, lower.name);
-  lower.rotation.x = 0.16;
+  lower.scale.setScalar(0.85);
   beveledBox(ld, [0.2, 0.22, 0.04], [0, 0, 0], button, 0.008);
   for (let i = 0; i < 4; i++)
     ld.box([0.024, 0.012, 0.004], [-0.06 + i * 0.04, 0.08, -0.024], black);
@@ -978,7 +981,7 @@ function rafaleCockpit(root, m) {
     fd.finish();
   }
   // F16F seat: large black headbox, angular side shells, separated cushions and harness straps.
-  const sg = group(cabin, 'Rafale-F16F', [0, 1.88, 3.64]);
+  const sg = group(cabin, 'Rafale-F16F', [0, 2.11, 4.25]);
   sg.rotation.x = -0.5;
   const sd = detailKit(sg, sg.name);
   beveledBox(sd, [0.46, 0.14, 0.52], [0, 0, 0.17], seat);
@@ -1026,7 +1029,7 @@ function rafaleCockpit(root, m) {
     ]);
   }
   sd.finish();
-  const stick = group(cabin, 'Rafale-stick', [-0.31, 2.02, 4.13]),
+  const stick = group(cabin, 'Rafale-stick', [-0.31, 2.02, 4.38]),
     st = detailKit(stick, stick.name);
   st.add(new T.CylinderGeometry(0.045, 0.055, 0.08, 16), black, [0, 0.04, 0]);
   st.rod([0, 0.07, 0], [0, 0.18, -0.02], 0.019, black);
@@ -1047,7 +1050,7 @@ function rafaleCockpit(root, m) {
     { node: stick.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.1 },
   );
   for (let i = 0; i < 2; i++) {
-    const g = group(cabin, `Rafale-throttle-${i}`, [0.29 + i * 0.06, 2.02, 4.12]),
+    const g = group(cabin, `Rafale-throttle-${i}`, [0.29 + i * 0.06, 2.02, 4.37]),
       gd = detailKit(g, g.name);
     gd.rod([0, 0, 0], [0, 0.09, 0], 0.012, black);
     beveledBox(gd, [0.055, 0.065, 0.11], [0, 0.12, 0], black, 0.009);
@@ -1062,7 +1065,7 @@ function rafaleCockpit(root, m) {
     });
   }
   for (const side of [-1, 1]) {
-    d.box([0.13, 0.055, 0.27], [side * 0.32, 2.02, 3.75], black);
+    d.box([0.13, 0.055, 0.27], [side * 0.32, 2.02, 4.03], black);
     const g = group(cabin, `Rafale-pedal-${side}`, [side * 0.15, 1.66, 4.96]),
       gd = detailKit(g, g.name);
     gd.box([0.13, 0.15, 0.025], [0, 0, 0], m.metal);

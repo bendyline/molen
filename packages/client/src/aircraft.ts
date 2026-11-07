@@ -19,6 +19,7 @@ import {
   type ModelSignals,
   type ModelSignalVisual,
 } from './model-signals';
+import { createRotorBlur, type RotorBlur } from './rotor-blur';
 import type { VehicleCameraOptions, VehicleCameraPose } from './vehicle-camera';
 import { drawGlassInOnePass } from './vehicle-glass';
 import { createVehicleInteriorVisual, type VehicleInteriorVisual } from './vehicle-interior';
@@ -111,6 +112,33 @@ export function createAircraftVisual(
   const cabinRange = Math.max(60, 3 * Math.max(spec.length, spec.span));
   const damage = createAircraftDamageVisual(model, spec);
   let propellers = createAircraftPropellers(model, spec);
+  // Airplane propellers (tiltrotors' included) cross-fade into the disk createAircraftPropellers
+  // draws, which follows damage and liveries. Every other rotor (helicopter main and tail rotors,
+  // fans a jet binds as rotors) blurs here.
+  const rotorEngines = spec.engines ?? (spec.engine ? [{ ...spec.engine, id: 'main' }] : []);
+  const ownPropeller = (binding: (typeof spec.visual.rotors)[number]): boolean => {
+    if (spec.model !== 'airplane') return false;
+    const engine =
+      binding.engine === undefined
+        ? rotorEngines[0]
+        : rotorEngines.find((e) => e.id === binding.engine);
+    return engine !== undefined && engine.propulsion !== 'jet';
+  };
+  const blurs = new Map<(typeof spec.visual.rotors)[number], RotorBlur[]>();
+  for (const binding of spec.visual.rotors) {
+    if (ownPropeller(binding)) continue;
+    const prepared = (moving.get(binding.node) ?? []).flatMap(
+      (node) => createRotorBlur(node, binding.axis) ?? [],
+    );
+    if (prepared.length > 0) blurs.set(binding, prepared);
+  }
+  const shaftSpeed = (id: string | undefined): number =>
+    (id === undefined
+      ? undefined
+      : spec.engines?.find((engine) => engine.id === id)?.rotorAngularSpeed) ??
+    spec.engine?.rotorAngularSpeed ??
+    spec.engines?.[0]?.rotorAngularSpeed ??
+    0;
   let cabinShown = true;
   // Cabin parts, farthest-seen first, with the camera distance from the pilot's eye beyond which
   // each is too small to draw. The first `detailed` are drawn; the rest keep their layers here.
@@ -154,6 +182,10 @@ export function createAircraftVisual(
           binding.axis,
           (engine?.rotorAngle ?? state.rotorAngle) * binding.multiplier,
         );
+        // State rpm is a 0..1 fraction; ambient traffic reports a nominal figure, so it saturates.
+        const fraction = Math.min(1, engine?.rpm ?? state.rpm ?? 0);
+        const speed = fraction * shaftSpeed(binding.engine) * binding.multiplier;
+        for (const blur of blurs.get(binding) ?? []) blur.update(speed);
       }
       for (const name of spec.visual.gearNodes) {
         // Authored hinges carry the gear into its well. Keep exposed stowed wheels visible

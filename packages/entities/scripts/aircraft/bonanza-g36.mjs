@@ -28,7 +28,8 @@ export const bonanzaFrame = () => ({
   ry: 0.76,
   cabinZ: 0.35,
   cabinWidth: 1.07,
-  eye: [0.28, 1.82, 0.35],
+  // The A36 roof is low: the eye trades headroom (0.13 m) against the view over the glareshield.
+  eye: [0.28, 1.81, 0.35],
   panelZ: 1.12,
   floor: 0.75,
 });
@@ -676,7 +677,7 @@ function cockpit(root, m) {
   // Panel diagram at 1376px width, calibrated with the physical 11.8-inch display bezel.
   const k = 0.29972 / 318,
     px = (u) => (690 - u) * k,
-    py = (v) => 1.61 - (v - 585) * k,
+    py = (v) => 1.54 - (v - 585) * k,
     z = 1.12,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz];
   const rect = (x, y, w, h, zz = z) => [
@@ -739,8 +740,8 @@ function cockpit(root, m) {
       d,
       a,
       b,
-      [b[0], 1.67 - Math.abs(b[0]) * 0.12, 1.37],
-      [a[0], 1.67 - Math.abs(a[0]) * 0.12, 1.37],
+      [b[0] * 0.96, 1.66 - Math.abs(b[0]) * 0.1, 1.38],
+      [a[0] * 0.96, 1.66 - Math.abs(a[0]) * 0.1, 1.38],
       m.dark,
       [0, 1, 0],
     );

@@ -40,14 +40,23 @@ function descriptor(overrides: Partial<TerrainPyramidDescriptor> = {}): TerrainP
   };
 }
 
-function flatTile(d: TerrainPyramidDescriptor, address: TerrainPyramidTileAddress): Heightfield {
+function flatTile(
+  d: TerrainPyramidDescriptor,
+  address: TerrainPyramidTileAddress,
+  normalizedHeight = address.level / 4,
+): Heightfield {
   const origin = terrainPyramidTileOrigin(d, address);
   const size = terrainPyramidTileSize(d, address.level);
-  return new Heightfield(new Float32Array(9).fill(address.level / 4), 3, 3, {
+  return new Heightfield(new Float32Array(9).fill(normalizedHeight), 3, 3, {
     origin,
     worldSize: [size, size],
     height: d.height,
   });
+}
+
+/** Whether a named object is on screen: a hidden tile leaves the scene graph altogether. */
+function drawn(stream: { object: THREE.Object3D }, name: string): boolean {
+  return stream.object.getObjectByName(name)?.visible === true;
 }
 
 const VIEW = {
@@ -441,7 +450,8 @@ describe('screen-space terrain pyramid', () => {
       buildings.get('1/0/0')?.(new THREE.Group());
       await expect.poll(() => stream.isAreaReady(2, 2, 1)).toBe(true);
       expect(stream.object.getObjectByName('layer:land:1/0/0')?.visible).toBe(true);
-      expect(stream.object.getObjectByName('layer:land:0/0/0')?.visible).toBe(false);
+      // Hidden tiles leave the scene graph, so "not drawn" also covers a detached tile.
+      expect(drawn(stream, 'layer:land:0/0/0')).toBe(false);
       expect(stream.object.getObjectByName('layer:land:1/1/1')?.visible).toBe(true);
       expect(stream.isAreaReady(12, 12, 1)).toBe(false);
       expect(stream.loading().layers).toBe(3);
@@ -744,8 +754,10 @@ describe('screen-space terrain pyramid', () => {
         '4/9/2',
         '4/9/3',
       ]);
-      const target = stream.object.getObjectByName('tile:4/9/2') as THREE.Group;
-      const detail = stream.object.getObjectByName('layer:detail:4/9/2') as THREE.Group;
+      // A prepared tile stays out of the scene graph until it is displayed.
+      const target = prepared.find((o) => o.name === 'tile:4/9/2') as THREE.Group;
+      const detail = prepared.find((o) => o.name === 'layer:detail:4/9/2') as THREE.Group;
+      expect(stream.object.getObjectByName('tile:4/9/2')).toBeUndefined();
       expect(target.visible).toBe(false);
       expect(prepared).toContain(target);
       expect(prepared).toContain(detail);
@@ -755,6 +767,7 @@ describe('screen-space terrain pyramid', () => {
       expect(stream.isAreaReady(304, 80, 1)).toBe(true);
       expect(target.visible).toBe(true);
       expect(detail.visible).toBe(true);
+      expect(stream.object.getObjectByName('tile:4/9/2')).toBe(target);
       await stream.whenIdle();
       expect(heights.filter((key) => key === '4/9/2')).toHaveLength(heightReads);
       expect(layers.filter((key) => key === '4/9/2')).toHaveLength(1);
@@ -1489,7 +1502,7 @@ describe('screen-space terrain pyramid', () => {
       await expect.poll(() => disposed.length).toBe(failure === 'throw' ? 0 : 4);
       stream.update({ ...VIEW, position: [2, 20_000, 2] });
       await stream.whenIdle();
-      expect(stream.object.getObjectByName('tile:1/0/0')?.visible).toBe(false);
+      expect(drawn(stream, 'tile:1/0/0')).toBe(false);
       stream.update(VIEW);
       await stream.whenIdle();
       expect(stream.object.getObjectByName('tile:1/0/0')?.visible).toBe(true);
@@ -1793,7 +1806,7 @@ describe('screen-space terrain pyramid', () => {
         expect(stream.sampleHeight(2, 2)).toBe(0);
         expect(stream.object.getObjectByName('layer:landuse:0/0/0')?.visible).toBe(true);
         expect(stream.object.getObjectByName('layer:buildings:0/0/0')?.visible).toBe(true);
-        expect(stream.object.getObjectByName('layer:landuse:1/0/0')?.visible).toBe(false);
+        expect(drawn(stream, 'layer:landuse:1/0/0')).toBe(false);
       };
       assertParent();
       const resolvers = [...buildings.values()];
@@ -1809,7 +1822,7 @@ describe('screen-space terrain pyramid', () => {
       await stream.whenIdle();
       expect(stream.displayedTiles()).toHaveLength(4);
       expect(stream.sampleHeight(2, 2)).toBe(25);
-      expect(stream.object.getObjectByName('layer:landuse:0/0/0')?.visible).toBe(false);
+      expect(drawn(stream, 'layer:landuse:0/0/0')).toBe(false);
       const child = stream.object.getObjectByName('layer:landuse:1/0/0');
       expect(child?.visible).toBe(true);
       expect(last.visible).toBe(true);
@@ -1924,7 +1937,7 @@ describe('screen-space terrain pyramid', () => {
     try {
       await expect.poll(() => stream.stats().layerObjects).toBe(1);
       expect(stream.displayedTiles()).toHaveLength(1);
-      expect(stream.object.getObjectByName('layer:landuse:0/0/0')?.visible).toBe(false);
+      expect(drawn(stream, 'layer:landuse:0/0/0')).toBe(false);
       failBuildings?.(new Error('unavailable buildings'));
       await stream.whenIdle();
       expect(stream.object.getObjectByName('layer:landuse:0/0/0')?.visible).toBe(true);
@@ -1972,7 +1985,7 @@ describe('screen-space terrain pyramid', () => {
     try {
       await expect.poll(() => pending.length).toBe(4);
       expect(stream.displayedTiles()).toHaveLength(4);
-      expect(stream.object.getObjectByName('layer:landuse:1/0/0')?.visible).toBe(false);
+      expect(drawn(stream, 'layer:landuse:1/0/0')).toBe(false);
       stream.setLayerVisible('buildings', false);
       await stream.whenIdle();
       expect(stream.displayedTiles()).toHaveLength(4);
@@ -2342,7 +2355,7 @@ describe('screen-space terrain pyramid', () => {
     expect(stream.stats().layerObjects).toBe(4);
     expect(stream.object.getObjectByName('layer:forest:1/0/0')?.visible).toBe(true);
     stream.setLayerVisible('forest', false);
-    expect(stream.object.getObjectByName('layer:forest:1/0/0')?.visible).toBe(false);
+    expect(drawn(stream, 'layer:forest:1/0/0')).toBe(false);
     stream.dispose();
     expect(disposes).toBe(4);
   });
@@ -2385,7 +2398,7 @@ describe('screen-space terrain pyramid', () => {
     await stream.whenIdle();
 
     expect(stream.stats().layerObjects).toBe(1);
-    expect(stream.object.getObjectByName('layer:roads:0/0/0')?.visible).toBe(false);
+    expect(drawn(stream, 'layer:roads:0/0/0')).toBe(false);
     stream.dispose();
   });
 
@@ -2429,7 +2442,7 @@ describe('screen-space terrain pyramid', () => {
     try {
       await expect.poll(() => prepared.length).toBe(3);
       expect(stream.displayedTiles()).toEqual([{ level: 0, x: 0, z: 0 }]);
-      expect(stream.object.getObjectByName('layer:detail:1/0/0')?.visible).toBe(false);
+      expect(drawn(stream, 'layer:detail:1/0/0')).toBe(false);
       finishTerrain?.();
       await stream.whenIdle();
       expect(prepared).toHaveLength(4);
@@ -2832,7 +2845,8 @@ describe('runtime terrain budgets', () => {
     };
     const stream = createTerrainPyramidStream(
       d,
-      { load: async (address) => flatTile(d, address) },
+      // Ground at sea level, under the camera.
+      { load: async (address) => flatTile(d, address, 100 / 9_100) },
       {
         initialView: view,
         ...terrainPyramidBudgetForQuality('balanced'),
@@ -3481,6 +3495,724 @@ describe('budgeted terrain publication', () => {
       stream.dispose();
       update.mockRestore();
       clock.mockRestore();
+    }
+  });
+});
+
+describe('building ahead of a moving camera', () => {
+  const grid = descriptor({ rootSize: 4096, minLevel: 4, maxLevel: 4 });
+  const row = 2048 + 128;
+  const key = (x: number, z = 8): string => terrainPyramidTileKey({ level: 4, x, z });
+
+  function view(x: number, z = row, direction: [number, number, number] = [1, -0.1, 0]) {
+    return {
+      position: [x, 50, z] as [number, number, number],
+      direction,
+      aspect: 1.5,
+      verticalFov: 1,
+      viewportHeight: 720,
+    };
+  }
+
+  interface Rig {
+    stream: ReturnType<typeof createTerrainPyramidStream>;
+    built: string[];
+    /** Fly at `speed` along +x for `seconds`, in 0.1 s updates, letting work finish each step. */
+    fly(speed: number, seconds: number): Promise<void>;
+  }
+
+  function rig(
+    options: Partial<Parameters<typeof createTerrainPyramidStream>[2]> = {},
+    source: Partial<TerrainPyramidHeightSource> = {},
+  ): Rig {
+    const built: string[] = [];
+    let now = 0;
+    let x = 2048;
+    const stream = createTerrainPyramidStream(
+      grid,
+      { load: async (address) => flatTile(grid, address), ...source },
+      {
+        layers: [
+          {
+            id: 'detail',
+            category: 'human-feature',
+            createTile({ address }) {
+              built.push(terrainPyramidTileKey(address));
+              return new THREE.Group();
+            },
+          },
+        ],
+        maxScreenSpaceError: 1,
+        viewDistance: 600,
+        maxSelectedTiles: 32,
+        maxConcurrentLoads: 4,
+        maxConcurrentLayerLoads: 4,
+        maxResidentTiles: 128,
+        now: () => now,
+        ...options,
+      },
+    );
+    return {
+      stream,
+      built,
+      async fly(speed, seconds) {
+        for (let step = 0; step < seconds * 10; step++) {
+          now += 100;
+          x += speed / 10;
+          stream.update(view(x));
+          await stream.whenIdle();
+        }
+      },
+    };
+  }
+
+  it('builds ground the track reaches before the camera selects it, then shows it finished', async () => {
+    const { stream, built, fly } = rig();
+    try {
+      await fly(100, 2);
+      const stats = stream.stats();
+      expect(stats.cameraSpeed).toBeGreaterThan(50);
+      expect(stats.aheadTiles).toBeGreaterThan(0);
+      expect(stats.aheadReady).toBe(stats.aheadTiles);
+      // 600 units of range from x = 2248 ends in tile 11; the 20 s track reaches far past it.
+      const ahead = key(12);
+      expect(stream.displayedTiles().map(terrainPyramidTileKey)).not.toContain(ahead);
+      expect(built).toContain(ahead);
+      const builds = built.filter((tile) => tile === ahead).length;
+      await fly(100, 6);
+      expect(stream.displayedTiles().map(terrainPyramidTileKey)).toContain(ahead);
+      expect(built.filter((tile) => tile === ahead)).toHaveLength(builds);
+      const [band] = stream.viewCoverage([1_000]);
+      expect(band?.complete).toBeGreaterThan(0);
+      expect(band?.bare).toBe(0);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('follows the arc of a turn, not its tangent, when choosing what to build', async () => {
+    let now = 0;
+    const requested: string[] = [];
+    const stream = createTerrainPyramidStream(
+      grid,
+      {
+        async load(address) {
+          requested.push(terrainPyramidTileKey(address));
+          return flatTile(grid, address);
+        },
+      },
+      {
+        maxScreenSpaceError: 1,
+        viewDistance: 300,
+        maxSelectedTiles: 32,
+        maxConcurrentLoads: 4,
+        maxResidentTiles: 200,
+        now: () => now,
+      },
+    );
+    try {
+      // A circle of radius 800 at 100 units per second, heading +x at the start.
+      const rate = 100 / 800;
+      const pose = (time: number) => {
+        const heading = rate * time;
+        return view(1200 + 800 * Math.sin(heading), 1200 + 800 * (1 - Math.cos(heading)), [
+          Math.cos(heading),
+          -0.1,
+          Math.sin(heading),
+        ]);
+      };
+      for (let step = 0; step <= 40; step++) {
+        // The turn rate takes a couple of seconds to settle; judge what is asked for after that.
+        if (step === 30) requested.length = 0;
+        now += 100;
+        stream.update(pose(step / 10));
+        await stream.whenIdle();
+      }
+      // Twelve seconds from here the circle is near (1927, 2333), in tile 7/9, and past the first
+      // quarter by then. The tangent from here would be near (2636, 1873), in tile 10/7.
+      const resident = stream.residentTiles().map(terrainPyramidTileKey);
+      expect(resident).toContain(terrainPyramidTileKey({ level: 4, x: 7, z: 9 }));
+      expect(requested).not.toContain(terrainPyramidTileKey({ level: 4, x: 10, z: 7 }));
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('does nothing ahead for a resting camera, one isolated move, or when turned off', async () => {
+    const resting = rig();
+    const off = rig({ lookAhead: false });
+    try {
+      await resting.fly(0, 3);
+      expect(resting.stream.stats().aheadTiles).toBe(0);
+      await off.fly(100, 3);
+      expect(off.stream.stats().aheadTiles).toBe(0);
+      resting.stream.update(view(3000));
+      await resting.stream.whenIdle();
+      expect(resting.stream.stats().aheadTiles).toBe(0);
+    } finally {
+      resting.stream.dispose();
+      off.stream.dispose();
+    }
+  });
+
+  it('starts layers for where a fast camera will be, not the ground beneath it', async () => {
+    const { stream, built, fly } = rig({ maxConcurrentLayerLoads: 1 });
+    try {
+      stream.setLayerVisible('detail', false);
+      await fly(400, 2);
+      built.length = 0;
+      stream.setLayerVisible('detail', true);
+      await stream.whenIdle();
+      // At x = 2848, in tile 11. A second and a half on, the camera is in tile 13.
+      expect(built[0]).toBe(key(13));
+      expect(built.indexOf(key(11))).toBeGreaterThan(built.indexOf(key(13)));
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('finishes what is on screen before ground ahead, with a slot left free', async () => {
+    const resolvers: Array<(object: THREE.Object3D) => void> = [];
+    const started: string[] = [];
+    const { stream, fly } = rig({
+      layers: [
+        {
+          id: 'detail',
+          category: 'human-feature',
+          visible: false,
+          createTile({ address }) {
+            started.push(terrainPyramidTileKey(address));
+            return new Promise<THREE.Object3D>((resolve) => resolvers.push(resolve));
+          },
+        },
+      ],
+      maxConcurrentLayerLoads: 3,
+    });
+    try {
+      await fly(100, 2);
+      const onScreen = new Set(stream.displayedTiles().map(terrainPyramidTileKey));
+      stream.setLayerVisible('detail', true);
+      while (resolvers.length > 0) {
+        // Past the visible tiles only tiles ahead remain, and they leave a slot free.
+        if (started.filter((tile) => onScreen.has(tile)).length === onScreen.size) {
+          expect(stream.stats().loadingLayers).toBeLessThanOrEqual(2);
+        }
+        resolvers.shift()?.(new THREE.Group());
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      }
+      const firstAhead = started.findIndex((tile) => !onScreen.has(tile));
+      expect(firstAhead).toBeGreaterThanOrEqual(onScreen.size - 1);
+      expect(started.length).toBeGreaterThan(onScreen.size);
+    } finally {
+      for (const resolve of resolvers) resolve(new THREE.Group());
+      stream.dispose();
+    }
+  });
+
+  it('keeps near ground over old ground, so a loop keeps what comes round again', async () => {
+    const stream = createTerrainPyramidStream(
+      grid,
+      { load: async (address) => flatTile(grid, address) },
+      {
+        maxScreenSpaceError: 1,
+        viewDistance: 1,
+        maxSelectedTiles: 1,
+        maxConcurrentLoads: 1,
+        maxResidentTiles: 4,
+      },
+    );
+    const visit = async (x: number): Promise<void> => {
+      const { direction: _direction, aspect: _aspect, ...radial } = view(x * 256 + 128);
+      stream.update(radial);
+      await stream.whenIdle();
+    };
+    try {
+      // Near first, then far away, then back beside the first. Least recently used would drop
+      // the first tile, the ground the camera has come back to, and keep the one it left behind.
+      await visit(1);
+      await visit(14);
+      await visit(2);
+      await visit(3);
+      const resident = stream.residentTiles().map(terrainPyramidTileKey);
+      expect(resident).toContain(key(1));
+      expect(resident).not.toContain(key(14));
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('gives up tiles ahead rather than anything the camera needs', async () => {
+    const { stream, fly } = rig({ maxResidentTiles: 64 });
+    try {
+      await fly(100, 2);
+      expect(stream.stats().aheadReady).toBeGreaterThan(0);
+      stream.setBudget({ maxResidentTiles: 32, maxSelectedTiles: 16 });
+      await fly(100, 1);
+      const stats = stream.stats();
+      expect(stats.resident).toBeLessThanOrEqual(32);
+      expect(stats.fallbackLeaves).toBe(0);
+      expect(stream.viewCoverage([])[0]?.empty).toBe(0);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('stops building ahead at the limit instead of churning tiles in and out', async () => {
+    const asked: string[] = [];
+    const { stream, fly } = rig(
+      { maxResidentTiles: 64, maxSelectedTiles: 8, viewDistance: 300 },
+      {
+        async load(address) {
+          asked.push(terrainPyramidTileKey(address));
+          return flatTile(grid, address);
+        },
+      },
+    );
+    try {
+      await fly(100, 2);
+      // No room for anything hidden: a tile ahead would be loaded only to be evicted, and again.
+      stream.setBudget({ maxResidentBytes: 1 });
+      asked.length = 0;
+      await fly(100, 2);
+      const loads = new Map<string, number>();
+      for (const tile of asked) loads.set(tile, (loads.get(tile) ?? 0) + 1);
+      expect(Math.max(0, ...loads.values())).toBeLessThanOrEqual(1);
+      expect(stream.stats().fallbackLeaves).toBe(0);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('asks once for ground past the edge of the data and does not report it', async () => {
+    const errors: unknown[] = [];
+    const asked: string[] = [];
+    const { stream, fly } = rig(
+      { onError: (error) => errors.push(error) },
+      {
+        async load(address) {
+          asked.push(terrainPyramidTileKey(address));
+          return address.x >= 12 ? undefined : flatTile(grid, address);
+        },
+      },
+    );
+    try {
+      await fly(100, 3);
+      expect(asked.filter((tile) => tile === key(12))).toHaveLength(1);
+      expect(errors).toHaveLength(0);
+    } finally {
+      stream.dispose();
+    }
+  });
+});
+
+describe('terrain selection at altitude', () => {
+  const d = descriptor({
+    rootSize: 2 ** 16,
+    minLevel: 4,
+    maxLevel: 10,
+    tileResolution: 257,
+    height: { min: 0, max: 5_000 },
+  });
+  const options = { maxScreenSpaceError: 3.5, viewDistance: 60_000, maxSelectedTiles: 512 };
+  const view = (altitude: number) => ({
+    position: [2 ** 15 + 100, altitude, 2 ** 15 + 100] as [number, number, number],
+    verticalFov: Math.PI / 3,
+    viewportHeight: 900,
+  });
+  const finest = (tiles: readonly TerrainPyramidTileAddress[]): number =>
+    Math.max(...tiles.map((tile) => tile.level));
+
+  it('measures height above the ground a tile holds, not above the height range', () => {
+    const ground = () => ({ min: 40, max: 60 });
+    const low = selectTerrainPyramidTiles(d, view(100), { ...options, tileHeight: ground });
+    const high = selectTerrainPyramidTiles(d, view(4_000), { ...options, tileHeight: ground });
+    expect(finest(low.tiles)).toBeGreaterThan(finest(high.tiles));
+    // The camera is inside the 0-5000 range, so without ground heights altitude changes nothing.
+    const blind = selectTerrainPyramidTiles(d, view(4_000), options);
+    expect(finest(blind.tiles)).toBe(finest(low.tiles));
+  });
+
+  it('lets a tile without heights use its nearest known ancestor', () => {
+    // Only the root tiles are known: everything beneath them has to inherit to stay coarse.
+    const tileHeight = (address: TerrainPyramidTileAddress) =>
+      address.level === d.minLevel ? { min: 40, max: 60 } : undefined;
+    const { tiles } = selectTerrainPyramidTiles(d, view(4_000), { ...options, tileHeight });
+    expect(finest(tiles)).toBeLessThan(10);
+  });
+
+  it('lets the stream refine by the real ground once it holds the tiles', async () => {
+    const stream = createTerrainPyramidStream(
+      d,
+      // Ground at 50 m on every tile, in the package's 0-5000 m encoding.
+      { load: async (address) => flatTile(d, address, 0.01) },
+      {
+        ...options,
+        viewDistance: 8_000,
+        maxSelectedTiles: 64,
+        maxSurfaceTileResolution: 3,
+        initialView: view(4_000),
+        maxConcurrentLoads: 8,
+        maxResidentTiles: 512,
+      },
+    );
+    try {
+      await stream.whenIdle();
+      // The opening selection had no ground to go on; the next one does.
+      for (let update = 0; update < 3; update++) {
+        stream.update(view(4_000));
+        await stream.whenIdle();
+      }
+      expect(stream.stats().maxDisplayedLevel).toBeLessThan(10);
+    } finally {
+      stream.dispose();
+    }
+  });
+});
+
+describe('heightfield extent', () => {
+  it('reports the ground it holds rather than its encoding range', () => {
+    const field = new Heightfield(new Float32Array([0.1, 0.2, 0.3, 0.4]), 2, 2, {
+      origin: [0, 0],
+      worldSize: [10, 10],
+      height: { min: 0, max: 1_000 },
+    });
+    const extent = field.heightExtent();
+    expect(extent.min).toBeCloseTo(100);
+    expect(extent.max).toBeCloseTo(400);
+  });
+});
+
+describe('hidden tiles', () => {
+  const d = descriptor({ maxLevel: 2 });
+
+  async function hideParent(): Promise<ReturnType<typeof createTerrainPyramidStream>> {
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 1,
+        viewDistance: 100,
+        maxSelectedTiles: 16,
+        maxConcurrentLoads: 4,
+        maxResidentTiles: 32,
+      },
+    );
+    await stream.whenIdle();
+    return stream;
+  }
+
+  it('leaves the scene graph, so a cached tile costs no per-frame traversal', async () => {
+    const stream = await hideParent();
+    try {
+      const resident = stream.residentTiles().map(terrainPyramidTileKey);
+      const displayed = stream.displayedTiles().map(terrainPyramidTileKey);
+      expect(resident.length).toBeGreaterThan(displayed.length);
+      const attached = stream.object.children.map((child) => child.name).sort();
+      expect(attached).toEqual(displayed.map((key) => `tile:${key}`).sort());
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('still counts their memory, and returns the same objects when shown again', async () => {
+    const stream = await hideParent();
+    try {
+      const child = stream.object.getObjectByName('tile:2/0/0');
+      expect(child).toBeDefined();
+      const allocated = stream.stats().geometryBytes;
+      expect(allocated).toBeGreaterThan(stream.pressure().displayedBytes * 0.5);
+      // Far away and back: everything near here is hidden, then shown again untouched.
+      stream.update({ ...VIEW, position: [14, 10, 14] });
+      await stream.whenIdle();
+      stream.update(VIEW);
+      await stream.whenIdle();
+      expect(stream.object.getObjectByName('tile:2/0/0')).toBe(child);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('resolves world matrices while away and refreshes them on return', async () => {
+    const groups: THREE.Group[] = [];
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 1,
+        viewDistance: 100,
+        maxSelectedTiles: 16,
+        maxConcurrentLoads: 4,
+        maxResidentTiles: 32,
+        createTileGroup() {
+          const group = new THREE.Group();
+          groups.push(group);
+          return group;
+        },
+      },
+    );
+    const world = new THREE.Group();
+    world.add(stream.object);
+    try {
+      await stream.whenIdle();
+      // The root stays resident behind its children.
+      const root = groups.find((group) => group.name === 'tile:0/0/0') as THREE.Group;
+      expect(stream.object.children).not.toContain(root);
+      // The floating origin moves while the tile is away.
+      world.position.set(2_000, 0, 0);
+      world.updateMatrix();
+      world.updateMatrixWorld(true);
+      // Upward walks still reach the world, as a layer preparing on a hidden tile needs.
+      expect(root.parent).toBe(stream.object);
+      root.updateWorldMatrix(true, false);
+      expect(root.matrixWorld.elements[12]).toBeCloseTo(2_000);
+      root.matrixWorld.elements[12] = 0;
+      stream.setBudget({ maxSelectedTiles: 1 });
+      await stream.whenIdle();
+      expect(stream.object.children).toContain(root);
+      world.updateMatrixWorld();
+      expect(root.matrixWorld.elements[12]).toBeCloseTo(2_000);
+    } finally {
+      stream.dispose();
+    }
+  });
+});
+
+describe('terrain work at speed', () => {
+  const d = descriptor({ rootSize: 4096, minLevel: 2, maxLevel: 5 });
+  const view = (x: number, y = 10) => ({
+    position: [x, y, 2048] as [number, number, number],
+    direction: [1, -0.1, 0] as [number, number, number],
+    aspect: 1.5,
+    verticalFov: 1,
+    viewportHeight: 720,
+  });
+  const options = {
+    maxScreenSpaceError: 1,
+    viewDistance: 1_000,
+    maxSelectedTiles: 64,
+    maxConcurrentLoads: 8,
+    maxResidentTiles: 512,
+  };
+  const source = { load: async (address: TerrainPyramidTileAddress) => flatTile(d, address, 0) };
+
+  it('stops refining at tiles the camera crosses too quickly, and refines again when it slows', async () => {
+    let now = 0;
+    let x = 1_000;
+    const stream = createTerrainPyramidStream(d, source, { ...options, now: () => now });
+    const fly = async (speed: number, seconds: number): Promise<void> => {
+      for (let step = 0; step < seconds * 10; step++) {
+        now += 100;
+        x += speed / 10;
+        stream.update(view(x));
+        await stream.whenIdle();
+      }
+    };
+    try {
+      await fly(0, 1);
+      expect(stream.stats().speedLevel).toBe(5);
+      // A level 5 tile is 128 across: crossed in 3.2 s at 40 per second, under the 5 s limit.
+      await fly(40, 3);
+      expect(stream.stats().speedLevel).toBe(4);
+      expect(stream.stats().maxDisplayedLevel).toBe(4);
+      await fly(0, 8);
+      expect(stream.stats().speedLevel).toBe(5);
+      expect(stream.stats().maxDisplayedLevel).toBe(5);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('holds a level limit against speed noise around the threshold', async () => {
+    let now = 0;
+    let x = 1_000;
+    const stream = createTerrainPyramidStream(d, source, { ...options, now: () => now });
+    try {
+      const seen = new Set<number>();
+      // 128 / 5 is 25.6 per second. Waver just either side of it once the limit has engaged.
+      for (let step = 0; step < 120; step++) {
+        now += 100;
+        const speed = step < 40 ? 40 : step % 2 === 0 ? 26 : 25;
+        x += speed / 10;
+        stream.update(view(x));
+        if (step >= 60) seen.add(stream.stats().speedLevel);
+        await stream.whenIdle();
+      }
+      expect([...seen]).toEqual([4]);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('restores detail right after a teleport, with no further updates', async () => {
+    let now = 0;
+    let x = 1_000;
+    const stream = createTerrainPyramidStream(d, source, { ...options, now: () => now });
+    try {
+      for (let step = 0; step < 30; step++) {
+        now += 100;
+        x += 4;
+        stream.update(view(x));
+        await stream.whenIdle();
+      }
+      expect(stream.stats().speedLevel).toBe(4);
+      // A jump too soon after the last update to measure as a speed, and nothing after it.
+      now += 2;
+      stream.update(view(3_500));
+      await stream.whenIdle();
+      expect(stream.stats().speedLevel).toBe(5);
+      expect(stream.stats().maxDisplayedLevel).toBe(5);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('restores detail for a host that stops updating when the camera stops', async () => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+    let now = 0;
+    let x = 1_000;
+    const stream = createTerrainPyramidStream(d, source, { ...options, now: () => now });
+    try {
+      for (let step = 0; step < 30; step++) {
+        now += 100;
+        x += 4;
+        stream.update(view(x));
+        await vi.advanceTimersByTimeAsync(10);
+      }
+      expect(stream.stats().speedLevel).toBe(4);
+      expect(stream.stats().cameraSpeed).toBeGreaterThan(30);
+      // The camera has arrived and nothing calls update again.
+      await vi.advanceTimersByTimeAsync(2_000);
+      expect(stream.stats().cameraSpeed).toBe(0);
+      expect(stream.stats().speedLevel).toBe(5);
+      expect(stream.stats().maxDisplayedLevel).toBe(5);
+    } finally {
+      stream.dispose();
+      vi.useRealTimers();
+    }
+  });
+
+  it('can be told not to limit detail at speed', async () => {
+    let now = 0;
+    let x = 1_000;
+    const stream = createTerrainPyramidStream(d, source, {
+      ...options,
+      now: () => now,
+      lookAhead: { minTileSeconds: 0 },
+    });
+    try {
+      for (let step = 0; step < 30; step++) {
+        now += 100;
+        x += 4;
+        stream.update(view(x));
+        await stream.whenIdle();
+      }
+      expect(stream.stats().speedLevel).toBe(5);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('honors a selection level limit below the descriptor', () => {
+    const { tiles } = selectTerrainPyramidTiles(d, view(2_000), {
+      maxScreenSpaceError: 1,
+      viewDistance: 1_000,
+      maxSelectedTiles: 64,
+      maxLevel: 3,
+    });
+    expect(Math.max(...tiles.map((tile) => tile.level))).toBe(3);
+  });
+
+  it('builds ahead only from spare capacity on the main thread', async () => {
+    let now = 0;
+    let x = 1_000;
+    const grid = descriptor({ rootSize: 4096, minLevel: 4, maxLevel: 4 });
+    const built: string[] = [];
+    let pending = 100;
+    const stream = createTerrainPyramidStream(
+      grid,
+      { load: async (address) => flatTile(grid, address, 0) },
+      {
+        ...options,
+        viewDistance: 600,
+        now: () => now,
+        admission: {
+          run: async (task) => task(),
+          get pending() {
+            return pending;
+          },
+        },
+        layers: [
+          {
+            id: 'detail',
+            category: 'human-feature',
+            createTile({ address }) {
+              built.push(terrainPyramidTileKey(address));
+              return new THREE.Group();
+            },
+          },
+        ],
+      },
+    );
+    const seen = new Set<string>();
+    const fly = async (seconds: number): Promise<void> => {
+      for (let step = 0; step < seconds * 10; step++) {
+        now += 100;
+        x += 10;
+        stream.update(view(x));
+        for (const tile of stream.displayedTiles()) seen.add(terrainPyramidTileKey(tile));
+        await stream.whenIdle();
+      }
+    };
+    try {
+      await fly(2);
+      expect(stream.stats().aheadTiles).toBeGreaterThan(0);
+      // Behind the backlog, only ground the camera has selected gets built.
+      expect(built.filter((key) => !seen.has(key))).toEqual([]);
+      pending = 0;
+      await fly(1);
+      expect(built.filter((key) => !seen.has(key)).length).toBeGreaterThan(0);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('lets a build finish into the cache when its tile falls out of the plan', async () => {
+    let finish: (object: THREE.Object3D) => void = () => {};
+    let signal: AbortSignal | undefined;
+    const grid = descriptor({ rootSize: 4096, minLevel: 4, maxLevel: 4 });
+    const stream = createTerrainPyramidStream(
+      grid,
+      { load: async (address) => flatTile(grid, address, 0) },
+      {
+        ...options,
+        viewDistance: 200,
+        maxConcurrentLayerLoads: 1,
+        initialView: view(1_100),
+        layers: [
+          {
+            id: 'detail',
+            category: 'human-feature',
+            createTile(context) {
+              signal = context.signal;
+              return new Promise<THREE.Object3D>((resolve) => {
+                finish = resolve;
+              });
+            },
+          },
+        ],
+      },
+    );
+    try {
+      while (signal === undefined) await new Promise((resolve) => setTimeout(resolve, 0));
+      // Far away: nothing near the first view is wanted now, but its worker job is already running.
+      stream.update(view(3_500));
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      expect(signal.aborted).toBe(false);
+      finish(new THREE.Group());
+    } finally {
+      stream.dispose();
     }
   });
 });

@@ -247,13 +247,65 @@
       "Selected panel boundaries, fasteners and markings are modeled; full maintenance-level skin details, exact intake curvature, inner engine machinery and all cockpit switch functions remain simplified."
     ]
   },
-  "sourceHash": "sha256:dbe48a0e1d328e57af6120615a9726dc9c3b1dd4d9d7b38b48d38ea71418f798",
-  "runtimeHash": "sha256:417ec7ea5267afd2291051940637316227c746f99d927093474e69c8a315b381",
+  "sourceHash": "sha256:934ae1b8beff1eac32aa002796b0c6d0cd1d75a98588076253cb4921453ff5bb",
+  "runtimeHash": "sha256:a08236f058b1dc00e8d55db8134bf5c572926a46a4e3e66edf1d3f031f79dcb3",
   "limitations": [
     "Shared-airframe illustrator three-view is Rafale B; C canopy is checked against an oblique photograph. The latter cannot certify dimensions, cross-sections or perspective-dependent tail alignment.",
     "Fox Three cockpit photograph is small and from an early installation. Display sizes, coaming depth, console switches and seat placement are approximations; no production-block or engineering-drawing accuracy is claimed.",
     "HLD and lateral screens show labeled simulator flight pages, without optical collimation or authentic mission software. Engine, fuel and sensor values remain unavailable rather than invented.",
     "TAS and geometric altitude are labeled; pitot/static instruments, radar, fuel/electrical systems and Rafale flight-control laws are not simulated. Gear retraction and control scheduling remain simplified.",
     "Selected panel boundaries, fasteners and markings are modeled; full maintenance-level skin details, exact intake curvature, inner engine machinery and all cockpit switch functions remain simplified."
-  ]
+  ],
+  "proportionReview": {
+    "date": "2026-11-06",
+    "outcome": "Measured and left alone.",
+    "method": "Drawing resampled into model metres and overlaid on the rasterized GLB, side view. No photograph solved.",
+    "calibration": {
+      "side": "Rafale B line drawing, 178 px/m from the 4.77 m wheelbase, level ground line; agrees with 15.3 m overall."
+    },
+    "landmarks": {
+      "finding": "Body, nose, fin and nozzles fall on the drawing. The canopy differs only because the drawing is the two-seat B."
+    },
+    "corrections": [],
+    "limitations": [
+      "No single-seat C outline was compared. Only the side view was checked."
+    ]
+  },
+  "cockpitSweep": {
+    "tool": "packages/entities/scripts/cockpit-sweep.mjs",
+    "finding": "The seat stood 0.91 m behind the eye. The panel wings, standby horizon, hood and tub walls stood outside the skin.",
+    "before": {
+      "outside": 76.0,
+      "horizon": 90.0,
+      "overNose": -10.0,
+      "headroom": 0.24,
+      "wall": 0.31,
+      "panel": 0.96,
+      "cushion": 1.5,
+      "seatback": 0.91,
+      "dial": 225.0,
+      "poked": 0.8
+    },
+    "after": {
+      "outside": 76.52,
+      "horizon": 90.24,
+      "overNose": -10,
+      "headroom": 0.24,
+      "wall": 0.31,
+      "panel": 0.96,
+      "cushion": 0.62,
+      "seatback": 0.18,
+      "dial": 224.87,
+      "poked": 0.2
+    },
+    "changes": [
+      "Seat forward 0.61 m and up 0.23 m, keeping its 29 degree recline; stick and throttles forward 0.25 m; armrests forward 0.28 m.",
+      "Panel wings narrowed from 0.48 to 0.43 m half-width, standby horizon moved inboard 0.045 m, side keys moved inboard, hood tapered, tub walls, floor and footwell drawn inside the skin."
+    ],
+    "limitations": [
+      "Seat, stick, pedal and throttle positions come from seated-eye ergonomic targets and cockpit photographs, not a dimensioned installation drawing.",
+      "On this reclined seat the straight seatback and cushion rays read low by geometry: 0.18 and 0.62 m correspond to an eye 0.30 m clear of the back along its normal.",
+      "The dial reading is the display heading rose, not a round instrument."
+    ]
+  }
 }

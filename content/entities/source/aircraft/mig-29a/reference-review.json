@@ -223,13 +223,71 @@
       "Gear and controls are simplified visual mechanisms. Seams and rivets are selective approximations, not a manufacturing fastener schedule. No external weapons, stores or unit markings."
     ]
   },
-  "sourceHash": "sha256:fe8e17c166231ac1bd7d4b2acc4070f2e59511b24199b88104699e9906fd890d",
-  "runtimeHash": "sha256:ecb458137c3258e1cda8ccd7c08b9bf6020d52f9bcf61df684ba28310648d14b",
+  "sourceHash": "sha256:4c85b3537300454934919a4e408997a263a7b2f6bfa5b6b03bb60371710a04a8",
+  "runtimeHash": "sha256:4b81d77f2f85e59ff469a69975986c74f9f08ebff46f89fa2970c0f8edfb4c83",
   "limitations": [
     "Exterior drawings are an illustrator reconstruction cross-checked against a manufacturer-derived service manual and museum photo; intake cross-sections and body stations remain approximations.",
     "Cockpit layout follows circa-1995 analog MiG-29 photographs with estimated dimensions and perspective/occlusion. English labels, dial calibrations and the blue/brown artificial horizon are simulator adaptations.",
     "Displays use true airspeed, geometric altitude and true heading; no pitot/static, magnetic compass, radar, fuel, engine-temperature/RPM, hydraulic, oxygen or failure-system simulation is implied. Unsupported readings are blank/INOP.",
     "HUD is physical structure without collimated symbology. Intake geometry is the fixed open-main-inlet/closed-upper-louver flight configuration; FOD ramps do not transition with ground operations.",
     "Gear and controls are simplified visual mechanisms. Seams and rivets are selective approximations, not a manufacturing fastener schedule. No external weapons, stores or unit markings."
-  ]
+  ],
+  "proportionReview": {
+    "date": "2026-11-06",
+    "outcome": "Measured and left alone.",
+    "method": "Drawing resampled into model metres and overlaid on the rasterized GLB, side view. No photograph solved.",
+    "calibration": {
+      "side": "Line drawing, 171 px/m; wheelbase 3.645 m and 16.28 m body length agree. Set level: leveling on its slightly tilted ground line drops the fin to 4.58 m, against 4.73 m published, while level gives 4.75 m."
+    },
+    "landmarks": {
+      "finding": "Crown, keel, canopy, inlet and fin fall on the drawing to within a line width when level."
+    },
+    "corrections": [],
+    "limitations": [
+      "Illustration checked against manual dimensions only. Only the side view was checked."
+    ]
+  },
+  "cockpitSweep": {
+    "tool": "packages/entities/scripts/cockpit-sweep.mjs",
+    "finding": "The seat stood 0.74 m behind the eye and the combiner top rail sat on the horizon line. The box at the right of the windscreen is real: MiG-29_cockpit_3.jpg shows the HUD control box there, beside the right combiner post. Its fault was being a bare plate with no body or mount.",
+    "before": {
+      "outside": 72.0,
+      "horizon": 90.0,
+      "overNose": 0.0,
+      "headroom": 0.24,
+      "wall": 0.32,
+      "panel": 0.87,
+      "cushion": 1.38,
+      "seatback": 0.74,
+      "dial": 105.0,
+      "poked": 0.2
+    },
+    "after": {
+      "outside": 71.7,
+      "horizon": 85.37,
+      "overNose": -12,
+      "headroom": 0.24,
+      "wall": 0.32,
+      "panel": 0.87,
+      "cushion": 0.79,
+      "seatback": 0.28,
+      "dial": 104.54,
+      "poked": 0.2
+    },
+    "changes": [
+      "Seat forward 0.36 m and up 0.25 m; stick forward 0.20 m and 0.16 m taller; throttles forward 0.36 m; consoles up 0.12 m; pedals aft 0.17 m.",
+      "Combiner top raised 0.08 m so its rail clears the horizon line. Tub walls moved in 0.01 m off the skin.",
+      "HUD control box kept at its photographed position and size, now a solid box on a bracket to the combiner post."
+    ],
+    "limitations": [
+      "Seat, stick, pedal and throttle positions come from seated-eye ergonomic targets and cockpit photographs, not a dimensioned installation drawing.",
+      "The control box face is generic: its knob layout is not traced from the photograph."
+    ],
+    "references": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/File:MiG-29_cockpit_3.jpg",
+        "use": "Identifies the dark box at the right of the windscreen as the HUD control box beside the right combiner post. Local copy in .artifacts/aircraft/references/mig-29a/, data only. License CC BY-SA 4.0, already listed in references."
+      }
+    ]
+  }
 }

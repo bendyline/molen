@@ -239,8 +239,8 @@
     ],
     "statesInspected": true
   },
-  "sourceHash": "sha256:55c2449bf5503f2c80f6a5251c5af94ddff10361d3742d27548f727504563d7f",
-  "runtimeHash": "sha256:03a2180b858d4161550f87f5e6f956899618beb45cb11ba7e27a22809324ce50",
+  "sourceHash": "sha256:1906114c136ded71d075fbf5751c66a3f9ff3c5097e6d42b4b4ac57f22a1eaf0",
+  "runtimeHash": "sha256:dd52b74ddccaa0b076a099127e74e51fbc582ace4d72db42b8fc3f8f93e859b8",
   "limitations": [
     "Factory three-view uses perspective renderings, with conflicting front projection: engine centers appear about +/-2.92 m versus printed wheel track and plan +/-2.6162 m; projected horizontal tail span is smaller and wing root higher. Printed span, track, height and 6-degree dihedral take precedence. No reference was stretched to hide residuals.",
     "Fin/roof, wing-tip/chord and tail-planform contour residuals remain. Polygonal cross-sections, fillets, nacelle transitions and rivet lines follow visible forms and panel divisions, not CAD or a manufacturing fastener map.",
@@ -283,5 +283,48 @@
       "sha256": "sha256:350f4a97264445997db644e49fa3abdc56ebd3c6d6cd1bd8a3b449ed3d6923d2",
       "inspected": true
     }
+  },
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "packages/entities/scripts/cockpit-sweep.mjs rays from pilotEye through source.glb, then seat, pitched-down and exterior nose renders inspected at the runtime camera (+Z, 60 degrees vertical).",
+    "before": {
+      "eye": [
+        0.34,
+        2.43,
+        1.9
+      ],
+      "outside": 31,
+      "horizon": 85,
+      "overNose": -6,
+      "headroom": 0.2,
+      "wall": 0.36,
+      "panel": 0.74,
+      "cushion": 0.89,
+      "seatback": 0.3,
+      "poked": 1.8
+    },
+    "after": {
+      "eye": [
+        0.34,
+        2.43,
+        1.9
+      ],
+      "outside": 38,
+      "horizon": 85,
+      "overNose": -6,
+      "headroom": 0.2,
+      "wall": 0.36,
+      "panel": 0.74,
+      "cushion": 0.82,
+      "seatback": 0.26,
+      "poked": 0
+    },
+    "corrections": [
+      "The black panel at top right was the overhead electrical panel, hanging 0.2 m below the ceiling. It keeps its size but now lies against the ceiling behind the windshield header, leaving only a thin band at the top of the view.",
+      "Crew seats raised 0.07 m."
+    ],
+    "limitations": [
+      "Overhead position follows the listed references and this inspection of the seat view; no King Air photograph was reopened for this pass."
+    ]
   }
 }

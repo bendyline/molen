@@ -4,8 +4,8 @@
 likeness. This batch does not meet the requested realistic exterior and cockpit standard.
 The shared parametric airframes were expanded before individual reference comparisons were
 completed. Technical validation and inspected reference contact sheets were incorrectly
-treated as sufficient evidence of visual fidelity. 43 aircraft have completed individual rework and review with documented limitations; the remaining 7 still require rework. See [the review record](aircraft-expansion-review.json) for the current hashes,
-specific Huey findings and the remaining comparison work.
+treated as sufficient evidence of visual fidelity. 43 aircraft have completed individual rework and review with documented limitations. The remaining 7 have rebuilt exteriors but no accepted cockpit comparison, so they stay in rework. See [the review record](aircraft-expansion-review.json) for the current hashes,
+specific Huey findings and the remaining comparison work, and the [proportion review](../PROPORTION-REVIEW.md) for the 2026-11-06 fleet audit.
 
 The rework now follows the exterior **and** interior
 [vehicle reference overlay goal](../../../docs-src/guide/medium-fi.md#vehicle-reference-overlays).
@@ -23,11 +23,11 @@ Original polygonal exteriors and integrated cockpits, authored 2026-10-22. This 
 
 Meter scale, +Y up, +Z forward, +X to the pilot's left, ground-contact origins. Rounded dimensions and proportions are model envelopes; masses and coefficients are assisted-simulation tuning. The style uses finite facets, material colors and original geometry, with zero photographic textures. Each model has a hollow cabin, pilot eye, seats and harnesses, model-specific display/analog arrangement, controls, cockpit framing, landing gear, engine/rotor details, lights, skin joints, selected rivet rows and original warning/type lettering. Animated controls, pointers, horizon cues and engines use stable named nodes. Panel labels and map/system displays are simplified diagrams; switches do not implement a full avionics system.
 
-The remaining 7 aircraft are parametric prototypes with unresolved silhouette and cockpit errors.
+The remaining 7 aircraft (737-800, A320neo, A220-300, E175, Dash 8-400, G650ER and CJ4) now have
+dedicated exteriors on `aircraft/transport-kit.mjs`, but their cockpits are refitted shared
+interiors that were not compared with each type, and their reference confidence varies.
 The individually reworked 43 use dedicated geometry, calibrated comparisons and recorded
 limitations; their current reference evidence is in each aircraft’s `reference-review.json`.
-The remaining common fuselage and panel construction still needs model-specific rework
-before fine surface detail is useful.
 Cabin furnishings beyond the flight deck and working cargo ramps are outside this batch.
 No new aircraft-specific engine audio is included.
 
@@ -107,7 +107,7 @@ Primary technical references checked for representative aircraft: [USAF C-17 fac
 
 ## Controls and powered lift
 
-Every type has aircraft physics, input/state, a mountable pilot seat and exterior/cockpit cameras. In World Explorer choose **Aircraft catalog**, visit and press **E**. Direct links use the ID suffix, for example `?aircraft=uh_1h`, `?aircraft=f_14d`, `?aircraft=mv_22b`. **I** starts engines, **Shift/Ctrl** changes power, **W/S** pitch, **A/D** bank, **Q/Z** pedals, **G** gear, **F** flaps, **V** view.
+Every type has aircraft physics, input/state, a mountable pilot seat and exterior/cockpit cameras. In World Explorer choose **Aircraft catalog**, visit and press **E**. Direct links use the ID suffix, for example `?aircraft=uh_1h`, `?aircraft=f_14d`, `?aircraft=mv_22b`. **I** starts engines, **=/-** changes power, **W/S** pitch, **A/D** bank, **Q/Z** pedals, **G** gear, **F** flaps, **V** view.
 
 **J** cycles Osprey/Harrier vector angle 0°, 22.5°, 45°, 67.5°, 90°, then forward again. The actual actuator drives both forces and visible nacelles/nozzles. Hover authority requires engine thrust and fades with axial airspeed. Fixed gear stays down. Conversion is a game approximation: no certified conversion envelope, cross-shaft model, hot-gas ingestion or vortex-ring simulation. The practice runway extends to 4,500 m to accommodate the heavier transports.
 
@@ -117,4 +117,4 @@ The authoritative configuration is [aircraft-expansion.json](aircraft-expansion.
 
 `node packages/entities/scripts/generate-aircraft.mjs --ids=uh-1h,f-16b` rebuilds selected bundles; one ID plus `--out .artifacts/candidate.glb` writes an isolated candidate. Import using `molen asset import <source.glb> --id <type-id> --project content/entities/project.json --force`, inspect with `molen asset inspect <type-id> --project content/entities/project.json --verify`, then `node packages/entities/scripts/generate-models.mjs` refreshes the aggregate catalog.
 
-Review: `node packages/entities/scripts/capture-fleet.mjs --ids=<slugs> --report=.artifacts/aircraft/captures.json` captures four turntable angles plus lit exterior, pilot and wide cockpit views with antialiasing, shadows and reflections. `preview-fleet.mjs --ids=<slugs>` makes the per-model summary previews. Bulk captures remain ignored. [aircraft-expansion-review.json](aircraft-expansion-review.json) records current source/runtime/capture hashes, measurements and validation.
+Review: `node packages/entities/scripts/capture-fleet.mjs --ids=<slugs> --report=.artifacts/aircraft/captures.json` captures four turntable angles plus lit exterior, pilot and wide cockpit views with antialiasing, shadows and reflections. `preview-fleet.mjs --ids=<slugs>` makes the per-model summary previews. `lineup-fleet.mjs --ids=<slugs> --out=.artifacts/lineups/<name>.png` draws a true-scale side-on line-up for proportion review. Bulk captures remain ignored. [aircraft-expansion-review.json](aircraft-expansion-review.json) records current source/runtime/capture hashes, measurements and validation.

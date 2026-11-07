@@ -496,8 +496,9 @@ offline.
 With a byte cache the view also prefetches. It follows the camera's own track, so it works for an
 orbit pan, a car and an aircraft alike. It places virtual views 20, 40 and 60 seconds ahead,
 selects their tiles the way the stream would, and reads those archive tiles into the cache. It
-reads bytes only and decodes nothing, two reads at a time, only while the stream has a free load
-slot, and pauses when the page is hidden, offline or on Save-Data. It waits out camera animations
+reads bytes only and decodes nothing, two reads at a time, only while the stream has a free terrain
+load slot, and pauses when the page is hidden, offline or on Save-Data. The stream itself builds
+the tiles the next 20 seconds of the track reach (see the terrain guide's moving cameras). It waits out camera animations
 (a fly-to, getting into a vehicle), whose momentary speed is not travel, and never looks more than
 15 km ahead. Tune it with `prefetch` (`horizonSeconds`, `stepsSeconds`, `maxConcurrent`,
 `maxDistanceMeters`), or turn it off with `prefetch: false`. A host
@@ -1037,7 +1038,8 @@ These regional forms are visual priors, not surveyed attributes of individual bu
   192–768 MiB, or 256 MiB on touch devices and 512 MiB elsewhere without a report. Above 1 the
   level steps down, and since stepping down selects fewer, coarser tiles, pressure falls rather
   than cascading to the minimum. The terrain cache keeps at least the budget, so ground just left
-  is still warm when the view pans back.
+  is still warm when the view pans back. `earthTerrainBudget(tierBudget, memoryBudget)` and
+  `earthWorldgenCacheBytes` give a host of its own the same limits.
 - `stats().worldgen` counts styled building generation since the current terrain stream started
   (with content packs): tiles generated, buildings drawn as geometry, and instanced stand-ins.
 - Window blur and hidden tabs automatically pause simulation, rendering, queued GPU preparation,

@@ -286,9 +286,17 @@ For an identified real vehicle, the review must compare the actual geometry with
    mast, wing roots, glazing corners, roof breaks, intakes and tail junctions. Distinguish
    body length from overall length including rotors, propellers or appendages. Record the
    measurements and discrepancies; do not claim an overlay comparison if none was made.
+   Printed drawings are rarely one scale: calibrate each axis from its own dimension bar, trust
+   an annotated dimension over a drawn one, and settle a conflict with a matched photograph
+   whose camera is solved from landmarks other than the ones being tested.
 3. Correct the silhouette, cross sections, openings and major panel shapes before adding
    rivets, lettering or small controls. Shared generators may supply construction utilities;
    a generic body scaled to published dimensions is not an aircraft-specific airframe.
+   Matching length, width and height proves nothing about shape: judge the hood height, belt
+   line, roof end, forebody depth and canopy against the body they sit on, in a true-scale
+   side-on line-up of the whole class. In the engine repository,
+   `packages/entities/scripts/lineup-fleet.mjs` draws one. A part that looks oversized is often
+   correct on a body that is undersized, so measure both before changing either.
 4. Compare the operator view and wide cabin with the correct variant's references. Aim for
    overlays of the panel face and cabin sections where drawings exist, and matched-camera
    overlays for photographs. Verify panel outline, depth and tilt, instrument positions and

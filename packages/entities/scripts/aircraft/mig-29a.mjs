@@ -1102,20 +1102,22 @@ function mig29Cockpit(root, m) {
   hud.rotation.x = -0.14;
   const hp = [
     [-0.13, 0, 0],
-    [-0.15, 0.22, 0],
-    [-0.12, 0.29, 0],
-    [0, 0.31, 0],
-    [0.12, 0.29, 0],
-    [0.15, 0.22, 0],
+    [-0.15, 0.3, 0],
+    [-0.12, 0.37, 0],
+    [0, 0.39, 0],
+    [0.12, 0.37, 0],
+    [0.15, 0.3, 0],
     [0.13, 0, 0],
   ];
   sheet(hd, hp, m.glass, [0, 0, -1]);
   outline(hd, hp, 0.007, trim);
   hd.box([0.27, 0.09, 0.28], [0, -0.04, 0.13], trim);
   for (const side of [-1, 1])
-    hd.rod([side * 0.14, -0.035, 0.04], [side * 0.15, 0.23, 0], 0.011, trim);
+    hd.rod([side * 0.14, -0.035, 0.04], [side * 0.15, 0.31, 0], 0.011, trim);
   hd.finish();
-  sheet(d, rect(-0.24, 2.9, 0.13, 0.18, 0.1), trim, [0, 0, -1]);
+  // The photographs put this box in the windscreen beside the right combiner post, on a bracket.
+  d.box([0.13, 0.18, 0.07], [-0.24, 2.9, z + 0.125], trim);
+  d.box([0.05, 0.03, 0.03], [-0.16, 2.87, z + 0.13], trim);
   for (let i = 0; i < 3; i++)
     for (let j = 0; j < 3; j++)
       d.add(new T.CylinderGeometry(0.009, 0.011, 0.014, 10).rotateX(Math.PI / 2), black, [
@@ -1125,7 +1127,7 @@ function mig29Cockpit(root, m) {
       ]);
   // Lower switch strips and gray consoles are angled toward the pilot.
   for (const side of [-1, 1]) {
-    const g = group(cabin, `MiG29-console-${side}`, [side * 0.37, 2.12, 3.94]);
+    const g = group(cabin, `MiG29-console-${side}`, [side * 0.37, 2.24, 3.94]);
     g.rotation.x = Math.PI / 2;
     const gd = detailKit(g, g.name);
     for (let i = 0; i < 4; i++) {
@@ -1184,17 +1186,17 @@ function mig29Cockpit(root, m) {
   for (const side of [-1, 1]) {
     quad(
       d,
-      [side * 0.44, 1.57, 3.02],
-      [side * 0.44, 1.57, 5.1],
-      [side * 0.44, 2.5, 5.1],
-      [side * 0.44, 2.5, 3.02],
+      [side * 0.43, 1.57, 3.02],
+      [side * 0.43, 1.57, 5.1],
+      [side * 0.43, 2.5, 5.1],
+      [side * 0.43, 2.5, 3.02],
       panel,
       [-side, 0, 0],
     );
-    d.box([0.18, 0.16, 1.5], [side * 0.37, 2.02, 3.94], panel);
+    d.box([0.18, 0.28, 1.5], [side * 0.37, 2.08, 3.94], panel);
   }
   // K-36 style seat, prominent side head supports and two red lower ejection handles.
-  const seat = group(cabin, 'MiG29-K36-seat', [0, 1.78, 3.7]),
+  const seat = group(cabin, 'MiG29-K36-seat', [0, 2.03, 4.06]),
     sd = detailKit(seat, seat.name);
   seat.rotation.x = -0.26;
   beveledBox(sd, [0.48, 0.14, 0.56], [0, 0.06, 0.04], trim, 0.03);
@@ -1211,18 +1213,18 @@ function mig29Cockpit(root, m) {
   }
   sd.box([0.065, 0.045, 0.025], [0, 0.24, 0.22], m.metal);
   sd.finish();
-  const stick = group(cabin, 'MiG29-stick', [0, 1.72, 4.35]),
+  const stick = group(cabin, 'MiG29-stick', [0, 1.72, 4.55]),
     st = detailKit(stick, stick.name);
   st.add(new T.CylinderGeometry(0.065, 0.085, 0.1, 16), black, [0, 0.05, 0]);
-  st.rod([0, 0.07, 0], [0, 0.43, -0.075], 0.024, black);
-  beveledBox(st, [0.075, 0.19, 0.08], [0, 0.5, -0.085], trim, 0.014);
-  beveledBox(st, [0.16, 0.11, 0.07], [0, 0.61, -0.09], trim, 0.016);
+  st.rod([0, 0.07, 0], [0, 0.59, -0.075], 0.024, black);
+  beveledBox(st, [0.075, 0.19, 0.08], [0, 0.66, -0.085], trim, 0.014);
+  beveledBox(st, [0.16, 0.11, 0.07], [0, 0.77, -0.09], trim, 0.016);
   for (const [xx, yy, rr, color] of [
-    [-0.052, 0.62, 0.018, red],
-    [0, 0.635, 0.022, black],
-    [0.052, 0.62, 0.018, ins.sky],
-    [-0.03, 0.57, 0.02, black],
-    [0.025, 0.56, 0.014, ink],
+    [-0.052, 0.78, 0.018, red],
+    [0, 0.795, 0.022, black],
+    [0.052, 0.78, 0.018, ins.sky],
+    [-0.03, 0.73, 0.02, black],
+    [0.025, 0.72, 0.014, ink],
   ]) {
     st.add(new T.CylinderGeometry(rr, rr, 0.012, 12).rotateX(Math.PI / 2), color, [xx, yy, -0.135]);
     st.ring(rr + 0.003, 0.002, [xx, yy, -0.142], m.metal);
@@ -1233,7 +1235,7 @@ function mig29Cockpit(root, m) {
     { node: stick.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.14 },
   );
   for (const side of [-1, 1]) {
-    const th = group(cabin, `MiG29-throttle-${side}`, [0.36 + side * 0.032, 2.13, 3.8]),
+    const th = group(cabin, `MiG29-throttle-${side}`, [0.36 + side * 0.032, 2.25, 4.16]),
       td = detailKit(th, th.name);
     td.rod([0, 0, 0], [0, 0.11, 0], 0.011, black);
     beveledBox(td, [0.055, 0.07, 0.14], [0, 0.145, 0], trim, 0.012);
@@ -1246,7 +1248,7 @@ function mig29Cockpit(root, m) {
       scale: 0.6,
       offset: -0.3,
     });
-    const pg = group(cabin, `MiG29-pedal-${side}`, [side * 0.15, 1.78, 4.95]),
+    const pg = group(cabin, `MiG29-pedal-${side}`, [side * 0.15, 1.8, 4.78]),
       pd = detailKit(pg, pg.name);
     pd.box([0.13, 0.19, 0.025], [0, 0, 0], m.metal);
     for (let j = 0; j < 5; j++)

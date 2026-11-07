@@ -25,8 +25,8 @@ export const av8Frame = () => ({
   ry: 0.83,
   cabinZ: 3.95,
   cabinWidth: 0.84,
-  eye: [0, 3.14, 3.95],
-  panelZ: 4.75,
+  eye: [0, 3.02, 3.95],
+  panelZ: 4.65,
   floor: 1.95,
 });
 function slopeWing(geometry) {
@@ -659,7 +659,7 @@ function av8Cockpit(root, m) {
   // FO-1 crop coordinates, uniform estimated panel width. Absolute panel dimensions
   // are not provided by this foldout; see the stated limitation in its review.
   const k = 0.00094,
-    z = 4.75,
+    z = 4.65,
     at = (u, v, dz = 0) => [(535 - u) * k, 2.4 + (400 - v) * k, z + dz];
   const rect = (u, v, w, h, dz = 0) =>
       [
@@ -677,8 +677,8 @@ function av8Cockpit(root, m) {
     text = (t, u, v, h = 8, material = ink, role = 'panel') =>
       d.text(t, at(u, v, -0.033), h * k, Math.PI, material, role);
   const edge = [
-    [110, 400],
-    [110, 280],
+    [125, 400],
+    [125, 280],
     [145, 155],
     [210, 60],
     [290, 20],
@@ -687,8 +687,8 @@ function av8Cockpit(root, m) {
     [760, 20],
     [840, 65],
     [905, 155],
-    [953, 280],
-    [953, 418],
+    [945, 280],
+    [945, 418],
     [922, 418],
     [922, 534],
     [642, 534],
@@ -703,7 +703,7 @@ function av8Cockpit(root, m) {
     edge.map((p) => at(...p)),
     panel,
     [0, 0, -1],
-    [circle(570, 396, 38), rect(285, 256, 148, 112)],
+    [circle(570, 396, 38), rect(285, 256, 122, 92)],
   );
   outline(
     d,
@@ -715,7 +715,15 @@ function av8Cockpit(root, m) {
   for (let j = 0; j < arc.length - 1; j++) {
     const a = at(...arc[j]),
       b = at(...arc[j + 1]);
-    quad(d, a, b, [b[0], b[1] - 0.02, z + 0.23], [a[0], a[1] - 0.02, z + 0.23], black, [0, 1, 0]);
+    quad(
+      d,
+      a,
+      b,
+      [b[0] * 0.78, b[1] - 0.02, z + 0.23],
+      [a[0] * 0.78, a[1] - 0.02, z + 0.23],
+      black,
+      [0, 1, 0],
+    );
   }
   function screen(u, v, w, h, hole = false) {
     sheet(
@@ -723,7 +731,7 @@ function av8Cockpit(root, m) {
       rect(u, v, w, h, -0.008),
       black,
       [0, 0, -1],
-      hole ? [rect(u, v - 3, 148, 112, -0.008)] : [],
+      hole ? [rect(u, v - 3, 122, 92, -0.008)] : [],
     );
     for (const side of [-1, 1])
       for (let j = 0; j < 6; j++) {
@@ -733,7 +741,7 @@ function av8Cockpit(root, m) {
   }
   screen(285, 259, 220, 226, true);
   screen(778, 264, 223, 226);
-  ins.horizon('MPCD-attitude', at(285, 256, 0.012), 148 * k, 112 * k, { blankBackdrop: true });
+  ins.horizon('MPCD-attitude', at(285, 256, 0.012), 122 * k, 92 * k, { blankBackdrop: true });
   ins.readout('MPCD-speed', at(246, 331, -0.034), 'knots', 3, 0.012, green);
   text('TAS', 246, 315, 7, green, 'display');
   ins.readout('MPCD-altitude', at(330, 331, -0.034), 'feet', 5, 0.009, green, true, true);
@@ -928,21 +936,21 @@ function av8Cockpit(root, m) {
       );
       text(labels[j], u, v - 17, 6);
     }
-  box(897, 667, 103, 231);
+  box(872, 667, 103, 231);
   for (let row = 0; row < 12; row++)
     for (let col = 0; col < 2; col++) {
-      box(871 + col * 51, 568 + row * 17, 45, 12, panel);
-      text('--', 871 + col * 51, 568 + row * 17, 4, ink, 'display');
+      box(847 + col * 51, 568 + row * 17, 45, 12, panel);
+      text('--', 847 + col * 51, 568 + row * 17, 4, ink, 'display');
     }
   // Lower side panels, distinct from the center pedestal: gear/flap controls left,
   // V/STOL/radio-altimeter controls right. Detached foldout details are not copied twice.
   for (const [edge, label, u, v] of [
     [
       [
-        [70, 720],
+        [135, 720],
         [272, 710],
         [272, 920],
-        [45, 920],
+        [135, 920],
       ],
       'GEAR / FLAPS',
       180,
@@ -962,9 +970,8 @@ function av8Cockpit(root, m) {
     [
       [
         [833, 551],
-        [951, 551],
-        [1090, 704],
-        [1090, 790],
+        [925, 551],
+        [925, 790],
         [833, 790],
       ],
       'CAUTION',
@@ -995,7 +1002,7 @@ function av8Cockpit(root, m) {
   for (const [u, v] of [
     [248, 766],
     [248, 814],
-    [116, 851],
+    [152, 851],
     [741, 830],
     [792, 830],
     [741, 885],
@@ -1008,7 +1015,7 @@ function av8Cockpit(root, m) {
     d.rod(at(u, v - 3, -0.04), at(u, v + 3, -0.04), 0.001, ink);
   }
   box(209, 871, 28, 45, m.metal);
-  text('ANTI SKID', 111, 830, 5);
+  text('ANTI SKID', 165, 830, 5);
   const gearLever = group(cabin, 'AV8-gear-lever', at(211, 874, -0.055)),
     gld = detailKit(gearLever, gearLever.name);
   gld.rod([0, 0, 0], [0, 0.035, -0.018], 0.004, m.metal);
@@ -1024,8 +1031,8 @@ function av8Cockpit(root, m) {
   });
   for (const [u, v, label] of [
     [781, 680, 'BRAKE'],
-    [1014, 746, 'HYD'],
-    [1007, 323, 'RWR'],
+    [781, 746, 'HYD'],
+    [918, 323, 'RWR'],
   ]) {
     pt.gauge(...at(u, v).slice(0, 2), z - 0.01, 32 * k, black, false);
     text(label, u, v - 6, 6);
@@ -1051,17 +1058,17 @@ function av8Cockpit(root, m) {
   // Physical combiner and triangulated supports; HUD symbology is not collimated yet.
   const hud = [
     [430, 4],
-    [438, -132],
-    [470, -153],
-    [602, -153],
-    [634, -132],
+    [438, -262],
+    [470, -283],
+    [602, -283],
+    [634, -262],
     [642, 4],
   ].map((p) => at(...p, -0.09));
   sheet(d, hud, m.glass, [0, 0, -1]);
   outline(d, hud, 0.004, black);
   for (const side of [-1, 1]) {
-    d.rod(at(535 + side * 106, 4, -0.1), at(535 + side * 98, -128, -0.1), 0.008, m.metal);
-    d.rod(at(535 + side * 106, 4, 0.1), at(535 + side * 98, -128, -0.1), 0.007, black);
+    d.rod(at(535 + side * 106, 4, -0.1), at(535 + side * 98, -258, -0.1), 0.008, m.metal);
+    d.rod(at(535 + side * 106, 4, 0.1), at(535 + side * 98, -258, -0.1), 0.007, black);
   }
   d.box([0.8, 0.03, 2.2], [0, 1.95, 3.65], black);
   for (const side of [-1, 1]) {
@@ -1127,14 +1134,14 @@ function av8Cockpit(root, m) {
     cd.finish();
   }
   // SJU-4-style seat structure, harness and center stick. Detail dimensions are estimates.
-  const sg = group(cabin, 'AV8-seat', [0, 2.15, 3.44]);
+  const sg = group(cabin, 'AV8-seat', [0, 2.14, 3.78]);
   sg.rotation.x = -0.18;
   const sd = detailKit(sg, sg.name);
   beveledBox(sd, [0.43, 0.12, 0.48], [0, 0, 0.2], seat);
   beveledBox(sd, [0.43, 0.66, 0.13], [0, 0.37, -0.07], seat);
   beveledBox(sd, [0.28, 0.26, 0.17], [0, 0.87, -0.09], black);
   for (const side of [-1, 1]) {
-    sd.rod([side * 0.23, -0.1, -0.16], [side * 0.23, 1.01, -0.16], 0.023, m.metal);
+    sd.rod([side * 0.23, -0.1, -0.16], [side * 0.23, 0.93, -0.16], 0.023, m.metal);
     sheet(
       sd,
       [
@@ -1151,12 +1158,12 @@ function av8Cockpit(root, m) {
   sd.box([0.055, 0.04, 0.025], [0, 0.12, 0.16], m.metal);
   sd.ring(0.045, 0.008, [0, 0.13, 0.43], amber);
   sd.finish();
-  const stick = group(cabin, 'AV8-stick', [0, 2.0, 4.06]),
+  const stick = group(cabin, 'AV8-stick', [0, 2.0, 4.3]),
     st = detailKit(stick, stick.name);
-  st.rod([0, 0, 0], [0, 0.3, -0.04], 0.021, black);
-  beveledBox(st, [0.07, 0.12, 0.07], [0, 0.36, -0.05], black, 0.009);
+  st.rod([0, 0, 0], [0, 0.42, -0.05], 0.021, black);
+  beveledBox(st, [0.07, 0.12, 0.07], [0, 0.48, -0.06], black, 0.009);
   for (const x of [-0.024, 0.024])
-    st.add(new T.SphereGeometry(0.009, 8, 4), panel, [x, 0.4, -0.085]);
+    st.add(new T.SphereGeometry(0.009, 8, 4), panel, [x, 0.52, -0.095]);
   st.finish();
   bindings.push(
     { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.22 },
@@ -1166,7 +1173,7 @@ function av8Cockpit(root, m) {
     ['throttle', 0.29, 'power', 0.7],
     ['nozzle-lever', 0.38, 'thrustVector', -0.9],
   ]) {
-    const g = group(cabin, `AV8-${name}`, [x, 2.29, 3.83]),
+    const g = group(cabin, `AV8-${name}`, [x, 2.29, 4.14]),
       dd = detailKit(g, g.name);
     dd.rod([0, 0, 0], [0, 0.12, 0], 0.01, m.metal);
     dd.box([0.055, 0.04, 0.065], [0, 0.13, 0], black);
@@ -1181,7 +1188,7 @@ function av8Cockpit(root, m) {
     });
   }
   for (const side of [-1, 1]) {
-    const g = group(cabin, `AV8-pedal-${side}`, [side * 0.13, 2.02, 4.85]),
+    const g = group(cabin, `AV8-pedal-${side}`, [side * 0.13, 2.06, 4.6]),
       dd = detailKit(g, g.name);
     dd.box([0.12, 0.14, 0.025], [0, 0, 0], m.metal);
     for (let j = 0; j < 5; j++) dd.box([0.1, 0.005, 0.004], [0, -0.05 + j * 0.025, -0.017], black);

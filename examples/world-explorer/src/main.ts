@@ -52,7 +52,9 @@ import {
   earthPixelRatio,
   earthQualityLevel,
   earthShadowFocus,
+  earthTerrainBudget,
   earthTerrainCacheBudget,
+  earthWorldgenCacheBytes,
   observeSemanticTiles,
   regionalEarthAttribution,
   SemanticTileBuffer,
@@ -106,6 +108,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { airportStart } from './airport-start.js';
 import { startExplorerAudio } from './audio.js';
+import { autopilotOptions, autopilotPose } from './autopilot.js';
 import { selectedAntialias, selectedRendererBackend } from './backend-options.js';
 import { type ExplorerWorldgenContent, loadExplorerContent } from './content.js';
 import { createExplorerDioramas, DIORAMA_SITES, selectedDiorama } from './dioramas.js';
@@ -124,6 +127,10 @@ import { syntheticFeatureTile, syntheticLandcoverTile } from './synthetic-footpr
 import { createWeatherControls } from './weather-controls.js';
 import { AIRCRAFT_HELP, aircraftBlocks, WorldAircraft } from './world-aircraft.js';
 import { PARACHUTE_HELP, WorldParachute } from './world-parachute.js';
+
+// TEMP-AB-INSTANCING
+(globalThis as { __molenPlainInstancing?: boolean }).__molenPlainInstancing =
+  new URLSearchParams(location.search).get('plainInstancing') === '1';
 
 const DEMO_LEVEL = 13;
 const DEMO_MIN_LEVEL = 8;
@@ -410,6 +417,7 @@ function createSyntheticAdaptiveLayers(options: {
   stores: PlacesContent | undefined;
   houses: boolean;
   parking: boolean;
+  uses: boolean;
   surfaceRenderer: TerrainSurfaceRenderer;
   renderers: WorldgenSemanticRenderers | undefined;
 }): TerrainPyramidTileLayer[] {
@@ -423,11 +431,13 @@ function createSyntheticAdaptiveLayers(options: {
         load: async (address) =>
           options.parking
             ? syntheticFeatureTile(address, { parking: true })
-            : options.houses
-              ? syntheticFeatureTile(address, { houses: true })
-              : options.stores !== undefined && address.level === DEMO_LEVEL
-                ? syntheticFeatureTile(address, { stores: options.stores })
-                : syntheticLandcoverTile(address),
+            : options.uses
+              ? syntheticFeatureTile(address, { uses: true })
+              : options.houses
+                ? syntheticFeatureTile(address, { houses: true })
+                : options.stores !== undefined && address.level === DEMO_LEVEL
+                  ? syntheticFeatureTile(address, { stores: options.stores })
+                  : syntheticLandcoverTile(address),
       },
       renderer:
         options.renderers?.classification ??
@@ -454,6 +464,7 @@ function createSyntheticAdaptiveLayers(options: {
               : {}),
             houses: options.houses,
             parking: options.parking,
+            uses: options.uses,
           }),
       },
       renderer:
@@ -763,7 +774,11 @@ async function main(): Promise<void> {
   let automaticQuality =
     !params.has('level') && (!params.has('quality') || params.get('quality') === 'auto');
   let performanceLevel = automaticQuality ? 3 : earthQualityLevel(quality);
+  // `?tier=N` holds one adaptive tier, for measurements that compare like with like.
+  const pinnedTier = params.has('tier') ? Number(params.get('tier')) : undefined;
+  if (pinnedTier !== undefined) performanceLevel = pinnedTier;
   const qualityController = createExplorerQualityController(performanceLevel);
+  if (pinnedTier !== undefined) qualityController.setBounds(pinnedTier, pinnedTier);
   const memoryBudget = earthMemoryBudget();
   // The tier's object error; the frame loop scales it with height above the ground.
   let objectPixelError = automaticQuality
@@ -792,10 +807,16 @@ async function main(): Promise<void> {
     (x, z) => roadSigns?.profileAt(x, z),
     content.roadSigns?.shields,
   );
-  const pyramidBudget = earthTerrainCacheBudget(
-    automaticQuality
-      ? earthPerformanceTier(performanceLevel).terrain
-      : terrainPyramidBudgetForQuality(quality),
+  // Manual quality keeps automatic quality's preparation capacity (earthTerrainCacheBudget), and
+  // ground just left stays warm up to the device budget, with ground a little past the view
+  // loaded for a turn (earthTerrainBudget).
+  const pyramidBudget = earthTerrainBudget(
+    earthTerrainCacheBudget(
+      automaticQuality
+        ? earthPerformanceTier(performanceLevel).terrain
+        : terrainPyramidBudgetForQuality(quality),
+      memoryBudget,
+    ),
     memoryBudget,
   );
   const fixedBudget = terrainStreamBudgetForQuality(quality);
@@ -814,6 +835,9 @@ async function main(): Promise<void> {
     admission: {
       ...earthAdmission(selectedRendererBackend(params), false),
       onSample: (sample) => {
+        graphics.total('admission-jobs', 1);
+        graphics.total('admission-work-ms', sample.workMs);
+        graphics.total(`admission-work-ms:${sample.label}`, sample.workMs);
         graphics.record(sample.label, sample.workMs);
         graphics.record(
           sample.background ? 'admission-wait-background' : 'admission-wait',
@@ -1077,6 +1101,7 @@ async function main(): Promise<void> {
         stores: params.has('stores') ? content.worldgen?.places : undefined,
         houses: params.has('houses'),
         parking: params.has('parking'),
+        uses: params.has('uses'),
         renderers: worldgen,
         surfaceRenderer,
       })
@@ -1221,6 +1246,11 @@ async function main(): Promise<void> {
           : {}),
         onElevationTiming: (sample) =>
           graphics.record(`elevation-${sample.stage}`, sample.milliseconds),
+        onLayerTiming: (sample) => {
+          graphics.record(`${sample.layerId}-create`, sample.createMs);
+          graphics.record(`${sample.layerId}-prepare`, sample.prepareMs);
+          graphics.record(`${sample.layerId}-publish`, sample.publishMs);
+        },
         ...(params.get('admission') !== '0' ? { admission: viewer.renderer.admission } : {}),
         ...(params.get('warmup') !== '0'
           ? {
@@ -1377,10 +1407,18 @@ async function main(): Promise<void> {
         performanceStatus.dataset.level = String(performanceLevel);
         performanceStatus.dataset.maxPixels = automaticQuality ? String(tier.maxPixels) : '';
       },
-      () => pyramidEarth?.stream.setBudget(earthTerrainCacheBudget(budget, memoryBudget)),
+      () =>
+        pyramidEarth?.stream.setBudget(
+          earthTerrainBudget(earthTerrainCacheBudget(budget, memoryBudget), memoryBudget),
+        ),
       () => {
         worldgen?.setQuality(stepQuality);
-        worldgen?.setCacheBudget(automaticQuality ? tier.cacheBytes : 192 * 1024 * 1024);
+        worldgen?.setCacheBudget(
+          earthWorldgenCacheBytes(
+            automaticQuality ? tier.cacheBytes : 192 * 1024 * 1024,
+            memoryBudget,
+          ),
+        );
       },
       () => {
         void surfaceRenderer
@@ -1487,6 +1525,24 @@ async function main(): Promise<void> {
   });
   if (selectedDiorama(params.get('diorama')) !== undefined || params.get('mode') === 'human')
     setMode('human');
+  /** A lift asked for a storey; the walker moves once the streamer has built it. */
+  let ride: { identity: string; level: number; floors: number[] } | undefined;
+  const liftStatus = (feet: { x: number; y: number; z: number }): string | undefined => {
+    const stop = worldgen?.elevatorAt([feet.x, feet.y, feet.z]);
+    if (!stop) return undefined;
+    const floor =
+      (ride?.level ?? stop.level) === 0 ? 'Lobby' : `Floor ${ride?.level ?? stop.level}`;
+    return `Lift · ${floor} of ${stop.floors.length - 1} · E up · Q down`;
+  };
+  /** Step a lift one storey up or down, from where it is headed; false off a lift. */
+  const rideLift = (step: 1 | -1): boolean => {
+    const stop = worldgen?.elevatorAt([walker.feet.x, walker.feet.y, walker.feet.z]);
+    if (!stop) return false;
+    const count = stop.floors.length;
+    const level = ((ride?.level ?? stop.level) + step + count) % count;
+    ride = { identity: stop.identity, level, floors: stop.floors };
+    return true;
+  };
   const walker = new WalkController();
   // A full scan of the streamed scene each frame was the walk mode's largest fixed cost; 5 Hz
   // rescans still catch streamed changes, and placement forces one.
@@ -1686,6 +1742,8 @@ async function main(): Promise<void> {
     const leaving = flight.mountedKind ? flight.bailOut(eject) : undefined;
     if (!leaving) {
       if (flight.mountedKind) flight.exitHint();
+      // Panel buttons bail out on a refused exit, before they would hand focus back themselves.
+      canvas.focus();
       return false;
     }
     // Not the ordinary exit's complaint, now that the pilot is out.
@@ -1827,6 +1885,8 @@ async function main(): Promise<void> {
   }
   const interact = (): void => {
     if (navigation !== 'walk' || parachute.active || (!vehicles.mountedId && !walker.ready)) return;
+    // Standing in a lift, E takes it up a storey rather than reaching for a vehicle.
+    if (!vehicles.mountedId && rideLift(1)) return;
     if (vehicles.mountedId) {
       const car = vehicles.mountedId;
       // Out through the door, which shuts once the walker moves off.
@@ -1868,6 +1928,9 @@ async function main(): Promise<void> {
     )
       return;
     if (event.code === 'KeyB' && !flight.mountedKind && !vehicles.mountedId) spawnBoat();
+    // Q takes a lift down a storey; walk binds no other action to it.
+    if (event.code === 'KeyQ' && navigation === 'walk' && walker.ready && !vehicles.mountedId)
+      rideLift(-1);
     if (event.code === 'KeyR' && !flight.mountedKind && !vehicles.mountedId)
       viewer.renderer.setWorldOrigin([camera.pos[0], 0, camera.pos[2]]);
     if (
@@ -1911,6 +1974,31 @@ async function main(): Promise<void> {
   // desktop down to the lowest level before the visitor had moved.
   let qualitySettled = false;
   const qualityGraceUntil = performance.now() + 20_000;
+  const autopilot = autopilotOptions(params);
+  const autopilotOrigin: [number, number, number] = [...camera.pos];
+  const autopilotYaw = camera.yaw;
+  let autopilotClock: number | undefined;
+  if (autopilot !== undefined) {
+    // What a measurement reads from the page, a few times a second.
+    const probe = globalThis as { molenFlightProbe?: unknown; molenFlightReport?: unknown };
+    // Light enough to run four times a second without changing what it measures.
+    probe.molenFlightProbe = () => ({
+      position: [...camera.pos],
+      tier: performanceLevel,
+      tierReason: qualityController.getStats().reason,
+      rendered: viewer.renderer.stats(),
+      loading: pyramidEarth?.stream.loading(),
+      pressure: pyramidEarth?.stream.pressure(),
+      coverage: pyramidEarth?.stream.viewCoverage([2_000, 5_000, 10_000, 20_000]),
+    });
+    // Walks every resident object: for the start and end of a flight, not during it.
+    (globalThis as { __molenViewer?: unknown }).__molenViewer = viewer; // TEMP-AB-INSTANCING
+    probe.molenFlightReport = () => ({
+      stats: pyramidEarth?.stream.stats(),
+      worldgen: worldgen?.stats(),
+      graphics: graphics.snapshot(),
+    });
+  }
   canvas.addEventListener('webglcontextlost', () => {
     lastGpuMs = undefined;
   });
@@ -2170,6 +2258,12 @@ async function main(): Promise<void> {
           walker.place(walkCollision, sampleHeight);
         }
       }
+      if (ride && worldgen?.requestStorey(ride.identity, ride.level)) {
+        walker.feet.y = (ride.floors[ride.level] as number) + 0.02;
+        walker.velocity.set(0, 0, 0);
+        walkCollision.invalidate();
+        ride = undefined;
+      }
       walker.update(
         dt,
         {
@@ -2211,6 +2305,19 @@ async function main(): Promise<void> {
           camera.pos = previousFlyPosition;
         } else if (ground !== undefined && camera.pos[1] < ground + 2) camera.pos[1] = ground + 2;
       }
+    }
+    if (autopilot !== undefined && navigation === 'fly') {
+      autopilotClock ??= now;
+      const pose = autopilotPose(
+        autopilot,
+        autopilotOrigin,
+        autopilotYaw,
+        (now - autopilotClock) / 1000,
+      );
+      camera.pos = pose.position;
+      camera.yaw = pose.yaw;
+      camera.pitch = pose.pitch;
+      viewDirection = cameraForward(camera.yaw, camera.pitch);
     }
     // Keep the inexpensive 10 Hz cadence while the view barely changes, but refresh before this
     // frame renders if a drag or movement could outrun the selector's view guard band. Otherwise
@@ -2550,7 +2657,8 @@ async function main(): Promise<void> {
                           ? 'Waiting for terrain…'
                           : walker.swimming
                             ? 'Swimming · Return to shore to walk'
-                            : `Walk mode · ${WALK_EYE_HEIGHT.toFixed(1)}m eye height · ${walker.grounded ? 'On ground' : 'In air'}`
+                            : (liftStatus(walker.feet) ??
+                              `Walk mode · ${WALK_EYE_HEIGHT.toFixed(1)}m eye height · ${walker.grounded ? 'On ground' : 'In air'}`)
                       : 'Fly mode · Explore from above')));
       if (navigationStatus.textContent !== navigationText)
         navigationStatus.textContent = navigationText;
@@ -2652,6 +2760,11 @@ async function main(): Promise<void> {
             ]
           : []),
         `${fallbackSummary} · ${stats.evictions} evicted · ${(stats.decodedSamples / 1_000_000).toFixed(2)}M samples`,
+        ...(adaptiveStats === undefined
+          ? []
+          : [
+              `ahead ${adaptiveStats.aheadReady}/${adaptiveStats.aheadTiles} tiles built · ${adaptiveStats.rebuiltTiles}/${adaptiveStats.builtTiles} rebuilt · ${adaptiveStats.cameraSpeed.toFixed(0)} m/s, finest level ${adaptiveStats.speedLevel}`,
+            ]),
         `geometry ${(stats.geometryBytes / 1_048_576).toFixed(1)}MiB · ${(stats.triangles / 1_000).toFixed(0)}k triangles`,
         `${stats.drawCalls} draws · ${stats.instances} instances`,
         `layers ${stats.layerObjects} objects · ${adaptiveStats?.retryingLayers ?? 0} retrying · ${stats.failedLayers} failed · origin ${origin[0].toFixed(0)}, ${origin[2].toFixed(0)}m`,

@@ -1,30 +1,36 @@
 # OH-6A visual references
 
-This model targets the original four-bladed OH-6A Cayuse. Reference photographs were retrieved
-and inspected for this pass. In the engine repository, the downloaded originals are in
-`.artifacts/aircraft-realism/references/`; they are authoring references, not runtime textures.
+This model targets the original four-bladed OH-6A Cayuse. Downloads are authoring references kept
+in `.artifacts/aircraft/references/oh-6/`, never runtime textures. No photograph or drawing is
+embedded in a GLB. Measurements, the photo overlay and limitations are in
+[reference-review.json](reference-review.json).
 
-- [Hughes OH-6A Cayuse (369A), photograph by David Miller](https://commons.wikimedia.org/wiki/File:Hughes_OH-6A_Cayuse_(369A).jpg).
-  Local image: `oh6a-exterior.jpg`. Reference for the egg cabin, arched front door and separate
-  aft glazing, narrow transmission fairing, four main blades, tapered boom, original braced
-  stabilizer/fin and low curved skid cross-tubes. The image is a restored military aircraft;
-  the model's serial stencil is illustrative, not an airframe identification.
-  Attribution and license are recorded on the linked Commons file page.
-- [Bill Maloney: American Helicopter Museum OH-6A photo walkaround](https://www.williammaloney.com/Aviation/AmericanHelicopterMuseum/HughesOH6ACayuseHelicopter/index.htm), photographed 22 May 2008.
-  Downloaded files: `01HughesOH6ACayuse.jpg`, `03HughesOH6ACockpit.jpg`,
-  `04HughesOH6AInstrumentPanel.jpg`, `05HughesOH6AAftCabin.jpg`,
-  `06HughesOH6ARotorHub.jpg`, `07HughesOH6ATailSection.jpg`,
-  `07HughesOH6AJetExhaust.jpg`. Images remain copyrighted by their owner and are used only
-  for inspection. They show the narrow panel and pedestal, curved tubular cyclics, exposed
-  seat frames, central controls, mechanical rotor head, angled tail brace and rear-facing
-  exhaust mouth with a divider. This museum aircraft has civilian modifications: panel
-  details are interpreted as an analog OH-6A layout rather than a copy of its radios/livery.
-- [Connecticut Air & Space Center: 1967 OH-6A](https://www.ctairandspace.org/oh-6).
-  Cross-check for the four-bladed main rotor and the aircraft variant.
+Dimensions and station data:
 
-The generator authors the geometry and printing from scratch. No photograph is embedded in a GLB.
-The pedestal is a reference-informed approximation, not a serial-specific panel. Engine/system
-instruments, radio and most switches are visual; the existing airspeed, altitude, heading,
-climb, rotor RPM, attitude, cyclic and collective pivots remain live. The rear seat is simplified.
-The tail surfaces are the original braced arrangement; this is not a five-bladed MD-500D or a
-later military Little Bird cockpit.
+- [TM 55-1520-214-23, Aviation Unit and Intermediate Maintenance Manual, OH-6A](https://archive.org/details/micro_IA41152603_0197).
+  Figure 1-2 principal dimensions, figure 2-16 canopy installation, figure 2-20 body structure,
+  figure 2-59 and para 2-405 tail surfaces, para 2-182 seats. It gives 8 ft 4.3 in and 8 ft 6 in,
+  which replace both the commonly published 8 ft 1.5 in (2.48 m) and the model's previous 2.65 m.
+- [Harris, preliminary vibration survey of an OH-6A, NPS thesis, figure 5](https://commons.wikimedia.org/wiki/File:Preliminary_vibration_survey_of_a_suspended_full-scale_OH-6A_helicopter_from_0_to_45_HZ_(IA_preliminaryvibra00harr).pdf).
+  Annotated station and waterline diagram, traced for the body, boom, doors and tail tables.
+
+Photographs:
+
+- [Hughes OH-6A Cayuse (369A), David Miller](https://commons.wikimedia.org/wiki/File:Hughes_OH-6A_Cayuse_(369A).jpg),
+  CC BY 2.0. N67PB on its skids, used for the matched-camera overlay. Its markings are not copied;
+  the model's serial stencil is illustrative.
+- [Florida Air Museum OH-6A, right side](https://commons.wikimedia.org/wiki/File:Hughes_OH-6A_Cayuse_RSide_FLAirMuse_SNF_Setup_17April09_(15139588450).jpg)
+  with its head-on and rear companions, CC BY 2.0. Section shape, vent panel, exhaust face.
+- [OH-6 in flight, right side](https://commons.wikimedia.org/wiki/File:OH-6_Right_side.jpg), public
+  domain. Tail arrangement and skids.
+- [Bill Maloney: American Helicopter Museum OH-6A walkaround](https://www.williammaloney.com/Aviation/AmericanHelicopterMuseum/HughesOH6ACayuseHelicopter/index.htm),
+  22 May 2008. Copyrighted, used only for inspection. Instrument panel, cyclics, rotor head and
+  exhaust. This aircraft has civil modifications, so panel details are interpreted, not copied.
+- [Connecticut Air & Space Center: 1967 OH-6A](https://www.ctairandspace.org/oh-6). Cross-check for
+  the four-bladed main rotor and the variant.
+
+Rejected: the [Commons orthographic image](https://commons.wikimedia.org/wiki/File:Hughes_OH-6_orthographical_image.svg)
+has views that disagree in scale.
+
+Engine and system instruments, radio and most switches are visual; the airspeed, altitude, heading,
+climb, rotor RPM, attitude, cyclic and collective pivots remain live.

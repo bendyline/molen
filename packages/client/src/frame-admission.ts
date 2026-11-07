@@ -23,6 +23,8 @@ export interface AdmissionSample {
 }
 export interface SceneAdmission {
   run<T>(task: () => T, options?: AdmissionOptions): Promise<T>;
+  /** Jobs waiting, where the queue can say, so optional work can hold off behind a backlog. */
+  readonly pending?: number;
 }
 export interface FrameAdmissionOptions {
   maxMilliseconds?: number;
@@ -49,6 +51,8 @@ export class FrameAdmissionQueue implements SceneAdmission {
   private scheduled = false;
   private disposed = false;
   private paused = false;
+  /** Milliseconds past its budget the last flush ran, repaid from the frames after it. */
+  private overrunMs = 0;
   private readonly clock: () => number;
   private readonly schedule: (callback: () => void) => void;
   private maxMs: number;
@@ -163,9 +167,21 @@ export class FrameAdmissionQueue implements SceneAdmission {
       this.flush();
     });
   }
-  /** One frame's budget. Exposed for hosts with a manual frame loop and deterministic tests. */
+  /**
+   * One frame's budget. Exposed for hosts with a manual frame loop and deterministic tests.
+   *
+   * A job cannot be split, so one can take several frames' budget by itself, and a queue of them
+   * would hold every frame at that length however small the budget. A frame that overruns repays
+   * the excess from the frames after it, so the budget holds on average: a 20 ms shader build
+   * every third frame, rather than every frame at half the frame rate, for the same throughput.
+   */
   flush(): void {
     if (this.disposed || this.paused) return;
+    if (this.overrunMs > 0) {
+      this.overrunMs = Math.max(0, this.overrunMs - this.maxMs);
+      this.request();
+      return;
+    }
     const start = this.clock();
     let bytes = 0,
       count = 0;
@@ -247,6 +263,8 @@ export class FrameAdmissionQueue implements SceneAdmission {
         background: next.options.priority === 'background',
       });
     }
+    // With nothing waiting there is nothing to pace.
+    this.overrunMs = this.pending > 0 ? Math.max(0, this.clock() - start - this.maxMs) : 0;
     this.request();
   }
   dispose(): void {

@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import {
   createParkedVehicleBatch,
+  createParkedVehicleInstances,
   createVehicleVisual,
   isParkedVehicleHidden,
   setParkedVehicleHidden,
@@ -290,5 +291,51 @@ describe('vehicle visuals', () => {
     expect(center(1)).toEqual([3, 0]);
     expect(setParkedVehicleHidden(mesh, 9, true)).toBe(false);
     mesh.geometry.dispose();
+  });
+});
+
+describe('instanced parked vehicles', () => {
+  const car = (id: string, x: number, length = SPEC.length): VehiclePlacement => ({
+    id,
+    kind: 'car',
+    color: '#914c40',
+    spec: { ...SPEC, length },
+    position: [x, 3, 20],
+    yaw: 0,
+  });
+  it('draws one mesh per body size, owning ids the way a merged batch does', () => {
+    const group = createParkedVehicleInstances(
+      [car('a', 10), car('b', 14), car('c', 18, 5.2)],
+      [10, 20],
+    );
+    const meshes = group.children as THREE.InstancedMesh[];
+    expect(meshes).toHaveLength(2);
+    expect(meshes[0]?.userData.vehicleIds).toEqual(['a', 'b']);
+    expect(meshes[1]?.userData.vehicleIds).toEqual(['c']);
+    expect(meshes[0]?.count).toBe(2);
+    const matrix = new THREE.Matrix4();
+    meshes[0]?.getMatrixAt(1, matrix);
+    // Local to the origin, with the height as given: a car on a deck, not at the ground.
+    expect(new THREE.Vector3().setFromMatrixPosition(matrix).toArray()).toEqual([4, 3, 0]);
+  });
+  it('hides an instance to a point and restores it', () => {
+    const [mesh] = createParkedVehicleInstances([car('a', 10), car('b', 14)]).children as [
+      THREE.InstancedMesh,
+    ];
+    const before = new THREE.Matrix4();
+    mesh.getMatrixAt(1, before);
+    const version = mesh.instanceMatrix.version;
+    expect(setParkedVehicleHidden(mesh, 1, true)).toBe(true);
+    expect(setParkedVehicleHidden(mesh, 1, true)).toBe(false);
+    expect(isParkedVehicleHidden(mesh, 1)).toBe(true);
+    expect(mesh.instanceMatrix.version).toBeGreaterThan(version);
+    const hidden = new THREE.Matrix4();
+    mesh.getMatrixAt(1, hidden);
+    expect(hidden.elements.every((value) => value === 0)).toBe(true);
+    expect(setParkedVehicleHidden(mesh, 1, false)).toBe(true);
+    const restored = new THREE.Matrix4();
+    mesh.getMatrixAt(1, restored);
+    expect(restored.equals(before)).toBe(true);
+    expect(setParkedVehicleHidden(mesh, 9, true)).toBe(false);
   });
 });

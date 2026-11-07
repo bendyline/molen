@@ -29,7 +29,7 @@ export const cirrusFrame = () => ({
   ry: 0.72,
   cabinZ: 0.45,
   cabinWidth: 1.25222,
-  eye: [0.31, 1.89, 0.45],
+  eye: [0.31, 1.82, 0.45],
   panelZ: 1.16,
   floor: 0.72,
 });
@@ -472,10 +472,10 @@ export function buildCirrus(s) {
       ]);
     const fair = [
       [z + 0.34, 0.018, r * 0.9, r * 1.15],
-      [z + 0.26, 0.1, r * 0.62, r * 1.65],
-      [z + 0.12, 0.145, r * 0.4, r * 2.0],
-      [z - 0.1, 0.15, r * 0.4, r * 1.85],
-      [z - 0.33, 0.085, r * 0.65, r * 1.45],
+      [z + 0.26, 0.1, r * 0.62, r * 1.72],
+      [z + 0.12, 0.145, r * 0.4, r * 2.22],
+      [z - 0.1, 0.15, r * 0.4, r * 2.22],
+      [z - 0.33, 0.085, r * 0.65, r * 1.55],
       [z - 0.53, 0.012, r * 0.9, r * 1.1],
     ].map(([zz, w, b, t]) => ({
       z: zz,
@@ -560,7 +560,7 @@ function cockpit(root, m) {
   // Factory 2020 photograph: 180px active display width, 12-inch 4:3 diagonal.
   const k = 0.24384 / 180,
     px = (u) => (740 - u) * k,
-    py = (v) => 1.65 - (v - 167) * k,
+    py = (v) => 1.54 - (v - 167) * k,
     z = 1.16,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz];
   const rect = (x, y, w, h, zz = z) => [
@@ -606,7 +606,7 @@ function cockpit(root, m) {
   for (let i = 0; i < brow.length - 1; i++) {
     const a = brow[i],
       b = brow[i + 1];
-    quad(d, a, b, [b[0] * 0.85, 1.5, 1.5], [a[0] * 0.85, 1.5, 1.5], m.dark, [0, 1, 0]);
+    quad(d, a, b, [b[0] * 0.82, 1.58, 1.42], [a[0] * 0.82, 1.58, 1.42], m.dark, [0, 1, 0]);
   }
   for (const [n, [x, y]] of centers.entries()) {
     sheet(
@@ -748,7 +748,7 @@ function cockpit(root, m) {
   );
   d.text('TAS GEO', [md[0] - 0.04, md[1] + 0.019, z - 0.037], 0.0035, Math.PI, ink);
   pt.knob(md[0] + 0.005, md[1] - 0.028, z - 0.043, 0.006);
-  const pedestal = group(cabin, 'Cirrus-console', [0, 1.15, 1.27]),
+  const pedestal = group(cabin, 'Cirrus-console', [0, 1.05, 1.27]),
     cd = detailKit(pedestal, pedestal.name);
   beveledBox(cd, [0.19, 0.44, 0.16], [0, 0.18, 0], m.dark, 0.018);
   cd.finish();
@@ -861,7 +861,7 @@ function cockpit(root, m) {
   d.rod([0, 1.014, 0.27], [0.026, 1.014, 0.28], 0.007, red);
   for (const side of [-1, 1]) {
     // A Cirrus side yoke translates for pitch and rotates about its shaft for roll.
-    const g = group(cabin, `Cirrus-side-yoke-${side}`, [side * 0.56, 1.32, 0.86]),
+    const g = group(cabin, `Cirrus-side-yoke-${side}`, [side * 0.56, 1.25, 0.86]),
       yd = detailKit(g, g.name);
     yd.rod([0, 0, 0.13], [0, 0, -0.05], 0.025, m.metal);
     yd.rod([0, 0, -0.06], [-side * 0.055, 0.11, -0.11], 0.027, m.dark);
@@ -891,8 +891,9 @@ function cockpit(root, m) {
     beveledBox(d, [0.035, 0.3, 1.4], [side * 0.61, 1.04, 0.13], leather, 0.01);
     d.rod([side * 0.585, 1.16, -0.13], [side * 0.585, 1.16, 0.5], 0.025, m.dark);
     d.box([0.02, 0.03, 0.14], [side * 0.578, 1.11, 0.27], m.metal);
-    d.box([0.24, 0.015, 0.23], [side * 0.3, 1.95, 0.54], m.dark);
-    d.rod([side * 0.4, 1.96, 0.56], [side * 0.41, 2.01, 0.56], 0.006, m.metal);
+    // Sun visors stow flat against the headliner, behind the top of the windscreen.
+    d.box([0.24, 0.01, 0.23], [side * 0.3, 2, 0.54], m.dark);
+    d.rod([side * 0.4, 2, 0.56], [side * 0.405, 2.018, 0.56], 0.006, m.metal);
   }
   d.box([1.2, 0.035, 2.28], [0, 0.72, 0.06], m.dark);
   // Five-seat cabin: two deeply bolstered front seats and a rear 60/40 bench with center belt.

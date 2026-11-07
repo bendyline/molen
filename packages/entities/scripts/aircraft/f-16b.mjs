@@ -56,15 +56,15 @@ export function buildF16B(s) {
     bindings = [],
     flaps = [],
     ailerons = [];
-  // Per-station fuselage sections: the intake is a separate hollow duct below it.
+  // Per-station fuselage sections: the intake is a separate hollow duct below it. Radome rows are
+  // from the SAC plan (54.7 px/m) and inboard profile (93.5 px/m): the nose is a full ogive, not a
+  // needle, 0.53 m deep and 0.54 m wide two metres back from the pitot base.
   const stations = [
-    // Ogival radome, slightly wider than deep (three-view: 0.62 x 0.45m at 8.25, 0.9 x 0.69m
-    // at 7.6), so the nose is not a needle in plan or profile.
-    [8.8, 0.02, 1.61, 1.67],
-    [8.25, 0.31, 1.5, 1.955],
-    [7.6, 0.45, 1.465, 2.16],
-    [7.03, 0.52, 1.47, 2.31],
-    [6.45, 0.55, 1.44, 2.35],
+    [8.8, 0.015, 1.6, 1.65],
+    [8.25, 0.27, 1.47, 1.9],
+    [7.6, 0.42, 1.43, 2.09],
+    [7.03, 0.5, 1.44, 2.235],
+    [6.45, 0.57, 1.44, 2.35],
     [5.65, 0.59, 1.43, 2.43],
     [4.75, 0.61, 1.43, 2.46],
     [3.5, 0.63, 1.41, 2.46],
@@ -260,7 +260,13 @@ export function buildF16B(s) {
     );
     fd.finish();
     const signal = `flaperon${side === 1 ? 'Left' : 'Right'}`;
-    bindings.push({ node: fg.name, source: signal, property: 'rotation', axis: 'x', scale: 1 });
+    bindings.push({
+      node: fg.name,
+      source: signal,
+      property: 'rotation',
+      axis: 'x',
+      scale: 1,
+    });
     // Empty slender wingtip fittings are airframe geometry; no stores or pylons.
     d.box([0.11, 0.11, 1.55], [x(4.64), 1.92, -1.05], paint);
     for (const f of [0, 0.42, 0.8]) {
@@ -368,7 +374,13 @@ export function buildF16B(s) {
       [side, 0, 0],
     );
   rd.finish();
-  bindings.push({ node: rg.name, source: 'yawInput', property: 'rotation', axis: 'y', scale: 0.4 });
+  bindings.push({
+    node: rg.name,
+    source: 'yawInput',
+    property: 'rotation',
+    axis: 'y',
+    scale: 0.4,
+  });
   // Petal nozzle, internal tunnel and recessed turbine disk. No luminous fake flame.
   const nr = [
     [-5.23, 0.51],
@@ -512,17 +524,33 @@ export function buildF16B(s) {
     rollDeflection: { op: 'multiply', args: ['rollInput', 0.3] },
     pitchDeflection: { op: 'multiply', args: ['pitchInput', 0.32] },
     tailRollDeflection: { op: 'multiply', args: ['rollInput', 0.12] },
-    flaperonLeft: { op: 'subtract', args: ['flapDeflection', 'rollDeflection'] },
+    flaperonLeft: {
+      op: 'subtract',
+      args: ['flapDeflection', 'rollDeflection'],
+    },
     flaperonRight: { op: 'add', args: ['flapDeflection', 'rollDeflection'] },
-    stabilatorLeft: { op: 'subtract', args: ['pitchDeflection', 'tailRollDeflection'] },
-    stabilatorRight: { op: 'add', args: ['pitchDeflection', 'tailRollDeflection'] },
+    stabilatorLeft: {
+      op: 'subtract',
+      args: ['pitchDeflection', 'tailRollDeflection'],
+    },
+    stabilatorRight: {
+      op: 'add',
+      args: ['pitchDeflection', 'tailRollDeflection'],
+    },
   };
   interior.derived = derived;
   return {
     root,
     frame: f16Frame(),
     enginePoints: [{ id: 'engine-1', position: [0, 1.86, -4.6] }],
-    visual: { rotors: [], gearNodes: [], flaps, ailerons, animation: { bindings }, interior },
+    visual: {
+      rotors: [],
+      gearNodes: [],
+      flaps,
+      ailerons,
+      animation: { bindings },
+      interior,
+    },
     modelSignals: {
       sources: interior.sources,
       derived,
@@ -799,7 +827,15 @@ function f16Cockpits(root, m) {
       ],
       [-6000, -2000, 0, 2000, 6000],
       '1000 FPM',
-      { tickLabels: { '-6000': '-6', '-2000': '-2', 0: '0', 2000: '2', 6000: '6' } },
+      {
+        tickLabels: {
+          '-6000': '-6',
+          '-2000': '-2',
+          0: '0',
+          2000: '2',
+          6000: '6',
+        },
+      },
     );
     // Fixed front HUD controls; the rear has a handgrip and a second CRT, not a duplicate HUD.
     if (!rear) {
@@ -825,14 +861,16 @@ function f16Cockpits(root, m) {
       d.text('HUD', at(770, 437, -0.046), 0.009, Math.PI, ink);
       const hud = [
         [665, 371],
-        [668, 203],
-        [685, 192],
-        [854, 192],
-        [871, 203],
+        [668, 45],
+        [685, 34],
+        [854, 34],
+        [871, 45],
         [876, 371],
       ].map(([u, v]) => at(u, v, 0.11));
       sheet(d, hud, m.glass, [0, 0, -1]);
-      outline(d, hud, 0.007, m.dark);
+      // Side rails only: a frame across the top would sit on the horizon line.
+      outline(d, hud.slice(0, 3), 0.007, m.dark, false);
+      outline(d, hud.slice(3), 0.007, m.dark, false);
       d.box([0.09, 0.035, 0.12], at(769, 360, 0.08), m.dark);
       // The glare shield wraps the panel and closes the forward cockpit well.
       sheet(
@@ -992,7 +1030,11 @@ function f16Cockpits(root, m) {
         }
       }
     }
-    const sg = group(cabin, `F16-${prefix}-seat`, [0, base + 0.48, seatZ + 0.55]);
+    const sg = group(cabin, `F16-${prefix}-seat`, [
+      0,
+      base + (rear ? 0.48 : 0.49),
+      seatZ + (rear ? 0.55 : 0.4),
+    ]);
     sg.rotation.x = -Math.PI / 6;
     const sd = detailKit(sg, sg.name);
     beveledBox(sd, [0.47, 0.1, 0.45], [0, 0, 0.12], seat);
@@ -1014,7 +1056,7 @@ function f16Cockpits(root, m) {
     }
     sd.box([0.07, 0.04, 0.02], [0, 0.12, 0.05], m.metal);
     sd.finish();
-    const stick = group(cabin, `F16-${prefix}-sidestick`, [-0.365, base + 0.43, seatZ + 0.28]),
+    const stick = group(cabin, `F16-${prefix}-sidestick`, [-0.365, base + 0.43, seatZ + 0.55]),
       dd = detailKit(stick, stick.name);
     dd.rod([0, 0, 0], [0, 0.15, 0.015], 0.017, m.dark);
     dd.box([0.045, 0.055, 0.055], [0, 0.16, 0.015], m.dark);
@@ -1022,10 +1064,22 @@ function f16Cockpits(root, m) {
     dd.finish();
     // Force stick has only millimetres of visual deflection, not a center-stick arc.
     bindings.push(
-      { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.025 },
-      { node: stick.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.025 },
+      {
+        node: stick.name,
+        source: 'pitchInput',
+        property: 'rotation',
+        axis: 'x',
+        scale: -0.025,
+      },
+      {
+        node: stick.name,
+        source: 'rollInput',
+        property: 'rotation',
+        axis: 'z',
+        scale: 0.025,
+      },
     );
-    const throttle = group(cabin, `F16-${prefix}-throttle`, [0.38, base + 0.4, seatZ + 0.3]),
+    const throttle = group(cabin, `F16-${prefix}-throttle`, [0.38, base + 0.4, seatZ + 0.45]),
       td = detailKit(throttle, throttle.name);
     td.box([0.055, 0.07, 0.06], [0, 0.045, 0], m.dark);
     td.finish();
@@ -1060,7 +1114,12 @@ function f16Cockpits(root, m) {
         ld = detailKit(lamp, lamp.name);
       ld.box([0.012, 0.012, 0.004], [0, 0, 0], d.green);
       ld.finish();
-      bindings.push({ node: lamp.name, source: 'gearDown', property: 'visible', scale: 1 });
+      bindings.push({
+        node: lamp.name,
+        source: 'gearDown',
+        property: 'visible',
+        scale: 1,
+      });
     }
   }
   // Dark inner tub panels close the aperture down to the floor, leaving no view through skin seams.

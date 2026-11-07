@@ -104,7 +104,11 @@ export interface EarthVehiclesOptions {
    * stepped inside {@link EarthVehicles.update}.
    */
   world?: World;
-  /** Streamed scene whose visible tiles carry parked-car placements (`userData.vehicles`). */
+  /**
+   * Streamed scene. Groups under it tagged `'parked-vehicles'` (`tagTerrainObject`) carry
+   * parked-car placements: `userData.vehicles`, or for a crowd too large to keep as entities,
+   * `userData.vehiclesNear(position)`.
+   */
   root: THREE.Object3D;
   /** Ground height at world X/Z, or undefined while unloaded. */
   sampleHeight: (x: number, z: number) => number | undefined;
@@ -211,7 +215,7 @@ export class EarthVehicles {
     if (!this.world.exists(PLAYER))
       this.world.spawnRaw({ transform: { pos: [0, 0, 0], rot: [0, 0, 0, 1] } }, PLAYER);
     this.environment = {
-      groundHeight: (x, z) => this.support(x, z),
+      groundHeight: (x, z, y) => this.support(x, z, y),
       contacts: (probes, id) =>
         vehicleObstacleContacts(probes, {
           origin: this.collision.origin,
@@ -280,17 +284,28 @@ export class EarthVehicles {
     this.lastSync = now;
     this.water.sync();
     const resident = new Map<string, VehiclePlacement>();
-    const batches: THREE.Mesh[] = [];
+    // A set: a tagged group can sit under another (a garage under its tile), and a batch seen
+    // twice would hide its cars.
+    const batches = new Set<THREE.Mesh>();
     // The surface groups the terrain tagged as holding parked cars, shown under this root, and
     // their visible batches: walking the whole visible scene for them, five times a second, was
-    // up to 28 ms of a frame over a town at High detail.
+    // up to 28 ms of a frame over a town at High detail. A tagged group with a crowd too large to
+    // keep as entities (a garage's stalls) offers only the cars near the observer or the mounted
+    // vehicle, through `userData.vehiclesNear`.
+    const mounted = this.mountedId;
+    const subject = observer ?? (mounted ? this.world.get(mounted, Transform)?.pos : undefined);
     for (const group of taggedTerrainObjects('parked-vehicles')) {
       if (!shownUnder(group, this.root)) continue;
       for (const p of (group.userData.vehicles ?? []) as VehiclePlacement[])
         if (!resident.has(p.id)) resident.set(p.id, p);
+      const crowd = group.userData.vehiclesNear as
+        | ((position: readonly [number, number, number]) => readonly VehiclePlacement[])
+        | undefined;
+      if (crowd && subject)
+        for (const p of crowd(subject)) if (!resident.has(p.id)) resident.set(p.id, p);
       group.traverseVisible((object) => {
         if ((object as THREE.Mesh).isMesh && object.userData.vehicleIds)
-          batches.push(object as THREE.Mesh);
+          batches.add(object as THREE.Mesh);
       });
     }
     // Only cars near the observer become entities: a town's parked cars were thousands of
@@ -389,11 +404,16 @@ export class EarthVehicles {
     const hit = this.collision.octree.rayIntersect(ray);
     return hit === false || hit === undefined || hit.position.y <= ground + 0.4;
   }
-  private support(x: number, z: number): number | undefined {
+  private support(x: number, z: number, y?: number): number | undefined {
     const ground = this.sampleHeight(x, z);
     if (ground === undefined) return undefined;
+    // From just above the vehicle, so a deck overhead is not the road and the one it is on is.
     const ray = new THREE.Ray(
-      new THREE.Vector3(x - this.collision.origin.x, ground + 0.65, z - this.collision.origin.z),
+      new THREE.Vector3(
+        x - this.collision.origin.x,
+        Math.max(ground, y ?? ground) + 0.65,
+        z - this.collision.origin.z,
+      ),
       new THREE.Vector3(0, -1, 0),
     );
     const hit = this.collision.octree.rayIntersect(ray);

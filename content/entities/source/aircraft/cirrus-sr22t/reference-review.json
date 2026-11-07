@@ -59,7 +59,7 @@
     "mode": "top-down-ortho",
     "center": [
       -0.09,
-      -1.48
+      -1.37
     ],
     "viewHeight": 0.73,
     "cameraHeight": 8.98
@@ -233,8 +233,8 @@
     ],
     "statesInspected": true
   },
-  "sourceHash": "sha256:b7d8607e015184eeddebf856fe11c157eccb0960eb9bf5103411ea4bc6c11091",
-  "runtimeHash": "sha256:c42b7d8b774204affba77c3c4dc28dfaabd0823860f1e7d4007bd1f856ca9a14",
+  "sourceHash": "sha256:9e7c36236ace66032ee3e504cde49b6db1ba94f1f9f0c35a67b0da941ab401a1",
+  "runtimeHash": "sha256:a2d6a03a8d4ce9042e1fe806acc9378e512cbc52d5fe73a985c25242d6baacb7",
   "limitations": [
     "The POH drawing is not dimensionally consistent: at uniform length scale, side height is about 2.92 m rather than printed 2.713 m; front-view wheel track is about 3.15 m versus printed 2.774 m. Main-wheel fore/aft placement differs by roughly 0.3 m between side and plan projections. Printed dimensions and planform take precedence, leaving visible overlay residuals.",
     "Windshield/cowling/roof curvature, wing-root fillets, door corners, dorsal fin and wheel fairing transitions remain polygonal approximations; small side-view contour and height residuals remain. Shell detail follows composite construction, with fasteners at service panels and metal control surfaces rather than an invented all-metal rivet grid.",
@@ -264,6 +264,50 @@
       "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
       "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
       "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  },
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "packages/entities/scripts/cockpit-sweep.mjs rays from pilotEye through source.glb, then seat, pitched-down and exterior nose renders inspected at the runtime camera (+Z, 60 degrees vertical).",
+    "before": {
+      "eye": [
+        0.31,
+        1.89,
+        0.45
+      ],
+      "outside": 38,
+      "horizon": 100,
+      "overNose": -4,
+      "headroom": 0.05,
+      "wall": 0.26,
+      "panel": 0.76,
+      "cushion": 0.85,
+      "seatback": 0.36,
+      "poked": 10.1
+    },
+    "after": {
+      "eye": [
+        0.31,
+        1.82,
+        0.45
+      ],
+      "outside": 64,
+      "horizon": 90,
+      "overNose": -7,
+      "headroom": 0.18,
+      "wall": 0.37,
+      "panel": 0.76,
+      "cushion": 0.78,
+      "seatback": 0.34,
+      "poked": 1.6
+    },
+    "corrections": [
+      "The black slab across the top of the view was the pair of sun visors, 0.05 m above the eye. They now stow flat at y 2.0 against the headliner.",
+      "Eye lowered 0.07 m to sit 0.78 m over the cushion. Panel, console and side yokes lowered with it, since the panel center height was an assumed constant.",
+      "Glareshield hood shortened to z 1.42 and narrowed, so most of the windscreen is clear glass from outside, as in the N88917 photograph."
+    ],
+    "limitations": [
+      "Poked 1.6 percent is the 230 and 240 knot speed-tape rows, hidden at runtime by per-row visibility. They show only in a static render."
     ]
   }
 }

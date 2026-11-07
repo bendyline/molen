@@ -15,6 +15,7 @@ import type { PlacesContent } from '@bendyline/molen-worldgen-earth/kernel';
 import { businessShowcaseTile } from './business-showcase';
 import { houseShowcaseTile } from './house-showcase';
 import { parkingShowcaseTile } from './parking-showcase';
+import { useShowcaseTile } from './use-showcase';
 
 export type SyntheticShapeClass =
   | 'rect'
@@ -237,6 +238,8 @@ export interface SyntheticFeatureTileOptions {
   stores?: PlacesContent;
   houses?: boolean;
   parking?: boolean;
+  /** One building of each mapped use, down a street. */
+  uses?: boolean;
   /** Lay one building of each shape class along the road instead of the hashed spread. */
   lineup?: boolean;
 }
@@ -247,6 +250,7 @@ export function syntheticFeatureTile(
   options: SyntheticFeatureTileOptions = {},
 ): TerrainSemanticTile {
   if (options.parking) return parkingShowcaseTile(tileWorldSize(address));
+  if (options.uses) return useShowcaseTile(tileWorldSize(address));
   if (options.houses) return houseShowcaseTile(tileWorldSize(address));
   if (options.stores) return businessShowcaseTile(tileWorldSize(address), options.stores);
   const tile = createEmptyTerrainSemanticTile();

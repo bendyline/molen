@@ -9,8 +9,12 @@ import {
 } from './articulation-geometry.mjs';
 import { detailKit } from './vehicle-detail.mjs';
 
+// [x, hinge y, hinge z, width, length, options]. Without options the panel is a flat plate.
 const dorsalBrakes = {
-  'f-15c': [0, 2.9, 2.2, 1.1, 2.1],
+  // The airframe's own brake outline: hinged at z 3.62 behind the canopy, 0.72 m wide there and
+  // 0.88 m at z 1.42. The retraced spine falls 0.3 m along it and 0.1 to 0.2 m out to its edges,
+  // so the closed panel is laid on the skin rather than drawn as a flat plate.
+  'f-15c': [0, 3.22, 3.62, 0.72, 2.2, { aftWidth: 0.88, conform: true }],
   'fa-18c': [0, 2.62, -2.4, 0.8, 2.2],
   typhoon: [0, 2.35, 1.3, 0.75, 1.3],
   'av-8b': [0, 0.9, -2.0, 0.65, 0.95],
@@ -29,6 +33,64 @@ function authoredMaterial(root, pattern, fallback) {
     if (!found && n.isMesh && pattern.test(n.material?.name)) found = n.material;
   });
   return found ?? new T.MeshStandardMaterial({ color: fallback, roughness: 0.6 });
+}
+/** A thin closed shell laid over the authored skin under a trapezoid hinged at the panel origin:
+ * `width` at the hinge, `aftWidth` at `length` aft. Heights come from rays straight down onto
+ * meshes in `material`, so the closed panel follows the skin in both directions. */
+function conformPanel(root, panel, name, material, width, aftWidth, length) {
+  root.updateMatrixWorld(true);
+  const meshes = [];
+  root.traverse((node) => {
+    if (node.isMesh && node.material === material) meshes.push(node);
+  });
+  const origin = panel.getWorldPosition(new T.Vector3()),
+    ray = new T.Raycaster(),
+    down = new T.Vector3(0, -1, 0),
+    nu = 20,
+    nv = 22,
+    skin = [];
+  for (let j = 0; j <= nv; j++) {
+    const t = j / nv,
+      half = (width + (aftWidth - width) * t) / 2;
+    for (let i = 0; i <= nu; i++) {
+      const x = origin.x + half * ((2 * i) / nu - 1),
+        z = origin.z - length * t;
+      ray.set(new T.Vector3(x, origin.y + 5, z), down);
+      const hit = ray.intersectObjects(meshes, false)[0];
+      skin.push([x, hit ? hit.point.y : origin.y, z]);
+    }
+  }
+  const local = ([x, y, z], lift) => [x - origin.x, y + lift - origin.y, z - origin.z];
+  const top = skin.map((p) => local(p, 0.014)),
+    bottom = skin.map((p) => local(p, 0.006)),
+    at = (i, j) => j * (nu + 1) + i,
+    positions = [...top, ...bottom].flat(),
+    index = [],
+    n = top.length;
+  for (let j = 0; j < nv; j++)
+    for (let i = 0; i < nu; i++) {
+      const a = at(i, j),
+        b = at(i + 1, j),
+        c = at(i + 1, j + 1),
+        d = at(i, j + 1);
+      index.push(a, b, c, a, c, d, n + a, n + c, n + b, n + a, n + d, n + c);
+    }
+  // Edge walls close the shell, so the deployed panel shows a lip rather than a paper edge.
+  const rim = [
+    ...Array.from({ length: nu }, (_, i) => [at(i, 0), at(i + 1, 0)]),
+    ...Array.from({ length: nv }, (_, j) => [at(nu, j), at(nu, j + 1)]),
+    ...Array.from({ length: nu }, (_, i) => [at(nu - i, nv), at(nu - i - 1, nv)]),
+    ...Array.from({ length: nv }, (_, j) => [at(0, nv - j), at(0, nv - j - 1)]),
+  ];
+  for (const [a, b] of rim) index.push(a, n + b, b, a, n + a, n + b);
+  const geometry = new T.BufferGeometry();
+  geometry.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
+  geometry.setIndex(index);
+  geometry.computeVertexNormals();
+  const mesh = new T.Mesh(geometry, material);
+  mesh.name = name;
+  panel.add(mesh);
+  return mesh;
 }
 function movingParent(node, name) {
   const holder = pivot(node.parent, name, node.position.toArray());
@@ -347,7 +409,7 @@ export function completeAircraftArticulation(root, spec, profile = {}, modelSign
     split = splitBrakes[slug];
   if (dorsal || split) {
     actuators.speedBrake = { seconds: slug === 'fa-18c' ? 2.4 : 1.6 };
-    const [x, y, z, width, length] = dorsal ?? split;
+    const [x, y, z, width, length, shape = {}] = dorsal ?? split;
     for (const side of split && x !== 0 ? [-1, 1] : [1])
       for (const leaf of split ? [-1, 1] : [1]) {
         for (const section of slug === 'f-14d' && leaf < 0 ? [-1, 1] : [0]) {
@@ -356,12 +418,23 @@ export function completeAircraftArticulation(root, spec, profile = {}, modelSign
             y,
             z,
           ]);
-          box(
-            panel,
-            `${panel.name}-skin`,
-            [section ? width / 2 - 0.02 : width, 0.025, length],
-            [0, leaf * 0.025, -length / 2],
-          );
+          if (shape.conform)
+            conformPanel(
+              root,
+              panel,
+              `${panel.name}-skin`,
+              paint,
+              width,
+              shape.aftWidth ?? width,
+              length,
+            );
+          else
+            box(
+              panel,
+              `${panel.name}-skin`,
+              [section ? width / 2 - 0.02 : width, 0.025, length],
+              [0, leaf * 0.025, -length / 2],
+            );
           additions.push(
             bind(
               panel,

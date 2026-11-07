@@ -64,6 +64,7 @@ import {
 
 export function setup(world) {
   const environment = {
+    // A third argument gives the vehicle's height, to tell stacked decks apart.
     groundHeight: (x, z) => 0,
     // Return undefined where terrain is unavailable.
     // Add canOccupy(position, yaw, spec, entity) for static/dynamic collisions.

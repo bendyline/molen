@@ -23,6 +23,15 @@ const angle = (a: Vec3, b: Vec3): number =>
     ),
   ) / radians;
 
+const meshNamed = (
+  sky: SkyVisual,
+  name: string,
+): THREE.Mesh<THREE.BufferGeometry, THREE.MeshBasicMaterial> => {
+  const object = sky.scene.getObjectByName(name);
+  if (!(object instanceof THREE.Mesh)) throw new Error(`missing ${name}`);
+  return object as THREE.Mesh<THREE.BufferGeometry, THREE.MeshBasicMaterial>;
+};
+
 describe('Earth ephemeris', () => {
   const fixture = JSON.parse(
     readFileSync(new URL('./fixtures/sky-reference.json', import.meta.url), 'utf8'),
@@ -192,6 +201,122 @@ describe('generic sky and lighting', () => {
     sky.dispose();
   });
 
+  it('draws the sky behind the Moon so an unlit Moon matches the dome in every direction', () => {
+    const elevation = 8 * radians;
+    for (let i = 0; i < 8; i++) {
+      const azimuth = (i * Math.PI) / 4;
+      // A black Moon reflects nothing, leaving only the sky color. The low Sun makes the dome
+      // differ with azimuth, so a sample from the wrong side of the sky cannot pass.
+      const direction: Vec3 = [
+        Math.cos(azimuth) * Math.cos(elevation),
+        Math.sin(elevation),
+        Math.sin(azimuth) * Math.cos(elevation),
+      ];
+      const sky = new SkyVisual({
+        mode: 'custom',
+        sunBody: { direction: [1, 0.035, 0] },
+        moonBody: { direction },
+        palette: { moon: '#000000' },
+      });
+      const dome = meshNamed(sky, 'molen:sky-dome');
+      const domePositions = dome.geometry.getAttribute('position');
+      const domeColors = dome.geometry.getAttribute('color');
+      const toward = new THREE.Vector3(...direction);
+      const vertex = new THREE.Vector3();
+      let nearest = 0;
+      let closest = -2;
+      for (let v = 0; v < domePositions.count; v++) {
+        const dot = vertex.fromBufferAttribute(domePositions, v).normalize().dot(toward);
+        if (dot > closest) {
+          closest = dot;
+          nearest = v;
+        }
+      }
+      const colors = meshNamed(sky, 'molen:sky-moon').geometry.getAttribute('color');
+      for (let v = 0; v < colors.count; v++) {
+        expect(Math.abs(colors.getX(v) - domeColors.getX(nearest))).toBeLessThan(0.03);
+        expect(Math.abs(colors.getY(v) - domeColors.getY(nearest))).toBeLessThan(0.03);
+        expect(Math.abs(colors.getZ(v) - domeColors.getZ(nearest))).toBeLessThan(0.03);
+      }
+      sky.dispose();
+    }
+  });
+
+  it('hides the dark side of the Moon by day, keeps it opaque, and shows earthshine at night', () => {
+    const darkSide = (sunDirection: Vec3): { lift: number; alpha: number; lit: number } => {
+      const sky = new SkyVisual({
+        mode: 'custom',
+        sunBody: { direction: sunDirection },
+        moonBody: { direction: [0, 1, 0] },
+        moon: { earthshine: 0.5 },
+      });
+      const moon = meshNamed(sky, 'molen:sky-moon');
+      const positions = moon.geometry.getAttribute('position');
+      const colors = moon.geometry.getAttribute('color');
+      const toSun = new THREE.Vector3(...sunDirection).normalize();
+      const normal = new THREE.Vector3();
+      // The Moon sits at the zenith, where the first dome vertex is.
+      const zenith = meshNamed(sky, 'molen:sky-dome').geometry.getAttribute('color').getZ(0);
+      const result = { lift: 0, alpha: 1, lit: 0 };
+      for (let v = 0; v < positions.count; v++) {
+        normal.fromBufferAttribute(positions, v).normalize();
+        // The camera sees the hemisphere facing it, which points down from the zenith.
+        if (normal.y > 0) continue;
+        const lift = colors.getZ(v) - zenith;
+        if (normal.dot(toSun) < -0.05) {
+          result.lift = Math.max(result.lift, lift);
+          result.alpha = Math.min(result.alpha, colors.getW(v));
+        } else result.lit = Math.max(result.lit, lift);
+      }
+      sky.dispose();
+      return result;
+    };
+    // The Sun 28° from the Moon: a thin crescent in full daylight.
+    const day = darkSide([Math.sin(28 * radians), Math.cos(28 * radians), 0]);
+    expect(day.lift).toBeLessThan(0.03);
+    expect(day.alpha).toBe(1);
+    expect(day.lit).toBeGreaterThan(0.25);
+    // The Sun well below the horizon, with part of the Moon still turned away from it.
+    expect(darkSide([1, -0.6, 0]).lift).toBeGreaterThan(0.3);
+  });
+
+  it('surrounds a visible Sun with glare that fades to nothing at its rim', () => {
+    const sky = new SkyVisual(earth);
+    const glare = meshNamed(sky, 'molen:sky-sun-glare');
+    expect(glare.visible).toBe(true);
+    expect(glare.material.blending).toBe(THREE.AdditiveBlending);
+    // Over the disk, so the disk is not dimmer than its own glare, and under the Moon.
+    expect(glare.renderOrder).toBeGreaterThan(meshNamed(sky, 'molen:sky-sun').renderOrder);
+    expect(glare.renderOrder).toBeLessThan(meshNamed(sky, 'molen:sky-moon').renderOrder);
+    expect(glare.position.toArray()).toEqual(sky.frame.sunDirection);
+    const facing = new THREE.Vector3(0, 0, 1).applyQuaternion(glare.quaternion);
+    expect(facing.distanceTo(new THREE.Vector3(...sky.frame.sunDirection))).toBeLessThan(1e-9);
+
+    const positions = glare.geometry.getAttribute('position');
+    const colors = glare.geometry.getAttribute('color');
+    const profile = Array.from({ length: positions.count }, (_, v) => ({
+      radius: Math.hypot(positions.getX(v), positions.getY(v)),
+      alpha: colors.getW(v),
+    })).sort((a, b) => a.radius - b.radius);
+    for (const [i, sample] of profile.entries()) {
+      if (i > 0) expect(sample.alpha).toBeLessThanOrEqual((profile[i - 1]?.alpha ?? 0) + 1e-6);
+    }
+    expect(profile[0]).toEqual({ radius: 0, alpha: 1 });
+    expect(profile.at(-1)?.radius).toBeCloseTo(1, 6);
+    expect(profile.at(-1)?.alpha).toBeCloseTo(0, 6);
+
+    const doubled = new SkyVisual({ ...earth, sun: { size: 2 } });
+    expect(meshNamed(doubled, 'molen:sky-sun-glare').scale.x).toBeCloseTo(glare.scale.x * 2, 5);
+    doubled.dispose();
+    const hidden = new SkyVisual({ ...earth, sun: { visible: false } });
+    expect(meshNamed(hidden, 'molen:sky-sun-glare').visible).toBe(false);
+    hidden.dispose();
+
+    sky.update(43200);
+    expect(glare.visible).toBe(false);
+    sky.dispose();
+  });
+
   it('keeps the background centered and lighting stable through large translations and ortho views', () => {
     const sky = new SkyVisual(earth, { shadows: 'medium' });
     const camera = new THREE.PerspectiveCamera(70, 2, 1, 500000);
@@ -225,7 +350,7 @@ describe('generic sky and lighting', () => {
     parent.add(sky.lights);
     sky.dispose();
     sky.dispose();
-    expect(dispose).toHaveBeenCalledTimes(9);
+    expect(dispose).toHaveBeenCalledTimes(11);
     expect(parent.children).toHaveLength(0);
     expect(() => sky.update(1)).toThrow(/disposed/);
   });

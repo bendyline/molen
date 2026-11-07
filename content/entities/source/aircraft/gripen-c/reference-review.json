@@ -221,12 +221,62 @@
       "Selected skin boundaries, fasteners, warning/roundel geometry and mechanical details are present, but maintenance-level skin structure, engine internals, every stencil and all cockpit switches are not reproduced."
     ]
   },
-  "sourceHash": "sha256:625827a6d88d3449517bc62f558b62c1b896bc74f1092f8c43a5bf25c7bdca18",
-  "runtimeHash": "sha256:7c6388cc759b2a15ba9ce542fb28a182da55865a7f300c53cad50c6ef418ea46",
+  "sourceHash": "sha256:d9a102236e59637d9c4443f0f1246d3ac744eaf12db6d122d74e2da15cb231cc",
+  "runtimeHash": "sha256:ab521c3ac895a8e5e195fc2b272f43f1b7b871fafc282c3f24662dcc5a54db4c",
   "limitations": [
     "Illustrator three-view is not an engineering drawing. Canard attitude and detached gear sketches are not an exact neutral/ground configuration reference; detailed cross-sections and retraction paths remain simplified.",
     "Cockpit combines an early development layout with a C-series display exhibit and an installed HUD photograph. Display scale is supported by the Saab paper, but exact cockpit depths, console switch positions, seat dimensions and production-block details are not independently measured.",
     "Flight pages are labeled simulator substitutes; no authentic Gripen mission software, collimated HUD, pitot/static system or flight-control law is claimed. Engine, fuel, sensor and map data are explicitly unavailable.",
     "Selected skin boundaries, fasteners, warning/roundel geometry and mechanical details are present, but maintenance-level skin structure, engine internals, every stencil and all cockpit switches are not reproduced."
-  ]
+  ],
+  "proportionReview": {
+    "date": "2026-11-06",
+    "outcome": "Measured and left alone.",
+    "method": "Drawing resampled into model metres and overlaid on the rasterized GLB, side view. No photograph solved.",
+    "calibration": {
+      "side": "Line drawing, 190 px/m. Length gives 186 px/m and the 4.5 m height 195 px/m, about 5 percent apart; 1.02 vertical ratio used, aligned on nose, tail and nose wheel."
+    },
+    "landmarks": {
+      "finding": "Depth at z 5 is 0.894 m against 0.906 m and canopy height agrees, so no thin forebody. The forward fuselage sits a near uniform 0.11 m below the drawing, close to the drawing scale uncertainty of 0.06 to 0.09 m at that height."
+    },
+    "corrections": [],
+    "limitations": [
+      "Left unresolved: that 0.11 m offset, and main gear 0.2 m further forward than the drawn wheelbase of 5.19 m implies (model 4.98 m). A solved photograph should settle both."
+    ]
+  },
+  "cockpitSweep": {
+    "tool": "packages/entities/scripts/cockpit-sweep.mjs",
+    "finding": "The seat stood 0.77 m behind the eye, and the front of the tub wall came through the windscreen.",
+    "before": {
+      "outside": 78.0,
+      "horizon": 85.0,
+      "overNose": -12.0,
+      "headroom": 0.18,
+      "wall": 0.27,
+      "panel": 1.0,
+      "cushion": 1.31,
+      "seatback": 0.77,
+      "dial": 297.0,
+      "poked": 0.4
+    },
+    "after": {
+      "outside": 78.26,
+      "horizon": 85.37,
+      "overNose": -12,
+      "headroom": 0.18,
+      "wall": 0.27,
+      "panel": 1.0,
+      "cushion": 0.77,
+      "seatback": 0.27,
+      "dial": 296.8,
+      "poked": 0.39
+    },
+    "changes": [
+      "Seat forward 0.47 m and up 0.05 m; pedals aft 0.28 m.",
+      "Forward tub corners drawn in from 0.44 to 0.37 m half-width and down 0.08 m, behind the glass; aft walls, floor and footwell narrowed inside the skin."
+    ],
+    "limitations": [
+      "Seat, stick, pedal and throttle positions come from seated-eye ergonomic targets and cockpit photographs, not a dimensioned installation drawing."
+    ]
+  }
 }

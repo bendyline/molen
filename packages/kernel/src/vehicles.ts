@@ -145,7 +145,8 @@ export interface VehicleEnvironment {
   contacts?(probes: readonly AircraftCollisionProbe[], entity: string): readonly AircraftContact[];
   /** Override the world's boost mode (pure step calls default to false). */
   boostMode?: boolean;
-  groundHeight(x: number, z: number): number | undefined;
+  /** Surface under X/Z. `y` is the vehicle's height: stacked decks are told apart by it. */
+  groundHeight(x: number, z: number, y?: number): number | undefined;
   canOccupy?(
     position: [number, number, number],
     yaw: number,
@@ -506,6 +507,7 @@ export function stepVehicle(
         const ground = env.groundHeight(
           candidate[0] + fc * x + fs * z,
           candidate[2] - fs * x + fc * z,
+          pos[1],
         );
         if (ground === undefined || !Number.isFinite(ground)) break;
         heights.push(ground);
@@ -819,7 +821,7 @@ export function unmountEntity(world: World, actor: string, env: VehicleEnvironme
   const driver = mount.seats.find((s) => s.id === mounted.seat)?.role !== 'passenger';
   for (const offset of mount.exits) {
     const pos = vehicleLocalPoint(t, offset);
-    const ground = env.groundHeight(pos[0], pos[2]);
+    const ground = env.groundHeight(pos[0], pos[2], t.pos[1]);
     if (
       ground === undefined ||
       m.abs(ground - (world.has(mounted.vehicle, { name: 'boat' }) ? pos[1] : t.pos[1])) > 0.6

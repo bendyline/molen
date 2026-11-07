@@ -1,6 +1,7 @@
 import type { WaterWave } from '@bendyline/molen-schema';
 /** Format-neutral semantic-tile loading and default three.js mesh adapters. */
 
+import { InstanceBatch } from '@bendyline/molen-client/instancing';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import type { MeshPhysicalNodeMaterial, Node } from 'three/webgpu';
@@ -658,12 +659,12 @@ function addTrees(
   options: TerrainSemanticMeshOptions,
 ): void {
   if (placements.length === 0) return;
-  const trunk = new THREE.InstancedMesh(
+  const trunk = new InstanceBatch(
     options.treeTrunkGeometry ?? DEFAULT_TREE_TRUNK_GEOMETRY,
     options.materials?.treeTrunk ?? DEFAULT_TREE_TRUNK_MATERIAL,
     placements.length,
   );
-  const canopy = new THREE.InstancedMesh(
+  const canopy = new InstanceBatch(
     options.treeCanopyGeometry ?? DEFAULT_TREE_CANOPY_GEOMETRY,
     options.materials?.treeCanopy ?? DEFAULT_TREE_CANOPY_MATERIAL,
     placements.length,
@@ -690,6 +691,9 @@ function addTrees(
   trunk.instanceMatrix.needsUpdate = true;
   canopy.instanceMatrix.needsUpdate = true;
   if (canopy.instanceColor !== null) canopy.instanceColor.needsUpdate = true;
+  // Released with the tile (see disposeTerrainSurfaceObject); the tree models stay shared.
+  trunk.userData.terrainOwnedInstances = true;
+  canopy.userData.terrainOwnedInstances = true;
   group.add(trunk, canopy);
 }
 

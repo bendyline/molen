@@ -5,7 +5,6 @@
 import {
   cleanGeometry,
   detailKit,
-  fittedFloor,
   group,
   loft,
   mat,
@@ -15,20 +14,138 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
-import { cabinShell } from './robinson-r44.mjs';
 
+/** Smooth curve through stations; t runs evenly over the spans between them. */
+export const through = (points) => {
+  const n = points.length - 1;
+  return (t) => {
+    const at = Math.max(0, Math.min(n - 1e-9, t * n)),
+      i = Math.floor(at),
+      u = at - i,
+      a = points[Math.max(0, i - 1)],
+      b = points[i],
+      c = points[i + 1],
+      e = points[Math.min(n, i + 2)];
+    return b.map((v, k) => {
+      const m = (c[k] - a[k]) / 2,
+        o = (e[k] - v) / 2;
+      return v + u * (m + u * (3 * (c[k] - v) - 2 * m - o + u * (2 * (v - c[k]) + m + o)));
+    });
+  };
+};
+/** Coons patch: four edge curves shared with the neighboring panels, so seams cannot crack. */
+const coons = (low, high, left, right) => {
+  const a = low(0),
+    b = low(1),
+    c = high(0),
+    e = high(1);
+  return (u, v) => {
+    const l = low(u),
+      h = high(u),
+      p = left(v),
+      q = right(v);
+    return l.map(
+      (_, k) =>
+        (1 - v) * l[k] +
+        v * h[k] +
+        (1 - u) * p[k] +
+        u * q[k] -
+        (1 - u) * (1 - v) * a[k] -
+        u * (1 - v) * b[k] -
+        (1 - u) * v * c[k] -
+        u * v * e[k],
+    );
+  };
+};
+/** Smooth-shaded surface for one side; pick(i, j) names each cell's material. */
+function skin(parent, surface, nu, nv, side, pick) {
+  const positions = [];
+  for (let j = 0; j <= nv; j++)
+    for (let i = 0; i <= nu; i++) {
+      const [x, y, z] = surface(i / nu, j / nv);
+      positions.push(x * side, y, z);
+    }
+  const cells = new Map();
+  for (let j = 0; j < nv; j++)
+    for (let i = 0; i < nu; i++) {
+      const a = j * (nu + 1) + i,
+        b = a + 1,
+        c = a + nu + 2,
+        e = a + nu + 1,
+        material = pick(i, j);
+      if (!cells.has(material)) cells.set(material, []);
+      cells.get(material).push(...(side > 0 ? [a, e, c, a, c, b] : [a, c, e, a, b, c]));
+    }
+  for (const [material, index] of cells) {
+    const geometry = new T.BufferGeometry();
+    geometry.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
+    geometry.setIndex(index);
+    parent.add(new T.Mesh(geometry, material));
+  }
+}
+/**
+ * The JetRanger family's forward fuselage, shared by the 206 and 407: a one-piece windscreen that
+ * wraps down to the door post, a blunt nose, and chin windows set low. Curves are station points
+ * [x, y, z] on the +X side, read from the manufacturer's three views.
+ */
+export function bellNose(d, s, m) {
+  // Outside the detail kit, whose merge would flat-shade these curved panels.
+  const shell = group(d.root.parent, 'forward-fuselage');
+  const windscreen = coons(through(s.lower), through(s.roof), through(s.center), through(s.post)),
+    bulged = (u, v) => {
+      const p = windscreen(u, v),
+        swell = s.bulge * Math.sin(u * Math.PI) * Math.sin(v * Math.PI);
+      return [p[0] + swell, p[1] + swell * 0.5, p[2]];
+    },
+    tip = () => s.nose[0],
+    top = coons(
+      through(s.belt),
+      through([...s.nose, ...s.lower.slice(1)]),
+      tip,
+      through([s.rear[0], s.post[0]]),
+    ),
+    under = coons(through(s.belt), through(s.keel), tip, through(s.rear));
+  const [u0, u1, v0, v1] = s.chin,
+    nu = 12,
+    nv = 6;
+  for (const side of [-1, 1]) {
+    const flip = (points) => points.map(([x, y, z]) => [x * side, y, z]),
+      along = (f, n = 10) => Array.from({ length: n + 1 }, (_, i) => f(i / n));
+    skin(shell, bulged, 14, 10, side, () => m.glass);
+    skin(shell, top, nu, 4, side, () => m.upper);
+    skin(shell, under, nu, nv, side, (i, j) =>
+      i >= u0 && i < u1 && j >= v0 && j < v1 ? m.glass : m.lower,
+    );
+    const pane = [
+      ...along((t) => under((u0 + (u1 - u0) * t) / nu, v0 / nv)),
+      ...along((t) => under(u1 / nu, (v0 + (v1 - v0) * t) / nv)),
+      ...along((t) => under((u1 - (u1 - u0) * t) / nu, v1 / nv)),
+      ...along((t) => under(u0 / nu, (v1 - (v1 - v0) * t) / nv)),
+    ];
+    outline(d, flip(pane), 0.012, m.frame);
+    outline(d, flip(along(through(s.lower), 16)), 0.014, m.frame, false);
+    outline(d, flip(along(through(s.roof))), 0.017, m.upper, false);
+    outline(d, flip(along(through(s.post))), 0.018, m.upper, false);
+  }
+  outline(
+    d,
+    Array.from({ length: 11 }, (_, i) => through(s.center)(i / 10)),
+    0.018,
+    m.upper,
+    false,
+  );
+}
 export const bell206Frame = () => ({
   heli: true,
   fighter: false,
   large: false,
-  radius: 0.725,
+  radius: 0.69,
   cy: 1.05,
   ry: 0.74,
-  cabinZ: 1.06,
-  cabinWidth: 1.4,
-  // Seated eye about 0.77 m above the cushion and 0.26 m under the roof, inside the door glass.
-  eye: [-0.34, 1.49, 1.04],
-  panelZ: 1.98,
+  cabinZ: 1.0,
+  cabinWidth: 1.32,
+  eye: [-0.34, 1.5, 0.98],
+  panelZ: 1.73,
   floor: 0.39,
   mainRotorPosition: [0, 2.83, 0],
 });
@@ -48,172 +165,196 @@ export function buildBell206(s) {
     metal = mat('206-alloy', '#8b979b', { metalness: 0.65 }),
     seat = mat('206-seat', '#697c83', { roughness: 0.92 });
   const d = detailKit(root, '206-shell');
-  // Side profile and plan keep the fitted stations (206A plan view: 0.36 m half-width 0.1 m
-  // behind the tip, 0.53 m at 0.3 m). Head-on (OH-58A front view, JetRanger front photos) the
-  // cabin is a rounded trapezoid: widest just above the floor, the door glazing leaning in to
-  // roof shoulders about 0.3 m round, so windscreen, door and chin windows are cut from that
-  // curved skin instead of holes in flat side sheets.
-  const shell = cabinShell(
-    [
-      // z, half width, keel, crown, widest at, superellipse exponent above / below it
-      [2.8, 0.36, 0.62, 0.875, 0.74, 3, 3],
-      [2.62, 0.53, 0.475, 1.015, 0.74, 3.2, 3.4],
-      [2.3, 0.66, 0.39, 1.16, 0.76, 3.4, 4],
-      [1.5, 0.7, 0.35, 1.77, 0.8, 4, 4.5],
-      [0.35, 0.7, 0.3, 1.71, 0.8, 4, 4.5],
-      [-0.85, 0.68, 0.36, 1.65, 0.85, 3.8, 4],
-      [-1.65, 0.45, 0.62, 1.59, 1, 3, 3],
-      [-2.35, 0.22, 1.05, 1.58, 1.3, 2.6, 2.6],
+  // Each section is independently located against the dimensioned side, top and front outlines:
+  // the sheet's front view makes the cabin 1.31 m wide and 1.35 m deep. The first section carries
+  // only the belly forward of the door post.
+  const sections = [
+    [1.74, 0.655, 0.43, 1.75],
+    [1.33, 0.66, 0.4, 1.72],
+    [0.35, 0.66, 0.33, 1.69],
+    [-0.85, 0.645, 0.32, 1.63],
+    [-1.65, 0.43, 0.62, 1.59],
+    [-2.35, 0.22, 1.05, 1.58],
+  ].map(([z, w, b, t]) => ({
+    z,
+    points: [
+      [0, t],
+      [w * 0.83, t - 0.015],
+      [w, t - Math.min(0.12, (t - b) * 0.22)],
+      [w, b + Math.min(0.13, (t - b) * 0.22)],
+      [w * 0.68, b],
+      [-w * 0.68, b],
+      [-w, b + Math.min(0.13, (t - b) * 0.22)],
+      [-w, t - Math.min(0.12, (t - b) * 0.22)],
+      [-w * 0.83, t - 0.015],
     ],
-    [2.915, 0.745],
-  );
-  const zs = shell.samples(0.2);
-  // Broad two-pane windscreen over the nose, wrapping down the sides to the front door posts.
-  const screenSide = (side) =>
-    [
-      [2.33, 1.07],
-      [2.02, 1.04],
-      [1.5, 1.6],
-    ].map(([z, y]) => [z, shell.vAt(z, y, side)]);
-  const screen = [...screenSide(-1), ...screenSide(1).reverse()];
-  // Paired lower observation windows wrap under the nose, with an opaque center keel.
-  const chin = [-1, 1].map((side) =>
-    shell.region([
-      [2.2, 0.78, side],
-      [2.62, 0.76, side],
-      [2.87, 0.71, side],
-      [2.86, side * 0.487],
-      [2.2, side * 0.487],
-    ]),
-  );
-  const doors = [
-    [
-      [1.46, 1.63],
-      [0.72, 1.57],
-      [0.92, 0.55],
-      [2.0, 0.59],
-      [1.98, 1.02],
+  }));
+  const p = (i, j) => [...sections[i].points[j], sections[i].z];
+  loft(d, sections, paint, {
+    caps: false,
+    skip: (i, j) => (i === 0 && ![3, 4, 5].includes(j)) || (i < 3 && [2, 6].includes(j)),
+  });
+  // Curved windscreen wrapping down to the door post, around a single center post, over a blunt
+  // nose with paired chin windows and an opaque keel. Stations from the B-3 sheet, p. 2.
+  const nose = {
+    nose: [
+      [0, 0.82, 2.83],
+      [0, 0.91, 2.76],
+      [0, 0.99, 2.57],
+      [0, 1.06, 2.36],
     ],
-    [
-      [0.68, 1.56],
-      [-0.25, 1.5],
-      [-0.13, 0.56],
-      [0.88, 0.51],
+    center: [
+      [0, 1.06, 2.36],
+      [0, 1.36, 2.09],
+      [0, 1.56, 1.89],
+      [0, 1.66, 1.69],
+      [0, 1.7, 1.49],
+      [0, 1.72, 1.33],
     ],
-  ];
-  const windows = [-1, 1].flatMap((side) =>
-    [
-      // Door glass runs up close to the door tops (206A drawing: about 1.57 m).
-      [
-        [1.37, 1.57],
-        [0.8, 1.54],
-        [0.95, 0.96],
-        [1.77, 1.01],
-      ],
-      [
-        [0.64, 1.52],
-        [-0.15, 1.47],
-        [-0.02, 0.92],
-        [0.8, 0.97],
-      ],
-    ].map((a) => shell.region(a.map(([z, y]) => [z, y, side]))),
-  );
-  // Blue cheat line just under the glazing, one strip per skin bay so each piece stays convex.
-  const stripeZ = zs.filter((z) => z >= -1.65 && z <= 2.62),
-    band = (z, side) => [
-      [z, 0.84, side],
-      [z, 0.93, side],
-    ];
-  const stripe = [-1, 1].flatMap((side) =>
-    stripeZ.slice(1).map((z, i) => shell.region([...band(stripeZ[i], side), ...band(z, side)])),
-  );
-  shell.build(
-    d,
-    paint,
-    [
-      { poly: shell.region(screen), material: glass },
-      ...[...chin, ...windows].map((poly) => ({ poly, material: glass })),
-      ...stripe.map((poly) => ({ poly, material: blue })),
+    lower: [
+      [0, 1.06, 2.36],
+      [0.28, 1.02, 2.35],
+      [0.48, 0.98, 2.28],
+      [0.6, 0.93, 2.1],
+      [0.652, 0.9, 1.68],
     ],
-    zs,
-    32,
-  );
-  shell.strip(d, screen, 0.028, trim, false);
-  for (const poly of chin) shell.strip(d, poly, 0.022, trim, false);
-  for (const poly of windows) shell.strip(d, poly, 0.026, trim);
-  // Single center post between the windscreen panes.
-  outline(
-    d,
-    shell.trace(
-      [
-        [1.5, 0],
-        [2.33, 0],
-      ],
-      false,
-      0.012,
-    ),
-    0.018,
-    paint,
-    false,
-  );
+    roof: [
+      [0, 1.72, 1.33],
+      [0.28, 1.715, 1.33],
+      [0.548, 1.705, 1.33],
+      [0.66, 1.6, 1.33],
+    ],
+    post: [
+      [0.652, 0.9, 1.68],
+      [0.655, 1.13, 1.57],
+      [0.658, 1.37, 1.45],
+      [0.66, 1.6, 1.33],
+    ],
+    belt: [
+      [0, 0.82, 2.83],
+      [0.16, 0.82, 2.81],
+      [0.3, 0.815, 2.76],
+      [0.5, 0.8, 2.62],
+      [0.593, 0.79, 2.41],
+      [0.64, 0.785, 2.17],
+      [0.65, 0.78, 1.97],
+      [0.652, 0.78, 1.7],
+    ],
+    keel: [
+      [0, 0.82, 2.83],
+      [0, 0.66, 2.61],
+      [0, 0.54, 2.33],
+      [0, 0.46, 1.95],
+      [0, 0.43, 1.74],
+    ],
+    rear: [
+      [0.652, 0.78, 1.7],
+      [0.655, 0.56, 1.74],
+      [0.445, 0.43, 1.74],
+      [0, 0.43, 1.74],
+    ],
+    chin: [2, 9, 1, 5],
+    bulge: 0.02,
+  };
+  bellNose(d, nose, { glass, upper: paint, lower: paint, frame: trim });
+  d.rod([0, 0.82, 2.82], [0, 0.82, 2.96], 0.007, metal);
   for (const side of [-1, 1]) {
-    const q = (z, y, lift = 0) => shell.point(z, y, side, lift);
-    // Two doors with window gaskets and sliding vent rails, handles, hinges and drain seams.
-    for (const door of doors)
-      shell.strip(d, shell.region(door.map(([z, y]) => [z, y, side])), 0.009, trim, false);
-    for (const rail of [
+    // Four doors with transparent apertures, window gaskets, handles, hinges and drain seams.
+    const j = side === 1 ? 2 : 7,
+      k = side === 1 ? 3 : 6;
+    const sx = (z) =>
+      side *
+      (z > 1.33 ? 0.66 - (z - 1.33) * 0.0125 : z < 0.35 ? 0.66 - ((0.35 - z) / 1.2) * 0.015 : 0.66);
+    const q = (z, y) => [sx(z), y, z];
+    const holes = [
       [
-        [1.58, 1.25],
-        [0.87, 1.23],
+        [1.27, 1.5],
+        [0.8, 1.48],
+        [0.95, 0.92],
+        [1.45, 0.96],
       ],
       [
-        [0.69, 1.3],
-        [-0.11, 1.26],
+        [0.63, 1.45],
+        [-0.18, 1.4],
+        [-0.05, 0.84],
+        [0.74, 0.9],
+      ],
+    ].map((h) => h.map(([z, y]) => q(z, y)));
+    sheet(
+      d,
+      [
+        p(1, j),
+        p(2, j),
+        p(3, j),
+        p(3, k),
+        p(2, k),
+        p(1, k),
+        p(0, k),
+        ...[nose.rear[0], ...nose.post.slice(0, -1)].map(([x, y, z]) => [x * side, y, z]),
+      ],
+      paint,
+      [side, 0, 0],
+      holes,
+    );
+    for (const hole of holes) {
+      sheet(d, hole, glass, [side, 0, 0]);
+      outline(d, hole, 0.014, trim);
+    }
+    for (const door of [
+      [
+        [1.27, 1.56],
+        [0.72, 1.53],
+        [0.93, 0.53],
+        [1.74, 0.58],
+      ],
+      [
+        [0.69, 1.52],
+        [-0.26, 1.45],
+        [-0.13, 0.58],
+        [0.89, 0.52],
       ],
     ])
-      shell.strip(
+      outline(
         d,
-        rail.map(([z, y]) => [z, shell.vAt(z, y, side)]),
-        0.02,
+        door.map(([z, y]) => q(z, y)),
+        0.005,
         trim,
-        true,
-        false,
       );
     for (const z of [1.04, 0.0])
-      d.rod(q(z - 0.055, 0.83, 0.008), q(z + 0.055, 0.83, 0.008), 0.013, metal);
+      d.rod([sx(z) * 1.01, 0.83, z - 0.055], [sx(z) * 1.01, 0.83, z + 0.055], 0.013, metal);
     for (const [z, y] of [
-      [1.84, 0.74],
-      [1.43, 1.4],
-      [0.83, 0.73],
-      [0.67, 1.38],
+      [1.67, 0.82],
+      [1.32, 1.4],
+      [0.87, 0.76],
+      [0.71, 1.38],
     ])
-      d.box([0.035, 0.04, 0.06], q(z, y, 0.008), metal);
+      d.box([0.035, 0.04, 0.06], [sx(z) * 1.01, y, z], metal);
+    // Blue lower fuselage stripe follows the measured contour; no photo texture.
+    const stripe = sections
+      .slice(0, 5)
+      .map((q) => [side * (Math.abs(q.points[2][0]) + 0.003), q.points[3][1] + 0.06, q.z]);
+    for (let i = 0; i < stripe.length - 1; i++) {
+      const a = stripe[i],
+        b = stripe[i + 1];
+      quad(d, a, b, [b[0], b[1] + 0.095, b[2]], [a[0], a[1] + 0.095, a[2]], blue, [side, 0, 0]);
+    }
     // Baggage hatch behind the rear door, placed on the tapered flank.
-    shell.strip(
-      d,
-      shell.region(
-        [
-          [-1.04, 0.63],
-          [-1.55, 0.72],
-          [-1.55, 1.26],
-          [-1.04, 1.28],
-        ].map(([z, y]) => [z, y, side]),
-      ),
-      0.009,
-      trim,
-      false,
-    );
-    d.rod(q(-1.08, 0.94, 0.008), q(-1.18, 0.94, 0.008), 0.012, metal);
+    const hatch = [
+      [side * 0.593, 0.63, -1.04],
+      [side * 0.455, 0.72, -1.55],
+      [side * 0.455, 1.26, -1.55],
+      [side * 0.593, 1.28, -1.04],
+    ];
+    outline(d, hatch, 0.005, trim);
+    d.rod([side * 0.6, 0.94, -1.08], [side * 0.6, 0.94, -1.18], 0.012, metal);
     for (let j = 0; j < 4; j++) {
       const z = -1.37 - j * 0.055;
       d.rod([side * 0.29, 1.81, z], [side * 0.29, 1.67, z], 0.012, trim);
     }
   }
-  // Raised transmission/engine roof, with separate intake lip and two upward exhausts. Its feet
-  // sink into the rounded roof so the fairing never floats above the skin.
+  // Raised transmission/engine roof, with separate intake lip and two upward exhausts.
   const engine = (z, w, b, t) => {
     const shoulder = Math.max(b + (t - b) * 0.4, t - 0.12),
-      foot = Math.min(b, shell.at(z, shell.vAtX(z, w))[1] - 0.02),
       // Flat top with rounded edges over upright sides.
       crown = Array.from({ length: 5 }, (_, k) => {
         const a = (k * Math.PI) / 8;
@@ -226,8 +367,8 @@ export function buildBell206(s) {
       z,
       points: [
         ...crown,
-        [w, foot],
-        [-w, foot],
+        [w, b],
+        [-w, b],
         ...crown
           .slice(1)
           .reverse()
@@ -238,11 +379,11 @@ export function buildBell206(s) {
   loft(
     d,
     [
-      engine(1.23, 0.18, 1.76, 1.78),
-      engine(0.93, 0.29, 1.74, 1.96),
-      engine(0.62, 0.35, 1.72, 2.06),
-      engine(-0.7, 0.39, 1.66, 2.0),
-      engine(-1.37, 0.3, 1.6, 1.93),
+      engine(1.23, 0.18, 1.72, 1.73),
+      engine(0.93, 0.29, 1.71, 1.96),
+      engine(0.62, 0.35, 1.7, 2.06),
+      engine(-0.7, 0.39, 1.64, 2.0),
+      engine(-1.37, 0.3, 1.59, 1.93),
       engine(-2.35, 0.19, 1.57, 1.6),
     ],
     paint,
@@ -377,18 +518,14 @@ export function buildBell206(s) {
   }
   td.finish();
   // Maintenance rivet rows, small readable access labels and anticollision beacon.
-  for (const side of [-1, 1]) {
+  for (const side of [-1, 1])
     for (let i = 0; i < 22; i++)
-      d.add(new T.SphereGeometry(0.0035, 5, 3), metal, shell.point(1.46 - i * 0.1, 0.52, side));
-    d.text('206B', shell.point(-0.3, 0.74, side, 0.004), 0.075, (side * Math.PI) / 2, blue);
-  }
+      d.add(new T.SphereGeometry(0.0035, 5, 3), metal, [side * 0.662, 0.52, 1.46 - i * 0.1]);
+  d.text('206B', [0.664, 0.74, -0.3], 0.075, Math.PI / 2, blue);
+  d.text('206B', [-0.664, 0.74, -0.3], 0.075, -Math.PI / 2, blue);
   d.box([0.045, 0.045, 0.055], [0, 2.55, -6.2], d.red);
   d.finish();
-  const interior = bell206Cockpit(root, { paint, blue, trim, metal, seat }, shell, [
-    shell.region(screen),
-    ...chin,
-    ...windows,
-  ]);
+  const interior = bell206Cockpit(root, { paint, blue, trim, metal, seat });
   cleanGeometry(root);
   return {
     root,
@@ -408,52 +545,29 @@ export function buildBell206(s) {
   };
 }
 
-function bell206Cockpit(root, m, shell, apertures) {
+function bell206Cockpit(root, m) {
+  // The face below is authored at twice life size, in the coordinates of the PT-HUR photograph.
+  // Half scale makes its large dials 85 mm over the bezel (3.125 in instruments), so the panel is
+  // 0.58 m wide and 0.40 m tall, centered on the aircraft, with its top 0.2 m below the eye.
   const cabin = group(root, 'cockpit'),
-    // Panel sits low enough that the pilot's level sightline clears its top.
-    panelGroup = group(cabin, '206-instrument-panel', [0, -0.15, -0.35]),
+    panelGroup = group(cabin, '206-instrument-panel', [0.0375, 0.52, 0.74]),
     bindings = [];
+  panelGroup.scale.setScalar(0.5);
   let d = detailKit(cabin, '206-floor');
   const panel = mat('206-panel', '#7b8584'),
     face = mat('206-dials', '#142027'),
     ink = mat('206-ink', '#d2dbca'),
     sky = mat('206-horizon-sky', '#558995'),
     earth = mat('206-horizon-earth', '#675f40');
-  // Dark cabin trim 3 cm inside the skin, open at every window, so the glazing reads dark.
-  shell.build(
-    d,
-    m.trim,
-    apertures.map((poly) => ({ poly, material: null })),
-    shell.samples(0.3).filter((z) => z > -1),
-    16,
-    0.03,
-  );
-  // Cabin and raised forward decks trimmed to the rounded lower corners of the shell.
-  const rings = [-0.8, -0.4, 0, 0.4, 0.8, 1.2, 1.6, 2.0, 2.2].map((z) => ({
-    z,
-    points: Array.from({ length: 32 }, (_, j) => shell.at(z, -0.5 + j / 32).slice(0, 2)),
-  }));
-  fittedFloor(d, rings, m.trim, {
-    y: 0.415,
-    front: 1.565,
-    back: -0.665,
-    width: 1.2,
-    thickness: 0.03,
-  });
-  fittedFloor(d, rings, m.trim, {
-    y: 0.495,
-    front: 2.095,
-    back: 1.545,
-    width: 1.1,
-    thickness: 0.03,
-  });
+  d.box([1.0, 0.03, 2.1], [0, 0.47, 0.35], m.trim);
+  d.box([0.76, 0.03, 0.5], [0, 0.56, 1.64], m.trim);
   d.finish();
   d = detailKit(panelGroup, '206-panel');
   // Compact full instrument face with the taller radio pedestal beneath its center.
   const edge = [
-    [-0.63, 1.4, 1.98],
-    [-0.59, 1.49, 1.98],
-    [-0.52, 1.56, 1.98],
+    [-0.65, 1.43, 1.98],
+    [-0.62, 1.53, 1.98],
+    [-0.54, 1.56, 1.98],
     [0.37, 1.56, 1.98],
     [0.47, 1.5, 1.98],
     [0.5, 1.4, 1.98],
@@ -463,13 +577,16 @@ function bell206Cockpit(root, m, shell, apertures) {
     [-0.65, 0.82, 1.98],
   ];
   sheet(d, edge, panel, [0, 0, -1]);
-  // The housing narrows and drops toward the nose so its shoulders stay under the windscreen,
-  // which curves in toward the roof.
-  const ahead = edge.map(([x, y]) => [x * 0.85, 0.8 + (y - 0.8) * 0.85, 2.22]);
-  sheet(d, ahead, m.trim, [0, 0, 1]);
+  sheet(
+    d,
+    edge.map(([x, y]) => [x, y, 2.22]),
+    m.trim,
+    [0, 0, 1],
+  );
   for (let i = 0; i < edge.length; i++) {
-    const j = (i + 1) % edge.length;
-    quad(d, edge[i], edge[j], ahead[j], ahead[i], m.trim, [0, 1, 0]);
+    const a = edge[i],
+      b = edge[(i + 1) % edge.length];
+    quad(d, a, b, [b[0], b[1], 2.22], [a[0], a[1], 2.22], m.trim, [0, 1, 0]);
   }
   outline(d, edge.slice(0, 7), 0.022, m.trim, false);
   // Relative arrangement from the photographed PT-HUR panel; physical size is cabin-fit.
@@ -654,7 +771,7 @@ function bell206Cockpit(root, m, shell, apertures) {
       scale: -0.4,
     });
     for (const k of [-1, 1]) {
-      const pg = group(cabin, `206-pedal-${side}-${k}`, [x + k * 0.11, 0.49, 1.9]),
+      const pg = group(cabin, `206-pedal-${side}-${k}`, [x + k * 0.11, 0.64, 1.86]),
         pd = detailKit(pg, 'pedal');
       pd.box([0.14, 0.075, 0.02], [0, 0, 0], m.metal);
       pd.finish();

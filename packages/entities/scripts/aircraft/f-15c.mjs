@@ -23,58 +23,309 @@ export const f15Frame = () => ({
   radius: 0.62,
   cy: 2.3,
   ry: 0.65,
-  cabinZ: 6.55,
+  cabinZ: 6.77,
   cabinWidth: 0.88,
-  eye: [0, 3.34, 6.55],
-  panelZ: 7.42,
+  eye: [0, 3.42, 6.77],
+  panelZ: 7.64,
   floor: 1.98,
 });
-// Polar station sampling shared by the aft engine bays: every aft section is sampled on the same
-// 24 rays (0 at the top, toward +X) from its own centre, so lofts between a rectangular duct, a
-// hull (engine bay + boom shelf) and the round nozzle keep consistent vertex order.
-const polar = Array.from({ length: 24 }, (_, j) => (j * Math.PI) / 12);
-function onPolygon(polygon, cx, cy, a) {
-  const dx = Math.sin(a),
-    dy = Math.cos(a);
-  let best = Infinity;
-  for (let k = 0; k < polygon.length; k++) {
-    const [x0, y0] = polygon[k],
-      [x1, y1] = polygon[(k + 1) % polygon.length];
-    const ex = x1 - x0,
-      ey = y1 - y0,
-      det = ex * dy - ey * dx;
-    if (Math.abs(det) < 1e-12) continue;
-    const t = (ex * (y0 - cy) - ey * (x0 - cx)) / det,
-      u = (dx * (y0 - cy) - dy * (x0 - cx)) / det;
-    if (t > 0 && u >= -1e-9 && u <= 1 + 1e-9) best = Math.min(best, t);
+// The tables below are in a body datum. The finished airframe sits this far forward of the gear:
+// the matched photograph and the drawing both place the nose 6.4 m ahead of the nose gear.
+const NOSE_Z = 11.6,
+  BODY_SHIFT = 0.22;
+// Piecewise-linear lookup in a table sorted by descending z.
+const lookup = (rows, z) => {
+  if (z >= rows[0][0]) return rows[0][1];
+  for (let i = 1; i < rows.length; i++)
+    if (z >= rows[i][0]) {
+      const [z0, v0] = rows[i - 1],
+        [z1, v1] = rows[i];
+      return v1 + ((v0 - v1) * (z - z1)) / (z0 - z1);
+    }
+  return rows.at(-1)[1];
+};
+/** SAC 1992 clean three-view, traced at 46.98 px/m along the body and 51.1 px/m up from the static
+ * ground line (the drawing's vertical scale, calibrated by its own 12.00 ft canopy bar), then
+ * corrected against a calibrated taxi photograph. The drawing is schematic at the radome, so depth
+ * there follows the photograph. Each row: distance aft of the tip, half-breadth, keel, crown. Crown
+ * slope only ever falls going aft and the tip is rounded: the radome is a full convex ogive, and a
+ * single concave station reads as a needle. */
+const forebody = [
+  [0, 0.006, 1.933, 1.947],
+  [0.02, 0.03, 1.912, 1.972],
+  [0.06, 0.052, 1.894, 1.998],
+  [0.12, 0.074, 1.876, 2.028],
+  [0.2, 0.1, 1.856, 2.064],
+  [0.36, 0.15, 1.818, 2.134],
+  [0.52, 0.205, 1.78, 2.204],
+  [0.7, 0.265, 1.734, 2.278],
+  [1.04, 0.365, 1.665, 2.405],
+  [1.38, 0.45, 1.61, 2.52],
+  [1.72, 0.515, 1.575, 2.615],
+  [2.06, 0.56, 1.56, 2.7],
+  [2.41, 0.595, 1.555, 2.775],
+  [2.75, 0.63, 1.55, 2.85],
+  [3.15, 0.66, 1.555, 2.935],
+].map(([d, w, b, t]) => [Number((NOSE_Z - d).toFixed(3)), w, b, t]);
+/** Canopy stations: z, half-width at the rail, rail height, crown. The 12.00 ft crown sits over
+ * the seat; the long aft taper runs into the dorsal spine rather than ending as a bubble. */
+const canopy = [
+  [8.4, 0.01, 2.945, 2.955],
+  [8.17, 0.2, 2.935, 3.1],
+  [7.91, 0.396, 2.935, 3.26],
+  [7.55, 0.44, 2.95, 3.44],
+  [7.32, 0.462, 2.96, 3.52],
+  [7.2, 0.47, 2.975, 3.56],
+  [6.84, 0.505, 3, 3.625],
+  [6.49, 0.52, 3.02, 3.65],
+  [6.14, 0.52, 3.05, 3.6576],
+  [5.78, 0.52, 3.08, 3.64],
+  [5.43, 0.52, 3.11, 3.605],
+  [5.07, 0.5, 3.15, 3.555],
+  [4.72, 0.45, 3.18, 3.49],
+  [4.37, 0.33, 3.225, 3.42],
+  [4.15, 0.16, 3.25, 3.34],
+  [4.02, 0.01, 3.265, 3.275],
+];
+const breadth = [
+  [8.45, 0.66],
+  [7.91, 0.68],
+  [5.43, 0.69],
+  [5.07, 0.7],
+  [4.02, 0.7],
+];
+const keel = [
+  [8.45, 1.555],
+  [7.91, 1.55],
+  [4.72, 1.55],
+  [4.37, 1.57],
+  [4.02, 1.6],
+];
+// Dorsal spine aft of the canopy: z, half-breadth, keel, crown.
+const aftbody = [
+  [3.75, 0.66, 1.62, 3.26],
+  [3.41, 0.64, 1.64, 3.22],
+  [2.72, 0.62, 1.64, 3.12],
+  [2.04, 0.6, 1.64, 3.02],
+  [1.36, 0.58, 1.64, 2.93],
+  [0, 0.55, 1.62, 2.86],
+  [-2, 0.5, 1.65, 2.84],
+  [-3.5, 0.42, 1.7, 2.84],
+  [-4.6, 0.24, 1.8, 2.72],
+  // The body ends in the notch between the nozzles, not in a spike behind them.
+  [-5.2, 0.06, 1.95, 2.55],
+];
+const SHOULDER = 0.58;
+const station = (z, w, b, sw, sy, f) => ({ z, w, b, sw, sy, m: b + f * (sy - b) });
+const cockpitStation = ([z, sw, sy]) =>
+  station(z, lookup(breadth, z), lookup(keel, z), sw, sy, SHOULDER);
+const stations = [
+  ...forebody.map(([z, w, b, t], i) =>
+    station(z, w, b, 0, t, 0.5 + (0.05 * i) / (forebody.length - 1)),
+  ),
+  ...canopy.map(cockpitStation),
+  ...aftbody.map(([z, w, b, t]) => station(z, w, b, 0, t, SHOULDER)),
+];
+const RING = 40,
+  CAP = 3,
+  QUARTER = RING / 4;
+// Each ring is a flat cap to the canopy rail, a shoulder to maximum breadth, then a full lower
+// lobe. With no rail the cap collapses and the shoulder is the plain upper half of the section.
+const ringPoint = (s, k) => {
+  if (k <= CAP) return [(s.sw * k) / CAP, s.sy];
+  if (k <= QUARTER) {
+    const a = ((k - CAP) / (QUARTER - CAP)) * (Math.PI / 2);
+    return [s.sw + (s.w - s.sw) * Math.sin(a), s.m + (s.sy - s.m) * Math.cos(a)];
   }
-  return [cx + dx * best, cy + dy * best];
-}
-function convexHull(points) {
-  const p = [...points].sort((a, b) => a[0] - b[0] || a[1] - b[1]),
-    cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]),
-    lower = [],
-    upper = [];
-  for (const q of p) {
-    while (lower.length >= 2 && cross(lower.at(-2), lower.at(-1), q) <= 0) lower.pop();
-    lower.push(q);
-  }
-  for (const q of [...p].reverse()) {
-    while (upper.length >= 2 && cross(upper.at(-2), upper.at(-1), q) <= 0) upper.pop();
-    upper.push(q);
-  }
-  return [...lower.slice(0, -1), ...upper.slice(0, -1)];
-}
-const superellipse = (cx, cy, a, b, n) =>
-  Array.from({ length: 48 }, (_, j) => {
-    const t = (j * Math.PI) / 24,
-      c = Math.cos(t),
-      s = Math.sin(t);
-    return [
-      cx + a * Math.sign(s) * Math.pow(Math.abs(s), 2 / n),
-      cy + b * Math.sign(c) * Math.pow(Math.abs(c), 2 / n),
-    ];
+  const a = ((k - QUARTER) / QUARTER) * (Math.PI / 2);
+  return [
+    s.w * Math.pow(Math.max(0, Math.cos(a)), 0.85),
+    s.m - (s.m - s.b) * Math.pow(Math.sin(a), 0.9),
+  ];
+};
+const ring3d = (s) =>
+  Array.from({ length: RING }, (_, i) => {
+    const k = i <= RING / 2 ? i : RING - i,
+      [x, y] = ringPoint(s, k);
+    return [i <= RING / 2 ? x : -x, y, s.z];
   });
+const same = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]) < 1e-7;
+const distinct = (points) =>
+  points.filter((p, i) => !same(p, points[(i + points.length - 1) % points.length]));
+/** Ruled skin between rings of 3D points; unlike loft, each point carries its own z. */
+function ruled(d, rings, material, skip = () => false) {
+  const n = rings[0].length;
+  for (let i = 0; i < rings.length - 1; i++) {
+    const center = rings[i].reduce((s, q) => [s[0] + q[0] / n, s[1] + q[1] / n], [0, 0]);
+    for (let j = 0; j < n; j++) {
+      if (skip(i, j)) continue;
+      const p = distinct([
+        rings[i][j],
+        rings[i + 1][j],
+        rings[i + 1][(j + 1) % n],
+        rings[i][(j + 1) % n],
+      ]);
+      if (p.length < 3) continue;
+      const normal = [0, 0, 0];
+      for (let k = 0; k < p.length; k++) {
+        const a = p[k],
+          b = p[(k + 1) % p.length];
+        normal[0] += (a[1] - b[1]) * (a[2] + b[2]);
+        normal[1] += (a[2] - b[2]) * (a[0] + b[0]);
+        normal[2] += (a[0] - b[0]) * (a[1] + b[1]);
+      }
+      if (Math.hypot(...normal) < 1e-6) continue;
+      const out = (p[0][0] + p[1][0]) / 2 - center[0],
+        up = (p[0][1] + p[1][1]) / 2 - center[1];
+      sheet(d, p, material, normal[0] * out + normal[1] * up < 0 ? normal.map((v) => -v) : normal);
+    }
+  }
+}
+/** Inlet and flank plan, one side: fixed cowl edge, then the flare out to the wing root. */
+const inboard = [
+  [6, 0.8],
+  [4.25, 0.8],
+  [3.5, 0.74],
+  [0, 0.62],
+  [-2, 0.6],
+  [-3.64, 0.75],
+  [-4.3, 1],
+  [-4.9, 1.25],
+  [-5.6, 1.52],
+  [-6.4, 1.63],
+  [-7.75, 1.72],
+];
+const outboard = [
+  [5.9, 1.4],
+  [5.43, 1.41],
+  [5.07, 1.44],
+  [4.72, 1.51],
+  [4.37, 1.55],
+  [4.02, 1.63],
+  [3.67, 1.776],
+  [3.31, 1.84],
+  [2.96, 1.906],
+  [2.6, 1.945],
+  [2.24, 1.99],
+  [0, 2.04],
+  [-2, 2.06],
+  [-3.64, 2.08],
+  [-4.9, 2.08],
+  [-5.2, 2],
+  [-5.6, 1.93],
+  [-6.4, 1.85],
+  [-7.75, 1.76],
+];
+const deck = [
+  [6, 2.7],
+  [4.25, 2.7],
+  [3.7, 2.74],
+  [2, 2.76],
+  [0, 2.78],
+  [-3.64, 2.76],
+  [-4.9, 2.74],
+  [-5.6, 2.66],
+  [-6.4, 2.52],
+  [-7.75, 2.13],
+];
+const belly = [
+  [6, 1.64],
+  [4.25, 1.64],
+  [3.7, 1.52],
+  [2.2, 1.42],
+  [0, 1.36],
+  [-2, 1.31],
+  [-3.64, 1.33],
+  [-4.3, 1.55],
+  [-4.9, 1.82],
+  [-5.6, 1.92],
+  [-6.4, 2],
+  [-7.75, 2.09],
+];
+// Unit section of the flank, inboard edge first; the tail booms are the same skin tapered out.
+// Nearly square around the inlet, then a long curved fairing from the wing root down to the keel.
+const FLANK_INLET = [
+  [0.1, 1],
+  [0.4, 1],
+  [0.7, 1],
+  [0.9, 0.985],
+  [0.975, 0.93],
+  [1, 0.84],
+  [1, 0.55],
+  [0.995, 0.38],
+  [0.95, 0.22],
+  [0.84, 0.09],
+  [0.66, 0.01],
+  [0.4, 0],
+  [0.22, 0.03],
+  [0.08, 0.12],
+  [0.015, 0.28],
+  [0, 0.55],
+  [0, 0.84],
+  [0.03, 0.97],
+];
+const FLANK_BODY = [
+  [0.1, 1],
+  [0.4, 1],
+  [0.7, 1],
+  [0.9, 0.985],
+  [0.975, 0.93],
+  [1, 0.84],
+  [1, 0.68],
+  [0.97, 0.53],
+  [0.89, 0.38],
+  [0.76, 0.23],
+  [0.6, 0.1],
+  [0.42, 0.015],
+  [0.24, 0],
+  [0.09, 0.04],
+  [0.015, 0.16],
+  [0, 0.45],
+  [0, 0.8],
+  [0.03, 0.97],
+];
+// The cowl edge rakes 1.65 m aft from the upper corner to the lower lip, so the nose gear sits
+// ahead of the lip and the forebody shows below the diagonal.
+const lipZ = (y) => 4.25 + (y - 1.62) * 1.528;
+// On the ground the cowl rests drooped about 8 degrees from a hinge near the wing: the upper edge
+// falls to the apex while the lower lip stays put, which gives the inlet its chevron in side view.
+const COWL_HINGE = 3.2,
+  COWL_DROOP = 0.137;
+const cowl = (y, z) =>
+  y - Math.max(0, z - COWL_HINGE) * COWL_DROOP * Math.max(0, Math.min(1, (y - 1.64) / 1.06));
+const flankRing = (zs, side) => {
+  const b = lookup(belly, zs),
+    t = lookup(deck, zs);
+  const blend = Math.max(0, Math.min(1, 4.4 - zs));
+  return FLANK_INLET.map((p, k) => {
+    const fx = p[0] + (FLANK_BODY[k][0] - p[0]) * blend,
+      fy = p[1] + (FLANK_BODY[k][1] - p[1]) * blend,
+      y = b + fy * (t - b),
+      z = Math.min(zs, lipZ(y)),
+      i = lookup(inboard, z),
+      o = lookup(outboard, z);
+    return [side * (i + fx * (o - i)), cowl(y, z), z];
+  });
+};
+const FLANK_STATIONS = [
+  5.9, 5.43, 5.07, 4.72, 4.37, 4.02, 3.67, 3.31, 2.96, 2.6, 2.24, 1, -1, -2.5, -3.64, -4.3, -4.9,
+  -5.6, -6.4, -7.1, -7.75,
+];
+// Half-breadth of the cockpit shoulder at a height, so skin lines stay on the surface.
+const shoulderX = (z, y) => {
+  const s = cockpitStation([
+    z,
+    lookup(
+      canopy.map(([q, w]) => [q, w]),
+      z,
+    ),
+    lookup(
+      canopy.map(([q, , h]) => [q, h]),
+      z,
+    ),
+  ]);
+  return s.sw + (s.w - s.sw) * Math.sqrt(Math.max(0, 1 - ((y - s.m) / (s.sy - s.m)) ** 2));
+};
 export function buildF15C(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -84,7 +335,7 @@ export function buildF15C(s) {
     metal = mat('F15-alloy', '#b1b8bb', { metalness: 0.74 }),
     nozzle = mat('F15-nozzle', '#7a7870', { metalness: 0.5, side: T.DoubleSide }),
     lining = mat('F15-exhaust-lining', '#272726', { side: T.DoubleSide }),
-    nose = mat('F15-radome', '#8a9297'),
+    nose = mat('F15-radome', '#858e95', { side: T.DoubleSide }),
     glass = mat('F15-glazing', '#6d878f', {
       transparent: true,
       opacity: 0.28,
@@ -94,86 +345,56 @@ export function buildF15C(s) {
     });
   const d = detailKit(root, 'F15-airframe'),
     bindings = [];
-  const sections = [
-    [11.6, 0.01, 2.05, 2.08],
-    [10.9, 0.18, 1.93, 2.3],
-    [10.05, 0.37, 1.81, 2.57],
-    [9.35, 0.49, 1.78, 2.75],
-    [8.5, 0.56, 1.76, 2.84],
-    [7.75, 0.61, 1.74, 2.91],
-    [6.7, 0.63, 1.72, 2.94],
-    [5.25, 0.64, 1.68, 2.96],
-    [4.4, 0.69, 1.65, 2.99],
-    [2.6, 0.84, 1.64, 2.96],
-    [0, 0.89, 1.62, 2.9],
-    [-2.5, 0.84, 1.65, 2.85],
-    [-4.8, 0.62, 1.8, 2.65],
-    [-6.7, 0.1, 1.98, 2.4],
-    [-7.25, 0.05, 2.12, 2.23],
-  ];
-  const rings = sections.map(([z, w, b, t]) => ({
-    z,
-    points: Array.from({ length: 24 }, (_, i) => [
-      Math.sin((i * Math.PI) / 12) * w,
-      (b + t) / 2 + (Math.cos((i * Math.PI) / 12) * (t - b)) / 2,
-    ]),
-  }));
-  loft(d, rings, paint, { skip: (i, j) => i < 3 || (i >= 5 && i < 8 && (j < 5 || j >= 19)) });
-  loft(d, rings.slice(0, 4), nose);
-  for (const i of [3, 4, 9, 11, 12])
+  const rings = stations.map(ring3d),
+    index = (z) => stations.findIndex((q) => q.z === z),
+    radome = index(9.19),
+    open = [index(7.91), index(4.72)],
+    outer = (i) => distinct(rings[i].filter((_, j) => j >= CAP && j <= RING - CAP));
+  ruled(d, rings.slice(0, radome + 1), nose);
+  // Cockpit aperture between the windscreen deck and the bulkhead behind the seat.
+  ruled(
+    d,
+    rings.slice(radome),
+    paint,
+    (i, j) => i + radome >= open[0] && i + radome < open[1] && (j < CAP || j >= RING - CAP),
+  );
+  sheet(d, distinct(rings[0]), nose, [0, 0, 1]);
+  sheet(d, distinct(rings.at(-1)), paint, [0, 0, -1]);
+  for (const z of [9.19, 8.45, 3.41, 0, -3.5])
     outline(
       d,
-      rings[i].points.map(([x, y]) => [x * 1.003, y, rings[i].z]),
+      outer(index(z)).map(([x, y, q]) => [x * 1.003, y, q]),
       0.003,
       dark,
     );
-  // Single-seat canopy and fixed windscreen; no fuselage roof inside its aperture. The bubble
-  // stands proud of the spine (crown about 0.95 m above the sills, 3-view) and its sides are
-  // full (superellipse arch), so it reads wide and bulbous head-on.
-  const canopy = [
-    [8.45, 0.04, 2.82, 2.85],
-    [8.0, 0.35, 2.86, 3.2],
-    [7.43, 0.5, 2.88, 3.64],
-    [7.12, 0.53, 2.9, 3.77],
-    [6.5, 0.54, 2.91, 3.86],
-    [5.75, 0.5, 2.92, 3.8],
-    [5.1, 0.35, 2.95, 3.52],
-    [4.55, 0.02, 2.98, 3.14],
-  ];
-  const cr = canopy.map(([z, w, b, t]) => ({
-    z,
-    points: Array.from({ length: 17 }, (_, j) => {
-      const c = Math.cos((j * Math.PI) / 16),
-        s = Math.sin((j * Math.PI) / 16);
-      return [Math.sign(c) * Math.pow(Math.abs(c), 0.8) * w, b + Math.pow(s, 0.8) * (t - b)];
-    }),
-  }));
-  // The raised canopy tail runs into a short dorsal fairing ahead of the speed brake.
-  loft(
+  // Anti-glare deck ahead of the instrument panel, under the windscreen.
+  sheet(
     d,
     [
-      [5.0, 0.2, 3.38, 2.85],
-      [4.55, 0.3, 3.22, 2.85],
-      [3.6, 0.42, 3.08, 2.85],
-      [2.5, 0.36, 2.99, 2.85],
-    ].map(([z, w, t, b]) => ({
-      z,
-      points: [
-        ...Array.from({ length: 13 }, (_, k) => {
-          const a = -Math.PI / 2 + (k * Math.PI) / 12;
-          return [Math.sin(a) * w, b + (t - b) * Math.pow(Math.cos(a), 0.8)];
-        }),
-        [0, b - 0.05],
-      ],
-    })),
-    paint,
+      ...canopy.slice(0, 3).map(([z, w, y]) => [w, y + 0.006, z]),
+      ...canopy
+        .slice(0, 3)
+        .reverse()
+        .map(([z, w, y]) => [-w, y + 0.006, z]),
+    ],
+    dark,
+    [0, 1, 0],
   );
+  // One-piece canopy on a fixed windscreen; no fuselage roof inside its aperture.
+  const cr = canopy.map(([z, w, b, t]) => ({
+    z,
+    points: Array.from({ length: 17 }, (_, j) => [
+      Math.cos((j * Math.PI) / 16) * w,
+      b + Math.sin((j * Math.PI) / 16) * (t - b),
+    ]),
+  }));
   loft(d, cr, glass, { caps: false, skip: (_, j) => j === 16 });
-  for (const i of [0, 2, 7])
+  const arch = canopy.findIndex(([z]) => z === 7.32);
+  for (const i of [0, arch, cr.length - 1])
     outline(
       d,
       cr[i].points.map((q) => [...q, cr[i].z]),
-      i === 2 ? 0.034 : 0.022,
+      i === arch ? 0.03 : 0.018,
       paint,
       false,
     );
@@ -185,254 +406,165 @@ export function buildF15C(s) {
       paint,
       false,
     );
-  for (const side of [-1, 1]) {
-    const rail = [
-      [0.43, 2.88, 7.75],
-      [0.54, 2.91, 6.7],
-      [0.4, 2.94, 5.25],
-      [0.02, 2.98, 4.4],
-    ];
-    for (let i = 0; i < 3; i++) {
-      const a = rings[5 + i],
-        b = rings[6 + i],
-        j = side === 1 ? 5 : 19;
-      quad(
-        d,
-        [...a.points[j], a.z],
-        [...b.points[j], b.z],
-        [side * rail[i + 1][0], rail[i + 1][1], rail[i + 1][2]],
-        [side * rail[i][0], rail[i][1], rail[i][2]],
-        paint,
-        [side, 1, 0],
-      );
-    }
-  }
-  // Forward windscreen center pane and side panels share an arched bow.
-  for (const j of [5, 11])
-    outline(
-      d,
-      cr.slice(0, 3).map((r) => [...r.points[j], r.z]),
-      0.012,
-      dark,
-      false,
-    );
+  // The windscreen is one piece: photographs show no frame forward of the arch.
   for (let j = 0; j < 17; j++) {
-    const p = cr[2].points[j];
-    d.add(new T.SphereGeometry(0.004, 5, 3), metal, [p[0], p[1] + 0.015, 7.43]);
+    const p = cr[arch].points[j];
+    d.add(new T.SphereGeometry(0.004, 5, 3), metal, [p[0], p[1] + 0.02, cr[arch].z]);
   }
-  const oval = (r, z, cy = 2.18, cx = 0) => ({
+  const oval = (r, z, cy = 2.18) => ({
     z,
     points: Array.from({ length: 24 }, (_, i) => [
-      cx + Math.sin((i * Math.PI) / 12) * r,
+      Math.sin((i * Math.PI) / 12) * r,
       cy + Math.cos((i * Math.PI) / 12) * r,
     ]),
   });
   for (const side of [-1, 1]) {
-    // Rectangular ramp inlet, separate from the circular aft engine pod.
-    const ng = group(root, `F15-engine-${side}`, [side * 1.03, 0, 0]),
-      nd = detailKit(ng, ng.name);
-    const nr = [
-      [5.95, 0.5, 1.58, 3.0],
-      [3.35, 0.64, 1.41, 2.96],
-      [2.5, 0.67, 1.39, 2.94],
-      [0, 0.68, 1.38, 2.89],
-      [-2.8, 0.64, 1.48, 2.88],
-      [-5.65, 0.58, 1.6, 2.76],
-    ].map(([z, w, b, t], i) => ({
-      z,
-      // Aft of the inlet the duct tops roll over into rounded shoulders instead of a box edge.
-      points: [
-        [0, t],
-        i < 1 ? [w * 0.82, t] : [w * 0.56, t - 0.02],
-        i < 1 ? [w, t - 0.14] : [w * 0.96, t - 0.2],
-        [w, b + 0.13],
-        [w * 0.8, b],
-        [-w * 0.8, b],
-        [-w, b + 0.13],
-        i < 1 ? [-w, t - 0.14] : [-w * 0.96, t - 0.2],
-        i < 1 ? [-w * 0.82, t] : [-w * 0.56, t - 0.02],
-      ],
-    }));
-    loft(nd, nr.slice(1, 4), paint, { caps: false });
-    // Aft of the main gear the ducts turn inboard: the two F100 bays nearly touch (nozzle
-    // centres 0.70 m off the centreline, as photographed from directly behind) and round out
-    // into tubes, while a flat shelf runs outboard to the tail boom that carries fin and
-    // stabilator. Coordinates below are outboard-positive (u) relative to this group.
-    const ex = -side * 0.33,
-      bay = (z, u, cy, a, b, n, shelf) => {
-        const pts = superellipse(side * u, cy, a, b, n);
-        if (shelf)
-          for (const [x, y] of [
-            [u, shelf[1]],
-            [shelf[0], shelf[1] + 0.06],
-            [shelf[0], shelf[2] - 0.06],
-            [u, shelf[2]],
-            [shelf[0] - 0.06, shelf[1]],
-            [shelf[0] - 0.06, shelf[2]],
-          ])
-            pts.push([side * x, y]);
-        const h = convexHull(pts);
-        return { z, points: polar.map((t) => onPolygon(h, side * u, cy, t)) };
-      };
-    const aft = [
-      { z: 0, points: polar.map((t) => onPolygon(nr[3].points, 0, 2.135, t)) },
-      // Rounded engine-bay humps stand above a lower shelf that runs out to the boom.
-      bay(-1.3, -0.08, 2.16, 0.7, 0.76, 2.8),
-      bay(-2.8, -0.2, 2.17, 0.64, 0.68, 2.4, [0.86, 2.02, 2.72]),
-      bay(-4.0, -0.28, 2.17, 0.61, 0.625, 2.3, [0.86, 2.04, 2.7]),
-      bay(-4.9, -0.32, 2.18, 0.59, 0.595, 2.1, [0.78, 2.08, 2.68]),
-      bay(-5.65, -0.33, 2.18, 0.58, 0.58, 2),
-    ];
-    loft(nd, aft, paint, { caps: false });
-    for (const r of [aft[2], aft[4]])
-      outline(
-        nd,
-        r.points.map(([x, y]) => [ex + (x - ex) * 1.004, 2.18 + (y - 2.18) * 1.004, r.z]),
-        0.0035,
-        dark,
-      );
-    // Tail boom under the fin, running past the nozzle to the stabilator trailing edge.
-    const boom = [
-      [-2.6, 0.16, 2.02, 2.84],
-      [-5.2, 0.17, 2.04, 2.82],
-      [-6.6, 0.15, 2.12, 2.78],
-      [-7.35, 0.08, 2.32, 2.6],
-    ].map(([z, w, b, t]) => ({
-      z,
-      // Rounded-box boom section (smooth-shaded superellipse) rather than a slab side.
-      points: Array.from({ length: 16 }, (_, j) => {
-        const a = (j * Math.PI) / 8,
-          s = Math.sin(a),
-          c = Math.cos(a);
-        return [
-          side * 0.7 + w * Math.sign(s) * Math.pow(Math.abs(s), 2 / 3),
-          (b + t) / 2 + ((t - b) / 2) * Math.sign(c) * Math.pow(Math.abs(c), 2 / 3),
-        ];
-      }),
-    }));
-    loft(nd, boom, paint);
-    // The ramp inlet is strongly raked: the side walls sweep back about 30 degrees from the
-    // upper ramp lip under the canopy to the lower cowl lip 2.25 m further aft (3-view, photos);
-    // the mouth spans nearly the full duct depth.
-    const leading = nr[0].points.map(([x, y]) => [x, y, 3.7 + ((y - 1.58) / 1.42) * 2.25]);
-    for (let j = 0; j < leading.length; j++) {
-      const a = leading[j],
-        b = leading[(j + 1) % leading.length];
-      quad(
-        nd,
-        a,
-        b,
-        [...nr[1].points[(j + 1) % leading.length], nr[1].z],
-        [...nr[1].points[j], nr[1].z],
-        paint,
-        [a[0], a[1] - 2.3, 0],
-      );
+    const flank = FLANK_STATIONS.map((z) => flankRing(z, side)),
+      lip = flankRing(99, side);
+    ruled(d, flank, paint);
+    // Rectangular ramp inlet: a dark duct behind a raked cowl, separate from the round engine.
+    const cx = side * 1.14,
+      back = lip.map(([x, y]) => [cx + (x - cx) * 0.8, 2.16 + (y - 2.16) * 0.8, 3.3]);
+    for (let j = 0; j < lip.length; j++) {
+      const k = (j + 1) % lip.length;
+      quad(d, lip[j], lip[k], back[k], back[j], dark, [cx - lip[j][0], 2.16 - lip[j][1], 0]);
     }
-    const mouth = [
-        [-0.47, 2.99, 5.95],
-        [0.47, 2.99, 5.95],
-        [0.5, 2.86, 5.72],
-        [0.5, 1.64, 3.8],
-        [-0.5, 1.64, 3.8],
-        [-0.5, 2.86, 5.72],
-      ],
-      back = mouth.map(([x, y]) => [x * 0.85, 2.3 + (y - 2.3) * 0.8, 3.0]);
-    for (let j = 0; j < mouth.length; j++) {
-      const a = mouth[j],
-        b = mouth[(j + 1) % mouth.length];
-      quad(nd, a, b, back[(j + 1) % mouth.length], back[j], dark, [-a[0], 2.3 - a[1], 0]);
-    }
-    outline(nd, mouth, 0.025, paint);
-    sheet(nd, back, dark, [0, 0, 1]);
+    sheet(d, back, dark, [0, 0, 1]);
+    outline(d, lip, 0.022, paint);
     quad(
-      nd,
-      [-0.45, 2.95, 5.85],
-      [0.45, 2.95, 5.85],
-      [0.43, 2.66, 3.6],
-      [-0.43, 2.66, 3.6],
+      d,
+      [side * 0.86, cowl(2.685, 5.8), 5.8],
+      [side * 1.38, cowl(2.685, 5.8), 5.8],
+      [side * 1.3, cowl(2.5, 4.2), 4.2],
+      [side * 0.92, cowl(2.5, 4.2), 4.2],
       upper,
       [0, -1, 0],
     );
-    for (const r of nr.slice(1, 4))
-      outline(
-        nd,
-        r.points.map(([x, y]) => [x * 1.004, y, r.z]),
-        0.0035,
-        dark,
-      );
-    loft(nd, [oval(0.58, -5.65, 2.18, ex), oval(0.62, -6.15, 2.18, ex)], nozzle, { caps: false });
+    // Diverter gap between the forebody and the inner cowl wall, closed by the splitter deck.
+    sheet(
+      d,
+      [
+        [side * 0.76, cowl(2.7, 5.8), 5.8],
+        [side * 0.76, 1.9, 4.7],
+        [side * 0.76, 1.75, 3.4],
+        [side * 0.76, 2.7, 3.4],
+      ],
+      dark,
+      [side, 0, 0],
+    );
+    quad(
+      d,
+      [side * shoulderX(4.4, 2.76), 2.76, 4.4],
+      [side * 0.86, cowl(2.704, 4.4), 4.4],
+      [side * 0.8, 2.742, 3.6],
+      [side * 0.62, 2.8, 3.6],
+      paint,
+      [0, 1, 0],
+    );
+    // Closed deck and tunnel roof between the dorsal spine and the flank, aft to the engines.
+    quad(
+      d,
+      [side * 0.3, 2.82, 3.6],
+      [side * 0.86, 2.742, 3.6],
+      [side * 0.7, 2.778, -1.2],
+      [side * 0.3, 2.82, -1.2],
+      paint,
+      [0, 1, 0],
+    );
+    quad(
+      d,
+      [side * 0.4, 1.66, 4.1],
+      [side * 0.86, 1.66, 4.1],
+      [side * 0.7, 1.62, -1.2],
+      [side * 0.4, 1.62, -1.2],
+      paint,
+      [0, -1, 0],
+    );
+    // Round engines sit close together between the booms, with a notch between the nozzles.
+    const ng = group(root, `F15-engine-${side}`, [side * 0.7, 0, 0]),
+      nd = detailKit(ng, ng.name);
+    loft(nd, [oval(0.62, -1), oval(0.62, -3.6), oval(0.61, -5), oval(0.6, -5.4)], paint, {
+      caps: false,
+    });
+    loft(nd, [oval(0.6, -5.4), oval(0.62, -5.75)], nozzle, { caps: false });
     // Sixteen flat convergent petals (double-sided), each ending in a shallow point so the
     // exit rim reads serrated rather than as a smooth cone.
     for (let j = 0; j < 16; j++) {
       const a = (j * Math.PI) / 8,
         h = Math.PI / 16,
-        p = (r, t, z) => [ex + Math.sin(a + t) * r, 2.18 + Math.cos(a + t) * r, z];
+        p = (r, t, z) => [Math.sin(a + t) * r, 2.18 + Math.cos(a + t) * r, z];
       sheet(
         nd,
         [
-          p(0.632, -h, -6.15),
-          p(0.632, h, -6.15),
-          p(0.566, h, -7.04),
-          p(0.566 * Math.cos(h), 0, -7.12),
-          p(0.566, -h, -7.04),
+          p(0.622, -h, -5.75),
+          p(0.622, h, -5.75),
+          p(0.522, h, -6.57),
+          p(0.522 * Math.cos(h), 0, -6.65),
+          p(0.522, -h, -6.57),
         ],
         nozzle,
         [Math.sin(a), Math.cos(a), -0.07],
       );
     }
-    nd.add(new T.CylinderGeometry(0.46, 0.52, 0.85, 32, 1, true).rotateX(Math.PI / 2), lining, [
-      ex,
-      2.18,
-      -6.675,
-    ]);
-    nd.add(new T.CircleGeometry(0.47, 32).rotateY(Math.PI), dark, [ex, 2.18, -6.24]);
+    nd.add(
+      new T.CylinderGeometry(0.44, 0.5, 0.8, 32, 1, true).rotateX(Math.PI / 2),
+      lining,
+      [0, 2.18, -6.24],
+    );
+    nd.add(new T.CircleGeometry(0.45, 32).rotateY(Math.PI), dark, [0, 2.18, -5.84]);
     // Exposed actuator rods characteristic of the featherless Eagle exhaust.
     for (let j = 0; j < 16; j++) {
       const a = (j * Math.PI) / 8,
-        p = (r, z) => [ex + Math.sin(a) * r, 2.18 + Math.cos(a) * r, z];
-      nd.rod(p(0.625, -6.14), p(0.565, -7.08), 0.01, metal);
-      nd.rod(p(0.64, -6.18), p(0.6, -6.65), 0.018, nozzle);
+        p = (r, z) => [Math.sin(a) * r, 2.18 + Math.cos(a) * r, z];
+      nd.rod(p(0.625, -5.74), p(0.53, -6.63), 0.01, metal);
+      nd.rod(p(0.64, -5.78), p(0.59, -6.25), 0.018, nozzle);
     }
     nd.finish();
-    // Fixed cropped-delta wing, with actual separate inboard flap and outboard aileron.
+    // Fixed cropped-delta wing, with actual separate inboard flap and outboard aileron. The
+    // aileron stops short of the raked tip, which stays fixed.
     const ws = [
-      [1.6, 2.68, 2.1, -4.14, 0.15],
-      [2.2, 2.67, 1.5, -4.14, 0.14],
-      [4.2, 2.62, -0.5, -4.14, 0.09],
-      [5.85, 2.58, -2.15, -4.52, 0.045],
-      [6.4, 2.56, -2.78, -3.8, 0.025],
-      [6.524244, 2.56, -3.3, -3.65, 0.012],
+      [1.8, 2.66, 2.39, -3.64, 0.16],
+      [2.2, 2.643, 1.99, -3.64, 0.15],
+      [4.04, 2.564, 0.15, -3.64, 0.09],
+      [5.66, 2.494, -1.47, -3.99, 0.045],
+      [5.68, 2.493, -1.49, -4, 0.045],
+      [6.1, 2.475, -1.91, -3.64, 0.032],
+      [6.35, 2.465, -2.16, -3.3, 0.024],
+      [6.5, 2.458, -2.4, -3, 0.016],
+      [6.524244, 2.457, -2.7, -2.85, 0.01],
     ];
+    const hinge = (q, j) => q[3] + (j <= 3 ? Math.min(0.85, (q[2] - q[3]) * 0.4) : 0);
     wing(
       d,
-      ws.map(([x, y, le, te, h]) => [side * x, y, le, te + Math.min(0.85, (le - te) * 0.4), h]),
+      ws.map(([x, y, le, , h], j) => [side * x, y, le, hinge(ws[j], j), h]),
       upper,
     );
-    for (let j = 0; j < ws.length - 1; j++) {
+    for (let j = 0; j < 3; j++) {
       const a = ws[j],
         b = ws[j + 1],
-        hinge = (q) => q[3] + Math.min(0.85, (q[2] - q[3]) * 0.4),
         px = (side * (a[0] + b[0])) / 2,
         py = (a[1] + b[1]) / 2,
-        pz = (hinge(a) + hinge(b)) / 2;
+        pz = (hinge(a, j) + hinge(b, j + 1)) / 2;
       const g = group(root, `F15-${j < 2 ? 'flap' : 'aileron'}-${side}-${j}`, [px, py, pz]),
         wd = detailKit(g, g.name);
       wing(
         wd,
-        [a, b].map((q) => [side * q[0] - px, q[1] - py, hinge(q) - pz, q[3] - pz, q[4] * 0.23]),
+        [
+          [a, j],
+          [b, j + 1],
+        ].map(([q, n]) => [side * q[0] - px, q[1] - py, hinge(q, n) - pz, q[3] - pz, q[4] * 0.23]),
         paint,
       );
       wd.finish();
-      if (j < 3)
-        bindings.push({
-          node: g.name,
-          source: j < 2 ? 'flapPosition' : 'rollInput',
-          property: 'rotation',
-          axis: 'x',
-          scale: j < 2 ? -0.5 : -side * 0.32,
-        });
+      bindings.push({
+        node: g.name,
+        source: j < 2 ? 'flapPosition' : 'rollInput',
+        property: 'rotation',
+        axis: 'x',
+        scale: j < 2 ? -0.5 : -side * 0.32,
+      });
     }
-    for (const [x, y, le, te, h] of ws.slice(1, -1))
+    for (const [x, y, le, te, h] of ws.slice(1, 4))
       d.rod(
         [side * x, y + h + 0.004, le - 0.2],
         [side * x, y + h * 0.52 + 0.004, te + (le - te) * 0.26],
@@ -440,25 +572,37 @@ export function buildF15C(s) {
         dark,
       );
     for (let j = 0; j < 55; j++) {
-      const x = 2.25 + j * 0.065,
-        t = (x - 2.2) / 3.65,
-        y = 2.67 - 0.09 * t;
+      const x = 2.25 + j * 0.0625,
+        t = (x - 2.2) / 3.46;
       d.add(new T.SphereGeometry(0.004, 4, 3), metal, [
         side * x,
-        y + 0.1 - 0.06 * t,
-        1.5 - 3.65 * t - 0.23,
+        2.643 - 0.149 * t + (0.15 - 0.105 * t) * 0.72,
+        1.76 - 3.46 * t,
       ]);
     }
-    // Low-mounted, swept all-moving tail, 28.25 ft overall span.
-    const tg = group(root, `F15-stabilator-${side}`, [side * 1.65, 2.18, -5.8]),
+    // Fixed fairing from the engine bay to the boom; its trailing edge curves aft to the boom tip.
+    wing(
+      d,
+      [
+        [side * 1.22, 2.32, -4.4, -6.45, 0.2],
+        [side * 1.5, 2.3, -4.5, -6.75, 0.17],
+        [side * 1.72, 2.28, -4.6, -7.4, 0.12],
+      ],
+      paint,
+    );
+    // Low-mounted all-moving tail on the boom, 28.25 ft overall span. The outer panel's leading
+    // edge stands forward of the inner one at the dogtooth.
+    const tg = group(root, `F15-stabilator-${side}`, [side * 1.73, 2.18, -6.1]),
       td = detailKit(tg, tg.name);
     wing(
       td,
       [
-        [0, 0, 0.8, -1.93, 0.08],
-        [side * 2.45, -0.04, -0.85, -2.031, 0.035],
-        [side * 2.6553, -0.04, -1.36, -1.79, 0.018],
-      ],
+        [1.86, 0, -4.62, -7.54, 0.07],
+        [2.54, -0.01, -5.5, -7.62, 0.055],
+        [2.56, -0.01, -5.03, -7.62, 0.055],
+        [4.24, -0.04, -7.05, -7.83, 0.03],
+        [4.3053, -0.04, -7.35, -7.62, 0.015],
+      ].map(([l, y, le, te, h]) => [side * (l - 1.73), y, le + 6.1, te + 6.1, h]),
       paint,
     );
     td.finish();
@@ -469,16 +613,18 @@ export function buildF15C(s) {
       axis: 'x',
       scale: 1,
     });
-    const fg = group(root, `F15-fin-${side}`, [side * 1.73, 2.77, -4.3]),
+    const fg = group(root, `F15-fin-${side}`, [side * 1.73, 2.75, -4.3]),
       fd = detailKit(fg, fg.name);
+    // The fin's upper trailing edge overhangs a rudder confined to the lower half.
     const edge = [
-      [0, 0, 0.8],
-      [0, 0.48, 0.36],
-      [0, 2.82, -1.62],
-      [0, 2.893184, -2.8],
-      [0, 2.65, -2.73],
-      [0, 2.65, -2.45],
-      [0, 0.12, -1.85],
+      [0, -0.3, 0.5],
+      [0, 0, 0.47],
+      [0, 2.83, -1.32],
+      [0, 2.83, -2.62],
+      [0, 1.38, -2.55],
+      [0, 1.38, -1.98],
+      [0, 0.1, -1.62],
+      [0, -0.3, -1.62],
     ];
     for (const x of [-0.055, 0.055])
       sheet(
@@ -497,15 +643,15 @@ export function buildF15C(s) {
         upper,
         [0, 1, 0],
       );
-    const rg = group(fg, `F15-rudder-${side}`, [0, 0, -1.85]),
+    const rg = group(fg, `F15-rudder-${side}`, [0, 0, -1.62]),
       rd = detailKit(rg, rg.name);
     sheet(
       rd,
       [
-        [0, 0.12, 0],
-        [0, 2.65, -0.6],
-        [0, 2.65, -0.88],
-        [0, 0.12, -1.03],
+        [0, 0.1, 0],
+        [0, 1.38, -0.36],
+        [0, 1.38, -0.7],
+        [0, 0.1, -0.42],
       ],
       paint,
       [side, 0, 0],
@@ -519,71 +665,93 @@ export function buildF15C(s) {
       scale: 0.4,
     });
     // Exterior operator identifiers are supplied by the selected livery.
-    fd.rod([0, 2.86, -1.68], [0, 2.86, -2.78], side === 1 ? 0.08 : 0.045, dark);
+    fd.rod([0, 2.83, -1.3], [0, 2.83, -2.77], side === 1 ? 0.08 : 0.045, dark);
     fd.finish();
     // Lateral skin access lines follow the local fuselage section, not a floating cage.
-    for (let i = 4; i < 8; i++) {
-      const a = sections[i],
-        b = sections[i + 1];
+    for (const [a, b] of [
+      [7.2, 6.14],
+      [6.14, 5.07],
+    ])
       d.rod(
-        [side * a[1], (a[2] + a[3]) / 2, a[0]],
-        [side * b[1], (b[2] + b[3]) / 2, b[0]],
+        [side * shoulderX(a, 2.5) * 1.004, 2.5, a],
+        [side * shoulderX(b, 2.5) * 1.004, 2.5, b],
         0.003,
         dark,
       );
+    for (let j = 0; j < 29; j++) {
+      const z = 5.05 + j * 0.09;
+      d.add(new T.SphereGeometry(0.004, 4, 3), metal, [side * shoulderX(z, 2.78) * 1.002, 2.78, z]);
     }
-    for (let j = 0; j < 29; j++)
-      d.add(new T.SphereGeometry(0.004, 4, 3), metal, [side * 0.625, 2.72, 5.05 + j * 0.09]);
-    const label = group(root, `F15-stencils-${side}`, [side * 0.635, 2.58, 6.9]);
+    const label = group(root, `F15-stencils-${side}`, [side * 0.692, 2.42, 6.9]);
     label.rotation.y = (side * Math.PI) / 2;
     const ld = detailKit(label, label.name);
     ld.text('RESCUE', [0, 0, 0], 0.045, 0, d.yellow);
     ld.text('DANGER', [0, -0.13, 0], 0.035, 0, d.red);
     ld.finish();
   }
-  // Speed-brake outline on the upper spine, closed for this model.
+  // Speed-brake outline on the spine, closed for this model; it follows the dorsal crown.
+  const spine = (z) =>
+    lookup(
+      aftbody.map(([q, , , t]) => [q, t]),
+      z,
+    );
   outline(
     d,
     [
-      [-0.45, 3.005, 4.25],
-      [0.45, 3.005, 4.25],
-      [0.7, 2.97, 1.2],
-      [-0.7, 2.97, 1.2],
+      [-0.36, spine(3.4) - 0.1, 3.4],
+      [0.36, spine(3.4) - 0.1, 3.4],
+      [0.44, spine(1.2) - 0.18, 1.2],
+      [-0.44, spine(1.2) - 0.18, 1.2],
     ],
     0.006,
     dark,
   );
-  for (const [name, x, z, r, w] of [
-    ['nose', 0, 5.419344, 0.27, 0.17],
-    ['left', 1.376172, 0, 0.46, 0.25],
-    ['right', -1.376172, 0, 0.46, 0.25],
+  // Dorsal blade antennas that break the spine line in side view.
+  for (const [z, h, chord] of [
+    [3.05, 0.2, 0.2],
+    [0.5, 0.16, 0.18],
+  ])
+    sheet(
+      d,
+      [
+        [0, spine(z), z],
+        [0, spine(z - chord), z - chord],
+        [0, spine(z) + h, z - chord * 1.05],
+      ],
+      dark,
+      [1, 0, 0],
+    );
+  for (const [name, x, z, r, w, gy, skin] of [
+    ['nose', 0, 5.419344, 0.27, 0.17, 1.86, 0.31],
+    ['left', 1.376172, 0, 0.44, 0.25, 1.9, 0.54],
+    ['right', -1.376172, 0, 0.44, 0.25, 1.9, 0.54],
   ]) {
-    const gy = name === 'nose' ? 1.78 : 1.62,
-      g = group(root, `F15-gear-${name}`, [x, gy, z]),
-      gd = detailKit(g, g.name);
-    gd.add(new T.CylinderGeometry(r, r, w, 28).rotateZ(Math.PI / 2), dark, [0, r - gy, 0]);
+    const g = group(root, `F15-gear-${name}`, [x, gy, z]),
+      gd = detailKit(g, g.name),
+      axle = r - gy;
+    gd.add(new T.CylinderGeometry(r, r, w, 28).rotateZ(Math.PI / 2), dark, [0, axle, 0]);
     for (const side of [-1, 1]) {
       gd.add(new T.CylinderGeometry(r * 0.57, r * 0.57, 0.025, 24).rotateZ(Math.PI / 2), metal, [
         side * (w / 2 + 0.01),
-        r - gy,
+        axle,
         0,
       ]);
       for (let j = 0; j < 8; j++) {
         const a = (j * Math.PI) / 4;
         gd.add(new T.SphereGeometry(0.018, 6, 4), dark, [
           side * (w / 2 + 0.025),
-          r - gy + Math.sin(a) * r * 0.35,
+          axle + Math.sin(a) * r * 0.35,
           Math.cos(a) * r * 0.35,
         ]);
       }
     }
-    gd.rod([0, 0, 0], [0, r - gy + 0.09, 0], 0.053, metal);
-    gd.rod([0, 0, -0.65], [0, r - gy + 0.2, 0], 0.036, paint);
-    gd.rod([0, -0.4, -0.08], [0, -0.65, -0.25], 0.025, metal);
-    gd.rod([0, -0.65, -0.25], [0, -0.9, -0.06], 0.025, metal);
+    gd.rod([0, 0, 0], [0, axle + 0.09, 0], 0.053, metal);
+    gd.rod([0, -0.1, -0.65], [0, axle + 0.2, 0], 0.036, paint);
+    gd.rod([0, axle + 0.45, -0.08], [0, axle + 0.62, -0.25], 0.025, metal);
+    gd.rod([0, axle + 0.62, -0.25], [0, axle + 0.8, -0.06], 0.025, metal);
     gd.box(
-      [0.035, 0.65, 0.65],
-      [name === 'nose' ? 0.23 : Math.sign(x) * 0.24, -0.28, -0.17],
+      [0.03, 0.5, 0.42],
+      [name === 'nose' ? 0.2 : Math.sign(x) * 0.22, -skin - 0.25, -0.12],
       paint,
     );
     gd.finish();
@@ -596,7 +764,7 @@ export function buildF15C(s) {
       offset: -Math.PI / 2,
     });
   }
-  d.rod([0, 1.9, -5.4], [0, 1.55, -7.15], 0.03, metal);
+  d.rod([0, 1.76, -4.6], [0, 1.64, -6.3], 0.03, metal);
   d.finish();
   const interior = f15Cockpit(root, { paint, upper, dark, metal, glass });
   Object.assign(interior.derived, {
@@ -605,13 +773,15 @@ export function buildF15C(s) {
     tailLeft: { op: 'subtract', args: ['pitchDeflection', 'rollDeflection'] },
     tailRight: { op: 'add', args: ['pitchDeflection', 'rollDeflection'] },
   });
+  for (const child of root.children)
+    if (!child.name.startsWith('F15-gear-')) child.position.z += BODY_SHIFT;
   cleanGeometry(root);
   return {
     root,
     frame: f15Frame(),
     enginePoints: [
-      { id: 'engine-1', position: [0.7, 2.18, -5.5] },
-      { id: 'engine-2', position: [-0.7, 2.18, -5.5] },
+      { id: 'engine-1', position: [0.7, 2.18, -5.5 + BODY_SHIFT] },
+      { id: 'engine-2', position: [-0.7, 2.18, -5.5 + BODY_SHIFT] },
     ],
     visual: {
       rotors: [],
@@ -675,7 +845,7 @@ function f15Cockpit(root, m) {
   // Pixel coordinates from normalized 2048px MSIP foldout FO-3. Scale from a nominal 3.125in instrument.
   const k = 0.00225,
     z = 7.42,
-    at = (u, v, dz = 0) => [(1071 - u) * k, 2.94 - (v - 365) * k, z + dz];
+    at = (u, v, dz = 0) => [(1071 - u) * k, 2.86 - (v - 365) * k, z + dz];
   const circle = (u, v, r) =>
     Array.from({ length: 40 }, (_, j) =>
       at(u + Math.cos((j * Math.PI) / 20) * r, v + Math.sin((j * Math.PI) / 20) * r),
@@ -941,12 +1111,14 @@ function f15Cockpit(root, m) {
     d.rod(at(u, v, -0.032), at(u, v - 2, -0.046), 0.002, m.metal);
   }
   text('--', 1082, 280, 5, amber, 'display');
+  // The combiner keeps its height above the lowered panel: only its solid mount sits below the
+  // over-the-nose line. Clear glass is fine in the sightline.
   const hud = [
     [1030, 205],
-    [1034, 134],
-    [1052, 124],
-    [1099, 124],
-    [1110, 139],
+    [1034, 112],
+    [1052, 102],
+    [1099, 102],
+    [1110, 115],
     [1113, 204],
   ].map((p) => at(...p, -0.12));
   sheet(d, hud, m.glass, [0, 0, -1]);
@@ -980,21 +1152,54 @@ function f15Cockpit(root, m) {
     });
   }
   // Tub, ACES II seat, harness, side consoles. Top-facing labels follow console mounting.
+  // Bulkhead behind the seat closes the tub under the aft canopy, with the avionics deck over the
+  // bay between it and the rear of the canopy.
+  d.box([0.96, 1, 0.03], [0, 2.47, 5.9], black);
+  d.box([0.96, 0.02, 1.18], [0, 2.96, 5.31], panel);
+  const bulkhead = canopy.find(([z]) => z === 4.72);
+  sheet(
+    d,
+    [
+      [0.48, 1.98, 4.72],
+      [0.48, 2.68, 4.72],
+      [bulkhead[1] - 0.012, bulkhead[2] - 0.004, 4.72],
+      [-(bulkhead[1] - 0.012), bulkhead[2] - 0.004, 4.72],
+      [-0.48, 2.68, 4.72],
+      [-0.48, 1.98, 4.72],
+    ],
+    black,
+    [0, 0, 1],
+  );
   d.box([0.84, 0.035, 2.9], [0, 1.98, 6.22], black);
   for (const side of [-1, 1]) {
     sheet(
       d,
       [
-        [side * 0.48, 1.98, 4.75],
-        [side * 0.48, 1.98, 7.75],
-        [side * 0.48, 2.68, 7.75],
-        [side * 0.48, 2.68, 4.75],
+        [side * 0.48, 1.98, 4.72],
+        [side * 0.48, 1.98, 7.91],
+        [side * 0.48, 2.68, 7.91],
+        [side * 0.48, 2.68, 4.72],
       ],
       panel,
       [-side, 0, 0],
     );
-    d.box([0.22, 0.28, 1.8], [side * 0.42, 2.27, 6.25], panel);
-    const cg = group(cabin, `F15-console-${side}`, [side * 0.42, 2.42, 6.25]);
+    // Upper liner from the console shelf to the canopy rail, which rises toward the seat back.
+    const rails = canopy.filter(([z]) => z <= 7.91 && z >= 4.72);
+    for (let i = 0; i < rails.length - 1; i++) {
+      const [z0, w0, y0] = rails[i],
+        [z1, w1, y1] = rails[i + 1];
+      quad(
+        d,
+        [side * 0.48, 2.68, z0],
+        [side * 0.48, 2.68, z1],
+        [side * (w1 - 0.012), y1 - 0.004, z1],
+        [side * (w0 - 0.012), y0 - 0.004, z0],
+        panel,
+        [-side, 0.2, 0],
+      );
+    }
+    d.box([0.22, 0.4, 1.8], [side * 0.42, 2.33, 6.25], panel);
+    const cg = group(cabin, `F15-console-${side}`, [side * 0.42, 2.54, 6.25]);
     cg.rotation.x = Math.PI / 2;
     const cd = detailKit(cg, cg.name);
     for (let j = 0; j < 6; j++) {
@@ -1024,14 +1229,15 @@ function f15Cockpit(root, m) {
     }
     cd.finish();
   }
-  const sg = group(cabin, 'F15-ACES-II', [0, 2.25, 5.97]);
+  d.box([0.44, 0.5, 0.5], [0, 2.25, 6.62], black);
+  const sg = group(cabin, 'F15-ACES-II', [0, 2.54, 6.43]);
   sg.rotation.x = -0.23;
   const sd = detailKit(sg, sg.name);
   beveledBox(sd, [0.5, 0.12, 0.52], [0, 0, 0.2], seat);
   beveledBox(sd, [0.48, 0.77, 0.13], [0, 0.41, -0.07], seat);
-  beveledBox(sd, [0.32, 0.29, 0.17], [0, 0.96, -0.07], black);
+  beveledBox(sd, [0.32, 0.29, 0.17], [0, 0.92, -0.07], black);
   for (const side of [-1, 1]) {
-    sd.rod([side * 0.27, -0.1, -0.17], [side * 0.27, 1.13, -0.17], 0.023, m.metal);
+    sd.rod([side * 0.27, -0.1, -0.17], [side * 0.27, 1.02, -0.17], 0.023, m.metal);
     sheet(
       sd,
       [
@@ -1047,18 +1253,18 @@ function f15Cockpit(root, m) {
   }
   sd.box([0.065, 0.04, 0.025], [0, 0.12, 0.13], m.metal);
   sd.finish();
-  const stick = group(cabin, 'F15-stick', [0, 2.04, 6.72]),
+  const stick = group(cabin, 'F15-stick', [0, 2.04, 6.93]),
     st = detailKit(stick, stick.name);
-  st.rod([0, 0, 0], [0, 0.43, -0.035], 0.023, black);
-  st.box([0.07, 0.11, 0.07], [0, 0.46, -0.035], black);
-  st.add(new T.SphereGeometry(0.011, 8, 6), d.red, [-0.03, 0.5, -0.06]);
+  st.rod([0, 0, 0], [0, 0.72, -0.06], 0.023, black);
+  st.box([0.07, 0.11, 0.07], [0, 0.75, -0.06], black);
+  st.add(new T.SphereGeometry(0.011, 8, 6), d.red, [-0.03, 0.79, -0.085]);
   st.finish();
   bindings.push(
     { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.23 },
     { node: stick.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.24 },
   );
   for (const side of [-1, 1]) {
-    const g = group(cabin, `F15-pedal-${side}`, [side * 0.14, 2.12, 7.48]),
+    const g = group(cabin, `F15-pedal-${side}`, [side * 0.14, 2.2, 7.22]),
       gd = detailKit(g, g.name);
     gd.box([0.14, 0.16, 0.04], [0, 0, 0], m.metal);
     for (let j = 0; j < 5; j++) gd.box([0.12, 0.005, 0.004], [0, -0.06 + j * 0.03, -0.023], black);
@@ -1072,7 +1278,7 @@ function f15Cockpit(root, m) {
     });
   }
   for (let i = 0; i < 2; i++) {
-    const g = group(cabin, `F15-throttle-${i}`, [0.37 + i * 0.07, 2.43, 6.42]),
+    const g = group(cabin, `F15-throttle-${i}`, [0.37 + i * 0.07, 2.55, 6.76]),
       gd = detailKit(g, g.name);
     gd.rod([0, 0, 0], [0, 0.1, 0], 0.014, black);
     gd.box([0.055, 0.06, 0.09], [0, 0.11, 0], black);

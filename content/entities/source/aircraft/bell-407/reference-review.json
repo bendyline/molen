@@ -44,6 +44,25 @@
       "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
       "revision": 895285461,
       "scope": "Exterior photograph for shape and detail comparison; gear configuration may differ."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Helicopter_Bell_407._Cockpit._(4042818252).jpg",
+      "author": "Aleksandr Markin",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "scope": "Analog 407 cockpit, fisheye: panel on a narrow stem, windscreen wrapping past it on both sides."
+    },
+    {
+      "url": "https://ww2.txtav.com/Parts/PartSearch/PartsDetail/011-00972-00RX",
+      "author": "Textron Aviation parts catalog",
+      "license": "Published specification; dimension only.",
+      "scope": "GDU 1040 case 11.8 in wide and 7.7 in high, the absolute scale for the GX panel."
+    },
+    {
+      "url": "https://gccports.com/aircraft-technical-data-details/bell-407",
+      "author": "GCC Ports technical data sheet",
+      "license": "Published specification; dimension only.",
+      "scope": "Overall height 3.56 m. It repeats a commonly quoted figure and does not state the gear."
     }
   ],
   "cabinCamera": {
@@ -55,8 +74,8 @@
     ],
     "lookAt": [
       0,
-      1.14,
-      1.6
+      1.1,
+      1.9
     ],
     "fov": 80
   },
@@ -64,10 +83,10 @@
     "mode": "top-down-ortho",
     "center": [
       0,
-      -1.25
+      -1.1
     ],
-    "viewHeight": 1.05,
-    "cameraHeight": 8.45
+    "viewHeight": 0.55,
+    "cameraHeight": 8.15
   },
   "overlays": [
     {
@@ -158,12 +177,12 @@
       ],
       "modelAnchor": [
         0,
-        -1.02
+        -0.952
       ],
       "scaleControls": {
         "pixels": 750,
-        "meters": 1.15,
-        "description": "Authored panel-width assumption; relative arrangement only."
+        "meters": 0.713,
+        "description": "Panel width from the GDU case: 0.30 m in the Waerfelu photograph gives 0.857 mm per pixel, and its standby dials then measure 87 mm over the case, as a 3.125 in instrument should."
       },
       "edgeMode": "photo",
       "scope": "Near-front photograph, without perspective rectification. Small perspective and occlusion differences remain; coaming, pedestal and cabin depth are not measured by this overlay."
@@ -174,13 +193,19 @@
     "corrections": [
       "Individual seven-seat 407GX shell, pilot/middle/aft glazing, chin windows, low skid gear and baggage hatch measured against the Bell drawing.",
       "Raised and resectioned engine cowling, twin upward exhausts, tapered tail boom, stabilizer endplates, four-blade rotor and pitch links.",
-      "GX asymmetric coaming, two displays, two standby instruments, central pedestal, dual controls, overhead switches and seven beveled seats. Display layers corrected after close camera inspection."
+      "GX asymmetric coaming, two displays, two standby instruments, central pedestal, dual controls, overhead switches and seven beveled seats. Display layers corrected after close camera inspection.",
+      "Nose rebuilt: the sheet nose station of 3.28 m is a pitot tip, so the nose is now blunt and ends at 3.10 m, where it had been a wedge running to 3.28 m. The nose to stinger dimension stays 10.57 m through the pitot.",
+      "Windscreen now wraps down to the door post, as drawn and photographed. Opaque side panels had covered that glass.",
+      "Chin windows extended aft from station 2.65 m to about 2.3 m and moved low on the nose.",
+      "Side window height 0.69 m, was 0.55 m; drawn 0.73 m. Door seams and hinges moved to the drawn positions.",
+      "Forward fairing given its flat top at 2.35 m to station -0.66 m and the convex front, both up to 0.1 m low before. Boom depth at the stabilizer 0.41 m, was 0.34 m."
     ],
     "limitations": [
       "The dimension drawing is schematic; rotor azimuth and static blade droop differ from the modeled idle rotor.",
-      "The near-front GX panel photograph does not establish absolute panel dimensions or cabin depth; its left edge is cropped. The overlay checks relative layout with a stated 1.15 m width assumption.",
+      "Panel size comes from the GDU case and standby dials. The GX photograph crops the left panel edge, so the 0.74 m width is partly inferred, and panel height above the floor is judged from photographs at unsolved cameras.",
       "Rear seating and upholstery are reconstructed from the manufacturer seating plan; equipment fits vary.",
-      "Avionics display graphics and labels are original simplified diagrams; this is not a systems trainer."
+      "Avionics display graphics and labels are original simplified diagrams; this is not a systems trainer.",
+      "The side wall stays flat, so window tops stop at 1.60 m against 1.64 m drawn, and the rounded window corners and door tumblehome are not modeled."
     ],
     "independentDimensions": [
       {
@@ -207,17 +232,29 @@
         "feature": "stabilizer span",
         "referenceMeters": 2.22,
         "modelMeters": 2.22
+      },
+      {
+        "feature": "fuselage width, EASA OEB",
+        "referenceMeters": 1.5,
+        "modelMeters": 1.5
+      },
+      {
+        "feature": "aft blade tip height, low gear, as drawn",
+        "referenceMeters": 3.34,
+        "modelMeters": 3.36
       }
     ],
-    "visual": "Front, side, top and panel overlays inspected; current lit three-quarter, operator, close cabin, wide cabin and four turntable views inspected. Internal cross-section slivers removed and display foreground layers repaired."
+    "visual": "Front, side, top and panel overlays inspected; current lit three-quarter, operator, close cabin, wide cabin and four turntable views inspected. Internal cross-section slivers removed and display foreground layers repaired.",
+    "heightNote": "The model is 3.36 m tall at its aft blade tip. The Bell sheet draws that tip at 3.34 m on low gear and 3.5 to 3.6 m on high gear, so the widely quoted 3.56 m matches the high skid installation. The fin is 3.10 m, as printed. The EASA OEB fuselage height of 2.68 m was not reconciled with the sheet: the drawn cowling top is 2.37 m."
   },
-  "sourceHash": "sha256:e69b42da8208e1cbcfa8b43a82bd09ef8950c1a2f5a56a8a2d0e60b6355fa252",
-  "runtimeHash": "sha256:5720ce8af4b5e087acc1263f04febbd536ceeaa7ba0dd566e9e9ee9e0f12b5dd",
+  "sourceHash": "sha256:a2390af2b9b3614d87fb3d18a186b225ec72ccc0474c7a547b3243006c3d7581",
+  "runtimeHash": "sha256:1aab88aa18a9d53afd476f35861e8d7f6a422083a96d40a0e50330ef58887c3b",
   "limitations": [
     "The dimension drawing is schematic; rotor azimuth and static blade droop differ from the modeled idle rotor.",
-    "The near-front GX panel photograph does not establish absolute panel dimensions or cabin depth; its left edge is cropped. The overlay checks relative layout with a stated 1.15 m width assumption.",
+    "Panel size comes from the GDU case and standby dials. The GX photograph crops the left panel edge, so the 0.74 m width is partly inferred, and panel height above the floor is judged from photographs at unsolved cameras.",
     "Rear seating and upholstery are reconstructed from the manufacturer seating plan; equipment fits vary.",
-    "Avionics display graphics and labels are original simplified diagrams; this is not a systems trainer."
+    "Avionics display graphics and labels are original simplified diagrams; this is not a systems trainer.",
+    "The side wall stays flat, so window tops stop at 1.60 m against 1.64 m drawn, and the rounded window corners and door tumblehome are not modeled."
   ],
   "controlReview": {
     "checked": "2026-10-22",
@@ -236,6 +273,51 @@
       "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
       "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
       "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  },
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "Rays from the pilotEye through source.glb, seat view at the runtime camera (+Z, 60 degrees vertical), overlays of true-scale orthographic renders on the Bell side and front views, and a view from the angle of the N23986 photograph.",
+    "proportions": "Length, rotor, skid span, fin height and cabin width were already right. What read as off was shape, listed under reviewNotes corrections.",
+    "before": {
+      "eye": [
+        -0.36,
+        1.68,
+        1.14
+      ],
+      "eyeToPanelMeters": 0.64,
+      "headroomMeters": 0.08,
+      "eyeAboveCushionMeters": 0.86,
+      "displayCaseWidthMeters": 0.475,
+      "standbyDialDiameterMm": 132,
+      "panelMeters": [
+        1.2,
+        0.73
+      ]
+    },
+    "after": {
+      "eye": [
+        -0.36,
+        1.56,
+        1.3
+      ],
+      "eyeToPanelMeters": 0.75,
+      "headroomMeters": 0.2,
+      "eyeAboveCushionMeters": 0.78,
+      "displayCaseWidthMeters": 0.295,
+      "standbyDialDiameterMm": 82,
+      "panelMeters": [
+        0.744,
+        0.453
+      ],
+      "panelTopHeightMeters": 1.33,
+      "panelTopBelowEyeDegrees": 17,
+      "cockpitVerticesOutsideShell": 0
+    },
+    "corrections": [
+      "Panel moved to its own group scaled 0.62; layout and bindings unchanged.",
+      "Front seats, eye, cyclics, collectives, pedestal and pedals moved about 0.27 m forward: the 407 door and windscreen stand that far forward of the 206 stations, and the head now sits in the first door window. Seats dropped 0.04 m, aft-facing seats moved up behind them.",
+      "Pedestal narrowed to the 0.26 m of the GX photograph and raised to meet the panel foot. Floors and the aft seat row brought inside the shell."
     ]
   }
 }

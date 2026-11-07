@@ -150,7 +150,9 @@ import {
   earthPerformanceTier,
   earthPixelRatio,
   earthQualityLevel,
+  earthTerrainBudget,
   earthTerrainCacheBudget,
+  earthWorldgenCacheBytes,
 } from './performance';
 import {
   createEarthPrefetcher,
@@ -541,8 +543,9 @@ export interface EarthInteractable {
    * `vehicle`: a parked car or aircraft within reach on foot, or the one the viewer is in.
    * `actor`: an interactable actor within reach and in sight. `pedestrian`: an ambient
    * pedestrian (with `interaction.pedestrians`; `view.actors.adopt(id)` makes it an actor).
+   * `elevator`: the lift the viewer is standing in, which the key takes up a floor.
    */
-  kind: 'actor' | 'vehicle' | 'pedestrian' | 'none';
+  kind: 'actor' | 'vehicle' | 'pedestrian' | 'elevator' | 'none';
   id?: string;
   /** Meters from the viewer, on foot. */
   distance?: number;
@@ -701,10 +704,6 @@ export interface EarthView {
 const VERTICAL_FOV = THREE.MathUtils.degToRad(60);
 /** The entity that stands for the viewer in the shared world (seats, avatar). */
 const PLAYER_ID = 'world-player';
-/** Degrees past the view where ground stays built at reduced detail, covering a quick turn. */
-const PERIPHERAL_DEGREES = 20;
-/** Error weight of that band: roughly a level coarser than the view beside it. */
-const PERIPHERAL_DETAIL = 0.4;
 /** The package with its bare-ground surface layers recolored by name (others untouched). */
 function withGroundColors(
   pkg: TerrainPackageDescriptor,
@@ -878,24 +877,23 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           };
         })()
       : undefined;
-  // Ground just left must stay warm up to the device budget, whatever the level: a smaller cache
-  // re-streams it on every pan, and loses the intermediate levels that bridge a refinement.
-  // Ground a little past the view stays loaded as bare terrain, so turning the camera reveals
-  // ground that is already there; its buildings and trees follow once it is in view.
-  const terrainBudget = (): TerrainPyramidBudget => {
-    const base = automatic ? tier.terrain : terrainPyramidBudgetForQuality(quality());
-    return {
-      ...earthTerrainCacheBudget(base, memoryBudget),
-      peripheralDegrees: PERIPHERAL_DEGREES,
-      peripheralDetail: PERIPHERAL_DETAIL,
-    };
-  };
+  // Manual quality keeps automatic quality's preparation capacity (earthTerrainCacheBudget), and
+  // ground just left stays warm up to the device budget with ground a little past the view
+  // loaded as bare terrain (earthTerrainBudget), so a pan or turn reveals ground already there.
+  const terrainBudget = (): TerrainPyramidBudget =>
+    earthTerrainBudget(
+      earthTerrainCacheBudget(
+        automatic ? tier.terrain : terrainPyramidBudgetForQuality(quality()),
+        memoryBudget,
+      ),
+      memoryBudget,
+    );
   // Sun shadows follow the performance tier (see EarthPerformanceTier.shadows).
   const shadowsOn = options.shadows ?? true;
   const shadowQuality = (): 'off' | 'medium' | 'high' =>
     !shadowsOn ? 'off' : earthPerformanceTier(level).shadows;
   const worldgenCacheBytes = (): number =>
-    Math.max(automatic ? tier.cacheBytes : 192 * 1024 * 1024, memoryBudget / 4);
+    earthWorldgenCacheBytes(automatic ? tier.cacheBytes : 192 * 1024 * 1024, memoryBudget);
   const viewport = (): [number, number] => [
     Math.max(1, canvas.clientWidth),
     Math.max(1, canvas.clientHeight),
@@ -1367,14 +1365,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             metersPerUnit,
             budget: () => stream.getBudget(),
             resident: () => new Set(stream.residentTiles().map(terrainPyramidTileKey)),
-            busy: () => {
-              const loading = stream.loading();
-              const limits = stream.getBudget();
-              return (
-                loading.tiles >= limits.maxConcurrentLoads ||
-                loading.layers >= limits.maxConcurrentLayerLoads
-              );
-            },
+            // Terrain loads only: layer slots are bound by CPU and GPU work rather than reads, and
+            // fast travel keeps them full, which is exactly when reading ahead is most useful.
+            busy: () => stream.loading().tiles >= stream.getBudget().maxConcurrentLoads,
             groundHeight: (x, z) => stream.sampleSurfaceHeight(x, z),
             viewShape: () => {
               const [w, h] = viewport();
@@ -2264,6 +2257,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       aircraft.view = 'chase';
     };
 
+    /** A lift was asked for a storey; the walker moves once it has been built. */
+    let ride: { identity: string; level: number; floors: number[] } | undefined;
     /** What the interact key would act on now. */
     let interaction: EarthInteractionSettings = { ...options.interaction };
     const interactable = (): EarthInteractable => {
@@ -2278,6 +2273,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         return id !== undefined ? { kind: 'vehicle', id, distance: 0 } : { kind: 'none' };
       }
       if (mode !== 'walk') return { kind: 'none' };
+      if (current.worldgen?.elevatorAt([walker.feet.x, walker.feet.y, walker.feet.z]))
+        return { kind: 'elevator', distance: 0 };
       const eye = walkerEye();
       const distanceTo = (position: [number, number, number] | undefined): number =>
         position === undefined
@@ -2326,6 +2323,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         },
       });
       if (claimed) return;
+      if (found.kind === 'elevator') {
+        const stop = current.worldgen?.elevatorAt([walker.feet.x, walker.feet.y, walker.feet.z]);
+        if (stop) ride = { ...stop, level: ((ride?.level ?? stop.level) + 1) % stop.floors.length };
+        return;
+      }
       // Talking to someone is the host's business: unclaimed, nothing happens.
       if (found.kind === 'actor' || found.kind === 'pedestrian') return;
       if (mode === 'drive' || mode === 'fly') {
@@ -2953,6 +2955,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         const groundCollision = new WalkCollision({ ignoreVehicles: true });
         groundCollision.update(current.stream.object, walker.feet.x, walker.feet.z);
         walker.place(collision, groundHeight, groundCollision);
+      }
+      if (ride && current.worldgen?.requestStorey(ride.identity, ride.level)) {
+        walker.feet.y = (ride.floors[ride.level] as number) + 0.02;
+        walker.velocity.set(0, 0, 0);
+        collision.invalidate();
+        ride = undefined;
       }
       walker.update(
         dt,

@@ -89,6 +89,12 @@ before adding labels and small switches. Record calibration and differences, inc
 depths or variant mismatches. If suitable interior references cannot be found, document the
 search and mark the affected geometry as approximate; do not infer approval from exterior QA.
 
+Measure each aircraft from the seat as well. `node packages/entities/scripts/cockpit-sweep.mjs
+--ids=<slug>` casts rays from `pilotEye` and reports head clearance, where the seat sits under the
+eye, the view over the nose, and whether the attitude display is in frame. Then look at a seat
+render: world-explorer enters the cockpit 10.3 degrees below level, and Earth view enters level, so
+check the frame the pilot gets. `content/entities/PROPORTION-REVIEW.md` lists each column and limit.
+
 Aircraft generators accept `--out /path/to/candidate.glb` for reviewing changes without
 overwriting the master or baseline. Import an approved master with `molen asset import`, update
 the source manifest hash, and run the entity package's `generate` command for aggregate types.

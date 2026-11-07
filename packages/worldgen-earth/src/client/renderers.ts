@@ -41,6 +41,7 @@ import {
   createInstancedPlacements,
   createVertexColorMaterialSet,
   disposeWorldgenObject,
+  type InteriorElevatorStop,
   InteriorStreamer,
   type InteriorStreamingOptions,
   type InteriorStreamingStats,
@@ -223,6 +224,10 @@ export interface WorldgenSemanticRenderers {
   setCacheBudget(maxBytes: number): void;
   /** Call before walking collision with the camera in metric world coordinates. */
   updateInteriors(position: readonly [number, number, number]): void;
+  /** The lift a viewer at this position is standing in. */
+  elevatorAt(position: readonly [number, number, number]): InteriorElevatorStop | undefined;
+  /** Ask a tower for a storey; true once it is built and a viewer can be moved there. */
+  requestStorey(identity: string, level: number): boolean;
   dispose(): void;
 }
 
@@ -1532,6 +1537,8 @@ export function createWorldgenSemanticRenderers(
     classification,
     humanFeatures,
     updateInteriors: (position): void => interiors?.update(position),
+    elevatorAt: (position) => interiors?.elevatorAt(position),
+    requestStorey: (identity, level) => interiors?.requestStorey(identity, level) ?? false,
     setQuality(next): void {
       if (quality === next) return;
       quality = next;

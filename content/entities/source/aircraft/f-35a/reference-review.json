@@ -56,7 +56,7 @@
     "mode": "fixed",
     "position": [
       0,
-      2.94,
+      2.91,
       5.7
     ],
     "lookAt": [
@@ -342,13 +342,65 @@
       }
     }
   },
-  "sourceHash": "sha256:e737dd98c2071070aaf7680658c66b8d607c80f4f127a05aa77fb475e9ee6db5",
-  "runtimeHash": "sha256:97b6366caaf25716a5c60382ae70fde7614ffb86e9b9ae36ffbe7d99451898dd",
+  "sourceHash": "sha256:b7b088b49c4e33b8195590eec60055d86523527ca6e26d7966f16ea5eee75043",
+  "runtimeHash": "sha256:51c6db05a7eaeb168ee3d5bd0172df0d900b5cd61a6782f4679ce7872f4e1ff4",
   "limitations": [
     "Polygonal interpretation,not an engineering replica. Promotional three-view predates production andcontains view-scale discrepancies;compound section curvature,intake internals,gear mechanics,access borders,fasteners,labels andlivery are simplified.",
     "Cockpit panel uses a publicly identified2010 mock-up,not a verified production-block installation. Known display size anchors its main plane;console/standby depths,switch identities,seat upholstery andharness are approximate. JPO simulator image is not treated as an installed cockpit reference.",
     "FLIGHT/SIM andSTANDBY/SIM are authored simulator presentations,not operational F-35 avionics. No radar,sensorfusion,tacticalmap,helmet display,pressure altitude,magnetic heading orcalibrated IAS/Mach. Engine/fuel readings remain unavailable.",
     "Shared assisted physics andsimplified controlmixes are not the F-35 flight-control laws. Fixed neutral exhaust,approximate landing-gear movement with hiding behind closed bays,static canopy andno operating systems switches.",
     "Reference pixels remain local. JPO images without individual photographic attribution are local study only;public-domain drawing andAhunt photograph retain their source records. No photographic textures orweapons ship."
-  ]
+  ],
+  "proportionReview": {
+    "date": "2026-11-06",
+    "outcome": "Measured and left alone.",
+    "method": "Drawing resampled into model metres and overlaid on the rasterized GLB, side view. No photograph solved.",
+    "calibration": {
+      "side": "JPO shaded general arrangement, gear up, 45 px/m from the 51.4 ft length, datum set by the 4.38 m fin. Not dimensioned."
+    },
+    "landmarks": {
+      "finding": "Crown, keel and canopy fall on the outline. The model is more faceted than the drawing, which is a style matter, not a proportion error."
+    },
+    "corrections": [],
+    "limitations": [
+      "Drawing is a pre-production rendering, so this is a weak check. Only the side view was checked."
+    ]
+  },
+  "cockpitSweep": {
+    "tool": "packages/entities/scripts/cockpit-sweep.mjs",
+    "finding": "The seat stood 0.65 m behind the eye, the head was against the canopy, and the panel wings, hood and tub front came through the skin beside the windscreen.",
+    "before": {
+      "outside": 84.0,
+      "horizon": 90.0,
+      "overNose": -15.0,
+      "headroom": 0.16,
+      "wall": 0.26,
+      "panel": 0.94,
+      "cushion": 1.22,
+      "seatback": 0.65,
+      "dial": 250.0,
+      "poked": 0.6
+    },
+    "after": {
+      "outside": 81.94,
+      "horizon": 95.12,
+      "overNose": -13,
+      "headroom": 0.19,
+      "wall": 0.29,
+      "panel": 0.93,
+      "cushion": 0.8,
+      "seatback": 0.28,
+      "dial": 250.04,
+      "poked": 0
+    },
+    "changes": [
+      "Eye lowered 2.94 to 2.91 m for headroom.",
+      "Seat forward 0.35 m and up 0.16 m on a pedestal, with a shorter headbox and rails.",
+      "Panel wings narrowed from 0.43 to 0.37 m half-width; hood and tub front drawn in behind the skin."
+    ],
+    "limitations": [
+      "Seat, stick, pedal and throttle positions come from seated-eye ergonomic targets and cockpit photographs, not a dimensioned installation drawing.",
+      "Panel wing width is set by the model skin, not by a drawing."
+    ]
+  }
 }

@@ -26,7 +26,7 @@ export const f35Frame = () => ({
   ry: 0.66,
   cabinZ: 5.7,
   cabinWidth: 0.88,
-  eye: [0, 2.94, 5.7],
+  eye: [0, 2.91, 5.7],
   panelZ: 6.55,
   floor: 1.72,
 });
@@ -825,16 +825,16 @@ function f35Cockpit(root, m) {
       d.text(t, [x, y, z + dz], h, Math.PI, color, role);
   // The JPO publishes a20x8in active area. Single panoramic face with real horizon apertures.
   const edge = [
-    [-0.43, 2.388],
-    [-0.43, 2.46],
+    [-0.37, 2.388],
+    [-0.37, 2.46],
     [-0.34, 2.54],
     [-0.32, 2.66],
     [-0.29, 2.68],
     [0.29, 2.68],
     [0.32, 2.66],
     [0.34, 2.54],
-    [0.43, 2.46],
-    [0.43, 2.388],
+    [0.37, 2.46],
+    [0.37, 2.388],
     [0.13, 2.388],
     [0.13, 2.17],
     [-0.13, 2.17],
@@ -861,8 +861,8 @@ function f35Cockpit(root, m) {
       d,
       [...a, z],
       [...b, z],
-      [b[0] * 0.88, b[1] - 0.04, z + 0.26],
-      [a[0] * 0.88, a[1] - 0.04, z + 0.26],
+      [b[0] * 0.72, b[1] - 0.04, z + 0.26],
+      [a[0] * 0.72, a[1] - 0.04, z + 0.26],
       black,
       [0, 1, 0],
     );
@@ -945,14 +945,14 @@ function f35Cockpit(root, m) {
   txt('STANDBY / SIM', -0.044, 2.339, 0.005, green, undefined, 'display');
   // No conventional HUD. The real helmet display is not synthesized by this model.
   d.box([0.86, 0.05, 1.9], [0, 1.695, 5.85], panel);
-  d.box([0.86, 0.64, 0.035], [0, 2.04, 6.8], panel);
+  d.box([0.74, 0.58, 0.035], [0, 2.01, 6.8], panel);
   for (const side of [-1, 1]) {
     quad(
       d,
       [side * 0.48, 1.72, 5.05],
       [side * 0.48, 2.55, 5.05],
-      [side * 0.42, 2.38, 6.8],
-      [side * 0.42, 1.72, 6.8],
+      [side * 0.37, 2.3, 6.8],
+      [side * 0.37, 1.72, 6.8],
       panel,
       [-side, 0, 0],
     );
@@ -960,7 +960,7 @@ function f35Cockpit(root, m) {
       d,
       [
         [side * 0.48, 2.55, 5.05],
-        [side * 0.42, 2.38, 6.8],
+        [side * 0.37, 2.3, 6.8],
       ],
       0.022,
       black,
@@ -990,14 +990,15 @@ function f35Cockpit(root, m) {
     }
     gd.finish();
   }
-  const sg = group(cabin, 'F35-US16E-seat', [0, 1.86, 5.2]);
+  d.box([0.4, 0.3, 0.42], [0, 1.85, 5.68], black);
+  const sg = group(cabin, 'F35-US16E-seat', [0, 2.02, 5.55]);
   sg.rotation.x = -0.2;
   const sd = detailKit(sg, sg.name);
   beveledBox(sd, [0.46, 0.12, 0.51], [0, 0, 0.2], seat);
   beveledBox(sd, [0.44, 0.68, 0.13], [0, 0.39, -0.08], seat);
-  beveledBox(sd, [0.3, 0.3, 0.18], [0, 0.91, -0.08], black);
+  beveledBox(sd, [0.3, 0.3, 0.18], [0, 0.87, -0.08], black);
   for (const side of [-1, 1]) {
-    sd.rod([side * 0.25, -0.1, -0.19], [side * 0.25, 1.09, -0.19], 0.022, m.metal);
+    sd.rod([side * 0.25, -0.1, -0.19], [side * 0.25, 0.98, -0.19], 0.022, m.metal);
     sheet(
       sd,
       [

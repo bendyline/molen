@@ -1,0 +1,73 @@
+{
+  "variant": "Bendy Small Airliner, an invented small twinjet. It claims no real type or variant.",
+  "status": "exterior and flight deck rebuilt; visual acceptance pending owner review",
+  "references": [
+    {
+      "url": "https://www.boeing.com/content/dam/boeing/v2/airports/acaps/737NG_REV_C.pdf",
+      "title": "737NG Airplane Characteristics for Airport Planning, D6-58325-7 Rev C, October 2025",
+      "author": "Boeing",
+      "license": "Public manufacturer document; used only through the traced 737-800 model in this repository, no diagram pixels redistributed",
+      "scope": "Exemplar for proportions. Compared through the repository's boeing-737-800 model in a true-scale line-up; see that bundle's reference-review.json."
+    },
+    {
+      "url": "https://mediaassets.airbus.com/pm_38_943_943905-x1g4kvdbru.pdf?fileName=a220-aircraft-characteristics-publication-acp-oct-2026.pdf",
+      "title": "A220 Aircraft Characteristics Publication, Oct 2026, module BD500-3AB4",
+      "author": "Airbus",
+      "license": "Public manufacturer document; used only through the traced A220-300 model in this repository, no diagram pixels redistributed",
+      "scope": "Exemplar for proportions. Compared through the repository's a220-300 model in a true-scale line-up; see that bundle's reference-review.json."
+    }
+  ],
+  "viewsSought": {
+    "usable": "Side and front true-scale line-ups against the 737-800 and A220-300 models, from packages/entities/scripts/lineup-fleet.mjs.",
+    "notMade": "No drawing or photograph overlay: there is no real aircraft to overlay. No new external references were fetched. Ergonomics come from the brief's targets and general transport-category practice, not from a measured flight deck."
+  },
+  "dimensionsChecked": [
+    { "name": "overall length", "before": 39.0, "after": 39.0, "spec": 39 },
+    { "name": "overall span", "before": 35.2, "after": 35.8, "spec": 35.8 },
+    { "name": "overall height", "before": 12.14, "after": 12.2, "spec": 12.2 },
+    { "name": "barrel width and depth", "before": 3.9, "after": 3.9 },
+    { "name": "barrel keel above ground", "before": 1.85, "after": 1.85 },
+    { "name": "wing area from the table, m2", "before": 137, "after": 122.8, "spec": 122 },
+    { "name": "wheelbase", "before": 12.3, "after": 14.35 },
+    { "name": "main gear track", "before": 6.4, "after": 6.4 },
+    { "name": "main tyres above ground", "before": 0.2, "after": 0 },
+    { "name": "body depth 1 m aft of the nose", "before": 1.3, "after": 1.5 },
+    { "name": "body depth 2 m aft of the nose", "before": 2.1, "after": 2.48 }
+  ],
+  "cockpitChecked": [
+    { "name": "eye [x, y, z]", "before": [0.55, 4.65, 15.4], "after": [0.55, 4.65, 16.1] },
+    { "name": "eye to panel face, horizontal, m", "before": 0.58, "after": 0.75, "target": "0.65 to 0.9" },
+    { "name": "eye to overhead, m", "before": 0.75, "after": 0.34, "target": "at least 0.2" },
+    { "name": "eye to seat cushion, m", "before": 0.94, "after": 0.78, "target": "0.75 to 0.8" },
+    { "name": "first solid below the horizon dead ahead, degrees", "before": 5, "after": 14 },
+    { "name": "primary display, m", "before": [0.285, 0.235], "after": [0.152, 0.203], "target": "6 by 8 in" },
+    { "name": "standby dial diameter, m", "before": "none", "after": 0.08, "target": "3 1/8 in" },
+    { "name": "worst deck vertex outside the skin, m, analytic section test", "before": "not measured", "after": -0.004 }
+  ],
+  "reviewNotes": {
+    "comparisons": [
+      "Side line-up at 34 px/m beside the 737-800 and A220-300: nose depth, crown, keel, tail upsweep, wing root, engine and gear positions read as the same class.",
+      "Front line-up at 20 px/m: body, engines, track and tailplane agree in scale. The airliner has no winglets, as before.",
+      "Runtime seat view at 60 degree vertical FOV looking along +Z, plus looking down, up, left and right, inspected. Exterior nose views from both sides, front, high and low, inspected."
+    ],
+    "corrections": [
+      "Windscreen hole with no glazing replaced by a glazed band with front panes, side windows, a real slope break at the sill, outer frames and boxed inner pillars.",
+      "Long cone with a cut tip replaced by a deep blunt nose with a closed rounded tip and a radome seam.",
+      "Flat plate wings, box pylons, open tube nacelles and a vertical-edged fin replaced by the transport kit's foil surfaces, lofted nacelles and fuselage, fed by invented tables.",
+      "Forward door moved from z 11.5 to z 14.05, with the boarding point, and nose gear from z 13.5 to z 15.55.",
+      "Flap multiplier sign changed from +0.45 to -0.45: the kit's hinge lowers a flap with a negative turn, and the old sign raised them. Inner flaps added beside the same named outer flaps.",
+      "Wing tip collision probes moved from y 2.8 to y 4.14 to sit on the dihedral tip. The old probes also sat 2 m behind the old wing.",
+      "Lettering changed from ivory to the livery colour, because ivory on white was invisible."
+    ],
+    "kept": "All node names and bindings the type and tests used: fan-left, fan-right, gear-nose, gear-left, gear-right, flap-left, flap-right, close-detail, control-yoke with its two bindings, and the airliner-livery paint material. Mass, thrust, wing and engine positions in the flight spec are unchanged."
+  },
+  "sourceHash": "sha256:0956238d576bd0c98a64a9b3e20e1172bd77a1335732f8507ad310d903f5685e",
+  "runtimeHash": "sha256:fcef057894e117f4e7106e4a1a551d726ef193e133ef1b752f9509aa53b99370",
+  "limitations": [
+    "The eye moved, so content/entities/types/aircraft.types.json needs regenerating with packages/entities/scripts/generate-models.mjs before the runtime sees the new seat.",
+    "spec.engines keeps z 3.4 for thrust; the rendered nacelle is centred near z 4.7. Thrust moments depend on x and y, so this has no flight effect.",
+    "Gear legs only hide when retracted, and rudder, elevators and ailerons exist as hinged nodes but have no bindings, as the old model had none. The kit's retraction bindings were not added.",
+    "Displays are diagrammatic and only the horizon cue moves. Panel layout is generic two-crew practice, not any one flight deck.",
+    "The dashed line at a bulkhead in a dead side-on capture is the software rasterizer drawing a plate seen exactly edge-on. Rays hit only skin there, and it goes away with the camera 2 m off axis."
+  ]
+}

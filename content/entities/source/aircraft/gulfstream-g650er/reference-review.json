@@ -1,0 +1,90 @@
+{
+  "variant": "Gulfstream G650ER, BR725, clean, gear down, static on ground",
+  "status": "exterior-reference-reviewed; visual acceptance pending owner review",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:EC-LZU_Gulfstream_G650_SCQ.jpg",
+      "title": "G650 EC-LZU on approach",
+      "author": "Bene Riobó",
+      "license": "CC BY-SA 4.0; reference only, no pixels embedded",
+      "scope": "Long-lens profile about 20 degrees off the beam, traced for fuselage, fin, engine and windows. Standard G650; the ER differs internally, not in outline."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:HB-JFP_Gulfstrem_G_VI_(G650)_GLF6_c_n_6206_-_PJS_(44021558545).jpg",
+      "title": "G650 HB-JFP on the ground",
+      "author": "Markus Eigenheer",
+      "license": "CC BY-SA 2.0; reference only, no pixels embedded",
+      "scope": "Ground stance, contact sheet only."
+    },
+    {
+      "url": "https://aviationweek.com/business-aviation/aircraft-overview/aircraft-overview-gulfstream-g650-g650er",
+      "title": "Aircraft Overview: Gulfstream G650/G650ER",
+      "author": "Aviation Week",
+      "license": "Figures only",
+      "scope": "Secondary: cabin width 2.49 m, height 1.91 m."
+    }
+  ],
+  "calibration": "No drawing found. 57 px/m along the body from 30.41 m, 54 px/m in height from 7.82 m; the difference is consistent with the view being yawed.",
+  "dimensionsChecked": [
+    {
+      "name": "overall length",
+      "reference": 30.41,
+      "model": 30.39
+    },
+    {
+      "name": "overall span",
+      "reference": 30.36,
+      "model": 30.38
+    },
+    {
+      "name": "overall height",
+      "reference": 7.82,
+      "model": 7.87
+    }
+  ],
+  "reviewNotes": {
+    "comparisons": [
+      "Side render stacked above the photograph and inspected. Three-quarter render inspected. No overlay was made because the photograph is yawed."
+    ],
+    "corrections": [
+      "Row width corrected from 2.59 to 2.70 m: 2.59 m leaves no wall around the 2.49 m finished cabin, and the depth reads 2.7 m at the height-derived scale.",
+      "Oval windows replaced an octagon that read as diamonds at distance.",
+      "Wing built from the published 36 degree sweep and 119.2 m2; the photographed tip position then matches once the 20 degree yaw is allowed for.",
+      "Seated eye moved from u 3.85 to 2.95 and h 2.00, placed as on the Dash 8 and CJ4. No published eye position was found, so this is an estimate.",
+      "Sill lowered about 0.05 m; the first pillar's upper end moved aft to 2.60 so it stays outboard of the pilot.",
+      "Kit changes: glass clear from the seat and tinted from outside, as on the Bendy airliner. The thick glareshield slab and its large FLIGHT GUIDANCE lettering are replaced by a thin sloped hood with a rolled lip over a slim mode control strip. The panel, floor and overhead take their reach from the nose skin, and a dark coaming lines the inside of the nose."
+    ]
+  },
+  "sourceHash": "sha256:549f38c4b81357e2184c38a9de294a6b3625b28a7f874427dd1a3e6785430a16",
+  "runtimeHash": "sha256:0dd12ebaddbdf67aecc1405a4d2b29cd35379f5733a4718d50dde45234148965",
+  "limitations": [
+    "Lowest-confidence group: no dimensioned drawing. External fuselage width, wheelbase, track and tail span are inferred, not sourced.",
+    "The two photograph scales disagree by 5 percent; window spacing would suggest the lower one. Stations along the body may be off by that margin.",
+    "Height runs slightly over the published figure. Flight deck and cabin door details are not type-reviewed.",
+    "Exterior only: shared interior, refitted but not compared with a PlaneView flight deck.",
+    "Eye station and window limits are estimated, not measured.",
+    "Sanity pass only: seating, glass and visibility. The panel, hood and pedestal remain the shared kit interior fitted to the nose, not compared with this type's real flight deck."
+  ],
+  "cockpitSweep": {
+    "method": "packages/entities/scripts/cockpit-sweep.mjs from spec.pilotEye at the runtime camera; seat, nose and front views rendered and inspected.",
+    "columns": "outside%, overNose degrees, headroom, wall, panel, cushion, seatback (m)",
+    "before": [
+      34,
+      -5,
+      0.46,
+      0.55,
+      0.75,
+      0.68,
+      0.41
+    ],
+    "after": [
+      61,
+      -15,
+      0.26,
+      0.31,
+      0.72,
+      0.74,
+      0.35
+    ]
+  }
+}

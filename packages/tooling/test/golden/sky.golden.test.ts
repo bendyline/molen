@@ -160,6 +160,69 @@ describe('sky rendering and clock integration', () => {
           Math.abs(center(quarter.pixels, -12) - center(quarter.pixels, 12)),
           'quarter moon has a directional terminator',
         ).toBeGreaterThan(70);
+
+        // A crescent in daylight, with the same sky and camera drawn without it for comparison.
+        const crescent: SkyData = {
+          mode: 'custom',
+          sunBody: { direction: [0.47, 0.88, 0] },
+          moonBody: { direction: [0, 1, 0], angularDiameterDeg: 8 },
+        };
+        const withMoon = await capture(
+          page,
+          { backend, sky: crescent, aim: 'moon' },
+          `${backend}-crescent`,
+        );
+        const withoutMoon = await capture(
+          page,
+          { backend, sky: { ...crescent, moon: { visible: false } }, aim: 'moon' },
+          `${backend}-crescent-hidden`,
+        );
+        expect(
+          Math.abs(center(withMoon.pixels, 0) - center(withoutMoon.pixels, 0)),
+          'the unlit side of the Moon must match the daytime sky, not cut a hole in it',
+        ).toBeLessThanOrEqual(3);
+        let brightest = 0;
+        for (let i = 0; i < withMoon.pixels.data.length; i += 4)
+          brightest = Math.max(
+            brightest,
+            (withMoon.pixels.data[i] ?? 0) - (withoutMoon.pixels.data[i] ?? 0),
+          );
+        expect(brightest, 'the lit crescent stands out from the sky').toBeGreaterThan(40);
+
+        const bare: SkyData = {
+          mode: 'custom',
+          sunBody: { direction: [0, 1, -1] },
+          moonBody: { direction: [0, -1, 1] },
+        };
+        const shining = await capture(page, { backend, sky: bare, aim: 'sun' }, `${backend}-sun`);
+        const noSun = await capture(
+          page,
+          { backend, sky: { ...bare, sun: { visible: false } }, aim: 'sun' },
+          `${backend}-no-sun`,
+        );
+        expect(center(shining.pixels, 0), 'the Sun is at full white').toBeGreaterThan(245);
+        // At 640 × 400 and 60° this is about 6 px per degree: a 3 px disk in 50 px of glare.
+        expect(
+          center(shining.pixels, 8) - center(noSun.pixels, 8),
+          'glare reaches well past the disk',
+        ).toBeGreaterThan(12);
+        expect(
+          Math.abs(center(shining.pixels, 60) - center(noSun.pixels, 60)),
+          'glare ends at its rim',
+        ).toBeLessThanOrEqual(1);
+        const covered = await capture(
+          page,
+          {
+            backend,
+            sky: { ...bare, moonBody: { direction: [0, 1, -1], angularDiameterDeg: 8 } },
+            aim: 'sun',
+          },
+          `${backend}-covered-sun`,
+        );
+        expect(
+          center(shining.pixels, 0) - center(covered.pixels, 0),
+          'the Moon still covers the Sun behind it',
+        ).toBeGreaterThan(60);
         expect(await page.evaluate(() => window.__skyCapture.remove())).toBe(true);
         const reset = PNG.sync.read(await page.locator('canvas').screenshot());
         expect(Array.from(reset.data.subarray(0, 3))).toEqual([18, 52, 86]);

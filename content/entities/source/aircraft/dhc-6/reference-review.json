@@ -210,13 +210,56 @@
       "Clean wheels variant only; no floats, skis or opening doors. Cabin upholstery, fastener spacing and detailed flap linkage are polygonal approximations; no claim of a complete engineering fastener map."
     ]
   },
-  "sourceHash": "sha256:7caaee0a2735fe6d2ddf56e9ad6d58951bfe0347c421c68e99d999769756ea90",
-  "runtimeHash": "sha256:43fa2de2eef193fa59ff7633facc82d09e3816c334625007cf9fb0cb637e005c",
+  "sourceHash": "sha256:c6968ebb75a43f4df0d3b3aaf1f408e100219b2227def60dbc951e4e1a607a4c",
+  "runtimeHash": "sha256:0f2cb502e389aa682c1b6ecaf7f599afefffdf26e1f0730b908ee8fb13ee8b47",
   "limitations": [
     "Manufacturer three-view is illustrative: plan length/wing span and front-view dihedral have small internal discrepancies. Printed dimensions and 3-degree dihedral take priority; mismatch remains visible in overlays.",
     "Cockpit photograph is perspective, partly occluded and undimensioned. Uniform estimated 1.62m/1000px scaling establishes relative instrument layout, not surveyed panel depths; photo not warped.",
     "PFD graphics are an original simplified live subset, not a Honeywell Apex emulation. TAS replaces IAS, geometric feet replace pressure altitude, heading is true, and normalized simulated engine RPM is labeled RPM %.",
     "Navigation, radio, fuel, torque, ITT, Ng, oil and electrical systems are unavailable and blank or --. Switches and prop/condition levers are modeled without unsupported behavior.",
     "Clean wheels variant only; no floats, skis or opening doors. Cabin upholstery, fastener spacing and detailed flap linkage are polygonal approximations; no claim of a complete engineering fastener map."
-  ]
+  ],
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "packages/entities/scripts/cockpit-sweep.mjs rays from pilotEye through source.glb, then seat, pitched-down and exterior nose renders inspected at the runtime camera (+Z, 60 degrees vertical).",
+    "before": {
+      "eye": [
+        0.43,
+        2.57,
+        4.64
+      ],
+      "outside": 44,
+      "horizon": 93,
+      "overNose": -5,
+      "headroom": 0.4,
+      "wall": 0.4,
+      "panel": 0.91,
+      "cushion": 1.74,
+      "seatback": null,
+      "poked": 0
+    },
+    "after": {
+      "eye": [
+        0.43,
+        2.55,
+        4.45
+      ],
+      "outside": 41,
+      "horizon": 88,
+      "overNose": -4,
+      "headroom": 0.44,
+      "wall": 0.41,
+      "panel": 0.97,
+      "cushion": 0.81,
+      "seatback": 0.29,
+      "poked": 0
+    },
+    "corrections": [
+      "Eye stood ahead of the seat, over the yoke. Eye moved 0.19 m aft and 0.02 m down, seats 0.08 m forward and 0.3 m up, so the cushion is under the eye.",
+      "Common column moved 0.16 m forward and 0.12 m up to clear chest and knees."
+    ],
+    "limitations": [
+      "Seat height is inferred from the eye. The deep coaming was left as built."
+    ]
+  }
 }

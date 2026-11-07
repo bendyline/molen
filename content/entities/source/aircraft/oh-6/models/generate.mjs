@@ -1,17 +1,12 @@
 /**
- * Deterministic OH-6A master. Four main blades, two tail blades and the original braced tail.
- *
- * Proportions follow the Army 3-view and photographs of the OH-6A: a slim egg cabin about 3.5 m
- * long, 1.48 m wide and 1.68 m tall (its roof about 2.1 m above the skids), the rotor hub about
- * 2.5 m up and 1.97 m behind the nose, short skids that end just behind the rear cross tube, a
- * flat belly that sweeps up into a tail cone ending in the exhaust face under the boom root, and a
- * boom that grows out of the egg's upper rear. The tail has a swept upper fin, a ventral fin with a tail skid, and a single
- * stabilizer on the right side with strong dihedral, braced to the upper fin; the two-blade tail
- * rotor turns on the left. Node names stay as entity.types.json binds them: `tail-stabilizer--1`
- * and `tail-brace--1` are the right stabilizer and its strut, `tail-stabilizer-1` is the ventral fin
- * and `tail-brace-1` its tail skid. The pilot eye (-0.38, 1.7, 0.6) and cockpit come from interior.mjs.
+ * Deterministic OH-6A master, rebuilt from the Army's station diagram rather than analytic solids.
+ * Every airframe table below is in that diagram's own frame: STA inches aft of the datum (nose 28,
+ * mast 100), WL inches above the keel, X inches to the pilot's left. `at` then sets the airframe on
+ * its skids, tail low. Four main blades, two tail blades, a single raised stabilizer on the right.
+ * Tail node names stay as entity.types.json's damage parts bind them: `tail-stabilizer--1` and
+ * `tail-brace--1` are the right stabilizer and its strut, `tail-stabilizer-1` is the lower fin and
+ * `tail-brace-1` its tail skid. Everything mounted on the boom is parented to `tail-boom`.
  */
-
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
@@ -42,7 +37,7 @@ const interiorLayout = JSON.parse(await readFile(resolve(root, 'interior.json'),
 const mat = (name, color, metalness = 0, roughness = 0.6) =>
   new T.MeshStandardMaterial({ name, color, metalness, roughness });
 const silver = mat('machined-aluminum', '#a5a9a6', 0.78, 0.34);
-const olive = mat('olive-drab-enamel', '#515442', 0.08, 0.66);
+const olive = mat('olive-drab-enamel', '#5a5c48', 0.08, 0.66);
 const dark = mat('cockpit-charcoal', '#232728', 0.12, 0.75);
 const green = mat('interior-green', '#606950', 0, 0.85);
 const rubber = mat('rubber', '#171a19', 0, 0.95);
@@ -53,16 +48,46 @@ const yellow = mat('warning-yellow', '#d8ae42');
 const red = mat('warning-red', '#af312a', 0.08, 0.5);
 const bladePaint = mat('rotor-blade-coating', '#303431', 0.32, 0.58);
 const exhaustMetal = mat('heat-stained-exhaust', '#746b56', 0.68, 0.56);
+const seam = mat('panel-seam', '#30332a', 0, 0.8);
 const glass = new T.MeshStandardMaterial({
   name: 'clear-cabin-glazing',
-  color: '#d5e0de',
+  color: '#c3d4d6',
   transparent: true,
-  opacity: 0.12,
-  metalness: 0.08,
-  roughness: 0.13,
+  opacity: 0.2,
+  metalness: 0.25,
+  roughness: 0.08,
   side: T.DoubleSide,
   depthWrite: false,
 });
+const tinted = new T.MeshStandardMaterial({
+  name: 'tinted-roof-glazing',
+  color: '#27343a',
+  transparent: true,
+  opacity: 0.55,
+  metalness: 0.25,
+  roughness: 0.1,
+  side: T.DoubleSide,
+  depthWrite: false,
+});
+
+// The station frame. The airframe sits PITCH nose-up on its skids, as the Army's side view and the
+// reference photographs show; the keel at the mast is KEEL above the ground.
+const IN = 0.0254;
+const PITCH = (5 * Math.PI) / 180;
+const KEEL = 0.4;
+const DATUM_Z = -0.082;
+const sinP = Math.sin(PITCH),
+  cosP = Math.cos(PITCH);
+/** Station frame (inches) to model metres. */
+const at = (sta, wl, x = 0) => {
+  const f = (100 - sta) * IN,
+    u = wl * IN;
+  return [x * IN, KEEL + f * sinP + u * cosP, DATUM_Z + f * cosP - u * sinP];
+};
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const signPow = (v, e) => Math.sign(v) * Math.pow(Math.abs(v), e);
+
 function group(parent, name, pos = [0, 0, 0]) {
   const g = new T.Group();
   g.name = name;
@@ -97,20 +122,102 @@ function rod(parent, name, a, b, radius, material = silver, topRadius = radius) 
   obj.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), delta.normalize());
   return obj;
 }
-function tube(parent, name, points, material = olive, radius = 0.014) {
+function tube(parent, name, points, material = olive, radius = 0.014, closed = false) {
   return mesh(
     parent,
     name,
     new T.TubeGeometry(
-      new T.CatmullRomCurve3(points.map((p) => new T.Vector3(...p))),
-      points.length === 2 ? 1 : Math.max(12, points.length * 3),
+      new T.CatmullRomCurve3(
+        points.map((p) => new T.Vector3(...p)),
+        closed,
+      ),
+      points.length === 2 ? 1 : Math.max(12, points.length * 2),
       radius,
       6,
-      false,
+      closed,
     ),
     material,
   );
 }
+
+/** Monotone cubic through [x, y] rows, so a traced table cannot ring between its stations. */
+function spline(rows) {
+  const xs = rows.map((r) => r[0]),
+    ys = rows.map((r) => r[1]),
+    n = xs.length,
+    d = Array.from({ length: n - 1 }, (_, i) => (ys[i + 1] - ys[i]) / (xs[i + 1] - xs[i])),
+    m = Array.from({ length: n }, (_, i) => {
+      if (i === 0) return d[0];
+      if (i === n - 1) return d[n - 2];
+      return d[i - 1] * d[i] <= 0 ? 0 : (2 * d[i - 1] * d[i]) / (d[i - 1] + d[i]);
+    });
+  return (x) => {
+    if (x <= xs[0]) return ys[0];
+    if (x >= xs[n - 1]) return ys[n - 1];
+    let i = 0;
+    while (x > xs[i + 1]) i++;
+    const h = xs[i + 1] - xs[i],
+      t = (x - xs[i]) / h,
+      t2 = t * t,
+      t3 = t2 * t;
+    return (
+      (2 * t3 - 3 * t2 + 1) * ys[i] +
+      (t3 - 2 * t2 + t) * h * m[i] +
+      (3 * t2 - 2 * t3) * ys[i + 1] +
+      (t3 - t2) * h * m[i + 1]
+    );
+  };
+}
+/** Closed Catmull-Rom loop through 2D control points. */
+function smoothLoop(points, steps = 5) {
+  const n = points.length,
+    out = [];
+  for (let i = 0; i < n; i++) {
+    const [p0, p1, p2, p3] = [-1, 0, 1, 2].map((k) => points[(i + k + n) % n]);
+    for (let s = 0; s < steps; s++) {
+      const t = s / steps,
+        t2 = t * t,
+        t3 = t2 * t;
+      out.push(
+        [0, 1].map(
+          (c) =>
+            0.5 *
+            (2 * p1[c] +
+              (p2[c] - p0[c]) * t +
+              (2 * p0[c] - 5 * p1[c] + 4 * p2[c] - p3[c]) * t2 +
+              (3 * p1[c] - p0[c] - 3 * p2[c] + p3[c]) * t3),
+        ),
+      );
+    }
+  }
+  return out;
+}
+/** Signed distance to a closed polygon, negative inside. */
+function polygonField(points) {
+  const n = points.length;
+  return (u, v) => {
+    let best = Infinity,
+      inside = false;
+    for (let i = 0, j = n - 1; i < n; j = i++) {
+      const [ax, ay] = points[j],
+        [bx, by] = points[i],
+        ex = bx - ax,
+        ey = by - ay,
+        t = clamp(((u - ax) * ex + (v - ay) * ey) / (ex * ex + ey * ey), 0, 1),
+        dx = u - ax - ex * t,
+        dy = v - ay - ey * t;
+      best = Math.min(best, dx * dx + dy * dy);
+      if (by > v !== ay > v && u < ax + ((v - ay) * ex) / ey) inside = !inside;
+    }
+    return (inside ? -1 : 1) * Math.sqrt(best);
+  };
+}
+/** Polynomial smooth maximum: intersects two fields with a rounded corner of about radius k. */
+const smax = (a, b, k = 1) => {
+  const h = clamp(0.5 + (0.5 * (a - b)) / k, 0, 1);
+  return lerp(b, a, h) + k * h * (1 - h);
+};
+
 const api = {
   group,
   mesh,
@@ -130,473 +237,899 @@ const api = {
   glass,
 };
 const { text } = instrumentParts(api);
-// The egg: centre and semi-axes (x half width, y half height, z half length).
-const EGG = { y: 1.24, z: 0.26, rx: 0.74, ry: 0.84, rz: 1.73 };
-const point = (theta, phi, lift = 0) => [
-  (EGG.rx + lift) * Math.sin(theta) * Math.sin(phi),
-  EGG.y + (EGG.ry + lift) * Math.cos(theta),
-  EGG.z + (EGG.rz + lift) * Math.sin(theta) * Math.cos(phi),
+
+/**
+ * TM 55-1520-214-23 / NPS fuselage station diagram, traced at 7.18 px/in along the body and
+ * 7.15 px/in up from WL 0: STA, crown WL, keel WL. Half-breadth comes from the TM's plan view,
+ * calibrated by its own 4 ft 6.81 in dimension. The aft face is STA 172.4, WL 22.4 to 34.96.
+ */
+const bodyStations = [
+  [28, 29.5, 29.5, 0],
+  [28.1, 33, 26, 4.2],
+  [29, 37.8, 20.5, 10.4],
+  [30.4, 40.6, 17.2, 14],
+  [33.8, 45.1, 12.7, 18.9],
+  [37.3, 49.2, 9.9, 22],
+  [40.8, 52.4, 8.1, 23.9],
+  [44.3, 55.1, 6.4, 25],
+  [47.8, 57.4, 5, 25.7],
+  [54.7, 61, 3.1, 26.7],
+  [61.7, 63.8, 1.9, 27.2],
+  [68.7, 65.6, 1, 27.4],
+  [75.6, 66.6, 0.3, 27.35],
+  [82.6, 67.1, 0, 27.1],
+  [90, 67.2, 0, 26.6],
+  [100, 66.3, 0, 25.9],
+  [110.5, 64.4, 0.3, 24.9],
+  [120.9, 61.4, 2, 23.2],
+  [131.3, 57, 4.2, 20.9],
+  [141.8, 52.1, 7.4, 17.9],
+  [152.2, 46.6, 11.7, 15],
+  [162.7, 40.9, 16.8, 11],
+  [169.6, 36.9, 21, 8],
+  [172.4, 35, 22.4, 6.6],
 ];
-/** Half width of the egg at height y and station z (0 outside it). */
-const eggHalfWidth = (y, z) =>
-  EGG.rx * Math.sqrt(Math.max(0, 1 - ((y - EGG.y) / EGG.ry) ** 2 - ((z - EGG.z) / EGG.rz) ** 2));
-function lining(parent, name, geometry, center, material) {
-  const geo = geometry.clone();
-  geo.translate(-center[0], -center[1], -center[2]);
-  geo.scale(0.982, 0.982, 0.982);
-  geo.translate(...center);
-  const index = geo.index.array;
-  for (let i = 0; i < index.length; i += 3)
-    [index[i + 1], index[i + 2]] = [index[i + 2], index[i + 1]];
-  const normal = geo.getAttribute('normal');
-  for (let i = 0; i < normal.count; i++)
-    normal.setXYZ(i, -normal.getX(i), -normal.getY(i), -normal.getZ(i));
-  mesh(parent, name, geo, material);
+const tailStation = 172.4;
+const rootOf = (sta) => Math.sqrt(Math.max(0, sta - 28));
+// Interpolated in root-distance from the nose, which keeps the nose a blunt ellipse.
+const crownAt = spline(bodyStations.map((r) => [rootOf(r[0]), r[1]])),
+  keelAt = spline(bodyStations.map((r) => [rootOf(r[0]), r[2]])),
+  breadthAt = spline(bodyStations.map((r) => [rootOf(r[0]), r[3]])),
+  beltAt = spline(
+    [
+      [28, 29.5],
+      [50, 31.5],
+      [80, 33],
+      [130, 32],
+      [172.4, 28.7],
+    ].map(([s, w]) => [rootOf(s), w]),
+  ),
+  // The Army front view and the head-on photographs show a nearly flat-sided lower shell.
+  lowerPower = spline(
+    [
+      [28, 2.2],
+      [40, 2.4],
+      [60, 3],
+      [125, 3],
+      [172.4, 2.2],
+    ].map(([s, n]) => [rootOf(s), n]),
+  );
+const UPPER_POWER = 2.25;
+function section(sta) {
+  const q = rootOf(sta);
+  return {
+    crown: crownAt(q),
+    keel: keelAt(q),
+    breadth: breadthAt(q),
+    belt: beltAt(q),
+    lower: lowerPower(q),
+  };
+}
+/** Skin half-breadth, inches, at a station and waterline. */
+function halfBreadth(sta, wl) {
+  const s = section(sta),
+    up = wl >= s.belt,
+    a = up ? s.crown - s.belt : s.belt - s.keel,
+    n = up ? UPPER_POWER : s.lower,
+    r = clamp(Math.abs(wl - s.belt) / a, 0, 1);
+  return s.breadth * Math.pow(1 - Math.pow(r, n), 1 / n);
+}
+/** A skin point from root-station q and girth angle t: t 0 at the crown, rising to port. */
+function skin(q, t) {
+  const sta = 28 + q * q,
+    s = section(sta),
+    c = Math.cos(t),
+    z = Math.sin(t),
+    up = c >= 0,
+    n = up ? UPPER_POWER : s.lower,
+    a = up ? s.crown - s.belt : s.belt - s.keel;
+  return { sta, wl: s.belt + a * signPow(c, 2 / n), x: s.breadth * signPow(z, 2 / n) };
+}
+const skinPosition = (q, t) => {
+  const p = skin(q, t);
+  return new T.Vector3(...at(p.sta, p.wl, p.x));
+};
+function skinNormal(q, t) {
+  const Q = Math.max(q, 0.06),
+    e = 0.012,
+    dq = skinPosition(Q + e, t).sub(skinPosition(Math.max(0.02, Q - e), t)),
+    dt = skinPosition(Q, t + e).sub(skinPosition(Q, t - e)),
+    n = dt.cross(dq).normalize(),
+    axis = new T.Vector3(...at(28 + Q * Q, section(28 + Q * Q).belt)),
+    out = skinPosition(Q, t).sub(axis);
+  return n.dot(out) < 0 ? n.negate() : n;
+}
+/** A station and waterline as a point on the skin, lifted clear of it by `lift` metres. */
+function onSkin(sta, wl, side, lift = 0.003) {
+  const x = side * halfBreadth(sta, wl),
+    s = section(sta),
+    a = wl >= s.belt ? s.crown - s.belt : s.belt - s.keel,
+    p = new T.Vector3(...at(sta, wl, x)),
+    n = new T.Vector3(
+      x / (s.breadth * s.breadth),
+      ((wl - s.belt) / (a * a)) * cosP,
+      ((wl - s.belt) / (a * a)) * -sinP,
+    ).normalize();
+  return p.addScaledVector(n, lift).toArray();
+}
+
+// Glazing outlines, from the station diagram's door and frame lines, read at 16.45 px/in. The TM
+// places the lower canopy transverse frame at WL 38.64 and describes a slim centerline frame.
+const RAIL_WL = 38.64;
+const windshieldEdge = [
+  [66.2, 72],
+  [66.2, 60],
+  [62.4, 57.4],
+  [58, 54.7],
+  [53.5, 50.2],
+  [49.5, 46.2],
+  [44.7, 41.3],
+  [42.2, 36.4],
+  [40.8, 32],
+  [40.4, 27.9],
+  [40.4, 23.1],
+  [41.6, 19.4],
+  [43.5, 16.4],
+  [44.4, 8],
+  [15, 8],
+  [15, 72],
+];
+const roofPanel = [
+  [67, 72],
+  [67.1, 61],
+  [85.9, 61.2],
+  [87.8, 67],
+  [87.8, 72],
+];
+const doorWindow = [
+  [72.2, 57.7],
+  [62.8, 55.3],
+  [56.8, 49.8],
+  [50.7, 40.1],
+  [49.5, 31.6],
+  [50.1, 27.9],
+  [52.5, 24.3],
+  [56.2, 21.6],
+  [61, 20.6],
+  [64.7, 21.6],
+  [68.9, 24.3],
+  [72.5, 27.3],
+  [75.6, 32.2],
+  [78, 38.3],
+  [79.5, 42.5],
+  [80.1, 46.8],
+  [80.1, 51.6],
+  [78.6, 55.3],
+];
+const cargoWindow = [
+  [90.7, 51],
+  [95.6, 53.5],
+  [101.7, 53.5],
+  [108.9, 51],
+  [111.9, 47.4],
+  [112.5, 41.9],
+  [111.3, 38.3],
+  [108.9, 36.8],
+  [91.9, 37.1],
+  [88.9, 39.5],
+  [88.3, 43.1],
+  [89.8, 48],
+];
+const eyebrowWindow = [
+  [91, 61.7],
+  [97, 61.2],
+  [104, 59.6],
+  [110, 57.4],
+  [114.4, 55.4],
+  [110, 56],
+  [103, 57],
+  [96, 57.8],
+  [91, 58.2],
+];
+const doorSeam = [
+  [47, 40],
+  [47, 21],
+  [49, 15.4],
+  [64.5, 15],
+  [72.5, 22.5],
+  [77.4, 29.1],
+  [79.8, 37.1],
+  [82.2, 43.1],
+  [84, 49.8],
+  [82.2, 56.5],
+  [77.4, 59.8],
+  [72.5, 60.2],
+  [66.5, 59.8],
+  [58, 54.7],
+  [52, 48.6],
+  [48, 43.6],
+];
+const cargoSeam = [
+  [90.7, 56.2],
+  [101, 56.2],
+  [108.9, 54.1],
+  [113.5, 50],
+  [115.2, 43],
+  [114.8, 25],
+  [114.2, 13.4],
+  [99, 13.3],
+  [78.4, 13.3],
+  [82, 26],
+  [86, 40],
+];
+const doorField = polygonField(smoothLoop(doorWindow)),
+  cargoField = polygonField(smoothLoop(cargoWindow)),
+  eyebrowField = polygonField(smoothLoop(eyebrowWindow, 3)),
+  screenField = polygonField(windshieldEdge),
+  roofField = polygonField(roofPanel);
+const POST = 0.85,
+  RAIL = 0.72,
+  VENT = 5.2;
+const chin = (x) => 9.5 + 10.5 * Math.pow(clamp((x - VENT) / 19, 0, 1), 2.2);
+const glazing = [
+  {
+    name: 'windshield-glazing',
+    material: glass,
+    field: ({ sta, wl, x }) =>
+      smax(smax(screenField(sta, wl), RAIL_WL + RAIL - wl, 0.8), POST - Math.abs(x), 0.8),
+  },
+  {
+    name: 'lower-windshield-glazing',
+    material: glass,
+    field: ({ sta, wl, x }) =>
+      smax(
+        smax(screenField(sta, wl), wl - (RAIL_WL - RAIL), 0.8),
+        smax(VENT - Math.abs(x), chin(Math.abs(x)) - wl, 1.2),
+        0.8,
+      ),
+  },
+  {
+    name: 'roof-glazing',
+    material: tinted,
+    field: ({ sta, wl, x }) => smax(roofField(sta, wl), POST - Math.abs(x), 0.8),
+  },
+  {
+    name: 'door-glazing',
+    material: glass,
+    field: ({ sta, wl }) => doorField(sta, wl),
+  },
+  {
+    name: 'aft-window-glazing',
+    material: glass,
+    field: ({ sta, wl }) => cargoField(sta, wl),
+  },
+  {
+    name: 'eyebrow-glazing',
+    material: tinted,
+    field: ({ sta, wl }) => eyebrowField(sta, wl),
+  },
+];
+/** Split a polygon of (q, t) corners along a field's zero set. */
+function split(polygon, field) {
+  const values = polygon.map((p) => field(skin(p.q, p.t)));
+  if (values.every((v) => v <= 0)) return [polygon, undefined];
+  if (values.every((v) => v > 0)) return [undefined, polygon];
+  const inside = [],
+    outside = [];
+  polygon.forEach((a, i) => {
+    const j = (i + 1) % polygon.length,
+      b = polygon[j],
+      fa = values[i],
+      fb = values[j];
+    (fa <= 0 ? inside : outside).push(a);
+    if (fa <= 0 === fb <= 0) return;
+    let lo = 0,
+      hi = 1;
+    for (let k = 0; k < 16; k++) {
+      const mid = (lo + hi) / 2,
+        v = field(skin(lerp(a.q, b.q, mid), lerp(a.t, b.t, mid)));
+      if (v <= 0 === fa <= 0) lo = mid;
+      else hi = mid;
+    }
+    const cut = { q: lerp(a.q, b.q, lo), t: lerp(a.t, b.t, lo) };
+    inside.push(cut);
+    outside.push(cut);
+  });
+  return [inside, outside];
 }
 function cabin(parent) {
-  // Glazing follows the same egg surface as the opaque doors. Army 3-view and right-side photo,
-  // at the waist behind the nose: windscreen to 0.55 m, oval front-door window to 1.4 m, a post,
-  // then the smaller rear-door window from 1.55 to 2.2 m (about 1.4-1.75 m up); the engine bay
-  // behind it is unglazed. Boundaries are egg azimuths.
-  const phiCount = 80;
-  const [screenEnd, doorEnd, aftStart, aftEnd] = [0.261, 0.441, 0.467, 0.588].map(
-    (v) => v * Math.PI,
-  );
-  const kind = (phi) => {
-    const a = Math.abs(phi);
-    return a <= screenEnd
-      ? 'windshield'
-      : a <= doorEnd
-        ? 'door'
-        : a >= aftStart && a <= aftEnd
-          ? 'aft-window'
-          : 'skin';
-  };
-  const cuts = (phi) => {
-    const a = Math.abs(phi),
-      k = kind(phi);
-    let top = 0.72,
-      bottom = 1.72;
-    if (k === 'windshield') {
-      top = 0.48;
-      bottom = 2.18;
-    }
-    if (k === 'door') {
-      const u = (a - (screenEnd + doorEnd) / 2) / ((doorEnd - screenEnd) / 2);
-      top = 0.68 + 0.2 * u * u;
-      bottom = 1.65 - 0.1 * u * u;
-    }
-    if (k === 'aft-window') {
-      const u = (a - (aftStart + aftEnd) / 2) / ((aftEnd - aftStart) / 2);
-      top = 0.9 + 0.12 * u * u;
-      bottom = 1.42 - 0.08 * u * u;
-    }
-    return [
-      0,
-      0.22,
-      0.43,
-      top,
-      top + (bottom - top) * 0.25,
-      top + (bottom - top) * 0.5,
-      top + (bottom - top) * 0.75,
-      bottom,
-      // Extra rows keep the flat facets below the glazing from cutting into the slim egg.
-      bottom + (2.38 - bottom) / 3,
-      bottom + ((2.38 - bottom) * 2) / 3,
-      2.38,
-      2.7,
-      Math.PI,
-    ];
-  };
+  const rows = 88,
+    columns = 104,
+    top = rootOf(tailStation);
   const buffers = new Map();
-  function buffer(name) {
+  const buffer = (name) => {
     if (!buffers.has(name)) buffers.set(name, { positions: [], normals: [], indices: [] });
     return buffers.get(name);
-  }
-  // Boundary angles have duplicate columns: adjoining panels still meet exactly at their cut.
-  // The lower windscreen is split by a painted centre panel about 0.17 m wide (OH-6A head-on
-  // photo) that carries the round nose vent and the landing light.
-  const post = 0.036 * Math.PI;
-  const boundaries = [0, post, screenEnd, doorEnd, aftStart, aftEnd, Math.PI].flatMap((v) => [
-    -v,
-    v,
-  ]);
-  const phis = [
-    ...new Set([
-      ...Array.from({ length: phiCount + 1 }, (_, i) => -Math.PI + (i * Math.PI * 2) / phiCount),
-      ...boundaries,
-    ]),
-  ].sort((a, b) => a - b);
-  for (let j = 0; j < phis.length - 1; j++) {
-    const a = phis[j],
-      b = phis[j + 1],
-      mid = (a + b) / 2,
-      k = kind(mid);
-    // Compute each column using this panel's side of the boundary to avoid seams.
-    const inset = 1e-7;
-    const ca = cuts(a + inset),
-      cb = cuts(b - inset);
-    for (let i = 0; i < ca.length - 1; i++) {
-      const glazed =
-        k !== 'skin' && i >= 3 && i < 7 && !(k === 'windshield' && Math.abs(mid) < post && i >= 5);
-      const name = glazed ? `${k}-glazing` : 'cabin-panels';
-      const dst = buffer(name),
-        start = dst.positions.length / 3;
-      for (const [theta, phi] of [
-        [ca[i], a],
-        [ca[i + 1], a],
-        [cb[i + 1], b],
-        [cb[i], b],
-      ]) {
-        const p = point(theta, phi);
-        dst.positions.push(...p);
-        dst.normals.push(
-          ...new T.Vector3(
-            p[0] / EGG.rx ** 2,
-            (p[1] - EGG.y) / EGG.ry ** 2,
-            (p[2] - EGG.z) / EGG.rz ** 2,
-          )
-            .normalize()
-            .toArray(),
-        );
-      }
-      if (i > 0) dst.indices.push(start, start + 1, start + 3);
-      if (i < ca.length - 2) dst.indices.push(start + 1, start + 2, start + 3);
-      if (glazed && (i === 3 || i === 6))
-        tube(
-          parent,
-          `${k}-seal`,
-          [point(ca[i === 3 ? i : i + 1], a, 0.003), point(cb[i === 3 ? i : i + 1], b, 0.003)],
-          olive,
-          0.013,
-        );
+  };
+  const emit = (name, polygon, inset = 0) => {
+    const dst = buffer(name),
+      corners = polygon.map((p) => {
+        const n = skinNormal(p.q, p.t);
+        return { n, p: skinPosition(p.q, p.t).addScaledVector(n, -inset) };
+      }),
+      start = dst.positions.length / 3,
+      count = corners.length;
+    for (const { p, n } of corners) {
+      dst.positions.push(p.x, p.y, p.z);
+      if (inset) dst.normals.push(-n.x, -n.y, -n.z);
+      else dst.normals.push(n.x, n.y, n.z);
     }
-    if (k === 'windshield')
-      tube(
-        parent,
-        'windscreen-cross-rail',
-        [point(ca[5], a, 0.004), point(cb[5], b, 0.004)],
-        olive,
-        0.012,
-      );
-  }
-  // Round fresh-air vent and landing light on the centre panel, set into the skin.
-  const [, , , , , rail, , sill] = cuts(0);
-  for (const [name, theta, radius, material] of [
-    ['nose-air-vent', rail + 0.13, 0.06, dark],
-    ['nose-landing-light', sill - 0.14, 0.045, white],
-  ]) {
-    const p = point(theta, 0),
-      n = new T.Vector3(
-        p[0] / EGG.rx ** 2,
-        (p[1] - EGG.y) / EGG.ry ** 2,
-        (p[2] - EGG.z) / EGG.rz ** 2,
-      ).normalize();
-    const lens = mesh(
+    // Each polygon is wound from its own geometry: outward on the skin, inward on the lining.
+    const a = corners[1].p.clone().sub(corners[0].p),
+      b = corners[count - 1].p.clone().sub(corners[0].p),
+      facing = a.cross(b).dot(corners[0].n) > 0 === !inset;
+    for (let i = 1; i < count - 1; i++)
+      if (facing) dst.indices.push(start, start + i, start + i + 1);
+      else dst.indices.push(start, start + i + 1, start + i);
+  };
+  for (let j = 0; j < rows; j++)
+    for (let i = 0; i < columns; i++) {
+      const q0 = (top * j) / rows,
+        q1 = (top * (j + 1)) / rows,
+        t0 = (i * Math.PI * 2) / columns,
+        t1 = ((i + 1) * Math.PI * 2) / columns;
+      let rest = [
+        { q: q0, t: t0 },
+        { q: q1, t: t0 },
+        { q: q1, t: t1 },
+        { q: q0, t: t1 },
+      ];
+      if (j === 0) rest = rest.slice(1);
+      for (const { name, material, field } of glazing) {
+        if (!rest) break;
+        const [inside, outside] = split(rest, field);
+        if (inside?.length > 2) {
+          emit(name, inside);
+          buffer(name).material = material;
+        }
+        rest = outside;
+      }
+      if (rest?.length > 2) {
+        emit('cabin-panels', rest);
+        // The lining stops at the aft bulkhead; nothing behind it can be seen from the cabin.
+        if (28 + q0 * q0 < 126) emit('cabin-interior', rest, 0.014);
+      }
+    }
+  for (const [name, data] of buffers) {
+    const geometry = new T.BufferGeometry();
+    geometry.setAttribute('position', new T.Float32BufferAttribute(data.positions, 3));
+    geometry.setAttribute('normal', new T.Float32BufferAttribute(data.normals, 3));
+    geometry.setIndex(data.indices);
+    mesh(
       parent,
       name,
-      new T.CylinderGeometry(radius, radius, 0.03, 20),
-      material,
-      new T.Vector3(...p).addScaledVector(n, 0.004).toArray(),
+      geometry,
+      name === 'cabin-panels' ? olive : name === 'cabin-interior' ? green : data.material,
     );
-    lens.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), n);
-    const rim = mesh(
-      parent,
-      'nose-lens-rim',
-      new T.TorusGeometry(radius + 0.008, 0.008, 6, 20),
-      olive,
-      new T.Vector3(...p).addScaledVector(n, 0.016).toArray(),
-    );
-    rim.quaternion.setFromUnitVectors(new T.Vector3(0, 0, 1), n);
   }
-  for (const [name, data] of buffers) {
-    const geo = new T.BufferGeometry();
-    geo.setAttribute('position', new T.Float32BufferAttribute(data.positions, 3));
-    geo.setAttribute('normal', new T.Float32BufferAttribute(data.normals, 3));
-    geo.setIndex(data.indices);
-    mesh(parent, name, geo, name === 'cabin-panels' ? olive : glass);
-    if (name === 'cabin-panels') lining(parent, 'cabin-interior', geo, [0, EGG.y, EGG.z], green);
-  }
-  for (const side of [-1, 1]) {
-    const [, , , , , rail, , sill] = cuts(side * post);
-    tube(
-      parent,
-      'glazing-upright',
-      Array.from({ length: 8 }, (_, i) =>
-        point(rail + ((sill - rail) * i) / 7, side * post, 0.004),
-      ),
-      olive,
-      0.014,
-    );
-    for (const phi of [0, screenEnd, doorEnd, aftStart, aftEnd]) {
-      const [, , , top, , rail, , bottom] = cuts(side * (phi + (phi === 0 ? 0 : -1e-6)));
-      // The centre post stops at the cross rail, above the painted centre panel.
-      const end = phi === 0 ? rail : bottom;
+  // Window seals, door seams and hardware all lie on the same table-driven skin.
+  const line = (name, points, closed, radius, material, lift = 0.002, smooth = 0) => {
+    for (const side of [-1, 1]) {
+      const path = smooth ? smoothLoop(points, smooth) : points;
       tube(
         parent,
-        'glazing-upright',
-        Array.from({ length: 14 }, (_, i) =>
-          point(top + ((end - top) * i) / 13, side * phi, 0.005),
-        ),
-        olive,
-        phi === 0 ? 0.018 : 0.022,
+        name,
+        path.map(([sta, wl]) => onSkin(sta, wl, side, lift)),
+        material,
+        radius,
+        closed,
       );
     }
-    // Full door outline continues below its arched window to the belly sill.
-    // Door seams and cowl fasteners (3–4 mm) are not modelled: sub-pixel detail at medium-fi.
-    const handle = point(1.82, side * (doorEnd - 0.08), 0.018);
+  };
+  line('door-window-seal', doorWindow, true, 0.0085, rubber, 0.002, 3);
+  line('aft-window-seal', cargoWindow, true, 0.0085, rubber, 0.002, 3);
+  line('eyebrow-seal', eyebrowWindow, true, 0.006, rubber, 0.002, 2);
+  line('door-seam', doorSeam, true, 0.0035, seam, 0, 3);
+  line('cargo-door-seam', cargoSeam, false, 0.0035, seam, 0);
+  line(
+    'windshield-seal',
+    windshieldEdge.slice(1, 13).map(([sta, wl]) => [sta + 0.12, wl]),
+    false,
+    0.007,
+    rubber,
+  );
+  line(
+    'cargo-step-seam',
+    [
+      [88.3, 14],
+      [88.4, 18.2],
+      [90.2, 20],
+      [94, 20.2],
+      [95.9, 18.4],
+      [95.9, 14],
+    ],
+    false,
+    0.003,
+    seam,
+    0,
+  );
+  // The canted station 124 frame and the engine access door, both legible on the real skin.
+  line(
+    'frame-124-seam',
+    [
+      [111.5, 62.5],
+      [116, 53],
+      [120, 44],
+      [124, 34],
+      [124.2, 20],
+      [124.4, 6.5],
+    ],
+    false,
+    0.003,
+    seam,
+    0,
+  );
+  line(
+    'frame-138-seam',
+    [
+      [124, 34],
+      [129, 40],
+      [134, 46],
+      [138.4, 51.5],
+    ],
+    false,
+    0.003,
+    seam,
+    0,
+  );
+  line(
+    'engine-door-seam',
+    [
+      [171.6, 33.2],
+      [160, 34.96],
+      [145, 34.96],
+      [137.5, 34.96],
+      [137.5, 20],
+      [137.5, 8],
+    ],
+    false,
+    0.003,
+    seam,
+    0,
+  );
+  for (const side of [-1, 1]) {
+    // Door hinges at the TM's marked stations, then the handles and the navigation lights.
+    for (const [sta, wl] of [
+      [47, 39.8],
+      [47, 19.7],
+      [87.1, 36.4],
+      [83.1, 21.6],
+    ]) {
+      const p = onSkin(sta, wl, side, 0.006);
+      box(parent, `door-hinge-${side}-${sta}-${wl}`, [0.02, 0.03, 0.075], p, olive);
+    }
+    const handle = onSkin(113, 29, side, 0.022);
     rod(
       parent,
       `door-handle-${side}`,
-      [handle[0], handle[1], handle[2] - 0.065],
       [handle[0], handle[1], handle[2] + 0.065],
-      0.013,
+      [handle[0], handle[1], handle[2] - 0.065],
+      0.012,
       dark,
     );
-    for (const theta of [1.13, 1.77]) {
-      const p = point(theta, side * (aftEnd + 0.08), 0.015);
-      box(parent, `door-hinge-${side}-${theta}`, [0.025, 0.035, 0.06], p, silver);
-    }
+    const latch = onSkin(77, 30, side, 0.018);
+    rod(
+      parent,
+      `front-door-handle-${side}`,
+      [latch[0], latch[1], latch[2] + 0.05],
+      [latch[0], latch[1], latch[2] - 0.05],
+      0.011,
+      dark,
+    );
+    const lamp = onSkin(131, 28, side, 0.025);
     sphere(
       parent,
       `navigation-light-${side}`,
-      [0.03, 0.025, 0.03],
-      [side * (eggHalfWidth(1.2, -0.27) + 0.01), 1.2, -0.27],
+      [0.018, 0.018, 0.04],
+      lamp,
       side === 1 ? red : mat('navigation-green', '#3f8156', 0.1, 0.25),
     );
   }
 }
-function loft(parent, name, stations, material) {
-  const n = 40,
-    vertices = [],
-    indices = [];
-  for (const [z, y, rx, ry] of stations)
-    for (let i = 0; i <= n; i++) {
-      const a = (i * Math.PI * 2) / n;
-      vertices.push(rx * Math.sin(a), y + ry * Math.cos(a), z);
-    }
-  for (let k = 0; k < stations.length - 1; k++)
-    for (let i = 0; i < n; i++) {
-      const a = k * (n + 1) + i,
-        b = a + n + 1;
-      indices.push(a, b, a + 1, b, b + 1, a + 1);
-    }
-  // Close both ends: the boom's tip, and its root buried in the cabin.
-  for (const [k, flip] of [
-    [0, false],
-    [stations.length - 1, true],
-  ]) {
-    const [z, y] = stations[k];
-    const centre = vertices.length / 3;
-    vertices.push(0, y, z);
-    for (let i = 0; i < n; i++) {
-      const a = k * (n + 1) + i;
-      indices.push(...(flip ? [centre, a + 1, a] : [centre, a, a + 1]));
-    }
-  }
-  const geo = new T.BufferGeometry();
-  geo.setAttribute('position', new T.Float32BufferAttribute(vertices, 3));
-  geo.setIndex(indices);
-  geo.computeVertexNormals();
-  return mesh(parent, name, geo, material);
-}
-/** Extruded side outline; `bevel` rounds its edges (it adds to the outline and the width). */
-function fin(parent, name, outline, width, material = olive, bevel = 0.005) {
-  const shape = new T.Shape();
-  outline.forEach(([z, y], i) => {
-    if (i) shape.lineTo(z, y);
-    else shape.moveTo(z, y);
-  });
-  shape.closePath();
-  const geo = new T.ExtrudeGeometry(shape, {
-    depth: width,
-    bevelEnabled: true,
-    bevelSize: bevel,
-    bevelThickness: bevel * 0.8,
-    bevelSegments: bevel > 0.01 ? 3 : 2,
-    steps: 1,
-  });
-  // Shape XY is authored as ZY, extrusion becomes X.
-  geo.rotateY(-Math.PI / 2);
-  geo.translate(width / 2, 0, 0);
-  return mesh(parent, name, geo, material);
-}
-/**
- * Tapered tail surface through chord lines ([leading edge, trailing edge] points, root first):
- * symmetric NACA 00xx sections offset along `normal`, rounded leading edge, capped ends.
- */
-function airfoil(parent, name, chords, thickness, normal, material = olive) {
-  const us = [0, 0.03, 0.1, 0.22, 0.4, 0.62, 0.82, 1],
-    half = (u) =>
-      thickness *
-      5 *
-      (0.2969 * Math.sqrt(u) -
-        0.126 * u -
-        0.3516 * u * u +
-        0.2843 * u * u * u -
-        0.1036 * u * u * u * u),
-    n = new T.Vector3(...normal).normalize(),
-    ring = [
-      ...us.map((u) => [u, 1]),
-      ...us
-        .slice(1, -1)
-        .map((u) => [u, -1])
-        .reverse(),
-    ],
-    count = ring.length,
-    vertices = [],
-    indices = [];
-  for (const [le, te] of chords) {
-    const a = new T.Vector3(...le),
-      b = new T.Vector3(...te),
-      chord = a.distanceTo(b);
-    for (const [u, side] of ring)
-      vertices.push(
-        ...a
-          .clone()
-          .lerp(b, u)
-          .addScaledVector(n, side * half(u) * chord)
-          .toArray(),
-      );
-  }
-  for (let k = 0; k < chords.length - 1; k++)
-    for (let i = 0; i < count; i++) {
-      const a = k * count + i,
-        b = k * count + ((i + 1) % count);
-      indices.push(a, a + count, b, b, a + count, b + count);
-    }
-  for (const [k, flip] of [
-    [0, true],
-    [chords.length - 1, false],
-  ]) {
-    const centre = vertices.length / 3;
-    const c = new T.Vector3();
-    for (let i = 0; i < count; i++) c.add(new T.Vector3().fromArray(vertices, (k * count + i) * 3));
-    vertices.push(...c.multiplyScalar(1 / count).toArray());
-    for (let i = 0; i < count; i++) {
-      const a = k * count + i,
-        b = k * count + ((i + 1) % count);
-      indices.push(...(flip ? [centre, b, a] : [centre, a, b]));
-    }
-  }
-  // Wind outward: the first upper-surface panel must face along `normal`.
-  const p = (i) => new T.Vector3().fromArray(vertices, i * 3);
-  const face = p(count)
-    .sub(p(0))
-    .cross(p(1).sub(p(0)));
-  if (face.dot(n) < 0)
-    for (let i = 0; i < indices.length; i += 3)
-      [indices[i + 1], indices[i + 2]] = [indices[i + 2], indices[i + 1]];
-  const geo = new T.BufferGeometry();
-  geo.setAttribute('position', new T.Float32BufferAttribute(vertices, 3));
-  geo.setIndex(indices);
-  geo.computeVertexNormals();
-  return mesh(parent, name, geo, material);
-}
-function engine(parent) {
-  // The rear cabin skin already supplies the cowl; remove the old second oversized sphere.
-  // Low transmission and engine fairing on the cabin roof, running back into the boom's top.
-  fin(
-    parent,
-    'transmission-fairing',
-    // Army 3-view: from just ahead of the mast (z 0.21) back to z -1.4, 2.25 m high. Rounded
-    // edges (photos): the 4 cm bevel brings the outline back to that size and 0.48 m wide.
-    [
-      [0.21, 1.97],
-      [0.1, 2.21],
-      [-1.22, 2.21],
-      [-1.37, 1.9],
-    ],
-    0.416,
-    olive,
-    0.04,
+/** The centerline ventilating panel's duct and landing light, and the rear closure. */
+function noseDetails(parent) {
+  const frame = group(parent, 'nose-details', at(100, 0));
+  frame.rotation.x = -PITCH;
+  const local = (sta, wl) => [0, wl * IN, (100 - sta) * IN];
+  const vent = mesh(frame, 'cabin-vent', new T.CircleGeometry(0.052, 24), dark, local(28.05, 33.6));
+  vent.position.z += 0.003;
+  const light = mesh(
+    frame,
+    'landing-light',
+    new T.CircleGeometry(0.058, 28),
+    mat('landing-light-lens', '#dfe3da', 0.4, 0.18),
+    local(28.05, 26.2),
   );
+  light.position.z += 0.003;
+  const ring = mesh(
+    frame,
+    'landing-light-ring',
+    new T.TorusGeometry(0.06, 0.006, 6, 28),
+    silver,
+    local(28.05, 26.2),
+  );
+  ring.position.z += 0.003;
+}
+/** Sections of the boom and its fairing: crown, keel and half-breadth, all in inches. */
+const boomCrown = spline([
+  [126, 52],
+  [129.5, 54.5],
+  [131.5, 56.4],
+  [132.6, 59.5],
+  [133.6, 62],
+  [134.8, 63.6],
+  [136.2, 64.5],
+  [138.3, 65],
+  [146, 64.8],
+  [155.7, 64.2],
+  [164, 63.7],
+  [174, 63.1],
+  [185.9, 62.3],
+  [197.78, 61.7],
+  [209.8, 61.1],
+  [220, 60.4],
+  [242.1, 58.9],
+  [264.3, 57.4],
+  [275.9, 56.7],
+  [282.6, 56.3],
+  [286, 55.7],
+  [288.5, 55.1],
+  [290.5, 54.6],
+]);
+const boomKeel = spline([
+  [126, 44],
+  [150, 38],
+  [165, 36],
+  [172.4, 34.96],
+  [176.6, 36.8],
+  [180.1, 39.4],
+  [183.6, 41.9],
+  [187.1, 44.1],
+  [190.5, 46.2],
+  [194, 47.8],
+  [197.78, 49.37],
+  [240, 49.4],
+  [282.6, 49.5],
+  [286, 51.2],
+  [288.5, 52.6],
+  [290.5, 53.8],
+]);
+const boomBreadth = spline([
+  [126, 5],
+  [129, 7],
+  [132, 8.2],
+  [137.5, 8.8],
+  [146, 8.7],
+  [155.7, 8.6],
+  [164, 8.4],
+  [174, 8.1],
+  [185.9, 7.2],
+  [197.78, 6.17],
+  [282.6, 3.4],
+  [286, 2.9],
+  [288.5, 2],
+  [290.5, 0.6],
+]);
+function boomSection(sta) {
+  const crown = boomCrown(sta),
+    keel = boomKeel(sta),
+    breadth = boomBreadth(sta),
+    radius = Math.min(breadth, (crown - keel) / 2),
+    center = crown - radius,
+    fair = clamp((sta - 172) / 26, 0, 1);
+  return { crown, keel, breadth, radius, center, lower: lerp(1.6, 2, fair) };
+}
+function boomHalf(sta, wl) {
+  const s = boomSection(sta),
+    up = wl >= s.center,
+    a = up ? s.radius : s.center - s.keel,
+    n = up ? 2 : s.lower,
+    r = clamp(Math.abs(wl - s.center) / a, 0, 1);
+  return s.breadth * Math.pow(1 - Math.pow(r, n), 1 / n);
+}
+/** Close a set of rings, each the same length, into one smooth indexed surface. */
+function ringSurface(parent, name, rings, material) {
+  const n = rings[0].length,
+    positions = rings.flat(2),
+    indices = [];
+  for (let j = 0; j < rings.length - 1; j++)
+    for (let i = 0; i < n; i++) {
+      const a = j * n + i,
+        b = j * n + ((i + 1) % n),
+        c = a + n,
+        d = b + n;
+      indices.push(a, c, b, b, c, d);
+    }
+  const geometry = new T.BufferGeometry();
+  geometry.setAttribute('position', new T.Float32BufferAttribute(positions, 3));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+  return mesh(parent, name, geometry, material);
+}
+function boom(parent) {
+  const stations = [
+    126, 129.5, 131.5, 132.3, 133, 133.8, 134.8, 136.2, 138.3, 142, 146, 151, 155.7, 160, 164, 169,
+    172.4, 174.5, 176.6, 178.4, 180.1, 183.6, 187.1, 190.5, 194, 197.78, 203, 209.8, 220, 231, 242,
+    253, 264.3, 275.9, 282.6, 284.5, 286, 287.5, 288.5, 289.6, 290.5,
+  ];
+  const n = 44,
+    rings = stations.map((sta) => {
+      const s = boomSection(sta);
+      return Array.from({ length: n }, (_, i) => {
+        // Clockwise seen from behind, so computed normals face outward.
+        const a = (i * Math.PI * 2) / n,
+          c = Math.cos(a),
+          z = Math.sin(a),
+          up = c >= 0,
+          e = up ? 1 : 2 / s.lower;
+        return at(
+          sta,
+          s.center + (up ? s.radius : s.center - s.keel) * signPow(c, e),
+          s.breadth * signPow(z, e),
+        );
+      });
+    });
+  const tailBoom = ringSurface(parent, 'tail-boom', rings, olive);
+  // Joint between the boom fairing and the tailboom proper, seen on the TM side view. It rides
+  // on the boom (identity transform), so a broken-off boom takes it along.
+  tube(
+    tailBoom,
+    'boom-joint-seam',
+    Array.from({ length: 28 }, (_, i) => {
+      const a = (i * Math.PI * 2) / 28,
+        s = boomSection(197.78);
+      return at(197.78, s.center + s.radius * Math.cos(a), s.breadth * Math.sin(a));
+    }),
+    seam,
+    0.0035,
+    true,
+  );
+}
+/** Engine and transmission fairing, built as stacked plan outlines. */
+const pylonForward = spline([
+  [50, 90],
+  [58, 90],
+  [66, 92.2],
+  [67, 93],
+  [70, 94.7],
+  [73, 96.7],
+  [76, 100],
+  [77, 102],
+  [77.6, 104],
+]);
+const pylonAft = spline([
+  [50, 151.5],
+  [58, 152.6],
+  [64.2, 153],
+  [71, 154.9],
+  [74, 155.75],
+  [77.6, 155.8],
+]);
+const pylonWidth = spline([
+  [50, 7],
+  [58, 8.6],
+  [62, 9.3],
+  [64, 9.4],
+  [76, 6.9],
+  [77.6, 6.6],
+]);
+const pylonTop = spline([
+  [104, 77.7],
+  [110.5, 77.8],
+  [120.9, 77.4],
+  [131.3, 77],
+  [141.8, 76.4],
+  [152.2, 75.9],
+  [156, 75.6],
+]);
+function pylon(parent) {
+  const base = 50,
+    summit = 77.7,
+    n = 72,
+    levels = 18;
+  const ring = (v) => {
+    // Straight walls, then a tight rounded shoulder at the top edge.
+    const shoulder = clamp((v - 0.82) / 0.18, 0, 1),
+      arc = (shoulder * Math.PI) / 2,
+      h = v < 0.82 ? (v / 0.82) * 0.94 : 0.94 + 0.06 * Math.sin(arc),
+      inset = 1.6 * (1 - Math.cos(arc)),
+      nominal = lerp(base, summit, h),
+      front = pylonForward(nominal) + inset,
+      back = pylonAft(nominal) - inset,
+      width = Math.max(0.05, pylonWidth(nominal) - inset),
+      middle = (front + back) / 2,
+      half = (back - front) / 2,
+      recess = 8 * clamp((nominal - 66) / 5, 0, 1);
+    return Array.from({ length: n }, (_, i) => {
+      const a = (i * Math.PI * 2) / n,
+        c = Math.cos(a),
+        z = Math.sin(a),
+        u = signPow(c, 2 / 5),
+        v2 = signPow(z, 2 / 5),
+        x = width * v2,
+        // The mast stands in a recess between the fairing's two forward cheeks.
+        notch = recess * Math.exp(-Math.pow(x / 4.8, 2)) * Math.pow(Math.max(0, u), 3),
+        sta = middle - half * u + notch,
+        crown = pylonTop(sta),
+        wl = base + h * (crown - base);
+      return at(sta, wl, x);
+    });
+  };
+  const rings = Array.from({ length: levels + 1 }, (_, i) => ring(i / levels));
+  // Collapse the top into a slightly crowned flat so the last ring closes without a hole.
+  const last = rings.at(-1),
+    middle = last
+      .reduce((sum, p) => sum.map((v, i) => v + p[i] / n), [0, 0, 0])
+      .map((v, i) => (i === 1 ? v + 0.004 : v));
+  rings.push(last.map(() => middle));
+  ringSurface(parent, 'transmission-fairing', rings, olive);
   for (const side of [-1, 1]) {
-    box(
-      parent,
-      `engine-air-intake-${side}`,
-      [0.014, 0.16, 0.38],
-      [side * 0.257, 2.06, -0.76],
-      dark,
-    );
-    for (let i = 0; i < 7; i++)
-      box(
-        parent,
-        `intake-louver-${side}-${i}`,
-        [0.017, 0.009, 0.37],
-        [side * 0.27, 1.993 + i * 0.022, -0.76],
-        olive,
-      );
+    const inlet = new T.BufferGeometry(),
+      a = at(103.8, 69.2, side * 1.4),
+      b = at(104.6, 69.6, side * 4.6),
+      c = at(109.5, 76.6, side * 4.2),
+      d = at(108.5, 76.3, side * 1.4);
+    inlet.setAttribute('position', new T.Float32BufferAttribute([...a, ...b, ...c, ...d], 3));
+    inlet.setIndex(side > 0 ? [0, 2, 1, 0, 3, 2] : [0, 1, 2, 0, 2, 3]);
+    inlet.computeVertexNormals();
+    mesh(parent, `engine-air-intake-${side}`, inlet, dark);
   }
-  // The tailpipe opens aft through the tail cone's end face, under the boom root.
-  const exit = group(parent, 'exhaust-outlet', [0, 0.875, -1.492]);
-  // A short straight run inside the tail cone to the mouth in its end face.
-  const bend = new T.CatmullRomCurve3(
-    [
-      [0, 0.13, 0.21],
-      [0, 0.11, 0.06],
-      [0, 0.105, -0.1],
-      [0, 0.12, -0.29],
-    ].map((p) => new T.Vector3(...p)),
+}
+function exhaust(parent) {
+  // The turbine exhausts low through the egg's aft face, not from a stub behind it.
+  const frame = group(parent, 'exhaust-outlet', at(tailStation, 28.7));
+  frame.rotation.x = -PITCH;
+  // The closure starts on the skin's own last ring, so no gap can open at the rim.
+  const count = 48,
+    tip = rootOf(tailStation),
+    outline = (scale, back) =>
+      Array.from({ length: count }, (_, i) => {
+        const p = skin(tip, (i * Math.PI * 2) / count);
+        return [p.x * IN * scale, (p.wl - 28.7) * IN * scale, back];
+      });
+  // Rings run from the rim inward; reversing them keeps the visible face pointing aft.
+  ringSurface(
+    frame,
+    'exhaust-fairing',
+    [outline(1, 0), outline(0.97, -0.012), outline(0.8, -0.018), outline(0.8, 0.08)].reverse(),
+    olive,
   );
-  mesh(exit, 'exhaust-pipe', new T.TubeGeometry(bend, 20, 0.145, 24, false), exhaustMetal);
   const mouth = mesh(
-    exit,
+    frame,
     'exhaust-dark-opening',
-    new T.CircleGeometry(0.134, 32),
+    new T.CircleGeometry(0.128, 32),
     dark,
-    [0, 0.12, -0.298],
+    [0, 0, 0.075],
   );
   mouth.rotation.y = Math.PI;
   mesh(
-    exit,
-    'exhaust-lip',
-    new T.TorusGeometry(0.143, 0.012, 8, 32),
+    frame,
+    'exhaust-pipe',
+    new T.CylinderGeometry(0.128, 0.128, 0.09, 32, 1, true).rotateX(Math.PI / 2),
     exhaustMetal,
-    [0, 0.12, -0.293],
+    [0, 0, 0.03],
+  ).material.side = T.DoubleSide;
+  mesh(frame, 'exhaust-lip', new T.TorusGeometry(0.13, 0.009, 8, 32), exhaustMetal, [0, 0, -0.015]);
+  rod(frame, 'exhaust-divider', [0, -0.11, -0.005], [0, 0.11, -0.005], 0.007, exhaustMetal);
+}
+/** Airfoil section around a chord, thickness along `normal`. */
+function airfoilRing(lead, trail, normal, thickness, count = 10) {
+  const chord = new T.Vector3(...trail).sub(new T.Vector3(...lead)),
+    length = chord.length(),
+    n = new T.Vector3(...normal).normalize(),
+    ring = [];
+  for (let i = 0; i < count; i++) {
+    const a = (i * Math.PI * 2) / count,
+      u = (1 + Math.cos(a)) / 2,
+      half =
+        0.5 * thickness * length * Math.sin(Math.PI * Math.pow(u, 0.62)) * Math.sign(Math.sin(a));
+    ring.push(
+      new T.Vector3(...lead)
+        .addScaledVector(chord, 1 - u)
+        .addScaledVector(n, half)
+        .toArray(),
+    );
+  }
+  return ring;
+}
+/** A lifting surface from root and tip chords, with a closed rounded tip. */
+function surface(
+  parent,
+  name,
+  rootLead,
+  rootTrail,
+  tipLead,
+  tipTrail,
+  thickness,
+  material = olive,
+) {
+  const lead = (t) => rootLead.map((v, i) => lerp(v, tipLead[i], t)),
+    trail = (t) => rootTrail.map((v, i) => lerp(v, tipTrail[i], t)),
+    span = new T.Vector3(...tipLead).sub(new T.Vector3(...rootLead)),
+    chord = new T.Vector3(...rootTrail).sub(new T.Vector3(...rootLead)),
+    normal = chord.clone().cross(span).normalize().toArray(),
+    ts = [0, 0.33, 0.66, 0.97],
+    rings = ts.map((t) => airfoilRing(lead(t), trail(t), normal, thickness));
+  const tipA = lead(0.985),
+    tipB = trail(0.985),
+    middle = tipA.map((v, i) => (v + tipB[i]) / 2);
+  rings.push(
+    airfoilRing(
+      tipA.map((v, i) => lerp(v, middle[i], 0.12)),
+      tipB.map((v, i) => lerp(v, middle[i], 0.12)),
+      normal,
+      thickness * 0.6,
+    ),
   );
-  rod(exit, 'exhaust-divider', [0, -0.025, -0.3], [0, 0.265, -0.3], 0.009, exhaustMetal);
+  rings.push(rings.at(-1).map(() => lead(1).map((v, i) => (v + trail(1)[i]) / 2)));
+  const object = ringSurface(parent, name, rings, material);
+  // Ring winding depends on which way the span runs: orient the whole surface outward.
+  const position = object.geometry.getAttribute('position'),
+    normals = object.geometry.getAttribute('normal'),
+    probe = new T.Vector3(...normal).multiplyScalar(thickness * 0.5 * chord.length()),
+    centre = new T.Vector3(...lead(0.33)).addScaledVector(chord, 0.3).add(probe);
+  let nearest = 0,
+    best = Infinity;
+  for (let i = 0; i < position.count; i++) {
+    const d = new T.Vector3().fromBufferAttribute(position, i).distanceToSquared(centre);
+    if (d < best) {
+      best = d;
+      nearest = i;
+    }
+  }
+  const facing = new T.Vector3().fromBufferAttribute(normals, nearest).dot(probe);
+  if (facing < 0) {
+    const index = object.geometry.index.array;
+    for (let i = 0; i < index.length; i += 3)
+      [index[i + 1], index[i + 2]] = [index[i + 2], index[i + 1]];
+    object.geometry.computeVertexNormals();
+  }
+  return object;
 }
 function rotorHead(parent) {
-  // Hub about 2.5 m above the skids and 1.97 m behind the nose (Army 3-view), on a mast rising
-  // out of the front of the transmission fairing.
-  rod(parent, 'rotor-mast', [0, 2.12, 0.02], [0, 2.4, 0.02], 0.049, silver);
-  const swash = group(parent, 'swashplate', [0, 2.25, 0.02]);
-  for (const y of [0, 0.055])
+  // TM figure 1-2: blades at 8 ft 4.3 in, the very top of the head at 8 ft 6 in. The swashplate
+  // stands well clear of the fairing, as the pitch links do in the rotor head photographs.
+  const mast = -0.25,
+    plane = 2.548;
+  rod(parent, 'rotor-mast', [0, 2.12, mast], [0, 2.5, mast], 0.058, silver);
+  const swash = group(parent, 'swashplate', [0, 2.34, mast]);
+  for (const y of [0, 0.03])
     mesh(
       swash,
       'swashplate-ring',
-      new T.TorusGeometry(0.135, 0.018, 8, 24).rotateX(Math.PI / 2),
+      new T.TorusGeometry(0.128, 0.017, 8, 24).rotateX(Math.PI / 2),
       silver,
       [0, y, 0],
     );
-  sphere(parent, 'mast-boot', [0.085, 0.11, 0.085], [0, 2.2, 0.02], rubber);
-  const rotor = group(parent, 'main-rotor', [0, 2.4, 0.02]);
-  const cap = mesh(rotor, 'rotor-head', new T.CylinderGeometry(0.09, 0.12, 0.1, 16), dark);
-  cap.position.y = 0.03;
+  sphere(parent, 'mast-boot', [0.08, 0.06, 0.08], [0, 2.27, mast], rubber);
+  const rotor = group(parent, 'main-rotor', [0, plane, mast]);
+  mesh(rotor, 'rotor-head', new T.CylinderGeometry(0.1, 0.13, 0.078, 16), dark);
+  rod(rotor, 'mast-cap', [0, 0, 0], [0, 0.043, 0], 0.032, silver);
   for (let i = 0; i < 4; i++) {
     const blade = group(rotor, `rotor-blade-${i}`);
     blade.rotation.y = (i * Math.PI) / 2 + 0.25;
-    rod(blade, 'blade-grip', [0.1, 0, 0], [0.42, 0, 0], 0.036, silver);
-    box(blade, 'grip-hinge', [0.085, 0.09, 0.105], [0.25, 0, 0], silver);
-    rod(blade, 'pitch-link', [0.29, -0.2, 0.065], [0.35, -0.015, 0.065], 0.009, silver);
-    // Chord, tapered tips and small droop; 4.025 m radius, rather than five MD-500 blades.
+    rod(blade, 'blade-grip', [0.12, 0, 0], [0.6, -0.004, 0], 0.044, silver, 0.03);
+    box(blade, 'grip-hinge', [0.09, 0.075, 0.105], [0.17, 0, 0], silver);
+    box(blade, 'blade-damper', [0.13, 0.03, 0.06], [0.36, -0.052, 0], dark);
+    rod(blade, 'pitch-link', [0.15, -0.2, 0.07], [0.22, -0.012, 0.07], 0.008, silver);
+    // Constant 6.75 in chord, 26 ft 4 in diameter and a modest static droop.
     const vertices = [],
       indices = [];
     const sections = [
-      [0.38, 0.16, 0],
-      [0.58, 0.18, 0],
-      [1.2, 0.185, -0.01],
-      [3.55, 0.18, -0.06],
-      [4.025, 0.135, -0.085],
+      [0.56, 0.12, -0.004],
+      [0.66, 0.171, -0.008],
+      [1.4, 0.171, -0.022],
+      [2.6, 0.171, -0.06],
+      [3.9, 0.171, -0.105],
+      [4.013, 0.15, -0.11],
     ];
     for (const [r, chord, y] of sections)
       for (const [z, dy] of [
-        [-0.5, 0.003],
-        [-0.25, 0.02],
-        [0.5, 0.002],
-        [0.35, -0.014],
-        [-0.4, -0.012],
+        [-0.5, 0.002],
+        [-0.25, 0.0135],
+        [0.5, 0.0015],
+        [0.35, -0.0095],
+        [-0.4, -0.0085],
       ])
         vertices.push(r, y + dy, z * chord);
     for (let j = 0; j < sections.length - 1; j++)
@@ -607,272 +1140,191 @@ function rotorHead(parent) {
           d = b + 5;
         indices.push(a, b, c, b, d, c);
       }
-    indices.push(0, 2, 1, 0, 3, 2, 0, 4, 3, 20, 21, 22, 20, 22, 23, 20, 23, 24);
+    const last = (sections.length - 1) * 5;
+    indices.push(0, 2, 1, 0, 3, 2, 0, 4, 3, last, last + 1, last + 2);
+    indices.push(last, last + 2, last + 3, last, last + 3, last + 4);
     const geo = new T.BufferGeometry();
     geo.setAttribute('position', new T.Float32BufferAttribute(vertices, 3));
     geo.setIndex(indices);
     geo.computeVertexNormals();
     mesh(blade, 'rotor-airfoil', geo, bladePaint);
-    box(blade, 'rotor-tip', [0.1, 0.022, 0.13], [3.974, -0.082, 0], yellow);
-  }
-}
-// Boom stations, tail to root: z, centre height, half width, half height. The root is buried in
-// the egg's upper rear, so the boom grows out of the cabin as on the real airframe.
-const BOOM = [
-  [-4.62, 1.5, 0.065, 0.075],
-  [-4.2, 1.52, 0.085, 0.1],
-  [-3.0, 1.58, 0.13, 0.15],
-  [-2.0, 1.57, 0.18, 0.3],
-  [-1.8, 1.5, 0.19, 0.37],
-  [-1.45, 1.55, 0.3, 0.38],
-  [-0.7, 1.5, 0.32, 0.36],
-];
-// Army 3-view belly line, nose to tail: z, height. The belly stays flat (0.41-0.42 m) to behind the
-// rear cross tube, then sweeps up to the exhaust face at z -1.78 under the boom root.
-const BELLY = [
-  [0.1, 0.4],
-  [-0.45, 0.41],
-  [-0.93, 0.42],
-  [-1.15, 0.5],
-  [-1.4, 0.61],
-  [-1.58, 0.71],
-  [-1.67, 0.77],
-  [-1.78, 0.83],
-];
-/**
- * Belly fairing and tail cone: the egg's lower half stretched down to the belly line, so it grows
- * tangentially out of the egg's sides (just inside the egg at its waist, where the open top edge
- * hides). Aft of the egg it narrows inside the boom root to the exhaust face. Open-topped, so no
- * surface crosses the cabin.
- */
-function tailCone(parent) {
-  const K = 10,
-    at = (z) => {
-      const k = BELLY.findIndex((_, i) => i === BELLY.length - 2 || z >= BELLY[i + 1][0]);
-      const [z0, y0] = BELLY[k],
-        [z1, y1] = BELLY[k + 1];
-      return y0 + ((y1 - y0) * (z - z0)) / (z1 - z0);
-    };
-  const sections = [
-    0.1, -0.1, -0.3, -0.5, -0.7, -0.85, -0.95, -1.05, -1.15, -1.25, -1.32, -1.4, -1.5, -1.6, -1.7,
-    -1.78,
-  ].map((z) => {
-    const s2 = Math.max(0, 1 - ((z - EGG.z) / EGG.rz) ** 2),
-      boom = boomAt(z);
-    // From z -1.15 aft the section blends from the egg's lower half to one inside the boom root,
-    // its sides rising to the boom's axis.
-    const u = Math.min(1, Math.max(0, (-1.15 - z) / 0.45)),
-      t = u * u * (3 - 2 * u),
-      yc = EGG.y - 0.14 * t,
-      w = (1 - t) * 0.985 * EGG.rx * Math.sqrt(s2) + t * Math.max(0.95 * boom.rx, 0.23),
-      top = yc + t * (boom.y - yc),
-      low = yc - at(z);
-    const arc = (k, side) => {
-      const a = (Math.PI / 2) * (k / K);
-      return [side * w * Math.sin(a), yc - low * Math.cos(a)];
-    };
-    return {
-      z,
-      points: [
-        [w, top],
-        ...Array.from({ length: K + 1 }, (_, k) => arc(K - k, 1)),
-        ...Array.from({ length: K }, (_, k) => arc(k + 1, -1)),
-        [-w, top],
-      ],
-    };
-  });
-  const count = 2 * K + 3,
-    vertices = sections.flatMap(({ z, points }) => points.flatMap(([x, y]) => [x, y, z])),
-    indices = [];
-  for (let k = 0; k < sections.length - 1; k++)
-    for (let i = 0; i < count - 1; i++) {
-      const a = k * count + i,
-        b = a + count;
-      indices.push(a, a + 1, b, b, a + 1, b + 1);
-    }
-  // The exhaust face closes the tail end.
-  const last = (sections.length - 1) * count,
-    centre = vertices.length / 3,
-    face = sections.at(-1).points;
-  vertices.push(
-    face.reduce((sum, p) => sum + p[0], 0) / count,
-    face.reduce((sum, p) => sum + p[1], 0) / count,
-    sections.at(-1).z,
-  );
-  for (let i = 0; i < count; i++) indices.push(centre, last + i, last + ((i + 1) % count));
-  const geo = new T.BufferGeometry();
-  geo.setAttribute('position', new T.Float32BufferAttribute(vertices, 3));
-  geo.setIndex(indices);
-  geo.computeVertexNormals();
-  // Part of the cabin shell (and its paint), merged with the egg panels.
-  return mesh(parent, 'cabin-panels', geo, olive);
-}
-/** Boom section at z (linear between stations): centre height, half width, half height. */
-function boomAt(z) {
-  for (let k = 0; k < BOOM.length - 1; k++) {
-    const [z0, y0, rx0, ry0] = BOOM[k],
-      [z1, y1, rx1, ry1] = BOOM[k + 1];
-    if (z <= z1 || k === BOOM.length - 2) {
-      const t = Math.max(0, Math.min(1, (z - z0) / (z1 - z0)));
-      return { y: y0 + (y1 - y0) * t, rx: rx0 + (rx1 - rx0) * t, ry: ry0 + (ry1 - ry0) * t };
-    }
+    box(blade, 'rotor-tip', [0.07, 0.02, 0.15], [3.975, -0.108, 0], yellow);
   }
 }
 function tail(parent) {
-  loft(parent, 'tail-boom', BOOM, olive);
-  tailCone(parent);
-  // Swept upper fin: a tapered airfoil with a rounded leading edge, not a flat plate.
-  airfoil(
+  // Upper and lower vertical stabilizers, traced from the station diagram.
+  surface(
     parent,
     'tail-fin',
-    [
-      [
-        [0, 1.55, -4.36],
-        [0, 1.5, -4.68],
-      ],
-      [
-        [0, 2.6, -4.86],
-        [0, 2.62, -5.03],
-      ],
-    ],
-    0.13,
-    [1, 0, 0],
+    at(275.9, 57.5),
+    at(290.3, 56),
+    at(297.7, 104.8),
+    at(304.8, 104.7),
+    0.09,
   );
-  // Ventral fin (bound as `tail-stabilizer-1`) with its tubular tail skid (`tail-brace-1`).
-  airfoil(
+  surface(
     parent,
     'tail-stabilizer-1',
-    [
-      [
-        [0, 1.47, -4.4],
-        [0, 1.48, -4.66],
-      ],
-      [
-        [0, 0.86, -4.49],
-        [0, 0.88, -4.73],
-      ],
-    ],
-    0.13,
-    [1, 0, 0],
+    at(275.6, 49.9),
+    at(288, 50),
+    at(288.3, 24.8),
+    at(295, 24.7),
+    0.09,
   );
   tube(
     parent,
     'tail-brace-1',
-    [
-      [0, 0.9, -4.52],
-      [0, 0.81, -4.6],
-      [0, 0.8, -4.74],
-      [0, 0.85, -4.82],
-    ],
-    olive,
-    0.012,
+    [at(290.5, 26), at(291.5, 22.8), at(293.5, 21.6), at(295.4, 22)],
+    silver,
+    0.01,
   );
-  // The single horizontal stabilizer stands out to the right with strong dihedral, braced to the
-  // upper fin; the tail rotor turns on the left.
-  // About 28 degrees of dihedral: the tip stands 0.54 m above the root.
-  airfoil(
+  // One horizontal stabilizer, right side only, raised 25 degrees, with one faired strut to the
+  // fin: TM para 2-405 and its plan view.
+  const raise = Math.tan((25 * Math.PI) / 180),
+    tipX = -61;
+  const stabilizerRoot = 2.8,
+    wlRoot = 56.2,
+    wlTip = wlRoot + (-tipX - stabilizerRoot) * raise;
+  surface(
     parent,
     'tail-stabilizer--1',
-    [
-      [
-        [0, 1.58, -4.36],
-        [0, 1.58, -4.73],
-      ],
-      [
-        [-1.015, 2.12, -4.41],
-        [-0.998, 2.11, -4.7],
-      ],
-    ],
-    0.12,
-    [0.47, 0.883, 0],
+    at(276.7, wlRoot, -stabilizerRoot),
+    at(293.5, wlRoot - 0.6, -stabilizerRoot),
+    at(276.9, wlTip, tipX),
+    at(293.5, wlTip - 0.6, tipX),
+    0.09,
   );
-  // Tail-rotor gearbox fairing at the boom end, on the rotor side.
-  sphere(parent, 'tail-boom', [0.07, 0.075, 0.13], [0.04, 1.5, -4.5], olive);
-  rod(parent, 'tail-brace--1', [0, 2.15, -4.76], [-0.61, 1.93, -4.57], 0.016, olive);
-  const rotor = group(parent, 'tail-rotor', [0.16, 1.5, -4.48]);
-  rod(rotor, 'tail-hub', [-0.13, 0, 0], [0.095, 0, 0], 0.043, silver);
+  const midStabilizer = at(284, lerp(wlRoot, wlTip, 0.56), lerp(-stabilizerRoot, tipX, 0.56)),
+    midFin = at(289.5, 81.5, -0.3);
+  rod(parent, 'tail-brace--1', midStabilizer, midFin, 0.017, olive);
+  // The gearbox case rides on the boom (identity transform), so it leaves with a broken-off boom.
+  const gearbox = group(parent.getObjectByName('tail-boom'), 'tail-gearbox', at(284.4, 54.26));
+  gearbox.rotation.x = -PITCH;
+  mesh(
+    gearbox,
+    'tail-gearbox-case',
+    new T.CapsuleGeometry(0.044, 0.1, 4, 10).rotateZ(Math.PI / 2),
+    olive,
+    [0.11, 0, 0],
+  );
+  const rotor = group(parent, 'tail-rotor', at(284.4, 54.26, 12.6));
+  rod(rotor, 'tail-hub', [-0.12, 0, 0], [0.06, 0, 0], 0.03, silver);
+  mesh(rotor, 'tail-hub-yoke', new T.SphereGeometry(0.052, 12, 8), dark);
   for (let i = 0; i < 2; i++) {
     const blade = group(rotor, `tail-blade-${i}`);
     blade.rotation.x = i * Math.PI;
-    box(blade, 'tail-blade-airfoil', [0.022, 0.6, 0.105], [0.014, 0.33, 0], white);
-    box(blade, 'tail-blade-warning', [0.025, 0.075, 0.11], [0.014, 0.52, 0], red);
-    box(blade, 'tail-blade-tip', [0.025, 0.035, 0.11], [0.014, 0.612, 0], yellow);
+    // 4 ft 3 in diameter. Red and white bands, tip outward, as on the restored Cayuses.
+    rod(blade, 'tail-blade-root', [0, 0.02, 0], [0, 0.17, 0], 0.024, silver, 0.018);
+    box(blade, 'tail-blade-airfoil', [0.018, 0.255, 0.115], [0.008, 0.2925, 0], white);
+    box(blade, 'tail-blade-warning', [0.019, 0.09, 0.116], [0.008, 0.465, 0], red);
+    box(blade, 'tail-blade-band', [0.019, 0.075, 0.116], [0.008, 0.5475, 0], white);
+    box(blade, 'tail-blade-tip', [0.019, 0.0625, 0.116], [0.008, 0.61625, 0], red);
   }
 }
+/** A faired landing gear strut, thick at the fuselage and pinched at the skid. */
+function strut(parent, name, top, foot, material = olive) {
+  const a = new T.Vector3(...top),
+    b = new T.Vector3(...foot),
+    axis = b.clone().sub(a).normalize(),
+    chord = new T.Vector3(0, 0, 1).addScaledVector(axis, -axis.z).normalize(),
+    width = axis.clone().cross(chord).normalize(),
+    stations = [
+      [0, 0.17, 0.062],
+      [0.45, 0.165, 0.06],
+      [0.8, 0.125, 0.052],
+      [1, 0.092, 0.044],
+    ];
+  const n = 18,
+    rings = stations.map(([t, c, w]) =>
+      Array.from({ length: n }, (_, i) => {
+        const v = (i * Math.PI * 2) / n,
+          s = Math.sin(v);
+        return a
+          .clone()
+          .lerp(b, t)
+          .addScaledVector(chord, (c / 2) * Math.cos(v))
+          .addScaledVector(width, (w / 2) * signPow(s, 0.8))
+          .toArray();
+      }),
+    );
+  ringSurface(parent, name, rings, material);
+}
 function skids(parent) {
+  // 6 ft 9.25 in over the skids, from TM figure 1-2. The skid ends just behind its aft strut.
+  const track = 1.032 - 0.038,
+    forward = 0.82,
+    aft = -0.555;
   for (const side of [-1, 1]) {
+    const x = side * track;
     tube(
       parent,
       `skid-${side}`,
-      // Short skids: they end just behind the rear cross tube and turn up under the nose.
       [
-        [side * 0.99, 0.055, -0.62],
-        [side * 0.99, 0.055, 0.6],
-        [side * 0.99, 0.062, 1.3],
-        [side * 0.99, 0.11, 1.6],
-        [side * 0.99, 0.22, 1.77],
+        [x, 0.038, aft - 0.17],
+        [x, 0.038, -0.1],
+        [x, 0.038, 0.84],
+        [x, 0.04, 1.16],
+        [x, 0.055, 1.38],
+        [x, 0.085, 1.56],
+        [x, 0.125, 1.7],
+        [x, 0.165, 1.79],
       ],
       olive,
-      0.045,
+      0.038,
     );
-    for (const z of [-0.45, 0.85]) {
-      // Straight faired leg, splayed about 53 degrees (head-on photo), from just inside the
-      // lower egg down to the skid.
-      let t = 0;
-      while (0.99 - (t + 0.01) * 0.6 > eggHalfWidth(0.12 + (t + 0.01) * 0.8, z) - 0.03) t += 0.01;
-      tube(
+    sphere(parent, `skid-end-${side}`, [0.038, 0.038, 0.038], [x, 0.038, aft - 0.17], olive);
+    sphere(parent, `skid-bow-${side}`, [0.038, 0.038, 0.038], [x, 0.165, 1.79], olive);
+    for (const [label, z] of [
+      ['forward', forward],
+      ['aft', aft],
+    ]) {
+      strut(
         parent,
-        `skid-cross-tube-${side}-${z}`,
-        [
-          [side * (0.99 - t * 0.6), 0.12 + t * 0.8, z],
-          [side * 0.99, 0.12, z],
-        ],
-        olive,
-        0.042,
+        `skid-strut-${label}-${side}`,
+        [side * 0.47, 0.64, z - 0.3],
+        [side * 0.96, 0.085, z],
       );
-      box(parent, 'skid-saddle', [0.12, 0.025, 0.09], [side * 0.99, 0.094, z], silver);
+      box(parent, 'skid-saddle', [0.095, 0.03, 0.1], [x, 0.075, z], silver);
     }
-    box(parent, `skid-step-${side}`, [0.08, 0.025, 0.3], [side * 0.86, 0.3, 0.72], dark);
   }
+}
+/** Map flat lettering, in its local XY, onto a side of the airframe. */
+function wrapText(parent, name, value, sta, wl, side, pixel, half, slope = 0) {
+  const object = text(parent, name, value, 0, 0, 0, pixel, dark),
+    positions = object.geometry.getAttribute('position');
+  for (let i = 0; i < positions.count; i++) {
+    const lx = positions.getX(i),
+      ly = positions.getY(i),
+      s = sta - (side * lx) / IN,
+      w = wl + ly / IN + slope * (s - sta),
+      p = at(s, w, side * (half(s, w) + 0.12));
+    positions.setXYZ(i, ...p);
+  }
+  object.geometry.computeVertexNormals();
+  object.geometry.computeBoundingBox();
+  object.geometry.computeBoundingSphere();
+  return object;
 }
 function details(parent) {
   for (const side of [-1, 1]) {
-    const markings = group(parent, `tail-markings-${side}`, [side * 0.142, 1.6, -2.9]);
-    // Text initially faces -Z; the local face rotates outward on either boom side.
-    markings.rotation.y = side === 1 ? -Math.PI / 2 : Math.PI / 2;
-    const stencil = text(markings, 'army-stencil', 'UNITED STATES ARMY', 0, 0, 0, 0.022, dark);
-    markings.updateMatrixWorld(true);
-    const positions = stencil.geometry.getAttribute('position');
-    for (let i = 0; i < positions.count; i++) {
-      const p = new T.Vector3()
-        .fromBufferAttribute(positions, i)
-        .applyMatrix4(markings.matrixWorld);
-      // Wrap the lettering round the boom's section at its station.
-      const { y, rx, ry } = boomAt(p.z);
-      const dy = p.y - 1.6;
-      p.set(side * (rx * Math.sqrt(Math.max(0, 1 - (dy / ry) ** 2)) + 0.003), y + dy, p.z);
-      positions.setXYZ(i, ...p.toArray());
-    }
-    stencil.geometry.computeVertexNormals();
-    stencil.geometry.computeBoundingBox();
-    stencil.geometry.computeBoundingSphere();
-    parent.add(stencil);
-    parent.remove(markings);
-    const serial = group(parent, `serial-markings-${side}`, [side * 0.252, 2.08, -0.83]);
-    serial.rotation.y = side === 1 ? -Math.PI / 2 : Math.PI / 2;
-    text(serial, 'aircraft-serial', '16172', 0, 0, 0, 0.017, dark);
+    wrapText(parent, 'army-stencil', 'UNITED STATES ARMY', 190, 55.6, side, 0.03, boomHalf, -0.03);
+    wrapText(parent, 'aircraft-serial', '16172', 137, 70, side, 0.03, (s, w) =>
+      pylonWidth(lerp(50, 77.7, (w - 50) / (pylonTop(s) - 50))),
+    );
   }
-  rod(parent, 'belly-antenna', [0, 0.45, -0.1], [0, 0.18, 0.16], 0.009, dark);
-  const antenna = boomAt(-2.66);
-  rod(
+  rod(parent, 'belly-antenna', at(50, 4, 4), at(38, 0, 0.6), 0.005, dark);
+  rod(parent, 'belly-antenna', at(50, 4, -4), at(38, 0, -0.6), 0.005, dark);
+  sphere(parent, 'anti-collision-beacon', [0.05, 0.03, 0.14], at(64, 1.2), red);
+  surface(
     parent,
-    'tail-antenna',
-    [0, antenna.y - antenna.ry + 0.02, -2.66],
-    [0, antenna.y - antenna.ry - 0.34, -2.92],
-    0.009,
-    dark,
+    'roof-antenna',
+    at(84.5, 66.6, 0),
+    at(90, 66.4, 0),
+    at(72.5, 76.6, 0),
+    at(74.5, 76.8, 0),
+    0.12,
+    olive,
   );
-  sphere(parent, 'anti-collision-beacon', [0.045, 0.035, 0.045], [0, 2.27, -1.05], red);
 }
 /** Merge repeated static frame segments at the root, leaving every animated child intact. */
 function mergeStaticFrames(parent) {
@@ -899,36 +1351,47 @@ function helicopter() {
   const g = new T.Group();
   g.name = 'OH-6A-Cayuse';
   cabin(g);
-  engine(g);
+  boom(g);
+  pylon(g);
+  exhaust(g);
+  noseDetails(g);
   skids(g);
   rotorHead(g);
   tail(g);
   details(g);
   mergeStaticFrames(g);
   const rows = [];
-  for (const z of [-4.3, -4, -3.5, -3, -2.5, -2]) {
-    const { y, rx, ry } = boomAt(z);
+  for (const sta of [205, 225, 245, 265]) {
+    const s = boomSection(sta);
     rows.push(
-      Array.from({ length: 28 }, (_, k) => {
-        const a = (k * Math.PI * 2) / 28;
+      Array.from({ length: 26 }, (_, k) => {
+        const a = (k * Math.PI * 2) / 26;
         return {
-          point: [rx * Math.cos(a), y + ry * Math.sin(a), z],
-          normal: [Math.cos(a), Math.sin(a), 0],
+          point: at(sta, s.center + s.radius * Math.cos(a), s.breadth * Math.sin(a)),
+          normal: [Math.sin(a), Math.cos(a) * cosP, -Math.cos(a) * sinP],
         };
       }),
     );
   }
-  // Rows along the lower cabin's structural skin, never on its transparent panels.
+  // Rivet rows beside the door frames, on structural skin and never on the transparent panels.
   for (const side of [-1, 1])
-    for (const y of [0.7, 0.82, 0.94])
+    for (const [wl, from, to] of [
+      [12, 52, 118],
+      [9, 58, 118],
+    ])
       rows.push(
         Array.from({ length: 30 }, (_, k) => {
-          const z = -0.65 + k * 0.065;
-          return { point: [side * eggHalfWidth(y, z), y, z], normal: [side, 0, 0] };
-        }).filter(({ point }) => Math.abs(point[0]) > 0.3),
+          const sta = lerp(from, to, k / 29),
+            point = onSkin(sta, wl, side, 0);
+          return { point, normal: [side * 0.8, -0.6, 0] };
+        }),
       );
   addRivetRows(g, [g.getObjectByName('tail-boom'), g.getObjectByName('cabin-panels')], rows);
-  addInterior(g, interiorLayout, api);
+  addInterior(g, interiorLayout, {
+    ...api,
+    frame: { position: at(100, 0), pitch: PITCH },
+    wall: (sta, wl) => halfBreadth(sta, wl) * IN,
+  });
   return g;
 }
 /**
@@ -955,8 +1418,12 @@ const pinned = JSON.parse(sourceText).files.models.find(
 if (!pinned) throw new Error(`${sourcePath}: models/source.glb has no sha256 pin`);
 const definition = JSON.parse(await readFile(resolve(root, '../entity.types.json'), 'utf8'));
 const controlSpec = Object.values(definition.types)[0].components.aircraft.spec;
-const controlledModel = completeCockpitControls(helicopter(), controlSpec, {
-  panelZ: interiorLayout.panelZ,
+const model = helicopter();
+// interior.json authors the panel in its own leaning frame; the control module wants its face in
+// the model's frame.
+const panelFace = model.getObjectByName('instrument-panel').getWorldPosition(new T.Vector3());
+const controlledModel = completeCockpitControls(model, controlSpec, {
+  panelZ: panelFace.z,
   letteringFont: 'technical',
 });
 finishAircraftCockpit(controlledModel, controlSpec, 'oh-6');

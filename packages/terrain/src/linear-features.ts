@@ -1,4 +1,5 @@
 /** Shared, metric line construction for roads, tracks, fences and utility corridors. */
+import { InstanceBatch } from '@bendyline/molen-client/instancing';
 import * as THREE from 'three';
 import { markTerrainGroundSurface, markTerrainPavementSurface } from './ground-cutout';
 import {
@@ -530,7 +531,7 @@ export function createTerrainBoxInstances(
   name: string,
 ): THREE.InstancedMesh | undefined {
   if (!placements.length) return undefined;
-  const mesh = new THREE.InstancedMesh(BOX, FIXTURE_MATERIAL, placements.length);
+  const mesh = new InstanceBatch(BOX, FIXTURE_MATERIAL, placements.length);
   const matrix = new THREE.Matrix4();
   const rotation = new THREE.Quaternion();
   for (let i = 0; i < placements.length; i++) {

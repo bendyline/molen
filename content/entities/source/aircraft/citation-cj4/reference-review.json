@@ -1,0 +1,89 @@
+{
+  "variant": "Cessna Citation CJ4 (525C), FJ44-4A, clean, gear down, static on ground",
+  "status": "exterior-reference-reviewed; visual acceptance pending owner review",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:D-CEFE_Cessna_525C_CJ4_BHX_29-09-2016_(25325423599).jpg",
+      "title": "CJ4 D-CEFE at Birmingham",
+      "author": "Rob Hodgkins",
+      "license": "CC BY-SA 2.0; reference only, no pixels embedded",
+      "scope": "Three-quarter ground view; stations read with perspective removed along the keel."
+    },
+    {
+      "url": "https://aircraft.scross.com/sold-aircraft/2025-cessna-citation-cj4-gen-2/",
+      "title": "2025 CJ4 Gen 2 dealer listing",
+      "author": "Scross",
+      "license": "Figures only",
+      "scope": "Secondary: wheelbase 6.45 m, tread 3.76 m."
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Cessna_CitationJet/M2",
+      "title": "Cessna CitationJet/M2",
+      "author": "Wikipedia contributors",
+      "license": "Figures only",
+      "scope": "Secondary: wing area 30.66 m2, sweep 12.5 degrees."
+    }
+  ],
+  "calibration": "No drawing. About 100 px/m near mid-body in the photograph, with a 0.03 image slope removed along the keel; fin heights scaled by 1.06 to reach 4.67 m.",
+  "dimensionsChecked": [
+    {
+      "name": "overall length",
+      "reference": 16.26,
+      "model": 16.24
+    },
+    {
+      "name": "overall span",
+      "reference": 15.49,
+      "model": 15.51
+    },
+    {
+      "name": "overall height",
+      "reference": 4.67,
+      "model": 4.65
+    }
+  ],
+  "reviewNotes": {
+    "comparisons": [
+      "Side and three-quarter renders inspected against the photograph by eye. No overlay or matched camera was made."
+    ],
+    "corrections": [
+      "Row width corrected from 1.47 to 1.62 m: 1.47 m was an interior figure.",
+      "Compact flight deck without the overhead panel, which came through the roof of a body this size.",
+      "Rectangular nacelles replaced with round FJ44 pods on stub pylons; wing rebuilt to 30.4 m2.",
+      "Seated eye moved from u 3.30 to 3.00 and h 1.42, where D-CEFE shows the pilot's head in the side pane. No published eye position was found, so this is an estimate.",
+      "Window top lowered from 1.66 to 1.58 and sill lowered about 0.05 m: D-CEFE shows the top about 0.17 m under the crown, and the old top read as a bubble canopy from outside. The stray post from 2.42 to 2.50 is removed: two panes a side.",
+      "Kit changes: glass clear from the seat and tinted from outside, as on the Bendy airliner. The thick glareshield slab and its large FLIGHT GUIDANCE lettering are replaced by a thin sloped hood with a rolled lip over a slim mode control strip. The panel, floor and overhead take their reach from the nose skin, and a dark coaming lines the inside of the nose."
+    ]
+  },
+  "sourceHash": "sha256:05fcc1f45aee6f444e789e8529a8e7d9d6f245ae3f7c8c53a2d8732c096cc8db",
+  "runtimeHash": "sha256:09d03317a25d2b5a24ddc7fca985a74346c448bd98ca55a76abe957c1b9486a2",
+  "limitations": [
+    "Lowest-confidence group: no dimensioned drawing. External body size, tail span and engine station are read from one oblique photograph; wheelbase and tread rest on a dealer listing.",
+    "Gear legs and doors simplified.",
+    "Exterior only: shared interior, refitted but not compared with a Pro Line flight deck.",
+    "Eye station and window limits are estimated from a three-quarter photograph, not measured.",
+    "Sanity pass only: seating, glass and visibility. The panel, hood and pedestal remain the shared kit interior fitted to the nose, not compared with this type's real flight deck."
+  ],
+  "cockpitSweep": {
+    "method": "packages/entities/scripts/cockpit-sweep.mjs from spec.pilotEye at the runtime camera; seat, nose and front views rendered and inspected.",
+    "columns": "outside%, overNose degrees, headroom, wall, panel, cushion, seatback (m)",
+    "before": [
+      65,
+      -7,
+      0.26,
+      0.28,
+      0.76,
+      0.68,
+      0.41
+    ],
+    "after": [
+      68,
+      -12,
+      0.2,
+      0.22,
+      0.72,
+      0.73,
+      0.35
+    ]
+  }
+}

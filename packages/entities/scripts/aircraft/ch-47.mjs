@@ -25,9 +25,11 @@ export const ch47Frame = () => ({
   radius: 1.27,
   cy: 1.9,
   ry: 1.25,
-  cabinZ: 6.12,
+  cabinZ: 6.08,
   cabinWidth: 2.25,
-  eye: [-0.57, 2.3, 6.02],
+  // 0.8 m over the cushion and 0.18 m over the 2.12 m glare shield; at 2.63 m the eye stood
+  // 1.08 m above the cushion, looking over the whole panel.
+  eye: [-0.57, 2.3, 6.08],
   panelZ: 6.72,
   floor: 1.15,
   mainRotorPosition: [0, 4.43, 5.9309],
@@ -579,8 +581,8 @@ function cockpit(root, m, rings) {
     z = 6.72,
     k = 0.1524 / 104,
     px = (u) => (887 - u) * k,
-    // Panel and coaming sit under the 2.1 m glare shield, about 0.4 m below the pilot's eye.
-    py = (v) => 1.91 - (v - 800) * k,
+    // The glareshield meets the windscreen sill, as the Army photograph shows: no skin between them.
+    py = (v) => 2.03 - (v - 800) * k,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz],
     pt = panelTools(d);
   // Central MFD scale uses Collins' 6x8-inch active display; outer banks retain photo perspective.
@@ -597,16 +599,13 @@ function cockpit(root, m, rings) {
     [415, 971],
   ].map(([u, v]) => at(u, v));
   sheet(d, contour, face, [0, 0, -1]);
-  sheet(
-    d,
-    contour.map((p) => [p[0], p[1], z + 0.29]),
-    m.trim,
-    [0, 0, 1],
-  );
+  // The forward end drops so the box stays under the sloping nose skin.
+  const forward = (p) => [p[0], p[1] - 0.14, z + 0.2];
+  sheet(d, contour.map(forward), m.trim, [0, 0, 1]);
   for (let i = 0; i < contour.length; i++) {
     const a = contour[i],
       b = contour[(i + 1) % contour.length];
-    quad(d, a, b, [b[0], b[1], z + 0.29], [a[0], a[1], z + 0.29], m.trim, [0, 1, 0]);
+    quad(d, a, b, forward(b), forward(a), m.trim, [0, 1, 0]);
   }
   const brow = [
     [225, 800],
@@ -620,21 +619,12 @@ function cockpit(root, m, rings) {
     [1254, 722],
     [1430, 764],
     [1490, 806],
-  ].map(([u, v]) => at(u, v, -0.015));
+  ].map(([u, v]) => at(u, 800 - (800 - v) * 0.5, -0.015));
   sheet(d, [...brow, ...contour.slice(0, 6).reverse()], m.trim, [0, 0, -1]);
   for (let i = 0; i < brow.length - 1; i++) {
     const a = brow[i],
       b = brow[i + 1];
-    // The coaming narrows forward with the nose bulb so it stays inside the skin.
-    quad(
-      d,
-      a,
-      b,
-      [b[0] * 0.88, b[1] - 0.12, z + 0.38],
-      [a[0] * 0.88, a[1] - 0.12, z + 0.38],
-      m.trim,
-      [0, 1, 0],
-    );
+    quad(d, a, b, [b[0], b[1] - 0.17, z + 0.24], [a[0], a[1] - 0.17, z + 0.24], m.trim, [0, 1, 0]);
   }
   outline(d, brow, 0.022, m.trim, false);
   for (const [u, v, kind] of [
@@ -701,8 +691,8 @@ function cockpit(root, m, rings) {
     d.text(`ENG ${v === 781 ? '1' : '2'}`, at(887, v, -0.042), 0.007, Math.PI, d.ivory);
   }
   // Two CDU keypads descend into a broad inclined pedestal, matching the Army photo.
-  const pg = group(cabin, 'CH47-pedestal', [0, 1.59, 6.67]);
-  pg.rotation.x = -0.64;
+  const pg = group(cabin, 'CH47-pedestal', [0, 1.73, 6.7]);
+  pg.rotation.x = 0.8;
   const pd = detailKit(pg, 'pedestal'),
     pp = panelTools(pd);
   // Shortened so its lower end stays inside the nose belly below the lowered panel.
@@ -771,7 +761,7 @@ function cockpit(root, m, rings) {
   };
   for (const side of [-1, 1]) {
     const x = side * 0.57;
-    addSeat(cabin, x, 1.49, 5.96, true);
+    addSeat(cabin, x, 1.43, 5.96, true);
     const cg = group(cabin, `CH47-cyclic-${side}`, [x, 1.16, 6.27]),
       cd = detailKit(cg, 'cyclic');
     outline(
@@ -779,15 +769,15 @@ function cockpit(root, m, rings) {
       [
         [0, 0, 0],
         [0, 0.29, 0],
-        [0, 0.42, -0.17],
-        [0, 0.61, -0.17],
+        [0, 0.42, -0.08],
+        [0, 0.61, -0.08],
       ],
       0.021,
       m.trim,
       false,
     );
-    beveledBox(cd, [0.08, 0.17, 0.08], [0, 0.64, -0.17], m.trim, 0.013);
-    cd.box([0.024, 0.02, 0.015], [0, 0.7, -0.22], cd.red);
+    beveledBox(cd, [0.08, 0.17, 0.08], [0, 0.64, -0.08], m.trim, 0.013);
+    cd.box([0.024, 0.02, 0.015], [0, 0.7, -0.13], cd.red);
     cd.finish();
     bindings.push(
       { node: cg.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.15 },
@@ -838,24 +828,24 @@ function cockpit(root, m, rings) {
       addSeat(g, 0, 1.305, 0);
     }
   }
-  // Overhead console ends at the windscreen header instead of poking through the glazing.
-  const og = group(cabin, 'CH47-overhead', [0, 2.96, 5.45]),
+  // Ends at the windscreen top: forward of 5.96 m the console stood out through the glass.
+  const og = group(cabin, 'CH47-overhead', [0, 3, 5.48]),
     od = detailKit(og, 'overhead');
-  od.box([0.69, 0.065, 1.1], [0, 0, 0], m.trim);
-  for (let r = 0; r < 9; r++)
+  od.box([0.69, 0.065, 0.95], [0, 0, 0], m.trim);
+  for (let r = 0; r < 6; r++)
     for (const x of [-0.24, -0.08, 0.08, 0.24]) {
-      od.box([0.13, 0.009, 0.1], [x, -0.038, -0.46 + r * 0.112], face);
-      for (const z of [-0.022, 0.022])
+      od.box([0.13, 0.009, 0.12], [x, -0.038, -0.38 + r * 0.15], face);
+      for (const z of [-0.025, 0.025])
         od.rod(
-          [x, -0.045, -0.46 + r * 0.112 + z],
-          [x, -0.078, -0.45 + r * 0.112 + z],
+          [x, -0.045, -0.38 + r * 0.15 + z],
+          [x, -0.078, -0.37 + r * 0.15 + z],
           0.004,
           r === 3 ? od.red : m.metal,
         );
     }
   for (const x of [-0.15, 0.15]) {
-    od.box([0.1, 0.035, 0.15], [x, -0.058, 0.36], m.trim);
-    od.rod([x, -0.07, 0.36], [x, -0.12, 0.4], 0.01, m.metal);
+    od.box([0.1, 0.035, 0.1], [x, -0.058, 0.41], m.trim);
+    od.rod([x, -0.07, 0.41], [x, -0.12, 0.45], 0.01, m.metal);
   }
   od.finish();
   d.finish();

@@ -358,13 +358,65 @@
       }
     }
   },
-  "sourceHash": "sha256:951853569337924362c8a8d2929173145f598e1547bd2e76c63efdf7dc310bc3",
-  "runtimeHash": "sha256:8bbe519d38c1136e2c184adf2cfe6cf5a6a7897c3a614ac41d8efe68c849bc0f",
+  "sourceHash": "sha256:b93557152e5dd704bba70129600133038822c62c051e7fe43d8ed14e4382fb42",
+  "runtimeHash": "sha256:1b33823f88b5709bfdde243c77f58d80f5ebfb28b00970e65b1ec270c5f9f757",
   "limitations": [
     "Polygonal reconstruction, not an engineering replica. Compound body sections, intake internals, fin fillets, canopy curvature, gear mechanics and exact panel/fastener patterns remain simplified. General-arrangement drawing has scale inconsistencies; the model is not stretched to hide them.",
     "The CC-BY cockpit photograph depicts a static display with unspecified production block. Known MHDD dimensions anchor the main panel. Console depths, switch legends, seat/harness, standby size and HUCP projection are approximations; the full panel cannot be metrically verified from this oblique photograph.",
     "Flight pages are authored Molen simulator displays, not operational Typhoon avionics. TAS, geometric altitude and true heading are labeled accordingly. No calibrated IAS/Mach, pressure altitude, magnetic variation, radar, fuel or engine core gauges are invented. HUD has optical geometry only, without collimated symbology.",
     "Assisted flight physics and control mixes are not Typhoon flight-control laws. Slats use the shared flap command; gear folds approximately and hides when retracted. Canopy, exhaust petals and systems switches are static; no combat functionality or external weapons.",
     "Reference pixels remain local and are not model textures. CC-BY tribp and OGL MOD attribution is recorded. Manufacturer images are local study only. The two conflicting Commons credits remain explicitly excluded from verified open-license evidence."
-  ]
+  ],
+  "proportionReview": {
+    "date": "2026-11-06",
+    "outcome": "Measured and left alone.",
+    "method": "Drawing resampled into model metres and overlaid on the rasterized GLB, side view. No photograph solved.",
+    "calibration": {
+      "side": "Line drawing, 128 px/m from the 4.15 m wheelbase. Its two ground lines are detached wheel cartoons 3.2 degrees apart, so it was set level with the published 5.29 m height as datum."
+    },
+    "landmarks": {
+      "finding": "Crown, keel, canopy, inlet and fin all fall on the drawing when level."
+    },
+    "corrections": [],
+    "limitations": [
+      "Illustration, not engineering data. Only the side view was checked."
+    ]
+  },
+  "cockpitSweep": {
+    "tool": "packages/entities/scripts/cockpit-sweep.mjs",
+    "finding": "The seat stood 0.74 m behind the eye, the stick would have met the moved cushion, and the top of the HUD combiner came through the windscreen.",
+    "before": {
+      "outside": 74.0,
+      "horizon": 90.0,
+      "overNose": -9.0,
+      "headroom": 0.26,
+      "wall": 0.35,
+      "panel": 0.83,
+      "cushion": 1.36,
+      "seatback": 0.74,
+      "dial": 128.0,
+      "poked": 1.0
+    },
+    "after": {
+      "outside": 74.61,
+      "horizon": 90.24,
+      "overNose": -10,
+      "headroom": 0.26,
+      "wall": 0.35,
+      "panel": 0.82,
+      "cushion": 0.69,
+      "seatback": 0.28,
+      "dial": 128.13,
+      "poked": 0
+    },
+    "changes": [
+      "Seat forward 0.43 m and up 0.28 m; stick forward 0.18 m and 0.12 m taller; throttles forward 0.29 m; consoles up 0.10 m; pedals aft 0.16 m.",
+      "HUD moved aft 0.08 m and down 0.02 m, combiner height reduced from 0.30 to 0.25 m. It is visible from the seat with the horizon through it."
+    ],
+    "limitations": [
+      "Seat, stick, pedal and throttle positions come from seated-eye ergonomic targets and cockpit photographs, not a dimensioned installation drawing.",
+      "Combiner height is set by the model windscreen, not a drawing.",
+      "The cushion ray lands on the lap strap, about 0.09 m above the cushion."
+    ]
+  }
 }
