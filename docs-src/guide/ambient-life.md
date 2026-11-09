@@ -148,7 +148,9 @@ them pass:
 ```
 
 Without a template, vehicles get the `ambient-vehicle` renderable and pedestrians a procedural
-`figure`.
+`figure` dressed from a built-in wardrobe: 20 adult, 6 elder and 5 child outfits that vary height,
+build, skin tone, body form, hair style, facial hair, sleeves, and trousers, shorts or skirts.
+Walkers share these bodies, so a crowd costs a bounded set of generated meshes.
 
 ## Components
 

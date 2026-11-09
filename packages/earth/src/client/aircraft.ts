@@ -613,9 +613,10 @@ export class EarthAircraft {
 
   /**
    * Move models to their simulated poses and animate controls, gear and propellers. `camera`
-   * (in the same frame) keeps distant cockpits out of the frame.
+   * (in the same frame) keeps distant cockpits out of the frame. `shadowTexel`
+   * (`Renderer.shadowTexelSize`) takes the flown aircraft out of a sun shadow map too coarse for it.
    */
-  render(camera?: readonly [number, number, number]): void {
+  render(camera?: readonly [number, number, number], shadowTexel?: number): void {
     for (const [id, visual] of this.visuals) {
       let t = this.world.get(id, Transform);
       const state = this.world.get(id, AircraftState);
@@ -640,6 +641,7 @@ export class EarthAircraft {
           Math.hypot(t.pos[0] - camera[0], t.pos[1] - camera[1], t.pos[2] - camera[2]) > 12;
         visual.updateView(distantApron ? [Infinity, Infinity, Infinity] : camera);
       }
+      visual.updateShadows(id === this.mountedId ? shadowTexel : undefined);
       const channels = this.world.get(id, Aircraft)?.spec.visual;
       const weather = weatherOf(this.world);
       const atmosphere = weather ? sampleAtmosphere(weather, t.pos[1]) : undefined;

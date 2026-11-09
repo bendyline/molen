@@ -536,6 +536,18 @@ world explorer also prepare an aircraft's shaders before its model joins the sce
 
 Double-sided transparent materials (canopies, windscreens, instrument covers) draw in one pass:
 three otherwise draws each such pane twice and builds a program before each face, every frame.
+Glass casts no sun shadow: a mesh whose materials all blend at less than full opacity, or whose
+name contains `canopy` or `bubble`. Three's shadow pass draws a pane as solid, so a windscreen
+shaded its whole cockpit.
+
+For the aircraft a view follows (flown or watched), hosts also pass `renderer.shadowTexelSize`
+to `visual.updateShadows(texel)` each frame, and `undefined` for every other aircraft. Over a
+wide view the sun's shadow map coarsens (on High, 0.2 m texels 100 m above the ground, 1.6 m in
+cruise at 2,500 ft). It then cannot resolve the aircraft's own canopy frame and seat, and their
+shadows on the cockpit jumped from frame to frame as the aircraft crossed the map's texel grid.
+Coarser than 0.15 m, the aircraft casts no sun shadow; at 0.12 m or finer it casts again. It
+still receives shadows from terrain, buildings and clouds. The Earth view and the world explorer
+do this for the mounted aircraft.
 
 `createAircraftVisual` exposes `cockpit`, a mesh picker and control inventory derived from the
 interior's authored primary-input bindings and glTF node `extras.aircraftControl` metadata.

@@ -1,18 +1,25 @@
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { Heightfield } from '../src/heightfield';
-import { createTerrainLinearObject, TerrainSurfaceMeshBuilder } from '../src/linear-features';
+import {
+  appendTerrainLineBand,
+  createTerrainLinearObject,
+  TerrainSurfaceMeshBuilder,
+  terrainLinePath,
+} from '../src/linear-features';
 import { buildChunkGeometry } from '../src/mesh';
 import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
 import { createTerrainSemanticObject, disposeTerrainSemanticObject } from '../src/semantic-client';
 import { createEmptyTerrainSemanticTile, type TerrainSemanticPolygon } from '../src/semantic-types';
 
-function context(resolution: number): TerrainPyramidTileLayerContext {
+function context(
+  resolution: number,
+  sample = (x: number, z: number): number =>
+    ((x - 4) ** 2 + (z - 4) ** 2) / 40 + ((x + z) % 3) * 0.08,
+): TerrainPyramidTileLayerContext {
   const origin: [number, number] = [1000, 2000];
   const grid = new Float32Array(81);
-  for (let z = 0; z < 9; z++)
-    for (let x = 0; x < 9; x++)
-      grid[z * 9 + x] = ((x - 4) ** 2 + (z - 4) ** 2) / 40 + ((x + z) % 3) * 0.08;
+  for (let z = 0; z < 9; z++) for (let x = 0; x < 9; x++) grid[z * 9 + x] = sample(x, z);
   return {
     address: { level: 0, x: 0, z: 0 },
     origin,
@@ -264,6 +271,52 @@ describe('surface draping over hills and valleys', () => {
     );
     for (const x of [1, 17, 39, 74, 99]) expect(height(object, x, 50)).toBeCloseTo(40, 5);
     disposeTerrainSemanticObject(object);
+  });
+
+  it('keeps a ground road on an approach profile above land cover draped beside it', () => {
+    // A 1 m crest under the road's centerline, 12.5 m grid cells. The profile follows the
+    // ground at a road's lift, as a graded motorway does away from its bridge.
+    const ctx = context(9, (_x, z) => (z === 4 ? 1 : 0));
+    const path = terrainLinePath(
+      [
+        [0, 0.5],
+        [1, 0.5],
+      ],
+      ctx.tileSize,
+    );
+    const cover = new TerrainSurfaceMeshBuilder(ctx);
+    cover.polygon(
+      [
+        [0, 0],
+        [100, 0],
+        [100, 100],
+        [0, 100],
+      ],
+      new THREE.Color('#507040'),
+      0.18,
+    );
+    const land = cover.mesh('cover') as THREE.Mesh;
+    const lowest = (followGrid: boolean): number => {
+      const builder = new TerrainSurfaceMeshBuilder(ctx);
+      appendTerrainLineBand(
+        builder,
+        path,
+        { width: 10, color: '#444444', elevation: 0 },
+        { heightAt: (x, z) => builder.groundHeight(x, z) + 0.32, followGrid },
+      );
+      const road = builder.mesh('road') as THREE.Mesh;
+      let gap = Infinity;
+      for (let x = 1; x < 100; x += 2.3)
+        for (let z = 46; z <= 54; z += 0.8)
+          gap = Math.min(gap, height(road, x, z) - height(land, x, z));
+      road.geometry.dispose();
+      return gap;
+    };
+    // Flat quads between the profile's corner samples sagged 0.26 m under the crest.
+    expect(lowest(false)).toBeLessThan(0);
+    // Cut along the grid, the road keeps its whole 0.14 m lead over the land cover.
+    expect(lowest(true)).toBeGreaterThan(0.14 - 1e-4);
+    land.geometry.dispose();
   });
   it('cuts a shared edge at identical points from both sides, leaving no hairline gaps', () => {
     const ctx = context(17);

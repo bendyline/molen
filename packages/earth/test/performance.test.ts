@@ -66,6 +66,11 @@ describe('earth device detail policy', () => {
   });
   it('sizes a fixed memory budget and a starting level from what the device reports', () => {
     expect(earthMemoryBudget({ deviceMemory: 8 })).toBe(768 * MIB);
+    // 8 GiB is as much as Chromium reports: many cores beside it say a workstation.
+    expect(earthMemoryBudget({ deviceMemory: 8, cores: 20 })).toBe(2048 * MIB);
+    expect(earthMemoryBudget({ deviceMemory: 8, cores: 12 })).toBe(768 * MIB);
+    expect(earthMemoryBudget({ deviceMemory: 8, cores: 20, touch: true })).toBe(768 * MIB);
+    expect(earthMemoryBudget({ deviceMemory: 4, cores: 20 })).toBe(384 * MIB);
     expect(earthMemoryBudget({ deviceMemory: 4 })).toBe(384 * MIB);
     expect(earthMemoryBudget({ deviceMemory: 0.5 })).toBe(192 * MIB);
     expect(earthMemoryBudget({ touch: true })).toBe(256 * MIB);

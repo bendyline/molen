@@ -767,7 +767,7 @@ it('wires the F-22 display data and controls without inventing engine or tactica
   const visual = createModelSignalVisual(scene, s);
   expect(visual.missingNodes).toEqual([]);
   const node = (name) => {
-    const n = scene.getObjectByName('F22-' + name);
+    const n = scene.getObjectByName(`F22-${name}`);
     expect(n, name).toBeDefined();
     return n;
   };
@@ -813,8 +813,8 @@ it('wires the F-22 display data and controls without inventing engine or tactica
     expect((p.x - rest.x) * direction).toBeLessThan(-0.01);
     expect((p.z - rest.z) * direction).toBeLessThan(-0.01);
     for (const part of ['stabilator', 'aileron']) {
-      const l = node(part + '-1').localToWorld(new Vector3(0, 0, -1)),
-        r = node(part + '--1').localToWorld(new Vector3(0, 0, -1));
+      const l = node(`${part}-1`).localToWorld(new Vector3(0, 0, -1)),
+        r = node(`${part}--1`).localToWorld(new Vector3(0, 0, -1));
       expect((r.y - l.y) * direction).toBeGreaterThan(0.2);
     }
     for (const [n, restTip] of Object.entries(hingeTips))
@@ -826,7 +826,7 @@ it('wires the F-22 display data and controls without inventing engine or tactica
       ).toBeLessThan(1e-7);
   }
   update({ gear: 0, flapPosition: 1, altitude: -30.48 }, 1000);
-  for (const name of ['left', 'right', 'nose']) expect(node('gear-' + name).visible).toBe(false);
+  for (const name of ['left', 'right', 'nose']) expect(node(`gear-${name}`).visible).toBe(false);
   expect(node('leading-1').getWorldPosition(new Vector3()).distanceTo(leadPivot)).toBeLessThan(
     1e-8,
   );
@@ -930,7 +930,7 @@ it('drives the late Hornet panel, droops its leading flaps and blanks unavailabl
     'standby-bank',
     'gear-lamp-0',
   ])
-    expect(node('FA18-' + n).visible).toBe(false);
+    expect(node(`FA18-${n}`).visible).toBe(false);
   for (let digit = 0; digit < 5; digit++)
     for (let segment = 0; segment < 7; segment++)
       expect(node(`FA18-DDI-altitude-${digit}-${segment}`).visible).toBe(false);
@@ -1016,7 +1016,7 @@ it('drives F-15C MSIP instruments and keeps ailerons, stabilators and pilot cont
     'G',
     'standby-speed',
   ])
-    expect(node('F15-' + name).visible).toBe(false);
+    expect(node(`F15-${name}`).visible).toBe(false);
   expect(Object.keys(s.sources).join(' ')).not.toMatch(/oil|fuel|temperature|engineRpm/i);
   scene.traverse((n) => {
     if (n.isMesh) n.geometry.dispose();

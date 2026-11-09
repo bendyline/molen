@@ -107,10 +107,14 @@ setTerrainGroundOrigin(pavement, [worldOrigin[0], worldOrigin[2]]);
 
 The material reads a `surfaceDetail` attribute the surface builder writes on every road, sidewalk,
 curb, marking and lot: meters along the band, meters across it from its edge, the surface kind
-and band width, and a road's lane width. Roads and lots get asphalt aggregate (within a few meters,
-crisp pale chips and dark pits a few centimeters across), blotchy wear, polished wheel
-tracks and an oil line in each lane, grit in the gutters, storm-drain grates, manhole covers and
-the odd darker repaired section; asphalt and concrete both get hairline cracks; lots get oil
+and band width, and a road's lane width and wear grade. Roads and lots get asphalt aggregate
+(within a few meters, crisp pale chips and dark pits a few centimeters across), blotchy wear,
+polished wheel tracks and an oil line in each lane, grit in the gutters, storm-drain grates,
+manhole covers and the odd darker repaired section; asphalt and concrete both get hairline cracks.
+Worn roads also get potholes in the wheel tracks, each with a ragged lip and a halo of alligator
+cracking, plus more patches and cracks: none on freeways, trunk and primary roads (grade 0), a few
+on secondary and tertiary roads (1), more on residential streets (2) and most on service roads and
+alleys (3). A band sets its grade with `wear` beside `lanes`; lots get oil
 stains; sidewalks and footways get 1.5 m saw-cut slabs and curbs 3 m ones, each slab its own
 tone, weathered with water stains and, close up, the odd spot of gum; plazas and pedestrian areas get a half-meter paver grid; markings wear through to the
 asphalt. Detail fades to the plain swatch with distance, so it never shimmers, and each layer's
@@ -158,6 +162,45 @@ street and round a loop back to its middle does. A stall line two parking bays s
 Curbs are a step, not a stripe: a 15 cm vertical face drops from the curb's road-side edge to the
 asphalt, split finer than the ground grid so it follows the draped ground, and jointed like the curb top.
 Any draped band can have one with `riser` (meters) on its `TerrainLineBand`.
+
+Markings follow US practice (MUTCD), with center lines yellow where the sign profile's countries
+use yellow (the Americas and Korea) and white elsewhere. Lines are about 11 cm wide (edge lines
+15 cm), and broken lines are 3 m of paint in every 12 m.
+
+- **Center lines:** residential streets have none unless mapped with `lanes`. Multilane roads and
+  city arterials get a double solid line. A two-lane country road gets a broken line where passing
+  is allowed, and a double line round curves (more than about 11° of turn over 90 m), within 60 m
+  of a junction, on bridges, and in passing zones too short to use (under about 120 m). Roads with
+  an odd lane count get a two-way left-turn lane down the middle: each edge is solid on the
+  outside and broken toward the turn lane.
+- **Lane and edge lines:** white broken lines separate lanes going the same way, turning solid over
+  the last 30 m into a signal. Lane counts match the traffic simulation's. Edge lines run along
+  freeways and ramps (yellow on a one-way carriageway's left), country roads, and city arterials at
+  least 8 m wide.
+- **Junctions:** marked crosswalks (high-visibility bars, laddered with transverse lines at
+  signals) cross every arm of a signal. At stop or yield signs they appear only where an arterial
+  meets the junction or at a mapped all-way stop. Where two quiet streets meet, the corner stays
+  unmarked. Stop lines stand about 1.2 m short of a crosswalk, yield lines are rows of triangles,
+  and signal approaches with two or more lanes get lane arrows. Lines run up to the stop line or
+  crosswalk, or to the crossing road's edge. A road with the right of way past side streets that
+  join from one side only (a tee) keeps its center line across their mouths, and its edge line
+  breaks only where each side street meets it. Where a track crosses a road, the rails run through
+  the pavement and the ties stop at its edge.
+
+Sidewalks follow built-up frontage, not every street. Stations every 10 m along a street look for
+buildings within about 70 m (five for an arterial, eight otherwise) or mapped commercial or retail
+land. A sidewalk then runs about 40 m past the last house, bridges gaps under about 120 m, and
+skips stretches shorter than about 80 m. A tile without building footprints reads mapped
+residential land as built up, and a tile with no land data at all keeps sidewalks on every street.
+Where a sidewalk mapped as its own footway runs alongside a street, the inferred one on that side
+is left out (the curb stays). Streetlights, poles, hydrants and mailboxes stand only where there is
+a sidewalk. Living streets have none.
+
+Where a road continues into another feature (for example where its tags change at a bridge's
+end), the two lines' ends share a miter (`TerrainLinePath.startJoin` and `endJoin`), so their
+bands meet on one seam instead of leaving a wedge on the outside of the bend. Paint is drawn a few
+centimeters above the asphalt and is marked `walkIgnore`, so walkers and cars do not collide with
+it.
 
 Styles with streetlights also furnish their blocks: utility poles every 38 m on one side of each
 street with sidewalks, set back behind the sidewalk with a crossarm and a pair of sagging lines
@@ -310,6 +353,9 @@ this change does not add a full-stop/dwell simulation for the decorative signs.
 Ground surfaces render at all available semantic levels. Fine markings and fixtures default to
 the finest pyramid level; `detailLevelsBelowMax` extends them to coarser levels. Fixture/car and
 detail-work budgets bound each tile. A portion of the detail budget is reserved for parking.
+`maxDetailElements` counts the quads drawn for sidewalks, curbs and paint (dash gaps cost
+nothing), and roads are furnished in order of importance: freeways and arterials first, so on a
+tile that runs out the side streets go without, not the main roads.
 Geometry is batched by surface role, broad land-cover meshes share indexed vertices, and fixture/car parts are instanced. Stats cover resident
 surface tiles, including temporarily hidden tiles.
 

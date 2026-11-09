@@ -92,6 +92,30 @@ function conformPanel(root, panel, name, material, width, aftWidth, length) {
   panel.add(mesh);
   return mesh;
 }
+/** A panel laid over the skin takes its livery from the painted surface nearest its centre,
+ * as extracted panels do: the renderer matches slots through these source node names. */
+function inheritLivery(root, skin) {
+  root.updateMatrixWorld(true);
+  const center = new T.Box3().setFromObject(skin).getCenter(new T.Vector3()),
+    meshes = [];
+  root.traverse((node) => {
+    if (!node.isMesh || node.material !== skin.material) return;
+    for (let n = node; n && n !== root; n = n.parent) if (n.name.startsWith('speed-brake-')) return;
+    meshes.push(node);
+  });
+  const hits = new T.Raycaster(center.clone().setY(center.y + 5), new T.Vector3(0, -1, 0))
+    .intersectObjects(meshes, false)
+    .sort((a, b) => Math.abs(a.point.y - center.y) - Math.abs(b.point.y - center.y));
+  // Split brakes beside a nozzle sit outside the plan outline; take the nearest painted part.
+  const distance = (mesh) => new T.Box3().setFromObject(mesh).distanceToPoint(center);
+  const source =
+    hits[0]?.object ??
+    meshes.sort((a, b) => distance(a) - distance(b)).find((m) => distance(m) < 1);
+  if (!source) return;
+  const names = [];
+  for (let n = source; n && n !== root; n = n.parent) if (n.name) names.push(n.name);
+  skin.userData.liverySourceNodes = names;
+}
 function movingParent(node, name) {
   const holder = pivot(node.parent, name, node.position.toArray());
   holder.quaternion.copy(node.quaternion);
@@ -418,23 +442,23 @@ export function completeAircraftArticulation(root, spec, profile = {}, modelSign
             y,
             z,
           ]);
-          if (shape.conform)
-            conformPanel(
-              root,
-              panel,
-              `${panel.name}-skin`,
-              paint,
-              width,
-              shape.aftWidth ?? width,
-              length,
-            );
-          else
-            box(
-              panel,
-              `${panel.name}-skin`,
-              [section ? width / 2 - 0.02 : width, 0.025, length],
-              [0, leaf * 0.025, -length / 2],
-            );
+          const skin = shape.conform
+            ? conformPanel(
+                root,
+                panel,
+                `${panel.name}-skin`,
+                paint,
+                width,
+                shape.aftWidth ?? width,
+                length,
+              )
+            : box(
+                panel,
+                `${panel.name}-skin`,
+                [section ? width / 2 - 0.02 : width, 0.025, length],
+                [0, leaf * 0.025, -length / 2],
+              );
+          inheritLivery(root, skin);
           additions.push(
             bind(
               panel,

@@ -74,6 +74,33 @@ it('separates only the wheel struck at speed, preserves the input, and advances 
   ).toBe(false);
 });
 
+it('rolls over paint and creases low on the tire, and still stops at a wall higher up', () => {
+  // The front-left tire meets a surface ahead of its contact patch: a few centimeters up it is
+  // lane paint or a crease in the road, at the axle it is a wall.
+  const touch = (
+    lift: (p: { center: number[]; radius: number }) => number,
+  ): VehicleEnvironment => ({
+    ...flat,
+    contacts: (probes) =>
+      probes
+        .filter((p) => p.part === 'wheel-front-left')
+        .map((p) => ({
+          part: p.part,
+          point: [p.center[0], lift(p), p.center[2] + 0.15],
+          normal: [0, 0.92, -0.39],
+          depth: 0.01,
+        })),
+  });
+  const drive = (env: VehicleEnvironment): number => {
+    let result = { transform: pose, state: { ...initialVehicleState(), speed: 10 } };
+    for (let i = 0; i < 30; i++)
+      result = stepVehicle(result.transform, result.state, input, spec, 1 / 60, env);
+    return result.state.speed;
+  };
+  expect(drive(touch((p) => (p.center[1] ?? 0) - p.radius + 0.03))).toBeGreaterThan(9.5);
+  expect(drive(touch((p) => p.center[1] ?? 0))).toBeLessThan(5);
+});
+
 it('a gentle bump does not detach panels and losing driven wheels reduces acceleration and steering', () => {
   const gentle = stepVehicle(
     pose,

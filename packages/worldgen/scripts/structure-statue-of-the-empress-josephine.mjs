@@ -236,7 +236,8 @@ function anatomy(d) {
         sleeves: 'none',
         legs: 'shorts',
       },
-      proportions: { headScale: 0.87, shoulderWidth: 0.95, hipWidth: 1.05 },
+      // Head size as carved: the shared default head shrank from 0.16 to 0.145 of stature.
+      proportions: { headScale: 0.96, shoulderWidth: 0.95, hipWidth: 1.05 },
       seed: 'statue_of_the_empress_josephine',
     }),
     d > 1 ? 0 : 1,

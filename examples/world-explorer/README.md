@@ -183,7 +183,9 @@ coordinates. Undeclared profiles and PNG8 classification remain bare rather than
 
 Use `?lat=47.62051&lon=-122.3493` to inspect the Space Needle, or
 `?lat=47.6163&lon=-122.0356` for Sammamish. `quality=economy|balanced|high`
-to select portable streaming budgets. `?alt=17000&pitch=-0.35` reproduces a high-altitude camera;
+to select portable streaming budgets. `?memory=3072` sets the terrain and layer memory budget in
+MiB, past what the browser reports (2 GiB on a desktop with 16 or more cores, otherwise at most
+768 MiB). `?alt=17000&pitch=-0.35` reproduces a high-altitude camera;
 `yaw` and `pitch` are radians. The HUD exposes attribution, adaptive level/error state, fallback
 counts, resident samples, geometry memory, triangle/draw estimates, instances, failures, and
 evictions. A separate location panel stays visible in Fly and Walk modes, even with `hud=0`.

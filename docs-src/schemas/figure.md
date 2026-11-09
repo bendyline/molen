@@ -146,15 +146,40 @@ A figure descriptor document: a preset plus overrides, the same shape as the `fi
     "features": {
       "type": "object",
       "properties": {
+        "form": {
+          "type": "string",
+          "enum": [
+            "neutral",
+            "masculine",
+            "feminine"
+          ],
+          "description": "Human body form: shoulder, waist, hip and chest shape (bipeds)."
+        },
         "hair": {
           "type": "string",
           "enum": [
             "none",
+            "buzz",
+            "balding",
             "cap",
+            "crop",
             "bob",
-            "long"
+            "long",
+            "ponytail",
+            "bun",
+            "afro"
           ],
-          "description": "Hair shell style."
+          "description": "Hair style: none, buzz, balding, cap (short), crop, bob, long, ponytail, bun, afro."
+        },
+        "facialHair": {
+          "type": "string",
+          "enum": [
+            "none",
+            "stubble",
+            "mustache",
+            "beard"
+          ],
+          "description": "Facial hair (humans), drawn in the hair color."
         },
         "hands": {
           "type": "string",
@@ -177,9 +202,10 @@ A figure descriptor document: a preset plus overrides, the same shape as the `fi
           "type": "string",
           "enum": [
             "shorts",
-            "long"
+            "long",
+            "skirt"
           ],
-          "description": "Legwear length (bottom color extent)."
+          "description": "Legwear: shorts, long trousers, or a knee-length skirt (bottom color)."
         },
         "tail": {
           "type": "string",

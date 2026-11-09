@@ -9,6 +9,15 @@ camera faces by distance band, and how many tile builds repeated work the cache 
 node test/performance/run-flight-streaming.mjs --flight=circle --tier=3 --shots=0 --label=before
 ```
 
+Each band's `drawnLevel` is how fine the ground drawn there is. `complete` is measured against a
+selection that coarsens at speed, so it reads the same for coarse ground as for fine; compare
+`drawnLevel` when a change moves detail, and look at the screenshots. `coarsenedInView` counts
+ground on screen that stepped back to a coarser level during the flight, which reads as popping;
+`refinedInView` counts detail arriving.
+
+`--params=wave=0.35` swings the autopilot's speed 35% either side of `--speed` every 20 seconds
+(`wavePeriod=`), as a pilot on the throttle does: a constant speed hides what speed changes do.
+
 `--flight` is `circle` (over Bellevue, repeated laps) or `straight` (Bellevue across the lake into
 Seattle). Results go to the ignored `.artifacts/flight-streaming/`. `--tier` holds one adaptive
 tier so runs compare like with like; without it Auto can change tier mid-flight. `--profile=N`

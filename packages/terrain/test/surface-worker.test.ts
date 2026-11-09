@@ -312,10 +312,13 @@ describe('surface worker', () => {
     for (const name of ['surface:markings', 'surface:fixtures']) {
       const expectedMesh = direct.getObjectByName(name) as THREE.Mesh;
       const actualMesh = actual?.getObjectByName(name) as THREE.Mesh;
-      if (expectedMesh?.geometry.getAttribute('position'))
+      if (expectedMesh?.geometry.getAttribute('position')) {
         expect(actualMesh.geometry.getAttribute('position').array).toEqual(
           expectedMesh.geometry.getAttribute('position').array,
         );
+        // Welded meshes share vertices: without their index the worker's would be other triangles.
+        expect(actualMesh.geometry.index?.array).toEqual(expectedMesh.geometry.index?.array);
+      }
     }
     expect(
       actual?.userData.roadSigns.some(
@@ -327,6 +330,8 @@ describe('surface worker', () => {
     expect(face.geometry.getAttribute('position').array).toEqual(
       directFace.geometry.getAttribute('position').array,
     );
+    expect(face.geometry.index?.array).toEqual(directFace.geometry.index?.array);
+    expect(face.geometry.index).not.toBeNull();
     if (actual) disposeTerrainSurfaceObject(actual);
     disposeTerrainSurfaceObject(direct);
     bridge.dispose();

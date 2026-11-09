@@ -246,18 +246,19 @@ function buildEar(c: AnimalContext, base: Vec3, fur: ReturnType<typeof parseColo
   const floppy = d.features.ears === 'floppy',
     lateral = d.species === 'cow' || d.species === 'sheep';
   const round = d.features.ears === 'round';
+  // A dog's drop ear hangs against the cheek, not splayed out over the neck.
   const direction = unit(
     floppy
       ? lateral
         ? [1, -0.18, 0]
-        : [0.65, -0.9, 0.12]
+        : [0.28, -1, 0.18]
       : d.species === 'deer'
         ? [0.85, 0.6, 0]
         : [0.3, 1, -0.08],
   );
   const across: Vec3 = [direction[1], -direction[0], 0];
-  const len = m.earLen * (floppy ? 1.7 : round ? 0.85 : 1.3),
-    width = m.earLen * (lateral ? 0.5 : 0.48);
+  const len = m.earLen * (floppy ? (lateral ? 1.7 : 1.35) : round ? 0.85 : 1.3),
+    width = m.earLen * (lateral ? 0.5 : floppy ? 0.56 : 0.48);
   const s = skin(J('ear.l'));
   // A closed leaf with a cupped front, a convex back, and an inset inner-ear surface.
   const outline: [number, number][] = [

@@ -211,7 +211,8 @@ function figureGeometry(d, kind) {
         legs: 'shorts',
       },
       proportions: {
-        headScale: kind.startsWith('child') ? 1.1 : 0.87,
+        // Head sizes as carved: the shared default head shrank from 0.16 to 0.145 of stature.
+        headScale: kind.startsWith('child') ? 1.214 : 0.96,
         shoulderWidth: female ? 0.96 : 1.08,
         hipWidth: female ? 1.07 : 0.96,
       },

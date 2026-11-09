@@ -538,3 +538,89 @@ it('blocks the chassis against buildings and prevents a chase camera from passin
     vi.useRealTimers();
   }
 });
+
+it('rests a wheel across a crack between two road meshes instead of dropping it in', () => {
+  // Paving 0.3 m over the terrain, in two slabs with a 20 cm crack between them across the road,
+  // like the wedge two road features once left where they met at an angle, right under the
+  // front axle of a car that stops there.
+  const root = new THREE.Group(),
+    tile = new THREE.Group();
+  const spec = ENTITY_TYPES.component<VehicleData>(SEDAN, 'vehicle').spec;
+  const placements: VehiclePlacement[] = [
+    { id: 'car', kind: SEDAN, color: '#566d82', spec, position: [1000, 0, 2000], yaw: 0 },
+  ];
+  tile.userData.vehicles = placements;
+  tagTerrainObject('parked-vehicles', tile);
+  tile.position.set(1000, 0, 2000);
+  tile.add(createParkedVehicleBatch(placements, [1000, 2000]));
+  root.add(tile);
+  const crack = 2000 + spec.wheelbase / 2;
+  for (const [from, to] of [
+    [1980, crack - 0.1],
+    [crack + 0.1, 2020],
+  ] as const) {
+    const slab = new THREE.Mesh(
+      new THREE.PlaneGeometry(20, to - from).rotateX(-Math.PI / 2),
+      new THREE.MeshBasicMaterial(),
+    );
+    slab.position.set(1000, 0, (from + to) / 2);
+    root.add(slab);
+  }
+  const vehicles = new EarthVehicles({
+    root,
+    sampleHeight: () => -0.3,
+    loadModel: async () => new THREE.Group(),
+    types: ENTITY_TYPES,
+  });
+  vehicles.sync(0);
+  expect(vehicles.enter([998.5, 1.7, 2000])).toBe(true);
+  let lowest = Number.POSITIVE_INFINITY;
+  for (let i = 0; i < 90; i++) {
+    vehicles.update(1 / 60, { throttle: 0, steering: 0, brake: true });
+    lowest = Math.min(lowest, vehicles.world.get('car', Transform)?.pos[1] ?? lowest);
+  }
+  // The front tires span the crack, sagging a centimeter or two; read at one point under each
+  // axle end they fell to the terrain, and the body sank half that, nose down.
+  expect(lowest).toBeGreaterThan(-0.03);
+  vehicles.dispose();
+});
+
+it('keeps parked cars asleep where they were parked, on a deck the car collision cannot see', () => {
+  // Garage stalls 20 m up and closer together than the cars are wide. The vehicle collision
+  // neighborhood follows only a mounted car, so nothing under them is solid to a parked car: one
+  // stepped there loses its deck and, boxed in by its neighbors, never comes to rest.
+  const root = new THREE.Group(),
+    tile = new THREE.Group();
+  const spec = ENTITY_TYPES.component<VehicleData>(SEDAN, 'vehicle').spec;
+  expect(spec.actuators).toBeDefined();
+  const placements: VehiclePlacement[] = [0, 1, 2].map((i) => ({
+    id: `stall-${i}`,
+    kind: SEDAN,
+    color: '#566d82',
+    spec,
+    position: [1000 + i * 1.6, 20, 2000],
+    yaw: 0.1 * i,
+  }));
+  tile.userData.vehicles = placements;
+  tagTerrainObject('parked-vehicles', tile);
+  root.add(tile);
+  const vehicles = new EarthVehicles({
+    root,
+    sampleHeight: () => 0,
+    loadModel: async () => new THREE.Group(),
+    types: ENTITY_TYPES,
+  });
+  try {
+    vehicles.sync(0);
+    const states = placements.map((p) => vehicles.world.get(p.id, VehicleState));
+    for (let i = 0; i < 120; i++)
+      vehicles.update(1 / 60, { throttle: 0, steering: 0, brake: false });
+    placements.forEach((p, i) => {
+      // Never stepped: the state each car spawned with, in the stall it was parked in.
+      expect(vehicles.world.get(p.id, VehicleState)).toBe(states[i]);
+      expect(vehicles.world.get(p.id, Transform)?.pos).toEqual(p.position);
+    });
+  } finally {
+    vehicles.dispose();
+  }
+});

@@ -21,7 +21,7 @@ import {
 } from './model-signals';
 import { createRotorBlur, type RotorBlur } from './rotor-blur';
 import type { VehicleCameraOptions, VehicleCameraPose } from './vehicle-camera';
-import { drawGlassInOnePass } from './vehicle-glass';
+import { drawGlassInOnePass, isGlass } from './vehicle-glass';
 import { createVehicleInteriorVisual, type VehicleInteriorVisual } from './vehicle-interior';
 
 /** The group the cockpit-controls generator adds beside a model's cockpit: levers and legends. */
@@ -33,6 +33,15 @@ const FLIGHT_CONTROLS_NODE = 'flight-controls';
  * the P-51's cockpit, 415 meshes, was a quarter of a takeoff's draws in chase view.
  */
 const CABIN_DETAIL_ANGLE = 0.002;
+/**
+ * Sun shadow-map texel (meters) beyond which the map no longer resolves an aircraft's own canopy
+ * frame, seat and panels. Coarser, their shadows on the aircraft fall in blocks that jump as it
+ * slides across the map's texel grid: at 0.2 m (100 m above the ground on High) about 1% of an
+ * F-15C's cockpit view changed from frame to frame in straight flight, at 0.8 m 10%, a cockpit
+ * flickering in the sun. It comes back once texels are SELF_SHADOW_RETURN or finer.
+ */
+const SELF_SHADOW_TEXEL = 0.15;
+const SELF_SHADOW_RETURN = 0.12;
 
 export interface AircraftVisual {
   setLivery(data: LiveryData | undefined): void;
@@ -57,6 +66,14 @@ export interface AircraftVisual {
    * so a binding's or damage's own `visible` is never overridden.
    */
   updateView(camera: readonly [number, number, number]): void;
+  /**
+   * The sun shadow map's texel size in meters (`Renderer.shadowTexelSize`) for the aircraft a view
+   * is built around: the one flown or followed. Hosts pass `undefined` for every other aircraft.
+   * While texels are too coarse to resolve the aircraft's own parts (over 0.15 m), it casts no
+   * sun shadow until they are 0.12 m or finer. Its shadows on itself and on the ground below go,
+   * and it still receives shadows from terrain, buildings and clouds.
+   */
+  updateShadows(texel: number | undefined): void;
   dispose(): void;
 }
 /**
@@ -88,7 +105,8 @@ export function createAircraftVisual(
   model.traverse((o) => {
     o.userData.vehicleGeometry = true;
     if (o instanceof THREE.Mesh) {
-      o.castShadow = !o.name.includes('canopy') && !o.name.includes('bubble');
+      // Glass by name or by material: most catalog aircraft name theirs glass or glazing.
+      o.castShadow = !o.name.includes('canopy') && !o.name.includes('bubble') && !isGlass(o);
       o.receiveShadow = true;
       drawGlassInOnePass(o);
     }
@@ -160,13 +178,34 @@ export function createAircraftVisual(
   details.sort((a, b) => b.reach - a.reach);
   let detailed = details.length;
   const eye = new THREE.Vector3();
+  // Parts updateShadows took out of the shadow pass; each casts again when texels are fine enough.
+  let shadowsOut = false;
+  const unshadowed: THREE.Mesh[] = [];
+  const castShadows = (cast: boolean): void => {
+    shadowsOut = !cast;
+    if (cast) {
+      for (const mesh of unshadowed) mesh.castShadow = true;
+      unshadowed.length = 0;
+      return;
+    }
+    model.traverse((object) => {
+      const mesh = object as THREE.Mesh;
+      if (!mesh.isMesh || !mesh.castShadow) return;
+      mesh.castShadow = false;
+      unshadowed.push(mesh);
+    });
+  };
   return {
     setLivery(data) {
+      // New propellers record each blade's own shadow flag, so restore the flags first.
+      const out = shadowsOut;
+      if (out) castShadows(true);
       propellers.dispose();
       appearance?.dispose();
       damage.reset();
       appearance = data === undefined ? undefined : applyLivery(model, data);
       propellers = createAircraftPropellers(model, spec);
+      if (out) castShadows(false);
     },
     object: model,
     cockpit,
@@ -301,8 +340,13 @@ export function createAircraftVisual(
       });
       interior?.update(telemetry, timeSeconds);
       animation?.update(telemetry, timeSeconds);
-      propellers.update(state);
+      propellers.update(state, !shadowsOut);
       damage.update(state);
+    },
+    updateShadows(texel) {
+      const out =
+        texel !== undefined && texel > (shadowsOut ? SELF_SHADOW_RETURN : SELF_SHADOW_TEXEL);
+      if (out !== shadowsOut) castShadows(!out);
     },
     updateView(camera) {
       if (cabin.length === 0) return;

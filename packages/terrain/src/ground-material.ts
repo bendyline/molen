@@ -897,8 +897,10 @@ const CREEP_TUFT = 0.35;
 /**
  * `surfaceDetail` kinds written by draped road bands and areas (see `TERRAIN_SURFACE_KIND`). The
  * attribute's z packs `kind * 128 + band width`, x is the distance along the band and y the
- * offset across it from its edge. w is a road's lane width (0 when unknown); for other kinds it
- * marks the edges that fray into the ground (1: across 0, 2: across the full width, 3: both).
+ * offset across it from its edge. For a road, w is its lane width (0 when unknown) plus 16 times
+ * its condition (0 well kept to 3 poor, which sets how often it cracks and holes; only with a lane
+ * width); for other kinds it marks the edges that fray into the ground (1: across 0, 2: across
+ * the full width, 3: both).
  */
 const PAVEMENT_GLSL = /* glsl */ `
   varying vec4 vSurfaceDetail;
@@ -922,7 +924,12 @@ const PAVEMENT_GLSL = /* glsl */ `
     float kind = floor(code / 128.0 + 0.001);
     float along = vSurfaceDetail.x;
     float across = vSurfaceDetail.y;
-    float lane = vSurfaceDetail.w;
+    // A road carries its condition on its lane width, w = lane + 16 * condition (0 well kept,
+    // 1 fair, 2 worn, 3 poor); every other kind keeps its fray mask in w (read further down).
+    float condition = (1.0 - step(0.5, abs(kind - 1.0))) * floor(vSurfaceDetail.w / 16.0);
+    float lane = vSurfaceDetail.w - 16.0 * condition;
+    // Worn and poor roads crack and are patched more often; zero on well-kept and fair ones.
+    float decay = clamp(condition - 1.0, 0.0, 2.0) * 0.5;
     float footprint = max(max(length(dFdx(p)), length(dFdy(p))), 0.0001);
     float close = 1.0 - smoothstep(0.25, 0.6, footprint / 0.25);
     float near = 1.0 - smoothstep(0.25, 0.6, footprint / 1.0);
@@ -972,7 +979,7 @@ const PAVEMENT_GLSL = /* glsl */ `
       vec2 patchCell = vec2(floor(along / 9.0), floor(across / max(lane, 0.5)));
       float patchPick = terrainGroundHash(patchCell + vec2(17.0, 5.0), 65536.0);
       vec2 patchLocal = vec2(along - patchCell.x * 9.0, across - patchCell.y * max(lane, 0.5));
-      float repair = step(0.8, patchPick) * terrainPavementBox(patchLocal,
+      float repair = step(0.8 - 0.12 * decay, patchPick) * terrainPavementBox(patchLocal,
         vec2(1.0 + patchPick * 2.0, 0.3), vec2(6.5 + patchPick * 2.0, max(lane, 0.5) - 0.3), aa);
       wear *= 0.16 * tracks + 0.12 * drip + 0.06 * repair;
     }
@@ -1022,7 +1029,8 @@ const PAVEMENT_GLSL = /* glsl */ `
     float crackMask = 0.0;
     if (near > 0.0) {
       crackField = terrainGroundNoise(p + vec2(23.0, 11.0), 2.0);
-      crackMask = smoothstep(0.62, 0.8, terrainGroundNoise(p + vec2(5.0, 71.0), 8.0));
+      crackMask = smoothstep(0.62 - 0.1 * decay, 0.8 - 0.06 * decay,
+        terrainGroundNoise(p + vec2(5.0, 71.0), 8.0));
     }
     float crackWidth = max(fwidth(crackField) * 1.5, 0.002);
     float crack = (1.0 - smoothstep(0.0, crackWidth, abs(crackField - 0.5))) * crackMask * near *
@@ -1045,7 +1053,66 @@ const PAVEMENT_GLSL = /* glsl */ `
       terrainPavementBox(vec2(drainAlong, min(across, width - across)), vec2(-0.45, 0.05),
         vec2(0.45, 0.42), aa);
     float slats = terrainPavementLine(along, 0.09, 0.022);
-    float lived = (1.0 - 0.2 * crack) *
+    // Potholes, now and then on fair roads and more often on worn and poor ones: in one wheel
+    // track of a lane in some 13 m stretches, sometimes with a smaller twin just beyond, each a
+    // ragged dark hollow of loose stone with a crumbled lip and a halo of alligator cracking.
+    // Placed within their lane and stretch, so a lookup never needs the neighboring cells.
+    float holeCell = floor(along / 13.0);
+    float holeLane = floor(across / laneMeters);
+    vec2 holeKey = vec2(holeCell, holeLane);
+    float holePick = terrainGroundHash(holeKey + vec2(29.0, 13.0), 65536.0);
+    float holeAlong = terrainGroundHash(holeKey + vec2(7.0, 53.0), 65536.0);
+    float holeSide = terrainGroundHash(holeKey + vec2(47.0, 3.0), 65536.0);
+    float holeSize = terrainGroundHash(holeKey + vec2(71.0, 37.0), 65536.0);
+    vec2 holeCentre = vec2(holeCell * 13.0 + 1.6 + holeAlong * 8.6,
+      (holeLane + 0.27 + 0.46 * step(0.5, holeSide) + (fract(holeSide * 7.0) - 0.5) * 0.12) *
+      laneMeters);
+    float holeR = 0.18 + holeSize * 0.37;
+    vec2 twinCentre = holeCentre +
+      vec2(holeR + 0.35 + holeAlong * 0.35, (fract(holeSize * 5.0) - 0.5) * 0.4);
+    float twin = step(fract(holePick * 13.0), 0.3);
+    // Meters outside the nearest hole's nominal outline (negative inside it).
+    float holeEdge = min(length(vec2(along, across) - holeCentre) - holeR,
+      mix(64.0, length(vec2(along, across) - twinCentre) - holeR * 0.6, twin));
+    float holeAa = max(fwidth(holeEdge), 0.004);
+    float holeOdds = condition * (0.012 + condition * 0.022);
+    float holeOn = isRoad * step(0.5, lane) * step(holePick, holeOdds) * near;
+    float hole = 1.0;
+    float halo = 0.0;
+    float gatorA = 0.5;
+    float gatorB = 0.5;
+    if (holeOn > 0.0 && holeEdge < 1.2) {
+      float jag = (terrainGroundNoise(p + vec2(61.0, 23.0), 0.125) - 0.5) * 0.7 +
+        (terrainGroundNoise(p + vec2(11.0, 83.0), 0.5) - 0.5) * 0.5;
+      float edgeM = holeEdge + jag * holeR * 0.7;
+      float inside = 1.0 - smoothstep(-holeAa, holeAa, edgeM);
+      float deep = smoothstep(0.0, holeR * 0.8, -edgeM);
+      // Exposed stone: coarse pale chips and dark voids, darkest and dampest at the bottom.
+      float stone = smoothstep(0.6, 0.7, terrainGroundNoise(p + vec2(17.0, 29.0), 0.0625)) * 0.3 -
+        smoothstep(0.66, 0.76, terrainGroundNoise(p + vec2(43.0, 5.0), 0.125)) * 0.2;
+      float hollow = mix(0.54, 0.3, deep) * (1.0 + stone * close);
+      // The wall just inside the edge, lit on one side and shaded on the other, reads as depth.
+      vec2 spot = vec2(along, across);
+      vec2 nearest = mix(holeCentre, twinCentre,
+        twin * step(length(spot - twinCentre) - holeR * 0.6, length(spot - holeCentre) - holeR));
+      float facing = dot(normalize(spot - nearest + vec2(0.0001, 0.0)), vec2(0.6, 0.8));
+      float wall = inside * (1.0 - smoothstep(0.03, 0.09 + holeAa, -edgeM));
+      hollow = mix(hollow, 0.5 + 0.2 * facing, wall);
+      // A crumbled lip a few centimeters wide, lighter where the surface broke away.
+      float lip = (1.0 - smoothstep(0.015, 0.05 + holeAa, abs(edgeM - 0.02))) * (1.0 - inside) *
+        smoothstep(0.35, 0.6, terrainGroundNoise(p + vec2(5.0, 17.0), 0.0625));
+      hole = mix(1.0, mix(1.0 + 0.16 * lip, hollow, inside), holeOn);
+      // Alligator cracking round it, fading out before the lane's edges.
+      halo = (1.0 - smoothstep(0.15, 0.6 + holeR * 0.5, edgeM)) * (1.0 - inside) * holeOn *
+        smoothstep(0.0, 0.3, min(across - holeLane * laneMeters, (holeLane + 1.0) * laneMeters - across));
+      gatorA = terrainGroundNoise(p + vec2(37.0, 7.0), 0.5);
+      gatorB = terrainGroundNoise(p + vec2(3.0, 67.0), 0.25);
+    }
+    float gatorWidthA = max(fwidth(gatorA) * 1.2, 0.002);
+    float gatorWidthB = max(fwidth(gatorB) * 1.2, 0.002);
+    float gator = max(1.0 - smoothstep(0.0, gatorWidthA, abs(gatorA - 0.5)),
+      1.0 - smoothstep(0.0, gatorWidthB, abs(gatorB - 0.5))) * halo * close;
+    float lived = (1.0 - (0.2 + 0.1 * decay) * crack) * (1.0 - 0.32 * gator) * (1.0 - 0.08 * halo) * hole *
       mix(1.0, 0.58 + 0.12 * coverRim + 0.06 * grain, cover) * mix(1.0, 0.5 - 0.3 * slats, drain);
     float scalar = (isAsphalt * asphalt + isConcrete * concrete + isPlaza * plaza +
       isLoose * loose + isPlain * plain + isPaint) * lived;
@@ -1161,7 +1228,7 @@ export function createTerrainPavementMaterial(
        diffuseColor.rgb *= terrainPavement.rgb;`,
     );
   };
-  material.customProgramCacheKey = (): string => 'terrain-pavement@30';
+  material.customProgramCacheKey = (): string => 'terrain-pavement@31';
   states.set(material, state);
   return material;
 }
@@ -1217,7 +1284,13 @@ export async function createTerrainPavementMaterialAsync(
     const kind = floor(detail.z.div(128).add(0.001)).toVar() as unknown as F;
     const along = detail.x.toVar() as unknown as F;
     const across = detail.y;
-    const lane = detail.w;
+    // A road's condition rides on its lane width (see the GLSL above).
+    const condition = step(0.5, abs(kind.sub(1)))
+      .oneMinus()
+      .mul(floor(detail.w.div(16)))
+      .toVar() as unknown as F;
+    const lane = detail.w.sub(condition.mul(16)).toVar() as unknown as F;
+    const decay = clamp(condition.sub(1), 0, 2).mul(0.5).toVar() as unknown as F;
     // Derivatives first, in uniform control flow. Each layer below then runs only where it
     // still shows: past its fade every term it feeds is zero, so a distant view skips those
     // noise lookups, and a branch's boundary lies where its terms have already faded out.
@@ -1279,7 +1352,7 @@ export async function createTerrainPavementMaterialAsync(
         .oneMinus()
         .mul(smoothstep(0.03, 0.12, w).oneMinus()) as unknown as F;
     };
-    const laneWidth = max(lane, 0.5);
+    const laneWidth = max(lane, 0.5).toVar() as unknown as F;
     const width = detail.z.sub(kind.mul(128)).toVar() as unknown as F;
     // Derivative-based terms, still outside any branch: joints, pavers, grate slats, covers.
     const slab = isSidewalk.mul(1.5).add(isCurb.mul(3)).add(isConcrete.oneMinus().mul(1.5));
@@ -1322,7 +1395,7 @@ export async function createTerrainPavementMaterialAsync(
       const inside = clamp(patchLocal.sub(low).div(aa).add(0.5), 0, 1).mul(
         clamp(high.sub(patchLocal).div(aa).add(0.5), 0, 1),
       );
-      const repair = step(0.8, patchPick).mul(inside.x).mul(inside.y);
+      const repair = step(decay.mul(-0.12).add(0.8), patchPick).mul(inside.x).mul(inside.y);
       wear.mulAssign(tracks.mul(0.16).add(drip.mul(0.12)).add(repair.mul(0.06)));
     });
     // Grit and oil collect along a road's edges, in the gutters.
@@ -1420,7 +1493,13 @@ export async function createTerrainPavementMaterialAsync(
     const crackMask = float(0).toVar();
     If(near.greaterThan(0), () => {
       crackField.assign(noise(p.add(vec2(23, 11)) as unknown as V2, 2));
-      crackMask.assign(smoothstep(0.62, 0.8, noise(p.add(vec2(5, 71)) as unknown as V2, 8)));
+      crackMask.assign(
+        smoothstep(
+          decay.mul(-0.1).add(0.62),
+          decay.mul(-0.06).add(0.8),
+          noise(p.add(vec2(5, 71)) as unknown as V2, 8),
+        ),
+      );
     });
     const crackWidth = max(fwidth(crackField).mul(1.5), 0.002);
     const crack = smoothstep(0, crackWidth, abs(crackField.sub(0.5)))
@@ -1449,9 +1528,122 @@ export async function createTerrainPavementMaterialAsync(
       .mul(near)
       .mul(drainInside.x)
       .mul(drainInside.y);
+    // Potholes in a lane's wheel track, a twin beside some, alligator cracking round them (see
+    // the GLSL above). The terms a branch reads and the derivatives come first, as variables.
+    const holeCell = floor(along.div(13)).toVar() as unknown as F;
+    const holeLane = floor(across.div(laneWidth)).toVar() as unknown as F;
+    const holeKey = vec2(holeCell, holeLane);
+    const holePick = hash(
+      holeKey.add(vec2(29, 13)) as unknown as V2,
+      65536,
+    ).toVar() as unknown as F;
+    const holeAlong = hash(
+      holeKey.add(vec2(7, 53)) as unknown as V2,
+      65536,
+    ).toVar() as unknown as F;
+    const holeSide = hash(holeKey.add(vec2(47, 3)) as unknown as V2, 65536);
+    const holeSize = hash(
+      holeKey.add(vec2(71, 37)) as unknown as V2,
+      65536,
+    ).toVar() as unknown as F;
+    const holeCentre = vec2(
+      holeCell.mul(13).add(1.6).add(holeAlong.mul(8.6)),
+      holeLane
+        .add(0.27)
+        .add(step(0.5, holeSide).mul(0.46))
+        .add(fract(holeSide.mul(7)).sub(0.5).mul(0.12))
+        .mul(laneWidth),
+    ).toVar();
+    const holeR = holeSize.mul(0.37).add(0.18).toVar() as unknown as F;
+    const twinCentre = holeCentre
+      .add(vec2(holeR.add(0.35).add(holeAlong.mul(0.35)), fract(holeSize.mul(5)).sub(0.5).mul(0.4)))
+      .toVar();
+    const twin = step(fract(holePick.mul(13)), 0.3).toVar() as unknown as F;
+    const spot = vec2(along, across).toVar();
+    const holeEdge = min(
+      spot.sub(holeCentre).length().sub(holeR),
+      mix(64, spot.sub(twinCentre).length().sub(holeR.mul(0.6)), twin),
+    ).toVar() as unknown as F;
+    const holeAa = max(fwidth(holeEdge), 0.004).toVar() as unknown as F;
+    const holeOdds = condition.mul(condition.mul(0.022).add(0.012));
+    const holeOn = isRoad
+      .mul(step(0.5, lane))
+      .mul(step(holePick, holeOdds))
+      .mul(near)
+      .toVar() as unknown as F;
+    const hole = float(1).toVar();
+    const halo = float(0).toVar();
+    const gatorA = float(0.5).toVar();
+    const gatorB = float(0.5).toVar();
+    If(holeOn.greaterThan(0).and(holeEdge.lessThan(1.2)), () => {
+      const jag = noise(p.add(vec2(61, 23)) as unknown as V2, 0.125)
+        .sub(0.5)
+        .mul(0.7)
+        .add(
+          noise(p.add(vec2(11, 83)) as unknown as V2, 0.5)
+            .sub(0.5)
+            .mul(0.5),
+        );
+      const edgeM = holeEdge.add(jag.mul(holeR).mul(0.7)).toVar() as unknown as F;
+      const inside = smoothstep(holeAa.negate(), holeAa, edgeM).oneMinus().toVar();
+      const deep = smoothstep(0, holeR.mul(0.8), edgeM.negate());
+      // Exposed stone: coarse pale chips and dark voids, darkest and dampest at the bottom.
+      const stone = smoothstep(0.6, 0.7, noise(p.add(vec2(17, 29)) as unknown as V2, 0.0625))
+        .mul(0.3)
+        .sub(smoothstep(0.66, 0.76, noise(p.add(vec2(43, 5)) as unknown as V2, 0.125)).mul(0.2));
+      // The wall just inside the edge, lit on one side and shaded on the other, reads as depth.
+      const nearest = mix(
+        holeCentre,
+        twinCentre,
+        twin.mul(
+          step(
+            spot.sub(twinCentre).length().sub(holeR.mul(0.6)),
+            spot.sub(holeCentre).length().sub(holeR),
+          ),
+        ),
+      );
+      const facing = spot.sub(nearest).add(vec2(0.0001, 0)).normalize().dot(vec2(0.6, 0.8));
+      const wall = inside.mul(smoothstep(0.03, holeAa.add(0.09), edgeM.negate()).oneMinus());
+      const hollow = mix(
+        mix(0.54, 0.3, deep).mul(stone.mul(close).add(1)),
+        facing.mul(0.2).add(0.5),
+        wall,
+      );
+      // A crumbled lip a few centimeters wide, lighter where the surface broke away.
+      const lip = smoothstep(0.015, holeAa.add(0.05), abs(edgeM.sub(0.02)))
+        .oneMinus()
+        .mul(inside.oneMinus())
+        .mul(smoothstep(0.35, 0.6, noise(p.add(vec2(5, 17)) as unknown as V2, 0.0625)));
+      hole.assign(mix(1, mix(lip.mul(0.16).add(1), hollow, inside), holeOn));
+      // Alligator cracking round it, fading out before the lane's edges.
+      halo.assign(
+        smoothstep(0.15, holeR.mul(0.5).add(0.6), edgeM)
+          .oneMinus()
+          .mul(inside.oneMinus())
+          .mul(holeOn)
+          .mul(
+            smoothstep(
+              0,
+              0.3,
+              min(across.sub(holeLane.mul(laneWidth)), holeLane.add(1).mul(laneWidth).sub(across)),
+            ),
+          ),
+      );
+      gatorA.assign(noise(p.add(vec2(37, 7)) as unknown as V2, 0.5));
+      gatorB.assign(noise(p.add(vec2(3, 67)) as unknown as V2, 0.25));
+    });
+    const gator = max(
+      smoothstep(0, max(fwidth(gatorA).mul(1.2), 0.002), abs(gatorA.sub(0.5))).oneMinus(),
+      smoothstep(0, max(fwidth(gatorB).mul(1.2), 0.002), abs(gatorB.sub(0.5))).oneMinus(),
+    )
+      .mul(halo)
+      .mul(close);
     const lived = crack
-      .mul(0.2)
+      .mul(decay.mul(0.1).add(0.2))
       .oneMinus()
+      .mul(gator.mul(0.32).oneMinus())
+      .mul(halo.mul(0.08).oneMinus())
+      .mul(hole)
       .mul(mix(1, coverRim.mul(0.12).add(grain.mul(0.06)).add(0.58), cover))
       .mul(mix(1, slats.mul(-0.3).add(0.5), drain));
     const scalar = isAsphalt
@@ -1468,7 +1660,7 @@ export async function createTerrainPavementMaterialAsync(
     // blades creep over it. The margin shrinks away as its noise falls below a pixel, leaving
     // the band's own antialiased edge. The edge mask is rounded before its bits are read (see
     // the GLSL above).
-    const soft = lane.add(0.5).floor().mul(isRoad.oneMinus());
+    const soft = detail.w.add(0.5).floor().mul(isRoad.oneMinus());
     const edge = min(
       mix(64, across, soft.mod(2)),
       mix(64, width.sub(across), step(1.5, soft)),

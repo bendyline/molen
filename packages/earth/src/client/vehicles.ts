@@ -31,6 +31,7 @@ import {
   Mounted,
   mountEntity,
   repairVehicle,
+  stepActuators,
   unmountEntity,
   Vehicle,
   type VehicleEnvironment,
@@ -43,6 +44,7 @@ import {
 } from '@bendyline/molen-kernel/vehicles';
 import { componentHandle, Transform, World } from '@bendyline/molen-kernel/world';
 import type {
+  AircraftCollisionProbe,
   BoatData,
   BoatSpec,
   BoatStateData,
@@ -60,6 +62,7 @@ import { Livery, selectLivery, tintLivery } from './liveries';
 import { EARTH_WATER_CONDITIONS, EarthWater, shownUnder } from './water';
 
 const PLAYER = 'world-player';
+type ContactCar = Parameters<typeof vehicleObstacleContacts>[1]['cars'][number];
 /**
  * Ground distance (m) from the observer within which a tile's parked cars are simulation
  * entities, to approach, board and collide with; farther ones are only their tile's merged mesh.
@@ -76,6 +79,24 @@ const Renderable = componentHandle('renderable');
  * door and take it over. Moving traffic is never boardable.
  */
 const TRAFFIC_BOARDING_SPEED = 0.5;
+/** A typical car wheel's radius (m), for how far a tire spanning an edge sinks below it. */
+const TIRE_RADIUS = 0.33;
+/**
+ * Rings (reach in m, then the wheel's sag that far from its axle) at which a wheel's support is
+ * also read: the outer about a tire's half width, the inner close enough to cross a hairline seam
+ * almost level. `support` reads the inner only where the outer found an edge to rest on.
+ */
+const TIRE_RINGS: readonly (readonly [number, number])[] = [0.15, 0.04].map(
+  (reach) => [reach, TIRE_RADIUS - Math.sqrt(TIRE_RADIUS * TIRE_RADIUS - reach * reach)] as const,
+);
+const TIRE_DIRECTIONS: readonly (readonly [number, number])[] = [
+  [1, 0],
+  [-1, 0],
+  [0, 1],
+  [0, -1],
+];
+/** Reused for every support probe: straight down from above the wheel. */
+const SUPPORT_RAY = new THREE.Ray(new THREE.Vector3(), new THREE.Vector3(0, -1, 0));
 
 /** The part of an ambient agent a stopped car is judged by. */
 interface TrafficCar {
@@ -220,9 +241,7 @@ export class EarthVehicles {
         vehicleObstacleContacts(probes, {
           origin: this.collision.origin,
           octree: this.collision.octree,
-          cars: [...this.bodies()]
-            .filter(([other]) => other !== id)
-            .map(([, transform, vehicle]) => ({ transform, spec: vehicle.spec })),
+          cars: this.contactCars(probes, id),
           aircraft: [...this.world.query(Transform, Aircraft)]
             .filter(([other]) => other !== id)
             .map(([, transform, aircraft]) =>
@@ -278,6 +297,53 @@ export class EarthVehicles {
       if (data && state) yield [id, t, data, state] as const;
     }
   }
+  /**
+   * The bodies {@link bodies} yields whose center lies within `reach` plus their own longer side
+   * of the X/Z box `minX..maxX`, `minZ..maxZ`. A car's collision queries run several times a
+   * substep, and by a town's garages every one read all of its 2,000 parked cars in full: a body
+   * out of reach here costs its transform and data, not a query row and its state.
+   */
+  private *bodiesNear(minX: number, minZ: number, maxX: number, maxZ: number, reach = 0) {
+    for (const ids of [
+      this.world.query(Transform, Vehicle).ids(),
+      this.world.query(Transform, Boat).ids(),
+    ]) {
+      for (const id of ids) {
+        const t = this.world.get(id, Transform);
+        const data = this.data(id);
+        if (t === undefined || data === undefined) continue;
+        const pad = reach + Math.max(data.spec.length, data.spec.width);
+        if (
+          t.pos[0] < minX - pad ||
+          t.pos[0] > maxX + pad ||
+          t.pos[2] < minZ - pad ||
+          t.pos[2] > maxZ + pad
+        )
+          continue;
+        const state = this.state(id);
+        if (state) yield [id, t, data, state] as const;
+      }
+    }
+  }
+  /** Bodies a contact query's probes may touch: the cars the contact test itself keeps. */
+  private contactCars(probes: readonly AircraftCollisionProbe[], id: string) {
+    let minX = Infinity,
+      minZ = Infinity,
+      maxX = -Infinity,
+      maxZ = -Infinity;
+    for (const probe of probes) {
+      const radius = probe.radius + (probe.disc?.halfThickness ?? 0);
+      minX = Math.min(minX, probe.center[0] - radius);
+      maxX = Math.max(maxX, probe.center[0] + radius);
+      minZ = Math.min(minZ, probe.center[2] - radius);
+      maxZ = Math.max(maxZ, probe.center[2] + radius);
+    }
+    const cars: ContactCar[] = [];
+    if (probes.length === 0) return cars;
+    for (const [other, transform, vehicle] of this.bodiesNear(minX, minZ, maxX, maxZ))
+      if (other !== id) cars.push({ transform, spec: vehicle.spec });
+    return cars;
+  }
   sync(now: number, observer?: [number, number, number]): void {
     if (this.disposed) return;
     if (now - this.lastSync < 200) return;
@@ -332,6 +398,13 @@ export class EarthVehicles {
           ...initialVehicleState(p.yaw),
           pitch: p.pitch ?? 0,
           roll: p.roll ?? 0,
+          // Doors, lights and wipers already at rest, so the car is dormant from its first tick.
+          // Without positions the kernel stepped every car once to set them, against a collision
+          // neighborhood that follows only the mounted car: on foot by a garage's 2,000 stalls
+          // that was a frame of seconds, and it left cars that could never settle.
+          ...(p.spec.actuators
+            ? { actuators: stepActuators(p.spec.actuators, undefined, undefined, 0) }
+            : {}),
         };
         this.world.spawnRaw(components, id);
       }
@@ -408,16 +481,30 @@ export class EarthVehicles {
     const ground = this.sampleHeight(x, z);
     if (ground === undefined) return undefined;
     // From just above the vehicle, so a deck overhead is not the road and the one it is on is.
-    const ray = new THREE.Ray(
-      new THREE.Vector3(
-        x - this.collision.origin.x,
-        Math.max(ground, y ?? ground) + 0.65,
-        z - this.collision.origin.z,
-      ),
-      new THREE.Vector3(0, -1, 0),
-    );
-    const hit = this.collision.octree.rayIntersect(ray);
-    return hit && hit.position.y >= ground - 0.2 ? hit.position.y : ground;
+    const top = Math.max(ground, y ?? ground) + 0.65;
+    const surface = (px: number, pz: number): number | undefined => {
+      SUPPORT_RAY.origin.set(px - this.collision.origin.x, top, pz - this.collision.origin.z);
+      const hit = this.collision.octree.rayIntersect(SUPPORT_RAY);
+      return hit && hit.position.y >= ground - 0.2 ? hit.position.y : undefined;
+    };
+    // A tire rests on whatever it spans, not on the point under its axle. Read at one point, a
+    // seam between two road meshes or a crack between bands dropped the wheel to the ground under
+    // the paving (a third of a meter), the car lurched, and the paving's edge then held it like
+    // a curb. A wheel resting on an edge beside its axle sits lower by the sag of its radius over
+    // that reach; the inner ring refines that only where the outer one found such an edge.
+    let height = surface(x, z) ?? ground;
+    for (const [reach, sag] of TIRE_RINGS) {
+      let raised = false;
+      for (const [dx, dz] of TIRE_DIRECTIONS) {
+        const edge = surface(x + dx * reach, z + dz * reach);
+        if (edge !== undefined && edge - sag > height) {
+          height = edge - sag;
+          raised = true;
+        }
+      }
+      if (!raised) break;
+    }
+    return height;
   }
   private vehicleBox(
     pos: [number, number, number],
@@ -439,7 +526,8 @@ export class EarthVehicles {
   ): boolean {
     const box = this.vehicleBox(pos, yaw, spec);
     if (this.intersectsObstacle(box, except)) return false;
-    for (const [other, t, v, state] of this.bodies()) {
+    const extent = Math.hypot(spec.length, spec.width) / 2;
+    for (const [other, t, v, state] of this.bodiesNear(pos[0], pos[2], pos[0], pos[2], extent)) {
       if (
         other === id ||
         Math.hypot(t.pos[0] - pos[0], t.pos[2] - pos[2]) >
@@ -497,7 +585,7 @@ export class EarthVehicles {
       new THREE.Vector3(0.32, 0.9, 0.32),
     );
     if (this.intersectsObstacle(person, vehicle)) return false;
-    for (const [id, t, v, state] of this.bodies()) {
+    for (const [id, t, v, state] of this.bodiesNear(pos[0], pos[2], pos[0], pos[2], 1)) {
       if (id === vehicle) continue;
       if (person.intersectsOBB(this.vehicleBox(t.pos, state.yaw, v.spec))) return false;
     }

@@ -49,11 +49,17 @@ export function buildA320Cockpit(ctx) {
     k.nd(P, `ND-${tag}`, side * 0.335, 0, du, du, { kind: 'rose', screen: bezel });
   }
   k.engines(P, 'upper-ECAM', 0, 0, du, du, { screen: bezel, flaps: true });
-  k.systems(P, 'lower-ECAM', 0, -0.185, du, du, { title: 'WHEEL', gear: true, rows: ['BRK --', 'AUTO BRK', 'ANTI SKID'], screen: bezel });
+  k.systems(P, 'lower-ECAM', 0, -0.185, du, du, {
+    title: 'WHEEL',
+    gear: true,
+    rows: ['BRK --', 'AUTO BRK', 'ANTI SKID'],
+    screen: bezel,
+  });
   k.standby(P, 'ISIS', 0.15, 0.035, 0.07);
   k.gearLamps(P.d, P.g, k.n('gear-indicator'), -0.15, 0.06, 0.013, -0.004, true);
   k.clock(P, -0.15, -0.025, 0.06, 0.05);
-  for (const [i, label] of ['LO', 'MED', 'MAX'].entries()) k.lamp(P, -0.115 - i * 0.036, -0.078, 0.03, 0.018, 'white', label);
+  for (const [i, label] of ['LO', 'MED', 'MAX'].entries())
+    k.lamp(P, -0.115 - i * 0.036, -0.078, 0.03, 0.018, 'white', label);
   k.gearLever(P, -0.14, -0.185);
   k.panelSheet(
     P,
@@ -147,21 +153,62 @@ export function buildA320Cockpit(ctx) {
     halfWidth = 0.25;
   k.prism([ped[0], ped[1], ped[3]], 0, halfWidth);
   const F = k.onSegment('pedestal-forward', ped, 0);
-  for (const side of [1, -1]) k.cdu(F, side > 0 ? 'MCDU 1' : 'MCDU 2', side * 0.155, 0, 0.146, 0.215, { screenColor: 'cyan' });
+  for (const side of [1, -1])
+    k.cdu(F, side > 0 ? 'MCDU 1' : 'MCDU 2', side * 0.155, 0, 0.146, 0.215, {
+      screenColor: 'cyan',
+    });
   k.switchField(F, 0, 0.0, 0.14, 0.2, { rows: 4, cols: 3, seed: 2, title: 'ECAM' });
   const Q = k.onSegment('throttle-quadrant', ped, 2);
   const qLen = Math.abs(ped[3][0] - ped[2][0]),
     qy = (dz) => qLen / 2 - dz;
-  k.levers(Q, { xs: [0.05, -0.05], y: qy(0.16), length: 0.16, knob: [0.06, 0.028, 0.04], color: 'grip', slot: 0.16 });
-  k.levers(Q, { xs: [0.2], y: qy(0.12), name: 'speedbrake', source: null, rest: -0.4, length: 0.11, knob: [0.03, 0.02, 0.03], slot: 0.1 });
-  k.levers(Q, { xs: [-0.2], y: qy(0.3), name: 'flap-lever', source: 'flapPosition', rest: 0.35, travel: -0.7, length: 0.13, knob: [0.045, 0.025, 0.03], color: 'toggle', slot: 0.13 });
-  for (const side of [1, -1]) k.trimWheel(side * (halfWidth + 0.01), base[1] - 0.14, ped[2][0] - 0.16, 0.085);
+  k.levers(Q, {
+    xs: [0.05, -0.05],
+    y: qy(0.16),
+    length: 0.16,
+    knob: [0.06, 0.028, 0.04],
+    color: 'grip',
+    slot: 0.16,
+  });
+  k.levers(Q, {
+    xs: [0.2],
+    y: qy(0.12),
+    name: 'speedbrake',
+    source: null,
+    rest: -0.4,
+    length: 0.11,
+    knob: [0.03, 0.02, 0.03],
+    slot: 0.1,
+  });
+  k.levers(Q, {
+    xs: [-0.2],
+    y: qy(0.3),
+    name: 'flap-lever',
+    source: 'flapPosition',
+    rest: 0.35,
+    travel: -0.7,
+    length: 0.13,
+    knob: [0.045, 0.025, 0.03],
+    color: 'toggle',
+    slot: 0.13,
+  });
+  for (const side of [1, -1])
+    k.trimWheel(side * (halfWidth + 0.01), base[1] - 0.14, ped[2][0] - 0.16, 0.085);
   for (const side of [1, -1]) k.guarded(Q, side * 0.035, qy(0.36), 1, 0.03, 'key');
   k.handle(Q, 0, qy(0.48), { colour: 'key', width: 0.05 });
   k.handle(Q, 0, qy(0.62), { colour: 'red', width: 0.04 });
   for (const side of [1, -1]) {
-    k.switchField(Q, side * 0.15, qy(0.5), 0.15, 0.2, { rows: 3, cols: 3, seed: side > 0 ? 7 : 9, title: 'RMP' });
-    k.switchField(Q, side * 0.15, qy(0.74), 0.15, 0.2, { rows: 3, cols: 4, seed: side > 0 ? 4 : 6, title: 'ACP' });
+    k.switchField(Q, side * 0.15, qy(0.5), 0.15, 0.2, {
+      rows: 3,
+      cols: 3,
+      seed: side > 0 ? 7 : 9,
+      title: 'RMP',
+    });
+    k.switchField(Q, side * 0.15, qy(0.74), 0.15, 0.2, {
+      rows: 3,
+      cols: 4,
+      seed: side > 0 ? 4 : 6,
+      title: 'ACP',
+    });
   }
 
   // Crew stations: side-sticks on the outboard consoles, tillers outboard and forward of them.
@@ -184,7 +231,11 @@ export function buildA320Cockpit(ctx) {
         rows: 3,
         cols: 5,
         seed: c * 5 + r + 2,
-        title: [['ELEC', 'FUEL', 'ADIRS', 'LIGHTS'], ['FIRE', 'HYD', 'ENG', 'APU'], ['AIR', 'PRESS', 'ANTI ICE', 'CALLS']][c][r],
+        title: [
+          ['ELEC', 'FUEL', 'ADIRS', 'LIGHTS'],
+          ['FIRE', 'HYD', 'ENG', 'APU'],
+          ['AIR', 'PRESS', 'ANTI ICE', 'CALLS'],
+        ][c][r],
       });
   k.floorPlate(ctx.bulkheadZ, ez + 1.05);
   k.walls(ctx.bulkheadZ, ez + 0.55);

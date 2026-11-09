@@ -204,6 +204,8 @@ export interface EarthDeviceMemory {
   deviceMemory?: number;
   /** A touch-first device (phone or tablet), whose tabs are killed early under memory pressure. */
   touch?: boolean;
+  /** `navigator.hardwareConcurrency`, logical cores. */
+  cores?: number;
 }
 
 function browserDeviceMemory(): EarthDeviceMemory {
@@ -212,8 +214,16 @@ function browserDeviceMemory(): EarthDeviceMemory {
       ? (navigator as Navigator & { deviceMemory?: number }).deviceMemory
       : undefined;
   const touch = typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
-  return { ...(reported !== undefined ? { deviceMemory: reported } : {}), touch };
+  const cores = typeof navigator !== 'undefined' ? navigator.hardwareConcurrency : undefined;
+  return {
+    ...(reported !== undefined ? { deviceMemory: reported } : {}),
+    touch,
+    ...(cores !== undefined ? { cores } : {}),
+  };
 }
+
+/** Logical cores past which a desktop reporting the browser's 8 GiB ceiling is a workstation. */
+const WORKSTATION_CORES = 16;
 
 /**
  * Terrain and layer geometry a device can keep on screen, bytes. Adaptive quality measures memory
@@ -222,15 +232,18 @@ function browserDeviceMemory(): EarthDeviceMemory {
  * view's geometry stayed the same. The terrain cache also keeps at least this much, so ground
  * just left is still warm when the view pans back. 96 MiB per reported GiB within 192–768 MiB;
  * without a report, 256 MiB on touch devices and 512 MiB elsewhere.
+ *
+ * Chromium reports at most 8 GiB, so 8 means "8 or more", and a workstation got a laptop's budget.
+ * A dense city at High displays more than 768 MiB on its own (Seattle about 1.5-2 GiB), which left
+ * no room for hidden ground: every tile left the cache the moment it left the view. A desktop at
+ * that ceiling with WORKSTATION_CORES or more logical cores gets 2 GiB.
  */
 export function earthMemoryBudget(device: EarthDeviceMemory = browserDeviceMemory()): number {
-  const { deviceMemory, touch } = device;
-  const mib =
-    deviceMemory !== undefined && Number.isFinite(deviceMemory) && deviceMemory > 0
-      ? Math.min(768, Math.max(192, deviceMemory * 96))
-      : touch
-        ? 256
-        : 512;
+  const { deviceMemory, touch, cores } = device;
+  const reported = deviceMemory !== undefined && Number.isFinite(deviceMemory) && deviceMemory > 0;
+  if (reported && deviceMemory >= 8 && touch !== true && (cores ?? 0) >= WORKSTATION_CORES)
+    return 2048 * MIB;
+  const mib = reported ? Math.min(768, Math.max(192, deviceMemory * 96)) : touch ? 256 : 512;
   return mib * MIB;
 }
 

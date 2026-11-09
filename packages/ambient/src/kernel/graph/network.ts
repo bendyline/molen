@@ -14,6 +14,7 @@ import {
   gradeHighwayBridges,
   PATH_SURFACE_LIFT,
   ROAD_SURFACE_LIFT,
+  sampleTerrainLine,
   type TerrainLinePath,
   type TerrainPoiFeature,
   type TerrainTransportationFeature,
@@ -511,6 +512,9 @@ export class TransportNetwork implements GraphStore {
             : PATH_SURFACE_LIFT
           : ROAD_SURFACE_LIFT;
       const ys = new Float64Array(path.points.length);
+      // The sampled surface (with its lift), when heights are not given: lanes beside the
+      // centreline read it at their own offsets.
+      let surface: ((x: number, z: number) => number) | undefined;
       if (dense.heights !== undefined) {
         dense.heights.forEach((h, i) => {
           ys[i] = h;
@@ -523,7 +527,7 @@ export class TransportNetwork implements GraphStore {
         draft.bridgeConnections?.length ||
         draft.bridgeApproachProfile?.length
       ) {
-        const deck = bridgeDeckHeightFn(path, heightAt, {
+        surface = bridgeDeckHeightFn(path, heightAt, {
           ...(draft.deckElevation !== undefined ? { deckElevation: draft.deckElevation } : {}),
           clearance: draft.class === 'walk' ? 3 : 6,
           approachLift: lift,
@@ -534,14 +538,11 @@ export class TransportNetwork implements GraphStore {
             ? { connections: draft.bridgeConnections }
             : {}),
         });
+      } else surface = (x, z) => heightAt(x, z) + lift;
+      if (surface !== undefined)
         path.points.forEach((p, i) => {
-          ys[i] = deck(p[0], p[1]);
+          ys[i] = (surface as (x: number, z: number) => number)(p[0], p[1]);
         });
-      } else {
-        path.points.forEach((p, i) => {
-          ys[i] = heightAt(p[0], p[1]) + lift;
-        });
-      }
       const first = path.points[0] as Point2;
       const last = path.points[path.points.length - 1] as Point2;
       const base = `${key}#${shortHash(`${draft.class}:${draft.kind}:${q(first[0])},${q(first[1])}:${q(last[0])},${q(last[1])}:${q(path.length)}`)}`;
@@ -573,7 +574,7 @@ export class TransportNetwork implements GraphStore {
         SIDEWALK_KINDS.has(draft.kind) &&
         !draft.tunnel &&
         !nearWalk(walkSegments, path, draft.width / 2 + 4);
-      this.createLanes(edge, draft, inferSidewalks);
+      this.createLanes(edge, draft, inferSidewalks, surface);
       this.edges.set(id, edge);
       record.edges.push(id);
       (this.nodes.get(from) as TransportNode).edges.push(id);
@@ -602,7 +603,12 @@ export class TransportNetwork implements GraphStore {
     this.version++;
   }
 
-  private createLanes(edge: TransportEdge, draft: EdgeDraft, sidewalks: boolean): void {
+  private createLanes(
+    edge: TransportEdge,
+    draft: EdgeDraft,
+    sidewalks: boolean,
+    surface?: (x: number, z: number) => number,
+  ): void {
     const side = edge.drivingSide === 'right' ? 1 : -1;
     const make = (
       code: string,
@@ -613,6 +619,15 @@ export class TransportNetwork implements GraphStore {
       lift = 0,
     ): void => {
       const id = `${edge.id}>${code}`;
+      // Where the lane itself runs, not the centreline: a draped road tilts with a hillside.
+      let ys: Float64Array | undefined;
+      if (surface !== undefined && offset !== 0) {
+        ys = new Float64Array(edge.path.points.length);
+        for (let i = 0; i < ys.length; i++) {
+          const p = sampleTerrainLine(edge.path, edge.path.distances[i] ?? 0, dir * offset);
+          ys[i] = surface(p.x, p.z);
+        }
+      }
       const lane: TransportLane = {
         id,
         edge: edge.id,
@@ -624,6 +639,7 @@ export class TransportNetwork implements GraphStore {
         trimEnd: 0,
         length: edge.path.length,
         lift,
+        ...(ys !== undefined ? { ys } : {}),
         start: dir === 1 ? edge.from : edge.to,
         end: dir === 1 ? edge.to : edge.from,
         next: [],

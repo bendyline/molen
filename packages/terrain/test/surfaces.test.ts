@@ -15,6 +15,7 @@ import {
   assertTerrainSemanticTile,
   createEmptyTerrainSemanticTile,
   type TerrainSemanticPolygon,
+  type TerrainSemanticTile,
   type TerrainTransportationFeature,
 } from '../src/semantic-types';
 import {
@@ -107,11 +108,31 @@ function fixture() {
   return tile;
 }
 
+/** Mark the whole tile as residential land: without footprints, that reads as built up. */
+function builtUp(tile: TerrainSemanticTile): TerrainSemanticTile {
+  tile.landcover.push({
+    class: 'residential',
+    polygons: [
+      {
+        outer: [
+          [-0.1, -0.1],
+          [1.1, -0.1],
+          [1.1, 1.1],
+          [-0.1, 1.1],
+        ],
+      },
+    ],
+  });
+  return tile;
+}
+
 function stats(object: THREE.Object3D): TerrainSurfaceStats {
   return object.userData.surfaceStats as TerrainSurfaceStats;
 }
+/** A mesh's triangles as a flat list of corners, whether or not they share vertices. */
 function positions(object: THREE.Object3D, name: string) {
-  return (object.getObjectByName(name) as THREE.Mesh).geometry.getAttribute('position');
+  const geometry = (object.getObjectByName(name) as THREE.Mesh).geometry;
+  return (geometry.index ? geometry.toNonIndexed() : geometry).getAttribute('position');
 }
 
 /** Pairs of a mesh's triangles that overlap in plan at one height: one plane, so they z-fight. */
@@ -342,7 +363,7 @@ describe('surface styles', () => {
     expect(inferTerrainParkingAreas(tile, cluster, 200).length).toBeGreaterThan(0);
   });
   it('builds fully paved parking with holes, clipped markings, corner/block lights and bounded parked cars', () => {
-    const tile = fixture();
+    const tile = builtUp(fixture());
     const ctx = context();
     const object = createTerrainSurfaceObject(tile, ctx, {
       details: { maxFixturesPerTile: 30, parkedVehicles: PARKED_VEHICLES },
@@ -485,7 +506,7 @@ describe('surface styles', () => {
   });
 
   it('treats a T-junction as three arms, and a bend as no junction', () => {
-    const tile = fixture();
+    const tile = builtUp(fixture());
     (tile.transportation[1] as TerrainTransportationFeature).lines = [
       [
         [0.3, 0.3],

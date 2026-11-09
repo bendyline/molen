@@ -3783,6 +3783,53 @@ describe('building ahead of a moving camera', () => {
     }
   });
 
+  it('stops building ahead once memory gives a tile ahead up, rather than building it again', async () => {
+    const asked: string[] = [];
+    // A tile's layers outweigh its ground many times over, as a city's buildings do: room judged
+    // when a tile's ground arrived is gone once its layers have.
+    const { stream, fly } = rig(
+      {
+        viewDistance: 300,
+        // A host's request window, as wide as Earth's: a burst of loads ahead starts at once.
+        maxConcurrentLoads: 12,
+        layers: [
+          {
+            id: 'detail',
+            category: 'human-feature',
+            createTile: () =>
+              new THREE.Mesh(
+                new THREE.BufferGeometry().setAttribute(
+                  'position',
+                  new THREE.BufferAttribute(new Float32Array(3 * 2_000), 3),
+                ),
+              ),
+          },
+        ],
+      },
+      {
+        async load(address) {
+          asked.push(terrainPyramidTileKey(address));
+          return flatTile(grid, address);
+        },
+      },
+    );
+    try {
+      await fly(100, 2);
+      // Room for the ground on screen and as much again, not for every tile ahead.
+      const { displayedBytes } = stream.pressure();
+      stream.setBudget({ maxResidentBytes: Math.ceil(displayedBytes * 2) });
+      asked.length = 0;
+      await fly(100, 8);
+      const loads = new Map<string, number>();
+      for (const tile of asked) loads.set(tile, (loads.get(tile) ?? 0) + 1);
+      expect(Math.max(0, ...loads.values())).toBeLessThanOrEqual(1);
+      expect(stream.stats().fallbackLeaves).toBe(0);
+      expect(stream.viewCoverage([])[0]?.empty).toBe(0);
+    } finally {
+      stream.dispose();
+    }
+  });
+
   it('asks once for ground past the edge of the data and does not report it', async () => {
     const errors: unknown[] = [];
     const asked: string[] = [];
@@ -3997,28 +4044,86 @@ describe('terrain work at speed', () => {
   };
   const source = { load: async (address: TerrainPyramidTileAddress) => flatTile(d, address, 0) };
 
-  it('stops refining at tiles the camera crosses too quickly, and refines again when it slows', async () => {
+  /** A stream on the test descriptor, flown along +x at a given speed in 0.1 s steps. */
+  const flight = (overrides: Partial<Parameters<typeof createTerrainPyramidStream>[2]> = {}) => {
     let now = 0;
-    let x = 1_000;
-    const stream = createTerrainPyramidStream(d, source, { ...options, now: () => now });
+    const camera = { x: 1_000 };
+    const stream = createTerrainPyramidStream(d, source, {
+      ...options,
+      now: () => now,
+      ...overrides,
+    });
     const fly = async (speed: number, seconds: number): Promise<void> => {
       for (let step = 0; step < seconds * 10; step++) {
         now += 100;
-        x += speed / 10;
-        stream.update(view(x));
+        camera.x += speed / 10;
+        stream.update(view(camera.x));
         await stream.whenIdle();
       }
     };
+    const finest = () => stream.displayedTiles().filter((tile) => tile.level === 5);
+    return { stream, camera, fly, finest };
+  };
+
+  it('builds levels the camera crosses too quickly only near its track, and spreads them when it slows', async () => {
+    const { stream, camera, fly, finest } = flight();
     try {
       await fly(0, 1);
       expect(stream.stats().speedLevel).toBe(5);
+      const atRest = finest().length;
+      expect(atRest).toBeGreaterThan(20);
       // A level 5 tile is 128 across: crossed in 3.2 s at 40 per second, under the 5 s limit.
-      await fly(40, 3);
+      // 60 s carries the camera past everything it built at rest, onto ground it has to build.
+      await fly(40, 60);
       expect(stream.stats().speedLevel).toBe(4);
-      expect(stream.stats().maxDisplayedLevel).toBe(4);
+      // At 5 / (3.2 * 0.25) times the error, level 5 reaches 0.16 of the 1000 view distance from
+      // the camera and the points it is predicted to reach: only the level 4 tiles (256 across)
+      // beside its track refine, where at rest the whole view did.
+      const fast = finest();
+      expect(fast.length).toBeGreaterThan(0);
+      expect(fast.length).toBeLessThan(atRest);
+      for (const tile of fast) {
+        const parentZ = Math.floor(tile.z / 2) * 256;
+        expect(Math.max(parentZ - 2_048, 2_048 - (parentZ + 256), 0)).toBeLessThan(200);
+        expect(tile.x * 128).toBeGreaterThan(camera.x - 400);
+      }
       await fly(0, 8);
       expect(stream.stats().speedLevel).toBe(5);
-      expect(stream.stats().maxDisplayedLevel).toBe(5);
+      expect(finest().length).toBeGreaterThan(atRest * 0.8);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('keeps finer ground it has built on screen when it speeds up', async () => {
+    // Room for the whole view at the finest level, so only speed could coarsen anything.
+    const roomy = { maxSelectedTiles: 512, maxResidentTiles: 2_048 };
+    const popsMoving = async (speed: number): Promise<number> => {
+      const { stream, fly, finest } = flight(roomy);
+      try {
+        await fly(0, 1);
+        const atRest = finest().length;
+        const before = stream.stats().coarsenedInView;
+        await fly(speed, 120 / speed);
+        // 120 into a view 1000 deep: nearly all of it is still on screen.
+        expect(finest().length).toBeGreaterThan(atRest * 0.8);
+        expect(stream.stats().speedLevel).toBe(speed > 25.6 ? 4 : 5);
+        return stream.stats().coarsenedInView - before;
+      } finally {
+        stream.dispose();
+      }
+    };
+    expect(await popsMoving(20)).toBe(0);
+    expect(await popsMoving(40)).toBe(0);
+  });
+
+  it('can build none of those levels', async () => {
+    const { stream, fly } = flight({ lookAhead: { fastDetail: 0 } });
+    try {
+      await fly(0, 1);
+      await fly(40, 60);
+      expect(stream.stats().speedLevel).toBe(4);
+      expect(stream.stats().maxDisplayedLevel).toBe(4);
     } finally {
       stream.dispose();
     }
@@ -4122,6 +4227,58 @@ describe('terrain work at speed', () => {
       maxLevel: 3,
     });
     expect(Math.max(...tiles.map((tile) => tile.level))).toBe(3);
+  });
+
+  it('keeps its last refinements while a tight tile budget decides', () => {
+    // A budget far below what the view asks for: the error it settles for is many times the target,
+    // so only the order the budget goes in decides which ground is fine.
+    const tight = { maxScreenSpaceError: 1, viewDistance: 1_000, maxSelectedTiles: 24 };
+    const changed = (keep: boolean): number => {
+      let previous = selectTerrainPyramidTiles(d, view(1_000), tight).tiles;
+      let total = 0;
+      for (let x = 1_005; x <= 1_400; x += 5) {
+        const next = selectTerrainPyramidTiles(d, view(x), {
+          ...tight,
+          ...(keep ? { previousTiles: previous } : {}),
+        }).tiles;
+        const before = new Set(previous.map(terrainPyramidTileKey));
+        total += next.filter((tile) => !before.has(terrainPyramidTileKey(tile))).length;
+        previous = next;
+      }
+      return total;
+    };
+    expect(
+      selectTerrainPyramidTiles(d, view(1_000), tight).effectiveScreenSpaceError,
+    ).toBeGreaterThan(2);
+    expect(changed(true)).toBeLessThan(changed(false));
+  });
+
+  it('refines a level with a raised error multiple only nearer the camera', () => {
+    const select = (refineScale?: (tile: TerrainPyramidTileAddress) => number) =>
+      selectTerrainPyramidTiles(d, view(2_000), {
+        maxScreenSpaceError: 150,
+        viewDistance: 1_000,
+        maxSelectedTiles: 512,
+        ...(refineScale ? { refineScale } : {}),
+      }).tiles;
+    // Farthest edge of a level-5 tile from the camera, along the ground.
+    const reach = (tiles: TerrainPyramidTileAddress[]): number =>
+      Math.max(
+        ...tiles
+          .filter((tile) => tile.level === 5)
+          .map((tile) =>
+            Math.hypot(
+              Math.max(Math.abs(tile.x * 128 - 2_000), Math.abs((tile.x + 1) * 128 - 2_000)),
+              Math.max(Math.abs(tile.z * 128 - 2_048), Math.abs((tile.z + 1) * 128 - 2_048)),
+            ),
+          ),
+      );
+    const plain = select();
+    const scaled = select((tile) => (tile.level === 4 ? 4 : 1));
+    expect(reach(scaled)).toBeLessThan(reach(plain) / 2);
+    // Coarser levels refine as before, and a multiple below 1 is no multiple.
+    expect(scaled.some((tile) => tile.level === 4)).toBe(true);
+    expect(select(() => 0.25)).toEqual(plain);
   });
 
   it('builds ahead only from spare capacity on the main thread', async () => {

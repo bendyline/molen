@@ -413,14 +413,20 @@ predicted along its arc. No host wiring is needed, and it works for whatever mov
 - Tiles the track reaches within `lookAhead.seconds` (default 3, 6, 12 and 20) are built hidden
   from spare capacity, with one layer slot kept free and only while the frame queue has no backlog.
   They appear finished when selected, and are the first thing given up under memory pressure.
-- Refinement stops at tiles the camera crosses in under `lookAhead.minTileSeconds` (default 5):
-  the finest level is most of the work and at speed the briefest on screen. It returns when the
-  camera slows.
+- Levels whose tiles the camera crosses in under `lookAhead.minTileSeconds` (default 5) refine
+  only near the camera. Each takes `lookAhead.fastDetail` (default 0.25) of the work of a level
+  built across the whole view, so the faster the camera, the nearer its finest detail stops.
+  Refining the whole view at speed starts far more tiles than the stream can finish, and it then
+  finishes little of any. This limits only what is built: finer ground already built stays as
+  long as the view would show it at rest, so speeding up or turning does not take detail off the
+  screen. `fastDetail: 0` builds none of those levels. Detail spreads out again when the camera
+  slows.
 
 `lookAhead: false` turns all of this off. A camera has to hold a track for most of a second before
 any of it applies. A teleport starts the track over, and so does a second without an `update`, so a
 host that updates only while the camera moves still gets full detail when it stops. `stats()` reports `aheadTiles`, `aheadReady`,
-`cameraSpeed` and `speedLevel`.
+`cameraSpeed` and `speedLevel`, and counts ground in view that changed level: `refinedInView` as
+detail arrives, `coarsenedInView` as it is given up, which reads as popping.
 
 With `shadows: true` every tile surface and layer mesh receives sun shadows, and layer meshes
 taller than `shadowCasterHeight` (default 1.5 m: buildings, trees, landmarks) cast them. A layer

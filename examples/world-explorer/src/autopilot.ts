@@ -23,6 +23,12 @@ export interface AutopilotOptions {
   startSeconds: number;
   /** Circle direction: 1 turns right. */
   turn: 1 | -1;
+  /**
+   * Speed swings this fraction either side of `speed`, over `wavePeriod` seconds (default 0 and
+   * 20): a pilot on the throttle, for what speed changes do to streaming.
+   */
+  wave?: number;
+  wavePeriod?: number;
 }
 
 export function autopilotOptions(params: URLSearchParams): AutopilotOptions | undefined {
@@ -39,6 +45,8 @@ export function autopilotOptions(params: URLSearchParams): AutopilotOptions | un
     dive: number('dive', 0.12),
     startSeconds: number('start', 8),
     turn: params.get('turn') === 'left' ? -1 : 1,
+    wave: Math.max(0, Math.min(0.9, number('wave', 0))),
+    wavePeriod: Math.max(1, number('wavePeriod', 20)),
   };
 }
 
@@ -49,7 +57,13 @@ export function autopilotPose(
   startYaw: number,
   seconds: number,
 ): AutopilotPose {
-  const flown = Math.max(0, seconds - options.startSeconds) * options.speed;
+  const t = Math.max(0, seconds - options.startSeconds);
+  // Distance at speed * (1 + wave * sin(2 pi t / period)): the flight starts at `speed`.
+  const wave = options.wave ?? 0;
+  const period = options.wavePeriod ?? 20;
+  const flown =
+    options.speed *
+    (t + ((wave * period) / (2 * Math.PI)) * (1 - Math.cos((2 * Math.PI * t) / period)));
   if (options.mode === 'straight') {
     return {
       position: [

@@ -60,6 +60,8 @@ interface MeshData {
   normals?: Float32Array;
   colors?: Float32Array;
   surfaceDetail?: Float32Array;
+  /** Present for welded meshes, whose triangles share vertices. */
+  index?: Uint16Array | Uint32Array;
   matrices?: Float32Array;
   instanceColors?: Float32Array;
   /** Precompute culling bounds off-thread; avoid walking large buffers on first render. */
@@ -141,6 +143,11 @@ export function installTerrainSurfaceWorker(
               data.normals.buffer as ArrayBuffer,
               data.colors.buffer as ArrayBuffer,
             );
+            const index = mesh.geometry.index?.array;
+            if (index instanceof Uint16Array || index instanceof Uint32Array) {
+              data.index = index;
+              transfer.push(index.buffer as ArrayBuffer);
+            }
             const detail = mesh.geometry.getAttribute('surfaceDetail');
             if (detail) {
               data.surfaceDetail = detail.array as Float32Array;
@@ -338,6 +345,7 @@ export function createTerrainSurfaceWorkerBridge(
         geometry.setAttribute('color', new THREE.BufferAttribute(data.colors as Float32Array, 3));
         if (data.surfaceDetail)
           geometry.setAttribute('surfaceDetail', new THREE.BufferAttribute(data.surfaceDetail, 4));
+        if (data.index) geometry.setIndex(new THREE.BufferAttribute(data.index, 1));
         geometry.boundingSphere = sphere;
         mesh = new THREE.Mesh(geometry, material);
         mesh.userData.terrainOwnedGeometry = true;

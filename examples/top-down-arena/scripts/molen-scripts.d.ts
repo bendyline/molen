@@ -886,10 +886,12 @@ type MolenFigureData = {
     snoutLength?: number;
   };
   features?: {
-    hair?: 'none' | 'cap' | 'bob' | 'long';
+    form?: 'neutral' | 'masculine' | 'feminine';
+    hair?: 'none' | 'buzz' | 'balding' | 'cap' | 'crop' | 'bob' | 'long' | 'ponytail' | 'bun' | 'afro';
+    facialHair?: 'none' | 'stubble' | 'mustache' | 'beard';
     hands?: 'mitten' | 'fingers';
     sleeves?: 'none' | 'short' | 'long';
-    legs?: 'shorts' | 'long';
+    legs?: 'shorts' | 'long' | 'skirt';
     tail?: 'none' | 'short' | 'long' | 'bushy';
     ears?: 'none' | 'round' | 'pointed' | 'floppy';
     horns?: 'none' | 'short' | 'long' | 'antlers';

@@ -12,7 +12,7 @@ const ids = process.argv
   ?.slice(6)
   .split(',');
 if (!ids?.length) throw Error('Select aircraft with --ids=...');
-const sha = (b) => 'sha256:' + createHash('sha256').update(b).digest('hex');
+const sha = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
 const read = async (p) => {
   const bytes = await readFile(p);
   return { png: PNG.sync.read(bytes), hash: sha(bytes) };
@@ -106,7 +106,7 @@ for (const slug of ids) {
   }
   await writeFile(
     `.artifacts/aircraft/overlays/${slug}/report.json`,
-    JSON.stringify(
+    `${JSON.stringify(
       {
         id: captures.id,
         sourceHash: captures.sourceHash,
@@ -116,7 +116,7 @@ for (const slug of ids) {
       },
       null,
       2,
-    ) + '\n',
+    )}\n`,
   );
   console.log(`${slug}: ${reports.length} overlays; inspection still required`);
 }

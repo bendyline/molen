@@ -108,6 +108,8 @@ export const e175 = {
   ],
   seams: [1.1],
   wing: {
+    // The winglet springs from this row and is built as its own node.
+    tip: 12.45,
     rows: [
       [0.3, wingH(0.3), 11.1, 16.72, 0.34],
       [1.8, wingH(1.8), 12, 16.72, 0.31],

@@ -25,8 +25,15 @@ const FLIGHTS = {
   circle: { autopilot: 'circle', lat: 47.6, lon: -122.22, yaw: -Math.PI / 2 },
 };
 const flightName = option('flight', 'circle');
-const flight = FLIGHTS[flightName];
-if (flight === undefined) throw new Error(`Unknown flight ${flightName}`);
+const preset = FLIGHTS[flightName];
+if (preset === undefined) throw new Error(`Unknown flight ${flightName}`);
+// `--lat`, `--lon` and `--yaw` move a flight to where a report came from.
+const flight = {
+  ...preset,
+  lat: Number(option('lat', preset.lat)),
+  lon: Number(option('lon', preset.lon)),
+  yaw: Number(option('yaw', preset.yaw)),
+};
 const seconds = Number(option('seconds', flightName === 'circle' ? 230 : 110));
 const settle = Number(option('settle', 40));
 const speed = Number(option('speed', 250));
@@ -57,7 +64,8 @@ const query = new URLSearchParams({
 const server = await createServer({
   configFile: resolve(root, 'vite.config.ts'),
   root,
-  server: { host: '127.0.0.1', port: 0 },
+  // No file watching: a package rebuild during a flight would reload the page and end the run.
+  server: { host: '127.0.0.1', port: 0, watch: null },
   logLevel: 'error',
 });
 await server.listen();
@@ -151,7 +159,10 @@ try {
   }
   const final = await page.evaluate(() => globalThis.molenFlightReport());
   // TEMP-COMPILE-PROBE
-  await writeFile(resolve(output, 'compiles.json'), JSON.stringify(await page.evaluate(() => globalThis.__molenCompileStats ?? {}), null, 1));
+  await writeFile(
+    resolve(output, 'compiles.json'),
+    JSON.stringify(await page.evaluate(() => globalThis.__molenCompileStats ?? {}), null, 1),
+  );
   const backend = await page.evaluate(
     () => document.querySelector('#performance-status')?.textContent?.split('\n')[0],
   );
@@ -165,6 +176,11 @@ try {
       for (const key of Object.keys(total)) total[key] += band[key];
     }
     const share = (value) => (total.tiles === 0 ? 0 : value / total.tiles);
+    // How fine the ground drawn there is: `complete` is measured against a selection that
+    // coarsens at speed, so it cannot tell coarse ground from fine.
+    const levels = flying
+      .map((sample) => sample.coverage[index].drawnLevel)
+      .filter((level) => level !== undefined && level !== null);
     return {
       band: name,
       tiles: +(total.tiles / Math.max(1, flying.length)).toFixed(1),
@@ -172,6 +188,10 @@ try {
       stale: +share(total.stale).toFixed(3),
       bare: +share(total.bare).toFixed(3),
       empty: +share(total.empty).toFixed(3),
+      drawnLevel:
+        levels.length === 0
+          ? undefined
+          : +(levels.reduce((sum, level) => sum + level, 0) / levels.length).toFixed(2),
     };
   });
   const first = flying[0];
@@ -216,6 +236,9 @@ try {
     builtLayers: delta('builtLayers'),
     rebuiltLayers: delta('rebuiltLayers'),
     evictions: delta('evictions'),
+    // Ground in view that changed level: coarsening there is what reads as popping.
+    refinedInView: delta('refinedInView'),
+    coarsenedInView: delta('coarsenedInView'),
     residentTilesPeak: worst(flying.map((sample) => sample.pressure.residentTiles)),
     residentBytesPeakMiB: +(
       worst(flying.map((sample) => sample.pressure.residentBytes)) / 1_048_576

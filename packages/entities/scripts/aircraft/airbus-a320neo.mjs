@@ -124,6 +124,8 @@ export const a320neo = {
   ],
   seams: [1.2],
   wing: {
+    // The winglet springs from this row and is built as its own node.
+    tip: 17,
     rows: [
       [0.3, wingH(0.3), 11.2, 18.86, 0.4],
       [1.97, wingH(1.97), 12.1, 18.86, 0.37],

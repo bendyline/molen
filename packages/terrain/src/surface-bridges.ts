@@ -20,7 +20,9 @@ export function bridgeDeckProfile(
     b = road.path.points.at(-1) as TerrainSemanticPoint;
   return bridgeDeckHeightFn(
     road.path,
-    (x, z) => context.heightfield.sampleHeight(context.origin[0] + x, context.origin[1] + z),
+    // The rendered ground, which the land cover beside the road is draped on: an approach that
+    // follows it then lies exactly on the drape, as any road on the ground does.
+    (x, z) => builder.groundHeight(x, z),
     {
       ...(road.feature.deckElevation !== undefined
         ? { deckElevation: road.feature.deckElevation }

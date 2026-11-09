@@ -137,6 +137,8 @@ export const b737 = {
   ],
   seams: [0.98],
   wing: {
+    // The winglet springs from this row and is built as its own node.
+    tip: 16.5,
     rows: [
       // x, h, u leading edge, u trailing edge, half thickness
       [0.3, wingH(0.3), 13.7, 21.4, 0.36],

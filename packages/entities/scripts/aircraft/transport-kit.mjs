@@ -242,6 +242,38 @@ function foilLoft(parent, name, stations, material, { x0 = 0, x1 = () => 1, lowe
   );
 }
 
+/** Moves the part of a ring loft outboard of ring `ring` into a sibling mesh `name`. Both parts
+ * keep the normals computed over the whole loft, so the join still shades as one surface. */
+function splitLoft(mesh, ring, rings, name) {
+  const source = mesh.geometry,
+    stride = source.attributes.position.count / rings,
+    index = source.index.array,
+    parts = [[], []];
+  for (let t = 0; t < index.length; t += 3) {
+    const outer = Math.max(index[t], index[t + 1], index[t + 2]) >= (ring + 1) * stride;
+    parts[outer ? 1 : 0].push(index[t], index[t + 1], index[t + 2]);
+  }
+  const part = (indices) => {
+    const remap = new Map();
+    for (const v of indices) if (!remap.has(v)) remap.set(v, remap.size);
+    const geometry = new T.BufferGeometry();
+    for (const key of ['position', 'normal']) {
+      const from = source.attributes[key],
+        data = new Float32Array(remap.size * 3);
+      for (const [v, to] of remap) data.set([from.getX(v), from.getY(v), from.getZ(v)], to * 3);
+      geometry.setAttribute(key, new T.BufferAttribute(data, 3));
+    }
+    geometry.setIndex(indices.map((v) => remap.get(v)));
+    return geometry;
+  };
+  mesh.geometry = part(parts[0]);
+  const outer = new T.Mesh(part(parts[1]), mesh.material);
+  outer.name = name;
+  mesh.parent.add(outer);
+  source.dispose();
+  return outer;
+}
+
 /** A surface hinged on the straight line a to b. The frame group carries the hinge's direction and
  * the named child takes the binding, so a plain axis rotation really is a turn about the hinge. */
 function hinged(parent, name, a, b, axis) {
@@ -669,12 +701,18 @@ function wings(body, A, m, zOf, visual) {
         return station(side * x, h, le, te, half, zOf);
       }),
     );
-    foilLoft(body, `wing-${side}`, stations, m.wing, {
+    const skin = foilLoft(body, `wing-${side}`, stations, m.wing, {
       x1: (i) => {
         const s = inRange(xs[i]);
         return s ? 1 - s.chord : 1;
       },
     });
+    // The tip device (winglet, sharklet) is its own node, so a livery can paint it.
+    if (A.wing.tip !== undefined) {
+      const at = xs.indexOf(A.wing.tip);
+      if (at < 1 || at >= xs.length - 1) throw Error(`wing.tip ${A.wing.tip} is not an inner row`);
+      splitLoft(skin, at, xs.length, `winglet-${side}`);
+    }
     for (const s of surfaces) {
       const a = withNormals(
           [s.from, s.to].map((x) => {

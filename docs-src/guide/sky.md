@@ -95,6 +95,9 @@ map resolution without rebuilding the environment, and `renderer.setShadowFocus(
 radius })` aims them at a point in absolute world coordinates covering ±`radius` meters — for a
 large world, what the camera frames rather than the camera itself. The box moves in whole
 shadow-map texels so edges do not shimmer; `setShadowFocus(undefined)` restores the default.
+`renderer.shadowTexelSize` reports the meters one texel covers as of the last frame (`undefined`
+while sun shadows are off), for hosts that keep a subject the map cannot resolve out of the
+shadow pass (see `AircraftVisual.updateShadows` in the aircraft guide).
 `sun.visible`/`moon.visible` control the disks independently of lighting. Use the corresponding
 light intensity to disable illumination. `sun.size` and `moon.size` are visual multipliers;
 the default 1 preserves real angular size. Larger values help stylized scenes and small displays.

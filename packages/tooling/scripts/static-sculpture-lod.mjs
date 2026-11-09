@@ -3,8 +3,18 @@ import { MeshoptSimplifier } from 'meshoptimizer';
 
 await MeshoptSimplifier.ready;
 
-/** Reduce a uniformly colored, already posed sculpture in meters; retain the master separately. */
-export function simplifyStaticSculpture(triangles, targetTriangles, errorMeters) {
+/**
+ * Reduce a uniformly colored, already posed sculpture in meters; retain the master separately.
+ * Reduction stops at `targetTriangles` or where the next collapse would exceed `errorMeters`;
+ * the result may hold up to `maxTriangles` (default: the target), so a low target with a cap
+ * reduces each figure to what the error bound allows.
+ */
+export function simplifyStaticSculpture(
+  triangles,
+  targetTriangles,
+  errorMeters,
+  maxTriangles = targetTriangles,
+) {
   if (triangles.length <= targetTriangles) return triangles;
   const vertices = [],
     indices = [],
@@ -27,9 +37,9 @@ export function simplifyStaticSculpture(triangles, targetTriangles, errorMeters)
     errorMeters,
     ['ErrorAbsolute'],
   );
-  if (!reduced.length || reduced.length / 3 > targetTriangles || error > errorMeters)
+  if (!reduced.length || reduced.length / 3 > maxTriangles || error > errorMeters)
     throw new Error(
-      `Sculpture cannot meet ${targetTriangles} triangles within ${errorMeters}m: ${reduced.length / 3} triangles, ${error}m`,
+      `Sculpture cannot meet ${maxTriangles} triangles within ${errorMeters}m: ${reduced.length / 3} triangles, ${error}m`,
     );
   return Array.from({ length: reduced.length / 3 }, (_, i) =>
     [0, 1, 2].map((j) => vertices.slice(reduced[i * 3 + j] * 3, reduced[i * 3 + j] * 3 + 3)),

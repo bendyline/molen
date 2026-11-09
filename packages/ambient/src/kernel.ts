@@ -58,6 +58,7 @@ export {
   edgeHeight,
   laneCoordinate,
   laneEdgeDistance,
+  laneHeight,
   laneSample,
   sampleConnector,
   sampleLaneBody,

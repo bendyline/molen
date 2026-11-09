@@ -779,7 +779,11 @@ async function main(): Promise<void> {
   if (pinnedTier !== undefined) performanceLevel = pinnedTier;
   const qualityController = createExplorerQualityController(performanceLevel);
   if (pinnedTier !== undefined) qualityController.setBounds(pinnedTier, pinnedTier);
-  const memoryBudget = earthMemoryBudget();
+  // ?memory=<MiB> sets the terrain and layer memory budget, past what the browser reports.
+  const memoryBudget =
+    Number(params.get('memory')) > 0
+      ? Number(params.get('memory')) * 1024 * 1024
+      : earthMemoryBudget();
   // The tier's object error; the frame loop scales it with height above the ground.
   let objectPixelError = automaticQuality
     ? earthPerformanceTier(performanceLevel).objectPixelError
@@ -2211,8 +2215,9 @@ async function main(): Promise<void> {
       flare: frameInput.jump,
     });
     if (landing) standAt(landing);
-    // Last frame's camera: parked and distant aircraft draw without their cockpits.
-    flight.render(camera.pos);
+    // Last frame's camera and shadow map: parked and distant aircraft draw without their
+    // cockpits, and the flown one leaves a shadow map too coarse for it (a flickering cockpit).
+    flight.render(camera.pos, viewer.renderer.shadowTexelSize);
     cockpitPointer.update();
     flightInstruments.update(flight.instrumentSource(), flyby || vehicles.view === 'chase', now);
     surfaceRenderer.updateSignals(

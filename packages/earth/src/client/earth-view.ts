@@ -3080,7 +3080,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       });
       current.stepWorld(dt);
       vehicles.render();
-      current.aircraft?.render(pose.position);
+      current.aircraft?.render(pose.position, renderer.shadowTexelSize);
       const view = vehicles.cameraPose();
       if (view === undefined) return pose;
       const direction = new THREE.Vector3()
@@ -3127,7 +3127,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       current.vehicles?.update(dt, { throttle: 0, steering: 0, brake: true });
       current.stepWorld(dt);
       current.vehicles?.render();
-      aircraft.render(pose.position);
+      aircraft.render(pose.position, renderer.shadowTexelSize);
       const view = aircraft.cameraPose();
       if (view === undefined) return pose;
       const direction = new THREE.Vector3()
@@ -3314,7 +3314,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           current.vehicles?.update(dt, { throttle: 0, steering: 0, brake: true });
           current.stepWorld(dt);
           current.vehicles?.render();
-          current.aircraft?.render(pose.position);
+          current.aircraft?.render(pose.position, renderer.shadowTexelSize);
         }
         actorDirector.update(dt, now, pose.position, actorViewer(current), avatarFrame(current));
         cockpitPointer.update();

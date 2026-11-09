@@ -91,13 +91,14 @@ figure` prints the full shape (the `molen/figure@1` file format wraps the same f
 | `build` | -1 (slight) to 1 (heavy): limb and torso radii, shoulder width |
 | `age` | `child`, `adult`, `elder` (elder adds a stoop) |
 | `proportions` | multipliers: `legRatio`, `armRatio`, `torsoRatio`, `headScale`, `neckLength`, `neckPitch`, `shoulderWidth`, `hipWidth`, `bodyLength`, `tailLength`, `earSize`, `snoutLength` |
-| `features` | `hair` (none/cap/bob/long), `hands`, `sleeves`, `legs`, `tail`, `ears`, `horns`, `feet`, `mane` |
+| `features` | `form`, `hair`, `facialHair`, `hands`, `sleeves`, `legs`, `tail`, `ears`, `horns`, `feet`, `mane` (see [Appearance](#appearance)) |
 | `palette` | `#rrggbb`: `skin` (fur/hide for animals), `hair`, `eyes`, `top`, `bottom`, `shoes`, `accent`, `markings` |
 | `seed` | detail jitter only (symmetry-safe) |
 
 Every rig stands with its feet at y = 0 and its reference point exactly at `height`, whatever
-the overrides. Bodies come in three detail tiers. Humans use roughly 7,400 triangles near, 2,200 at medium
-distance and 1,100 for the rigid distant tier. The six animal presets use about 4,100–6,500 near,
+the overrides. Bodies come in three detail tiers. The default human uses roughly 7,500 triangles
+near, 2,200 at medium distance and 1,100 for the rigid distant tier; long hair, a beard and a skirt
+together stay within 8,500, 2,600 and 1,200. The six animal presets use about 4,100–6,500 near,
 2,100–2,900 medium and 1,100–1,500 distant triangles. The client
 picks a tier by camera distance unless `lod` pins one. Near humans include separate fingers
 with the default `hands: "fingers"`; `hands: "mitten"` keeps a joined finger silhouette. Medium
@@ -110,6 +111,29 @@ running and sitting use smaller forearm rotations. The rigid distant mesh retain
 hand orientation; fingers remain a fixed curved shape on the hand joint. Shared shoulder vertices and blended skin weights connect the
 torso to the sleeves without separate shoulder caps.
 
+Human proportions follow adult anthropometric means, as fractions of `height`: the head is 0.13
+(about 7.5 heads tall), the chin sits at 0.87 and the shoulder joints at 0.80, 0.2 apart. The
+neck is about 0.072 across and leaves the shoulders on a slanted line: the notch at the front of
+the collar sits at 0.83, the sides at 0.85 and the back at 0.865, about level with the chin, so
+the neck shows a few centimeters in front and less behind. It sits toward the back of the
+shoulders and leans forward to the skull. The chest is about 0.19 across and 0.135 deep, the
+waist 0.17 across, and the outside of the arms about 0.27. The shoulder line falls steeply off
+the neck, flattens over the shoulder joint and rounds into the upper arm. Children keep their
+larger head.
+
+### Appearance
+
+| Feature | Values | Notes |
+|---|---|---|
+| `form` | `neutral`, `masculine`, `feminine` | Shoulder and hip width, waist, chest depth, neck and arm thickness, jaw, brow and lips. Feminine adults have a bust and plain shirt fronts. Ignored by quadrupeds. |
+| `hair` | `none`, `buzz`, `balding`, `cap`, `crop`, `bob`, `long`, `ponytail`, `bun`, `afro` | `cap` is the short default; `balding` keeps a fringe above and behind the ears; `long` falls down the back past the shoulder blades. |
+| `facialHair` | `none`, `stubble`, `mustache`, `beard` | Drawn in `palette.hair`. Adults and elders only. |
+| `sleeves` | `none`, `short`, `long` | |
+| `legs` | `shorts`, `long`, `skirt` | A knee-length skirt in `palette.bottom` over bare legs. It sways with the stride; seated, it follows the thighs. |
+
+Hair that falls past the neck (long hair, a ponytail) blends from the head joint toward the
+chest, so it stays on the back when the head turns.
+
 Quadrupeds have species-shaped ribcages, tucked or full bellies, muscular shoulders and haunches,
 and shaped joints. Dogs and cats have rounded paws with separate near/medium toes; horses have
 single hooves, while cows, deer and sheep have split hooves. Continuous skull/muzzle surfaces,
@@ -118,7 +142,11 @@ and near-tier whiskers; horses have a crest mane and hanging hair tail; cows hav
 patches and a tufted tail; deer have branching antlers; sheep have a lightly rippled fleece.
 Palette and feature overrides still apply. The same 27-joint hierarchy drives all animal tiers;
 the distant tier is rigid and removes the small facial, toe and hair details. Animal proportions
-now give the torso more depth while keeping the withers at `height` and soles at ground level.
+give the torso depth while keeping the withers at `height` and soles at ground level. Heads are
+carried above the withers on necks that turn into the skull's own axis, so the crest arches into
+the poll and the throat curves under the jaw. Head width and depth are set per species (a horse's
+head is about 0.4 of its length across, a cat's nearly as wide as long), and horses and deer stand
+on slim cannon bones below heavier forearms.
 
 ## Locomotion
 

@@ -76,8 +76,11 @@ fingers on the near tier, and rounded footwear. Rounded shoulders join the torso
 arms hang beside the thighs with a slight elbow bend at idle. Forearms turn the backs of the
 hands diagonally forward, with soft wrist flexion, gently curled fingers and tucked thumbs.
 The rigid distant tier retains the turned forearm and cupped hand silhouette.
-The near/medium/distant human bodies use roughly 7,400/2,200/1,100 triangles with one shared
-vertex-color material. Quadrupeds have species-shaped bodies, muscular limb profiles, modeled
+Human proportions follow adult anthropometric means (about 7.5 heads tall, a short neck under a
+sloped shoulder line). Bodies come in neutral, masculine and feminine forms, with ten hair styles,
+stubble, a mustache or a beard, and trousers, shorts or a skirt. The default near/medium/distant
+human bodies use roughly 7,500/2,200/1,100 triangles with one shared vertex-color material; styled
+variants stay within 8,500/2,600/1,200. Quadrupeds have species-shaped bodies, muscular limb profiles, modeled
 faces and ears, rounded paws or single/split hooves, coat markings and curved tails. Animal
 presets use about 4,100–6,500/2,100–2,900/1,100–1,500 triangles across the three tiers and retain
 the existing 27-joint rigs. Fingers share the hand joint; facial expressions, cloth simulation, foot

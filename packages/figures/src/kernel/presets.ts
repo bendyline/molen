@@ -41,7 +41,9 @@ const BIPED_PROPORTIONS: FigureProportions = {
 };
 
 const HUMAN_FEATURES: FigureFeatures = {
+  form: 'neutral',
   hair: 'cap',
+  facialHair: 'none',
   hands: 'fingers',
   sleeves: 'long',
   legs: 'long',
@@ -53,7 +55,9 @@ const HUMAN_FEATURES: FigureFeatures = {
 };
 
 const QUADRUPED_FEATURES: FigureFeatures = {
+  form: 'neutral',
   hair: 'none',
+  facialHair: 'none',
   hands: 'mitten',
   sleeves: 'none',
   legs: 'long',
@@ -159,10 +163,12 @@ export const FIGURE_PRESETS: Readonly<Record<FigurePresetId, FigurePreset>> = {
     0.6,
     0,
     {
-      neckLength: 0.35,
-      neckPitch: 30 * DEG,
+      // Head carried a little above the withers on a short, thick neck rising about 45
+      // degrees; a lab-like body about 1.2 withers heights long rather than a dachshund's 1.4.
+      neckLength: 0.34,
+      neckPitch: 45 * DEG,
       headScale: 1.15,
-      bodyLength: 1.4,
+      bodyLength: 1.2,
       tailLength: 0.6,
       snoutLength: 0.4,
     },
@@ -172,12 +178,13 @@ export const FIGURE_PRESETS: Readonly<Record<FigurePresetId, FigurePreset>> = {
   cat: quadruped(
     'cat',
     0.28,
-    0,
+    0.15,
     {
-      // Shorter legs and a larger head than a dog's: a cat, not a small hound.
-      legRatio: 0.9,
-      neckLength: 0.3,
-      neckPitch: 20 * DEG,
+      // Shorter legs, a deeper body and a larger head held above the shoulders: a cat, not
+      // a small hound.
+      legRatio: 0.8,
+      neckLength: 0.6,
+      neckPitch: 60 * DEG,
       headScale: 1.25,
       bodyLength: 1.45,
       tailLength: 1,
@@ -191,13 +198,15 @@ export const FIGURE_PRESETS: Readonly<Record<FigurePresetId, FigurePreset>> = {
     1.55,
     0.2,
     {
+      // An arched neck about 1.4 head lengths along the crest, the face hanging from the poll;
+      // head about 0.6 m long.
       legRatio: 1.3,
-      neckLength: 0.45,
-      neckPitch: 45 * DEG,
-      headScale: 1.4,
-      bodyLength: 1.35,
+      neckLength: 0.44,
+      neckPitch: 42 * DEG,
+      headScale: 1.15,
+      bodyLength: 1.25,
       tailLength: 0.7,
-      snoutLength: 0.4,
+      snoutLength: 0.45,
     },
     { ears: 'pointed', feet: 'unguligrade', tail: 'long', mane: true },
     { skin: '#5a3a22', markings: '#f0ead6', hair: '#1f1410', accent: '#7a4a2a' },
@@ -225,8 +234,8 @@ export const FIGURE_PRESETS: Readonly<Record<FigurePresetId, FigurePreset>> = {
     {
       legRatio: 1.2,
       neckLength: 0.35,
-      neckPitch: 15 * DEG,
-      headScale: 1.4,
+      neckPitch: 22 * DEG,
+      headScale: 1.25,
       bodyLength: 1.45,
       tailLength: 0.8,
       snoutLength: 0.25,
@@ -240,8 +249,8 @@ export const FIGURE_PRESETS: Readonly<Record<FigurePresetId, FigurePreset>> = {
     0.3,
     {
       legRatio: 0.95,
-      neckLength: 0.3,
-      neckPitch: 30 * DEG,
+      neckLength: 0.34,
+      neckPitch: 42 * DEG,
       headScale: 1,
       bodyLength: 1.32,
       tailLength: 0.15,

@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises';
-import { Raycaster, Vector3 } from 'three';
+import { Vector3 } from 'three';
 import { expect, it } from 'vitest';
 import {
   compileModelSignalExpressions,

@@ -670,8 +670,11 @@ export class WorldAircraft {
     };
     flyAircraft(this.world, PLAYER, this.inputs);
   }
-  /** `camera` (absolute, like the aircraft) keeps distant cockpits out of the frame. */
-  render(camera?: readonly [number, number, number]): void {
+  /**
+   * `camera` (absolute, like the aircraft) keeps distant cockpits out of the frame. `shadowTexel`
+   * (`Renderer.shadowTexelSize`) takes the flown aircraft out of a sun shadow map too coarse for it.
+   */
+  render(camera?: readonly [number, number, number], shadowTexel?: number): void {
     // A cockpit shows within tens of meters of the camera. A pilot rolling or flying past the
     // parked aircraft never looks into theirs, and each is a hundred more draws switched on for
     // the seconds it takes to pass: on a takeoff roll, enough to push adaptive quality down.
@@ -705,6 +708,7 @@ export class WorldAircraft {
           Math.hypot(t.pos[0] - camera[0], t.pos[1] - camera[1], t.pos[2] - camera[2]) > 12;
         visual.updateView(kind !== pilot && (passing || distantApron) ? FAR_AWAY : camera);
       }
+      visual.updateShadows(kind === pilot ? shadowTexel : undefined);
       const channels = this.world.get(`aircraft-${kind}`, Aircraft)?.spec.visual;
       visual.update(
         s,

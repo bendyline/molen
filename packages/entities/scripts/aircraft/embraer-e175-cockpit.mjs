@@ -52,7 +52,10 @@ export function buildE175Cockpit(ctx) {
   for (const side of [1, -1]) {
     const tag = side > 0 ? 'L' : 'R';
     k.pfd(P, `PFD-${tag}`, side * 0.52, 0, w, h, portraitPfd, { screen: bezel });
-    k.mfd(P, `MFD-${tag}`, side * 0.31, 0, w, h, { screen: bezel, rows: ['FUEL --', 'HYD --', 'ELEC --'] });
+    k.mfd(P, `MFD-${tag}`, side * 0.31, 0, w, h, {
+      screen: bezel,
+      rows: ['FUEL --', 'HYD --', 'ELEC --'],
+    });
   }
   k.engines(P, 'EICAS', 0, 0, w, h, { screen: bezel, flaps: true, row: h * 0.3 });
   k.standby(P, 'IESI', 0.155, 0.06, 0.07);
@@ -144,15 +147,43 @@ export function buildE175Cockpit(ctx) {
     half = 0.23;
   k.prism([fwd[0], fwd[1], aft[1]], 0, half);
   const F = k.onSegment('pedestal-forward', fwd, 0);
-  for (const side of [1, -1]) k.cdu(F, side > 0 ? 'MCDU 1' : 'MCDU 2', side * 0.135, 0, 0.146, 0.22);
+  for (const side of [1, -1])
+    k.cdu(F, side > 0 ? 'MCDU 1' : 'MCDU 2', side * 0.135, 0, 0.146, 0.22);
   k.guarded(F, 0, 0.04, 2, 0.026, 'amber');
   const Q = k.onSegment('throttle-quadrant', aft, 0),
     L = Math.abs(aft[1][0] - aft[0][0]),
     qy = (d) => L / 2 - d;
-  k.levers(Q, { xs: [0.04, -0.04], y: qy(0.15), length: 0.17, knob: [0.05, 0.03, 0.035], color: '#e6e3da', slot: 0.15 });
+  k.levers(Q, {
+    xs: [0.04, -0.04],
+    y: qy(0.15),
+    length: 0.17,
+    knob: [0.05, 0.03, 0.035],
+    color: '#e6e3da',
+    slot: 0.15,
+  });
   for (const side of [1, -1]) k.palmRest(Q, side * 0.15, qy(0.17), 0.09, 0.16);
-  k.levers(Q, { xs: [0.2], y: qy(0.33), name: 'speedbrake', source: null, rest: -0.3, length: 0.11, knob: [0.04, 0.02, 0.025], slot: 0.1 });
-  k.levers(Q, { xs: [-0.2], y: qy(0.33), name: 'flap-lever', source: 'flapPosition', rest: 0.35, travel: -0.7, length: 0.13, knob: [0.045, 0.025, 0.03], color: 'toggle', slot: 0.12 });
+  k.levers(Q, {
+    xs: [0.2],
+    y: qy(0.33),
+    name: 'speedbrake',
+    source: null,
+    rest: -0.3,
+    length: 0.11,
+    knob: [0.04, 0.02, 0.025],
+    slot: 0.1,
+  });
+  k.levers(Q, {
+    xs: [-0.2],
+    y: qy(0.33),
+    name: 'flap-lever',
+    source: 'flapPosition',
+    rest: 0.35,
+    travel: -0.7,
+    length: 0.13,
+    knob: [0.045, 0.025, 0.03],
+    color: 'toggle',
+    slot: 0.12,
+  });
   k.switchField(Q, 0, qy(0.5), 0.36, 0.13, { rows: 2, cols: 6, seed: 4, title: 'TRIM' });
   k.switchField(Q, 0, qy(0.66), 0.36, 0.15, { rows: 3, cols: 6, seed: 8, title: 'AUDIO' });
   k.handle(Q, 0.16, qy(0.8), { colour: 'red', width: 0.05 });
@@ -169,19 +200,31 @@ export function buildE175Cockpit(ctx) {
       gripColor: '#3a3d40',
     });
     k.pedals(x, ez + 0.86);
-    const C = k.sideConsole(side, { z0: ez - 0.5, z1: ez + 0.45, y: ey - 0.58, inboard: ex + 0.29 });
+    const C = k.sideConsole(side, {
+      z0: ez - 0.5,
+      z1: ez + 0.45,
+      y: ey - 0.58,
+      inboard: ex + 0.29,
+    });
     if (side > 0) k.tiller(C, 0, 0.33);
     C.d.box([0.12, 0.08, 0.08], [0, -0.2, -0.04], k.m.grip);
   }
   const oh = k.overhead({ zF: ez + 0.35, zA: ez - 0.6, halfWidth: 0.31 });
   for (let c = 0; c < 4; c++)
     for (let r = 0; r < 4; r++)
-      k.switchField(oh.S, 0.232 - c * 0.155, oh.length * (0.36 - r * 0.24), 0.145, oh.length * 0.22, {
-        rows: 3,
-        cols: 4,
-        seed: c * 3 + r + 1,
-        title: ['ELEC', 'FUEL', 'HYD', 'BLEED'][(c + r) % 4],
-      });
+      k.switchField(
+        oh.S,
+        0.232 - c * 0.155,
+        oh.length * (0.36 - r * 0.24),
+        0.145,
+        oh.length * 0.22,
+        {
+          rows: 3,
+          cols: 4,
+          seed: c * 3 + r + 1,
+          title: ['ELEC', 'FUEL', 'HYD', 'BLEED'][(c + r) % 4],
+        },
+      );
   k.floorPlate(ctx.bulkheadZ, ez + 1.05);
   k.walls(ctx.bulkheadZ, ez + 0.5);
   return k.finish();

@@ -145,11 +145,12 @@ describe('normalized semantic mesh adapter', () => {
         instances.push(child as THREE.InstancedMesh);
       }
     });
-    // Trees, plus the utility poles strung along the primary road's sidewalk and their lamp heads.
+    // Trees only: the primary road runs through forest past a single building, a country road
+    // with no sidewalk, so none of the poles and lamps that stand behind one.
     const fixtures = instances.filter((instance) => instance.name === 'surface:street-fixtures');
-    expect(fixtures).toHaveLength(1);
+    expect(fixtures).toHaveLength(0);
     const lamps = instances.filter((instance) => instance.name === 'surface:night-lamps');
-    expect(lamps).toHaveLength(1);
+    expect(lamps).toHaveLength(0);
     const trees = instances.filter((instance) => !instance.name.startsWith('surface:'));
     expect(trees).toHaveLength(2);
     expect(trees.map((instance) => instance.count)).toEqual([8, 8]);

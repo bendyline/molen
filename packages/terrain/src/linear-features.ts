@@ -17,6 +17,7 @@ import type {
   TerrainSemanticPolygon,
 } from './semantic-types';
 import { clipTerrainSurfacePolygon, terrainSurfaceDraper } from './terrain-drape';
+import { weldVertices } from './weld-vertices';
 
 export {
   joinTerrainLines,
@@ -31,8 +32,8 @@ export {
 /**
  * Surface kinds for draped bands and areas, read by the pavement material through the
  * `surfaceDetail` attribute (x: meters along the band, y: meters across it from its edge,
- * z: `kind * 128 + width`, w: a road's lane width, otherwise its fraying edges; see
- * `TerrainLineBand.fray`).
+ * z: `kind * 128 + width`, w: a road's lane width and wear grade (`TERRAIN_ROAD_WEAR_STEP`),
+ * otherwise its fraying edges; see `TerrainLineBand.fray`).
  */
 export const TERRAIN_SURFACE_KIND: {
   readonly plain: 0;
@@ -59,6 +60,14 @@ export const TERRAIN_SURFACE_KIND: {
 };
 export type TerrainSurfaceKind = (typeof TERRAIN_SURFACE_KIND)[keyof typeof TERRAIN_SURFACE_KIND];
 
+/** Asphalt condition grades; see `TerrainLineBand.wear`. */
+export type TerrainRoadWear = 0 | 1 | 2 | 3;
+/**
+ * A road band's `surfaceDetail.w` packs its lane width (0.5–12 m) with its wear grade as
+ * `laneWidth + TERRAIN_ROAD_WEAR_STEP * wear`; the pavement material splits them with a floor.
+ */
+export const TERRAIN_ROAD_WEAR_STEP = 16;
+
 /** `userData` flag on draped pavement meshes that a host pavement material may replace. */
 export const TERRAIN_PAVEMENT: 'terrainPavement' = 'terrainPavement';
 
@@ -69,6 +78,11 @@ export interface TerrainLineBand {
   /** Write `surfaceDetail` for the pavement material: the kind, and a road's lane count. */
   surface?: TerrainSurfaceKind;
   lanes?: number;
+  /**
+   * How worn a road's asphalt is, for the pavement material's cracks, patches and potholes: 0
+   * well kept (no potholes), 1 fair, 2 worn, 3 poor. Roads with lanes only; default 0.
+   */
+  wear?: TerrainRoadWear;
   /**
    * Edges the pavement material frays into the ground beneath, for a band that meets bare
    * ground: the one away from the line (`outer`), toward it (`inner`) or both. Not for roads.
@@ -268,6 +282,63 @@ export class TerrainSurfaceMeshBuilder {
     }
   }
 
+  /**
+   * `polygon` cut along the rendered ground grid like any draped band, at absolute heights from
+   * `heightAt` instead of a fixed lift. A profile sampled only at a band's corners spanned the
+   * grid's bends with flat quads, and ground draped on the grid rose through the road wherever the
+   * terrain crested between them. Normals keep the ground's smooth shading, tilted by the slope
+   * the profile adds to it, so a profile that follows the ground shades like a draped band.
+   */
+  profiledPolygon(
+    points: readonly TerrainSemanticPoint[],
+    color: THREE.Color,
+    heightAt: (x: number, z: number) => number,
+  ): void {
+    const heights = new Map<string, number>();
+    const height = (x: number, z: number): number => {
+      const key = `${x},${z}`;
+      let y = heights.get(key);
+      if (y === undefined) {
+        y = heightAt(x, z);
+        heights.set(key, y);
+      }
+      return y;
+    };
+    terrainSurfaceDraper(this.context).polygon(points, (a, b, c) => {
+      const ya = height(a[0], a[2]),
+        yb = height(b[0], b[2]),
+        yc = height(c[0], c[2]);
+      // A plane's slope from the cross product (b - a) x (c - a); its Y term is the same for the
+      // ground and the profile, which share X/Z, and positive in the draper's winding.
+      const ux = b[0] - a[0],
+        uz = b[2] - a[2],
+        vx = c[0] - a[0],
+        vz = c[2] - a[2];
+      const ny = uz * vx - ux * vz;
+      const slope = (da: number, db: number, dc: number): [number, number] => {
+        const uy = db - da,
+          vy = dc - da;
+        return [-(uy * vz - uz * vy) / ny, -(ux * vy - uy * vx) / ny];
+      };
+      // A sliver's slope is rounding noise; it keeps the ground's normals.
+      const sliver = Math.abs(ny) < 1e-4 * (ux * ux + uz * uz + vx * vx + vz * vz);
+      const [px, pz] = sliver ? [0, 0] : slope(ya, yb, yc);
+      const [gx, gz] = sliver ? [0, 0] : slope(a[1], b[1], c[1]);
+      for (const [p, y] of [
+        [a, ya],
+        [b, yb],
+        [c, yc],
+      ] as const) {
+        this.positions.push(p[0], y, p[2]);
+        const sx = -p[3] / p[4] + px - gx,
+          sz = -p[5] / p[4] + pz - gz;
+        const length = Math.hypot(sx, 1, sz);
+        this.normals.push(-sx / length, 1 / length, -sz / length);
+        this.colors.push(color.r, color.g, color.b);
+      }
+    });
+  }
+
   mesh(
     name: string,
     material: THREE.Material = SURFACE_MATERIAL,
@@ -293,6 +364,20 @@ export class TerrainSurfaceMeshBuilder {
     }
     return mesh;
   }
+}
+
+/**
+ * Share the vertices a built surface mesh's triangles have in common. The builder writes every
+ * triangle's corners on their own, while a band draped over the ground grid shares most corners
+ * with its neighbors: the same triangles, drawn from a fraction of the vertices. Land cover welds
+ * itself, after blending over the builder's vertex ranges.
+ */
+export function weldTerrainSurfaceMesh(mesh: THREE.Mesh | undefined): THREE.Mesh | undefined {
+  if (mesh === undefined) return undefined;
+  const source = mesh.geometry;
+  mesh.geometry = weldVertices(source, 1e-4);
+  source.dispose();
+  return mesh;
 }
 
 /** Triangulate semantic footprints with holes, then conform every triangle to the ground grid. */
@@ -383,13 +468,17 @@ function insideDistance(
   return (x, z) => (sign * ((x - a[0]) * dz - (z - a[1]) * dx)) / length;
 }
 
-/** Append one profile band, preserving source bends and arc-length dash spacing. */
+/**
+ * Append one profile band, preserving source bends and arc-length dash spacing. Returns the
+ * number of quads drawn: dash gaps and spans the filter or clip removes cost nothing.
+ */
 export function appendTerrainLineBand(
   builder: TerrainSurfaceMeshBuilder,
   path: TerrainLinePath,
   band: TerrainLineBand,
   options: {
     spacing?: number;
+    /** Quads to draw at most (default 20 000). */
     maxElements?: number;
     filter?: TerrainLineBandFilter;
     /** Subtract footprints before terrain sampling; returned pieces must be convex. */
@@ -398,6 +487,13 @@ export function appendTerrainLineBand(
     end?: number;
     /** Absolute deck profile; evaluated before clipping so neighboring pieces meet. */
     heightAt?: (x: number, z: number) => number;
+    /**
+     * Cut a `heightAt` band along the rendered ground grid, evaluating the profile at every cut
+     * (see `TerrainSurfaceMeshBuilder.profiledPolygon`): for a road on the ground whose profile
+     * only lifts it toward a bridge, which ground draped beside it must never overtop. A deck
+     * leaves it off and stays straight between its samples over whatever lies beneath.
+     */
+    followGrid?: boolean;
   } = {},
 ): number {
   if (!Number.isFinite(band.width) || band.width <= 0 || path.length <= 0) return 0;
@@ -457,7 +553,9 @@ export function appendTerrainLineBand(
       const start = builder.vertexCount;
       for (const piece of options.clip ? options.clip(points) : [points]) {
         const heightAt = options.heightAt;
-        if (heightAt)
+        if (heightAt && options.followGrid)
+          builder.profiledPolygon(piece, color, (x, z) => heightAt(x, z) + (band.elevation ?? 0));
+        else if (heightAt)
           builder.face(
             piece.map(([x, z]) => [x, heightAt(x, z) + (band.elevation ?? 0), z]),
             color,
@@ -502,12 +600,14 @@ export function appendTerrainLineBand(
             ];
           },
           band.width,
-          band.lanes !== undefined && band.lanes > 0 ? band.width / band.lanes : 0,
+          band.lanes !== undefined && band.lanes > 0
+            ? Math.min(12, band.width / band.lanes) + TERRAIN_ROAD_WEAR_STEP * (band.wear ?? 0)
+            : 0,
           fray,
         );
       }
+      if (builder.vertexCount > start) count++;
     }
-    count++;
     distance = next;
   }
   return count;

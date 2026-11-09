@@ -221,6 +221,39 @@ describe('transport graph', () => {
     expect(stopped?.control).toBe('yield');
     expect(stopped?.arms.every((a) => a.yields)).toBe(true);
   });
+  it('seats each lane on a hillside road beside the centreline, not at its height', () => {
+    // A street along X across a 25% hillside: the ground rises 0.25 m per metre toward +Z.
+    const ground = (_x: number, z: number): number => 3 + 0.25 * (z - 50);
+    const net = new TransportNetwork();
+    net.registerTile({
+      key: 'hillside',
+      origin: [0, 0],
+      tileSize: 100,
+      heightAt: ground,
+      features: [streetFeature([0, 0.5], [1, 0.5])],
+    });
+    const out = laneSample();
+    let lanes = 0,
+      uphill = 0,
+      downhill = 0;
+    for (const edge of net.edgeList())
+      for (const id of edge.lanes) {
+        const lane = net.lane(id);
+        if (lane === undefined || lane.class !== 'road') continue;
+        lanes++;
+        for (let s = 0; s <= lane.length; s += lane.length / 7) {
+          sampleLaneBody(lane, edge, s, out);
+          if (out.z > 50.5) uphill++;
+          if (out.z < 49.5) downhill++;
+          // The surface under the car itself, with the road's lift.
+          expect(out.y).toBeCloseTo(ground(out.x, out.z) + 0.32 + lane.lift, 5);
+        }
+      }
+    // Both directions were sampled, each off the centreline on its own side of the hill.
+    expect(lanes).toBeGreaterThanOrEqual(2);
+    expect(uphill).toBeGreaterThan(0);
+    expect(downhill).toBeGreaterThan(0);
+  });
   it('keeps ground approach lane heights aligned with an authored deck through a graph split', () => {
     const net = new TransportNetwork();
     net.registerTile({

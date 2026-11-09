@@ -94,7 +94,8 @@ function anatomy(kind, d) {
           sleeves: 'none',
           legs: 'shorts',
         },
-        proportions: { headScale: 0.9, shoulderWidth: 0.94, hipWidth: 1.03 },
+        // Head size as cast: the shared default head shrank from 0.16 to 0.145 of stature.
+        proportions: { headScale: 0.993, shoulderWidth: 0.94, hipWidth: 1.03 },
         seed: `louisville-zinc-figure-${kind}`,
       }),
       d > 2 ? 0 : 1,

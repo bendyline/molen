@@ -92,6 +92,8 @@ export const g650 = {
   ],
   seams: [1],
   wing: {
+    // The winglet springs from this row and is built as its own node.
+    tip: 14.2,
     rows: [
       [0.3, wingH(0.3), 8.6, 16.2, 0.36],
       [1.35, wingH(1.35), 9.4, 16.2, 0.34],

@@ -62,8 +62,8 @@ export {
 export type { PoseBuffer } from './kernel/pose-buffer';
 export type { FigurePreset } from './kernel/presets';
 export { FIGURE_PRESETS, figurePreset } from './kernel/presets';
-export type { FigureMetrics } from './kernel/proportions';
-export { deriveMetrics } from './kernel/proportions';
+export type { FigureFormShape, FigureMetrics } from './kernel/proportions';
+export { deriveMetrics, FIGURE_FORMS } from './kernel/proportions';
 export type { FigureJoint, FigureRig, FigureSocket } from './kernel/rig';
 export {
   BIPED_JOINT_NAMES,
@@ -101,8 +101,10 @@ export type {
   FigureArchetype,
   FigureDescriptor,
   FigureEarStyle,
+  FigureFacialHair,
   FigureFeatures,
   FigureFootStyle,
+  FigureForm,
   FigureHairStyle,
   FigureHandStyle,
   FigureHornStyle,
@@ -115,7 +117,7 @@ export type {
   FigureTailStyle,
   ResolvedFigureDescriptor,
 } from './kernel/types';
-export { FIGURE_PRESET_IDS } from './kernel/types';
+export { FIGURE_HAIR_STYLES, FIGURE_PRESET_IDS } from './kernel/types';
 
 import { registerFiguresComponents } from './kernel/components';
 

@@ -347,8 +347,9 @@ every update. `preloading` and `preloaded` in stream stats distinguish requested
 Independently of those views, the stream builds ahead along the track of the positions passed to
 `update`, from spare capacity only (`lookAhead`, see [terrain](terrain.md)). For a moving camera,
 layer work is ordered for where the camera will be when it finishes, and bare ground comes before
-more detail for ground that has some. At speed, refinement stops at tiles the camera crosses in
-under `lookAhead.minTileSeconds`, for the current selection and the predicted views alike. Layer
+more detail for ground that has some. At speed, levels whose tiles the camera crosses in under
+`lookAhead.minTileSeconds` refine only near the camera (`lookAhead.fastDetail`), for the current
+selection and the predicted views alike. Layer
 work for a tile the camera has left finishes into the warm cache rather than being cancelled: a
 cancelled request leaves its worker job running with nothing to show for it.
 

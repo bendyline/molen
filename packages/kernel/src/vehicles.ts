@@ -224,6 +224,37 @@ function tire(slip: number, capacity: number, load: number, stiffness: number) {
 }
 
 /**
+ * Drop a wheel's contacts with anything it can roll onto: a touch low on the tire, under
+ * `maxStepHeight` above its bottom, is ground that wheel support and the step limit already
+ * resolve. A wheel sphere clears its support by a few centimeters, so lane paint, a draped
+ * overlay's edge, a gentle crease in the road, or the springs' squat met it at every turn of the
+ * wheel, and each horizontal impulse took the car's whole closing speed: cars stalled on open
+ * road. No tire mounts a step near its axle, so the band ends at 0.6 of the wheel's radius
+ * whatever the step limit: a wall, a tall step or another car still meets the wheel higher up.
+ */
+function withoutClimbableWheelContacts(
+  contacts: readonly AircraftContact[],
+  probes: readonly AircraftCollisionProbe[],
+  spec: VehicleSpec,
+): readonly AircraftContact[] {
+  const ceilings = new Map<string, number>();
+  for (const part of spec.collisionParts ?? []) {
+    if (part.role !== 'frontWheel' && part.role !== 'rearWheel') continue;
+    for (const probe of probes)
+      if (probe.part === part.id) {
+        const climbable =
+          probe.center[1] - probe.radius + m.min(spec.maxStepHeight, probe.radius * 0.6);
+        ceilings.set(part.id, m.min(ceilings.get(part.id) ?? Infinity, climbable));
+      }
+  }
+  if (ceilings.size === 0) return contacts;
+  return contacts.filter((contact) => {
+    const ceiling = ceilings.get(contact.part);
+    return ceiling === undefined || contact.point[1] > ceiling;
+  });
+}
+
+/**
  * Which way to push a blocked car out of an obstacle: the opposite of the short moves the host's
  * collision query refuses. Returns the count of refused moves (0 or 8 mean no usable normal).
  */
@@ -593,7 +624,8 @@ export function stepVehicle(
           velocity: [fs * u + fc * v, next.vy, fc * u - fs * v] as [number, number, number],
           yawRate: r,
         };
-        const contacts = env.contacts(vehiclePartProbes(partPose, spec, next), id);
+        const probes = vehiclePartProbes(partPose, spec, next);
+        const contacts = withoutClimbableWheelContacts(env.contacts(probes, id), probes, spec);
         const partImpact = resolveVehiclePartContacts(
           partPose,
           next,

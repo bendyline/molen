@@ -25,7 +25,8 @@ interface Propeller {
 }
 
 export interface AircraftPropellers {
-  update(state: AircraftStateData): void;
+  /** `castShadows` false keeps every blade out of the shadow pass (see AircraftVisual.updateShadows). */
+  update(state: AircraftStateData, castShadows?: boolean): void;
   dispose(): void;
 }
 
@@ -163,7 +164,7 @@ export function createAircraftPropellers(
     }
   }
   return {
-    update(state) {
+    update(state, castShadows = true) {
       for (const prop of propellers) {
         const reading = prop.engine === undefined ? undefined : state.engines?.[prop.engine];
         const rpm = reading?.rpm ?? state.rpm;
@@ -197,7 +198,7 @@ export function createAircraftPropellers(
             : Array.isArray(original)
               ? faded
               : (faded[0] as THREE.Material);
-          mesh.castShadow = shadow && !fading;
+          mesh.castShadow = shadow && !fading && castShadows;
         }
       }
     },

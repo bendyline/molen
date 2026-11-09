@@ -323,6 +323,21 @@ export class Renderer {
   }
 
   /**
+   * Meters one texel of the sun's shadow map covers as of the last frame, or `undefined` while sun
+   * shadows are off or parked. A focus over a wide view coarsens it: hosts use it to keep a subject
+   * the map cannot resolve out of the shadow pass (`AircraftVisual.updateShadows`).
+   */
+  get shadowTexelSize(): number | undefined {
+    if (!this.three.shadowMap.enabled) return undefined;
+    for (const light of this.sunLights()) {
+      if (!light.castShadow || light.shadow.intensity <= 0) continue;
+      const camera = light.shadow.camera;
+      return (camera.right - camera.left) / (light.shadow.mapSize.x || 1);
+    }
+    return undefined;
+  }
+
+  /**
    * Turn sun shadows on at a map resolution, or off, without rebuilding the environment. Once a
    * light has cast shadows, 'off' stops redrawing its map and fades it out, so every lit shader
    * keeps the shadow inputs it was built with: a host that turns shadows on once before its first
