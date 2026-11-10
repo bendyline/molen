@@ -1,0 +1,879 @@
+{
+  "format": "molen/structure-medium-fi-report@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.john_frost_bridge",
+  "inputHash": "sha256:c14a8cc481ae0ca1452ce77cc47fd1f0fcf838892f03712879d27d957077b042",
+  "sourceHash": "sha256:386d11daadb3ee18623a3857092003e111874f7f1445e28d05213d0f6331030a",
+  "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.john_frost_bridge",
+    "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595"
+  },
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:48d8cf325da80259a7b74da817ccb228fae15c82672d2cd83a76eff4f92f9192",
+      "bytes": 78316,
+      "gzipBytes": 18328,
+      "triangles": 980,
+      "cpuBytes": 74424,
+      "gpuBytes": 74424,
+      "errorMeters": 1,
+      "drawCalls": 3
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:ab530d026bc4cfcad5263411944753bbb040f5f08b5fed06064242106c00b700",
+      "bytes": 269104,
+      "gzipBytes": 62723,
+      "triangles": 3540,
+      "cpuBytes": 265176,
+      "gpuBytes": 265176,
+      "errorMeters": 0.4,
+      "drawCalls": 3
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:98ebc472c59d2483b6ac4df3b476dc3ff431908dcb51c9f81f61e589deba83fa",
+      "bytes": 973804,
+      "gzipBytes": 217960,
+      "triangles": 12436,
+      "cpuBytes": 969864,
+      "gpuBytes": 969864,
+      "errorMeters": 0.2,
+      "drawCalls": 3
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:858684d8da5b75675c76beeebd31b1f020e7700b49d3052540b277b5b0483531",
+      "bytes": 1216452,
+      "gzipBytes": 267586,
+      "triangles": 15532,
+      "cpuBytes": 1212504,
+      "gpuBytes": 1212504,
+      "errorMeters": 0.1,
+      "drawCalls": 3
+    }
+  ],
+  "rig": {
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "fixtureHash": "sha256:65c1f9e4de22ad2f2f72df8dd2eecf6da06aa4974e75497e3fbb34e7dfdc6c37",
+  "frames": [
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:00c666678ec9895f05d6f2106feada5bd40d62d9599d7abc283fcb901e2df3db",
+      "camera": {
+        "name": "main-transition-skyline",
+        "group": "main",
+        "position": [
+          67,
+          25,
+          120
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "mediumName": "transition-skyline",
+        "shadows": true,
+        "fov": 55
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:48d8cf325da80259a7b74da817ccb228fae15c82672d2cd83a76eff4f92f9192",
+        "level": "skyline",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 20,
+        "triangles": 189465,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:3df6a6145859ad661559d4ea2117f3881b460daadc64f5fc75e43ca54a2b6146",
+      "camera": {
+        "name": "main-skyline-noon-economy",
+        "mediumName": "skyline-noon-economy",
+        "group": "main",
+        "position": [
+          300,
+          155,
+          540
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "fov": 55,
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:48d8cf325da80259a7b74da817ccb228fae15c82672d2cd83a76eff4f92f9192",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 189593,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:f14b0b79b1acacdd20d395a5a83ae6e51fe8a5737d972155676e296112131ace",
+      "camera": {
+        "name": "main-skyline-noon-high",
+        "mediumName": "skyline-noon-high",
+        "group": "main",
+        "position": [
+          300,
+          155,
+          540
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "fov": 55,
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:48d8cf325da80259a7b74da817ccb228fae15c82672d2cd83a76eff4f92f9192",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 189593,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:63a4adb8ff27b1a7f56756c3056f074d37809a15e6a1deb764dd097fc1e70a49",
+      "camera": {
+        "name": "main-skyline-late-economy",
+        "mediumName": "skyline-late-economy",
+        "group": "main",
+        "position": [
+          300,
+          155,
+          540
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "fov": 55,
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:48d8cf325da80259a7b74da817ccb228fae15c82672d2cd83a76eff4f92f9192",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 189593,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:8eb863cb4c9204a55ea49cd7ed1a24c18f5568d24a8cde434e6b39b668204faf",
+      "camera": {
+        "name": "main-skyline-late-high",
+        "mediumName": "skyline-late-high",
+        "group": "main",
+        "position": [
+          300,
+          155,
+          540
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "fov": 55,
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:48d8cf325da80259a7b74da817ccb228fae15c82672d2cd83a76eff4f92f9192",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 189593,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:1ed1aa5c9590aeb9e09e9c966f20b4031547aba3925d4f71b2f9e5e8609837e7",
+      "camera": {
+        "name": "main-transition-district",
+        "group": "main",
+        "position": [
+          67,
+          25,
+          120
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "mediumName": "transition-district",
+        "shadows": true,
+        "fov": 55
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:ab530d026bc4cfcad5263411944753bbb040f5f08b5fed06064242106c00b700",
+        "level": "district",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 20,
+        "triangles": 192025,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:83cab636cbcfbdd1e66e49cb9cb5701967d7d93dff17f2853b8ee6b4b2150d7e",
+      "camera": {
+        "name": "main-block-noon-economy",
+        "mediumName": "block-noon-economy",
+        "group": "main",
+        "position": [
+          170,
+          87,
+          265
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "fov": 55,
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:ab530d026bc4cfcad5263411944753bbb040f5f08b5fed06064242106c00b700",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 20,
+        "triangles": 192025,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:4778d8b48bf3e2d9ac70d9c0c3e7a31102b2baeec95dff3068648afa3ef21d49",
+      "camera": {
+        "name": "main-block-noon-high",
+        "mediumName": "block-noon-high",
+        "group": "main",
+        "position": [
+          170,
+          87,
+          265
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "fov": 55,
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:ab530d026bc4cfcad5263411944753bbb040f5f08b5fed06064242106c00b700",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 20,
+        "triangles": 192025,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:0e83f8a70b3860af96b2ce1814f416dac444b8d1958e035a7869f85508fd2e38",
+      "camera": {
+        "name": "main-block-late-economy",
+        "mediumName": "block-late-economy",
+        "group": "main",
+        "position": [
+          170,
+          87,
+          265
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "fov": 55,
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:ab530d026bc4cfcad5263411944753bbb040f5f08b5fed06064242106c00b700",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 20,
+        "triangles": 192025,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:a4b5839e84e42b73a0eb672bb8d25cbf64ecb6e7997449c035f233ffa61fbc20",
+      "camera": {
+        "name": "main-block-late-high",
+        "mediumName": "block-late-high",
+        "group": "main",
+        "position": [
+          170,
+          87,
+          265
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "fov": 55,
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:ab530d026bc4cfcad5263411944753bbb040f5f08b5fed06064242106c00b700",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 20,
+        "triangles": 192025,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:d5e6756bd457e929231b78fa177615044030a690af4cf974e90c8f259d8b41b7",
+      "camera": {
+        "name": "main-transition-street",
+        "group": "main",
+        "position": [
+          67,
+          25,
+          120
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "mediumName": "transition-street",
+        "shadows": true,
+        "fov": 55
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:98ebc472c59d2483b6ac4df3b476dc3ff431908dcb51c9f81f61e589deba83fa",
+        "level": "street",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 20,
+        "triangles": 200921,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:dd2eed23c0717b66cf2fcbeea7a08d78517acf4f8fce14089c719d7a246f59cc",
+      "camera": {
+        "name": "main-street-noon-economy",
+        "mediumName": "street-noon-economy",
+        "group": "main",
+        "position": [
+          67,
+          25,
+          120
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:98ebc472c59d2483b6ac4df3b476dc3ff431908dcb51c9f81f61e589deba83fa",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 20,
+        "triangles": 200921,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:d5e6756bd457e929231b78fa177615044030a690af4cf974e90c8f259d8b41b7",
+      "camera": {
+        "name": "main-street-noon-high",
+        "mediumName": "street-noon-high",
+        "group": "main",
+        "position": [
+          67,
+          25,
+          120
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:98ebc472c59d2483b6ac4df3b476dc3ff431908dcb51c9f81f61e589deba83fa",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 20,
+        "triangles": 200921,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:be3bbcd53f6b23494b621ae377717c9422e69955d70c9737f32422612574729f",
+      "camera": {
+        "name": "main-street-late-economy",
+        "mediumName": "street-late-economy",
+        "group": "main",
+        "position": [
+          67,
+          25,
+          120
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": false,
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:98ebc472c59d2483b6ac4df3b476dc3ff431908dcb51c9f81f61e589deba83fa",
+        "level": "street",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 20,
+        "triangles": 200921,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:f8665dbe4f337868c1dee958c05f916d5feadd08b27a3c0e76d8dff525693ecf",
+      "camera": {
+        "name": "main-street-late-high",
+        "mediumName": "street-late-high",
+        "group": "main",
+        "position": [
+          67,
+          25,
+          120
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "lightDirection": [
+          -1,
+          0.28,
+          0.25
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:98ebc472c59d2483b6ac4df3b476dc3ff431908dcb51c9f81f61e589deba83fa",
+        "level": "street",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 20,
+        "triangles": 200921,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:34bfc64582d71b991013c43c1ff6ac7c8809f5dfeacbdd131e5570e882d93904",
+      "camera": {
+        "name": "main-transition-closeup",
+        "group": "main",
+        "position": [
+          67,
+          25,
+          120
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "mediumName": "transition-closeup",
+        "shadows": true,
+        "fov": 55
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:858684d8da5b75675c76beeebd31b1f020e7700b49d3052540b277b5b0483531",
+        "level": "closeup",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 20,
+        "triangles": 204017,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:ef93105a1ab0518e2d80c013e43a047bd3162a6ab73ba009f3775ec8d028b91a",
+      "camera": {
+        "name": "main-silhouette",
+        "group": "main",
+        "position": [
+          67,
+          25,
+          120
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "mediumName": "silhouette",
+        "shadows": false,
+        "fov": 55,
+        "silhouette": true
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.john_frost_bridge",
+        "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "lodHash": "sha256:858684d8da5b75675c76beeebd31b1f020e7700b49d3052540b277b5b0483531",
+        "level": "closeup",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      },
+      "view": {
+        "draws": 20,
+        "triangles": 204017,
+        "visibleMemberDraws": {
+          "john.frost.bridge": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 1,
+        "silhouette": true
+      }
+    }
+  ],
+  "errors": [],
+  "notes": "Actual fixed geographic placement on unchanged standard terrain with the native river, arterial carriageway and cycleways. Three distances, noon/late directional light, High and reduced-resolution shadowless Economy, four fixed-camera LOD transitions and flat silhouette. Every tier retains the twin steel arch silhouette, vertical hangers, river piers, tower pair and the complete approach viaducts. The nearer tiers add stepped stairs, K bracing, edge railings and lane markings."
+}

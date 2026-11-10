@@ -1,0 +1,80 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.maulbronn_monastery",
+  "inputHash": "sha256:a413879fa71c46c0adba9da6cc0089e215219fbe8cb5f680526aa4a7aed26356",
+  "sourceHash": "sha256:00f4f06286b5ba21b50f9029622f55383da56950179c2079ff40b041b89c22fb",
+  "runtimeHash": "sha256:2a04f3d78c31e92ac2d7bfe708b6efbf96c9a04ba16a75deb3ff651356fb437f",
+  "fixtureHash": "sha256:9fa2f0f5710779698d217b5dba2964036fd6b56f71989c412fe7e37af2a8f0db",
+  "placementHash": "sha256:bae4ef48efe586d73cc3528d45536138c70315ae91d8867bcb2894e8c95e1d1d",
+  "materialGraphs": {
+    "molen.worldgen.material.plaster_lime": {
+      "path": "materials/plaster_lime.matgraph.json",
+      "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+    },
+    "molen.worldgen.material.stone_sandstone": {
+      "path": "materials/stone_sandstone.matgraph.json",
+      "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+    },
+    "molen.worldgen.material.slate": {
+      "path": "materials/slate.matgraph.json",
+      "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+    },
+    "molen.worldgen.material.tile_flat": {
+      "path": "materials/tile_flat.matgraph.json",
+      "hash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448"
+    },
+    "molen.worldgen.material.wood_plain": {
+      "path": "materials/wood_plain.matgraph.json",
+      "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+    },
+    "molen.worldgen.material.window_punched": {
+      "path": "materials/window_punched.matgraph.json",
+      "hash": "sha256:cc34da0c3f201320973e6000d3871295f88255e6ac6c8282bad935061b714fdc"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-abbey.png",
+      "hash": "sha256:ee18cf239b507d96f3c0c23cc7e9f3837e2d2fcf2374ceec5a35bd4d4c6b61f5",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -193,
+          137,
+          269
+        ],
+        "lookAt": [
+          -12,
+          12,
+          8
+        ],
+        "fov": 52,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          0.36,
+          1,
+          0.77
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "maulbronn.monastery",
+        "visibleDraws": 6
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Skyline uses four shared graphs. District, street and close-up use six. Each graph resolves once per viewer session. All levels use metric UVs and linear vertex colors."
+}

@@ -34,8 +34,69 @@
       "shots/shared/southern-raised-gallery-and-clear-walking-passage.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Six textured roles use five existing256px shared graphs: plaster_lime, stone_limestone_raw, tile_ceramic, storefront and metal_painted. Neutral tile graph tinted red; painted metal supplies restrained ochre/dark accents. No embedded images/new graph/private atlas. One skyline draw, at most five textured draws, separate POSITION/NORMAL streams and equal CPU/GPU accounting. Each textured native run reads each graph once; all unloads release geometry.",
-    "captureReportHash": "sha256:02e4968e49a9d584bd0f7fcef805bdd364b4e15ba822c641063d9d92715c76db"
+    "notes": "Six textured roles use five existing256px shared graphs: plaster_lime, stone_limestone_raw, tile_ceramic, storefront and metal_painted. Neutral tile graph tinted red; painted metal supplies restrained ochre/dark accents. No embedded images/new graph/private atlas. One skyline draw, at most five textured draws, separate POSITION/NORMAL streams and equal CPU/GPU accounting. Each textured native run reads each graph once; all unloads release geometry. Current viewer renders confirm the updated shared storefront material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:7ab39dcd6fde707073fd840c38cffa89166133da8fa7b7e5cabc517582aa89bb",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:7b6dfde6045d7b830daa2894b99710683e3cd9b59ce1a143978de26f36eff3ac"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:46b188f65728cc78719f7204aed3624f50eaaf8e8fc6ee439911e34abad9912e"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:734c58f2ad5c657e3c58c185b5be66ed9275a294a6267278775d78990fdda4fa"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:65f4bbe6bd1df89f87d4f68709ab13af6952aeedd64db87b3183b7f8d1f06997"
+      },
+      {
+        "path": "shots/shared/central-pavilion-stepped-wings-and-red-roofs.png",
+        "hash": "sha256:ab53630ad361f9c5bb92aa56d0075efeac509ce4a1e08eafd9a36b9458bea75d"
+      },
+      {
+        "path": "shots/shared/southern-courtyards-and-open-gallery-passage.png",
+        "hash": "sha256:251fdcc41a0544657cb972a9866b9926f9b9173f621569f31801c0789e1242df"
+      },
+      {
+        "path": "shots/shared/recessed-east-entrance-soffit-threshold-and-steps.png",
+        "hash": "sha256:79776bd189315b3117a81b9e8d5a6ed65dd1504dc4e20a2e185449c57fcee320"
+      },
+      {
+        "path": "shots/shared/southern-raised-gallery-and-clear-walking-passage.png",
+        "hash": "sha256:f58a0adec080faee1611d8f12ceedd42ab9de7fc95516511e5def83b0f7b9c3d"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:66db7b404b0807996359384b4dc8b7a36845ed6c8fc97cb071dc5de5155f28fa"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.plaster_lime": {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      "matgraph:molen.worldgen.material.tile_ceramic": {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

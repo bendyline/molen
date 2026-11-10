@@ -158,11 +158,6 @@ try {
     await page.waitForTimeout(250);
   }
   const final = await page.evaluate(() => globalThis.molenFlightReport());
-  // TEMP-COMPILE-PROBE
-  await writeFile(
-    resolve(output, 'compiles.json'),
-    JSON.stringify(await page.evaluate(() => globalThis.__molenCompileStats ?? {}), null, 1),
-  );
   const backend = await page.evaluate(
     () => document.querySelector('#performance-status')?.textContent?.split('\n')[0],
   );

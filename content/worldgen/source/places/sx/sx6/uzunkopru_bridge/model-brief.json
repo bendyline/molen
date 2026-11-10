@@ -1,0 +1,353 @@
+{
+  "id": "uzunkopru_bridge",
+  "title": "Uzunköprü Bridge",
+  "wikidataId": "Q6053470",
+  "referenceCoordinate": {
+    "longitude": 26.676989681,
+    "latitude": 41.275896237
+  },
+  "module": "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-uzunkopru-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "masonry": {
+      "slot": "wall",
+      "graph": "stone_ashlar"
+    },
+    "cut": {
+      "slot": "trim",
+      "graph": "stone_limestone"
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_ashlar"
+    }
+  },
+  "exportLabel": "Molen original Uzunköprü Bridge master",
+  "expectedDraftMasterHash": "sha256:0fe1c9278f87d9d8e5544a0d7ef2fa32184a1a9e484621283ae1553e58818ba1",
+  "visualBrief": "The full visible Uzunköprü crossing with 164 stone arch bays, larger river openings, pointed cutwaters, low parapets and fitted northwest and southeastern landings.",
+  "heightPolicy": "The 11 m reference datum lies within the standard floodplain elevation range. Foundations embed into the unmodified Terrarium grid, the deck rises at the river bend and both approaches meet the native grade.",
+  "nativeAxes": "+X follows the deck from the northwest junction through the Ergene bend toward the southeastern town landing. +Z crosses the deck toward the downstream side in the river section.",
+  "sourceFacts": {
+    "modeledCenterlineLengthMeters": 1264.8143742684624,
+    "retainedNamedWayLengthMeters": 854.182,
+    "published": {
+      "survivingArches": 164,
+      "survivingLengthMeters": 1272,
+      "historicalArches": 174,
+      "historicalLengthMeters": 1392,
+      "source": "https://edirne.ktb.gov.tr/TR-110704/uzunkopru.html"
+    },
+    "archCount": 164,
+    "waterArches": [
+      23,
+      24,
+      25,
+      26
+    ],
+    "associatedMappedRoads": [
+      35184399794165,
+      35184588328532
+    ],
+    "georeferencing": "+X follows the deck from the northwest junction through the Ergene bend toward the southeastern town landing. +Z crosses the deck toward the downstream side in the river section."
+  },
+  "limitations": [
+    "The 1,264.81 m length follows the combined PMTiles centerline. Edirne lists a surviving length of 1,272 m and 164 standing arches. The older 1,392 m and 174-arch figures are retained separately.",
+    "The 164-bay schedule approximates individual spacings and arch profiles from the ordinary aerial and bank views. The current model covers the visible exterior. It leaves the native river, floodplain and nearby modern roads in place.",
+    "The skyline preserves the four river openings and selected floodplain arch silhouettes. District shows 84 physical vaults. Street and close-up retain all 164. The model does not express operational access or restoration dates."
+  ],
+  "materialMethod": "Two shared stone material graphs across three slots, with metric UVs and linear color tints. No embedded images.",
+  "references": [
+    {
+      "name": "river.jpg",
+      "page": "https://www.aa.com.tr/tr/turkiye/unesco-dunya-mirasi-gecici-listesinde-bulunan-uzunkopru-onarima-alinacak/2058977",
+      "image": "https://cdnuploads.aa.com.tr/uploads/Contents/2020/11/28/thumbs_b_c_0be8919745d8ed656b0f802a4186dd54.jpg?v=164843",
+      "hash": "sha256:e6ae029947078c2e60241ea87bc8a60867f1b759da352e6a9351986341145d98",
+      "url": "https://www.aa.com.tr/tr/turkiye/unesco-dunya-mirasi-gecici-listesinde-bulunan-uzunkopru-onarima-alinacak/2058977",
+      "observed": "Close view shows pale stone arch rings, angular pier noses, a low parapet, and tall river spans transitioning to smaller floodplain arches. The existing weir and original river run beneath the bridge."
+    },
+    {
+      "name": "arches.jpg",
+      "page": "https://www.aa.com.tr/tr/kultur-sanat/anadolu-ile-balkanlari-birbirine-baglayan-tarihi-uzun-kopru/1215428",
+      "image": "https://cdnuploads.aa.com.tr/uploads/Contents/2018/07/27/thumbs_b_c_f649968eafa28c65476047d8458a66da.jpg",
+      "hash": "sha256:0ed52b5c03b846e125190edf462a299b0ec5bf6615cda8b8771bb1ff4f7f6223",
+      "url": "https://www.aa.com.tr/tr/kultur-sanat/anadolu-ile-balkanlari-birbirine-baglayan-tarihi-uzun-kopru/1215428",
+      "observed": "Wide oblique view shows the arches extending from the river across the floodplain toward the town. Model the full surviving crossing with a distinct transition in arch size."
+    },
+    {
+      "provider": "Esri World Imagery",
+      "url": "https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9",
+      "zoom": 18,
+      "interpretation": "The continuous pale stone deck continues from the mapped named way across the town-side secondary way to the square. The bend over the Ergene and the far and near abutments match the combined road trace.",
+      "reviewHash": "sha256:e25ee5f518c8ff116a4504d8697b2811c6342f0fb9192275c8ef43801da6ce8f",
+      "observed": "The continuous pale stone deck continues from the mapped named way across the town-side secondary way to the square. The bend over the Ergene and the far and near abutments match the combined road trace."
+    },
+    {
+      "url": "https://edirne.ktb.gov.tr/TR-110704/uzunkopru.html",
+      "observed": "Edirne provincial cultural heritage page gives the surviving arch count and distinguishes the surviving length from the historical description."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "full-floodplain-and-river",
+      "position": [
+        -130,
+        234,
+        934
+      ],
+      "lookAt": [
+        170,
+        6,
+        -8
+      ],
+      "fov": 53
+    },
+    {
+      "name": "river-bend-and-large-arches",
+      "position": [
+        -290,
+        18,
+        82
+      ],
+      "lookAt": [
+        -255,
+        5,
+        25
+      ],
+      "fov": 50
+    },
+    {
+      "name": "northwest-abutment-and-first-bays",
+      "position": [
+        -448,
+        13.9,
+        6
+      ],
+      "lookAt": [
+        -407,
+        6.7,
+        -18
+      ],
+      "fov": 52
+    },
+    {
+      "name": "through-the-central-river-openings",
+      "position": [
+        -253,
+        6.3,
+        -16
+      ],
+      "lookAt": [
+        -255,
+        4.4,
+        27
+      ],
+      "fov": 48
+    },
+    {
+      "name": "stone-vaults-over-the-floodplain",
+      "position": [
+        52,
+        5.7,
+        27
+      ],
+      "lookAt": [
+        87,
+        3.5,
+        1
+      ],
+      "fov": 51
+    },
+    {
+      "name": "town-approach-and-landing",
+      "position": [
+        863,
+        31,
+        -49
+      ],
+      "lookAt": [
+        816,
+        7.8,
+        -62
+      ],
+      "fov": 53
+    },
+    {
+      "name": "parapets-and-deck-at-the-river",
+      "position": [
+        -289,
+        13,
+        24
+      ],
+      "lookAt": [
+        -239,
+        10.2,
+        28
+      ],
+      "fov": 56
+    },
+    {
+      "name": "town-side-causeway-curve",
+      "position": [
+        606,
+        43,
+        40
+      ],
+      "lookAt": [
+        437,
+        6,
+        -25
+      ],
+      "fov": 55
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        185,
+        4,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_ashlar"
+      },
+      "cut": {
+        "slot": "trim",
+        "graph": "stone_limestone"
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_ashlar"
+      }
+    },
+    "errorMeters": 2.9,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar"
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          }
+        },
+        "errorMeters": 1.1
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar"
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          }
+        },
+        "errorMeters": 0.4
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar"
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar"
+          }
+        },
+        "errorMeters": 0.13
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "uzunkopru_bridge-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -130,
+        234,
+        934
+      ],
+      "lookAt": [
+        170,
+        6,
+        -8
+      ]
+    },
+    {
+      "name": "uzunkopru_bridge-district",
+      "reviewLod": "district",
+      "position": [
+        -130,
+        234,
+        934
+      ],
+      "lookAt": [
+        170,
+        6,
+        -8
+      ]
+    },
+    {
+      "name": "uzunkopru_bridge-street",
+      "reviewLod": "street",
+      "position": [
+        -130,
+        234,
+        934
+      ],
+      "lookAt": [
+        170,
+        6,
+        -8
+      ]
+    },
+    {
+      "name": "uzunkopru_bridge-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -130,
+        234,
+        934
+      ],
+      "lookAt": [
+        170,
+        6,
+        -8
+      ]
+    }
+  ]
+}

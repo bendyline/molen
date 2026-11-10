@@ -31,6 +31,7 @@ import {
   createEarthTilePreloader,
   createEarthWorldgen,
   createRegionalGroundColor,
+  EARTH_INDEPENDENT_LAYERS,
   EARTH_SHADOW_CASTER_HEIGHT,
   EARTH_WATER_COLOR,
   EARTH_WATER_CONDITIONS,
@@ -52,6 +53,7 @@ import {
   earthPixelRatio,
   earthQualityLevel,
   earthShadowFocus,
+  earthStreamDistance,
   earthTerrainBudget,
   earthTerrainCacheBudget,
   earthWorldgenCacheBytes,
@@ -114,7 +116,7 @@ import { type ExplorerWorldgenContent, loadExplorerContent } from './content.js'
 import { createExplorerDioramas, DIORAMA_SITES, selectedDiorama } from './dioramas.js';
 import { createFlightInstrumentPanel } from './flight-instrument-panel.js';
 import { formatCameraLocation } from './location-readout.js';
-import { createExplorerQualityController } from './quality-policy.js';
+import { createExplorerQualityController, createStreamStrainMeter } from './quality-policy.js';
 import {
   createRegionControls,
   DEFAULT_WORLD_REGION,
@@ -127,10 +129,6 @@ import { syntheticFeatureTile, syntheticLandcoverTile } from './synthetic-footpr
 import { createWeatherControls } from './weather-controls.js';
 import { AIRCRAFT_HELP, aircraftBlocks, WorldAircraft } from './world-aircraft.js';
 import { PARACHUTE_HELP, WorldParachute } from './world-parachute.js';
-
-// TEMP-AB-INSTANCING
-(globalThis as { __molenPlainInstancing?: boolean }).__molenPlainInstancing =
-  new URLSearchParams(location.search).get('plainInstancing') === '1';
 
 const DEMO_LEVEL = 13;
 const DEMO_MIN_LEVEL = 8;
@@ -1231,6 +1229,26 @@ async function main(): Promise<void> {
           },
         });
   const shadowsWanted = params.get('shadows') !== '0';
+  // Terrain is streamed to where the haze completes, not to the tier's full distance: the rest
+  // is drawn in the sky's own color (see earthStreamDistance). `?hazeClamp=0` streams it all for
+  // comparison; the fixed daylight rig keeps it all, since its haze does not match its sky.
+  const clampToHaze = params.get('hazeClamp') !== '0' && params.get('sky') !== 'daylight';
+  const hazedReach = (viewDistance: number): number =>
+    clampToHaze
+      ? earthStreamDistance(
+          viewDistance,
+          camera.pos[1],
+          window.innerWidth / Math.max(1, window.innerHeight),
+        )
+      : viewDistance;
+  let streamReach = hazedReach(pyramidBudget.viewDistance);
+  // While the haze cuts the view short, a little under the tier's tiles. Ground past the haze
+  // took about three selected tiles in ten. The surround takes most of those; the rest, spent
+  // on nearer ground, displayed more geometry than the tier did before, and a device near its
+  // memory budget would step down a tier for it. At four fifths the view lost detail instead.
+  const hazedTiles = (tiles: number, viewDistance: number, reach: number): number =>
+    reach <= viewDistance * 0.6 ? Math.max(8, Math.round(tiles * 0.92)) : tiles;
+  let tierSelectedTiles = pyramidBudget.maxSelectedTiles;
   const regionalGroundColor = createRegionalGroundColor(worldgen?.environment);
   const pyramidEarth: TerrainPackagePyramidStream | undefined = adaptive
     ? await createTerrainPackagePyramidStream(loaded.descriptor, {
@@ -1238,6 +1256,14 @@ async function main(): Promise<void> {
         ...(loaded.baseUrl !== undefined ? { baseUrl: loaded.baseUrl } : {}),
         ...(loaded.archive !== undefined ? { archive: loaded.archive } : {}),
         ...pyramidBudget,
+        viewDistance: streamReach,
+        maxSelectedTiles: hazedTiles(
+          pyramidBudget.maxSelectedTiles,
+          pyramidBudget.viewDistance,
+          streamReach,
+        ),
+        // Water and land cover also load for ground outside the view, and show as each is ready.
+        independentLayers: EARTH_INDEPENDENT_LAYERS,
         ...(content.airports
           ? { transformHeightfield: createAirportTerrainGrading(content.airports) }
           : {}),
@@ -1411,10 +1437,15 @@ async function main(): Promise<void> {
         performanceStatus.dataset.level = String(performanceLevel);
         performanceStatus.dataset.maxPixels = automaticQuality ? String(tier.maxPixels) : '';
       },
-      () =>
-        pyramidEarth?.stream.setBudget(
-          earthTerrainBudget(earthTerrainCacheBudget(budget, memoryBudget), memoryBudget),
-        ),
+      () => {
+        streamReach = hazedReach(budget.viewDistance);
+        tierSelectedTiles = budget.maxSelectedTiles;
+        pyramidEarth?.stream.setBudget({
+          ...earthTerrainBudget(earthTerrainCacheBudget(budget, memoryBudget), memoryBudget),
+          viewDistance: streamReach,
+          maxSelectedTiles: hazedTiles(tierSelectedTiles, budget.viewDistance, streamReach),
+        });
+      },
       () => {
         worldgen?.setQuality(stepQuality);
         worldgen?.setCacheBudget(
@@ -1454,6 +1485,8 @@ async function main(): Promise<void> {
     if (!automaticQuality) quality = qualitySelect.value as TerrainQualityPreset;
     if (!automaticQuality) performanceLevel = earthQualityLevel(quality);
     qualityController.setLevel(performanceLevel);
+    // Auto has a ceiling of its own: coming back from manual High, run the level it holds.
+    if (automaticQuality) performanceLevel = qualityController.getStats().level;
     applyPerformanceLevel();
     history.replaceState(null, '', next);
   });
@@ -1972,6 +2005,9 @@ async function main(): Promise<void> {
   let surfaceGeometryRevision = -1;
   let memoryRefreshTime = Number.NEGATIVE_INFINITY;
   let streamingBusy = true;
+  // Whether the level asks for more than the terrain cache holds (see createStreamStrainMeter).
+  const streamStrain = createStreamStrainMeter();
+  let streamStrained = false;
   // Quality adapts once the first view has finished loading (or after 20 s). Until then frames
   // carry one-time work: the first ground refining under the camera, collision trees rebuilt
   // for each refinement, models and materials arriving. Measured as overload, it stepped a fast
@@ -1996,7 +2032,6 @@ async function main(): Promise<void> {
       coverage: pyramidEarth?.stream.viewCoverage([2_000, 5_000, 10_000, 20_000]),
     });
     // Walks every resident object: for the start and end of a flight, not during it.
-    (globalThis as { __molenViewer?: unknown }).__molenViewer = viewer; // TEMP-AB-INSTANCING
     probe.molenFlightReport = () => ({
       stats: pyramidEarth?.stream.stats(),
       worldgen: worldgen?.stats(),
@@ -2046,6 +2081,7 @@ async function main(): Promise<void> {
         // Measured against the fixed device budget, as EarthView does: each level's own byte
         // cap is smaller, so a dense city's buildings cascaded every step down to Low.
         memoryPressure: (pressure?.displayedBytes ?? 0) / memoryBudget,
+        strained: streamStrained,
       });
       if (change) {
         performanceLevel = change.level;
@@ -2547,6 +2583,19 @@ async function main(): Promise<void> {
     if (firstFrame) startupStage('sky');
     const fog = viewer.renderer.scene.fog;
     if (fog instanceof THREE.Fog) updateEarthFog(fog, fogViewDistance, camera.pos[1]);
+    // Follow the haze as the camera climbs or the window changes shape: reach farther at once,
+    // and give ground up only once the reach has shrunk by two steps, so a camera bobbing across
+    // a step does not replan each time.
+    if (adaptive) {
+      const reach = hazedReach(fogViewDistance);
+      if (reach > streamReach || reach <= streamReach - 4_000) {
+        streamReach = reach;
+        pyramidEarth?.stream.setBudget({
+          viewDistance: reach,
+          maxSelectedTiles: hazedTiles(tierSelectedTiles, fogViewDistance, reach),
+        });
+      }
+    }
     const audioGround = audio ? sampleHeight(camera.pos[0], camera.pos[2]) : undefined;
     const audioSky = viewer.renderer.sky?.frame.earth;
     if (audio && now - audioTerrainAt >= 250) {
@@ -2626,6 +2675,17 @@ async function main(): Promise<void> {
         stats.loadingLayers > 0 ||
         (isPyramidStats(stats) && stats.retryingLayers > 0) ||
         surfaceStats.loading > 0;
+      if (isPyramidStats(stats)) {
+        const cache = pyramidEarth?.stream.pressure();
+        streamStrained = streamStrain({
+          nowMs: now,
+          builtTiles: stats.builtTiles,
+          rebuiltTiles: stats.rebuiltTiles,
+          residentBytes: cache?.residentBytes ?? 0,
+          displayedBytes: cache?.displayedBytes ?? 0,
+          maxResidentBytes: cache?.maxResidentBytes,
+        });
+      }
       // Surface detail changes in place on tiles in view; the rest of the cache is counted. The
       // recount walks every displayed mesh (4-6 ms in a city), so a pan's constant surface changes
       // recount every two seconds rather than at every status update.

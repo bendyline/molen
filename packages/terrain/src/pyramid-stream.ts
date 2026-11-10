@@ -100,6 +100,17 @@ export interface TerrainPyramidSelectionOptions {
    * weighted error exceeds the budget, so they stay a level or two coarser than the view.
    */
   peripheralDetail?: number;
+  /**
+   * Error weight of ground everywhere else round the camera, in (0, 1] (default: none, so that
+   * ground is not selected at all). A camera can look round faster than ground can load: a
+   * quarter turn in a third of a second, against seconds for a tile and its layers. With a
+   * small weight (0.1 or so) the whole circle stays selected several levels coarser than the
+   * view, with the layers of `independentLayers` on it, so a look to the side shows coarse
+   * finished ground that refines rather than bare ground that fills in.
+   */
+  surroundDetail?: number;
+  /** How far round the camera `surroundDetail` reaches, world units (default: `viewDistance`). */
+  surroundDistance?: number;
 }
 
 export interface TerrainPyramidSelection {
@@ -179,6 +190,15 @@ export interface TerrainPyramidStreamOptions
     TerrainTileRetryOptions {
   /** Optional refinement height morph for bare surfaces. Grounded layers retain atomic handoff. */
   morphMilliseconds?: number;
+  /**
+   * Layer categories built for ground outside the view as well (the peripheral band and the
+   * surround) and shown as soon as each is ready, rather than together with the tile's other
+   * layers. Default `['hydrology']`. A host whose land cover is the ground's color adds
+   * `'classification'`: without it, ground the camera turns to face is bare until every layer
+   * of its tile has been built, and reads as a hole in the world. Handoffs between levels are
+   * unchanged: a replacement still waits for every layer its predecessor shows.
+   */
+  independentLayers?: readonly TerrainTileLayerCategory[];
   /**
    * Sun shadows: every tile surface and layer mesh receives them, and layer meshes standing
    * taller than `shadowCasterHeight` meters (default 1.5: buildings, trees, landmarks) cast
@@ -587,6 +607,20 @@ function requireSelectionOptions(options: TerrainPyramidSelectionOptions): void 
   ) {
     throw new Error('terrain pyramid peripheralDetail must be in (0, 1]');
   }
+  if (
+    options.surroundDetail !== undefined &&
+    (!Number.isFinite(options.surroundDetail) ||
+      options.surroundDetail <= 0 ||
+      options.surroundDetail > 1)
+  ) {
+    throw new Error('terrain pyramid surroundDetail must be in (0, 1]');
+  }
+  if (
+    options.surroundDistance !== undefined &&
+    (!Number.isFinite(options.surroundDistance) || options.surroundDistance <= 0)
+  ) {
+    throw new Error('terrain pyramid surroundDistance must be finite and positive');
+  }
 }
 
 function requireBudget(budget: TerrainPyramidBudget): void {
@@ -849,6 +883,11 @@ export function selectTerrainPyramidTiles(
   const peripheralGuard =
     VIEW_GUARD_RADIANS + THREE.MathUtils.degToRad(options.peripheralDegrees ?? 0);
   const peripheralDetail = options.peripheralDetail ?? 0.4;
+  const surroundDetail = options.surroundDetail ?? 0;
+  const surroundDistance = Math.min(
+    options.viewDistance,
+    options.surroundDistance ?? options.viewDistance,
+  );
   const focal = view.viewportHeight / (2 * Math.tan(view.verticalFov / 2));
   const knownHeight = options.tileHeight;
   const heights = new Map<string, { min: number; max: number }>();
@@ -869,16 +908,20 @@ export function selectTerrainPyramidTiles(
           }
           return height;
         };
-  // 1 inside the view (with its guard band), `peripheralDetail` in the peripheral band, else 0.
+  // 1 inside the view (with its guard band), `peripheralDetail` in the peripheral band, then
+  // `surroundDetail` for the rest of the circle within its distance, else 0.
   const weight = (tile: TerrainPyramidTileAddress): number => {
     const bounds = tileBounds(descriptor, tile);
     if (descriptor.coverage !== undefined && !boxesIntersect(bounds, descriptor.coverage)) return 0;
-    if (distanceToBounds(view.position, bounds, heightOf(tile)) > options.viewDistance) return 0;
+    const distance = distanceToBounds(view.position, bounds, heightOf(tile));
+    if (distance > options.viewDistance) return 0;
     if (intersectsHorizontalView(view, bounds)) return 1;
-    return peripheralGuard > VIEW_GUARD_RADIANS &&
+    if (
+      peripheralGuard > VIEW_GUARD_RADIANS &&
       intersectsHorizontalView(view, bounds, peripheralGuard)
-      ? peripheralDetail
-      : 0;
+    )
+      return peripheralDetail;
+    return distance <= surroundDistance ? surroundDetail : 0;
   };
   const projected = (tile: TerrainPyramidTileAddress): number =>
     (((terrainPyramidTileSize(descriptor, tile.level) / (descriptor.tileResolution - 1)) * focal) /
@@ -1338,6 +1381,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   private readonly material: THREE.Material;
   private readonly ownsMaterial: boolean;
   private readonly layerById = new Map<string, TerrainPyramidTileLayer>();
+  /** Categories built outside the view and published on their own (see `independentLayers`). */
+  private readonly independentCategories: ReadonlySet<TerrainTileLayerCategory>;
   private readonly layerVisibility = new Map<string, boolean>();
   private readonly resident = new Map<string, ResidentTile>();
   /** Height probes repeat within a finest-level cell (wheels, collision sweeps, parked craft).
@@ -1470,8 +1515,13 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       ...(options.peripheralDetail === undefined
         ? {}
         : { peripheralDetail: options.peripheralDetail }),
+      ...(options.surroundDetail === undefined ? {} : { surroundDetail: options.surroundDetail }),
+      ...(options.surroundDistance === undefined
+        ? {}
+        : { surroundDistance: options.surroundDistance }),
     };
     requireBudget(this.budget);
+    this.independentCategories = new Set(options.independentLayers ?? ['hydrology']);
     this.retryPolicy = resolveTerrainTileRetryPolicy(options);
     if (Number.isNaN(options.layerTimeoutMs) || (options.layerTimeoutMs ?? 0) < 0)
       throw new RangeError('terrain layerTimeoutMs must be zero, positive, or Infinity');
@@ -2925,10 +2975,12 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
 
   /**
    * Expensive detail is built for ground in the camera's view and its guard band.
-   * Peripheral terrain also prepares hydrology, so a turn never starts with a dry lakebed.
+   * Peripheral and surround terrain also prepare the independent layers (hydrology by
+   * default), so a turn never starts with a dry lakebed.
    */
   private wantsLayers(address: TerrainPyramidTileAddress): boolean {
-    const peripheral = (this.budget.peripheralDegrees ?? 0) > 0;
+    const peripheral =
+      (this.budget.peripheralDegrees ?? 0) > 0 || (this.budget.surroundDetail ?? 0) > 0;
     return (
       this.preparationTargets.has(terrainPyramidTileKey(address)) ||
       !peripheral ||
@@ -2965,7 +3017,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     const detail = this.wantsLayers(tile.address);
     for (const layer of this.layerById.values()) {
       if (
-        (detail || layer.category === 'hydrology') &&
+        (detail || this.independentCategories.has(layer.category)) &&
         this.layerVisibility.get(layer.id) === true &&
         this.layerEligible(layer, tile.address.level) &&
         !tile.layers.has(layer.id) &&
@@ -2999,7 +3051,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     return false;
   }
 
-  /** Publish hydrology independently; retain atomic detail and coverage during handoffs. */
+  /** Publish independent layers on their own; retain atomic detail and coverage during handoffs. */
   private updateLayerVisibility(): void {
     // Match the surface handoff's losesVisibleLayers rule. A replacement may already carry
     // every layer its predecessor displayed, while a newly eligible layer is still building.
@@ -3060,7 +3112,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             continue;
           }
           if (
-            (layer.category === 'hydrology' ||
+            (this.independentCategories.has(layer.category) ||
               ready(tile) ||
               inheritedReady.get(key)?.has(layer.id)) &&
             (tile.layers.has(layer.id) || tile.emptyLayers.has(layer.id))
@@ -3069,7 +3121,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             continue;
           }
           if (!this.wantsLayers(tile.address)) {
-            // Peripheral ground only gets hydrology. Detail already shown inside it may stay,
+            // Peripheral ground only gets independent layers. Detail already shown inside it may stay,
             // but never a coarser ancestor's, which would cover the view beside it.
             for (const previousKey of previous) {
               const old = this.resident.get(previousKey);
@@ -3475,7 +3527,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         .filter((layer) => {
           const key = `${terrainPyramidTileKey(tile.address)}:${layer.id}`;
           return (
-            (layer.category === 'hydrology' || this.wantsLayers(tile.address)) &&
+            (this.independentCategories.has(layer.category) || this.wantsLayers(tile.address)) &&
             this.layerVisibility.get(layer.id) === true &&
             this.layerEligible(layer, tile.address.level) &&
             !tile.layers.has(layer.id) &&

@@ -1,0 +1,420 @@
+{
+  "id": "museum_of_fine_arts_boston",
+  "title": "Museum of Fine Arts Boston",
+  "wikidataId": "Q49133",
+  "referenceCoordinate": {
+    "longitude": -71.094125402,
+    "latitude": 42.339421837
+  },
+  "module": "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/models/museum-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-museum-of-fine-arts-boston.mjs",
+  "builder": "buildMuseumLevel",
+  "surfaces": {
+    "limestone": {
+      "slot": "wall",
+      "graph": "stone_limestone"
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw"
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_granite"
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_panel"
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "membrane"
+    },
+    "copper": {
+      "slot": "roof",
+      "graph": "metal_copper"
+    }
+  },
+  "exportLabel": "Molen original Museum of Fine Arts Boston master",
+  "expectedDraftMasterHash": "sha256:8b9935d06d68e1bb9412c7b500abe05e4ea5a25a18863016e4ea07cdee99b423",
+  "visualBrief": "Boston’s Museum of Fine Arts with its twin Huntington Avenue limestone wings and stepped central portico, the long Fenway colonnade, an open west courtyard, and the glazed Art of the Americas addition and Shapiro roof.",
+  "heightPolicy": "The absolute 3 m datum preserves native terrain and seats the museum on a low exposed granite plinth. Modeled steps connect both street elevations.",
+  "nativeAxes": "+Z southeast to Huntington Avenue and the recessed stepped front portico. -Z northwest to the Fenway colonnade. +X east-northeast toward the modern Art of the Americas wing.",
+  "sourceFacts": {
+    "retainedLengthMeters": 186.914,
+    "retainedWidthMeters": 147.076,
+    "mappedAreaMeters2": 19414.490048999993,
+    "nativeBuildingFeature": 52776558197186,
+    "georeferencing": "+Z southeast to Huntington Avenue and the recessed stepped front portico. -Z northwest to the Fenway colonnade. +X east-northeast toward the modern Art of the Americas wing."
+  },
+  "limitations": [
+    "Roof heights, pitches, window rhythms and the stair profile are approximated from ordinary photos, the mapped outline and standard Terrarium.",
+    "The model covers the connected exterior. Galleries, sculpture and landscaping are outside the scope."
+  ],
+  "materialMethod": "Eight existing shared graphs, metric UVs and linear palette tints. Glazing is an opaque shared window material.",
+  "references": [
+    {
+      "page": "https://www.thebostonyachthaven.com/get-inspired/boston-attractions/museum-of-fine-arts",
+      "image": "https://www.thebostonyachthaven.com/sites/default/files/styles/scale_1440/public/2021-04/Museum%20of%20Fine%20Arts.jpg?itok=g2LQBtbU",
+      "hash": "sha256:2e4a8d15e22b8206db4f82508bb7553d312d55e1b7bcab38c7f849e4e136a73d",
+      "observed": "South aerial shows the broad steps and tripartite entrance beneath the four-column pediment, twin pavilion returns, shallow oxidized roofs, central spine, and west barrel skylight."
+    },
+    {
+      "page": "https://www.uptonpartners.com/project/museum-of-fine-arts-boston/",
+      "image": "https://www.uptonpartners.com/wp-content/uploads/2016/08/01-UptonPartners-MFA-image.jpg",
+      "hash": "sha256:d2bc8fe492e9c5906d325c428dc3f68cf798489b0f430b49e9a9b5835ddfc1a1",
+      "observed": "North-east aerial shows Fenway’s long pale colonnade, the open west courtyard, the Shapiro glazed roof, and the stepped modern east galleries with alternating panels."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "huntington-campus",
+      "position": [
+        84,
+        96,
+        219
+      ],
+      "lookAt": [
+        0,
+        9,
+        3
+      ],
+      "fov": 48
+    },
+    {
+      "name": "huntington-portico-and-wings",
+      "position": [
+        -1,
+        28,
+        123
+      ],
+      "lookAt": [
+        -1,
+        10,
+        43
+      ],
+      "fov": 57
+    },
+    {
+      "name": "entry-steps-and-pediment",
+      "position": [
+        -15,
+        7.6,
+        76
+      ],
+      "lookAt": [
+        -2,
+        9.4,
+        49
+      ],
+      "fov": 56
+    },
+    {
+      "name": "fenway-colonnade",
+      "position": [
+        -20,
+        25,
+        -124
+      ],
+      "lookAt": [
+        -3,
+        10,
+        -67
+      ],
+      "fov": 61
+    },
+    {
+      "name": "open-west-court",
+      "position": [
+        -42,
+        4.7,
+        -14
+      ],
+      "lookAt": [
+        -17,
+        8.6,
+        -41
+      ],
+      "fov": 64
+    },
+    {
+      "name": "art-of-the-americas-east-wing",
+      "position": [
+        147,
+        41,
+        -54
+      ],
+      "lookAt": [
+        59,
+        13,
+        -24
+      ],
+      "fov": 52
+    },
+    {
+      "name": "campus-roof-and-west-court",
+      "position": [
+        -57,
+        187,
+        -84
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 60
+    },
+    {
+      "name": "southwest-wings-and-barrel-skylight",
+      "position": [
+        -131,
+        60,
+        91
+      ],
+      "lookAt": [
+        -49,
+        13,
+        16
+      ],
+      "fov": 56
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        11,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/models/museum-model.mjs",
+    "export": "buildMuseumSkyline",
+    "surfaces": {
+      "limestone": {
+        "slot": "wall",
+        "graph": "stone_limestone"
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw"
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite"
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_panel"
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane"
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper"
+      }
+    },
+    "errorMeters": 1.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMuseumDistrict",
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_panel"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane"
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper"
+          }
+        },
+        "errorMeters": 0.7
+      },
+      "street": {
+        "export": "buildMuseumStreet",
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_panel"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane"
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper"
+          }
+        },
+        "errorMeters": 0.32
+      },
+      "closeup": {
+        "export": "buildMuseumCloseup",
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_panel"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane"
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper"
+          }
+        },
+        "errorMeters": 0.14
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "museum_of_fine_arts_boston-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        84,
+        96,
+        219
+      ],
+      "lookAt": [
+        0,
+        9,
+        3
+      ]
+    },
+    {
+      "name": "museum_of_fine_arts_boston-district",
+      "reviewLod": "district",
+      "position": [
+        84,
+        96,
+        219
+      ],
+      "lookAt": [
+        0,
+        9,
+        3
+      ]
+    },
+    {
+      "name": "museum_of_fine_arts_boston-street",
+      "reviewLod": "street",
+      "position": [
+        84,
+        96,
+        219
+      ],
+      "lookAt": [
+        0,
+        9,
+        3
+      ]
+    },
+    {
+      "name": "museum_of_fine_arts_boston-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        84,
+        96,
+        219
+      ],
+      "lookAt": [
+        0,
+        9,
+        3
+      ]
+    }
+  ]
+}

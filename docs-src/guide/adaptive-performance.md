@@ -14,7 +14,15 @@ Memory pressure can also lower detail. Recovery requires stable headroom and mem
 displayed content. During continuous streaming, both CPU and GPU timings must show spare capacity;
 without GPU timing, recovery waits for streaming to settle. Failed upward probes increase the
 recovery delay. Hidden intervals and isolated long pauses reset or bypass measurements instead
-of being mistaken for normal rendering.
+of being mistaken for normal rendering. A second pause within a minute of rendering
+(`pauseRepeatMs`) is a stall rather than a tab resume, and lowers detail one level.
+
+Frame times cannot show a level that streams more than it can hold: that work runs outside the
+frame. A host reports it as `strained` in each sample (the explorer does when half of the
+tiles built over ten seconds had been evicted and rebuilt, or when the view fills most of a full
+terrain cache). Strain blocks upgrades at once and, sustained for `strainDelayMs` (10 s), lowers
+detail with the reason `'streaming'`. `upgradeWorkFraction` (default 0.9) is the share of the
+target that measured frame work must stay under before a step up; the explorer uses 0.6.
 While content streams, slow frames lower detail only when the measured CPU/GPU frame work is itself
 heavy: streaming work runs outside the frame, and a lower tier would restart it. After a memory
 step, the controller lets that step's lower-detail replacements load (up to the recovery delay)
@@ -24,7 +32,8 @@ first frames carry one-time work (ground refining under the camera, collision tr
 each refinement, models and materials arriving), and measured as overload it stepped a fast
 desktop to the lowest tier before the visitor had moved.
 
-The explorer starts at Balanced and can climb through High to Ultra, using measured performance
+The explorer starts at Balanced and can climb to High (Ultra's view alone holds most of the
+terrain cache, so it is reached only with `?tier=5`), using measured performance
 rather than the GPU's name. It uses `EARTH_STICKY_QUALITY` timings from the start: down after
 2.5 s of sustained overload, up one tier after 20 s of headroom, and frame-time changes at least
 6 s apart. Measurements use one-second windows, so these are approximate delays. A failed upward

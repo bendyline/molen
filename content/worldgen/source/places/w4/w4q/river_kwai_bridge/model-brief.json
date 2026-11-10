@@ -1,0 +1,458 @@
+{
+  "id": "river_kwai_bridge",
+  "title": "River Kwai Bridge",
+  "wikidataId": "Q2282230",
+  "referenceCoordinate": {
+    "longitude": 99.503460803,
+    "latitude": 14.040409573
+  },
+  "module": "content/worldgen/source/places/w4/w4q/river_kwai_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-river-kwai-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "steel": {
+      "slot": "wall",
+      "graph": "metal_painted"
+    },
+    "gusset": {
+      "slot": "wall",
+      "graph": "metal_painted"
+    },
+    "worn": {
+      "slot": "wall",
+      "graph": "metal_painted"
+    },
+    "oxide": {
+      "slot": "wall",
+      "graph": "metal_painted"
+    },
+    "rail": {
+      "slot": "trim",
+      "graph": "metal_stainless"
+    },
+    "pier": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "apron": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    }
+  },
+  "exportLabel": "Molen original River Kwai Bridge master",
+  "expectedDraftMasterHash": "sha256:2317f47060cf103f888a3bf2352921de90f8304726cad06e0ceabeb747a1c601",
+  "visualBrief": "Kanchanaburi railway bridge with open black curved trusses, two angular replacement spans, flared concrete piers, a single meter-gauge track, narrow walking plates and pier refuge bays.",
+  "heightPolicy": "The model uses a 29 m datum. Track support grades follow the retained Terrarium approaches from about 39.73 m on the southwest side to 34.25 m on the northeast side.",
+  "nativeAxes": "+X north-northeast along the mapped track. +Z east-southeast across the deck.",
+  "sourceFacts": {
+    "retainedOutlineLengthMeters": 321.369,
+    "reportedLengthMeters": 320,
+    "retainedOutlineWidthMeters": 6.663,
+    "currentPMTilesFeature": 35184397120053,
+    "control": {
+      "id": "river_kwai_bridge",
+      "anchor": [
+        99.503460803,
+        14.040409573
+      ],
+      "heading": 1.111249203502,
+      "datum": 29,
+      "ends": [
+        -160.47,
+        160.92
+      ],
+      "halfWidth": 3.25,
+      "trackId": 35184397120053,
+      "trackApproachIds": [
+        35184397120054,
+        35184748111087
+      ],
+      "curve": [
+        [
+          -160.47,
+          -0.26
+        ],
+        [
+          -88,
+          0.96
+        ],
+        [
+          160.92,
+          1.018
+        ]
+      ],
+      "profile": [
+        [
+          -160.47,
+          10.73
+        ],
+        [
+          -88,
+          9.83
+        ],
+        [
+          40,
+          7.45
+        ],
+        [
+          160.92,
+          5.25
+        ]
+      ],
+      "spanBoundaries": [
+        -160.47,
+        -132,
+        -103,
+        -75,
+        -46,
+        -17,
+        10,
+        39,
+        74,
+        107,
+        134,
+        160.92
+      ],
+      "replacementSpanStarts": [
+        39,
+        74
+      ],
+      "pierBaseElevations": [
+        9.9,
+        7.7,
+        5.1,
+        2.4,
+        -0.8,
+        -2.7,
+        -2.9,
+        -2.7,
+        -3,
+        -2.5,
+        -1.1,
+        4.1
+      ]
+    }
+  },
+  "limitations": [
+    "The track and map outline determine the frame. Pier stations, curved bay spacing, and member sizes are visual approximations based on ordinary photos.",
+    "The asymmetric grade adapts standard Terrarium terrain. The deck depicts the current rail crossing and fixed walkways."
+  ],
+  "materialMethod": "Shared concrete_plain, metal_painted and metal_stainless graphs with linear palette tints and metric UVs. Open truss web, rails and refuge geometry simplify at distance.",
+  "references": [
+    {
+      "url": "https://program.rozhlas.cz/pribeh-mostu-pres-reku-kwai-legenda-zalozena-na-vymyslene-knize-a-nepravdivem-8757118",
+      "observations": "Water-level photo of curved open trusses and tapered concrete piers with flared caps."
+    },
+    {
+      "url": "https://www.tripthaitour.com/Bangkok/Kanchanaburi",
+      "observations": "Tourist bank view shows the black triangular web, walkway scale and pier refuges."
+    },
+    {
+      "url": "https://timetomosey.com/bridge-over-river-kwai-kanchanaburi/",
+      "observations": "Deck photo shows two meter-gauge rails, central and side walking plates, railings, refuges and riveted polygonal truss portals."
+    },
+    {
+      "url": "https://fanclubthailand.co.uk/4-week-itinerary-for-thailand/",
+      "observations": "Aerial exterior photo shows two angular spans on the station side of the river centerline, curved spans and asymmetric approaches."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-crossing",
+      "position": [
+        20,
+        57,
+        265
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "river-truss-profile",
+      "position": [
+        75,
+        11,
+        89
+      ],
+      "lookAt": [
+        52,
+        7,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "curved-truss-web",
+      "position": [
+        -25,
+        9,
+        35
+      ],
+      "lookAt": [
+        -30,
+        8,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "rail-and-refuge-walkway",
+      "position": [
+        56,
+        8.85889844525306,
+        0.9935529487385505
+      ],
+      "lookAt": [
+        91,
+        8.222113794244128,
+        1.001708179334726
+      ],
+      "fov": 49
+    },
+    {
+      "name": "southwest-landing",
+      "position": [
+        -175,
+        14,
+        -4
+      ],
+      "lookAt": [
+        -147,
+        10,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "northeast-landing",
+      "position": [
+        174,
+        9,
+        5
+      ],
+      "lookAt": [
+        150,
+        6,
+        0
+      ],
+      "fov": 49
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        8,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/w4/w4q/river_kwai_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "steel": {
+        "slot": "wall",
+        "graph": "metal_painted"
+      },
+      "gusset": {
+        "slot": "wall",
+        "graph": "metal_painted"
+      },
+      "worn": {
+        "slot": "wall",
+        "graph": "metal_painted"
+      },
+      "oxide": {
+        "slot": "wall",
+        "graph": "metal_painted"
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_stainless"
+      },
+      "pier": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "apron": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      }
+    },
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "steel": {
+            "slot": "wall",
+            "graph": "metal_painted"
+          },
+          "gusset": {
+            "slot": "wall",
+            "graph": "metal_painted"
+          },
+          "worn": {
+            "slot": "wall",
+            "graph": "metal_painted"
+          },
+          "oxide": {
+            "slot": "wall",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_stainless"
+          },
+          "pier": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "apron": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.4
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "steel": {
+            "slot": "wall",
+            "graph": "metal_painted"
+          },
+          "gusset": {
+            "slot": "wall",
+            "graph": "metal_painted"
+          },
+          "worn": {
+            "slot": "wall",
+            "graph": "metal_painted"
+          },
+          "oxide": {
+            "slot": "wall",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_stainless"
+          },
+          "pier": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "apron": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.2
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "steel": {
+            "slot": "wall",
+            "graph": "metal_painted"
+          },
+          "gusset": {
+            "slot": "wall",
+            "graph": "metal_painted"
+          },
+          "worn": {
+            "slot": "wall",
+            "graph": "metal_painted"
+          },
+          "oxide": {
+            "slot": "wall",
+            "graph": "metal_painted"
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_stainless"
+          },
+          "pier": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "apron": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "river_kwai_bridge-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        20,
+        57,
+        265
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "river_kwai_bridge-district",
+      "reviewLod": "district",
+      "position": [
+        20,
+        57,
+        265
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "river_kwai_bridge-street",
+      "reviewLod": "street",
+      "position": [
+        20,
+        57,
+        265
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    },
+    {
+      "name": "river_kwai_bridge-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        20,
+        57,
+        265
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ]
+    }
+  ]
+}

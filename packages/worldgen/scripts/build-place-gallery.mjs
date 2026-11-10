@@ -89,9 +89,11 @@ export async function buildPlaceGallery() {
               ? 'World-viewer preview · further review pending'
               : 'Imported model · review pending',
       preview: link(
-        reviewed?.sharedSurfaceQa?.hashBoundReviewPassed
-          ? 'shots/shared/angle-0.png'
-          : 'preview.png',
+        source.files.documents?.includes('site-preview.png')
+          ? 'site-preview.png'
+          : reviewed?.sharedSurfaceQa?.hashBoundReviewPassed
+            ? 'shots/shared/angle-0.png'
+            : 'preview.png',
       ),
       readme: link('README.md'),
       model: link(source.files.models[0].path),

@@ -32,8 +32,69 @@
       "shots/shared/projecting-silver-panels-and-rounded-crown.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Six existing shared 256px graphs: concrete_plain, metal_painted, metal_stainless_beadblasted, metal_standing_seam, fabric_canvas and window_grid. One untextured PBR glass material with 18% alpha serves the south atrium and clear leading roof strip, preserving actual visible supports without a private texture. No embedded images, new graph or unique atlas. Runtime reads each graph once; seven near draws/one skyline draw. Separate POSITION/NORMAL GPU streams and equal CPU/GPU byte accounting. Neutral daylight/reflected sky/shadows inspected. Glass/reflection/roof optics remain approximations.",
-    "captureReportHash": "sha256:8ede9a4fed7dfd745f69f6a98f16c9262849cb680b479e46ca2e90b45daeb3d4"
+    "notes": "Six existing shared 256px graphs: concrete_plain, metal_painted, metal_stainless_beadblasted, metal_standing_seam, fabric_canvas and window_grid. One untextured PBR glass material with 18% alpha serves the south atrium and clear leading roof strip, preserving actual visible supports without a private texture. No embedded images, new graph or unique atlas. Runtime reads each graph once; seven near draws/one skyline draw. Separate POSITION/NORMAL GPU streams and equal CPU/GPU byte accounting. Neutral daylight/reflected sky/shadows inspected. Glass/reflection/roof optics remain approximations. The shared window_grid graph changed after the original review. Eight new shared-material views confirm the revised glazing in the existing geographic placement.",
+    "captureReportHash": "sha256:3a7c853d21162ecf9f1347f53daa573ce20c6c52eb64da2e10c192025ae1bc4d",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:3e49edbf2e5bfc556a0c11dbba3915575baa03b0f2f984830b06c9daae913ba2"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:336674df41a7db06f88816d5397a3f74ab2565bac5ad2ce1156ea8e9254f8af7"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:4370139b6b0903948017565e4bf9568230c061bd8e50b89346f7a729003ab7ba"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:deb4f1d1aa60aa08a0c580e866e7403be659cfb43877954138a891406196a24d"
+      },
+      {
+        "path": "shots/shared/south-transparent-atrium-and-two-branching-trees.png",
+        "hash": "sha256:c7705891a014178b3b78e2f500e1195ae3f43ae80c9341cd98a74910c5673c07"
+      },
+      {
+        "path": "shots/shared/single-south-bank-and-multi-tier-side-stands.png",
+        "hash": "sha256:63a9c7a4e5409ade11301609fb47573d3c5af565e151b9e2f162704eeb198c02"
+      },
+      {
+        "path": "shots/shared/projecting-silver-panels-and-rounded-crown.png",
+        "hash": "sha256:4e75073057792496de0c9cac077d0b025fb9d4e0dd86add673f590d5cfbe371c"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:ebb0bb66991950092a32f1c3b88248a937e44e2f52c8efe58ce4f74d2d6898ab"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.metal_stainless_beadblasted": {
+        "path": "materials/metal_stainless_beadblasted.matgraph.json",
+        "hash": "sha256:49b7f5eb3d09b1b8c460f88ecf491ed3884e60717beee0ab540fe78800054aff"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

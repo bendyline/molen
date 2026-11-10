@@ -32,8 +32,69 @@
       "shots/shared/solar-wing-and-transparent-leading-strip.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Six existing256px graphs: concrete_plain, metal_painted, metal_perforated_square, metal_standing_seam, fabric_canvas and window_grid. One image-free double-sided PBR translucent material with55percent alpha serves the leading strip. Shared mesh uses recessed backing; solar panels reuse tinted shared glazing. No new graph, embedded image or unique atlas. Seven near draws/one skyline draw; each graph read once; separate POSITION/NORMAL streams with equal CPU/GPU accounting. Surface transmission/reflection remains approximate.",
-    "captureReportHash": "sha256:2a0e9fd5d2e55bf57e14d8c7b46c22a6a139a79ac17a6fdbfab70b0d887857a4"
+    "notes": "Six existing256px graphs: concrete_plain, metal_painted, metal_perforated_square, metal_standing_seam, fabric_canvas and window_grid. One image-free double-sided PBR translucent material with55percent alpha serves the leading strip. Shared mesh uses recessed backing; solar panels reuse tinted shared glazing. No new graph, embedded image or unique atlas. Seven near draws/one skyline draw; each graph read once; separate POSITION/NORMAL streams with equal CPU/GPU accounting. Surface transmission/reflection remains approximate. The shared window_grid graph changed after the original review. Eight new shared-material views confirm the revised glazing in the existing geographic placement.",
+    "captureReportHash": "sha256:329fb44190472b04a442f4b0a99bc2ef106d2a35b7e0f73d9dc9836fef6a594a",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:e648d1840ce62645a3b27843162b2b11fe5da1dd70dc7b4cbaeebcbdcd1fd679"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:f35a554031dac877402b428fc7c4e416a322d6d08f2115638cb6bd7c5919f953"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:12b92a6ac1de1f9afb6bc11a45e8a0e8bcd8921090641299d04c6393248842e9"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:c1a8af259e34fed9a0a4749a8f3c2eb588d789558f5af0a812d175c3b5ca6fd3"
+      },
+      {
+        "path": "shots/shared/screened-facade-and-base-entrance.png",
+        "hash": "sha256:bb9794edd91c9d5273601acab03eb31d2ba97ccdf57519d028498928b40b0bc6"
+      },
+      {
+        "path": "shots/shared/two-tiers-and-south-hospitality.png",
+        "hash": "sha256:60edf5acea99dee5509dbb12214277c0035945d07e91f4351e480662785ef772"
+      },
+      {
+        "path": "shots/shared/solar-wing-and-transparent-leading-strip.png",
+        "hash": "sha256:23c32318a34a751b327c86ab66ee2534c1d05c72878758c06c8134286a73fe2e"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:5bb6730b88d637aa6b8d4d17194715e3517a017a676029c72f2666e02be4db4a"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.metal_perforated_square": {
+        "path": "materials/metal_perforated_square.matgraph.json",
+        "hash": "sha256:51722a6e28bb79b7b7b3274fc9ccf0a5d341ee28b332627005d7aac3d6d1f937"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

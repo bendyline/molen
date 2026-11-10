@@ -1,0 +1,64 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.uzunkopru_bridge",
+  "inputHash": "sha256:a328c08e9563df1f41f5044245d5f7d89f2283db18cf8005d815a9cf8589cc92",
+  "sourceHash": "sha256:0fe1c9278f87d9d8e5544a0d7ef2fa32184a1a9e484621283ae1553e58818ba1",
+  "runtimeHash": "sha256:55cefa1ca17dabb8bab8325aeeffa45ab02098a4c050c787b587682ee7c0eef9",
+  "fixtureHash": "sha256:020ee6314134d087d08451a575ae52a76ef4c907c28429cf1306242402ec0d3b",
+  "placementHash": "sha256:277d8e8d36174784c16fe18dddc9363a2e4f8a5f4cfa8a9655ddcf9ddf013b94",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_ashlar": {
+      "path": "materials/stone_ashlar.matgraph.json",
+      "hash": "sha256:f5692cbd995206b1475a803b027d181a664bd3a20df51db34667f205abce8093"
+    },
+    "molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-bridge.png",
+      "hash": "sha256:a917f523dcc43d6c865382ef9af0ca01936263c313e2213890743526baa07edc",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -130,
+          234,
+          934
+        ],
+        "lookAt": [
+          170,
+          6,
+          -8
+        ],
+        "fov": 53,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.45,
+          1,
+          0.64
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "uzunkopru.bridge",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The same ashlar and limestone graphs serve all tiers, with three slot bindings. Each graph resolves once per viewer session. All levels use metric UVs and linear vertex colors."
+}

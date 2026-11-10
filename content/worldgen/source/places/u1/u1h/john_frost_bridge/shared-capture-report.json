@@ -1,0 +1,69 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.john_frost_bridge",
+  "inputHash": "sha256:c14a8cc481ae0ca1452ce77cc47fd1f0fcf838892f03712879d27d957077b042",
+  "sourceHash": "sha256:386d11daadb3ee18623a3857092003e111874f7f1445e28d05213d0f6331030a",
+  "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+  "fixtureHash": "sha256:65c1f9e4de22ad2f2f72df8dd2eecf6da06aa4974e75497e3fbb34e7dfdc6c37",
+  "placementHash": "sha256:0d0ca396ffc387abdc3d93416f70f301d261e3e25fad3de5c42c1721d4ab694f",
+  "materialGraphs": {
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-bridge.png",
+      "hash": "sha256:d5e6756bd457e929231b78fa177615044030a690af4cf974e90c8f259d8b41b7",
+      "camera": {
+        "name": "main-street-noon-high",
+        "mediumName": "street-noon-high",
+        "group": "main",
+        "position": [
+          67,
+          25,
+          120
+        ],
+        "lookAt": [
+          71,
+          16,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "john.frost.bridge",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "liveSupportGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Each tier loads concrete_plain, metal_painted and stone_granite once each. All tiers use metric UVs without embedded images."
+}

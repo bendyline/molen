@@ -1,0 +1,484 @@
+{
+  "planId": "palazzo_farnese",
+  "id": "palazzo_farnese",
+  "assetId": "molen.worldgen.structure.palazzo_farnese",
+  "title": "Palazzo Farnese",
+  "category": "palace",
+  "quality": "detailed",
+  "wikidataId": "Q848386",
+  "referenceCoordinate": {
+    "longitude": 12.470681994,
+    "latitude": 41.894652304
+  },
+  "visualBrief": "Rome’s three-storey Renaissance palace with thirteen piazza-facing bays, an arched portal and balcony, alternating piano-nobile pediments, a projecting travertine cornice, an open arcaded court, and the Via Giulia garden loggia.",
+  "size": [
+    79.585693359375,
+    35.6200008392334,
+    63.42063903808594
+  ],
+  "actualBounds": {
+    "min": [
+      -39.79264450073242,
+      -4,
+      -31.704639434814453
+    ],
+    "max": [
+      39.79304885864258,
+      31.6200008392334,
+      31.715999603271484
+    ]
+  },
+  "nativeAxes": "+X northeast toward Piazza Farnese and its principal portal. +Z southeast toward Via dei Farnesi. The garden and Via Giulia lie behind the southwest elevation.",
+  "sourceFacts": {
+    "retainedLengthMeters": 77.545,
+    "retainedWidthMeters": 61.393,
+    "reportedHeightMeters": 29,
+    "modeledFootprint": [
+      [
+        -38.772,
+        -30.457
+      ],
+      [
+        38.772,
+        -30.684
+      ],
+      [
+        38.476,
+        30.696
+      ],
+      [
+        -38.592,
+        30.696
+      ]
+    ],
+    "courtyard": [
+      [
+        -13.145,
+        -11.906
+      ],
+      [
+        12.033,
+        -12.269
+      ],
+      [
+        12.394,
+        12.925
+      ],
+      [
+        -12.784,
+        13.288
+      ]
+    ],
+    "nativeBuildingFeature": 52776558155537,
+    "georeferencing": "+X northeast toward Piazza Farnese and its principal portal. +Z southeast toward Via dei Farnesi. The garden and Via Giulia lie behind the southwest elevation."
+  },
+  "referencePages": [
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      12.470681994,
+      41.894652304
+    ],
+    "heading": 0.806996158621,
+    "elevationMode": "sea-level",
+    "orientationPolicy": "approximate-visualization",
+    "elevationMeters": 32,
+    "groundContactReviewed": true,
+    "groundContactBasis": "A 32 m absolute datum and the original Terrarium field seat the model. The piazza portal starts at 33.7 m. The exposed garden-side base starts lower to follow the original grade. Foundations extend into native terrain and the court stays open.",
+    "groundModelY": 0,
+    "replaceFootprint": true,
+    "buildingCutout": {
+      "outline": [
+        [
+          -38.71053173526147,
+          -20.546334479854607
+        ],
+        [
+          -38.6538212869258,
+          -30.448459138738677
+        ],
+        [
+          38.69110548151634,
+          -30.66393712681325
+        ],
+        [
+          38.4640064384173,
+          30.79464175364911
+        ],
+        [
+          -38.56012756861325,
+          30.702893050910816
+        ]
+      ],
+      "minimumCoverage": 0.97,
+      "basis": "Exact current Protomaps OSM relation 22289 building perimeter. The coverage threshold protects the separately mapped neighboring buildings."
+    },
+    "bounds": [
+      12.470069206018886,
+      41.89419396574241,
+      12.471294781981113,
+      41.895110642257585
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b08d11b5f0a78e3ba0f78005c3819ab8f5f975a6a49e85efefbec816e3f67abe",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://www.openstreetmap.org/relation/22289",
+    "wikidataId": "Q848386",
+    "notes": "Rome’s three-storey Renaissance palace with thirteen piazza-facing bays, an arched portal and balcony, alternating piano-nobile pediments, a projecting travertine cornice, an open arcaded court, and the Via Giulia garden loggia. A 32 m absolute datum and the original Terrarium field seat the model. The piazza portal starts at 33.7 m. The exposed garden-side base starts lower to follow the original grade. Foundations extend into native terrain and the court stays open."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Six shared material graphs with linear palette tints and metric UVs. No private textures.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_travertine",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_punched",
+      "slot": "window",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/sr2/palazzo_farnese/models/palace-model.mjs",
+    "export": "buildPalaceSkyline",
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_longformat"
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_travertine"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat"
+      },
+      "frame": {
+        "slot": "door",
+        "graph": "wood_plain"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_punched"
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_limestone"
+      }
+    },
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPalaceDistrict",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat"
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_travertine"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat"
+          },
+          "frame": {
+            "slot": "door",
+            "graph": "wood_plain"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone"
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "street": {
+        "export": "buildPalaceStreet",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat"
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_travertine"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat"
+          },
+          "frame": {
+            "slot": "door",
+            "graph": "wood_plain"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone"
+          }
+        },
+        "errorMeters": 0.25
+      },
+      "closeup": {
+        "export": "buildPalaceCloseup",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat"
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_travertine"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat"
+          },
+          "frame": {
+            "slot": "door",
+            "graph": "wood_plain"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone"
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        14,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "palazzo_farnese-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        103,
+        49,
+        76
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "palazzo_farnese-district",
+      "reviewLod": "district",
+      "position": [
+        103,
+        49,
+        76
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "palazzo_farnese-street",
+      "reviewLod": "street",
+      "position": [
+        103,
+        49,
+        76
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "palazzo_farnese-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        103,
+        49,
+        76
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    }
+  ],
+  "limitations": [
+    "Ordinary photographs and standard PMTiles determine the exterior and courtyard. Roof slopes, rear passage grades and decorative proportions are visual approximations.",
+    "The embassy interior and detached garden structures are outside the model. The front entrance is shown closed."
+  ],
+  "qaCameras": [
+    {
+      "name": "thirteen-bay-piazza-front",
+      "position": [
+        88,
+        16,
+        0
+      ],
+      "lookAt": [
+        36,
+        13,
+        0
+      ],
+      "fov": 62
+    },
+    {
+      "name": "central-portal-and-balcony",
+      "position": [
+        64,
+        9,
+        9
+      ],
+      "lookAt": [
+        39,
+        11,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "open-court-and-roof",
+      "position": [
+        51,
+        102,
+        54
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "inner-court-arcades",
+      "position": [
+        6,
+        4.3,
+        7
+      ],
+      "lookAt": [
+        -10,
+        10,
+        -3
+      ],
+      "fov": 61
+    },
+    {
+      "name": "inner-court-pediments",
+      "position": [
+        -7,
+        9,
+        -6
+      ],
+      "lookAt": [
+        11,
+        12,
+        5
+      ],
+      "fov": 58
+    },
+    {
+      "name": "garden-loggia",
+      "position": [
+        -78,
+        19,
+        -13
+      ],
+      "lookAt": [
+        -36,
+        14,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "side-wall-quoins-and-cornice",
+      "position": [
+        47,
+        27,
+        -62
+      ],
+      "lookAt": [
+        26,
+        19,
+        -29
+      ],
+      "fov": 52
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 26142,
+    "vertices": 51972,
+    "materials": 6,
+    "bytes": 2188540,
+    "sha256": "sha256:cd15380aa9b1d34b69de144b904748aed815846a3af2984f62e1d7635e13f45f"
+  }
+}

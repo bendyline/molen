@@ -32,8 +32,69 @@
       "shots/shared/lehman-wing-and-rear-gallery-roofs.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Six existing256px graphs: stone_limestone, stone_limestone_raw, brick, metal_painted, metal_standing_seam and window_grid. Six merged near runtime draws/one skyline draw, no new graph/private atlas/embedded images. Metric UVs, linear palette tints, separate POSITION/NORMAL streams and equal CPU/GPU accounting. Each graph read once in shared/native contexts. Opaque shared glazing approximates architectural reflections; portable image-free fallback panes are pale and do not demonstrate shared-texture appearance.",
-    "captureReportHash": "sha256:fefc2fd75c57729b6da6edb861607968a47cb1dbdfd0dfd69534b1ef0fc78f5b"
+    "notes": "Six existing256px graphs: stone_limestone, stone_limestone_raw, brick, metal_painted, metal_standing_seam and window_grid. Six merged near runtime draws/one skyline draw, no new graph/private atlas/embedded images. Metric UVs, linear palette tints, separate POSITION/NORMAL streams and equal CPU/GPU accounting. Each graph read once in shared/native contexts. Opaque shared glazing approximates architectural reflections; portable image-free fallback panes are pale and do not demonstrate shared-texture appearance. The shared window_grid graph changed after the original review. Eight new shared-material views confirm the revised glazing in the existing geographic placement.",
+    "captureReportHash": "sha256:db5f0329bfccd592b1903571cc0b219921723604db481e8aae46191ca478ecf7",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:9759c36d5cd43b924fed6b12abae32c2257c191ea779981bfb08ee5b67c2bac8"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:91f3f2e5dbd66d595a064436776d63bbaf1f2e61223e96221e9f7b3b526a636b"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:195d788f727291cb6738dfb5a63b0d45fa34c38e57fe291f9c865da3272eb7a7"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:0b591ba22f164d2b9b01051a05cb97e3449ac8d179e4a40c670b4e72e65b7599"
+      },
+      {
+        "path": "shots/shared/fifth-avenue-arches-columns-and-entry-stair.png",
+        "hash": "sha256:efa85e88f7f58529d57192351de69ad17a3a56a2ea3b48cfcbad631bd3411442"
+      },
+      {
+        "path": "shots/shared/park-side-dendur-glass-and-roof.png",
+        "hash": "sha256:1fbfedf0187eca697ae1686c0168b08838395fcfca901576d5980a7ee9b73b48"
+      },
+      {
+        "path": "shots/shared/lehman-wing-and-rear-gallery-roofs.png",
+        "hash": "sha256:4058132bd20aa6afab7915e05af0aa175f2f08dea26e82701afcd1a52a8895b2"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:c45b18259eb0a06d6439d3329506d1f4634967e9d8b3bd32eeb06b3e1249d8c0"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone": {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

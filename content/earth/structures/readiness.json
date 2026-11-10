@@ -5,19 +5,19 @@
   "counts": {
     "candidates": 1000,
     "sourceFacts": 999,
-    "sourceModels": 837,
-    "runtimeModels": 837,
-    "mapAxes": 330,
+    "sourceModels": 854,
+    "runtimeModels": 854,
+    "mapAxes": 313,
     "identityReview": 20,
-    "visualReviews": 814,
-    "sharedSurfaceReviews": 753,
-    "previewPlacements": 817,
-    "authoredAssets": 911,
-    "importedAssets": 911,
-    "placedAssets": 883,
+    "visualReviews": 831,
+    "sharedSurfaceReviews": 812,
+    "previewPlacements": 834,
+    "authoredAssets": 928,
+    "importedAssets": 928,
+    "placedAssets": 900,
     "activeCategoryModels": 0,
-    "fidelityReviews": 755,
-    "ready": 695
+    "fidelityReviews": 772,
+    "ready": 754
   },
   "candidates": [
     {
@@ -6826,15 +6826,8 @@
       "wikidataId": "Q6053470",
       "title": "Uzunköprü Bridge",
       "asset": "molen.worldgen.structure.uzunkopru_bridge",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -6843,45 +6836,72 @@
         "lengths": 1
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:a328c08e9563df1f41f5044245d5f7d89f2283db18cf8005d815a9cf8589cc92",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/sx/sx6/uzunkopru_bridge/model.glb",
+          "triangles": 24256
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [26.676989681, 41.275896237],
         "heading": -0.987953243837,
-        "mappedFeatureIds": ["way/27705333"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/map-frame.json",
+          "hash": "sha256:829a2ea0d5da53188c2054d5b738c7b4d35839efe8e970c894503ffc4930b3a3",
+          "sourceUrl": "https://www.openstreetmap.org/way/27705333"
+        },
+        "verified": true,
+        "activePlacement": "uzunkopru.bridge",
+        "catalogPlacement": "uzunkopru.bridge",
+        "placementStatus": "preview",
+        "placementHash": "sha256:277d8e8d36174784c16fe18dddc9363a2e4f8a5f4cfa8a9655ddcf9ddf013b94"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/preview.png",
+          "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/shots/northwest-abutment-and-first-bays.png",
+          "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/shots/parapets-and-deck-at-the-river.png",
+          "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/shots/river-bend-and-large-arches.png",
+          "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/shots/shared/native-bridge.png",
+          "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/shots/stone-vaults-over-the-floodplain.png",
+          "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/shots/through-the-central-river-openings.png",
+          "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/shots/town-approach-and-landing.png",
+          "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/shots/town-side-causeway-curve.png",
+          "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/site-preview.png",
+          "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "The full visible Uzunköprü crossing with 164 stone arch bays, larger river openings, pointed cutwaters, low parapets and fitted northwest and southeastern landings. The 1,264.81 m length follows the combined PMTiles centerline. Edirne lists a surviving length of 1,272 m and 164 standing arches. The older 1,392 m and 174-arch figures are retained separately. The 164-bay schedule approximates individual spacings and arch profiles from the ordinary aerial and bank views. The current model covers the visible exterior. It leaves the native river, floodplain and nearby modern roads in place. The skyline preserves the four river openings and selected floodplain arch silhouettes. District shows 84 physical vaults. Street and close-up retain all 164. The model does not express operational access or restoration dates. Physical-device timings are unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/sx/sx6/uzunkopru_bridge/shots/shared/native-bridge.png"
+        ]
       }
     },
     {
@@ -6993,15 +7013,8 @@
       "wikidataId": "Q6464357",
       "title": "La Constitución de 1812 Bridge",
       "asset": "molen.worldgen.structure.la_constitucion_de_1812_bridge",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -7010,45 +7023,72 @@
         "lengths": 1
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:c8d5bfd11b716c8af26187feaf8d2fd22156a2184f362f57d10d48192f4f073e",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/ey/ey7/la_constitucion_de_1812_bridge/model.glb",
+          "triangles": 40348
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [-6.257087352, 36.523921083],
         "heading": 0.147395088353,
-        "mappedFeatureIds": ["way/1235478924"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/map-frame.json",
+          "hash": "sha256:bf0d2c9d0ea2e7e11d8dddc908c118aa7fd6c6b3d237c9e42eeff878e2725bd8",
+          "sourceUrl": "https://www.openstreetmap.org/way/1235478924"
+        },
+        "verified": true,
+        "activePlacement": "la.constitucion.de.1812.bridge",
+        "catalogPlacement": "la.constitucion.de.1812.bridge",
+        "placementStatus": "preview",
+        "placementHash": "sha256:6fbc89fb5cadc48b7df0b8791f3e7f0c95a8a4b39f9f607076c6f5596586f652"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/preview.png",
+          "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/shots/cadiz-landing.png",
+          "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/shots/harbour-side-tower-and-viaduct.png",
+          "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/shots/ocean-tower-fork-and-pier.png",
+          "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/shots/puerto-real-landing.png",
+          "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/shots/removable-span-and-approach-piers.png",
+          "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/shots/roadway-between-the-cable-fans.png",
+          "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/shots/shared/native-bridge.png",
+          "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/shots/twin-towers-and-navigation-span.png",
+          "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/site-preview.png",
+          "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "The 3.09 km Cádiz Bay crossing has two forked concrete towers, four stay fans per tower, the removable deck in place, a shallow steel box girder and both approach viaducts. Aerial control and the retained PMTiles footprint determine the alignment. Global elevation controls the abutment contacts and visible foundations. The intermediate vertical alignment and pier spacing are exterior visualization estimates. The removable span is modeled in its installed position. The catalog mesh does not simulate span removal, traffic rules, structural behavior, or vessel navigation. The Puerto Real service roads remain in the native scene. The standard elevation grid does not describe their underpass clearance or detailed abutment grading. Physical-device timings are unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/shots/shared/native-bridge.png"
+        ]
       }
     },
     {
@@ -8282,15 +8322,8 @@
       "wikidataId": "Q61370117",
       "title": "Pingtang Bridge",
       "asset": "molen.worldgen.structure.pingtang_bridge",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -8299,45 +8332,72 @@
         "lengths": 1
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:d65e6f9c1f50e481c86f9ddbe014b42d179a784635b830de6e3b82a262ece443",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/wk/wks/pingtang_bridge/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/wk/wks/pingtang_bridge/model.glb",
+          "triangles": 36498
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [107.062265923, 25.786113806],
         "heading": 0.212316557495,
-        "mappedFeatureIds": ["way/667587311"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/wk/wks/pingtang_bridge/map-frame.json",
+          "hash": "sha256:02f619361ee8add743f16fc85ed61e5b8416efcf3e75b5bc3f20ba4c2679049e",
+          "sourceUrl": "https://www.openstreetmap.org/way/667587311"
+        },
+        "verified": true,
+        "activePlacement": "pingtang.bridge",
+        "catalogPlacement": "pingtang.bridge",
+        "placementStatus": "preview",
+        "placementHash": "sha256:72052bf39c00038b7e59f5f69a961caa78c82a9b603269f36fcbffccc04d0edf"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/wk/wks/pingtang_bridge/preview.png",
+          "content/worldgen/source/places/wk/wks/pingtang_bridge/shots/central-pylon-foot-and-blue-stem.png",
+          "content/worldgen/source/places/wk/wks/pingtang_bridge/shots/expressway-and-cable-sockets.png",
+          "content/worldgen/source/places/wk/wks/pingtang_bridge/shots/northeast-approach-trestles.png",
+          "content/worldgen/source/places/wk/wks/pingtang_bridge/shots/river-and-entire-deck-from-north.png",
+          "content/worldgen/source/places/wk/wks/pingtang_bridge/shots/shared/native-bridge.png",
+          "content/worldgen/source/places/wk/wks/pingtang_bridge/shots/split-pylon-crown-and-fans.png",
+          "content/worldgen/source/places/wk/wks/pingtang_bridge/shots/three-pylons-and-two-cable-planes.png",
+          "content/worldgen/source/places/wk/wks/pingtang_bridge/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/wk/wks/pingtang_bridge/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/wk/wks/pingtang_bridge/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/wk/wks/pingtang_bridge/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/wk/wks/pingtang_bridge/shots/west-twin-tunnel-mouths.png",
+          "content/worldgen/source/places/wk/wks/pingtang_bridge/site-preview.png",
+          "content/worldgen/source/places/wk/wks/pingtang_bridge/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Pingtang Bridge with three white-and-blue split-head pylons, paired cable planes, a 2.1 km divided deck, the approach trestles and the two southwest S62 tunnel mouths. Pylon stations follow visible aerial base and shadow traces. Pylon leg profiles, stay counts and roadway fittings are photo-based approximations. The exterior model includes both tunnel mouths and 20 m of recessed lining capped in shadow. The native S62 tunnel paths continue below terrain. A local opening fits only the portal mouths to the coarse hill. The current map gives the carriageway endpoints and a 2,124.51 m axis envelope. The retained 1,116.03 m bridge polygon is partial. The 2,135 m reference length is recorded separately. Physical-device timings are unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/wk/wks/pingtang_bridge/shots/shared/native-bridge.png"
+        ]
       }
     },
     {
@@ -9691,15 +9751,8 @@
       "wikidataId": "Q3397701",
       "title": "Ponte Amerigo Vespucci",
       "asset": "molen.worldgen.structure.ponte_amerigo_vespucci",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -9708,45 +9761,70 @@
         "lengths": 1
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:9514461923fe5d0e935680e184838626d020700100d1e1fbbe3e8bb3fe6d8f3a",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/sp/spz/ponte_amerigo_vespucci/model.glb",
+          "triangles": 23576
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [11.24294731, 43.771940841],
         "heading": 0.983891537774,
-        "mappedFeatureIds": ["way/168134458"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/map-frame.json",
+          "hash": "sha256:7e37a32c4f25b46a5cecf62ed5a11e35b8b454d8d531c2343aedbf83385dfb56",
+          "sourceUrl": "https://www.openstreetmap.org/way/168134458"
+        },
+        "verified": true,
+        "activePlacement": "ponte.amerigo.vespucci",
+        "catalogPlacement": "ponte.amerigo.vespucci",
+        "placementStatus": "preview",
+        "placementHash": "sha256:d1ac206e394b0522e93f53b54cb58c5b041adfe22c886d0d35745e23d702dc47"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/preview.png",
+          "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/shots/lower-bank-path.png",
+          "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/shots/northeast-landing.png",
+          "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/shots/pier-cutwater.png",
+          "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/shots/river-side-fascia.png",
+          "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/shots/shared/native-bridge.png",
+          "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/shots/southwest-sidewalk.png",
+          "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/site-preview.png",
+          "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Complete three-span Arno crossing with a shallow haunched concrete deck, paired skewed masonry piers, cutwaters, abutments, raised sidewalks, and open green railings. The 163.187 m mapped envelope locates the crossing and the four projecting pier noses. The reported 22.5 m width sets the main deck. Photos guide the shallow concrete haunches, masonry dressing, and green railings. The coarse Terrarium grid undersamples the elevated quay roads and yields steep approach support faces. Deck grades, pier foundations, the southwest sidewalk flare, and the northeast lane plate are visual fit decisions. Physical device performance remains unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/shots/shared/native-bridge.png"
+        ]
       }
     },
     {
@@ -10775,15 +10853,8 @@
       "wikidataId": "Q2282230",
       "title": "River Kwai bridge",
       "asset": "molen.worldgen.structure.river_kwai_bridge",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -10792,45 +10863,70 @@
         "lengths": 1
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:6a40753b1796199b379088754465b6fe2bfb1808b97e06072d6dbefd48494ee4",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/w4/w4q/river_kwai_bridge/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/w4/w4q/river_kwai_bridge/model.glb",
+          "triangles": 28588
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [99.503460803, 14.040409573],
         "heading": 1.111249203502,
-        "mappedFeatureIds": ["way/965057705"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/w4/w4q/river_kwai_bridge/map-frame.json",
+          "hash": "sha256:92fd88df04eab464f858083e7841bbaf35308384e2935f70363996a69482c5a0",
+          "sourceUrl": "https://www.openstreetmap.org/way/965057705"
+        },
+        "verified": true,
+        "activePlacement": "river.kwai.bridge",
+        "catalogPlacement": "river.kwai.bridge",
+        "placementStatus": "preview",
+        "placementHash": "sha256:d2976dd9d54e43e3eef1730df534f9b0361ce4466328c08dd2af97a8ba0e2a5b"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/w4/w4q/river_kwai_bridge/preview.png",
+          "content/worldgen/source/places/w4/w4q/river_kwai_bridge/shots/curved-truss-web.png",
+          "content/worldgen/source/places/w4/w4q/river_kwai_bridge/shots/northeast-landing.png",
+          "content/worldgen/source/places/w4/w4q/river_kwai_bridge/shots/rail-and-refuge-walkway.png",
+          "content/worldgen/source/places/w4/w4q/river_kwai_bridge/shots/river-truss-profile.png",
+          "content/worldgen/source/places/w4/w4q/river_kwai_bridge/shots/shared/native-bridge.png",
+          "content/worldgen/source/places/w4/w4q/river_kwai_bridge/shots/southwest-landing.png",
+          "content/worldgen/source/places/w4/w4q/river_kwai_bridge/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/w4/w4q/river_kwai_bridge/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/w4/w4q/river_kwai_bridge/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/w4/w4q/river_kwai_bridge/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/w4/w4q/river_kwai_bridge/site-preview.png",
+          "content/worldgen/source/places/w4/w4q/river_kwai_bridge/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Kanchanaburi railway bridge with open black curved trusses, two angular replacement spans, flared concrete piers, a single meter-gauge track, narrow walking plates and pier refuge bays. The mapped 321.369 m outline and attributed railway establish the signed frame. Photos guide truss spacing, pier stations, and member proportions. Landing lips adapt the model to the viewer ballast bed. The northeast approach rises 0.973 m from the join reference within 8 m on the standard elevation grid. The underlying railway grade and river levels remain approximate. This review covers rendered fit and clearance. Physical-device timings remain unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/w4/w4q/river_kwai_bridge/shots/shared/native-bridge.png"
+        ]
       }
     },
     {
@@ -12146,15 +12242,8 @@
       "wikidataId": "Q2692477",
       "title": "John Frost Bridge",
       "asset": "molen.worldgen.structure.john_frost_bridge",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -12163,45 +12252,70 @@
         "lengths": 1
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:c14a8cc481ae0ca1452ce77cc47fd1f0fcf838892f03712879d27d957077b042",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/u1/u1h/john_frost_bridge/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/u1/u1h/john_frost_bridge/model.glb",
+          "triangles": 15916
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [5.911140932, 51.974305698],
         "heading": 1.033427678263,
-        "mappedFeatureIds": ["way/595322843"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/u1/u1h/john_frost_bridge/map-frame.json",
+          "hash": "sha256:04151c4419ba47a6751e6059e22232efd86f20c7b4c2bb76d8577c4e999f0583",
+          "sourceUrl": "https://www.openstreetmap.org/way/595322843"
+        },
+        "verified": true,
+        "activePlacement": "john.frost.bridge",
+        "catalogPlacement": "john.frost.bridge",
+        "placementStatus": "preview",
+        "placementHash": "sha256:0d0ca396ffc387abdc3d93416f70f301d261e3e25fad3de5c42c1721d4ab694f"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/u1/u1h/john_frost_bridge/preview.png",
+          "content/worldgen/source/places/u1/u1h/john_frost_bridge/shots/arch-and-river-piers.png",
+          "content/worldgen/source/places/u1/u1h/john_frost_bridge/shots/deck-arch-and-lanes.png",
+          "content/worldgen/source/places/u1/u1h/john_frost_bridge/shots/north-towers-and-stairs.png",
+          "content/worldgen/source/places/u1/u1h/john_frost_bridge/shots/northern-viaduct-and-landing.png",
+          "content/worldgen/source/places/u1/u1h/john_frost_bridge/shots/shared/native-bridge.png",
+          "content/worldgen/source/places/u1/u1h/john_frost_bridge/shots/south-viaduct-and-stairs.png",
+          "content/worldgen/source/places/u1/u1h/john_frost_bridge/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/u1/u1h/john_frost_bridge/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/u1/u1h/john_frost_bridge/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/u1/u1h/john_frost_bridge/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/u1/u1h/john_frost_bridge/site-preview.png",
+          "content/worldgen/source/places/u1/u1h/john_frost_bridge/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "The full Arnhem crossing with paired off-white steel arches, straight vertical hangers and overhead K bracing, two deep continuous girders, pointed granite river piers, red cycle decks, and the two tower-and-stair approaches. The 603.402 m mapped footprint and the traced roadway and cycleways locate the bridge. The heritage register sets the 120 m arch span, 17.5 m rise and flanking 50 m spans. The deck grade, approach pier spacing and visible stair profiles adapt the standard terrain and ordinary photographs. The north lower access retains its separately mapped connector. The lowest floodplain path has 2.268 m rendered headroom. The local fixture has tile edges and uses approximate terrain and river levels. Physical-device timings and surveyed clearances remain unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/u1/u1h/john_frost_bridge/shots/shared/native-bridge.png"
+        ]
       }
     },
     {
@@ -12273,15 +12387,8 @@
       "wikidataId": "Q2927205",
       "title": "Bryggebroen",
       "asset": "molen.worldgen.structure.bryggebroen",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -12290,45 +12397,70 @@
         "lengths": 1
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:b360abbf5a3483d09697644380ec152144acc99105c6bf3326cbb37ca58ce151",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/u3/u3b/bryggebroen/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/u3/u3b/bryggebroen/model.glb",
+          "triangles": 12206
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [12.566782026, 55.661506019],
         "heading": -0.423792669872,
-        "mappedFeatureIds": ["way/379073131"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/u3/u3b/bryggebroen/map-frame.json",
+          "hash": "sha256:a97e79d44afa623f0e61159cb25da6a86f971cf828690628f10797442bc725c1",
+          "sourceUrl": "https://www.openstreetmap.org/way/379073131"
+        },
+        "verified": true,
+        "activePlacement": "bryggebroen",
+        "catalogPlacement": "bryggebroen",
+        "placementStatus": "preview",
+        "placementHash": "sha256:8e7d3e1bb6c9318b364a01ff0e5b0be9f84a5d2128cf0919a42455cc1ba6a68b"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/u3/u3b/bryggebroen/preview.png",
+          "content/worldgen/source/places/u3/u3b/bryggebroen/shots/cycle-and-foot-decks.png",
+          "content/worldgen/source/places/u3/u3b/bryggebroen/shots/harbour-side.png",
+          "content/worldgen/source/places/u3/u3b/bryggebroen/shots/havneholmen-landing.png",
+          "content/worldgen/source/places/u3/u3b/bryggebroen/shots/islands-brygge-landing.png",
+          "content/worldgen/source/places/u3/u3b/bryggebroen/shots/shared/native-bridge.png",
+          "content/worldgen/source/places/u3/u3b/bryggebroen/shots/swing-bearing-and-fenders.png",
+          "content/worldgen/source/places/u3/u3b/bryggebroen/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/u3/u3b/bryggebroen/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/u3/u3b/bryggebroen/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/u3/u3b/bryggebroen/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/u3/u3b/bryggebroen/site-preview.png",
+          "content/worldgen/source/places/u3/u3b/bryggebroen/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Closed-position Copenhagen harbour swing bridge with a tapered white steel spine, separate walking and cycling lanes, cable railings, splayed pipe bents, a concrete swing bearing, signal posts, and the projecting rust-colored fender system. The mapped 190.968 m envelope and separate footway and cycleway traces locate the closed crossing. Deck grades and visible support, fender and pivot proportions come from ordinary exterior photos and standard Terrarium terrain. Fender freeboard is fitted to the native harbour water in the review. The ferry probes measure rendered clearance in the closed pose. Physical-device timings and surveyed navigation clearance remain unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/u3/u3b/bryggebroen/shots/shared/native-bridge.png"
+        ]
       }
     },
     {
@@ -12625,15 +12757,8 @@
       "wikidataId": "Q3396967",
       "title": "Foresthill Bridge",
       "asset": "molen.worldgen.structure.foresthill_bridge",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -12642,45 +12767,70 @@
         "lengths": 1
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:5340e6283b51584de713d78d5fe55a969726a4c452fc9711f5b13e28e0dd3e8f",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/9q/9qc/foresthill_bridge/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/9q/9qc/foresthill_bridge/model.glb",
+          "triangles": 36892
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [-121.038804962, 38.922359384],
         "heading": 0.136354310939,
-        "mappedFeatureIds": ["way/1101278091"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/9q/9qc/foresthill_bridge/map-frame.json",
+          "hash": "sha256:5c5961eef97b706713b20d8cf9765a0417a1e053a43fab045e8017f0a6172f55",
+          "sourceUrl": "https://www.openstreetmap.org/way/1101278091"
+        },
+        "verified": true,
+        "activePlacement": "foresthill.bridge",
+        "catalogPlacement": "foresthill.bridge",
+        "placementStatus": "preview",
+        "placementHash": "sha256:1796de3f74a455328312d7767930d1c1416c326b715dec3ad153c5b9cbf65a3d"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/9q/9qc/foresthill_bridge/preview.png",
+          "content/worldgen/source/places/9q/9qc/foresthill_bridge/shots/auburn-landing.png",
+          "content/worldgen/source/places/9q/9qc/foresthill_bridge/shots/cantilever-truss-and-east-pier.png",
+          "content/worldgen/source/places/9q/9qc/foresthill_bridge/shots/canyon-floor-and-cross-braces.png",
+          "content/worldgen/source/places/9q/9qc/foresthill_bridge/shots/foresthill-landing.png",
+          "content/worldgen/source/places/9q/9qc/foresthill_bridge/shots/roadway-sidewalk-and-screens.png",
+          "content/worldgen/source/places/9q/9qc/foresthill_bridge/shots/shared/native-bridge.png",
+          "content/worldgen/source/places/9q/9qc/foresthill_bridge/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/9q/9qc/foresthill_bridge/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/9q/9qc/foresthill_bridge/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/9q/9qc/foresthill_bridge/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/9q/9qc/foresthill_bridge/site-preview.png",
+          "content/worldgen/source/places/9q/9qc/foresthill_bridge/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Full Foresthill Road canyon crossing with a green variable-depth cantilever deck truss, two tapered concrete piers, separated carriageways, sidewalk ledges, rail screens and canyon abutments. The retained 747.54 m bridge outline and the two Foresthill Road carriageways set the signed frame. Photos guide the pier and truss profiles. The 231.4 m source datum is the lower footing elevation. The original standard elevation field and mapped trails determine visual fit. The largest approach difference is 0.278 m at the west approach. The PMTiles input supplies a river line at this location and the viewer renders its native water strip. River clearance is a render measurement. Physical-device timings remain unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/9q/9qc/foresthill_bridge/shots/shared/native-bridge.png"
+        ]
       }
     },
     {
@@ -13072,15 +13222,8 @@
       "wikidataId": "Q4355536",
       "title": "Kosinj Bridge",
       "asset": "molen.worldgen.structure.kosinj_bridge",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -13089,45 +13232,70 @@
         "lengths": 1
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:41af87bf20c4dfc546c3dfe257a58d2c4e961ddfda728c1fba8f41cdaeb2a614",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/sr/srf/kosinj_bridge/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/sr/srf/kosinj_bridge/model.glb",
+          "triangles": 3808
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [15.2739977, 44.73511085],
         "heading": 1.406551380905,
-        "mappedFeatureIds": ["way/319542070"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/sr/srf/kosinj_bridge/map-frame.json",
+          "hash": "sha256:0c19f857ac785e5b3b7a1a04c7a29893dd694230b14b4447deaffd418e50a37b",
+          "sourceUrl": "https://www.openstreetmap.org/way/319542070"
+        },
+        "verified": true,
+        "activePlacement": "kosinj.bridge",
+        "catalogPlacement": "kosinj.bridge",
+        "placementStatus": "preview",
+        "placementHash": "sha256:ca9298275d3aed518989c481d14528b63c74f1df00011393f75484078703bd38"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/sr/srf/kosinj_bridge/preview.png",
+          "content/worldgen/source/places/sr/srf/kosinj_bridge/shots/arches-and-round-openings.png",
+          "content/worldgen/source/places/sr/srf/kosinj_bridge/shots/low-pier-plinth.png",
+          "content/worldgen/source/places/sr/srf/kosinj_bridge/shots/north-landing.png",
+          "content/worldgen/source/places/sr/srf/kosinj_bridge/shots/oculus-and-vault-stone.png",
+          "content/worldgen/source/places/sr/srf/kosinj_bridge/shots/shared/native-bridge.png",
+          "content/worldgen/source/places/sr/srf/kosinj_bridge/shots/south-landing.png",
+          "content/worldgen/source/places/sr/srf/kosinj_bridge/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/sr/srf/kosinj_bridge/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/sr/srf/kosinj_bridge/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/sr/srf/kosinj_bridge/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/sr/srf/kosinj_bridge/site-preview.png",
+          "content/worldgen/source/places/sr/srf/kosinj_bridge/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Lika River masonry bridge with three clear stone vaults, two round through-oculi, dressed voussoirs, low rounded pier plinths, plain coping and a narrow paved deck. The mapped 73.029 m outline and the attributed road set the signed frame. Vault spans and stone details follow ordinary photographs. The plinth caps in the three nearest tiers sit approximately 0.235 m above the native water at the sampled tips. The skyline tier simplifies the plinth profile. The standard terrain places the south approach below the deck and produces a steep support face. Heights and river clearance are visualization measurements. Physical-device timings remain unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/sr/srf/kosinj_bridge/shots/shared/native-bridge.png"
+        ]
       }
     },
     {
@@ -79877,8 +80045,8 @@
       "wikidataId": "Q204496",
       "title": "Millennium Stadium",
       "asset": "molen.worldgen.structure.millennium_stadium",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -79971,8 +80139,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/gc/gcj/millennium_stadium/shots/shared/angle-0.png",
           "content/worldgen/source/places/gc/gcj/millennium_stadium/shots/shared/angle-1.png",
@@ -79990,8 +80158,8 @@
       "wikidataId": "Q958185",
       "title": "Castelão",
       "asset": "molen.worldgen.structure.castelao",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -80072,8 +80240,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/7p/7pk/castelao/shots/shared/angle-0.png",
           "content/worldgen/source/places/7p/7pk/castelao/shots/shared/angle-1.png",
@@ -80091,8 +80259,8 @@
       "wikidataId": "Q187042",
       "title": "Peter Mokaba Stadium",
       "asset": "molen.worldgen.structure.peter_mokaba_stadium",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -80173,8 +80341,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/ke/kes/peter_mokaba_stadium/shots/shared/angle-0.png",
           "content/worldgen/source/places/ke/kes/peter_mokaba_stadium/shots/shared/angle-1.png",
@@ -80293,8 +80461,8 @@
       "wikidataId": "Q181445",
       "title": "Nelson Mandela Bay Stadium",
       "asset": "molen.worldgen.structure.nelson_mandela_bay_stadium",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -80376,8 +80544,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/k9/k9f/nelson_mandela_bay_stadium/shots/shared/angle-0.png",
           "content/worldgen/source/places/k9/k9f/nelson_mandela_bay_stadium/shots/shared/angle-1.png",
@@ -80395,8 +80563,8 @@
       "wikidataId": "Q202762",
       "title": "Mestalla Stadium",
       "asset": "molen.worldgen.structure.mestalla_stadium",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -80482,8 +80650,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/ez/ezp/mestalla_stadium/shots/shared/angle-0.png",
           "content/worldgen/source/places/ez/ezp/mestalla_stadium/shots/shared/angle-1.png",
@@ -80501,8 +80669,8 @@
       "wikidataId": "Q4439075",
       "title": "Nizhny Novgorod Stadium",
       "asset": "molen.worldgen.structure.nizhny_novgorod_stadium",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -80583,8 +80751,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/uf/ufp/nizhny_novgorod_stadium/shots/shared/angle-0.png",
           "content/worldgen/source/places/uf/ufp/nizhny_novgorod_stadium/shots/shared/angle-1.png",
@@ -80602,8 +80770,8 @@
       "wikidataId": "Q7875112",
       "title": "Estádio da Luz",
       "asset": "molen.worldgen.structure.estadio_da_luz",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -80688,8 +80856,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/ey/eyc/estadio_da_luz/shots/shared/angle-0.png",
           "content/worldgen/source/places/ey/eyc/estadio_da_luz/shots/shared/angle-1.png",
@@ -80707,8 +80875,8 @@
       "wikidataId": "Q1048774",
       "title": "Education City Stadium",
       "asset": "molen.worldgen.structure.education_city_stadium",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -80789,8 +80957,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/th/thk/education_city_stadium/shots/shared/angle-0.png",
           "content/worldgen/source/places/th/thk/education_city_stadium/shots/shared/angle-1.png",
@@ -80808,8 +80976,8 @@
       "wikidataId": "Q1050220",
       "title": "Al Bayt Stadium",
       "asset": "molen.worldgen.structure.al_bayt_stadium",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -80890,8 +81058,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/th/ths/al_bayt_stadium/shots/shared/angle-0.png",
           "content/worldgen/source/places/th/ths/al_bayt_stadium/shots/shared/angle-1.png",
@@ -80909,8 +81077,8 @@
       "wikidataId": "Q1050224",
       "title": "Estádio Beira-Rio",
       "asset": "molen.worldgen.structure.estadio_beira_rio",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -80995,8 +81163,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/6f/6fe/estadio_beira_rio/shots/shared/angle-0.png",
           "content/worldgen/source/places/6f/6fe/estadio_beira_rio/shots/shared/angle-1.png",
@@ -81014,8 +81182,8 @@
       "wikidataId": "Q187087",
       "title": "Mbombela Stadium",
       "asset": "molen.worldgen.structure.mbombela_stadium",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -81102,8 +81270,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/ke/kem/mbombela_stadium/shots/shared/angle-0.png",
           "content/worldgen/source/places/ke/kem/mbombela_stadium/shots/shared/angle-1.png",
@@ -81121,8 +81289,8 @@
       "wikidataId": "Q189337",
       "title": "Royal Bafokeng Stadium",
       "asset": "molen.worldgen.structure.royal_bafokeng_stadium",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -81207,8 +81375,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/ke/ke7/royal_bafokeng_stadium/shots/shared/angle-0.png",
           "content/worldgen/source/places/ke/ke7/royal_bafokeng_stadium/shots/shared/angle-1.png",
@@ -81226,8 +81394,8 @@
       "wikidataId": "Q330136",
       "title": "Melbourne Cricket Ground",
       "asset": "molen.worldgen.structure.melbourne_cricket_ground",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -81315,8 +81483,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/r1/r1r/melbourne_cricket_ground/shots/shared/angle-0.png",
           "content/worldgen/source/places/r1/r1r/melbourne_cricket_ground/shots/shared/angle-1.png",
@@ -81334,8 +81502,8 @@
       "wikidataId": "Q373355",
       "title": "Gillette Stadium",
       "asset": "molen.worldgen.structure.gillette_stadium",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -81421,8 +81589,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/dr/drm/gillette_stadium/shots/shared/angle-0.png",
           "content/worldgen/source/places/dr/drm/gillette_stadium/shots/shared/angle-1.png",
@@ -81440,8 +81608,8 @@
       "wikidataId": "Q401643",
       "title": "Ahmad bin Ali Stadium",
       "asset": "molen.worldgen.structure.ahmad_bin_ali_stadium",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -81542,8 +81710,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/th/ths/ahmad_bin_ali_stadium/shots/shared/angle-0.png",
           "content/worldgen/source/places/th/ths/ahmad_bin_ali_stadium/shots/shared/angle-1.png",
@@ -81561,8 +81729,8 @@
       "wikidataId": "Q641527",
       "title": "Arena Amazônia",
       "asset": "molen.worldgen.structure.arena_amazonia",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -81647,8 +81815,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/6x/6xm/arena_amazonia/shots/shared/angle-0.png",
           "content/worldgen/source/places/6x/6xm/arena_amazonia/shots/shared/angle-1.png",
@@ -81666,8 +81834,8 @@
       "wikidataId": "Q180479",
       "title": "Donbass Arena",
       "asset": "molen.worldgen.structure.donbass_arena",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -81753,8 +81921,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/ub/ubd/donbass_arena/shots/shared/angle-0.png",
           "content/worldgen/source/places/ub/ubd/donbass_arena/shots/shared/angle-1.png",
@@ -81772,8 +81940,8 @@
       "wikidataId": "Q55074091",
       "title": "Tottenham Hotspur Stadium",
       "asset": "molen.worldgen.structure.tottenham_hotspur_stadium",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -81858,8 +82026,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/gc/gcp/tottenham_hotspur_stadium/shots/shared/angle-0.png",
           "content/worldgen/source/places/gc/gcp/tottenham_hotspur_stadium/shots/shared/angle-1.png",
@@ -81877,8 +82045,8 @@
       "wikidataId": "Q194479",
       "title": "Stadion Wankdorf",
       "asset": "molen.worldgen.structure.stadion_wankdorf",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -81963,8 +82131,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/u0/u0m/stadion_wankdorf/shots/shared/angle-0.png",
           "content/worldgen/source/places/u0/u0m/stadion_wankdorf/shots/shared/angle-1.png",
@@ -81982,8 +82150,8 @@
       "wikidataId": "Q478000",
       "title": "Rajko Mitić Stadium",
       "asset": "molen.worldgen.structure.rajko_mitic_stadium",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -82068,8 +82236,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/sr/sry/rajko_mitic_stadium/shots/shared/angle-0.png",
           "content/worldgen/source/places/sr/sry/rajko_mitic_stadium/shots/shared/angle-1.png",
@@ -82087,8 +82255,8 @@
       "wikidataId": "Q498245",
       "title": "Estadio Centenario",
       "asset": "molen.worldgen.structure.estadio_centenario",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -82182,8 +82350,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/6c/6cb/estadio_centenario/shots/shared/angle-0.png",
           "content/worldgen/source/places/6c/6cb/estadio_centenario/shots/shared/angle-1.png",
@@ -82201,8 +82369,8 @@
       "wikidataId": "Q544553",
       "title": "Arrowhead Stadium",
       "asset": "molen.worldgen.structure.arrowhead_stadium",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -82294,8 +82462,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/9y/9yu/arrowhead_stadium/shots/shared/angle-0.png",
           "content/worldgen/source/places/9y/9yu/arrowhead_stadium/shots/shared/angle-1.png",
@@ -82313,8 +82481,8 @@
       "wikidataId": "Q6499360",
       "title": "Arena Fonte Nova",
       "asset": "molen.worldgen.structure.arena_fonte_nova",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -82400,8 +82568,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/7j/7js/arena_fonte_nova/shots/shared/angle-0.png",
           "content/worldgen/source/places/7j/7js/arena_fonte_nova/shots/shared/angle-1.png",
@@ -82419,8 +82587,8 @@
       "wikidataId": "Q723603",
       "title": "Stadion Maksimir",
       "asset": "molen.worldgen.structure.stadion_maksimir",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -82512,8 +82680,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/u2/u25/stadion_maksimir/shots/shared/angle-0.png",
           "content/worldgen/source/places/u2/u25/stadion_maksimir/shots/shared/angle-1.png",
@@ -82531,8 +82699,8 @@
       "wikidataId": "Q6373",
       "title": "British Museum",
       "asset": "molen.worldgen.structure.british_museum",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -82944,8 +83112,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/gc/gcp/british_museum/shots/shared/angle-0.png",
           "content/worldgen/source/places/gc/gcp/british_museum/shots/shared/angle-1.png",
@@ -85547,8 +85715,8 @@
       "wikidataId": "Q160236",
       "title": "Metropolitan Museum of Art",
       "asset": "molen.worldgen.structure.metropolitan_museum_of_art",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -85629,8 +85797,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/dr/dr5/metropolitan_museum_of_art/shots/shared/angle-0.png",
           "content/worldgen/source/places/dr/dr5/metropolitan_museum_of_art/shots/shared/angle-1.png",
@@ -89189,8 +89357,8 @@
       "wikidataId": "Q188740",
       "title": "Museum of Modern Art",
       "asset": "molen.worldgen.structure.museum_of_modern_art",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -89277,8 +89445,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/dr/dr5/museum_of_modern_art/shots/shared/angle-0.png",
           "content/worldgen/source/places/dr/dr5/museum_of_modern_art/shots/shared/angle-1.png",
@@ -90721,8 +90889,8 @@
       "wikidataId": "Q42049",
       "title": "Balmoral Castle",
       "asset": "molen.worldgen.structure.balmoral_castle",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -90810,8 +90978,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/gf/gfj/balmoral_castle/shots/shared/angle-0.png",
           "content/worldgen/source/places/gf/gfj/balmoral_castle/shots/shared/angle-1.png",
@@ -92025,8 +92193,8 @@
       "wikidataId": "Q183334",
       "title": "Tretyakov Gallery",
       "asset": "molen.worldgen.structure.tretyakov_gallery",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -92107,8 +92275,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/uc/ucf/tretyakov_gallery/shots/shared/angle-0.png",
           "content/worldgen/source/places/uc/ucf/tretyakov_gallery/shots/shared/angle-1.png",
@@ -92126,8 +92294,8 @@
       "wikidataId": "Q224124",
       "title": "Van Gogh Museum",
       "asset": "molen.worldgen.structure.van_gogh_museum",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -92221,8 +92389,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/u1/u17/van_gogh_museum/shots/shared/angle-0.png",
           "content/worldgen/source/places/u1/u17/van_gogh_museum/shots/shared/angle-1.png",
@@ -92350,8 +92518,8 @@
       "wikidataId": "Q23894294",
       "title": "Museum of Philistine Culture",
       "asset": "molen.worldgen.structure.museum_of_philistine_culture",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -92432,8 +92600,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/shared/angle-0.png",
           "content/worldgen/source/places/sv/sv8/museum_of_philistine_culture/shots/shared/angle-1.png",
@@ -92451,8 +92619,8 @@
       "wikidataId": "Q486382",
       "title": "Castel Sant'Angelo",
       "asset": "molen.worldgen.structure.castel_sant_angelo",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -92719,8 +92887,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/sr/sr2/castel_sant_angelo/shots/shared/angle-0.png",
           "content/worldgen/source/places/sr/sr2/castel_sant_angelo/shots/shared/angle-1.png",
@@ -92738,8 +92906,8 @@
       "wikidataId": "Q201428",
       "title": "Palace of Fontainebleau",
       "asset": "molen.worldgen.structure.palace_of_fontainebleau",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -92840,8 +93008,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/u0/u09/palace_of_fontainebleau/shots/shared/angle-0.png",
           "content/worldgen/source/places/u0/u09/palace_of_fontainebleau/shots/shared/angle-1.png",
@@ -92957,8 +93125,8 @@
       "wikidataId": "Q131631",
       "title": "Nymphenburg Palace",
       "asset": "molen.worldgen.structure.nymphenburg_palace",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -93057,8 +93225,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/u2/u28/nymphenburg_palace/shots/shared/angle-0.png",
           "content/worldgen/source/places/u2/u28/nymphenburg_palace/shots/shared/angle-1.png",
@@ -93077,8 +93245,8 @@
       "wikidataId": "Q154996",
       "title": "Charlottenburg Palace",
       "asset": "molen.worldgen.structure.charlottenburg_palace",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -93177,8 +93345,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/u3/u33/charlottenburg_palace/shots/shared/angle-0.png",
           "content/worldgen/source/places/u3/u33/charlottenburg_palace/shots/shared/angle-1.png",
@@ -93302,8 +93470,8 @@
       "wikidataId": "Q271928",
       "title": "Palazzo Vecchio",
       "asset": "molen.worldgen.structure.palazzo_vecchio",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -93393,8 +93561,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/sr/srb/palazzo_vecchio/shots/shared/angle-0.png",
           "content/worldgen/source/places/sr/srb/palazzo_vecchio/shots/shared/angle-1.png",
@@ -94351,8 +94519,8 @@
       "wikidataId": "Q632682",
       "title": "Brooklyn Museum",
       "asset": "molen.worldgen.structure.brooklyn_museum",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -94436,8 +94604,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/shared/angle-0.png",
           "content/worldgen/source/places/dr/dr5/brooklyn_museum/shots/shared/angle-1.png",
@@ -94456,8 +94624,8 @@
       "wikidataId": "Q157316",
       "title": "Neues Museum",
       "asset": "molen.worldgen.structure.neues_museum",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -94551,8 +94719,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/u3/u33/neues_museum/shots/shared/angle-0.png",
           "content/worldgen/source/places/u3/u33/neues_museum/shots/shared/angle-1.png",
@@ -94571,8 +94739,8 @@
       "wikidataId": "Q674773",
       "title": "Science Museum",
       "asset": "molen.worldgen.structure.science_museum",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -94656,8 +94824,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/gc/gcp/science_museum/shots/shared/angle-0.png",
           "content/worldgen/source/places/gc/gcp/science_museum/shots/shared/angle-1.png",
@@ -94676,8 +94844,8 @@
       "wikidataId": "Q841506",
       "title": "Galleria Borghese",
       "asset": "molen.worldgen.structure.galleria_borghese",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -94761,8 +94929,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/sr/sr2/galleria_borghese/shots/shared/angle-0.png",
           "content/worldgen/source/places/sr/sr2/galleria_borghese/shots/shared/angle-1.png",
@@ -94781,8 +94949,8 @@
       "wikidataId": "Q51177",
       "title": "Basilica of Santa Croce",
       "asset": "molen.worldgen.structure.basilica_of_santa_croce",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -94901,8 +95069,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/sr/srb/basilica_of_santa_croce/shots/shared/angle-0.png",
           "content/worldgen/source/places/sr/srb/basilica_of_santa_croce/shots/shared/angle-1.png",
@@ -94921,8 +95089,8 @@
       "wikidataId": "Q156316",
       "title": "Würzburg Residence",
       "asset": "molen.worldgen.structure.wurzburg_residence",
-      "readiness": "incomplete",
-      "blockers": ["shared-surface-review-missing-or-unbound"],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -95006,8 +95174,8 @@
       },
       "sharedSurfaceQa": {
         "required": true,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "captureFiles": [
           "content/worldgen/source/places/u0/u0z/wurzburg_residence/shots/shared/angle-0.png",
           "content/worldgen/source/places/u0/u0z/wurzburg_residence/shots/shared/angle-1.png",
@@ -98559,15 +98727,8 @@
       "wikidataId": "Q157886",
       "title": "Maulbronn Monastery",
       "asset": "molen.worldgen.structure.maulbronn_monastery",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -98576,45 +98737,72 @@
         "lengths": 0
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:a413879fa71c46c0adba9da6cc0089e215219fbe8cb5f680526aa4a7aed26356",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/u0/u0w/maulbronn_monastery/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/u0/u0w/maulbronn_monastery/model.glb",
+          "triangles": 36816
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [8.812498039, 49.001095935],
         "heading": 0.421957775453,
-        "mappedFeatureIds": ["way/36915387"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/u0/u0w/maulbronn_monastery/map-frame.json",
+          "hash": "sha256:7cf171803068e6d31932b43deae33b228be0efe53643698097a0deac31c1cc02",
+          "sourceUrl": "https://www.openstreetmap.org/way/36915387"
+        },
+        "verified": true,
+        "activePlacement": "maulbronn.monastery",
+        "catalogPlacement": "maulbronn.monastery",
+        "placementStatus": "preview",
+        "placementHash": "sha256:bae4ef48efe586d73cc3528d45536138c70315ae91d8867bcb2894e8c95e1d1d"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/u0/u0w/maulbronn_monastery/preview.png",
+          "content/worldgen/source/places/u0/u0w/maulbronn_monastery/shots/church-spire-and-cloister.png",
+          "content/worldgen/source/places/u0/u0w/maulbronn_monastery/shots/cloister-and-fountain.png",
+          "content/worldgen/source/places/u0/u0w/maulbronn_monastery/shots/granary-gable-and-church-approach.png",
+          "content/worldgen/source/places/u0/u0w/maulbronn_monastery/shots/manor-wing-and-tower.png",
+          "content/worldgen/source/places/u0/u0w/maulbronn_monastery/shots/north-wall-and-refectory.png",
+          "content/worldgen/source/places/u0/u0w/maulbronn_monastery/shots/open-west-gate.png",
+          "content/worldgen/source/places/u0/u0w/maulbronn_monastery/shots/shared/native-abbey.png",
+          "content/worldgen/source/places/u0/u0w/maulbronn_monastery/shots/timber-houses-from-public-court.png",
+          "content/worldgen/source/places/u0/u0w/maulbronn_monastery/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/u0/u0w/maulbronn_monastery/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/u0/u0w/maulbronn_monastery/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/u0/u0w/maulbronn_monastery/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/u0/u0w/maulbronn_monastery/site-preview.png",
+          "content/worldgen/source/places/u0/u0w/maulbronn_monastery/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Maulbronn Monastery with the Cistercian church and ridge spire, open cloister and fountain house, west gate, Fruchtkasten granary, terracotta roofs, half-timbered courtyard houses and visible enclosure walls. Roofs follow the mapped footprints and the height hierarchy seen in exterior photographs. Individual openings, roof pitches, the pavilion and wall portions are visual approximations. The model covers the exterior within the precinct. The church, residential interiors, vineyard terraces and historic hydraulic works are outside the modeled scope. Physical-device timings are unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/u0/u0w/maulbronn_monastery/shots/shared/native-abbey.png"
+        ]
       }
     },
     {
@@ -98856,15 +99044,8 @@
       "wikidataId": "Q49133",
       "title": "Museum of Fine Arts Boston",
       "asset": "molen.worldgen.structure.museum_of_fine_arts_boston",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -98873,45 +99054,72 @@
         "lengths": 0
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:3fdb6c1af119fa0b19e4674f28f255a15b3f75dbf73927f9f7b3421537dfc3e1",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/dr/drt/museum_of_fine_arts_boston/model.glb",
+          "triangles": 15704
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [-71.094125402, 42.339421837],
         "heading": 0.473005394739,
-        "mappedFeatureIds": ["relation/63938"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/map-frame.json",
+          "hash": "sha256:edc1cc90e1df1c193e9a10dfd127787c6dc4a08d373028ab17ad8c77b5b209dd",
+          "sourceUrl": "https://www.openstreetmap.org/relation/63938"
+        },
+        "verified": true,
+        "activePlacement": "museum.of.fine.arts.boston",
+        "catalogPlacement": "museum.of.fine.arts.boston",
+        "placementStatus": "preview",
+        "placementHash": "sha256:2695bb1fb4ecb01fbe7358c0561bfbec6faf345169ff9bd1f01dc5a88e8b28ab"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/preview.png",
+          "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/shots/art-of-the-americas-east-wing.png",
+          "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/shots/campus-roof-and-west-court.png",
+          "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/shots/entry-steps-and-pediment.png",
+          "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/shots/fenway-colonnade.png",
+          "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/shots/huntington-portico-and-wings.png",
+          "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/shots/open-west-court.png",
+          "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/shots/shared/native-museum.png",
+          "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/shots/southwest-wings-and-barrel-skylight.png",
+          "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/site-preview.png",
+          "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Boston’s Museum of Fine Arts with its twin Huntington Avenue limestone wings and stepped central portico, the long Fenway colonnade, an open west courtyard, and the glazed Art of the Americas addition and Shapiro roof. Roof heights and pitches, stair grade and window rhythms are visual approximations from ordinary photos, PMTiles and standard Terrarium. Interior galleries, sculpture and landscaping are outside the authored scope. Physical-device timings are unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/dr/drt/museum_of_fine_arts_boston/shots/shared/native-museum.png"
+        ]
       }
     },
     {
@@ -99578,15 +99786,8 @@
       "wikidataId": "Q660082",
       "title": "Melk Abbey",
       "asset": "molen.worldgen.structure.melk_abbey",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -99595,45 +99796,72 @@
         "lengths": 0
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:efdcd18034570afa0cc1890e3429f0764824f41d9e8c3ead8bad3cc0c281bdb2",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/u2/u2d/melk_abbey/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/u2/u2d/melk_abbey/model.glb",
+          "triangles": 37946
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [15.331476937, 48.22863547],
         "heading": 0.070214001958,
-        "mappedFeatureIds": ["way/41656763"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/u2/u2d/melk_abbey/map-frame.json",
+          "hash": "sha256:b753a498e679669633b98b5fcae25d3d1265dc42b6388a98c9373022c605573b",
+          "sourceUrl": "https://www.openstreetmap.org/way/41656763"
+        },
+        "verified": true,
+        "activePlacement": "melk.abbey",
+        "catalogPlacement": "melk.abbey",
+        "placementStatus": "preview",
+        "placementHash": "sha256:bab90efd59ab6c5e5a676e91b94dd230f178b3a85cf8aec8b4387899cd931a43"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/u2/u2d/melk_abbey/preview.png",
+          "content/worldgen/source/places/u2/u2d/melk_abbey/shots/cupola-and-paired-towers.png",
+          "content/worldgen/source/places/u2/u2d/melk_abbey/shots/east-approach-and-open-arch.png",
+          "content/worldgen/source/places/u2/u2d/melk_abbey/shots/northeastern-court-and-abutting-ranges.png",
+          "content/worldgen/source/places/u2/u2d/melk_abbey/shots/open-courts-and-roof-ranges.png",
+          "content/worldgen/source/places/u2/u2d/melk_abbey/shots/prelates-court-and-east-range.png",
+          "content/worldgen/source/places/u2/u2d/melk_abbey/shots/shared/native-abbey.png",
+          "content/worldgen/source/places/u2/u2d/melk_abbey/shots/south-town-range-and-bastion.png",
+          "content/worldgen/source/places/u2/u2d/melk_abbey/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/u2/u2d/melk_abbey/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/u2/u2d/melk_abbey/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/u2/u2d/melk_abbey/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/u2/u2d/melk_abbey/shots/west-terrace-and-baroque-church.png",
+          "content/worldgen/source/places/u2/u2d/melk_abbey/site-preview.png",
+          "content/worldgen/source/places/u2/u2d/melk_abbey/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Melk Abbey with the west terrace and paired Baroque towers, the copper church dome, pitched terracotta wings enclosing open courts, the town-facing cliff wall, and the eastern arch and bastions. Façade details, roof pitches and exposed foundation heights are visual approximations from ordinary aerial photographs, mapped building parts and standard Terrarium. The model covers the connected exterior and pedestrian entries. The slope at the west terrace is represented with its masonry foundation. Physical-device timings are unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/u2/u2d/melk_abbey/shots/shared/native-abbey.png"
+        ]
       }
     },
     {
@@ -100305,15 +100533,8 @@
       "wikidataId": "Q747541",
       "title": "Paris-Gare-de-Lyon",
       "asset": "molen.worldgen.structure.paris_gare_de_lyon",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -100322,45 +100543,72 @@
         "lengths": 0
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:9fafaf55778501fceb7b179a7cf6f3dc069e6cf0dd7125f27c34162ab29fcc09",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/u0/u09/paris_gare_de_lyon/model.glb",
+          "triangles": 43820
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [2.374775668, 48.844673039],
         "heading": -0.675205311194,
-        "mappedFeatureIds": ["way/1161318094"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/map-frame.json",
+          "hash": "sha256:6927a635c229136fe14f536e47ac888a0df574606f56d1b510d9105d7de5de27",
+          "sourceUrl": "https://www.openstreetmap.org/way/1161318094"
+        },
+        "verified": true,
+        "activePlacement": "paris.gare.de.lyon",
+        "catalogPlacement": "paris.gare.de.lyon",
+        "placementStatus": "preview",
+        "placementHash": "sha256:007c73567776ac56d26b9a67df78c157480561e627221538a79e50c0e451e31d"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/preview.png",
+          "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/shots/east-train-shed-portals.png",
+          "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/shots/north-range-and-station-blocks.png",
+          "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/shots/platforms-under-twin-vaults.png",
+          "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/shots/roof-rhythm-and-platform-plan.png",
+          "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/shots/rue-de-bercy-and-south-roof.png",
+          "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/shots/shared/native-station.png",
+          "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/shots/six-arched-windows.png",
+          "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/shots/tower-clock-and-crown.png",
+          "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/site-preview.png",
+          "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Paris Gare de Lyon with its six arched Place Louis-Armand windows, mansard roof, southwest clock tower, twin vaulted steel train sheds, native track approaches and the adjoining north and east ranges. Façade ornament, clock details and annex elevations are simplified from exterior photographs. The shed glazing uses a patterned opaque shared material. Platforms follow the mapped plan and coarse Terrarium grade. This exterior visualization omits underground areas, operating systems, interior concourses and annexes beyond the modeled footprints. Physical-device timings are unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/u0/u09/paris_gare_de_lyon/shots/shared/native-station.png"
+        ]
       }
     },
     {
@@ -112418,15 +112666,8 @@
       "wikidataId": "Q848386",
       "title": "Palazzo Farnese",
       "asset": "molen.worldgen.structure.palazzo_farnese",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -112435,45 +112676,72 @@
         "lengths": 0
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:a4e9159a85db8d5205fe99c46e5889715f7ca885c41f95b3fe298a19e35c14f3",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/sr/sr2/palazzo_farnese/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/sr/sr2/palazzo_farnese/model.glb",
+          "triangles": 26142
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [12.470681994, 41.894652304],
         "heading": 0.806996158621,
-        "mappedFeatureIds": ["relation/22289"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/sr/sr2/palazzo_farnese/map-frame.json",
+          "hash": "sha256:b08d11b5f0a78e3ba0f78005c3819ab8f5f975a6a49e85efefbec816e3f67abe",
+          "sourceUrl": "https://www.openstreetmap.org/relation/22289"
+        },
+        "verified": true,
+        "activePlacement": "palazzo.farnese",
+        "catalogPlacement": "palazzo.farnese",
+        "placementStatus": "preview",
+        "placementHash": "sha256:ca8c80347fba60b18fbb2195a1f9757961de7159a5ff2cd3da7aabf60d90f1b2"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/sr/sr2/palazzo_farnese/preview.png",
+          "content/worldgen/source/places/sr/sr2/palazzo_farnese/shots/central-portal-and-balcony.png",
+          "content/worldgen/source/places/sr/sr2/palazzo_farnese/shots/garden-loggia.png",
+          "content/worldgen/source/places/sr/sr2/palazzo_farnese/shots/inner-court-arcades.png",
+          "content/worldgen/source/places/sr/sr2/palazzo_farnese/shots/inner-court-pediments.png",
+          "content/worldgen/source/places/sr/sr2/palazzo_farnese/shots/open-court-and-roof.png",
+          "content/worldgen/source/places/sr/sr2/palazzo_farnese/shots/shared/native-palace.png",
+          "content/worldgen/source/places/sr/sr2/palazzo_farnese/shots/side-wall-quoins-and-cornice.png",
+          "content/worldgen/source/places/sr/sr2/palazzo_farnese/shots/thirteen-bay-piazza-front.png",
+          "content/worldgen/source/places/sr/sr2/palazzo_farnese/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/sr/sr2/palazzo_farnese/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/sr/sr2/palazzo_farnese/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/sr/sr2/palazzo_farnese/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/sr/sr2/palazzo_farnese/site-preview.png",
+          "content/worldgen/source/places/sr/sr2/palazzo_farnese/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Rome’s three-storey Renaissance palace with thirteen piazza-facing bays, an arched portal and balcony, alternating piano-nobile pediments, a projecting travertine cornice, an open arcaded court, and the Via Giulia garden loggia. Roof slopes, garden passage grades, and details are approximated from ordinary photos, PMTiles and standard Terrarium. Embassy interiors are outside the authored scope. Physical-device timings are unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/sr/sr2/palazzo_farnese/shots/shared/native-palace.png"
+        ]
       }
     },
     {
@@ -113149,15 +113417,8 @@
       "wikidataId": "Q496950",
       "title": "Palácio do Planalto",
       "asset": "molen.worldgen.structure.palacio_do_planalto",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -113166,45 +113427,72 @@
         "lengths": 0
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:db363e7e8cb75875a890ec1c193099a1f157b31374a425f434e77a474ec588d8",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/6v/6vj/palacio_do_planalto/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/6v/6vj/palacio_do_planalto/model.glb",
+          "triangles": 4352
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [-47.860762852, -15.799005076],
         "heading": -0.310664003297,
-        "mappedFeatureIds": ["way/45817748"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/6v/6vj/palacio_do_planalto/map-frame.json",
+          "hash": "sha256:d04685de7563c327cfeaae5ada7b95b016c2763d0c6bce81530b05f8382a5c1c",
+          "sourceUrl": "https://www.openstreetmap.org/way/45817748"
+        },
+        "verified": true,
+        "activePlacement": "palacio.do.planalto",
+        "catalogPlacement": "palacio.do.planalto",
+        "placementStatus": "preview",
+        "placementHash": "sha256:500ec2bc27f850fa695b86d0056d7ff0343db48cf3e5798fca3a258dd46eda57"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/6v/6vj/palacio_do_planalto/preview.png",
+          "content/worldgen/source/places/6v/6vj/palacio_do_planalto/shots/ceremonial-ramp-and-curved-piers.png",
+          "content/worldgen/source/places/6v/6vj/palacio_do_planalto/shots/northeast-piers-and-slope.png",
+          "content/worldgen/source/places/6v/6vj/palacio_do_planalto/shots/ramp-threshold-and-lower-floor.png",
+          "content/worldgen/source/places/6v/6vj/palacio_do_planalto/shots/rear-colonnade-and-grounded-piers.png",
+          "content/worldgen/source/places/6v/6vj/palacio_do_planalto/shots/roof-outline-and-native-pool.png",
+          "content/worldgen/source/places/6v/6vj/palacio_do_planalto/shots/shared/native-planalto.png",
+          "content/worldgen/source/places/6v/6vj/palacio_do_planalto/shots/speaker-platform-and-slab.png",
+          "content/worldgen/source/places/6v/6vj/palacio_do_planalto/shots/thin-roof-and-glazed-end.png",
+          "content/worldgen/source/places/6v/6vj/palacio_do_planalto/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/6v/6vj/palacio_do_planalto/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/6v/6vj/palacio_do_planalto/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/6v/6vj/palacio_do_planalto/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/6v/6vj/palacio_do_planalto/site-preview.png",
+          "content/worldgen/source/places/6v/6vj/palacio_do_planalto/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Palácio do Planalto with a thin overhanging roof, two rows of curved white piers, a raised glazed volume, a long ceremonial ramp and a linked speaker platform facing Praça dos Três Poderes. The building and ramp use the mapped footprint, three ordinary exterior photos and standard Terrarium. Fifteen pier centers come from mapped parts. The seven remaining positions follow the observed regular bay spacing. Standard elevation slopes across the site, so the pier bases and apron adapt to that grade. Roof equipment and glazing are visual approximations. Physical-device timings are unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/6v/6vj/palacio_do_planalto/shots/shared/native-planalto.png"
+        ]
       }
     },
     {
@@ -114857,15 +115145,8 @@
       "wikidataId": "Q175874",
       "title": "León Cathedral",
       "asset": "molen.worldgen.structure.leon_cathedral",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -114874,45 +115155,72 @@
         "lengths": 1
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:922d55f391293d39b0944793ecf828339222b33e4b3ea491c34e43572c22a526",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/ez/ezs/leon_cathedral/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/ez/ezs/leon_cathedral/model.glb",
+          "triangles": 25378
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [-5.566617852, 42.599460212],
         "heading": 0.275323242262,
-        "mappedFeatureIds": ["way/46344508"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/ez/ezs/leon_cathedral/map-frame.json",
+          "hash": "sha256:ccbffe81835f7f1ce1062c8708efe73c04db0b005d8040cba4fec7bb47b0138b",
+          "sourceUrl": "https://www.openstreetmap.org/way/46344508"
+        },
+        "verified": true,
+        "activePlacement": "leon.cathedral",
+        "catalogPlacement": "leon.cathedral",
+        "placementStatus": "preview",
+        "placementHash": "sha256:ddf39398e3a70ba7cc23de2c9b0bd743a43ac4c4c398992192e933d158096c21"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/ez/ezs/leon_cathedral/preview.png",
+          "content/worldgen/source/places/ez/ezs/leon_cathedral/shots/aerial-roofs-and-court.png",
+          "content/worldgen/source/places/ez/ezs/leon_cathedral/shots/chevet-and-radial-chapels.png",
+          "content/worldgen/source/places/ez/ezs/leon_cathedral/shots/flying-buttress-gap.png",
+          "content/worldgen/source/places/ez/ezs/leon_cathedral/shots/open-court-and-north-rose.png",
+          "content/worldgen/source/places/ez/ezs/leon_cathedral/shots/shared/native-cathedral.png",
+          "content/worldgen/source/places/ez/ezs/leon_cathedral/shots/south-transept-and-buttresses.png",
+          "content/worldgen/source/places/ez/ezs/leon_cathedral/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/ez/ezs/leon_cathedral/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/ez/ezs/leon_cathedral/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/ez/ezs/leon_cathedral/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/ez/ezs/leon_cathedral/shots/west-front-and-different-spires.png",
+          "content/worldgen/source/places/ez/ezs/leon_cathedral/shots/west-portico-tracery.png",
+          "content/worldgen/source/places/ez/ezs/leon_cathedral/site-preview.png",
+          "content/worldgen/source/places/ez/ezs/leon_cathedral/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "León Cathedral with the asymmetric west towers, three rose windows, deep pointed porches, flying buttresses, radial chapels and the attached open cloister. The exterior follows the PMTiles footprint and mapped height controls. Window, statue, vault and stonework details are reconstructed from ordinary photographs at world-viewer scale. The cloister galleries and exterior wings are present and the court is open. Interior spaces, stained-glass iconography and current visitor access are outside this model. Physical-device timings are unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/ez/ezs/leon_cathedral/shots/shared/native-cathedral.png"
+        ]
       }
     },
     {
@@ -116167,15 +116475,8 @@
       "wikidataId": "Q211250",
       "title": "Teatro Real",
       "asset": "molen.worldgen.structure.teatro_real",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -116184,45 +116485,72 @@
         "lengths": 0
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:d4c371ae35fa6b4ed68cd0734325a8e28f97e0b942ea2e590a7eec345f0731b6",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/ez/ezj/teatro_real/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/ez/ezj/teatro_real/model.glb",
+          "triangles": 18381
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [-3.710583483, 40.418216138],
         "heading": -0.034628210077,
-        "mappedFeatureIds": ["way/4328975"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/ez/ezj/teatro_real/map-frame.json",
+          "hash": "sha256:a8f03b999ddd64903ccee34c64a150b0f05b5296295ee7f86daf811f0fe8e02a",
+          "sourceUrl": "https://www.openstreetmap.org/way/4328975"
+        },
+        "verified": true,
+        "activePlacement": "teatro.real",
+        "catalogPlacement": "teatro.real",
+        "placementStatus": "preview",
+        "placementHash": "sha256:395a9ad18d5090178a2eaff292b1b85c6df088a344cbb4038426cbd907d4ac87"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/ez/ezj/teatro_real/preview.png",
+          "content/worldgen/source/places/ez/ezj/teatro_real/shots/east-portal-and-terrace.png",
+          "content/worldgen/source/places/ez/ezj/teatro_real/shots/isabel-gallery-and-mansard.png",
+          "content/worldgen/source/places/ez/ezj/teatro_real/shots/north-side-rhythm.png",
+          "content/worldgen/source/places/ez/ezj/teatro_real/shots/oriente-five-arched-portals.png",
+          "content/worldgen/source/places/ez/ezj/teatro_real/shots/roof-and-stage-house.png",
+          "content/worldgen/source/places/ez/ezj/teatro_real/shots/shared/native-theatre.png",
+          "content/worldgen/source/places/ez/ezj/teatro_real/shots/south-side-street.png",
+          "content/worldgen/source/places/ez/ezj/teatro_real/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/ez/ezj/teatro_real/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/ez/ezj/teatro_real/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/ez/ezj/teatro_real/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/ez/ezj/teatro_real/shots/west-portal-inset.png",
+          "content/worldgen/source/places/ez/ezj/teatro_real/site-preview.png",
+          "content/worldgen/source/places/ez/ezj/teatro_real/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Madrid’s Teatro Real with the distinct five-arch plaza fronts, individually recessed entrances and window bays, angled side walls, standing-seam roof, roof terrace and gabled stage house. The footprint and major roof heights follow retained PMTiles building parts. Cornice dimensions, recessed door depths, terrace equipment and window framing are exterior photo-based estimates. The model represents the exterior, including the installed roof panel field as a simplified arrangement. Opera-house interiors, temporary banners and visitor access states are outside this model. Physical-device timings are unmeasured."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/ez/ezj/teatro_real/shots/shared/native-theatre.png"
+        ]
       }
     },
     {

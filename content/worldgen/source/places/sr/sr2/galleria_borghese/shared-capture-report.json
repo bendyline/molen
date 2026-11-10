@@ -5,11 +5,12 @@
   "sourceHash": "sha256:4c41f5b5a992493c9fbe827456d0c62a976a10d3b2ac5d906d9ff2d3fb78341f",
   "runtimeHash": "sha256:d564aba226b479951253b3b8babe6c51d29cd2a5395e1cfb7b6ad431b57fd26e",
   "reviewGroundY": 1.4,
-  "fixtureHash": "sha256:7602608105f3d55798b8e573ee16fbb6b58dd3c8834f0a9e3ba65a3b00360afa",
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "footprintEvidenceHash": "sha256:99ddea7a7858f65a8d1ecc1106aabe996fa24fd2b601f89bae88e9f5faa3aa8d",
   "reflectionMode": "sky-pmrem",
   "clippingMode": "bounds",
   "reviewBoundedPlacement": true,
+  "targetOnly": true,
   "placementHash": "sha256:6b40373a5a3a36f30a2d9e4f2301f99e58c9195110644d59255713b1a874b5b0",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.stucco": {
@@ -34,13 +35,13 @@
     },
     "matgraph:molen.worldgen.material.storefront": {
       "path": "materials/storefront.matgraph.json",
-      "hash": "sha256:b76d86e5da521e687b3c8432f5694f29c331c5df0d4b06ddc5177d18bd8839f0"
+      "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:cfbcfccd85dfd934e455b9ef0c2f166124b4d3272ed9d11865f184d9cd40ece2",
+      "hash": "sha256:f7f5aba9be6ab28cbde1046a8af07279a0d685ff9d5732bd73a20193776418c9",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -83,21 +84,21 @@
         },
         "reviewGroundY": 1.4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "d284b541-9eaf-4788-b0e9-b0eea2dbb0b7",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "af6515c9-75f9-4699-8c85-9c28956610d4",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "908a4768-fb64-414c-af92-891c4745074a",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "d39dd476-0c99-4137-8478-dec6bb15b71a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1ee89c8f-253b-43c7-a497-41b7008f2803",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "e46e7f11-a328-4449-98a4-52b52bc0b191"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "5621277b-2112-4247-8e47-d68f20de5957",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a9c91615-d63a-4496-afde-b2d6a46f3b6b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3f1c633d-1655-45bc-b742-355fee22731a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2803312f-4cad-4dbb-82b8-bfffd1aaba9c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e46de99a-cd2c-4d85-8080-98dd3be19db1",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "6c2cab39-92b3-467a-a650-bd0e34b632ce"
         },
         "loads": [
           "molen.worldgen.structure.galleria_borghese"
         ],
         "selectionBounds": [
-          12.491296712754085,
-          41.91350331652913,
-          12.492841895224732,
-          41.914653160092804
+          12.491458986399488,
+          41.91364403295301,
+          12.493004168870135,
+          41.91479387398163
         ],
         "terrainSamples": [
           {
@@ -116,12 +117,24 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
-          "molen.worldgen.material.stucco": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.storefront": 1,
+          "molen.worldgen.material.concrete_panel": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.storefront": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
         "draws": 7,
         "renderedTriangles": 6318
@@ -129,7 +142,7 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:0df61303370ae0b16c3ede79ffc20b11aa291e9cb34e65b2ea66b8f5184d9d28",
+      "hash": "sha256:ae322c32bef39ce0d27482d61710488769ef67d40acc5e3e350435679bce417d",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -172,21 +185,21 @@
         },
         "reviewGroundY": 1.4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "d284b541-9eaf-4788-b0e9-b0eea2dbb0b7",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "af6515c9-75f9-4699-8c85-9c28956610d4",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "908a4768-fb64-414c-af92-891c4745074a",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "d39dd476-0c99-4137-8478-dec6bb15b71a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1ee89c8f-253b-43c7-a497-41b7008f2803",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "e46e7f11-a328-4449-98a4-52b52bc0b191"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "5621277b-2112-4247-8e47-d68f20de5957",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a9c91615-d63a-4496-afde-b2d6a46f3b6b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3f1c633d-1655-45bc-b742-355fee22731a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2803312f-4cad-4dbb-82b8-bfffd1aaba9c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e46de99a-cd2c-4d85-8080-98dd3be19db1",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "6c2cab39-92b3-467a-a650-bd0e34b632ce"
         },
         "loads": [
           "molen.worldgen.structure.galleria_borghese"
         ],
         "selectionBounds": [
-          12.491296712754085,
-          41.91350331652913,
-          12.492841895224732,
-          41.914653160092804
+          12.491458986399488,
+          41.91364403295301,
+          12.493004168870135,
+          41.91479387398163
         ],
         "terrainSamples": [
           {
@@ -205,12 +218,24 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
-          "molen.worldgen.material.stucco": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.storefront": 1,
+          "molen.worldgen.material.concrete_panel": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.storefront": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
         "draws": 7,
         "renderedTriangles": 6318
@@ -218,7 +243,7 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:0708a4768ee19bd0272eb885daecba66ed1001f38b30cda87607e0752a88a25d",
+      "hash": "sha256:c8bf1d554d44cbb0fd2c74abc41a51e0e23ebed04ece24c4747dbef3443b2aab",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -261,21 +286,21 @@
         },
         "reviewGroundY": 1.4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "d284b541-9eaf-4788-b0e9-b0eea2dbb0b7",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "af6515c9-75f9-4699-8c85-9c28956610d4",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "908a4768-fb64-414c-af92-891c4745074a",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "d39dd476-0c99-4137-8478-dec6bb15b71a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1ee89c8f-253b-43c7-a497-41b7008f2803",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "e46e7f11-a328-4449-98a4-52b52bc0b191"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "5621277b-2112-4247-8e47-d68f20de5957",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a9c91615-d63a-4496-afde-b2d6a46f3b6b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3f1c633d-1655-45bc-b742-355fee22731a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2803312f-4cad-4dbb-82b8-bfffd1aaba9c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e46de99a-cd2c-4d85-8080-98dd3be19db1",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "6c2cab39-92b3-467a-a650-bd0e34b632ce"
         },
         "loads": [
           "molen.worldgen.structure.galleria_borghese"
         ],
         "selectionBounds": [
-          12.491296712754085,
-          41.91350331652913,
-          12.492841895224732,
-          41.914653160092804
+          12.491458986399488,
+          41.91364403295301,
+          12.493004168870135,
+          41.91479387398163
         ],
         "terrainSamples": [
           {
@@ -294,12 +319,24 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
-          "molen.worldgen.material.stucco": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.storefront": 1,
+          "molen.worldgen.material.concrete_panel": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.storefront": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
         "draws": 7,
         "renderedTriangles": 6318
@@ -307,7 +344,7 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:557762f1d1e995f0ff59b9132ca0416834fcfb1f835b008c85cfb3cac2ef8c4a",
+      "hash": "sha256:85f0aa109208e4e44292f72f0c1f7ba07716a5c5ab7af8a93b3f6f18f4a1b738",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -350,21 +387,21 @@
         },
         "reviewGroundY": 1.4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "d284b541-9eaf-4788-b0e9-b0eea2dbb0b7",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "af6515c9-75f9-4699-8c85-9c28956610d4",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "908a4768-fb64-414c-af92-891c4745074a",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "d39dd476-0c99-4137-8478-dec6bb15b71a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1ee89c8f-253b-43c7-a497-41b7008f2803",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "e46e7f11-a328-4449-98a4-52b52bc0b191"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "5621277b-2112-4247-8e47-d68f20de5957",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a9c91615-d63a-4496-afde-b2d6a46f3b6b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3f1c633d-1655-45bc-b742-355fee22731a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2803312f-4cad-4dbb-82b8-bfffd1aaba9c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e46de99a-cd2c-4d85-8080-98dd3be19db1",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "6c2cab39-92b3-467a-a650-bd0e34b632ce"
         },
         "loads": [
           "molen.worldgen.structure.galleria_borghese"
         ],
         "selectionBounds": [
-          12.491296712754085,
-          41.91350331652913,
-          12.492841895224732,
-          41.914653160092804
+          12.491458986399488,
+          41.91364403295301,
+          12.493004168870135,
+          41.91479387398163
         ],
         "terrainSamples": [
           {
@@ -383,12 +420,24 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
-          "molen.worldgen.material.stucco": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.storefront": 1,
+          "molen.worldgen.material.concrete_panel": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.storefront": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
         "draws": 7,
         "renderedTriangles": 6318
@@ -396,7 +445,7 @@
     },
     {
       "path": "shots/shared/five-open-arcade-bays-terrace-and-central-front.png",
-      "hash": "sha256:e43197801729c8886a9f6c76d205ea56f2648bcefab668ff01befecd653c166c",
+      "hash": "sha256:cdb5243b6dc61c7780092bd089e18e7011ef33f5e8222593793c8beaa29d5f60",
       "camera": {
         "name": "five-open-arcade-bays-terrace-and-central-front",
         "position": [
@@ -449,21 +498,21 @@
         },
         "reviewGroundY": 1.4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "d284b541-9eaf-4788-b0e9-b0eea2dbb0b7",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "af6515c9-75f9-4699-8c85-9c28956610d4",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "908a4768-fb64-414c-af92-891c4745074a",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "d39dd476-0c99-4137-8478-dec6bb15b71a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1ee89c8f-253b-43c7-a497-41b7008f2803",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "e46e7f11-a328-4449-98a4-52b52bc0b191"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "5621277b-2112-4247-8e47-d68f20de5957",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a9c91615-d63a-4496-afde-b2d6a46f3b6b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3f1c633d-1655-45bc-b742-355fee22731a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2803312f-4cad-4dbb-82b8-bfffd1aaba9c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e46de99a-cd2c-4d85-8080-98dd3be19db1",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "6c2cab39-92b3-467a-a650-bd0e34b632ce"
         },
         "loads": [
           "molen.worldgen.structure.galleria_borghese"
         ],
         "selectionBounds": [
-          12.491296712754085,
-          41.91350331652913,
-          12.492841895224732,
-          41.914653160092804
+          12.491458986399488,
+          41.91364403295301,
+          12.493004168870135,
+          41.91479387398163
         ],
         "terrainSamples": [
           {
@@ -482,12 +531,24 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
-          "molen.worldgen.material.stucco": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.storefront": 1,
+          "molen.worldgen.material.concrete_panel": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.storefront": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
         "draws": 7,
         "renderedTriangles": 6318
@@ -495,7 +556,7 @@
     },
     {
       "path": "shots/shared/raised-loggia-recessed-gates-and-paired-stair-flights.png",
-      "hash": "sha256:881f13c1670f964c1060210e1e178ca8bc88d5d0a7a135253c6a3125acc649fc",
+      "hash": "sha256:9aae8560b1e342c1b7a4963b45f9b3bbc4b36735569d0588d6a3658fdd0c0039",
       "camera": {
         "name": "raised-loggia-recessed-gates-and-paired-stair-flights",
         "position": [
@@ -548,21 +609,21 @@
         },
         "reviewGroundY": 1.4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "d284b541-9eaf-4788-b0e9-b0eea2dbb0b7",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "af6515c9-75f9-4699-8c85-9c28956610d4",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "908a4768-fb64-414c-af92-891c4745074a",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "d39dd476-0c99-4137-8478-dec6bb15b71a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1ee89c8f-253b-43c7-a497-41b7008f2803",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "e46e7f11-a328-4449-98a4-52b52bc0b191"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "5621277b-2112-4247-8e47-d68f20de5957",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a9c91615-d63a-4496-afde-b2d6a46f3b6b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3f1c633d-1655-45bc-b742-355fee22731a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2803312f-4cad-4dbb-82b8-bfffd1aaba9c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e46de99a-cd2c-4d85-8080-98dd3be19db1",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "6c2cab39-92b3-467a-a650-bd0e34b632ce"
         },
         "loads": [
           "molen.worldgen.structure.galleria_borghese"
         ],
         "selectionBounds": [
-          12.491296712754085,
-          41.91350331652913,
-          12.492841895224732,
-          41.914653160092804
+          12.491458986399488,
+          41.91364403295301,
+          12.493004168870135,
+          41.91479387398163
         ],
         "terrainSamples": [
           {
@@ -581,12 +642,24 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
-          "molen.worldgen.material.stucco": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.storefront": 1,
+          "molen.worldgen.material.concrete_panel": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.storefront": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
         "draws": 7,
         "renderedTriangles": 6318
@@ -594,7 +667,7 @@
     },
     {
       "path": "shots/shared/rear-range-twin-towers-and-hip-roofs.png",
-      "hash": "sha256:da9547fb55078d75d55e71c77e50d3d701e17813f0a22e69acbcbe877d58fc16",
+      "hash": "sha256:ae5d5fc4ad105beb0414bc3d68e95cf93f90925470402c1d691257f7fa89716d",
       "camera": {
         "name": "rear-range-twin-towers-and-hip-roofs",
         "position": [
@@ -647,21 +720,21 @@
         },
         "reviewGroundY": 1.4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "d284b541-9eaf-4788-b0e9-b0eea2dbb0b7",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "af6515c9-75f9-4699-8c85-9c28956610d4",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "908a4768-fb64-414c-af92-891c4745074a",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "d39dd476-0c99-4137-8478-dec6bb15b71a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1ee89c8f-253b-43c7-a497-41b7008f2803",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "e46e7f11-a328-4449-98a4-52b52bc0b191"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "5621277b-2112-4247-8e47-d68f20de5957",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a9c91615-d63a-4496-afde-b2d6a46f3b6b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3f1c633d-1655-45bc-b742-355fee22731a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2803312f-4cad-4dbb-82b8-bfffd1aaba9c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e46de99a-cd2c-4d85-8080-98dd3be19db1",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "6c2cab39-92b3-467a-a650-bd0e34b632ce"
         },
         "loads": [
           "molen.worldgen.structure.galleria_borghese"
         ],
         "selectionBounds": [
-          12.491296712754085,
-          41.91350331652913,
-          12.492841895224732,
-          41.914653160092804
+          12.491458986399488,
+          41.91364403295301,
+          12.493004168870135,
+          41.91479387398163
         ],
         "terrainSamples": [
           {
@@ -680,12 +753,24 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
-          "molen.worldgen.material.stucco": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.storefront": 1,
+          "molen.worldgen.material.concrete_panel": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.storefront": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
         "draws": 7,
         "renderedTriangles": 6318
@@ -693,7 +778,7 @@
     },
     {
       "path": "shots/shared/central-ornament-eaves-and-front-wings.png",
-      "hash": "sha256:498ff2bbff70b537876efbadc2672583bf20c4061ea3e51f4eac5b9bbcf6f89e",
+      "hash": "sha256:2b41c9f42d448e3cbf26cf5ec13d469a41f810794d9058d7690474c0143c36be",
       "camera": {
         "name": "central-ornament-eaves-and-front-wings",
         "position": [
@@ -746,21 +831,21 @@
         },
         "reviewGroundY": 1.4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "d284b541-9eaf-4788-b0e9-b0eea2dbb0b7",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "af6515c9-75f9-4699-8c85-9c28956610d4",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "908a4768-fb64-414c-af92-891c4745074a",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "d39dd476-0c99-4137-8478-dec6bb15b71a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1ee89c8f-253b-43c7-a497-41b7008f2803",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "e46e7f11-a328-4449-98a4-52b52bc0b191"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "5621277b-2112-4247-8e47-d68f20de5957",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a9c91615-d63a-4496-afde-b2d6a46f3b6b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3f1c633d-1655-45bc-b742-355fee22731a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2803312f-4cad-4dbb-82b8-bfffd1aaba9c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e46de99a-cd2c-4d85-8080-98dd3be19db1",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "6c2cab39-92b3-467a-a650-bd0e34b632ce"
         },
         "loads": [
           "molen.worldgen.structure.galleria_borghese"
         ],
         "selectionBounds": [
-          12.491296712754085,
-          41.91350331652913,
-          12.492841895224732,
-          41.914653160092804
+          12.491458986399488,
+          41.91364403295301,
+          12.493004168870135,
+          41.91479387398163
         ],
         "terrainSamples": [
           {
@@ -779,12 +864,24 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
-          "molen.worldgen.material.stucco": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.storefront": 1,
+          "molen.worldgen.material.concrete_panel": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.storefront": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
         "draws": 7,
         "renderedTriangles": 6318
@@ -792,7 +889,7 @@
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:9a0a1a2824e83b36b1f66960b2adf1fc0017f0e7ca0e114c242465ab2c4aa900",
+      "hash": "sha256:48700c9f7e319246e2537f82b55c17a958bd33009588a23d545fd7d28fcc22d0",
       "camera": {
         "name": "placement",
         "placement": true
@@ -835,21 +932,21 @@
         },
         "reviewGroundY": 1.4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stucco": "d284b541-9eaf-4788-b0e9-b0eea2dbb0b7",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "af6515c9-75f9-4699-8c85-9c28956610d4",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "908a4768-fb64-414c-af92-891c4745074a",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "d39dd476-0c99-4137-8478-dec6bb15b71a",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1ee89c8f-253b-43c7-a497-41b7008f2803",
-          "worldgen:matgraph:molen.worldgen.material.storefront": "e46e7f11-a328-4449-98a4-52b52bc0b191"
+          "worldgen:matgraph:molen.worldgen.material.stucco": "5621277b-2112-4247-8e47-d68f20de5957",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "a9c91615-d63a-4496-afde-b2d6a46f3b6b",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3f1c633d-1655-45bc-b742-355fee22731a",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "2803312f-4cad-4dbb-82b8-bfffd1aaba9c",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e46de99a-cd2c-4d85-8080-98dd3be19db1",
+          "worldgen:matgraph:molen.worldgen.material.storefront": "6c2cab39-92b3-467a-a650-bd0e34b632ce"
         },
         "loads": [
           "molen.worldgen.structure.galleria_borghese"
         ],
         "selectionBounds": [
-          12.491296712754085,
-          41.91350331652913,
-          12.492841895224732,
-          41.914653160092804
+          12.491458986399488,
+          41.91364403295301,
+          12.493004168870135,
+          41.91479387398163
         ],
         "terrainSamples": [
           {
@@ -868,12 +965,24 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
-          "molen.worldgen.material.stucco": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.membrane": 1,
           "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.storefront": 1,
+          "molen.worldgen.material.concrete_panel": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.storefront": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
         "draws": 8,
         "renderedTriangles": 6318
@@ -888,7 +997,9 @@
   "groundLifecycle": {
     "applicable": true,
     "hiddenRestored": true,
-    "visibleOpen": true
+    "visibleOpen": true,
+    "visibleCapped": false,
+    "unchanged": false
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

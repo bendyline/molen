@@ -476,8 +476,8 @@ detail level: a tile one level below the finest covers four times the area with 
 the instances, two levels below keeps a sparse hint, and coarser tiles carry no props. Visible
 cells draw only their active LOD; keep `maxPropModels` small because each model needs a draw per
 visible cell. The per-tile placement budgets still bound the resident instance data. Balanced quality
-allows 6,000 nearby placements, 1,200 one level below, and 250 two levels below. Economy uses
-2,200 / 400 / 0; high uses 9,000 / 1,800 / 350. Ground cover has its own budget on the finest
+allows 6,000 nearby placements, 2,400 one level below, and 800 two levels below. Economy uses
+2,200 / 800 / 200; high uses 9,000 / 3,600 / 1,200. Ground cover has its own budget on the finest
 level only: 5,000 placements and 3 models at Balanced, 8,000 and 4 at High, none at Economy.
 The forest rules fill nearby crowns while
 understory is limited to the finest tier; parks and yards retain lower densities and all

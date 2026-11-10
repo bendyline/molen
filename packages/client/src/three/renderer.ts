@@ -392,7 +392,11 @@ export class Renderer {
     if (this.backend === 'webgpu' && this.three.shadowMap.enabled) return;
     if (parked && this.three.shadowMap.enabled) return;
     this.three.shadowMap.enabled = enabled;
-    this.three.shadowMap.type = quality === 'low' ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
+    // three's WebGL shadow pass replaces the deprecated soft type with PCF at its first shadow
+    // frame, with a warning, after programs warmed before that frame were already built for the
+    // soft type's key: they were rebuilt at first draw. WebGPU still has a distinct soft filter.
+    this.three.shadowMap.type =
+      quality === 'low' || this.backend === 'webgl' ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
   }
 
   /** WebGL PCF shadow lookups against a reversed depth buffer; see focusDirectionalShadow. */
@@ -1307,8 +1311,6 @@ export class Renderer {
     if (material !== undefined) mesh.material = material;
     const traverse = this.scene.traverseVisible;
     const ownTraverse = Object.hasOwn(this.scene, 'traverseVisible');
-    // TEMP-COMPILE-PROBE
-    const probeStart = performance.now();
     try {
       if (this.scene.onBeforeRender === THREE.Object3D.prototype.onBeforeRender) {
         // compileAsync traverses the target scene only to gather lights, once for EVERY mesh, on
@@ -1326,20 +1328,6 @@ export class Renderer {
     } finally {
       if (ownTraverse) this.scene.traverseVisible = traverse;
       else delete (this.scene as Partial<THREE.Scene>).traverseVisible;
-      {
-        const probe = globalThis as {
-          __molenCompileStats?: Record<string, { n: number; ms: number }>;
-        };
-        probe.__molenCompileStats ??= {};
-        const stats = probe.__molenCompileStats;
-        let named: THREE.Object3D | null = mesh;
-        while (named !== null && !named.name) named = named.parent;
-        const key = `${(mesh as THREE.InstancedMesh).isInstancedMesh ? 'I' : 'M'}:${(named?.name ?? '?').replace(/[-\d_.,/]+/g, '#').slice(0, 60)}:${(Array.isArray(mesh.material) ? mesh.material[0] : mesh.material)?.name ?? ''}`;
-        const entry = stats[key] ?? { n: 0, ms: 0 };
-        stats[key] = entry;
-        entry.n++;
-        entry.ms += performance.now() - probeStart;
-      }
       mesh.visible = visible;
       mesh.frustumCulled = culled;
       mesh.material = shown;

@@ -142,6 +142,7 @@ import {
 import {
   createEarthAdmissionGovernor,
   EARTH_CALIBRATION_QUALITY,
+  EARTH_INDEPENDENT_LAYERS,
   EARTH_QUALITY_CALIBRATION_MS,
   EARTH_STICKY_QUALITY,
   earthAdmission,
@@ -701,7 +702,9 @@ export interface EarthView {
   dispose(): void;
 }
 
-const VERTICAL_FOV = THREE.MathUtils.degToRad(60);
+const VERTICAL_FOV_DEGREES = 60;
+/** Radians, as terrain views take it; the landmark streamer takes degrees. */
+const VERTICAL_FOV = THREE.MathUtils.degToRad(VERTICAL_FOV_DEGREES);
 /** The entity that stands for the viewer in the shared world (seats, avatar). */
 const PLAYER_ID = 'world-player';
 /** The package with its bare-ground surface layers recolored by name (others untouched). */
@@ -1310,6 +1313,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         const opened = await createTerrainPackagePyramidStream(
           withGroundColors(pkg, options.style?.ground),
           {
+            independentLayers: EARTH_INDEPENDENT_LAYERS,
             ...(selected.baseUrl !== undefined ? { baseUrl: selected.baseUrl } : {}),
             ...(selected.archives?.elevation !== undefined
               ? { archive: selected.archives.elevation }
@@ -3265,7 +3269,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         current.worldgen?.updateStructures({
           position: pose.position,
           direction: pose.direction,
-          verticalFov: VERTICAL_FOV,
+          // Degrees here: in radians every landmark measured some sixty times its size on
+          // screen and asked for its finest level.
+          verticalFov: VERTICAL_FOV_DEGREES,
           viewportHeight: canvas.height,
           maxPixelError: automatic ? tier.objectPixelError : 2,
         });

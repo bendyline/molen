@@ -5,11 +5,12 @@
   "sourceHash": "sha256:e502f9c0191cf45de73eae4c7b1294b0d4542013bd0bad936186d674cce6956e",
   "runtimeHash": "sha256:8a11f09f5e4b79e75e8ccc22f0e8b9d3cfe1b488ee6103508e76759f97b364ef",
   "reviewGroundY": 0,
-  "fixtureHash": "sha256:7602608105f3d55798b8e573ee16fbb6b58dd3c8834f0a9e3ba65a3b00360afa",
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "footprintEvidenceHash": "sha256:4fd1eb9622d34ae84c03f23a9304ce9ab29debebf2c1d34fa6dea78990b0945b",
   "reflectionMode": "sky-pmrem",
   "clippingMode": "bounds",
   "reviewBoundedPlacement": true,
+  "targetOnly": true,
   "placementHash": "sha256:5f6b558199860e4baad5939b6d37ed6b760cb357fdd23196e98e8f3c7dffb713",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.concrete_plain": {
@@ -26,13 +27,13 @@
     },
     "matgraph:molen.worldgen.material.window_grid": {
       "path": "materials/window_grid.matgraph.json",
-      "hash": "sha256:be487d8aaf9268a0dd9682d3dd86bfb960e24a92a2dc288c117610c335aa3b85"
+      "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:fd5f5db6bfe354d8d8c27c4ba6eacf7e9f6bd4d4564bf21015a09d1f4d293f27",
+      "hash": "sha256:fb8916ad6e4caa2cd75f592adf02214bd3a26a1419d41b8f3a228ba839c8e5fe",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -75,19 +76,19 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7d97338d-e158-48b7-b886-29e9e1e3fcca",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "91e8b9e9-74dc-41d5-b45d-fa31b34add19",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "54f0ea65-4907-43aa-9273-466efcb03369",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "98d2dea8-2c1f-43ce-b324-5c73caecdbf1"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.royal_bafokeng_stadium"
         ],
         "selectionBounds": [
-          27.158848672817918,
+          27.158848687766273,
           -25.58064434081739,
-          27.16299174324877,
-          -25.57690732226849
+          27.162991728300426,
+          -25.576907349235523
         ],
         "terrainSamples": [
           {
@@ -106,10 +107,15 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1
         },
         "draws": 6,
         "renderedTriangles": 59071
@@ -117,7 +123,7 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:f8abd339e5c0750164f11df52f416d407708c15ea11fae2f150543276b813fcf",
+      "hash": "sha256:9b176a21719c436721c07702bd662d73a186d180ba79372db2a0a060d4f2f31b",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -160,19 +166,19 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7d97338d-e158-48b7-b886-29e9e1e3fcca",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "91e8b9e9-74dc-41d5-b45d-fa31b34add19",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "54f0ea65-4907-43aa-9273-466efcb03369",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "98d2dea8-2c1f-43ce-b324-5c73caecdbf1"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.royal_bafokeng_stadium"
         ],
         "selectionBounds": [
-          27.158848672817918,
+          27.158848687766273,
           -25.58064434081739,
-          27.16299174324877,
-          -25.57690732226849
+          27.162991728300426,
+          -25.576907349235523
         ],
         "terrainSamples": [
           {
@@ -191,10 +197,15 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1
         },
         "draws": 6,
         "renderedTriangles": 59071
@@ -202,7 +213,7 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:4225d5fa17e2aa35d5a66cb8bc9503f263340030efd3534a8a80a8f68857151f",
+      "hash": "sha256:e5dd67aad48b030c989158f827c8bab9f80f1814a4a03ff3ca3817e9bc8a7e80",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -245,19 +256,19 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7d97338d-e158-48b7-b886-29e9e1e3fcca",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "91e8b9e9-74dc-41d5-b45d-fa31b34add19",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "54f0ea65-4907-43aa-9273-466efcb03369",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "98d2dea8-2c1f-43ce-b324-5c73caecdbf1"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.royal_bafokeng_stadium"
         ],
         "selectionBounds": [
-          27.158848672817918,
+          27.158848687766273,
           -25.58064434081739,
-          27.16299174324877,
-          -25.57690732226849
+          27.162991728300426,
+          -25.576907349235523
         ],
         "terrainSamples": [
           {
@@ -276,10 +287,15 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1
         },
         "draws": 6,
         "renderedTriangles": 59071
@@ -287,7 +303,7 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:c5c422a0ab01af6cda7db4d8ac4f4e9bcf6b5d8f192e1b73493bef94426f2df8",
+      "hash": "sha256:b720db1cba1f211fd83f4d0431b7e3cea0340fa8f151590de8eb7e17a92cb820",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -330,19 +346,19 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7d97338d-e158-48b7-b886-29e9e1e3fcca",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "91e8b9e9-74dc-41d5-b45d-fa31b34add19",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "54f0ea65-4907-43aa-9273-466efcb03369",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "98d2dea8-2c1f-43ce-b324-5c73caecdbf1"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.royal_bafokeng_stadium"
         ],
         "selectionBounds": [
-          27.158848672817918,
+          27.158848687766273,
           -25.58064434081739,
-          27.16299174324877,
-          -25.57690732226849
+          27.162991728300426,
+          -25.576907349235523
         ],
         "terrainSamples": [
           {
@@ -361,10 +377,15 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1
         },
         "draws": 6,
         "renderedTriangles": 59071
@@ -372,7 +393,7 @@
     },
     {
       "path": "shots/shared/west-cantilever-masts-rakers-and-hospitality.png",
-      "hash": "sha256:bf3b5aa99428bfd1f61f0c10ccab58019f1bcd27b35f2cf392f7af3088985fd9",
+      "hash": "sha256:4e2fb7e34e38be5b41657eba6cf1fba63c614d973afe11ae12870265e2773156",
       "camera": {
         "name": "west-cantilever-masts-rakers-and-hospitality",
         "position": [
@@ -425,19 +446,19 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7d97338d-e158-48b7-b886-29e9e1e3fcca",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "91e8b9e9-74dc-41d5-b45d-fa31b34add19",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "54f0ea65-4907-43aa-9273-466efcb03369",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "98d2dea8-2c1f-43ce-b324-5c73caecdbf1"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.royal_bafokeng_stadium"
         ],
         "selectionBounds": [
-          27.158848672817918,
+          27.158848687766273,
           -25.58064434081739,
-          27.16299174324877,
-          -25.57690732226849
+          27.162991728300426,
+          -25.576907349235523
         ],
         "terrainSamples": [
           {
@@ -456,10 +477,15 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1
         },
         "draws": 6,
         "renderedTriangles": 59071
@@ -467,7 +493,7 @@
     },
     {
       "path": "shots/shared/uncovered-blue-yellow-bowl-track-and-end-display.png",
-      "hash": "sha256:f829256714c841448bcbd0304ff364f374db8cb5e8629bd0d6edafbf7d5769d9",
+      "hash": "sha256:c2d6f343db4cfe65fa9ab0bc24a5c39b8f71bb7c4a1bbd19c49b7839a3af36b5",
       "camera": {
         "name": "uncovered-blue-yellow-bowl-track-and-end-display",
         "position": [
@@ -520,19 +546,19 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7d97338d-e158-48b7-b886-29e9e1e3fcca",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "91e8b9e9-74dc-41d5-b45d-fa31b34add19",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "54f0ea65-4907-43aa-9273-466efcb03369",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "98d2dea8-2c1f-43ce-b324-5c73caecdbf1"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.royal_bafokeng_stadium"
         ],
         "selectionBounds": [
-          27.158848672817918,
+          27.158848687766273,
           -25.58064434081739,
-          27.16299174324877,
-          -25.57690732226849
+          27.162991728300426,
+          -25.576907349235523
         ],
         "terrainSamples": [
           {
@@ -551,10 +577,15 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1
         },
         "draws": 6,
         "renderedTriangles": 59071
@@ -562,7 +593,7 @@
     },
     {
       "path": "shots/shared/west-roof-underside-third-tier-and-glazed-leading-edge.png",
-      "hash": "sha256:36196f1ba2de121333909e08a015bbfa54245ffa3479651ec1ac0e3d7a91ae8d",
+      "hash": "sha256:28f498e3e3c703a918fcc46af2b4cc81ab376bca3eaa834ec6e303e826065c72",
       "camera": {
         "name": "west-roof-underside-third-tier-and-glazed-leading-edge",
         "position": [
@@ -615,19 +646,19 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7d97338d-e158-48b7-b886-29e9e1e3fcca",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "91e8b9e9-74dc-41d5-b45d-fa31b34add19",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "54f0ea65-4907-43aa-9273-466efcb03369",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "98d2dea8-2c1f-43ce-b324-5c73caecdbf1"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.royal_bafokeng_stadium"
         ],
         "selectionBounds": [
-          27.158848672817918,
+          27.158848687766273,
           -25.58064434081739,
-          27.16299174324877,
-          -25.57690732226849
+          27.162991728300426,
+          -25.576907349235523
         ],
         "terrainSamples": [
           {
@@ -646,10 +677,15 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1
         },
         "draws": 6,
         "renderedTriangles": 59071
@@ -657,7 +693,7 @@
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:dd3d8006258f6429684daef0220c500cbcc383bdd2eda4a29c8e7fb5ec0dd7fb",
+      "hash": "sha256:a6c68d821130a2779c36265bf8fd0f46cf1c80b8b48df38b29b46724447cab8d",
       "camera": {
         "name": "placement",
         "placement": true
@@ -700,19 +736,19 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "7d97338d-e158-48b7-b886-29e9e1e3fcca",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "91e8b9e9-74dc-41d5-b45d-fa31b34add19",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "54f0ea65-4907-43aa-9273-466efcb03369",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "98d2dea8-2c1f-43ce-b324-5c73caecdbf1"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.royal_bafokeng_stadium"
         ],
         "selectionBounds": [
-          27.158848672817918,
+          27.158848687766273,
           -25.58064434081739,
-          27.16299174324877,
-          -25.57690732226849
+          27.162991728300426,
+          -25.576907349235523
         ],
         "terrainSamples": [
           {
@@ -731,10 +767,15 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1
         },
         "draws": 7,
         "renderedTriangles": 59071
@@ -749,7 +790,9 @@
   "groundLifecycle": {
     "applicable": true,
     "hiddenRestored": true,
-    "visibleOpen": true
+    "visibleOpen": true,
+    "visibleCapped": false,
+    "unchanged": false
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

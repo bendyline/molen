@@ -237,7 +237,6 @@ class InstancedDetailSwitch extends THREE.LOD {
     if (this.mesh.castShadow !== this.appliedShadow) this.castsShadow = this.mesh.castShadow;
     const geometry = this.geometries[level];
     this.mesh.visible = geometry !== undefined && !this.vanished;
-    // TEMP-AB-INSTANCING
     if (geometry !== undefined && (this.mesh.sourceGeometry ?? this.mesh.geometry) !== geometry)
       this.mesh.geometry = geometry;
     const material = this.materials[level];
@@ -444,14 +443,11 @@ export function createInstancedPlacementLod(
         else lod.addLevel(nothing, (distances[level - 1] as number) + radius, 0.15);
         break;
       }
-      // TEMP-AB-INSTANCING
-      const mesh = (globalThis as { __molenPlainInstancing?: boolean }).__molenPlainInstancing
-        ? (new THREE.InstancedMesh(
-            model.geometry,
-            levelMaterial(model.material, model.geometry),
-            0,
-          ) as unknown as InstanceBatch)
-        : new InstanceBatch(model.geometry, levelMaterial(model.material, model.geometry), 0);
+      const mesh = new InstanceBatch(
+        model.geometry,
+        levelMaterial(model.material, model.geometry),
+        0,
+      );
       mesh.count = first.count;
       mesh.instanceMatrix = first.instanceMatrix;
       mesh.instanceColor = first.instanceColor;

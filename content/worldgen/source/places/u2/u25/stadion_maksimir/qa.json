@@ -32,8 +32,65 @@
       "shots/shared/curved-southern-stand-and-lattice-floodlights.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Five existing256px graphs: concrete_plain, metal_painted, metal_standing_seam, window_grid and fabric_canvas. Concrete/rust facades, blue seating/yellow aisles/frame, small press roofs, glazing, apron and field reuse the library. Five near draws/one skyline draw; no new graph, embedded image or private atlas. Each graph read once; separate POSITION/NORMAL streams and equal CPU/GPU accounting. Shared opaque glazing and non-emissive lamp faces approximate real optics.",
-    "captureReportHash": "sha256:29df0ed189c91c5eba01e2359bb014d0bcad52dd6c5944e45f69804d05f0ff7c"
+    "notes": "Five existing256px graphs: concrete_plain, metal_painted, metal_standing_seam, window_grid and fabric_canvas. Concrete/rust facades, blue seating/yellow aisles/frame, small press roofs, glazing, apron and field reuse the library. Five near draws/one skyline draw; no new graph, embedded image or private atlas. Each graph read once; separate POSITION/NORMAL streams and equal CPU/GPU accounting. Shared opaque glazing and non-emissive lamp faces approximate real optics. The shared window_grid graph changed after the original review. Eight new shared-material views confirm the revised glazing in the existing geographic placement.",
+    "captureReportHash": "sha256:e78b03f49d0f1e71cd4fa1850e2d55a2cc22c15d56dd3337990955feebe691a3",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:e33d80c5de9f29a62c9fffce4042234ef6c83d2754ec1eacf5d874adbc1839df"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:207a3b50939e56468b6c6e3c795b01494fd2ec085e99bb3393e9f55751d9c8c4"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:bf4c5bbc44cd7a19b0242fcfcd8dc11feddd6a0477f3cfc8c5a344ade92eeecb"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:625ed4aa3836f49038fce303ddbfa45a012cca31808eaaf0831bf9f86d8ecd70"
+      },
+      {
+        "path": "shots/shared/four-separate-blue-stands-and-open-sky.png",
+        "hash": "sha256:8484bd5171a442da910e41d596a6c45cbce79a71d552d6084503a9abd883bcc2"
+      },
+      {
+        "path": "shots/shared/native-northern-glazed-tower-and-office-wings.png",
+        "hash": "sha256:4196a19651c3a3d0856f42e46ac0f25e1b08053bc2b84dcde7b2e00175a01b1c"
+      },
+      {
+        "path": "shots/shared/curved-southern-stand-and-lattice-floodlights.png",
+        "hash": "sha256:d84f67958041ca84be1103ae80e86053c61c1c40d7176e8ff0837e7e210044a9"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:f63891329eb77dab05bfc18d44c8c72c41a44ee3c4d475017249a21362844088"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

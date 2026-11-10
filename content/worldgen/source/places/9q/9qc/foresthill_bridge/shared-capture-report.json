@@ -1,0 +1,65 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.foresthill_bridge",
+  "inputHash": "sha256:5340e6283b51584de713d78d5fe55a969726a4c452fc9711f5b13e28e0dd3e8f",
+  "sourceHash": "sha256:a5a1ead21181ec8a27c7dcb45b3eafb5a6e63c15dd82051778a2c9b37c271f41",
+  "runtimeHash": "sha256:2d67f1ad8bab4aec605c63268305882f56a41b79f2c20134bb30f36a5e637685",
+  "fixtureHash": "sha256:d231000b3e417d440fbf835d9f7c8df8379d1503c9c7d1774d3128931ac22491",
+  "placementHash": "sha256:1796de3f74a455328312d7767930d1c1416c326b715dec3ad153c5b9cbf65a3d",
+  "materialGraphs": {
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-bridge.png",
+      "hash": "sha256:89db67e7b56d0ce140f169ebdb87157244e8e3e631f0b3865177d8f66ce6bdd1",
+      "camera": {
+        "name": "main-street-noon-high",
+        "mediumName": "street-noon-high",
+        "group": "main",
+        "position": [
+          56,
+          131.6,
+          345
+        ],
+        "lookAt": [
+          0,
+          88.6,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "foresthill.bridge",
+        "visibleDraws": 2
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "liveSupportGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Each tier reads concrete_plain and metal_painted once each. All tiers use metric UVs without embedded images."
+}

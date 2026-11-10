@@ -32,8 +32,65 @@
       "shots/shared/rear-courtyard-roof-ranges.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Five existing 256px graphs across eight authoring roles: stone_granite walls and trim, slate roofs, storefront opaque glazing, metal_painted frames/cupola/dials and wood_plain entrance. No new graph, private atlas or embedded image. Six textured draws near, one skyline draw. Palette colors are linear in the GLB, UVs are metric and each requested graph is read once. Every LOD unload releases all model geometry; shared graph lifetime remains managed by the viewer.",
-    "captureReportHash": "sha256:0aa7337d8d77e129718354f303a42c2cbce1b3efa3ec52debf703121a092a5f6"
+    "notes": "Five existing 256px graphs across eight authoring roles: stone_granite walls and trim, slate roofs, storefront opaque glazing, metal_painted frames/cupola/dials and wood_plain entrance. No new graph, private atlas or embedded image. Six textured draws near, one skyline draw. Palette colors are linear in the GLB, UVs are metric and each requested graph is read once. Every LOD unload releases all model geometry; shared graph lifetime remains managed by the viewer. Current viewer renders confirm the updated shared storefront material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:d32593bc4fe2608e802ac5b45052dc9c28952fbb2c98af45fdba0f9f9da32dd4",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:5c5a72bfc210e8166280076585a9b0eefa931598c27c0d7a7dfa3a247199fb63"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:bfce836638c293df9dff6439d3204a1cd5bec23083a92ed811e41eb1d93201cd"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:e4728ddfda0bc5af27805eb226c07e0c81723efb43dfe5ba518f4febbbcbd026"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:389919a71057507399cf58cafe19dbefcf31b074d5af4e97696659f7ea52847e"
+      },
+      {
+        "path": "shots/shared/south-entrance-and-clock-tower.png",
+        "hash": "sha256:508dd4f0ffaade98c486b8a13805c3e6bfa8cd6e0bcd51915ca17baaf79938c6"
+      },
+      {
+        "path": "shots/shared/west-stepped-gables-and-turrets.png",
+        "hash": "sha256:7036453d2d7627f628682d072ced35b3146f4534e2f6ed673a47954ea889165b"
+      },
+      {
+        "path": "shots/shared/rear-courtyard-roof-ranges.png",
+        "hash": "sha256:f5870436eda1288891281dfa00b3e28a406f3d3130a9c0fc9e736166e7d0ff2f"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:7172f6ab389c7410a35790d224854bb8366ffa7d091310dd10f73891b4e113c0"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_granite": {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      },
+      "matgraph:molen.worldgen.material.slate": {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

@@ -1,0 +1,401 @@
+{
+  "id": "maulbronn_monastery",
+  "title": "Maulbronn Monastery",
+  "wikidataId": "Q157886",
+  "referenceCoordinate": {
+    "longitude": 8.812498039,
+    "latitude": 49.001095935
+  },
+  "module": "content/worldgen/source/places/u0/u0w/maulbronn_monastery/models/abbey-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-maulbronn-monastery.mjs",
+  "builder": "buildAbbeyLevel",
+  "surfaces": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_sandstone"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_flat"
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime"
+    },
+    "timber": {
+      "slot": "trim",
+      "graph": "wood_plain"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_punched"
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate"
+    }
+  },
+  "exportLabel": "Molen original Maulbronn Monastery master",
+  "expectedDraftMasterHash": "sha256:00f4f06286b5ba21b50f9029622f55383da56950179c2079ff40b041b89c22fb",
+  "visualBrief": "Maulbronn Monastery with the Cistercian church and ridge spire, open cloister and fountain house, west gate, Fruchtkasten granary, terracotta roofs, half-timbered courtyard houses and visible enclosure walls.",
+  "heightPolicy": "The 264 m datum lies within the precinct. Foundation walls follow standard Terrarium, and the west gate leaves the mapped Klosterhof approach in place.",
+  "nativeAxes": "+X runs east-northeast from the historic west gate toward the church and eastern grounds. +Z points toward the southern wall and Frankfurter Straße.",
+  "sourceFacts": {
+    "retainedOutlineLengthMeters": 375.202,
+    "retainedOutlineWidthMeters": 172.055,
+    "mappedBuildingParts": 61,
+    "authoredBuildingVolumes": 58,
+    "mappedWestGatePath": 35184540897088,
+    "georeferencing": "+X runs east-northeast from the historic west gate toward the church and eastern grounds. +Z points toward the southern wall and Frankfurter Straße."
+  },
+  "limitations": [
+    "Roofs follow the mapped footprints and the height hierarchy seen in exterior photographs. Individual openings, roof pitches, the pavilion and wall portions are visual approximations.",
+    "The model covers the exterior within the precinct. The church, residential interiors, vineyard terraces and historic hydraulic works are outside the modeled scope."
+  ],
+  "materialMethod": "Six shared material graphs and metric UVs. Stone, terracotta, lime plaster, timber, slate and glazing use palette tints without private images.",
+  "references": [
+    {
+      "name": "aerial.webp",
+      "page": "https://www.kloster-maulbronn.de/en/visitor-experience/the-monastery/the-buildings",
+      "image": "https://www.kloster-maulbronn.de/fileadmin/_processed_/0/5/csm_27_maulbronn_luft_20100429_5783_foto-ssg-achim-mende.crop910x606_02fcc3d687.webp",
+      "hash": "sha256:24f68e6f2fabd1eae7b9cfc02000e0dbd4ec7408e68320002d4e9ffc85911f1b",
+      "url": "https://www.kloster-maulbronn.de/en/visitor-experience/the-monastery/the-buildings",
+      "observed": "Oblique aerial shows the long gabled church, ridge spire, separate refectory roofs, fountain pavilion, open cloister and outer walls."
+    },
+    {
+      "name": "court.webp",
+      "page": "https://www.kloster-maulbronn.de/erlebnis-kloster/kloster/gebaeude/westlicher-eingangsbereich",
+      "image": "https://www.kloster-maulbronn.de/fileadmin/_processed_/1/1/csm_27_maulbronn_luft_lmz492043_weischer_2003_fruchtkasten_hof.foto-ssg-arnim-weischer_crop992x660_19aae47740.webp",
+      "hash": "sha256:aca21b4b7e76ea14a1f2e20b872fefe35e4b9501187850466cf52484d70c3f38",
+      "url": "https://www.kloster-maulbronn.de/erlebnis-kloster/kloster/gebaeude/westlicher-eingangsbereich",
+      "observed": "Aerial of the economic courtyard shows the broad Fruchtkasten gable, the open square and the northwest tower."
+    },
+    {
+      "name": "facades.jpg",
+      "page": "https://www.kloster-maulbronn.de/erlebnis-kloster/junge-klosterwelt",
+      "image": "https://www.kloster-maulbronn.de/fileadmin/_processed_/3/9/csm_27_maulbronn_aussen_foto-ssg-guenther-bayerl_074_c1047fa111.jpg",
+      "hash": "sha256:83ab93cf7f411faeb9916f8ff937fac9a9433f09b30eab267790d6c5a2103b22",
+      "url": "https://www.kloster-maulbronn.de/erlebnis-kloster/junge-klosterwelt",
+      "observed": "Street view shows the half-timbered buildings with masonry ground floors, shutters, dormers and high steep clay roofs."
+    },
+    {
+      "name": "second-aerial.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_the_Maulbronn_Monastery_Complex_(view_from_the_southeast).jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Aerial_image_of_the_Maulbronn_Monastery_Complex_%28view_from_the_southeast%29.jpg/1280px-Aerial_image_of_the_Maulbronn_Monastery_Complex_%28view_from_the_southeast%29.jpg",
+      "hash": "sha256:dfa45ee08d1e8b0dfb396d2ad15f7db2cfea4b97c42d423b1dc4274f11099de4",
+      "url": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_the_Maulbronn_Monastery_Complex_(view_from_the_southeast).jpg",
+      "observed": "Southeast aerial confirms site orientation, roof hierarchy and the surrounding walls."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-precinct-from-south",
+      "position": [
+        -193,
+        137,
+        269
+      ],
+      "lookAt": [
+        -12,
+        12,
+        8
+      ],
+      "fov": 52
+    },
+    {
+      "name": "church-spire-and-cloister",
+      "position": [
+        135,
+        85,
+        143
+      ],
+      "lookAt": [
+        27,
+        10,
+        -1
+      ],
+      "fov": 48
+    },
+    {
+      "name": "cloister-and-fountain",
+      "position": [
+        29,
+        6.1,
+        10.6
+      ],
+      "lookAt": [
+        24.9,
+        4,
+        -7.5
+      ],
+      "fov": 59
+    },
+    {
+      "name": "timber-houses-from-public-court",
+      "position": [
+        -110,
+        7.5,
+        18
+      ],
+      "lookAt": [
+        -77,
+        7,
+        -20
+      ],
+      "fov": 54
+    },
+    {
+      "name": "granary-gable-and-church-approach",
+      "position": [
+        -34,
+        9.8,
+        29
+      ],
+      "lookAt": [
+        -69,
+        10,
+        42
+      ],
+      "fov": 58
+    },
+    {
+      "name": "open-west-gate",
+      "position": [
+        -190,
+        3.35,
+        45.53
+      ],
+      "lookAt": [
+        -165,
+        1.5,
+        45.32
+      ],
+      "fov": 51
+    },
+    {
+      "name": "north-wall-and-refectory",
+      "position": [
+        67,
+        59,
+        -154
+      ],
+      "lookAt": [
+        4,
+        10,
+        -24
+      ],
+      "fov": 50
+    },
+    {
+      "name": "manor-wing-and-tower",
+      "position": [
+        121,
+        29,
+        93
+      ],
+      "lookAt": [
+        99,
+        7,
+        1
+      ],
+      "fov": 55
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -10,
+        10,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u0/u0w/maulbronn_monastery/models/abbey-model.mjs",
+    "export": "buildAbbeySkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat"
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime"
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_punched"
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate"
+      }
+    },
+    "errorMeters": 1.9,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAbbeyDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched"
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate"
+          }
+        },
+        "errorMeters": 0.7
+      },
+      "street": {
+        "export": "buildAbbeyStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched"
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate"
+          }
+        },
+        "errorMeters": 0.22
+      },
+      "closeup": {
+        "export": "buildAbbeyCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat"
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_punched"
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate"
+          }
+        },
+        "errorMeters": 0.09
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "maulbronn_monastery-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -193,
+        137,
+        269
+      ],
+      "lookAt": [
+        -12,
+        12,
+        8
+      ]
+    },
+    {
+      "name": "maulbronn_monastery-district",
+      "reviewLod": "district",
+      "position": [
+        -193,
+        137,
+        269
+      ],
+      "lookAt": [
+        -12,
+        12,
+        8
+      ]
+    },
+    {
+      "name": "maulbronn_monastery-street",
+      "reviewLod": "street",
+      "position": [
+        -193,
+        137,
+        269
+      ],
+      "lookAt": [
+        -12,
+        12,
+        8
+      ]
+    },
+    {
+      "name": "maulbronn_monastery-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -193,
+        137,
+        269
+      ],
+      "lookAt": [
+        -12,
+        12,
+        8
+      ]
+    }
+  ]
+}

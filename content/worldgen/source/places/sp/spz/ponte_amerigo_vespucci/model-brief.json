@@ -1,0 +1,433 @@
+{
+  "id": "ponte_amerigo_vespucci",
+  "title": "Ponte Amerigo Vespucci",
+  "wikidataId": "Q3397701",
+  "referenceCoordinate": {
+    "longitude": 11.24294731,
+    "latitude": 43.771940841
+  },
+  "module": "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-ponte-amerigo-vespucci.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "beam": {
+      "slot": "wall",
+      "graph": "concrete_plain"
+    },
+    "pier": {
+      "slot": "wall",
+      "graph": "stone_drywall"
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_ashlar"
+    },
+    "walk": {
+      "slot": "trim",
+      "graph": "stone_ashlar"
+    },
+    "pavement": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "marking": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "guard": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    }
+  },
+  "exportLabel": "Molen original Ponte Amerigo Vespucci master",
+  "expectedDraftMasterHash": "sha256:cfefa7c2a2a1f49efc7375ac7cb7958e48994c05437c8e30a0ab94e9bea1aac0",
+  "visualBrief": "Complete three-span Arno crossing with a shallow haunched concrete deck, paired skewed masonry piers, cutwaters, abutments, raised sidewalks, and open green railings.",
+  "heightPolicy": "The standard Terrarium field sets a 43 m datum. Deck heights range from 51.65 m to 52.34 m, following the reported 9.5 m height and photo proportions. The lower path and Arno use their mapped surfaces.",
+  "nativeAxes": "+X northeast toward Lungarno Vespucci. +Z southeast toward central Florence.",
+  "sourceFacts": {
+    "retainedOutlineLengthMeters": 163.187,
+    "reportedLengthMeters": 163,
+    "reportedDeckWidthMeters": 22.5,
+    "reportedHeightMeters": 9.5,
+    "currentPMTilesFeature": 35184490896710,
+    "control": {
+      "id": "ponte_amerigo_vespucci",
+      "anchor": [
+        11.24294731,
+        43.771940841
+      ],
+      "heading": 0.983891537774,
+      "datum": 43,
+      "ends": [
+        -80.75,
+        80.4
+      ],
+      "halfWidth": 11.25,
+      "bearingSkew": [
+        0.08,
+        0.08
+      ],
+      "ownedRoadId": 35184490896710,
+      "sidewalkId": 35185067692130,
+      "lowerRouteId": 35184532005430,
+      "mainPiers": [
+        -29.4,
+        28.4
+      ],
+      "curve": [
+        [
+          -80.75,
+          0
+        ],
+        [
+          80.4,
+          0
+        ]
+      ],
+      "profile": [
+        [
+          -80.75,
+          8.65
+        ],
+        [
+          -55,
+          8.93
+        ],
+        [
+          -29.4,
+          9.2
+        ],
+        [
+          0,
+          9.34
+        ],
+        [
+          28.4,
+          9.29
+        ],
+        [
+          55,
+          9.09
+        ],
+        [
+          80.4,
+          8.86
+        ]
+      ]
+    }
+  },
+  "limitations": [
+    "The two pier axes and skewed landings follow the attributed map footprint. Photographs guide deck depth, the cutwater profiles, and the railing pattern.",
+    "The coarse global elevation grid undersamples the raised quay roads. The road replacement profile joins the authored deck to the mapped street approaches. Pier foundations and exact absolute elevations are visual approximations. Short landing lips, a southwest sidewalk flare, and a tapered northeast median plate bridge the visible joins to the mapped approaches. The crossing models its permanent exterior."
+  ],
+  "materialMethod": "Shared concrete_plain, stone_drywall, stone_ashlar, and metal_painted graphs use linear palette tints and metric UVs. Railing density scales by view distance",
+  "references": [
+    {
+      "url": "https://www.techno-science.net/glossaire-definition/Ponts-de-Florence.html",
+      "observations": "River panorama showing the thin continuous deck, two projecting masonry piers, and the profile of the crossing against the riverfront."
+    },
+    {
+      "url": "https://firenze.repubblica.it/cronaca/2018/11/21/news/firenze_ponte_vespucci-212257918/",
+      "observations": "Low view showing the splayed soffit, heavy rough stone piers with dressed edges and footings, and closely spaced green rail bars."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-crossing",
+      "position": [
+        90,
+        32,
+        122
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "river-side-fascia",
+      "position": [
+        12,
+        10,
+        104
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "southwest-sidewalk",
+      "position": [
+        -70,
+        11,
+        -9.7
+      ],
+      "lookAt": [
+        -25,
+        9,
+        -9.8
+      ],
+      "fov": 50
+    },
+    {
+      "name": "pier-cutwater",
+      "position": [
+        -8,
+        3,
+        37
+      ],
+      "lookAt": [
+        -29,
+        4,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "lower-bank-path",
+      "position": [
+        -73,
+        2,
+        28
+      ],
+      "lookAt": [
+        -75,
+        6,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "northeast-landing",
+      "position": [
+        100,
+        14,
+        5
+      ],
+      "lookAt": [
+        62,
+        8,
+        1
+      ],
+      "fov": 50
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        5,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sp/spz/ponte_amerigo_vespucci/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "beam": {
+        "slot": "wall",
+        "graph": "concrete_plain"
+      },
+      "pier": {
+        "slot": "wall",
+        "graph": "stone_drywall"
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_ashlar"
+      },
+      "walk": {
+        "slot": "trim",
+        "graph": "stone_ashlar"
+      },
+      "pavement": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "marking": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "guard": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      }
+    },
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "beam": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "stone_drywall"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar"
+          },
+          "walk": {
+            "slot": "trim",
+            "graph": "stone_ashlar"
+          },
+          "pavement": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "marking": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "guard": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.4
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "beam": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "stone_drywall"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar"
+          },
+          "walk": {
+            "slot": "trim",
+            "graph": "stone_ashlar"
+          },
+          "pavement": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "marking": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "guard": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.2
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "beam": {
+            "slot": "wall",
+            "graph": "concrete_plain"
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "stone_drywall"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_ashlar"
+          },
+          "walk": {
+            "slot": "trim",
+            "graph": "stone_ashlar"
+          },
+          "pavement": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "marking": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "guard": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "ponte_amerigo_vespucci-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        90,
+        32,
+        122
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "ponte_amerigo_vespucci-district",
+      "reviewLod": "district",
+      "position": [
+        90,
+        32,
+        122
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "ponte_amerigo_vespucci-street",
+      "reviewLod": "street",
+      "position": [
+        90,
+        32,
+        122
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "ponte_amerigo_vespucci-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        90,
+        32,
+        122
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ]
+}

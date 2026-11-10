@@ -1,0 +1,80 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.palacio_do_planalto",
+  "inputHash": "sha256:db363e7e8cb75875a890ec1c193099a1f157b31374a425f434e77a474ec588d8",
+  "sourceHash": "sha256:e18efd3b59a75718883a756d65b7482cc5e54e1b9ab4518653abac074d56742f",
+  "runtimeHash": "sha256:6b1364e3d987fe94d4dfbd5442caa2597260a26f3801a03ed8ae6d439f97046a",
+  "fixtureHash": "sha256:57f915593c1cb317f83f230ae4499c313395f034d385491d720ae35659c86220",
+  "placementHash": "sha256:500ec2bc27f850fa695b86d0056d7ff0343db48cf3e5798fca3a258dd46eda57",
+  "materialGraphs": {
+    "molen.worldgen.material.membrane": {
+      "path": "materials/membrane.matgraph.json",
+      "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
+    },
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    },
+    "molen.worldgen.material.stone_marble": {
+      "path": "materials/stone_marble.matgraph.json",
+      "hash": "sha256:e6034ab9ef8375ec8f3a57c697aa21e059e2953742b15ce3b3e486c2f71af7cf"
+    },
+    "molen.worldgen.material.window_grid": {
+      "path": "materials/window_grid.matgraph.json",
+      "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-planalto.png",
+      "hash": "sha256:9da5ed4f8835daa13129dbb62254103dc2978af1d40e8a0791436ef855c82fbd",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -108,
+          58,
+          151
+        ],
+        "lookAt": [
+          0,
+          9,
+          4
+        ],
+        "fov": 48,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.48,
+          1,
+          0.67
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "palacio.do.planalto",
+        "visibleDraws": 6
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The skyline uses five existing graphs. District, street and close-up each use six. Each graph resolves once per viewer session. All levels use metric UVs and linear vertex colors."
+}

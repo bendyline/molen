@@ -77,7 +77,7 @@ export function createSurfaceControls(
     typeof Worker !== 'undefined' &&
     params.get('worker') !== '0' &&
     params.get('surfaceWorker') !== '0'
-      ? // One surface worker (see surfaceWorkers).
+      ? // One surface worker, more on a workstation (see surfaceWorkers).
         createTerrainSurfaceWorkerPool(
           Array.from(
             { length: surfaceWorkers() },

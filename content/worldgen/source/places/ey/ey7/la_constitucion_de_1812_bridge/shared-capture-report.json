@@ -1,0 +1,68 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.la_constitucion_de_1812_bridge",
+  "inputHash": "sha256:c8d5bfd11b716c8af26187feaf8d2fd22156a2184f362f57d10d48192f4f073e",
+  "sourceHash": "sha256:2f702372fc81cf26bb2105e950e2df1e60632456c38cb7273f91f0d07443e0b1",
+  "runtimeHash": "sha256:8d222bb78a512fec3fb3a24463154e062fafc72707a31789d3546101717731fb",
+  "fixtureHash": "sha256:b2ce01d129d76b08f6ec5e7f98edb4238df6c631dfb2859a79edbc38520d167e",
+  "placementHash": "sha256:6fbc89fb5cadc48b7df0b8791f3e7f0c95a8a4b39f9f607076c6f5596586f652",
+  "materialGraphs": {
+    "molen.worldgen.material.gravel": {
+      "path": "materials/gravel.matgraph.json",
+      "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-bridge.png",
+      "hash": "sha256:c9ee7664f7e894614cb3211f745fd2ddb2854feedffca035980126eac820fb3a",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -230,
+          195,
+          750
+        ],
+        "lookAt": [
+          -235,
+          90,
+          -25
+        ],
+        "fov": 52,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.45,
+          1,
+          0.64
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "la.constitucion.de.1812.bridge",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Three shared graphs serve all four tiers. The white-coated stays and the blue and grey rails use the same reusable painted metal graph with separate tints. Each graph resolves once per viewer session."
+}

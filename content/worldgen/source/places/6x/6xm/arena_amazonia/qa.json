@@ -32,8 +32,65 @@
       "shots/shared/rounded-panel-shoulder-and-compression-rim.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Five existing shared256px graphs: concrete_plain, metal_painted, membrane, fabric_canvas and window_grid. No embedded images, private texture atlas or copied photographic pixels. Runtime reads each required graph once; five near draws/one skyline draw. Separate position/normal GPU streams and equal CPU/GPU byte accounting. Neutral daylight/shared reflected sky/shadows checked; glazing and roof optics remain approximate.",
-    "captureReportHash": "sha256:0121cb396227f4e9bcf1c00fcfd9ee99ed426e1c2634be96db7aabec8e1aa7ab"
+    "notes": "Five existing shared256px graphs: concrete_plain, metal_painted, membrane, fabric_canvas and window_grid. No embedded images, private texture atlas or copied photographic pixels. Runtime reads each required graph once; five near draws/one skyline draw. Separate position/normal GPU streams and equal CPU/GPU byte accounting. Neutral daylight/shared reflected sky/shadows checked; glazing and roof optics remain approximate. Current viewer renders confirm the updated shared membrane, window_grid material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:0a6934172195ef31834f4b5e08ddcd4a3935f4eac6e0605ac9866efb30525b71",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:d33a8ed725e024ff3de9345258b3bd9db28e0548f0141d2d7650cf48ab9a0d3c"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:426b3c3426667b792cb04c49589af785e297fd1f9889ffb65f3b627c17393fbc"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:0ff3c96d06469c867bb07ab82ae0de89130d9f0515af3941794d9f8f0f5af633"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:fb4403b021eb5efc2ed2a4feaf3ff1b486895206117f1e40e2b2c5dd15ebf6ec"
+      },
+      {
+        "path": "shots/shared/continuous-lozenge-shell-and-open-base.png",
+        "hash": "sha256:95a2f5d4176bccf8b9d395a1be58ff6db483a961b86211dfa94b1318bbca35dc"
+      },
+      {
+        "path": "shots/shared/two-tier-bowl-and-deep-diagonal-roof.png",
+        "hash": "sha256:5623b78ffe50d9dc988f01f768d452d2f7db50b6a452c2f5ed52de3c4c76a041"
+      },
+      {
+        "path": "shots/shared/rounded-panel-shoulder-and-compression-rim.png",
+        "hash": "sha256:5a1856aea63437821f0a01f5493b225f11ffbdf9fdf8b71b16b647345aea0c21"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:7ab693b9f06ff81363a2f50aa3fe13a8e24a06fb4ef6975757aed7ac18a99888"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

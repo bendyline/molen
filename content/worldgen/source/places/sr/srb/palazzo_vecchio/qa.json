@@ -34,8 +34,69 @@
       "shots/shared/connected-roofscape-and-four-courtyard-openings.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Six roles use five existing 256px shared graphs: stone_sandstone, stone_limestone_raw, tile_ceramic, storefront and metal_painted. Sandstone repeats at 1.80 x 1.50m. Painted metal supplies dark accents and gold vane. No embedded image, private atlas or new graph. One skyline draw, five textured draws; separate POSITION/NORMAL streams and equal CPU/GPU geometry bytes. Each used graph reads once per native run; unload disposes geometry.",
-    "captureReportHash": "sha256:1b42f5f04007e5a885496bfacf49b0a20993bbc43a9cee6f613c47d29949cf56"
+    "notes": "Six roles use five existing 256px shared graphs: stone_sandstone, stone_limestone_raw, tile_ceramic, storefront and metal_painted. Sandstone repeats at 1.80 x 1.50m. Painted metal supplies dark accents and gold vane. No embedded image, private atlas or new graph. One skyline draw, five textured draws; separate POSITION/NORMAL streams and equal CPU/GPU geometry bytes. Each used graph reads once per native run; unload disposes geometry. Current viewer renders confirm the updated shared storefront material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:b0385a95e3428a700d1dbd65be06e221a53e0288ade8576058514f4759577615",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:6c91c3786a6e02de9642039a20f7493c80ffaa0b8dc061e766e6ca9ba2bfa87b"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:51b37a2a264c8b53b329a67204cdec8819b0dc8f9037b7afbb988f46ba17e60d"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:391c91c1614e28495396127304ad0b920b729c6f441aa5f4b2666d3703144bdc"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:23d7e541d4e457065d9f90c6844a3556d349b84d3c77b74a835502ac7259fb91"
+      },
+      {
+        "path": "shots/shared/piazza-facade-paired-windows-and-clock-tower.png",
+        "hash": "sha256:8576e75b4e05a92b9ff3ecafef54e968bc5edcc3ee2ab8e4c4b4192ef91f45e6"
+      },
+      {
+        "path": "shots/shared/front-portal-recess-soffit-and-threshold.png",
+        "hash": "sha256:6965683cb24a0212462ec0e7a123d5a4781bd62b43be4aea76686a1df1728383"
+      },
+      {
+        "path": "shots/shared/open-arnolfo-belfry-corbelled-terrace-and-crown.png",
+        "hash": "sha256:b3c2086acfb2a1674f5691fbafa0ab30dfaf338e050e1fd5c3f4fe1013de9e69"
+      },
+      {
+        "path": "shots/shared/connected-roofscape-and-four-courtyard-openings.png",
+        "hash": "sha256:d857ea23ab9dd08c7a891d340336f035ad3d45f01eb51c6982b459b1074a371a"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:cb484bebd9076067e2617fa1f6c17f4f6001a070a133f3de510a4485848b6659"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_sandstone": {
+        "path": "materials/stone_sandstone.matgraph.json",
+        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+      },
+      "matgraph:molen.worldgen.material.tile_ceramic": {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

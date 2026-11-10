@@ -1,0 +1,73 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.ponte_amerigo_vespucci",
+  "inputHash": "sha256:9514461923fe5d0e935680e184838626d020700100d1e1fbbe3e8bb3fe6d8f3a",
+  "sourceHash": "sha256:cfefa7c2a2a1f49efc7375ac7cb7958e48994c05437c8e30a0ab94e9bea1aac0",
+  "runtimeHash": "sha256:9e23e6affdfcccba8c4571d3051367392e4609d5facfef35f20fee9b123f849d",
+  "fixtureHash": "sha256:f19c09459060201699a68acf240204f75e4ad5b640fe96e8d237c15525b9f525",
+  "placementHash": "sha256:d1ac206e394b0522e93f53b54cb58c5b041adfe22c886d0d35745e23d702dc47",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    },
+    "molen.worldgen.material.stone_drywall": {
+      "path": "materials/stone_drywall.matgraph.json",
+      "hash": "sha256:a3bd96f1a584b9da94425ad12ed716a17a528cd76d22ce4468cb18476a7a3619"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_ashlar": {
+      "path": "materials/stone_ashlar.matgraph.json",
+      "hash": "sha256:f5692cbd995206b1475a803b027d181a664bd3a20df51db34667f205abce8093"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-bridge.png",
+      "hash": "sha256:7ef30bf7993e11acb0bc17ce9930ede15217d60541e5ad656511959eb243405c",
+      "camera": {
+        "name": "main-street-noon-high",
+        "mediumName": "street-noon-high",
+        "group": "main",
+        "position": [
+          20,
+          12,
+          85
+        ],
+        "lookAt": [
+          0,
+          5,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "ponte.amerigo.vespucci",
+        "visibleDraws": 5
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "liveSupportGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The near tiers load concrete_plain, stone_drywall, stone_ashlar, and metal_painted once each. The close-up tier uses five material bindings and metric UVs."
+}

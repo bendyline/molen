@@ -59,6 +59,7 @@ export {
   createEarthFog,
   createEarthSky,
   type EarthSkyStyle,
+  earthStreamDistance,
   updateEarthFog,
 } from './client/atmosphere';
 export {
@@ -145,6 +146,7 @@ export {
 export {
   createEarthAdmissionGovernor,
   EARTH_CALIBRATION_QUALITY,
+  EARTH_INDEPENDENT_LAYERS,
   EARTH_QUALITY_CALIBRATION_MS,
   EARTH_STICKY_QUALITY,
   type EarthDeviceMemory,

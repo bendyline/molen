@@ -101,10 +101,7 @@ export function createInstancedPlacements(
   material: THREE.Material,
   name = `worldgen:${set.setId}`,
 ): InstanceBatch {
-  // TEMP-AB-INSTANCING
-  const mesh = (globalThis as { __molenPlainInstancing?: boolean }).__molenPlainInstancing
-    ? (new THREE.InstancedMesh(geometry, material, set.count) as unknown as InstanceBatch)
-    : new InstanceBatch(geometry, material, set.count);
+  const mesh = new InstanceBatch(geometry, material, set.count);
   const matrix = new THREE.Matrix4();
   const position = new THREE.Vector3();
   const quaternion = new THREE.Quaternion();

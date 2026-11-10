@@ -32,8 +32,65 @@
       "shots/shared/curved-north-display-atrium-and-supported-bridge.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Five existing256px shared material graphs: concrete_plain, brick, metal_painted, fabric_canvas and window_grid. No embedded images or unique texture atlas. Actual shared runtime binds each graph once; near geometry uses five draws, skyline merges into one draw. Separate position/normal streams avoid duplicated GPU uploads; CPU/GPU byte accounting agrees. Opaque shared glazing and muted blue/red seats keep the medium-fi palette.",
-    "captureReportHash": "sha256:a9e32fae29d0cd9625b388cf3560d2a4837c2e83902636016c2f3882290db591"
+    "notes": "Five existing256px shared material graphs: concrete_plain, brick, metal_painted, fabric_canvas and window_grid. No embedded images or unique texture atlas. Actual shared runtime binds each graph once; near geometry uses five draws, skyline merges into one draw. Separate position/normal streams avoid duplicated GPU uploads; CPU/GPU byte accounting agrees. Opaque shared glazing and muted blue/red seats keep the medium-fi palette. The shared window_grid graph changed after the original review. Eight new shared-material views confirm the revised glazing in the existing geographic placement.",
+    "captureReportHash": "sha256:fcfc431c6fc26f797c626c0e133ef9d207103608f67eae0b2756482584ed2ea9",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:cfa73a83d035d62cf9287338249c8321fa54d55161b9fbd060441975fc88765c"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:4a4a4b3dbdea1765f3078a918e4aecc6a2456aafbb9c1ddec2247356a2671b2a"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:f35311c29846d666f4d71fd47f820f8522c25bc69fcb0882fa05daa152235ccf"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:4b60cb504f7d85c51e4e6a613448ecd0fe15c3d1e89fa4ab7c1ab2112d875de0"
+      },
+      {
+        "path": "shots/shared/new-lighthouse-lantern-observation-ring-and-entry-arch.png",
+        "hash": "sha256:024a65132abe14bbdcaa42de6fadad2028bafce977b9df5faa064cddfa04efc8"
+      },
+      {
+        "path": "shots/shared/three-side-banks-club-belts-and-open-field.png",
+        "hash": "sha256:611110fe24e50ef6c78b58e9c980e7a3e669da66e35bb0af2a9d941d9c2a883f"
+      },
+      {
+        "path": "shots/shared/curved-north-display-atrium-and-supported-bridge.png",
+        "hash": "sha256:7be8030513160694fee7f842c53fb6d2896c9bb228791affc4c539784e4605cf"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:dc1abdad24ba17589865bca5f6b72d121fe8944ff689a9bfabb65c1bd77945a7"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

@@ -1,0 +1,80 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.palazzo_farnese",
+  "inputHash": "sha256:a4e9159a85db8d5205fe99c46e5889715f7ca885c41f95b3fe298a19e35c14f3",
+  "sourceHash": "sha256:cd15380aa9b1d34b69de144b904748aed815846a3af2984f62e1d7635e13f45f",
+  "runtimeHash": "sha256:8fea8caaec302f73dbba116b3a610a1dbbdaf80b4a72ef27e847630542522038",
+  "fixtureHash": "sha256:664f94177d0eb5fbdb2e98e9eb98f4eedaecd1bddbe4edc60090a0569f2e8d37",
+  "placementHash": "sha256:ca8c80347fba60b18fbb2195a1f9757961de7159a5ff2cd3da7aabf60d90f1b2",
+  "materialGraphs": {
+    "molen.worldgen.material.brick_longformat": {
+      "path": "materials/brick_longformat.matgraph.json",
+      "hash": "sha256:4fdf393d228a5d543b82290a8f382b2cbfd7a67279bc504e4e526d59ed2335a8"
+    },
+    "molen.worldgen.material.tile_flat": {
+      "path": "materials/tile_flat.matgraph.json",
+      "hash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448"
+    },
+    "molen.worldgen.material.stone_travertine": {
+      "path": "materials/stone_travertine.matgraph.json",
+      "hash": "sha256:9dbdc06581500e8a384c4ae72c6bee0a6653dcc7860b85b52fd96a830b420b58"
+    },
+    "molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    },
+    "molen.worldgen.material.window_punched": {
+      "path": "materials/window_punched.matgraph.json",
+      "hash": "sha256:cc34da0c3f201320973e6000d3871295f88255e6ac6c8282bad935061b714fdc"
+    },
+    "molen.worldgen.material.wood_plain": {
+      "path": "materials/wood_plain.matgraph.json",
+      "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-palace.png",
+      "hash": "sha256:86bc379a8f345b482a79e41f3579c2d18b82166a229fd9287f71b078262aea11",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          103,
+          49,
+          76
+        ],
+        "lookAt": [
+          0,
+          12,
+          0
+        ],
+        "fov": 52,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          0.55,
+          1,
+          -0.4
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "palazzo.farnese",
+        "visibleDraws": 6
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The skyline uses five existing graphs. District, street, and close-up each use six. Each graph resolves once per viewer session. All levels use metric UVs and linear vertex colors."
+}

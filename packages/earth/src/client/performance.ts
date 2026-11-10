@@ -253,6 +253,27 @@ const PERIPHERAL_DEGREES = 20;
 const PERIPHERAL_DETAIL = 0.4;
 /** Tiles the terrain cache keeps at most; bytes normally stop it first. */
 const MAX_RESIDENT_TILES = 1024;
+/**
+ * Detail kept for ground the rest of the way round the camera, and how far (meters). A look to
+ * the side takes a third of a second; the ground it faces took 3 s to finish at Balanced on a
+ * fast desktop and 20 s on a slow main thread, and until then was bare terrain with straight
+ * tile edges. At this weight the circle holds a dozen or so tiles, three or more levels coarser
+ * than the view, with water and land cover on them (see `EARTH_INDEPENDENT_LAYERS`).
+ */
+const SURROUND_DETAIL = 0.1;
+const SURROUND_DISTANCE = 12_000;
+/** The surround needs tiles to spare: tiers below this many selected tiles go without. */
+const SURROUND_MIN_TILES = 40;
+
+/**
+ * Layers an Earth terrain stream builds outside the view and shows as each is ready: water, and
+ * land cover, which is the ground's color (pass as the stream's `independentLayers`). Buildings,
+ * roads and trees stay with the view.
+ */
+export const EARTH_INDEPENDENT_LAYERS: readonly ['hydrology', 'classification'] = [
+  'hydrology',
+  'classification',
+];
 
 /**
  * A terrain budget for an Earth view, from a tier's or a preset's. Ground just left must stay warm
@@ -269,6 +290,9 @@ export function earthTerrainBudget(
     ...base,
     peripheralDegrees: PERIPHERAL_DEGREES,
     peripheralDetail: PERIPHERAL_DETAIL,
+    ...(base.maxSelectedTiles >= SURROUND_MIN_TILES
+      ? { surroundDetail: SURROUND_DETAIL, surroundDistance: SURROUND_DISTANCE }
+      : {}),
     maxResidentBytes: Math.max(base.maxResidentBytes ?? 0, memoryBudget),
     maxResidentTiles: Math.max(
       base.maxResidentTiles,

@@ -400,27 +400,44 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
   };
 }
 
+function logicalCores(): number {
+  return typeof navigator !== 'undefined' ? (navigator.hardwareConcurrency ?? 4) : 4;
+}
+
 /**
- * World generation workers: a quarter of the logical cores, at most two. One worked through a
- * city's tiles one at a time; four, beside as many for land cover and road surfaces, took the
- * cores the frame needs: on a 12-core laptop a jet's frames drew the same scene up to twice as
- * slowly while a town streamed in, and a frame over 33 ms came every few seconds. Two halved those
- * for a tile generated ~170 ms later (most of it hidden by the predicted views loading ahead).
+ * World generation workers: a quarter of the logical cores, at most two, up to 15 cores. One
+ * worked through a city's tiles one at a time; four, beside as many for land cover and road
+ * surfaces, took the cores the frame needs: on a 12-core laptop a jet's frames drew the same
+ * scene up to twice as slowly while a town streamed in, and a frame over 33 ms came every few
+ * seconds. Two halved those for a tile generated ~170 ms later (most of it hidden by the
+ * predicted views loading ahead).
+ *
+ * A workstation has the cores to spare: three from 16 logical cores, four from 24. On 32 (with
+ * three land cover and three surface workers, see `surfaceWorkers`) a 250 m/s circle at Balanced
+ * built a tile's buildings in 0.41 s on average instead of 0.63 s, and missed fewer frames (9
+ * over 20 ms instead of 32) rather than more. Only the 32-core figures were measured; 16-23 is
+ * the step between them and the laptop.
  */
-export function generationWorkers(): number {
-  const cores = typeof navigator !== 'undefined' ? (navigator.hardwareConcurrency ?? 4) : 4;
+export function generationWorkers(cores: number = logicalCores()): number {
+  if (cores >= 24) return 4;
+  if (cores >= 16) return 3;
   return Math.max(1, Math.min(2, Math.floor(cores / 4)));
 }
 
 /**
- * Land cover and road surface workers: one each. Their jobs are short beside world generation's,
- * and a second of each still took the frame's cores: with two, panning low over Kyoto, Sydney or
- * Seattle drew the same scene up to three times as slowly in some frames (a few a minute over
- * 50 ms, at about 80-90 fps); with one, none, at 100+ fps. A low flight streamed just as fast;
- * the first view loaded about a fifth later.
+ * Land cover and road surface workers: one each up to 15 logical cores. Their jobs are short
+ * beside world generation's, and a second of each still took the frame's cores on a 12-core
+ * laptop: with two, panning low over Kyoto, Sydney or Seattle drew the same scene up to three
+ * times as slowly in some frames (a few a minute over 50 ms, at about 80-90 fps); with one, none,
+ * at 100+ fps. A low flight streamed just as fast; the first view loaded about a fifth later.
+ *
+ * With cores to spare one is the bottleneck instead: land cover is the layer a tile waits for
+ * longest. On 32 logical cores, one worker took 1.7 s a tile on average over a 250 m/s circle
+ * (8.0 s at the 95th percentile) and the first view took 23 s to finish; three took 0.5 s (1.7 s)
+ * and 13 s, with fewer missed frames. Two from 16 cores, three from 24.
  */
-export function surfaceWorkers(): number {
-  return 1;
+export function surfaceWorkers(cores: number = logicalCores()): number {
+  return cores >= 24 ? 3 : cores >= 16 ? 2 : 1;
 }
 
 /** Landcover tiles go to whichever worker has the fewest in flight. */

@@ -1,0 +1,84 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.leon_cathedral",
+  "inputHash": "sha256:922d55f391293d39b0944793ecf828339222b33e4b3ea491c34e43572c22a526",
+  "sourceHash": "sha256:6713d3759b86f5f6257f5b38ef908400f124613e1371e32378a336ba3ca8b328",
+  "runtimeHash": "sha256:eb6e0190efc51c0251dcf49a16038d9af4d605caf57be012202121ab98242d51",
+  "fixtureHash": "sha256:dde9a542eb5991d4be0370c7993392184cc3c329d726204af7abdd3b14e350bf",
+  "placementHash": "sha256:ddf39398e3a70ba7cc23de2c9b0bd743a43ac4c4c398992192e933d158096c21",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    },
+    "molen.worldgen.material.slate": {
+      "path": "materials/slate.matgraph.json",
+      "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+    },
+    "molen.worldgen.material.tile_ceramic": {
+      "path": "materials/tile_ceramic.matgraph.json",
+      "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    },
+    "molen.worldgen.material.stone_limestone_weathered": {
+      "path": "materials/stone_limestone_weathered.matgraph.json",
+      "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
+    },
+    "molen.worldgen.material.wood_plain": {
+      "path": "materials/wood_plain.matgraph.json",
+      "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-cathedral.png",
+      "hash": "sha256:d2ecaa5ff507359e04dbc8ac5be55764ec9f2e1a27d56df09976de82f4d06f90",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -130,
+          88,
+          103
+        ],
+        "lookAt": [
+          -2,
+          20,
+          -19
+        ],
+        "fov": 47,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.45,
+          1,
+          0.64
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "leon.cathedral",
+        "visibleDraws": 7
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Seven shared graphs serve the four tiers. Coursed stone, continuous limestone trim and weathered foundations are differentiated. Stonework and tracery are geometry, and the shared clay and slate roof textures use metric UVs."
+}

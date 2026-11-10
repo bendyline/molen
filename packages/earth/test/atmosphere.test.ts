@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 import {
   createEarthFog,
   createEarthSky,
+  earthStreamDistance,
   earthSunDirection,
   updateEarthFog,
 } from '../src/client/atmosphere';
@@ -101,5 +102,18 @@ describe('sun placement', () => {
     expect(aimed.sun?.direction).toEqual([1, 2, 3]);
     // Unplaced skies keep the stock rig.
     expect(earthEnvironment(undefined).sun?.direction).toEqual([-6, 10, 4]);
+  });
+
+  it('streams terrain to where the haze completes in the frame corners, within the tier', () => {
+    // Low altitude: the haze completes at 20 km, 29.5 km away toward a 16:10 frame's corner.
+    expect(earthStreamDistance(60_000, 900, 1.6)).toBe(30_000);
+    expect(earthStreamDistance(110_000, 900, 1.6)).toBe(30_000);
+    // A wider frame reaches farther; a short tier distance is never exceeded.
+    expect(earthStreamDistance(110_000, 900, 21 / 9)).toBeGreaterThan(30_000);
+    expect(earthStreamDistance(24_000, 900, 1.6)).toBe(24_000);
+    // Climbing pushes the haze out until the tier's own distance binds.
+    expect(earthStreamDistance(60_000, 5_000, 1.6)).toBeGreaterThan(40_000);
+    expect(earthStreamDistance(60_000, 12_000, 1.6)).toBe(60_000);
+    expect(() => earthStreamDistance(0, 900, 1.6)).toThrow(RangeError);
   });
 });

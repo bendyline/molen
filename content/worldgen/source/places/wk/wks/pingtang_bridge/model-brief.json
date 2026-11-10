@@ -1,0 +1,395 @@
+{
+  "id": "pingtang_bridge",
+  "title": "Pingtang Bridge",
+  "wikidataId": "Q61370117",
+  "referenceCoordinate": {
+    "longitude": 107.062265923,
+    "latitude": 25.786113806
+  },
+  "module": "content/worldgen/source/places/wk/wks/pingtang_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-pingtang-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "road": {
+      "slot": "wall",
+      "graph": "gravel"
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "cable": {
+      "slot": "trim",
+      "graph": "metal_stainless"
+    }
+  },
+  "exportLabel": "Molen original Pingtang Bridge master",
+  "expectedDraftMasterHash": "sha256:90806abde4d69e2d24efe38e3cf110e1b5744afbe7b46fe863dbf6c03fa40474",
+  "visualBrief": "Pingtang Bridge with three white-and-blue split-head pylons, paired cable planes, a 2.1 km divided deck, the approach trestles and the two southwest S62 tunnel mouths.",
+  "heightPolicy": "The 703.75 m reference datum at the central pylon footing puts the deck from 882.9 m at the southwest portals to 904.85 m at the northeast bank. Standard Terrarium establishes the pier contact and bank grades. The deck grade is an exterior fit and has not been surveyed.",
+  "nativeAxes": "+X points east-northeast from the southwest tunnel mouths toward the service-area side. +Z is across the deck toward the south. +Y is up.",
+  "sourceFacts": {
+    "retainedOutlineLengthMeters": 1116.03,
+    "reportedLengthMeters": 2135,
+    "mappedDeckAxisExtentMeters": 2124.5059649891996,
+    "tallestPylonMeters": 332,
+    "pylonStations": [
+      {
+        "x": -1155,
+        "z": -20.81715432130375,
+        "baseY": 46.778161276679384,
+        "embedY": 37.675925973321796,
+        "topY": 344.7781612766794,
+        "height": 298,
+        "leftRun": 201,
+        "rightRun": 263
+      },
+      {
+        "x": -605,
+        "z": -2.8655780636597026,
+        "baseY": 0.004070965191658615,
+        "embedY": -5.501694717529745,
+        "topY": 332.00407096519166,
+        "height": 332,
+        "leftRun": 263,
+        "rightRun": 263
+      },
+      {
+        "x": -55,
+        "z": 1.9146323225771047,
+        "baseY": 4.984822967195441,
+        "embedY": -1.542268208199971,
+        "topY": 324.98482296719544,
+        "height": 320,
+        "leftRun": 263,
+        "rightRun": 259
+      }
+    ],
+    "mappedRoadIds": [
+      35184847426950,
+      35184847426970,
+      35184847427000
+    ],
+    "georeferencing": "+X points east-northeast from the southwest tunnel mouths toward the service-area side. +Z is across the deck toward the south. +Y is up."
+  },
+  "limitations": [
+    "Pylon stations follow visible aerial base and shadow traces. Pylon leg profiles, stay counts and roadway fittings are photo-based approximations.",
+    "The exterior model includes both tunnel mouths and 20 m of recessed lining capped in shadow. The native S62 tunnel paths continue below terrain. A local opening fits only the portal mouths to the coarse hill.",
+    "The current map gives the carriageway endpoints and a 2,124.51 m axis envelope. The retained 1,116.03 m bridge polygon is partial. The 2,135 m reference length is recorded separately."
+  ],
+  "materialMethod": "Four shared graphs and metric UVs. Painted blue concrete, pale fascia and markings share a single concrete graph with color tints.",
+  "references": [
+    {
+      "name": "long-view.jpeg",
+      "page": "https://www.sohu.com/a/643580044_121106687",
+      "image": "https://p2.itc.cn/q_70/images03/20230220/eb6d546d2dd04d8f99ea641507dbd1f7.jpeg",
+      "width": 1080,
+      "height": 681,
+      "hash": "sha256:35ec6ed353eed0c8ac33916e50dbc3dca739e1b9090f348a50dfa9ad1606a5be",
+      "url": "https://www.sohu.com/a/643580044_121106687",
+      "observed": "Ordinary long view shows three blue-and-white pylons, three tower heads, paired stays, a continuous straight deck and approach trestles."
+    },
+    {
+      "name": "pylon.jpg",
+      "page": "https://www.ecns.cn/hd/2019-09-26/detail-ifzpknpx2077970.shtml",
+      "image": "https://www.ecns.cn/hd/2019/09/26/262eb26652b94b06bc00b6adfe48d54b.jpg",
+      "width": 900,
+      "height": 599,
+      "hash": "sha256:fdbc8e37dda38ce917e370fc7b9c9bc8832ccacf1e74bd5063bd203b2f600982",
+      "url": "https://www.ecns.cn/hd/2019-09-26/detail-ifzpknpx2077970.shtml",
+      "observed": "Construction aerial shows all three pylons, unequal foundations on the gorge slopes, close-up leg profiles and the connection into the eastern approach."
+    },
+    {
+      "provider": "Esri World Imagery",
+      "url": "https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9",
+      "zoom": 17,
+      "stationGridMeters": 100,
+      "interpretation": "Dark pylon shadows connect to the ground-level lower legs near -1155, -605 and -55 m. High crowns are displaced laterally in the aerial image. The narrow cut on the southwest bank coincides with the PMTiles S62 tunnel endpoints.",
+      "reviewHash": "sha256:5753547fdd7051a442a283a1c136cb0538a2abb2db8dc8cae134dffc3d66ac5c",
+      "observed": "Dark pylon shadows connect to the ground-level lower legs near -1155, -605 and -55 m. High crowns are displaced laterally in the aerial image. The narrow cut on the southwest bank coincides with the PMTiles S62 tunnel endpoints."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-gorge-crossing",
+      "position": [
+        -463,
+        517.25,
+        1975
+      ],
+      "lookAt": [
+        -341,
+        156.25,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "three-pylons-and-two-cable-planes",
+      "position": [
+        -1320,
+        383.25,
+        870
+      ],
+      "lookAt": [
+        -589,
+        218.25,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "central-pylon-foot-and-blue-stem",
+      "position": [
+        -790,
+        109.25,
+        330
+      ],
+      "lookAt": [
+        -606,
+        104.25,
+        -3
+      ],
+      "fov": 51
+    },
+    {
+      "name": "split-pylon-crown-and-fans",
+      "position": [
+        -530,
+        372.25,
+        315
+      ],
+      "lookAt": [
+        -598,
+        269.25,
+        -4
+      ],
+      "fov": 50
+    },
+    {
+      "name": "expressway-and-cable-sockets",
+      "position": [
+        -330,
+        195.25,
+        11.2
+      ],
+      "lookAt": [
+        -150,
+        202.25,
+        6
+      ],
+      "fov": 58
+    },
+    {
+      "name": "west-twin-tunnel-mouths",
+      "position": [
+        -1331,
+        195.25,
+        5
+      ],
+      "lookAt": [
+        -1397,
+        182.25,
+        -28.5
+      ],
+      "fov": 49
+    },
+    {
+      "name": "northeast-approach-trestles",
+      "position": [
+        580,
+        245.25,
+        269
+      ],
+      "lookAt": [
+        433,
+        177.25,
+        11
+      ],
+      "fov": 52
+    },
+    {
+      "name": "river-and-entire-deck-from-north",
+      "position": [
+        -219,
+        436.25,
+        -1180
+      ],
+      "lookAt": [
+        -499,
+        146.25,
+        0
+      ],
+      "fov": 62
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -375,
+        151.25,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wk/wks/pingtang_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "road": {
+        "slot": "wall",
+        "graph": "gravel"
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "cable": {
+        "slot": "trim",
+        "graph": "metal_stainless"
+      }
+    },
+    "errorMeters": 6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "cable": {
+            "slot": "trim",
+            "graph": "metal_stainless"
+          }
+        },
+        "errorMeters": 2.3
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "cable": {
+            "slot": "trim",
+            "graph": "metal_stainless"
+          }
+        },
+        "errorMeters": 0.8
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "cable": {
+            "slot": "trim",
+            "graph": "metal_stainless"
+          }
+        },
+        "errorMeters": 0.24
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "pingtang_bridge-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -463,
+        517.25,
+        1975
+      ],
+      "lookAt": [
+        -341,
+        156.25,
+        0
+      ]
+    },
+    {
+      "name": "pingtang_bridge-district",
+      "reviewLod": "district",
+      "position": [
+        -463,
+        517.25,
+        1975
+      ],
+      "lookAt": [
+        -341,
+        156.25,
+        0
+      ]
+    },
+    {
+      "name": "pingtang_bridge-street",
+      "reviewLod": "street",
+      "position": [
+        -463,
+        517.25,
+        1975
+      ],
+      "lookAt": [
+        -341,
+        156.25,
+        0
+      ]
+    },
+    {
+      "name": "pingtang_bridge-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -463,
+        517.25,
+        1975
+      ],
+      "lookAt": [
+        -341,
+        156.25,
+        0
+      ]
+    }
+  ]
+}

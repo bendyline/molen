@@ -32,8 +32,61 @@
       "shots/shared/blue-white-bowl-deep-inner-truss-and-panel-underside.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Four existing256-square shared graphs: concrete_plain for columns/decks/footings, metal_painted for pale steel/blue circulation/seat patches/marks/screens, window_grid for closed inner glazing, fabric_canvas for blue/pale/white opaque roof-panel proxies and turf grain. Five near draws because roof and turf use distinct slots of the same graph; no unique image/atlas or embedded image. Actual nearby material graphs each read once. Metric repeats/linear tints, separate POSITION/NORMAL buffer views and equal reported CPU/GPU geometry bytes verified. Roof/glazing are opaque shared approximations, not exact translucent polycarbonate or optical transmission.",
-    "captureReportHash": "sha256:ae0bec5b1b6cc1699cd3d1d249b0490e685b4fa5eb66ace5301ac5c708e13a43"
+    "notes": "Four existing256-square shared graphs: concrete_plain for columns/decks/footings, metal_painted for pale steel/blue circulation/seat patches/marks/screens, window_grid for closed inner glazing, fabric_canvas for blue/pale/white opaque roof-panel proxies and turf grain. Five near draws because roof and turf use distinct slots of the same graph; no unique image/atlas or embedded image. Actual nearby material graphs each read once. Metric repeats/linear tints, separate POSITION/NORMAL buffer views and equal reported CPU/GPU geometry bytes verified. Roof/glazing are opaque shared approximations, not exact translucent polycarbonate or optical transmission. The shared window_grid graph changed after the original review. Eight new shared-material views confirm the revised glazing in the existing geographic placement.",
+    "captureReportHash": "sha256:e46bcf6f3948a58b8d7812028f79bd0e2433a5d97faed61a1bec7d70e641f06f",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:8a96886359ffd618a3014bd88a8d82979538d41b1c58b4775147c1cb9039958b"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:a110437c864bdd3047ee78abfc8c33a96d6ea17a8f503cd5820a8d3dcca70949"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:eed241e448943f614220b8b9ecacb6594fe7c01f8f20f80277614b5b4087dd2e"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:22c6fecf33686b31a373fef55ec7a8bd3ad93e17242ab99ae2e18af0e9efe57f"
+      },
+      {
+        "path": "shots/shared/white-triangular-colonnade-and-tangent-entrance-flight.png",
+        "hash": "sha256:46260db9450af990831179db9dcdd969227f44998524baf7ab8568ca2f4f3f48"
+      },
+      {
+        "path": "shots/shared/blue-circulation-and-wavy-inner-galleries.png",
+        "hash": "sha256:bd8e22b964ed26915d4f80bb4b1aeeb191c0328592e5718d72f4c993042f9925"
+      },
+      {
+        "path": "shots/shared/blue-white-bowl-deep-inner-truss-and-panel-underside.png",
+        "hash": "sha256:dd5a7a3721ad534cf342d64e45ab38b21285f58d094e403d73117b9efb8dee2d"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:c18e12d2d5fedd68f2eec3a2576010fd8a1215f4441618c7871a090375e2675f"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

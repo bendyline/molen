@@ -32,8 +32,65 @@
       "shots/shared/sloped-saucer-roof-and-glazed-inner-strip.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Five existing shared256px graphs: concrete_plain, metal_painted, metal_corrugated, fabric_canvas and window_grid. Zero embedded images or private texture atlas. Runtime loads each required graph once; five near draws and one skyline draw. Separate POSITION/NORMAL GPU streams and equal CPU/GPU byte accounting. Neutral daylight/reflected sky/shadows checked. Glass and the inner roof strip are opaque shared-material approximations, not exact optical transmission.",
-    "captureReportHash": "sha256:7f8c4c2d6a5c9365a1d613e6ccaaecc7e1ad3b7c7eef66dc46977cda597a24d9"
+    "notes": "Five existing shared256px graphs: concrete_plain, metal_painted, metal_corrugated, fabric_canvas and window_grid. Zero embedded images or private texture atlas. Runtime loads each required graph once; five near draws and one skyline draw. Separate POSITION/NORMAL GPU streams and equal CPU/GPU byte accounting. Neutral daylight/reflected sky/shadows checked. Glass and the inner roof strip are opaque shared-material approximations, not exact optical transmission. The shared window_grid graph changed after the original review. Eight new shared-material views confirm the revised glazing in the existing geographic placement.",
+    "captureReportHash": "sha256:1048a9055a6749840850b423e69f6c281b204197aa8f73e801519b9090c1fdf4",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:9fbc7bda2dce350389299135f9c34264980d4b103deef3093a6d872408b2cb96"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:2c86386f096d7e8b6465f619235e26cd57116685b506b4d140ee74b5a7e89ee3"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:074f7af548d6ff2e3650c631a9c99150be10d950fca818d874bb75e9fd914714"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:1cf014e1406887fe4c1b355bd7295b60f00588a2600d3a8970072956e7ffde38"
+      },
+      {
+        "path": "shots/shared/flared-glass-facade-pale-core-and-entry-flight.png",
+        "hash": "sha256:2d4fd3cf26896de586e401da0c36ee37d123104916b9363939d78cf7e6e24be7"
+      },
+      {
+        "path": "shots/shared/three-orange-dark-tiers-and-deep-roof-frame.png",
+        "hash": "sha256:ac43780a102abe19d07b7ccf9700de60fe8448a61404e25a56b803f0f67ba46f"
+      },
+      {
+        "path": "shots/shared/sloped-saucer-roof-and-glazed-inner-strip.png",
+        "hash": "sha256:fc1ff91a64f0eeb4ed3ad8f5409a6ab40fa53f28f7d18f58f6f89e9d184daaf5"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:4dd9e1838a2dd4fcb4daa8a08519aac113fba6bee4540fdba371746fb3793c71"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.metal_corrugated": {
+        "path": "materials/metal_corrugated.matgraph.json",
+        "hash": "sha256:f2d0648da95df58305679176365fd55b9656f3666312eea610394737e1c5001f"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

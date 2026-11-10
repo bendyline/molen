@@ -1,0 +1,360 @@
+{
+  "id": "la_constitucion_de_1812_bridge",
+  "title": "La Constitución de 1812 Bridge",
+  "wikidataId": "Q6464357",
+  "referenceCoordinate": {
+    "longitude": -6.257087352,
+    "latitude": 36.523921083
+  },
+  "module": "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-cadiz-1812-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "asphalt": {
+      "slot": "wall",
+      "graph": "gravel"
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "cable": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    }
+  },
+  "exportLabel": "Molen original La Constitución de 1812 Bridge master",
+  "expectedDraftMasterHash": "sha256:2f702372fc81cf26bb2105e950e2df1e60632456c38cb7273f91f0d07443e0b1",
+  "visualBrief": "The 3.09 km Cádiz Bay crossing has two forked concrete towers, four stay fans per tower, the removable deck in place, a shallow steel box girder and both approach viaducts.",
+  "heightPolicy": "Sea-level datum. The road joins and pier foundations use the unmodified standard Terrarium samples. The deck profile allows the central navigation opening and the approach surfaces meet native pavement.",
+  "nativeAxes": "+X follows the crossing from Cádiz toward Puerto Real. +Z runs across the bridge toward the south side.",
+  "limitations": [
+    "Aerial control and the retained PMTiles footprint determine the alignment. Global elevation controls the abutment contacts and visible foundations. The intermediate vertical alignment and pier spacing are exterior visualization estimates.",
+    "The removable span is modeled in its installed position. The catalog mesh does not simulate span removal, traffic rules, structural behavior, or vessel navigation.",
+    "The Puerto Real service roads remain in the native scene. The standard elevation grid does not describe their underpass clearance or detailed abutment grading."
+  ],
+  "materialMethod": "Three reused material graphs supply neutral concrete, paved texture and coated steel. The white stay sheathing uses the same painted metal graph as the guardrails, with metric UVs and distinct linear tints. The GLBs contain no images.",
+  "references": [
+    {
+      "url": "https://www.diariodecadiz.es/cadiz/baleares-paso-dar-sorpasso-cadiz-poblacion-habitantes_0_2006750169.html",
+      "hash": "sha256:963864487964969bb3bb0c8507e5978bf900871ec10cc50ff3d4cef23bb2becc",
+      "observed": "Cable fan arrangement, pylon profile, divided roadway and port context."
+    },
+    {
+      "url": "https://www.andaluciainformacion.es/articulo/cadiz/iconico-imprescindible-puente-constitucion-1812-cumple-10-anos/202509240713453142507.html",
+      "hash": "sha256:a94968cfaeace6f4a7770211bbc768d82f1b977700e8ec987930e886e46f40fd",
+      "observed": "Relative heights of the approach deck and towers and the bridge profile from the bay."
+    },
+    {
+      "url": "https://www.espanafascinante.com/articulo/lugares/puente-mas-largo-espana-golden-gate/20240314220030276194.html",
+      "hash": "sha256:7f5f89e04d9b1aaf446901c8d4810f135b8878d0e1c66890bf9886e186d057d4",
+      "observed": "Deck section, cable spacing and tower silhouette."
+    },
+    {
+      "url": "https://www.lamoncloa.gob.es/serviciosdeprensa/notasprensa/mfom/Paginas/2015/240915puentecadiz.aspx",
+      "observed": "Opening announcement gives the 185 m towers and nominal 69 m navigation clearance."
+    },
+    {
+      "url": "https://cfcsl.com/portfolio-items/beyond-labels-2/",
+      "observed": "The bridge designer gives the 540 m main span and 150 m removable deck."
+    },
+    {
+      "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile",
+      "observed": "Standard exterior imagery aligns the two towers and distinguishes the port quay from the marine pylon."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "full-bay-crossing",
+      "position": [
+        -440,
+        640,
+        2180
+      ],
+      "lookAt": [
+        -85,
+        44,
+        -16
+      ],
+      "fov": 52
+    },
+    {
+      "name": "twin-towers-and-navigation-span",
+      "position": [
+        -242,
+        125,
+        539
+      ],
+      "lookAt": [
+        -239,
+        86,
+        -24
+      ],
+      "fov": 57
+    },
+    {
+      "name": "ocean-tower-fork-and-pier",
+      "position": [
+        -425,
+        30,
+        143
+      ],
+      "lookAt": [
+        -504,
+        83,
+        -10
+      ],
+      "fov": 65
+    },
+    {
+      "name": "roadway-between-the-cable-fans",
+      "position": [
+        -392,
+        76,
+        -25
+      ],
+      "lookAt": [
+        30,
+        126,
+        -50
+      ],
+      "fov": 59
+    },
+    {
+      "name": "removable-span-and-approach-piers",
+      "position": [
+        -1040,
+        26,
+        140
+      ],
+      "lookAt": [
+        -898,
+        22,
+        16
+      ],
+      "fov": 54
+    },
+    {
+      "name": "cadiz-landing",
+      "position": [
+        -1631,
+        27,
+        131
+      ],
+      "lookAt": [
+        -1527,
+        2,
+        59
+      ],
+      "fov": 54
+    },
+    {
+      "name": "puerto-real-landing",
+      "position": [
+        1608,
+        33,
+        114
+      ],
+      "lookAt": [
+        1512,
+        7,
+        60
+      ],
+      "fov": 55
+    },
+    {
+      "name": "harbour-side-tower-and-viaduct",
+      "position": [
+        159,
+        104,
+        -212
+      ],
+      "lookAt": [
+        19,
+        88,
+        -39
+      ],
+      "fov": 63
+    }
+  ],
+  "sourceFacts": {
+    "mappedLengthMeters": 3092.776957,
+    "publishedMainSpanMeters": 540,
+    "towerHeightMeters": 185,
+    "installedRemovableSpanMeters": 150,
+    "nominalNavigationClearanceMeters": 69,
+    "towerStations": [
+      -504,
+      34.68
+    ]
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -235,
+        83,
+        -28
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ey/ey7/la_constitucion_de_1812_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "asphalt": {
+        "slot": "wall",
+        "graph": "gravel"
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "cable": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      }
+    },
+    "errorMeters": 3.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "asphalt": {
+            "slot": "wall",
+            "graph": "gravel"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "cable": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 1.35
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "asphalt": {
+            "slot": "wall",
+            "graph": "gravel"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "cable": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.45
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "asphalt": {
+            "slot": "wall",
+            "graph": "gravel"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "cable": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.13
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "la_constitucion_de_1812_bridge-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -440,
+        640,
+        2180
+      ],
+      "lookAt": [
+        -85,
+        44,
+        -16
+      ]
+    },
+    {
+      "name": "la_constitucion_de_1812_bridge-district",
+      "reviewLod": "district",
+      "position": [
+        -440,
+        640,
+        2180
+      ],
+      "lookAt": [
+        -85,
+        44,
+        -16
+      ]
+    },
+    {
+      "name": "la_constitucion_de_1812_bridge-street",
+      "reviewLod": "street",
+      "position": [
+        -440,
+        640,
+        2180
+      ],
+      "lookAt": [
+        -85,
+        44,
+        -16
+      ]
+    },
+    {
+      "name": "la_constitucion_de_1812_bridge-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -440,
+        640,
+        2180
+      ],
+      "lookAt": [
+        -85,
+        44,
+        -16
+      ]
+    }
+  ]
+}

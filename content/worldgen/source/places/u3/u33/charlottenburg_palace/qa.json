@@ -34,8 +34,73 @@
       "shots/shared/three-recessed-portals-soffits-and-thresholds.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Seven roles use six existing256px shared graphs: plaster_lime, stone_limestone_raw, tile_ceramic, metal_copper, storefront and metal_painted. Neutral ceramic graph tinted red; painted metal supplies gold/dark accents. No embedded images/new graph/private atlas. One skyline draw, bounded textured draws, separate POSITION/NORMAL streams and equal CPU/GPU accounting. Every textured native run reads each graph once; unload releases geometry.",
-    "captureReportHash": "sha256:d1bb722168b012039b5090a5daf198bf3e6d2a7c76078810ed8442a761d8cbbf"
+    "notes": "Seven roles use six existing256px shared graphs: plaster_lime, stone_limestone_raw, tile_ceramic, metal_copper, storefront and metal_painted. Neutral ceramic graph tinted red; painted metal supplies gold/dark accents. No embedded images/new graph/private atlas. One skyline draw, bounded textured draws, separate POSITION/NORMAL streams and equal CPU/GPU accounting. Every textured native run reads each graph once; unload releases geometry. Current viewer renders confirm the updated shared storefront material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:16982edcf4b2fdae9821f9c4df44b0e909eff68d3daa9e6e7dbdc9644283d4ed",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:d1f683b5c95cf938d66fc674c9a917226f27e06fab37b07a7b136bc8556ec355"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:7eedecd5b68804cfe5fc3058e57712006f4fa93c35d1f047af5608b0f2f56917"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:06546f46611e048cb7adc909eb9e1e81543101c28f2f9f4be75ccbcf092d9333"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:172bc8506d0930288a007d24662cb7fc2907e622d491cd32d97b6746ae5f0f09"
+      },
+      {
+        "path": "shots/shared/southern-forecourt-main-pavilion-and-copper-tower.png",
+        "hash": "sha256:6fb04ce32efae7ca9a9ef28a3a9cc4fa25642c347088f3a92bf76edbc6e1958a"
+      },
+      {
+        "path": "shots/shared/west-orangery-and-connected-palace-roofscape.png",
+        "hash": "sha256:0655d915862e3dcb24b8ff41e7412c971b7b12c17e215ded45a8ffe323951767"
+      },
+      {
+        "path": "shots/shared/octagonal-drum-clock-bell-dome-and-lantern.png",
+        "hash": "sha256:2c9d0b5198c78272274af461c67149c02aefbf762ea51a6925c164d8779e6274"
+      },
+      {
+        "path": "shots/shared/three-recessed-portals-soffits-and-thresholds.png",
+        "hash": "sha256:1c98b6528216faf757f4d396652b2b69b1308755089ce2ed2e0f324c050fe194"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:ae4cf316f9c42122d0999f5f05669acb1ccdfe2d9b546faf8aa06de4392b3f0d"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.plaster_lime": {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      "matgraph:molen.worldgen.material.metal_copper": {
+        "path": "materials/metal_copper.matgraph.json",
+        "hash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935"
+      },
+      "matgraph:molen.worldgen.material.tile_ceramic": {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

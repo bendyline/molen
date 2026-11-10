@@ -3298,6 +3298,27 @@ describe('terrain selection stability', () => {
     expect(bandOf(wide).length).toBeGreaterThan(0);
     expect(bandOf(wide).length).toBeLessThan(bandOf(full).length * 0.7);
     expect(() => selectTerrainPyramidTiles(d, turn(0), { ...base, peripheralDetail: 0 })).toThrow();
+    // The surround keeps the rest of the circle as well, coarser again: a half turn finds
+    // ground already selected, where the peripheral band alone has none behind the camera.
+    const round = selectTerrainPyramidTiles(d, turn(0), {
+      ...base,
+      peripheralDegrees: 30,
+      surroundDetail: 0.1,
+    }).tiles;
+    const behind = selectTerrainPyramidTiles(d, turn(180), base).tiles;
+    expect(covered(behind, wide)).toBeLessThan(0.5);
+    expect(covered(behind, round)).toBeGreaterThan(0.999);
+    expect(round.length).toBeLessThan(wide.length + behind.length * 0.5);
+    // Only within its own distance.
+    const close = selectTerrainPyramidTiles(d, turn(0), {
+      ...base,
+      peripheralDegrees: 30,
+      surroundDetail: 0.1,
+      surroundDistance: 400,
+    }).tiles;
+    expect(covered(behind, close)).toBeLessThan(covered(behind, round));
+    expect(() => selectTerrainPyramidTiles(d, turn(0), { ...base, surroundDetail: 0 })).toThrow();
+    expect(() => selectTerrainPyramidTiles(d, turn(0), { ...base, surroundDistance: 0 })).toThrow();
   });
 
   it('does not cut away terrain behind the azimuth when a pitched camera sees the ground beneath it', () => {
