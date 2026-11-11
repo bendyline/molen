@@ -4,7 +4,6 @@ import assert from 'node:assert/strict';
 import { mkdir, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
-import { buildViennaLevel } from './wien-hauptbahnhof-model.mjs';
 import { createArchitecturalSurfaceAuthoring } from './architectural-surface-authoring.mjs';
 import { validateAuthoredMesh } from './authored-structure-mesh.mjs';
 import { hashEvidenceText } from './evidence-text-hash.mjs';
@@ -12,6 +11,7 @@ import { biomeJson } from './format-json.mjs';
 import { structureAssetSidecarPath } from './structure-asset-paths.mjs';
 import { hashBytes, readOptionalJson, writeIndex } from './structure-model-files.mjs';
 import { structureSourceDirectory } from './structure-source-paths.mjs';
+import { buildViennaLevel } from './wien-hauptbahnhof-model.mjs';
 
 const id = 'wien_hauptbahnhof',
   assetId = 'molen.worldgen.structure.wien_hauptbahnhof',

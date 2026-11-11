@@ -25,6 +25,7 @@ import {
   safePath,
   writeStamp,
 } from './asset-packs.mjs';
+import { beginRollback, recoverInterruptedBuild, TEXT, TEXT_SKIP } from './asset-rollback.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PLAN = 'asset-build.json';
@@ -38,10 +39,11 @@ const COMPILED = [
   'packages/tooling/dist/index.mjs',
   'packages/tooling/dist/cli.mjs',
 ];
-const SKIP = new Set(['node_modules', 'dist', 'dist-types', '.git', '.artifacts', '.tmp', 'packs']);
 // Directories that hold runtime outputs or review captures, never source bundles.
-const NOT_BUNDLES = new Set([...SKIP, 'assets', 'public', 'shots']);
-const TEXT = /\.(json|md)$/i;
+const NOT_BUNDLES = new Set([...TEXT_SKIP, 'assets', 'public', 'shots']);
+const ROLLBACK_PRELOAD = new URL('./asset-rollback-preload.mjs', import.meta.url).href;
+// Ctrl+C, a terminal or console closing, a polite kill, Ctrl+Break.
+const STOP_SIGNALS = ['SIGINT', 'SIGTERM', 'SIGHUP', 'SIGBREAK'];
 const GIB = 1024 ** 3;
 const sha = (info) => `sha256:${info.sha256}`;
 const posix = (root, path) => relative(root, path).split(sep).join('/');
@@ -157,12 +159,12 @@ export async function importPlan(root = ROOT) {
   return imports;
 }
 
-async function pool(items, concurrency, work) {
+async function pool(items, concurrency, work, signal) {
   const queue = [...items];
   const failures = [];
   await Promise.all(
     Array.from({ length: Math.max(1, Math.min(concurrency, queue.length)) }, async () => {
-      while (queue.length) {
+      while (queue.length && !signal?.aborted) {
         try {
           await work(queue.shift());
         } catch (error) {
@@ -171,6 +173,7 @@ async function pool(items, concurrency, work) {
       }
     }),
   );
+  signal?.throwIfAborted();
   if (failures.length) throw new Error(failures.map((error) => error.message).join('\n\n'));
 }
 
@@ -323,7 +326,22 @@ export async function preparePython(
   return local;
 }
 
-function run(command, { root, log, label, python, trace, progress }) {
+/** End a job and every process it started. */
+function stopJob(child) {
+  // Windows: hidden jobs have no console, so Ctrl+C reaches only the build. A Node process
+  // that is killed takes the processes it started with it (libuv puts them in a job object).
+  if (process.platform === 'win32') child.kill();
+  else {
+    // Elsewhere each job leads its own process group (see run), which this signals as a whole.
+    try {
+      process.kill(-child.pid, 'SIGTERM');
+    } catch (error) {
+      if (error.code !== 'ESRCH') throw error;
+    }
+  }
+}
+
+function run(command, { root, log, label, python, trace, progress, signal, rollback }) {
   const [program, ...args] = command;
   const executable = program === 'node' ? process.execPath : python;
   const heap = /--max-old-space-size/.test(process.env.NODE_OPTIONS ?? '')
@@ -332,22 +350,29 @@ function run(command, { root, log, label, python, trace, progress }) {
   // Every Node process a build starts, and each one they start, computes with the same Math on
   // any CPU (packages/worldgen/scripts/deterministic-math.mjs).
   const math = ` --import=${pathToFileURL(join(root, DETERMINISTIC_MATH)).href}`;
+  // Before the tracer, so the rollback journal's copies are not recorded as job inputs.
+  const guard = rollback ? ` --import=${ROLLBACK_PRELOAD}` : '';
   const tracking = trace
     ? ` --import=${new URL('./trace-asset-job.mjs', import.meta.url).href}`
     : '';
   return new Promise((done, fail) => {
+    if (signal?.aborted) return fail(signal.reason);
     const started = Date.now();
     const child = spawn(executable, args, {
       cwd: root,
       shell: false,
       windowsHide: true,
+      detached: process.platform !== 'win32',
       env: {
         ...process.env,
-        NODE_OPTIONS: `${process.env.NODE_OPTIONS ?? ''}${heap}${tracking}${math}`.trim(),
+        NODE_OPTIONS: `${process.env.NODE_OPTIONS ?? ''}${heap}${guard}${tracking}${math}`.trim(),
+        ...rollback?.env,
         ...(trace ? { MOLEN_ASSET_TRACE_ROOT: root, MOLEN_ASSET_TRACE_DIRECTORY: trace } : {}),
       },
       stdio: ['ignore', 'pipe', 'pipe'],
     });
+    const stop = () => stopJob(child);
+    signal?.addEventListener('abort', stop, { once: true });
     const output = [];
     const file = createWriteStream(log);
     file.on('error', fail);
@@ -360,10 +385,12 @@ function run(command, { root, log, label, python, trace, progress }) {
     }
     child.on('error', fail);
     child.on('close', (code) => {
+      signal?.removeEventListener('abort', stop);
       file.end(() => {
         const text = Buffer.concat(output).toString('utf8');
         const seconds = Math.round((Date.now() - started) / 1000);
         if (code === 0) done(seconds);
+        else if (signal?.aborted) fail(signal.reason);
         else fail(new Error(`${label} failed (exit ${code}); log: ${log}\n${text.slice(-4000)}`));
       });
     });
@@ -379,7 +406,7 @@ async function readText(root) {
   async function walk(directory) {
     if (!(await exists(directory))) return;
     for (const entry of await readdir(directory, { withFileTypes: true })) {
-      if (SKIP.has(entry.name)) continue;
+      if (TEXT_SKIP.has(entry.name)) continue;
       const path = join(directory, entry.name);
       if (entry.isDirectory()) await walk(path);
       else if (entry.isFile() && TEXT.test(entry.name)) files.set(path, await readFile(path));
@@ -482,7 +509,7 @@ async function importOne(root, entry) {
 }
 
 /** A copied model is its source; its sidecar only needs the new hash and size. */
-async function copyModel(root, entry) {
+async function copyModel(root, entry, backup) {
   const source = resolve(root, entry.source);
   const output = resolve(root, entry.output);
   const info = await fileInfo(source);
@@ -495,6 +522,7 @@ async function copyModel(root, entry) {
     throw new Error(`${entry.sidecar}: copied model sidecar has no size to update.`);
   sidecar.hash = sha(info);
   sidecar.stats.sizeBytes = info.size;
+  backup(sidecarPath);
   await writeFile(sidecarPath, `${JSON.stringify(sidecar, null, 2)}\n`);
 }
 
@@ -570,15 +598,64 @@ async function withWindowsRetry(work, log) {
   }
 }
 
+/**
+ * Build every GLB from source. A build rewrites committed metadata as it goes and settles it at
+ * the end, so it must never stop half way: a stop signal (or the caller's `signal`) ends the
+ * running jobs and restores that metadata before the build rejects, and the rollback journal
+ * undoes a build that could not (scripts/asset-rollback.mjs) when the next one starts.
+ */
 export async function buildAssetsFromSource({
   root = ROOT,
+  log = console.log,
+  signal,
+  ...options
+} = {}) {
+  root = resolve(root);
+  const stopping = new AbortController();
+  const stop = (name) => {
+    if (stopping.signal.aborted) {
+      log(`${name}: still stopping; restoring committed metadata.`);
+      return;
+    }
+    log(
+      `\n${name}: stopping asset jobs and restoring committed metadata. Wait for this to finish.`,
+    );
+    const error = new Error(
+      `Asset build stopped (${name}). Committed metadata is as it was before the build.`,
+    );
+    error.name = 'AbortError';
+    stopping.abort(error);
+  };
+  // Listening also keeps Node from exiting at once, which is what used to skip the restore.
+  for (const name of STOP_SIGNALS) process.on(name, stop);
+  try {
+    const rollback = await beginRollback(root, { roots: ASSET_ROOTS, log });
+    try {
+      return await build({
+        ...options,
+        root,
+        log,
+        rollback,
+        signal: signal ? AbortSignal.any([signal, stopping.signal]) : stopping.signal,
+      });
+    } finally {
+      await rollback.release();
+    }
+  } finally {
+    for (const name of STOP_SIGNALS) process.off(name, stop);
+  }
+}
+
+async function build({
+  root,
   generate = true,
   force = false,
   compile = false,
   concurrency = defaultConcurrency(),
-  log = console.log,
-} = {}) {
-  root = resolve(root);
+  log,
+  rollback,
+  signal,
+}) {
   const started = Date.now();
   const plan = validatePlan(await readJson(join(root, PLAN)));
   // V8's Math.pow changes between Node majors (three.js's sRGB conversion uses it), so committed
@@ -592,7 +669,12 @@ export async function buildAssetsFromSource({
   // The bundle is named by the inputs the build starts from; until it finishes, none is installed.
   const inputs = await assetInputs(root, { fileCache });
   const previous = await readStamp(root);
-  const cache = await createJobCache(root, plan, { force, inputs: inputs.inputs, fileCache });
+  const cache = await createJobCache(root, plan, {
+    force,
+    inputs: inputs.inputs,
+    fileCache,
+    beforeWrite: rollback.backup,
+  });
   const current = new Set();
   for (const job of generate ? plan.generators : [])
     if (await cache.current(job)) current.add(job.id);
@@ -623,6 +705,8 @@ export async function buildAssetsFromSource({
     metadata: { changed: [], added: [], updated: [] },
   };
   const text = await readText(root);
+  // Nothing has changed a committed file yet, so an early stop has nothing to restore.
+  signal.throwIfAborted();
 
   if (generate) {
     // Only uncached jobs start clean. Preserving current sources and derived LODs is necessary
@@ -643,25 +727,37 @@ export async function buildAssetsFromSource({
     const owned = new Set(previous?.files.map((f) => f.path));
     log(`Running ${jobs.length} generators (${current.size} cached; ${concurrency} at a time).`);
     try {
-      for (const job of plan.generators.filter((job) => current.has(job.id)))
+      for (const job of plan.generators.filter((job) => current.has(job.id))) {
+        signal.throwIfAborted();
         await cache.restore(job);
-      await pool(jobs, concurrency, async (job) => {
-        const trace = await cache.begin(job);
-        const seconds = await run(job.command, {
-          root,
-          python,
-          log: join(logs, `${job.id}.log`),
-          label: `Generator ${job.id}`,
-          trace,
-        });
-        await cache.complete(job, trace);
-        report.generators.push({ id: job.id, seconds });
-        log(`  ${job.id}: ${seconds}s`);
-      });
+      }
+      await pool(
+        jobs,
+        concurrency,
+        async (job) => {
+          // The preload cannot see into other runtimes; their writes stay in declared trees.
+          if (job.command[0] !== 'node') await rollback.backupTrees(job.outputs ?? []);
+          const trace = await cache.begin(job);
+          const seconds = await run(job.command, {
+            root,
+            python,
+            log: join(logs, `${job.id}.log`),
+            label: `Generator ${job.id}`,
+            trace,
+            signal,
+            rollback,
+          });
+          await cache.complete(job, trace);
+          report.generators.push({ id: job.id, seconds });
+          log(`  ${job.id}: ${seconds}s`);
+        },
+        signal,
+      );
     } catch (error) {
       // Leave the checkout as it was: every GLB that was not rebuilt, and every committed file.
       await restoreMoved(root, moved, backup, () => true);
       await reconcileText(root, text);
+      await rollback.discard();
       await cache.save();
       throw error;
     }
@@ -675,6 +771,7 @@ export async function buildAssetsFromSource({
   let finished = 0;
   try {
     for (const entry of imports) {
+      signal.throwIfAborted();
       if (!(await exists(resolve(root, entry.source))))
         throw new Error(`${entry.source}: no generator produced this source model.`);
       const job = {
@@ -698,31 +795,40 @@ export async function buildAssetsFromSource({
       }
     }
     log(`Importing ${pending.length} models (${report.imports.current} already current).`);
-    await pool(pending, concurrency, async (entry) => {
-      if (entry.pipeline === 'copy') await copyModel(root, entry);
-      else {
-        // One process per import bounds the importer's memory on the largest stadiums.
-        const encoded = Buffer.from(JSON.stringify({ ...entry, root })).toString('base64url');
-        await withWindowsRetry(
-          () =>
-            run(['node', 'scripts/build-assets.mjs', '--import-one', encoded], {
-              root,
-              log: join(logs, `import-${entry.id}.log`),
-              label: `Import ${entry.id}`,
-            }),
-          log,
-        );
-      }
-      await imported.get(entry.id)();
-      report.imports.run++;
-      if (++finished % 25 === 0) log(`  imported ${finished}/${pending.length}`);
-    });
+    await pool(
+      pending,
+      concurrency,
+      async (entry) => {
+        if (entry.pipeline === 'copy') await copyModel(root, entry, rollback.backup);
+        else {
+          // One process per import bounds the importer's memory on the largest stadiums.
+          const encoded = Buffer.from(JSON.stringify({ ...entry, root })).toString('base64url');
+          await withWindowsRetry(
+            () =>
+              run(['node', 'scripts/build-assets.mjs', '--import-one', encoded], {
+                root,
+                log: join(logs, `import-${entry.id}.log`),
+                label: `Import ${entry.id}`,
+                signal,
+                rollback,
+              }),
+            log,
+          );
+        }
+        await imported.get(entry.id)();
+        report.imports.run++;
+        if (++finished % 25 === 0) log(`  imported ${finished}/${pending.length}`);
+      },
+      signal,
+    );
     for (const job of plan.afterImport ?? []) {
+      signal.throwIfAborted();
       if (await cache.current(job)) {
         await cache.restore(job);
         log(`  ${job.id}: cached`);
         continue;
       }
+      if (job.command[0] !== 'node') await rollback.backupTrees(job.outputs ?? []);
       const trace = await cache.begin(job);
       log(`Running ${job.id} (log: ${join(logs, `${job.id}.log`)}).`);
       const seconds = await run(job.command, {
@@ -731,6 +837,8 @@ export async function buildAssetsFromSource({
         log: join(logs, `${job.id}.log`),
         label: `After-import ${job.id}`,
         trace,
+        signal,
+        rollback,
         progress: (line) => log(`  ${line}`),
       });
       await cache.complete(job, trace);
@@ -738,10 +846,13 @@ export async function buildAssetsFromSource({
     }
   } catch (error) {
     await reconcileText(root, text);
+    await rollback.discard();
     await cache.save();
     throw error;
   }
   report.metadata = await reconcileText(root, text, { keepRuntimeAssets: true });
+  // Committed text is settled. A stop from here on lets the last few seconds finish.
+  await rollback.discard();
   await cache.save();
 
   const built = await bundleFiles(root, { fileCache });
@@ -785,11 +896,18 @@ async function main() {
       force: { type: 'boolean' },
       compile: { type: 'boolean' },
       jobs: { type: 'string' },
+      recover: { type: 'boolean' },
     },
   });
   if (values['import-one']) {
     const entry = JSON.parse(Buffer.from(values['import-one'], 'base64url').toString());
     await importOne(entry.root, entry);
+    return;
+  }
+  if (values.recover) {
+    // Every build does this first; this restores the files without building.
+    const { restored, kept } = await recoverInterruptedBuild(ROOT);
+    if (!restored.length && !kept.length) console.log('No interrupted asset build to recover.');
     return;
   }
   const concurrency = values.jobs === undefined ? undefined : Number(values.jobs);
@@ -806,6 +924,6 @@ async function main() {
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   main().catch((error) => {
     console.error(error.message);
-    process.exitCode = 1;
+    process.exitCode = error.name === 'AbortError' ? 130 : 1;
   });
 }

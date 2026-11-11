@@ -20,7 +20,8 @@ const selected = process.argv
   .find((a) => a.startsWith('--ids='))
   ?.slice(6)
   .split(',');
-if (selected && !selected.includes(id)) throw Error('Unknown La Constitución de 1812 Bridge selection');
+if (selected && !selected.includes(id))
+  throw Error('Unknown La Constitución de 1812 Bridge selection');
 const check = process.argv.includes('--check'),
   brief = JSON.parse(await readFile(resolve(dir, 'model-brief.json'))),
   placement = JSON.parse(await readFile(resolve(dir, 'placement-draft.json'))),

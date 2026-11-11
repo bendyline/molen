@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { writeFileSync } from 'node:fs';
+import { once } from 'node:events';
+import { existsSync, writeFileSync } from 'node:fs';
 import { mkdir, mkdtemp, readdir, readFile, rm, stat, utimes, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve, sep } from 'node:path';
@@ -10,6 +11,7 @@ import { pathToFileURL } from 'node:url';
 import { createAssetFileCache } from '../asset-file-cache.mjs';
 import { assetInputs } from '../asset-inputs.mjs';
 import { createJobCache } from '../asset-job-cache.mjs';
+import { recoverInterruptedBuild } from '../asset-rollback.mjs';
 import { buildAssetsFromSource } from '../build-assets.mjs';
 import { traceVerifiedAssetOutputs } from '../verified-asset-outputs.mjs';
 
@@ -74,6 +76,21 @@ const runIds = (report) =>
     .filter((job) => !job.cached)
     .map((job) => job.id)
     .sort();
+async function waitFor(condition, what) {
+  const deadline = Date.now() + 20000;
+  while (!(await condition())) {
+    if (Date.now() > deadline) throw new Error(`Timed out waiting for ${what}`);
+    await new Promise((done) => setTimeout(done, 20));
+  }
+}
+const running = (pid) => {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    return error.code === 'EPERM';
+  }
+};
 
 test('verified unchanged GLBs retain cache ownership without rewriting their bytes', async () => {
   const root = await fixture();
@@ -207,6 +224,34 @@ test('a file edited during hashing is checked again on the next read', async () 
   const forced = await createAssetFileCache(root, { force: true });
   assert.equal(await forced.get(file, 'test', digest), 'changed during the read');
   assert.equal(forced.stats.hashed, 1);
+});
+
+test('hashing thousands of outputs at once keeps only a few files open', async () => {
+  const root = await fixture();
+  const paths = [];
+  for (let index = 0; index < 300; index++) {
+    paths.push(join(root, `assets/many/${index}.glb`));
+    await put(root, `assets/many/${index}.glb`, String(index));
+  }
+  const cache = await createAssetFileCache(root);
+  let open = 0,
+    peak = 0;
+  const values = await Promise.all(
+    paths.map((path) =>
+      cache.get(path, 'test', async () => {
+        peak = Math.max(peak, ++open);
+        await new Promise((done) => setTimeout(done, 1));
+        open--;
+        return readFile(path, 'utf8');
+      }),
+    ),
+  );
+  assert.deepEqual(
+    values,
+    paths.map((_, index) => String(index)),
+  );
+  // The landmark LOD job's ~8,900 outputs, hashed together, used to fail with EMFILE.
+  assert.ok(peak <= 64, `${peak} hashes ran at once`);
 });
 
 test('only a changed model is regenerated, and shared dynamic recipe changes invalidate dependents', async () => {
@@ -481,4 +526,214 @@ test('non-Node jobs reuse their declared output trees independently of unrelated
   assert.equal(await (await open()).current(job), true);
   await put(root, 'content/python/source/model.json', '{"shape":"changed"}');
   assert.equal(await (await open()).current(job), false);
+});
+
+test('a stopped build ends its jobs and their processes, then restores committed metadata', async () => {
+  const root = await fixture();
+  await put(root, 'assets/one/asset.json', '{"committed":true}');
+  await put(root, 'content/notes.md', 'authored notes');
+  await put(
+    root,
+    'scripts/one.mjs',
+    `
+    import { spawn } from 'node:child_process';
+    import { writeFileSync } from 'node:fs';
+    writeFileSync('assets/one/asset.json', '{"half":"written"}');
+    writeFileSync('content/notes.md', 'generated notes');
+    // A process of the job's own that would write once the build had restored everything.
+    spawn(process.execPath, ['-e', "setTimeout(() => require('fs').writeFileSync('content/late.md', 'late'), 1500)"], { stdio: 'ignore' });
+    writeFileSync('.artifacts/one-started', String(process.pid));
+    await new Promise((resolve) => setTimeout(resolve, 30000));
+  `,
+  );
+  const listeners = process.listenerCount('SIGINT');
+  const controller = new AbortController();
+  const started = join(root, '.artifacts/one-started');
+  const watch = setInterval(() => existsSync(started) && controller.abort(), 10);
+  try {
+    await assert.rejects(build(root, { signal: controller.signal }), { name: 'AbortError' });
+  } finally {
+    clearInterval(watch);
+  }
+  assert.equal(await readFile(join(root, 'assets/one/asset.json'), 'utf8'), '{"committed":true}');
+  assert.equal(await readFile(join(root, 'content/notes.md'), 'utf8'), 'authored notes');
+  assert.equal(running(Number(await readFile(started, 'utf8'))), false);
+  await new Promise((done) => setTimeout(done, 2500));
+  assert.equal(existsSync(join(root, 'content/late.md')), false);
+  assert.equal(existsSync(join(root, '.artifacts/asset-build/rollback')), false);
+  assert.equal(process.listenerCount('SIGINT'), listeners);
+});
+
+// A job that, while `.artifacts/hold` exists, reports its PID and then waits to be killed.
+const HOLD = `
+  if (existsSync('.artifacts/hold')) {
+    writeFileSync('.artifacts/job-started', String(process.pid));
+    while (!existsSync('.artifacts/release')) await new Promise((resolve) => setTimeout(resolve, 10));
+    process.exit(1);
+  }`;
+
+/** Build in another process, and kill it outright once a held job has started. */
+async function killBuildWhileHeld(root) {
+  await put(root, '.artifacts/hold', '');
+  const module = pathToFileURL(resolve('scripts/build-assets.mjs')).href;
+  const builder = spawn(
+    process.execPath,
+    [
+      '--input-type=module',
+      '-e',
+      `import { buildAssetsFromSource } from ${JSON.stringify(module)};
+      await buildAssetsFromSource({ root: ${JSON.stringify(root)}, log: () => {}, concurrency: 2 });`,
+    ],
+    { stdio: 'ignore' },
+  );
+  const started = join(root, '.artifacts/job-started');
+  await waitFor(() => existsSync(started), 'the held job to start');
+  const job = Number(await readFile(started, 'utf8'));
+  // No handler runs: like a closed window, a crash or a lost machine.
+  builder.kill('SIGKILL');
+  await once(builder, 'exit');
+  // Outside Windows the job outlives the build; let it go without writing anything more.
+  await writeFile(join(root, '.artifacts/release'), '');
+  await waitFor(() => !running(job), 'the held job to exit');
+  await rm(join(root, '.artifacts/hold'));
+}
+
+test('the next build first restores what a killed build left behind', async () => {
+  const root = await fixture();
+  await put(root, 'content/notes.md', 'authored notes');
+  await put(root, 'content/edited.md', 'authored too');
+  await put(
+    root,
+    'scripts/one.mjs',
+    `
+    import { existsSync, mkdirSync, renameSync, writeFileSync } from 'node:fs';
+    import { writeFile } from 'node:fs/promises';
+    mkdirSync('assets/one', { recursive: true });
+    writeFileSync('assets/one/model.glb', 'one');
+    if (existsSync('.artifacts/hold')) {
+      // Replaced through a temporary file, as the worldgen indexes and LOD sidecars are.
+      writeFileSync('content/notes.md.tmp', 'half-built notes');
+      renameSync('content/notes.md.tmp', 'content/notes.md');
+      await writeFile('content/edited.md', 'half-built too');
+    }
+    ${HOLD}
+  `,
+  );
+  await killBuildWhileHeld(root);
+  assert.equal(await readFile(join(root, 'content/notes.md'), 'utf8'), 'half-built notes');
+
+  // The build died a minute ago; someone has since edited one of the files it had changed.
+  const died = new Date(Date.now() - 60000);
+  await utimes(join(root, '.artifacts/asset-build/rollback/journal.json'), died, died);
+  await utimes(join(root, 'content/notes.md'), died, died);
+  await writeFile(join(root, 'content/edited.md'), 'edited after the build died');
+  const messages = [];
+  await build(root, { log: (message) => messages.push(message) });
+  assert.equal(await readFile(join(root, 'content/notes.md'), 'utf8'), 'authored notes');
+  assert.equal(
+    await readFile(join(root, 'content/edited.md'), 'utf8'),
+    'edited after the build died',
+  );
+  assert.ok(messages.some((message) => message.startsWith('Restored 1 committed files')));
+  assert.ok(messages.some((message) => message.startsWith('Kept 1 files')));
+  assert.equal(existsSync(join(root, '.artifacts/asset-build/rollback')), false);
+});
+
+test('recovery restores sidecars that a killed build replayed from its import cache', async () => {
+  const root = await fixture();
+  const plan = JSON.parse(await readFile(join(root, 'asset-build.json'), 'utf8'));
+  plan.afterImport = [{ id: 'derived', command: ['node', 'scripts/derived.mjs'] }];
+  await put(root, 'asset-build.json', JSON.stringify(plan));
+  await put(root, 'inputs/derived.txt', 'first');
+  // Like the landmark LODs: adds metadata to the sidecar that its import does not write.
+  await put(
+    root,
+    'scripts/derived.mjs',
+    `
+    import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+    const directory = 'content/library/assets/one/';
+    const metadata = JSON.parse(readFileSync(directory + 'asset.json'));
+    const level = readFileSync('inputs/derived.txt', 'utf8');
+    ${HOLD}
+    writeFileSync(directory + 'lod.glb', readFileSync(directory + 'model.glb'));
+    writeFileSync(directory + 'asset.json', JSON.stringify({ ...metadata, level }));
+  `,
+  );
+  const script = await readFile(join(root, 'scripts/one.mjs'), 'utf8');
+  await put(
+    root,
+    'scripts/one.mjs',
+    script.replaceAll('assets/one', 'content/library/source/one/models'),
+  );
+  await put(root, 'content/library/project.json', '{}');
+  await put(
+    root,
+    'content/library/source/one/source.json',
+    JSON.stringify({
+      format: 'molen/source-bundle@1',
+      files: {
+        models: [{ path: 'models/model.glb', output: 'assets/one/asset.json', pipeline: 'copy' }],
+      },
+    }),
+  );
+  await put(
+    root,
+    'content/library/assets/one/asset.json',
+    JSON.stringify({
+      id: 'one',
+      files: { main: 'model.glb' },
+      hash: `sha256:${createHash('sha256').update('old').digest('hex')}`,
+      stats: { sizeBytes: 3 },
+    }),
+  );
+  await build(root);
+  const sidecar = join(root, 'content/library/assets/one/asset.json');
+  const committed = await readFile(sidecar);
+  assert.equal(JSON.parse(committed).level, 'first');
+
+  // The import is cached and replays its sidecar; the derived job dies before adding to it.
+  await put(root, 'inputs/derived.txt', 'second');
+  await killBuildWhileHeld(root);
+  assert.equal(JSON.parse(await readFile(sidecar, 'utf8')).level, undefined);
+  const { restored } = await recoverInterruptedBuild(root, { log: () => {} });
+  assert.deepEqual(restored, ['content/library/assets/one/asset.json']);
+  assert.deepEqual(await readFile(sidecar), committed);
+});
+
+test('an after-import job that read rewritten metadata still owns its outputs', async () => {
+  const root = await fixture();
+  const plan = JSON.parse(await readFile(join(root, 'asset-build.json'), 'utf8'));
+  plan.afterImport = [{ id: 'lods', command: ['node', 'scripts/lods.mjs'] }];
+  await put(root, 'asset-build.json', JSON.stringify(plan));
+  // Generator one rewrites a shared index, and the build puts the committed one back.
+  await put(root, 'content/index.json', '{"committed":true}');
+  const script = await readFile(join(root, 'scripts/one.mjs'), 'utf8');
+  await put(
+    root,
+    'scripts/one.mjs',
+    `${script}\nawait writeFile('content/index.json', '{"regenerated":true}');`,
+  );
+  const lods = `
+    import { existsSync } from 'node:fs';
+    import { appendFile, readFile, writeFile } from 'node:fs/promises';
+    await readFile('content/index.json');
+    const reused = existsSync('assets/one/lod.glb');
+    await writeFile('assets/one/lod.glb', await readFile('assets/one/model.glb'));
+    await appendFile('.artifacts/lods.txt', reused ? 'reused\\n' : 'built\\n');
+  `;
+  await put(root, 'scripts/lods.mjs', lods);
+  await build(root);
+  assert.equal(await readFile(join(root, 'content/index.json'), 'utf8'), '{"committed":true}');
+  // Generator one is cached, so the index stays committed and the LOD record cannot be
+  // reused, but it still owns lod.glb: the job finds it in place rather than starting over.
+  assert.deepEqual(runIds(await build(root)), []);
+  // An interrupted run must not give that ownership up either.
+  await put(root, 'scripts/lods.mjs', `throw Error('stopped part way');\n${lods}`);
+  await assert.rejects(build(root), /stopped part way/);
+  await put(root, 'scripts/lods.mjs', lods);
+  await build(root);
+  assert.equal(
+    await readFile(join(root, '.artifacts/lods.txt'), 'utf8'),
+    'built\nreused\nreused\n',
+  );
 });

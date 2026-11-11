@@ -135,7 +135,10 @@ Successful local generators, imports and after-import jobs keep dependency recor
 Node generators record the files and directories they read, including dynamically imported
 recipes. A shared recipe edit invalidates its dependents. Missing or changed output bytes also
 invalidate their job. Successful jobs survive a failed sibling, so retrying resumes the work.
-Existing batch generators remain one cache unit; imports are cached per model.
+Existing batch generators remain one cache unit; imports are cached per model. A record whose
+inputs the build changed back before saving it (a generator-rewritten index), or whose job was
+stopped, is kept as stale: never reused, but its after-import outputs stay in place for the job
+to verify, so the landmark LODs reuse their unchanged levels instead of rebuilding them all.
 
 Local builds use file size, modification/change timestamps and file identity as a fast hint,
 reusing saved content hashes when those are unchanged. A changed hint triggers hashing; merely
@@ -402,9 +405,14 @@ keeps generated runtime `assets/**/asset.json` sidecars with the GLBs they descr
 their hashes, bounds, statistics and detail-level metadata. Restoring older sidecars would leave
 the built models unusable for verified packaging. Authored source and review documents retain
 their original bytes; the build lists proposed changes to those files and CI annotates them.
-A failed build restores all original text. A file whose content is unchanged keeps its original
-bytes even if a generator lays it out differently, because review evidence pins some of these
-files byte for byte.
+A failed build restores all original text, and so does a stopped one: Ctrl+C (or SIGTERM, SIGHUP,
+Ctrl+Break) ends the running jobs and their processes, restores the text, then exits. A build that
+is killed outright cannot do that, so before any build process first changes a committed text
+file it copies the original to `.artifacts/asset-build/rollback/`. The next build puts those
+originals back before it reads anything; `pnpm assets:build --recover` does only that. A file
+edited after the killed build stopped is kept and reported. A file whose content is unchanged
+keeps its original bytes even if a generator lays it out differently, because review evidence
+pins some of these files byte for byte.
 
 ## Determinism
 
