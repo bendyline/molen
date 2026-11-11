@@ -1,0 +1,442 @@
+{
+  "id": "murcias_cathedral",
+  "title": "Murcia Cathedral",
+  "wikidataId": "Q2419290",
+  "referenceCoordinate": {
+    "longitude": -1.128666456,
+    "latitude": 37.984081606
+  },
+  "module": "content/worldgen/source/places/ey/eyz/murcias_cathedral/models/murcia-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-murcia-cathedral.mjs",
+  "builder": "buildMurciaLevel",
+  "surfaces": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.83
+    },
+    "carved": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.78
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.78
+    },
+    "glaze": {
+      "slot": "roof",
+      "graph": "tile_glazed",
+      "roughness": 0.57
+    },
+    "pane": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.53
+    },
+    "timber": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.68
+    },
+    "cast": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.58,
+      "metallic": 0.64
+    }
+  },
+  "exportLabel": "Molen original Murcia Cathedral master",
+  "expectedDraftMasterHash": "sha256:3d5d8634e8e06d853334d3c891da026b67207ad7eec17695185b51b97bbf3452",
+  "visualBrief": "Murcia Cathedral with its concave Baroque west screen, three portals, blue side cupolas, tall tiered bell tower, and the faceted Vélez Chapel with its carved chain and shields.",
+  "heightPolicy": "The 54 m datum comes from standard terrain in Plaza del Cardenal Belluga. Eight small treads bridge plaza grade to the façade, while the bell tower rises 95 m from its own sampled base.",
+  "nativeAxes": "The three Baroque portals face local -X toward Plaza del Cardenal Belluga. The named tower footprint lies on the north side. The faceted Vélez Chapel projects toward the southeast.",
+  "limitations": [
+    "The cathedral outline and tower location follow PMTiles, and the summit follows the reported 95 m height. Ordinary photographs guide the proportions of the west screen, statuary, smaller roof volumes and carved stonework.",
+    "The modeled portals depict the exterior. The plaza, neighboring buildings, and surrounding terrain retain the native viewer data."
+  ],
+  "materialMethod": "Coursed and raw limestone serve the stone walls and relief. Shared clay tile, glazed blue tile, painted metal, wood and cast bronze cover the roofs, cups, windows, doors and bell.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Fachada_y_torre_de_la_Catedral_de_Murcia.jpg",
+      "hash": "sha256:222052ac170a929f7c4db99c580fec1fe3a198364c45fd9e8ab339f9b14bf658",
+      "observed": "Main facade in relation to the bell tower."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Catedral_de_Murcia._Fachada_principal_y_torre..jpg",
+      "hash": "sha256:4f7f5bfccdd5da977cc59bdd23306b411d1bb83e5f2cda8126dd64c4570ef45c",
+      "observed": "Tower tiers, cupola, and plaza approach."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Exteriordelacapilladelosvelez.JPG",
+      "hash": "sha256:611413bdead4523057a49379207b1131afb861522684b083fc7f9c5cc6308323",
+      "observed": "Faceted south chapel with buttresses and the carved chain."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "belluga-plaza-and-tower",
+      "position": [
+        -130,
+        58,
+        -88
+      ],
+      "lookAt": [
+        -8,
+        34,
+        -6
+      ],
+      "fov": 51
+    },
+    {
+      "name": "baroque-west-screen",
+      "position": [
+        -77,
+        10,
+        1.5
+      ],
+      "lookAt": [
+        -40.2,
+        22,
+        4
+      ],
+      "fov": 62
+    },
+    {
+      "name": "half-dome-and-statuary",
+      "position": [
+        -60,
+        25,
+        15
+      ],
+      "lookAt": [
+        -40.2,
+        29.5,
+        4
+      ],
+      "fov": 50
+    },
+    {
+      "name": "open-belfry-and-corner-turrets",
+      "position": [
+        -32,
+        68,
+        -30
+      ],
+      "lookAt": [
+        22.054,
+        66,
+        -24.878
+      ],
+      "fov": 53
+    },
+    {
+      "name": "velez-chain-and-shields",
+      "position": [
+        68,
+        14,
+        55
+      ],
+      "lookAt": [
+        39,
+        13,
+        26
+      ],
+      "fov": 53
+    },
+    {
+      "name": "roof-and-blue-cupolas",
+      "position": [
+        -42,
+        66,
+        68
+      ],
+      "lookAt": [
+        -7,
+        23,
+        7
+      ],
+      "fov": 53
+    },
+    {
+      "name": "east-and-south-chapels",
+      "position": [
+        96,
+        34,
+        66
+      ],
+      "lookAt": [
+        19,
+        14,
+        12
+      ],
+      "fov": 52
+    },
+    {
+      "name": "overhead-footprint-and-roofs",
+      "position": [
+        4,
+        142,
+        -7
+      ],
+      "lookAt": [
+        4,
+        15,
+        -4
+      ],
+      "fov": 53
+    }
+  ],
+  "sourceFacts": {
+    "mappedBuilding": 35184399954357,
+    "bellTowerHeightMeters": 95,
+    "stairTreads": 8,
+    "velezFacets": 5
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -8,
+        27,
+        -5
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ey/eyz/murcias_cathedral/models/murcia-model.mjs",
+    "export": "buildMurciaSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.83
+      },
+      "carved": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.78
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.78
+      },
+      "glaze": {
+        "slot": "roof",
+        "graph": "tile_glazed",
+        "roughness": 0.57
+      },
+      "pane": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.53
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.68
+      },
+      "cast": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.58,
+        "metallic": 0.64
+      }
+    },
+    "errorMeters": 1.98,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMurciaDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.83
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.78
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.78
+          },
+          "glaze": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.57
+          },
+          "pane": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.53
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.68
+          },
+          "cast": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.64
+          }
+        },
+        "errorMeters": 0.94
+      },
+      "street": {
+        "export": "buildMurciaStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.83
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.78
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.78
+          },
+          "glaze": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.57
+          },
+          "pane": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.53
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.68
+          },
+          "cast": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.64
+          }
+        },
+        "errorMeters": 0.34
+      },
+      "closeup": {
+        "export": "buildMurciaCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.83
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.78
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.78
+          },
+          "glaze": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.57
+          },
+          "pane": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.53
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.68
+          },
+          "cast": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.64
+          }
+        },
+        "errorMeters": 0.11
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "murcias_cathedral-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -130,
+        58,
+        -88
+      ],
+      "lookAt": [
+        -8,
+        34,
+        -6
+      ]
+    },
+    {
+      "name": "murcias_cathedral-district",
+      "reviewLod": "district",
+      "position": [
+        -130,
+        58,
+        -88
+      ],
+      "lookAt": [
+        -8,
+        34,
+        -6
+      ]
+    },
+    {
+      "name": "murcias_cathedral-street",
+      "reviewLod": "street",
+      "position": [
+        -130,
+        58,
+        -88
+      ],
+      "lookAt": [
+        -8,
+        34,
+        -6
+      ]
+    },
+    {
+      "name": "murcias_cathedral-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -130,
+        58,
+        -88
+      ],
+      "lookAt": [
+        -8,
+        34,
+        -6
+      ]
+    }
+  ]
+}

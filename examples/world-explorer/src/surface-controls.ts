@@ -28,6 +28,8 @@ export function createSurfaceControls(
   fonts?: FontLibrary,
   signProfileAt?: (x: number, z: number) => Readonly<TerrainRoadSignProfile> | undefined,
   routeShields?: TerrainRouteShieldLibrary,
+  /** Rolling stock for yards and sidings (`TerrainSurfaceDetails.railCars`). */
+  railCars: readonly TerrainParkedVehicle[] = [],
 ): SurfaceControls {
   const select = document.getElementById('surface-style') as HTMLSelectElement;
   const status = document.getElementById('surface-status') as HTMLParagraphElement;
@@ -37,9 +39,15 @@ export function createSurfaceControls(
   let style: TerrainSurfaceStyleId = Object.hasOwn(TERRAIN_SURFACE_STYLES, requested)
     ? (requested as TerrainSurfaceStyleId)
     : 'modern';
+  const railCarOccupancy = Number.parseFloat(params.get('railCars') ?? '');
+  const railDetails = (): Pick<TerrainSurfaceDetails, 'railCars' | 'railCarOccupancy'> => ({
+    railCars,
+    ...(Number.isFinite(railCarOccupancy) ? { railCarOccupancy } : {}),
+  });
   let details: TerrainSurfaceDetails = {
     preferMappedProps: params.get('style') !== 'none',
     parkedVehicles,
+    ...railDetails(),
   };
   for (const input of inputs) {
     const key = input.dataset.surfaceDetail as
@@ -129,7 +137,11 @@ export function createSurfaceControls(
   });
   select.addEventListener('change', () => {
     style = select.value as TerrainSurfaceStyleId;
-    details = { preferMappedProps: params.get('style') !== 'none', parkedVehicles };
+    details = {
+      preferMappedProps: params.get('style') !== 'none',
+      parkedVehicles,
+      ...railDetails(),
+    };
     void update();
   });
   for (const input of inputs)

@@ -16,8 +16,24 @@ export interface BridgeDeckOptions {
   /** Authored deck endpoints in the path's frame, blended in over `radius`. */
   connections?: readonly { point: TerrainSemanticPoint; elevation: number; radius: number }[];
   /** Absolute along-path deck/approach samples, shared by painted surfaces and traffic graphs. */
-  approachProfile?: readonly { point: TerrainSemanticPoint; elevation: number; flatness: number }[];
+  approachProfile?: readonly {
+    point: TerrainSemanticPoint;
+    elevation: number;
+    flatness: number;
+    /** The ground the sample was graded over, and how far it follows the ground drawn here. */
+    ground?: number;
+    anchor?: number;
+  }[];
+  /**
+   * Where `groundAt` is the real ground, `[minX, minZ, maxX, maxZ]` in the path's frame (a
+   * tile's own square). Anchored samples beyond it follow the nearest sample inside, so two
+   * tiles that share an edge move a deck crossing it by the same amount.
+   */
+  bounds?: readonly [number, number, number, number];
 }
+
+/** Greatest distance (m) an anchored sample is moved to meet the ground drawn under it. */
+const MAX_ANCHOR_SHIFT = 4;
 
 /**
  * A tile fragment cannot establish the elevation of an entire bridge. Use a bank-to-bank
@@ -100,7 +116,39 @@ export function bridgeDeckHeightFn(
     }
     return { station, distance: Math.sqrt(best), point: [px, pz] as TerrainSemanticPoint };
   };
-  const profile = samples.map((sample, i) => ({ ...sample, station: distances[i] ?? 0 }));
+  // A profile graded over other ground than is drawn here (see `ground` and `anchor`) moves
+  // with the difference where it rests on the ground, so it still lands on the road.
+  const shifts = new Float64Array(samples.length);
+  if (samples.some((sample) => sample.ground !== undefined && (sample.anchor ?? 0) > 0)) {
+    const bounds = options.bounds;
+    const known = new Uint8Array(samples.length);
+    samples.forEach((sample, i) => {
+      const [x, z] = sample.point;
+      if (sample.ground === undefined) return;
+      if (bounds && (x < bounds[0] || z < bounds[1] || x > bounds[2] || z > bounds[3])) return;
+      known[i] = 1;
+      shifts[i] = Math.max(
+        -MAX_ANCHOR_SHIFT,
+        Math.min(MAX_ANCHOR_SHIFT, groundAt(x, z) - sample.ground),
+      );
+    });
+    // Beyond the bounds: what the nearest sample inside them found.
+    let last = -1;
+    for (let i = 0; i < samples.length; i++) {
+      if (known[i]) last = i;
+      else if (last >= 0) shifts[i] = shifts[last] as number;
+    }
+    last = -1;
+    for (let i = samples.length - 1; i >= 0; i--) {
+      if (known[i]) last = i;
+      else if (last >= 0 && (shifts[i] as number) === 0) shifts[i] = shifts[last] as number;
+    }
+  }
+  const profile = samples.map((sample, i) => ({
+    ...sample,
+    elevation: sample.elevation + (shifts[i] as number) * (sample.anchor ?? 0),
+    station: distances[i] ?? 0,
+  }));
   return (x, z) => {
     const p = project(x, z);
     if (profile.length) {

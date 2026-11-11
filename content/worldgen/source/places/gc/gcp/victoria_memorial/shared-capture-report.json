@@ -1,0 +1,68 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.victoria_memorial",
+  "inputHash": "sha256:a80f51eb5650c13f93b533e3504c724b0d2eda3858af320826aa9f21f0a8039b",
+  "sourceHash": "sha256:a400860633e3cdb3c9390293a304343b5a0bb8c06515781157ccdfd2a072cc94",
+  "runtimeHash": "sha256:c5d9d9b02c769f139f7d02a59de0d0770bfcd3838b9543172ee41350926b5c52",
+  "fixtureHash": "sha256:603e81ddcc550fe6a02858bac6723f6d59052311f3e2372fde9bd010678df4c4",
+  "placementHash": "sha256:e4c42e7b9c3003af47bd692cacf50af58dcb7fc2f5551d99b957397b6f53200f",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_marble": {
+      "path": "materials/stone_marble.matgraph.json",
+      "hash": "sha256:e6034ab9ef8375ec8f3a57c697aa21e059e2953742b15ce3b3e486c2f71af7cf"
+    },
+    "molen.worldgen.material.metal_bronze_cast": {
+      "path": "materials/metal_bronze_cast.matgraph.json",
+      "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-victoria.png",
+      "hash": "sha256:fbb07285b41288fe905624115f5039bccf5bd2d02715174811802cddad6f31dc",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          47,
+          8.5,
+          10
+        ],
+        "lookAt": [
+          0,
+          12.6,
+          0
+        ],
+        "fov": 48,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          0.61,
+          1,
+          0.59
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "victoria.memorial",
+        "visibleDraws": 4
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Marble, granite, and cast bronze resolve one shared graph each. Gold is a palette tint on the cast bronze graph. The basin water is a solid-color PBR material."
+}

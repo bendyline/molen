@@ -1,0 +1,74 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.hampton_court_palace",
+  "inputHash": "sha256:1b560be55f722a269af75f656466e14659fb5296065b80413972b6c1d424bf37",
+  "sourceHash": "sha256:ee4fb9ee664f903d69d359f1bdc1f9eeeface7914c7bc0d6ce990cd42d7ffa62",
+  "runtimeHash": "sha256:209e40866c23ead516c1698a453a48536eee8782807360ce127a8d4c4949fd7a",
+  "fixtureHash": "sha256:05b0f67a7a8991d98128bbaf55cd0286f1a6add83d9d888f79185534a3080b7a",
+  "placementHash": "sha256:1a4ff946f14a6ff7b011af716e0df35f5b6095d8321c86acec6f679e5f3d6bbb",
+  "materialGraphs": {
+    "molen.worldgen.material.brick_flemish": {
+      "path": "materials/brick_flemish.matgraph.json",
+      "hash": "sha256:f31107062ebd1a0d46f0ff6e5b9861b0be582d08a8c05f46e424dd12cb0c047c"
+    },
+    "molen.worldgen.material.slate": {
+      "path": "materials/slate.matgraph.json",
+      "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    },
+    "molen.worldgen.material.window_grid": {
+      "path": "materials/window_grid.matgraph.json",
+      "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-hampton-court-palace.png",
+      "hash": "sha256:ce8e6c46a59c790e3cf723d024f2a9e86b73a097124d1db0da45b505e316abf9",
+      "camera": {
+        "name": "detail-clock-court-astronomical-dial",
+        "position": [
+          3.5,
+          6.9,
+          50.7
+        ],
+        "lookAt": [
+          -17,
+          9.5,
+          43.55
+        ],
+        "fov": 59,
+        "detail": true,
+        "lightDirection": [
+          0.62,
+          1,
+          0.48
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "hampton.court.palace",
+        "visibleDraws": 6
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The near model resolves six shared graphs once each. Brick, limestone, granite, slate, painted metal and window glass supply the architectural surfaces. The lawn and fountain use solid color materials."
+}

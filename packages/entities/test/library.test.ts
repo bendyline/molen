@@ -25,7 +25,8 @@ describe('molen entities library', () => {
       id.includes('.vehicle.') ||
       id.includes('.transit.') ||
       id.includes('.cycle.') ||
-      id.includes('.watercraft.')
+      id.includes('.watercraft.') ||
+      id.includes('.rail.')
         ? id
         : id.replace('molen.entities.', '')
       ).replaceAll('.', '/'),

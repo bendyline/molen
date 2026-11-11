@@ -1,0 +1,686 @@
+{
+  "id": "generalife",
+  "title": "Generalife",
+  "wikidataId": "Q525811",
+  "referenceCoordinate": {
+    "longitude": -3.585094723,
+    "latitude": 37.176947654
+  },
+  "module": "packages/worldgen/scripts/generalife-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-generalife.mjs",
+  "builder": "buildGeneralifeLevel",
+  "surfaces": {
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.94
+    },
+    "green": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.94
+    },
+    "darkGreen": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.94
+    },
+    "flower": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.94
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.93
+    },
+    "mortar": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.93
+    },
+    "soil": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.93
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick_flemish",
+      "roughness": 0.97
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.91
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.88
+    },
+    "shade": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.88
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "water": {
+      "slot": "window",
+      "localRef": "palette:#c8e9ed",
+      "roughness": 0.29,
+      "metallic": 0.27
+    },
+    "jet": {
+      "slot": "window",
+      "localRef": "palette:#c8e9ed",
+      "roughness": 0.29,
+      "metallic": 0.27
+    }
+  },
+  "exportLabel": "Molen original Generalife master",
+  "expectedDraftMasterHash": "sha256:9eef920398168c32fcf883be8a2a5c23626cd8579e6ec4e654c412229d37bea0",
+  "visualBrief": "The Generalife is an open hillside ensemble of tile-roofed pavilions, the long Acequia Court and the Cypress Court double arcade. The Water Stairway climbs toward the Mirador Romántico. Formal planted beds, shallow canals and the open-air theatre extend along the lower garden axis.",
+  "heightPolicy": "The 793 m sea-level datum follows the standard viewer terrain. Four small, filled terraces protect flat courts and auditorium geometry from coarse slopes. The remaining landscape follows native elevation.",
+  "nativeAxes": "The signed precinct axis points south-southeast along the Generalife gardens. The palace uses a secondary -0.382 rad alignment so the Acequia follows the two mapped channel sections and the cypress court sits on the uphill side.",
+  "limitations": [
+    "The footprint, channel locations and Water Stairway follow standard PMTiles. Flat court elevations, individual arches, seating and retaining walls are photo-based reconstructions fitted to standard viewer terrain.",
+    "Water channels, fountain arcs and garden planting use static geometry and shared materials. Seasonal planting, temporary stage equipment and private interiors are outside the modeled exterior."
+  ],
+  "references": [
+    {
+      "url": "https://www.openstreetmap.org/way/196490785",
+      "observed": "Named Generalife palace and garden geometry"
+    },
+    {
+      "url": "https://wastemagazine.es/galerias/generalife/generalife/data3/images/generalife10.jpg",
+      "hash": "sha256:06c9a465f23bde118ba4320512965b28bf9328a89d2bc171e9577f5afb08f479",
+      "observed": "acequia court"
+    },
+    {
+      "url": "https://wastemagazine.es/galerias/generalife/generalife/data3/images/alhambrageneralifemecenazgo31.jpg",
+      "hash": "sha256:fa2b402da114a230f4c008cdc035a3f3e99146d5a94a58513967731fa204d485",
+      "observed": "garden overview"
+    },
+    {
+      "url": "https://generalife.org/images/guia/patio-cipres.jpg",
+      "hash": "sha256:6fbcef90958f55cadff9f857a638ef100cd4b2e83a0ec5be763eb94d6fc3a4ef",
+      "observed": "sultana cypress"
+    },
+    {
+      "url": "https://alhambra-palace.org/wp-content/uploads/Escalera-del-Agua-in-Generalife.webp",
+      "hash": "sha256:3d4e4e93ee4811177b7969ce67741fbc064326bc9ab1c2b17c15ffe8faa3d8a9",
+      "observed": "water stair"
+    },
+    {
+      "url": "https://www.juntadeandalucia.es/cultura/lorcaygranada/sites/default/files/LyGR/galeria_teatro_generalife_4_opt.jpg",
+      "hash": "sha256:846a4d1090dfd0fe8544119eb6ea5aecf60da59f7b3e1ffafa2532121bf3efc9",
+      "observed": "theatre"
+    }
+  ],
+  "cameras": [
+    {
+      "name": "generalife-from-the-alhambra",
+      "position": [
+        -186,
+        118,
+        117
+      ],
+      "lookAt": [
+        -38,
+        5,
+        8
+      ],
+      "fov": 66,
+      "lightDirection": [
+        -0.71,
+        1,
+        0.62
+      ]
+    },
+    {
+      "name": "acequia-watercourse-and-loggia",
+      "position": [
+        -107.88956,
+        3.24,
+        -0.30309
+      ],
+      "lookAt": [
+        -151.79514,
+        5.62,
+        17.29215
+      ],
+      "fov": 70,
+      "lightDirection": [
+        -0.56,
+        1,
+        0.7
+      ]
+    },
+    {
+      "name": "cypress-court-and-double-arcade",
+      "position": [
+        -133.89548,
+        5.05,
+        -6.02081
+      ],
+      "lookAt": [
+        -159.83685,
+        6.22,
+        -0.84758
+      ],
+      "fov": 74,
+      "lightDirection": [
+        -0.48,
+        1,
+        0.64
+      ]
+    },
+    {
+      "name": "water-stair-and-mirador",
+      "position": [
+        -150.91777,
+        7.24,
+        -19.78844
+      ],
+      "lookAt": [
+        -144.20038,
+        8.33485,
+        -41.59575
+      ],
+      "fov": 70,
+      "lightDirection": [
+        -0.5,
+        1,
+        -0.69
+      ]
+    },
+    {
+      "name": "formal-terraces-and-pools",
+      "position": [
+        9,
+        38,
+        65
+      ],
+      "lookAt": [
+        6,
+        -2,
+        14
+      ],
+      "fov": 66,
+      "lightDirection": [
+        0.49,
+        1,
+        0.78
+      ]
+    },
+    {
+      "name": "open-air-theatre",
+      "position": [
+        68,
+        19,
+        38
+      ],
+      "lookAt": [
+        110,
+        1,
+        2
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.55,
+        1,
+        0.66
+      ]
+    },
+    {
+      "name": "palace-retaining-walls",
+      "position": [
+        -157,
+        26,
+        68
+      ],
+      "lookAt": [
+        -129,
+        6,
+        7
+      ],
+      "fov": 68,
+      "lightDirection": [
+        -0.51,
+        1,
+        0.75
+      ]
+    }
+  ],
+  "materialMethod": "Six shared graphs supply lime plaster, carved stone, brick, terracotta, timber and paving. The water uses one local surface. Garden beds, fountains, stairs and arches are geometry. No images are embedded.",
+  "sourceFacts": {
+    "precinct": "way/196490785",
+    "terrainDatumMeters": 793,
+    "footprintPartIds": [
+      52776572494254,
+      35185451273841,
+      35184640652769
+    ],
+    "watercourses": 7,
+    "theatre": true
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -37,
+        6,
+        9
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/generalife-model.mjs",
+    "export": "buildGeneralifeSkyline",
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "green": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "darkGreen": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "flower": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93
+      },
+      "mortar": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93
+      },
+      "soil": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.97
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.91
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.88
+      },
+      "shade": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.88
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "water": {
+        "slot": "window",
+        "localRef": "palette:#c8e9ed",
+        "roughness": 0.29,
+        "metallic": 0.27
+      },
+      "jet": {
+        "slot": "window",
+        "localRef": "palette:#c8e9ed",
+        "roughness": 0.29,
+        "metallic": 0.27
+      }
+    },
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGeneralifeDistrict",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "green": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "darkGreen": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "flower": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "mortar": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "soil": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "shade": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "water": {
+            "slot": "window",
+            "localRef": "palette:#c8e9ed",
+            "roughness": 0.29,
+            "metallic": 0.27
+          },
+          "jet": {
+            "slot": "window",
+            "localRef": "palette:#c8e9ed",
+            "roughness": 0.29,
+            "metallic": 0.27
+          }
+        },
+        "errorMeters": 0.72
+      },
+      "street": {
+        "export": "buildGeneralifeStreet",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "green": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "darkGreen": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "flower": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "mortar": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "soil": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "shade": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "water": {
+            "slot": "window",
+            "localRef": "palette:#c8e9ed",
+            "roughness": 0.29,
+            "metallic": 0.27
+          },
+          "jet": {
+            "slot": "window",
+            "localRef": "palette:#c8e9ed",
+            "roughness": 0.29,
+            "metallic": 0.27
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "closeup": {
+        "export": "buildGeneralifeCloseup",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "green": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "darkGreen": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "flower": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "mortar": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "soil": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.97
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "shade": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "water": {
+            "slot": "window",
+            "localRef": "palette:#c8e9ed",
+            "roughness": 0.29,
+            "metallic": 0.27
+          },
+          "jet": {
+            "slot": "window",
+            "localRef": "palette:#c8e9ed",
+            "roughness": 0.29,
+            "metallic": 0.27
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "generalife-skyline",
+      "position": [
+        -186,
+        118,
+        117
+      ],
+      "lookAt": [
+        -38,
+        5,
+        8
+      ],
+      "fov": 66,
+      "lightDirection": [
+        -0.71,
+        1,
+        0.62
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "generalife-district",
+      "position": [
+        -186,
+        118,
+        117
+      ],
+      "lookAt": [
+        -38,
+        5,
+        8
+      ],
+      "fov": 66,
+      "lightDirection": [
+        -0.71,
+        1,
+        0.62
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "generalife-street",
+      "position": [
+        -186,
+        118,
+        117
+      ],
+      "lookAt": [
+        -38,
+        5,
+        8
+      ],
+      "fov": 66,
+      "lightDirection": [
+        -0.71,
+        1,
+        0.62
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "generalife-closeup",
+      "position": [
+        -186,
+        118,
+        117
+      ],
+      "lookAt": [
+        -38,
+        5,
+        8
+      ],
+      "fov": 66,
+      "lightDirection": [
+        -0.71,
+        1,
+        0.62
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

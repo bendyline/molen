@@ -1,0 +1,114 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.rail.autorack_enclosed": {
+      "doc": "89 ft enclosed bi-level autorack: flatcar with a fishbelly centre sill under a fully enclosed rack of perforated side panels, arched roof and two-leaf end doors. Unpowered car for track-guided consists; vehicle.color repaints the rack frame, posts and fascia.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.autorack_enclosed",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.autorack_enclosed",
+          "color": "#c9c7be",
+          "spec": {
+            "label": "89 ft enclosed bi-level autorack",
+            "bodyStyle": "freight-car",
+            "genericLabel": "Autorack",
+            "width": 3.25,
+            "length": 27.2,
+            "height": 5.94,
+            "centerOfMass": [
+              0,
+              2.4,
+              0
+            ],
+            "wheelbase": 19.5,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.457,
+            "mass": 55000,
+            "engineForce": 1,
+            "maxSpeed": 31.3,
+            "reverseSpeed": 30,
+            "brakeDeceleration": 0.45,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [
+              0,
+              2.5,
+              0
+            ],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00001,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 19.5,
+              "couplerLength": 28,
+              "power": 0,
+              "gauge": 1.435,
+              "profile": "autorack"
+            }
+          },
+          "visual": {
+            "wheelNodes": [
+              "axle-1",
+              "axle-2",
+              "axle-3",
+              "axle-4"
+            ],
+            "frontWheelNodes": [
+              "axle-1"
+            ],
+            "paintMaterial": "rail-livery-body"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.rail.autorack_enclosed"
+      ]
+    }
+  }
+}

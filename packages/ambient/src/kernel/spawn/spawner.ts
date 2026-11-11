@@ -361,7 +361,9 @@ function spawnOne(ctx: SpawnContext, kind: AmbientKind): boolean {
                 t.width <= edge.width / (edge.oneway ? 1 : 2) &&
                 t.length + 2 < lane.length,
             )
-          : types;
+          : kind === 'train'
+            ? trainTypes(types as readonly AmbientVehicleType[], edge)
+            : types;
     if ((kind === 'boat' || kind === 'car') && available.length === 0) continue;
     const vehicle =
       kind === 'pedestrian'
@@ -369,8 +371,8 @@ function spawnOne(ctx: SpawnContext, kind: AmbientKind): boolean {
         : pickWeighted(available as readonly AmbientVehicleType[], unit01(seed, 10));
     const length = kind === 'pedestrian' ? 0.5 : (vehicle?.length ?? 4.5);
     const width = kind === 'pedestrian' ? 0.5 : (vehicle?.width ?? 1.8);
-    const cars = kind === 'train' ? dmath.max(1, vehicle?.cars ?? 2) : 1;
-    const behind = kind === 'train' ? (cars - 1) * (length + 1) : 0;
+    const makeUp = kind === 'train' ? trainMakeUp(vehicle, length, width, seed) : undefined;
+    const behind = makeUp?.at(-1)?.offset ?? 0;
     if (s < behind + length / 2 + 1 || s > lane.length - length / 2 - 1) continue;
     const dx = sample.x - observer.x;
     const dz = sample.z - observer.z;
@@ -401,10 +403,102 @@ function spawnOne(ctx: SpawnContext, kind: AmbientKind): boolean {
         )
           clear = false;
     if (!clear) continue;
-    createLaneAgent(ctx, kind, lane, edge, s, seed, vehicle, length, width, cars);
+    createLaneAgent(ctx, kind, lane, edge, s, seed, vehicle, length, width, makeUp);
     return true;
   }
   return false;
+}
+
+/** One car of a train being made up: its type, size, paint and distance behind the lead. */
+interface TrainCar {
+  type: string;
+  length: number;
+  width: number;
+  color?: string;
+  offset: number;
+}
+
+/** Gap between the bodies of coupled cars (couplers and diaphragms), metres. */
+const COUPLER_GAP = 1;
+
+/**
+ * Rail types for an edge: light types on tram and light-rail lines, heavy ones elsewhere, any
+ * type without a preference on either. All of them when none match, so a pack with only one kind
+ * of train still runs it everywhere.
+ */
+function trainTypes(
+  types: readonly AmbientVehicleType[],
+  edge: TransportEdge,
+): readonly AmbientVehicleType[] {
+  const light = edge.kind === 'tram';
+  const matching = types.filter((t) => t.track === undefined || (t.track === 'light') === light);
+  return matching.length > 0 ? matching : types;
+}
+
+/** Draw an inclusive integer range with a seeded unit value. */
+function between(
+  range: readonly [number, number] | undefined,
+  u: number,
+  fallback: number,
+): number {
+  if (range === undefined) return fallback;
+  const lo = dmath.min(range[0], range[1]);
+  const hi = dmath.max(range[0], range[1]);
+  return lo + dmath.min(hi - lo, dmath.floor(u * (hi - lo + 1)));
+}
+
+/**
+ * The cars of a train led by `vehicle`, front to back with their offsets behind the lead's centre:
+ * its consist's units and drawn cars, or `cars` copies of it.
+ */
+function trainMakeUp(
+  vehicle: AmbientVehicleType | undefined,
+  length: number,
+  width: number,
+  seed: number,
+): TrainCar[] {
+  const lead = { type: vehicle?.id ?? 'proxy', length, width };
+  const consist = vehicle?.consist;
+  const cars: Omit<TrainCar, 'offset'>[] = [];
+  if (consist === undefined || consist.cars.length === 0) {
+    const count = dmath.max(1, vehicle?.cars ?? 2);
+    for (let k = 0; k < count; k++) cars.push(lead);
+  } else {
+    const units = dmath.max(1, between(consist.units, unit01(seed, 20), 1));
+    for (let k = 0; k < units; k++) cars.push(lead);
+    const wanted = between(consist.length, unit01(seed, 21), 0);
+    const total = consist.cars.reduce((sum, car) => sum + (car.weight ?? 1), 0);
+    let draw = 22;
+    while (cars.length < units + wanted && total > 0) {
+      let pick = unit01(seed, draw++) * total;
+      let chosen = consist.cars[consist.cars.length - 1] as (typeof consist.cars)[number];
+      for (const car of consist.cars) {
+        pick -= car.weight ?? 1;
+        if (pick < 0) {
+          chosen = car;
+          break;
+        }
+      }
+      const palette = chosen.colors;
+      const color =
+        palette !== undefined && palette.length > 0
+          ? palette[dmath.floor(unit01(seed, draw++) * palette.length)]
+          : undefined;
+      const block = between(consist.block, unit01(seed, draw++), 1);
+      for (let k = 0; k < block && cars.length < units + wanted; k++)
+        cars.push({
+          type: chosen.id,
+          length: chosen.length,
+          width: chosen.width,
+          ...(color !== undefined ? { color } : {}),
+        });
+    }
+  }
+  let offset = 0;
+  return cars.map((car, k) => {
+    if (k > 0) offset += ((cars[k - 1]?.length ?? 0) + car.length) / 2 + COUPLER_GAP;
+    return { ...car, offset };
+  });
 }
 
 function nextSeqId(ctx: SpawnContext, kind: AmbientKind): { id: string; seq: number } {
@@ -425,7 +519,7 @@ function createLaneAgent(
   vehicle: AmbientVehicleType | undefined,
   length: number,
   width: number,
-  cars: number,
+  makeUp: readonly TrainCar[] | undefined,
 ): void {
   const { env } = ctx;
   const { id } = nextSeqId(ctx, kind);
@@ -470,16 +564,24 @@ function createLaneAgent(
     spawnedTick: env.tick,
   };
   spawnWithTemplate(ctx, id, agent);
-  if (kind === 'train')
-    for (let k = 1; k < cars; k++) {
-      const back = walkBack(env.net, lane.id, s, undefined, [], k * (length + 1));
+  if (makeUp !== undefined)
+    for (let k = 1; k < makeUp.length; k++) {
+      const car = makeUp[k] as TrainCar;
+      const back = walkBack(env.net, lane.id, s, undefined, [], car.offset);
       const { id: carId } = nextSeqId(ctx, kind);
+      const { color: _lead, ...rest } = agent;
+      const carColor = car.color ?? (car.type === agent.type ? color : undefined);
       spawnWithTemplate(ctx, carId, {
-        ...agent,
+        ...rest,
+        ...(carColor !== undefined ? { color: carColor } : {}),
+        type: car.type,
+        length: car.length,
+        width: car.width,
         lane: back.lane,
         s: q4(back.s),
         consist: id,
         carIndex: k,
+        offset: q4(car.offset),
         seed: fmix32(seed + k),
       });
     }

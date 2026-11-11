@@ -1,3 +1,4 @@
+import { isInstanceBatch } from '@bendyline/molen-client/instancing';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import { setTerrainGroundCutout, TerrainGroundCutoutController } from '../src/ground-cutout';
@@ -134,6 +135,18 @@ function semanticTile(): TerrainSemanticTile {
 }
 
 describe('normalized semantic mesh adapter', () => {
+  it('keeps underground footprints out of the surface building mesh', () => {
+    const tile = semanticTile();
+    const surface = tile.buildings[0];
+    if (!surface) throw new Error('Expected a surface building fixture');
+    tile.buildings = [surface, { ...surface, layer: -1, height: 120 }];
+    const object = createTerrainSemanticObject(tile, context());
+    const buildings = object.getObjectByName('semantic:buildings') as THREE.Mesh;
+    buildings.geometry.computeBoundingBox();
+    expect(buildings.geometry.boundingBox?.max.y).toBeCloseTo(22);
+    disposeTerrainSemanticObject(object);
+  });
+
   it('builds instanced trees and combined water, road, and building meshes', () => {
     const object = createTerrainSemanticObject(semanticTile(), context(), {
       treesPerSquareKilometer: 10_000,
@@ -437,7 +450,8 @@ describe('normalized semantic mesh adapter', () => {
       const mesh = child as THREE.Mesh;
       if (!mesh.isMesh) return;
       if (mesh.userData.terrainOwnedGeometry === true) generated.push(mesh.geometry);
-      else shared.push(mesh.geometry);
+      // A batch's own geometry holds its instances and goes with the tile; its model is shared.
+      else shared.push(isInstanceBatch(mesh) ? mesh.sourceGeometry : mesh.geometry);
     });
     const generatedSpies = generated.map((geometry) => vi.spyOn(geometry, 'dispose'));
     const sharedSpies = shared.map((geometry) => vi.spyOn(geometry, 'dispose'));

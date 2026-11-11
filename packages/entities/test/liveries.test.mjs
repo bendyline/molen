@@ -25,6 +25,9 @@ it('ships 2–4 photo-sourced choices with working paint and decal bindings for 
     for (const [id, definition] of Object.entries((await read(path)).types)) {
       const components = definition.components;
       if (!components?.vehicle && !components?.aircraft && !components?.boat) continue;
+      // Rail rolling stock paints through vehicle.color with generic schemes (RAIL.md): colours
+      // studied from photographs of real units would reproduce railroad trade dress.
+      if (id.startsWith('molen.entities.rail.')) continue;
       seen.add(id);
       const data = components.livery;
       expect(data, id).toEqual(catalog[id]);

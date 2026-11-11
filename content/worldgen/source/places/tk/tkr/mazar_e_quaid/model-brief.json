@@ -1,0 +1,395 @@
+{
+  "id": "mazar_e_quaid",
+  "title": "Mazar-e-Quaid",
+  "wikidataId": "Q2571455",
+  "referenceCoordinate": {
+    "longitude": 67.040955082,
+    "latitude": 24.875461893
+  },
+  "module": "content/worldgen/source/places/tk/tkr/mazar_e_quaid/models/mausoleum-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-mazar-e-quaid.mjs",
+  "builder": "buildMausoleumLevel",
+  "surfaces": {
+    "marble": {
+      "slot": "wall",
+      "graph": "stone_marble"
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_granite"
+    },
+    "podium": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw"
+    },
+    "copper": {
+      "slot": "trim",
+      "graph": "metal_copper",
+      "metallic": 0.58,
+      "roughness": 0.63
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    }
+  },
+  "exportLabel": "Molen original Mazar-e-Quaid master",
+  "expectedDraftMasterHash": "sha256:a4572d93f94b93d47cb715779b9a84ae655e68948c1d01795ff9979c50169c26",
+  "visualBrief": "Mazar-e-Quaid with tapered marble façades, deep pointed copper-screen arches, the perforated dome drum, two levels of stairs and the asymmetrical raised plaza.",
+  "heightPolicy": "Standard Terrarium places the local origin at 35 m. The perimeter follows sampled terrain and the mapped podium covers the local cap beneath its apron and main terrace.",
+  "nativeAxes": "Positive X follows the mapped northwest wall from west to east. The drum controls the origin, while the separate platform polygon controls the wider site geometry.",
+  "limitations": [
+    "The mapped drum controls the anchor and the mapped straight wall controls the heading. The four stone walls are reconstructed from the visible square plan and photographs. Individual panel sizes and accessory structures are approximate.",
+    "The standard elevation tile contains a raised mound under the podium. The viewer caps the terrain within the occupied terrace only while the model is resident. The adjacent gardens, reflecting pools and visitor interiors are outside the modeled scope."
+  ],
+  "materialMethod": "Five shared graphs cover white marble, granite paving, limestone podium, copper screens and painted metal. The facade panels and copper grilles use modeled geometry with metric repeats.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Mazar_e_Quaid_-_Karachi.jpg",
+      "hash": "sha256:f65650386c7d56fb422703403ceb7f12758197f61b6cc955421275c6c82f5769",
+      "observed": "Current exterior wall planes, arches, dome, and base."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Mazar-e-Quaid,_or_Jinnah_Mausoleum_in_Karachi,_Pakistan.jpg",
+      "hash": "sha256:d375a8885d121c265f5856a553e424156af9e0cf95c82d04af5ddcaa192589b9",
+      "observed": "Independent view of the platform and its approach."
+    },
+    {
+      "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile",
+      "observed": "Aerial view confirms the off-center dome, terrace stair rows and neighboring planted beds."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "marble-terrace-and-dome",
+      "position": [
+        -112,
+        57,
+        112
+      ],
+      "lookAt": [
+        -15,
+        12,
+        7
+      ],
+      "fov": 48
+    },
+    {
+      "name": "west-approach",
+      "position": [
+        -111,
+        14,
+        12
+      ],
+      "lookAt": [
+        -10,
+        10,
+        7
+      ],
+      "fov": 51
+    },
+    {
+      "name": "dome-and-triple-screens",
+      "position": [
+        36,
+        45,
+        -42
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "copper-gate-and-stonework",
+      "position": [
+        -23,
+        10,
+        21
+      ],
+      "lookAt": [
+        -9,
+        12,
+        5
+      ],
+      "fov": 48
+    },
+    {
+      "name": "south-arch-and-surround",
+      "position": [
+        12,
+        8,
+        41
+      ],
+      "lookAt": [
+        1,
+        11,
+        8
+      ],
+      "fov": 50
+    },
+    {
+      "name": "east-service-front",
+      "position": [
+        77,
+        17,
+        -5
+      ],
+      "lookAt": [
+        16,
+        9,
+        4
+      ],
+      "fov": 47
+    },
+    {
+      "name": "north-stairs-and-platform",
+      "position": [
+        -26,
+        18,
+        -69
+      ],
+      "lookAt": [
+        -12,
+        5,
+        -25
+      ],
+      "fov": 56
+    },
+    {
+      "name": "raised-terrace-plan",
+      "position": [
+        -57,
+        112,
+        48
+      ],
+      "lookAt": [
+        -19,
+        6,
+        7
+      ],
+      "fov": 47
+    }
+  ],
+  "sourceFacts": {
+    "mappedParts": [
+      35184852519409,
+      35184852519410,
+      35184852519413,
+      35185226137983,
+      35185226137984,
+      35185226137985,
+      35185226137986,
+      52776571933629
+    ],
+    "mappedHeights": [
+      {
+        "featureId": 52776571933629,
+        "height": 25
+      },
+      {
+        "featureId": 35185226137985,
+        "height": 28
+      },
+      {
+        "featureId": 35184852519413,
+        "height": 5
+      }
+    ],
+    "domeDiameterMeters": 19.86,
+    "portalCount": 4,
+    "terraceStairCount": 4,
+    "domeHeightMeters": 9.28
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -12,
+        12,
+        7
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/tk/tkr/mazar_e_quaid/models/mausoleum-model.mjs",
+    "export": "buildMausoleumSkyline",
+    "surfaces": {
+      "marble": {
+        "slot": "wall",
+        "graph": "stone_marble"
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite"
+      },
+      "podium": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw"
+      },
+      "copper": {
+        "slot": "trim",
+        "graph": "metal_copper",
+        "metallic": 0.58,
+        "roughness": 0.63
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      }
+    },
+    "errorMeters": 1.35,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMausoleumDistrict",
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "podium": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw"
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "metallic": 0.58,
+            "roughness": 0.63
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.56
+      },
+      "street": {
+        "export": "buildMausoleumStreet",
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "podium": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw"
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "metallic": 0.58,
+            "roughness": 0.63
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.18
+      },
+      "closeup": {
+        "export": "buildMausoleumCloseup",
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "podium": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw"
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "metallic": 0.58,
+            "roughness": 0.63
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.065
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "mazar_e_quaid-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -112,
+        57,
+        112
+      ],
+      "lookAt": [
+        -15,
+        12,
+        7
+      ]
+    },
+    {
+      "name": "mazar_e_quaid-district",
+      "reviewLod": "district",
+      "position": [
+        -112,
+        57,
+        112
+      ],
+      "lookAt": [
+        -15,
+        12,
+        7
+      ]
+    },
+    {
+      "name": "mazar_e_quaid-street",
+      "reviewLod": "street",
+      "position": [
+        -112,
+        57,
+        112
+      ],
+      "lookAt": [
+        -15,
+        12,
+        7
+      ]
+    },
+    {
+      "name": "mazar_e_quaid-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -112,
+        57,
+        112
+      ],
+      "lookAt": [
+        -15,
+        12,
+        7
+      ]
+    }
+  ]
+}

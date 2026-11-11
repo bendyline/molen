@@ -1,0 +1,76 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.mazar_e_quaid",
+  "inputHash": "sha256:e16218b92bc9f856f35d66655123967de75f4303f2e00b771014174be204b09f",
+  "sourceHash": "sha256:a4572d93f94b93d47cb715779b9a84ae655e68948c1d01795ff9979c50169c26",
+  "runtimeHash": "sha256:88047fd24bda1a9ce2799bff161903e449fbd09a8160e159a996dcb2a19edd76",
+  "fixtureHash": "sha256:cbe5e336a652acbf205593729594888a2e4ad93b8e468edc676970e765910d4b",
+  "placementHash": "sha256:b798f0eb83699620b1aec46f57d62fcb051502b4918c3070e1c208bea19b0c03",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_marble": {
+      "path": "materials/stone_marble.matgraph.json",
+      "hash": "sha256:e6034ab9ef8375ec8f3a57c697aa21e059e2953742b15ce3b3e486c2f71af7cf"
+    },
+    "molen.worldgen.material.metal_copper": {
+      "path": "materials/metal_copper.matgraph.json",
+      "hash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    },
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-mazar_e_quaid.png",
+      "hash": "sha256:41944fdf6b3b89c21a5e4c4a51de53d0fc7292ff342ba6f588bfd17479402ea6",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -112,
+          57,
+          112
+        ],
+        "lookAt": [
+          -15,
+          12,
+          7
+        ],
+        "fov": 48,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.45,
+          1,
+          0.64
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "mazar.e.quaid",
+        "visibleDraws": 5
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Five reused graphs cover marble, granite, limestone, copper and painted metal. Each graph is resolved once. Near tiers model the staggered marble courses, copper lattice and paver joints, with metric repeats."
+}

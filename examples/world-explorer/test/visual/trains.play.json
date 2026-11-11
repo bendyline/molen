@@ -1,0 +1,52 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "world-explorer-trains",
+  "path": "/?region=seattle-bellevue-sammamish&lat=47.5565&lon=-122.3205&alt=140&yaw=-1.9&pitch=-0.35&mode=human&quality=balanced&backend=webgl&weather=sunny&sky=daylight&ambient=0&train=freight",
+  "viewport": [1600, 1000],
+  "probes": [
+    { "name": "navigation", "selector": "#navigation-status" },
+    { "name": "status", "selector": "#status" }
+  ],
+  "actions": [
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-train]:not([data-train=''])",
+      "timeoutMs": 240000
+    },
+    { "type": "wait", "durationMs": 8000 },
+    {
+      "type": "screenshot",
+      "name": "freight-cab",
+      "note": "Engineer's seat of the lead locomotive"
+    },
+    { "type": "keys", "keys": ["w"], "durationMs": 20000 },
+    { "type": "screenshot", "name": "freight-cab-moving" },
+    { "type": "keys", "keys": ["v"], "durationMs": 100 },
+    { "type": "wait", "durationMs": 1500 },
+    {
+      "type": "screenshot",
+      "name": "freight-chase",
+      "note": "Locomotives and the manifest behind"
+    },
+    { "type": "keys", "keys": ["s"], "durationMs": 25000 },
+    { "type": "screenshot", "name": "freight-stopped" },
+    {
+      "type": "navigate",
+      "path": "/?region=seattle-bellevue-sammamish&lat=47.5565&lon=-122.3205&alt=140&yaw=-1.9&pitch=-0.35&mode=human&quality=balanced&backend=webgl&weather=sunny&sky=daylight&ambient=0&train=ride"
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-train]:not([data-train=''])",
+      "timeoutMs": 240000
+    },
+    { "type": "wait", "durationMs": 20000 },
+    {
+      "type": "screenshot",
+      "name": "commuter-ride",
+      "note": "A passenger seat in a bilevel coach"
+    },
+    { "type": "keys", "keys": ["v"], "durationMs": 100 },
+    { "type": "wait", "durationMs": 1500 },
+    { "type": "screenshot", "name": "commuter-chase" }
+  ]
+}

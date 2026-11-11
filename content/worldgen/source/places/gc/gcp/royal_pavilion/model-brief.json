@@ -1,0 +1,332 @@
+{
+  "id": "royal_pavilion",
+  "title": "Royal Pavilion",
+  "wikidataId": "Q62364",
+  "referenceCoordinate": {
+    "longitude": -0.137703507,
+    "latitude": 50.822397862
+  },
+  "module": "content/worldgen/source/places/gc/gcp/royal_pavilion/models/pavilion-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-royal-pavilion.mjs",
+  "builder": "buildPavilionLevel",
+  "surfaces": {
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.92
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.94
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.81,
+      "metallic": 0.16
+    }
+  },
+  "exportLabel": "Molen original Royal Pavilion master",
+  "expectedDraftMasterHash": "sha256:18af75fc2857ba82aeba3fdab366dcec56519e7ab673887493eb3c0d05a84ffc",
+  "visualBrief": "Brighton’s Pavilion has a ribbed central onion dome, four smaller garden domes, dark concave roofs above the end halls, and slender minarets with open lantern crowns. The east rotunda and end bays have arched lattice screens. A separate domed canopy covers the west entrance.",
+  "heightPolicy": "The 10.05 m sea-level datum follows the standard viewer terrain. The plinth extends into the sampled ground and the west floor meets the entrance grade. The cutout covers the original footprint and its mapped building parts while retaining neighboring buildings and paths.",
+  "nativeAxes": "Positive X follows the principal wing axis northeast. Positive Z faces the east garden and negative Z faces the west entrance.",
+  "limitations": [
+    "The base footprint and roof centerlines follow the Pavilion and its building parts in PMTiles. Dome profiles, finial heights and ornamental relief are estimated from exterior photographs."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Brighton_-_Royal_Pavilion_Panorama.jpg",
+      "hash": "sha256:4b8cb16135f719ddcbe4d9fa8d513657cb9af5d3559e9795fd072a060145d14f",
+      "observed": "Garden-facing panoramic elevation. The central rotunda and east lawn align with the other garden photograph."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Royal_Pavilion%2C_Brighton_%28General_View_from_East%29_%28March_2022%29.jpg",
+      "hash": "sha256:98164ad7c0befef4ca5c8a8260533e8eaccd65ae519e52f02365b08ecb5926cf",
+      "observed": "East facade, domed garden bays, and minaret spacing."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Brighton_Royal_Pavilion_Entrance.jpg",
+      "hash": "sha256:48687d725ebc4c18c1b3732d46520c98ba93fc6daeb68892e3bb034f7cefb164",
+      "observed": "Visitor entrance canopy, arches, and projecting ground-floor bay."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "garden-front-and-domes",
+      "position": [
+        4,
+        13,
+        98
+      ],
+      "lookAt": [
+        -1,
+        11,
+        13
+      ],
+      "fov": 49
+    },
+    {
+      "name": "east-rotunda-and-window-bays",
+      "position": [
+        -12,
+        6,
+        49
+      ],
+      "lookAt": [
+        -1,
+        9,
+        19
+      ],
+      "fov": 56
+    },
+    {
+      "name": "west-entrance-and-canopy",
+      "position": [
+        -17,
+        4,
+        -42
+      ],
+      "lookAt": [
+        -4,
+        7,
+        -17
+      ],
+      "fov": 58
+    },
+    {
+      "name": "paired-wing-and-lanterns",
+      "position": [
+        64,
+        26,
+        64
+      ],
+      "lookAt": [
+        26,
+        12,
+        9
+      ],
+      "fov": 55
+    },
+    {
+      "name": "roof-plan-and-dome-families",
+      "position": [
+        -49,
+        65,
+        56
+      ],
+      "lookAt": [
+        -1,
+        9,
+        4
+      ],
+      "fov": 56
+    },
+    {
+      "name": "entrance-from-the-north",
+      "position": [
+        40,
+        12,
+        -52
+      ],
+      "lookAt": [
+        6,
+        9,
+        -11
+      ],
+      "fov": 55
+    },
+    {
+      "name": "garden-three-quarter",
+      "position": [
+        -62,
+        16,
+        80
+      ],
+      "lookAt": [
+        -12,
+        10,
+        14
+      ],
+      "fov": 57
+    }
+  ],
+  "materialMethod": "Shared lime plaster, weathered limestone and painted metal color the walls, base, glass and roof elements. Relief, arches, ribs and lantern crowns use authored geometry.",
+  "sourceFacts": {
+    "mappedBuilding": 35184710228517,
+    "ownedPartCount": 24,
+    "gardenDomes": 4,
+    "roofs": 11,
+    "minaretLanterns": 14
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -4,
+        12,
+        3
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/gc/gcp/royal_pavilion/models/pavilion-model.mjs",
+    "export": "buildPavilionSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.94
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.16
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPavilionDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.16
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildPavilionStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.16
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildPavilionCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.16
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "royal_pavilion-skyline",
+      "position": [
+        4,
+        13,
+        98
+      ],
+      "lookAt": [
+        -1,
+        11,
+        13
+      ],
+      "fov": 49,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "royal_pavilion-district",
+      "position": [
+        4,
+        13,
+        98
+      ],
+      "lookAt": [
+        -1,
+        11,
+        13
+      ],
+      "fov": 49,
+      "reviewLod": "district"
+    },
+    {
+      "name": "royal_pavilion-street",
+      "position": [
+        4,
+        13,
+        98
+      ],
+      "lookAt": [
+        -1,
+        11,
+        13
+      ],
+      "fov": 49,
+      "reviewLod": "street"
+    },
+    {
+      "name": "royal_pavilion-closeup",
+      "position": [
+        4,
+        13,
+        98
+      ],
+      "lookAt": [
+        -1,
+        11,
+        13
+      ],
+      "fov": 49,
+      "reviewLod": "closeup"
+    }
+  ]
+}

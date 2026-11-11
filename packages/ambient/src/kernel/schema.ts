@@ -58,6 +58,10 @@ const ambientAgentSchema = z.strictObject({
     .positive()
     .describe('Train cars: position behind the lead (1 = first).')
     .optional(),
+  offset: num
+    .positive()
+    .describe("Train cars: metres behind the lead's centre (default from carIndex).")
+    .optional(),
   trail: z
     .array(z.string())
     .describe('Train leads: the lanes behind the lead, most recent first.')
@@ -98,6 +102,40 @@ const ambientRoleSchema = z.strictObject({
     .describe('Relative spawn weight within its pool (default 1).')
     .optional(),
   cars: z.int().positive().describe('Rail: cars per consist (default 2).').optional(),
+  track: z
+    .enum(['light', 'heavy'])
+    .describe('Rail: tram and light-rail lines (light) or the rest (heavy); default any.')
+    .optional(),
+  consist: z
+    .strictObject({
+      units: z
+        .tuple([z.int().positive(), z.int().positive()])
+        .describe('Copies of this type at the head, inclusive range (default [1, 1]).')
+        .optional(),
+      length: z
+        .tuple([z.int().nonnegative(), z.int().nonnegative()])
+        .describe('Cars after the units, inclusive range.'),
+      block: z
+        .tuple([z.int().positive(), z.int().positive()])
+        .describe('Cars of one type in a row, inclusive range (default [1, 1]).')
+        .optional(),
+      cars: z
+        .array(
+          z.strictObject({
+            type: z.string().min(1).describe('Car entity type id.'),
+            weight: num.nonnegative().describe('Relative draw weight (default 1).').optional(),
+            colors: z
+              .array(z.string())
+              .min(1)
+              .describe('Paints this car picks from (#rrggbb).')
+              .optional(),
+          }),
+        )
+        .min(1)
+        .describe('The car pool.'),
+    })
+    .describe('Rail: a mixed train this type leads; supersedes cars.')
+    .optional(),
   colors: z
     .array(z.string())
     .min(1)

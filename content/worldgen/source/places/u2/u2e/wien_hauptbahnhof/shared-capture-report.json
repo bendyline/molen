@@ -1,0 +1,75 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.wien_hauptbahnhof",
+  "inputHash": "sha256:a87b62695c3edfc90f545699c77886bbff0182bf793514522b43420758769ef9",
+  "sourceHash": "sha256:9d3105dc52dad961bde78c1d00d098e21bb01f157d1ce46d4ad94b11b19ef406",
+  "runtimeHash": "sha256:6cd6ac1268b7fcc3ebb7cd89125e18d72ed9792a1b699458f30f8472da30fdb6",
+  "fixtureHash": "sha256:ffe7623cb1ca329bc423ec447898f6d75f2c2cf26375a176f23bc2a12c25a1ec",
+  "placementHash": "sha256:3a86aa45f5c4bafea63774a8e32c87ff4186bbd26a3ed161ded37624c655f222",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_panel": {
+      "path": "materials/concrete_panel.matgraph.json",
+      "hash": "sha256:abe4cae93974b54fcec791eeaf719abfc7b069c87e136f4c371cebdaed7321f4"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    },
+    "molen.worldgen.material.glass_frit_triangular": {
+      "path": "materials/glass_frit_triangular.matgraph.json",
+      "hash": "sha256:ab416307e458827df9d530e60622e3db805370db7cbf2697ebb4eb0716c967b6"
+    },
+    "molen.worldgen.material.metal_standing_seam": {
+      "path": "materials/metal_standing_seam.matgraph.json",
+      "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-vienna-station.png",
+      "hash": "sha256:ff04ba99c838eca5df28212521026fa0bb6826d64bdc913912744b22aa0c76a4",
+      "camera": {
+        "name": "detail-station-and-city",
+        "position": [
+          -265,
+          160,
+          188
+        ],
+        "lookAt": [
+          -8,
+          3,
+          3
+        ],
+        "fov": 58,
+        "lightDirection": [
+          -0.53,
+          1,
+          0.63
+        ],
+        "detail": true
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "wien.hauptbahnhof",
+        "visibleDraws": 7
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true,
+    "landcoverRestored": true
+  },
+  "errors": [],
+  "notes": "Six shared graphs resolve once per tier for plain concrete, panel concrete, standing-seam roofing, painted steel, granite and tinted glazing. The west entrance uses a local translucent material. The wall binding preserves the clerestory tint."
+}

@@ -114,7 +114,7 @@ export function wayDraft(way: TransportNetworkWay): EdgeDraft | undefined {
     return {
       ...common,
       class: 'rail',
-      kind: way.subclass === 'tram' ? 'tram' : 'rail',
+      kind: /^(tram|light_rail|subway|monorail)$/.test(way.subclass ?? '') ? 'tram' : 'rail',
       width: way.width ?? 3,
       lanes: 2,
       oneway: false,

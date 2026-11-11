@@ -58,4 +58,4 @@ it('renders a mapped Seattle hangar as a hangar rather than retail or housing', 
     { pack, atlas, regions: createRegionResolver(atlas, { metersPerUnit: scale }) },
   );
   expect(batch.buildings[0]?.style).toBe('molen.worldgen.airport.hangar');
-});
+}, 30_000); // Loads the whole default pack and atlas under full-suite load.

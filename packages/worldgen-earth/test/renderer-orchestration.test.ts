@@ -788,6 +788,96 @@ describe('worldgen human-feature tile orchestration', () => {
   });
 
   it.each([
+    {
+      // The Smith Tower: the anchor lies in its 75 m base outline, but the 141 m shaft and the
+      // spire are separate parts mapped toward one side, mostly beside the model's footprint.
+      source: 'the parts mapped inside a replaced outline',
+      buildings: [
+        { box: [30, 40, 70, 110], height: 75 },
+        { box: [35, 72, 65, 105], height: 141, part: true },
+        { box: [45, 95, 55, 100], height: 148, part: true },
+        { box: [75, 40, 95, 80], height: 30 },
+      ],
+      kept: [30],
+    },
+    {
+      // Holes are not inside: a building in a replaced cloister's courtyard is its own.
+      source: "a building in a replaced ring's courtyard",
+      buildings: [
+        { box: [15, 25, 85, 95], hole: [20, 30, 80, 90], height: 20 },
+        { box: [72, 82, 78, 88], height: 8 },
+      ],
+      kept: [8],
+    },
+  ])('replaces $source', async (fixture) => {
+    // A 40 m wide landmark anchored at world (50, 60) on a 200 m tile at the origin.
+    const objects = new StructureModelLibrary(async () =>
+      new THREE.Group().add(
+        new THREE.Mesh(new THREE.BoxGeometry(40, 147, 40), new THREE.MeshStandardMaterial()),
+      ),
+    );
+    const ring = ([minX, minZ, maxX, maxZ]: number[]) =>
+      [
+        [minX, minZ],
+        [maxX, minZ],
+        [maxX, maxZ],
+        [minX, maxZ],
+      ].map(([x, z]) => [(x as number) / 200, (z as number) / 200] as [number, number]);
+    const kept: number[][] = [];
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures: createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'Landmark',
+        entries: [
+          {
+            id: 'tower',
+            title: 'Tower',
+            asset: 'tower-model',
+            anchor: worldToWgs84(1, 50, 60),
+            replaceFootprint: true,
+            minLevel: 0,
+            status: 'preview',
+            source: 'test',
+          },
+        ],
+      }),
+      structureObjects: objects,
+      roads: { renderTransportation: false },
+      generator: {
+        generate: async (request: WorldgenGenerateRequest) => {
+          if (request.features?.buildings)
+            kept.push(request.tile.buildings.map((building) => building.height ?? 0));
+          return output();
+        },
+        dispose() {},
+      },
+    });
+    const root = await renderers.humanFeatures.createTile(
+      {
+        ...createEmptyTerrainSemanticTile(),
+        buildings: fixture.buildings.map(
+          (building: { box: number[]; hole?: number[]; height: number; part?: boolean }) => ({
+            polygons: [
+              {
+                outer: ring(building.box),
+                ...(building.hole ? { holes: [ring(building.hole)] } : {}),
+              },
+            ],
+            height: building.height,
+            ...(building.part ? { class: 'building_part' } : {}),
+          }),
+        ),
+      },
+      context(new AbortController().signal),
+    );
+    expect(root?.getObjectByName('structure:tower')).toBeDefined();
+    expect(kept).toEqual([fixture.kept]);
+    if (root) renderers.humanFeatures.disposeTile?.(root);
+    renderers.dispose();
+    objects.dispose();
+  });
+
+  it.each([
     'landmark tile first',
     'neighbour first',
   ])('replaces a neighbour tile part the landmark covers: %s', async (order) => {

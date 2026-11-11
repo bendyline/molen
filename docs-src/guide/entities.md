@@ -65,11 +65,11 @@ serves them like any other model. See [Aircraft](aircraft.md) for world-view con
 `molen.entities.transit.bus` is a 12 m city bus, `molen.entities.transit.lightrail` a 27 m
 two-section light-rail car, and `molen.entities.aircraft.airliner` a narrow-body airliner. Their
 display names are **Bendy Bus**, **Bendy Light Rail** and **Bendy Small Airliner**. All three
-are mountable: the bus uses the road solver, light rail supports traction/braking/reversing
-on a straight track with steering locked, and the airliner uses the assisted twin-engine
-airplane solver with gear and flap controls. The airliner's thrust is an approximation, not
-a dedicated turbofan simulation. Player rail controls do not yet follow curved network routes;
-ambient rail consists retain their existing network following.
+are mountable: the bus uses the road solver, light rail follows a host's track network (or,
+with none under it, drives straight with steering locked), and the airliner uses the assisted
+twin-engine airplane solver with gear and flap controls. The airliner's thrust is an
+approximation, not a dedicated turbofan simulation. See
+[Trains and track-guided vehicles](vehicles.md#trains-and-track-guided-vehicles).
 [Ambient life](ambient-life.md) also spawns them through their `ambientRole` component.
 In the engine repository, `content/entities/scenes/transit.scene.json` shows them side by side.
 
@@ -163,8 +163,25 @@ for routing and terminal stops. Each type also supplies a powered `boat` and dri
 seats for [player boating](boats.md), swells, currents and dockside boarding. The sailboat uses
 its auxiliary motor.
 
-The id helpers `MOLEN_CYCLE_ENTITY_IDS` and `MOLEN_WATERCRAFT_ENTITY_IDS` enumerate the new
-collections. All are in `MOLEN_ENTITY_IDS` and the pack's type documents.
+`molen.entities.rail.*` holds North American rolling stock for track-guided consists:
+locomotives `ge_es44ac`, `emd_gp38_2` and `mpi_mp36ph_3c`; passenger cars
+`bombardier_bilevel_coach` and `bombardier_bilevel_cab_car`; and freight cars `boxcar_50ft`,
+`covered_hopper`, `tank_car_dot117`, `well_car_double_stack`, `autorack_enclosed`,
+`gondola_52ft` and `centerbeam_flatcar`. Each `vehicle.spec` has a `rail` block (truck centres,
+length over couplers, power at the rail, gauge) and a `bodyStyle` of `locomotive`,
+`passenger-car` or `freight-car`. The model origin is on the track centreline at the top of
+rail, midway between the trucks; `truck-front` and `truck-rear` pivot under each truck centre,
+and wheelsets `axle-1` … `axle-n` spin about X. Locomotives and the cab car have a full cab with
+live throttle and brake handles and seat a `driver` and a `conductor`; the coaches seat
+passengers on both levels; freight cars have no seats. `vehicle.color` repaints
+`rail-livery-body`, and the well car's two containers take `container-lower` and
+`container-upper`. Names identify the real types; liveries are generic and the only lettering is
+the fictional `MLN` / `MLNX` reporting mark. See the
+[rail roster](https://github.com/bendyline/molen/blob/main/content/entities/RAIL.md).
+
+The id helpers `MOLEN_CYCLE_ENTITY_IDS`, `MOLEN_WATERCRAFT_ENTITY_IDS` and
+`MOLEN_RAIL_ENTITY_IDS` enumerate the new collections. All are in `MOLEN_ENTITY_IDS` and the
+pack's type documents.
 
 In the engine repository, `content/entities/scenes/fleet.scene.json` displays the road and
 cycle models; `content/entities/scenes/harbor.scene.json` displays the water fleet with moving

@@ -1,0 +1,84 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.gare_du_nord",
+  "inputHash": "sha256:b50510c3cbfd385424a98ba8f826d6fb4e23591839b0b1ee9f1078be70b0ec44",
+  "sourceHash": "sha256:b09a84cedee536c5319779b8b7a5c3690d4892fd151aebc4a1f207759a072ff6",
+  "runtimeHash": "sha256:023ffb91ac20a1935475a83d6e4cb86535c767d9d303f82864081eab81fbc5ce",
+  "fixtureHash": "sha256:41352711d6509d4b43372222f861fe173cc18720018c4f494ad81aeb6c0120f7",
+  "placementHash": "sha256:ab921ac88b0a78bff1a79e84364d832731a1d814473c704c5035ffee7feec0a3",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    },
+    "molen.worldgen.material.metal_standing_seam": {
+      "path": "materials/metal_standing_seam.matgraph.json",
+      "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+    },
+    "molen.worldgen.material.wood_plain": {
+      "path": "materials/wood_plain.matgraph.json",
+      "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    },
+    "molen.worldgen.material.stone_ashlar": {
+      "path": "materials/stone_ashlar.matgraph.json",
+      "hash": "sha256:f5692cbd995206b1475a803b027d181a664bd3a20df51db34667f205abce8093"
+    },
+    "molen.worldgen.material.window_grid": {
+      "path": "materials/window_grid.matgraph.json",
+      "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-gare-du-nord.png",
+      "hash": "sha256:1831456f4f5925d610b3e70cdaf5f13de180e8d3bd17814fe17b926b198b3441",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -91,
+          18,
+          32
+        ],
+        "lookAt": [
+          -31,
+          16,
+          3
+        ],
+        "fov": 50,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.54,
+          1,
+          0.76
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "gare.du.nord",
+        "visibleDraws": 7
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Seven shared graphs serve the limestone, trim, glass, standing seam, ironwork, roof soffits and paving. Each active graph resolves once per tier."
+}

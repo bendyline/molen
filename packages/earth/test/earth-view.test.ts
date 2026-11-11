@@ -60,6 +60,7 @@ vi.mock('@bendyline/molen-client', async (importOriginal) => {
         setCloudQuality: (quality: string) => {
           viewerState.cloudQuality = quality;
         },
+        setFarShadowCasters: () => {},
         setShadowFocus: (focus: { radius: number } | undefined) => {
           viewerState.shadowRadius = focus?.radius;
         },

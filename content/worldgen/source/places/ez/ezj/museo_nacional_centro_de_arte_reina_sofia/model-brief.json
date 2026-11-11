@@ -1,0 +1,833 @@
+{
+  "id": "museo_nacional_centro_de_arte_reina_sofia",
+  "title": "Museo Reina Sofía",
+  "wikidataId": "Q460889",
+  "referenceCoordinate": {
+    "longitude": -3.6942708492,
+    "latitude": 40.4081963434
+  },
+  "module": "packages/worldgen/scripts/reina-sofia-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-reina-sofia.mjs",
+  "builder": "buildReinaSofiaLevel",
+  "surfaces": {
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.94
+    },
+    "limestone": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.94
+    },
+    "granite": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "stonePanel": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "slate": {
+      "slot": "trim",
+      "graph": "metal_standing_seam",
+      "roughness": 0.77,
+      "metallic": 0.15
+    },
+    "graphite": {
+      "slot": "trim",
+      "graph": "metal_standing_seam",
+      "roughness": 0.77,
+      "metallic": 0.15
+    },
+    "frame": {
+      "slot": "trim",
+      "graph": "metal_standing_seam",
+      "roughness": 0.77,
+      "metallic": 0.15
+    },
+    "red": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.32,
+      "metallic": 0.17
+    },
+    "soffit": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.32,
+      "metallic": 0.17
+    },
+    "frit": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.33
+    },
+    "basin": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.33
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_shou_sugi_ban",
+      "roughness": 0.89
+    },
+    "paths": {
+      "slot": "wall",
+      "graph": "gravel",
+      "roughness": 0.97
+    },
+    "lawn": {
+      "slot": "wall",
+      "graph": "gravel",
+      "roughness": 0.97
+    },
+    "bark": {
+      "slot": "wall",
+      "graph": "gravel",
+      "roughness": 0.97
+    },
+    "leaf": {
+      "slot": "wall",
+      "graph": "gravel",
+      "roughness": 0.97
+    },
+    "clear": {
+      "slot": "window",
+      "localRef": "palette:#e4f5f6",
+      "roughness": 0.22,
+      "metallic": 0.08,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.36
+      ],
+      "doubleSided": true
+    }
+  },
+  "exportLabel": "Molen original Museo Reina Sofía master",
+  "expectedDraftMasterHash": "sha256:d77b0628942313959489c44f3f0403b94568b9ad5c0ccd468ea4fa6a4c00c230",
+  "visualBrief": "The Sabatini hospital frames a rectangular garden with an ashlar base, ordered limestone and lime plaster bays, and a dark roof. Twin glazed public lifts and the rear service lift contrast with the historic walls. Three Nouvel volumes form a public court under a tapered red canopy with nineteen daylight openings.",
+  "heightPolicy": "The 641 m sea-level datum follows standard viewer terrain. Foundations extend below the sampled grade, both Santa Isabel stair approaches rise to the shared entry landing, and the Nouvel court paving follows the local slope.",
+  "nativeAxes": "+X follows the long courtyard edges southeast; +Z faces southwest into the Nouvel extension.",
+  "limitations": [
+    "The four PMTiles polygons and standard Terrarium terrain fix the exterior plan and signed orientation. Cornice, bridge and canopy elevations, panel rhythms and the garden planting are exterior photo estimates.",
+    "The Sabatini garden and Nouvel court remain open. Gallery interiors, collection artworks, changing signage and exhibition furniture are outside the exterior scope."
+  ],
+  "references": [
+    {
+      "url": "https://www.museoreinasofia.es/en/press/the-museum/",
+      "observed": "Sabatini façade, entry stair and glass lift towers."
+    },
+    {
+      "url": "https://arquitecturaviva.com/works/ampliacion-del-museo-reina-sofia-10",
+      "observed": "Nouvel volumes, canopy and street-facing court."
+    },
+    {
+      "url": "https://www.museoreinasofia.es/en/museo/architectural-heritage/jean-nouvel-intervention/",
+      "observed": "Three Nouvel volumes, the raised links, the open triangular court and tapered, lacquered canopy."
+    },
+    {
+      "url": "https://www.museoreinasofia.es/en/museo/architectural-heritage/hospital-museum/",
+      "observed": "Two public lift towers and the rear service tower."
+    },
+    {
+      "url": "https://recursos.museoreinasofia.es/descargas/Imagen/edificio_sabatini_-_fachada_1.jpg",
+      "hash": "sha256:39ec875182237eae64b2903954a6b34ef6f6d1a869aad37b9fb392d68f5e54cb",
+      "observed": "sabatini facade"
+    },
+    {
+      "url": "https://arquitecturaviva.com/assets/uploads/obras/38498/av_medium__av_182013.webp?h=6dd504b0",
+      "hash": "sha256:d9ae051ea0210e9224882f51dcd66249bab3c2d2a5cf1555fc490e735afa043d",
+      "observed": "nouvel court"
+    },
+    {
+      "url": "https://recursos.museoreinasofia.es/styles/large_landscape/public/Museo/Vista%20del%20Edificio%20Nouvel%20en%20la%20esquina%20entre%20Ronda%20de%20Atocha%20y%20la%20calle%20Argumosa.jpg.webp",
+      "hash": "sha256:b4c24a0e2f774badf654ed485bcda2b783e1e48dffe45d8fca760fbd72a2e02e",
+      "observed": "nouvel street"
+    },
+    {
+      "url": "https://recursos.museoreinasofia.es/styles/large_landscape/public/Museo/Vista%20del%20Patio%20del%20Edificio%20Nouvel.jpg.webp",
+      "hash": "sha256:15b1c8c6a0e45a27007a93a3826036a4e6f7ee77267ba910991fc8290a2e94a0",
+      "observed": "nouvel plaza"
+    },
+    {
+      "url": "https://recursos.museoreinasofia.es/styles/large_landscape/public/Visita/jardin.jpg.webp",
+      "hash": "sha256:b6bcc90837fff3a1be4cfd20a9e4ddd709cf149f0406c25fab97b2cd42bd9199",
+      "observed": "sabatini garden"
+    }
+  ],
+  "cameras": [
+    {
+      "name": "sabatini-and-nouvel",
+      "position": [
+        156,
+        128,
+        155
+      ],
+      "lookAt": [
+        -8,
+        10,
+        37
+      ],
+      "fov": 63,
+      "lightDirection": [
+        0.74,
+        1,
+        0.6
+      ]
+    },
+    {
+      "name": "santa-isabel-lifts-and-stair",
+      "position": [
+        9,
+        13,
+        -93
+      ],
+      "lookAt": [
+        0,
+        12,
+        -43
+      ],
+      "fov": 66,
+      "lightDirection": [
+        -0.54,
+        1,
+        -0.69
+      ]
+    },
+    {
+      "name": "sabatini-garden-and-cloister",
+      "position": [
+        32,
+        12,
+        19
+      ],
+      "lookAt": [
+        -15,
+        8,
+        -9
+      ],
+      "fov": 71,
+      "lightDirection": [
+        0.54,
+        1,
+        0.6
+      ]
+    },
+    {
+      "name": "nouvel-terrace-and-roof-openings",
+      "position": [
+        8,
+        74,
+        153
+      ],
+      "lookAt": [
+        -12,
+        18,
+        91
+      ],
+      "fov": 62,
+      "lightDirection": [
+        -0.37,
+        1,
+        0.7
+      ]
+    },
+    {
+      "name": "nouvel-public-court",
+      "position": [
+        -19,
+        -0.7,
+        99
+      ],
+      "lookAt": [
+        -6,
+        8.5,
+        57
+      ],
+      "fov": 74,
+      "lightDirection": [
+        0.53,
+        1,
+        0.7
+      ]
+    },
+    {
+      "name": "ronda-de-atocha-auditorium",
+      "position": [
+        -37,
+        12,
+        172
+      ],
+      "lookAt": [
+        -32,
+        8,
+        119
+      ],
+      "fov": 66,
+      "lightDirection": [
+        -0.38,
+        1,
+        0.75
+      ]
+    },
+    {
+      "name": "service-lift-and-cornice",
+      "position": [
+        -86,
+        24,
+        40
+      ],
+      "lookAt": [
+        -55,
+        13,
+        29
+      ],
+      "fov": 59,
+      "lightDirection": [
+        -0.62,
+        1,
+        -0.46
+      ]
+    }
+  ],
+  "materialMethod": "Seven shared material graphs cover limestone-toned plaster, stone paving, steel, red lacquer, frit, recessed openings and garden surfaces. Mesh tints differentiate roles within each draw. The lift glass uses one transparent local material. No images are embedded.",
+  "sourceFacts": {
+    "sabatini": "relation/1213832",
+    "terrainDatumMeters": 641,
+    "footprintPartIds": [
+      52776559347080,
+      35185363532882,
+      35184661082872,
+      35184661082896
+    ],
+    "canopyOpenings": 19
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -10,
+        11,
+        42
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/reina-sofia-model.mjs",
+    "export": "buildReinaSofiaSkyline",
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "limestone": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94
+      },
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "stonePanel": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "slate": {
+        "slot": "trim",
+        "graph": "metal_standing_seam",
+        "roughness": 0.77,
+        "metallic": 0.15
+      },
+      "graphite": {
+        "slot": "trim",
+        "graph": "metal_standing_seam",
+        "roughness": 0.77,
+        "metallic": 0.15
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_standing_seam",
+        "roughness": 0.77,
+        "metallic": 0.15
+      },
+      "red": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.32,
+        "metallic": 0.17
+      },
+      "soffit": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.32,
+        "metallic": 0.17
+      },
+      "frit": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.33
+      },
+      "basin": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.33
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_shou_sugi_ban",
+        "roughness": 0.89
+      },
+      "paths": {
+        "slot": "wall",
+        "graph": "gravel",
+        "roughness": 0.97
+      },
+      "lawn": {
+        "slot": "wall",
+        "graph": "gravel",
+        "roughness": 0.97
+      },
+      "bark": {
+        "slot": "wall",
+        "graph": "gravel",
+        "roughness": 0.97
+      },
+      "leaf": {
+        "slot": "wall",
+        "graph": "gravel",
+        "roughness": 0.97
+      },
+      "clear": {
+        "slot": "window",
+        "localRef": "palette:#e4f5f6",
+        "roughness": 0.22,
+        "metallic": 0.08,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.36
+        ],
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildReinaSofiaDistrict",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "stonePanel": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.15
+          },
+          "graphite": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.15
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.15
+          },
+          "red": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.32,
+            "metallic": 0.17
+          },
+          "soffit": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.32,
+            "metallic": 0.17
+          },
+          "frit": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.33
+          },
+          "basin": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.33
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_shou_sugi_ban",
+            "roughness": 0.89
+          },
+          "paths": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.97
+          },
+          "lawn": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.97
+          },
+          "bark": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.97
+          },
+          "leaf": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.97
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#e4f5f6",
+            "roughness": 0.22,
+            "metallic": 0.08,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.36
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.72
+      },
+      "street": {
+        "export": "buildReinaSofiaStreet",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "stonePanel": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.15
+          },
+          "graphite": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.15
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.15
+          },
+          "red": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.32,
+            "metallic": 0.17
+          },
+          "soffit": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.32,
+            "metallic": 0.17
+          },
+          "frit": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.33
+          },
+          "basin": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.33
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_shou_sugi_ban",
+            "roughness": 0.89
+          },
+          "paths": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.97
+          },
+          "lawn": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.97
+          },
+          "bark": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.97
+          },
+          "leaf": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.97
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#e4f5f6",
+            "roughness": 0.22,
+            "metallic": 0.08,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.36
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "closeup": {
+        "export": "buildReinaSofiaCloseup",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "stonePanel": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "slate": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.15
+          },
+          "graphite": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.15
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.15
+          },
+          "red": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.32,
+            "metallic": 0.17
+          },
+          "soffit": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.32,
+            "metallic": 0.17
+          },
+          "frit": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.33
+          },
+          "basin": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.33
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_shou_sugi_ban",
+            "roughness": 0.89
+          },
+          "paths": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.97
+          },
+          "lawn": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.97
+          },
+          "bark": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.97
+          },
+          "leaf": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.97
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#e4f5f6",
+            "roughness": 0.22,
+            "metallic": 0.08,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.36
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "museo_nacional_centro_de_arte_reina_sofia-skyline",
+      "position": [
+        156,
+        128,
+        155
+      ],
+      "lookAt": [
+        -8,
+        10,
+        37
+      ],
+      "fov": 63,
+      "lightDirection": [
+        0.74,
+        1,
+        0.6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "museo_nacional_centro_de_arte_reina_sofia-district",
+      "position": [
+        156,
+        128,
+        155
+      ],
+      "lookAt": [
+        -8,
+        10,
+        37
+      ],
+      "fov": 63,
+      "lightDirection": [
+        0.74,
+        1,
+        0.6
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "museo_nacional_centro_de_arte_reina_sofia-street",
+      "position": [
+        156,
+        128,
+        155
+      ],
+      "lookAt": [
+        -8,
+        10,
+        37
+      ],
+      "fov": 63,
+      "lightDirection": [
+        0.74,
+        1,
+        0.6
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "museo_nacional_centro_de_arte_reina_sofia-closeup",
+      "position": [
+        156,
+        128,
+        155
+      ],
+      "lookAt": [
+        -8,
+        10,
+        37
+      ],
+      "fov": 63,
+      "lightDirection": [
+        0.74,
+        1,
+        0.6
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

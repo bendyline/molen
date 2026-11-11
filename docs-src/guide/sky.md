@@ -95,6 +95,17 @@ map resolution without rebuilding the environment, and `renderer.setShadowFocus(
 radius })` aims them at a point in absolute world coordinates covering ±`radius` meters — for a
 large world, what the camera frames rather than the camera itself. The box moves in whole
 shadow-map texels so edges do not shimmer; `setShadowFocus(undefined)` restores the default.
+A focused map sized for what is close ends close: over a city it stops a few hundred meters
+out, and buildings gain their shadows as it reaches them. On WebGL a focus can name a second,
+wider square, `far: { center, radius }`, drawn from the scenery a host passes to
+`renderer.setFarShadowCasters(root)` (a terrain stream's object: ground, buildings, trees).
+Surfaces past the focused map then read the far one, which fades out toward its own edge. Only
+what is under `root` casts into it, because it is not drawn every frame: it is redrawn when its
+center has moved an eighth of its radius, when the sun has moved, and once a second for scenery
+that has arrived, so a moving caster would leave its shadow behind. It is at most 2048 texels
+across (meters a texel: a house's shadow, not a chimney's) and costs under a millisecond of
+main thread each time it is drawn. `renderer.farShadowInfo` reports its radius, how often it has
+been drawn and how long the last drawing took.
 `renderer.shadowTexelSize` reports the meters one texel covers as of the last frame (`undefined`
 while sun shadows are off), for hosts that keep a subject the map cannot resolve out of the
 shadow pass (see `AircraftVisual.updateShadows` in the aircraft guide).

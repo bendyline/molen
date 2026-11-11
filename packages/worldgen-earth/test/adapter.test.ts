@@ -10,7 +10,12 @@ import {
   queueBuildings,
 } from '@bendyline/molen-worldgen/kernel';
 import { describe, expect, it } from 'vitest';
-import { buildingLabels, contextLabelAt, landcoverLabel } from '../src/kernel/labels';
+import {
+  buildingLabels,
+  contextLabelAt,
+  isLandcoverDesignation,
+  landcoverLabel,
+} from '../src/kernel/labels';
 import { createRegionResolver } from '../src/kernel/region';
 import {
   OPEN_GROUND_LABEL,
@@ -49,6 +54,38 @@ it('preserves physical habitat beneath nature reserve and national park designat
   expect(request.polygons.map((polygon) => polygon.label)).toEqual(['open_ground', 'scrub']);
   expect(contextLabelAt([0.5, 0.5], tile.landcover)).toBe('scrub');
   expect(tile.landcover).toHaveLength(3); // Protection evidence stays on the source for wildlife.
+});
+
+it('reads a named neighbourhood outline as a place, not as ground or a land use', () => {
+  const polygon = {
+    outer: [
+      [0, 0],
+      [1, 0],
+      [1, 1],
+      [0, 1],
+    ] as [number, number][],
+  };
+  // `other` is the Protomaps basemap's class for one, `neighbourhood` the OpenMapTiles one.
+  for (const kind of ['other', 'neighbourhood']) {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.landcover.push({ class: kind, polygons: [polygon] });
+    const labels = () =>
+      scatterRequestFromTile(
+        tile,
+        geometryAt(-114.6, 32.68),
+        { roads: 2, buildings: 2, water: 1 },
+        1,
+      ).polygons.map((entry) => entry.label);
+    expect(labels()).toEqual(['open_ground']);
+    expect(contextLabelAt([0.5, 0.5], tile.landcover)).toBeUndefined();
+    tile.landcover.push({ class: 'residential', polygons: [polygon] });
+    expect(labels()).toEqual(['open_ground', 'residential']);
+    expect(contextLabelAt([0.5, 0.5], tile.landcover)).toBe('residential');
+    // With a subclass that describes the ground, the polygon is cover like any other.
+    expect(isLandcoverDesignation({ class: kind, subclass: 'grass', polygons: [polygon] })).toBe(
+      false,
+    );
+  }
 });
 
 function geometryAt(lon: number, lat: number, size = 1600): TileGeometry {

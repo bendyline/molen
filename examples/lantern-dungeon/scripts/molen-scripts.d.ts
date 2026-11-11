@@ -48,6 +48,8 @@ type MolenAircraftData = {
       minPropellerSpeed?: number;
       propellerRotation?: 'clockwise' | 'counterclockwise';
       propellerInertia?: number;
+      fuelConsumption?: number;
+      afterburnerFuelConsumption?: number;
     };
     engines?: {
       mixtureControl?: boolean;
@@ -75,6 +77,8 @@ type MolenAircraftData = {
       minPropellerSpeed?: number;
       propellerRotation?: 'clockwise' | 'counterclockwise';
       propellerInertia?: number;
+      fuelConsumption?: number;
+      afterburnerFuelConsumption?: number;
       id: string;
     }[];
     airplane?: {
@@ -144,6 +148,9 @@ type MolenAircraftData = {
       brakeDeceleration: number;
       rollingDeceleration: number;
       groundTrackRate: number;
+      tailwheel?: boolean;
+      gearRebound?: number;
+      pilotGTolerance?: number;
     };
     helicopter?: {
       fixedGear?: boolean;
@@ -156,6 +163,7 @@ type MolenAircraftData = {
       vortexRing?: boolean;
       retreatingBladeSpeed?: number;
       rotorDiscs?: number;
+      rotorInertiaTime?: number;
       cyclicTilt: number;
       cyclicResponse: number;
       cyclicDamping: number;
@@ -178,6 +186,9 @@ type MolenAircraftData = {
       rollAuthority: number;
       yawAuthority: number;
       damping: number;
+    };
+    fuel?: {
+      capacity: number;
     };
     hardLandingSpeed: number;
     hardLandingRoll: number;
@@ -352,6 +363,10 @@ type MolenAircraftStateData = {
   thrustVectorPosition?: number;
   sideslip?: number;
   loadFactor?: number;
+  fuel?: number;
+  buffet?: number;
+  greyout?: number;
+  redout?: number;
   engines?: Record<string, {
       rpm: number;
       shaftPower?: number;
@@ -393,6 +408,7 @@ type MolenAmbientAgentData = {
   hidden?: boolean;
   consist?: string;
   carIndex?: number;
+  offset?: number;
   trail?: string[];
   served?: string;
   air?: {
@@ -422,6 +438,17 @@ type MolenAmbientRoleData = {
   max?: number;
   weight?: number;
   cars?: number;
+  track?: 'light' | 'heavy';
+  consist?: {
+    units?: [number, number];
+    length: [number, number];
+    block?: [number, number];
+    cars: {
+      type: string;
+      weight?: number;
+      colors?: string[];
+    }[];
+  };
   colors?: string[];
   visual?: {
     wheelNodes?: string[];
@@ -743,6 +770,11 @@ type MolenCollider3dData = {
   restitution?: number;
   friction?: number;
   density?: number;
+};
+/** A rail car in a consist: rides the leader's track trail at a fixed distance behind it, sharing its speed. Powered cars add their traction to the leader's (multiple-unit control); every car adds its mass and brakes. */
+type MolenCoupledData = {
+  leader: string;
+  offset: number;
 };
 /** Dungeon health, inventory and objective state. */
 type MolenDungeonGameData = {
@@ -1291,7 +1323,7 @@ type MolenVehicleData = {
         mode?: 'position' | 'cycle' | 'latch';
       }>;
     label: string;
-    bodyStyle?: 'city' | 'hatchback' | 'sedan' | 'fastback' | 'coupe' | 'roadster' | 'wagon' | 'crossover' | 'suv' | 'offroad' | 'pickup' | 'van' | 'cargo-van' | 'box-truck' | 'motorhome' | 'bus' | 'light-rail' | 'bicycle' | 'motorcycle' | 'scooter';
+    bodyStyle?: 'city' | 'hatchback' | 'sedan' | 'fastback' | 'coupe' | 'roadster' | 'wagon' | 'crossover' | 'suv' | 'offroad' | 'pickup' | 'van' | 'cargo-van' | 'box-truck' | 'motorhome' | 'bus' | 'light-rail' | 'locomotive' | 'freight-car' | 'passenger-car' | 'bicycle' | 'motorcycle' | 'scooter';
     genericLabel?: string;
     width: number;
     length: number;
@@ -1324,6 +1356,29 @@ type MolenVehicleData = {
     pitchStiffness?: number;
     suspensionFrequency?: number;
     suspensionDamping?: number;
+    powertrain?: {
+      power: number;
+      peakPowerRpm: number;
+      redline?: number;
+      idle?: number;
+      curve?: 'gasoline' | 'turbo' | 'diesel' | 'electric';
+      gears: number[];
+      continuous?: boolean;
+      reverse?: number;
+      efficiency?: number;
+      shiftTime?: number;
+      engineBraking?: number;
+      response?: number;
+      inertia?: number;
+    };
+    rearGrip?: number;
+    tireLoadSensitivity?: number;
+    rollBalance?: number;
+    aerodynamicLift?: number;
+    tractionControl?: boolean;
+    stabilityControl?: boolean;
+    limitedSlip?: number;
+    looseSurfaceGrip?: number;
     cycle?: {
       maxLean: number;
       riderLean: number;
@@ -1336,6 +1391,13 @@ type MolenVehicleData = {
         halfWidth: number;
         ratio: number;
       };
+    };
+    rail?: {
+      truckCenters: number;
+      couplerLength?: number;
+      power?: number;
+      gauge?: number;
+      profile?: 'box' | 'hopper' | 'tank' | 'gondola' | 'flat' | 'well' | 'autorack' | 'locomotive' | 'coach' | 'railcar';
     };
   };
   visual: {
@@ -1437,6 +1499,18 @@ type MolenVehicleStateData = {
   bodyRoll?: number;
   bodyRollRate?: number;
   skid?: number;
+  gear?: number;
+  rpm?: number;
+  engineLoad?: number;
+  shift?: number;
+  assist?: number;
+  surfaceGrip?: number;
+  track?: {
+    trail: number[];
+    prefer: -1 | 0 | 1;
+    ended?: boolean;
+    ref?: string;
+  };
 };
 /** Opt-in per-tick body velocity mirror (presence = subscription; plugin-written). */
 type MolenVelocityData = {
@@ -1550,6 +1624,8 @@ interface MolenComponentData {
   'collider': MolenColliderData;
   /** 3D collider (ball/cuboid/capsule/hull/trimesh/asset/heightfield) with layer/mask, sensor, and material params. Static without a rigidbody. */
   'collider3d': MolenCollider3dData;
+  /** A rail car in a consist: rides the leader's track trail at a fixed distance behind it, sharing its speed. Powered cars add their traction to the leader's (multiple-unit control); every car adds its mass and brakes. */
+  'coupled': MolenCoupledData;
   /** Dungeon health, inventory and objective state. */
   'dungeonGame': MolenDungeonGameData;
   /** Singleton scene environment: optional Earth/custom sky, ambient/sun lighting, background, fog, tone mapping, shadow quality tier. */

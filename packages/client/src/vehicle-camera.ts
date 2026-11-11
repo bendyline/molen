@@ -9,6 +9,12 @@ export interface VehicleCameraOptions {
     from: [number, number, number],
     to: [number, number, number],
   ) => number | undefined;
+  /**
+   * Shake the seated view of an aircraft: `amount` 0–1 (its `aircraftState.buffet`) at `time`
+   * seconds on any steadily advancing clock. The eye moves a centimeter or two and the view a
+   * few tenths of a degree, about ten times a second. Chase views stay steady.
+   */
+  shake?: { amount: number; time: number };
 }
 export interface VehicleCameraPose {
   position: [number, number, number];

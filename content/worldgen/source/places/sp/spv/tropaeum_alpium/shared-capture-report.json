@@ -1,0 +1,68 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.tropaeum_alpium",
+  "inputHash": "sha256:c42320121f0f0defd058e7d366e93950cdfd231ce753b5056f74c15e0de6cbd7",
+  "sourceHash": "sha256:b701df7878bfe975b544368782de88dcf176ebd64fabf14d8e7c5ed244cfd8a5",
+  "runtimeHash": "sha256:f51e3bb5d9a3959d99528bbce544365fe742fbf6e0d52bcbdaa498d88b101ff7",
+  "fixtureHash": "sha256:e5b4e77782afac38ebc01cc9d417958d2ba777114c66dd206504657cea79e73e",
+  "placementHash": "sha256:cc9365ee904a98b7b849d8d0615100adcd0726c8657b43d1f4ae47664b576f0e",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_drywall": {
+      "path": "materials/stone_drywall.matgraph.json",
+      "hash": "sha256:a3bd96f1a584b9da94425ad12ed716a17a528cd76d22ce4468cb18476a7a3619"
+    },
+    "molen.worldgen.material.stone_limestone_weathered": {
+      "path": "materials/stone_limestone_weathered.matgraph.json",
+      "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
+    },
+    "molen.worldgen.material.stone_marble": {
+      "path": "materials/stone_marble.matgraph.json",
+      "hash": "sha256:e6034ab9ef8375ec8f3a57c697aa21e059e2953742b15ce3b3e486c2f71af7cf"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-tropaeum-alpium.png",
+      "hash": "sha256:67823489ea72f6f4efa93d3e60b550a358e27d442eaef6faea3a2b201da6ed9e",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -12,
+          14,
+          -39
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "fov": 50,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.64,
+          1,
+          0.56
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "tropaeum.alpium",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Dry stone, weathered limestone and marble each resolve once. Their shared graphs distinguish the exposed rubble from the restored carved masonry."
+}

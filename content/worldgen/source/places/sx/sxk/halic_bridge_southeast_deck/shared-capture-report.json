@@ -1,0 +1,62 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.halic_bridge_southeast_deck",
+  "inputHash": "sha256:d321c40516e40bcbf59c72e13128e61a8e3f1df6b8aa366af11b22ffe6de2357",
+  "sourceHash": "sha256:53469fa4d429d678d6e95446549e2331895423d25a62ed60d8f1954d83d28c0d",
+  "runtimeHash": "sha256:8455af935c1cacb88a34e02d07d3fe9c9a6634f1aad4e7eb92a27bd53142bc91",
+  "fixtureHash": "sha256:e0cbc8e1a81a59e1509a76328ce2482e8ab92aac16d043d55505a62b45ab52bb",
+  "placementHash": "sha256:58bf2f7fb55266bc9cdc20599b28ab1c708bb36bfaa46dfa220664481e75b80c",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_boardformed": {
+      "path": "materials/concrete_boardformed.matgraph.json",
+      "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-halic-bridge.png",
+      "hash": "sha256:1f8ab531326cac6c0b0c8134f428ed9cadff781a4119246088ed19e0930bdc48",
+      "camera": {
+        "name": "detail-separate-decks-over-the-harbor",
+        "position": [
+          -137,
+          55,
+          146
+        ],
+        "lookAt": [
+          30,
+          12,
+          0
+        ],
+        "fov": 64,
+        "detail": true,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "halic.bridge.southeast.deck",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Three shared graphs resolve once across all three deck models in the same scene."
+}

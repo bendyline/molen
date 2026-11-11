@@ -51,6 +51,9 @@ export type VehicleBodyStyle =
   | 'motorhome'
   | 'bus'
   | 'light-rail'
+  | 'locomotive'
+  | 'freight-car'
+  | 'passenger-car'
   | 'bicycle'
   | 'motorcycle'
   | 'scooter';
@@ -71,6 +74,51 @@ export interface CycleSpec extends JsonObject {
     /** Wheel revolutions per crank revolution. */
     ratio: number;
   };
+}
+
+/**
+ * Engine, gearbox and driveline. Wheel force is engine torque through the selected gear, so a
+ * car pulls hardest in first and runs out of power, not into a wall, at speed. Without a
+ * powertrain a vehicle keeps the constant `engineForce` up to `maxSpeed`.
+ */
+export interface VehiclePowertrainSpec extends JsonObject {
+  /** Peak power at the engine or motor shaft, in watts. */
+  power: number;
+  /** Engine speed at peak power, rev/min. */
+  peakPowerRpm: number;
+  /** Rev limit, rev/min; default 1.1 × peakPowerRpm. */
+  redline?: number;
+  /** Idle speed, rev/min; default 800, or 0 for an electric motor. */
+  idle?: number;
+  /**
+   * Shape of the torque curve; default `gasoline` (torque peaks at half the peak-power speed).
+   * `turbo` and `diesel` hold a torque plateau low down; `electric` holds its peak torque from
+   * rest up to `peakPowerRpm`, then constant power.
+   */
+  curve?: 'gasoline' | 'turbo' | 'diesel' | 'electric';
+  /** Overall ratios (gearbox × final drive: engine revs per wheel rev), lowest gear first. */
+  gears: number[];
+  /** A continuously variable transmission ranging between the first and last `gears` ratios. */
+  continuous?: boolean;
+  /** Overall reverse ratio; default the first gear. */
+  reverse?: number;
+  /** Share of engine torque that reaches the wheels; default 0.9. */
+  efficiency?: number;
+  /** Seconds of reduced drive during a gear change; default 0.3. */
+  shiftTime?: number;
+  /**
+   * Engine braking off the throttle (regeneration for an electric motor), as a share of the
+   * torque at peak power; default 0.2.
+   */
+  engineBraking?: number;
+  /** How fast delivered torque follows the pedal, 1/s; default 8 (turbo and diesel 4, electric 20). */
+  response?: number;
+  /**
+   * Rotating inertia of the engine, flywheel and gearbox input in kg m², which the car has to
+   * spin up as it accelerates (most in the low gears); default 0.1 + power / 1 MW, or 0.06 for
+   * an electric motor.
+   */
+  inertia?: number;
 }
 
 /** Data-driven tuning consumed by the generic wheeled-vehicle solver. */
@@ -123,9 +171,73 @@ export interface VehicleSpec extends JsonObject {
   suspensionFrequency?: number;
   /** Suspension damping ratio; default 0.5. */
   suspensionDamping?: number;
+  /** Engine, gears and driveline; without one the constant `engineForce` drives the car. */
+  powertrain?: VehiclePowertrainSpec;
+  /** Rear tire grip in m/s² where it differs from the front's `grip` (wider rear tires); default `grip`. */
+  rearGrip?: number;
+  /**
+   * How much friction a tire loses as it is loaded: the share lost when its load doubles from
+   * a quarter of the weight; default 0.25. Makes the heavier and the stiffer-sprung axle slide
+   * first. 0 keeps grip proportional to load.
+   */
+  tireLoadSensitivity?: number;
+  /**
+   * Front axle's share of the roll stiffness, 0–1; default 0.6. The stiffer axle carries more
+   * of the cornering weight transfer and gives up grip first: more is understeer.
+   */
+  rollBalance?: number;
+  /**
+   * Aerodynamic lift as an acceleration per (m/s)² of airspeed, in 1/m; negative is downforce.
+   * Default 0.
+   */
+  aerodynamicLift?: number;
+  /** Traction control: holds wheelspin at the grip limit; default true. */
+  tractionControl?: boolean;
+  /** Stability control: brakes one wheel to catch a slide; default true. */
+  stabilityControl?: boolean;
+  /**
+   * How far the driven axle's differential resists one-wheel spin, 0 (open, the unloaded
+   * inside wheel spins first) to 1 (locked); default 0.
+   */
+  limitedSlip?: number;
+  /** Share 0–1 of the grip loose surfaces take away that the tires win back (off-road tread); default 0. */
+  looseSurfaceGrip?: number;
   /** Two contact patches on the centreline; balances upright at rest and leans into turns. */
   cycle?: CycleSpec;
+  /** Track-guided running gear: follows a host track guide instead of steering. */
+  rail?: RailVehicleSpec;
 }
+
+/**
+ * Running gear of a track-guided vehicle. `engineForce` is its starting tractive effort, held up
+ * to `power / speed`; `brakeDeceleration` its full-service brake; `rollingResistance` and
+ * `aerodynamicResistance` the Davis terms (N per kg, and per kg per (m/s)²).
+ */
+export interface RailVehicleSpec extends JsonObject {
+  /** Distance between the two truck (bogie) pivots, meters. */
+  truckCenters: number;
+  /** Length over the coupler pulling faces, meters (spacing in a consist); default `length`. */
+  couplerLength?: number;
+  /** Power at the rail in watts; 0 or absent is an unpowered car that only brakes. */
+  power?: number;
+  /** Track gauge between rail heads, meters; default 1.435. */
+  gauge?: number;
+  /** Silhouette of the low-detail stand-in drawn at a distance; default `box`. */
+  profile?: RailVehicleProfile;
+}
+
+/** Distant silhouettes of rail vehicles, by kind of car. */
+export type RailVehicleProfile =
+  | 'box'
+  | 'hopper'
+  | 'tank'
+  | 'gondola'
+  | 'flat'
+  | 'well'
+  | 'autorack'
+  | 'locomotive'
+  | 'coach'
+  | 'railcar';
 
 /** Named-node bindings for a GLB-backed wheeled vehicle. */
 export interface VehicleVisualSpec extends JsonObject {

@@ -1,0 +1,58 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.alconetar_bridge",
+  "inputHash": "sha256:fd1f96c2a77136769b32dc1655c2c17b09ae22586c8887ecae120e6a512ae349",
+  "sourceHash": "sha256:b00102fe168ea950788deaab37817c17d4ef537bc7febea00bea8b774a30859b",
+  "runtimeHash": "sha256:b1493c8bf6e83858cc5a23b4ce43e9e41a00e7acabded9c2cdbcb3e977ae6821",
+  "fixtureHash": "sha256:1371ce28a29fadaac0a6680cdea0173e5ce9c5dcca3b8e131b3bdb5ca1d87906",
+  "placementHash": "sha256:f146f1f711fc12152aac84940098bc3b242f13656e5e89a4d54d3d7ba4550862",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    },
+    "molen.worldgen.material.earth_rammed": {
+      "path": "materials/earth_rammed.matgraph.json",
+      "hash": "sha256:50d08191738cc33191b08f2c393121852dce456454ac98f67653cbcbe8ba3c46"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-alconetar-bridge.png",
+      "hash": "sha256:bec964e6cf4a6a762a51febba70274ff3ac95c82602843379301e0a23f0baf74",
+      "camera": {
+        "name": "detail-tall-arch-and-stepped-pier",
+        "position": [
+          30.6,
+          6.3,
+          18
+        ],
+        "lookAt": [
+          18.1,
+          2.38,
+          0
+        ],
+        "fov": 53,
+        "group": "detail",
+        "lightDirection": [
+          0.72,
+          0.95,
+          0.64
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "alconetar.bridge",
+        "visibleDraws": 2
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Shared granite and rammed earth each resolve once per tier. Granite supplies the mineral grain on the shaped blocks and the earth graph covers the open ramp and fill."
+}

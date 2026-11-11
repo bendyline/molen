@@ -107,6 +107,46 @@ describe('regional procedural plants', () => {
     }
   }, 30_000); // Checks every preset's vertices at three detail levels; exceeds 5 s on CI.
 
+  it('gives conifers a horizon cone past a far level that keeps their skirts', async () => {
+    const fir = plants.find((entry) => entry.family === 'conifer' && !entry.leafless);
+    const palm = plants.find((entry) => entry.family === 'palm');
+    if (fir === undefined || palm === undefined) throw new Error('Missing fixtures');
+    const triangles = (geometry: { getAttribute(name: string): { count: number } }): number =>
+      geometry.getAttribute('position').count / 3;
+    const far = createPlantGeometry(fir, 'distant');
+    const horizon = createPlantGeometry(fir, 'horizon');
+    expect(triangles(horizon)).toBeLessThanOrEqual(16);
+    expect(triangles(far)).toBeGreaterThan(triangles(horizon) * 3);
+    // The far outline steps in and out up the tree; the horizon one only narrows.
+    const widths = (geometry: typeof far): number[] => {
+      const position = geometry.getAttribute('position');
+      const byHeight = new Map<number, number>();
+      for (let i = 0; i < position.count; i++) {
+        const y = Math.round(position.getY(i) * 20) / 20;
+        byHeight.set(
+          y,
+          Math.max(byHeight.get(y) ?? 0, Math.hypot(position.getX(i), position.getZ(i))),
+        );
+      }
+      return [...byHeight.entries()].sort((a, b) => a[0] - b[0]).map(([, width]) => width);
+    };
+    const widens = (values: number[]): number =>
+      values.filter((value, i) => i > 0 && value > (values[i - 1] as number) * 1.1).length;
+    expect(widens(widths(far))).toBe(2);
+    expect(widens(widths(horizon))).toBe(0);
+    far.dispose();
+    horizon.dispose();
+    const library = new ModelLibrary(undefined, {}, false, { [fir.id]: fir, [palm.id]: palm });
+    expect(await library.prepare(fir.id, 'horizon')).not.toBe(
+      await library.prepare(fir.id, 'distant'),
+    );
+    // Every other family's horizon level is its far model, cached once.
+    expect(await library.prepare(palm.id, 'horizon')).toBe(
+      await library.prepare(palm.id, 'distant'),
+    );
+    library.dispose();
+  });
+
   it('caches and releases distinct procedural LODs without requesting a GLB', async () => {
     const p = plants.find((entry) => entry.family === 'palm');
     if (p === undefined) throw new Error('Missing palm fixture');

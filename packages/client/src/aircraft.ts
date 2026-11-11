@@ -407,6 +407,23 @@ export function aircraftCameraPose(
   let position = new THREE.Vector3().fromArray(spec.pilotEye).applyQuaternion(q).add(origin);
   let target = position.clone().add(direction);
   let up = new THREE.Vector3(0, 1, 0).applyQuaternion(q);
+  const shake = options.view === 'chase' ? 0 : Math.min(1, options.shake?.amount ?? 0);
+  if (shake > 0) {
+    // Buffet: the seat hammers up and down and the view nods and rocks with it.
+    const time = options.shake?.time ?? 0;
+    const wobble = (rate: number, phase: number): number =>
+      Math.sin(time * rate + phase) + 0.5 * Math.sin(time * rate * 1.73 + phase * 2.1);
+    const left = new THREE.Vector3(1, 0, 0).applyQuaternion(q);
+    position
+      .addScaledVector(up, 0.012 * shake * wobble(64, 0))
+      .addScaledVector(left, 0.005 * shake * wobble(47, 1));
+    target = position
+      .clone()
+      .add(direction)
+      .addScaledVector(up, 0.004 * shake * wobble(58, 2))
+      .addScaledVector(left, 0.002 * shake * wobble(49, 0.7));
+    up = up.addScaledVector(left, 0.006 * shake * wobble(67, 3)).normalize();
+  }
   if (options.view === 'chase') {
     target = origin.clone().add(new THREE.Vector3(0, 1.5, 0));
     position = target

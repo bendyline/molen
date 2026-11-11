@@ -18,6 +18,7 @@ import type { AssetSidecar } from '@bendyline/molen-schema';
 import {
   createTerrainLandcoverWorkerBridge,
   type TerrainLandcoverGenerator,
+  type TerrainLandcoverRasterOptions,
   type TerrainQualityPreset,
   type TerrainSurfaceRenderer,
 } from '@bendyline/molen-terrain/client';
@@ -123,6 +124,16 @@ export interface CreateEarthWorldgenOptions {
    * terrain surface; the host owns and disposes it.
    */
   groundMaterial?: THREE.Material;
+  /**
+   * Draw land cover on distant tiles as one texture a tile, with the tile's mapped roads and
+   * building footprints painted in, instead of the draped mesh: a fraction of its triangles,
+   * memory and build time, where its crop rows and soft class edges are too small to see.
+   * `material` is `createTerrainGroundTextureMaterial` from `@bendyline/molen-terrain/client`
+   * (WebGL only; keep its origin current with `setTerrainGroundOrigin` like the ground's), owned
+   * by the host. The rest are `TerrainLandcoverRasterOptions`: by default tiles two or more levels
+   * coarser than the finest, 256 texels across.
+   */
+  farLandcover?: { material: THREE.Material } & TerrainLandcoverRasterOptions;
   /**
    * Material for scatter (trees, shrubs, ground cover) and props, usually
    * `createScatterMaterialAsync` from `@bendyline/molen-worldgen/client` for the renderer's
@@ -349,14 +360,28 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
         ? { furnish: createGarageFurnisher(options.content.parkedVehicles ?? []) }
         : false,
     propLod: options.propLod ?? true,
-    ...(options.landcoverColors !== undefined || options.groundMaterial !== undefined
+    ...(options.landcoverColors !== undefined ||
+    options.groundMaterial !== undefined ||
+    options.farLandcover !== undefined
       ? {
           landcover: {
             ...(options.landcoverColors !== undefined
               ? { landcoverColors: options.landcoverColors }
               : {}),
-            ...(options.groundMaterial !== undefined
-              ? { materials: { landcover: options.groundMaterial } }
+            ...(options.groundMaterial !== undefined || options.farLandcover !== undefined
+              ? {
+                  materials: {
+                    ...(options.groundMaterial !== undefined
+                      ? { landcover: options.groundMaterial }
+                      : {}),
+                    ...(options.farLandcover !== undefined
+                      ? { landcoverRaster: options.farLandcover.material }
+                      : {}),
+                  },
+                }
+              : {}),
+            ...(options.farLandcover !== undefined
+              ? { landcoverRaster: farLandcoverRaster(options.farLandcover) }
               : {}),
           },
         }
@@ -441,6 +466,18 @@ export function surfaceWorkers(cores: number = logicalCores()): number {
 }
 
 /** Landcover tiles go to whichever worker has the fewest in flight. */
+/**
+ * The raster options alone: the material travels separately, and never to a worker. Plants are
+ * placed on tiles up to two levels coarser than the finest (see the classification layer), so
+ * woods take the canopy tint from the third.
+ */
+function farLandcoverRaster({
+  material: _material,
+  ...raster
+}: { material: THREE.Material } & TerrainLandcoverRasterOptions): TerrainLandcoverRasterOptions {
+  return { canopy: { minDepth: 3 }, ...raster };
+}
+
 function landcoverPool(members: readonly TerrainLandcoverGenerator[]): TerrainLandcoverGenerator {
   const busy = members.map(() => 0);
   return {

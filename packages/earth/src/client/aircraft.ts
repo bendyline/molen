@@ -28,6 +28,7 @@ import {
   initialAircraftState,
   installAircraft,
   levelFlightAngleOfAttack,
+  refuelAircraft,
 } from '@bendyline/molen-kernel/aircraft';
 import type { TypeLibrary } from '@bendyline/molen-kernel/content';
 import {
@@ -143,6 +144,17 @@ export interface EarthFlightStatus {
   crashed: boolean;
   waitingForTerrain: boolean;
   view: 'cockpit' | 'chase';
+  /** Fuel remaining and full-tank capacity in kg, for aircraft that carry fuel. */
+  fuel?: number;
+  fuelCapacity?: number;
+  /** Pre-stall and stalled-wing buffet, 0..1: the cockpit view shakes with it. */
+  buffet: number;
+  /**
+   * The pilot under g, both 0..1: `greyout` under sustained positive g (vision starts to dim
+   * near 0.3 and is gone at 1), `redout` under negative g. For a host to dim or tint its view.
+   */
+  greyout: number;
+  redout: number;
 }
 
 /** One frame of pilot intent. Axes are -1..1; switches are presses since the last frame. */
@@ -395,6 +407,8 @@ export class EarthAircraft {
       return false;
     }
     if (input !== undefined) this.world.set(id, AircraftInput, input);
+    // A parked aircraft is boarded with full tanks; one taken over in flight keeps its fuel.
+    refuelAircraft(this.world, id);
     this.pointerAxes.clear();
     this.cockpitBrake = false;
     this.controls = { ...(input ?? IDLE_AIRCRAFT_INPUT) };
@@ -671,6 +685,11 @@ export class EarthAircraft {
       view: this.view,
       lookYaw: this.lookYaw,
       lookPitch: this.lookPitch,
+      // The airframe shakes the pilot's seat before and in a stall.
+      shake: {
+        amount: (id !== undefined ? this.world.get(id, AircraftState)?.buffet : 0) ?? 0,
+        time: performance.now() / 1000,
+      },
       obstructionDistance: (from, to) => {
         const a = new THREE.Vector3().fromArray(from).sub(this.collision.origin);
         const b = new THREE.Vector3().fromArray(to).sub(this.collision.origin);
@@ -720,6 +739,15 @@ export class EarthAircraft {
       crashed: state.crashed,
       waitingForTerrain: state.waitingForTerrain,
       view: this.view,
+      ...(aircraft.spec.fuel
+        ? {
+            fuel: state.fuel ?? aircraft.spec.fuel.capacity,
+            fuelCapacity: aircraft.spec.fuel.capacity,
+          }
+        : {}),
+      buffet: state.buffet ?? 0,
+      greyout: state.greyout ?? 0,
+      redout: state.redout ?? 0,
     };
   }
 

@@ -1,0 +1,387 @@
+{
+  "id": "potala_palace",
+  "title": "Potala Palace",
+  "wikidataId": "Q71229",
+  "referenceCoordinate": {
+    "longitude": 91.117467482,
+    "latitude": 29.658028598
+  },
+  "module": "content/worldgen/source/places/wj/wj2/potala_palace/models/palace-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-potala-palace.mjs",
+  "builder": "buildPotalaLevel",
+  "surfaces": {
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.93
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.94
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.84
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.91
+    },
+    "gilding": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.71,
+      "metallic": 0.18
+    }
+  },
+  "exportLabel": "Molen original Potala Palace master",
+  "expectedDraftMasterHash": "sha256:459ba2ba6e0c0b5d5a16ff522e616460ae680ff82fea5e9c368a4de12b9e9e5b",
+  "visualBrief": "The crimson Red Palace and five gilt roof pavilions rise above the white retaining walls and east and west wings. Three stepped exterior routes follow the southern hill. An open White Palace court is edged by timber galleries and a tiered ceremonial entrance.",
+  "heightPolicy": "The 3,700 m sea-level datum uses standard viewer terrain. Battered foundations extend into the sampled hill. The cutout replaces the named palace footprint and retains the independent buildings and paths around it.",
+  "nativeAxes": "Positive X follows the long hilltop axis toward the east-northeast. Positive Z faces south-southeast toward the ceremonial approach.",
+  "limitations": [
+    "The mapped palace footprint, hilltop terrain and path junctions control placement. Building heights, the court plan, wall batter, and the stair profiles are exterior reconstructions from photographs.",
+    "The open court and exterior stairs represent the visible route. The detailed model represents the rooflines and façades, including approximate window and gilt ornament spacing."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Lhasa%2C_Potala_1999_04.jpg",
+      "hash": "sha256:5c144ff34519e725882411db20b6f2be0e5bc04db7d9e9beb9979fa0ebabfd6e",
+      "observed": "Battered south walls, window rows and the red upper palace."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Potala_courtyard.jpg",
+      "hash": "sha256:7b807f33165b6c9d49c1b2e1b0ba52d636dc47b44e0dc90923bdcbd20c166cdc",
+      "observed": "White Palace courtyard, roofs and entrance fabric."
+    },
+    {
+      "url": "https://www.kimkim.com/c/tour-of-shanghai-chengdu-lhasa-xian-beijing-14-days",
+      "hash": "sha256:b8876d5241f5231c68c10b5f51da6d331690a7876ee6fdcb3135daa0fca79583",
+      "observed": "Whole hill, red and white masses, stepped southern retaining walls and upper roofline."
+    },
+    {
+      "url": "https://www.revigorate.com/tibet-heritage-route-ru.html",
+      "hash": "sha256:64043d639895aef768a9abd11c83482efe7a0ca66b7e3c429754b8ec4771a26c",
+      "observed": "South elevation and position of the west and east stair terraces."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "south-hill-and-stairs",
+      "position": [
+        3,
+        37,
+        370
+      ],
+      "lookAt": [
+        -7,
+        28,
+        19
+      ],
+      "fov": 55
+    },
+    {
+      "name": "crimson-palace-and-gold-roofs",
+      "position": [
+        -66,
+        76,
+        148
+      ],
+      "lookAt": [
+        -41,
+        50,
+        -5
+      ],
+      "fov": 55
+    },
+    {
+      "name": "white-palace-court",
+      "position": [
+        101,
+        16,
+        17
+      ],
+      "lookAt": [
+        63,
+        26,
+        12
+      ],
+      "fov": 63
+    },
+    {
+      "name": "west-retaining-terraces",
+      "position": [
+        -202,
+        42,
+        111
+      ],
+      "lookAt": [
+        -119,
+        34,
+        19
+      ],
+      "fov": 58
+    },
+    {
+      "name": "east-approach-and-hill",
+      "position": [
+        168,
+        15,
+        148
+      ],
+      "lookAt": [
+        109,
+        4,
+        47
+      ],
+      "fov": 56
+    },
+    {
+      "name": "north-roofline",
+      "position": [
+        -68,
+        112,
+        -153
+      ],
+      "lookAt": [
+        -42,
+        45,
+        -12
+      ],
+      "fov": 54
+    },
+    {
+      "name": "upper-plan-and-court",
+      "position": [
+        66,
+        154,
+        56
+      ],
+      "lookAt": [
+        -38,
+        41,
+        8
+      ],
+      "fov": 53
+    }
+  ],
+  "materialMethod": "Shared lime plaster, weathered limestone, timber, flat tile and painted metal supply the surfaces. Gold roof ribs, lintels, cloth trim and stair risers use authored geometry.",
+  "sourceFacts": {
+    "mappedBuildingWay": 31475419,
+    "mappedLengthMeters": 379.895,
+    "giltRoofs": 5,
+    "exteriorStairRoutes": 3
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -12,
+        17,
+        20
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wj/wj2/potala_palace/models/palace-model.mjs",
+    "export": "buildPotalaSkyline",
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.94
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.84
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.91
+      },
+      "gilding": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.71,
+        "metallic": 0.18
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPotalaDistrict",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "gilding": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.18
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildPotalaStreet",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "gilding": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.18
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildPotalaCloseup",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91
+          },
+          "gilding": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.71,
+            "metallic": 0.18
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "potala_palace-skyline",
+      "position": [
+        3,
+        37,
+        370
+      ],
+      "lookAt": [
+        -7,
+        28,
+        19
+      ],
+      "fov": 55,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "potala_palace-district",
+      "position": [
+        3,
+        37,
+        370
+      ],
+      "lookAt": [
+        -7,
+        28,
+        19
+      ],
+      "fov": 55,
+      "reviewLod": "district"
+    },
+    {
+      "name": "potala_palace-street",
+      "position": [
+        3,
+        37,
+        370
+      ],
+      "lookAt": [
+        -7,
+        28,
+        19
+      ],
+      "fov": 55,
+      "reviewLod": "street"
+    },
+    {
+      "name": "potala_palace-closeup",
+      "position": [
+        3,
+        37,
+        370
+      ],
+      "lookAt": [
+        -7,
+        28,
+        19
+      ],
+      "fov": 55,
+      "reviewLod": "closeup"
+    }
+  ]
+}

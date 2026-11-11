@@ -22,6 +22,7 @@ import {
 } from '@bendyline/molen-client/navigation';
 import {
   ambientContentFromTypes,
+  composeEarthGroundGrading,
   createAirportTerrainGrading,
   createEarthAdmissionGovernor,
   createEarthFleet,
@@ -69,6 +70,7 @@ import {
   createDefaultTerrainSemanticRenderer,
   createProfiledTerrainPackageSemanticLayers,
   createTerrainGroundMaterialAsync,
+  createTerrainGroundTextureMaterial,
   createTerrainPackagePyramidStream,
   createTerrainPackageStream,
   createTerrainPavementMaterialAsync,
@@ -84,6 +86,7 @@ import {
   type TerrainPyramidTileLayer,
   type TerrainPyramidView,
   type TerrainQualityPreset,
+  type TerrainRoadGrading,
   type TerrainStreamStats,
   type TerrainTileArchive,
   type TerrainTileLayer,
@@ -116,6 +119,7 @@ import { type ExplorerWorldgenContent, loadExplorerContent } from './content.js'
 import { createExplorerDioramas, DIORAMA_SITES, selectedDiorama } from './dioramas.js';
 import { createFlightInstrumentPanel } from './flight-instrument-panel.js';
 import { formatCameraLocation } from './location-readout.js';
+import { createPilotVision } from './pilot-vision.js';
 import { createExplorerQualityController, createStreamStrainMeter } from './quality-policy.js';
 import {
   createRegionControls,
@@ -123,9 +127,11 @@ import {
   regionPackagePath,
   selectedRegion,
 } from './regions.js';
+import { sceneComposition } from './scene-composition.js';
 import { createSkyControls } from './sky-controls.js';
 import { createSurfaceControls } from './surface-controls.js';
 import { syntheticFeatureTile, syntheticLandcoverTile } from './synthetic-footprints.js';
+import { ExplorerTrains, isTrainRequest, TRAIN_HELP, TRAIN_RIDE_HELP } from './trains.js';
 import { createWeatherControls } from './weather-controls.js';
 import { AIRCRAFT_HELP, aircraftBlocks, WorldAircraft } from './world-aircraft.js';
 import { PARACHUTE_HELP, WorldParachute } from './world-parachute.js';
@@ -209,6 +215,22 @@ class ProceduralElevationArchive implements TerrainTileArchive {
     });
     return { data: png.slice().buffer };
   }
+}
+
+/**
+ * The driven car's gear and engine speed for the status line, with a note while traction or
+ * stability control is working or the wheels are off the pavement. Vehicles without a gearbox
+ * (cycles, trains) read Drive or Reverse.
+ */
+function drivelineStatus(vehicles: EarthVehicles): string {
+  const driveline = vehicles.driveline;
+  if (driveline === undefined) return vehicles.speed < -0.1 ? 'Reverse' : 'Drive';
+  // A CVT or a single-speed electric car has no gears to count.
+  const gear = driveline.gear < 0 ? 'R' : driveline.gears > 1 ? `D${driveline.gear}` : 'D';
+  const rpm = driveline.rpm >= 50 ? ` · ${Math.round(driveline.rpm / 50) * 50} rpm` : '';
+  const aid = driveline.assist > 0.25 ? ' · traction control' : '';
+  const ground = driveline.surfaceGrip < 0.95 ? ' · loose surface' : '';
+  return `${gear}${rpm}${aid}${ground}`;
 }
 
 function random01(seed: number): number {
@@ -500,6 +522,8 @@ async function loadWorldgen(options: {
   /** Generate tiles in a Worker by default; `?worker=0` enables in-thread diagnostics. */
   worker: boolean;
   groundMaterial?: THREE.Material;
+  /** Land cover drawn as a texture on distant tiles: see `createEarthWorldgen`'s `farLandcover`. */
+  farGroundMaterial?: THREE.Material;
   modelMaterial?: THREE.Material;
   buildingDecorator?: BuildingMaterialDecorator;
 }): Promise<ExplorerWorldgen> {
@@ -554,6 +578,18 @@ async function loadWorldgen(options: {
       : {},
     ...(materialStore !== undefined ? { materialStore } : {}),
     ...(options.groundMaterial ? { groundMaterial: options.groundMaterial } : {}),
+    // `?farGroundDepth=` and `?farGroundSize=` move where the texture starts and its resolution.
+    ...(options.farGroundMaterial
+      ? {
+          farLandcover: {
+            material: options.farGroundMaterial,
+            ...(params.has('farGroundDepth')
+              ? { minDepth: Number(params.get('farGroundDepth')) }
+              : {}),
+            ...(params.has('farGroundSize') ? { size: Number(params.get('farGroundSize')) } : {}),
+          },
+        }
+      : {}),
     ...(options.modelMaterial ? { modelMaterial: options.modelMaterial } : {}),
     ...(options.buildingDecorator ? { buildingDecorator: options.buildingDecorator } : {}),
     propLod: params.get('propLod') !== '0',
@@ -789,6 +825,8 @@ async function main(): Promise<void> {
   const lodPolicy: ScreenSpaceLodPolicy = {
     viewportHeight: window.innerHeight,
     maxPixelError: objectPixelError,
+    // Not relaxed with height, unlike the above: see the frame loop.
+    horizonPixelError: objectPixelError,
   };
   const content = await contentLoad;
   const loadEntityModel = async (id: string, signal?: AbortSignal): Promise<THREE.Object3D> =>
@@ -808,6 +846,7 @@ async function main(): Promise<void> {
     content.fonts,
     (x, z) => roadSigns?.profileAt(x, z),
     content.roadSigns?.shields,
+    content.railCars,
   );
   // Manual quality keeps automatic quality's preparation capacity (earthTerrainCacheBudget), and
   // ground just left stays warm up to the device budget, with ground a little past the view
@@ -898,6 +937,13 @@ async function main(): Promise<void> {
   const fieldMaterial = groundMaterial
     ? await createTerrainGroundMaterialAsync({ agriculture: true }, viewer.renderer.backend)
     : undefined;
+  // Distant tiles draw land cover, with their roads and roofs, as one texture each instead of the
+  // draped mesh (WebGL, where a material's map reaches the shader). `?farGround=mesh` drapes
+  // every tile, for comparison.
+  const farGroundMaterial =
+    groundMaterial && viewer.renderer.backend === 'webgl' && params.get('farGround') !== 'mesh'
+      ? createTerrainGroundTextureMaterial({})
+      : undefined;
   // Roads, sidewalks, markings and lots: asphalt wear, concrete slabs and worn paint from the
   // bands' own coordinates. `?ground=flat` keeps the plain vertex colors here too.
   const pavementMaterial = groundMaterial
@@ -958,6 +1004,7 @@ async function main(): Promise<void> {
         compact: viewer.renderer.backend === 'webgl',
         worker: useWorker,
         ...(fieldMaterial ? { groundMaterial: fieldMaterial } : {}),
+        ...(farGroundMaterial ? { farGroundMaterial } : {}),
         ...(scatterMaterial ? { modelMaterial: scatterMaterial } : {}),
         ...(buildingDecorator ? { buildingDecorator } : {}),
         lodPolicy,
@@ -973,6 +1020,7 @@ async function main(): Promise<void> {
     (section) => section !== undefined,
   );
   let realSemanticLayers: TerrainPyramidTileLayer[] = [];
+  let roadGrading: TerrainRoadGrading | undefined;
   let provideTunnelHeights!: (source: TerrainPyramidHeightSource) => void;
   const tunnelHeightsReady = new Promise<TerrainPyramidHeightSource>((resolve) => {
     provideTunnelHeights = resolve;
@@ -996,11 +1044,15 @@ async function main(): Promise<void> {
   const wildlifeFeatures = wildlifeWanted ? new SemanticTileBuffer() : undefined;
   let wildlife: EarthWildlife | undefined;
   let ambient: EarthAmbient | undefined;
+  // The railway network trains run on, read from the same feature tiles.
+  // Ambient life also keeps switchers working nearby yards; ?yard=0 leaves the yards still.
+  const explorerTrains = new ExplorerTrains({ yard: ambientWanted && params.get('yard') !== '0' });
   const observeRoads = (
     renderer: WorldgenSemanticRenderers['humanFeatures'],
   ): WorldgenSemanticRenderers['humanFeatures'] => {
+    const railed = observeSemanticTiles(renderer, explorerTrains.rail);
     const observed =
-      wildlifeFeatures !== undefined ? observeSemanticTiles(renderer, wildlifeFeatures) : renderer;
+      wildlifeFeatures !== undefined ? observeSemanticTiles(railed, wildlifeFeatures) : railed;
     return withEarthAirports(
       observeSemanticTiles(
         ambientTiles !== undefined ? observeSemanticTiles(observed, ambientTiles) : observed,
@@ -1027,6 +1079,18 @@ async function main(): Promise<void> {
             load: async (address, signal) => (await tunnelHeightsReady).load(address, signal),
           },
         },
+        // Level the ground under roads and stack bridges clear of what they cross, read with
+        // each tile's neighbors. ?roadGrading=0 turns both off, ?earthworks=0 the leveling only.
+        ...(params.get('roadGrading') !== '0'
+          ? {
+              roadGrading: {
+                heights: {
+                  load: async (address, signal) => (await tunnelHeightsReady).load(address, signal),
+                },
+                earthworks: params.get('earthworks') !== '0',
+              },
+            }
+          : {}),
         ...(loaded.baseUrl !== undefined ? { baseUrl: loaded.baseUrl } : {}),
         waterLayer: {
           visible: true,
@@ -1089,6 +1153,7 @@ async function main(): Promise<void> {
             }),
       });
       realSemanticLayers = opened.layers;
+      roadGrading = opened.roadGrading;
     } catch (error) {
       semanticUnavailableReason = `Semantic sidecars unavailable: ${(error as Error).message}`;
       console.warn(semanticUnavailableReason);
@@ -1250,6 +1315,11 @@ async function main(): Promise<void> {
     reach <= viewDistance * 0.6 ? Math.max(8, Math.round(tiles * 0.92)) : tiles;
   let tierSelectedTiles = pyramidBudget.maxSelectedTiles;
   const regionalGroundColor = createRegionalGroundColor(worldgen?.environment);
+  // Roads first, then airports: an airfield's leveling wins over the roads that cross it.
+  const groundGrading = composeEarthGroundGrading(
+    roadGrading,
+    content.airports ? createAirportTerrainGrading(content.airports) : undefined,
+  );
   const pyramidEarth: TerrainPackagePyramidStream | undefined = adaptive
     ? await createTerrainPackagePyramidStream(loaded.descriptor, {
         ...(regionalGroundColor !== undefined ? { surfaceColor: regionalGroundColor } : {}),
@@ -1264,9 +1334,7 @@ async function main(): Promise<void> {
         ),
         // Water and land cover also load for ground outside the view, and show as each is ready.
         independentLayers: EARTH_INDEPENDENT_LAYERS,
-        ...(content.airports
-          ? { transformHeightfield: createAirportTerrainGrading(content.airports) }
-          : {}),
+        ...(groundGrading ? { transformHeightfield: groundGrading } : {}),
         ...(useWorker && params.get('elevationWorker') !== '0'
           ? {
               elevationWorker: new Worker(new URL('./elevation-worker.ts', import.meta.url), {
@@ -1389,7 +1457,14 @@ async function main(): Promise<void> {
   }
   startupStage('environment-controls');
   viewer.renderer.worldRoot.add(stream.object);
+  // Scenery past the focused shadow map is shadowed from a second, wider map (WebGL), so
+  // buildings do not gain their shadows in a ring around an aircraft. `?farShadows=0` leaves it
+  // out, for comparison.
+  if (params.get('farShadows') !== '0') viewer.renderer.setFarShadowCasters(stream.object);
   const gpuTimer = viewer.renderer.createGpuTimer();
+  // `?renderScale=1.5` draws more pixels than the tier asks for and lets the browser scale the
+  // frame down: supersampling, to see what it does for thin distant edges that flicker.
+  const renderScale = Math.min(2, Math.max(0.5, Number(params.get('renderScale') ?? 1) || 1));
   const resizeRenderer = (): void => {
     const ratio = automaticQuality
       ? earthPixelRatio(
@@ -1399,7 +1474,7 @@ async function main(): Promise<void> {
           window.devicePixelRatio,
         )
       : 1;
-    viewer.renderer.setPixelRatio(ratio);
+    viewer.renderer.setPixelRatio(ratio * renderScale);
     viewer.renderer.setSize(window.innerWidth, window.innerHeight);
     lodPolicy.viewportHeight = canvas.height;
   };
@@ -1431,6 +1506,7 @@ async function main(): Promise<void> {
       () => {
         objectPixelError = automaticQuality ? tier.objectPixelError : 2;
         lodPolicy.maxPixelError = objectPixelError;
+        lodPolicy.horizonPixelError = objectPixelError;
         fogViewDistance = budget.viewDistance;
         resizeRenderer();
         performanceStatus.dataset.mode = automaticQuality ? 'auto' : 'manual';
@@ -1466,6 +1542,10 @@ async function main(): Promise<void> {
       },
       () => {
         shadowQuality = shadowsWanted ? earthPerformanceTier(level).shadows : 'off';
+        // `?treeShadows=all` has trees cast at their distant level too, so the ground past the
+        // near trees carries tree shadows as well: 350 more draws and 0.85 million more
+        // triangles a frame over a wooded town at High, and 1.9 ms more main thread.
+        lodPolicy.distantShadows = shadowQuality === 'high' && params.get('treeShadows') === 'all';
       },
       // Uniform-driven like shadow parking: switching rebuilds no shader.
       () => viewer.renderer.setCloudQuality(earthPerformanceTier(level).clouds),
@@ -1611,7 +1691,16 @@ async function main(): Promise<void> {
       : {}),
     obstacles: (box, except) =>
       aircraftBlocks(vehicles.world, box, except) || (ambient?.blocks(box, except) ?? false),
+    track: explorerTrains.rail.network,
+    // Cars grip, drag and shake by the mapped road or land cover under them.
+    surfaceAt: (x, z) => audioTerrain.sample(x, z).surface,
   });
+  explorerTrains.attach(vehicles, content.types);
+  {
+    // ?train=freight|commuter|ride|light-rail puts the viewer on a train near the start.
+    const requested = params.get('train');
+    if (isTrainRequest(requested)) explorerTrains.request(requested);
+  }
   walker.sampleWaterHeight = (x, z) => {
     if (sampleTerrainTunnel(stream.object, x, walker.feet.y, z)) return null;
     const water = vehicles.boatEnvironment.waterAt(x, z);
@@ -1690,6 +1779,8 @@ async function main(): Promise<void> {
   // the cockpit or chase view, which V or F5 returns to.
   let flyby = false;
   const flightInstruments = createFlightInstrumentPanel(params.get('hud') !== '0');
+  // Tunnel vision and blackout under sustained g, redout under negative g.
+  const pilotVision = createPilotVision(params.get('hud') !== '0');
   const cockpitPointer = bindAircraftCockpitPointer({
     element: canvas,
     camera: viewer.renderer.camera,
@@ -1832,9 +1923,11 @@ async function main(): Promise<void> {
       flight.dispose();
       cockpitPointer.dispose();
       flightInstruments.dispose();
+      pilotVision.dispose();
       nightLighting.dispose();
       parachute.dispose();
       besideVehicles.clear();
+      explorerTrains.dispose();
       vehicles.dispose();
     }
   });
@@ -1916,8 +2009,27 @@ async function main(): Promise<void> {
   for (const button of document.querySelectorAll<HTMLButtonElement>('[data-transit]')) {
     button.addEventListener('click', () => {
       if (vehicles.mountedId && !exitVehicle()) return;
+      // Light rail runs on a real line when one is in reach; otherwise on the practice track.
+      if (
+        button.dataset.transit === 'lightrail' &&
+        explorerTrains.hasTrack('light-rail', camera.pos[0], camera.pos[2])
+      ) {
+        explorerTrains.request('light-rail');
+        help.textContent = explorerTrains.message;
+        canvas.focus();
+        return;
+      }
       visitAircraft('p51d');
       visitingTransit = button.dataset.transit as 'bus' | 'lightrail';
+    });
+  }
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-train]')) {
+    button.addEventListener('click', () => {
+      if ((vehicles.mountedId || flight.mountedKind) && !exitVehicle()) return;
+      const request = button.dataset.train;
+      if (isTrainRequest(request)) explorerTrains.request(request);
+      help.textContent = explorerTrains.message;
+      canvas.focus();
     });
   }
   const interact = (): void => {
@@ -1938,11 +2050,14 @@ async function main(): Promise<void> {
       vehicles.view = 'cockpit';
       vehicles.lookYaw = 0;
       vehicles.lookPitch = -0.18;
+      const trainHelp = flight.mountedKind ? undefined : explorerTrains.boarded();
       help.textContent = flight.mountedKind
         ? AIRCRAFT_HELP
-        : vehicles.mountedId && vehicles.isBoat(vehicles.mountedId)
-          ? boatHelp
-          : 'W/S accelerate / brake / reverse · A/D steer · Space brake · Shift handbrake · 1–4 doors · 5 hood · 6 rear access · K wipers · L lights · E exit · V change view · drag to look';
+        : trainHelp !== undefined
+          ? trainHelp
+          : vehicles.mountedId && vehicles.isBoat(vehicles.mountedId)
+            ? boatHelp
+            : 'W/S accelerate / brake / reverse · A/D steer · Space brake · Shift handbrake · 1–4 doors · 5 hood · 6 rear access · K wipers · L lights · E exit · V change view · drag to look';
     }
   };
   window.addEventListener('keydown', (event) => {
@@ -2027,6 +2142,7 @@ async function main(): Promise<void> {
       tier: performanceLevel,
       tierReason: qualityController.getStats().reason,
       rendered: viewer.renderer.stats(),
+      farShadow: viewer.renderer.farShadowInfo,
       loading: pyramidEarth?.stream.loading(),
       pressure: pyramidEarth?.stream.pressure(),
       coverage: pyramidEarth?.stream.viewCoverage([2_000, 5_000, 10_000, 20_000]),
@@ -2036,6 +2152,7 @@ async function main(): Promise<void> {
       stats: pyramidEarth?.stream.stats(),
       worldgen: worldgen?.stats(),
       graphics: graphics.snapshot(),
+      scene: sceneComposition(viewer.renderer.scene),
     });
   }
   canvas.addEventListener('webglcontextlost', () => {
@@ -2237,6 +2354,20 @@ async function main(): Promise<void> {
       frameInput = input.read(0);
     }
     flight.input(dt, frameInput);
+    {
+      const boarded = explorerTrains.update(dt, now, camera.pos, Math.PI / 2 - camera.yaw);
+      if (boarded) {
+        parachute.stop();
+        navigation = 'walk';
+        viewer.renderer.setCameraClip(0.05, 500_000);
+        document.body.dataset.navigation = 'walk';
+        vehicles.view = 'cockpit';
+        vehicles.lookYaw = 0;
+        vehicles.lookPitch = boarded === 'driver' ? -0.12 : -0.05;
+        input.map.reset();
+        help.textContent = boarded === 'driver' ? TRAIN_HELP : TRAIN_RIDE_HELP;
+      } else if (explorerTrains.searching) help.textContent = explorerTrains.message;
+    }
     if (frameInput.actuators) vehicles.toggleActuators(frameInput.actuators);
     if ((frameInput.recover ?? 0) > 0) vehicles.recover();
     vehicles.update(dt, {
@@ -2256,6 +2387,7 @@ async function main(): Promise<void> {
     flight.render(camera.pos, viewer.renderer.shadowTexelSize);
     cockpitPointer.update();
     flightInstruments.update(flight.instrumentSource(), flyby || vehicles.view === 'chase', now);
+    pilotVision.update(flight.state);
     surfaceRenderer.updateSignals(
       params.has('freeze') ? 0 : vehicles.world.tick / vehicles.world.tickRate,
       ambient?.surfaceSignalColor,
@@ -2507,6 +2639,8 @@ async function main(): Promise<void> {
     );
     if (groundMaterial) setTerrainGroundOrigin(groundMaterial, [waterOrigin[0], waterOrigin[2]]);
     if (fieldMaterial) setTerrainGroundOrigin(fieldMaterial, [waterOrigin[0], waterOrigin[2]]);
+    if (farGroundMaterial)
+      setTerrainGroundOrigin(farGroundMaterial, [waterOrigin[0], waterOrigin[2]]);
     if (pavementMaterial)
       setTerrainGroundOrigin(pavementMaterial, [waterOrigin[0], waterOrigin[2]]);
     const skyLocation = webMercatorToWgs84(
@@ -2565,6 +2699,9 @@ async function main(): Promise<void> {
     // From high up a two-pixel error budget buys detail nobody can see, paid for on the GPU. Above
     // 100 m over the ground the budget grows with height (up to four times), so the trees and
     // buildings below hand over to their coarser levels sooner; street and rooftop views keep it.
+    // The handover to a conifer's horizon cone keeps the tier's own budget (horizonPixelError):
+    // both levels are opaque and cheap, and at four times the budget every fir under an aircraft
+    // was that cone.
     lodPolicy.maxPixelError = objectPixelError * Math.min(4, Math.max(1, above / 100));
     // Ambient occlusion darkens creases a meter or two across, under shrubs and along wall bases:
     // it grounds what a walker or driver sees up close. From rooftop height up the same creases
@@ -2709,7 +2846,8 @@ async function main(): Promise<void> {
             ? `E · Board ${flight.label(nearAircraft)} · I starts the engine`
             : flight.message ||
               (vehicles.mountedId
-                ? `${vehicles.label(vehicles.mountedId)} · ${Math.abs(vehicles.speed * 3.6).toFixed(0)} km/h · ${vehicles.speed < -0.1 ? 'Reverse' : 'Drive'} · ${vehicles.view} · ${vehicles.waiting ? 'Waiting for terrain…' : vehicles.message || 'E exit · V view'}`
+                ? ((vehicles.waiting ? undefined : explorerTrains.status()) ??
+                  `${vehicles.label(vehicles.mountedId)} · ${Math.abs(vehicles.speed * 3.6).toFixed(0)} km/h · ${drivelineStatus(vehicles)} · ${vehicles.view} · ${vehicles.waiting ? 'Waiting for terrain…' : vehicles.message || 'E exit · V view'}`)
                 : vehicles.message ||
                   (nearVehicle
                     ? vehicles.closedDoor(nearVehicle, camera.pos)
@@ -2728,6 +2866,7 @@ async function main(): Promise<void> {
       if (navigationStatus.textContent !== navigationText)
         navigationStatus.textContent = navigationText;
       navigationStatus.dataset.vehicle = vehicles.mountedId ?? '';
+      navigationStatus.dataset.train = explorerTrains.current() ?? '';
       navigationStatus.dataset.parachute = parachute.phase ?? '';
       const waterHere = vehicles.boatEnvironment.waterAt(camera.pos[0], camera.pos[2]);
       navigationStatus.dataset.waterHeight = waterHere ? String(waterHere.height) : '';

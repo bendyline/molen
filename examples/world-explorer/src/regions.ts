@@ -15,8 +15,17 @@ export interface WorldRegion {
    * darker than the sky it reflects at a glance. Defaults to the shared Earth water color.
    */
   water?: string;
-  /** Surface colors over the selected street style, where local paving reads differently. */
-  surfaces?: Partial<Pick<TerrainSurfaceStyle, 'road' | 'parking' | 'sidewalk' | 'curb'>>;
+  /**
+   * Surface colors over the selected street style, where local paving reads differently, and the
+   * railways: `railElectrification: 'all'` where main lines run under catenary too, and the main
+   * lines' gauge where it is not standard.
+   */
+  surfaces?: Partial<
+    Pick<
+      TerrainSurfaceStyle,
+      'road' | 'parking' | 'sidewalk' | 'curb' | 'railElectrification' | 'railGauge'
+    >
+  >;
 }
 
 export const DEFAULT_WORLD_REGION: WorldRegion = {
@@ -45,6 +54,8 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
     coverageBounds: [150.3, -34.5, 151.8, -33.2],
     // Port Jackson's harbour water is a dark green-teal in NSW imagery.
     water: '#22493f',
+    // Sydney Trains' suburban network is electrified (1500 V DC overhead).
+    surfaces: { railElectrification: 'all' },
   },
   {
     id: 'kyoto',
@@ -55,6 +66,8 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
     airport: { id: 'RJOO', runway: '14R/32L' },
     detailBounds: [135.66, 34.88, 135.88, 35.09],
     coverageBounds: [135.15, 34.5, 136.4, 35.7],
+    // JR and private railways around Kyoto run under overhead catenary, on 1,067 mm gauge.
+    surfaces: { railElectrification: 'all', railGauge: 1.067 },
   },
   {
     id: 'yuma',
@@ -76,7 +89,15 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
     detailBounds: [77.08, 28.49, 77.34, 28.75],
     coverageBounds: [76.4, 27.9, 78, 29.4],
     // Dust settles on Delhi's roads and footpaths: Sentinel-2 reads them warm grey-brown.
-    surfaces: { road: '#625a4e', parking: '#685f52', sidewalk: '#94876f', curb: '#ab9d85' },
+    // Indian Railways' main lines through Delhi are electrified (25 kV AC overhead).
+    surfaces: {
+      road: '#625a4e',
+      parking: '#685f52',
+      sidewalk: '#94876f',
+      curb: '#ab9d85',
+      railElectrification: 'all',
+      railGauge: 1.676,
+    },
   },
 ];
 

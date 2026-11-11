@@ -311,6 +311,7 @@ Worth adding next:
 
 ```sh
 node packages/entities/scripts/generate-fleet.mjs --ids=<slug,...>   # road, cycle, boat recipes
+node packages/entities/scripts/generate-rail.mjs --ids=<slug,...>    # rail rolling stock (RAIL.md)
 node content/entities/source/transit/bus/models/generate.mjs
 node packages/entities/scripts/generate-aircraft.mjs --ids=pa-28-180
 node content/wildlife/source/build-catalog.mjs                     # wildlife detail tags

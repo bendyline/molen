@@ -40,6 +40,7 @@ import { applyBusinessAppearance, associateBusinesses } from './businesses';
 import { withDistrictLevels } from './district-heights';
 import { corridor } from './infill-geometry';
 import { contextLabelForPolygon, isLandcoverDesignation, landcoverLabel } from './labels';
+import { landSiteProps, prepareLandSites } from './land-sites';
 import { mappedPropExclusions, mappedPropRequests } from './mapped-props';
 import { applyParkingStructure, associateParkingStructures } from './parking-structures';
 import type { PlacesContent } from './places';
@@ -213,7 +214,7 @@ export function semanticTileToBatch(
   ground?: HeightSampler,
 ): SemanticBatch {
   const agriculture = prepareAgricultureTile(tile, geom, options.environment);
-  tile = agriculture.tile;
+  tile = prepareLandSites(agriculture.tile, geom);
   let inferred: InferredBuildingFeature[] = [];
   if (options.buildingInfill) {
     inferred = inferBuildingFootprints(
@@ -414,13 +415,17 @@ export function semanticTileToBatch(
   }
   return {
     buildings,
-    props: mappedPropRequests(
-      tile,
-      geom,
-      options.features?.scatter !== false,
-      options.features?.buildings !== false ? options.places?.landmarks : undefined,
-      options.environment,
-    ),
+    props: [
+      ...mappedPropRequests(
+        tile,
+        geom,
+        options.features?.scatter !== false,
+        options.features?.buildings !== false ? options.places?.landmarks : undefined,
+        options.environment,
+      ),
+      // Stand-in boxes are drawn with the buildings, so that pass alone asks for them.
+      ...(options.features?.buildings !== false ? landSiteProps(tile, geom) : []),
+    ],
     ...(scatter !== undefined ? { scatter } : {}),
     ...(scatterEnvironment !== undefined ? { scatterEnvironment } : {}),
     pack: options.pack,

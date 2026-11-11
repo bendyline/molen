@@ -4,11 +4,19 @@
  * airliner. Bodies are white so `instanceColor` paints them; glass and tyres stay dark.
  */
 
-import { vehicleProxyGeometry } from '@bendyline/molen-client/vehicles';
+import { railVehicleProxyGeometry, vehicleProxyGeometry } from '@bendyline/molen-client/vehicles';
+import type { RailVehicleProfile } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
-export type ProxyShape = 'car' | 'bus' | 'rail' | 'aircraft' | 'boat';
+export type ProxyShape =
+  | 'car'
+  | 'bus'
+  | 'rail'
+  | 'aircraft'
+  | 'boat'
+  /** A rail vehicle's own silhouette (see `railVehicleProxyGeometry`). */
+  | `rail-${RailVehicleProfile}`;
 
 export interface ProxyDimensions {
   length: number;
@@ -117,6 +125,7 @@ export function proxyHeight(
 ): number {
   if (shape === 'bus') return 3.1;
   if (shape === 'rail') return 3.6;
+  if (shape.startsWith('rail-')) return 4.5;
   if (shape === 'boat') return Math.max(2, length * 0.18);
   if (shape === 'aircraft') return length * 0.25;
   if (/van/.test(type) || width >= 1.98) return 2.0;
@@ -143,6 +152,15 @@ export function proxyGeometry(shape: ProxyShape, dims: ProxyDimensions): THREE.B
     });
   else if (shape === 'bus') geometry = busGeometry(d);
   else if (shape === 'rail') geometry = railGeometry(d);
+  else if (shape.startsWith('rail-'))
+    geometry = railVehicleProxyGeometry({
+      ...d,
+      wheelRadius: 0.457,
+      rail: {
+        truckCenters: d.length * 0.74,
+        profile: shape.slice(5) as RailVehicleProfile,
+      },
+    });
   else if (shape === 'boat') {
     const hull = box(0, d.height * 0.08, 0, d.width, d.height * 0.25, d.length, WHITE);
     const position = hull.getAttribute('position');

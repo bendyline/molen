@@ -20,7 +20,7 @@ import {
 } from '@bendyline/molen-worldgen/kernel';
 import polygonClipping, { type Polygon } from 'polygon-clipping';
 import { identityFor } from './building-identity';
-import { buildingLabels, contextLabelForPolygon, landcoverLabel } from './labels';
+import { buildingLabels, contextLabelForPolygon, isPlaceOutline, landcoverLabel } from './labels';
 import { regionScatterId, regionStyleRules } from './region';
 import type { SemanticAdapterOptions, TileGeometry } from './semantic-adapter';
 import { buildingClipBuffer, PROTOMAPS_TILE_BUFFER } from './tile-edges';
@@ -54,6 +54,7 @@ export function residentialTreePolygons(
   const protectedLand = tile.landcover
     .filter(
       (feature) =>
+        !isPlaceOutline(feature) &&
         !landcoverLabel(feature)
           .split(/\s+/)
           .every((label) => YARD_COVER.has(label)),

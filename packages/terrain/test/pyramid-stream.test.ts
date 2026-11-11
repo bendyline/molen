@@ -4138,6 +4138,35 @@ describe('terrain work at speed', () => {
     expect(await popsMoving(40)).toBe(0);
   });
 
+  it('does not let layers under way for ground the camera has left hold up new ground', async () => {
+    const started: number[] = [];
+    const stream = createTerrainPyramidStream(d, source, {
+      ...options,
+      maxConcurrentLayerLoads: 2,
+      layers: [
+        {
+          id: 'cover',
+          category: 'classification',
+          createTile({ address }) {
+            const west = address.x * terrainPyramidTileSize(d, address.level);
+            started.push(west);
+            // Ground round the first view never finishes; the rest builds at once.
+            return west < 1_500 ? new Promise<THREE.Object3D>(() => {}) : new THREE.Group();
+          },
+        },
+      ],
+    });
+    try {
+      stream.update(view(500));
+      await expect.poll(() => started.length).toBe(2);
+      // Both slots are taken. Far to the east none of that ground is wanted any longer.
+      stream.update(view(3_500));
+      await expect.poll(() => started.some((west) => west >= 3_000)).toBe(true);
+    } finally {
+      stream.dispose();
+    }
+  });
+
   it('can build none of those levels', async () => {
     const { stream, fly } = flight({ lookAhead: { fastDetail: 0 } });
     try {

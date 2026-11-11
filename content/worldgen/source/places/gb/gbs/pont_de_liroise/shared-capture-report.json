@@ -1,0 +1,66 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.pont_de_liroise",
+  "inputHash": "sha256:ec8877c30d1048ce3b55a61d8697cb274f0da6558300508bdde45f76dd2457f2",
+  "sourceHash": "sha256:225a140fd6bf6e2889a8cae7b1723b1c9efdb3c745f495e58e900ae2cedb36ea",
+  "runtimeHash": "sha256:00dea636b768f10ff2529abd38f21888b1639a53ab0642d5f2ffe7cf0994194c",
+  "fixtureHash": "sha256:ce054d54dd28e2344f4ab0349900c3ec768a564ee9bda40f14b947b98978830a",
+  "placementHash": "sha256:ac91d1b73a0843f0cf99afbea8724f24760c5ab6233c1c8492aa2b3698f346de",
+  "materialGraphs": {
+    "molen.worldgen.material.gravel": {
+      "path": "materials/gravel.matgraph.json",
+      "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.metal_stainless": {
+      "path": "materials/metal_stainless.matgraph.json",
+      "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
+    },
+    "molen.worldgen.material.concrete_boardformed": {
+      "path": "materials/concrete_boardformed.matgraph.json",
+      "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-pont-de-liroise.png",
+      "hash": "sha256:597e726570241ce2805fd37fb165787a6459fb3dac4bf473290ad2a5dd97e408",
+      "camera": {
+        "name": "detail-crossings-over-elorn",
+        "position": [
+          -92,
+          126,
+          -563
+        ],
+        "lookAt": [
+          0,
+          38,
+          32
+        ],
+        "fov": 50,
+        "group": "detail",
+        "lightDirection": [
+          -0.56,
+          1,
+          -0.59
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "pont.de.liroise",
+        "visibleDraws": 4
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Board-formed concrete, road aggregate, painted metal and stainless steel resolve once per required tier. The skyline uses three shared materials."
+}

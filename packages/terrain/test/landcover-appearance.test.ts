@@ -37,4 +37,35 @@ describe('aerial land-cover precedence', () => {
       expect(crispLandcover(feature(id, 1))).toBe(true);
     expect(crispLandcover(feature('forest', 1))).toBe(false);
   });
+  it('keeps mown and raked golf ground on a line, over the course it lies on', () => {
+    const course = feature('golf_course', 1),
+      fairway = feature('golf_fairway', 0.5),
+      green = feature('golf_green', 0.1),
+      bunker = feature('golf_bunker', 0.05);
+    for (const cut of [fairway, green, bunker, feature('golf_tee', 0.02)])
+      expect(crispLandcover(cut)).toBe(true);
+    // The rough is the course's own grass and keeps its soft edge.
+    expect(landcoverAppearance(course)).toBe('grass');
+    expect(crispLandcover(course)).toBe(false);
+    expect(orderLandcover([bunker, green, fairway, course])).toEqual([
+      course,
+      fairway,
+      green,
+      bunker,
+    ]);
+  });
+  it('edges courts, infields and painted lines, each over the larger ground it lies on', () => {
+    const turf = feature('sports_turf', 1),
+      skin = feature('sports_dirt', 0.4),
+      line = feature('sports_line', 0.01);
+    for (const patch of [
+      turf,
+      skin,
+      line,
+      feature('sports_court', 0.2),
+      feature('sports_blacktop', 0.2),
+    ])
+      expect(crispLandcover(patch)).toBe(true);
+    expect(orderLandcover([line, skin, turf])).toEqual([turf, skin, line]);
+  });
 });

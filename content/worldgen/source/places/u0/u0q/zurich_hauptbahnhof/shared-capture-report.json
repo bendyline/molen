@@ -1,0 +1,75 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.zurich_hauptbahnhof",
+  "inputHash": "sha256:29c87c59ab8ce02bcd5758884570c9911ac16dc081998550ec181f16ff672498",
+  "sourceHash": "sha256:f42d1e3eac6bfcdfd0d91cb2f92924ed2c5b082fe35565e2a3614d57aef3c02b",
+  "runtimeHash": "sha256:8f2c69f87e351bd08f10f87fea12ccca723335e09e75fe3bc487cebd56b615e7",
+  "fixtureHash": "sha256:1e830d1616731490e397b3fdad4e70ba57c84b117271d0f05e746c4a49817c3e",
+  "placementHash": "sha256:3381558558234aea7e85f409b3b69d9636f5925feeb71275e49c6eb5f62344f3",
+  "materialGraphs": {
+    "molen.worldgen.material.glass_frit_triangular": {
+      "path": "materials/glass_frit_triangular.matgraph.json",
+      "hash": "sha256:ab416307e458827df9d530e60622e3db805370db7cbf2697ebb4eb0716c967b6"
+    },
+    "molen.worldgen.material.stone_sandstone": {
+      "path": "materials/stone_sandstone.matgraph.json",
+      "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+    },
+    "molen.worldgen.material.metal_standing_seam": {
+      "path": "materials/metal_standing_seam.matgraph.json",
+      "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_limestone_weathered": {
+      "path": "materials/stone_limestone_weathered.matgraph.json",
+      "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-zurich-hauptbahnhof.png",
+      "hash": "sha256:a44d0140877b91d64b883744b74710d11b4f586ed8922b7716b0403daaed3b22",
+      "camera": {
+        "name": "detail-bahnhofplatz-and-train-sheds",
+        "position": [
+          200,
+          160,
+          242
+        ],
+        "lookAt": [
+          -89,
+          5,
+          28
+        ],
+        "fov": 62,
+        "lightDirection": [
+          0.49,
+          1,
+          0.78
+        ],
+        "detail": true
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "zurich.hauptbahnhof",
+        "visibleDraws": 6
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true,
+    "landcoverRestored": true
+  },
+  "errors": [],
+  "notes": "Six shared graphs resolve once per tier for sandstone, limestone, granite, painted steel, standing-seam roofing and tinted glazing."
+}

@@ -248,7 +248,7 @@ describe('road markings', () => {
     ).toBe(10);
   });
 
-  it('paves over the ties where a track crosses a road, and leaves the rails', () => {
+  it('paves over the track bed where a track crosses a road, and carries the rails across', () => {
     const tile = createEmptyTerrainSemanticTile();
     houses(tile, 200);
     tile.transportation.push(
@@ -262,16 +262,16 @@ describe('road markings', () => {
       ),
       { class: 'rail', subclass: 'rail', lines: [[at(200, 0), at(200, SIZE)]] },
     );
-    const track = triangles(createTerrainSurfaceObject(tile, context()), 'surface:markings').filter(
-      (t) => t.kind === TERRAIN_SURFACE_KIND.plain && Math.abs(centroid(t).x - 200) < 1.5,
-    );
-    // Ties are brown, rails gray.
+    const object = createTerrainSurfaceObject(tile, context());
     const across = (t: Triangle): number => Math.abs(centroid(t).z - 200);
-    const ties = track.filter((t) => t.color.r - t.color.b > 0.04);
-    const rails = track.filter((t) => Math.abs(t.color.r - t.color.b) < 0.04);
-    expect(ties.some((t) => across(t) < 5)).toBe(false);
-    expect(ties.some((t) => across(t) > 8 && across(t) < 30)).toBe(true);
-    expect(rails.some((t) => across(t) < 5)).toBe(true);
+    // The bed's track (sleepers and rails in the pavement material) stops at the road...
+    const bed = triangles(object, 'surface:rail-bed');
+    const track = bed.filter((t) => t.kind === TERRAIN_SURFACE_KIND.track);
+    expect(track.some((t) => across(t) < 4)).toBe(false);
+    expect(track.some((t) => across(t) > 10 && across(t) < 30)).toBe(true);
+    // ...where a crossing panel covers the road, and the rails run on across it.
+    expect(bed.some((t) => t.kind === TERRAIN_SURFACE_KIND.sidewalk && across(t) < 4)).toBe(true);
+    expect(triangles(object, 'surface:rails').some((t) => across(t) < 4)).toBe(true);
   });
 
   it("carries a through road's lines past a side street joining from one side", () => {

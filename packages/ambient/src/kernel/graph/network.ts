@@ -533,6 +533,8 @@ export class TransportNetwork implements GraphStore {
           approachLift: lift,
           groundApproach: !draft.bridge,
           approachProfile: draft.bridgeApproachProfile,
+          // Samples beyond this tile's ground follow the nearest one on it.
+          ...(rect !== undefined ? { bounds: rect } : {}),
           connects: [gradeRoad.has(piece.from), gradeRoad.has(piece.to)],
           ...(draft.bridgeConnections !== undefined
             ? { connections: draft.bridgeConnections }

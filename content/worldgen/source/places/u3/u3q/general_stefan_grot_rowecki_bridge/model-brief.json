@@ -1,0 +1,337 @@
+{
+  "id": "general_stefan_grot_rowecki_bridge",
+  "title": "Grot-Rowecki Bridge",
+  "wikidataId": "Q11785882",
+  "referenceCoordinate": {
+    "longitude": 20.994003421,
+    "latitude": 52.28672413
+  },
+  "module": "content/worldgen/source/places/u3/u3q/general_stefan_grot_rowecki_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-grot-rowecki-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "foundation",
+      "graph": "concrete_boardformed",
+      "roughness": 0.9
+    },
+    "road": {
+      "slot": "wall",
+      "graph": "gravel",
+      "roughness": 0.95
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.31
+    }
+  },
+  "exportLabel": "Molen original Grot-Rowecki Bridge master",
+  "expectedDraftMasterHash": "sha256:d09fb876a105afceaa303c5c2b4d66ce5368057ac153916ba7c588be851fe723",
+  "visualBrief": "Two parallel concrete box-girder decks carry four carriageways across the Vistula. Dark steel brackets support the widened wings and outside walking and cycling paths. Repeating paired columns, shallow profile, and a narrow median slot carry the silhouette.",
+  "heightPolicy": "The viewer uses a 73 m sea-level datum and a shallow crest in the authored deck. Native terrain and water are retained. A 0.75 m bearing overlap at each end carries the replacement across adjoining PMTiles fragment endpoints. The mapped deck boundary scopes replacement of the crossing roads and paths. Ramps and lower routes remain native.",
+  "nativeAxes": "Positive X crosses the Vistula northeast from the Bielany bank toward the Praga side. Positive Z faces the upstream side of the bridge.",
+  "limitations": [
+    "The exact mapped deck outline and six transport traces fix the crossing frame and width. Pier stations, steel sections, rail spacing and heights are exterior-photo approximations.",
+    "The main deck and widened side wings reflect the post-expansion appearance. Connecting ramps, approaches and lower paths remain separate map context."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:2021_Warszawa_most_Grota-Roweckiego%2C_5.jpg",
+      "hash": "sha256:0e14a07157aec1b5806c0f9e02b7002c088454009c5445cb122e09c11e4a93b9",
+      "observed": "Modern deck separation and road furniture."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Grot-Rowecki_Bridge_AB.jpg",
+      "hash": "sha256:cde5570e4bc5ee878c516fe0bf056f44f685392e6c9f4dd8a4b95a126ca6179c",
+      "observed": "Overall river profile and span rhythm."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "twin-decks-over-vistula",
+      "position": [
+        132,
+        132,
+        605
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "paired-piers-and-braced-wings",
+      "position": [
+        88,
+        6.5,
+        112
+      ],
+      "lookAt": [
+        11,
+        10,
+        0
+      ],
+      "fov": 59
+    },
+    {
+      "name": "west-carriageways-and-path",
+      "position": [
+        -361,
+        24,
+        -38
+      ],
+      "lookAt": [
+        -288,
+        13,
+        1
+      ],
+      "fov": 63
+    },
+    {
+      "name": "east-carriageways-and-path",
+      "position": [
+        365,
+        27,
+        38
+      ],
+      "lookAt": [
+        303,
+        13,
+        0
+      ],
+      "fov": 62
+    },
+    {
+      "name": "median-and-four-carriageways",
+      "position": [
+        17,
+        32,
+        -38
+      ],
+      "lookAt": [
+        -73,
+        13,
+        0
+      ],
+      "fov": 62
+    },
+    {
+      "name": "western-ramps-and-floodplain",
+      "position": [
+        -450,
+        87,
+        145
+      ],
+      "lookAt": [
+        -343,
+        11,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "reverse-elevation",
+      "position": [
+        -151,
+        132,
+        -605
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 52
+    }
+  ],
+  "materialMethod": "Board-formed concrete, road aggregate and painted metal share library graphs. Fascia, braces and roadway fittings use meter-scale UVs and restrained vertex colors.",
+  "sourceFacts": {
+    "deckLengthMeters": 678.255,
+    "deckWidthMeters": 46.966,
+    "pairedDecks": 2,
+    "pierStations": 6,
+    "carriageways": 4,
+    "outerPaths": 2,
+    "pmtilesCrossingIds": [
+      35184377169330,
+      35184634661590,
+      35184484806750,
+      35184523031657,
+      35184523031650,
+      35184784021680
+    ]
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        11,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u3/u3q/general_stefan_grot_rowecki_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.9
+      },
+      "road": {
+        "slot": "wall",
+        "graph": "gravel",
+        "roughness": 0.95
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.31
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.9
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.95
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.31
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.9
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.95
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.31
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.9
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.95
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.31
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "general_stefan_grot_rowecki_bridge-skyline",
+      "position": [
+        132,
+        132,
+        605
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 52,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "general_stefan_grot_rowecki_bridge-district",
+      "position": [
+        132,
+        132,
+        605
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 52,
+      "reviewLod": "district"
+    },
+    {
+      "name": "general_stefan_grot_rowecki_bridge-street",
+      "position": [
+        132,
+        132,
+        605
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 52,
+      "reviewLod": "street"
+    },
+    {
+      "name": "general_stefan_grot_rowecki_bridge-closeup",
+      "position": [
+        132,
+        132,
+        605
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 52,
+      "reviewLod": "closeup"
+    }
+  ]
+}

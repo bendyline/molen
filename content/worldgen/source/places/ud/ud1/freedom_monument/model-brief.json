@@ -1,0 +1,439 @@
+{
+  "id": "freedom_monument",
+  "title": "Freedom Monument",
+  "wikidataId": "Q337179",
+  "referenceCoordinate": {
+    "longitude": 24.113349547,
+    "latitude": 56.951510946
+  },
+  "module": "content/worldgen/source/places/ud/ud1/freedom_monument/models/monument-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-freedom-monument.mjs",
+  "builder": "buildFreedomLevel",
+  "surfaces": {
+    "granite": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.65
+    },
+    "carving": {
+      "slot": "wall",
+      "graph": "stone_granite",
+      "roughness": 0.68
+    },
+    "shaft": {
+      "slot": "wall",
+      "graph": "stone_travertine",
+      "roughness": 0.66
+    },
+    "copper": {
+      "slot": "trim",
+      "graph": "metal_copper",
+      "roughness": 0.58,
+      "metallic": 0.62
+    },
+    "patinated": {
+      "slot": "wall",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.58,
+      "metallic": 0.63
+    },
+    "gilding": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.35,
+      "metallic": 0.76
+    }
+  },
+  "exportLabel": "Molen original Freedom Monument master",
+  "expectedDraftMasterHash": "sha256:8f824ba5ca9477c4da91442b832d17f6204321b330c31f2a6822894a716ed3e7",
+  "visualBrief": "Freedom Monument in Riga with its circular granite terraces, carved side panels, stone figures, tapered travertine shaft, and copper Liberty holding three gilded stars.",
+  "heightPolicy": "The 9.65 m sea-level datum and standard Terrarium surface support the lower granite tread. The curved walls, stepped terrace and offset shaft follow separate parts of the mapped site.",
+  "nativeAxes": "Native +X follows Brīvības Boulevard to the northeast. The broad entry and shield-bearing front face toward the southwest, in the direction of the mapped rectangular apron.",
+  "limitations": [
+    "The map anchors the apron, shaft, curved walls and boulevard axis. Sculpture proportions and most vertical details come from ordinary photographs and the sculpture plan.",
+    "The figure poses, carving depths and smaller relief details are exterior reconstructions. The surrounding boulevard, park, canal and buildings remain in the host map."
+  ],
+  "materialMethod": "The paving and stone figures share granite. The shaft uses travertine. Cast bronze supplies the patinated Liberty and gilded stars through distinct tints. Copper panels cover the summit plinth.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:0874_LVA_Riga_freedom_monument_front.jpg",
+      "hash": "sha256:27d90142795fb69aefeae2e4e9a7446c1103cacf8ce62c2b9bdb39871c06e1b1",
+      "observed": "Plinth, central stone figures, shaft and crowned summit."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Freedom_Monument.jpg",
+      "hash": "sha256:0b20d89a4ed2b2005797ab4bd56b33fd04e1130f1f62ef6fdb91d97bdf411092",
+      "observed": "Stone group volumes, gold stars and their alignment."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Freedom_monument_Latvia_plan.png",
+      "hash": "sha256:45b75c7ac3cf694ee047003ef4151048e1a4f71cbe08526c7786d89db45f5964",
+      "observed": "Arrangement of the relief panels and sculpture groups."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Br%C4%ABv%C4%ABbas_piemineklis-Darbs.png",
+      "hash": "sha256:02093e7872025823ae498ef8289cae0299160e79072dbfb5d5047586972358f2",
+      "observed": "Corner work group."
+    },
+    {
+      "url": "https://www.latvia.eu/our-dna/key-facts/",
+      "hash": "sha256:a276c89e6bf224d420170b420359fa776cc49443c7facfc12dba6afbb033c06e",
+      "observed": "Relative position of the shaft, apron, side panels and adjoining boulevard."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "monument-and-apron",
+      "position": [
+        -72,
+        32,
+        60
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ],
+      "fov": 47
+    },
+    {
+      "name": "southwest-dedication-and-shield",
+      "position": [
+        -25,
+        8,
+        -2
+      ],
+      "lookAt": [
+        -6.6155,
+        6.1,
+        0.05875
+      ],
+      "fov": 47
+    },
+    {
+      "name": "liberty-and-three-stars",
+      "position": [
+        -20,
+        39,
+        5
+      ],
+      "lookAt": [
+        -6.6155,
+        37.5,
+        0.05875
+      ],
+      "fov": 42
+    },
+    {
+      "name": "stone-groups-south",
+      "position": [
+        -21,
+        10,
+        19
+      ],
+      "lookAt": [
+        -6.6155,
+        6.7,
+        0.05875
+      ],
+      "fov": 41
+    },
+    {
+      "name": "stone-groups-north",
+      "position": [
+        1.4,
+        11,
+        -18
+      ],
+      "lookAt": [
+        -6.6155,
+        7,
+        0.05875
+      ],
+      "fov": 44
+    },
+    {
+      "name": "rear-terrace-and-panels",
+      "position": [
+        29,
+        7.8,
+        4
+      ],
+      "lookAt": [
+        -1.653875,
+        3,
+        0.6
+      ],
+      "fov": 46
+    },
+    {
+      "name": "apron-plan",
+      "position": [
+        10,
+        48,
+        37
+      ],
+      "lookAt": [
+        -2,
+        5,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "northwest-reliefs",
+      "position": [
+        16,
+        10,
+        -20
+      ],
+      "lookAt": [
+        -6.6155,
+        5.8,
+        0.05875
+      ],
+      "fov": 43
+    }
+  ],
+  "sourceFacts": {
+    "totalHeightMeters": 42,
+    "mappedPartCount": 10,
+    "starCount": 3,
+    "figureGroupCount": 8,
+    "reliefPanelCount": 4,
+    "approach": "southwest along Brīvības Boulevard"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -6,
+        18,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ud/ud1/freedom_monument/models/monument-model.mjs",
+    "export": "buildFreedomSkyline",
+    "surfaces": {
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.65
+      },
+      "carving": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.68
+      },
+      "shaft": {
+        "slot": "wall",
+        "graph": "stone_travertine",
+        "roughness": 0.66
+      },
+      "copper": {
+        "slot": "trim",
+        "graph": "metal_copper",
+        "roughness": 0.58,
+        "metallic": 0.62
+      },
+      "patinated": {
+        "slot": "wall",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.58,
+        "metallic": 0.63
+      },
+      "gilding": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.35,
+        "metallic": 0.76
+      }
+    },
+    "errorMeters": 1.48,
+    "authoredLevels": {
+      "district": {
+        "export": "buildFreedomDistrict",
+        "surfaces": {
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.65
+          },
+          "carving": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.68
+          },
+          "shaft": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.66
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.58,
+            "metallic": 0.62
+          },
+          "patinated": {
+            "slot": "wall",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.63
+          },
+          "gilding": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.35,
+            "metallic": 0.76
+          }
+        },
+        "errorMeters": 0.77
+      },
+      "street": {
+        "export": "buildFreedomStreet",
+        "surfaces": {
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.65
+          },
+          "carving": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.68
+          },
+          "shaft": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.66
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.58,
+            "metallic": 0.62
+          },
+          "patinated": {
+            "slot": "wall",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.63
+          },
+          "gilding": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.35,
+            "metallic": 0.76
+          }
+        },
+        "errorMeters": 0.26
+      },
+      "closeup": {
+        "export": "buildFreedomCloseup",
+        "surfaces": {
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.65
+          },
+          "carving": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.68
+          },
+          "shaft": {
+            "slot": "wall",
+            "graph": "stone_travertine",
+            "roughness": 0.66
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.58,
+            "metallic": 0.62
+          },
+          "patinated": {
+            "slot": "wall",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.58,
+            "metallic": 0.63
+          },
+          "gilding": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.35,
+            "metallic": 0.76
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "freedom_monument-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -72,
+        32,
+        60
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ]
+    },
+    {
+      "name": "freedom_monument-district",
+      "reviewLod": "district",
+      "position": [
+        -72,
+        32,
+        60
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ]
+    },
+    {
+      "name": "freedom_monument-street",
+      "reviewLod": "street",
+      "position": [
+        -72,
+        32,
+        60
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ]
+    },
+    {
+      "name": "freedom_monument-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -72,
+        32,
+        60
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.millennium_of_russia",
+  "inputHash": "sha256:e48a3016b5b896acf46bb936cdd6c67be57678fc5909eeb8f62cd2175eb2ebe4",
+  "sourceHash": "sha256:8acf789dee07cd05ad47c60e8184be3c90efa27e93f818750c6b2f5ebbdd10f8",
+  "runtimeHash": "sha256:6ab2b0dcd613e1c68b72a8693dc64d6f14e763ea31181fb282d248fd805ff635",
+  "fixtureHash": "sha256:12d98f4cdcb974abd30e75fccc6e62f18c1d36c96d8fc0402cb15e0f68fdefad",
+  "placementHash": "sha256:ae0e7f2ba2f333244e25aa97cce9c6f98ce6bfc68d41aeb623eaa3992f89b64f",
+  "materialGraphs": {
+    "molen.worldgen.material.metal_bronze_cast": {
+      "path": "materials/metal_bronze_cast.matgraph.json",
+      "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.gravel": {
+      "path": "materials/gravel.matgraph.json",
+      "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-south-face.png",
+      "hash": "sha256:26950c46773acbc956ead1c493e67e1a2bcd119a9974e3df6508f88fa60dce1d",
+      "camera": {
+        "name": "detail-south-rurik-and-cathedral",
+        "position": [
+          0.6,
+          1.7,
+          34
+        ],
+        "lookAt": [
+          0,
+          7.3,
+          0
+        ],
+        "fov": 39,
+        "detail": true,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "millennium.of.russia",
+        "visibleMemberDraws": 5
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "liveSupportGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Reuses four shared graphs for cast bronze, granite, gravel and painted iron. Lamp panes use a local color."
+}

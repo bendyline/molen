@@ -1,3 +1,4 @@
+import type { RailVehicleProfile } from '@bendyline/molen-schema';
 /**
  * `createAmbientRenderer`: draws a main-thread world's ambient agents (the Earth view's shared
  * vehicle world, or any host stepping a World itself). Cars, buses and rail cars are instanced
@@ -14,7 +15,7 @@ import { AmbientAircraft, type AmbientAircraftModels } from './aircraft';
 import { ProxyBatches } from './batches';
 import { type AmbientVehicleModels, type DetailCandidate, VehicleDetail } from './detail';
 import { AmbientFigures, type WalkerView } from './figures';
-import { proxyHeight, proxyShapeFor } from './proxies';
+import { type ProxyShape, proxyHeight, proxyShapeFor } from './proxies';
 
 export interface AmbientRenderBudget {
   /** Cars drawn with their full model at most. */
@@ -49,6 +50,8 @@ export interface AmbientRendererOptions {
   aircraft?: AmbientAircraftModels;
   /** Body heights by type id, for proxies (the kernel stores length and width only). */
   heights?: Readonly<Record<string, number>>;
+  /** Rail vehicle silhouettes by type id (`spec.rail.profile`), for train proxies. */
+  railProfiles?: Readonly<Record<string, RailVehicleProfile>>;
   budget?: Partial<AmbientRenderBudget>;
 }
 
@@ -240,7 +243,9 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
             continue;
           }
         }
-        const shape = proxyShapeFor(agent.kind, agent.length);
+        const profile = agent.kind === 'train' ? options.railProfiles?.[agent.type] : undefined;
+        const shape: ProxyShape =
+          profile !== undefined ? `rail-${profile}` : proxyShapeFor(agent.kind, agent.length);
         const height =
           options.heights?.[agent.type] ??
           proxyHeight(shape, agent.length, agent.width, agent.type);

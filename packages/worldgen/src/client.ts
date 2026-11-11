@@ -22,7 +22,7 @@ export {
   createInstancedPlacementLod,
   type InstancedPlacementLodOptions,
 } from './client/instanced-lod';
-export type { ModelLoader, PreparedModel } from './client/instanced-models';
+export type { ModelDetail, ModelLoader, PreparedModel } from './client/instanced-models';
 export { ModelLibrary, mergeSceneGeometry } from './client/instanced-models';
 export {
   type InteriorElevatorStop,

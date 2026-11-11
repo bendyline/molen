@@ -32,18 +32,18 @@
             "centerOfMass": [
               0,
               0.52,
-              0
+              0.269
             ],
             "wheelbase": 2.45,
             "wheelTrack": 1.4448,
             "wheelRadius": 0.29,
-            "mass": 1150,
-            "engineForce": 4700,
-            "maxSpeed": 36,
+            "mass": 1205,
+            "engineForce": 7884,
+            "maxSpeed": 51,
             "reverseSpeed": 7,
-            "brakeDeceleration": 9,
+            "brakeDeceleration": 10.5,
             "maxSteer": 0.58,
-            "grip": 7.5,
+            "grip": 9.41,
             "driverEye": [
               0.3956,
               1.16,
@@ -52,14 +52,14 @@
             "steeringRate": 1.8,
             "steeringFadeSpeed": 18,
             "rollingResistance": 0.15,
-            "aerodynamicResistance": 0.0025,
+            "aerodynamicResistance": 0.000335,
             "terrainAlignRate": 1.8,
             "supportTolerance": 0.08,
             "maxStepHeight": 0.4,
             "maxSlope": 0.61,
             "drive": "front",
-            "rollStiffness": 0.05,
-            "pitchStiffness": 0.03,
+            "rollStiffness": 0.077,
+            "pitchStiffness": 0.041,
             "actuators": {
               "hood": {
                 "seconds": 1.8
@@ -1242,7 +1242,28 @@
                   "actuator": "trunk"
                 }
               }
-            ]
+            ],
+            "corneringStiffness": 19.5,
+            "suspensionFrequency": 1.58,
+            "suspensionDamping": 0.51,
+            "rollBalance": 0.55,
+            "brakeBias": 0.74,
+            "aerodynamicLift": 0.000127,
+            "powertrain": {
+              "power": 82000,
+              "peakPowerRpm": 6000,
+              "redline": 6500,
+              "curve": "gasoline",
+              "gears": [
+                16.45,
+                9.442,
+                6.048,
+                4.006,
+                2.709,
+                1.859
+              ],
+              "efficiency": 0.852
+            }
           },
           "visual": {
             "wheelNodes": [
@@ -1502,40 +1523,32 @@
             "self.occupied": true
           },
           "pitchFrom": {
-            "signal": "vehicleState.speed",
+            "signal": "vehicleState.rpm",
             "curve": [
               [
-                -7,
-                1.15
-              ],
-              [
                 0,
-                0.85
+                0.7
               ],
               [
-                10.8,
-                1.15
+                800,
+                0.8
               ],
               [
-                23.4,
-                1.45
+                3900,
+                1.35
               ],
               [
-                36,
-                1.75
+                6500,
+                1.9
               ]
             ]
           },
           "gainFrom": {
-            "signal": "vehicleInput.throttle",
+            "signal": "vehicleState.engineLoad",
             "curve": [
               [
-                -1,
-                0.9
-              ],
-              [
                 0,
-                0.65
+                0.6
               ],
               [
                 1,

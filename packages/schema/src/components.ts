@@ -1398,11 +1398,58 @@ const vehicleBodyStyleSchema = z
     'motorhome',
     'bus',
     'light-rail',
+    'locomotive',
+    'freight-car',
+    'passenger-car',
     'bicycle',
     'motorcycle',
     'scooter',
   ])
   .describe('Generic body style, independent of any make or model name.');
+const railVehicleSpecSchema = z
+  .strictObject({
+    truckCenters: num
+      .positive()
+      .describe(
+        'Distance between the two truck (bogie) pivots along the body, meters. The body rides as the chord between them on curves.',
+      ),
+    couplerLength: num
+      .positive()
+      .optional()
+      .describe(
+        'Length over the coupler pulling faces, meters; spacing in a consist. Default length.',
+      ),
+    power: num
+      .nonnegative()
+      .optional()
+      .describe(
+        'Power at the rail in watts. Tractive effort is engineForce up to power / speed; 0 (default) is an unpowered car that only brakes.',
+      ),
+    gauge: num
+      .positive()
+      .optional()
+      .describe('Track gauge between rail heads, meters. Default 1.435 (standard gauge).'),
+    profile: z
+      .enum([
+        'box',
+        'hopper',
+        'tank',
+        'gondola',
+        'flat',
+        'well',
+        'autorack',
+        'locomotive',
+        'coach',
+        'railcar',
+      ])
+      .optional()
+      .describe(
+        'Silhouette of the low-detail stand-in drawn at a distance (parked in a yard, far traffic). Default box.',
+      ),
+  })
+  .describe(
+    'Track-guided running gear. With a host track guide the vehicle follows the rails and A/D pick the route at the next switch; without one it drives straight with locked steering.',
+  );
 const genericLabelSchema = z
   .string()
   .min(1)
@@ -1569,6 +1616,131 @@ const vehicleSpecSchema = z
         .positive()
         .optional()
         .describe('Suspension damping ratio. Default 0.5.'),
+      powertrain: z
+        .strictObject({
+          power: num.positive().describe('Peak power at the engine or motor shaft, in watts.'),
+          peakPowerRpm: num.positive().describe('Engine speed at peak power, rev/min.'),
+          redline: num
+            .positive()
+            .optional()
+            .describe('Rev limit, rev/min. Default 1.1 × peakPowerRpm.'),
+          idle: num
+            .nonnegative()
+            .optional()
+            .describe('Idle speed, rev/min. Default 800, or 0 for an electric motor.'),
+          curve: z
+            .enum(['gasoline', 'turbo', 'diesel', 'electric'])
+            .optional()
+            .describe(
+              'Torque curve shape. Default gasoline; turbo and diesel hold a low-speed torque plateau, electric holds its peak torque from rest up to peakPowerRpm and then constant power.',
+            ),
+          gears: z
+            .array(num.positive())
+            .min(1)
+            .max(12)
+            .describe(
+              'Overall ratios (gearbox × final drive: engine revs per wheel rev), lowest gear first.',
+            ),
+          continuous: z
+            .boolean()
+            .optional()
+            .describe(
+              'Continuously variable transmission ranging between the first and last gears ratios.',
+            ),
+          reverse: num.positive().optional().describe('Overall reverse ratio. Default first gear.'),
+          efficiency: num
+            .positive()
+            .max(1)
+            .optional()
+            .describe('Share of engine torque that reaches the wheels. Default 0.9.'),
+          shiftTime: num
+            .nonnegative()
+            .optional()
+            .describe('Seconds of reduced drive during a gear change. Default 0.3.'),
+          engineBraking: num
+            .nonnegative()
+            .optional()
+            .describe(
+              'Engine braking off the throttle (regeneration for an electric motor), as a share of the torque at peak power. Default 0.2.',
+            ),
+          response: num
+            .positive()
+            .optional()
+            .describe(
+              'How fast delivered torque follows the pedal, 1/s. Default 8; turbo and diesel 4, electric 20.',
+            ),
+          inertia: num
+            .nonnegative()
+            .optional()
+            .describe(
+              'Rotating inertia of the engine, flywheel and gearbox input in kg m², spun up with the car (most in low gears). Default 0.1 + power / 1 MW, or 0.06 for an electric motor.',
+            ),
+        })
+        .superRefine((powertrain, ctx) => {
+          if (powertrain.gears.some((ratio, i) => i > 0 && ratio >= (powertrain.gears[i - 1] ?? 0)))
+            ctx.addIssue({
+              code: 'custom',
+              path: ['gears'],
+              message: 'Gear ratios must fall from the lowest gear to the highest.',
+            });
+          if (powertrain.redline !== undefined && powertrain.redline < powertrain.peakPowerRpm)
+            ctx.addIssue({
+              code: 'custom',
+              path: ['redline'],
+              message: 'The rev limit cannot be below the peak-power speed.',
+            });
+        })
+        .optional()
+        .describe(
+          'Engine, gears and driveline: wheel force is engine torque through the selected gear. Without one the constant engineForce drives the vehicle up to maxSpeed.',
+        ),
+      rearGrip: num
+        .positive()
+        .optional()
+        .describe(
+          'Rear tire grip in m/s² where it differs from the front (wider rear tires). Default grip.',
+        ),
+      tireLoadSensitivity: num
+        .min(0)
+        .max(0.6)
+        .optional()
+        .describe(
+          'Share of its friction a tire loses when its load doubles from a quarter of the weight. Default 0.25; the heavier and the stiffer-sprung axle slides first. 0 keeps grip proportional to load.',
+        ),
+      rollBalance: num
+        .min(0)
+        .max(1)
+        .optional()
+        .describe(
+          'Front axle share of the roll stiffness. Default 0.6; the stiffer axle carries more of the cornering weight transfer and loses grip first, so more is understeer.',
+        ),
+      aerodynamicLift: num
+        .optional()
+        .describe(
+          'Aerodynamic lift as an acceleration per (m/s)² of airspeed, in 1/m; negative is downforce. Default 0.',
+        ),
+      tractionControl: z
+        .boolean()
+        .optional()
+        .describe('Traction control holds wheelspin at the grip limit. Default true.'),
+      stabilityControl: z
+        .boolean()
+        .optional()
+        .describe('Stability control brakes one wheel to catch a slide. Default true.'),
+      limitedSlip: num
+        .min(0)
+        .max(1)
+        .optional()
+        .describe(
+          'How far the driven axle resists one-wheel spin: 0 open differential (the unloaded inside wheel spins first), 1 locked. Default 0.',
+        ),
+      looseSurfaceGrip: num
+        .min(0)
+        .max(1)
+        .optional()
+        .describe(
+          'Share of the grip loose surfaces take away that the tires win back (off-road tread). Default 0.',
+        ),
       cycle: z
         .strictObject({
           maxLean: num.positive().max(1.2).describe('Maximum balanced inward lean in radians.'),
@@ -1596,6 +1768,7 @@ const vehicleSpecSchema = z
         .describe(
           'Self-balancing cycle handling and rider contact points. Driver seat anchors the pelvis.',
         ),
+      rail: railVehicleSpecSchema.optional(),
     }),
   )
   .superRefine((spec, ctx) => {
@@ -1869,6 +2042,56 @@ registerComponent(
       .max(1)
       .optional()
       .describe('0–1: how far the tires are past their grip (sliding, wheelspin, locked wheels).'),
+    gear: z
+      .int()
+      .min(-1)
+      .max(12)
+      .optional()
+      .describe('Selected gear with a powertrain: -1 reverse, 1 upward forward gears.'),
+    rpm: num
+      .nonnegative()
+      .optional()
+      .describe('Engine speed in rev/min with a powertrain; rises and falls with the gears.'),
+    engineLoad: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe('0–1 share of the engine torque being delivered, after its throttle response.'),
+    shift: num
+      .nonnegative()
+      .optional()
+      .describe('Seconds until the gearbox may change gear again; drive is reduced as it starts.'),
+    assist: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe('0–1: how hard traction or stability control is intervening.'),
+    surfaceGrip: num
+      .nonnegative()
+      .optional()
+      .describe('Grip of the surface under the wheels relative to dry pavement; 1 on the road.'),
+    track: z
+      .strictObject({
+        trail: z
+          .array(num)
+          .max(3072)
+          .describe(
+            'Recent track centreline under the vehicle, newest first, as flat x, y, z triples in world meters about 2 m apart; coupled cars ride on it.',
+          ),
+        prefer: z
+          .union([z.literal(-1), z.literal(0), z.literal(1)])
+          .describe('Route at the next switch: -1 left, 0 straight on, 1 right.'),
+        ended: z
+          .boolean()
+          .optional()
+          .describe('True while the vehicle stands at the end of its track.'),
+        ref: z
+          .string()
+          .optional()
+          .describe("The host track guide's reference for the piece of track under the head."),
+      })
+      .optional()
+      .describe('Track-guided vehicles (spec.rail with a host track guide): where the rails ran.'),
   }),
   {
     description:
@@ -1947,6 +2170,27 @@ registerComponent(
       'Rider-to-mount relationship. Occupied seats are exclusive; mounted characters bypass walking physics.',
     owner: 'kernel/vehicles',
     examples: [{ vehicle: 'car-1', seat: 'driver' }],
+    docsRef: 'guide/vehicles.md',
+  },
+);
+registerComponent(
+  'coupled',
+  z.strictObject({
+    leader: z
+      .string()
+      .min(1)
+      .describe('Entity ID of the track-guided vehicle at the head of the consist.'),
+    offset: num
+      .positive()
+      .describe(
+        "Distance in meters along the track from the leader's centre back to this car's centre.",
+      ),
+  }),
+  {
+    description:
+      "A rail car in a consist: rides the leader's track trail at a fixed distance behind it, sharing its speed. Powered cars add their traction to the leader's (multiple-unit control); every car adds its mass and brakes.",
+    owner: 'kernel/vehicles',
+    examples: [{ leader: 'train-1-loco', offset: 21.5 }],
     docsRef: 'guide/vehicles.md',
   },
 );
@@ -2159,6 +2403,25 @@ const airplanePhysicsSchema = z.strictObject(
       .describe(
         'Tire side grip with full weight on the wheels: lateral deceleration in m/s² and yaw grip in 1/s.',
       ),
+    tailwheel: z
+      .boolean()
+      .optional()
+      .describe(
+        'Main wheels ahead of the center of mass with a tailwheel: a firm touchdown pitches the nose up and hard braking lifts the tail. Default false (nosewheel).',
+      ),
+    gearRebound: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe(
+        'Share of the sink speed beyond 0.6 m/s that struts and tires give back at touchdown. Default 0.45.',
+      ),
+    pilotGTolerance: num
+      .positive()
+      .optional()
+      .describe(
+        'Sustained positive g the pilot holds before vision dims. Default 4.5, or 6.5 when maxLoadFactor is 7.5 or more.',
+      ),
   }),
 );
 const helicopterPhysicsSchema = z.strictObject(
@@ -2207,6 +2470,12 @@ const helicopterPhysicsSchema = z.strictObject(
       .max(2)
       .optional()
       .describe('Effective lifting-disc count, 2 for a tandem rotor; default 1.'),
+    rotorInertiaTime: num
+      .positive()
+      .optional()
+      .describe(
+        'Seconds of hover power stored in the rotor at full speed; default 2. Sets how long an unpowered rotor carries the helicopter (autorotation); needs powerLimitedRotor.',
+      ),
     cyclicTilt: num.positive(),
     cyclicResponse: num.positive(),
     cyclicDamping: num.nonnegative(),
@@ -2331,6 +2600,18 @@ const aircraftEngineSchema = z.strictObject(
       .describe(
         'Propeller polar moment of inertia in kg m², for gyroscopic precession. Default 0.',
       ),
+    fuelConsumption: num
+      .positive()
+      .optional()
+      .describe(
+        'Specific fuel consumption when the aircraft declares fuel: kg per joule of shaft work for a propeller or rotor engine (default 7.5e-8 with a manual mixture, 9.5e-8 otherwise), kg per newton-second of thrust for a jet (default 2e-5).',
+      ),
+    afterburnerFuelConsumption: num
+      .positive()
+      .optional()
+      .describe(
+        'Jet consumption in kg per newton-second of total thrust at full reheat. Default 5.4e-5.',
+      ),
   }),
 );
 const aircraftEngineId = z
@@ -2385,6 +2666,14 @@ const aircraftSpecSchema = z
         .optional()
         .describe(
           'Assisted hover controls and 0–90 degree thrust-vector actuator; airplane model only.',
+        ),
+      fuel: z
+        .strictObject({
+          capacity: num.positive().describe('Usable fuel in kg with full tanks.'),
+        })
+        .optional()
+        .describe(
+          'Fuel on board: mass is the aircraft with full tanks, it lightens as fuel burns and the engines stop when the tanks are dry. Omitted is unlimited fuel at constant mass.',
         ),
       hardLandingSpeed: num.positive(),
       hardLandingRoll: num.positive(),
@@ -2951,6 +3240,25 @@ registerComponent(
     loadFactor: num
       .optional()
       .describe('Airplane aerodynamic and thrust load along its up axis, in g.'),
+    fuel: num
+      .nonnegative()
+      .optional()
+      .describe('Fuel remaining in kg when the aircraft declares fuel; absent is full tanks.'),
+    buffet: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe(
+        'Airplane pre-stall and stalled-wing buffet, 0..1: a cue to shake the view, starting a few degrees before the stall.',
+      ),
+    greyout: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe(
+        'Pilot strain under positive g, 0..1: vision starts to dim near 0.3 and is gone at 1.',
+      ),
+    redout: num.min(0).max(1).optional().describe('Pilot strain under negative g, 0..1.'),
     engines: z
       .record(
         aircraftEngineId,

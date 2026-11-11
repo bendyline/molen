@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import pngjs from 'pngjs';
@@ -446,6 +446,7 @@ const binaryHeader = 20 + paddedJsonLength;
 glb.writeUInt32LE(binary.byteLength, binaryHeader);
 glb.writeUInt32LE(0x004e4942, binaryHeader + 4);
 binary.copy(glb, binaryHeader + 8);
+await mkdir(dirname(modelPath), { recursive: true });
 await writeFile(modelPath, glb);
 
 const digest = createHash('sha256').update(glb).digest('hex');

@@ -1,7 +1,31 @@
 /** Field parameters preserve world row phase across tile clipping and floating-origin rebases. */
 import * as THREE from 'three';
 import type { TerrainSurfaceMeshBuilder } from './linear-features';
-import type { TerrainLandcoverFeature } from './semantic-types';
+import type { TerrainCultivation, TerrainLandcoverFeature } from './semantic-types';
+
+/** The share of a planted field its crop covers, the rest showing soil. */
+export function agricultureCropCover(cultivation: TerrainCultivation): number {
+  return cultivation.stage === 'sown' || cultivation.stage === 'stubble'
+    ? 0.25
+    : cultivation.pattern === 'grove'
+      ? 0.45
+      : 0.85;
+}
+
+/**
+ * A planted field's color where its rows no longer resolve: what the ground material settles to
+ * with distance (rows fade to an even six tenths of the crop's cover).
+ */
+export function agricultureFarColor(
+  cultivation: TerrainCultivation,
+  out: THREE.Color,
+): THREE.Color {
+  out.set(cultivation.color);
+  if (cultivation.pattern === 'plain') return out;
+  scratchSoil.set(cultivation.soil).lerp(out, 0.6 * agricultureCropCover(cultivation));
+  return out.copy(scratchSoil);
+}
+const scratchSoil = new THREE.Color();
 
 export function appendAgricultureAttributes(
   builder: TerrainSurfaceMeshBuilder,
@@ -47,11 +71,7 @@ export function appendAgricultureAttributes(
       phase + (-sin * x + cos * z) / spacing,
       Number.isFinite(margin) ? margin : 3,
       1,
-      cultivation.stage === 'sown' || cultivation.stage === 'stubble'
-        ? 0.25
-        : cultivation.pattern === 'grove'
-          ? 0.45
-          : 0.85,
+      agricultureCropCover(cultivation),
     ];
   });
   builder.attributeSince('agricultureSoil', 3, start, () => [soil.r, soil.g, soil.b]);

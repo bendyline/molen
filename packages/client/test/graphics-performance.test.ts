@@ -222,6 +222,30 @@ describe('sparse graphics work', () => {
     queue.dispose();
   });
 
+  it('gives background work a turn among the rest once it has waited', () => {
+    let time = 0;
+    const queue = new FrameAdmissionQueue({
+      maxJobs: 1,
+      backgroundWaitMs: 100,
+      backgroundShare: 3,
+      now: () => time,
+      schedule: () => {},
+    });
+    const order: string[] = [];
+    void queue.run(() => order.push('b1'), { priority: 'background' });
+    void queue.run(() => order.push('b2'), { priority: 'background' });
+    for (let frame = 0; frame < 12; frame++) {
+      time = frame * 20;
+      void queue.run(() => order.push('n'));
+      queue.flush();
+    }
+    // Nothing until 100 ms have passed, then one turn after every three other jobs.
+    expect(order).toEqual(['n', 'n', 'n', 'n', 'n', 'b1', 'n', 'n', 'n', 'b2', 'n', 'n']);
+    expect(() => new FrameAdmissionQueue({ backgroundShare: 0 })).toThrow(RangeError);
+    while (queue.pending) queue.flush();
+    queue.dispose();
+  });
+
   it('promotes a background job ahead of queued normal work on request', async () => {
     const queue = new FrameAdmissionQueue({ maxJobs: 1, schedule: () => {} });
     const order: string[] = [];

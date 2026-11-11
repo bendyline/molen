@@ -48,6 +48,8 @@ type MolenAircraftData = {
       minPropellerSpeed?: number;
       propellerRotation?: 'clockwise' | 'counterclockwise';
       propellerInertia?: number;
+      fuelConsumption?: number;
+      afterburnerFuelConsumption?: number;
     };
     engines?: {
       mixtureControl?: boolean;
@@ -75,6 +77,8 @@ type MolenAircraftData = {
       minPropellerSpeed?: number;
       propellerRotation?: 'clockwise' | 'counterclockwise';
       propellerInertia?: number;
+      fuelConsumption?: number;
+      afterburnerFuelConsumption?: number;
       id: string;
     }[];
     airplane?: {
@@ -144,6 +148,9 @@ type MolenAircraftData = {
       brakeDeceleration: number;
       rollingDeceleration: number;
       groundTrackRate: number;
+      tailwheel?: boolean;
+      gearRebound?: number;
+      pilotGTolerance?: number;
     };
     helicopter?: {
       fixedGear?: boolean;
@@ -156,6 +163,7 @@ type MolenAircraftData = {
       vortexRing?: boolean;
       retreatingBladeSpeed?: number;
       rotorDiscs?: number;
+      rotorInertiaTime?: number;
       cyclicTilt: number;
       cyclicResponse: number;
       cyclicDamping: number;
@@ -178,6 +186,9 @@ type MolenAircraftData = {
       rollAuthority: number;
       yawAuthority: number;
       damping: number;
+    };
+    fuel?: {
+      capacity: number;
     };
     hardLandingSpeed: number;
     hardLandingRoll: number;
@@ -352,6 +363,10 @@ type MolenAircraftStateData = {
   thrustVectorPosition?: number;
   sideslip?: number;
   loadFactor?: number;
+  fuel?: number;
+  buffet?: number;
+  greyout?: number;
+  redout?: number;
   engines?: Record<string, {
       rpm: number;
       shaftPower?: number;
@@ -393,6 +408,7 @@ type MolenAmbientAgentData = {
   hidden?: boolean;
   consist?: string;
   carIndex?: number;
+  offset?: number;
   trail?: string[];
   served?: string;
   air?: {
@@ -422,6 +438,17 @@ type MolenAmbientRoleData = {
   max?: number;
   weight?: number;
   cars?: number;
+  track?: 'light' | 'heavy';
+  consist?: {
+    units?: [number, number];
+    length: [number, number];
+    block?: [number, number];
+    cars: {
+      type: string;
+      weight?: number;
+      colors?: string[];
+    }[];
+  };
   colors?: string[];
   visual?: {
     wheelNodes?: string[];
@@ -743,6 +770,11 @@ type MolenCollider3dData = {
   restitution?: number;
   friction?: number;
   density?: number;
+};
+/** A rail car in a consist: rides the leader's track trail at a fixed distance behind it, sharing its speed. Powered cars add their traction to the leader's (multiple-unit control); every car adds its mass and brakes. */
+type MolenCoupledData = {
+  leader: string;
+  offset: number;
 };
 /** Singleton scene environment: optional Earth/custom sky, ambient/sun lighting, background, fog, tone mapping, shadow quality tier. */
 type MolenEnvironmentData = {
@@ -1272,7 +1304,7 @@ type MolenVehicleData = {
         mode?: 'position' | 'cycle' | 'latch';
       }>;
     label: string;
-    bodyStyle?: 'city' | 'hatchback' | 'sedan' | 'fastback' | 'coupe' | 'roadster' | 'wagon' | 'crossover' | 'suv' | 'offroad' | 'pickup' | 'van' | 'cargo-van' | 'box-truck' | 'motorhome' | 'bus' | 'light-rail' | 'bicycle' | 'motorcycle' | 'scooter';
+    bodyStyle?: 'city' | 'hatchback' | 'sedan' | 'fastback' | 'coupe' | 'roadster' | 'wagon' | 'crossover' | 'suv' | 'offroad' | 'pickup' | 'van' | 'cargo-van' | 'box-truck' | 'motorhome' | 'bus' | 'light-rail' | 'locomotive' | 'freight-car' | 'passenger-car' | 'bicycle' | 'motorcycle' | 'scooter';
     genericLabel?: string;
     width: number;
     length: number;
@@ -1305,6 +1337,29 @@ type MolenVehicleData = {
     pitchStiffness?: number;
     suspensionFrequency?: number;
     suspensionDamping?: number;
+    powertrain?: {
+      power: number;
+      peakPowerRpm: number;
+      redline?: number;
+      idle?: number;
+      curve?: 'gasoline' | 'turbo' | 'diesel' | 'electric';
+      gears: number[];
+      continuous?: boolean;
+      reverse?: number;
+      efficiency?: number;
+      shiftTime?: number;
+      engineBraking?: number;
+      response?: number;
+      inertia?: number;
+    };
+    rearGrip?: number;
+    tireLoadSensitivity?: number;
+    rollBalance?: number;
+    aerodynamicLift?: number;
+    tractionControl?: boolean;
+    stabilityControl?: boolean;
+    limitedSlip?: number;
+    looseSurfaceGrip?: number;
     cycle?: {
       maxLean: number;
       riderLean: number;
@@ -1317,6 +1372,13 @@ type MolenVehicleData = {
         halfWidth: number;
         ratio: number;
       };
+    };
+    rail?: {
+      truckCenters: number;
+      couplerLength?: number;
+      power?: number;
+      gauge?: number;
+      profile?: 'box' | 'hopper' | 'tank' | 'gondola' | 'flat' | 'well' | 'autorack' | 'locomotive' | 'coach' | 'railcar';
     };
   };
   visual: {
@@ -1418,6 +1480,18 @@ type MolenVehicleStateData = {
   bodyRoll?: number;
   bodyRollRate?: number;
   skid?: number;
+  gear?: number;
+  rpm?: number;
+  engineLoad?: number;
+  shift?: number;
+  assist?: number;
+  surfaceGrip?: number;
+  track?: {
+    trail: number[];
+    prefer: -1 | 0 | 1;
+    ended?: boolean;
+    ref?: string;
+  };
 };
 /** Opt-in per-tick body velocity mirror (presence = subscription; plugin-written). */
 type MolenVelocityData = {
@@ -1531,6 +1605,8 @@ interface MolenComponentData {
   'collider': MolenColliderData;
   /** 3D collider (ball/cuboid/capsule/hull/trimesh/asset/heightfield) with layer/mask, sensor, and material params. Static without a rigidbody. */
   'collider3d': MolenCollider3dData;
+  /** A rail car in a consist: rides the leader's track trail at a fixed distance behind it, sharing its speed. Powered cars add their traction to the leader's (multiple-unit control); every car adds its mass and brakes. */
+  'coupled': MolenCoupledData;
   /** Singleton scene environment: optional Earth/custom sky, ambient/sun lighting, background, fog, tone mapping, shadow quality tier. */
   'environment': MolenEnvironmentData;
   /** What a figure is: a preset plus descriptor overrides (height, build, proportions, features, palette) and how it faces its motion. Pair with renderable.kind "figure". */
@@ -1619,7 +1695,7 @@ type MolenEntityId = string;
 /** Prefab names declared in the scene. */
 type MolenPrefabName = string;
 /** Registry type ids this project declares (`molen.spawnType`). */
-type MolenTypeId = 'molen.entities.aircraft.a220_300' | 'molen.entities.aircraft.a400m' | 'molen.entities.aircraft.airbus_a320neo' | 'molen.entities.aircraft.airbus_h125' | 'molen.entities.aircraft.airbus_h145' | 'molen.entities.aircraft.airliner' | 'molen.entities.aircraft.an_124' | 'molen.entities.aircraft.atr_72_600' | 'molen.entities.aircraft.av_8b' | 'molen.entities.aircraft.aw139' | 'molen.entities.aircraft.baron_g58' | 'molen.entities.aircraft.beech_18' | 'molen.entities.aircraft.bell_206b' | 'molen.entities.aircraft.bell_407' | 'molen.entities.aircraft.bell_412ep' | 'molen.entities.aircraft.boeing_737_800' | 'molen.entities.aircraft.bonanza_g36' | 'molen.entities.aircraft.c_130j' | 'molen.entities.aircraft.c_17a' | 'molen.entities.aircraft.c_5m' | 'molen.entities.aircraft.cessna_172s' | 'molen.entities.aircraft.cessna_182t' | 'molen.entities.aircraft.cessna_208b' | 'molen.entities.aircraft.ch_47f' | 'molen.entities.aircraft.cirrus_sr22t' | 'molen.entities.aircraft.citation_cj4' | 'molen.entities.aircraft.dash_8_q400' | 'molen.entities.aircraft.dc_3' | 'molen.entities.aircraft.dhc_2' | 'molen.entities.aircraft.dhc_6' | 'molen.entities.aircraft.diamond_da42' | 'molen.entities.aircraft.embraer_e175' | 'molen.entities.aircraft.f_14d' | 'molen.entities.aircraft.f_15c' | 'molen.entities.aircraft.f_16b' | 'molen.entities.aircraft.f_22a' | 'molen.entities.aircraft.f_35a' | 'molen.entities.aircraft.fa_18c' | 'molen.entities.aircraft.gripen_c' | 'molen.entities.aircraft.gulfstream_g650er' | 'molen.entities.aircraft.king_air_350i' | 'molen.entities.aircraft.mig_29a' | 'molen.entities.aircraft.mv_22b' | 'molen.entities.aircraft.oh6' | 'molen.entities.aircraft.p51d' | 'molen.entities.aircraft.pa_28_180' | 'molen.entities.aircraft.pc_6' | 'molen.entities.aircraft.pilatus_pc12' | 'molen.entities.aircraft.rafale_c' | 'molen.entities.aircraft.robinson_r44' | 'molen.entities.aircraft.typhoon' | 'molen.entities.aircraft.uh_1h' | 'molen.entities.aircraft.uh_60m' | 'molen.entities.cycle.cargo_bicycle' | 'molen.entities.cycle.city_bicycle' | 'molen.entities.cycle.cruiser_motorcycle' | 'molen.entities.cycle.motor_scooter' | 'molen.entities.cycle.road_bicycle' | 'molen.entities.cycle.standard_motorcycle' | 'molen.entities.nature.boulder' | 'molen.entities.transit.bus' | 'molen.entities.transit.lightrail' | 'molen.entities.tree.conifer.fir' | 'molen.entities.tree.conifer.pine' | 'molen.entities.tree.deciduous.birch' | 'molen.entities.tree.deciduous.oak' | 'molen.entities.vegetation.shrub' | 'molen.entities.vehicle.acura_mdx_2019' | 'molen.entities.vehicle.acura_tl_2013' | 'molen.entities.vehicle.alfa_romeo_giulia_2018' | 'molen.entities.vehicle.audi_tt_2021' | 'molen.entities.vehicle.bendy_class_a_compact' | 'molen.entities.vehicle.bendy_class_a_grand' | 'molen.entities.vehicle.bendy_class_a_touring' | 'molen.entities.vehicle.bendy_class_b_camper' | 'molen.entities.vehicle.bendy_class_c_family' | 'molen.entities.vehicle.bmw_i3_2017' | 'molen.entities.vehicle.box_truck' | 'molen.entities.vehicle.byd_qin_plus_2024' | 'molen.entities.vehicle.byd_seagull_2024' | 'molen.entities.vehicle.cadillac_cts_2010' | 'molen.entities.vehicle.chevrolet_colorado_2025' | 'molen.entities.vehicle.chevrolet_corvette_2014' | 'molen.entities.vehicle.chevrolet_equinox_2025' | 'molen.entities.vehicle.chevrolet_onix_2024' | 'molen.entities.vehicle.chevrolet_silverado_1500_2025' | 'molen.entities.vehicle.chevrolet_ssr_2005' | 'molen.entities.vehicle.chevrolet_traverse_2025' | 'molen.entities.vehicle.chevrolet_trax_2025' | 'molen.entities.vehicle.chevrolet_volt_2011' | 'molen.entities.vehicle.chrysler_300_2015' | 'molen.entities.vehicle.chrysler_pt_cruiser_2006' | 'molen.entities.vehicle.compact' | 'molen.entities.vehicle.dacia_duster_2024' | 'molen.entities.vehicle.dodge_challenger_2018' | 'molen.entities.vehicle.electric_hatchback' | 'molen.entities.vehicle.fiat_500_2012' | 'molen.entities.vehicle.fiat_strada_2024' | 'molen.entities.vehicle.ford_bronco_2025' | 'molen.entities.vehicle.ford_escape_2025' | 'molen.entities.vehicle.ford_explorer_2025' | 'molen.entities.vehicle.ford_f_150_2025' | 'molen.entities.vehicle.ford_gt_2005' | 'molen.entities.vehicle.ford_maverick_2025' | 'molen.entities.vehicle.ford_mustang_2024' | 'molen.entities.vehicle.ford_ranger_2025' | 'molen.entities.vehicle.ford_transit_2021' | 'molen.entities.vehicle.geely_monjaro_2024' | 'molen.entities.vehicle.genesis_g80_2024' | 'molen.entities.vehicle.gmc_hummer_ev_suv_2024' | 'molen.entities.vehicle.gmc_sierra_1500_2025' | 'molen.entities.vehicle.honda_accord_2025' | 'molen.entities.vehicle.honda_civic_2025' | 'molen.entities.vehicle.honda_cr_v_2025' | 'molen.entities.vehicle.honda_element_2008' | 'molen.entities.vehicle.honda_n_box_2024' | 'molen.entities.vehicle.honda_odyssey_2025' | 'molen.entities.vehicle.honda_pilot_2025' | 'molen.entities.vehicle.hummer_h3_2007' | 'molen.entities.vehicle.hyundai_casper_electric_2024' | 'molen.entities.vehicle.hyundai_ioniq_5_2022' | 'molen.entities.vehicle.hyundai_palisade_2025' | 'molen.entities.vehicle.hyundai_staria_2024' | 'molen.entities.vehicle.hyundai_tucson_2025' | 'molen.entities.vehicle.hyundai_veloster_2020' | 'molen.entities.vehicle.isuzu_d_max_2024' | 'molen.entities.vehicle.jaguar_i_pace_2019' | 'molen.entities.vehicle.jeep_grand_cherokee_2025' | 'molen.entities.vehicle.jeep_wrangler_2025' | 'molen.entities.vehicle.kia_k5_2024' | 'molen.entities.vehicle.kia_soul_2015' | 'molen.entities.vehicle.kia_sportage_2025' | 'molen.entities.vehicle.kia_telluride_2025' | 'molen.entities.vehicle.land_rover_defender_90_2023' | 'molen.entities.vehicle.lincoln_continental_2020' | 'molen.entities.vehicle.lucid_air_2022' | 'molen.entities.vehicle.mazda_cx_5_2025' | 'molen.entities.vehicle.mazda_mx_5_miata_2016' | 'molen.entities.vehicle.mercedes_benz_sprinter_2019' | 'molen.entities.vehicle.mini_cooper_2013' | 'molen.entities.vehicle.mini_cooper_countryman_2012' | 'molen.entities.vehicle.nissan_370z_2009' | 'molen.entities.vehicle.nissan_altima_2025' | 'molen.entities.vehicle.nissan_leaf_2012' | 'molen.entities.vehicle.nissan_rogue_2025' | 'molen.entities.vehicle.offroad' | 'molen.entities.vehicle.peugeot_208_2024' | 'molen.entities.vehicle.pickup' | 'molen.entities.vehicle.pontiac_solstice_2007' | 'molen.entities.vehicle.porsche_911_2017' | 'molen.entities.vehicle.ram_1500_2025' | 'molen.entities.vehicle.renault_clio_2024' | 'molen.entities.vehicle.renault_kwid_2024' | 'molen.entities.vehicle.rivian_r1t_2023' | 'molen.entities.vehicle.saab_9_3_sportcombi_2011' | 'molen.entities.vehicle.scion_xb_2006' | 'molen.entities.vehicle.sedan' | 'molen.entities.vehicle.skoda_octavia_combi_2024' | 'molen.entities.vehicle.smart_fortwo_2009' | 'molen.entities.vehicle.sports_coupe' | 'molen.entities.vehicle.station_wagon' | 'molen.entities.vehicle.subaru_brz_2014' | 'molen.entities.vehicle.subaru_forester_2025' | 'molen.entities.vehicle.subaru_outback_2025' | 'molen.entities.vehicle.suv' | 'molen.entities.vehicle.suzuki_jimny_sierra_2024' | 'molen.entities.vehicle.suzuki_swift_2024' | 'molen.entities.vehicle.taxi' | 'molen.entities.vehicle.tesla_model_3_2025' | 'molen.entities.vehicle.tesla_model_y_2024' | 'molen.entities.vehicle.toyota_alphard_2024' | 'molen.entities.vehicle.toyota_camry_2025' | 'molen.entities.vehicle.toyota_corolla_2025' | 'molen.entities.vehicle.toyota_fj_cruiser_2010' | 'molen.entities.vehicle.toyota_gr_supra_2024' | 'molen.entities.vehicle.toyota_hiace_2024' | 'molen.entities.vehicle.toyota_highlander_2025' | 'molen.entities.vehicle.toyota_hilux_2024' | 'molen.entities.vehicle.toyota_prius_2024' | 'molen.entities.vehicle.toyota_rav4_2025' | 'molen.entities.vehicle.toyota_sienna_2025' | 'molen.entities.vehicle.toyota_tacoma_2025' | 'molen.entities.vehicle.toyota_tundra_2025' | 'molen.entities.vehicle.toyota_yaris_2024' | 'molen.entities.vehicle.van' | 'molen.entities.vehicle.volkswagen_golf_gti_2016' | 'molen.entities.vehicle.volkswagen_polo_2024' | 'molen.entities.vehicle.volvo_v70_2008' | 'molen.entities.vehicle.winnebago_view_2022' | 'molen.entities.vehicle.wuling_hongguang_mini_ev_2025' | 'molen.entities.watercraft.bulk_carrier' | 'molen.entities.watercraft.car_ferry' | 'molen.entities.watercraft.container_ship' | 'molen.entities.watercraft.fishing_boat' | 'molen.entities.watercraft.passenger_ferry' | 'molen.entities.watercraft.sailboat' | 'molen.entities.watercraft.speedboat' | 'molen.entities.watercraft.tugboat';
+type MolenTypeId = 'molen.entities.aircraft.a220_300' | 'molen.entities.aircraft.a400m' | 'molen.entities.aircraft.airbus_a320neo' | 'molen.entities.aircraft.airbus_h125' | 'molen.entities.aircraft.airbus_h145' | 'molen.entities.aircraft.airliner' | 'molen.entities.aircraft.an_124' | 'molen.entities.aircraft.atr_72_600' | 'molen.entities.aircraft.av_8b' | 'molen.entities.aircraft.aw139' | 'molen.entities.aircraft.baron_g58' | 'molen.entities.aircraft.beech_18' | 'molen.entities.aircraft.bell_206b' | 'molen.entities.aircraft.bell_407' | 'molen.entities.aircraft.bell_412ep' | 'molen.entities.aircraft.boeing_737_800' | 'molen.entities.aircraft.bonanza_g36' | 'molen.entities.aircraft.c_130j' | 'molen.entities.aircraft.c_17a' | 'molen.entities.aircraft.c_5m' | 'molen.entities.aircraft.cessna_172s' | 'molen.entities.aircraft.cessna_182t' | 'molen.entities.aircraft.cessna_208b' | 'molen.entities.aircraft.ch_47f' | 'molen.entities.aircraft.cirrus_sr22t' | 'molen.entities.aircraft.citation_cj4' | 'molen.entities.aircraft.dash_8_q400' | 'molen.entities.aircraft.dc_3' | 'molen.entities.aircraft.dhc_2' | 'molen.entities.aircraft.dhc_6' | 'molen.entities.aircraft.diamond_da42' | 'molen.entities.aircraft.embraer_e175' | 'molen.entities.aircraft.f_14d' | 'molen.entities.aircraft.f_15c' | 'molen.entities.aircraft.f_16b' | 'molen.entities.aircraft.f_22a' | 'molen.entities.aircraft.f_35a' | 'molen.entities.aircraft.fa_18c' | 'molen.entities.aircraft.gripen_c' | 'molen.entities.aircraft.gulfstream_g650er' | 'molen.entities.aircraft.king_air_350i' | 'molen.entities.aircraft.mig_29a' | 'molen.entities.aircraft.mv_22b' | 'molen.entities.aircraft.oh6' | 'molen.entities.aircraft.p51d' | 'molen.entities.aircraft.pa_28_180' | 'molen.entities.aircraft.pc_6' | 'molen.entities.aircraft.pilatus_pc12' | 'molen.entities.aircraft.rafale_c' | 'molen.entities.aircraft.robinson_r44' | 'molen.entities.aircraft.typhoon' | 'molen.entities.aircraft.uh_1h' | 'molen.entities.aircraft.uh_60m' | 'molen.entities.cycle.cargo_bicycle' | 'molen.entities.cycle.city_bicycle' | 'molen.entities.cycle.cruiser_motorcycle' | 'molen.entities.cycle.motor_scooter' | 'molen.entities.cycle.road_bicycle' | 'molen.entities.cycle.standard_motorcycle' | 'molen.entities.nature.boulder' | 'molen.entities.rail.autorack_enclosed' | 'molen.entities.rail.bombardier_bilevel_cab_car' | 'molen.entities.rail.bombardier_bilevel_coach' | 'molen.entities.rail.boxcar_50ft' | 'molen.entities.rail.centerbeam_flatcar' | 'molen.entities.rail.covered_hopper' | 'molen.entities.rail.emd_gp38_2' | 'molen.entities.rail.ge_es44ac' | 'molen.entities.rail.gondola_52ft' | 'molen.entities.rail.mpi_mp36ph_3c' | 'molen.entities.rail.tank_car_dot117' | 'molen.entities.rail.well_car_double_stack' | 'molen.entities.transit.bus' | 'molen.entities.transit.lightrail' | 'molen.entities.tree.conifer.fir' | 'molen.entities.tree.conifer.pine' | 'molen.entities.tree.deciduous.birch' | 'molen.entities.tree.deciduous.oak' | 'molen.entities.vegetation.shrub' | 'molen.entities.vehicle.acura_mdx_2019' | 'molen.entities.vehicle.acura_tl_2013' | 'molen.entities.vehicle.alfa_romeo_giulia_2018' | 'molen.entities.vehicle.audi_tt_2021' | 'molen.entities.vehicle.bendy_class_a_compact' | 'molen.entities.vehicle.bendy_class_a_grand' | 'molen.entities.vehicle.bendy_class_a_touring' | 'molen.entities.vehicle.bendy_class_b_camper' | 'molen.entities.vehicle.bendy_class_c_family' | 'molen.entities.vehicle.bmw_i3_2017' | 'molen.entities.vehicle.box_truck' | 'molen.entities.vehicle.byd_qin_plus_2024' | 'molen.entities.vehicle.byd_seagull_2024' | 'molen.entities.vehicle.cadillac_cts_2010' | 'molen.entities.vehicle.chevrolet_colorado_2025' | 'molen.entities.vehicle.chevrolet_corvette_2014' | 'molen.entities.vehicle.chevrolet_equinox_2025' | 'molen.entities.vehicle.chevrolet_onix_2024' | 'molen.entities.vehicle.chevrolet_silverado_1500_2025' | 'molen.entities.vehicle.chevrolet_ssr_2005' | 'molen.entities.vehicle.chevrolet_traverse_2025' | 'molen.entities.vehicle.chevrolet_trax_2025' | 'molen.entities.vehicle.chevrolet_volt_2011' | 'molen.entities.vehicle.chrysler_300_2015' | 'molen.entities.vehicle.chrysler_pt_cruiser_2006' | 'molen.entities.vehicle.compact' | 'molen.entities.vehicle.dacia_duster_2024' | 'molen.entities.vehicle.dodge_challenger_2018' | 'molen.entities.vehicle.electric_hatchback' | 'molen.entities.vehicle.fiat_500_2012' | 'molen.entities.vehicle.fiat_strada_2024' | 'molen.entities.vehicle.ford_bronco_2025' | 'molen.entities.vehicle.ford_escape_2025' | 'molen.entities.vehicle.ford_explorer_2025' | 'molen.entities.vehicle.ford_f_150_2025' | 'molen.entities.vehicle.ford_gt_2005' | 'molen.entities.vehicle.ford_maverick_2025' | 'molen.entities.vehicle.ford_mustang_2024' | 'molen.entities.vehicle.ford_ranger_2025' | 'molen.entities.vehicle.ford_transit_2021' | 'molen.entities.vehicle.geely_monjaro_2024' | 'molen.entities.vehicle.genesis_g80_2024' | 'molen.entities.vehicle.gmc_hummer_ev_suv_2024' | 'molen.entities.vehicle.gmc_sierra_1500_2025' | 'molen.entities.vehicle.honda_accord_2025' | 'molen.entities.vehicle.honda_civic_2025' | 'molen.entities.vehicle.honda_cr_v_2025' | 'molen.entities.vehicle.honda_element_2008' | 'molen.entities.vehicle.honda_n_box_2024' | 'molen.entities.vehicle.honda_odyssey_2025' | 'molen.entities.vehicle.honda_pilot_2025' | 'molen.entities.vehicle.hummer_h3_2007' | 'molen.entities.vehicle.hyundai_casper_electric_2024' | 'molen.entities.vehicle.hyundai_ioniq_5_2022' | 'molen.entities.vehicle.hyundai_palisade_2025' | 'molen.entities.vehicle.hyundai_staria_2024' | 'molen.entities.vehicle.hyundai_tucson_2025' | 'molen.entities.vehicle.hyundai_veloster_2020' | 'molen.entities.vehicle.isuzu_d_max_2024' | 'molen.entities.vehicle.jaguar_i_pace_2019' | 'molen.entities.vehicle.jeep_grand_cherokee_2025' | 'molen.entities.vehicle.jeep_wrangler_2025' | 'molen.entities.vehicle.kia_k5_2024' | 'molen.entities.vehicle.kia_soul_2015' | 'molen.entities.vehicle.kia_sportage_2025' | 'molen.entities.vehicle.kia_telluride_2025' | 'molen.entities.vehicle.land_rover_defender_90_2023' | 'molen.entities.vehicle.lincoln_continental_2020' | 'molen.entities.vehicle.lucid_air_2022' | 'molen.entities.vehicle.mazda_cx_5_2025' | 'molen.entities.vehicle.mazda_mx_5_miata_2016' | 'molen.entities.vehicle.mercedes_benz_sprinter_2019' | 'molen.entities.vehicle.mini_cooper_2013' | 'molen.entities.vehicle.mini_cooper_countryman_2012' | 'molen.entities.vehicle.nissan_370z_2009' | 'molen.entities.vehicle.nissan_altima_2025' | 'molen.entities.vehicle.nissan_leaf_2012' | 'molen.entities.vehicle.nissan_rogue_2025' | 'molen.entities.vehicle.offroad' | 'molen.entities.vehicle.peugeot_208_2024' | 'molen.entities.vehicle.pickup' | 'molen.entities.vehicle.pontiac_solstice_2007' | 'molen.entities.vehicle.porsche_911_2017' | 'molen.entities.vehicle.ram_1500_2025' | 'molen.entities.vehicle.renault_clio_2024' | 'molen.entities.vehicle.renault_kwid_2024' | 'molen.entities.vehicle.rivian_r1t_2023' | 'molen.entities.vehicle.saab_9_3_sportcombi_2011' | 'molen.entities.vehicle.scion_xb_2006' | 'molen.entities.vehicle.sedan' | 'molen.entities.vehicle.skoda_octavia_combi_2024' | 'molen.entities.vehicle.smart_fortwo_2009' | 'molen.entities.vehicle.sports_coupe' | 'molen.entities.vehicle.station_wagon' | 'molen.entities.vehicle.subaru_brz_2014' | 'molen.entities.vehicle.subaru_forester_2025' | 'molen.entities.vehicle.subaru_outback_2025' | 'molen.entities.vehicle.suv' | 'molen.entities.vehicle.suzuki_jimny_sierra_2024' | 'molen.entities.vehicle.suzuki_swift_2024' | 'molen.entities.vehicle.taxi' | 'molen.entities.vehicle.tesla_model_3_2025' | 'molen.entities.vehicle.tesla_model_y_2024' | 'molen.entities.vehicle.toyota_alphard_2024' | 'molen.entities.vehicle.toyota_camry_2025' | 'molen.entities.vehicle.toyota_corolla_2025' | 'molen.entities.vehicle.toyota_fj_cruiser_2010' | 'molen.entities.vehicle.toyota_gr_supra_2024' | 'molen.entities.vehicle.toyota_hiace_2024' | 'molen.entities.vehicle.toyota_highlander_2025' | 'molen.entities.vehicle.toyota_hilux_2024' | 'molen.entities.vehicle.toyota_prius_2024' | 'molen.entities.vehicle.toyota_rav4_2025' | 'molen.entities.vehicle.toyota_sienna_2025' | 'molen.entities.vehicle.toyota_tacoma_2025' | 'molen.entities.vehicle.toyota_tundra_2025' | 'molen.entities.vehicle.toyota_yaris_2024' | 'molen.entities.vehicle.van' | 'molen.entities.vehicle.volkswagen_golf_gti_2016' | 'molen.entities.vehicle.volkswagen_polo_2024' | 'molen.entities.vehicle.volvo_v70_2008' | 'molen.entities.vehicle.winnebago_view_2022' | 'molen.entities.vehicle.wuling_hongguang_mini_ev_2025' | 'molen.entities.watercraft.bulk_carrier' | 'molen.entities.watercraft.car_ferry' | 'molen.entities.watercraft.container_ship' | 'molen.entities.watercraft.fishing_boat' | 'molen.entities.watercraft.passenger_ferry' | 'molen.entities.watercraft.sailboat' | 'molen.entities.watercraft.speedboat' | 'molen.entities.watercraft.tugboat';
 
 /** Command types this scene accepts; this script directory has none. */
 type MolenCommands = Record<never, never>;

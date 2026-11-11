@@ -1,0 +1,355 @@
+{
+  "id": "thanh_hoa_bridge",
+  "title": "Thanh Hoa Bridge",
+  "wikidataId": "Q4346741",
+  "referenceCoordinate": {
+    "longitude": 105.79415962100029,
+    "latitude": 19.838352300845088
+  },
+  "module": "content/worldgen/source/places/w7/w7e/thanh_hoa_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-thanh-hoa-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "foundation",
+      "graph": "concrete_boardformed",
+      "roughness": 0.91
+    },
+    "road": {
+      "slot": "wall",
+      "graph": "gravel",
+      "roughness": 0.93
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.34
+    },
+    "sleepers": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.93
+    }
+  },
+  "exportLabel": "Molen original Thanh Hoa Bridge master",
+  "expectedDraftMasterHash": "sha256:50b3d5ed443dc0602fd72f4c4a0acc6be9f5ecd92b9b4dba8c11b3eaa475afe1",
+  "visualBrief": "The rebuilt Hàm Rồng bridge crosses the Mã River in two gray steel through-truss spans. A single track runs inside the braced trusses, with separate cantilevered roadways, slender steel guardrails, and one central concrete river pier.",
+  "heightPolicy": "The viewer uses a fixed sea-level datum and a shallow crest in the authored deck. Short retaining approaches carry the rail deck to the sampled banks. The two roadways meet terrain-resolved approaches at separate staggered landings. The riverbed and opposite bridge remain native.",
+  "nativeAxes": "Positive X crosses the Mã River east-southeast from the west bank. Positive Z faces the independent Hoàng Long road bridge downstream.",
+  "limitations": [
+    "The source reproduces the rebuilt gray steel crossing visible in the exterior photographs. The truss dimensions, rail ties and surface details are photo-led approximations.",
+    "The named rail way and paired roadway centerlines fix the signed alignment and extents. Standard terrain under-resolves the embankments and riverbed.",
+    "Short modeled retaining approaches carry the narrow-gauge track to the sampled banks. Outside them, the viewer uses its generic rail ribbon and track spacing."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Ham_Rong_Bridge.jpg",
+      "hash": "sha256:6097719f0ad1f74d7364bc5e5c6bbb30ee4d4e37f1e492e3c250f30dba07149e",
+      "observed": "Post-rebuild truss, deck and portal detail."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Cau_Ham_Rong.jpg",
+      "hash": "sha256:f548fe46f31152860853b0cd40dba928ada3d6e915ccd2eae8fd933d1785321f",
+      "observed": "Side view from the separate Hoàng Long crossing."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "two-trusses-over-ma",
+      "position": [
+        28,
+        36,
+        132
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "west-portal-and-outer-road",
+      "position": [
+        -105,
+        14,
+        9
+      ],
+      "lookAt": [
+        -62,
+        13,
+        2
+      ],
+      "fov": 54
+    },
+    {
+      "name": "rail-and-overhead-bracing",
+      "position": [
+        -79,
+        12,
+        1
+      ],
+      "lookAt": [
+        -46,
+        14,
+        0
+      ],
+      "fov": 59
+    },
+    {
+      "name": "east-landings",
+      "position": [
+        107,
+        19,
+        15
+      ],
+      "lookAt": [
+        76,
+        11,
+        1
+      ],
+      "fov": 55
+    },
+    {
+      "name": "center-pier-and-cantilevers",
+      "position": [
+        22,
+        7.5,
+        -44
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "separate-downstream-crossing",
+      "position": [
+        165,
+        162,
+        114
+      ],
+      "lookAt": [
+        67,
+        3,
+        130
+      ],
+      "fov": 57
+    },
+    {
+      "name": "reverse-elevation",
+      "position": [
+        -28,
+        29,
+        -147
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 50
+    }
+  ],
+  "materialMethod": "Board-formed concrete, road aggregate, painted metal and weathered wood share library graphs. Steel plates and members use meter-scale UVs and restrained vertex colors.",
+  "sourceFacts": {
+    "mappedRail": 35184909606090,
+    "mappedSideRoads": 35184909606030,
+    "independentBridgeRoad": 35184424686237,
+    "mappedRailSpanMeters": 182.9814,
+    "throughTrussSpans": 2,
+    "riverPiers": 1
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        11,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/w7/w7e/thanh_hoa_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.91
+      },
+      "road": {
+        "slot": "wall",
+        "graph": "gravel",
+        "roughness": 0.93
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.34
+      },
+      "sleepers": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.93
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.91
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.93
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.34
+          },
+          "sleepers": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.93
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.91
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.93
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.34
+          },
+          "sleepers": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.93
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.91
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.93
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.34
+          },
+          "sleepers": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.93
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "thanh_hoa_bridge-skyline",
+      "position": [
+        28,
+        36,
+        132
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 50,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "thanh_hoa_bridge-district",
+      "position": [
+        28,
+        36,
+        132
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 50,
+      "reviewLod": "district"
+    },
+    {
+      "name": "thanh_hoa_bridge-street",
+      "position": [
+        28,
+        36,
+        132
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 50,
+      "reviewLod": "street"
+    },
+    {
+      "name": "thanh_hoa_bridge-closeup",
+      "position": [
+        28,
+        36,
+        132
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 50,
+      "reviewLod": "closeup"
+    }
+  ]
+}

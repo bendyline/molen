@@ -29,7 +29,7 @@ import {
   polygonsNear,
   segmentDistance,
 } from './infill-geometry';
-import { contextLabelAt, landcoverLabel } from './labels';
+import { contextLabelAt, isPlaceOutline, landcoverLabel } from './labels';
 import type { TileGeometry } from './semantic-adapter';
 
 export interface BuildingInfillOptions {
@@ -222,6 +222,7 @@ export function inferBuildingFootprints(
   for (const w of tile.water) for (const p of w.polygons ?? []) addObstacle(p);
   for (const cover of tile.landcover)
     if (
+      !isPlaceOutline(cover) &&
       !landcoverLabel(cover)
         .split(/\s+/)
         .every((l) => OPEN.has(l))

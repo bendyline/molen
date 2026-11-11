@@ -1,0 +1,546 @@
+{
+  "id": "beaux_arts_de_paris",
+  "title": "Beaux-Arts de Paris",
+  "wikidataId": "Q273593",
+  "referenceCoordinate": {
+    "longitude": 2.33384370803833,
+    "latitude": 48.8571322932618
+  },
+  "module": "content/worldgen/source/places/u0/u09/beaux_arts_de_paris/models/campus-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-beaux-arts-de-paris.mjs",
+  "builder": "buildCampus",
+  "surfaces": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone_weathered"
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick_flemish"
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate"
+    },
+    "zinc": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "granite": {
+      "slot": "foundation",
+      "graph": "stone_granite"
+    },
+    "iron": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "clear": {
+      "slot": "window",
+      "localRef": "palette:#c0d9df",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.43
+      ],
+      "alphaMode": "BLEND",
+      "doubleSided": true,
+      "roughness": 0.32
+    }
+  },
+  "exportLabel": "Molen original Beaux-Arts de Paris master",
+  "expectedDraftMasterHash": "sha256:f209f413cf85427d9a3ae144d0fd084c5efb6349c4439ba815cbb61efeff879f",
+  "visualBrief": "Mapped Beaux-Arts de Paris campus with the Palais des Études and glazed court, amphitheatre apse, Loges wing, Hôtel de Chimay, Perret galleries, Petits-Augustins chapel, Rue Bonaparte gateway and the open Cour du Mûrier cloister.",
+  "heightPolicy": "The native terrain sample sets the 45 m model datum. Paving patches follow the local terrain. The raised Palais terrace and architectural heights follow the mapped building parts and exterior references.",
+  "nativeAxes": "+X toward Rue Bonaparte from the Palais des Études. +Z toward the Bâtiment des Loges.",
+  "limitations": [
+    "The campus envelope and two courtyard holes follow PMTiles. Reference pictures guide the building heights where map data is absent, roof breaks, entrances, facade bays, and shared-material tints.",
+    "The model includes the visible glazed hall, cloister, and public exterior. The enclosed teaching rooms, collections and readable inscriptions are simplified. Standard viewer terrain is an approximation of the urban site."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Paris_6_-_ENSBA_03.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Paris_6_-_ENSBA_03.jpg",
+      "hash": "sha256:ed147ecc06ba1730e3e5246d0ecc87f6ab19ef507e4f3d634b535e924e69eb43",
+      "observed": "rue bonaparte"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Paris-6-ardt-Cour-Bonaparte-et-Palais-des-%C3%89tudes-de-l'%C3%89cole-Nationale-Sup%C3%A9rieure-des-Beaux-Arts-DSC_0029.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Paris-6-ardt-Cour-Bonaparte-et-Palais-des-%C3%89tudes-de-l'%C3%89cole-Nationale-Sup%C3%A9rieure-des-Beaux-Arts-DSC_0029.jpg",
+      "hash": "sha256:3cf0896eca19c28810759e9f9533e45af73ed8252d5b592d3fb9525e2b6325fc",
+      "observed": "palais des etudes"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Cour_du_murier_ensba_paris_011.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Cour_du_murier_ensba_paris_011.jpg",
+      "hash": "sha256:d877bd352d7bdb701ec290affb53aeb2a2e73153023ae15fc23c584761d2f226",
+      "observed": "cour du murier"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Palais_des_Etudes-Cour_vitr%C3%A9e_4.JPG",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Palais_des_Etudes-Cour_vitr%C3%A9e_4.JPG",
+      "hash": "sha256:375b50bbe83d941b6f064dceaefd7b2a66cc66e6facbe85f616408cc36dae835",
+      "observed": "glazed court"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Plan_3D_of_the_%C3%89cole_des_Beaux-Arts%2C_Paris_2017.svg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Plan_3D_of_the_%C3%89cole_des_Beaux-Arts%2C_Paris_2017.svg",
+      "hash": "sha256:a186f71be6edffbff6643ff362f759491cdd4d8574063320307ae2d7fb05bba3",
+      "observed": "The labeled illustration identifies each mapped campus wing and courtyard. The model uses independently authored geometry and PMTiles dimensions."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Plan_of_the_%C3%89cole_des_Beaux-Arts%2C_Paris_2017.svg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/80/Plan_of_the_%C3%89cole_des_Beaux-Arts%2C_Paris_2017.svg",
+      "hash": "sha256:f8a6a736a32e77f71fa0f025302cacfc444164114855544a17c7c0fc233e10b8",
+      "observed": "The labeled illustration identifies each mapped campus wing and courtyard. The model uses independently authored geometry and PMTiles dimensions."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "campus-and-rue-bonaparte",
+      "position": [
+        154,
+        116,
+        155
+      ],
+      "lookAt": [
+        8,
+        6,
+        5
+      ],
+      "fov": 59
+    },
+    {
+      "name": "rue-bonaparte-gate",
+      "position": [
+        83,
+        3.05,
+        47.5
+      ],
+      "lookAt": [
+        69,
+        2.67,
+        47.5
+      ],
+      "fov": 60
+    },
+    {
+      "name": "palais-des-etudes-and-cour-honneur",
+      "position": [
+        28,
+        6.4,
+        52
+      ],
+      "lookAt": [
+        -3,
+        8.1,
+        48
+      ],
+      "fov": 67
+    },
+    {
+      "name": "cour-du-murier-and-fountain",
+      "position": [
+        43,
+        3.25,
+        -3.7
+      ],
+      "lookAt": [
+        25,
+        4.4,
+        11.7
+      ],
+      "fov": 65
+    },
+    {
+      "name": "glass-roof-and-hemicycle",
+      "position": [
+        -93,
+        48,
+        83
+      ],
+      "lookAt": [
+        -26,
+        10,
+        46
+      ],
+      "fov": 52
+    },
+    {
+      "name": "inside-the-glazed-court",
+      "position": [
+        -24.2,
+        5.9,
+        64.8
+      ],
+      "lookAt": [
+        -29.9,
+        8.25,
+        35.5
+      ],
+      "fov": 67
+    },
+    {
+      "name": "quai-malaquais-and-chimay",
+      "position": [
+        13,
+        36,
+        -142
+      ],
+      "lookAt": [
+        8,
+        9,
+        -72
+      ],
+      "fov": 57
+    },
+    {
+      "name": "cour-des-loges",
+      "position": [
+        -37,
+        6.9,
+        92
+      ],
+      "lookAt": [
+        -47,
+        7.5,
+        80
+      ],
+      "fov": 57
+    }
+  ],
+  "materialMethod": "Shared limestone, Flemish brick, slate, standing-seam metal, granite, painted iron and textured glazing. The roof uses tinted transparent glass with modeled rafters.",
+  "sourceFacts": {
+    "campusMapFeatureId": 35184520574444,
+    "groundDatumMeters": 45,
+    "mappedOwnedFootprintIds": [
+      52776559103120,
+      52776561989667,
+      35184599915740,
+      35184710680882,
+      35184710680883,
+      35184710680888,
+      35184710680885,
+      35184710680887,
+      35184710680884,
+      35184710683907,
+      35184434387215,
+      35184434387346,
+      35184710680889,
+      35184710683908,
+      35184434387331,
+      35184434387337,
+      35184434387278,
+      35184434387218,
+      35184434387276,
+      35184434387271,
+      35184434387234,
+      35184434387325,
+      35184434387242,
+      35184434387302
+    ],
+    "blocks": [
+      "Palais des Études east gallery",
+      "Palais des Études south wing",
+      "Palais des Études north wing",
+      "Amphithéâtre d’honneur",
+      "Palais des Études west gallery south",
+      "Palais des Études west gallery north",
+      "Palais des Études west connection",
+      "Palais des Études cloister ring",
+      "Bâtiment des Loges",
+      "Bâtiment du Mûrier",
+      "Chapelle des Petits-Augustins",
+      "Hôtel de Chimay",
+      "Bâtiment Perret",
+      "Mapped campus annex",
+      "Mapped campus annex",
+      "Mapped campus annex",
+      "Mapped campus annex",
+      "Mapped campus annex",
+      "Mapped campus annex",
+      "Mapped campus annex",
+      "Mapped campus annex",
+      "Mapped campus annex"
+    ],
+    "courts": [
+      "Cour Bonaparte",
+      "Cour d’honneur",
+      "Cour du Mûrier",
+      "Cour des Loges"
+    ]
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        8,
+        6,
+        5
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u0/u09/beaux_arts_de_paris/models/campus-model.mjs",
+    "export": "buildCampusSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered"
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish"
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate"
+      },
+      "zinc": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite"
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "clear": {
+        "slot": "window",
+        "localRef": "palette:#c0d9df",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.43
+        ],
+        "alphaMode": "BLEND",
+        "doubleSided": true,
+        "roughness": 0.32
+      }
+    },
+    "errorMeters": 2.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCampusDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish"
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate"
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#c0d9df",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.43
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.32
+          }
+        },
+        "errorMeters": 1.1
+      },
+      "street": {
+        "export": "buildCampusStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish"
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate"
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#c0d9df",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.43
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.32
+          }
+        },
+        "errorMeters": 0.4
+      },
+      "closeup": {
+        "export": "buildCampusCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish"
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate"
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#c0d9df",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.43
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.32
+          }
+        },
+        "errorMeters": 0.14
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "beaux_arts_de_paris-skyline",
+      "position": [
+        154,
+        116,
+        155
+      ],
+      "lookAt": [
+        8,
+        6,
+        5
+      ],
+      "fov": 59,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "beaux_arts_de_paris-district",
+      "position": [
+        154,
+        116,
+        155
+      ],
+      "lookAt": [
+        8,
+        6,
+        5
+      ],
+      "fov": 59,
+      "reviewLod": "district"
+    },
+    {
+      "name": "beaux_arts_de_paris-street",
+      "position": [
+        154,
+        116,
+        155
+      ],
+      "lookAt": [
+        8,
+        6,
+        5
+      ],
+      "fov": 59,
+      "reviewLod": "street"
+    },
+    {
+      "name": "beaux_arts_de_paris-closeup",
+      "position": [
+        154,
+        116,
+        155
+      ],
+      "lookAt": [
+        8,
+        6,
+        5
+      ],
+      "fov": 59,
+      "reviewLod": "closeup"
+    }
+  ]
+}

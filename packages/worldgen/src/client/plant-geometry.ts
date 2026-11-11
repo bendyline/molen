@@ -14,7 +14,11 @@ import {
 } from './scatter-material';
 
 type Point = [number, number, number];
-type Detail = boolean | 'distant';
+/**
+ * `false` near, `true` medium, `'distant'` the far level and `'horizon'` the level past it. Only
+ * conifers draw the last differently: see the conifer branch of `createPlantGeometry`.
+ */
+type Detail = boolean | 'distant' | 'horizon';
 const TAU = Math.PI * 2;
 
 /** Share of a foliage normal taken from its volume's rounded surface rather than its facet. */
@@ -419,7 +423,8 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
   const h = p.height,
     r = p.width / 2,
     base = p.crownBase * h;
-  const far = detail === 'distant',
+  const horizon = detail === 'horizon';
+  const far = detail === 'distant' || horizon,
     medium = detail === true;
   const ground = ['grass', 'fern', 'reed', 'forb', 'vine', 'mat', 'crop'].includes(p.family);
   if (ground && detail !== false) return mesh.finish();
@@ -746,22 +751,35 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
       [0.82, 0.2],
       [1, 0],
     ];
-    const profile = far
+    // The far tree keeps three of the skirts as plain geometry (no bough cards, so it stays opaque):
+    // drawn as one cone it was the cone a whole hillside of firs turned into from a few hundred
+    // meters, and from any height in flight. Past the distance where a tree is a few pixels tall
+    // the horizon level is that cone again.
+    const profile = horizon
       ? [
           [base, r],
           [h, 0.005],
         ]
-      : [
-          [base, r * 0.55],
-          ...skirts.flatMap(([at, radius], i) => {
-            const [neck = 0, narrow = 0] = necks[i - 1] ?? [];
-            return [
-              ...(i > 0 ? [[base + span * neck, r * narrow]] : []),
-              [base + span * at, r * radius],
-            ];
-          }),
-          [h, 0.005],
-        ];
+      : far
+        ? [
+            [base, r],
+            [base + span * 0.34, r * 0.5],
+            [base + span * 0.4, r * 0.74],
+            [base + span * 0.67, r * 0.3],
+            [base + span * 0.72, r * 0.46],
+            [h, 0.005],
+          ]
+        : [
+            [base, r * 0.55],
+            ...skirts.flatMap(([at, radius], i) => {
+              const [neck = 0, narrow = 0] = necks[i - 1] ?? [];
+              return [
+                ...(i > 0 ? [[base + span * neck, r * narrow]] : []),
+                [base + span * at, r * radius],
+              ];
+            }),
+            [h, 0.005],
+          ];
     const start = mesh.vertexCount;
     mesh.tube(
       profile.map(([y = 0]): Point => [p.lean * y, y, 0]),

@@ -28,6 +28,8 @@ export type {
 export { checkEcologyAtlas, createEcologyResolver } from './kernel/ecology-atlas';
 export { ECOLOGY_ATLAS_EXAMPLE, registerEcologyAtlasSchema } from './kernel/ecology-atlas-schema';
 export { buildingLabels, contextLabelAt, landcoverLabel } from './kernel/labels';
+export type { LandSiteOptions } from './kernel/land-sites';
+export { LAND_SITE_COLORS, landSiteProps, prepareLandSites } from './kernel/land-sites';
 export { mappedPropExclusions, mappedPropRequests } from './kernel/mapped-props';
 export {
   createPlacesContent,
@@ -91,6 +93,7 @@ export type {
   StructureMapRule,
   StructurePlacement,
   StructureQueryOptions,
+  StructureRoadReplacement,
   StyleSuggestion,
 } from './kernel/structure-index';
 export {

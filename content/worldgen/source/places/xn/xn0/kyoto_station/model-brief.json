@@ -1,0 +1,943 @@
+{
+  "id": "kyoto_station",
+  "title": "Kyōto Station",
+  "wikidataId": "Q801046",
+  "referenceCoordinate": {
+    "longitude": 135.758611111,
+    "latitude": 34.985555555
+  },
+  "module": "packages/worldgen/scripts/kyoto-station-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-kyoto-station.mjs",
+  "builder": "buildKyotoLevel",
+  "surfaces": {
+    "floor": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "tread": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "ballast": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "planter": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "gold": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "panel": {
+      "slot": "wall",
+      "graph": "concrete_panel",
+      "roughness": 0.88
+    },
+    "light": {
+      "slot": "wall",
+      "graph": "concrete_panel",
+      "roughness": 0.88
+    },
+    "shadow": {
+      "slot": "wall",
+      "graph": "concrete_panel",
+      "roughness": 0.88
+    },
+    "foundation": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.93
+    },
+    "underside": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.93
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.14
+    },
+    "lightSteel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.14
+    },
+    "dark": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.14
+    },
+    "rail": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.14
+    },
+    "red": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.14
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.83,
+      "metallic": 0.12
+    },
+    "glass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.38
+    },
+    "blueGlass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.38
+    },
+    "dimGlass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.38
+    },
+    "clear": {
+      "slot": "window",
+      "localRef": "palette:#d9eff9",
+      "roughness": 0.29,
+      "metallic": 0.04,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.39
+      ],
+      "doubleSided": true
+    }
+  },
+  "exportLabel": "Molen original Kyōto Station master",
+  "expectedDraftMasterHash": "sha256:9f6ff2520401b955c3ae77ce52da6a57ecf64750a10710729736d4dea616b248",
+  "visualBrief": "The Isetan and Granvia wings flank an open atrium under a curved steel and glass canopy. The Grand Staircase rises 35 metres to the west terrace, with a suspended Skyway and tiered galleries above the entrance hall. The Hachijō frontage encloses the raised Shinkansen decks and connects to the mapped platform sheds.",
+  "heightPolicy": "The 34 m sea-level datum is taken from standard viewer terrain. Karasuma and Hachijō floors fit the open approach samples. Separate terrain and pavement masks seat the north wings, atrium and station rail floors where the standard terrain samples rise over the built footprint.",
+  "nativeAxes": "The longest Karasuma frontage sets the signed +X axis toward the east wing. The named station stops and Hachijō Street distinguish the north plaza from the south rail terminal.",
+  "limitations": [
+    "The podium, outer building wings, rail centerlines and platform shelter footprints follow PMTiles. Photo interpretation supplies the atrium section, public circulation and individual facade bays.",
+    "The forecourt elevations follow open Terrarium approach samples. The station floors and railway deck elevations are reconstructed to bridge high samples over the built site.",
+    "The model represents the exterior, the public atrium and the above-ground track concourses. Stairs, escalators and railway fixtures are static geometry."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Kyoto-STA_Central.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Kyoto-STA_Central.jpg",
+      "hash": "sha256:80b8b8e9fba0dbe5150e3bf420f0413a32d4cfd8e037ddd3ab73e6a2d6e74584",
+      "observed": "station front"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Kyoto_Station_C0392.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Kyoto_Station_C0392.jpg",
+      "hash": "sha256:ef768788bf42761c0c5ab4a2afae4fae0551833ea3e7a10142f2b1bbc95c123e",
+      "observed": "grand stair"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Kyoto_B-sides_-_KyotoB7800.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Kyoto_B-sides_-_KyotoB7800.jpg",
+      "hash": "sha256:06442493020ac06a4ad5691f815d4c2a58d288379f59fd3a758b0e231e6c2e55",
+      "observed": "atrium and skyway"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Kyoto-STA_Hachijo-guchi_Side.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Kyoto-STA_Hachijo-guchi_Side.jpg",
+      "hash": "sha256:fbc4ddbcfbe19c32baa20a90d66c480a186472e408805b158be0776d564f7db4",
+      "observed": "hachijo front"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Kyoto_Station_Panorama-view_from_Kyoto_Tower_2013-07-21.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/43/Kyoto_Station_Panorama-view_from_Kyoto_Tower_2013-07-21.jpg",
+      "hash": "sha256:dc6b91747974ea2ac7ddefcef74aa704448f607cf0250ee4d520b856c722107c",
+      "observed": "station aerial"
+    },
+    {
+      "url": "https://www.kyoto-station-building.co.jp/service/square/",
+      "observed": "The station guide records 171 treads and a 35-meter rise between the fourth-floor plaza and the rooftop terrace."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "station-and-karasuma-square",
+      "position": [
+        -147,
+        209,
+        -276
+      ],
+      "lookAt": [
+        -5,
+        12,
+        15
+      ],
+      "fov": 64,
+      "lightDirection": [
+        -0.58,
+        1,
+        -0.61
+      ]
+    },
+    {
+      "name": "karasuma-glass-front",
+      "position": [
+        34.3,
+        2.3,
+        -91.4
+      ],
+      "lookAt": [
+        29,
+        13.4,
+        -67.5
+      ],
+      "fov": 68,
+      "lightDirection": [
+        -0.52,
+        1,
+        -0.72
+      ]
+    },
+    {
+      "name": "grand-staircase",
+      "position": [
+        -21,
+        9.7,
+        -43
+      ],
+      "lookAt": [
+        -113,
+        24.2,
+        -43.3
+      ],
+      "fov": 58,
+      "lightDirection": [
+        -0.53,
+        1,
+        -0.52
+      ]
+    },
+    {
+      "name": "atrium-truss-and-skyway",
+      "position": [
+        31,
+        18.8,
+        -22.6
+      ],
+      "lookAt": [
+        -66,
+        28.8,
+        -44.1
+      ],
+      "fov": 67,
+      "lightDirection": [
+        -0.44,
+        1,
+        -0.56
+      ]
+    },
+    {
+      "name": "skyway-and-east-balconies",
+      "position": [
+        -112,
+        33.65,
+        -50
+      ],
+      "lookAt": [
+        55,
+        31,
+        -48
+      ],
+      "fov": 60,
+      "lightDirection": [
+        0.42,
+        1,
+        -0.65
+      ]
+    },
+    {
+      "name": "hachijo-south-entrance",
+      "position": [
+        66,
+        1.91,
+        134.4
+      ],
+      "lookAt": [
+        44,
+        6.8,
+        120
+      ],
+      "fov": 72,
+      "lightDirection": [
+        0.52,
+        1,
+        0.61
+      ]
+    },
+    {
+      "name": "platforms-and-shinkansen-roof",
+      "position": [
+        173,
+        1.45,
+        41
+      ],
+      "lookAt": [
+        -106,
+        2.25,
+        40.5
+      ],
+      "fov": 63,
+      "lightDirection": [
+        0.34,
+        1,
+        0.54
+      ]
+    },
+    {
+      "name": "rooftop-terraces",
+      "position": [
+        -207,
+        108,
+        85
+      ],
+      "lookAt": [
+        -46,
+        18,
+        -29
+      ],
+      "fov": 59,
+      "lightDirection": [
+        -0.56,
+        1,
+        0.57
+      ]
+    }
+  ],
+  "materialMethod": "Six shared graphs cover concrete, panel concrete, standing-seam roofing, painted steel, granite and tinted glazing. A local translucent material covers the atrium and guards. The spaceframe, staircase, Skyway and curtain-wall grid use geometry.",
+  "sourceFacts": {
+    "station": "way/136243347",
+    "terrainDatumMeters": 34,
+    "footprintPartIds": [
+      35184508332179,
+      35184874589365,
+      35184874589363,
+      35184874589364,
+      35185263846189,
+      35184532820750,
+      35185263846188,
+      35184532820787,
+      35184532820748,
+      35184532820751,
+      35184532820782,
+      35184908517877,
+      35185723680875,
+      35185723680874,
+      35185260901323,
+      35184492463085,
+      35184908517876,
+      35184888173044
+    ],
+    "platformSheds": 7,
+    "mappedRailSegments": 73,
+    "grandStaircaseTreads": 171,
+    "grandStaircaseRise": 35
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -12,
+        10,
+        32
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kyoto-station-model.mjs",
+    "export": "buildKyotoSkyline",
+    "surfaces": {
+      "floor": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "tread": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "ballast": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "planter": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "gold": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "panel": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.88
+      },
+      "light": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.88
+      },
+      "shadow": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.88
+      },
+      "foundation": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.93
+      },
+      "underside": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.93
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.14
+      },
+      "lightSteel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.14
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.14
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.14
+      },
+      "red": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.14
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.83,
+        "metallic": 0.12
+      },
+      "glass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.38
+      },
+      "blueGlass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.38
+      },
+      "dimGlass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.38
+      },
+      "clear": {
+        "slot": "window",
+        "localRef": "palette:#d9eff9",
+        "roughness": 0.29,
+        "metallic": 0.04,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.39
+        ],
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKyotoDistrict",
+        "surfaces": {
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "tread": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "planter": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "gold": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "light": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "shadow": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "foundation": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "underside": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "lightSteel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "blueGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "dimGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#d9eff9",
+            "roughness": 0.29,
+            "metallic": 0.04,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.39
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.72
+      },
+      "street": {
+        "export": "buildKyotoStreet",
+        "surfaces": {
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "tread": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "planter": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "gold": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "light": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "shadow": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "foundation": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "underside": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "lightSteel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "blueGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "dimGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#d9eff9",
+            "roughness": 0.29,
+            "metallic": 0.04,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.39
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "closeup": {
+        "export": "buildKyotoCloseup",
+        "surfaces": {
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "tread": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "planter": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "gold": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "light": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "shadow": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "foundation": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "underside": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "lightSteel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.14
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "blueGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "dimGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#d9eff9",
+            "roughness": 0.29,
+            "metallic": 0.04,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.39
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "kyoto_station-skyline",
+      "position": [
+        -147,
+        209,
+        -276
+      ],
+      "lookAt": [
+        -5,
+        12,
+        15
+      ],
+      "fov": 64,
+      "lightDirection": [
+        -0.58,
+        1,
+        -0.61
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "kyoto_station-district",
+      "position": [
+        -147,
+        209,
+        -276
+      ],
+      "lookAt": [
+        -5,
+        12,
+        15
+      ],
+      "fov": 64,
+      "lightDirection": [
+        -0.58,
+        1,
+        -0.61
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "kyoto_station-street",
+      "position": [
+        -147,
+        209,
+        -276
+      ],
+      "lookAt": [
+        -5,
+        12,
+        15
+      ],
+      "fov": 64,
+      "lightDirection": [
+        -0.58,
+        1,
+        -0.61
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "kyoto_station-closeup",
+      "position": [
+        -147,
+        209,
+        -276
+      ],
+      "lookAt": [
+        -5,
+        12,
+        15
+      ],
+      "fov": 64,
+      "lightDirection": [
+        -0.58,
+        1,
+        -0.61
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

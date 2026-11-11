@@ -6,6 +6,21 @@ export interface ScreenSpaceLodPolicy {
   viewportHeight: number;
   /** Maximum projected geometric/detail error, in rendered pixels. */
   maxPixelError: number;
+  /**
+   * The same budget for the handover to a model's horizon level (default `maxPixelError`). Both
+   * levels there are plain opaque geometry, so a host that relaxes `maxPixelError` with camera
+   * height, to shed leaf cards, keeps this at its base value: an aircraft otherwise sees every
+   * conifer below it as the horizon level's single cone.
+   */
+  horizonPixelError?: number;
+  /**
+   * Whether an instanced model's distant level casts sun shadows too (default false: only the
+   * near levels do; a horizon level never does). From the air the distant level starts a few
+   * hundred meters out, well inside the shadow map, and the ground under an aircraft showed a
+   * disc of tree shadows that moved with it. A host turns this on where its shadow map can
+   * afford to draw every tree out to the horizon level.
+   */
+  distantShadows?: boolean;
 }
 
 /** Screen-space error with conservative bounds and 15% hysteresis. No GPU readbacks. */

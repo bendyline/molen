@@ -1,0 +1,904 @@
+{
+  "format": "molen/structure-medium-fi-report@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+  "inputHash": "sha256:452623846f541296c6ea104702b33a0e2bee5b678778481d89bc19d9419384e1",
+  "sourceHash": "sha256:1428ad5f31b23854a1e4f760dda44b44177be36286a99e1f1434479d6c4a2c7e",
+  "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+    "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090"
+  },
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:a1a95c22968c6f23225a184303f20edde3a2fc17e0e27887784d7f11f0af3cd5",
+      "bytes": 81200,
+      "gzipBytes": 23999,
+      "triangles": 985,
+      "cpuBytes": 74960,
+      "gpuBytes": 74960,
+      "errorMeters": 1.5,
+      "drawCalls": 5
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:bd4d7c0530d6f5410e8838cfbe1d258e15013f7bddfc7d9a80e54dd7d8260b31",
+      "bytes": 282300,
+      "gzipBytes": 74372,
+      "triangles": 3644,
+      "cpuBytes": 273688,
+      "gpuBytes": 273688,
+      "errorMeters": 0.68,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:23045b2ecffbc14b96f0b6d17b8ba4e89bf0c7f32bd06a200490c7f7ddff0bf1",
+      "bytes": 726440,
+      "gzipBytes": 176862,
+      "triangles": 9303,
+      "cpuBytes": 717788,
+      "gpuBytes": 717788,
+      "errorMeters": 0.3,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:5edef7502937b846a6382568e7ac135fa00cee120165e820e28be894ef535653",
+      "bytes": 4319560,
+      "gzipBytes": 1118124,
+      "triangles": 55286,
+      "cpuBytes": 4309648,
+      "gpuBytes": 4309648,
+      "errorMeters": 0.12,
+      "drawCalls": 8
+    }
+  ],
+  "rig": {
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "fixtureHash": "sha256:504a83787abc21e3f90bbc8b3b39438286b7c4e7683ea87a765f21d9f13808c4",
+  "frames": [
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:28ecf23ae37464539a748e25e6d4e082137619f4e4f80c3974a0d406e1742857",
+      "camera": {
+        "name": "main-transition-skyline",
+        "position": [
+          349,
+          92,
+          147
+        ],
+        "lookAt": [
+          44,
+          16,
+          5
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "transition-skyline",
+        "shadows": true,
+        "lightDirection": [
+          0.64,
+          1,
+          0.53
+        ]
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:a1a95c22968c6f23225a184303f20edde3a2fc17e0e27887784d7f11f0af3cd5",
+        "level": "skyline",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 5
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 1187900,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 5
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:b1d95a06a125deb029b85dae3d594d385627cb59e2ee8f2060e09aabd0563fb6",
+      "camera": {
+        "name": "main-skyline-noon-economy",
+        "position": [
+          420,
+          155,
+          220
+        ],
+        "lookAt": [
+          66,
+          17,
+          8
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "skyline-noon-economy",
+        "shadows": false,
+        "lightDirection": [
+          0.64,
+          1,
+          0.53
+        ],
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:a1a95c22968c6f23225a184303f20edde3a2fc17e0e27887784d7f11f0af3cd5",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 5
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 1187900,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 5
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:5202269126531fc9557994c3ce7331bc88107bb1600bcc8144a6f53438d0cf19",
+      "camera": {
+        "name": "main-skyline-noon-high",
+        "position": [
+          420,
+          155,
+          220
+        ],
+        "lookAt": [
+          66,
+          17,
+          8
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "skyline-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          0.64,
+          1,
+          0.53
+        ],
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:a1a95c22968c6f23225a184303f20edde3a2fc17e0e27887784d7f11f0af3cd5",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 5
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 1187900,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 5
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:7af3c339b2f606f7ef08065a9685474ccbfdd9c75fd3d1df8850f3b3f8e26e7d",
+      "camera": {
+        "name": "main-skyline-late-economy",
+        "position": [
+          420,
+          155,
+          220
+        ],
+        "lookAt": [
+          66,
+          17,
+          8
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "skyline-late-economy",
+        "shadows": false,
+        "lightDirection": [
+          0.61,
+          0.53,
+          -0.42
+        ],
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:a1a95c22968c6f23225a184303f20edde3a2fc17e0e27887784d7f11f0af3cd5",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 5
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 1187900,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 5
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:b52269021d2721d6aa7611c1eae00b2fa56b672cf840181636e8e9a66d498029",
+      "camera": {
+        "name": "main-skyline-late-high",
+        "position": [
+          420,
+          155,
+          220
+        ],
+        "lookAt": [
+          66,
+          17,
+          8
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "skyline-late-high",
+        "shadows": true,
+        "lightDirection": [
+          0.61,
+          0.53,
+          -0.42
+        ],
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:a1a95c22968c6f23225a184303f20edde3a2fc17e0e27887784d7f11f0af3cd5",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 5
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 1187900,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 5
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:4b12717fec1e996250f39340505bb161bdd574c3b7aed3850556ed727d3333d3",
+      "camera": {
+        "name": "main-transition-district",
+        "position": [
+          349,
+          92,
+          147
+        ],
+        "lookAt": [
+          44,
+          16,
+          5
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "transition-district",
+        "shadows": true,
+        "lightDirection": [
+          0.64,
+          1,
+          0.53
+        ]
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:bd4d7c0530d6f5410e8838cfbe1d258e15013f7bddfc7d9a80e54dd7d8260b31",
+        "level": "district",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 7
+      },
+      "view": {
+        "draws": 26,
+        "triangles": 1190559,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 7
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:c97b6dc4b82f6f357654a48fefe9d143245a123573b0bfe393cfd2964c4cbf38",
+      "camera": {
+        "name": "main-block-noon-economy",
+        "position": [
+          338,
+          87,
+          163
+        ],
+        "lookAt": [
+          66,
+          17,
+          8
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "block-noon-economy",
+        "shadows": false,
+        "lightDirection": [
+          0.64,
+          1,
+          0.53
+        ],
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:bd4d7c0530d6f5410e8838cfbe1d258e15013f7bddfc7d9a80e54dd7d8260b31",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 7
+      },
+      "view": {
+        "draws": 26,
+        "triangles": 1190559,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 7
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:638d168e881146fda2c177410d9a18f4fd5a3bb889e24cb06d7ec5303395e5ab",
+      "camera": {
+        "name": "main-block-noon-high",
+        "position": [
+          338,
+          87,
+          163
+        ],
+        "lookAt": [
+          66,
+          17,
+          8
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "block-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          0.64,
+          1,
+          0.53
+        ],
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:bd4d7c0530d6f5410e8838cfbe1d258e15013f7bddfc7d9a80e54dd7d8260b31",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 7
+      },
+      "view": {
+        "draws": 26,
+        "triangles": 1190559,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 7
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:2b998ac524111e75970ad72faf187dc997f14af549acfe4edbeefee629e94c1c",
+      "camera": {
+        "name": "main-block-late-economy",
+        "position": [
+          338,
+          87,
+          163
+        ],
+        "lookAt": [
+          66,
+          17,
+          8
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "block-late-economy",
+        "shadows": false,
+        "lightDirection": [
+          0.61,
+          0.53,
+          -0.42
+        ],
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:bd4d7c0530d6f5410e8838cfbe1d258e15013f7bddfc7d9a80e54dd7d8260b31",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 7
+      },
+      "view": {
+        "draws": 26,
+        "triangles": 1190559,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 7
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:5feccab9e12d6ab873a2c74daa5d26614ea7a8046ab67071226cb275101bbcbe",
+      "camera": {
+        "name": "main-block-late-high",
+        "position": [
+          338,
+          87,
+          163
+        ],
+        "lookAt": [
+          66,
+          17,
+          8
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "block-late-high",
+        "shadows": true,
+        "lightDirection": [
+          0.61,
+          0.53,
+          -0.42
+        ],
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:bd4d7c0530d6f5410e8838cfbe1d258e15013f7bddfc7d9a80e54dd7d8260b31",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 7
+      },
+      "view": {
+        "draws": 26,
+        "triangles": 1190559,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 7
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:c63a31befb21dfdd73547edd13d40d8e86b4e26330cc3f48938c6fc705ed999b",
+      "camera": {
+        "name": "main-transition-street",
+        "position": [
+          349,
+          92,
+          147
+        ],
+        "lookAt": [
+          44,
+          16,
+          5
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "transition-street",
+        "shadows": true,
+        "lightDirection": [
+          0.64,
+          1,
+          0.53
+        ]
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:23045b2ecffbc14b96f0b6d17b8ba4e89bf0c7f32bd06a200490c7f7ddff0bf1",
+        "level": "street",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 7
+      },
+      "view": {
+        "draws": 26,
+        "triangles": 1196218,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 7
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:aaf7ad07f0889e3cfdfab28628b147f0ac3c50f41f5be12e2ad14a96302706f5",
+      "camera": {
+        "name": "main-street-noon-economy",
+        "position": [
+          299,
+          14,
+          5
+        ],
+        "lookAt": [
+          233,
+          22,
+          0
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "street-noon-economy",
+        "shadows": false,
+        "lightDirection": [
+          0.64,
+          1,
+          0.53
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:23045b2ecffbc14b96f0b6d17b8ba4e89bf0c7f32bd06a200490c7f7ddff0bf1",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 7
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 1195642,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 7
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:f84fa73d2350bcec3a1b3ea1f5d6bab8d2bebf93645ff1d87a6999be1f08a651",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          299,
+          14,
+          5
+        ],
+        "lookAt": [
+          233,
+          22,
+          0
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          0.64,
+          1,
+          0.53
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:23045b2ecffbc14b96f0b6d17b8ba4e89bf0c7f32bd06a200490c7f7ddff0bf1",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 7
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 1195642,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 7
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:f19f0ada9d8b36f883e933cdf9220cb725291ef34c133628091171ba63e94b62",
+      "camera": {
+        "name": "main-street-late-economy",
+        "position": [
+          299,
+          14,
+          5
+        ],
+        "lookAt": [
+          233,
+          22,
+          0
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "street-late-economy",
+        "shadows": false,
+        "lightDirection": [
+          0.61,
+          0.53,
+          -0.42
+        ],
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:23045b2ecffbc14b96f0b6d17b8ba4e89bf0c7f32bd06a200490c7f7ddff0bf1",
+        "level": "street",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 7
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 1195642,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 7
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:a9d60722fd31dd0003573867f18fafe304f05bed2c95014be188a0b41ede1959",
+      "camera": {
+        "name": "main-street-late-high",
+        "position": [
+          299,
+          14,
+          5
+        ],
+        "lookAt": [
+          233,
+          22,
+          0
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "street-late-high",
+        "shadows": true,
+        "lightDirection": [
+          0.61,
+          0.53,
+          -0.42
+        ],
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:23045b2ecffbc14b96f0b6d17b8ba4e89bf0c7f32bd06a200490c7f7ddff0bf1",
+        "level": "street",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 7
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 1195642,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 7
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:099b9fb62ff87231eb2d9fe6270c5f273a2d60fabfdc3cd34759fced104ebd12",
+      "camera": {
+        "name": "main-transition-closeup",
+        "position": [
+          349,
+          92,
+          147
+        ],
+        "lookAt": [
+          44,
+          16,
+          5
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "transition-closeup",
+        "shadows": true,
+        "lightDirection": [
+          0.64,
+          1,
+          0.53
+        ]
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:5edef7502937b846a6382568e7ac135fa00cee120165e820e28be894ef535653",
+        "level": "closeup",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 27,
+        "triangles": 1242201,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 8
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:931550f7b4bfe331b536ff246171f4efcf41a7160cf1dcc54048fff2bf1978b7",
+      "camera": {
+        "name": "main-silhouette",
+        "position": [
+          349,
+          92,
+          147
+        ],
+        "lookAt": [
+          44,
+          16,
+          5
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "silhouette",
+        "shadows": false,
+        "lightDirection": [
+          0.64,
+          1,
+          0.53
+        ],
+        "silhouette": true
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+        "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+        "lodHash": "sha256:5edef7502937b846a6382568e7ac135fa00cee120165e820e28be894ef535653",
+        "level": "closeup",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 27,
+        "triangles": 1242201,
+        "visibleMemberDraws": {
+          "st.pancras.railway.station": 8
+        },
+        "quality": "economy",
+        "resolutionScale": 1,
+        "silhouette": true
+      }
+    }
+  ],
+  "errors": [],
+  "notes": "The tall Barlow vault, low northern canopy, clock tower and Gothic entrance hold their shape across all four detail levels. Near tiers add iron lattice ribs, slate dormers, platform edging, rail hardware and sleepers."
+}

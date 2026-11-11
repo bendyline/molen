@@ -1,0 +1,351 @@
+{
+  "id": "shaharah_bridge",
+  "title": "Shaharah Bridge",
+  "wikidataId": "Q3397149",
+  "referenceCoordinate": {
+    "longitude": 43.706886917352676,
+    "latitude": 16.186500286381914
+  },
+  "module": "content/worldgen/source/places/sf/sfz/shaharah_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-shaharah-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_drywall",
+      "roughness": 0.93
+    },
+    "cut": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.9
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_ashlar",
+      "roughness": 0.95
+    },
+    "rock": {
+      "slot": "foundation",
+      "graph": "stone_basalt_raw",
+      "roughness": 0.96
+    }
+  },
+  "exportLabel": "Molen original Shaharah Bridge master",
+  "expectedDraftMasterHash": "sha256:7667d8e46413ac37f794cfad867ea1c346087a39f15ff08197b76650e2fec337",
+  "visualBrief": "A single open limestone vault spans Shaharah’s narrow rocky gorge. The model follows the mapped footbridge, with a shallow stepped deck, rough parapets, a west gateway, small retaining-wall arches, and stairs along the east cliff.",
+  "heightPolicy": "The 2488 m datum is tied to the standard terrain around the crossing. A narrow cutout and a matching faceted relief patch restore the missing under-arch space. Both stair approaches transition to the same standard grid.",
+  "nativeAxes": "Positive X follows the named PMTiles bridge path east-northeast across the gorge. Positive Z faces its south flank.",
+  "limitations": [
+    "The named PMTiles footbridge and connected paths fix the placement and signed alignment. Vault dimensions, stair rise, gate profile, and stonework are exterior photo interpretations.",
+    "The elevation grid flattens the slot under the bridge. A small authored relief patch reconstructs that slot and blends into the sampled terrain. Its rock detail and gorge depth are visualization approximations."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Shaharah_bridge.jpg",
+      "hash": "sha256:d24aa1b5b9c80a4c1184c1454907bb00b833875632c98538ef9007f73beb9d67",
+      "observed": "Main stone arch and cliff-side steps."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Shehara_02.jpg",
+      "hash": "sha256:d3cb18347f41a3a51712aa3db540d61de84da1ba6896b6fd073e4a96873aa2fe",
+      "observed": "Deck, parapet and connection into the stone approaches."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "canyon-crossing",
+      "position": [
+        -19,
+        15,
+        33
+      ],
+      "lookAt": [
+        0,
+        -1.8,
+        -0.6
+      ],
+      "fov": 51
+    },
+    {
+      "name": "open-arch-and-gate",
+      "position": [
+        -9,
+        5,
+        17
+      ],
+      "lookAt": [
+        -1,
+        0.2,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "approach-gateway",
+      "position": [
+        -11.8,
+        3.85,
+        6.8
+      ],
+      "lookAt": [
+        -5.2,
+        2,
+        -0.4
+      ],
+      "fov": 58
+    },
+    {
+      "name": "east-cliff-stairs",
+      "position": [
+        10.4,
+        4,
+        3.3
+      ],
+      "lookAt": [
+        14.4,
+        3.1,
+        -8
+      ],
+      "fov": 54
+    },
+    {
+      "name": "north-side",
+      "position": [
+        5,
+        9,
+        -21
+      ],
+      "lookAt": [
+        0.2,
+        0.1,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "upper-and-lower-gorge",
+      "position": [
+        26,
+        24,
+        50
+      ],
+      "lookAt": [
+        0,
+        -8,
+        5
+      ],
+      "fov": 59
+    },
+    {
+      "name": "signed-map-plan",
+      "position": [
+        1,
+        61,
+        25
+      ],
+      "lookAt": [
+        1,
+        0,
+        -3
+      ],
+      "fov": 54
+    }
+  ],
+  "materialMethod": "The four shared graphs supply rubble walls, weathered limestone, ashlar paving and faceted basalt, with zero embedded images.",
+  "sourceFacts": {
+    "mappedBridgePath": 35184689201324,
+    "connectedPath": 35184689063160,
+    "previousCandidateCoordinate": [
+      43.6973,
+      16.1648
+    ],
+    "mappedSpanMeters": 12.882,
+    "visualGorgeUnderDeckMeters": 16.5
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        0,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sf/sfz/shaharah_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.93
+      },
+      "cut": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.9
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.95
+      },
+      "rock": {
+        "slot": "foundation",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.96
+      }
+    },
+    "errorMeters": 1.48,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.93
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.77
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.93
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.32
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.93
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.95
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "shaharah_bridge-skyline",
+      "position": [
+        -19,
+        15,
+        33
+      ],
+      "lookAt": [
+        0,
+        -1.8,
+        -0.6
+      ],
+      "fov": 51,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "shaharah_bridge-district",
+      "position": [
+        -19,
+        15,
+        33
+      ],
+      "lookAt": [
+        0,
+        -1.8,
+        -0.6
+      ],
+      "fov": 51,
+      "reviewLod": "district"
+    },
+    {
+      "name": "shaharah_bridge-street",
+      "position": [
+        -19,
+        15,
+        33
+      ],
+      "lookAt": [
+        0,
+        -1.8,
+        -0.6
+      ],
+      "fov": 51,
+      "reviewLod": "street"
+    },
+    {
+      "name": "shaharah_bridge-closeup",
+      "position": [
+        -19,
+        15,
+        33
+      ],
+      "lookAt": [
+        0,
+        -1.8,
+        -0.6
+      ],
+      "fov": 51,
+      "reviewLod": "closeup"
+    }
+  ]
+}

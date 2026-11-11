@@ -1,0 +1,45 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.southern_bridge",
+  "kind": "static-structure",
+  "title": "Southern Bridge (Dienvidu tilts)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "layout.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.southern_bridge",
+        "output": "assets/places/ud/ud1/southern_bridge/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:dc733dd68e5a095087ccdffa2a0165bd4e5a52ed8a0233d64c095d175f6d2ca9"
+      }
+    ],
+    "generators": [
+      {
+        "id": "southern_bridge",
+        "path": "models/bridge-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "placement-draft.json",
+      "map-fit.json",
+      "reference-observations.json",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "preview.png"
+    ]
+  }
+}

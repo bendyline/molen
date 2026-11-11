@@ -17,8 +17,12 @@ interface Mesh {
   ): void;
 }
 
-export function addBrushGeometry(mesh: Mesh, p: PlantPreset, detail: boolean | 'distant'): boolean {
-  const far = detail === 'distant',
+export function addBrushGeometry(
+  mesh: Mesh,
+  p: PlantPreset,
+  detail: boolean | 'distant' | 'horizon',
+): boolean {
+  const far = detail === 'distant' || detail === 'horizon',
     medium = detail === true;
   const h = p.height,
     r = p.width / 2;

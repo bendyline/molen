@@ -1,0 +1,597 @@
+{
+  "planId": "cathedral_of_la_laguna",
+  "id": "cathedral_of_la_laguna",
+  "assetId": "molen.worldgen.structure.cathedral_of_la_laguna",
+  "title": "Cathedral of La Laguna",
+  "category": "religious",
+  "quality": "detailed",
+  "wikidataId": "Q34562",
+  "referenceCoordinate": {
+    "longitude": -16.316179774,
+    "latitude": 28.488858793
+  },
+  "visualBrief": "Cathedral of La Laguna with its volcanic-stone and white-plaster façade, recessed columned portico, two open bell towers, rows of red roof cupolas, and a raised crossing dome.",
+  "size": [
+    74.86059951782227,
+    41.91999998688698,
+    48.9119987487793
+  ],
+  "actualBounds": {
+    "min": [
+      -37.689998626708984,
+      -0.41999998688697815,
+      -24.39699935913086
+    ],
+    "max": [
+      37.17060089111328,
+      41.5,
+      24.514999389648438
+    ]
+  },
+  "nativeAxes": "The portico and bell towers face -X toward the west-northwest. The ambulatory closes at +X on the east-southeast side.",
+  "sourceFacts": {
+    "mappedBuilding": 35184450318723,
+    "reportedHeightMeters": 41.5,
+    "modeledCupolas": 18,
+    "modeledBellTowers": 2,
+    "modeledPorticoColumns": 4,
+    "mainFacade": "west-northwest"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Cattedrale_La_Laguna.jpg",
+    "https://commons.wikimedia.org/wiki/File:Catedral_de_La_Laguna%2C_Tenerife.jpg",
+    "https://megaconstrucciones.net/?construccion=catedral-san-cristobal-la-laguna"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      -16.316179774,
+      28.488858793
+    ],
+    "heading": -0.35297455229,
+    "elevationMode": "sea-level",
+    "orientationPolicy": "approximate-visualization",
+    "elevationMeters": 561.575,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The 561.575 m exterior datum comes from the standard terrain sampled at the west entrance. The stepped portico and sampled foundation skirts fit the terrain without a ground cut.",
+    "groundModelY": 0,
+    "replaceFootprint": true,
+    "buildingCutout": {
+      "outline": [
+        [
+          23.441968,
+          -16.81944
+        ],
+        [
+          29.841856,
+          -16.347848
+        ],
+        [
+          32.937564,
+          -14.091088
+        ],
+        [
+          35.717528,
+          -11.153252
+        ],
+        [
+          37.462216,
+          -6.419116
+        ],
+        [
+          37.527996,
+          -1.631344
+        ],
+        [
+          35.914868,
+          3.20804
+        ],
+        [
+          33.908072,
+          6.211656
+        ],
+        [
+          31.061316,
+          9.241584
+        ],
+        [
+          24.096732,
+          9.54316
+        ],
+        [
+          24.162512,
+          19.707688
+        ],
+        [
+          29.133456,
+          20.140824
+        ],
+        [
+          29.107144,
+          24.678632
+        ],
+        [
+          -7.355216,
+          24.80918
+        ],
+        [
+          -7.14472,
+          15.39252
+        ],
+        [
+          -37.547224,
+          15.8378
+        ],
+        [
+          -37.534068,
+          -24.073456
+        ],
+        [
+          0.974556,
+          -23.259808
+        ],
+        [
+          1.014024,
+          -24.689764
+        ],
+        [
+          14.037452,
+          -24.676608
+        ],
+        [
+          14.090076,
+          -17.619932
+        ],
+        [
+          16.948976,
+          -17.540996
+        ],
+        [
+          17.225252,
+          -16.793128
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "The retained PMTiles footprint follows the cathedral, including the rounded east ambulatory and stepped chapel walls."
+    },
+    "bounds": [
+      -16.31661490183989,
+      28.488549918143317,
+      -16.315787335545732,
+      28.489188485705522
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:91ebe1a157212827a0a3c6767969886e1973bd089d520e9f71ec3791b443bb61",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://www.openstreetmap.org/way/78229891",
+    "wikidataId": "Q34562",
+    "notes": "West-facing portico, dark bell towers, and repeated red cupolas fitted to the mapped Tenerife cathedral."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Two basalt graphs supply masonry and dressed volcanic stone. One lime-plaster graph supplies the white walls and tinted painted cupolas. Tile, painted metal, wood and cast bronze are shared by the dome, windows, doors and bells.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/et/eth/cathedral_of_la_laguna/models/laguna-model.mjs",
+    "export": "buildLagunaSkyline",
+    "surfaces": {
+      "basalt": {
+        "slot": "wall",
+        "graph": "stone_basalt",
+        "roughness": 0.76
+      },
+      "dressed": {
+        "slot": "trim",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.72
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.82
+      },
+      "paintedRoof": {
+        "slot": "roof",
+        "graph": "plaster_lime",
+        "roughness": 0.59
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.68
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.54
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.64
+      },
+      "bell": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.54,
+        "metallic": 0.65
+      }
+    },
+    "errorMeters": 1.87,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLagunaDistrict",
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.76
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.72
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.82
+          },
+          "paintedRoof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.59
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.68
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.54
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.64
+          },
+          "bell": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.54,
+            "metallic": 0.65
+          }
+        },
+        "errorMeters": 0.92
+      },
+      "street": {
+        "export": "buildLagunaStreet",
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.76
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.72
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.82
+          },
+          "paintedRoof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.59
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.68
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.54
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.64
+          },
+          "bell": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.54,
+            "metallic": 0.65
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildLagunaCloseup",
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.76
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.72
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.82
+          },
+          "paintedRoof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.59
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.68
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.54
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.64
+          },
+          "bell": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.54,
+            "metallic": 0.65
+          }
+        },
+        "errorMeters": 0.11
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -6,
+        15,
+        -3
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "cathedral_of_la_laguna-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -94,
+        44,
+        68
+      ],
+      "lookAt": [
+        -1,
+        14,
+        -3
+      ]
+    },
+    {
+      "name": "cathedral_of_la_laguna-district",
+      "reviewLod": "district",
+      "position": [
+        -94,
+        44,
+        68
+      ],
+      "lookAt": [
+        -1,
+        14,
+        -3
+      ]
+    },
+    {
+      "name": "cathedral_of_la_laguna-street",
+      "reviewLod": "street",
+      "position": [
+        -94,
+        44,
+        68
+      ],
+      "lookAt": [
+        -1,
+        14,
+        -3
+      ]
+    },
+    {
+      "name": "cathedral_of_la_laguna-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -94,
+        44,
+        68
+      ],
+      "lookAt": [
+        -1,
+        14,
+        -3
+      ]
+    }
+  ],
+  "limitations": [
+    "The PMTiles outline fixes the footprint and orientation. Photos guide the exterior detail, cupola spacing, dome and portal proportions.",
+    "The modeled portico and belfries are open exterior spaces. Closed doors and glazed apertures represent the rest of the cathedral exterior."
+  ],
+  "qaCameras": [
+    {
+      "name": "west-portico-and-doors",
+      "position": [
+        -60,
+        5,
+        -4
+      ],
+      "lookAt": [
+        -33,
+        7,
+        -4
+      ],
+      "fov": 55
+    },
+    {
+      "name": "west-pediment-and-twin-towers",
+      "position": [
+        -84,
+        19,
+        -8
+      ],
+      "lookAt": [
+        -33,
+        19,
+        -4
+      ],
+      "fov": 50
+    },
+    {
+      "name": "open-belfry-and-clock",
+      "position": [
+        -47,
+        29,
+        24
+      ],
+      "lookAt": [
+        -32,
+        29,
+        11
+      ],
+      "fov": 44
+    },
+    {
+      "name": "red-cupolas-and-drum",
+      "position": [
+        -11,
+        33,
+        39
+      ],
+      "lookAt": [
+        8,
+        23,
+        -2
+      ],
+      "fov": 45
+    },
+    {
+      "name": "east-apse-and-side-chapels",
+      "position": [
+        59,
+        14,
+        39
+      ],
+      "lookAt": [
+        22,
+        13,
+        -2
+      ],
+      "fov": 52
+    },
+    {
+      "name": "north-windows-and-terrace",
+      "position": [
+        -9,
+        13,
+        -42
+      ],
+      "lookAt": [
+        -2,
+        11,
+        -10
+      ],
+      "fov": 54
+    },
+    {
+      "name": "overhead-roof-layout",
+      "position": [
+        20,
+        93,
+        32
+      ],
+      "lookAt": [
+        -1,
+        11,
+        -2
+      ],
+      "fov": 55
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 43903,
+    "vertices": 90121,
+    "materials": 8,
+    "bytes": 3775972,
+    "sha256": "sha256:6eaa65beafba66dd88d68c4ef76ce9bce09e45949acf47cf8cd1c3d4a60471f4"
+  }
+}

@@ -12,6 +12,7 @@ import {
 } from '@bendyline/molen-ambient/client';
 import {
   type AmbientBox,
+  type AmbientConsistCar,
   type AmbientHandle,
   type AmbientKind,
   type AmbientRoleData,
@@ -26,7 +27,7 @@ import {
 } from '@bendyline/molen-ambient/kernel';
 import type { SceneAdmission } from '@bendyline/molen-client';
 import { World } from '@bendyline/molen-kernel/world';
-import type { AircraftSpec, VehicleData } from '@bendyline/molen-schema';
+import type { AircraftSpec, RailVehicleProfile, VehicleData } from '@bendyline/molen-schema';
 import type {
   TerrainPyramidTileLayerContext,
   TerrainSemanticTile,
@@ -88,6 +89,8 @@ export interface EarthAmbientStats {
 export interface EarthAmbientContent {
   types: Partial<AmbientTypes>;
   heights: Readonly<Record<string, number>>;
+  /** Rail vehicle silhouettes by type id, for far trains. */
+  railProfiles?: Readonly<Record<string, RailVehicleProfile>>;
   vehicle(type: string): VehicleData | undefined;
   aircraft(type: string): AircraftSpec | undefined;
   loadModel(type: string, signal?: AbortSignal): Promise<THREE.Object3D | undefined>;
@@ -128,7 +131,7 @@ interface Entry {
 
 // Per lane-km at density 1. A third of the earlier 20 cars and 13 people: streets read as busy
 // at that, and every agent costs simulation, a draw and, as each first appears, shader builds.
-const BASE_DENSITY = { car: 7, pedestrian: 40 / 9, train: 0.8 };
+const BASE_DENSITY = { car: 7, pedestrian: 40 / 9, train: 2 };
 
 /** Whether two tiles' areas overlap (an ancestor and its descendant do). */
 function overlaps(a: TerrainPyramidTileLayerContext, b: TerrainPyramidTileLayerContext): boolean {
@@ -344,6 +347,7 @@ export class EarthAmbient implements SemanticTileObserver {
       ...(content !== undefined
         ? {
             heights: content.heights,
+            ...(content.railProfiles !== undefined ? { railProfiles: content.railProfiles } : {}),
             vehicles: {
               load: (type, signal) => content.loadModel(type, signal),
               vehicle: (type) => content.vehicle(type),
@@ -661,6 +665,11 @@ export function ambientContentFromTypes(
   const boats: AmbientVehicleType[] = [];
   const heights: Record<string, number> = {};
   const vehicles = new Set(types.idsWith('vehicle'));
+  const railProfiles: Record<string, RailVehicleProfile> = {};
+  for (const id of vehicles) {
+    const profile = types.component<VehicleData>(id, 'vehicle').spec.rail?.profile;
+    if (profile !== undefined) railProfiles[id] = profile;
+  }
   const planes = new Set(types.idsWith('aircraft'));
   const roleIds = new Set(types.idsWith('ambientRole'));
   const roleOf = (id: string): AmbientRoleData | undefined =>
@@ -720,7 +729,38 @@ export function ambientContentFromTypes(
       weight: role.weight ?? (role.role === 'bus' ? 0.12 : 1),
       ...(role.cars !== undefined ? { cars: role.cars } : {}),
       ...(role.colors !== undefined ? { colors: role.colors } : {}),
+      ...(role.track !== undefined ? { track: role.track } : {}),
     };
+    // A mixed train: its cars' sizes from their own vehicle specs (or roles).
+    if (role.role === 'rail' && role.consist !== undefined) {
+      const cars: AmbientConsistCar[] = [];
+      for (const car of role.consist.cars) {
+        const carSpec = vehicles.has(car.type)
+          ? types.component<VehicleData>(car.type, 'vehicle').spec
+          : undefined;
+        const carRole = roleOf(car.type);
+        const carLength = carRole?.length ?? carSpec?.length;
+        const carWidth = carRole?.width ?? carSpec?.width;
+        if (carLength === undefined || carWidth === undefined) continue;
+        const carHeight = carRole?.height ?? carSpec?.height;
+        if (carHeight !== undefined) heights[car.type] = carHeight;
+        cars.push({
+          id: car.type,
+          length: carLength,
+          width: carWidth,
+          ...(carHeight !== undefined ? { height: carHeight } : {}),
+          ...(car.weight !== undefined ? { weight: car.weight } : {}),
+          ...(car.colors !== undefined ? { colors: car.colors } : {}),
+        });
+      }
+      if (cars.length > 0)
+        type.consist = {
+          length: role.consist.length,
+          cars,
+          ...(role.consist.units !== undefined ? { units: role.consist.units } : {}),
+          ...(role.consist.block !== undefined ? { block: role.consist.block } : {}),
+        };
+    }
     if (role.role === 'car' || role.role === 'bus') cars.push(type);
     else if (role.role === 'rail') trains.push(type);
     else if (role.role === 'aircraft') aircraft.push(type);
@@ -735,6 +775,7 @@ export function ambientContentFromTypes(
       ...(boats.length > 0 ? { boat: boats } : {}),
     },
     heights,
+    railProfiles,
     vehicle: vehicleOf,
     aircraft: aircraftOf,
     loadModel,

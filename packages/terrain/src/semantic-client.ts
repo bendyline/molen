@@ -5,7 +5,7 @@ import { InstanceBatch } from '@bendyline/molen-client/instancing';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import type { MeshPhysicalNodeMaterial, Node } from 'three/webgpu';
-import { appendAgricultureAttributes } from './agriculture-surface';
+import { agricultureFarColor, appendAgricultureAttributes } from './agriculture-surface';
 import {
   sampleTerrainBuildingCoverage,
   type TerrainBuildingCoverage,
@@ -17,9 +17,23 @@ import {
   setTerrainShorelineCutouts,
   type TerrainGroundOutline,
 } from './ground-cutout';
-import { createTerrainGroundMaterial } from './ground-material';
+import {
+  createTerrainGroundMaterial,
+  createTerrainGroundTextureMaterial,
+  terrainGroundFarDetail,
+} from './ground-material';
 import { landcoverAppearance, orderLandcover } from './landcover-appearance';
 import { applyLandcoverBlend, type LandcoverBlendRange } from './landcover-blend';
+import {
+  createLandcoverRasterMesh,
+  landcoverCanopyTint,
+  landcoverRasterGrid,
+  landcoverRasterSize,
+  paintLandcoverFeatures,
+  paintLandcoverRaster,
+  type TerrainLandcoverRasterData,
+  type TerrainLandcoverRasterOptions,
+} from './landcover-raster';
 import { visibleLandcoverPolygons } from './landcover-surface';
 import { appendTerrainSurfaceArea, TerrainSurfaceMeshBuilder } from './linear-features';
 import {
@@ -31,8 +45,10 @@ import {
   polygonBounds,
 } from './polygon';
 import type { TerrainPyramidTileLayer, TerrainPyramidTileLayerContext } from './pyramid-stream';
+import { TERRAIN_RAILWAY_GROUND } from './rail-features';
 import {
   assertTerrainSemanticTile,
+  type TerrainLandcoverFeature,
   type TerrainSemanticLine,
   type TerrainSemanticPoint,
   type TerrainSemanticPolygon,
@@ -382,6 +398,7 @@ const DEFAULT_TREE_CANOPY_MATERIAL = new THREE.MeshStandardMaterial({
   roughness: 0.96,
 });
 const DEFAULT_LANDCOVER_MATERIAL = createTerrainGroundMaterial({ agriculture: true, strength: 0 });
+const DEFAULT_LANDCOVER_RASTER_MATERIAL = createTerrainGroundTextureMaterial({ strength: 0 });
 const DEFAULT_BUILDING_MATERIAL = new THREE.MeshStandardMaterial({
   color: '#b9ab96',
   roughness: 0.84,
@@ -427,6 +444,11 @@ const DEFAULT_LANDCOVER_COLORS: Readonly<Record<string, string>> = {
 
 export interface TerrainSemanticMeshMaterials {
   landcover?: THREE.Material;
+  /**
+   * The shared material for land cover drawn as a texture (`landcoverRaster`), from
+   * `createTerrainGroundTextureMaterial`. Default: one without ground variation.
+   */
+  landcoverRaster?: THREE.Material;
   treeTrunk?: THREE.Material;
   treeCanopy?: THREE.Material;
   road?: THREE.Material;
@@ -481,6 +503,11 @@ export interface TerrainSemanticMeshOptions {
    */
   landcoverDetail?: Readonly<Record<string, readonly [number, number]>>;
   landcoverOffset?: number;
+  /**
+   * Draw land cover on distant tiles as one texture a tile instead of the draped mesh (WebGL
+   * materials only): see `TerrainLandcoverRasterOptions`. Omitted, every tile drapes.
+   */
+  landcoverRaster?: TerrainLandcoverRasterOptions;
   /**
    * Built-up ground. Unmapped ground and broad land-use classes blend toward `color` (default:
    * the `urban_ground` land-cover color, else `pavement`) as the share of nearby ground under
@@ -571,6 +598,9 @@ function landcoverColor(value: string, options: TerrainSemanticMeshOptions): THR
   for (const [candidate, color] of Object.entries(colors)) {
     if (normalized.includes(normalizedClass(candidate))) return new THREE.Color(color);
   }
+  // Railway land (yards and corridors) is ballast and cinders, not the generic lawn green, even
+  // where a host palette does not name it.
+  if (normalized === 'railway') return new THREE.Color(TERRAIN_RAILWAY_GROUND);
   return new THREE.Color('#78836b');
 }
 
@@ -828,16 +858,23 @@ function shapeFromPolygon(
   return shape;
 }
 
-export function createLandcoverMesh(
+/** A land cover feature's ground color and detail, at tile-local meters. */
+interface LandcoverPaint {
+  /** One color, or the color at a point (a scratch value: copy it before the next call). */
+  colorAt: THREE.Color | ((x: number, z: number) => THREE.Color);
+  /** [brush, bare] ground detail (see `landcoverDetail`), none over paving. */
+  detailAt(x: number, z: number): [number, number];
+}
+
+/**
+ * How each feature of `tile` is colored: its class or crop color, a world-space palette area's in
+ * its place, and built-up ground blended toward paving. Shared by the draped mesh and the raster.
+ */
+function landcoverPainter(
   tile: TerrainSemanticTile,
-  context: TerrainPyramidTileLayerContext,
+  context: Pick<TerrainPyramidTileLayerContext, 'origin' | 'tileSize'>,
   options: TerrainSemanticMeshOptions,
-): THREE.Mesh | undefined {
-  const builder = new TerrainSurfaceMeshBuilder(context);
-  tile = { ...tile, landcover: orderLandcover(tile.landcover) };
-  const visible = visibleLandcoverPolygons(tile.landcover);
-  const ranges: LandcoverBlendRange[] = [];
-  const colorsAt: ((x: number, z: number) => THREE.Color)[] = [];
+): (feature: TerrainLandcoverFeature) => LandcoverPaint {
   const urban = options.urbanGround;
   const coverage = urban ? (urban.coverage ?? terrainBuildingCoverage(tile)) : undefined;
   const urbanClasses = new Set(urban?.classes ?? URBAN_GROUND_CLASSES);
@@ -849,9 +886,7 @@ export function createLandcoverMesh(
   );
   const urbanFrom = urban?.from ?? 0.15;
   const urbanFull = Math.max(urbanFrom + 0.01, urban?.full ?? 0.45);
-  for (let featureIndex = 0; featureIndex < tile.landcover.length; featureIndex++) {
-    const feature = tile.landcover[featureIndex];
-    if (feature === undefined) continue;
+  return (feature) => {
     const color = feature.cultivation
       ? new THREE.Color(feature.cultivation.color)
       : landcoverColor(landcoverAppearance(feature), options);
@@ -899,6 +934,141 @@ export function createLandcoverMesh(
             const t = pavedAt(x, z);
             return t > 0 ? paved.copy(base).lerp(urbanColor, t) : base;
           };
+    return {
+      colorAt,
+      detailAt(x, z) {
+        const worldX = context.origin[0] + x,
+          worldZ = context.origin[1] + z;
+        const detail =
+          palettes?.find(
+            ({ bounds: b }) => worldX >= b[0] && worldX < b[2] && worldZ >= b[1] && worldZ < b[3],
+          )?.detail ?? ownDetail;
+        if (detail === undefined) return [0, 0];
+        const open = 1 - (pavedAt?.(x, z) ?? 0);
+        return [detail[0] * open, detail[1] * open];
+      },
+    };
+  };
+}
+
+/**
+ * A distant tile's land cover as a texture and the grid it is drawn on (see
+ * `TerrainLandcoverRasterOptions`): every array is new, so a worker can transfer them. Each class
+ * takes the color the draped mesh settles to with distance: crop rows and shrub crowns at their
+ * mean, class boundaries at the polygon edge.
+ */
+export function createLandcoverRasterData(
+  tile: TerrainSemanticTile,
+  context: Pick<
+    TerrainPyramidTileLayerContext,
+    'address' | 'pyramid' | 'origin' | 'tileSize' | 'heightfield' | 'surfaceResolution'
+  >,
+  options: TerrainSemanticMeshOptions,
+  size: number,
+): TerrainLandcoverRasterData | undefined {
+  const landcover = orderLandcover(tile.landcover);
+  if (landcover.length === 0) return undefined;
+  const painter = landcoverPainter({ ...tile, landcover }, context, options);
+  const scratch = new THREE.Color();
+  const canopy = landcoverCanopyTint(
+    options.landcoverRaster,
+    context.pyramid.maxLevel - context.address.level,
+  );
+  const woods = options.forestClasses ?? DEFAULT_FOREST_CLASSES;
+  const colors = landcover.map((feature) => {
+    const paint = painter(feature);
+    const cultivation = feature.cultivation;
+    if (cultivation !== undefined) return agricultureFarColor(cultivation, new THREE.Color());
+    const { colorAt, detailAt } = paint;
+    const wooded = canopy !== undefined && classMatches(landcoverAppearance(feature), woods);
+    // A class without detail, a palette or a canopy keeps one color: resolved once, not per texel.
+    if (
+      typeof colorAt !== 'function' &&
+      detailAt(0, 0)[0] === 0 &&
+      !options.landcoverPaletteAreas &&
+      !wooded
+    )
+      return colorAt;
+    return (u: number, v: number): THREE.Color => {
+      const x = u * context.tileSize,
+        z = v * context.tileSize;
+      scratch.copy(typeof colorAt === 'function' ? colorAt(x, z) : colorAt);
+      terrainGroundFarDetail(scratch, detailAt(x, z)[0]);
+      return wooded && canopy !== undefined
+        ? canopy(scratch, context.origin[0] + x, context.origin[1] + z)
+        : scratch;
+    };
+  });
+  const { pixels, opaque } = paintLandcoverRaster(landcover, size, colors);
+  if (options.landcoverRaster?.features !== false)
+    paintLandcoverFeatures(
+      pixels,
+      size,
+      context.tileSize,
+      tile.transportation,
+      tile.buildings,
+      options.landcoverRaster,
+    );
+  return {
+    size,
+    pixels,
+    opaque,
+    ...landcoverRasterGrid(
+      context.heightfield,
+      context.origin,
+      context.tileSize,
+      context.surfaceResolution ?? context.heightfield.cols,
+      options.landcoverOffset ?? 0.18,
+    ),
+  };
+}
+
+/** Land cover for one tile: the texture on distant tiles when asked for, else the draped mesh. */
+export function createLandcoverSurface(
+  tile: TerrainSemanticTile,
+  context: TerrainPyramidTileLayerContext,
+  options: TerrainSemanticMeshOptions,
+): THREE.Mesh | undefined {
+  const size = landcoverRasterSize(
+    options.landcoverRaster,
+    context.address.level,
+    context.pyramid.maxLevel,
+  );
+  if (size === undefined) return createLandcoverMesh(tile, context, options);
+  const data = createLandcoverRasterData(tile, context, options, size);
+  return data === undefined ? undefined : landcoverRasterMesh(data, context, options);
+}
+
+/** The mesh for raster data, marked as ground that openings and shorelines cut. */
+export function landcoverRasterMesh(
+  data: TerrainLandcoverRasterData,
+  context: Pick<TerrainPyramidTileLayerContext, 'tileSize'>,
+  options: Pick<TerrainSemanticMeshOptions, 'materials'>,
+): THREE.Mesh {
+  const mesh = createLandcoverRasterMesh(
+    data,
+    context.tileSize,
+    options.materials?.landcoverRaster ?? DEFAULT_LANDCOVER_RASTER_MATERIAL,
+  );
+  markTerrainGroundSurface(mesh);
+  return mesh;
+}
+
+export function createLandcoverMesh(
+  tile: TerrainSemanticTile,
+  context: TerrainPyramidTileLayerContext,
+  options: TerrainSemanticMeshOptions,
+): THREE.Mesh | undefined {
+  const builder = new TerrainSurfaceMeshBuilder(context);
+  tile = { ...tile, landcover: orderLandcover(tile.landcover) };
+  const visible = visibleLandcoverPolygons(tile.landcover);
+  const ranges: LandcoverBlendRange[] = [];
+  const colorsAt: ((x: number, z: number) => THREE.Color)[] = [];
+  const painter = landcoverPainter(tile, context, options);
+  for (let featureIndex = 0; featureIndex < tile.landcover.length; featureIndex++) {
+    const feature = tile.landcover[featureIndex];
+    if (feature === undefined) continue;
+    const { colorAt, detailAt } = painter(feature);
     // One height for every class: covered faces were removed above, so neighbors meet edge to
     // edge. Staggered layers left a sliver at each boundary that a grazing view saw through
     // once the covered terrain beneath stopped drawing.
@@ -907,17 +1077,7 @@ export function createLandcoverMesh(
     for (const polygon of visible[featureIndex] ?? [])
       appendTerrainSurfaceArea(builder, polygon, colorAt, offset);
     appendAgricultureAttributes(builder, start, feature);
-    builder.attributeSince('landcoverDetail', 2, start, (x, z) => {
-      const worldX = context.origin[0] + x,
-        worldZ = context.origin[1] + z;
-      const detail =
-        palettes?.find(
-          ({ bounds: b }) => worldX >= b[0] && worldX < b[2] && worldZ >= b[1] && worldZ < b[3],
-        )?.detail ?? ownDetail;
-      if (detail === undefined) return [0, 0];
-      const open = 1 - (pavedAt?.(x, z) ?? 0);
-      return [detail[0] * open, detail[1] * open];
-    });
+    builder.attributeSince('landcoverDetail', 2, start, detailAt);
     colorsAt[featureIndex] = typeof colorAt === 'function' ? colorAt : () => colorAt;
     if (builder.vertexCount > start)
       ranges.push({ start, end: builder.vertexCount, feature: featureIndex });
@@ -1088,6 +1248,7 @@ function* buildingMeshSteps(
     }
   };
   for (const feature of tile.buildings) {
+    if ((feature.layer ?? 0) < 0) continue;
     yield* pauseWhenDue(clock);
     const height = Math.max(
       0.5,
@@ -1322,7 +1483,7 @@ function* semanticObjectSteps(
   clock: SliceClock,
 ): Generator<void, void> {
   if ((options.renderLandcover ?? true) && (options.renderLandcoverSurface ?? true)) {
-    const landcover = createLandcoverMesh(tile, context, options);
+    const landcover = createLandcoverSurface(tile, context, options);
     if (landcover !== undefined) group.add(landcover);
     yield* pauseWhenDue(clock);
   }

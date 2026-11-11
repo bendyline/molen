@@ -1,0 +1,62 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.ponte_dellindustria",
+  "inputHash": "sha256:72829821a56ff0bc2985aa7904e194df0c6e68dcae5dc5eac158390c94938d64",
+  "sourceHash": "sha256:15dfa74f056cfd5b709647fca24eb23e64ce9a0ceee46fd92e647e0643eb1c5b",
+  "runtimeHash": "sha256:5129af895c87201f0b56f830645c16136c5d47398a3cb586d05ef3f07e112200",
+  "fixtureHash": "sha256:cc68dd7187d432b59e77e14757b60d2d195867d29e7d541acf992d96d029d76c",
+  "placementHash": "sha256:9f21549ee38b94cfabadc54e71a6213412225d16caa8fb4c2bf3688d8aafc6dc",
+  "materialGraphs": {
+    "molen.worldgen.material.gravel": {
+      "path": "materials/gravel.matgraph.json",
+      "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.concrete_boardformed": {
+      "path": "materials/concrete_boardformed.matgraph.json",
+      "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-ponte-industria.png",
+      "hash": "sha256:94c664a6ecf25503ca60c24adffc90f47132de30e70393a113e4174f2aa300b7",
+      "camera": {
+        "name": "detail-tiber-crossing",
+        "position": [
+          41,
+          55.008,
+          142
+        ],
+        "lookAt": [
+          0,
+          10.008,
+          0
+        ],
+        "fov": 47,
+        "group": "detail",
+        "lightDirection": [
+          -0.57,
+          1,
+          0.64
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "ponte.dellindustria",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Board-formed concrete, road aggregate and painted metal resolve once at each tier."
+}

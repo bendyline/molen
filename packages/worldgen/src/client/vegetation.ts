@@ -185,15 +185,32 @@ function groundcover(name: string): THREE.BufferGeometry | undefined {
 /** Meter-sized trees and ground features. No textures or asset loader. */
 export function createVegetationGeometry(
   name: string,
-  coarse: boolean | 'distant' = false,
+  coarse: boolean | 'distant' | 'horizon' = false,
 ): THREE.BufferGeometry | undefined {
   if (name.startsWith('groundcover.')) return coarse === false ? groundcover(name) : empty();
-  if (coarse === 'distant') {
+  if (coarse === 'distant' || coarse === 'horizon') {
     if (name.startsWith('tree.conifer')) {
       const pine = name.endsWith('pine');
       const height = pine ? 11.8 : 13.6;
-      const geometry = new THREE.ConeGeometry(pine ? 3.5 : 3.15, height, 6);
-      geometry.translate(0, height / 2, 0);
+      const radius = pine ? 3.5 : 3.15;
+      // Three plain skirts at the far level, so a stand of firs keeps its outline; one cone past
+      // it, where a tree is a few pixels tall.
+      const geometry =
+        coarse === 'horizon'
+          ? new THREE.ConeGeometry(radius, height, 6)
+          : new THREE.LatheGeometry(
+              [
+                [0, 0.08],
+                [1, 0.08],
+                [0.5, 0.4],
+                [0.74, 0.46],
+                [0.3, 0.7],
+                [0.46, 0.75],
+                [0, 1],
+              ].map(([x = 0, y = 0]) => new THREE.Vector2(x * radius, y * height)),
+              5,
+            );
+      if (coarse === 'horizon') geometry.translate(0, height / 2, 0);
       return colored(geometry, pine ? '#577b45' : '#3e7052');
     }
     if (name.startsWith('tree.deciduous')) {

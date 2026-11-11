@@ -1,0 +1,108 @@
+{
+  "format": "molen/scene@3",
+  "name": "Sheikh Jaber Causeway · Main Link viaduct 16 preview",
+  "seed": "sheikh_jaber_al_ahmad_al_sabah_causeway_main_16",
+  "tickRate": 30,
+  "physics": {
+    "engine": "none"
+  },
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      -81.4807275390625,
+      50.29969024658203,
+      66
+    ],
+    "lookAt": [
+      0,
+      5.4498450756073,
+      0
+    ],
+    "fov": 53
+  },
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.sheikh_jaber_al_ahmad_al_sabah_causeway_main_16",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "water",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.15,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            5000,
+            0.2,
+            5000
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#53777c",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dce5ed",
+            "ground": "#6c7473",
+            "intensity": 1.15
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    }
+  ]
+}

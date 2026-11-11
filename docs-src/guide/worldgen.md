@@ -346,6 +346,9 @@ independent identity salt, so decorating a lot does not move or re-roll its hous
 Mapped footprints, occupied landmark extents, other streets, water and incompatible land uses
 such as parks, farmland, schools and parking exclude the entire parcel, including its approach.
 Slopes above 0.3 or more than three meters of height variation also exclude it.
+A named neighborhood outline excludes nothing, because it marks a place and not its ground. The
+Protomaps basemap reports one as land use `other`, in place of any residential or industrial use
+mapped on the same outline, so streets inside it are judged like streets without a land-use label.
 
 Mapped residential, commercial and retail land-use polygons provide district evidence. Commercial
 and retail areas select commercial styles and shopfront plans; residential areas select homes.
@@ -425,6 +428,64 @@ project above that envelope. Parts spatially contained in an outline replace the
 uncovered areas of the original outline remain. Related pieces receive a shared `groundOutline`
 for fitting their platform to terrain, and raised parts retain their minimum-height clearance.
 Containment is a spatial inference because stock Protomaps does not publish parent relation IDs.
+
+### Golf courses, cemeteries and sports pitches
+
+A map names these places but does not carry what makes them recognizable, so the Earth adapter
+lays that out. `prepareLandSites(tile, geometry)` from `@bendyline/molen-worldgen-earth/kernel`
+returns the tile with extra land cover after its own, and `landSiteProps(tile, geometry)` returns
+point placements. The renderers and the batch adapter call both; a custom pipeline calls them the
+same way. Everything is a visual estimate: it reads as the place from the air and on foot, and is
+not the surveyed course, the real graves or the pitch as it is painted.
+
+| Mapped land | What is added | Detail levels |
+| --- | --- | --- |
+| `golf_course` | `golf_fairway`, `golf_green`, `golf_tee` and `golf_bunker` ground | Fairways and greens on the finest three levels, tees and bunkers on the finest two |
+| `cemetery`, `grave_yard` | Headstones: tinted `builtin:box` placements in rows | Finest level |
+| `pitch` | `sports_turf`, `sports_court`, `sports_blacktop` and `sports_dirt` ground, `sports_line` markings | Ground on the finest two levels, lines on the finest |
+
+Golf holes sit on a fixed world grid of squares 640 projected meters across. Each square holds
+parallel corridors at least 70 m wide, running east-west in some squares and north-south in
+others, and each corridor holds holes end to end: short, medium and long ones, each with tees, a
+fairway that doglegs a little, a green in a collar of fairway-height turf, and greenside and
+fairway bunkers. The layout is clipped to the mapped course and kept off its mapped water, woods,
+sand and buildings. A green, tee or bunker is drawn whole or not at all; a fairway may end at the
+course boundary. The rough is the course's own grass. Because the grid is anchored to the world,
+not to a tile, every tile, level and visit draws the same holes. A third argument `{ seed }`
+re-rolls them, and the headstones; the built-in renderers use seed 0.
+
+Headstones stand in sections 64 projected meters across with grass lanes between, in rows 5 m
+apart, 2.4 m from stone to stone. One section in eight is open lawn and the rest are 30–90%
+occupied. Most stones are upright slabs, a fifth flat markers, a few tall monuments, in five stone
+colors. Stones stay 2.5 m inside the boundary, 1.5 m from buildings and water, and clear of roads,
+drives and paths; they may stand under the cemetery's mapped trees. A tile draws at most 3,000:
+past that, whole sections stay lawn so the others keep their rows. Each stone belongs to the tile
+its base is in, and `ModelPlacementRequest.color` (sRGB red, green and blue in 0–1) carries its tint.
+
+A pitch's game is read from the outline's size and shape:
+
+| Outline | Read as | Markings |
+| --- | --- | --- |
+| Rectangle 85–130 m long, at least 1.9 times its width | Football field | Boundary and a yard line every ten yards |
+| Other rectangle 45–130 m long | Soccer field | Touchlines, halfway line, center circle, penalty and goal areas |
+| Rectangle 20–45 m long, over 31 m or at least 2.05 times its width | Tennis court | Doubles court, singles sidelines, service boxes, net |
+| Other rectangle 20–45 m long | Basketball court | Boundary, center line and circle, keys, three-point arcs |
+| Rectangle 10–20 m long | Court | Boundary |
+| Near-square fan filling 68–90% of its bounding rectangle | Ball diamond | Skinned infield, foul lines, and from 70 m foul lines a grass infield and mound |
+| Anything else from 45 m long | Field | None |
+
+A rectangle under 10 m long, or any other small outline, is left as the map has it.
+
+Markings are each sport's standard dimensions, scaled down where the outline is smaller. Home
+plate is where the two long edges of a fan would meet, so a backstop that cuts that corner off
+does not hide it. A pitch the source cut at a tile edge cannot be measured, so both tiles draw
+their piece as turf; the tile that holds a diamond's home plate adds the infield when all of it
+fits inside that tile. A court cut that way is turf too.
+
+Palettes name the added classes like any other land cover. `LAND_SITE_COLORS` supplies defaults
+under the pack's and the host's colors: irrigated turf keeps one green in every habitat, so a
+desert course is green fairways in tan rough. Added ground has crisp edges, and no vegetation rule
+plants on it unless a pack names its class.
 
 ## 8. Budgets and quality
 
@@ -529,7 +590,25 @@ scatter material: a shader that can discard switches off hidden-surface removal 
 GPUs, so a distant forest drawn with the card material shaded every layer of crowns behind the
 first. For the same reason a level drawn with cards hands over to the next at a quarter of the
 projected error its geometry alone would allow (a crown's cards overlap several deep), and the
-distant level neither casts nor receives sun shadows. With `vanishPixels` a batch stops drawing
+distant level neither casts nor receives sun shadows. In place of the shadows it does not
+read, the WebGL scatter material shades a plant's crown as one among its neighbours while the
+sun's shadows are drawn: the top in the sun, the rest in shade, more so the lower the sun. From
+the air the distant level starts a few hundred meters out, and without that the trees near an
+aircraft were a dark disc among bright ones. With the policy's `distantShadows` the distant
+level casts as well (and still receives none; the horizon level below never casts), so the
+ground past the near trees carries tree shadows too. That draws every tree out to the horizon
+level into the shadow map: over a wooded town at High detail 350 more draws and 0.85 million
+more triangles a frame, and 1.9 ms more main thread, so it is off unless a host turns it on.
+`createInstancedPlacementLod` takes an
+optional fourth, horizon model (`ModelLibrary.prepare(ref, 'horizon')`): a conifer's far level
+keeps three plain skirts, so a stand of firs is not a field of cones from a few hundred meters,
+and hands over to the one-cone horizon model where 2.5 m of error fits the budget (about 930 m
+at 2.5 pixels on a 1080-line view). For every other model the horizon model is the far model
+and adds no level. That handover reads the policy's `horizonPixelError` (default
+`maxPixelError`): a host that relaxes `maxPixelError` with camera height, to shed leaf cards,
+keeps `horizonPixelError` at its base value, or every conifer under an aircraft is the cone. A
+batch within a quarter of a handover's distance asks for the material across it, so its shaders
+are built by the time it gets there. With `vanishPixels` a batch stops drawing
 once its largest instance spans fewer pixels than that from the batch's nearest point (15%
 hysteresis): the semantic renderers pass 1.5 for street props and signs, which from a few
 kilometers were a draw each for a pixel or less, but not for plants, as a distant forest is the

@@ -1,0 +1,896 @@
+{
+  "id": "wien_hauptbahnhof",
+  "title": "Wien Hauptbahnhof",
+  "wikidataId": "Q697300",
+  "referenceCoordinate": {
+    "longitude": 16.377777777,
+    "latitude": 48.185
+  },
+  "module": "packages/worldgen/scripts/wien-hauptbahnhof-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-wien-hauptbahnhof.mjs",
+  "builder": "buildViennaLevel",
+  "surfaces": {
+    "slab": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.9
+    },
+    "structure": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.9
+    },
+    "under": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.9
+    },
+    "panel": {
+      "slot": "wall",
+      "graph": "concrete_panel",
+      "roughness": 0.86
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.78,
+      "metallic": 0.16
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.75,
+      "metallic": 0.18
+    },
+    "white": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.75,
+      "metallic": 0.18
+    },
+    "dark": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.75,
+      "metallic": 0.18
+    },
+    "rail": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.75,
+      "metallic": 0.18
+    },
+    "red": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.75,
+      "metallic": 0.18
+    },
+    "ground": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "ballast": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "pavers": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "ties": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "roofGlass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.38
+    },
+    "glass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.38
+    },
+    "shadowGlass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.38
+    },
+    "clear": {
+      "slot": "window",
+      "localRef": "palette:#dbf3fc",
+      "roughness": 0.27,
+      "metallic": 0.04,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.52
+      ],
+      "doubleSided": true
+    }
+  },
+  "exportLabel": "Molen original Wien Hauptbahnhof master",
+  "expectedDraftMasterHash": "sha256:9d3105dc52dad961bde78c1d00d098e21bb01f157d1ce46d4ad94b11b19ef406",
+  "visualBrief": "Fourteen folded silver roofs and triangular clerestories cover the rail deck. Five island platforms connect to stepped eastern shelters. The clock and lettered glass entrance face Südtiroler Platz, with a lower south concourse at the opposite side.",
+  "heightPolicy": "The 206 m deck datum follows the sampled railway corridor. The two street-level landings are fitted separately to the sampled forecourts and transition paving.",
+  "nativeAxes": "The two long mapped Südbahn segments set the east-southeast +X rail axis. Südtiroler Platz identifies the west entrance and the mapped island roofs locate the south concourse and east end.",
+  "limitations": [
+    "PMTiles controls the station footprint, the fourteen folded canopy footprints, eastern shelters and twelve sampled through-track lanes. Roof folds, concourse levels and interior circulation are reconstructed from photographs and standard viewer terrain.",
+    "The authored geometry covers the public entrances, station deck and above-ground platforms. Trackside equipment and public concourses are static representations."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Wien_Hauptbahnhof%2C_2026.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Wien_Hauptbahnhof%2C_2026.jpg",
+      "hash": "sha256:879b3c1d2bc7c30707b13f0d82fed208bc575160ea3bbf7e4c19a5a8260784cb",
+      "observed": "station front"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Vienna_Central_Station_(25586958806).jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Vienna_Central_Station_(25586958806).jpg",
+      "hash": "sha256:6fcecd0f8a5bdb22fea49c97fd8091577a7648198efcb4dee60f838772cc52ab",
+      "observed": "station aerial"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Rautendach_Wien_Hauptbahnhof.JPG",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Rautendach_Wien_Hauptbahnhof.JPG",
+      "hash": "sha256:f0ca4e151bfef5496eabf185e69f182fa6e055f57961922088219985e0bc0782",
+      "observed": "diamond roof"
+    }
+  ],
+  "cameras": [
+    {
+      "name": "station-and-city",
+      "position": [
+        -265,
+        160,
+        188
+      ],
+      "lookAt": [
+        -8,
+        3,
+        3
+      ],
+      "fov": 58,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.63
+      ]
+    },
+    {
+      "name": "suedtiroler-platz-clock-entrance",
+      "position": [
+        -207,
+        -3.4,
+        -60
+      ],
+      "lookAt": [
+        -168,
+        1.4,
+        -56.5
+      ],
+      "fov": 65,
+      "lightDirection": [
+        -0.66,
+        1,
+        -0.62
+      ]
+    },
+    {
+      "name": "fourteen-folded-roofs",
+      "position": [
+        -66,
+        146,
+        127
+      ],
+      "lookAt": [
+        -62,
+        10,
+        4
+      ],
+      "fov": 64,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.64
+      ]
+    },
+    {
+      "name": "clerestory-and-metal-seams",
+      "position": [
+        -139,
+        18.7,
+        -70
+      ],
+      "lookAt": [
+        -114,
+        11,
+        -12
+      ],
+      "fov": 60,
+      "lightDirection": [
+        -0.42,
+        1,
+        -0.66
+      ]
+    },
+    {
+      "name": "platform-canopies-and-rails",
+      "position": [
+        164,
+        3.3,
+        9.5
+      ],
+      "lookAt": [
+        -120,
+        4,
+        9.5
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.38,
+        1,
+        -0.7
+      ]
+    },
+    {
+      "name": "south-concourse",
+      "position": [
+        -73,
+        -5,
+        111
+      ],
+      "lookAt": [
+        -70,
+        -7,
+        87
+      ],
+      "fov": 68,
+      "lightDirection": [
+        -0.32,
+        1,
+        0.72
+      ]
+    },
+    {
+      "name": "eastern-platform-shelters",
+      "position": [
+        239,
+        35,
+        77
+      ],
+      "lookAt": [
+        125,
+        4.1,
+        2
+      ],
+      "fov": 57,
+      "lightDirection": [
+        0.57,
+        1,
+        0.68
+      ]
+    },
+    {
+      "name": "west-rail-deck-and-folds",
+      "position": [
+        -250,
+        37,
+        106
+      ],
+      "lookAt": [
+        -132,
+        6,
+        11
+      ],
+      "fov": 63,
+      "lightDirection": [
+        -0.54,
+        1,
+        0.66
+      ]
+    }
+  ],
+  "materialMethod": "Six shared graphs cover concrete, panel concrete, standing-seam metal, painted steel, granite and tinted glazing. A local translucent glass material serves the entrance. The clock, lettering, louvres and seams use geometry.",
+  "sourceFacts": {
+    "station": "way/423692233",
+    "terrainDatumMeters": 206,
+    "footprintPartIds": [
+      35184795781065,
+      35184795779129,
+      35184567812092,
+      35185662475648,
+      35185399782196,
+      35185399782197,
+      35185399782198,
+      35185400457393,
+      35185400457394,
+      35185400457395,
+      35185400457396,
+      35185400457397,
+      35185400457398,
+      35185400457399,
+      35185400457400,
+      35185400457401,
+      35185400457402,
+      35185400457403,
+      35185401432928,
+      35185401432929,
+      35185401432930,
+      35185401432931,
+      35185401432932,
+      35185649770651,
+      35185649770652,
+      35185649770653,
+      35185649770654,
+      35185649770655,
+      35185649770656,
+      35185649770657,
+      35185649770658,
+      35185649770659,
+      35185649770660,
+      35185649770661,
+      35185649770662,
+      35185649770663,
+      35185649770664,
+      35185649770665
+    ],
+    "platformIslands": 5,
+    "railAlignments": 12,
+    "foldedRoofUnits": 14,
+    "eastShelterUnits": 20
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -26,
+        3,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/wien-hauptbahnhof-model.mjs",
+    "export": "buildViennaSkyline",
+    "surfaces": {
+      "slab": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.9
+      },
+      "structure": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.9
+      },
+      "under": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.9
+      },
+      "panel": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.86
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.78,
+        "metallic": 0.16
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.18
+      },
+      "white": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.18
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.18
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.18
+      },
+      "red": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.18
+      },
+      "ground": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "ballast": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "pavers": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "ties": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "roofGlass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.38
+      },
+      "glass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.38
+      },
+      "shadowGlass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.38
+      },
+      "clear": {
+        "slot": "window",
+        "localRef": "palette:#dbf3fc",
+        "roughness": 0.27,
+        "metallic": 0.04,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.52
+        ],
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildViennaDistrict",
+        "surfaces": {
+          "slab": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "structure": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "under": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.86
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.16
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "pavers": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "ties": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roofGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "shadowGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#dbf3fc",
+            "roughness": 0.27,
+            "metallic": 0.04,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.72
+      },
+      "street": {
+        "export": "buildViennaStreet",
+        "surfaces": {
+          "slab": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "structure": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "under": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.86
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.16
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "pavers": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "ties": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roofGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "shadowGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#dbf3fc",
+            "roughness": 0.27,
+            "metallic": 0.04,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "closeup": {
+        "export": "buildViennaCloseup",
+        "surfaces": {
+          "slab": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "structure": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "under": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.86
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.16
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.18
+          },
+          "ground": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "pavers": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "ties": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "roofGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "shadowGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#dbf3fc",
+            "roughness": 0.27,
+            "metallic": 0.04,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "wien_hauptbahnhof-skyline",
+      "position": [
+        -265,
+        160,
+        188
+      ],
+      "lookAt": [
+        -8,
+        3,
+        3
+      ],
+      "fov": 58,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.63
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "wien_hauptbahnhof-district",
+      "position": [
+        -265,
+        160,
+        188
+      ],
+      "lookAt": [
+        -8,
+        3,
+        3
+      ],
+      "fov": 58,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.63
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "wien_hauptbahnhof-street",
+      "position": [
+        -265,
+        160,
+        188
+      ],
+      "lookAt": [
+        -8,
+        3,
+        3
+      ],
+      "fov": 58,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.63
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "wien_hauptbahnhof-closeup",
+      "position": [
+        -265,
+        160,
+        188
+      ],
+      "lookAt": [
+        -8,
+        3,
+        3
+      ],
+      "fov": 58,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.63
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

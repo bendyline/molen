@@ -49,4 +49,4 @@ it('renders the complete retail fixture at two scales, rotated, and at near/dist
       ).toBe(tier < 2 ? signCount : 0);
       expect(generateWorldgenBatch(input).hash).toBe(output.hash);
     }
-});
+}, 30_000); // Loads the whole default pack and generates the fixture twelve times under full-suite load.

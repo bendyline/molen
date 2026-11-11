@@ -143,6 +143,20 @@ describe('residential tree infill', () => {
     expect(trees(tile)).toEqual([]);
   });
 
+  it('plants the same yards inside a named neighbourhood outline as on unlabelled ground', () => {
+    // `other` is the Protomaps basemap's class for the outline. Unclassified footprints count
+    // too: they are homes only where no land use says otherwise.
+    for (const kind of ['other', 'neighbourhood'])
+      for (const use of ['house', 'building']) {
+        const tile = neighborhood();
+        for (const building of tile.buildings) building.class = use;
+        const unlabelled = trees(tile);
+        expect(unlabelled.length).toBeGreaterThan(0);
+        tile.landcover = [{ class: kind, polygons: [{ outer: rect(0, 0, 1, 1) }] }];
+        expect(trees(tile)).toEqual(unlabelled);
+      }
+  });
+
   it('protects roads, water, parking, sports fields, mapped trees and existing forest', () => {
     const tile = neighborhood();
     tile.transportation = [

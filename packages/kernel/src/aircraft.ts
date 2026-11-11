@@ -32,6 +32,7 @@ import {
   aircraftEngineRpm,
   aircraftEngineShaftPower,
   aircraftEngineThrust,
+  aircraftFuelFlow,
   aircraftMixtureEfficiency,
   engineThrottle,
   freeRotationRates,
@@ -43,6 +44,7 @@ export {
   aircraftEngineRpm,
   aircraftEngineShaftPower,
   aircraftEngineThrust,
+  aircraftFuelFlow,
   aircraftMixtureEfficiency,
   engineThrottle,
   waveDragCoefficient,
@@ -212,6 +214,24 @@ export function setAircraftEngineFailed(
   world.patch(aircraft, AircraftState, { engines });
   return true;
 }
+/**
+ * Fill the tanks of an aircraft standing on the ground with every engine stopped, as a ground
+ * crew would before the next flight. Returns false, changing nothing, in flight, with an engine
+ * turning, or for an aircraft that declares no `fuel`.
+ */
+export function refuelAircraft(world: World, aircraft: string): boolean {
+  const capacity = world.get(aircraft, Aircraft)?.spec.fuel?.capacity;
+  const state = world.get(aircraft, AircraftState);
+  if (
+    capacity === undefined ||
+    !state?.grounded ||
+    state.rpm > 0.12 ||
+    m.hypot(...state.velocity) > 0.7
+  )
+    return false;
+  if ((state.fuel ?? capacity) < capacity) world.patch(aircraft, AircraftState, { fuel: capacity });
+  return true;
+}
 type Vec3 = [number, number, number];
 type Quat = [number, number, number, number];
 type Axes = { forward: Vec3; up: Vec3; left: Vec3 };
@@ -379,7 +399,13 @@ export function stepAircraft(
         1,
       ),
     );
-    const mass = spec.mass * massFraction;
+    // `mass` is the aircraft with full tanks: it flies lighter as the fuel burns.
+    const tank = spec.fuel?.capacity;
+    const fuel = tank === undefined ? undefined : m.clamp(s.fuel ?? tank, 0, tank);
+    const mass = m.max(
+      0.1 * spec.mass,
+      spec.mass * massFraction - (tank === undefined || fuel === undefined ? 0 : tank - fuel),
+    );
     const weight = 9.81 * mass;
     const ground = env.groundHeight(t.pos[0], t.pos[2], t.pos[1]);
     if (ground === undefined || !Number.isFinite(ground)) {
@@ -404,6 +430,9 @@ export function stepAircraft(
     const density = atmosphere.densityKgM3;
     let propwash = 0;
     let ratedPower = 0;
+    // With its engine out in flight a rotor freewheels: the air it descends through and its
+    // own momentum keep it turning (autorotation), and the helicopter branch balances that.
+    let autorotating = false;
     for (const [index, engine] of engines.entries()) {
       const e = bank[engine.id];
       const control = controls[index];
@@ -420,13 +449,23 @@ export function stepAircraft(
         !e.failed &&
         !aircraftWrecked(spec, s) &&
         combustion > 0 &&
-        !(helicopter && (s.actuators?.eject ?? 0) > 0);
+        !(helicopter && (s.actuators?.eject ?? 0) > 0) &&
+        // Dry tanks stop every engine.
+        fuel !== 0;
       const targetRpm = helicopter?.powerLimitedRotor
         ? 1
         : aircraftEngineRpm(engine, control.power, combustion, control.propeller);
       e.combustion = running ? combustion : 0;
       if (!running && e.afterburner !== undefined) e.afterburner = 0;
-      e.rpm = approach(e.rpm, running ? targetRpm : 0, h * engine.spoolRate);
+      if (
+        helicopter?.powerLimitedRotor &&
+        !running &&
+        !s.grounded &&
+        !aircraftWrecked(spec, s) &&
+        (s.actuators?.eject ?? 0) <= 0
+      )
+        autorotating = true;
+      else e.rpm = approach(e.rpm, running ? targetRpm : 0, h * engine.spoolRate);
       e.rotorAngle = (e.rotorAngle + e.rpm * engine.rotorAngularSpeed * h) % m.TAU;
       e.thrust = 0;
       e.shaftPower = running
@@ -670,6 +709,34 @@ export function stepAircraft(
       s.loadFactor = dot([force[0], force[1] + weight, force[2]], up) / weight;
       const supported = m.clamp((force[1] + weight) / weight, 0, 1);
       wheelLoad = 1 - supported;
+      // Airflow starts to break away a few degrees before the stall and shakes the airframe:
+      // the warning a pilot feels through the seat. Hosts shake the view by it; the flight
+      // path is left alone.
+      s.buffet = s.grounded
+        ? 0
+        : m.smoothstep((m.abs(alpha) - airplane.stallAngle + 0.07) / 0.07) *
+          m.min(1, dynamic) *
+          (1 - hoverDirection);
+      // The pilot: sustained g drains blood from the head (vision dims, then goes), negative
+      // g forces it there. Both build above a tolerance and recover below it.
+      const tolerance =
+        airplane.pilotGTolerance ?? ((airplane.maxLoadFactor ?? 6) >= 7.5 ? 6.5 : 4.5);
+      s.greyout = m.clamp(
+        (s.greyout ?? 0) +
+          h *
+            (s.loadFactor > tolerance
+              ? (s.loadFactor - tolerance) / 20
+              : s.loadFactor < tolerance - 1
+                ? -0.25
+                : 0),
+        0,
+        1,
+      );
+      s.redout = m.clamp(
+        (s.redout ?? 0) + h * (s.loadFactor < -1.5 ? (-1.5 - s.loadFactor) / 6 : -0.5),
+        0,
+        1,
+      );
 
       // Pitch: the elevator sets the angle of attack the airframe's stability flies toward.
       const pose = attitude(axes);
@@ -732,6 +799,14 @@ export function stepAircraft(
         (1 - departure * (airplane.departure?.pitchBlanking ?? 0));
       // Weight on the wheels holds the nose at its resting attitude until the elevator lifts it.
       const gear = s.grounded ? 8 * wheelLoad : 0;
+      // Braking tips the airplane forward on its struts: a nosewheel dips, a tailwheel's tail
+      // comes up.
+      const dive =
+        s.grounded && input.brake
+          ? -(airplane.tailwheel ? 0.06 : 0.02) *
+            wheelLoad *
+            m.min(1, m.hypot(s.velocity[0], s.velocity[2]) / 5)
+          : 0;
 
       const rollInertia =
         (airplane.rollInertia ?? spec.mass * (0.14 * spec.span) ** 2) * massFraction;
@@ -753,7 +828,7 @@ export function stepAircraft(
             (frequency ** 2 * (target - incidence) +
               pitchDamping * pathPitch -
               stallBreak -
-              gear * pose.pitch -
+              gear * (pose.pitch - dive) -
               spinning[0])) /
         (1 + h * (pitchDamping + gear / 2));
 
@@ -954,11 +1029,27 @@ export function stepAircraft(
       const rotorHorizontalDrag =
         (helicopter.horizontalDrag + s.airspeed * helicopter.quadraticDrag) * (1 + 3 * retreat);
       s.overspeed = retreat > 0;
+      // In an engine-out descent the air rising through the disc meets the blades at a
+      // steeper angle, as more collective would: about a third of the lever at 10 m/s. That
+      // is why the collective goes down in autorotation, and what settles the descent rate.
+      const upflow = autorotating
+        ? m.min(
+            0.8,
+            m.max(0, -(air[1] ?? 0)) /
+              (0.15 *
+                m.max(
+                  20,
+                  (engines[0]?.rotorAngularSpeed ?? 40) *
+                    helicopter.rotorRadius *
+                    m.max(s.rpm, 0.3),
+                )),
+          )
+        : 0;
       let lift =
         mass *
         9.81 *
         helicopter.liftMultiplier *
-        power *
+        (power + upflow) *
         s.rpm ** 2 *
         groundEffect *
         translational *
@@ -1000,7 +1091,24 @@ export function stepAircraft(
             parasitePower
           );
         };
-        if (required(lift) > shaft) {
+        if (autorotating) {
+          // The collective still sets the lift; the rotor pays for it. Air rising through
+          // the disc in a descent gives power back, so with the collective down the rotor
+          // holds its speed, and a pull at the bottom spends that speed on a last cushion.
+          const engine = engines[0];
+          const rotor = engine ? bank[engine.id] : undefined;
+          const need = required(lift) + lift * m.min(0, air[1] ?? 0);
+          const stored =
+            (helicopter.rotorInertiaTime ?? 2) *
+            ((weight * m.sqrt(weight / m.max(0.01, 2 * 1.225 * discArea))) /
+              (helicopter.rotorEfficiency ?? 0.75));
+          if (rotor)
+            rotor.rpm = m.clamp(
+              rotor.rpm - (need * h) / (2 * stored * m.max(rotor.rpm, 0.2)),
+              0,
+              1,
+            );
+        } else if (required(lift) > shaft) {
           let lo = 0,
             hi = lift;
           for (let iteration = 0; iteration < 18; iteration++) {
@@ -1025,6 +1133,16 @@ export function stepAircraft(
         s.velocity[i] = (s.velocity[i] ?? 0) + ((force[i] ?? 0) / mass) * h;
       pos = t.pos.map((v, i) => v + (s.velocity[i] ?? 0) * h * travelScale) as Vec3;
     } else continue;
+    if (tank !== undefined && fuel !== undefined) {
+      // A governed rotor engine burns by the collective; the others by what they deliver.
+      const load = helicopter ? 0.3 + 0.7 * power : 1;
+      let flow = 0;
+      for (const engine of engines) {
+        const e = bank[engine.id];
+        if (e && (e.combustion ?? 0) > 0) flow += aircraftFuelFlow(engine, e, load);
+      }
+      s.fuel = m.max(0, fuel - flow * h);
+    }
     const support = env.groundHeight(pos[0], pos[2], pos[1]);
     if (support === undefined || !Number.isFinite(support)) {
       rollBack(s, previous);
@@ -1047,11 +1165,21 @@ export function stepAircraft(
         support - t.pos[1] > spec.maxSupportStep;
       if (hard || aircraftSectionAuthority(spec, s, 'gear') === 0) damageAircraftBody(spec, s);
       pos[1] = support;
-      s.velocity[1] = hard ? m.max(0, -s.velocity[1] * 0.08) : 0;
+      const sink = -s.velocity[1];
+      s.velocity[1] = hard ? m.max(0, sink * 0.08) : 0;
+      if (airplane && !previous.grounded && !hard && sink > 0.6) {
+        // Struts and tires give back part of a firm touchdown: the airplane skips. Mains
+        // ahead of the center of mass also pitch a tail-up taildragger's nose up, into more
+        // lift and a bigger bounce; a nosewheel airplane pitches down onto its nose gear.
+        s.velocity[1] = (sink - 0.6) * (airplane.gearRebound ?? 0.45);
+        if (airplane.tailwheel) {
+          if (touchdown.pitch < airplane.maxGroundPitch - 0.03) s.pitchRate += 0.12 * sink;
+        } else if (touchdown.pitch > 0) s.pitchRate -= 0.03 * sink;
+      }
+      // Tires brake and drag by the weight on them: little while the wing still flies.
       const deceleration = airplane
-        ? input.brake
-          ? airplane.brakeDeceleration
-          : airplane.rollingDeceleration
+        ? (input.brake ? airplane.brakeDeceleration : airplane.rollingDeceleration) *
+          (0.2 + 0.8 * wheelLoad)
         : (helicopter?.groundDeceleration ?? 0);
       const groundSpeed = m.hypot(s.velocity[0], s.velocity[2]);
       const scale = m.max(0, groundSpeed - deceleration * h) / m.max(0.0001, groundSpeed);
@@ -1066,7 +1194,11 @@ export function stepAircraft(
         s.velocity[0] = approach(s.velocity[0], along * sin, grip);
         s.velocity[2] = approach(s.velocity[2], along * cos, grip);
         // The gear holds the wings level and bounds the nose between its wheels and tail.
-        const pitch = m.clamp(touchdown.pitch, -0.03, airplane.maxGroundPitch);
+        const pitch = m.clamp(
+          touchdown.pitch,
+          airplane.tailwheel ? -0.07 : -0.03,
+          airplane.maxGroundPitch,
+        );
         if (pitch !== touchdown.pitch && (pitch - touchdown.pitch) * s.pitchRate < 0)
           s.pitchRate = 0;
         s.rollRate = 0;

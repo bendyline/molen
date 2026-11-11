@@ -16,6 +16,19 @@ describe('authored landmark ground contact', () => {
       true,
     );
   });
+  it('accepts an elevated bridge with a reviewed absolute datum', () => {
+    expect(
+      hasAuthoredGroundContact({
+        actualBounds: { min: [-15, 17, -4], max: [15, 29, 4] },
+        geographicProposal: {
+          ...fort.geographicProposal,
+          elevationMode: 'sea-level',
+          elevationMeters: 0,
+          groundContactBasis: 'Pier footings are aligned to sampled terrain above sea level.',
+        },
+      }),
+    ).toBe(true);
+  });
   it('rejects ambiguous, unsupported, or nonzero contact planes', () => {
     for (const patch of [
       { groundContactReviewed: false },

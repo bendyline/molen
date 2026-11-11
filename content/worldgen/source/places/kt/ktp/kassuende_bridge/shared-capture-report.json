@@ -1,0 +1,62 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.kassuende_bridge",
+  "inputHash": "sha256:857dc0376e1f55b5bf00219777e738465a636e7412751fec33f3d005705dab4f",
+  "sourceHash": "sha256:dd163dbbdc3bc19d20c7048f2a44b54e9cddc1579cc08ecb60def9cb00761f95",
+  "runtimeHash": "sha256:9f1cef8aab934df9344be77ac0fd82b692413eadc1ab3be24e2e1c7ac1acf3d7",
+  "fixtureHash": "sha256:c226137c7b3f6852c4758c3156894d3c02dc0dce3abff40edd21d91be9ecb0bb",
+  "placementHash": "sha256:63ff9ee721c4f0d40ba7436c6b06a831cea00590005f94aff905428df6b0af0d",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_boardformed": {
+      "path": "materials/concrete_boardformed.matgraph.json",
+      "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-kassuende-bridge.png",
+      "hash": "sha256:fcdce4b76572a694bfcf435a12f6eea301cbce674ceaf5ffff56435d93d74fc5",
+      "camera": {
+        "name": "detail-cantilever-spans-and-piers",
+        "position": [
+          426,
+          69,
+          236
+        ],
+        "lookAt": [
+          344,
+          12,
+          -5
+        ],
+        "fov": 60,
+        "detail": true,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "kassuende.bridge",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Board-formed concrete, plain concrete and painted metal each resolve once per detail level."
+}

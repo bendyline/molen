@@ -734,6 +734,30 @@ A serialized generation request: labeled building outlines, optional labeled pol
             "items": false,
             "minItems": 3,
             "maxItems": 3
+          },
+          "color": {
+            "description": "Instance tint, sRGB-encoded red, green and blue in 0..1; default white.",
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            ],
+            "items": false,
+            "minItems": 3,
+            "maxItems": 3
           }
         },
         "required": [

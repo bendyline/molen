@@ -1,0 +1,104 @@
+{
+  "id": "molen.entities.rail.mpi_mp36ph_3c",
+  "model": "mp36",
+  "label": "MPI MP36PH-3C",
+  "bodyStyle": "locomotive",
+  "genericLabel": "Commuter passenger locomotive",
+  "doc": "MPI MP36PH-3C: cab-forward commuter passenger locomotive with a full-width cowl carbody, raked windscreen, head-end-power compartment behind the cab, Blomberg B trucks with 40 in wheels, in a generic commuter livery (rail-livery-stripe band, rail-livery-accent pinstripe). Full cab interior (desktop console, live throttle and automatic brake handles, engineer and conductor seats). Drives on track with locked steering.",
+  "color": "#c3c6c5",
+  "stripe": "#2b4f86",
+  "accent": "#c4493a",
+  "number": "901",
+  "length": 19.8,
+  "width": 3.2,
+  "height": 4.75,
+  "couplerLength": 20.6,
+  "truckCenters": 12.5,
+  "wheelbase": 12.5,
+  "wheelRadius": 0.508,
+  "mass": 129000,
+  "engineForce": 290000,
+  "power": 2200000,
+  "maxSpeed": 49,
+  "reverseSpeed": 49,
+  "brakeDeceleration": 0.6,
+  "aerodynamicResistance": 3e-05,
+  "centerOfMassY": 1.8,
+  "driverEye": [
+    -0.72,
+    3.25,
+    8.05
+  ],
+  "ambientRole": {
+    "role": "rail",
+    "track": "heavy",
+    "cruise": 22,
+    "weight": 1.5,
+    "consist": {
+      "units": [
+        1,
+        1
+      ],
+      "length": [
+        3,
+        5
+      ],
+      "block": [
+        3,
+        5
+      ],
+      "cars": [
+        {
+          "type": "molen.entities.rail.bombardier_bilevel_coach"
+        }
+      ]
+    }
+  },
+  "audioSource": {
+    "sound": "vehicle.engine.diesel",
+    "loop": true,
+    "pitch": 0.95,
+    "gain": 0.95,
+    "when": {
+      "self.occupied": true
+    },
+    "pitchFrom": {
+      "signal": "vehicleInput.throttle",
+      "curve": [
+        [
+          -1,
+          0.62
+        ],
+        [
+          0,
+          0.55
+        ],
+        [
+          0.5,
+          0.78
+        ],
+        [
+          1,
+          1.0
+        ]
+      ]
+    },
+    "gainFrom": {
+      "signal": "vehicleInput.throttle",
+      "curve": [
+        [
+          -1,
+          0.75
+        ],
+        [
+          0,
+          0.6
+        ],
+        [
+          1,
+          1.0
+        ]
+      ]
+    }
+  }
+}

@@ -51,6 +51,7 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `character` | kernel/character | Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). |
 | `collider` | kernel/kinematics | 2.5D kinematic collider (circle or XZ AABB) with layer/mask bitmasks. |
 | `collider3d` | physics-rapier | 3D collider (ball/cuboid/capsule/hull/trimesh/asset/heightfield) with layer/mask, sensor, and material params. Static without a rigidbody. |
+| `coupled` | kernel/vehicles | A rail car in a consist: rides the leader's track trail at a fixed distance behind it, sharing its speed. Powered cars add their traction to the leader's (multiple-unit control); every car adds its mass and brakes. |
 | `environment` | client | Singleton scene environment: optional Earth/custom sky, ambient/sun lighting, background, fog, tone mapping, shadow quality tier. |
 | `figure` | figures | What a figure is: a preset plus descriptor overrides (height, build, proportions, features, palette) and how it faces its motion. Pair with renderable.kind "figure". |
 | `figureAttachment` | figures | Follow a named socket of the parent figure (with `parent`): the figures systems write localTransform from the evaluated pose each tick. |
@@ -225,6 +226,11 @@ Required: `kind`, `type`, `lane`, `s`, `speed`, `seed`, `length`, `width`, `stat
       "exclusiveMinimum": 0,
       "maximum": 9007199254740991,
       "description": "Train cars: position behind the lead (1 = first)."
+    },
+    "offset": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Train cars: metres behind the lead's centre (default from carIndex)."
     },
     "trail": {
       "type": "array",
@@ -418,6 +424,114 @@ Required: `role`
       "exclusiveMinimum": 0,
       "maximum": 9007199254740991,
       "description": "Rail: cars per consist (default 2)."
+    },
+    "track": {
+      "type": "string",
+      "enum": [
+        "light",
+        "heavy"
+      ],
+      "description": "Rail: tram and light-rail lines (light) or the rest (heavy); default any."
+    },
+    "consist": {
+      "type": "object",
+      "properties": {
+        "units": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          ],
+          "items": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Copies of this type at the head, inclusive range (default [1, 1])."
+        },
+        "length": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          ],
+          "items": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Cars after the units, inclusive range."
+        },
+        "block": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          ],
+          "items": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Cars of one type in a row, inclusive range (default [1, 1])."
+        },
+        "cars": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Car entity type id."
+              },
+              "weight": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Relative draw weight (default 1)."
+              },
+              "colors": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Paints this car picks from (#rrggbb)."
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false
+          },
+          "description": "The car pool."
+        }
+      },
+      "required": [
+        "length",
+        "cars"
+      ],
+      "additionalProperties": false,
+      "description": "Rail: a mixed train this type leads; supersedes cars."
     },
     "colors": {
       "minItems": 1,
@@ -4727,6 +4841,16 @@ Required: `kind`, `spec`
               "description": "Propeller polar moment of inertia in kg m², for gyroscopic precession. Default 0.",
               "type": "number",
               "minimum": 0
+            },
+            "fuelConsumption": {
+              "description": "Specific fuel consumption when the aircraft declares fuel: kg per joule of shaft work for a propeller or rotor engine (default 7.5e-8 with a manual mixture, 9.5e-8 otherwise), kg per newton-second of thrust for a jet (default 2e-5).",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "afterburnerFuelConsumption": {
+              "description": "Jet consumption in kg per newton-second of total thrust at full reheat. Default 5.4e-5.",
+              "type": "number",
+              "exclusiveMinimum": 0
             }
           },
           "required": [
@@ -4891,6 +5015,16 @@ Required: `kind`, `spec`
                 "description": "Propeller polar moment of inertia in kg m², for gyroscopic precession. Default 0.",
                 "type": "number",
                 "minimum": 0
+              },
+              "fuelConsumption": {
+                "description": "Specific fuel consumption when the aircraft declares fuel: kg per joule of shaft work for a propeller or rotor engine (default 7.5e-8 with a manual mixture, 9.5e-8 otherwise), kg per newton-second of thrust for a jet (default 2e-5).",
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "afterburnerFuelConsumption": {
+                "description": "Jet consumption in kg per newton-second of total thrust at full reheat. Default 5.4e-5.",
+                "type": "number",
+                "exclusiveMinimum": 0
               },
               "id": {
                 "type": "string",
@@ -5255,6 +5389,21 @@ Required: `kind`, `spec`
               "type": "number",
               "exclusiveMinimum": 0,
               "description": "Tire side grip with full weight on the wheels: lateral deceleration in m/s² and yaw grip in 1/s."
+            },
+            "tailwheel": {
+              "description": "Main wheels ahead of the center of mass with a tailwheel: a firm touchdown pitches the nose up and hard braking lifts the tail. Default false (nosewheel).",
+              "type": "boolean"
+            },
+            "gearRebound": {
+              "description": "Share of the sink speed beyond 0.6 m/s that struts and tires give back at touchdown. Default 0.45.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "pilotGTolerance": {
+              "description": "Sustained positive g the pilot holds before vision dims. Default 4.5, or 6.5 when maxLoadFactor is 7.5 or more.",
+              "type": "number",
+              "exclusiveMinimum": 0
             }
           },
           "required": [
@@ -5351,6 +5500,11 @@ Required: `kind`, `spec`
               "type": "integer",
               "minimum": 1,
               "maximum": 2
+            },
+            "rotorInertiaTime": {
+              "description": "Seconds of hover power stored in the rotor at full speed; default 2. Sets how long an unpowered rotor carries the helicopter (autorotation); needs powerLimitedRotor.",
+              "type": "number",
+              "exclusiveMinimum": 0
             },
             "cyclicTilt": {
               "type": "number",
@@ -5485,6 +5639,21 @@ Required: `kind`, `spec`
             "rollAuthority",
             "yawAuthority",
             "damping"
+          ],
+          "additionalProperties": false
+        },
+        "fuel": {
+          "description": "Fuel on board: mass is the aircraft with full tanks, it lightens as fuel burns and the engines stop when the tanks are dry. Omitted is unlimited fuel at constant mass.",
+          "type": "object",
+          "properties": {
+            "capacity": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Usable fuel in kg with full tanks."
+            }
+          },
+          "required": [
+            "capacity"
           ],
           "additionalProperties": false
         },
@@ -6827,6 +6996,29 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
     "loadFactor": {
       "description": "Airplane aerodynamic and thrust load along its up axis, in g.",
       "type": "number"
+    },
+    "fuel": {
+      "description": "Fuel remaining in kg when the aircraft declares fuel; absent is full tanks.",
+      "type": "number",
+      "minimum": 0
+    },
+    "buffet": {
+      "description": "Airplane pre-stall and stalled-wing buffet, 0..1: a cue to shake the view, starting a few degrees before the stall.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "greyout": {
+      "description": "Pilot strain under positive g, 0..1: vision starts to dim near 0.3 and is gone at 1.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "redout": {
+      "description": "Pilot strain under negative g, 0..1.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
     },
     "engines": {
       "description": "Authoritative individual spool, rotor phase, failure and thrust state; initialized by the solver.",
@@ -8919,6 +9111,48 @@ Required: `vel`, `slide`
 
 ## Owner: kernel/vehicles
 
+### `coupled`
+
+A rail car in a consist: rides the leader's track trail at a fixed distance behind it, sharing its speed. Powered cars add their traction to the leader's (multiple-unit control); every car adds its mass and brakes.
+
+Required: `leader`, `offset`
+
+```json
+{
+  "leader": "train-1-loco",
+  "offset": 21.5
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "leader": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Entity ID of the track-guided vehicle at the head of the consist."
+    },
+    "offset": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Distance in meters along the track from the leader's centre back to this car's centre."
+    }
+  },
+  "required": [
+    "leader",
+    "offset"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
 ### `mountable`
 
 Mount points in local meters, ordered safe exit candidates, and interaction reach. Seat position is the rider camera anchor.
@@ -9351,6 +9585,9 @@ Required: `kind`, `color`, `spec`, `visual`
             "motorhome",
             "bus",
             "light-rail",
+            "locomotive",
+            "freight-car",
+            "passenger-car",
             "bicycle",
             "motorcycle",
             "scooter"
@@ -9529,6 +9766,134 @@ Required: `kind`, `color`, `spec`, `visual`
           "type": "number",
           "exclusiveMinimum": 0
         },
+        "powertrain": {
+          "description": "Engine, gears and driveline: wheel force is engine torque through the selected gear. Without one the constant engineForce drives the vehicle up to maxSpeed.",
+          "type": "object",
+          "properties": {
+            "power": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Peak power at the engine or motor shaft, in watts."
+            },
+            "peakPowerRpm": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Engine speed at peak power, rev/min."
+            },
+            "redline": {
+              "description": "Rev limit, rev/min. Default 1.1 × peakPowerRpm.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "idle": {
+              "description": "Idle speed, rev/min. Default 800, or 0 for an electric motor.",
+              "type": "number",
+              "minimum": 0
+            },
+            "curve": {
+              "description": "Torque curve shape. Default gasoline; turbo and diesel hold a low-speed torque plateau, electric holds its peak torque from rest up to peakPowerRpm and then constant power.",
+              "type": "string",
+              "enum": [
+                "gasoline",
+                "turbo",
+                "diesel",
+                "electric"
+              ]
+            },
+            "gears": {
+              "minItems": 1,
+              "maxItems": 12,
+              "type": "array",
+              "items": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "description": "Overall ratios (gearbox × final drive: engine revs per wheel rev), lowest gear first."
+            },
+            "continuous": {
+              "description": "Continuously variable transmission ranging between the first and last gears ratios.",
+              "type": "boolean"
+            },
+            "reverse": {
+              "description": "Overall reverse ratio. Default first gear.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "efficiency": {
+              "description": "Share of engine torque that reaches the wheels. Default 0.9.",
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1
+            },
+            "shiftTime": {
+              "description": "Seconds of reduced drive during a gear change. Default 0.3.",
+              "type": "number",
+              "minimum": 0
+            },
+            "engineBraking": {
+              "description": "Engine braking off the throttle (regeneration for an electric motor), as a share of the torque at peak power. Default 0.2.",
+              "type": "number",
+              "minimum": 0
+            },
+            "response": {
+              "description": "How fast delivered torque follows the pedal, 1/s. Default 8; turbo and diesel 4, electric 20.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "inertia": {
+              "description": "Rotating inertia of the engine, flywheel and gearbox input in kg m², spun up with the car (most in low gears). Default 0.1 + power / 1 MW, or 0.06 for an electric motor.",
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "power",
+            "peakPowerRpm",
+            "gears"
+          ],
+          "additionalProperties": false
+        },
+        "rearGrip": {
+          "description": "Rear tire grip in m/s² where it differs from the front (wider rear tires). Default grip.",
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "tireLoadSensitivity": {
+          "description": "Share of its friction a tire loses when its load doubles from a quarter of the weight. Default 0.25; the heavier and the stiffer-sprung axle slides first. 0 keeps grip proportional to load.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.6
+        },
+        "rollBalance": {
+          "description": "Front axle share of the roll stiffness. Default 0.6; the stiffer axle carries more of the cornering weight transfer and loses grip first, so more is understeer.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "aerodynamicLift": {
+          "description": "Aerodynamic lift as an acceleration per (m/s)² of airspeed, in 1/m; negative is downforce. Default 0.",
+          "type": "number"
+        },
+        "tractionControl": {
+          "description": "Traction control holds wheelspin at the grip limit. Default true.",
+          "type": "boolean"
+        },
+        "stabilityControl": {
+          "description": "Stability control brakes one wheel to catch a slide. Default true.",
+          "type": "boolean"
+        },
+        "limitedSlip": {
+          "description": "How far the driven axle resists one-wheel spin: 0 open differential (the unloaded inside wheel spins first), 1 locked. Default 0.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "looseSurfaceGrip": {
+          "description": "Share of the grip loose surfaces take away that the tires win back (off-road tread). Default 0.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
         "cycle": {
           "description": "Self-balancing cycle handling and rider contact points. Driver seat anchors the pelvis.",
           "type": "object",
@@ -9648,6 +10013,52 @@ Required: `kind`, `color`, `spec`, `visual`
             "handlebarPivot",
             "grips",
             "footrests"
+          ],
+          "additionalProperties": false
+        },
+        "rail": {
+          "description": "External rail setting.",
+          "type": "object",
+          "properties": {
+            "truckCenters": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Distance between the two truck (bogie) pivots along the body, meters. The body rides as the chord between them on curves."
+            },
+            "couplerLength": {
+              "description": "Length over the coupler pulling faces, meters; spacing in a consist. Default length.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "power": {
+              "description": "Power at the rail in watts. Tractive effort is engineForce up to power / speed; 0 (default) is an unpowered car that only brakes.",
+              "type": "number",
+              "minimum": 0
+            },
+            "gauge": {
+              "description": "Track gauge between rail heads, meters. Default 1.435 (standard gauge).",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "profile": {
+              "description": "Silhouette of the low-detail stand-in drawn at a distance (parked in a yard, far traffic). Default box.",
+              "type": "string",
+              "enum": [
+                "box",
+                "hopper",
+                "tank",
+                "gondola",
+                "flat",
+                "well",
+                "autorack",
+                "locomotive",
+                "coach",
+                "railcar"
+              ]
+            }
+          },
+          "required": [
+            "truckCenters"
           ],
           "additionalProperties": false
         }
@@ -10462,6 +10873,83 @@ Required: `speed`, `steer`, `yaw`, `pitch`, `roll`, `vy`, `grounded`, `waitingFo
       "type": "number",
       "minimum": 0,
       "maximum": 1
+    },
+    "gear": {
+      "description": "Selected gear with a powertrain: -1 reverse, 1 upward forward gears.",
+      "type": "integer",
+      "minimum": -1,
+      "maximum": 12
+    },
+    "rpm": {
+      "description": "Engine speed in rev/min with a powertrain; rises and falls with the gears.",
+      "type": "number",
+      "minimum": 0
+    },
+    "engineLoad": {
+      "description": "0–1 share of the engine torque being delivered, after its throttle response.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "shift": {
+      "description": "Seconds until the gearbox may change gear again; drive is reduced as it starts.",
+      "type": "number",
+      "minimum": 0
+    },
+    "assist": {
+      "description": "0–1: how hard traction or stability control is intervening.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "surfaceGrip": {
+      "description": "Grip of the surface under the wheels relative to dry pavement; 1 on the road.",
+      "type": "number",
+      "minimum": 0
+    },
+    "track": {
+      "description": "Track-guided vehicles (spec.rail with a host track guide): where the rails ran.",
+      "type": "object",
+      "properties": {
+        "trail": {
+          "maxItems": 3072,
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "Recent track centreline under the vehicle, newest first, as flat x, y, z triples in world meters about 2 m apart; coupled cars ride on it."
+        },
+        "prefer": {
+          "anyOf": [
+            {
+              "type": "number",
+              "const": -1
+            },
+            {
+              "type": "number",
+              "const": 0
+            },
+            {
+              "type": "number",
+              "const": 1
+            }
+          ],
+          "description": "Route at the next switch: -1 left, 0 straight on, 1 right."
+        },
+        "ended": {
+          "description": "True while the vehicle stands at the end of its track.",
+          "type": "boolean"
+        },
+        "ref": {
+          "description": "The host track guide's reference for the piece of track under the head.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "trail",
+        "prefer"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [

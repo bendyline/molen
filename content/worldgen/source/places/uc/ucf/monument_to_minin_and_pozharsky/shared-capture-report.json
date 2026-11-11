@@ -1,0 +1,59 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.monument_to_minin_and_pozharsky",
+  "inputHash": "sha256:8f29f1676f2256c5f6fc75a26fddac538751a3039d36f9045fe0265a929457e8",
+  "sourceHash": "sha256:2b5be171cda48a4d8e855b4a7fb1cafd16c7439bb02d4810629f0bc79809fc30",
+  "runtimeHash": "sha256:57ad2717a72db808657d7c0bfe85d38c3e8f9ed8bbd882170e61a060c2d0f6d1",
+  "fixtureHash": "sha256:4f4aed7f9e56d6f232a8e5bc9cfc7836ade096a0dd324a35124bfc415e8897a5",
+  "placementHash": "sha256:9bdcbed960a28950adc291377d8fa7040a6d5458bf030657b8b424fc4d7c7676",
+  "materialGraphs": {
+    "molen.worldgen.material.metal_bronze_cast": {
+      "path": "materials/metal_bronze_cast.matgraph.json",
+      "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-red-square.png",
+      "hash": "sha256:7bb0c59f9c4d5ec0e6c5c7d6c406987f745e32bc3a41ce870a72c115cfd547fd",
+      "camera": {
+        "name": "detail-monument-from-red-square",
+        "position": [
+          10,
+          7.7,
+          15.3
+        ],
+        "lookAt": [
+          0,
+          4,
+          0
+        ],
+        "fov": 42,
+        "detail": true,
+        "lightDirection": [
+          -0.64,
+          1,
+          0.62
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "monument.to.minin.and.pozharsky",
+        "visibleMemberDraws": 2
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "liveSupportGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Reuses two shared graphs for cast bronze and polished granite. The lettering, shield and pedestal reliefs use modeled geometry."
+}

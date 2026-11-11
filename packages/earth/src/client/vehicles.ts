@@ -22,6 +22,7 @@ import {
 import type { TypeLibrary } from '@bendyline/molen-kernel/content';
 import { Glass, GlassState } from '@bendyline/molen-kernel/glass';
 import {
+  Coupled,
   driveVehicle,
   IDLE_VEHICLE_INPUT,
   initialVehicleState,
@@ -32,6 +33,8 @@ import {
   mountEntity,
   repairVehicle,
   stepActuators,
+  type TrackGuide,
+  trailAt,
   unmountEntity,
   Vehicle,
   type VehicleEnvironment,
@@ -39,8 +42,10 @@ import {
   type VehicleInputData,
   VehicleState,
   type VehicleStateData,
+  type VehicleSurface,
   vehicleLocalPoint,
   vehicleRotation,
+  vehicleSurface,
 } from '@bendyline/molen-kernel/vehicles';
 import { componentHandle, Transform, World } from '@bendyline/molen-kernel/world';
 import type {
@@ -118,7 +123,18 @@ interface Promotion {
   shown: boolean;
 }
 
+/** Meters between surface lookups for a moving car, and how long one stays fresh. */
+const SURFACE_CELL = 2;
+const SURFACE_FRESH_MS = 1500;
+
 export interface EarthVehiclesOptions {
+  /**
+   * The ground at a world position, by the names map data uses for roads and land cover
+   * (`asphalt`, `gravel`, `dirt`, `grass`, `sand`, `snow`…). A moving car grips, drags and
+   * shakes by it: see `VEHICLE_SURFACES` in `@bendyline/molen-kernel/vehicles`. Undefined, or
+   * an unknown name, is pavement. `EarthAudioTerrain.sample(x, z).surface` supplies one.
+   */
+  surfaceAt?: (x: number, z: number) => string | undefined;
   /**
    * An ECS world to share with aircraft, ambient life and actors. The host that passes it steps
    * it once per frame (see {@link EarthVehicles.step}); without one a private world is created and
@@ -145,6 +161,11 @@ export interface EarthVehiclesOptions {
    * Return true when `box` intersects one; `except` is the entity being tested against itself.
    */
   obstacles?: (box: OBB, except?: string) => boolean;
+  /**
+   * Track network for rail vehicles (types whose spec has `rail`): they and their coupled cars
+   * follow it. Without one a rail vehicle drives straight with locked steering.
+   */
+  track?: TrackGuide;
 }
 
 /**
@@ -167,6 +188,11 @@ export interface EarthSpawnOptions {
   livery?: string;
   /** @internal The traffic car this one takes over, which is no obstacle to it. */
   replaces?: string;
+  /**
+   * The position is on the rails (a train's car placed from the track network): skip the
+   * open-ground check, which platforms, catenary and the cars it is coupled to would fail.
+   */
+  onTrack?: boolean;
 }
 
 export class EarthVehicles {
@@ -212,6 +238,15 @@ export class EarthVehicles {
     { vehicle: VehicleData; mount: MountableData } | null
   >();
   private readonly ownsWorld: boolean;
+  /** Adjust the driver's input before it reaches the vehicle (see {@link addInputFilter}). */
+  private readonly inputFilters: ((id: string, input: VehicleInputData) => VehicleInputData)[] = [];
+  /** Rail vehicles standing in the shown yards at the last sync (terrain placements). */
+  private railParked: VehiclePlacement[] = [];
+  /** Each rail car model's truck (bogie) nodes, found once per model. */
+  private readonly trucks = new WeakMap<
+    VehicleVisual,
+    { front: THREE.Object3D | undefined; rear: THREE.Object3D | undefined }
+  >();
 
   private readonly root: THREE.Object3D;
   private readonly sampleHeight: (x: number, z: number) => number | undefined;
@@ -250,6 +285,10 @@ export class EarthVehicles {
         }),
       canOccupy: (position, yaw, spec, id) => this.canOccupy(position, yaw, spec, id),
       canExit: (position, _actor, vehicle) => this.canExit(position, vehicle),
+      ...(options.track !== undefined ? { track: options.track } : {}),
+      ...(options.surfaceAt !== undefined
+        ? { surface: (x: number, z: number) => this.surfaceUnder(x, z, options.surfaceAt) }
+        : {}),
     };
     this.water = new EarthWater(root, this.sampleHeight);
     this.water.sync();
@@ -260,6 +299,58 @@ export class EarthVehicles {
     };
     installVehicles(this.world, this.environment);
     installBoats(this.world, this.boatEnvironment);
+  }
+  /**
+   * The surface under a moving car, asked of the host once per two-meter cell: a map lookup
+   * walks the tile's roads and land cover, far too much for every physics step.
+   */
+  private readonly surfaceCells = new Map<
+    string,
+    { surface: VehicleSurface | undefined; at: number }
+  >();
+  private surfaceUnder(
+    x: number,
+    z: number,
+    surfaceAt: ((x: number, z: number) => string | undefined) | undefined,
+  ): VehicleSurface | undefined {
+    const key = `${Math.floor(x / SURFACE_CELL)},${Math.floor(z / SURFACE_CELL)}`;
+    const now = performance.now();
+    const known = this.surfaceCells.get(key);
+    if (known !== undefined && now - known.at < SURFACE_FRESH_MS) return known.surface;
+    if (this.surfaceCells.size > 256) this.surfaceCells.clear();
+    const surface = vehicleSurface(surfaceAt?.(x, z));
+    this.surfaceCells.set(key, { surface, at: now });
+    return surface;
+  }
+  /**
+   * The mounted car's driveline for a HUD: gear (-1 reverse) out of `gears` forward gears (1
+   * for a continuously variable or single-speed transmission), engine rev/min, how hard
+   * traction or stability control is working (0–1) and the grip of the surface under it
+   * relative to dry pavement. Undefined when not driving, or for a vehicle without a powertrain.
+   */
+  get driveline():
+    | {
+        gear: number;
+        gears: number;
+        rpm: number;
+        assist: number;
+        surfaceGrip: number;
+        skid: number;
+      }
+    | undefined {
+    const state = this.mountedId ? this.world.get(this.mountedId, VehicleState) : undefined;
+    const powertrain = this.mountedId
+      ? this.world.get(this.mountedId, Vehicle)?.spec.powertrain
+      : undefined;
+    if (state?.gear === undefined || state.rpm === undefined || !powertrain) return undefined;
+    return {
+      gear: state.gear,
+      gears: powertrain.continuous ? 1 : powertrain.gears.length,
+      rpm: state.rpm,
+      assist: state.assist ?? 0,
+      surfaceGrip: state.surfaceGrip ?? 1,
+      skid: state.skid ?? 0,
+    };
   }
   get mountedId(): string | undefined {
     return this.world.get(PLAYER, Mounted)?.vehicle;
@@ -374,6 +465,7 @@ export class EarthVehicles {
           batches.add(object as THREE.Mesh);
       });
     }
+    this.railParked = [...resident.values()].filter((p) => p.spec.rail !== undefined);
     // Only cars near the observer become entities: a town's parked cars were thousands of
     // dormant vehicles, spawned as each tile streamed in under an aircraft and stepped every tick.
     const near = (position: readonly number[], radius: number): boolean =>
@@ -805,9 +897,19 @@ export class EarthVehicles {
     const input = this.world.get(id, VehicleInput) ?? IDLE_VEHICLE_INPUT;
     this.world.set(id, VehicleInput, { ...input, actuators: { ...input.actuators, [name]: on } });
   }
-  /** Drivable car types in the entity library (types with a vehicle and a seat). */
+  /**
+   * Drivable road vehicle types in the entity library (types with a vehicle and a seat; rail
+   * vehicles run on track, see `EarthTrains`).
+   */
   static typeIds(types: TypeLibrary): string[] {
-    return types.idsWith('vehicle').filter((id) => types.components(id).mountable !== undefined);
+    return types
+      .idsWith('vehicle')
+      .filter(
+        (id) =>
+          types.components(id).mountable !== undefined &&
+          (types.components(id).vehicle as unknown as VehicleData | undefined)?.spec.rail ===
+            undefined,
+      );
   }
   static boatTypeIds(types: TypeLibrary): string[] {
     return types.idsWith('boat').filter((id) => types.components(id).mountable !== undefined);
@@ -858,7 +960,10 @@ export class EarthVehicles {
       position = [position[0], support.sample.height, position[2]];
     }
     this.collision.update(this.root, position[0], position[2], position[1]);
-    if (!this.canOccupy(position, yaw, vehicle.spec, id, options.replaces)) {
+    if (
+      options.onTrack !== true &&
+      !this.canOccupy(position, yaw, vehicle.spec, id, options.replaces)
+    ) {
       this.message = 'No room for a car here';
       return undefined;
     }
@@ -944,14 +1049,19 @@ export class EarthVehicles {
       : 'No open ground for a car here';
     return undefined;
   }
-  /** Seat the driver in `id` wherever the driver is (no reach or wall checks). */
-  board(id: string): boolean {
+  /**
+   * Seat the viewer in `id` wherever they are (no reach or wall checks): in `seat`, or the free
+   * driver's seat, or else the first free passenger seat (a coach has only those).
+   */
+  board(id: string, seat?: string): boolean {
     this.message = '';
     const t = this.world.get(id, Transform);
     const v = this.data(id);
     if (!t || !v) return false;
-    this.world.patch(PLAYER, Transform, { pos: vehicleLocalPoint(t, v.spec.driverEye) });
-    if (!mountEntity(this.world, PLAYER, id)) return false;
+    const seatId = seat ?? this.freeSeat(id);
+    const anchor = this.world.get(id, Mountable)?.seats.find((s) => s.id === seatId)?.position;
+    this.world.patch(PLAYER, Transform, { pos: vehicleLocalPoint(t, anchor ?? v.spec.driverEye) });
+    if (seatId === undefined || !mountEntity(this.world, PLAYER, id, seatId)) return false;
     this.closeOpenedDoor(id);
     this.retained.add(id);
     if (!this.active.has(id)) void this.activate(id, v);
@@ -1024,7 +1134,12 @@ export class EarthVehicles {
     const id = this.boardableTraffic(nearest) ? this.promote(nearest) : nearest;
     if (!id) return false;
     this.world.patch(PLAYER, Transform, { pos: [...position] });
-    if (!mountEntity(this.world, PLAYER, id)) return false;
+    const seat = this.freeSeat(id, position);
+    if (seat === undefined) {
+      this.message = 'Every seat is taken';
+      return false;
+    }
+    if (!mountEntity(this.world, PLAYER, id, seat)) return false;
     const v = this.data(id);
     if (!v) return false;
     this.closeOpenedDoor(id);
@@ -1039,6 +1154,40 @@ export class EarthVehicles {
     this.sync(performance.now());
     this.render();
     return true;
+  }
+  /**
+   * The seat a viewer takes in `id`: its driver's seat while free, else the free passenger seat
+   * nearest `position` (or the first). Undefined when every seat is taken.
+   */
+  freeSeat(id: string, position?: readonly number[]): string | undefined {
+    const mount = this.world.get(id, Mountable) ?? this.trafficParts(id)?.mount;
+    if (!mount) return undefined;
+    const taken = new Set<string>();
+    for (const [, mounted] of this.world.query(Mounted))
+      if (mounted.vehicle === id) taken.add(mounted.seat);
+    const free = mount.seats.filter((seat) => !taken.has(seat.id));
+    const driver = free.find((seat) => seat.role === 'driver');
+    if (driver) return driver.id;
+    const t = this.world.get(id, Transform);
+    if (!position || !t) return free[0]?.id;
+    const distance = (point: [number, number, number]): number => {
+      const at = vehicleLocalPoint(t, point);
+      return Math.hypot(
+        at[0] - (position[0] ?? 0),
+        at[1] - (position[1] ?? 0),
+        at[2] - (position[2] ?? 0),
+      );
+    };
+    return [...free].sort((a, b) => distance(a.position) - distance(b.position))[0]?.id;
+  }
+  /** Whether the viewer rides `id` (default: whatever they ride) in a passenger seat. */
+  ridingAsPassenger(id: string | undefined = this.mountedId): boolean {
+    const mounted = this.world.get(PLAYER, Mounted);
+    if (!mounted || (id !== undefined && mounted.vehicle !== id)) return false;
+    return (
+      this.world.get(mounted.vehicle, Mountable)?.seats.find((s) => s.id === mounted.seat)?.role ===
+      'passenger'
+    );
   }
   /** Reject interaction through a wall, even when a seat is within reach. */
   private reachable(id: string, position: [number, number, number]): boolean {
@@ -1102,7 +1251,9 @@ export class EarthVehicles {
     if (!unmountEntity(this.world, PLAYER, this.exitEnvironment(PLAYER))) {
       this.message =
         Math.abs(this.speed) > 0.7
-          ? 'Brake to a stop before exiting'
+          ? this.ridingAsPassenger()
+            ? 'Wait for the train to stop'
+            : 'Brake to a stop before exiting'
           : 'Exit blocked — move to an open space';
       return undefined;
     }
@@ -1147,7 +1298,9 @@ export class EarthVehicles {
     this.settleSpawned();
     const id = this.mountedId;
     if (id && this.data(id)) {
-      const t = this.world.get(id, Transform);
+      // A rail car's leader reads the ground for the whole train: keep the collision
+      // neighborhood around it when riding further back.
+      const t = this.world.get(this.world.get(id, Coupled)?.leader ?? id, Transform);
       if (t) this.collision.update(this.root, t.pos[0], t.pos[2], t.pos[1]);
       if (this.isBoat(id))
         driveBoat(this.world, PLAYER, {
@@ -1159,11 +1312,13 @@ export class EarthVehicles {
           steering: input.steering,
           anchor: input.handbrake === true,
         });
-      else
+      else {
+        const filtered = this.inputFilters.reduce((value, filter) => filter(id, value), input);
         driveVehicle(this.world, PLAYER, {
-          ...input,
-          actuators: { ...this.world.get(id, VehicleInput)?.actuators, ...input.actuators },
+          ...filtered,
+          actuators: { ...this.world.get(id, VehicleInput)?.actuators, ...filtered.actuators },
         });
+      }
     }
     if (this.ownsWorld) this.step(dt);
     this.render();
@@ -1180,6 +1335,28 @@ export class EarthVehicles {
       this.world.step();
       this.accumulator -= this.world.dt;
     }
+  }
+  /**
+   * Let a host adjust the driver's input to the mounted vehicle each frame (a train held against
+   * standing cars, say). Returns a function that removes the filter.
+   */
+  addInputFilter(filter: (id: string, input: VehicleInputData) => VehicleInputData): () => void {
+    this.inputFilters.push(filter);
+    return () => {
+      const index = this.inputFilters.indexOf(filter);
+      if (index >= 0) this.inputFilters.splice(index, 1);
+    };
+  }
+  /**
+   * Rail vehicles standing in yards and on sidings of the shown terrain (as of the last
+   * {@link sync}), where they stand: trains stop short of them. One a driver took away is left
+   * out once it has moved.
+   */
+  parkedRailCars(): VehiclePlacement[] {
+    return this.railParked.filter((p) => {
+      const t = this.world.get(p.id, Transform);
+      return t === undefined || Math.hypot(t.pos[0] - p.position[0], t.pos[2] - p.position[2]) < 1;
+    });
   }
   /** Whether `id` was spawned here with `retain` (it survives release and forced exits). */
   isOwned(id: string): boolean {
@@ -1254,6 +1431,8 @@ export class EarthVehicles {
       const state = this.world.get(id, VehicleState);
       const spec = this.world.get(id, Vehicle)?.spec;
       if (!t || !state || !spec || Math.abs(state.speed) > 0.2 || !state.grounded) continue;
+      // Rail vehicles stand on the track the kernel laid them on.
+      if (state.track !== undefined || this.world.has(id, Coupled)) continue;
       // Walking around a parked car must refresh its collision neighborhood too. Otherwise a
       // stale road mesh can keep it floating after terrain refinement until it is driven again.
       this.collision.update(this.root, t.pos[0], t.pos[2], t.pos[1]);
@@ -1319,7 +1498,38 @@ export class EarthVehicles {
         this.world.get(id, GlassState),
         this.world.get(id, VehicleState),
       );
+      const spec = this.world.get(id, Vehicle)?.spec;
+      if (spec?.rail) this.swivelTrucks(id, visual, spec.rail.truckCenters, state.yaw);
     }
+  }
+  /**
+   * Turn a rail car's `truck-front` and `truck-rear` nodes to the track under them: on a curve
+   * the trucks follow the rails while the body spans the chord between them.
+   */
+  private swivelTrucks(id: string, visual: VehicleVisual, truckCenters: number, yaw: number): void {
+    let nodes = this.trucks.get(visual);
+    if (nodes === undefined) {
+      nodes = {
+        front: visual.object.getObjectByName('truck-front'),
+        rear: visual.object.getObjectByName('truck-rear'),
+      };
+      this.trucks.set(visual, nodes);
+    }
+    if (nodes.front === undefined && nodes.rear === undefined) return;
+    const coupled = this.world.get(id, Coupled);
+    const trail = this.world.get(coupled?.leader ?? id, VehicleState)?.track?.trail;
+    if (trail === undefined || trail.length < 6) return;
+    const offset = coupled?.offset ?? 0;
+    const half = truckCenters / 2;
+    // Track direction at a point on the trail, smoothed over 4 m of its 2 m samples.
+    const turn = (s: number): number => {
+      const ahead = trailAt(trail, s - 2);
+      const behind = trailAt(trail, s + 2);
+      const along = Math.atan2(ahead.x - behind.x, ahead.z - behind.z) - yaw;
+      return Math.max(-0.35, Math.min(0.35, Math.atan2(Math.sin(along), Math.cos(along))));
+    };
+    if (nodes.front) nodes.front.rotation.y = turn(offset - half);
+    if (nodes.rear) nodes.rear.rotation.y = turn(offset + half);
   }
   cameraPose(): VehicleCameraPose | undefined {
     const id = this.mountedId;
@@ -1327,7 +1537,13 @@ export class EarthVehicles {
     const transform = this.world.get(id, Transform),
       vehicle = this.data(id);
     if (!transform || !vehicle) return undefined;
-    return vehicleCameraPose(transform, vehicle.spec, {
+    // A passenger sees from their own seat (the driver's eye is the spec's).
+    const mounted = this.world.get(PLAYER, Mounted);
+    const seat = this.world
+      .get(id, Mountable)
+      ?.seats.find((s) => s.id === mounted?.seat && s.role === 'passenger');
+    const eye = seat ? { driverEye: seat.position, length: vehicle.spec.length } : vehicle.spec;
+    return vehicleCameraPose(transform, eye, {
       view: this.view,
       lookYaw: this.lookYaw,
       lookPitch: this.lookPitch,

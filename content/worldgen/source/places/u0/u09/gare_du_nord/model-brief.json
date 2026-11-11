@@ -1,0 +1,479 @@
+{
+  "id": "gare_du_nord",
+  "title": "Gare du Nord",
+  "wikidataId": "Q745942",
+  "referenceCoordinate": {
+    "longitude": 2.354974150657654,
+    "latitude": 48.880400136638286
+  },
+  "module": "content/worldgen/source/places/u0/u09/gare_du_nord/models/station-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-gare-du-nord.mjs",
+  "builder": "buildStationLevel",
+  "surfaces": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.84
+    },
+    "carved": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.79
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.46
+    },
+    "iron": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.31
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.75
+    },
+    "timber": {
+      "slot": "roof",
+      "graph": "wood_plain",
+      "roughness": 0.83
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_ashlar",
+      "roughness": 0.9
+    }
+  },
+  "exportLabel": "Molen original Gare du Nord master",
+  "expectedDraftMasterHash": "sha256:b09a84cedee536c5319779b8b7a5c3690d4892fd151aebc4a1f207759a072ff6",
+  "visualBrief": "Gare du Nord with its limestone south front, five principal glazed arches, clock, city figures, stone wings, iron-and-glass train sheds, platform furniture and open northern train throat.",
+  "heightPolicy": "The 61.50 m model datum uses standard viewer terrain. Entrance thresholds, foundations, iron columns and platform slabs follow sampled local grade. The historic rooflines and facade cornices use level architectural controls.",
+  "nativeAxes": "Positive X heads north-northeast along the roof and departing tracks. The public façade and Rue de Dunkerque lie toward negative X.",
+  "limitations": [
+    "Roof slopes, masonry details, city figures and structural ironwork are visual reconstructions from ordinary photographs. The mapped footprint fixes the position and signed orientation.",
+    "Platform slabs and column feet adapt to the coarse viewer elevations. The model retains the native rail paths, approach roads and surrounding buildings. The small annex volume follows its mapped plan with an approximate roof height. Below-ground concourses, signage schedules and working trains are outside the exterior scope."
+  ],
+  "materialMethod": "Shared limestone, raw limestone, painted iron, seam metal, window glass, wood and stone paving provide reusable material graphs with metric UVs.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Gare_du_nord_-_fa%C3%A7ade.jpg",
+      "hash": "sha256:7db076698061cb671b00b17663944cfdc91529b301edf1635592ec3452cd7310",
+      "observed": "Overall façade, central arch, pilasters, city statues and entry bays."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Roof_the_Gare_du_Nord.jpg",
+      "hash": "sha256:02190c2f178e8e2f8898a1887ab6fbca7068d412ad688f2acaa500bef0277bdc",
+      "observed": "Train shed roof, iron ribs and platform supports."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:120._Paris_Gare_du_Nord.jpg",
+      "hash": "sha256:6bc96291710fdeb4690483fc1ace6b63970d52d2704336df99a8a243f92f0e6b",
+      "observed": "Wide view of the entrance arcade and the statue crowns."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Fa%C3%A7ade_gare_du_nord.JPG",
+      "hash": "sha256:8fdf40eaff0826ced0303d2f68dd494445ed0a41916b53788a71b19e3d8e5b67",
+      "observed": "Street-level scale and composition of the façade."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Gare_Du_Nord_Interior%2C_Paris%2C_France_-_Diliff.jpg",
+      "hash": "sha256:9a845846dc126150680d0f8a1f0961267b107791fdf9a15bec7f0fa02e989f0f",
+      "observed": "Wide historic shed, ironwork and track openings."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Gare_du_Nord_0005.jpg",
+      "hash": "sha256:d5aab4084afe8ba030f40c34b47b3ec39e21aaffed36df671565beb6493bc254",
+      "observed": "Historic shed side arcade, open northern train throat and dark green iron columns."
+    },
+    {
+      "url": "https://journals.openedition.org/rhcf/2797",
+      "hash": "sha256:790d53658b08b34a8719ebe2e7aea53f55089991001f9f3a1ab8f061fb325f18",
+      "observed": "Train shed roof and stone front composition from above."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "dunkerque-and-full-station",
+      "position": [
+        -168,
+        61,
+        -124
+      ],
+      "lookAt": [
+        28,
+        16,
+        17
+      ],
+      "fov": 52
+    },
+    {
+      "name": "south-facade-and-statues",
+      "position": [
+        -97,
+        19,
+        -13
+      ],
+      "lookAt": [
+        -32,
+        17,
+        4
+      ],
+      "fov": 56
+    },
+    {
+      "name": "clock-statues-and-iron-glazing",
+      "position": [
+        -54,
+        21,
+        6
+      ],
+      "lookAt": [
+        -32,
+        17,
+        2
+      ],
+      "fov": 54
+    },
+    {
+      "name": "north-open-train-throat",
+      "position": [
+        203,
+        14,
+        17
+      ],
+      "lookAt": [
+        117,
+        14,
+        14
+      ],
+      "fov": 58
+    },
+    {
+      "name": "cast-iron-trusses-and-platforms",
+      "position": [
+        20,
+        5.1,
+        -11
+      ],
+      "lookAt": [
+        99,
+        9.6,
+        4
+      ],
+      "fov": 62
+    },
+    {
+      "name": "west-aisle-and-side-ranges",
+      "position": [
+        66,
+        29,
+        -112
+      ],
+      "lookAt": [
+        56,
+        18,
+        -38
+      ],
+      "fov": 58
+    },
+    {
+      "name": "east-annex-and-lower-roofs",
+      "position": [
+        -49,
+        44,
+        137
+      ],
+      "lookAt": [
+        17,
+        14,
+        57
+      ],
+      "fov": 51
+    },
+    {
+      "name": "overhead-shed-roof-and-platform-grid",
+      "position": [
+        61,
+        233,
+        -34
+      ],
+      "lookAt": [
+        56,
+        10,
+        23
+      ],
+      "fov": 54
+    }
+  ],
+  "sourceFacts": {
+    "namedStationPoint": 17595276778134,
+    "mappedBuildings": [
+      35184435285923,
+      35184435284303,
+      35184773444186
+    ],
+    "historicRoofRuns": 3,
+    "platformStrips": 8,
+    "trackIds": [
+      35184482647830,
+      35184628966100,
+      35184482647840,
+      35184484683810,
+      35184484683830,
+      35184445645050,
+      35184482647860,
+      35184482647850,
+      35184484685376,
+      35184484685395,
+      35184445645070
+    ]
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        39,
+        14,
+        12
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u0/u09/gare_du_nord/models/station-model.mjs",
+    "export": "buildStationSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.84
+      },
+      "carved": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.79
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.46
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.31
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.75
+      },
+      "timber": {
+        "slot": "roof",
+        "graph": "wood_plain",
+        "roughness": 0.83
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.9
+      }
+    },
+    "errorMeters": 2.48,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStationDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.84
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.79
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.46
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.31
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.75
+          },
+          "timber": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.83
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          }
+        },
+        "errorMeters": 1.12
+      },
+      "street": {
+        "export": "buildStationStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.84
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.79
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.46
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.31
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.75
+          },
+          "timber": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.83
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          }
+        },
+        "errorMeters": 0.4
+      },
+      "closeup": {
+        "export": "buildStationCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.84
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.79
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.46
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.31
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.75
+          },
+          "timber": {
+            "slot": "roof",
+            "graph": "wood_plain",
+            "roughness": 0.83
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.9
+          }
+        },
+        "errorMeters": 0.15
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "gare_du_nord-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -168,
+        61,
+        -124
+      ],
+      "lookAt": [
+        28,
+        16,
+        17
+      ]
+    },
+    {
+      "name": "gare_du_nord-district",
+      "reviewLod": "district",
+      "position": [
+        -168,
+        61,
+        -124
+      ],
+      "lookAt": [
+        28,
+        16,
+        17
+      ]
+    },
+    {
+      "name": "gare_du_nord-street",
+      "reviewLod": "street",
+      "position": [
+        -168,
+        61,
+        -124
+      ],
+      "lookAt": [
+        28,
+        16,
+        17
+      ]
+    },
+    {
+      "name": "gare_du_nord-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -168,
+        61,
+        -124
+      ],
+      "lookAt": [
+        28,
+        16,
+        17
+      ]
+    }
+  ]
+}

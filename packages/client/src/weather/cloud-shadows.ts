@@ -85,16 +85,19 @@ export function injectCloudShadows(
   return true;
 }
 
-const registered = new WeakMap<object, CloudShadowUniforms>();
+type Inject = (shader: THREE.WebGLProgramParametersWithUniforms) => void;
+const registered = new WeakMap<object, Inject>();
 let original: THREE.Material['onBeforeCompile'] | undefined;
 
 /**
- * Give every lit shader `renderer` builds from now on the cloud shadow. Call before its first
- * frame. Returns a function that unregisters it.
+ * Give every lit shader `renderer` builds from now on the cloud shadow, and then whatever `also`
+ * adds to it (the sun's far shadow map, three/far-shadow.ts). Call before its first frame.
+ * Returns a function that unregisters it.
  */
 export function installWebGlCloudShadows(
   renderer: THREE.WebGLRenderer,
   uniforms: CloudShadowUniforms,
+  also?: Inject,
 ): () => void {
   if (original === undefined) {
     const previous = THREE.Material.prototype.onBeforeCompile;
@@ -105,15 +108,17 @@ export function installWebGlCloudShadows(
       target: THREE.WebGLRenderer,
     ): void {
       previous.call(this, shader, target);
-      const own = registered.get(target);
-      if (own !== undefined) injectCloudShadows(shader, own);
+      registered.get(target)?.(shader);
     };
     // A material without its own program key is keyed by this function's source. Report the
     // original's, so installing the hook changes no material's key.
     hook.toString = (): string => previous.toString();
     THREE.Material.prototype.onBeforeCompile = hook;
   }
-  registered.set(renderer, uniforms);
+  registered.set(renderer, (shader) => {
+    injectCloudShadows(shader, uniforms);
+    also?.(shader);
+  });
   return () => {
     registered.delete(renderer);
   };

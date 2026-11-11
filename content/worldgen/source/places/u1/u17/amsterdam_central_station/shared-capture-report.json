@@ -1,0 +1,78 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.amsterdam_central_station",
+  "inputHash": "sha256:03e7c2c6f77e58a5e558a058e97113cf8ee97194882b932363a614bffa49ae37",
+  "sourceHash": "sha256:8675f2d5822e28095ccd98e1847e435b53fed2ca00be37b1e797f25261f21623",
+  "runtimeHash": "sha256:7185caae8d759231ff97ce0714bec0a7828c0be3c827cb8855f4782349f06445",
+  "fixtureHash": "sha256:ebc07589706704f3afe735239d678e049dc37061a6a1618137187b2a108ae295",
+  "placementHash": "sha256:be18c944364bd150b673b4aafe4b8a3a87838ee055478e4fc94d81482140a82e",
+  "materialGraphs": {
+    "molen.worldgen.material.brick_flemish": {
+      "path": "materials/brick_flemish.matgraph.json",
+      "hash": "sha256:f31107062ebd1a0d46f0ff6e5b9861b0be582d08a8c05f46e424dd12cb0c047c"
+    },
+    "molen.worldgen.material.glass_frit_triangular": {
+      "path": "materials/glass_frit_triangular.matgraph.json",
+      "hash": "sha256:ab416307e458827df9d530e60622e3db805370db7cbf2697ebb4eb0716c967b6"
+    },
+    "molen.worldgen.material.metal_standing_seam": {
+      "path": "materials/metal_standing_seam.matgraph.json",
+      "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+    },
+    "molen.worldgen.material.slate": {
+      "path": "materials/slate.matgraph.json",
+      "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-amsterdam-centraal.png",
+      "hash": "sha256:dac92c57e832f2b338ee0725ac08fe1a9f131efdea1a7e54500dd8ed4578ba0c",
+      "camera": {
+        "name": "detail-station-island-and-city-front",
+        "position": [
+          218,
+          137,
+          218
+        ],
+        "lookAt": [
+          -4,
+          10,
+          3
+        ],
+        "fov": 63,
+        "lightDirection": [
+          0.58,
+          1,
+          0.76
+        ],
+        "detail": true
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "amsterdam.central.station",
+        "visibleDraws": 8
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Seven shared graphs resolve once each at close-up. The skyline reuses six. The transparent glazing group carries colored geometry for the bus canopy letters."
+}

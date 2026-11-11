@@ -1,0 +1,63 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.monivong_bridge_north",
+  "inputHash": "sha256:adc0239bd826756c33cf21cf956a9d6f041f44d284da6489a1d51f71a4f7d447",
+  "sourceHash": "sha256:10c5c5f8dd4aa9e88157b84315f1a87adddee0f586702b3406f6a9e4806cc245",
+  "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+  "fixtureHash": "sha256:0f5f352a444fa098d2c432a50b5c9bffed8d65d41f0137352587525e9038e45f",
+  "placementHash": "sha256:bf81cf4d29768bc7d1d10904ea051c15ecf28e6973622400b0ef76591528b205",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_boardformed": {
+      "path": "materials/concrete_boardformed.matgraph.json",
+      "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-deck.png",
+      "hash": "sha256:48eb702b27dd2ed2b1c2fdc78014c5a4d4da591afe573585a77695499d865c61",
+      "camera": {
+        "name": "detail-north-deck-from-the-water",
+        "position": [
+          -4,
+          5,
+          -61
+        ],
+        "lookAt": [
+          9,
+          4,
+          -1.4
+        ],
+        "fov": 69,
+        "lightDirection": [
+          -0.44,
+          1,
+          -0.8
+        ],
+        "detail": true
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "liveSupportGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Both decks share one copy each of board-formed concrete, plain concrete and painted metal. Skyline uses the two concrete graphs."
+}

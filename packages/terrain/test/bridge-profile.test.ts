@@ -120,3 +120,48 @@ describe('authored bridge ground approaches', () => {
     expect(height(10, 0)).toBeLessThan(22);
   });
 });
+
+describe('profiles graded over other ground than is drawn', () => {
+  const path = terrainLinePath(
+    [
+      [0, 0],
+      [1, 0],
+    ],
+    100,
+  );
+  // A deck landing at x = 0, graded over ground standing at 10 m.
+  const deck = [0, 25, 50, 75, 100].map((x, i) => ({
+    point: [x, 0] as [number, number],
+    elevation: 10.32 + ([0, 1.5, 3, 4.5, 6][i] as number),
+    flatness: 1,
+    ground: 10,
+    anchor: [1, 0.5, 0, 0, 0][i] as number,
+  }));
+  const options = { clearance: 6, approachLift: 0.32, connects: [true, true] as const };
+
+  it('moves a deck onto the ground drawn at its landing, and leaves its span where it was', () => {
+    const height = bridgeDeckHeightFn(path, () => 11, { ...options, approachProfile: deck });
+    expect(height(0, 0)).toBeCloseTo(11.32);
+    expect(height(25, 0)).toBeCloseTo(12.32);
+    for (const x of [50, 75, 100]) expect(height(x, 0)).toBeCloseTo(10.32 + (x / 25) * 1.5);
+    // Drawn on the ground it was graded over, nothing moves.
+    const same = bridgeDeckHeightFn(path, () => 10, { ...options, approachProfile: deck });
+    for (const x of [0, 25, 50]) expect(same(x, 0)).toBeCloseTo(10.32 + (x / 25) * 1.5);
+  });
+
+  it('follows the nearest sample on its own ground for those beyond it', () => {
+    // A climbing road, on the ground throughout; this tile's ground ends at x = 40, and what
+    // the sampler says past there is another tile's business.
+    const road = deck.map((sample) => ({ ...sample, anchor: 1 }));
+    const ground = (x: number): number => (x <= 40 ? 11 : 50);
+    const bounded = bridgeDeckHeightFn(path, ground, {
+      ...options,
+      approachProfile: road,
+      bounds: [0, -10, 40, 10],
+    });
+    for (const x of [0, 25, 50, 75, 100]) expect(bounded(x, 0)).toBeCloseTo(11.32 + (x / 25) * 1.5);
+    // Without bounds every sample trusts the sampler, within a few meters.
+    const trusting = bridgeDeckHeightFn(path, ground, { ...options, approachProfile: road });
+    expect(trusting(75, 0)).toBeCloseTo(10.32 + 4.5 + 4);
+  });
+});

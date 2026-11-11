@@ -250,6 +250,26 @@ export const MOLEN_WATERCRAFT_ENTITY_IDS = [
   'molen.entities.watercraft.car_ferry',
 ] as const;
 
+/**
+ * Track-guided North American rolling stock: locomotives and passenger cars carry seats, freight
+ * cars do not. Unpowered cars couple into consists behind a locomotive.
+ */
+export const MOLEN_RAIL_ENTITY_IDS = [
+  'molen.entities.rail.ge_es44ac',
+  'molen.entities.rail.emd_gp38_2',
+  'molen.entities.rail.mpi_mp36ph_3c',
+  'molen.entities.rail.bombardier_bilevel_coach',
+  'molen.entities.rail.bombardier_bilevel_cab_car',
+  'molen.entities.rail.boxcar_50ft',
+  'molen.entities.rail.covered_hopper',
+  'molen.entities.rail.tank_car_dot117',
+  'molen.entities.rail.well_car_double_stack',
+  'molen.entities.rail.autorack_enclosed',
+  'molen.entities.rail.gondola_52ft',
+  'molen.entities.rail.centerbeam_flatcar',
+] as const;
+
+export type MolenRailEntityId = (typeof MOLEN_RAIL_ENTITY_IDS)[number];
 export type MolenCycleEntityId = (typeof MOLEN_CYCLE_ENTITY_IDS)[number];
 export type MolenWatercraftEntityId = (typeof MOLEN_WATERCRAFT_ENTITY_IDS)[number];
 
@@ -457,11 +477,26 @@ export const MOLEN_ENTITY_IDS = [
   'molen.entities.watercraft.bulk_carrier',
   'molen.entities.watercraft.passenger_ferry',
   'molen.entities.watercraft.car_ferry',
+  'molen.entities.rail.ge_es44ac',
+  'molen.entities.rail.emd_gp38_2',
+  'molen.entities.rail.mpi_mp36ph_3c',
+  'molen.entities.rail.bombardier_bilevel_coach',
+  'molen.entities.rail.bombardier_bilevel_cab_car',
+  'molen.entities.rail.boxcar_50ft',
+  'molen.entities.rail.covered_hopper',
+  'molen.entities.rail.tank_car_dot117',
+  'molen.entities.rail.well_car_double_stack',
+  'molen.entities.rail.autorack_enclosed',
+  'molen.entities.rail.gondola_52ft',
+  'molen.entities.rail.centerbeam_flatcar',
 ] as const;
 
 export type MolenEntityId = (typeof MOLEN_ENTITY_IDS)[number];
 
 const MODEL_PATHS: Record<MolenEntityId, string> = {
+  ...(Object.fromEntries(
+    MOLEN_RAIL_ENTITY_IDS.map((id) => [id, `assets/${id.replaceAll('.', '/')}/model.glb`]),
+  ) as Record<MolenRailEntityId, string>),
   ...(Object.fromEntries(
     MOLEN_REGIONAL_VEHICLE_ENTITY_IDS.map((id) => [
       id,

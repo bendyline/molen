@@ -1,0 +1,904 @@
+{
+  "format": "molen/structure-medium-fi-report@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.gare_montparnasse",
+  "inputHash": "sha256:4494961bfc8c6cb965095e8ef5afbcb84d8379b9d4d283fa5d22fa56f0d1e577",
+  "sourceHash": "sha256:b1c3d7c4d2c842ddbb1e7b49d2cdd4eaf1524afb5bc624dcd9f041ace40a650e",
+  "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.gare_montparnasse",
+    "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b"
+  },
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:3da570ea19cfa72f91a37948ed1d75070d444ef28d62522fc857966ee13b3c6f",
+      "bytes": 79312,
+      "gzipBytes": 18541,
+      "triangles": 796,
+      "cpuBytes": 69684,
+      "gpuBytes": 69684,
+      "errorMeters": 1.6,
+      "drawCalls": 8
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:3770ed76b6c41cb72e9a13afcbb8d12f4f915f9e57e25ae137dead3beea772fe",
+      "bytes": 327588,
+      "gzipBytes": 79991,
+      "triangles": 3596,
+      "cpuBytes": 317896,
+      "gpuBytes": 317896,
+      "errorMeters": 0.72,
+      "drawCalls": 8
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:e2483af7985fd1d36e5747f4e39491672167f4f7cde1c37bc93052d627905986",
+      "bytes": 1416908,
+      "gzipBytes": 339933,
+      "triangles": 15933,
+      "cpuBytes": 1407152,
+      "gpuBytes": 1407152,
+      "errorMeters": 0.28,
+      "drawCalls": 8
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:651c1c1165e8b9c9462e9ccb252db7c1e5422a8ff9c9d9e616035f442a2d4cf7",
+      "bytes": 3060024,
+      "gzipBytes": 635540,
+      "triangles": 32955,
+      "cpuBytes": 3050228,
+      "gpuBytes": 3050228,
+      "errorMeters": 0.1,
+      "drawCalls": 8
+    }
+  ],
+  "rig": {
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "fixtureHash": "sha256:54731a07306e48d1ef2837f60c8a52b3e4efe6041c6c9977493a0e646392cc6f",
+  "frames": [
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:ba27a6ce8c0d7d5989c2f692ce864ed34b2161daf70468b88aef4e675d0bbd6d",
+      "camera": {
+        "name": "main-transition-skyline",
+        "position": [
+          -260,
+          240,
+          -402
+        ],
+        "lookAt": [
+          0,
+          1,
+          -92
+        ],
+        "fov": 57,
+        "lightDirection": [
+          0.53,
+          1,
+          0.8
+        ],
+        "group": "main",
+        "mediumName": "transition-skyline",
+        "shadows": true
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:3da570ea19cfa72f91a37948ed1d75070d444ef28d62522fc857966ee13b3c6f",
+        "level": "skyline",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 27,
+        "triangles": 760675,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:3d00b5d72df221616510653e0380cf20558fe01e0cec0beb9bc206c302fb2412",
+      "camera": {
+        "name": "main-skyline-noon-economy",
+        "position": [
+          -232,
+          180,
+          -381
+        ],
+        "lookAt": [
+          0,
+          8,
+          -86
+        ],
+        "fov": 56,
+        "lightDirection": [
+          0.53,
+          1,
+          0.8
+        ],
+        "group": "main",
+        "mediumName": "skyline-noon-economy",
+        "shadows": false,
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:3da570ea19cfa72f91a37948ed1d75070d444ef28d62522fc857966ee13b3c6f",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 27,
+        "triangles": 760675,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:6f66d1bab7f0ba5b54ab4f2e098e3702ac993ae178223b79ffc96f64e2794755",
+      "camera": {
+        "name": "main-skyline-noon-high",
+        "position": [
+          -232,
+          180,
+          -381
+        ],
+        "lookAt": [
+          0,
+          8,
+          -86
+        ],
+        "fov": 56,
+        "lightDirection": [
+          0.53,
+          1,
+          0.8
+        ],
+        "group": "main",
+        "mediumName": "skyline-noon-high",
+        "shadows": true,
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:3da570ea19cfa72f91a37948ed1d75070d444ef28d62522fc857966ee13b3c6f",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 27,
+        "triangles": 760675,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:d12a7b2247a5c01dd8a21c2c19099c7bad3e120605d70ee7aa161346d924495d",
+      "camera": {
+        "name": "main-skyline-late-economy",
+        "position": [
+          -232,
+          180,
+          -381
+        ],
+        "lookAt": [
+          0,
+          8,
+          -86
+        ],
+        "fov": 56,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "group": "main",
+        "mediumName": "skyline-late-economy",
+        "shadows": false,
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:3da570ea19cfa72f91a37948ed1d75070d444ef28d62522fc857966ee13b3c6f",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 27,
+        "triangles": 760675,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:705435cd8be0ef65b92b0ce1fc52ff1da7561e5d495aa8640081b53d0b561cf8",
+      "camera": {
+        "name": "main-skyline-late-high",
+        "position": [
+          -232,
+          180,
+          -381
+        ],
+        "lookAt": [
+          0,
+          8,
+          -86
+        ],
+        "fov": 56,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "group": "main",
+        "mediumName": "skyline-late-high",
+        "shadows": true,
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:3da570ea19cfa72f91a37948ed1d75070d444ef28d62522fc857966ee13b3c6f",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 27,
+        "triangles": 760675,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:d70e6a751bea78db2cde55f19f208d902b97cb17b6b8659204ecec033d57f7a9",
+      "camera": {
+        "name": "main-transition-district",
+        "position": [
+          -260,
+          240,
+          -402
+        ],
+        "lookAt": [
+          0,
+          1,
+          -92
+        ],
+        "fov": 57,
+        "lightDirection": [
+          0.53,
+          1,
+          0.8
+        ],
+        "group": "main",
+        "mediumName": "transition-district",
+        "shadows": true
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:3770ed76b6c41cb72e9a13afcbb8d12f4f915f9e57e25ae137dead3beea772fe",
+        "level": "district",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 27,
+        "triangles": 763483,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:a0e84c94aacd90bd521ccfde69aa5fd7f46b30a0ace8aaf5e858f4e401903a5c",
+      "camera": {
+        "name": "main-block-noon-economy",
+        "position": [
+          -132,
+          78,
+          -273
+        ],
+        "lookAt": [
+          0,
+          19,
+          -193
+        ],
+        "fov": 56,
+        "lightDirection": [
+          0.53,
+          1,
+          0.8
+        ],
+        "group": "main",
+        "mediumName": "block-noon-economy",
+        "shadows": false,
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:3770ed76b6c41cb72e9a13afcbb8d12f4f915f9e57e25ae137dead3beea772fe",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 25,
+        "triangles": 762907,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:4acc7bdae1a203b076398da2ddd9a58ec0a4b3be5793c42a494404fe0de7134a",
+      "camera": {
+        "name": "main-block-noon-high",
+        "position": [
+          -132,
+          78,
+          -273
+        ],
+        "lookAt": [
+          0,
+          19,
+          -193
+        ],
+        "fov": 56,
+        "lightDirection": [
+          0.53,
+          1,
+          0.8
+        ],
+        "group": "main",
+        "mediumName": "block-noon-high",
+        "shadows": true,
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:3770ed76b6c41cb72e9a13afcbb8d12f4f915f9e57e25ae137dead3beea772fe",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 25,
+        "triangles": 762907,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:296c53c18d6cd4d4f9186f1991aba639c37a36b1d1a5ca06eefcf410ff4ff81a",
+      "camera": {
+        "name": "main-block-late-economy",
+        "position": [
+          -132,
+          78,
+          -273
+        ],
+        "lookAt": [
+          0,
+          19,
+          -193
+        ],
+        "fov": 56,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "group": "main",
+        "mediumName": "block-late-economy",
+        "shadows": false,
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:3770ed76b6c41cb72e9a13afcbb8d12f4f915f9e57e25ae137dead3beea772fe",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 25,
+        "triangles": 762907,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:59c203ad730db457d56d3a673f3ca6c13c0d65180c17e28bf0c838961c1b9482",
+      "camera": {
+        "name": "main-block-late-high",
+        "position": [
+          -132,
+          78,
+          -273
+        ],
+        "lookAt": [
+          0,
+          19,
+          -193
+        ],
+        "fov": 56,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "group": "main",
+        "mediumName": "block-late-high",
+        "shadows": true,
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:3770ed76b6c41cb72e9a13afcbb8d12f4f915f9e57e25ae137dead3beea772fe",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 25,
+        "triangles": 762907,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:c246c203be1336ef9b54230f66690b5de71298bc4a300d1db8529cb6c800aaba",
+      "camera": {
+        "name": "main-transition-street",
+        "position": [
+          -260,
+          240,
+          -402
+        ],
+        "lookAt": [
+          0,
+          1,
+          -92
+        ],
+        "fov": 57,
+        "lightDirection": [
+          0.53,
+          1,
+          0.8
+        ],
+        "group": "main",
+        "mediumName": "transition-street",
+        "shadows": true
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:e2483af7985fd1d36e5747f4e39491672167f4f7cde1c37bc93052d627905986",
+        "level": "street",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 27,
+        "triangles": 775832,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:dc42a7a62df993c32d947bbcfee09d6bf36e59c904ffc10330b62c8563e3faca",
+      "camera": {
+        "name": "main-street-noon-economy",
+        "position": [
+          3,
+          -18.4,
+          -364
+        ],
+        "lookAt": [
+          -7,
+          -7,
+          -284
+        ],
+        "fov": 58,
+        "lightDirection": [
+          0.53,
+          1,
+          0.8
+        ],
+        "group": "main",
+        "mediumName": "street-noon-economy",
+        "shadows": false,
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:e2483af7985fd1d36e5747f4e39491672167f4f7cde1c37bc93052d627905986",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 27,
+        "triangles": 775832,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:fab94b89d74aef62fbddddbc524b59cc635629b758a17827fe9da7daa20737cb",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          3,
+          -18.4,
+          -364
+        ],
+        "lookAt": [
+          -7,
+          -7,
+          -284
+        ],
+        "fov": 58,
+        "lightDirection": [
+          0.53,
+          1,
+          0.8
+        ],
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:e2483af7985fd1d36e5747f4e39491672167f4f7cde1c37bc93052d627905986",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 27,
+        "triangles": 775832,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:418e1e5770ed7c0182de30a8367623f55fb9e0c129288ee0b4e86d9bbf11c861",
+      "camera": {
+        "name": "main-street-late-economy",
+        "position": [
+          3,
+          -18.4,
+          -364
+        ],
+        "lookAt": [
+          -7,
+          -7,
+          -284
+        ],
+        "fov": 58,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "group": "main",
+        "mediumName": "street-late-economy",
+        "shadows": false,
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:e2483af7985fd1d36e5747f4e39491672167f4f7cde1c37bc93052d627905986",
+        "level": "street",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 27,
+        "triangles": 775832,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:24b3c78bd358c0fb338efe9bf5134bcd20507a01be9c1ca67bc858fef62a53db",
+      "camera": {
+        "name": "main-street-late-high",
+        "position": [
+          3,
+          -18.4,
+          -364
+        ],
+        "lookAt": [
+          -7,
+          -7,
+          -284
+        ],
+        "fov": 58,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "group": "main",
+        "mediumName": "street-late-high",
+        "shadows": true,
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:e2483af7985fd1d36e5747f4e39491672167f4f7cde1c37bc93052d627905986",
+        "level": "street",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 27,
+        "triangles": 775832,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:893e464e7b9dd399dbb445f05d8d208b5eb13cdd3303dac52fadc646f10ba9cf",
+      "camera": {
+        "name": "main-transition-closeup",
+        "position": [
+          -260,
+          240,
+          -402
+        ],
+        "lookAt": [
+          0,
+          1,
+          -92
+        ],
+        "fov": 57,
+        "lightDirection": [
+          0.53,
+          1,
+          0.8
+        ],
+        "group": "main",
+        "mediumName": "transition-closeup",
+        "shadows": true
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:651c1c1165e8b9c9462e9ccb252db7c1e5422a8ff9c9d9e616035f442a2d4cf7",
+        "level": "closeup",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 27,
+        "triangles": 792870,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:40c95ef8b770622a8efb8f82a83de38158214d65fc535691267cd27582b233eb",
+      "camera": {
+        "name": "main-silhouette",
+        "position": [
+          -260,
+          240,
+          -402
+        ],
+        "lookAt": [
+          0,
+          1,
+          -92
+        ],
+        "fov": 57,
+        "lightDirection": [
+          0.53,
+          1,
+          0.8
+        ],
+        "group": "main",
+        "mediumName": "silhouette",
+        "shadows": false,
+        "silhouette": true
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.gare_montparnasse",
+        "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+        "lodHash": "sha256:651c1c1165e8b9c9462e9ccb252db7c1e5422a8ff9c9d9e616035f442a2d4cf7",
+        "level": "closeup",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 26,
+        "triangles": 792826,
+        "visibleMemberDraws": {
+          "gare.montparnasse": 8
+        },
+        "quality": "economy",
+        "resolutionScale": 1,
+        "silhouette": true
+      }
+    }
+  ],
+  "errors": [],
+  "notes": "The CNP slab, bowed Porte Océane, side slabs, raised garden and Pasteur overbuild read across all four levels. Street and close-up add geometry for the station lettering, facade grids, court markings, escalators, rail pairs, sleepers and platform furniture."
+}

@@ -1,0 +1,487 @@
+{
+  "id": "muktinath_temple",
+  "title": "Muktinath Temple",
+  "wikidataId": "Q1025465",
+  "referenceCoordinate": {
+    "longitude": 83.87182697576078,
+    "latitude": 28.81681864125928
+  },
+  "module": "content/worldgen/source/places/tv/tv5/muktinath_temple/models/temple-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-muktinath-temple.mjs",
+  "builder": "buildMuktinathTempleLevel",
+  "surfaces": {
+    "lime": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.91
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_ashlar",
+      "roughness": 0.96
+    },
+    "timber": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.86
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.82,
+      "metallic": 0.21
+    },
+    "corrugated": {
+      "slot": "roof",
+      "graph": "metal_corrugated",
+      "roughness": 0.84,
+      "metallic": 0.22
+    },
+    "brass": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.68,
+      "metallic": 0.46
+    },
+    "water": {
+      "slot": "roof",
+      "localRef": "palette:#ffffff",
+      "name": "Still basin water",
+      "roughness": 0.28,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.86
+      ],
+      "doubleSided": true
+    }
+  },
+  "exportLabel": "Molen original Muktinath Temple master",
+  "expectedDraftMasterHash": "sha256:a9710c9caa3bbe4ad37c43fb04ddc6df8a8a0a90b7aacf63771f8ae6ffede53c",
+  "visualBrief": "Three upturned roofs, dark timber bracing and a gilt finial identify the whitewashed shrine. An open cross-gabled entry pavilion links the stepped bathing terraces and the upper spring court. Street and close-up geometry includes all 108 spouts.",
+  "heightPolicy": "Standard Terrarium samples set the foundations and the landings on three separate terraces. Authored basin water and the spring wall replace native water within their mapped bounds. The surrounding terrain, independent buildings and transportation remain host data.",
+  "nativeAxes": "Positive X faces west-northwest from the shrine toward the bathing pools and entrance. Positive Z points northeast along the courtyard.",
+  "limitations": [
+    "The shrine and pavilion are reconstructed from two PMTiles footprints, with the entrance directed toward the mapped bathing pools. The second pool outline follows the independently mapped point and the photographed companion basin.",
+    "The standard terrain controls the terrace transitions. Roof heights, pond levels, spout spacing and individual fittings are exterior-photo estimates. The model covers the exterior, entrance passage and bathing courts."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Muktinath_Temple_view.JPG",
+      "observed": "Temple entry, roofs, plinth and front court."
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Muktinath_Temple_view.JPG",
+      "hash": "sha256:8b8f46cee49ac3bcdb63968f53ea9f69a5cf7f6b00cfd60a6ab00e4cebca0fea",
+      "observed": "Open whitewashed gate pavilion, corrugated roof, raised cross-gable and the two pools in front."
+    },
+    {
+      "url": "https://peregrinetreks.com/wp-content/uploads/2023/07/Muktinath-Temple-and-Mukti-Dhara.webp",
+      "hash": "sha256:7de234af78572e2a22eaf71862ea1751626b6c440aa0c5e1b9598f73d5019207",
+      "observed": "Three upturned roof tiers, timber bracing, gilt finial and the upper spring wall."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "shrine-and-bathing-courts",
+      "position": [
+        39,
+        19,
+        22
+      ],
+      "lookAt": [
+        7.3,
+        1.25,
+        -1
+      ],
+      "fov": 47
+    },
+    {
+      "name": "approach-from-the-pools",
+      "position": [
+        31.5,
+        2.1,
+        -2.6
+      ],
+      "lookAt": [
+        8,
+        2.6,
+        -0.6
+      ],
+      "fov": 52
+    },
+    {
+      "name": "three-pagoda-roofs",
+      "position": [
+        -9.4,
+        8.3,
+        9.8
+      ],
+      "lookAt": [
+        0.28,
+        5.65,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "spring-wall-and-rear-court",
+      "position": [
+        -7.45,
+        5.2,
+        -7.1
+      ],
+      "lookAt": [
+        -4.1,
+        3.5,
+        4.2
+      ],
+      "fov": 56
+    },
+    {
+      "name": "lattice-and-open-entrance",
+      "position": [
+        16.1,
+        2.58,
+        5.85
+      ],
+      "lookAt": [
+        10.25,
+        1.5,
+        0.62
+      ],
+      "fov": 56
+    },
+    {
+      "name": "bathing-pools",
+      "position": [
+        28,
+        2.9,
+        8.6
+      ],
+      "lookAt": [
+        22,
+        -1.45,
+        -2.1
+      ],
+      "fov": 54
+    },
+    {
+      "name": "eaves-and-finial",
+      "position": [
+        -6.35,
+        11.9,
+        -7.7
+      ],
+      "lookAt": [
+        -0.15,
+        7.95,
+        0
+      ],
+      "fov": 52
+    }
+  ],
+  "materialMethod": "Reuse the plaster, stone, timber, standing-seam metal, corrugated metal and cast bronze material graphs with meter-scale UVs. Basin water uses one local tinted material with no embedded images.",
+  "sourceFacts": {
+    "pagodaRoofs": 3,
+    "spoutCount": 108,
+    "bathingPools": 2,
+    "shrineHeightAboveDatumMeters": 10.29,
+    "mappedFootprints": 2
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        6,
+        3.5,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/tv/tv5/muktinath_temple/models/temple-model.mjs",
+    "export": "buildMuktinathTempleSkyline",
+    "surfaces": {
+      "lime": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.91
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.86
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.82,
+        "metallic": 0.21
+      },
+      "corrugated": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.84,
+        "metallic": 0.22
+      },
+      "brass": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.68,
+        "metallic": 0.46
+      },
+      "water": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "name": "Still basin water",
+        "roughness": 0.28,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.86
+        ],
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 0.48,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMuktinathTempleDistrict",
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.21
+          },
+          "corrugated": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.84,
+            "metallic": 0.22
+          },
+          "brass": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.68,
+            "metallic": 0.46
+          },
+          "water": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "name": "Still basin water",
+            "roughness": 0.28,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.86
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.22
+      },
+      "street": {
+        "export": "buildMuktinathTempleStreet",
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.21
+          },
+          "corrugated": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.84,
+            "metallic": 0.22
+          },
+          "brass": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.68,
+            "metallic": 0.46
+          },
+          "water": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "name": "Still basin water",
+            "roughness": 0.28,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.86
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.075
+      },
+      "closeup": {
+        "export": "buildMuktinathTempleCloseup",
+        "surfaces": {
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.21
+          },
+          "corrugated": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.84,
+            "metallic": 0.22
+          },
+          "brass": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.68,
+            "metallic": 0.46
+          },
+          "water": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "name": "Still basin water",
+            "roughness": 0.28,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.86
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.022
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "muktinath_temple-skyline",
+      "position": [
+        39,
+        19,
+        22
+      ],
+      "lookAt": [
+        7.3,
+        1.25,
+        -1
+      ],
+      "fov": 47,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "muktinath_temple-district",
+      "position": [
+        39,
+        19,
+        22
+      ],
+      "lookAt": [
+        7.3,
+        1.25,
+        -1
+      ],
+      "fov": 47,
+      "reviewLod": "district"
+    },
+    {
+      "name": "muktinath_temple-street",
+      "position": [
+        39,
+        19,
+        22
+      ],
+      "lookAt": [
+        7.3,
+        1.25,
+        -1
+      ],
+      "fov": 47,
+      "reviewLod": "street"
+    },
+    {
+      "name": "muktinath_temple-closeup",
+      "position": [
+        39,
+        19,
+        22
+      ],
+      "lookAt": [
+        7.3,
+        1.25,
+        -1
+      ],
+      "fov": 47,
+      "reviewLod": "closeup"
+    }
+  ]
+}

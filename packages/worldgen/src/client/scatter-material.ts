@@ -32,6 +32,9 @@ export const SCATTER_CANOPY_ATTRIBUTE: 'canopy' = 'canopy';
 const LEAF = 0.35;
 const CLUMP = 2.2;
 const TIER = 1.5;
+/** Sunlit share of a crown's lower part among its neighbours: sun on the horizon, and overhead. */
+const STAND_SHADE_LOW = 0.12;
+const STAND_SHADE_HIGH = 0.7;
 
 /**
  * Leaf-card atlas, texels: a leaf sprig in the left square, a fir spray beside it, and an opaque
@@ -404,7 +407,21 @@ const GLSL = /* glsl */ `
       plant);
     return (1.0 + leaf * mix(0.12, 0.4, plant)) * occlusion;
   }
+
+  // The sun a crown gets where the shadow map is not read (a tree's distant levels): its top
+  // in the sun, the rest in its own and its neighbours' shade, more so the lower the sun. The
+  // near levels get this from the shadow map; without it the distant ones stood fully lit, and
+  // from the air the trees near an aircraft were a dark disc among bright ones.
+  float scatterStandShade(float sunHeight) {
+    float plant = step(0.5, vScatterCanopy);
+    float height = clamp(vScatterCanopy - 1.0, 0.0, 1.0);
+    float low = mix(${STAND_SHADE_LOW.toFixed(2)}, ${STAND_SHADE_HIGH.toFixed(2)}, smoothstep(0.15, 0.95, sunHeight));
+    return mix(1.0, mix(low, 1.0, smoothstep(0.55, 1.0, height)), plant);
+  }
 `;
+
+/** three's lookup of a directional light's shadow ends here; what follows is the unshadowed case. */
+const UNSHADOWED = 'vDirectionalShadowCoord[ i ] ) : 1.0;';
 
 /** WebGL scatter material: a standard vertex-color material with the detail in its hooks. */
 export function createScatterMaterial(): THREE.MeshStandardMaterial {
@@ -424,13 +441,21 @@ export function createScatterMaterial(): THREE.MeshStandardMaterial {
        vScatterCanopy = ${SCATTER_CANOPY_ATTRIBUTE};`,
     );
     shader.fragmentShader = `${GLSL}
-    ${shader.fragmentShader}`.replace(
-      '#include <color_fragment>',
-      `#include <color_fragment>
+    ${shader.fragmentShader}`
+      .replace(
+        '#include <color_fragment>',
+        `#include <color_fragment>
        diffuseColor.rgb *= scatterFactor();`,
-    );
+      )
+      // A renderer's own hooks may already have written the lighting chunk out in full.
+      .replace('#include <lights_fragment_begin>', THREE.ShaderChunk.lights_fragment_begin)
+      // Only while the sun's shadows are drawn: a parked map shades the near levels no more.
+      .replace(
+        UNSHADOWED,
+        `vDirectionalShadowCoord[ i ] ) : mix( 1.0, scatterStandShade( dot( directLight.direction, normalize( ( viewMatrix * vec4( 0.0, 1.0, 0.0, 0.0 ) ).xyz ) ) ), directionalLightShadow.shadowIntensity );`,
+      );
   };
-  material.customProgramCacheKey = (): string => 'worldgen-scatter@3';
+  material.customProgramCacheKey = (): string => 'worldgen-scatter@4';
   return material;
 }
 

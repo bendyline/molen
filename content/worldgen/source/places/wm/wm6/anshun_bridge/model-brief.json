@@ -1,0 +1,389 @@
+{
+  "id": "anshun_bridge",
+  "title": "Anshun Bridge",
+  "wikidataId": "Q3366223",
+  "referenceCoordinate": {
+    "longitude": 104.083351493,
+    "latitude": 30.644198233
+  },
+  "module": "content/worldgen/source/places/wm/wm6/anshun_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-anshun-bridge.mjs",
+  "builder": "buildAnshunLevel",
+  "surfaces": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.94
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.92
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.95
+    },
+    "timber": {
+      "slot": "wall",
+      "graph": "wood_plain",
+      "roughness": 0.83
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.89
+    }
+  },
+  "exportLabel": "Molen original Anshun Bridge master",
+  "expectedDraftMasterHash": "sha256:7004851c408c0ad0692ce5c11d946d9704c76413a1baf779f0cf9d70eab98190",
+  "visualBrief": "Three stone vaults and two pier oculi carry a raised timber gallery. Dark sweeping roofs crown the red columns and stepped side pavilions. Pale railings follow the two walkways from the stair landings to the central hall.",
+  "heightPolicy": "The 492 m sea-level datum is aligned to standard viewer terrain and river geometry. Four modeled stair runs join the two paths to the rendered bank approaches. Replacement is limited to the deck outline and retains the surrounding paths, banks and river.",
+  "nativeAxes": "Positive X goes from the south-southwest landing to the north-northeast landing. Positive Z faces east-southeast.",
+  "limitations": [
+    "PMTiles fixes the crossing, deck footprint and four mapped approach branches. Arch proportions, roof sweeps, raised gallery heights and stair grades are exterior estimates.",
+    "The standard elevation grid smooths bank walls and does not resolve exact water levels or individual steps. The model represents exterior geometry and omits the restaurant interior."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Chengdu_2012-03.jpg",
+      "hash": "sha256:1a94eda2119780f11c3c714b1e1c3d80692e87c20f46dc450e84554c109ec3ab",
+      "observed": "Three stone arches, circular side openings, red covered gallery and staggered roof tiers."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "covered-crossing",
+      "position": [
+        12,
+        24,
+        112
+      ],
+      "lookAt": [
+        0,
+        8,
+        4.73
+      ],
+      "fov": 44
+    },
+    {
+      "name": "three-vaults-and-oculi",
+      "position": [
+        1,
+        5,
+        69
+      ],
+      "lookAt": [
+        0,
+        6,
+        4.73
+      ],
+      "fov": 59
+    },
+    {
+      "name": "swept-roofs",
+      "position": [
+        -38,
+        21,
+        40
+      ],
+      "lookAt": [
+        -2,
+        11,
+        4.73
+      ],
+      "fov": 55
+    },
+    {
+      "name": "opposite-bank-and-arches",
+      "position": [
+        17,
+        15,
+        -69
+      ],
+      "lookAt": [
+        0,
+        7,
+        4.73
+      ],
+      "fov": 54
+    },
+    {
+      "name": "north-steps",
+      "position": [
+        56,
+        10,
+        20
+      ],
+      "lookAt": [
+        36,
+        5,
+        5
+      ],
+      "fov": 56
+    },
+    {
+      "name": "south-approach",
+      "position": [
+        -55,
+        10,
+        20
+      ],
+      "lookAt": [
+        -36,
+        5,
+        5
+      ],
+      "fov": 56
+    },
+    {
+      "name": "painted-timber-gallery",
+      "position": [
+        -19,
+        12,
+        17
+      ],
+      "lookAt": [
+        1,
+        12,
+        7
+      ],
+      "fov": 57
+    }
+  ],
+  "materialMethod": "Shared ashlar, weathered limestone, granite, timber and flat tile supply all five surface bindings. Painted brackets, swept eaves and rim stones use authored relief.",
+  "sourceFacts": {
+    "mappedBridgeWay": 115625966,
+    "mappedPathLength": 79.78,
+    "deckArea": [
+      [
+        41.1605,
+        -3.6378
+      ],
+      [
+        41.0844,
+        13.097
+      ],
+      [
+        -44.3037,
+        13.2608
+      ],
+      [
+        -44.4725,
+        -3.3963
+      ],
+      [
+        41.1605,
+        -3.6378
+      ]
+    ],
+    "archCount": 3,
+    "oculusCount": 2
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        7,
+        4.73
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wm/wm6/anshun_bridge/models/bridge-model.mjs",
+    "export": "buildAnshunSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.94
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.92
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.95
+      },
+      "timber": {
+        "slot": "wall",
+        "graph": "wood_plain",
+        "roughness": 0.83
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.89
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAnshunDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.83
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.89
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildAnshunStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.83
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.89
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildAnshunCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95
+          },
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.83
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.89
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "anshun_bridge-skyline",
+      "position": [
+        12,
+        24,
+        112
+      ],
+      "lookAt": [
+        0,
+        8,
+        4.73
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "anshun_bridge-district",
+      "position": [
+        12,
+        24,
+        112
+      ],
+      "lookAt": [
+        0,
+        8,
+        4.73
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "anshun_bridge-street",
+      "position": [
+        12,
+        24,
+        112
+      ],
+      "lookAt": [
+        0,
+        8,
+        4.73
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "anshun_bridge-closeup",
+      "position": [
+        12,
+        24,
+        112
+      ],
+      "lookAt": [
+        0,
+        8,
+        4.73
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ]
+}

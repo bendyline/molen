@@ -5,6 +5,7 @@ composes:
 
 - streamed terrain from a `molen/terrain-package@1`;
 - worldgen buildings, seeded infill for streets with missing outlines, street surfaces, trees and parked cars from content packs;
+- laid-out golf courses, cemetery headstones and marked sports pitches where the map names them (see [worldgen](worldgen.md#golf-courses-cemeteries-and-sports-pitches));
 - traffic, pedestrians, trains and aircraft that come and go around the viewer;
 - orbit, walk, drive and fly navigation, with cars and aircraft the host can put the viewer in;
 - markers placed by latitude/longitude;
@@ -76,7 +77,11 @@ ACES filmic tone mapping, and haze in the sky's horizon color. Its values are ex
 a sky color into the fog color for the backend. Terrain and landcover share one ground material
 from `createTerrainGroundMaterialAsync` (`@bendyline/molen-terrain/client`) with world-space
 variation; a custom host passes it to the terrain stream's `material` and to `createEarthWorldgen`
-as `groundMaterial`, and calls `setTerrainGroundOrigin` with the world origin each frame. Roads,
+as `groundMaterial`, and calls `setTerrainGroundOrigin` with the world origin each frame. On
+WebGL the view also draws distant land cover as one texture a tile (see
+[terrain](terrain.md)); a custom host passes `farLandcover: { material:
+createTerrainGroundTextureMaterial() }` to `createEarthWorldgen` and keeps that material's
+origin current the same way. Roads,
 sidewalks and lots take `createTerrainPavementMaterialAsync` through the surface renderer's
 `setMaterial`, with the same origin call. Trees, shrubs and props take
 `createScatterMaterialAsync` (`@bendyline/molen-worldgen/client`) as `createEarthWorldgen`'s
@@ -108,6 +113,17 @@ preserving aircraft and contact-shadow detail on the runway. The renderer rounds
 to a stable size (and holds it through small changes). This pushes
 the shadow boundary farther into the distance in aerial views, trading some shadow sharpness
 for coverage at the same map resolution. Walking and driving keep their tighter footprints.
+
+On WebGL a second, wider shadow map covers what lies past that footprint: around the camera
+itself, four times the focused map's half-width and between 2 and 6 km. It is drawn from the
+terrain stream's scenery only, about once a second, and surfaces beyond the focused map read
+it, so buildings no longer gain their shadows in a ring around a low aircraft. Trees past
+their near levels read no shadow map; their crowns are shaded as trees among neighbours
+instead, so they match the shadowed trees near the camera. They cast no shadows of their own,
+so from the air the ground carries tree shadows only around the aircraft: the LOD policy's
+`distantShadows` extends them, at a cost the [worldgen guide](worldgen.md) gives. A custom
+host gets the far map from `earthShadowFocus` (its `far` square) and
+`renderer.setFarShadowCasters(stream.object)`.
 
 Earth viewers reserve a 4096-pixel sun map before preparing materials. WebGPU retains that
 allocation across quality changes, so High really uses 4096 pixels even after starting at a
@@ -155,9 +171,11 @@ mode menu passes `{ force: true }` to step out at once, which also removes a veh
 added.
 
 `view.vehicleStatus()` describes the car or aircraft the viewer is in for a HUD: speed and
-heading for a car; airspeed, altitude and height above ground, vertical speed, attitude, load
-factor (g), sideslip, power, engine, gear, flaps and stall/impact flags for an aircraft (SI units,
-compass radians). Both carry the type's `label` and, where the type declares them, its name-free
+heading for a car, with its gear, engine rev/min, traction or stability control at work
+(`assist`) and the grip of the surface under it (`surfaceGrip`); airspeed, altitude and height
+above ground, vertical speed, attitude, load factor (g), sideslip, power, engine, gear, flaps,
+fuel remaining, stall buffet, the pilot's `greyout` and `redout` under g, and stall/impact flags
+for an aircraft (SI units, compass radians). Both carry the type's `label` and, where the type declares them, its name-free
 `genericLabel` (`Full-size pickup`) and `bodyStyle`, so a HUD that must not show a real
 manufacturer or model name has something to show instead. An airplane started in flight is trimmed for level flight at its launch speed.
 `view.setThrottle(power)` sets an aircraft's throttle or collective from an on-screen lever.
@@ -613,6 +631,11 @@ nearest profile segment's interpolated height. The model's scale and resolved da
 inside the exact outline, such as paths covered by viewing pods. It requires an outline;
 untagged ground crossings, tunnels, through crossings with both endpoints outside the model,
 and bridge segments outside the outline remain independent.
+Use `replaceRoads.bridgeFeatureIds` when other mapped overpasses cross or overlap the bridge
+footprint. The selected IDs use the host tile decoder's feature IDs and constrain both bridge
+replacement and approach matching. A model with separate carriageways can supply each deck's
+outline, endpoints and heights in `replaceRoads.additionalDecks`. All decks use the same model
+origin and orientation.
 If the asset includes its retaining walls and approach pavement, set
 `replaceRoads.includeConnectedApproaches: true`. A grade road is then clipped inside the outline
 only if it shares a covered endpoint with a mapped bridge and continues outward along the bridge
@@ -625,6 +648,9 @@ itself stays unchanged. Raised ground approaches receive retaining side and end 
 to the original terrain; their paving supplies the top. These supports follow the model's
 load and unload lifetime. They provide approximate continuity where coarse elevation data
 misses a bank or quay; they do not establish surveyed ground levels.
+If the map also draws the deck as a pedestrian plaza or paved area, list its mapped feature
+IDs in `replaceRoads.pavingAreaIds`. The loaded landmark removes those areas from the road
+surface pass. A failed load keeps the map paving, and nearby plazas stay in place.
 Sunken structures can declare `groundCutout: { outline: [[x, z], ...], basis: 'source evidence' }` on a placement. The simple polygon uses native model metres and follows the same heading and scale as the model. It should bound the ground opening covered by the authored concourse or rim. The terrain pyramid subtracts the polygon from actual elevation and draped ground triangles across tile and LOD boundaries, preserving interpolated heights and surface attributes along its edge. The cutout becomes active only when its successfully loaded structure is visible, and the original ground returns on layer hiding or eviction. Failed or cancelled models leave the ground intact. Heights remain available for anchoring; an opening does not itself author walkable floors or collision. Separate excavations can add `additionalOutlines: [[[x, z], ...], ...]` to the same object (up to 64 total polygons). Ground between those outlines stays intact; every opening needs matching model geometry. Client integrations can register the same set with `setTerrainGroundCutouts(object, outlines)`. The singular `setTerrainGroundCutout` remains available for one polygon.
 
 Bridge openings can set `groundCutout.minHeight` to a native model Y threshold. Only ground
@@ -734,7 +760,10 @@ has loaded; failed models keep the procedural building. In exact data a polygon 
 anchor falls inside it, when it lies wholly inside the loaded model's horizontal extent around the
 anchor, or when at least half of it stands on the model's own ground footprint (its triangles
 stamped on a 64-cell grid). The last two catch a landmark's off-centre mapped parts: a tower's
-legs and observation level, a grandstand, a ballpark's parked roof. The footprint also reaches
+legs and observation level, a grandstand, a ballpark's parked roof. Whatever lies at least half
+inside a replaced polygon goes with it: map sources draw a tower as an outline plus separate
+parts (a shaft, a spire), and those parts go even where an off-centre model covers less than
+half of them. Buildings in a replaced ring's courtyard stay. The footprint also reaches
 neighbouring tiles, so a stadium anchored near a tile edge clears its mapped stands there too.
 Those tiles regenerate their buildings when the landmark loads, and again when its tile is evicted.
 A ring polygon whose hole holds the anchor (a stadium bowl, a cloister) goes under the size rule
@@ -1112,6 +1141,13 @@ samples along the runways; it is not surveyed runway elevation or slope data. Th
 samples are independent of camera detail and tile load order. Hosts composing a pyramid stream
 can pass `transformHeightfield: createAirportTerrainGrading(content.airports)` alongside their
 `withEarthAirports` semantic renderers.
+
+Roads are graded the same way, a step earlier: the ground is leveled under every road, and
+bridges are stacked clear of what they cross. `mountEarthView` does both by default;
+`roadGrading: { earthworks: false }` keeps the ground as surveyed and `roadGrading: false`
+turns both off. A host composing its own stream applies the road grading before the airport's
+with `composeEarthGroundGrading(semantic.roadGrading, airportGrading)`. See
+[Road grading](surface-rendering.md#road-grading).
 
 The `molen.earth` content pack supplies a lazy worldwide runway catalog and a detailed Boeing
 Field layout. Both Earth hosts use measured runway endpoints and widths, draw runway numbers,

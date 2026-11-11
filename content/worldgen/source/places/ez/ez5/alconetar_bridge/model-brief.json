@@ -1,0 +1,315 @@
+{
+  "id": "alconetar_bridge",
+  "title": "Alconétar Bridge",
+  "wikidataId": "Q967119",
+  "referenceCoordinate": {
+    "longitude": -6.4374904,
+    "latitude": 39.75429845
+  },
+  "module": "content/worldgen/source/places/ez/ez5/alconetar_bridge/models/ruins-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-alconetar-bridge.mjs",
+  "builder": "buildAlconetarLevel",
+  "surfaces": {
+    "granite": {
+      "slot": "wall",
+      "graph": "stone_granite",
+      "roughness": 0.96
+    },
+    "earth": {
+      "slot": "foundation",
+      "graph": "earth_rammed",
+      "roughness": 0.99
+    }
+  },
+  "exportLabel": "Molen original Alconétar Bridge master",
+  "expectedDraftMasterHash": "sha256:b00102fe168ea950788deaab37817c17d4ef537bc7febea00bea8b774a30859b",
+  "visualBrief": "Three open segmental barrel vaults descend from the retained masonry ramp to the tall broken arch. The surviving piers retain battered sides, projecting stone courses, interrupted deck edges, and separate blocks near the reservoir.",
+  "heightPolicy": "The 220 m sea-level datum follows the standard viewer terrain. Masonry bases extend below the local sampled grade. The model leaves the mapped lake and approach paths in place.",
+  "nativeAxes": "Positive X points southeast down the relocated site from the retained approach to the detached masonry. Positive Z points southwest across the barrel vaults.",
+  "limitations": [
+    "The surviving masonry is modeled at the relocated site. The matched OSM footprint gives the signed axis, and the second PMTiles ruin point locates the detached remains.",
+    "The photos control the order of the three visible openings, broken deck and short piers. Local heights, individual stone sizes and the detached masonry outline are exterior estimates.",
+    "The host reservoir surface can reach the lowest detached masonry as shoreline and water level change."
+  ],
+  "references": [
+    {
+      "url": "https://arteenruinas.com/puente-romano-de-alconetar/",
+      "observed": "Exterior views of the relocated stone arches and isolated piers."
+    },
+    {
+      "url": "https://arteenruinas.com/wp-content/uploads/2017/10/Puente-romano-de-Alconetar-3.jpg",
+      "hash": "sha256:6288a1fbd2eecc8dff4517fcca95250787a1442c25d9602eb61646fe259396eb",
+      "observed": "Tall isolated vault, block joints, projecting plinth courses and the adjacent broken pier."
+    },
+    {
+      "url": "https://arteenruinas.com/wp-content/uploads/2017/10/Puente-romano-de-Alconetar-dsk.jpg",
+      "hash": "sha256:a03107a6c8997ad41a0279d95b3e879a43a9cb9ed11548d42d81cdb3afb23f3d",
+      "observed": "Low and middle barrel vaults, continuous masonry wall and the view along the relocated site."
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Puente_de_Alcon%C3%A9tar%2C_C%C3%A1ceres_Province%2C_Spain._Pic_01.jpg",
+      "hash": "sha256:235c4cf9d438978387dfe2d0ae03ed9240281ce7f8bf5a4e8c37f211c71de02e",
+      "observed": "All three open arches, the gap before the tall arch, and the rising approach."
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Puente_de_Alcon%C3%A9tar%2C_C%C3%A1ceres_Province%2C_Spain._Pic_02.jpg",
+      "hash": "sha256:ed63291ded9a6c089ba0ad44b24478168b8511f1d61ca2314fb90ba9cee9e784",
+      "observed": "Arch order, terrace slope, and the detached remains beyond the main pier group."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "relocated-ruins-overview",
+      "position": [
+        24,
+        22,
+        53
+      ],
+      "lookAt": [
+        7,
+        1.7,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "three-open-vaults",
+      "position": [
+        0.5,
+        7.2,
+        37
+      ],
+      "lookAt": [
+        1,
+        1.15,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "approach-and-low-arch",
+      "position": [
+        -25.2,
+        6.25,
+        15.8
+      ],
+      "lookAt": [
+        -16.6,
+        3.55,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "middle-arch-and-break",
+      "position": [
+        -2.5,
+        7.7,
+        -18.4
+      ],
+      "lookAt": [
+        3.4,
+        2.65,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "tall-arch-and-stepped-pier",
+      "position": [
+        30.6,
+        6.3,
+        18
+      ],
+      "lookAt": [
+        18.1,
+        2.38,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "underside-masonry",
+      "position": [
+        18.03,
+        0.87,
+        7.6
+      ],
+      "lookAt": [
+        18.03,
+        3.55,
+        -1.1
+      ],
+      "fov": 55
+    },
+    {
+      "name": "detached-remains-and-slope",
+      "position": [
+        52.5,
+        5.6,
+        16.2
+      ],
+      "lookAt": [
+        39.8,
+        -1.08,
+        -0.5
+      ],
+      "fov": 62
+    }
+  ],
+  "materialMethod": "Shared granite supplies continuous mineral texture across modeled ashlar faces and voussoirs. The shared rammed-earth graph covers the exposed ramp and top fill. No photo textures.",
+  "sourceFacts": {
+    "mappedBridgeWay": 495040347,
+    "survivingVaults": 3,
+    "modeledMasonryGroups": 8,
+    "detachedRuinPoint": [
+      42.95152,
+      -1.07512
+    ]
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        7,
+        1.7,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ez/ez5/alconetar_bridge/models/ruins-model.mjs",
+    "export": "buildAlconetarSkyline",
+    "surfaces": {
+      "granite": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.96
+      },
+      "earth": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 0.99
+      }
+    },
+    "errorMeters": 0.38,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAlconetarDistrict",
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.17
+      },
+      "street": {
+        "export": "buildAlconetarStreet",
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.055
+      },
+      "closeup": {
+        "export": "buildAlconetarCloseup",
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.016
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "alconetar_bridge-skyline",
+      "position": [
+        24,
+        22,
+        53
+      ],
+      "lookAt": [
+        7,
+        1.7,
+        0
+      ],
+      "fov": 55,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "alconetar_bridge-district",
+      "position": [
+        24,
+        22,
+        53
+      ],
+      "lookAt": [
+        7,
+        1.7,
+        0
+      ],
+      "fov": 55,
+      "reviewLod": "district"
+    },
+    {
+      "name": "alconetar_bridge-street",
+      "position": [
+        24,
+        22,
+        53
+      ],
+      "lookAt": [
+        7,
+        1.7,
+        0
+      ],
+      "fov": 55,
+      "reviewLod": "street"
+    },
+    {
+      "name": "alconetar_bridge-closeup",
+      "position": [
+        24,
+        22,
+        53
+      ],
+      "lookAt": [
+        7,
+        1.7,
+        0
+      ],
+      "fov": 55,
+      "reviewLod": "closeup"
+    }
+  ]
+}

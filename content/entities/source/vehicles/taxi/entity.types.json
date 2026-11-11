@@ -40,28 +40,28 @@
             "centerOfMass": [
               0,
               0.51,
-              0
+              0.252
             ],
             "wheelbase": 2.8,
             "wheelTrack": 1.5996,
             "wheelRadius": 0.33,
-            "mass": 1500,
-            "engineForce": 6500,
-            "maxSpeed": 40,
+            "mass": 1675,
+            "engineForce": 6904,
+            "maxSpeed": 51,
             "reverseSpeed": 7,
-            "brakeDeceleration": 8,
+            "brakeDeceleration": 10.5,
             "maxSteer": 0.52,
-            "grip": 8,
+            "grip": 9.4,
             "driverEye": [
               0.4278,
               1.17,
               -0.0175
             ],
-            "drive": "rear",
+            "drive": "front",
             "steeringRate": 1.8,
             "steeringFadeSpeed": 18,
             "rollingResistance": 0.15,
-            "aerodynamicResistance": 0.0025,
+            "aerodynamicResistance": 0.00023,
             "terrainAlignRate": 1.8,
             "supportTolerance": 0.08,
             "maxStepHeight": 0.4,
@@ -1208,7 +1208,28 @@
                   "actuator": "trunk"
                 }
               }
-            ]
+            ],
+            "corneringStiffness": 20.2,
+            "rollStiffness": 0.074,
+            "pitchStiffness": 0.04,
+            "suspensionFrequency": 1.61,
+            "suspensionDamping": 0.52,
+            "rollBalance": 0.555,
+            "brakeBias": 0.7,
+            "aerodynamicLift": 0.000091,
+            "powertrain": {
+              "power": 155000,
+              "peakPowerRpm": 5700,
+              "redline": 6200,
+              "curve": "electric",
+              "gears": [
+                9.748,
+                2.009
+              ],
+              "continuous": true,
+              "efficiency": 0.9,
+              "idle": 0
+            }
           },
           "visual": {
             "wheelNodes": [
@@ -1445,6 +1466,49 @@
           "wheelAngle": 0,
           "grounded": true,
           "waitingForTerrain": false
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.car",
+          "loop": true,
+          "pitch": 0.98,
+          "gain": 1.1,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [
+              [
+                0,
+                0.7
+              ],
+              [
+                800,
+                0.8
+              ],
+              [
+                3720,
+                1.35
+              ],
+              [
+                6200,
+                1.9
+              ]
+            ]
+          },
+          "gainFrom": {
+            "signal": "vehicleState.engineLoad",
+            "curve": [
+              [
+                0,
+                0.3
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
         }
       },
       "assets": [

@@ -15,6 +15,7 @@ export { aircraftObstacleContacts as vehicleObstacleContacts } from './aircraft-
 import { createGlassVisual, type GlassVisual } from './glass';
 import { applyLivery } from './livery';
 import { createModelSignalVisual, type ModelSignalVisual } from './model-signals';
+import { railVehicleProxyGeometry } from './rail-proxy';
 import { drawGlassInOnePass } from './vehicle-glass';
 import {
   createVehicleInteriorVisual,
@@ -23,11 +24,17 @@ import {
 } from './vehicle-interior';
 import { vehicleProxyGeometry } from './vehicle-proxy';
 
+export { type RailVehicleProxyDimensions, railVehicleProxyGeometry } from './rail-proxy';
 export type { VehicleCameraOptions, VehicleCameraPose } from './vehicle-camera';
 export { vehicleCameraPose } from './vehicle-camera';
 export type { VehicleInteriorSignals, VehicleInteriorVisual } from './vehicle-interior';
 export { createVehicleInteriorVisual } from './vehicle-interior';
 export { type VehicleProxyDimensions, vehicleProxyGeometry } from './vehicle-proxy';
+
+/** The stand-in for a parked vehicle: a rail car's silhouette on track, a car's on the street. */
+function parkedProxyGeometry(spec: VehiclePlacement['spec']): THREE.BufferGeometry {
+  return spec.rail !== undefined ? railVehicleProxyGeometry(spec) : vehicleProxyGeometry(spec);
+}
 
 export interface VehicleVisual {
   setLivery(data: LiveryData | undefined): void;
@@ -232,7 +239,7 @@ export function createParkedVehicleBatch(
   const group = new THREE.Group();
   group.name = 'surface:parked-cars';
   if (placements.length === 0) return group;
-  const templates = placements.map((placement) => vehicleProxyGeometry(placement.spec));
+  const templates = placements.map((placement) => parkedProxyGeometry(placement.spec));
   const vertices = templates.reduce(
     (sum, template) => sum + template.getAttribute('position').count,
     0,
@@ -346,8 +353,8 @@ export function createParkedVehicleInstances(
   group.name = 'surface:parked-cars';
   const sizes = new Map<string, VehiclePlacement[]>();
   for (const placement of placements) {
-    const { width, length, height, wheelbase } = placement.spec;
-    const key = `${width}:${length}:${height}:${wheelbase}`;
+    const { width, length, height, wheelbase, rail } = placement.spec;
+    const key = `${width}:${length}:${height}:${wheelbase}:${rail?.profile ?? ''}`;
     const size = sizes.get(key);
     if (size) size.push(placement);
     else sizes.set(key, [placement]);
@@ -361,7 +368,7 @@ export function createParkedVehicleInstances(
   for (const size of sizes.values()) {
     const first = size[0] as VehiclePlacement;
     const mesh = new THREE.InstancedMesh(
-      vehicleProxyGeometry(first.spec),
+      parkedProxyGeometry(first.spec),
       vehicleProxyMaterial,
       size.length,
     );

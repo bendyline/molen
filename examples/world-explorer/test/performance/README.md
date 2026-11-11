@@ -1,5 +1,31 @@
 # Performance evaluation
 
+## Scoreboard
+
+`run-scoreboard.mjs` measures one settled view and one flight in the real explorer and checks
+them against `scoreboard-budgets.json`:
+
+```sh
+node test/performance/run-scoreboard.mjs --label=main
+```
+
+The settled view (900 m over Bellevue, Balanced detail, 1440 x 900) reports what a frame is made
+of: draws, triangles, visible geometry memory, land cover's memory and triangles and how many
+tiles draw it as a texture, and plant triangles (`sceneComposition` in the explorer's flight
+report). The flight (laps at 250 m/s) reports long frames, main-thread work, rebuilt tiles,
+evictions, ground that coarsened in view, peak visible memory, heap, the level drawn within
+2 km, and how long background preparation waited.
+
+What a view is made of is the same on every run with the same window (three runs gave identical
+counts), so those budgets fail the run. Times depend on the machine and on what else it is
+doing; their budgets are marked `advisory` and fail only with `--strict`. `--report-only` never
+fails; `--tier`, `--seconds` and `--params` change the scenario, and `--budgets` names another
+file. Budgets sit about a quarter above the numbers measured when they were set (2026-11-09, AMD
+Radeon AI PRO R9700): move them deliberately, with the change that earns it. Results and a
+screenshot go to the ignored `.artifacts/scoreboard/<label>/`. It needs an installed Chrome, like
+the flight probe below. It has only been run on that one workstation: an integrated GPU and a
+120 Hz display are the missing rows.
+
 ## Streaming under flight
 
 `run-flight-streaming.mjs` flies a scripted camera through the real explorer and reports what the

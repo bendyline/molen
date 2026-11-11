@@ -1,0 +1,79 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.gare_dausterlitz",
+  "inputHash": "sha256:bdaaf5b8f3b658fcfc1293836c401b926ed57bb7ed2b92387e9cb4ed8e9fe336",
+  "sourceHash": "sha256:24a5f31b2f6c45296557e822e8ea4a8501e3853d40278875169835e009c68fc0",
+  "runtimeHash": "sha256:760d1c74e3b219dd8bf6a39fe6668deb646992f2d8cc29dd2ee7c930ddf7eb35",
+  "fixtureHash": "sha256:bfcd6058009abb1ec60f8f3b7f5c14da5e7bd5c1e5058413b2989ea337abc177",
+  "placementHash": "sha256:50d59bc1905d75d520f785566ab5277c8007ca77d5d3b9bb6c0fb5c2783490b5",
+  "materialGraphs": {
+    "molen.worldgen.material.glass_frit_triangular": {
+      "path": "materials/glass_frit_triangular.matgraph.json",
+      "hash": "sha256:ab416307e458827df9d530e60622e3db805370db7cbf2697ebb4eb0716c967b6"
+    },
+    "molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    },
+    "molen.worldgen.material.metal_standing_seam": {
+      "path": "materials/metal_standing_seam.matgraph.json",
+      "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+    },
+    "molen.worldgen.material.slate": {
+      "path": "materials/slate.matgraph.json",
+      "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_limestone_weathered": {
+      "path": "materials/stone_limestone_weathered.matgraph.json",
+      "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-gare-dausterlitz.png",
+      "hash": "sha256:2aeffcd7cd6ac827b0b12e318af136a468b3695692620b12b26de51b95449a38",
+      "camera": {
+        "name": "detail-seine-and-train-hall",
+        "position": [
+          -161,
+          143,
+          -160
+        ],
+        "lookAt": [
+          46,
+          5,
+          7
+        ],
+        "fov": 61,
+        "lightDirection": [
+          -0.52,
+          1,
+          -0.77
+        ],
+        "detail": true
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "gare.dausterlitz",
+        "visibleDraws": 8
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true,
+    "landcoverRestored": true
+  },
+  "errors": [],
+  "notes": "Seven shared graphs resolve once per tier for limestone, weathered limestone, granite, painted iron, slate, standing-seam roofing and tinted glazing. A local translucent material supplies the hall skylights."
+}

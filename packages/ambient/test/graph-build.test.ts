@@ -28,20 +28,31 @@ describe('transport graph', () => {
         layer: 1,
       }),
       streetFeature([0.55, 0.5], [1, 0.5], { class: 'highway', name: 'exit' }),
+      // What the deck flies over: it stays on the ground, and the deck and both its
+      // approaches climb to clear it.
+      streetFeature([0.5, 0.2], [0.5, 0.8], { class: 'highway', name: 'under' }),
     ];
     const graded = gradeHighwayBridges(features, 400, () => 0);
+    expect(graded.filter((f) => f.bridgeApproachProfile?.length).map((f) => f.name)).toEqual([
+      'approach',
+      'deck',
+      'exit',
+    ]);
     const expected = new Map(
       graded.map((f) => [
         f.name,
-        bridgeDeckHeightFn(terrainLinePath(f.lines[0] ?? [], 400), () => 0, {
-          clearance: 6,
-          approachLift: 0.32,
-          connects: [false, false],
-          approachProfile: f.bridgeApproachProfile?.map((p) => ({
-            ...p,
-            point: [p.point[0] * 400, p.point[1] * 400],
-          })),
-        }),
+        f.bridgeApproachProfile?.length
+          ? bridgeDeckHeightFn(terrainLinePath(f.lines[0] ?? [], 400), () => 0, {
+              clearance: 6,
+              approachLift: 0.32,
+              groundApproach: !f.bridge,
+              connects: [false, false],
+              approachProfile: f.bridgeApproachProfile.map((p) => ({
+                ...p,
+                point: [p.point[0] * 400, p.point[1] * 400],
+              })),
+            })
+          : () => 0.32,
       ]),
     );
     for (let i = 0; i < (parts ? 2 : 1); i++)
@@ -54,13 +65,17 @@ describe('transport graph', () => {
         ...(parts ? { bounds: [1000 + i * 200, 2000, 1200 + i * 200, 2400] as const } : {}),
       });
     expect([...net.edgeList()].length).toBeGreaterThanOrEqual(3);
+    let highest = 0;
     for (const edge of net.edgeList())
       for (const [i, p] of edge.path.points.entries()) {
         expect(edge.ys[i]).toBeCloseTo(
           expected.get(edge.name)?.(p[0] - 1000, p[1] - 2000) ?? NaN,
           5,
         );
+        if (edge.name !== 'under') highest = Math.max(highest, edge.ys[i] ?? 0);
       }
+    // Traffic on the deck clears the road beneath by a truck's height and the deck's depth.
+    expect(highest).toBeGreaterThan(0.32 + 6.4);
   });
   it('shares complete airport runways across streamed tiles without creating car lanes', () => {
     const net = new TransportNetwork();

@@ -21,6 +21,44 @@ export function referenceSpeed(profile) {
     : (profile.reference.ktas * 1852) / 3600;
 }
 
+// Main wheels ahead of the center of mass, a tailwheel behind.
+const TAILWHEEL = ['p51d', 'dhc_2', 'pc_6', 'beech_18', 'dc_3'];
+// Seconds of hover power stored in the rotor: light rotors forgive an engine failure least.
+const ROTOR_INERTIA_TIME = {
+  oh6: 1.5,
+  robinson_r44: 1.6,
+  bell_206b: 3,
+  uh_1h: 3.5,
+  bell_412ep: 2.5,
+  uh_60m: 2.5,
+  ch_47f: 3,
+  aw139: 2.2,
+};
+
+/**
+ * Landing gear layout, usable fuel and rotor inertia: estimates by class, not flight-manual
+ * figures. Fuel is a share of the authored mass (which is the aircraft with full tanks).
+ */
+function configureFlightRealism(id, spec, p) {
+  const name = id.slice(id.lastIndexOf('.') + 1);
+  const share =
+    p.propulsion === 'helicopter'
+      ? 0.14
+      : p.propulsion === 'jet'
+        ? p.afterburnerThrustN || spec.mass < 12000
+          ? 0.28
+          : 0.22
+        : spec.mass < 2500
+          ? 0.13
+          : 0.17;
+  spec.fuel = { capacity: Math.round(spec.mass * share) };
+  if (spec.helicopter) spec.helicopter.rotorInertiaTime = ROTOR_INERTIA_TIME[name] ?? 2;
+  if (spec.airplane) {
+    if (TAILWHEEL.includes(name)) spec.airplane.tailwheel = true;
+    else delete spec.airplane.tailwheel;
+  }
+}
+
 /** Coefficients fit one declared anchor; independent conditions must be tested separately. */
 export function tuneAircraftPerformance(id, spec) {
   configureEngineControls(id, spec);
@@ -32,6 +70,7 @@ export function tuneAircraftPerformance(id, spec) {
   }
   const p = performanceProfiles.get(id);
   if (!p) throw Error(`Missing performance profile: ${id}`);
+  configureFlightRealism(id, spec, p);
   const speed = referenceSpeed(p),
     ref = p.reference;
   if (p.propulsion === 'helicopter') {

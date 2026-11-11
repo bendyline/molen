@@ -1,0 +1,74 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.muktinath_temple",
+  "inputHash": "sha256:65277463558ff2d3379b9cb126d4af944907ecc21e0b35ec023a8bab3f6356c1",
+  "sourceHash": "sha256:a9710c9caa3bbe4ad37c43fb04ddc6df8a8a0a90b7aacf63771f8ae6ffede53c",
+  "runtimeHash": "sha256:29a5916cd56bd74a446097b767bdf889ebbd15e2c1099bad12a0f7ac6e2567e0",
+  "fixtureHash": "sha256:c2369f076e2defa8c0f7fcc7710667de719cee7fc932f64cf93dedc6c2810b4a",
+  "placementHash": "sha256:7123f353e06ff8fc75ce9db8ac341a5f507b2e2ce8e275583a2ea12f85d0aee4",
+  "materialGraphs": {
+    "molen.worldgen.material.plaster_lime": {
+      "path": "materials/plaster_lime.matgraph.json",
+      "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+    },
+    "molen.worldgen.material.metal_corrugated": {
+      "path": "materials/metal_corrugated.matgraph.json",
+      "hash": "sha256:f2d0648da95df58305679176365fd55b9656f3666312eea610394737e1c5001f"
+    },
+    "molen.worldgen.material.metal_standing_seam": {
+      "path": "materials/metal_standing_seam.matgraph.json",
+      "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+    },
+    "molen.worldgen.material.metal_bronze_cast": {
+      "path": "materials/metal_bronze_cast.matgraph.json",
+      "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+    },
+    "molen.worldgen.material.wood_plain": {
+      "path": "materials/wood_plain.matgraph.json",
+      "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+    },
+    "molen.worldgen.material.stone_ashlar": {
+      "path": "materials/stone_ashlar.matgraph.json",
+      "hash": "sha256:f5692cbd995206b1475a803b027d181a664bd3a20df51db34667f205abce8093"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-muktinath-temple.png",
+      "hash": "sha256:65caf92e20caa20cd3f1db5a9c6f8e8e8f6cff3383f060f585ca907ea98b7050",
+      "camera": {
+        "name": "detail-shrine-and-bathing-courts",
+        "position": [
+          39,
+          19,
+          22
+        ],
+        "lookAt": [
+          7.3,
+          1.25,
+          -1
+        ],
+        "fov": 47,
+        "group": "detail",
+        "lightDirection": [
+          0.72,
+          0.95,
+          0.64
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "muktinath.temple",
+        "visibleDraws": 7
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The six shared material graphs resolve once per tier. Lime plaster, ashlar and timber define the main structures. Two metal roof graphs separate the corrugated hall from the shrine, and shared cast bronze supplies the spouts and finial."
+}

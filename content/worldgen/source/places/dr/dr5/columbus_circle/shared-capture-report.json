@@ -1,0 +1,68 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.columbus_circle",
+  "inputHash": "sha256:0423c0c2ac7e9ba57ed0ef5f7ddf6c8ce25b20db396d220ad14ff66eae35298c",
+  "sourceHash": "sha256:18814c07de139b07644c0a7595fb82200adeebe21298fb1e39c3f450aaa48b32",
+  "runtimeHash": "sha256:38851fab32e2637d314c69c0f2a549149011dea1660ddda2fa85840d8f1ee24c",
+  "fixtureHash": "sha256:4e70d84443f3ad51036a7ea8966d81644a6e3c0e9f3d1549cb4e0b71a16eade3",
+  "placementHash": "sha256:c8e119a19821c43a55aa289875b2be4c364dec4e110ba356959729ef1f099e78",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    },
+    "molen.worldgen.material.metal_bronze_cast": {
+      "path": "materials/metal_bronze_cast.matgraph.json",
+      "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+    },
+    "molen.worldgen.material.stone_marble": {
+      "path": "materials/stone_marble.matgraph.json",
+      "hash": "sha256:e6034ab9ef8375ec8f3a57c697aa21e059e2953742b15ce3b3e486c2f71af7cf"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-columbus-circle.png",
+      "hash": "sha256:5f10d545e3bda62d0661ee3c8cb7ba5e9b597707bcbe6462e4f89f4e7cdbbe7b",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          21,
+          7.2,
+          55
+        ],
+        "lookAt": [
+          0,
+          9.5,
+          0
+        ],
+        "fov": 48,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          0.15,
+          1,
+          0.22
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "columbus.circle",
+        "visibleDraws": 5
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Granite, marble and cast bronze each resolve one shared graph. The basin surface and static translucent jet ribbons use two local PBR tints."
+}

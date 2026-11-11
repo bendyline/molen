@@ -1,0 +1,336 @@
+{
+  "id": "my_thuan_bridge",
+  "title": "Mỹ Thuận Bridge",
+  "wikidataId": "Q3032279",
+  "referenceCoordinate": {
+    "longitude": 105.9100186,
+    "latitude": 10.27742765
+  },
+  "module": "content/worldgen/source/places/w3/w3g/my_thuan_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-my-thuan-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "foundation",
+      "graph": "concrete_boardformed",
+      "roughness": 0.88
+    },
+    "road": {
+      "slot": "wall",
+      "graph": "gravel",
+      "roughness": 0.94
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.73,
+      "metallic": 0.3
+    }
+  },
+  "exportLabel": "Molen original Mỹ Thuận Bridge master",
+  "expectedDraftMasterHash": "sha256:b82001ae33c0b42bc0abb75edeb0fa2649a028997875a5d4091a8131afaa5814",
+  "visualBrief": "Two tapered concrete H-frames rise over the Tiền River. Their arched crossbeams and pointed tips frame the roadway, with blue stay fans at both deck edges. Repeating concrete piers support the long graded approaches.",
+  "heightPolicy": "The bridge uses a fixed sea-level datum. Both roadways meet the retained QL1 approaches at their mapped bearing lines. The adjacent Mỹ Thuận 2 motorway crossing remains native.",
+  "nativeAxes": "Positive X crosses southeast from Tiền Giang to Vĩnh Long. Positive Z faces upstream.",
+  "limitations": [
+    "Mapped carriageway traces fix the axis and bearing locations. The H-frame tower dimensions, pier stations and deck grades are exterior-photo estimates.",
+    "The viewer grade at the Tiền Giang landing is fitted to the standard elevation surface."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:My_thuan_bridge.jpg",
+      "hash": "sha256:ed53e3344ce0db5324d19de08fe6bc160f5c6cce4333397b3db2bdcd5026d1d3",
+      "observed": "Approach spans and the two cable-stayed pylons."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:My_Thuan_Bridge_2.jpg",
+      "hash": "sha256:8ea08bbbad0ab3e2b0a982f12078f398706937d08fedc385fb832305aea4a654",
+      "observed": "Deck profile, legs and stay arrangement."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:C%E1%BA%A7u_M%E1%BB%B9_Thu%E1%BA%ADn,_V%C4%A9nh_Long,_2013.JPG",
+      "hash": "sha256:18eb5e8411f0ce6283d4cd2850afbd265cea33135d67d9bb47b53fa221457ccc",
+      "observed": "Main span, side spans, paired tower portals, and support spacing."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "original-my-thuan-crossing",
+      "position": [
+        20,
+        190,
+        1030
+      ],
+      "lookAt": [
+        0,
+        36,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "paired-portals-and-blue-stays",
+      "position": [
+        48,
+        94,
+        519
+      ],
+      "lookAt": [
+        10,
+        62,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "along-the-bridge-deck",
+      "position": [
+        -349,
+        57,
+        1
+      ],
+      "lookAt": [
+        -125,
+        68,
+        -2
+      ],
+      "fov": 61
+    },
+    {
+      "name": "river-piers-and-clearance",
+      "position": [
+        57,
+        11,
+        142
+      ],
+      "lookAt": [
+        113,
+        40,
+        0
+      ],
+      "fov": 59
+    },
+    {
+      "name": "tien-giang-landing",
+      "position": [
+        -802,
+        20,
+        36
+      ],
+      "lookAt": [
+        -729,
+        14,
+        -2
+      ],
+      "fov": 64
+    },
+    {
+      "name": "vinh-long-landing",
+      "position": [
+        802,
+        20,
+        -44
+      ],
+      "lookAt": [
+        728,
+        14,
+        -2
+      ],
+      "fov": 64
+    },
+    {
+      "name": "separate-motorway-crossing",
+      "position": [
+        142,
+        185,
+        -674
+      ],
+      "lookAt": [
+        0,
+        32,
+        -412
+      ],
+      "fov": 56
+    }
+  ],
+  "materialMethod": "Board-formed concrete, road aggregate and painted metal share library graphs. Concrete faces, stays, and roadway fittings use meter-scale UVs and restrained vertex colors.",
+  "sourceFacts": {
+    "deckLengthMeters": 1556.76,
+    "deckWidthMeters": 25.84,
+    "hFramePylons": 2,
+    "cablesPerFan": 12,
+    "pmtilesCrossingIds": [
+      35184403185390
+    ],
+    "neighboringBridgeId": 35185248602040
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        47,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/w3/w3g/my_thuan_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.88
+      },
+      "road": {
+        "slot": "wall",
+        "graph": "gravel",
+        "roughness": 0.94
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.3
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.88
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.3
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.88
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.3
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.88
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.3
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "my_thuan_bridge-skyline",
+      "position": [
+        20,
+        190,
+        1030
+      ],
+      "lookAt": [
+        0,
+        36,
+        0
+      ],
+      "fov": 52,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "my_thuan_bridge-district",
+      "position": [
+        20,
+        190,
+        1030
+      ],
+      "lookAt": [
+        0,
+        36,
+        0
+      ],
+      "fov": 52,
+      "reviewLod": "district"
+    },
+    {
+      "name": "my_thuan_bridge-street",
+      "position": [
+        20,
+        190,
+        1030
+      ],
+      "lookAt": [
+        0,
+        36,
+        0
+      ],
+      "fov": 52,
+      "reviewLod": "street"
+    },
+    {
+      "name": "my_thuan_bridge-closeup",
+      "position": [
+        20,
+        190,
+        1030
+      ],
+      "lookAt": [
+        0,
+        36,
+        0
+      ],
+      "fov": 52,
+      "reviewLod": "closeup"
+    }
+  ]
+}

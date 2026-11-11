@@ -120,6 +120,7 @@ export {
 } from './client/earth-view';
 export type { EarthFleet, EarthFleetContent, EarthFleetOptions } from './client/fleet';
 export { createEarthFleet } from './client/fleet';
+export { composeEarthGroundGrading } from './client/ground-grading';
 export {
   EARTH_EXPOSURE,
   EARTH_LIGHTING,
@@ -178,12 +179,28 @@ export {
   extrapolateTrack,
 } from './client/prefetch';
 export { createEarthTilePreloader } from './client/preload';
+export {
+  EARTH_RAIL_TOP,
+  EarthRailNetwork,
+  type EarthRailStop,
+  type EarthTrackTags,
+  isLightRailTrack,
+  isRunningTrack,
+} from './client/rail';
 export { createRegionalGroundColor } from './client/regional-ground';
 export {
   createEarthRoadSigns,
   type EarthRoadSignContent,
   type EarthRoadSigns,
 } from './client/road-signs';
+export {
+  type EarthTrain,
+  type EarthTrainCar,
+  type EarthTrainKind,
+  type EarthTrainStatus,
+  EarthTrains,
+  type EarthTrainsOptions,
+} from './client/trains';
 export {
   type EarthSpawnOptions,
   EarthVehicles,

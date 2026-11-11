@@ -1,0 +1,114 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.rail.boxcar_50ft": {
+      "doc": "50 ft high-cube (plate F) boxcar: single 10 ft plug door, exterior posts, corrugated ends, peaked roof, three-piece trucks with 36 in wheels. Unpowered car for track-guided consists; vehicle.color repaints the carbody.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.boxcar_50ft",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.boxcar_50ft",
+          "color": "#8a4634",
+          "spec": {
+            "label": "50 ft high-cube boxcar",
+            "bodyStyle": "freight-car",
+            "genericLabel": "Boxcar",
+            "width": 3.25,
+            "length": 16.2,
+            "height": 5.18,
+            "centerOfMass": [
+              0,
+              1.9,
+              0
+            ],
+            "wheelbase": 12.4,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.457,
+            "mass": 90000,
+            "engineForce": 1,
+            "maxSpeed": 31.3,
+            "reverseSpeed": 30,
+            "brakeDeceleration": 0.45,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [
+              0,
+              2.5,
+              0
+            ],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00001,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 12.4,
+              "couplerLength": 17.3,
+              "power": 0,
+              "gauge": 1.435,
+              "profile": "box"
+            }
+          },
+          "visual": {
+            "wheelNodes": [
+              "axle-1",
+              "axle-2",
+              "axle-3",
+              "axle-4"
+            ],
+            "frontWheelNodes": [
+              "axle-1"
+            ],
+            "paintMaterial": "rail-livery-body"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.rail.boxcar_50ft"
+      ]
+    }
+  }
+}

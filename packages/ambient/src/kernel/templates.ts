@@ -23,10 +23,43 @@ export interface AmbientVehicleType {
   max?: number;
   /** Body colours to pick from (default: a realistic car palette). */
   colors?: string[];
-  /** Rail: cars per consist. */
+  /** Rail: cars per consist (every car this type), unless `consist` makes the train up. */
   cars?: number;
+  /**
+   * Rail: the tracks it runs on. `light` keeps to tram and light-rail lines, `heavy` to the
+   * rest; absent runs anywhere.
+   */
+  track?: 'light' | 'heavy';
+  /** Rail: a mixed train led by this type (its units, then cars drawn from a pool). */
+  consist?: AmbientConsist;
   /** Vessels: ferry service or general navigation channel. */
   waterway?: 'ferry' | 'channel';
+}
+
+/** A car a {@link AmbientConsist} draws from. */
+export interface AmbientConsistCar {
+  /** Content type id. */
+  id: string;
+  length: number;
+  width: number;
+  height?: number;
+  /** Relative draw weight (default 1). */
+  weight?: number;
+  colors?: string[];
+}
+
+/**
+ * How a train led by a rail type makes up: `units` copies of the lead type (multiple-unit
+ * locomotives), then `length` cars drawn in blocks of `block` alike from `cars`.
+ */
+export interface AmbientConsist {
+  /** Lead units, inclusive range (default [1, 1]). */
+  units?: [number, number];
+  /** Cars after the units, inclusive range. */
+  length: [number, number];
+  /** Cars of one type in a row, inclusive range (default [1, 1]). */
+  block?: [number, number];
+  cars: AmbientConsistCar[];
 }
 
 export interface AmbientPedestrianType {

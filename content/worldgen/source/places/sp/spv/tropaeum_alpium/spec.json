@@ -1,0 +1,378 @@
+{
+  "planId": "tropaeum_alpium",
+  "id": "tropaeum_alpium",
+  "assetId": "molen.worldgen.structure.tropaeum_alpium",
+  "title": "Tropaeum Alpium",
+  "category": "religious",
+  "quality": "detailed",
+  "wikidataId": "Q747588",
+  "referenceCoordinate": {
+    "longitude": 7.4017556,
+    "latitude": 43.74479405
+  },
+  "visualBrief": "The square foundation, weathered Roman rubble, restored west inscription with flanking trophies, four full columns, broken shafts, curved entablature and uneven tower crown distinguish the present ruin.",
+  "size": [
+    37.80500030517578,
+    38.09999990463257,
+    37.362998962402344
+  ],
+  "actualBounds": {
+    "min": [
+      -18.8700008392334,
+      -3.0999999046325684,
+      -18.691999435424805
+    ],
+    "max": [
+      18.934999465942383,
+      35,
+      18.67099952697754
+    ]
+  },
+  "nativeAxes": "The mapped +X axis points north-northeast. The restored inscription and column arcade face -Z toward the west-northwest. The exposed rubble mass extends toward the east-southeast.",
+  "sourceFacts": {
+    "mappedBuilding": 35184617054371,
+    "reportedHeightMeters": 35,
+    "standingColumns": 4,
+    "brokenColumns": 3,
+    "mainFacade": "west-northwest"
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Troph%C3%A9e_des_Alpes%2C_La_Turbie_P1040724.jpg",
+    "https://commons.wikimedia.org/wiki/File:Tropaeum_Alpium_from_the_cemetery_of_La_Turbie_-_La_Turbie_2014.JPG",
+    "https://commons.wikimedia.org/wiki/File:La-Turbie-.jpg",
+    "https://www.trophee-auguste.fr/decouvrir/histoire-du-trophee-d-auguste"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      7.4017556,
+      43.74479405
+    ],
+    "heading": 1.249474942043,
+    "elevationMode": "sea-level",
+    "orientationPolicy": "approximate-visualization",
+    "elevationMeters": 487.95,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The 487.95 m podium datum sits above the highest sampled corner. The stone foundation extends to 484.85 m and meets the standard terrain without a ground cut.",
+    "groundModelY": 0,
+    "replaceFootprint": true,
+    "buildingCutout": {
+      "outline": [
+        [
+          -19.09644,
+          18.895052
+        ],
+        [
+          -19.011432000000003,
+          -18.863680000000002
+        ],
+        [
+          19.162219999999998,
+          -18.916304
+        ],
+        [
+          19.077212,
+          18.842428
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Retained PMTiles monument footprint."
+    },
+    "bounds": [
+      7.4014583808498795,
+      43.74457767719766,
+      7.4020528267399905,
+      43.74501104376394
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9dc9b853caa9eb38cba052f5098d2fc0ae308ea4a2279cda03f3df3766bf9683",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://www.openstreetmap.org/way/244965539",
+    "wikidataId": "Q747588",
+    "notes": "The mapped +X axis points north-northeast. The restored inscription and column arcade face -Z toward the west-northwest. The exposed rubble mass extends toward the east-southeast."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Shared dry stone gives the exposed core its irregular masonry. Weathered limestone serves the dressed podium and columns, and shared marble supplies the west dedication and trophy reliefs.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sp/spv/tropaeum_alpium/models/trophy-model.mjs",
+    "export": "buildTrophySkyline",
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.95
+      },
+      "dressed": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.83
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.74
+      }
+    },
+    "errorMeters": 1.65,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTrophyDistrict",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.83
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.74
+          }
+        },
+        "errorMeters": 0.76
+      },
+      "street": {
+        "export": "buildTrophyStreet",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.83
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.74
+          }
+        },
+        "errorMeters": 0.27
+      },
+      "closeup": {
+        "export": "buildTrophyCloseup",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.83
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.74
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        15,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "tropaeum_alpium-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -35,
+        24,
+        -63
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "tropaeum_alpium-district",
+      "reviewLod": "district",
+      "position": [
+        -35,
+        24,
+        -63
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "tropaeum_alpium-street",
+      "reviewLod": "street",
+      "position": [
+        -35,
+        24,
+        -63
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "tropaeum_alpium-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -35,
+        24,
+        -63
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    }
+  ],
+  "limitations": [
+    "The plan follows the mapped footprint and standard elevation tiles. Relative heights of surviving masonry, the broken upper rim and the relief figures are approximated from photographs.",
+    "The model depicts the standing ruin with its restored inscription and surviving columns. Nearby park paths and terrain use the viewer’s native data."
+  ],
+  "qaCameras": [
+    {
+      "name": "west-dedication-and-trophies",
+      "position": [
+        -1,
+        7.4,
+        -30
+      ],
+      "lookAt": [
+        0.2,
+        7.55,
+        -13
+      ],
+      "fov": 61
+    },
+    {
+      "name": "arcade-and-broken-columns",
+      "position": [
+        -22,
+        24,
+        -23
+      ],
+      "lookAt": [
+        0,
+        20,
+        -6
+      ],
+      "fov": 57
+    },
+    {
+      "name": "south-edge-and-ruin",
+      "position": [
+        -47,
+        18,
+        16
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "east-rubble-and-crown",
+      "position": [
+        18,
+        29,
+        48
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "north-terraces-and-foundation",
+      "position": [
+        45,
+        14,
+        10
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "overhead-arcade-and-profile",
+      "position": [
+        -19,
+        63,
+        -17
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 52
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 30756,
+    "vertices": 69304,
+    "materials": 3,
+    "bytes": 2866492,
+    "sha256": "sha256:b701df7878bfe975b544368782de88dcf176ebd64fabf14d8e7c5ed244cfd8a5"
+  }
+}

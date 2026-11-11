@@ -1,0 +1,78 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.st_pancras_railway_station",
+  "inputHash": "sha256:452623846f541296c6ea104702b33a0e2bee5b678778481d89bc19d9419384e1",
+  "sourceHash": "sha256:1428ad5f31b23854a1e4f760dda44b44177be36286a99e1f1434479d6c4a2c7e",
+  "runtimeHash": "sha256:d266b5495537d9ff7f3b0b78b53891a2f970f3cee6d8b3555991f5f6e980c090",
+  "fixtureHash": "sha256:504a83787abc21e3f90bbc8b3b39438286b7c4e7683ea87a765f21d9f13808c4",
+  "placementHash": "sha256:7704bc5ceb0286643e9c58c6136725601f3d53266a5cd906ba4f4a47dcc8978c",
+  "materialGraphs": {
+    "molen.worldgen.material.brick_flemish": {
+      "path": "materials/brick_flemish.matgraph.json",
+      "hash": "sha256:f31107062ebd1a0d46f0ff6e5b9861b0be582d08a8c05f46e424dd12cb0c047c"
+    },
+    "molen.worldgen.material.slate": {
+      "path": "materials/slate.matgraph.json",
+      "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    },
+    "molen.worldgen.material.wood_plain": {
+      "path": "materials/wood_plain.matgraph.json",
+      "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    },
+    "molen.worldgen.material.window_grid": {
+      "path": "materials/window_grid.matgraph.json",
+      "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-st-pancras-station.png",
+      "hash": "sha256:6113c36cc45bf6f63a52047fd33631f42daa204fb17610ba222d39113418d6b7",
+      "camera": {
+        "name": "detail-inside-barlow-train-shed",
+        "position": [
+          42,
+          10,
+          2
+        ],
+        "lookAt": [
+          188,
+          21,
+          -4
+        ],
+        "fov": 61,
+        "detail": true,
+        "lightDirection": [
+          0.64,
+          1,
+          0.53
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "st.pancras.railway.station",
+        "visibleDraws": 8
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The near model resolves seven shared graphs once each. The crown uses tinted translucent geometry, with no separate image. The interior and exterior faces keep the glazing visible from both sides."
+}

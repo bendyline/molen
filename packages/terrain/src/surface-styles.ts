@@ -1,5 +1,6 @@
 import type { FontLibrary } from '@bendyline/molen-materials/text';
 import type { VehicleSpec } from '@bendyline/molen-schema';
+import type { TerrainRailElectrification } from './rail-features';
 import type { TerrainRoadSignProfile } from './road-sign-styles';
 import type { TerrainRouteShieldLibrary } from './route-shields';
 
@@ -32,6 +33,22 @@ export interface TerrainSurfaceStyle {
   roadSigns?: boolean;
   parkingStalls: boolean;
   parkedCars: boolean;
+  /**
+   * Railway equipment: signals, switch stands, level-crossing signs, lights and gates, lineside
+   * signs and overhead catenary. Track beds and rails are drawn regardless. Default true.
+   */
+  railEquipment?: boolean;
+  /**
+   * Which tracks carry overhead catenary (see `TerrainRailElectrification`); default `light`:
+   * light rail, trams and open-air subways. Regions whose main lines are electrified use `all`.
+   */
+  railElectrification?: TerrainRailElectrification;
+  /**
+   * Gauge of the region's heavy-rail network, meters: standard 1.435 by default, 1.067 for
+   * Japan's conventional lines, 1.676 for India's. Light rail, trams, subways and lines named as
+   * Shinkansen stay standard gauge.
+   */
+  railGauge?: number;
 }
 
 const MODERN: Readonly<TerrainSurfaceStyle> = Object.freeze({
@@ -97,6 +114,7 @@ export const TERRAIN_SURFACE_STYLES: Readonly<
     roadSigns: false,
     parkingStalls: false,
     parkedCars: false,
+    railEquipment: false,
   }),
 });
 
@@ -115,6 +133,12 @@ export interface TerrainSurfaceDetails {
   inferStopSigns?: boolean;
   parkingStalls?: boolean;
   parkedCars?: boolean;
+  /** Override the style's railway equipment (signals, crossing gear, signs, catenary). */
+  railEquipment?: boolean;
+  /** Override the style's railway electrification policy. */
+  railElectrification?: TerrainRailElectrification;
+  /** Override the style's heavy-rail gauge, meters. */
+  railGauge?: number;
   /** Fraction of valid parking bays occupied, [0,1], default 0.7. */
   parkingOccupancy?: number;
   /** Fixture and car count limit per tile, default 160. */
@@ -130,6 +154,14 @@ export interface TerrainSurfaceDetails {
    * vehicle types of the `molen.entities` content pack. Omitted or empty, no cars are parked.
    */
   parkedVehicles?: readonly TerrainParkedVehicle[];
+  /**
+   * Rolling stock that stands in yards and on sidings: rail vehicle types (specs with `rail`),
+   * freight cars and locomotives for heavy rail, light-rail cars for light-rail yards. Omitted or
+   * empty, the yards stand empty. Drawn when parked cars are.
+   */
+  railCars?: readonly TerrainParkedVehicle[];
+  /** Scales how full yards and sidings are, 0 to about 1.3 (default 1). */
+  railCarOccupancy?: number;
 }
 
 /** One kind of parked car: the entity type id and the vehicle spec that sizes and seats it. */
@@ -173,9 +205,23 @@ export function resolveTerrainSurfaceStyle(
     'roadSigns',
     'parkingStalls',
     'parkedCars',
+    'railEquipment',
   ] as const) {
     if (details[key] !== undefined) result[key] = details[key];
   }
+  if (details.railElectrification !== undefined)
+    result.railElectrification = details.railElectrification;
+  if (details.railGauge !== undefined) result.railGauge = details.railGauge;
+  if (
+    result.railGauge !== undefined &&
+    (!Number.isFinite(result.railGauge) || result.railGauge < 0.5 || result.railGauge > 2)
+  )
+    throw new Error('railGauge must be between 0.5 and 2 meters');
+  if (
+    result.railElectrification !== undefined &&
+    !['none', 'light', 'all'].includes(result.railElectrification)
+  )
+    throw new Error("railElectrification must be 'none', 'light' or 'all'");
   if (
     !Number.isFinite(result.roadWidthScale) ||
     result.roadWidthScale <= 0 ||

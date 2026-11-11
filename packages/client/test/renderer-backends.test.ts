@@ -801,6 +801,21 @@ describe('renderer backend selection', () => {
     );
     expect(rebased.distanceTo(projected)).toBeLessThan(1e-9);
     expect(() => renderer.setShadowFocus({ center: [0, 0, 0], radius: 0 })).toThrow(RangeError);
+    expect(() =>
+      renderer.setShadowFocus({
+        center: [0, 0, 0],
+        radius: 300,
+        far: { center: [0, 0, 0], radius: Number.NaN },
+      }),
+    ).toThrow(RangeError);
+    // A far square without static casters named, or without a shadow pass to draw it: no map.
+    renderer.setShadowFocus({
+      center: [10_100, 0, 0],
+      radius: 300,
+      far: { center: [10_000, 0, 0], radius: 2_000 },
+    });
+    renderer.render();
+    expect(renderer.farShadowInfo).toBeUndefined();
     // Off again parks the map instead: every lit program keeps the shadow inputs it was built
     // with, so a quality tier change does not rebuild them all in the next frame.
     renderer.setShadowQuality('off');

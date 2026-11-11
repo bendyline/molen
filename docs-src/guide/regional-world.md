@@ -58,6 +58,9 @@ returns linear RGB. An explicit host `style.ground` palette takes precedence in 
 Nature-reserve, national-park and protected-area designations retain their protection metadata,
 but do not paint over the physical habitat beneath them. With no mapped physical cover, sparse
 open-ground planting remains a prior, rather than inferred forest or a wildlife-presence claim.
+A named neighborhood outline is read the same way. The Protomaps basemap reports one as land use
+`other`, in place of any land use mapped on the same outline, so it paints nothing and labels no
+ground. Unlike a protection boundary it also leaves yard trees and inferred homes alone.
 
 ## Composable catalogs
 

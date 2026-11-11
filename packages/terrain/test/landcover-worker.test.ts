@@ -7,8 +7,9 @@ import {
   type TerrainLandcoverWorker,
 } from '../src/landcover-worker';
 import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
-import { createLandcoverMesh } from '../src/semantic-client';
+import { createLandcoverMesh, createLandcoverSurface } from '../src/semantic-client';
 import { createEmptyTerrainSemanticTile } from '../src/semantic-types';
+import { disposeTerrainSurfaceObject } from '../src/surface-client';
 
 function fixture(): {
   tile: ReturnType<typeof createEmptyTerrainSemanticTile>;
@@ -156,6 +157,88 @@ describe('land-cover worker', () => {
     );
     mesh.geometry.dispose();
     direct.geometry.dispose();
+    bridge.dispose();
+  });
+
+  it('draws a distant tile as one texture on the terrain grid, the same from a worker', async () => {
+    const { tile, context } = fixture();
+    tile.transportation.push({
+      class: 'primary',
+      lines: [
+        [
+          [0, 0.1],
+          [1, 0.1],
+        ],
+      ],
+    });
+    tile.buildings.push({
+      polygons: [
+        {
+          outer: [
+            [0.7, 0.7],
+            [0.9, 0.7],
+            [0.9, 0.9],
+            [0.7, 0.9],
+          ],
+        },
+      ],
+    });
+    // Two levels coarser than the pyramid's finest: the default depth for the texture.
+    const far = { ...context, pyramid: { ...context.pyramid, maxLevel: 2 } };
+    const options = { landcoverColors: { forest: '#336633' }, landcoverRaster: { size: 32 } };
+    const direct = createLandcoverSurface(tile, far, options) as THREE.Mesh;
+    expect(direct.name).toBe('semantic:landcover');
+    expect(direct.userData.terrainLandcoverRaster).toBe(true);
+    // The tile's own 3 x 3 surface grid, with texture coordinates and no per-class attributes.
+    expect(direct.geometry.getAttribute('position').count).toBe(9);
+    expect(Object.keys(direct.geometry.attributes).sort()).toEqual(['normal', 'position', 'uv']);
+    const material = direct.material as THREE.MeshStandardMaterial;
+    const map = material.map as THREE.DataTexture;
+    const data = map.image.data as Uint8Array;
+    const pixel = (u: number, v: number): number[] => {
+      const at = (Math.floor(v * 32) * 32 + Math.floor(u * 32)) * 4;
+      return [...data.slice(at, at + 4)];
+    };
+    expect(pixel(0.1, 0.5)).toEqual([0x33, 0x66, 0x33, 255]);
+    // The polygon's hole is uncovered and cut out; its rim carries the forest color for filtering.
+    expect(pixel(0.45, 0.45)[3]).toBe(0);
+    expect(pixel(0.33, 0.45)).toEqual([0x33, 0x66, 0x33, 0]);
+    expect(material.alphaTest).toBe(0.5);
+    // A 12 m road across a 100 m tile, and a roof, each lighter than the forest they cross.
+    expect(pixel(0.5, 0.1)[0]).toBeGreaterThan(0x33 + 40);
+    expect(pixel(0.5, 0.25)).toEqual([0x33, 0x66, 0x33, 255]);
+    expect(pixel(0.8, 0.8)[0]).toBeGreaterThan(0x33 + 40);
+    // Past the range trees are placed in, a wood takes a darker, uneven canopy tint.
+    const deep = { ...context, pyramid: { ...context.pyramid, maxLevel: 3 } };
+    const wooded = createLandcoverSurface(tile, deep, {
+      ...options,
+      landcoverRaster: { size: 32, canopy: { minDepth: 3 }, features: false },
+    }) as THREE.Mesh;
+    const canopy = ((wooded.material as THREE.MeshStandardMaterial).map as THREE.DataTexture).image
+      .data as Uint8Array;
+    const greens = new Set<number>();
+    for (let col = 0; col < 8; col++) greens.add(canopy[(16 * 32 + col) * 4 + 1] as number);
+    expect(Math.max(...greens)).toBeLessThan(0x66);
+    expect(greens.size).toBeGreaterThan(3);
+    disposeTerrainSurfaceObject(wooded);
+    const near = createLandcoverSurface(tile, context, options) as THREE.Mesh;
+    expect(near.userData.terrainLandcoverRaster).toBeUndefined();
+    expect(near.geometry.getAttribute('agricultureRows')).toBeDefined();
+    const thread = worker();
+    const bridge = createTerrainLandcoverWorkerBridge(thread.bridge);
+    const result = bridge.generate(tile, far, options);
+    thread.run();
+    const mesh = (await result) as THREE.Mesh;
+    for (const attr of ['position', 'normal', 'uv'])
+      expect(mesh.geometry.getAttribute(attr).array).toEqual(
+        direct.geometry.getAttribute(attr).array,
+      );
+    expect(mesh.geometry.index?.array).toEqual(direct.geometry.index?.array);
+    const sent = (mesh.material as THREE.MeshStandardMaterial).map as THREE.DataTexture;
+    expect(sent.image.data).toEqual(data);
+    expect(mesh.material).not.toBe(direct.material);
+    for (const object of [mesh, direct, near]) disposeTerrainSurfaceObject(object);
+    expect(mesh.userData.terrainOwnedTexture).toBe(false);
     bridge.dispose();
   });
 

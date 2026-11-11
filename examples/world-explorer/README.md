@@ -247,6 +247,11 @@ Circa 1910 changes the surface treatment of the present-day map; it does not rec
 
 See [Surface styles and parameterized line features](../../docs-src/guide/surface-rendering.md) for the shared rendering API, parking inference rules, budgets, and rail/utility profile examples.
 
+Roads are graded with the tiles around each one: the ground is leveled under every road, and
+bridges are stacked clear of what they cross (6.5 m over a road, 8.4 m over a railway). For a
+comparison, `?roadGrading=0` turns both off and `?earthworks=0` only the leveling. See
+[Road grading](../../docs-src/guide/surface-rendering.md#road-grading).
+
 Performance defaults to **Auto (device)**: six tiers respond to frame time and resident buffer
 pressure, controlling render resolution, terrain refinement/range, concurrency, cache sizes,
 vegetation/building LOD, and surface decorations. Manual presets switch live without moving the
@@ -254,7 +259,10 @@ camera. Object detail follows projected screen size with hysteresis; buildings r
 and wall shapes while distant materials and facade details simplify. Spatial cells improve
 frustum culling. The live viewer requests multisample antialiasing on both graphics backends so
 geometry and surface-marking edges stay smoother when Auto lowers the drawing-buffer resolution;
-use `?antialias=0` only for a controlled performance comparison. Worldgen textures already use
+use `?antialias=0` only for a controlled performance comparison. `?renderScale=1.5` draws that
+many times the usual pixels each way and lets the browser scale the frame down: thin distant
+edges (taxiway lines, roof lines, tree tops) flicker less, for about that factor squared in GPU
+work. Worldgen textures already use
 mipmaps and anisotropic filtering. Worldgen, land-cover and road/parking construction run in
 separate workers.
 

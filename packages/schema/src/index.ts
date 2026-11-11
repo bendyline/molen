@@ -222,12 +222,15 @@ export type { VehicleInteriorBinding, VehicleInteriorSpec } from './vehicle-inte
 export { vehicleInteriorSchema } from './vehicle-interior';
 export type {
   CycleSpec,
+  RailVehicleProfile,
+  RailVehicleSpec,
   VehicleBodyStyle,
   VehicleCollisionPart,
   VehicleDamageState,
   VehicleData,
   VehicleKind,
   VehiclePlacement,
+  VehiclePowertrainSpec,
   VehicleSpec,
   VehicleVisualSpec,
 } from './vehicles';

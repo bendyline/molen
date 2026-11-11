@@ -1,0 +1,68 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.tomb_of_the_unknown_soldier",
+  "inputHash": "sha256:f0a8904d11f3a711cdfc14e37743374ad94da145455d26b8a856f20f1f0b2207",
+  "sourceHash": "sha256:30550597fdf8a4611d12ec2945c357a636eca53b634c69bf07c4ba545dfd1440",
+  "runtimeHash": "sha256:9dde40de23870fadf48723eb3b08a0e88ebce5be43598062757579d0dd76b123",
+  "fixtureHash": "sha256:4e16dbce8b03458d0a051266684c62fbc6b079ce459efe24d0726ed04a0395a1",
+  "placementHash": "sha256:a66c239edad88dd9a5fbe23b8141eee3cec57c48cf33905ab6c8ef8d64cbfd36",
+  "materialGraphs": {
+    "molen.worldgen.material.metal_bronze_cast": {
+      "path": "materials/metal_bronze_cast.matgraph.json",
+      "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-tomb-unknown-soldier.png",
+      "hash": "sha256:e802a152a01f148d8d44dc0afd20a84e650ab8c8a8c7b776c23caf6cbb6c5f92",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          8,
+          3,
+          -19
+        ],
+        "lookAt": [
+          0,
+          0.85,
+          -2.7
+        ],
+        "fov": 47,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.83,
+          1,
+          -0.41
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "tomb.of.the.unknown.soldier",
+        "visibleDraws": 5
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "One granite graph supplies the paving and polished stone. One cast bronze graph and one painted metal graph supply the sculpture, trim and inlay. The sculpted flame uses a constant-color material. Each shared graph resolves once."
+}

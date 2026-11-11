@@ -1,0 +1,406 @@
+{
+  "planId": "vushtrri_stone_bridge",
+  "id": "vushtrri_stone_bridge",
+  "assetId": "molen.worldgen.structure.vushtrri_stone_bridge",
+  "title": "Vushtrri Stone Bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q3396793",
+  "referenceCoordinate": {
+    "longitude": 20.9601491689682,
+    "latitude": 42.823310782011134
+  },
+  "visualBrief": "The Vushtrri Stone Bridge spans a dry meadow in nine varied pointed masonry arches. A shallow deck hump and bent centerline follow the crossing, with warm voussoir rings, a rounded stone belt, irregular upright parapet blocks and graded stone approaches.",
+  "size": [
+    131.6199951171875,
+    7.75830864906311,
+    6.83299994468689
+  ],
+  "actualBounds": {
+    "min": [
+      -65.80999755859375,
+      -2.549999952316284,
+      -3.61299991607666
+    ],
+    "max": [
+      65.80999755859375,
+      5.208308696746826,
+      3.2200000286102295
+    ]
+  },
+  "nativeAxes": "Positive X follows the narrow dry bridge from its west approach southeast toward the R-105 roundabout.",
+  "sourceFacts": {
+    "mappedBridgePath": 35184531180349,
+    "attractionPoint": 17597159556344,
+    "previousCandidateCoordinate": [
+      20.9771,
+      42.8091
+    ],
+    "centerline": [
+      [
+        -65.81,
+        0
+      ],
+      [
+        -4.679,
+        -0.603
+      ],
+      [
+        65.81,
+        0
+      ]
+    ],
+    "mappedSpanMeters": 131.62,
+    "approximateArchCount": 9
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ura_e_gurit%2C_Vushtrri%2C_Kosova.JPG",
+    "https://commons.wikimedia.org/wiki/File:Ura_e_Vjet%C3%ABr_e_Gurit.jpg"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      20.9601491689682,
+      42.823310782011134
+    ],
+    "heading": -0.2522424579156015,
+    "elevationMode": "sea-level",
+    "orientationPolicy": "approximate-visualization",
+    "elevationMeters": 510,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The fixed 510 m datum comes from standard Terrarium. Near each mapped path end the deck matches sampled ground, and the masonry feet extend below that surface. The site uses the ordinary viewer terrain without a terrain or water cutout.",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 131.62,
+      "width": 5.84,
+      "outline": [
+        [
+          -66.06,
+          -3.227645259938838
+        ],
+        [
+          -4.679,
+          -3.5229999999999997
+        ],
+        [
+          66.06,
+          -3.227645259938838
+        ],
+        [
+          66.06,
+          3.227645259938838
+        ],
+        [
+          -4.679,
+          2.317
+        ],
+        [
+          -66.06,
+          3.227645259938838
+        ]
+      ]
+    },
+    "bounds": [
+      20.95930581995777,
+      42.823084599899616,
+      20.96099251797863,
+      42.82353696412265
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:92a47b313aeb52675f74be240415b69e2cb13b92d5275bfa521be7271cf487a7",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://www.openstreetmap.org/way/159091517",
+    "wikidataId": "Q3396793",
+    "notes": "The Vushtrri Stone Bridge spans a dry meadow in nine varied pointed masonry arches. A shallow deck hump and bent centerline follow the crossing, with warm voussoir rings, a rounded stone belt, irregular upright parapet blocks and graded stone approaches. The fixed 510 m datum comes from standard Terrarium. Near each mapped path end the deck matches sampled ground, and the masonry feet extend below that surface. The site uses the ordinary viewer terrain without a terrain or water cutout."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Shared ashlar and weathered limestone supply three material bindings with metric UVs, restrained vertex tint and zero embedded images.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/srw/vushtrri_stone_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.92
+      },
+      "dressings": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.88
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.93
+      }
+    },
+    "errorMeters": 1.3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.92
+          },
+          "dressings": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.88
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          }
+        },
+        "errorMeters": 0.58
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.92
+          },
+          "dressings": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.88
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          }
+        },
+        "errorMeters": 0.25
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.92
+          },
+          "dressings": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.88
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.93
+          }
+        },
+        "errorMeters": 0.08
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        2,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "vushtrri_stone_bridge-skyline",
+      "position": [
+        27,
+        20,
+        112
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 49,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "vushtrri_stone_bridge-district",
+      "position": [
+        27,
+        20,
+        112
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 49,
+      "reviewLod": "district"
+    },
+    {
+      "name": "vushtrri_stone_bridge-street",
+      "position": [
+        27,
+        20,
+        112
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 49,
+      "reviewLod": "street"
+    },
+    {
+      "name": "vushtrri_stone_bridge-closeup",
+      "position": [
+        27,
+        20,
+        112
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 49,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "The PMTiles path fixes the approaches and heading. Arch stations, deck width and masonry courses are approximated from the exterior views.",
+    "The source terrain is coarse and leaves the historic channel dry. The bridge ends blend into its unedited surface.",
+    "The photos establish the profile and materials. The span distribution and parapets are visual approximations."
+  ],
+  "qaCameras": [
+    {
+      "name": "vaults-and-coping",
+      "position": [
+        20,
+        2.5,
+        19
+      ],
+      "lookAt": [
+        -24,
+        2.05,
+        -0.4
+      ],
+      "fov": 49
+    },
+    {
+      "name": "voussoir-and-belt",
+      "position": [
+        0,
+        2.3,
+        9
+      ],
+      "lookAt": [
+        -4.7,
+        2.7,
+        -1
+      ],
+      "fov": 52
+    },
+    {
+      "name": "west-approach",
+      "position": [
+        -70,
+        4.2,
+        1
+      ],
+      "lookAt": [
+        -27,
+        2.9,
+        -0.4
+      ],
+      "fov": 53
+    },
+    {
+      "name": "east-approach",
+      "position": [
+        71,
+        4.1,
+        -1
+      ],
+      "lookAt": [
+        27,
+        3.2,
+        -0.6
+      ],
+      "fov": 52
+    },
+    {
+      "name": "opposite-arches",
+      "position": [
+        -22,
+        9,
+        -80
+      ],
+      "lookAt": [
+        2,
+        2,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "plan-from-above",
+      "position": [
+        21,
+        91,
+        50
+      ],
+      "lookAt": [
+        0,
+        1,
+        0
+      ],
+      "fov": 54
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 24932,
+    "vertices": 74796,
+    "materials": 3,
+    "bytes": 2994336,
+    "sha256": "sha256:5cb1d970a003cfa9895faae86661ffb70cf2a0ec5d19e6c855af087c0d6d34cb"
+  }
+}

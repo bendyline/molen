@@ -96,6 +96,8 @@ export interface ModelPlacementRequest {
   at: Vec2;
   yaw?: number;
   scale?: Vec3;
+  /** Instance tint as sRGB-encoded red, green and blue in 0..1; default white (the model's own). */
+  color?: Vec3;
 }
 export type YardFenceKind = 'timber' | 'masonry' | 'rail';
 export interface BuildingApproach {

@@ -1,0 +1,336 @@
+{
+  "planId": "wikipedia_monument",
+  "id": "wikipedia_monument",
+  "assetId": "molen.worldgen.structure.wikipedia_monument",
+  "title": "Wikipedia Monument",
+  "category": "monument",
+  "quality": "detailed",
+  "wikidataId": "Q18201640",
+  "referenceCoordinate": {
+    "longitude": 14.56011950969696,
+    "latitude": 52.34928092491077
+  },
+  "visualBrief": "Four bronze figures lift a hollow jigsaw globe above layered stacks of pages. The plinth has the green plaque, and the globe includes cutouts at the crown, carved seams and characters from several scripts.",
+  "size": [
+    1.1564937233924866,
+    2.5480000004172325,
+    1.1292291283607483
+  ],
+  "actualBounds": {
+    "min": [
+      -0.5596994757652283,
+      -0.04800000041723251,
+      -0.5496358275413513
+    ],
+    "max": [
+      0.5967942476272583,
+      2.5,
+      0.579593300819397
+    ]
+  },
+  "nativeAxes": "Positive X faces southeast out from the plaque toward the square. Positive Z points southwest across the plinth.",
+  "sourceFacts": {
+    "heightMeters": 2.5,
+    "figures": 4,
+    "artworkNode": 3144422008,
+    "orientationUncertaintyDegrees": 30
+  },
+  "referencePages": [
+    "https://slubice.pl/atrakcje/985/strona/1/pomnik-wikipedii",
+    "https://cms-v2-files.idcom-jst.pl/sites/316/atrakcje/985/fotos/orign/pomnik_wikipedii_w_slubicach_fot_barbara_aniolossowska.jpg",
+    "https://www.vbb.de/fileadmin/_processed_/4/0/csm_ausflugsziel-polen-slubice-5_582ca5f3d2.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/d/d9/Wikipedia_Monument_2.JPG"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      14.56011950969696,
+      52.34928092491077
+    ],
+    "heading": -1.12,
+    "elevationMode": "terrain-contact",
+    "orientationPolicy": "approximate-visualization",
+    "elevationMeters": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The point placement follows the host terrain at the named artwork node. The plinth extends 4.8 cm below local Y=0 to sit across the sampled grade. Nearby roads, buildings, paths and landcover remain native.",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ee5207ce4dd123891b1103932055f7825cd34a0628e0b7dc1728144430d0466e",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://www.openstreetmap.org/node/3144422008",
+    "wikidataId": "Q18201640",
+    "notes": "Four bronze figures lift a hollow jigsaw globe above layered stacks of pages. The plinth has the green plaque, and the globe includes cutouts at the crown, carved seams and characters from several scripts. The point placement follows the host terrain at the named artwork node. The plinth extends 4.8 cm below local Y=0 to sit across the sampled grade. Nearby roads, buildings, paths and landcover remain native."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Cast bronze and painted metal use the shared graph library and meter-scale UVs. Geometry supplies the puzzle seams, missing tiles, page layers and modeled inscription marks.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u3/u36/wikipedia_monument/models/monument-model.mjs",
+    "export": "buildWikipediaMonumentSkyline",
+    "surfaces": {
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.67,
+        "metallic": 0.52
+      },
+      "plaque": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.57,
+        "metallic": 0.16
+      }
+    },
+    "errorMeters": 0.18,
+    "authoredLevels": {
+      "district": {
+        "export": "buildWikipediaMonumentDistrict",
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.67,
+            "metallic": 0.52
+          },
+          "plaque": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.57,
+            "metallic": 0.16
+          }
+        },
+        "errorMeters": 0.085
+      },
+      "street": {
+        "export": "buildWikipediaMonumentStreet",
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.67,
+            "metallic": 0.52
+          },
+          "plaque": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.57,
+            "metallic": 0.16
+          }
+        },
+        "errorMeters": 0.028
+      },
+      "closeup": {
+        "export": "buildWikipediaMonumentCloseup",
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.67,
+            "metallic": 0.52
+          },
+          "plaque": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.57,
+            "metallic": 0.16
+          }
+        },
+        "errorMeters": 0.008
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        1.27,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "wikipedia_monument-skyline",
+      "position": [
+        5.2,
+        3.05,
+        -3.65
+      ],
+      "lookAt": [
+        0,
+        1.22,
+        0
+      ],
+      "fov": 38,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "wikipedia_monument-district",
+      "position": [
+        5.2,
+        3.05,
+        -3.65
+      ],
+      "lookAt": [
+        0,
+        1.22,
+        0
+      ],
+      "fov": 38,
+      "reviewLod": "district"
+    },
+    {
+      "name": "wikipedia_monument-street",
+      "position": [
+        5.2,
+        3.05,
+        -3.65
+      ],
+      "lookAt": [
+        0,
+        1.22,
+        0
+      ],
+      "fov": 38,
+      "reviewLod": "street"
+    },
+    {
+      "name": "wikipedia_monument-closeup",
+      "position": [
+        5.2,
+        3.05,
+        -3.65
+      ],
+      "lookAt": [
+        0,
+        1.22,
+        0
+      ],
+      "fov": 38,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "The named PMTiles artwork point anchors the monument. The southeast plaque bearing is a photo estimate with about 30° of uncertainty.",
+    "The bronze poses, puzzle seams, multilingual marks and layered pages are modeled from exterior photos. Fine lettering and facial details are simplified. The surrounding shelter belongs to the square."
+  ],
+  "qaCameras": [
+    {
+      "name": "plaque-and-layered-pages",
+      "position": [
+        2.6,
+        1.2,
+        0.4
+      ],
+      "lookAt": [
+        0.37,
+        0.63,
+        0.055
+      ],
+      "fov": 33
+    },
+    {
+      "name": "four-figures-and-globe",
+      "position": [
+        2.58,
+        1.69,
+        -1.74
+      ],
+      "lookAt": [
+        0,
+        1.57,
+        0
+      ],
+      "fov": 39
+    },
+    {
+      "name": "puzzle-crown",
+      "position": [
+        1.45,
+        3.28,
+        1.29
+      ],
+      "lookAt": [
+        0,
+        2.105,
+        0.035
+      ],
+      "fov": 36
+    },
+    {
+      "name": "side-poses",
+      "position": [
+        -1.84,
+        1.57,
+        2.6
+      ],
+      "lookAt": [
+        0,
+        1.37,
+        0
+      ],
+      "fov": 44
+    },
+    {
+      "name": "grounded-plinth",
+      "position": [
+        2.62,
+        0.53,
+        -1.5
+      ],
+      "lookAt": [
+        0,
+        0.55,
+        0
+      ],
+      "fov": 38
+    },
+    {
+      "name": "rear-globe-and-steps",
+      "position": [
+        -3.34,
+        2.07,
+        -1.83
+      ],
+      "lookAt": [
+        0,
+        1.38,
+        0
+      ],
+      "fov": 39
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 50256,
+    "vertices": 141570,
+    "materials": 2,
+    "bytes": 5701612,
+    "sha256": "sha256:4d085564a39c81acafe850711020dff4c565f807d3cef07852986d32ce14dc91"
+  }
+}

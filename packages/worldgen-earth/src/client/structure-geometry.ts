@@ -252,8 +252,20 @@ export function withoutStructureRoads(
   resolvedElevation?: (entry: StructurePlacement) => number | undefined,
 ): TerrainSemanticTile {
   let transportation = tile.transportation;
-  for (const entry of structures) {
+  const decks = structures.flatMap((entry) => [
+    entry,
+    ...(entry.replaceRoads?.additionalDecks ?? []).map((replaceRoads) => ({
+      ...entry,
+      replaceRoads,
+    })),
+  ]);
+  for (const entry of decks) {
     if (!entry.replaceRoads) continue;
+    const bridgeIds = entry.replaceRoads.bridgeFeatureIds
+      ? new Set(entry.replaceRoads.bridgeFeatureIds)
+      : undefined;
+    const ownsBridge = (feature: (typeof transportation)[number]) =>
+      !bridgeIds || (feature.id !== undefined && bridgeIds.has(feature.id));
     const [cx, cz] = wgs84ToWorld(metersPerUnit, ...entry.anchor);
     const c = Math.cos(entry.heading ?? 0),
       s = Math.sin(entry.heading ?? 0);
@@ -333,7 +345,7 @@ export function withoutStructureRoads(
     // the height only through that shared endpoint and the outward aligned road;
     // nearby riverbank roads and perpendicular crossings retain their own elevation.
     for (const feature of transportation) {
-      if (!feature.bridge || feature.tunnel) continue;
+      if (!feature.bridge || feature.tunnel || !ownsBridge(feature)) continue;
       for (const line of feature.lines) {
         if (line.length < 2) continue;
         for (const point of [line[0], line.at(-1)] as TerrainSemanticPoint[]) {
@@ -527,14 +539,16 @@ export function withoutStructureRoads(
     const bankXs = new Set([...bankJoins.values()].map((join) => nodeX(join.point)));
     const input = entry.replaceRoads.includeConnectedApproaches
       ? transportation.flatMap((feature) =>
-          feature.lines.map((line) =>
-            feature.lines.length === 1 ? feature : { ...feature, lines: [line] },
-          ),
+          feature.bridge && !ownsBridge(feature)
+            ? [feature]
+            : feature.lines.map((line) =>
+                feature.lines.length === 1 ? feature : { ...feature, lines: [line] },
+              ),
         )
       : transportation;
     const clippedBridges: typeof transportation = [];
     transportation = input.flatMap((feature) => {
-      if (feature.tunnel) return [feature];
+      if (feature.tunnel || (feature.bridge && !ownsBridge(feature))) return [feature];
       if (!feature.bridge && /steps/.test(`${feature.class} ${feature.subclass ?? ''}`))
         return [feature];
       // A bridge sidewalk can turn along its bank immediately at the landing. Only a
@@ -608,16 +622,21 @@ export function withoutStructureRoads(
           [hx, hz],
           [-hx, hz],
         ];
-        const ownsLine = line.slice(1).some((b, i) => {
-          const p = localPoint(line[i] as TerrainSemanticPoint),
-            q = localPoint(b);
-          if (!coveredFootway && Math.abs(q[1] - p[1]) > Math.abs(q[0] - p[0])) return false;
-          const cuts = polygonCuts(p, q, roadOutline);
-          return cuts.slice(1).some((end, j) => {
-            const t = ((cuts[j] as number) + end) / 2;
-            return coveredPoint([p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t], roadOutline);
+        const ownsLine =
+          (bridgeIds !== undefined && feature.bridge) ||
+          line.slice(1).some((b, i) => {
+            const p = localPoint(line[i] as TerrainSemanticPoint),
+              q = localPoint(b);
+            if (!coveredFootway && Math.abs(q[1] - p[1]) > Math.abs(q[0] - p[0])) return false;
+            const cuts = polygonCuts(p, q, roadOutline);
+            return cuts.slice(1).some((end, j) => {
+              const t = ((cuts[j] as number) + end) / 2;
+              return coveredPoint(
+                [p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t],
+                roadOutline,
+              );
+            });
           });
-        });
         const ownsTransverse =
           feature.bridge &&
           entry.replaceRoads?.includeTransverseBridges &&
@@ -887,8 +906,16 @@ export function withoutStructureRoads(
         : feature;
     });
   }
-  let result = transportation === tile.transportation ? tile : { ...tile, transportation };
-  if (structures.some((entry) => entry.replaceRoads?.includeConnectedApproaches))
+  const pavingAreaIds = new Set(decks.flatMap((entry) => entry.replaceRoads?.pavingAreaIds ?? []));
+  const landcover =
+    pavingAreaIds.size > 0
+      ? tile.landcover.filter((area) => area.id === undefined || !pavingAreaIds.has(area.id))
+      : tile.landcover;
+  let result =
+    transportation === tile.transportation && landcover.length === tile.landcover.length
+      ? tile
+      : { ...tile, transportation, landcover };
+  if (decks.some((entry) => entry.replaceRoads?.includeConnectedApproaches))
     result = gradeStructureApproaches(result, context);
   if (result !== tile) {
     // Kept roads stay the base tile's: a surface worker gets the base packet and this edit,
@@ -1033,6 +1060,31 @@ export function footprintOverlapsTile(
 }
 
 /**
+ * Whether at least half of `polygon` is `occupied`, sampled on an 8 by 8 grid over the
+ * polygon's bounds. A sliver no sample lands in is judged by its centre.
+ */
+function halfOccupied(
+  polygon: TerrainSemanticPolygon,
+  occupied: (point: TerrainSemanticPoint) => boolean,
+): boolean {
+  const [minU, minV, maxU, maxV] = polygonBounds(polygon);
+  let inside = 0;
+  let hits = 0;
+  for (let j = 0; j < 8; j++)
+    for (let i = 0; i < 8; i++) {
+      const point: TerrainSemanticPoint = [
+        minU + ((maxU - minU) * (i + 0.5)) / 8,
+        minV + ((maxV - minV) * (j + 0.5)) / 8,
+      ];
+      if (!pointInPolygon(point, polygon)) continue;
+      inside++;
+      if (occupied(point)) hits++;
+    }
+  if (inside === 0) return occupied([(minU + maxU) / 2, (minV + maxV) / 2]);
+  return hits * 2 >= inside;
+}
+
+/**
  * Whether at least half of `polygon` (normalized to the tile at `context`, like every semantic
  * polygon) lies on `footprint`, sampled on an 8 by 8 grid over the polygon's bounds.
  */
@@ -1041,7 +1093,7 @@ export function footprintCovers(
   polygon: TerrainSemanticPolygon,
   context: Pick<TerrainPyramidTileLayerContext, 'origin' | 'tileSize'>,
 ): boolean {
-  const occupied = (u: number, v: number): boolean => {
+  return halfOccupied(polygon, ([u, v]) => {
     const x = Math.floor(
       (context.origin[0] + u * context.tileSize - footprint.minX) / footprint.cell,
     );
@@ -1055,21 +1107,20 @@ export function footprintCovers(
       z < footprint.size &&
       footprint.cells[z * footprint.size + x] === 1
     );
-  };
-  const [minU, minV, maxU, maxV] = polygonBounds(polygon);
-  let inside = 0;
-  let hits = 0;
-  for (let j = 0; j < 8; j++)
-    for (let i = 0; i < 8; i++) {
-      const point: TerrainSemanticPoint = [
-        minU + ((maxU - minU) * (i + 0.5)) / 8,
-        minV + ((maxV - minV) * (j + 0.5)) / 8,
-      ];
-      if (!pointInPolygon(point, polygon)) continue;
-      inside++;
-      if (occupied(point[0], point[1])) hits++;
-    }
-  // A sliver no sample lands in is judged by its centre.
-  if (inside === 0) return occupied((minU + maxU) / 2, (minV + maxV) / 2);
-  return hits * 2 >= inside;
+  });
+}
+
+/**
+ * Whether at least half of `inner` lies inside `outer` (outside its holes), sampled like
+ * `footprintCovers`. Stock Protomaps building parts carry no parent ID, so a mapped outline's
+ * parts (a tower's shaft, its spire) are known only by where they lie.
+ */
+export function polygonWithin(
+  inner: TerrainSemanticPolygon,
+  outer: TerrainSemanticPolygon,
+): boolean {
+  const a = polygonBounds(inner);
+  const b = polygonBounds(outer);
+  if (a[0] >= b[2] || a[2] <= b[0] || a[1] >= b[3] || a[3] <= b[1]) return false;
+  return halfOccupied(inner, (point) => pointInPolygon(point, outer));
 }

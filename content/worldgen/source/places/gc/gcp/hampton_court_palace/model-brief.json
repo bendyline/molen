@@ -1,0 +1,536 @@
+{
+  "id": "hampton_court_palace",
+  "title": "Hampton Court Palace",
+  "wikidataId": "Q205666",
+  "referenceCoordinate": {
+    "longitude": -0.337741447,
+    "latitude": 51.403801781
+  },
+  "module": "content/worldgen/source/places/gc/gcp/hampton_court_palace/models/palace-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-hampton-court-palace.mjs",
+  "builder": "buildHamptonLevel",
+  "surfaces": {
+    "brick": {
+      "slot": "wall",
+      "graph": "brick_flemish",
+      "roughness": 0.93
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.91
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.97
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.89
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.77,
+      "metallic": 0.12
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.52
+    },
+    "grass": {
+      "slot": "foundation",
+      "localRef": "palette:#718c4b",
+      "name": "Fountain Court lawn",
+      "roughness": 0.95,
+      "baseColorFactor": [
+        0.142,
+        0.242,
+        0.073,
+        1
+      ]
+    },
+    "water": {
+      "slot": "roof",
+      "localRef": "palette:#426f74",
+      "name": "Fountain Court water",
+      "roughness": 0.57,
+      "baseColorFactor": [
+        0.069,
+        0.221,
+        0.238,
+        1
+      ]
+    }
+  },
+  "exportLabel": "Molen original Hampton Court Palace master",
+  "expectedDraftMasterHash": "sha256:ee4fb9ee664f903d69d359f1bdc1f9eeeface7914c7bc0d6ce990cd42d7ffa62",
+  "visualBrief": "The Tudor Great Gatehouse and moat bridge open into Base Court, with Anne Boleyn’s Gateway and the astronomical clock between it and Clock Court. The Great Hall and Chapel Royal rooflines meet the Baroque east front, Fountain Court arcades and the northern Royal Tennis Court range.",
+  "heightPolicy": "The 9.2 m sea-level datum and standard terrain samples set the bridge ramp and court floor levels. The viewer mask replaces the named palace and the contained hall and chapel, keeping separate mapped buildings, paths and landscape features.",
+  "nativeAxes": "+X from the west Great Gatehouse and Base Court through Clock Court to the Baroque Fountain Court and garden façade. +Z runs toward the Thames side.",
+  "limitations": [
+    "The palace perimeter, seven court voids, named hall and chapel footprints, and three mapped passage centerlines use PMTiles. Standard viewer terrain determines the gate, bridge and court levels.",
+    "Roof pitches, chimney positions, window subdivisions, the heraldic stonework and the astronomical dial are exterior reconstructions from ordinary photographs. The fountain is static and rooms beyond the open passages and cloister are outside the scope."
+  ],
+  "references": [
+    {
+      "url": "https://heritagecalling.com/2024/01/04/the-history-of-brick-building-in-england/",
+      "hash": "sha256:e1208b4f919307234f7597ca683172dbcc5f7ea666a6c7d4ec3d96b736d3e91c",
+      "observed": "West gatehouse, stepped battlements and brick-and-stone treatment."
+    },
+    {
+      "url": "https://hbgtp.org.uk/?gardens=hampton-court-palace",
+      "hash": "sha256:ef12d242490057905b56cdd43f94cb7a0e0d232bed122cacada5f772b1e08551",
+      "observed": "Baroque east facade, Fountain Court roof proportions and formal garden orientation."
+    },
+    {
+      "url": "https://www.londontheatre.co.uk/theatre-news/news/top-10-london-attractions",
+      "hash": "sha256:a78f0f8f6908b061af3cdfce2599889b92f2b088a72301ff91c22b1d07c83087",
+      "observed": "Whole plan, courtyard sequence and Tudor to Baroque roof transitions."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Anne_Boleyn%27s_Gateway,_Hampton_Court_Palace_-_geograph.org.uk_-_1101618.jpg",
+      "hash": "sha256:55445610059440e719800c5cbad03e88678a85065dc347802bb4e888f98e1b12",
+      "observed": "Astronomical dial, projecting tower piers and arch on the Clock Court side."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-palace-and-courts",
+      "position": [
+        -142,
+        87,
+        190
+      ],
+      "lookAt": [
+        10,
+        8,
+        26
+      ],
+      "fov": 55
+    },
+    {
+      "name": "great-gatehouse-and-moat",
+      "position": [
+        -131,
+        7.7,
+        43.15
+      ],
+      "lookAt": [
+        -77,
+        9.3,
+        42.8
+      ],
+      "fov": 61
+    },
+    {
+      "name": "base-court-and-gate",
+      "position": [
+        -45.5,
+        4.6,
+        55.9
+      ],
+      "lookAt": [
+        -74.7,
+        9.9,
+        42.8
+      ],
+      "fov": 65
+    },
+    {
+      "name": "clock-court-astronomical-dial",
+      "position": [
+        3.5,
+        6.9,
+        50.7
+      ],
+      "lookAt": [
+        -17,
+        9.5,
+        43.55
+      ],
+      "fov": 59
+    },
+    {
+      "name": "fountain-court-arcade",
+      "position": [
+        53.6,
+        5.6,
+        60.9
+      ],
+      "lookAt": [
+        78,
+        8.4,
+        68
+      ],
+      "fov": 64
+    },
+    {
+      "name": "baroque-garden-front",
+      "position": [
+        177,
+        32,
+        73
+      ],
+      "lookAt": [
+        107,
+        12,
+        55
+      ],
+      "fov": 56
+    },
+    {
+      "name": "chapel-hall-and-tennis-wing",
+      "position": [
+        79,
+        62,
+        -134
+      ],
+      "lookAt": [
+        36,
+        10,
+        5
+      ],
+      "fov": 56
+    }
+  ],
+  "materialMethod": "Shared Flemish brick, raw limestone, granite paving, slate, painted metal and window glass supply the architectural surfaces. The fountain and its lawn use solid color materials.",
+  "sourceFacts": {
+    "mappedRelation": 21104,
+    "mappedLengthMeters": 219.303,
+    "courtyards": 7,
+    "passages": 3,
+    "containedBuildingWays": [
+      519425546,
+      519425547
+    ]
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        1,
+        9,
+        28
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/gc/gcp/hampton_court_palace/models/palace-model.mjs",
+    "export": "buildHamptonSkyline",
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.93
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.91
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.97
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.89
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.12
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.52
+      },
+      "grass": {
+        "slot": "foundation",
+        "localRef": "palette:#718c4b",
+        "name": "Fountain Court lawn",
+        "roughness": 0.95,
+        "baseColorFactor": [
+          0.142,
+          0.242,
+          0.073,
+          1
+        ]
+      },
+      "water": {
+        "slot": "roof",
+        "localRef": "palette:#426f74",
+        "name": "Fountain Court water",
+        "roughness": 0.57,
+        "baseColorFactor": [
+          0.069,
+          0.221,
+          0.238,
+          1
+        ]
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHamptonDistrict",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.97
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.52
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#718c4b",
+            "name": "Fountain Court lawn",
+            "roughness": 0.95,
+            "baseColorFactor": [
+              0.142,
+              0.242,
+              0.073,
+              1
+            ]
+          },
+          "water": {
+            "slot": "roof",
+            "localRef": "palette:#426f74",
+            "name": "Fountain Court water",
+            "roughness": 0.57,
+            "baseColorFactor": [
+              0.069,
+              0.221,
+              0.238,
+              1
+            ]
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildHamptonStreet",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.97
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.52
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#718c4b",
+            "name": "Fountain Court lawn",
+            "roughness": 0.95,
+            "baseColorFactor": [
+              0.142,
+              0.242,
+              0.073,
+              1
+            ]
+          },
+          "water": {
+            "slot": "roof",
+            "localRef": "palette:#426f74",
+            "name": "Fountain Court water",
+            "roughness": 0.57,
+            "baseColorFactor": [
+              0.069,
+              0.221,
+              0.238,
+              1
+            ]
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildHamptonCloseup",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.93
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.97
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.52
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#718c4b",
+            "name": "Fountain Court lawn",
+            "roughness": 0.95,
+            "baseColorFactor": [
+              0.142,
+              0.242,
+              0.073,
+              1
+            ]
+          },
+          "water": {
+            "slot": "roof",
+            "localRef": "palette:#426f74",
+            "name": "Fountain Court water",
+            "roughness": 0.57,
+            "baseColorFactor": [
+              0.069,
+              0.221,
+              0.238,
+              1
+            ]
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "hampton_court_palace-skyline",
+      "position": [
+        -142,
+        87,
+        190
+      ],
+      "lookAt": [
+        10,
+        8,
+        26
+      ],
+      "fov": 55,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "hampton_court_palace-district",
+      "position": [
+        -142,
+        87,
+        190
+      ],
+      "lookAt": [
+        10,
+        8,
+        26
+      ],
+      "fov": 55,
+      "reviewLod": "district"
+    },
+    {
+      "name": "hampton_court_palace-street",
+      "position": [
+        -142,
+        87,
+        190
+      ],
+      "lookAt": [
+        10,
+        8,
+        26
+      ],
+      "fov": 55,
+      "reviewLod": "street"
+    },
+    {
+      "name": "hampton_court_palace-closeup",
+      "position": [
+        -142,
+        87,
+        190
+      ],
+      "lookAt": [
+        10,
+        8,
+        26
+      ],
+      "fov": 55,
+      "reviewLod": "closeup"
+    }
+  ]
+}

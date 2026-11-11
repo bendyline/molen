@@ -1,0 +1,422 @@
+{
+  "planId": "the_motherland_calls",
+  "id": "the_motherland_calls",
+  "assetId": "molen.worldgen.structure.the_motherland_calls",
+  "title": "The Motherland Calls",
+  "category": "monument",
+  "quality": "detailed",
+  "wikidataId": "Q1601986",
+  "referenceCoordinate": {
+    "longitude": 44.53712314367294,
+    "latitude": 48.74235709856299
+  },
+  "visualBrief": "The concrete figure turns toward her outstretched left hand, raising a long sword with her right. The modeled folds of the windblown robe and sash carry the forward stride down to the two bare feet and the low summit plinth.",
+  "size": [
+    33.1052942276001,
+    94.10387563705444,
+    30.750000953674316
+  ],
+  "actualBounds": {
+    "min": [
+      -15.55529499053955,
+      -4.599999904632568,
+      -14.380000114440918
+    ],
+    "max": [
+      17.549999237060547,
+      89.50387573242188,
+      16.3700008392334
+    ]
+  },
+  "nativeAxes": "+Z east-southeast across the plinth toward the main memorial approach, +X north-northeast along the plinth front, +Y up.",
+  "sourceFacts": {
+    "sculptureHeightMeters": 85,
+    "approximateExposedPlinthHeightMeters": 2,
+    "swordLengthMeters": 33,
+    "mappedMonument": 35185399435470,
+    "mappedPlinth": 35184917735924,
+    "groundDatumMeters": 113
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:%E2%80%9EThe_Motherland_calls!%E2%80%9C_monument_on_Mamayev_Kurgan.jpg",
+    "https://commons.wikimedia.org/wiki/File:M%D0%BE%D0%BD%D1%83%D0%BC%D0%B5%D0%BD%D1%82_%C2%AB%D0%A0%D0%BE%D0%B4%D0%B8%D0%BD%D0%B0-%D0%BC%D0%B0%D1%82%D1%8C_%D0%B7%D0%BE%D0%B2%D1%91%D1%82!%C2%BB_%D0%BD%D0%B0_%D0%9C%D0%B0%D0%BC%D0%B0%D0%B5%D0%B2%D0%BE%D0%BC_%D0%BA%D1%83%D1%80%D0%B3%D0%B0%D0%BD%D0%B5%2C_%D0%B2%D0%B8%D0%B4_%D1%81_%D0%B2%D0%BE%D1%81%D1%82%D0%BE%D0%BA%D0%B0.jpg",
+    "https://commons.wikimedia.org/wiki/File:%E2%80%9EThe_Motherland_calls!%E2%80%9C_monument_on_Mamayev_Kurgan%2C_view_from_southwest.jpg",
+    "https://commons.wikimedia.org/wiki/File:Mamayev_Kurgan_Volgograd.jpg"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      44.53712314367294,
+      48.74235709856299
+    ],
+    "heading": 1.1117569941343386,
+    "elevationMode": "sea-level",
+    "orientationPolicy": "approximate-visualization",
+    "elevationMeters": 113,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The summit datum is 113 m above sea level in standard Terrarium. The foundation is embedded and the short apron blends from the low exposed plinth into the sampled slope. The native terrain and mapped paths remain in place.",
+    "groundModelY": 0,
+    "replaceFootprint": true,
+    "buildingCutout": {
+      "outline": [
+        [
+          9.9944,
+          -9.5521
+        ],
+        [
+          9.9944,
+          9.5562
+        ],
+        [
+          -9.5542,
+          9.5542
+        ],
+        [
+          -9.5542,
+          -9.5542
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "The single mapped low foundation is occupied by the exact modeled plinth."
+    },
+    "bounds": [
+      44.536782586922314,
+      48.74213251974196,
+      44.53746370042357,
+      48.742581677384024
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2a9fa191c0c20e79a6759163cd3b38afcd790e6217f8ca56fc1311026c1d313c",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://data.source.coop/protomaps/openstreetmap/v4.pmtiles",
+    "wikidataId": "Q1601986",
+    "notes": "The mapped plinth fixes the center and axis. A geotagged summit photograph resolves the east-southeast face. The embedded base and short apron follow standard terrain."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Shared poured concrete, board-formed concrete and bead-blasted steel. The robe, hand and facial features and blade vents use geometry. The apron uses a matte vertex tint.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_beadblasted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ub/ubx/the_motherland_calls/models/monument-model.mjs",
+    "export": "buildMonumentSkyline",
+    "surfaces": {
+      "body": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.87
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.93
+      },
+      "sword": {
+        "slot": "trim",
+        "graph": "metal_stainless_beadblasted",
+        "roughness": 0.57,
+        "metallic": 0.31
+      },
+      "apron": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98
+      }
+    },
+    "errorMeters": 1.42,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMonumentDistrict",
+        "surfaces": {
+          "body": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.87
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "sword": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.57,
+            "metallic": 0.31
+          },
+          "apron": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.55
+      },
+      "street": {
+        "export": "buildMonumentStreet",
+        "surfaces": {
+          "body": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.87
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "sword": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.57,
+            "metallic": 0.31
+          },
+          "apron": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.16
+      },
+      "closeup": {
+        "export": "buildMonumentCloseup",
+        "surfaces": {
+          "body": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.87
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "sword": {
+            "slot": "trim",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.57,
+            "metallic": 0.31
+          },
+          "apron": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.043
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 2.16,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        43,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "the_motherland_calls-skyline",
+      "position": [
+        92,
+        33,
+        144
+      ],
+      "lookAt": [
+        0,
+        43,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "the_motherland_calls-district",
+      "position": [
+        92,
+        33,
+        144
+      ],
+      "lookAt": [
+        0,
+        43,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "the_motherland_calls-street",
+      "position": [
+        92,
+        33,
+        144
+      ],
+      "lookAt": [
+        0,
+        43,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "the_motherland_calls-closeup",
+      "position": [
+        92,
+        33,
+        144
+      ],
+      "lookAt": [
+        0,
+        43,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "The model uses the published 85 m sculpture height including the sword and a roughly 2 m exposed plinth. The figure proportions, hand pose, folds and sword openings are reconstructed from photographs.",
+    "The named map point and mapped plinth fix placement. The geotagged hilltop view confirms the signed east-southeast face. Standard Terrarium supplies the summit datum and the apron grades.",
+    "The compact apron transitions to coarse surrounding terrain and leaves the mapped paths in place. The rest of the memorial complex is outside this asset."
+  ],
+  "qaCameras": [
+    {
+      "name": "front-sword-and-stride",
+      "position": [
+        -19,
+        22,
+        130
+      ],
+      "lookAt": [
+        0,
+        45,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "sword-arm-and-swept-back-drapery",
+      "position": [
+        -93,
+        43,
+        -71
+      ],
+      "lookAt": [
+        0,
+        45,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "figure-from-the-volga-side",
+      "position": [
+        94,
+        52,
+        32
+      ],
+      "lookAt": [
+        0,
+        43,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "face-and-outstretched-hand",
+      "position": [
+        32,
+        49,
+        32
+      ],
+      "lookAt": [
+        4.3,
+        44.7,
+        1.2
+      ],
+      "fov": 48
+    },
+    {
+      "name": "hand-crossguard-and-vented-blade",
+      "position": [
+        -30,
+        69,
+        36
+      ],
+      "lookAt": [
+        -7.5,
+        69,
+        -1.5
+      ],
+      "fov": 55
+    },
+    {
+      "name": "sash-and-sculpted-leg-folds",
+      "position": [
+        19,
+        18,
+        34
+      ],
+      "lookAt": [
+        0,
+        20,
+        1.8
+      ],
+      "fov": 50
+    },
+    {
+      "name": "plinth-and-summit-apron",
+      "position": [
+        18,
+        7.6,
+        30
+      ],
+      "lookAt": [
+        0,
+        3.2,
+        0
+      ],
+      "fov": 58
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13640,
+    "vertices": 40632,
+    "materials": 4,
+    "bytes": 1629320,
+    "sha256": "sha256:e130f5ab0c10739ea4236a9f14b14e602816f38248d1d16e1ae500e8289915c4"
+  }
+}

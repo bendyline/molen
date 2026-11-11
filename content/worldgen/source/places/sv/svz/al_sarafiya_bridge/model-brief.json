@@ -1,0 +1,392 @@
+{
+  "id": "al_sarafiya_bridge",
+  "title": "Al-Sarafiya Bridge",
+  "wikidataId": "Q310579",
+  "referenceCoordinate": {
+    "longitude": 44.37262460589409,
+    "latitude": 33.35368728432805
+  },
+  "module": "content/worldgen/source/places/sv/svz/al_sarafiya_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-al-sarafiya-bridge.mjs",
+  "builder": "buildSarafiyaLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_boardformed",
+      "roughness": 0.93
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.96
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.79,
+      "metallic": 0.15
+    }
+  },
+  "exportLabel": "Molen original Al-Sarafiya Bridge master",
+  "expectedDraftMasterHash": "sha256:26dd491c03033db8e0964252814be994aebcfe52c83d069075c04c2065446300",
+  "visualBrief": "The historic Al-Sarafiya Bridge crosses the Tigris on two high steel through-trusses and a lower central span. Open cross-bracing, pale gray lattice, red-and-white road separators, sidewalks and the long approach spans follow the photographed bridge.",
+  "heightPolicy": "Both deck ends meet the sampled native roads at their mapped joins. The central deck clears the native Tigris water and the pier bases extend into the sampled terrain.",
+  "nativeAxes": "Local +X points east from the Karkh road connection to the Rusafa road connection. The active PMTiles centerline distinguishes the historic truss deck from the parallel construction beside it.",
+  "limitations": [
+    "The model depicts the historic Al-Sarafiya crossing and approaches. The mapped relation also includes the separately built second span. Its outline remains in the source controls and its construction and future road alignment are outside this landmark replacement.",
+    "Truss stations, pier dimensions, grades and painted details are exterior reconstructions from ordinary photos and the standard viewer terrain. The native river surface remains and exposed pier heights vary with the host water level."
+  ],
+  "references": [
+    {
+      "url": "https://www.openstreetmap.org/relation/18704013",
+      "observed": "Named bridge identity and crossing alignment"
+    },
+    {
+      "url": "https://baghdadtoday.news/uploads/posts/2023-11/20200520_124047-673.jpg",
+      "hash": "sha256:dba985cfa0c0859808a6b8ad2a841d1f70143ad7058d61e5b57006adb7f3a071",
+      "observed": "Present bridge profile and river supports"
+    },
+    {
+      "url": "https://i.pinimg.com/originals/01/1b/88/011b887e7fedc910e88b0ea0ea56c925.jpg",
+      "hash": "sha256:7cdc189bf696e1e4f1892b84fda02cdba0e5313dbca511d20791c67fbd073cb1",
+      "observed": "Roadway width, red and white posts, upper bracing"
+    },
+    {
+      "url": "https://turruqjissor.moch.gov.iq/?p=8037",
+      "observed": "Roads and Bridges Directorate distinguishes the historic bridge and the separate parallel bridge construction."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "al-sarafiya-and-tigris",
+      "position": [
+        66,
+        310,
+        379
+      ],
+      "lookAt": [
+        0,
+        1,
+        -1
+      ],
+      "fov": 61,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.74
+      ]
+    },
+    {
+      "name": "two-high-trusses-and-river-piers",
+      "position": [
+        16,
+        62,
+        180
+      ],
+      "lookAt": [
+        0,
+        1,
+        -4
+      ],
+      "fov": 65,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.74
+      ]
+    },
+    {
+      "name": "through-the-west-portal",
+      "position": [
+        -141,
+        4.52,
+        -7.25
+      ],
+      "lookAt": [
+        -45,
+        4.23,
+        -4.9
+      ],
+      "fov": 65,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.74
+      ]
+    },
+    {
+      "name": "tigris-waterline-and-under-deck",
+      "position": [
+        19,
+        -12.7,
+        124
+      ],
+      "lookAt": [
+        12,
+        -1,
+        -2
+      ],
+      "fov": 61,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.74
+      ]
+    },
+    {
+      "name": "east-approach-and-sidewalk",
+      "position": [
+        351,
+        22,
+        88
+      ],
+      "lookAt": [
+        239,
+        -1.4,
+        1
+      ],
+      "fov": 59,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.74
+      ]
+    },
+    {
+      "name": "west-approach-and-bank",
+      "position": [
+        -381,
+        33,
+        99
+      ],
+      "lookAt": [
+        -274,
+        1.4,
+        -2
+      ],
+      "fov": 58,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.74
+      ]
+    },
+    {
+      "name": "cross-bracing-and-deck-separator",
+      "position": [
+        -70,
+        6.35,
+        6
+      ],
+      "lookAt": [
+        -101,
+        5.4,
+        -4
+      ],
+      "fov": 71,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.74
+      ]
+    }
+  ],
+  "materialMethod": "Shared board-formed concrete, plain concrete and painted steel supply all surfaces. Lattice, gusset plates, bolt heads, rails, lamps and separator posts are geometry.",
+  "sourceFacts": {
+    "mappedBridgeRelation": 18704013,
+    "mappedPathLength": 707.0052841648691,
+    "throughTrusses": 3,
+    "lowerApproachTrusses": 4,
+    "widthMeters": 12.24,
+    "supports": 11
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        2,
+        -1
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sv/svz/al_sarafiya_bridge/models/bridge-model.mjs",
+    "export": "buildSarafiyaSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.93
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.15
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSarafiyaDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.15
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildSarafiyaStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.15
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildSarafiyaCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.15
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "al_sarafiya_bridge-skyline",
+      "position": [
+        66,
+        310,
+        379
+      ],
+      "lookAt": [
+        0,
+        1,
+        -1
+      ],
+      "fov": 61,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.74
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "al_sarafiya_bridge-district",
+      "position": [
+        66,
+        310,
+        379
+      ],
+      "lookAt": [
+        0,
+        1,
+        -1
+      ],
+      "fov": 61,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.74
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "al_sarafiya_bridge-street",
+      "position": [
+        66,
+        310,
+        379
+      ],
+      "lookAt": [
+        0,
+        1,
+        -1
+      ],
+      "fov": 61,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.74
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "al_sarafiya_bridge-closeup",
+      "position": [
+        66,
+        310,
+        379
+      ],
+      "lookAt": [
+        0,
+        1,
+        -1
+      ],
+      "fov": 61,
+      "lightDirection": [
+        -0.53,
+        1,
+        0.74
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

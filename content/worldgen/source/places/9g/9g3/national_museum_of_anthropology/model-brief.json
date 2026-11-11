@@ -1,0 +1,576 @@
+{
+  "id": "national_museum_of_anthropology",
+  "title": "National Museum of Anthropology",
+  "wikidataId": "Q524249",
+  "referenceCoordinate": {
+    "longitude": -99.18665170669556,
+    "latitude": 19.426152879820094
+  },
+  "module": "content/worldgen/source/places/9g/9g3/national_museum_of_anthropology/models/museum-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-national-museum-of-anthropology.mjs",
+  "builder": "buildMuseumLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_panel",
+      "roughness": 0.84
+    },
+    "basalt": {
+      "slot": "foundation",
+      "graph": "stone_basalt",
+      "roughness": 0.9
+    },
+    "pale": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.77
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.67,
+      "metallic": 0.25
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.54
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.83
+    },
+    "bronze": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.74,
+      "metallic": 0.53
+    },
+    "water": {
+      "slot": "trim",
+      "localRef": "palette:#506b5c",
+      "name": "Court basin water",
+      "roughness": 0.24,
+      "metallic": 0.25
+    },
+    "curtain": {
+      "slot": "trim",
+      "localRef": "palette:#dce8e4",
+      "name": "Falling water",
+      "roughness": 0.28,
+      "metallic": 0.12,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.37
+      ],
+      "doubleSided": true
+    }
+  },
+  "exportLabel": "Molen original National Museum of Anthropology master",
+  "expectedDraftMasterHash": "sha256:b159080b2430a0ca8a449ea405f64f54b93bdfdccb8b5676d9a40ce36f09b6a1",
+  "visualBrief": "The National Museum of Anthropology in Mexico City, with the limestone entrance and civic relief, recessed lower gallery walks, folded upper screens, reflecting pool and El Paraguas canopy with its carved central column and falling water.",
+  "heightPolicy": "A 2,261.08 m datum anchors the modeled plaza and courtyard. Shallow grades and a blended perimeter join the standard terrain at the edge of the pedestrian precinct. Each authored pool has its own sill, bed and water level.",
+  "nativeAxes": "Positive X follows the courtyard inward from the eastern entrance. The raised canopy polygon includes the circular opening around its column.",
+  "limitations": [
+    "The gallery, entrance, canopy and pools use their mapped outlines. Visible roof details, lattice modules, the carved bronze relief and plaza fittings are medium-fi interpretations of ordinary photographs.",
+    "The localized grade cut compensates for coarse viewer terrain across the pedestrian court. The water curtain is static geometry. Underground circulation and museum exhibits are outside the exterior scope."
+  ],
+  "materialMethod": "The source master uses seven shared material graphs. The four runtime tiers combine pale trim and concrete in one graph and retain their color separation through vertex colors. Two textureless materials represent the basin water and the falling strands.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Main_patio_-_National_Museum_of_Antropology_-_Mexico_2024.jpg",
+      "hash": "sha256:6b03f2a5930c833c2a53fce9e5b3a484932bed77614bd1bb5ef7398e8ad0a790",
+      "observed": "Courtyard depth, upper screens, sculpture and canopy."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Fuente_Paraguas.jpg",
+      "hash": "sha256:d4476f99e8f94f9fe717ec95ea1e2fd297377cbec62481654e83d3f8e46fccce",
+      "observed": "Fountain column, suspended canopy and ornamental relief."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Musee_National_Anthropologie-Entree.jpg",
+      "hash": "sha256:18b62851a7700174a1e40ba92c756a47713373fdc91f8c175298afd5c927e701",
+      "observed": "Main forecourt, stone front and entrance glazing."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Vista_a%C3%A9rea_del_Museo_Nacional_de_Antropolog%C3%ADa_de_M%C3%A9xico_1.jpg",
+      "hash": "sha256:5c7364b5dc50c0fa7f66ef8253ffa11342343f30a7b894b11ccea17919477445",
+      "observed": "Main entrance axis and stepped plaza from above."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "park-entrance-and-museum",
+      "position": [
+        -204,
+        42,
+        89
+      ],
+      "lookAt": [
+        -29,
+        5,
+        -4
+      ],
+      "fov": 55
+    },
+    {
+      "name": "frontis-and-forecourt",
+      "position": [
+        -169,
+        8.4,
+        -11
+      ],
+      "lookAt": [
+        -82,
+        5.4,
+        -8
+      ],
+      "fov": 55
+    },
+    {
+      "name": "patio-and-paraguas",
+      "position": [
+        36,
+        6.8,
+        11
+      ],
+      "lookAt": [
+        -49,
+        5,
+        -11
+      ],
+      "fov": 59
+    },
+    {
+      "name": "canopy-column-and-falling-water",
+      "position": [
+        -54,
+        4.25,
+        9
+      ],
+      "lookAt": [
+        -58.05,
+        5.15,
+        -8.4
+      ],
+      "fov": 59
+    },
+    {
+      "name": "folded-screen-and-covered-walk",
+      "position": [
+        -6,
+        5.7,
+        4
+      ],
+      "lookAt": [
+        3,
+        5.1,
+        16
+      ],
+      "fov": 57
+    },
+    {
+      "name": "reflecting-pool-and-aztec-hall",
+      "position": [
+        0,
+        7.5,
+        -30
+      ],
+      "lookAt": [
+        42,
+        4,
+        -9
+      ],
+      "fov": 54
+    },
+    {
+      "name": "entrance-from-above",
+      "position": [
+        -138,
+        70,
+        -92
+      ],
+      "lookAt": [
+        -90,
+        3,
+        -2
+      ],
+      "fov": 52
+    },
+    {
+      "name": "museum-roofs-and-open-court",
+      "position": [
+        0,
+        203,
+        41
+      ],
+      "lookAt": [
+        -17,
+        5,
+        -3
+      ],
+      "fov": 54
+    }
+  ],
+  "sourceFacts": {
+    "namedMuseumPoint": 35184805844855,
+    "mappedBuildingIds": [
+      35184805842522,
+      35184805842523,
+      52776575443491
+    ],
+    "canopyDimensions": [
+      82.925,
+      55.088
+    ],
+    "mappedBasinIds": [
+      4337499910,
+      10197467130
+    ],
+    "canopyColumnCenter": [
+      -58.057,
+      -8.404
+    ]
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -19,
+        6,
+        -4
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/9g/9g3/national_museum_of_anthropology/models/museum-model.mjs",
+    "export": "buildMuseumSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.84
+      },
+      "basalt": {
+        "slot": "foundation",
+        "graph": "stone_basalt",
+        "roughness": 0.9
+      },
+      "pale": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.84
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.67,
+        "metallic": 0.25
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.54
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.83
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.74,
+        "metallic": 0.53
+      },
+      "water": {
+        "slot": "trim",
+        "localRef": "palette:#506b5c",
+        "name": "Court basin water",
+        "roughness": 0.24,
+        "metallic": 0.25
+      },
+      "curtain": {
+        "slot": "trim",
+        "localRef": "palette:#dce8e4",
+        "name": "Falling water",
+        "roughness": 0.28,
+        "metallic": 0.12,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.37
+        ],
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 2.65,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMuseumDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.84
+          },
+          "basalt": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.9
+          },
+          "pale": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.84
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.54
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.74,
+            "metallic": 0.53
+          },
+          "water": {
+            "slot": "trim",
+            "localRef": "palette:#506b5c",
+            "name": "Court basin water",
+            "roughness": 0.24,
+            "metallic": 0.25
+          },
+          "curtain": {
+            "slot": "trim",
+            "localRef": "palette:#dce8e4",
+            "name": "Falling water",
+            "roughness": 0.28,
+            "metallic": 0.12,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.37
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 1.26
+      },
+      "street": {
+        "export": "buildMuseumStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.84
+          },
+          "basalt": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.9
+          },
+          "pale": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.84
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.54
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.74,
+            "metallic": 0.53
+          },
+          "water": {
+            "slot": "trim",
+            "localRef": "palette:#506b5c",
+            "name": "Court basin water",
+            "roughness": 0.24,
+            "metallic": 0.25
+          },
+          "curtain": {
+            "slot": "trim",
+            "localRef": "palette:#dce8e4",
+            "name": "Falling water",
+            "roughness": 0.28,
+            "metallic": 0.12,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.37
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.48
+      },
+      "closeup": {
+        "export": "buildMuseumCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.84
+          },
+          "basalt": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.9
+          },
+          "pale": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.84
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.54
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.74,
+            "metallic": 0.53
+          },
+          "water": {
+            "slot": "trim",
+            "localRef": "palette:#506b5c",
+            "name": "Court basin water",
+            "roughness": 0.24,
+            "metallic": 0.25
+          },
+          "curtain": {
+            "slot": "trim",
+            "localRef": "palette:#dce8e4",
+            "name": "Falling water",
+            "roughness": 0.28,
+            "metallic": 0.12,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.37
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.16
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "national_museum_of_anthropology-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -204,
+        42,
+        89
+      ],
+      "lookAt": [
+        -29,
+        5,
+        -4
+      ]
+    },
+    {
+      "name": "national_museum_of_anthropology-district",
+      "reviewLod": "district",
+      "position": [
+        -204,
+        42,
+        89
+      ],
+      "lookAt": [
+        -29,
+        5,
+        -4
+      ]
+    },
+    {
+      "name": "national_museum_of_anthropology-street",
+      "reviewLod": "street",
+      "position": [
+        -204,
+        42,
+        89
+      ],
+      "lookAt": [
+        -29,
+        5,
+        -4
+      ]
+    },
+    {
+      "name": "national_museum_of_anthropology-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -204,
+        42,
+        89
+      ],
+      "lookAt": [
+        -29,
+        5,
+        -4
+      ]
+    }
+  ]
+}

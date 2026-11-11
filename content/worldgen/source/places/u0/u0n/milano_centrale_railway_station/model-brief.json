@@ -1,0 +1,428 @@
+{
+  "id": "milano_centrale_railway_station",
+  "title": "Milano Centrale railway station",
+  "wikidataId": "Q801193",
+  "referenceCoordinate": {
+    "longitude": 9.203988,
+    "latitude": 45.485658
+  },
+  "module": "content/worldgen/source/places/u0/u0n/milano_centrale_railway_station/models/station-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-milano-centrale-station.mjs",
+  "builder": "buildMilanoCentraleLevel",
+  "surfaces": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.88
+    },
+    "concrete": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.79,
+      "metallic": 0.15
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.8,
+      "metallic": 0.1,
+      "doubleSided": true
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.42,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.63
+      ],
+      "doubleSided": true
+    }
+  },
+  "exportLabel": "Molen original Milano Centrale railway station master",
+  "expectedDraftMasterHash": "sha256:d9515c822f50b039c21abea837289e423486d1237b7a2a4d2efb6307be242cfa",
+  "visualBrief": "Milano Centrale faces Piazza Duca d’Aosta with a pale limestone portico, three open entrance bays and a taller barrel-roofed concourse. Five glazed train sheds shelter 24 mapped track positions and a raised deck of boarding platforms.",
+  "heightPolicy": "The model uses a 132 m sea-level datum. A cutout limited to the station portico and platform deck clears standard terrain from the model surfaces. The north apron tapers toward the host rail approach.",
+  "nativeAxes": "Positive X follows the track axis northeast from Piazza Duca d’Aosta. The monument frontage faces negative X. Positive Z faces Via Ferrante Aporti.",
+  "limitations": [
+    "The station relation supplies the principal walls and shed footprints. PMTiles stop positions, platform edges, and rail centerlines control the raised platforms and tracks.",
+    "The deck grade, canopy profiles, façade carving and public hall arrangement are exterior-photo reconstructions. The track apron tapers into the standard terrain beyond the covered sheds. Underground passages, signaling, and exact sculptural figures are outside this model."
+  ],
+  "references": [
+    {
+      "url": "https://www.repstatic.it/content/localirep/img/rep-milano/2015/07/02/172709548-8beea606-9dd8-41df-984e-9a2e3ceb1d39.jpg",
+      "hash": "sha256:4d39ae1f0ad2baaf9bcfafa03fe46801b8674a2489523b25f1655b6a24262628",
+      "observed": "Pale stone frontage, three open portals and layered concourse roofs."
+    },
+    {
+      "url": "https://s1.immobiliare.it/news/app/uploads/2025/02/Stazione-Centrale-Milano.jpeg",
+      "hash": "sha256:5cd1b8f9f90df010feee8b9af73df21e53848f00a822031caef8945fa3aea1ee",
+      "observed": "Five open train sheds, roof glazing, platform decks and open rail approach."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "station-from-piazza-duca-daosta",
+      "position": [
+        -235,
+        125,
+        197
+      ],
+      "lookAt": [
+        143,
+        13,
+        8
+      ],
+      "fov": 59
+    },
+    {
+      "name": "grand-portico",
+      "position": [
+        -110,
+        15,
+        22
+      ],
+      "lookAt": [
+        -31,
+        14,
+        4
+      ],
+      "fov": 56
+    },
+    {
+      "name": "train-shed-roof-and-front",
+      "position": [
+        -123,
+        105,
+        -145
+      ],
+      "lookAt": [
+        63,
+        22,
+        2
+      ],
+      "fov": 56
+    },
+    {
+      "name": "open-shed-mouths",
+      "position": [
+        555,
+        62,
+        91
+      ],
+      "lookAt": [
+        276,
+        11,
+        7
+      ],
+      "fov": 54
+    },
+    {
+      "name": "under-the-main-vault",
+      "position": [
+        325,
+        10.7,
+        2
+      ],
+      "lookAt": [
+        98,
+        24,
+        -1
+      ],
+      "fov": 62
+    },
+    {
+      "name": "central-concourse-and-roof",
+      "position": [
+        21,
+        63,
+        139
+      ],
+      "lookAt": [
+        4,
+        22,
+        4
+      ],
+      "fov": 55
+    },
+    {
+      "name": "tracks-and-apron",
+      "position": [
+        454,
+        31,
+        -111
+      ],
+      "lookAt": [
+        363,
+        9,
+        -3
+      ],
+      "fov": 61
+    }
+  ],
+  "materialMethod": "Five shared architectural graphs provide limestone, concrete, painted steel, standing-seam metal and patterned glass. Metric UVs and palette colors differentiate the surfaces without embedding images.",
+  "sourceFacts": {
+    "mappedStationRelation": 18231605,
+    "mappedStationParts": 27,
+    "mainShedLengthMeters": 343.39,
+    "trainSheds": 5,
+    "mappedTrackPositions": 24
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        167,
+        14,
+        5
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u0/u0n/milano_centrale_railway_station/models/station-model.mjs",
+    "export": "buildMilanoCentraleSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.88
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.15
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.8,
+        "metallic": 0.1,
+        "doubleSided": true
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.42,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.63
+        ],
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMilanoCentraleDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.1,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.63
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildMilanoCentraleStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.1,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.63
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildMilanoCentraleCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.1,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.42,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.63
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "milano_centrale_railway_station-skyline",
+      "position": [
+        -235,
+        125,
+        197
+      ],
+      "lookAt": [
+        143,
+        13,
+        8
+      ],
+      "fov": 59,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "milano_centrale_railway_station-district",
+      "position": [
+        -235,
+        125,
+        197
+      ],
+      "lookAt": [
+        143,
+        13,
+        8
+      ],
+      "fov": 59,
+      "reviewLod": "district"
+    },
+    {
+      "name": "milano_centrale_railway_station-street",
+      "position": [
+        -235,
+        125,
+        197
+      ],
+      "lookAt": [
+        143,
+        13,
+        8
+      ],
+      "fov": 59,
+      "reviewLod": "street"
+    },
+    {
+      "name": "milano_centrale_railway_station-closeup",
+      "position": [
+        -235,
+        125,
+        197
+      ],
+      "lookAt": [
+        143,
+        13,
+        8
+      ],
+      "fov": 59,
+      "reviewLod": "closeup"
+    }
+  ]
+}

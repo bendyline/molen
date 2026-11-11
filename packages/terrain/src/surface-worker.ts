@@ -24,6 +24,7 @@ import {
   type TerrainSurfaceStats,
 } from './surface-client';
 import { appendTerrainStreetLights, type TerrainStreetLight } from './surface-lights';
+import { appendTerrainRailLamps, type TerrainRailLamp } from './surface-rail';
 import type { SurfaceSign } from './surface-sign-mesh';
 import { appendTerrainSignalLenses, type TerrainSignalHead } from './surface-signals';
 import type { TerrainSurfaceOptions } from './surface-styles';
@@ -78,6 +79,7 @@ interface Result {
   signalHeads?: TerrainSignalHead[];
   streetLights?: TerrainStreetLight[];
   roadSigns?: SurfaceSign[];
+  railLamps?: TerrainRailLamp[];
   error?: string;
 }
 
@@ -169,6 +171,7 @@ export function installTerrainSurfaceWorker(
           signalHeads: object.userData.trafficSignalHeads as TerrainSignalHead[],
           streetLights: object.userData.streetLights as TerrainStreetLight[],
           roadSigns: object.userData.roadSigns as SurfaceSign[],
+          railLamps: object.userData.railLamps as TerrainRailLamp[],
         } satisfies Result,
         transfer,
       );
@@ -361,6 +364,7 @@ export function createTerrainSurfaceWorkerBridge(
       group.add(createParkedVehicleBatch(result.vehicles, job.context.origin));
     appendTerrainSignalLenses(group, result.signalHeads ?? []);
     appendTerrainStreetLights(group, result.streetLights ?? [], job.context);
+    appendTerrainRailLamps(group, result.railLamps ?? []);
     markTerrainSurfaceDetail(group);
     return group;
   };

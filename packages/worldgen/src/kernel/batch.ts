@@ -515,9 +515,7 @@ export function* generateWorldgenBatchSteps(
       prop.at[1],
       prop.yaw ?? 0,
       ...(prop.scale ?? [1, 1, 1]),
-      1,
-      1,
-      1,
+      ...(prop.color ?? [1, 1, 1]),
     );
     fixed.set(prop.model, list);
     usedInstances++;

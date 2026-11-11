@@ -46,6 +46,7 @@ import {
   type SurfaceRoad,
 } from './surface-network';
 import { inferTerrainParkingAreas } from './surface-parking';
+import { appendTerrainRailways, dressTerrainRailMeshes, TERRAIN_RAIL_MESHES } from './surface-rail';
 import { appendSurfaceSign } from './surface-sign-mesh';
 import { planSurfaceSigns } from './surface-signage';
 import {
@@ -77,6 +78,11 @@ export interface TerrainSurfaceStats {
   roadSigns: number;
   parkingBays: number;
   parkedCars: number;
+  /** Railway track fragments, level crossings, turnouts and signals (see surface-rail). */
+  railTracks: number;
+  railCrossings: number;
+  railSwitches: number;
+  railSignals: number;
   detailLimited: boolean;
 }
 
@@ -92,6 +98,11 @@ export function disposeTerrainSurfaceObject(object: THREE.Object3D): void {
       (mesh as THREE.InstancedMesh).dispose();
       mesh.userData.terrainOwnedInstances = false;
     }
+    if (mesh.userData.terrainOwnedTexture) {
+      for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material])
+        (material as THREE.MeshStandardMaterial).map?.dispose();
+      mesh.userData.terrainOwnedTexture = false;
+    }
     if (mesh.userData.terrainOwnedMaterial) {
       for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material])
         material.dispose();
@@ -104,7 +115,9 @@ function areaKind(className: string, subclass = ''): 'parking' | 'plaza' | 'path
   const tag = `${className} ${subclass}`.toLowerCase();
   if (/parking|car_park/.test(tag) && !/garage|underground|multi.storey/.test(tag))
     return 'parking';
-  if (/pedestrian|plaza|square|platform/.test(tag)) return 'plaza';
+  // Platforms are raised beside their tracks by the railway painter (surface-rail).
+  if (/platform/.test(tag)) return undefined;
+  if (/pedestrian|plaza|square/.test(tag)) return 'plaza';
   if (/pavement|footway|sidewalk/.test(tag)) return 'path';
   return undefined;
 }
@@ -306,6 +319,10 @@ export function createTerrainSurfaceObject(
     roadSigns: 0,
     parkingBays: 0,
     parkedCars: 0,
+    railTracks: 0,
+    railCrossings: 0,
+    railSwitches: 0,
+    railSignals: 0,
     detailLimited: false,
   };
   group.userData.surfaceStats = stats;
@@ -631,6 +648,8 @@ export function createTerrainSurfaceObject(
         profile,
         detailed ? 2 : 6,
         detailed ? shoulder(road) : 0,
+        // Parapets are street detail: a few decimeters wide, for the finest tiles only.
+        detailed ? { covered: (x, z) => covered(road, x, z) } : undefined,
       );
   }
   const bridgeMesh = bridges.mesh('surfaces:bridges', roadMaterial);
@@ -802,6 +821,8 @@ export function createTerrainSurfaceObject(
     .map(({ road }) => road);
   for (const road of byImportance) {
     stats.roads++;
+    // Railways draw their own beds, rails and equipment (appendTerrainRailways, below).
+    if (road.kind === 'rail') continue;
     const elevation = (bridgeProfiles.has(road) ? 0 : road.elevation) + road.stack;
     // Frayed edges show the ground beneath, so a deck keeps its edges whole.
     const grounded = !bridgeProfiles.has(road) && !road.feature.bridge;
@@ -812,23 +833,13 @@ export function createTerrainSurfaceObject(
               network.clipPath(points, road),
           }
         : {};
-    const color =
-      road.kind === 'rail'
-        ? '#807b70'
-        : road.kind === 'path'
-          ? style.path
-          : road.unpaved
-            ? style.dirt
-            : style.road;
+    const color = road.kind === 'path' ? style.path : road.unpaved ? style.dirt : style.road;
     // Mapped footways are mostly poured concrete: slabs along the path, like a sidewalk.
-    const surface =
-      road.kind === 'rail'
-        ? TERRAIN_SURFACE_KIND.ballast
-        : road.unpaved
-          ? TERRAIN_SURFACE_KIND.dirt
-          : road.kind === 'path'
-            ? TERRAIN_SURFACE_KIND.sidewalk
-            : TERRAIN_SURFACE_KIND.road;
+    const surface = road.unpaved
+      ? TERRAIN_SURFACE_KIND.dirt
+      : road.kind === 'path'
+        ? TERRAIN_SURFACE_KIND.sidewalk
+        : TERRAIN_SURFACE_KIND.road;
     appendTerrainLineBand(
       roads,
       road.path,
@@ -844,7 +855,7 @@ export function createTerrainSurfaceObject(
               wear: wearOf(road),
             }
           : {}),
-        // Footpaths, dirt roads and track ballast meet the ground directly on both sides.
+        // Footpaths and dirt roads meet the ground directly on both sides.
         ...(surface !== TERRAIN_SURFACE_KIND.road && grounded ? { fray: 'both' as const } : {}),
       },
       {
@@ -949,30 +960,6 @@ export function createTerrainSurfaceObject(
         });
         stats.streetlights++;
       }
-    }
-    if (road.kind === 'rail') {
-      for (const offset of [-0.72, 0.72])
-        band(marks, road, {
-          width: 0.09,
-          offset,
-          color: '#b5b5ae',
-          elevation: elevation + 0.14,
-          surface: TERRAIN_SURFACE_KIND.plain,
-        });
-      // Ties, except where the track crosses a road: there the rails run in the pavement.
-      band(
-        marks,
-        road,
-        {
-          width: 2.4,
-          color: '#74634f',
-          elevation: elevation + 0.06,
-          dash: [0.2, 0.65],
-          surface: TERRAIN_SURFACE_KIND.plain,
-        },
-        (points) => points.every((p) => !covered(road, p[0], p[1])),
-      );
-      continue;
     }
     if (sidewalked(road)) {
       const clear = (points: readonly TerrainSemanticPoint[], distance: number): boolean =>
@@ -1707,6 +1694,36 @@ export function createTerrainSurfaceObject(
     }
   }
 
+  const railways = appendTerrainRailways(group, {
+    tile,
+    context,
+    network,
+    style,
+    signProfile,
+    detailed,
+    bridgeProfiles,
+    blocked,
+    fixtures,
+    signFaces,
+    fonts: options.fonts,
+    font: options.signFont,
+    maxFixtures,
+    maxDetailElements: details.maxDetailElements ?? 16_000,
+    ...(style.parkedCars && details.railCars?.length
+      ? {
+          railCars: details.railCars,
+          vehicles,
+          ...(details.railCarOccupancy !== undefined
+            ? { railCarOccupancy: details.railCarOccupancy }
+            : {}),
+        }
+      : {}),
+  });
+  stats.railTracks = railways.tracks;
+  stats.railCrossings = railways.crossings;
+  stats.railSwitches = railways.turnouts;
+  stats.railSignals = railways.signals;
+
   const inferredParking =
     details.inferParking === false ? [] : inferTerrainParkingAreas(tile, network, context.tileSize);
   group.userData.inferredParkingAreas = inferredParking.reduce(
@@ -2073,6 +2090,11 @@ export interface TerrainSurfaceRenderer {
 const FIXTURE_DISTANCE = 900;
 const MARKING_DISTANCE = 1500;
 const PARKED_CAR_DISTANCE = 1500;
+/** Rails in 3D and catenary wires: centimeters across, so they hand over to the track shading
+ * (and to nothing) well before they shrink below a pixel. Both count the camera's height above
+ * the ground too (`userData.detailAboveGround`): from a plane, a tile under it is not near. */
+const RAIL_DISTANCE = 260;
+const WIRE_DISTANCE = 200;
 
 /**
  * Give a surface tile's small detail its draw distance (`userData.detailDistance`), and keep its
@@ -2081,6 +2103,7 @@ const PARKED_CAR_DISTANCE = 1500;
  * dash and crosswalk bar was a step a wheel jolted over, and crosswalks a washboard.
  */
 export function markTerrainSurfaceDetail(group: THREE.Object3D): void {
+  dressTerrainRailMeshes(group);
   for (const child of group.children) {
     if (child.name === 'surface:markings') child.userData.walkIgnore = true;
     const distance =
@@ -2090,7 +2113,11 @@ export function markTerrainSurfaceDetail(group: THREE.Object3D): void {
           ? PARKED_CAR_DISTANCE
           : /^surface:(road-signs|street-fixtures|signal-|night-)/.test(child.name)
             ? FIXTURE_DISTANCE
-            : undefined;
+            : child.name === TERRAIN_RAIL_MESHES.rails
+              ? RAIL_DISTANCE
+              : child.name === TERRAIN_RAIL_MESHES.wires
+                ? WIRE_DISTANCE
+                : undefined;
     if (distance !== undefined) child.userData.detailDistance = distance;
   }
 }
@@ -2301,9 +2328,21 @@ export function createTerrainSurfaceRenderer(
           position.z - Math.max(detailMin.z, detailMax.z),
         );
         const distance = Math.hypot(dx, dz);
+        // The camera's height above the tile's ground, for detail flagged detailAboveGround.
+        let above: number | undefined;
         for (const child of object.children) {
           const limit = child.userData.detailDistance as number | undefined;
-          if (limit !== undefined) child.visible = distance <= limit;
+          if (limit === undefined) continue;
+          if (child.userData.detailAboveGround === true) {
+            above ??=
+              position.y -
+              detailMin.y -
+              entry.context.heightfield.sampleHeight(
+                entry.context.origin[0] + Math.max(0, Math.min(size, position.x - detailMin.x)),
+                entry.context.origin[1] + Math.max(0, Math.min(size, position.z - detailMin.z)),
+              );
+            child.visible = Math.hypot(distance, Math.max(0, above)) <= limit;
+          } else child.visible = distance <= limit;
         }
       }
     },
@@ -2330,6 +2369,10 @@ export function createTerrainSurfaceRenderer(
         roadSigns: 0,
         parkingBays: 0,
         parkedCars: 0,
+        railTracks: 0,
+        railCrossings: 0,
+        railSwitches: 0,
+        railSignals: 0,
         detailLimited: false,
         tiles: tiles.size,
         loading: 0,
@@ -2353,8 +2396,12 @@ export function createTerrainSurfaceRenderer(
           'roadSigns',
           'parkingBays',
           'parkedCars',
+          'railTracks',
+          'railCrossings',
+          'railSwitches',
+          'railSignals',
         ] as const)
-          sum[key] += stats[key];
+          sum[key] += stats[key] ?? 0;
         sum.detailLimited ||= stats.detailLimited;
       }
       return sum;

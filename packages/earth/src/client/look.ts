@@ -125,7 +125,10 @@ export function earthHazeColor(
  * The square the sun's shadow map covers for a free camera: a little ahead of the walker, car or
  * aircraft, where most of the frame is, and wider the higher a flying camera is. Cast shadows are
  * part of the look (they seat buildings, trees and vehicles on the ground), so every host that
- * enables them should aim them with this.
+ * enables them should aim them with this. `far` is the wider map for scenery past it
+ * (`Renderer.setFarShadowCasters`): around the camera itself, so turning does not move it, and at
+ * least 2 km out. Low over a town the focused map is 60 to 400 m across, and without the far
+ * one buildings gained their shadows in a ring around the aircraft.
  */
 export function earthShadowFocus(
   mode: 'walk' | 'drive' | 'fly',
@@ -134,7 +137,11 @@ export function earthShadowFocus(
   ground: number,
   /** Distance to the followed aircraft; zero for a free camera. */
   subjectDistance = 0,
-): { center: [number, number, number]; radius: number } {
+): {
+  center: [number, number, number];
+  radius: number;
+  far: { center: [number, number, number]; radius: number };
+} {
   const [x, y, z] = position;
   const height = Math.max(0, y - ground);
   // Keep runway and close aircraft views sharp: about 1.3 cm texels at eye level on a 4096 map.
@@ -154,5 +161,7 @@ export function earthShadowFocus(
   return {
     center: [x + (direction[0] / forward) * reach, ground, z + (direction[2] / forward) * reach],
     radius,
+    // Texels of 2 to 6 m on its 2048 map: a house's shadow, not a chimney's.
+    far: { center: [x, ground, z], radius: Math.min(6_000, Math.max(2_000, radius * 4)) },
   };
 }

@@ -1,0 +1,345 @@
+{
+  "id": "neak_loeung_bridge",
+  "title": "Neak Loeung Bridge",
+  "wikidataId": "Q18402151",
+  "referenceCoordinate": {
+    "longitude": 105.2781337850516,
+    "latitude": 11.275859281235856
+  },
+  "module": "content/worldgen/source/places/w6/w64/neak_loeung_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-neak-loeung-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "foundation",
+      "graph": "concrete_boardformed",
+      "roughness": 0.9
+    },
+    "road": {
+      "slot": "wall",
+      "graph": "gravel",
+      "roughness": 0.94
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.24
+    }
+  },
+  "exportLabel": "Molen original Neak Loeung Bridge master",
+  "expectedDraftMasterHash": "sha256:69ad9ed00f85849da989214f80bc957d9b7aed72cf6d62076659ad1eb6ec8283",
+  "visualBrief": "Two open concrete pylons with pointed tips and yellow stay fans stand above the Mekong. A long western curve climbs to the straight crossing and continues onto the Prey Veng approach. The two-lane deck has a yellow center line, concrete parapets and single-arm lights.",
+  "heightPolicy": "The source uses a fixed sea-level datum. Both bearings connect to native NH1 at the mapped seams. Two approach piers are spaced to clear the local roads, and native terrain and water remain in place.",
+  "nativeAxes": "Positive X follows the main Mekong span east-northeast from the Kandal bank toward Prey Veng. The west approach turns before joining the straight central span.",
+  "limitations": [
+    "The mapped NH1 trace fixes the curve, bearing positions, and orientation. The pylon dimensions, deck elevations, and approach pier stations are estimates based on exterior photographs and the standard elevation surface.",
+    "The host water level and terrain resolution can vary."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Neak_Loeung_Bridge_%28Tsubasa_Bridge%29.jpg",
+      "hash": "sha256:13787bdd8c226e0625cf08790d02960746675c3375e840cd24de703f0a4c6de6",
+      "observed": "Pylon and stay silhouette from the west bank."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Neak_Loeung_Bridge_November_2021.jpg",
+      "hash": "sha256:a8c26045e783d3af2fe5056022473f5727005897104d75ae1bc0d8de9d2f5dd1",
+      "observed": "Deck, tower geometry and repeating approach spans."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "tsubasa-crossing",
+      "position": [
+        124,
+        242,
+        1270
+      ],
+      "lookAt": [
+        44,
+        40,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "yellow-stays-over-mekong",
+      "position": [
+        105,
+        97,
+        476
+      ],
+      "lookAt": [
+        76,
+        69,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "western-approach-curve",
+      "position": [
+        -729,
+        74,
+        207
+      ],
+      "lookAt": [
+        -447,
+        43,
+        22
+      ],
+      "fov": 57
+    },
+    {
+      "name": "open-pylon-leg-and-pier",
+      "position": [
+        0,
+        14,
+        116
+      ],
+      "lookAt": [
+        -81,
+        54,
+        0
+      ],
+      "fov": 61
+    },
+    {
+      "name": "west-landing",
+      "position": [
+        -1112,
+        32,
+        343
+      ],
+      "lookAt": [
+        -1009,
+        16,
+        259
+      ],
+      "fov": 58
+    },
+    {
+      "name": "east-landing",
+      "position": [
+        1161,
+        28,
+        -36
+      ],
+      "lookAt": [
+        1035,
+        14,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "two-lane-deck",
+      "position": [
+        -221,
+        58,
+        -4
+      ],
+      "lookAt": [
+        13,
+        55,
+        0
+      ],
+      "fov": 59
+    },
+    {
+      "name": "reverse-mekong-elevation",
+      "position": [
+        53,
+        154,
+        -842
+      ],
+      "lookAt": [
+        80,
+        49,
+        0
+      ],
+      "fov": 55
+    }
+  ],
+  "materialMethod": "Board-formed concrete, road aggregate and painted metal share library graphs. Concrete faces, stays, and roadway fittings use meter-scale UVs and restrained vertex colors.",
+  "sourceFacts": {
+    "deckLengthMeters": 2178.2,
+    "deckWidthMeters": 16.24,
+    "hFramePylons": 2,
+    "cablesPerFan": 16,
+    "pmtilesCrossingIds": [
+      35184712010169
+    ],
+    "approachPierStations": 35
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        80,
+        54,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/w6/w64/neak_loeung_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.9
+      },
+      "road": {
+        "slot": "wall",
+        "graph": "gravel",
+        "roughness": 0.94
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.24
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.9
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.24
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.9
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.24
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.9
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.24
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "neak_loeung_bridge-skyline",
+      "position": [
+        124,
+        242,
+        1270
+      ],
+      "lookAt": [
+        44,
+        40,
+        0
+      ],
+      "fov": 54,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "neak_loeung_bridge-district",
+      "position": [
+        124,
+        242,
+        1270
+      ],
+      "lookAt": [
+        44,
+        40,
+        0
+      ],
+      "fov": 54,
+      "reviewLod": "district"
+    },
+    {
+      "name": "neak_loeung_bridge-street",
+      "position": [
+        124,
+        242,
+        1270
+      ],
+      "lookAt": [
+        44,
+        40,
+        0
+      ],
+      "fov": 54,
+      "reviewLod": "street"
+    },
+    {
+      "name": "neak_loeung_bridge-closeup",
+      "position": [
+        124,
+        242,
+        1270
+      ],
+      "lookAt": [
+        44,
+        40,
+        0
+      ],
+      "fov": 54,
+      "reviewLod": "closeup"
+    }
+  ]
+}

@@ -16,87 +16,9 @@ const road = (
 });
 const profile = (f: TerrainTransportationFeature | undefined) => f?.bridgeApproachProfile ?? [];
 
+// The grading itself is covered in grade-separation.test.ts; these hold the original entry point
+// and the deck profile to what callers of that name rely on.
 describe('connected motorway grades', () => {
-  it('fades a cloverleaf along its full route rather than lifting its returning leg', () => {
-    const result = gradeHighwayBridges(
-      [
-        road(
-          [
-            [0.3, 0.5],
-            [0.4, 0.5],
-          ],
-          { bridge: true },
-        ),
-        road(
-          [
-            [0.4, 0.5],
-            [0.55, 0.5],
-            [0.6, 0.6],
-            [0.5, 0.7],
-            [0.4, 0.6],
-            [0.41, 0.51],
-          ],
-          { link: true },
-        ),
-      ],
-      400,
-      () => 0,
-    );
-    const samples = profile(result[1]);
-    expect(samples[0]?.elevation).toBe(6);
-    expect(samples.at(-1)?.elevation).toBe(0.32);
-    for (let i = 1; i < samples.length; i++) {
-      expect(samples[i]?.elevation).toBeLessThanOrEqual((samples[i - 1]?.elevation ?? 0) + 1e-8);
-    }
-  });
-  it('holds a short overpass level and spreads its approach over several mapped ways', () => {
-    const source = [
-      road([
-        [0, 0.5],
-        [0.4, 0.5],
-      ]),
-      road(
-        [
-          [0.4, 0.5],
-          [0.45, 0.5],
-        ],
-        { name: 'short approach' },
-      ),
-      road(
-        [
-          [0.45, 0.5],
-          [0.55, 0.5],
-        ],
-        { bridge: true, layer: 1 },
-      ),
-      road([
-        [0.55, 0.5],
-        [1, 0.5],
-      ]),
-      road([
-        [0.5, 0],
-        [0.5, 1],
-      ]), // underpass, no mapped connection
-    ];
-    const before = JSON.stringify(source);
-    const result = gradeHighwayBridges(source, 400, () => 0);
-    expect(JSON.stringify(source)).toBe(before);
-    for (const p of profile(result[2])) expect(p.elevation).toBe(6);
-    expect(profile(result[1]).at(-1)?.elevation).toBe(6);
-    expect(profile(result[0]).at(-1)?.elevation).toBe(profile(result[1])[0]?.elevation);
-    expect(profile(result[0])[0]?.elevation).toBe(0.32);
-    expect(result[4]?.bridgeApproachProfile).toBeUndefined();
-    for (const f of result.slice(0, 4)) {
-      const p = profile(f);
-      for (let i = 1; i < p.length; i++) {
-        const a = p[i - 1] as (typeof p)[number],
-          b = p[i] as (typeof p)[number];
-        const distance = Math.hypot(a.point[0] - b.point[0], a.point[1] - b.point[1]) * 400;
-        expect(Math.abs(a.elevation - b.elevation) / distance).toBeLessThanOrEqual(0.061);
-      }
-    }
-  });
-
   it('does not connect an oblique crossing just because it contains the same vertex', () => {
     const result = gradeHighwayBridges(
       [
@@ -120,7 +42,7 @@ describe('connected motorway grades', () => {
     expect(result[1]?.bridgeApproachProfile).toBeUndefined();
   });
 
-  it('keeps layered decks separate, preserves valleys and tolerates duplicate map vertices', () => {
+  it('keeps a valley under a deck and tolerates duplicate map vertices', () => {
     const result = gradeHighwayBridges(
       [
         road(
@@ -130,21 +52,14 @@ describe('connected motorway grades', () => {
             [0.5, 0.5],
             [1, 0.5],
           ],
-          { bridge: true, layer: 1 },
-        ),
-        road(
-          [
-            [0.5, 0],
-            [0.5, 1],
-          ],
-          { bridge: true, layer: 2 },
+          { bridge: true },
         ),
       ],
       400,
       (x) => Math.abs(x - 200) / 10,
     );
-    expect(profile(result[0]).every((p) => p.elevation >= 26)).toBe(true);
-    expect(profile(result[1]).every((p) => p.elevation === 12)).toBe(true);
+    // Both ends are cut by the tile 20 m up the valley's sides: the deck holds their height.
+    expect(profile(result[0]).every((p) => p.elevation >= 26 - 1e-9)).toBe(true);
     expect(profile(result[0]).at(-1)?.point).toEqual([1, 0.5]);
   });
 

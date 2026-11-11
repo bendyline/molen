@@ -40,13 +40,15 @@ const SPECS = [
 // cars, pedestrians, trains, aircraft, detailed cars, skinned figures, figure radius (m),
 // activity radius (m), pose evaluations per frame. Car and pedestrian caps are a third of what
 // they were (High drew 320 cars and 40 people), matching the lower spawn density in ambient.ts.
+// Trains count consists: a freight is a few locomotives and a score of cars, drawn far as
+// instanced stand-ins and in full only near the camera.
 const AMBIENT = [
   [8, 1, 0, 0, 2, 6, 60, 250, 4],
-  [16, 2, 0, 1, 4, 12, 80, 350, 8],
-  [32, 4, 1, 1, 6, 20, 100, 450, 12],
-  [54, 6, 1, 2, 8, 32, 120, 600, 20],
-  [80, 9, 2, 3, 12, 48, 150, 800, 32],
-  [108, 13, 2, 4, 16, 64, 180, 1000, 48],
+  [16, 2, 1, 1, 4, 12, 80, 350, 8],
+  [32, 4, 2, 1, 6, 20, 100, 450, 12],
+  [54, 6, 3, 2, 8, 32, 120, 600, 20],
+  [80, 9, 4, 3, 12, 48, 150, 800, 32],
+  [108, 13, 6, 4, 16, 64, 180, 1000, 48],
 ] as const;
 
 /**

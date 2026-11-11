@@ -1,0 +1,357 @@
+{
+  "id": "old_bridge",
+  "title": "Mustafa Pasha Bridge",
+  "wikidataId": "Q3555796",
+  "referenceCoordinate": {
+    "longitude": 26.19351,
+    "latitude": 41.76878
+  },
+  "module": "content/worldgen/source/places/sx/sx6/old_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-old-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "masonry": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.96
+    },
+    "limestone": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.97
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_drywall",
+      "roughness": 0.96
+    },
+    "iron": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76
+    }
+  },
+  "exportLabel": "Molen original Mustafa Pasha Bridge master",
+  "expectedDraftMasterHash": "sha256:b091657754d2be1d891a862f3fa526c118fcf3046ab539c20e16f44c3cee4b5f",
+  "visualBrief": "A gently rising historic stone bridge over the Maritsa with 21 modeled vaults, unequal spans, angled cutwaters, low parapets and a raised rectangular inscription monument at the crest.",
+  "heightPolicy": "The 48 m sea-level datum is tied to standard terrain. Deck levels at both ends match the mapped pedestrian approaches, and the modeled foundations embed in the native banks.",
+  "nativeAxes": "+X follows the mapped pedestrian centerline east-southeast. +Z faces the southern side of the Maritsa.",
+  "limitations": [
+    "The mapped pedestrian bridge is 294.0 m long. The arch distribution, deck crown and plaque relief are reconstructed from exterior photographs. Vegetation obscures a few terminal bays.",
+    "The river and banks use the viewer’s standard terrain. Foundation embedment and water clearance are approximate. The plaque preserves its relief and frame without reproducing readable text."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Old_Bridge_Svilengrad_pano.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Old_Bridge_Svilengrad_pano.jpg",
+      "hash": "sha256:f7ce9e414c4d0b584a2a1ec99ba65ffa2581c742dbb9ff397905e0d960174e32",
+      "observed": "The downstream panorama shows unequal stone arch spans, a deck that rises near the middle, and a tall rectangular inscribed marker near the crest. Vegetation hides some lower openings."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Most_Svilengrad.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Most_Svilengrad.jpg",
+      "hash": "sha256:05a75ac2598c1ff0d6baa3cc8426681905c64edb3ed8b98ff616ca793b6609e6",
+      "observed": "The oblique image shows substantial stone cutwaters and a low continuous parapet with a projecting coping."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Mustafa_Pasha_Bridge%2C_Svilengrad_-_1.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/Mustafa_Pasha_Bridge%2C_Svilengrad_-_1.jpg",
+      "hash": "sha256:ddf987f63a2c37c93cb806396ece3cdf653b793d7e48c382b4f08670a0b97ee9",
+      "observed": "Use both banks and the mapped pedestrian path to anchor the geometry. Confirm relative arch spacing visually before assigning blind relief openings on land."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "maritsa-and-complete-bridge",
+      "position": [
+        -13,
+        68,
+        246
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "cutwaters-and-central-arches",
+      "position": [
+        38,
+        10,
+        62
+      ],
+      "lookAt": [
+        4,
+        4.7,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "inscription-and-paved-walk",
+      "position": [
+        -6.9,
+        10.85,
+        -2.25
+      ],
+      "lookAt": [
+        0.86384,
+        10.15,
+        2.35
+      ],
+      "fov": 47
+    },
+    {
+      "name": "east-landing",
+      "position": [
+        161,
+        11,
+        15
+      ],
+      "lookAt": [
+        116,
+        4.5,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "west-landing",
+      "position": [
+        -162,
+        12,
+        14
+      ],
+      "lookAt": [
+        -109,
+        6.4,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "opposite-vaults-and-river",
+      "position": [
+        8,
+        6,
+        -68
+      ],
+      "lookAt": [
+        10,
+        4,
+        0
+      ],
+      "fov": 61
+    },
+    {
+      "name": "open-vault-over-the-maritsa",
+      "position": [
+        -9.09727,
+        3.4,
+        17
+      ],
+      "lookAt": [
+        -9.09727,
+        2.6,
+        -10
+      ],
+      "fov": 60
+    }
+  ],
+  "materialMethod": "Shared stone ashlar, weathered limestone, dry stone and painted metal. Metric UVs and linear color variation give the cutwaters, arch rings, coping and deck different finishes without embedded images.",
+  "sourceFacts": {
+    "mappedLengthMeters": 294.0124122263777,
+    "widthMeters": 6.2,
+    "archBaysModeled": 21,
+    "groundDatumMeters": 48,
+    "sourceRoad": 35184529750853,
+    "approachRoad": 35184529750890
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        5.2,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sx/sx6/old_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "limestone": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 0.96
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76
+      }
+    },
+    "errorMeters": 1.35,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          }
+        },
+        "errorMeters": 0.24
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          }
+        },
+        "errorMeters": 0.09
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "old_bridge-skyline",
+      "position": [
+        -13,
+        68,
+        246
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        0
+      ],
+      "fov": 58,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "old_bridge-district",
+      "position": [
+        -13,
+        68,
+        246
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        0
+      ],
+      "fov": 58,
+      "reviewLod": "district"
+    },
+    {
+      "name": "old_bridge-street",
+      "position": [
+        -13,
+        68,
+        246
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        0
+      ],
+      "fov": 58,
+      "reviewLod": "street"
+    },
+    {
+      "name": "old_bridge-closeup",
+      "position": [
+        -13,
+        68,
+        246
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        0
+      ],
+      "fov": 58,
+      "reviewLod": "closeup"
+    }
+  ]
+}

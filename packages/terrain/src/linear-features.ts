@@ -46,6 +46,16 @@ export const TERRAIN_SURFACE_KIND: {
   readonly dirt: 7;
   readonly shoulder: 8;
   readonly ballast: 9;
+  /**
+   * Ballasted track: sleepers and a pair of rails drawn across the band's middle, by gauge and
+   * sleeper type from `TerrainLineBand.variant` (see `terrainRailVariant`).
+   */
+  readonly track: 10;
+  /**
+   * Rails modeled in 3D: steel, polished on top where `variant` is 1. The pavement material
+   * drops them where they would be thinner than a pixel, leaving the track's drawn rails.
+   */
+  readonly rail: 11;
 } = {
   plain: 0,
   road: 1,
@@ -57,6 +67,8 @@ export const TERRAIN_SURFACE_KIND: {
   dirt: 7,
   shoulder: 8,
   ballast: 9,
+  track: 10,
+  rail: 11,
 };
 export type TerrainSurfaceKind = (typeof TERRAIN_SURFACE_KIND)[keyof typeof TERRAIN_SURFACE_KIND];
 
@@ -88,6 +100,11 @@ export interface TerrainLineBand {
    * ground: the one away from the line (`outer`), toward it (`inner`) or both. Not for roads.
    */
   fray?: 'outer' | 'inner' | 'both';
+  /**
+   * A small whole number (0-63) a non-road surface kind reads beside its fray mask, packed as
+   * `surfaceDetail.w = fray + 4 * variant`: a track band's gauge and sleepers.
+   */
+  variant?: number;
   /**
    * Height of a vertical face dropping from the band's inner edge (the one toward the line), as
    * a curb's face drops to the road beside it. Draped bands only; 0 or absent for none.
@@ -603,7 +620,7 @@ export function appendTerrainLineBand(
           band.lanes !== undefined && band.lanes > 0
             ? Math.min(12, band.width / band.lanes) + TERRAIN_ROAD_WEAR_STEP * (band.wear ?? 0)
             : 0,
-          fray,
+          fray + 4 * Math.max(0, Math.min(63, Math.round(band.variant ?? 0))),
         );
       }
       if (builder.vertexCount > start) count++;
@@ -618,6 +635,8 @@ export interface TerrainBoxPlacement {
   y: number;
   z: number;
   yaw: number;
+  /** Tilt of the box's length (its local Z) about its local X, after the yaw; radians, default 0. */
+  pitch?: number;
   size: readonly [number, number, number];
   color: string;
 }
@@ -634,9 +653,11 @@ export function createTerrainBoxInstances(
   const mesh = new InstanceBatch(BOX, FIXTURE_MATERIAL, placements.length);
   const matrix = new THREE.Matrix4();
   const rotation = new THREE.Quaternion();
+  const euler = new THREE.Euler(0, 0, 0, 'YXZ');
   for (let i = 0; i < placements.length; i++) {
     const p = placements[i] as TerrainBoxPlacement;
-    rotation.setFromAxisAngle(new THREE.Vector3(0, 1, 0), p.yaw);
+    if (p.pitch) rotation.setFromEuler(euler.set(p.pitch, p.yaw, 0, 'YXZ'));
+    else rotation.setFromAxisAngle(new THREE.Vector3(0, 1, 0), p.yaw);
     matrix.compose(new THREE.Vector3(p.x, p.y, p.z), rotation, new THREE.Vector3(...p.size));
     mesh.setMatrixAt(i, matrix);
     mesh.setColorAt(i, new THREE.Color(p.color));

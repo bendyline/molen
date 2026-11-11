@@ -1,0 +1,478 @@
+{
+  "id": "london_paddington_station",
+  "title": "London Paddington station",
+  "wikidataId": "Q214788",
+  "referenceCoordinate": {
+    "longitude": -0.177519482,
+    "latitude": 51.517370969
+  },
+  "module": "content/worldgen/source/places/gc/gcp/london_paddington_station/models/station-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-paddington-station.mjs",
+  "builder": "buildPaddingtonLevel",
+  "surfaces": {
+    "brick": {
+      "slot": "wall",
+      "graph": "brick_flemish",
+      "roughness": 0.91
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.88
+    },
+    "deck": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "iron": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.22
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.88,
+      "doubleSided": true
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.37,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.64
+      ],
+      "doubleSided": true
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.89
+    }
+  },
+  "exportLabel": "Molen original London Paddington station master",
+  "expectedDraftMasterHash": "sha256:0d3ed3a08d60bd6ccdfe6e8ab4eaaa3591dcb387ddb5bdba7f83696cf19a390c",
+  "visualBrief": "Four longitudinal glazed train sheds rise above the curved platforms at Paddington. The roof retains the two transverse strips, varied vault heights and iron end screens. The track approach has raised platforms, thin canopies, a track fan and open clearance beneath the ironwork.",
+  "heightPolicy": "A 24 m sea-level datum aligns the station with standard viewer terrain. Platform and wall heights use the sampled rail apron. The cutout replaces the mapped station and attached canopy, retaining the separate hotel, concourse shops, streets and waterway.",
+  "nativeAxes": "+X points southeast from the open rail approaches to the concourse and Praed Street. +Z is the Eastbourne Terrace side.",
+  "limitations": [
+    "The main station footprint and platform edges come from PMTiles. Vault heights, the steelwork pattern and the concourse are scaled exterior reconstructions from photographs.",
+    "Track pairs between the mapped platforms are approximate and terminate inside the site model. The separately mapped hotel, streets, Underground and canal remain independent. Interiors beyond the visible platforms and concourse edge are outside the reconstruction."
+  ],
+  "references": [
+    {
+      "url": "https://www.thisispaddington.com/article/praed-street-pavement-widening-paddington",
+      "hash": "sha256:a7947281a5ee39d5bb2ea6a4e3f183362822f23319db9940a697719920a96738",
+      "observed": "Shed roof sections and their fit beside Praed Street and the hotel."
+    },
+    {
+      "url": "https://www.riba.org/explore/awards/uk-awards/regional-awards/2026/london-awards-2026/paddington-square/",
+      "hash": "sha256:d30c25263d18644eabf8f6d381b4d0f109886d7558e5a1d571db8b100e81034b",
+      "observed": "Rail approach, shed cross sections and neighboring development."
+    },
+    {
+      "url": "https://learninglegacy.crossrail.co.uk/documents/new-taxi-facility-on-heritage-structures-at-paddington/",
+      "hash": "sha256:909bbe869faf15fcc1d1a54d8a0f3ca1c7ae3c2f5c2d36574f1324a8d92be4ae",
+      "observed": "Multiple roof vaults, track edge and the platform envelope. Use only the unchanged historic shed as a reference."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "northwest-sheds-and-platforms",
+      "position": [
+        -221,
+        44,
+        123
+      ],
+      "lookAt": [
+        -30,
+        7,
+        14
+      ],
+      "fov": 50
+    },
+    {
+      "name": "four-vaults-from-rail-approach",
+      "position": [
+        -153,
+        10.8,
+        20
+      ],
+      "lookAt": [
+        -64,
+        9.1,
+        15
+      ],
+      "fov": 60
+    },
+    {
+      "name": "northbound-roof-and-transepts",
+      "position": [
+        -91,
+        82,
+        98
+      ],
+      "lookAt": [
+        28,
+        7,
+        15
+      ],
+      "fov": 57
+    },
+    {
+      "name": "inside-central-train-shed",
+      "position": [
+        -51,
+        4.4,
+        28
+      ],
+      "lookAt": [
+        45,
+        10,
+        29
+      ],
+      "fov": 69
+    },
+    {
+      "name": "eastbourne-side-and-concourse",
+      "position": [
+        196,
+        54,
+        100
+      ],
+      "lookAt": [
+        102,
+        7,
+        21
+      ],
+      "fov": 53
+    },
+    {
+      "name": "canal-side-roof-and-wall",
+      "position": [
+        -29,
+        45,
+        -111
+      ],
+      "lookAt": [
+        23,
+        10,
+        -13
+      ],
+      "fov": 53
+    },
+    {
+      "name": "platforms-under-canopies",
+      "position": [
+        -155,
+        4.3,
+        46
+      ],
+      "lookAt": [
+        -54,
+        3.8,
+        20
+      ],
+      "fov": 67
+    }
+  ],
+  "materialMethod": "Shared Flemish-bond brick, limestone, concrete, painted metal, slate, window glass and timber supply the surfaces. The iron ribs, ridge strips, platform edges and curved tracks use authored geometry.",
+  "sourceFacts": {
+    "mappedBuildingWay": 947381552,
+    "mappedLengthMeters": 346.165,
+    "trainSheds": 4,
+    "platformSlabs": 8,
+    "trackApproximations": 12
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -28,
+        8,
+        19
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/gc/gcp/london_paddington_station/models/station-model.mjs",
+    "export": "buildPaddingtonSkyline",
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.91
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.88
+      },
+      "deck": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.22
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.88,
+        "doubleSided": true
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.37,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.64
+        ],
+        "doubleSided": true
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.89
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPaddingtonDistrict",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.22
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.37,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.64
+            ],
+            "doubleSided": true
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildPaddingtonStreet",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.22
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.37,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.64
+            ],
+            "doubleSided": true
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildPaddingtonCloseup",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.22
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.37,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.64
+            ],
+            "doubleSided": true
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "london_paddington_station-skyline",
+      "position": [
+        -221,
+        44,
+        123
+      ],
+      "lookAt": [
+        -30,
+        7,
+        14
+      ],
+      "fov": 50,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "london_paddington_station-district",
+      "position": [
+        -221,
+        44,
+        123
+      ],
+      "lookAt": [
+        -30,
+        7,
+        14
+      ],
+      "fov": 50,
+      "reviewLod": "district"
+    },
+    {
+      "name": "london_paddington_station-street",
+      "position": [
+        -221,
+        44,
+        123
+      ],
+      "lookAt": [
+        -30,
+        7,
+        14
+      ],
+      "fov": 50,
+      "reviewLod": "street"
+    },
+    {
+      "name": "london_paddington_station-closeup",
+      "position": [
+        -221,
+        44,
+        123
+      ],
+      "lookAt": [
+        -30,
+        7,
+        14
+      ],
+      "fov": 50,
+      "reviewLod": "closeup"
+    }
+  ]
+}

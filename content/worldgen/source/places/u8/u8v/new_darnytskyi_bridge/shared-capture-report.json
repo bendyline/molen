@@ -1,0 +1,130 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.new_darnytskyi_bridge",
+  "inputHash": "sha256:d4b0b906633c284f25ba2cf6a196f521e1de42688c895c36d8884a76125f58bc",
+  "sourceHash": "sha256:02ae48a8646c60ea625296a09a086b26964fad5191795c4d946132f31f3bb979",
+  "runtimeHash": "sha256:28d7f85f06e0af871bd5093fa6645b4948daff22f7d92c576bb78c8c6dbae90e",
+  "fixtureHash": "sha256:18fee9dc10e7f3816aa48157e981f015171fe6717e4a86891392551ec1756811",
+  "placementHash": "sha256:e8b99a1268251ab8cd7cc4503f22d077592db22d34af88d52aec50372e6d901d",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_boardformed": {
+      "path": "materials/concrete_boardformed.matgraph.json",
+      "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    }
+  },
+  "frames": [
+    {
+      "id": "new_darnytskyi_bridge",
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:a1c45dceeb517a86e55278b58def9d044a8435582e387fe6e966fd68903a21f8",
+      "camera": {
+        "name": "street",
+        "position": [
+          248.72345695112818,
+          110.2,
+          -80.62879114981375
+        ],
+        "lookAt": [
+          369.8350601626237,
+          118,
+          -136.1015733726414
+        ],
+        "fov": 56,
+        "time": "noon",
+        "shadows": true,
+        "resolutionScale": 1,
+        "lightDirection": [
+          -0.38,
+          1,
+          0.28
+        ],
+        "silhouette": false
+      },
+      "view": {
+        "draws": 20,
+        "triangles": 528582,
+        "visibleMemberDraws": {
+          "new.darnytskyi.bridge": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.new_darnytskyi_bridge",
+        "runtimeHash": "sha256:28d7f85f06e0af871bd5093fa6645b4948daff22f7d92c576bb78c8c6dbae90e",
+        "lodHash": "sha256:e6114288363ee8fcf9dc7d596a59127d48951cd31851c4a9f415418687c78ee9",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "new.darnytskyi.bridge",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "errors": [],
+  "placementChecks": [
+    {
+      "level": "skyline",
+      "deckProbes": 46,
+      "approachJoins": 8,
+      "maximumApproachDifferenceMeters": 0.22329073115962217,
+      "oldRailInputMeters": 2241.793585580009,
+      "oldRailRetainedMeters": 2241.793585580009,
+      "unload": {
+        "groundRetained": true,
+        "waterRetained": true,
+        "liveGeometries": 0
+      }
+    },
+    {
+      "level": "district",
+      "deckProbes": 46,
+      "approachJoins": 8,
+      "maximumApproachDifferenceMeters": 0.1001059572346179,
+      "oldRailInputMeters": 2241.793585580009,
+      "oldRailRetainedMeters": 2241.793585580009,
+      "unload": {
+        "groundRetained": true,
+        "waterRetained": true,
+        "liveGeometries": 0
+      }
+    },
+    {
+      "level": "street",
+      "deckProbes": 46,
+      "approachJoins": 8,
+      "maximumApproachDifferenceMeters": 0.09402319254428448,
+      "oldRailInputMeters": 2241.793585580009,
+      "oldRailRetainedMeters": 2241.793585580009,
+      "unload": {
+        "groundRetained": true,
+        "waterRetained": true,
+        "liveGeometries": 0
+      }
+    },
+    {
+      "level": "closeup",
+      "deckProbes": 46,
+      "approachJoins": 8,
+      "maximumApproachDifferenceMeters": 0.09402319254428448,
+      "oldRailInputMeters": 2241.793585580009,
+      "oldRailRetainedMeters": 2241.793585580009,
+      "unload": {
+        "groundRetained": true,
+        "waterRetained": true,
+        "liveGeometries": 0
+      }
+    }
+  ],
+  "notes": "The model binds all three shared material graphs. Four lane-specific masks retain the old rail crossing even where it shares a tile feature ID with the new tracks."
+}

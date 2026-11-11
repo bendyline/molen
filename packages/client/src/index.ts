@@ -84,6 +84,7 @@ export type { SceneOptimizationOptions } from './three/backend';
 export { computeClipTime, ThreeSceneBackend } from './three/backend';
 export type { EnvironmentData } from './three/environment';
 export { applyEnvironment, defaultEnvironment } from './three/environment';
+export type { FarShadowInfo } from './three/far-shadow';
 export type { GpuFrameTimer, GpuFrameTimerOptions } from './three/gpu-frame-timer';
 export { createGpuFrameTimer } from './three/gpu-frame-timer';
 export {

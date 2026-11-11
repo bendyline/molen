@@ -79,6 +79,56 @@ export const EARTH_PACK_IDS: {
 };
 
 /** Worldgen style, region atlas and recognizable places, resolved from the packs. */
+/** Paints for stand-ins whose painted part is the load: wrapped lumber, and containers. */
+const LOAD_PALETTES: Readonly<Record<string, readonly string[]>> = {
+  flat: ['#e9e4d6', '#d8c8a2', '#cfd6da', '#b8a27c', '#e2ddcb'],
+  well: ['#2f5d8a', '#8c2f2a', '#dcd8c8', '#3d6b4a', '#c9a227', '#6b6f72', '#a4552d'],
+};
+
+/**
+ * The rolling stock a library stands in yards: every rail vehicle type, freight cars weighted and
+ * painted by the consists its locomotives lead (`ambientRole.consist`), freight and yard
+ * locomotives at a low weight (passenger locomotives, faster than 40 m/s, stay out), and
+ * light-rail cars for light-rail yards.
+ */
+export function earthRailCars(types: TypeLibrary): TerrainParkedVehicle[] {
+  const weights = new Map<string, number>();
+  const colors = new Map<string, Set<string>>();
+  for (const id of types.idsWith('ambientRole')) {
+    const consist = (
+      types.components(id).ambientRole as
+        | { consist?: { cars?: { type: string; weight?: number; colors?: string[] }[] } }
+        | undefined
+    )?.consist;
+    for (const car of consist?.cars ?? []) {
+      weights.set(car.type, (weights.get(car.type) ?? 0) + (car.weight ?? 1));
+      const set = colors.get(car.type) ?? new Set<string>();
+      for (const color of car.colors ?? []) set.add(color);
+      colors.set(car.type, set);
+    }
+  }
+  const cars: TerrainParkedVehicle[] = [];
+  for (const id of types.idsWith('vehicle')) {
+    const spec = types.component<VehicleData>(id, 'vehicle').spec;
+    if (spec.rail === undefined) continue;
+    const style = spec.bodyStyle;
+    const weight =
+      style === 'freight-car'
+        ? (weights.get(id) ?? 1)
+        : style === 'locomotive'
+          ? spec.maxSpeed > 40
+            ? 0
+            : 1
+          : style === 'light-rail'
+            ? 1
+            : 0;
+    if (weight <= 0) continue;
+    const palette = LOAD_PALETTES[spec.rail.profile ?? ''] ?? [...(colors.get(id) ?? [])];
+    cars.push({ id, spec, weight, ...(palette.length ? { colors: palette } : {}) });
+  }
+  return cars;
+}
+
 export interface EarthWorldgenContent {
   /** Vehicles that may stand in a car park's stalls; none leaves its decks empty. */
   parkedVehicles?: readonly TerrainParkedVehicle[];
@@ -111,6 +161,12 @@ export interface EarthContent {
   types?: TypeLibrary;
   /** Parked-car kinds for street surfaces, in type order. */
   parkedVehicles: TerrainParkedVehicle[];
+  /**
+   * Rolling stock that stands in rail yards and on sidings (`TerrainSurfaceDetails.railCars`):
+   * freight cars weighted and painted as the library's locomotives make up their trains, yard
+   * and road locomotives, and light-rail cars.
+   */
+  railCars: TerrainParkedVehicle[];
   /** Compact regional road mixtures; reading these never loads model geometry. */
   fleet?: EarthFleetContent;
   /** Country sign appearances and dedicated country geometry, independent of worldgen. */
@@ -507,6 +563,8 @@ export async function loadEarthContent(
     types
       ?.idsWith('vehicle')
       .filter((id) => types.component<VehicleData>(id, 'vehicle').spec.cycle === undefined)
+      // Rail vehicles stand on track, never at the curb.
+      .filter((id) => types.component<VehicleData>(id, 'vehicle').spec.rail === undefined)
       // Player-controllable transit must not become ordinary curbside parked cars.
       .filter((id) => {
         const role = (types.components(id).ambientRole as { role?: string } | undefined)?.role;
@@ -519,6 +577,7 @@ export async function loadEarthContent(
           ? { colors: (types.components(id).ambientRole as { colors: string[] }).colors }
           : {}),
       })) ?? [];
+  const railCars = types !== undefined ? earthRailCars(types) : [];
   return {
     packs,
     ...(airports ? { airports } : {}),
@@ -529,6 +588,7 @@ export async function loadEarthContent(
       ? { fleet: { catalogs: fleetCatalogs, ...(fleetAtlas ? { atlas: fleetAtlas } : {}) } }
       : {}),
     parkedVehicles,
+    railCars,
     assets: {
       load: (ref, options) => packs.readBytes(styleIndex[ref] ?? ref, options),
       loadText: (ref, options) => packs.readText(styleIndex[ref] ?? ref, options),

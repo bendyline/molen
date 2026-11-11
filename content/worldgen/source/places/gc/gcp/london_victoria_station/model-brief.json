@@ -1,0 +1,774 @@
+{
+  "id": "london_victoria_station",
+  "title": "London Victoria Station",
+  "wikidataId": "Q985210",
+  "referenceCoordinate": {
+    "longitude": -0.144105513,
+    "latitude": 51.495046355
+  },
+  "module": "packages/worldgen/scripts/london-victoria-station-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-london-victoria-station.mjs",
+  "builder": "buildVictoriaLevel",
+  "surfaces": {
+    "brick": {
+      "slot": "wall",
+      "graph": "brick_flemish",
+      "roughness": 0.95
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.93
+    },
+    "hotel": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.93
+    },
+    "clock": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.93
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.91
+    },
+    "zinc": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.82,
+      "metallic": 0.12
+    },
+    "frame": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.13
+    },
+    "black": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.13
+    },
+    "marquise": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.13
+    },
+    "white": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.13
+    },
+    "green": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.13
+    },
+    "mark": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.13
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.96
+    },
+    "glass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.4
+    },
+    "clear": {
+      "slot": "window",
+      "localRef": "palette:#e5f4ff",
+      "roughness": 0.29,
+      "metallic": 0.04,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.55
+      ],
+      "doubleSided": true
+    }
+  },
+  "exportLabel": "Molen original London Victoria Station master",
+  "expectedDraftMasterHash": "sha256:1cd5210d028606134fd6e2c29ae24f2dd7fdf0510e0405dde04e2b97ba18604b",
+  "visualBrief": "The two London Victoria headhouses face Terminus Place beneath a clock gable and long canopy. The Clermont Hotel mansard, western sawtooth roofs, two eastern barrel sheds and Victoria Place overbuild frame separate boarding islands and open rail lanes.",
+  "heightPolicy": "The model uses the standard 3 m sea-level viewer datum. Platform sections follow the surrounding terrain, and the open overbuild preserves the mapped western rail approaches.",
+  "nativeAxes": "Local +X points east-southeast across the two historic frontages. Local +Z follows the trainshed and rail axes south-southwest from Terminus Place.",
+  "limitations": [
+    "The terminal frontages, roof envelopes and overbuild follow the station relation and mapped building parts. Smaller dimensions, facade ornament and roof framing are exterior photo reconstructions.",
+    "Platforms are representative boarding surfaces fitted between mapped rail alignments. PMTiles marks some surface rails beneath Victoria Place as tunnels. The native review preserves these records and renders the above-ground station without standalone tunnel bores.",
+    "The review covers station exterior, open entrance bays and sheds, and the street-side hotel facade. Shop and hotel interiors, tracks outside the mapped station, and temporary platforms or works are outside the model scope."
+  ],
+  "references": [
+    {
+      "url": "https://www.openstreetmap.org/relation/6036811",
+      "observed": "Mapped Victoria Station outline"
+    },
+    {
+      "url": "https://cdn.prgloo.com/media/download/e8322aa11de343a1ade0a04ed0a44b96",
+      "hash": "sha256:aabe25d2ed9a8e65bcb839b2c38aaabf23cfbe4e46ea8b851b16220c911b1b66",
+      "observed": "station aerial"
+    },
+    {
+      "url": "https://stationside.guide/guides/london/victoria.jpg",
+      "hash": "sha256:07369d8c9ef90a7e1562900a6277cc6d5d578d220cc12615d470c1c594252cb6",
+      "observed": "frontage"
+    },
+    {
+      "url": "https://www.tagvenue.com/resize/54/43/widen-1680-noupsize%3B2448-the-clermont-victoria-venue.jpg",
+      "hash": "sha256:e151fabe368bcb4135d40fc9f26ba6aa5b39dddd107c2227fac16c9b1b39a8a0",
+      "observed": "hotel"
+    }
+  ],
+  "cameras": [
+    {
+      "name": "station-frontages-and-trainsheds",
+      "position": [
+        119,
+        145,
+        -179
+      ],
+      "lookAt": [
+        -12,
+        8,
+        17
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.57,
+        1,
+        -0.71
+      ]
+    },
+    {
+      "name": "clock-marquise-and-hotel",
+      "position": [
+        -40,
+        12,
+        -120
+      ],
+      "lookAt": [
+        -58,
+        12.8,
+        -75
+      ],
+      "fov": 67,
+      "lightDirection": [
+        -0.41,
+        1,
+        -0.74
+      ]
+    },
+    {
+      "name": "chatham-gate-and-stone-frontage",
+      "position": [
+        12,
+        6.8,
+        -98
+      ],
+      "lookAt": [
+        15,
+        9.8,
+        -78
+      ],
+      "fov": 72,
+      "lightDirection": [
+        0.51,
+        1,
+        -0.68
+      ]
+    },
+    {
+      "name": "buckingham-palace-road-hotel",
+      "position": [
+        -135,
+        13.6,
+        -97
+      ],
+      "lookAt": [
+        -94,
+        17.2,
+        -49
+      ],
+      "fov": 62,
+      "lightDirection": [
+        -0.54,
+        1,
+        -0.6
+      ]
+    },
+    {
+      "name": "barrel-roofs-and-tracks",
+      "position": [
+        91,
+        38,
+        102
+      ],
+      "lookAt": [
+        24,
+        8,
+        13
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.7,
+        1,
+        0.52
+      ]
+    },
+    {
+      "name": "sawtooth-and-victoria-place",
+      "position": [
+        -151,
+        49,
+        91
+      ],
+      "lookAt": [
+        -51,
+        10,
+        25
+      ],
+      "fov": 66,
+      "lightDirection": [
+        -0.58,
+        1,
+        0.72
+      ]
+    },
+    {
+      "name": "open-platforms-and-trusses",
+      "position": [
+        14,
+        4.6,
+        59
+      ],
+      "lookAt": [
+        11,
+        7.4,
+        -32
+      ],
+      "fov": 65,
+      "lightDirection": [
+        0.52,
+        1,
+        0.69
+      ]
+    }
+  ],
+  "materialMethod": "Seven shared graphs cover Flemish brick, limestone, slate, standing seam, painted iron, glass and paving. The local clear material is used for skylights. No images are embedded.",
+  "sourceFacts": {
+    "station": "relation/6036811",
+    "terrainDatumMeters": 3,
+    "footprintPartIds": [
+      35184512417542,
+      35184512417546,
+      35185220646605,
+      35185843921456,
+      35185843921598,
+      52776564170059
+    ],
+    "representativeBoardingIslands": 9
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -12,
+        7,
+        16
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/london-victoria-station-model.mjs",
+    "export": "buildVictoriaSkyline",
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.95
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.93
+      },
+      "hotel": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.93
+      },
+      "clock": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.93
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.91
+      },
+      "zinc": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.82,
+        "metallic": 0.12
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.13
+      },
+      "black": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.13
+      },
+      "marquise": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.13
+      },
+      "white": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.13
+      },
+      "green": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.13
+      },
+      "mark": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.13
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.96
+      },
+      "glass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.4
+      },
+      "clear": {
+        "slot": "window",
+        "localRef": "palette:#e5f4ff",
+        "roughness": 0.29,
+        "metallic": 0.04,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.55
+        ],
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildVictoriaDistrict",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "hotel": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "clock": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.91
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.12
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "black": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "marquise": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "mark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.4
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#e5f4ff",
+            "roughness": 0.29,
+            "metallic": 0.04,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.55
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.72
+      },
+      "street": {
+        "export": "buildVictoriaStreet",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "hotel": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "clock": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.91
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.12
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "black": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "marquise": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "mark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.4
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#e5f4ff",
+            "roughness": 0.29,
+            "metallic": 0.04,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.55
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "closeup": {
+        "export": "buildVictoriaCloseup",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "hotel": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "clock": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.91
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.12
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "black": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "marquise": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "mark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.13
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.4
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#e5f4ff",
+            "roughness": 0.29,
+            "metallic": 0.04,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.55
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "london_victoria_station-skyline",
+      "position": [
+        119,
+        145,
+        -179
+      ],
+      "lookAt": [
+        -12,
+        8,
+        17
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.57,
+        1,
+        -0.71
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "london_victoria_station-district",
+      "position": [
+        119,
+        145,
+        -179
+      ],
+      "lookAt": [
+        -12,
+        8,
+        17
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.57,
+        1,
+        -0.71
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "london_victoria_station-street",
+      "position": [
+        119,
+        145,
+        -179
+      ],
+      "lookAt": [
+        -12,
+        8,
+        17
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.57,
+        1,
+        -0.71
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "london_victoria_station-closeup",
+      "position": [
+        119,
+        145,
+        -179
+      ],
+      "lookAt": [
+        -12,
+        8,
+        17
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.57,
+        1,
+        -0.71
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

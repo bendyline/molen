@@ -611,6 +611,16 @@ Circa 1910 changes the surface treatment of the present-day map; it does not rec
 
 See [Surface styles and parameterized line features](surface-rendering.md) for the shared rendering API, parking inference rules, budgets, and rail/utility profile examples.
 
+Railways are surfaces too: ballasted track beds whose sleepers and rails the pavement material
+draws (so a yard reads as parallel tracks from the air), rails in 3D close up, level crossings
+with their panels, crossbucks, lights and gates, switch stands, color-light signals at mapped
+signal points, lineside signs, platforms and overhead catenary. Which tracks are wired is the
+surface style's `railElectrification`: `'light'` by default (light rail, trams and open-air
+subways), `'all'` where main lines are electrified too, or `'none'`; `railGauge` sets the main
+lines' gauge where it is not standard. World explorer wires Kyoto, Sydney and New Delhi
+throughout, with Kyoto's lines at 1.067 m and New Delhi's at 1.676 m. See
+[Railways](surface-rendering.md#railways).
+
 The explorer plans adaptive streaming at 10 Hz, independently of rendering and movement. Covered
 ancestors that were evicted under memory pressure are not reloaded while finer resident tiles
 supply their coverage; coarse coverage remains warm for camera turns. The HUD reports actual
@@ -620,6 +630,24 @@ Land-cover draping can run off-thread with `createTerrainLandcoverWorkerBridge(w
 `installTerrainLandcoverWorker(scope)` from the terrain client. The worldgen renderer accepts the
 bridge through `landcoverGenerator`; the caller disposes it after its tiles are disposed. It
 preserves source height samples, terrain triangle alignment, colors, holes, and material settings.
+
+Distant tiles can draw land cover as one texture each instead: pass `landcoverRaster` in the
+semantic mesh options (`TerrainLandcoverRasterOptions`) and a shared
+`createTerrainGroundTextureMaterial()` as `materials.landcoverRaster` (WebGL materials; keep its
+origin current with `setTerrainGroundOrigin`, as for the ground). Tiles at least `minDepth`
+levels coarser than the pyramid's finest (default 2) then paint their classes into a `size`
+texture (default 256 texels across) and draw it on a copy of the tile's own terrain grid, cut by
+shorelines and model openings like the draped mesh. Each class takes the color the draped mesh
+settles to with distance: crop rows and shrub crowns at their mean. The tile's mapped roads and
+building footprints are painted over the classes (`features`, default on), each texel by the
+share of it they cover, so a town past the range of road and building geometry still reads as
+one; `canopy` tints wooded classes on tiles past the range a host places trees in. The draped
+mesh clips every polygon to the terrain grid and carries 88 bytes a vertex for crop rows, class
+blends and ground detail, none of which shows from kilometers away: over Bellevue at Balanced
+detail it was 1.9 of a view's 4.8 million triangles and 208 of its 671 MiB of visible geometry,
+and its slowest layer to build. With the texture on tiles from two levels down, the same view
+draws 2.5 million triangles and holds 276 MiB, and a flight that had filled its 2 GiB cache and
+evicted 79 tiles stayed at 1.2 GiB and evicted none. The worker bridge builds either form.
 
 
 Runtime quality controllers can call `stream.setBudget(partialBudget)` with measured screen-space

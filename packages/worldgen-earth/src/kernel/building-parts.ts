@@ -33,16 +33,17 @@ function isPart(piece: BuildingPiece): boolean {
 }
 
 export function buildingPieces(features: readonly TerrainBuildingFeature[]): BuildingPiece[] {
-  const pieces = features.flatMap((feature) =>
-    feature.polygons.map(
+  const pieces = features.flatMap((feature) => {
+    if ((feature.layer ?? 0) < 0) return [];
+    return feature.polygons.map(
       (polygon, polygonIndex): BuildingPiece => ({
         feature,
         polygon,
         polygonIndex,
         labels: buildingLabels(feature),
       }),
-    ),
-  );
+    );
+  });
   const parts = pieces.filter(isPart);
   if (parts.length === 0) return pieces;
   const outlines = pieces.filter((piece) => !isPart(piece));

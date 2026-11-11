@@ -60,7 +60,19 @@ const LEVEL_ERRORS = [0.45, 2] as const;
  */
 const CARD_HANDOVER = 0.25;
 
-function handoverError(level: number, finer: PreparedModel): number {
+/**
+ * Projected error at which the horizon level (a fourth model, where one is given) takes over:
+ * about 930 m out at a 2.5 pixel budget on a 1080-line view. The far level's skirts are under a
+ * pixel deep well before that; what they keep to this distance is the banded shading that tells
+ * a fir from a cone. At 1.4 km a wooded view drew half its triangles as those skirts.
+ */
+const HORIZON_ERROR = 2.5;
+/** Index of the horizon model in the models a placement LOD is built from. */
+const HORIZON_MODEL = 3;
+
+/** `previous`: the error the level before this one took over at (unit instance scale). */
+function handoverError(level: number, finer: PreparedModel, previous: number): number {
+  if (level >= HORIZON_MODEL) return Math.max(HORIZON_ERROR, previous * 1.5);
   const cards =
     (finer.material.alphaTest > 0 || finer.material.alphaToCoverage) &&
     !withoutCards(finer.geometry);
@@ -146,7 +158,7 @@ class InstancedDetailSwitch extends THREE.LOD {
   private castsShadow = false;
   private appliedShadow: boolean | undefined;
   /** What the last view-camera choice saw; see `update`. */
-  private readonly seen = new Float64Array(23).fill(Number.NaN);
+  private readonly seen = new Float64Array(24).fill(Number.NaN);
   constructor(
     readonly policy: ScreenSpaceLodPolicy,
     readonly bounds: THREE.Box3,
@@ -154,11 +166,15 @@ class InstancedDetailSwitch extends THREE.LOD {
     private readonly geometries: readonly (THREE.BufferGeometry | undefined)[],
     private readonly errors: readonly number[],
     private readonly materials: readonly THREE.Material[] = [],
-    /** The distant level's material skips shadow lookups itself; see `unshadowedMaterial`. */
+    /** The distant levels' material skips shadow lookups itself; see `unshadowedMaterial`. */
     private readonly shadowFreeDistant = false,
     /** Largest instance's diameter (local meters) and the pixels below which it hides; 0: never. */
     private readonly vanishSize = 0,
     private readonly vanishPixels = 0,
+    /** The first distant level: from it on a batch neither casts nor receives shadows. */
+    private readonly distantFrom: number = geometries.length - 1,
+    /** The level chosen by the policy's `horizonPixelError`; -1 without one. */
+    private readonly horizonLevel: number = -1,
   ) {
     super();
     this.add(mesh);
@@ -178,6 +194,10 @@ class InstancedDetailSwitch extends THREE.LOD {
     else if (now - this.perspectiveAt < 250) return;
     const height = Math.max(1, this.policy.viewportHeight);
     const error = Math.max(0.1, this.policy.maxPixelError);
+    const horizonError = Math.max(0.1, this.policy.horizonPixelError ?? this.policy.maxPixelError);
+    const ready = this.mesh.userData.materialReady as
+      | ((material: THREE.Material) => boolean)
+      | undefined;
     if (!perspective.isPerspectiveCamera) {
       const ortho = camera as THREE.OrthographicCamera;
       const scale = this.matrixWorld.getMaxScaleOnAxis();
@@ -185,12 +205,13 @@ class InstancedDetailSwitch extends THREE.LOD {
         (height * ortho.zoom) / Math.max(0.001, (ortho.top ?? 1) - (ortho.bottom ?? -1));
       let level = 0;
       for (let i = 1; i < this.geometries.length; i++) {
-        const threshold = this.selected >= i ? error * 1.15 : error;
+        const budget = i === this.horizonLevel ? horizonError : error;
+        const threshold = this.selected >= i ? budget * 1.15 : budget;
         if ((this.errors[i] ?? 0) * scale * pixelsPerMeter <= threshold) level = i;
       }
       this.selected = level;
       this.seen[0] = Number.NaN;
-    } else if (this.moved(perspective, height, error)) {
+    } else if (this.moved(perspective, height, error, horizonError)) {
       const scale = this.matrixWorld.getMaxScaleOnAxis();
       const focal = height / (2 * Math.tan((perspective.fov * Math.PI) / 360));
       // The world matrix is current here, as for THREE.LOD; worldToLocal would first recompose
@@ -199,9 +220,11 @@ class InstancedDetailSwitch extends THREE.LOD {
         .setFromMatrixPosition(camera.matrixWorld)
         .applyMatrix4(inverseWorld.copy(this.matrixWorld).invert());
       const distance = (this.bounds.distanceToPoint(local) * scale) / perspective.zoom;
+      const handover = (i: number): number =>
+        (scale * (this.errors[i] ?? 0) * focal) / (i === this.horizonLevel ? horizonError : error);
       let level = 0;
       for (let i = 1; i < this.geometries.length; i++) {
-        const threshold = (scale * (this.errors[i] ?? 0) * focal) / error;
+        const threshold = handover(i);
         // 15% hysteresis toward the level already shown, as THREE.LOD does.
         if (distance >= (this.selected >= i ? threshold * 0.85 : threshold)) level = i;
         else break;
@@ -211,14 +234,24 @@ class InstancedDetailSwitch extends THREE.LOD {
         const vanishAt = (scale * this.vanishSize * focal) / this.vanishPixels;
         this.vanished = distance >= (this.vanished ? vanishAt * 0.85 : vanishAt);
       }
+      // A camera within a quarter of a handover asks for the level across it now, so its material
+      // is built by the time the batch gets there rather than started then (see below).
+      if (ready !== undefined) {
+        const near = level > 0 && distance < handover(level) * APPROACH ? level - 1 : -1;
+        const far =
+          level + 1 < this.geometries.length && distance * APPROACH >= handover(level + 1)
+            ? level + 1
+            : -1;
+        for (const next of [near, far]) {
+          const material = next >= 0 && this.geometries[next] ? this.materials[next] : undefined;
+          if (material !== undefined && material !== this.mesh.material) ready(material);
+        }
+      }
     }
     // Keep the level shown while the material the chosen one draws with is still being prepared,
     // as `userData.materialReady` (a preparing renderer sets it) reports: drawing it now would build
     // its shaders mid-frame. Asking moves its preparation ahead; the choice is made again next frame.
     const wanted = this.materials[this.selected];
-    const ready = this.mesh.userData.materialReady as
-      | ((material: THREE.Material) => boolean)
-      | undefined;
     if (
       this.selected !== this.shown &&
       this.geometries[this.selected] !== undefined &&
@@ -241,12 +274,16 @@ class InstancedDetailSwitch extends THREE.LOD {
       this.mesh.geometry = geometry;
     const material = this.materials[level];
     if (material !== undefined && this.mesh.material !== material) this.mesh.material = material;
-    this.mesh.castShadow = level < this.geometries.length - 1 && this.castsShadow;
+    this.mesh.castShadow =
+      (level < this.distantFrom ||
+        // Not the horizon level: its shadow is a texel or two, and it is most of the batches.
+        (this.policy.distantShadows === true && level !== this.horizonLevel)) &&
+      this.castsShadow;
     this.appliedShadow = this.mesh.castShadow;
     // Nor does it receive them: it stands mostly past the camera-following shadow map, yet each
     // of its fragments still paid for the map's soft lookups across a whole distant tree line. A
     // shadow-free material skips them itself and the host's flag stays, as shaders are built for it.
-    if (!this.shadowFreeDistant) this.mesh.receiveShadow = level < this.geometries.length - 1;
+    if (!this.shadowFreeDistant) this.mesh.receiveShadow = level < this.distantFrom;
   }
 
   /**
@@ -257,7 +294,12 @@ class InstancedDetailSwitch extends THREE.LOD {
    * set shadow flags or visibility on the batch in between. The camera's world matrix is current
    * here, as THREE.LOD itself assumes.
    */
-  private moved(camera: THREE.PerspectiveCamera, height: number, error: number): boolean {
+  private moved(
+    camera: THREE.PerspectiveCamera,
+    height: number,
+    error: number,
+    horizonError: number,
+  ): boolean {
     const seen = this.seen,
       view = camera.matrixWorld.elements,
       own = this.matrixWorld.elements;
@@ -268,7 +310,8 @@ class InstancedDetailSwitch extends THREE.LOD {
       seen[3] === camera.fov &&
       seen[4] === camera.zoom &&
       seen[5] === height &&
-      seen[6] === error;
+      seen[6] === error &&
+      seen[23] === horizonError;
     for (let i = 0; same && i < 16; i++) same = seen[7 + i] === own[i];
     if (same) return false;
     seen[0] = view[12] as number;
@@ -279,16 +322,25 @@ class InstancedDetailSwitch extends THREE.LOD {
     seen[5] = height;
     seen[6] = error;
     seen.set(own, 7);
+    seen[23] = horizonError;
     return true;
   }
 }
+/** How far past a handover (as a factor of its distance) a batch asks for the level across it. */
+const APPROACH = 1.25;
 const cameraPosition = new THREE.Vector3();
 const inverseWorld = new THREE.Matrix4();
 
-/** No per-frame instance uploads: LOD switches shared models, with 15% transition hysteresis. */
+/**
+ * No per-frame instance uploads: LOD switches shared models, with 15% transition hysteresis.
+ * `models` are the near, medium and far models and, optionally, a horizon model: see
+ * `ScreenSpaceLodPolicy.horizonPixelError`.
+ */
 export function createInstancedPlacementLod(
   set: PlacementSet,
-  models: readonly [PreparedModel, PreparedModel, PreparedModel],
+  models:
+    | readonly [PreparedModel, PreparedModel, PreparedModel]
+    | readonly [PreparedModel, PreparedModel, PreparedModel, PreparedModel],
   options: InstancedPlacementLodOptions = {},
   name = `worldgen:${set.setId}`,
 ): THREE.Group {
@@ -377,20 +429,31 @@ export function createInstancedPlacementLod(
       const geometries: (THREE.BufferGeometry | undefined)[] = [models[0].geometry];
       const materials = [levelMaterial(models[0].material, models[0].geometry)];
       const errors = [0];
+      // The first level built from the far model or one past it, and the horizon model's level.
+      let distantFrom = -1,
+        horizonLevel = -1,
+        unit = 0;
       for (let level = 1; level < models.length; level++) {
         const model = models[level] as PreparedModel;
         if (model.geometry === models[level - 1]?.geometry) continue;
+        unit = handoverError(level, models[level - 1] as PreparedModel, unit);
         geometries.push(drawn(model) ? model.geometry : undefined);
         materials.push(levelMaterial(model.material, model.geometry));
-        errors.push(handoverError(level, models[level - 1] as PreparedModel) * largestScale);
+        errors.push(unit * largestScale);
+        if (level >= 2 && distantFrom < 0) distantFrom = geometries.length - 1;
+        if (level >= HORIZON_MODEL) horizonLevel = geometries.length - 1;
         if (!drawn(model)) break;
       }
       const last = geometries.length - 1;
-      const shadowFree =
-        last > 0 && geometries[last] !== undefined
-          ? unshadowedMaterial(materials[last] as THREE.Material, models[0].material)
-          : undefined;
-      if (shadowFree !== undefined) materials[last] = shadowFree;
+      if (distantFrom < 0) distantFrom = last;
+      let shadowFree = false;
+      for (let level = Math.max(1, distantFrom); level <= last; level++) {
+        if (geometries[level] === undefined) continue;
+        const twin = unshadowedMaterial(materials[level] as THREE.Material, models[0].material);
+        if (twin === undefined) continue;
+        materials[level] = twin;
+        shadowFree = true;
+      }
       first.material = materials[0] as THREE.Material;
       // The renderer prepares the materials a level swaps in (the opaque and shadow-free twins)
       // ahead of the frame that first shows them, which would otherwise build them mid-frame.
@@ -406,9 +469,11 @@ export function createInstancedPlacementLod(
         geometries,
         errors,
         materials,
-        shadowFree !== undefined,
+        shadowFree,
         2 * (model.boundingSphere?.radius ?? 0) * largestScale,
         options.vanishPixels ?? 0,
+        distantFrom,
+        horizonLevel,
       );
       lod.name = `${name}:${key}`;
       lod.position.copy(center);
@@ -428,19 +493,19 @@ export function createInstancedPlacementLod(
     lod.matrixAutoUpdate = false;
     if (lod instanceof ScreenSpaceLod) lod.addDetail(first, 0);
     else lod.addLevel(first, 0);
+    let unit = 0;
     for (let level = 1; level < models.length; level++) {
       const model = models[level] as PreparedModel;
       if (model.geometry === models[level - 1]?.geometry) continue;
+      unit = handoverError(level, models[level - 1] as PreparedModel, unit);
+      // Fixed distances name two handovers; a horizon model takes over at three times the second.
+      const distance = (distances[level - 1] ?? distances[1] * 3) + radius;
       if (!drawn(model)) {
         const nothing = new THREE.Group();
         nothing.name = `${name}:${key}:lod${level}`;
         nothing.visible = false;
-        if (lod instanceof ScreenSpaceLod)
-          lod.addDetail(
-            nothing,
-            handoverError(level, models[level - 1] as PreparedModel) * largestScale,
-          );
-        else lod.addLevel(nothing, (distances[level - 1] as number) + radius, 0.15);
+        if (lod instanceof ScreenSpaceLod) lod.addDetail(nothing, unit * largestScale);
+        else lod.addLevel(nothing, distance, 0.15);
         break;
       }
       const mesh = new InstanceBatch(
@@ -456,15 +521,11 @@ export function createInstancedPlacementLod(
       mesh.castShadow = false;
       // The distant level stands kilometers out, past the camera-following shadow map, yet a
       // batch kilometers across still overlaps the shadow frustum; keep it out of the shadow pass.
-      if (level === models.length - 1) mesh.userData.shadowCaster = false;
+      if (level >= 2) mesh.userData.shadowCaster = false;
       mesh.computeBoundingBox();
       mesh.computeBoundingSphere();
-      if (lod instanceof ScreenSpaceLod) {
-        lod.addDetail(
-          mesh,
-          handoverError(level, models[level - 1] as PreparedModel) * largestScale,
-        );
-      } else lod.addLevel(mesh, (distances[level - 1] as number) + radius, 0.15);
+      if (lod instanceof ScreenSpaceLod) lod.addDetail(mesh, unit * largestScale);
+      else lod.addLevel(mesh, distance, 0.15);
       mesh.visible = false;
     }
     group.add(lod);

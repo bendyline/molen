@@ -1,4 +1,8 @@
-import type { AircraftEngineSpec, AirplanePhysicsSpec } from '@bendyline/molen-schema';
+import type {
+  AircraftEngineSpec,
+  AircraftEngineStateData,
+  AirplanePhysicsSpec,
+} from '@bendyline/molen-schema';
 import { dmath as m } from './dmath';
 import type { AtmosphereSample } from './weather';
 
@@ -126,6 +130,30 @@ export function aircraftEngineThrust(
     ) *
     m.clamp(throttle, 0, 1) *
     aircraftMixtureEfficiency(engine, atmosphere, mixture)
+  );
+}
+
+/**
+ * Fuel burned by a running engine in kg/s. A jet burns by its thrust, several times more with
+ * the afterburner lit; a propeller or rotor engine by the shaft power it delivers (`load` scales
+ * that for a governed rotor at part collective). Neither goes below an idle flow.
+ */
+export function aircraftFuelFlow(
+  engine: AircraftEngineSpec,
+  state: AircraftEngineStateData,
+  load = 1,
+): number {
+  if (engine.propulsion === 'jet') {
+    const dry = engine.fuelConsumption ?? 2e-5;
+    const reheat = engine.afterburnerFuelConsumption ?? 5.4e-5;
+    return (
+      m.max(state.thrust, 0.05 * (engine.dryThrust ?? 0)) *
+      (dry + (reheat - dry) * (state.afterburner ?? 0))
+    );
+  }
+  return (
+    m.max((state.shaftPower ?? 0) * load, 0.06 * engine.power) *
+    (engine.fuelConsumption ?? (engine.mixtureControl ? 7.5e-8 : 9.5e-8))
   );
 }
 

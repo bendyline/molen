@@ -41,7 +41,14 @@ export interface EdgeDraft {
   name?: string;
   deckElevation?: number;
   bridgeConnections?: { point: Point2; elevation: number; radius: number }[];
-  bridgeApproachProfile?: { point: Point2; elevation: number; flatness: number }[];
+  bridgeApproachProfile?: {
+    point: Point2;
+    elevation: number;
+    flatness: number;
+    /** See the terrain package's `TerrainBridgeProfileSample`. */
+    ground?: number;
+    anchor?: number;
+  }[];
 }
 
 /** Design speeds in m/s by kind. */
@@ -87,7 +94,8 @@ export function classifyFeature(
     // Yards, sidings and crossovers carry no through service.
     if (feature.service !== undefined && /yard|siding|spur|crossover/.test(feature.service))
       return undefined;
-    return { class: 'rail', kind: /tram/.test(sub) ? 'tram' : 'rail' };
+    // Trams, light rail and metros: light, electric lines with their own rolling stock.
+    return { class: 'rail', kind: /tram|light_rail|subway|monorail/.test(sub) ? 'tram' : 'rail' };
   }
   if (kind === 'path') {
     if (/cycleway|bridleway/.test(sub)) return undefined;

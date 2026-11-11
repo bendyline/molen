@@ -1,0 +1,339 @@
+{
+  "planId": "alconetar_bridge",
+  "id": "alconetar_bridge",
+  "assetId": "molen.worldgen.structure.alconetar_bridge",
+  "title": "Alconétar Bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q967119",
+  "referenceCoordinate": {
+    "longitude": -6.4374904,
+    "latitude": 39.75429845
+  },
+  "visualBrief": "Three open segmental barrel vaults descend from the retained masonry ramp to the tall broken arch. The surviving piers retain battered sides, projecting stone courses, interrupted deck edges, and separate blocks near the reservoir.",
+  "size": [
+    73.73159217834473,
+    13.394068717956543,
+    7.585976600646973
+  ],
+  "actualBounds": {
+    "min": [
+      -26.47566032409668,
+      -7.199999809265137,
+      -3.7928261756896973
+    ],
+    "max": [
+      47.25593185424805,
+      6.194068908691406,
+      3.7931504249572754
+    ]
+  },
+  "nativeAxes": "Positive X points southeast down the relocated site from the retained approach to the detached masonry. Positive Z points southwest across the barrel vaults.",
+  "sourceFacts": {
+    "mappedBridgeWay": 495040347,
+    "survivingVaults": 3,
+    "modeledMasonryGroups": 8,
+    "detachedRuinPoint": [
+      42.95152,
+      -1.07512
+    ]
+  },
+  "referencePages": [
+    "https://arteenruinas.com/puente-romano-de-alconetar/",
+    "https://arteenruinas.com/wp-content/uploads/2017/10/Puente-romano-de-Alconetar-3.jpg",
+    "https://arteenruinas.com/wp-content/uploads/2017/10/Puente-romano-de-Alconetar-dsk.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/a/ac/Puente_de_Alcon%C3%A9tar%2C_C%C3%A1ceres_Province%2C_Spain._Pic_01.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/e/e4/Puente_de_Alcon%C3%A9tar%2C_C%C3%A1ceres_Province%2C_Spain._Pic_02.jpg"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      -6.4374904,
+      39.75429845
+    ],
+    "heading": -0.6537884240333756,
+    "elevationMode": "sea-level",
+    "orientationPolicy": "approximate-visualization",
+    "elevationMeters": 220,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The 220 m sea-level datum follows the standard viewer terrain. Masonry bases extend below the local sampled grade. The model leaves the mapped lake and approach paths in place.",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "bounds": [
+      -6.437796362812406,
+      39.75398054683208,
+      -6.436989658570009,
+      39.75450161892829
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f26f589c046fd99fefb622bfaf3eddb282eac9d15d10d4ec4b825092bf4853ae",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://www.openstreetmap.org/way/495040347",
+    "wikidataId": "Q967119",
+    "notes": "Three open segmental barrel vaults descend from the retained masonry ramp to the tall broken arch. The surviving piers retain battered sides, projecting stone courses, interrupted deck edges, and separate blocks near the reservoir. The 220 m sea-level datum follows the standard viewer terrain. Masonry bases extend below the local sampled grade. The model leaves the mapped lake and approach paths in place."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Shared granite supplies continuous mineral texture across modeled ashlar faces and voussoirs. The shared rammed-earth graph covers the exposed ramp and top fill. No photo textures.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ez/ez5/alconetar_bridge/models/ruins-model.mjs",
+    "export": "buildAlconetarSkyline",
+    "surfaces": {
+      "granite": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.96
+      },
+      "earth": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 0.99
+      }
+    },
+    "errorMeters": 0.38,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAlconetarDistrict",
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.17
+      },
+      "street": {
+        "export": "buildAlconetarStreet",
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.055
+      },
+      "closeup": {
+        "export": "buildAlconetarCloseup",
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.99
+          }
+        },
+        "errorMeters": 0.016
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        7,
+        1.7,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "alconetar_bridge-skyline",
+      "position": [
+        24,
+        22,
+        53
+      ],
+      "lookAt": [
+        7,
+        1.7,
+        0
+      ],
+      "fov": 55,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "alconetar_bridge-district",
+      "position": [
+        24,
+        22,
+        53
+      ],
+      "lookAt": [
+        7,
+        1.7,
+        0
+      ],
+      "fov": 55,
+      "reviewLod": "district"
+    },
+    {
+      "name": "alconetar_bridge-street",
+      "position": [
+        24,
+        22,
+        53
+      ],
+      "lookAt": [
+        7,
+        1.7,
+        0
+      ],
+      "fov": 55,
+      "reviewLod": "street"
+    },
+    {
+      "name": "alconetar_bridge-closeup",
+      "position": [
+        24,
+        22,
+        53
+      ],
+      "lookAt": [
+        7,
+        1.7,
+        0
+      ],
+      "fov": 55,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "The surviving masonry is modeled at the relocated site. The matched OSM footprint gives the signed axis, and the second PMTiles ruin point locates the detached remains.",
+    "The photos control the order of the three visible openings, broken deck and short piers. Local heights, individual stone sizes and the detached masonry outline are exterior estimates.",
+    "The host reservoir surface can reach the lowest detached masonry as shoreline and water level change."
+  ],
+  "qaCameras": [
+    {
+      "name": "three-open-vaults",
+      "position": [
+        0.5,
+        7.2,
+        37
+      ],
+      "lookAt": [
+        1,
+        1.15,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "approach-and-low-arch",
+      "position": [
+        -25.2,
+        6.25,
+        15.8
+      ],
+      "lookAt": [
+        -16.6,
+        3.55,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "middle-arch-and-break",
+      "position": [
+        -2.5,
+        7.7,
+        -18.4
+      ],
+      "lookAt": [
+        3.4,
+        2.65,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "tall-arch-and-stepped-pier",
+      "position": [
+        30.6,
+        6.3,
+        18
+      ],
+      "lookAt": [
+        18.1,
+        2.38,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "underside-masonry",
+      "position": [
+        18.03,
+        0.87,
+        7.6
+      ],
+      "lookAt": [
+        18.03,
+        3.55,
+        -1.1
+      ],
+      "fov": 55
+    },
+    {
+      "name": "detached-remains-and-slope",
+      "position": [
+        52.5,
+        5.6,
+        16.2
+      ],
+      "lookAt": [
+        39.8,
+        -1.08,
+        -0.5
+      ],
+      "fov": 62
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 43758,
+    "vertices": 131274,
+    "materials": 2,
+    "bytes": 5252980,
+    "sha256": "sha256:b00102fe168ea950788deaab37817c17d4ef537bc7febea00bea8b774a30859b"
+  }
+}

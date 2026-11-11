@@ -1,0 +1,138 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.kharkiv_metro_bridge",
+  "inputHash": "sha256:20a4bbfe96e5b06378d9d4594e60b3178e9164e606b1e18e00d08e5b219d7c62",
+  "sourceHash": "sha256:b47326324337c6ae66b72347f92974e44cfa2fc26838844364fe9332eb01c7a3",
+  "runtimeHash": "sha256:71a1c974ae5b27158da53680fe39a4be3d68cfeb1e05ad517db2e0fa2300e963",
+  "fixtureHash": "sha256:dd5b25dd252351fb5a8119d1a884b1e2dbe2d0fc53626a417300861c563c7b41",
+  "placementHash": "sha256:79787f8ded3fb39a7e3545dee38de1ba6674654f36c45ec4081b9dc2ef970f55",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_boardformed": {
+      "path": "materials/concrete_boardformed.matgraph.json",
+      "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+    },
+    "molen.worldgen.material.metal_corrugated": {
+      "path": "materials/metal_corrugated.matgraph.json",
+      "hash": "sha256:f2d0648da95df58305679176365fd55b9656f3666312eea610394737e1c5001f"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    }
+  },
+  "frames": [
+    {
+      "id": "kharkiv_metro_bridge",
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:9b0c24c89a58fabbcb40ce26ce70f939e88ab33d986ea1219abac5baf74cc5a9",
+      "camera": {
+        "name": "street",
+        "position": [
+          -25.00019683522496,
+          104.4,
+          19.83028386584539
+        ],
+        "lookAt": [
+          34.162295615219136,
+          108,
+          2.2220617224504067
+        ],
+        "fov": 55,
+        "time": "noon",
+        "shadows": true,
+        "resolutionScale": 1,
+        "lightDirection": [
+          -0.38,
+          1,
+          0.28
+        ],
+        "silhouette": false
+      },
+      "view": {
+        "draws": 20,
+        "triangles": 261608,
+        "visibleMemberDraws": {
+          "kharkiv.metro.bridge": 4
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.kharkiv_metro_bridge",
+        "runtimeHash": "sha256:71a1c974ae5b27158da53680fe39a4be3d68cfeb1e05ad517db2e0fa2300e963",
+        "lodHash": "sha256:727ec09acc3879756e235de9c57e1f934b2e9dd8c30c6ba82c770343563897b0",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "kharkiv.metro.bridge",
+        "visibleDraws": 4
+      }
+    }
+  ],
+  "errors": [],
+  "placementChecks": [
+    {
+      "level": "skyline",
+      "deckProbes": 18,
+      "portalJoins": 4,
+      "maximumPortalPlanGapMeters": 0.000005759722122492066,
+      "minDeckHeightOverSampledBed": 5.508492852793879,
+      "undergroundTracksRetained": true,
+      "removedElevatedMetroMeters": 2020.3961808662207,
+      "unload": {
+        "groundRetained": true,
+        "waterRetained": true,
+        "liveGeometries": 0
+      }
+    },
+    {
+      "level": "district",
+      "deckProbes": 18,
+      "portalJoins": 4,
+      "maximumPortalPlanGapMeters": 0.000005759722122492066,
+      "minDeckHeightOverSampledBed": 5.508492852793879,
+      "undergroundTracksRetained": true,
+      "removedElevatedMetroMeters": 2020.3961808662207,
+      "unload": {
+        "groundRetained": true,
+        "waterRetained": true,
+        "liveGeometries": 0
+      }
+    },
+    {
+      "level": "street",
+      "deckProbes": 18,
+      "portalJoins": 4,
+      "maximumPortalPlanGapMeters": 0.000005759722122492066,
+      "minDeckHeightOverSampledBed": 5.508492852793879,
+      "undergroundTracksRetained": true,
+      "removedElevatedMetroMeters": 2020.3961808662207,
+      "unload": {
+        "groundRetained": true,
+        "waterRetained": true,
+        "liveGeometries": 0
+      }
+    },
+    {
+      "level": "closeup",
+      "deckProbes": 18,
+      "portalJoins": 4,
+      "maximumPortalPlanGapMeters": 0.000005759722122492066,
+      "minDeckHeightOverSampledBed": 5.535493294118638,
+      "undergroundTracksRetained": true,
+      "removedElevatedMetroMeters": 2020.3961808662207,
+      "unload": {
+        "groundRetained": true,
+        "waterRetained": true,
+        "liveGeometries": 0
+      }
+    }
+  ],
+  "notes": "The model binds four shared material graphs, including the corrugated roof. Two rail-specific masks remove the duplicate elevated metro traces and retain the underground lines and nearby roads."
+}

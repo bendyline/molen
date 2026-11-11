@@ -58,6 +58,7 @@ import {
   createDefaultTerrainSemanticRenderer,
   createProfiledTerrainPackageSemanticLayers,
   createTerrainGroundMaterialAsync,
+  createTerrainGroundTextureMaterial,
   createTerrainPackagePyramidStream,
   createTerrainPavementMaterialAsync,
   createTerrainSurfaceRenderer,
@@ -72,6 +73,7 @@ import {
   type TerrainPyramidTileLayer,
   type TerrainPyramidView,
   type TerrainQualityPreset,
+  type TerrainRoadGrading,
   type TerrainSurfaceRenderer,
   type TerrainTileArchive,
   type TerrainWaterMaterial,
@@ -129,6 +131,7 @@ import { EarthAudioTerrain, type EarthAudioTerrainSample } from './audio-terrain
 import type { EarthContent } from './content';
 import { EarthDioramaDirector, type EarthDioramaOptions, type EarthDioramas } from './dioramas';
 import { createEarthFleet, type EarthFleetOptions } from './fleet';
+import { composeEarthGroundGrading } from './ground-grading';
 import {
   EARTH_EXPOSURE,
   EARTH_LIGHTING,
@@ -227,6 +230,14 @@ export type EarthVehicleStatus =
       heading: number;
       view: 'cockpit' | 'chase';
       waitingForTerrain: boolean;
+      /** A car with a powertrain: the selected gear, -1 in reverse. */
+      gear?: number;
+      /** A car with a powertrain: engine speed in rev/min. */
+      rpm?: number;
+      /** 0–1: how hard traction or stability control is intervening. */
+      assist?: number;
+      /** Grip of the surface under the car relative to dry pavement (1 on the road). */
+      surfaceGrip?: number;
     }
   | ({ kind: 'aircraft' } & EarthFlightStatus);
 
@@ -374,6 +385,13 @@ export interface EarthViewOptions {
   workers?: EarthViewWorkers;
   /** Seeded synthetic homes where street density suggests missing outlines (default true). */
   buildingInfill?: CreateEarthWorldgenOptions['buildingInfill'];
+  /**
+   * Grade roads with the tiles around each one (default true): the ground is leveled under
+   * every road, so pavement no longer tilts and ripples with the elevation samples, and bridges
+   * are stacked clear of what they cross, meeting across tile edges. `{ earthworks: false }`
+   * keeps the bridge grading and leaves the ground as surveyed; `false` turns both off.
+   */
+  roadGrading?: boolean | { earthworks?: boolean };
   /**
    * Keep baked building materials across visits, e.g. `createIndexedDbMaterialStore()` from
    * `@bendyline/molen-client`; a later visit reads them instead of baking.
@@ -987,6 +1005,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       renderer.backend,
     );
     disposers.push(() => fieldMaterial.dispose());
+    // Distant tiles draw their land cover as one texture each (see `farLandcover`): WebGL only,
+    // where a material's `map` reaches the shader.
+    const farGroundMaterial =
+      renderer.backend === 'webgl' ? createTerrainGroundTextureMaterial({}) : undefined;
+    if (farGroundMaterial !== undefined) disposers.push(() => farGroundMaterial.dispose());
     // Roads, sidewalks, markings and lots: asphalt, concrete slabs and worn paint.
     const pavementMaterial = await createTerrainPavementMaterialAsync({}, renderer.backend);
     disposers.push(() => pavementMaterial.dispose());
@@ -1111,6 +1134,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             details: {
               preferMappedProps: content?.worldgen !== undefined,
               parkedVehicles: content?.parkedVehicles ?? [],
+              railCars: content?.railCars ?? [],
               ...surfaceBudgets(quality(), automatic ? tier.surfaceScale : 1),
             },
           },
@@ -1134,6 +1158,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                   ? { landcoverColors: options.style.landcover }
                   : {}),
                 groundMaterial: fieldMaterial,
+                ...(farGroundMaterial !== undefined
+                  ? { farLandcover: { material: farGroundMaterial } }
+                  : {}),
                 modelMaterial: scatterMaterial,
                 ...(options.sampleStructureTerrain
                   ? { sampleStructureTerrain: options.sampleStructureTerrain }
@@ -1164,6 +1191,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             : undefined;
         if (worldgen !== undefined) parts.push(() => worldgen.dispose());
         let layers: TerrainPyramidTileLayer[] = [];
+        let roadGrading: TerrainRoadGrading | undefined;
         let provideTunnelHeights!: (source: TerrainPyramidHeightSource) => void;
         const tunnelHeightsReady = new Promise<TerrainPyramidHeightSource>((resolve) => {
           provideTunnelHeights = resolve;
@@ -1192,6 +1220,20 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                   load: async (address, signal) => (await tunnelHeightsReady).load(address, signal),
                 },
               },
+              ...(options.roadGrading !== false
+                ? {
+                    roadGrading: {
+                      heights: {
+                        load: async (address, signal) =>
+                          (await tunnelHeightsReady).load(address, signal),
+                      },
+                      ...(typeof options.roadGrading === 'object' &&
+                      options.roadGrading.earthworks !== undefined
+                        ? { earthworks: options.roadGrading.earthworks }
+                        : {}),
+                    },
+                  }
+                : {}),
               ...(selected.baseUrl !== undefined ? { baseUrl: selected.baseUrl } : {}),
               ...(cacheTransport !== undefined
                 ? { transport: cacheTransport.normal, buildingDetailTransport: cacheTransport.low }
@@ -1279,6 +1321,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
               })(),
             });
             layers = semantic.layers;
+            roadGrading = semantic.roadGrading;
             const { landcover, features, buildingDetail } = semantic.semantics;
             sidecars = {
               ...(landcover !== undefined ? { landcover } : {}),
@@ -1310,6 +1353,15 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           options.style?.ground === undefined
             ? createRegionalGroundColor(worldgen?.environment)
             : undefined;
+        // Roads first, then airports: an airfield's leveling wins over the roads that cross it.
+        const groundGrading = composeEarthGroundGrading(
+          roadGrading,
+          content?.airports ? createAirportTerrainGrading(content.airports) : undefined,
+        );
+        if (roadGrading !== undefined) {
+          const grading = roadGrading;
+          parts.push(() => grading.dispose());
+        }
         const opened = await createTerrainPackagePyramidStream(
           withGroundColors(pkg, options.style?.ground),
           {
@@ -1323,9 +1375,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             ...(regionalGroundColor !== undefined ? { surfaceColor: regionalGroundColor } : {}),
             frame,
             ...budget,
-            ...(content?.airports
-              ? { transformHeightfield: createAirportTerrainGrading(content.airports) }
-              : {}),
+            ...(groundGrading ? { transformHeightfield: groundGrading } : {}),
             ...(elevationWorker !== undefined ? { elevationWorker } : {}),
             admission: renderer.admission,
             prepareObject: (object, prepareSignal, parent) =>
@@ -1352,6 +1402,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           stream.dispose();
         });
         renderer.worldRoot.add(stream.object);
+        // Scenery past the focused shadow map is shadowed from the far one (see earthShadowFocus).
+        renderer.setFarShadowCasters(stream.object);
         // Look ahead along the camera's track into the byte cache (bytes only, spare slots only).
         let prefetcher: EarthPrefetcher | undefined;
         if (options.byteCache !== undefined && options.prefetch !== false) {
@@ -1411,6 +1463,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 types: content.types,
                 water: options.water ?? EARTH_WATER_CONDITIONS,
                 ...(options.waterAt ? { waterAt: options.waterAt } : {}),
+                // Cars grip, drag and shake by the mapped road or land cover under them.
+                surfaceAt: (x, z) => audioTerrain.sample(x, z).surface,
                 obstacles: (box, except) =>
                   (ambient?.blocks(box, except) ?? false) ||
                   (aircraft?.blocks(box, except) ?? false),
@@ -2754,6 +2808,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
               details: {
                 preferMappedProps: current.worldgen !== undefined,
                 parkedVehicles: content?.parkedVehicles ?? [],
+                railCars: content?.railCars ?? [],
                 ...budgets,
               },
             })
@@ -3164,12 +3219,21 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     // little ahead of the walker, car or aircraft, where most of the frame is.
     const shadowFocus = (
       current: NavigationPose,
-    ): { center: [number, number, number]; radius: number } => {
+    ): {
+      center: [number, number, number];
+      radius: number;
+      far: { center: [number, number, number]; radius: number };
+    } => {
       if (mode === 'orbit' || pending !== undefined) {
         const state = orbit.state;
+        const radius = Math.min(2_500, Math.max(150, state.range * 1.2));
         return {
           center: [state.target[0], state.target[1], state.target[2]],
-          radius: Math.min(2_500, Math.max(150, state.range * 1.2)),
+          radius,
+          far: {
+            center: [state.target[0], state.target[1], state.target[2]],
+            radius: Math.min(6_000, Math.max(2_000, radius * 4)),
+          },
         };
       }
       const [x, y, z] = current.position;
@@ -3419,6 +3483,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       ]);
       setTerrainGroundOrigin(groundMaterial, [origin[0], origin[2]]);
       setTerrainGroundOrigin(fieldMaterial, [origin[0], origin[2]]);
+      if (farGroundMaterial !== undefined)
+        setTerrainGroundOrigin(farGroundMaterial, [origin[0], origin[2]]);
       setTerrainGroundOrigin(pavementMaterial, [origin[0], origin[2]]);
       const timing = gpuTimer?.begin() === true;
       viewer.renderFrame();
@@ -3547,6 +3613,14 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             heading: vehicles.heading ?? 0,
             view: vehicles.view,
             waitingForTerrain: vehicles.waiting,
+            ...(vehicles.driveline
+              ? {
+                  gear: vehicles.driveline.gear,
+                  rpm: vehicles.driveline.rpm,
+                  assist: vehicles.driveline.assist,
+                  surfaceGrip: vehicles.driveline.surfaceGrip,
+                }
+              : {}),
           };
         }
         return undefined;

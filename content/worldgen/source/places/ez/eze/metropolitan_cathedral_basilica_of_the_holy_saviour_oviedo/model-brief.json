@@ -1,0 +1,625 @@
+{
+  "id": "metropolitan_cathedral_basilica_of_the_holy_saviour_oviedo",
+  "title": "Oviedo Cathedral",
+  "wikidataId": "Q1534288",
+  "referenceCoordinate": {
+    "longitude": -5.843277185,
+    "latitude": 43.362528746
+  },
+  "module": "packages/worldgen/scripts/oviedo-cathedral-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-oviedo-cathedral.mjs",
+  "builder": "buildOviedoLevel",
+  "surfaces": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.96
+    },
+    "light": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.96
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92
+    },
+    "carve": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.97
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.9
+    },
+    "glass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.47
+    },
+    "amber": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.47
+    },
+    "blue": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.47
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.92
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.84,
+      "metallic": 0.17
+    },
+    "bronze": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.84,
+      "metallic": 0.17
+    }
+  },
+  "exportLabel": "Molen original Oviedo Cathedral master",
+  "expectedDraftMasterHash": "sha256:5cf44713b4ba344d9dab2aff31a469909a837561497fef5502af1d3130663ccb",
+  "visualBrief": "Oviedo Cathedral presents three recessed pointed portals and a rose window to the west plaza. The single southern tower rises to a perforated Gothic spire. A tiled nave, chapels and the Cámara Santa exterior connect to the open Museo Catedralicio cloister.",
+  "heightPolicy": "The 240 m sea-level datum follows the standard viewer terrain. The tower uses the mapped 80 m height and the three landings follow separately sampled plaza grades.",
+  "nativeAxes": "The local +X points east along the fitted precinct frame. A -0.134 rad adjustment in the asset frame follows the long wall edges. The three portals face Plaza de Alfonso II el Casto to the west, with the mapped tall tower on the south side.",
+  "limitations": [
+    "The cathedral, single tower and connected museum cloister use mapped building outlines. Smaller roofs and facade ornament are exterior photo reconstructions.",
+    "The portico is open to the recessed doors. The model depicts the Cámara Santa exterior and the cloister arcade. Interior rooms, relics and carved figures use exterior viewing scale or are outside the model scope."
+  ],
+  "references": [
+    {
+      "url": "https://www.openstreetmap.org/way/33705786",
+      "observed": "Named cathedral footprint and local orientation"
+    },
+    {
+      "url": "https://megaconstrucciones.net/images/edificios-religiosos/foto2/oviedo-catedral-32.jpg",
+      "hash": "sha256:edf2eee95f9bf6884fb9e53f0e7ec37c72988b68fc209648492a5087e899d513",
+      "observed": "cathedral aerial"
+    },
+    {
+      "url": "https://3.bp.blogspot.com/-iAK7HaTiZys/UE8j2-6zSII/AAAAAAAAAzg/sxkatoKjO_k/s1600/Catedral%2Bde%2BSan%2BSalvador%2Bde%2BOviedo.JPG",
+      "hash": "sha256:4f09f2046b53401e358e098ce84c0773762c2a5d68e8e751a2ef281d0f8040f9",
+      "observed": "west portico"
+    },
+    {
+      "url": "https://www.ovetus.com/img/ciudad/cascoantiguo.jpg",
+      "hash": "sha256:fe99d4753464a71c5d2bbe33af8f3c1f2a4e9dec2177089824ddebbe14ce2070",
+      "observed": "old town"
+    }
+  ],
+  "cameras": [
+    {
+      "name": "cathedral-and-old-oviedo",
+      "position": [
+        -88.98391,
+        91,
+        110.8822
+      ],
+      "lookAt": [
+        -4.82158,
+        18,
+        1.65903
+      ],
+      "fov": 63,
+      "lightDirection": [
+        -0.6,
+        1,
+        0.64
+      ]
+    },
+    {
+      "name": "plaza-and-three-portals",
+      "position": [
+        -87.74551,
+        8,
+        7.7926
+      ],
+      "lookAt": [
+        -33.8288,
+        34,
+        3.55134
+      ],
+      "fov": 71,
+      "lightDirection": [
+        -0.79,
+        1,
+        -0.43
+      ]
+    },
+    {
+      "name": "openwork-gothic-spire",
+      "position": [
+        -62.36947,
+        64,
+        53.81495
+      ],
+      "lookAt": [
+        -32.35921,
+        63,
+        14.45273
+      ],
+      "fov": 51,
+      "lightDirection": [
+        -0.72,
+        1,
+        0.59
+      ]
+    },
+    {
+      "name": "rose-window-and-recessed-porch",
+      "position": [
+        -53.74303,
+        6.5,
+        5.5296
+      ],
+      "lookAt": [
+        -37.02903,
+        12,
+        2.26738
+      ],
+      "fov": 69,
+      "lightDirection": [
+        -0.76,
+        1,
+        0.48
+      ]
+    },
+    {
+      "name": "nave-and-north-chapels",
+      "position": [
+        -2.83742,
+        50,
+        -88.41351
+      ],
+      "lookAt": [
+        -1.28015,
+        13,
+        -16.9812
+      ],
+      "fov": 62,
+      "lightDirection": [
+        -0.6,
+        1,
+        -0.66
+      ]
+    },
+    {
+      "name": "camara-santa-and-cloister",
+      "position": [
+        84.88201,
+        50,
+        68.27185
+      ],
+      "lookAt": [
+        30.7101,
+        8,
+        33.19473
+      ],
+      "fov": 58,
+      "lightDirection": [
+        0.59,
+        1,
+        0.67
+      ]
+    },
+    {
+      "name": "open-museum-cloister",
+      "position": [
+        40.96661,
+        4.4,
+        38.16906
+      ],
+      "lookAt": [
+        35.43815,
+        6.1,
+        30.84197
+      ],
+      "fov": 70,
+      "lightDirection": [
+        -0.65,
+        1,
+        0.54
+      ]
+    }
+  ],
+  "materialMethod": "Seven shared graphs supply limestone, carved stone, weathered bases, terracotta, stained glass, timber and bronze tints. The rose, portal ribs and openwork spire are geometry. No images are embedded.",
+  "sourceFacts": {
+    "cathedral": "way/33705786",
+    "terrainDatumMeters": 240,
+    "footprintPartIds": [
+      35184405794618,
+      35185055210916,
+      52776560850864
+    ],
+    "towerHeightMeters": 80
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -8,
+        19,
+        6
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/oviedo-cathedral-model.mjs",
+    "export": "buildOviedoSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.96
+      },
+      "light": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.96
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92
+      },
+      "carve": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.9
+      },
+      "glass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.47
+      },
+      "amber": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.47
+      },
+      "blue": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.47
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.92
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.17
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.17
+      }
+    },
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildOviedoDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "light": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "carve": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.47
+          },
+          "amber": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.47
+          },
+          "blue": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.47
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.17
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.17
+          }
+        },
+        "errorMeters": 0.72
+      },
+      "street": {
+        "export": "buildOviedoStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "light": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "carve": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.47
+          },
+          "amber": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.47
+          },
+          "blue": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.47
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.17
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.17
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "closeup": {
+        "export": "buildOviedoCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "light": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.96
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "carve": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.47
+          },
+          "amber": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.47
+          },
+          "blue": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.47
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.17
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.17
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "metropolitan_cathedral_basilica_of_the_holy_saviour_oviedo-skyline",
+      "position": [
+        -88.98391,
+        91,
+        110.8822
+      ],
+      "lookAt": [
+        -4.82158,
+        18,
+        1.65903
+      ],
+      "fov": 63,
+      "lightDirection": [
+        -0.6,
+        1,
+        0.64
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "metropolitan_cathedral_basilica_of_the_holy_saviour_oviedo-district",
+      "position": [
+        -88.98391,
+        91,
+        110.8822
+      ],
+      "lookAt": [
+        -4.82158,
+        18,
+        1.65903
+      ],
+      "fov": 63,
+      "lightDirection": [
+        -0.6,
+        1,
+        0.64
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "metropolitan_cathedral_basilica_of_the_holy_saviour_oviedo-street",
+      "position": [
+        -88.98391,
+        91,
+        110.8822
+      ],
+      "lookAt": [
+        -4.82158,
+        18,
+        1.65903
+      ],
+      "fov": 63,
+      "lightDirection": [
+        -0.6,
+        1,
+        0.64
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "metropolitan_cathedral_basilica_of_the_holy_saviour_oviedo-closeup",
+      "position": [
+        -88.98391,
+        91,
+        110.8822
+      ],
+      "lookAt": [
+        -4.82158,
+        18,
+        1.65903
+      ],
+      "fov": 63,
+      "lightDirection": [
+        -0.6,
+        1,
+        0.64
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

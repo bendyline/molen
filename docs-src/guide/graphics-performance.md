@@ -74,8 +74,12 @@ The queue limits synchronous work started per animation frame. One oversized ind
 runs alone and is reported as over budget, and the frames after it repay the excess, so the budget
 holds on average: a 20 ms instanced shader build every third frame rather than every frame at half
 the frame rate, for the same throughput. `setLimits` changes the budget from the next frame on.
-A job's `priority` is `'normal'`, `'background'` (only in budget normal jobs leave) or `'urgent'`
-(ahead of normal jobs, in its own order): the terrain stream admits ground that way, and marks a
+A job's `priority` is `'normal'`, `'background'` or `'urgent'` (ahead of normal jobs, in its own
+order). Background jobs run in budget normal jobs leave and, once one has waited
+`backgroundWaitMs` (default 750), take a turn after every `backgroundShare` other jobs (default
+8): in flight normal work never runs out, and texture upgrades and the levels an object is not
+yet showing arrived a second late on average and five at worst. Urgent work is how the terrain
+stream admits ground, and it marks a
 tile group `userData.admissionPriority = 'urgent'` so `prepareObject` queues its upload the same
 way, because a tile's residency otherwise waited behind every building cell's upload. A root
 marked `'background'` prepares only in budget normal jobs leave: World Explorer's practice
@@ -313,6 +317,10 @@ nearby detail instead of leaving it hidden behind the old parent. Within that pr
 replacement family finishes before finer leaves that it would keep hidden. The existing layer concurrency and residency limits
 also bound this preparation. Layers that release the existing parent take priority over newly
 eligible layers, so slow building work cannot occupy all slots ahead of a sibling's ground cover.
+A layer under way for ground the camera has since left (neither wanted, ahead, displayed nor part
+of a handoff) finishes into the warm cache without holding a slot, up to twice the layer budget
+of them: worker queues take the nearest ground first, so after a turn those jobs ran last while
+new ground waited for the slots they held.
 Multi-level refinements advance the whole replacement family together; one already prepared fine
 leaf does not skip that intermediate handoff while its siblings still need it.
 The previous terrain surface and its layers remain visible until

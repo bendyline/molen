@@ -6,6 +6,7 @@
 
 import * as THREE from 'three';
 import type { MeshStandardNodeMaterial, Node } from 'three/webgpu';
+import { TERRAIN_TRACK_GLSL, terrainTrackNode } from './rail-material';
 
 export interface TerrainGroundMaterialOptions {
   roughness?: number;
@@ -890,6 +891,10 @@ const VERGE_FADE = 0.12;
 const STONE = 0.03125;
 const STONE_LIGHT = 0.28;
 const STONE_DARK = 0.22;
+/** Meters a pixel spans across a rail in 3D past which it drops out (its 72 mm head then under
+ * about a pixel and a half), and a polished head's finish. */
+const RAIL_FOOTPRINT = 0.05;
+const RAIL_SHEEN = { roughness: 0.3, metalness: 0.55 };
 /** How far tufts of lawn creep over cast paving, and the size of a tuft, meters. */
 const CREEP = 0.1;
 const CREEP_TUFT = 0.35;
@@ -904,6 +909,7 @@ const CREEP_TUFT = 0.35;
  */
 const PAVEMENT_GLSL = /* glsl */ `
   varying vec4 vSurfaceDetail;
+  ${TERRAIN_TRACK_GLSL}
 
   // A periodic line across a band coordinate, antialiased and faded once it is sub-pixel.
   float terrainPavementLine(float coord, float spacing, float halfWidth) {
@@ -964,10 +970,13 @@ const PAVEMENT_GLSL = /* glsl */ `
     float isPaint = 1.0 - step(0.5, abs(kind - 4.0));
     float isParking = 1.0 - step(0.5, abs(kind - 5.0));
     float isPlaza = 1.0 - step(0.5, abs(kind - 6.0));
-    float isLoose = step(6.5, kind);
+    // Rails in 3D (kind 11) are steel, not loose stone.
+    float isRail = 1.0 - step(0.5, abs(kind - 11.0));
+    float isLoose = step(6.5, kind) * (1.0 - isRail);
     float isAsphalt = isRoad + isParking;
     float isConcrete = isSidewalk + isCurb;
     float aa = max(fwidth(along), 0.0001);
+    float aaAcross = max(fwidth(across), 0.0001);
     // Asphalt: aggregate and patchy wear, polished wheel tracks, an oil line down each lane and
     // the odd darker repaired section, all fading to the plain swatch with distance.
     float wear = isRoad * step(0.5, lane) * mid;
@@ -1116,6 +1125,11 @@ const PAVEMENT_GLSL = /* glsl */ `
       mix(1.0, 0.58 + 0.12 * coverRim + 0.06 * grain, cover) * mix(1.0, 0.5 - 0.3 * slats, drain);
     float scalar = (isAsphalt * asphalt + isConcrete * concrete + isPlaza * plaza +
       isLoose * loose + isPlain * plain + isPaint) * lived;
+    // Track: sleepers and rails across a ballast band's middle (rail-material.ts).
+    vec3 track = vec3(1.0);
+    if (abs(kind - 10.0) < 0.5)
+      track = terrainTrackFactor(base, along, across - width * 0.5,
+        floor(floor(vSurfaceDetail.w + 0.5) / 4.0 + 0.01), aaAcross, aa, grain, stones, p);
     // Frayed edges: where a band meets the ground (a sidewalk's lawn side, a footpath, a shoulder
     // or a dirt track) the ground shows through a ragged margin and dirt collects inside it.
     // Loose surfaces break up in clumps; cast paving keeps its formed edge, and only grass
@@ -1123,7 +1137,7 @@ const PAVEMENT_GLSL = /* glsl */ `
     // the band's own antialiased edge. The edge mask is a whole number, rounded before its bits
     // are read: interpolation hands some pixels 2 as 1.9999999 (NVIDIA does), where mod(soft, 2)
     // is nearly 2 rather than 0, and a sidewalk's lawn side discarded half its pixels as ground.
-    float soft = floor(vSurfaceDetail.w + 0.5) * (1.0 - isRoad);
+    float soft = mod(floor(vSurfaceDetail.w + 0.5), 4.0) * (1.0 - isRoad);
     float edge = min(mix(64.0, across, mod(soft, 2.0)), mix(64.0, width - across, step(1.5, soft)));
     float coarse = 1.0 - smoothstep(0.25, 0.6, footprint / 0.8);
     float fine = 1.0 - smoothstep(0.25, 0.6, footprint / 0.2);
@@ -1166,9 +1180,11 @@ const PAVEMENT_GLSL = /* glsl */ `
     float grime = (1.0 - smoothstep(0.0, 0.35, edge - fray)) * step(edge, 63.0) *
       (0.35 + 0.65 * smoothstep(0.3, 0.7, spill)) * 0.45 *
       (1.0 - smoothstep(0.25, 0.6, footprint / ${VERGE_FADE.toFixed(2)}));
-    vec3 factor = mix(vec3(1.0), (isPaint > 0.5 ? paint : vec3(1.0)) * scalar *
+    vec3 factor = mix(vec3(1.0), (isPaint > 0.5 ? paint : vec3(1.0)) * scalar * track *
       mix(vec3(1.0), ${glslVec3(VERGE)}, grime), terrainGroundStrength);
-    return vec4(factor, edge - fray);
+    // A rail in 3D drops out where its 72 mm head would be under about a pixel and a half, measured
+    // across its face (its band coordinate): the track's drawn rails lie beneath it.
+    return vec4(factor, mix(edge - fray, ${RAIL_FOOTPRINT.toFixed(3)} - aaAcross, isRail));
   }
 `;
 
@@ -1216,19 +1232,33 @@ export function createTerrainPavementMaterial(
     );
     shader.fragmentShader = `${GLSL}
       ${PAVEMENT_GLSL}
-    ${shader.fragmentShader}`.replace(
-      '#include <color_fragment>',
-      `#include <color_fragment>
+    ${shader.fragmentShader}`
+      .replace(
+        '#include <color_fragment>',
+        `#include <color_fragment>
        vec4 terrainPavement = terrainPavementFactor(diffuseColor.rgb);
        // Coverage ramps across about a pixel at the frayed edge, so with multisampling alpha to
        // coverage antialiases the ragged margin instead of stair-stepping it.
        float terrainFray = terrainPavement.a / max(fwidth(terrainPavement.a), 0.0001);
        if (terrainFray < -0.5) discard;
        diffuseColor.a *= clamp(terrainFray + 0.5, 0.0, 1.0);
-       diffuseColor.rgb *= terrainPavement.rgb;`,
-    );
+       diffuseColor.rgb *= terrainPavement.rgb;
+       // A rail head's top is polished steel.
+       float terrainRailSheen = (1.0 - step(0.5, abs(floor(vSurfaceDetail.z / 128.0 + 0.001) - 11.0))) *
+         step(3.5, floor(vSurfaceDetail.w + 0.5));`,
+      )
+      .replace(
+        '#include <roughnessmap_fragment>',
+        `#include <roughnessmap_fragment>
+       roughnessFactor = mix(roughnessFactor, ${RAIL_SHEEN.roughness.toFixed(2)}, terrainRailSheen);`,
+      )
+      .replace(
+        '#include <metalnessmap_fragment>',
+        `#include <metalnessmap_fragment>
+       metalnessFactor = mix(metalnessFactor, ${RAIL_SHEEN.metalness.toFixed(2)}, terrainRailSheen);`,
+      );
   };
-  material.customProgramCacheKey = (): string => 'terrain-pavement@31';
+  material.customProgramCacheKey = (): string => 'terrain-pavement@33';
   states.set(material, state);
   return material;
 }
@@ -1296,6 +1326,7 @@ export async function createTerrainPavementMaterialAsync(
     // noise lookups, and a branch's boundary lies where its terms have already faded out.
     const footprint = max(max(dFdx(p).length(), dFdy(p).length()), 0.0001).toVar();
     const aa = max(fwidth(along), 0.0001).toVar() as unknown as F;
+    const aaAcross = max(fwidth(across), 0.0001).toVar() as unknown as F;
     const close = smoothstep(0.25, 0.6, footprint.div(0.25)).oneMinus().toVar();
     const near = smoothstep(0.25, 0.6, footprint.div(1)).oneMinus().toVar();
     const mid = smoothstep(0.25, 0.6, footprint.div(4)).oneMinus().toVar();
@@ -1342,7 +1373,10 @@ export async function createTerrainPavementMaterialAsync(
     const isPaint = is(4);
     const isParking = is(5);
     const isPlaza = is(6);
-    const isLoose = step(6.5, kind).toVar() as unknown as F;
+    // Rails in 3D (kind 11) are steel, not loose stone (see the GLSL above).
+    const isRail = is(11);
+    const isLoose = step(6.5, kind).mul(isRail.oneMinus()).toVar() as unknown as F;
+    const isTrack = is(10);
     const isAsphalt = isRoad.add(isParking);
     const isConcrete = isSidewalk.add(isCurb);
     const line = (coord: F, spacing: number | F, half: number): F => {
@@ -1654,13 +1688,34 @@ export async function createTerrainPavementMaterialAsync(
       .add(isPlain.mul(plain))
       .add(isPaint)
       .mul(lived);
+    // Track: sleepers and rails across a ballast band's middle (rail-material.ts).
+    const track = vec3(1).toVar();
+    If(isTrack.greaterThan(0.5), () => {
+      track.assign(
+        terrainTrackNode(
+          tsl,
+          { hash, noise },
+          {
+            base,
+            along,
+            lateral: across.sub(width.mul(0.5)) as unknown as F,
+            variant: floor(detail.w.add(0.5).floor().div(4).add(0.01)) as unknown as F,
+            wa: aaAcross,
+            wl: aa,
+            grain: grain as unknown as F,
+            stones: stones as unknown as F,
+            p,
+          },
+        ),
+      );
+    });
     // Frayed edges: where a band meets the ground (a sidewalk's lawn side, a footpath, a shoulder
     // or a dirt track) the ground shows through a ragged margin and dirt collects inside it.
     // Loose surfaces break up in clumps; cast paving keeps its formed edge, and only grass
     // blades creep over it. The margin shrinks away as its noise falls below a pixel, leaving
     // the band's own antialiased edge. The edge mask is rounded before its bits are read (see
-    // the GLSL above).
-    const soft = detail.w.add(0.5).floor().mul(isRoad.oneMinus());
+    // the GLSL above); its two bits sit under a track's variant (`TerrainLineBand.variant`).
+    const soft = detail.w.add(0.5).floor().mod(4).mul(isRoad.oneMinus());
     const edge = min(
       mix(64, across, soft.mod(2)),
       mix(64, width.sub(across), step(1.5, soft)),
@@ -1742,12 +1797,18 @@ export async function createTerrainPavementMaterialAsync(
       vec3(1),
       mix(vec3(1), paint, isPaint)
         .mul(scalar)
+        .mul(track)
         .mul(mix(vec3(1), vec3(...VERGE), grime)),
       amount,
     );
     // Coverage ramps across about a pixel at the frayed edge, so with multisampling alpha to
     // coverage antialiases the ragged margin instead of stair-stepping it.
-    const margin = edge.sub(fray).toVar() as unknown as F;
+    // A rail in 3D drops out where it would be thinner than a pixel or two (see the GLSL).
+    const margin = mix(
+      edge.sub(fray),
+      aaAcross.negate().add(RAIL_FOOTPRINT),
+      isRail,
+    ).toVar() as unknown as F;
     return vec4(factor, margin.div(max(fwidth(margin), 0.0001)));
   })().toVar() as unknown as Node<'vec4'>;
   const material = new MeshStandardNodeMaterial(pavementParameters(options));
@@ -1757,8 +1818,54 @@ export async function createTerrainPavementMaterialAsync(
   const coverage = pavement.a;
   material.maskNode = coverage.greaterThan(-0.5);
   material.opacityNode = clamp(coverage.add(0.5), 0, 1);
+  // A rail head's top is polished steel.
+  const sheen = step(0.5, abs(floor(detail.z.div(128).add(0.001)).sub(11)))
+    .oneMinus()
+    .mul(step(3.5, detail.w.add(0.5).floor()));
+  material.roughnessNode = mix(float(material.roughness), RAIL_SHEEN.roughness, sheen);
+  material.metalnessNode = mix(float(material.metalness), RAIL_SHEEN.metalness, sheen);
   states.set(material, { origin, strength: amount });
   return material;
+}
+
+/**
+ * WebGL ground drawn from a texture instead of vertex colors (`map`, with texture coordinates
+ * across the mesh): the shared material for land cover drawn as one texture a tile. Each tile
+ * draws with its own copy, made with `cloneTerrainGroundMaterial`. Texels without alpha are cut.
+ */
+export function createTerrainGroundTextureMaterial(
+  options: Pick<TerrainGroundMaterialOptions, 'roughness' | 'strength'> = {},
+): THREE.MeshStandardMaterial {
+  const material = createTerrainGroundMaterial(options);
+  material.name = 'terrain-ground-texture';
+  material.vertexColors = false;
+  return material;
+}
+
+/**
+ * A copy of a WebGL ground material for one mesh's own texture or flags. It draws with the
+ * original's shaders and follows its origin and strength; `clone()` alone drops the shader hooks.
+ */
+export function cloneTerrainGroundMaterial<T extends THREE.Material>(material: T): T {
+  const copy = material.clone();
+  copy.onBeforeCompile = material.onBeforeCompile;
+  copy.customProgramCacheKey = material.customProgramCacheKey;
+  const state = states.get(material);
+  if (state !== undefined) states.set(copy, state);
+  return copy;
+}
+
+/**
+ * Ground color with `brush` ground detail (see `landcoverDetail`) where crowns no longer resolve:
+ * their mean color at their share, as the material settles to with distance. Changes `color`.
+ */
+export function terrainGroundFarDetail(color: THREE.Color, brush: number): THREE.Color {
+  const share = Math.min(1, Math.max(0, brush)) * BRUSH_SHARE;
+  if (share <= 0) return color;
+  color.r += (BRUSH_MEAN[0] - color.r) * share;
+  color.g += (BRUSH_MEAN[1] - color.g) * share;
+  color.b += (BRUSH_MEAN[2] - color.b) * share;
+  return color;
 }
 
 /**

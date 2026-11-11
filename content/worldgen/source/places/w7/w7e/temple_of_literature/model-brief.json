@@ -1,0 +1,474 @@
+{
+  "id": "temple_of_literature",
+  "title": "Temple of Literature, Hanoi",
+  "wikidataId": "Q1202019",
+  "referenceCoordinate": {
+    "longitude": 105.83596788346767,
+    "latitude": 21.028757780054875
+  },
+  "module": "packages/worldgen/scripts/temple-of-literature-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-temple-of-literature.mjs",
+  "builder": "buildTempleOfLiteratureLevel",
+  "surfaces": {
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.95
+    },
+    "roofAged": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.95
+    },
+    "wall": {
+      "slot": "wall",
+      "graph": "brick_longformat",
+      "roughness": 0.97
+    },
+    "timber": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.89
+    },
+    "limestone": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.97
+    },
+    "foundation": {
+      "slot": "foundation",
+      "graph": "stone_ashlar",
+      "roughness": 1
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "clay_fired",
+      "roughness": 1
+    },
+    "lattice": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "metallic": 0.1,
+      "roughness": 0.81
+    }
+  },
+  "exportLabel": "Molen original Temple of Literature master",
+  "expectedDraftMasterHash": "sha256:c0c228937537d50e79761c2139199630b4b32dfb0ebaafc460a09cb280d271ae",
+  "visualBrief": "Five open courtyards connect Văn Miếu’s main gate, the red Khuê Văn pavilion and Thiên Quang Well, the paired stele galleries, the ceremonial halls and Thái Học academy. Swept tile roofs, stone pillars, open passages and the well balustrade carry the site’s exterior character.",
+  "heightPolicy": "The 17 m datum is rounded from the sampled well court. The gate pillars and halls meet standard viewer relief independently at their respective courtyards.",
+  "nativeAxes": "Positive Z runs from the main entrance through Khuê Văn pavilion and Thiên Quang Well toward the rear academy. Positive X points northwest across the court.",
+  "limitations": [
+    "The five-court exterior follows the PMTiles buildings, pools and paths. Eave profiles, wall heights and individual stele bases are photo-based reconstructions.",
+    "The pavilions and approach thresholds fit the standard elevation samples. Water, planting and roads use host data.",
+    "Roof ornament and inscription relief are represented at viewing scale. Interior shrines and legible inscriptions are outside this exterior model."
+  ],
+  "references": [
+    {
+      "url": "https://topgotourist.vn/thong-tin-du-lich/van-mieu-quoc-tu-giam.html",
+      "observed": "Current aerial reference for the courtyards and roof arrangement."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Van_Mieu_Hanoi_5.jpg",
+      "observed": "Khuê Văn pavilion, the reflecting pool and stone balustrade."
+    },
+    {
+      "url": "https://thanhnien.mediacdn.vn/Uploaded/congson/2022_07_27/van-mieu-6033.jpg",
+      "hash": "sha256:0eef89ef69fa2ff572c37029bbd3b2e4c87abe2ef0150d273ba583bdbc03bdac",
+      "observed": "Five courtyard axes, red tiled hall and gallery roofs, stone well and stele shelters."
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Van_Mieu_Hanoi_5.jpg",
+      "hash": "sha256:b17fcd7ff66d7a9873533fe0e226933d412e73cf440fd922ea3a4b21811737db",
+      "observed": "Khuê Văn’s open stone columns, red circular lattice, stepped roofs and the stone well balustrade."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "five-courts-from-south",
+      "position": [
+        58,
+        153,
+        -206
+      ],
+      "lookAt": [
+        1,
+        1,
+        3
+      ],
+      "fov": 59
+    },
+    {
+      "name": "south-entry-and-garden-gates",
+      "position": [
+        -22,
+        13,
+        -151
+      ],
+      "lookAt": [
+        -1,
+        2,
+        -104
+      ],
+      "fov": 58
+    },
+    {
+      "name": "khue-van-over-thien-quang-well",
+      "position": [
+        14,
+        2.9,
+        8
+      ],
+      "lookAt": [
+        0.3,
+        4.45,
+        -20
+      ],
+      "fov": 57,
+      "lightDirection": [
+        -0.65,
+        1,
+        0.64
+      ]
+    },
+    {
+      "name": "stele-shelters-at-the-well",
+      "position": [
+        -12,
+        3.6,
+        17
+      ],
+      "lookAt": [
+        -26,
+        1.25,
+        -3
+      ],
+      "fov": 66,
+      "lightDirection": [
+        0.38,
+        1,
+        0.66
+      ]
+    },
+    {
+      "name": "ceremonial-courtyard-and-sanctuary",
+      "position": [
+        -10,
+        13,
+        34
+      ],
+      "lookAt": [
+        3,
+        3,
+        65
+      ],
+      "fov": 64
+    },
+    {
+      "name": "thai-hoc-academy",
+      "position": [
+        -14,
+        17,
+        102
+      ],
+      "lookAt": [
+        4,
+        3,
+        145
+      ],
+      "fov": 59
+    },
+    {
+      "name": "five-courts-from-north",
+      "position": [
+        38,
+        146,
+        209
+      ],
+      "lookAt": [
+        -1,
+        1,
+        -10
+      ],
+      "fov": 64
+    }
+  ],
+  "materialMethod": "Shared red roof tiles, brick, timber, limestone, ashlar, fired clay and painted metal supply the seven physical surfaces. Site meshes include the round lattice, relief bands, terracotta ridge tips and stone turtle bases.",
+  "sourceFacts": {
+    "mappedPrecinctLabel": "way/1220554188",
+    "khueVanPavilion": "way/702185155",
+    "centralWell": "way/379341442",
+    "mappedBuildingFeatures": 41,
+    "mappedPools": 5,
+    "modeledStelae": 82,
+    "terrainDatumMeters": 17
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        2,
+        10
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/temple-of-literature-model.mjs",
+    "export": "buildTempleOfLiteratureSkyline",
+    "surfaces": {
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.95
+      },
+      "roofAged": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.95
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "brick_longformat",
+        "roughness": 0.97
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.89
+      },
+      "limestone": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 1
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "clay_fired",
+        "roughness": 1
+      },
+      "lattice": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "metallic": 0.1,
+        "roughness": 0.81
+      }
+    },
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTempleOfLiteratureDistrict",
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.95
+          },
+          "roofAged": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.95
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.97
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 1
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "clay_fired",
+            "roughness": 1
+          },
+          "lattice": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "metallic": 0.1,
+            "roughness": 0.81
+          }
+        },
+        "errorMeters": 0.72
+      },
+      "street": {
+        "export": "buildTempleOfLiteratureStreet",
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.95
+          },
+          "roofAged": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.95
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.97
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 1
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "clay_fired",
+            "roughness": 1
+          },
+          "lattice": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "metallic": 0.1,
+            "roughness": 0.81
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "closeup": {
+        "export": "buildTempleOfLiteratureCloseup",
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.95
+          },
+          "roofAged": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.95
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.97
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 1
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "clay_fired",
+            "roughness": 1
+          },
+          "lattice": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "metallic": 0.1,
+            "roughness": 0.81
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "temple_of_literature-skyline",
+      "position": [
+        58,
+        153,
+        -206
+      ],
+      "lookAt": [
+        1,
+        1,
+        3
+      ],
+      "fov": 59,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "temple_of_literature-district",
+      "position": [
+        58,
+        153,
+        -206
+      ],
+      "lookAt": [
+        1,
+        1,
+        3
+      ],
+      "fov": 59,
+      "reviewLod": "district"
+    },
+    {
+      "name": "temple_of_literature-street",
+      "position": [
+        58,
+        153,
+        -206
+      ],
+      "lookAt": [
+        1,
+        1,
+        3
+      ],
+      "fov": 59,
+      "reviewLod": "street"
+    },
+    {
+      "name": "temple_of_literature-closeup",
+      "position": [
+        58,
+        153,
+        -206
+      ],
+      "lookAt": [
+        1,
+        1,
+        3
+      ],
+      "fov": 59,
+      "reviewLod": "closeup"
+    }
+  ]
+}

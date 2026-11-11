@@ -1,0 +1,62 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.wadi_el_kuf_bridge",
+  "inputHash": "sha256:57b50849f4b5dced13200e7954056728054f18e468f5e2c5b5ad1e487339afe6",
+  "sourceHash": "sha256:177c961593d7b919d74823e4e9f07b8f42854571dfcd97e95494325c81c3d980",
+  "runtimeHash": "sha256:235c238369993b821e20841d8abff025ad6bec682413d5c81883215ee2035c2a",
+  "fixtureHash": "sha256:1b3c98071d407503366a518317c004adc420dc885f2f9d571991a6731a676e7c",
+  "placementHash": "sha256:d37d6c4abc51ccbc4db20224f6b5ae9e5fc7d75107ac1d33d2725c1d724e265a",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_boardformed": {
+      "path": "materials/concrete_boardformed.matgraph.json",
+      "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-wadi-el-kuf.png",
+      "hash": "sha256:a595a5ff05b305dd221416fd5aa0bbad9cac49b393460da8069e013626951093",
+      "camera": {
+        "name": "detail-southwest-tower-and-v-frame",
+        "position": [
+          -224,
+          20,
+          143
+        ],
+        "lookAt": [
+          -139,
+          15,
+          0
+        ],
+        "fov": 58,
+        "detail": true,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "wadi.el.kuf.bridge",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Board-formed concrete, plain concrete and painted metal each resolve once per detail level."
+}

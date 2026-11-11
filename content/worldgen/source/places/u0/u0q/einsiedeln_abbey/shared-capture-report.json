@@ -1,0 +1,84 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.einsiedeln_abbey",
+  "inputHash": "sha256:d179080c604438200a41a9e926f95f1a36c4563c502e500e3f06809d9fbfd178",
+  "sourceHash": "sha256:e187341f1ce7cb2d632b3f852b00361034fc3857b9c62e927a8de63f01b2879f",
+  "runtimeHash": "sha256:9586ab17207e344ef2e961454c1f19e494ab64556ed89ab9a2107e0a9afa4ebb",
+  "fixtureHash": "sha256:a2144461626eda869765b672cc3a6aff8531cffa071490041fd3716cd9ce5d02",
+  "placementHash": "sha256:014d062f76e5c13c2b2a203af05a30cefd82a178e9bbc8fd40d9f85dc2d8a8f4",
+  "materialGraphs": {
+    "molen.worldgen.material.plaster_lime": {
+      "path": "materials/plaster_lime.matgraph.json",
+      "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+    },
+    "molen.worldgen.material.metal_copper": {
+      "path": "materials/metal_copper.matgraph.json",
+      "hash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935"
+    },
+    "molen.worldgen.material.tile_flat": {
+      "path": "materials/tile_flat.matgraph.json",
+      "hash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448"
+    },
+    "molen.worldgen.material.metal_bronze_cast": {
+      "path": "materials/metal_bronze_cast.matgraph.json",
+      "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+    },
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    },
+    "molen.worldgen.material.window_punched": {
+      "path": "materials/window_punched.matgraph.json",
+      "hash": "sha256:cc34da0c3f201320973e6000d3871295f88255e6ac6c8282bad935061b714fdc"
+    },
+    "molen.worldgen.material.wood_plain": {
+      "path": "materials/wood_plain.matgraph.json",
+      "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-einsiedeln.png",
+      "hash": "sha256:ef983ea073024c9c65b7b4bdf9311dfa3170e0ddf6eb68f68e643a9af1c805ac",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -108,
+          12,
+          36
+        ],
+        "lookAt": [
+          25,
+          23,
+          0
+        ],
+        "fov": 49,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.6,
+          1,
+          0.49
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "einsiedeln.abbey",
+        "visibleDraws": 7
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The abbey binds seven reused graphs for lime plaster, limestone, terracotta, copper, glazing, wood and bronze. Each graph resolves once per fixture."
+}

@@ -4,7 +4,8 @@ export interface AdmissionOptions {
   signal?: AbortSignal;
   label?: string;
   /**
-   * Background jobs run only in frame budget that no normal job is waiting for. Urgent jobs run
+   * Background jobs run in frame budget that no normal job is waiting for, and once one has waited
+   * `backgroundWaitMs` it takes a turn after every `backgroundShare` other jobs. Urgent jobs run
    * before normal ones, in their own order: small work the view is visibly waiting on, such as
    * terrain ground. Sustained urgent traffic shares service with waiting normal work.
    */
@@ -30,6 +31,14 @@ export interface FrameAdmissionOptions {
   maxMilliseconds?: number;
   maxBytes?: number;
   maxJobs?: number;
+  /**
+   * How long a background job waits (ms, default 750) before the lane takes turns with the others,
+   * and how many other jobs run between its turns (default 8). In flight normal work never runs
+   * out, and what waited behind it (texture upgrades, the levels an object is not showing yet)
+   * arrived seconds late: a second on average over a town, five at worst.
+   */
+  backgroundWaitMs?: number;
+  backgroundShare?: number;
   now?: () => number;
   schedule?: (callback: () => void) => void;
   onSample?: (sample: AdmissionSample) => void;
@@ -60,6 +69,10 @@ export class FrameAdmissionQueue implements SceneAdmission {
   private maxJobs: number;
   private urgentStreak = 0;
   private orderedStreak = 0;
+  /** Jobs from the other lanes since the background lane last ran one. */
+  private foregroundStreak = 0;
+  private readonly backgroundWaitMs: number;
+  private readonly backgroundShare: number;
   /** Recent work time per label (ms, smoothed): what the next job of that kind will likely take. */
   private readonly expected = new Map<string, number>();
   constructor(private readonly options: FrameAdmissionOptions = {}) {
@@ -73,6 +86,12 @@ export class FrameAdmissionQueue implements SceneAdmission {
     this.maxMs = options.maxMilliseconds ?? 2;
     this.maxBytes = options.maxBytes ?? 2 * 1024 * 1024;
     this.maxJobs = options.maxJobs ?? 32;
+    this.backgroundWaitMs = options.backgroundWaitMs ?? 750;
+    this.backgroundShare = options.backgroundShare ?? 8;
+    if (!(this.backgroundWaitMs >= 0) || !(this.backgroundShare >= 1))
+      throw new RangeError(
+        'Background admission needs a nonnegative wait and a share of 1 or more',
+      );
     this.setLimits({});
   }
   /**
@@ -186,7 +205,13 @@ export class FrameAdmissionQueue implements SceneAdmission {
     let bytes = 0,
       count = 0;
     for (;;) {
-      const lane = this.jobs.length > 0 ? this.jobs : this.background;
+      // A background job that has waited its time out takes a turn among the others.
+      const overdue =
+        this.jobs.length > 0 &&
+        this.foregroundStreak >= this.backgroundShare &&
+        this.background.length > 0 &&
+        this.clock() - (this.background[0] as Job).queued >= this.backgroundWaitMs;
+      const lane = this.jobs.length > 0 && !overdue ? this.jobs : this.background;
       // A flying camera continuously produces urgent terrain. Strict priority left semantic
       // decode/publication waiting tens of seconds, even with idle geometry workers. After
       // two urgent jobs, serve one normal job that has waited at least 50 ms. Keep the streak
@@ -236,6 +261,7 @@ export class FrameAdmissionQueue implements SceneAdmission {
         next.reject(new DOMException('Admission cancelled', 'AbortError'));
         continue;
       }
+      this.foregroundStreak = lane === this.background ? 0 : this.foregroundStreak + 1;
       this.urgentStreak = next.options.priority === 'urgent' ? this.urgentStreak + 1 : 0;
       if (next.options.priority !== 'urgent')
         this.orderedStreak =

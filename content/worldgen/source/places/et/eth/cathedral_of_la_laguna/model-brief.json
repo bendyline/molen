@@ -1,0 +1,469 @@
+{
+  "id": "cathedral_of_la_laguna",
+  "title": "Cathedral of La Laguna",
+  "wikidataId": "Q34562",
+  "referenceCoordinate": {
+    "longitude": -16.316179774,
+    "latitude": 28.488858793
+  },
+  "module": "content/worldgen/source/places/et/eth/cathedral_of_la_laguna/models/laguna-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-la-laguna-cathedral.mjs",
+  "builder": "buildLagunaLevel",
+  "surfaces": {
+    "basalt": {
+      "slot": "wall",
+      "graph": "stone_basalt",
+      "roughness": 0.76
+    },
+    "dressed": {
+      "slot": "trim",
+      "graph": "stone_basalt_raw",
+      "roughness": 0.72
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.82
+    },
+    "paintedRoof": {
+      "slot": "roof",
+      "graph": "plaster_lime",
+      "roughness": 0.59
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.68
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.54
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.64
+    },
+    "bell": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.54,
+      "metallic": 0.65
+    }
+  },
+  "exportLabel": "Molen original Cathedral of La Laguna master",
+  "expectedDraftMasterHash": "sha256:6eaa65beafba66dd88d68c4ef76ce9bce09e45949acf47cf8cd1c3d4a60471f4",
+  "visualBrief": "Cathedral of La Laguna with its volcanic-stone and white-plaster façade, recessed columned portico, two open bell towers, rows of red roof cupolas, and a raised crossing dome.",
+  "heightPolicy": "The 561.575 m exterior datum comes from the standard terrain sampled at the west entrance. The stepped portico and sampled foundation skirts fit the terrain without a ground cut.",
+  "nativeAxes": "The portico and bell towers face -X toward the west-northwest. The ambulatory closes at +X on the east-southeast side.",
+  "limitations": [
+    "The PMTiles outline fixes the footprint and orientation. Photos guide the exterior detail, cupola spacing, dome and portal proportions.",
+    "The modeled portico and belfries are open exterior spaces. Closed doors and glazed apertures represent the rest of the cathedral exterior."
+  ],
+  "materialMethod": "Two basalt graphs supply masonry and dressed volcanic stone. One lime-plaster graph supplies the white walls and tinted painted cupolas. Tile, painted metal, wood and cast bronze are shared by the dome, windows, doors and bells.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Cattedrale_La_Laguna.jpg",
+      "hash": "sha256:ff33d4fb2707c0af6f66dc6ce7d521c773aa02ad239c4f11be96f7eed75bf14b",
+      "observed": "West facade, twin towers and pediment."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Catedral_de_La_Laguna%2C_Tenerife.jpg",
+      "hash": "sha256:73be6fe104b9f76b893f8d72d495a1ad472df47aee3a12206f3a1ae5c6dbd3f8",
+      "observed": "Tower cladding, dome and roof profile."
+    },
+    {
+      "url": "https://megaconstrucciones.net/?construccion=catedral-san-cristobal-la-laguna",
+      "hash": "sha256:2a5bd96dd86f5fde54cc21612d92524b104fcdc58e6a38055de09c40c1fc008e",
+      "observed": "Side elevations, buttresses, domes and roof massing."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "west-and-roof-context",
+      "position": [
+        -94,
+        44,
+        68
+      ],
+      "lookAt": [
+        -1,
+        14,
+        -3
+      ],
+      "fov": 49
+    },
+    {
+      "name": "west-portico-and-doors",
+      "position": [
+        -60,
+        5,
+        -4
+      ],
+      "lookAt": [
+        -33,
+        7,
+        -4
+      ],
+      "fov": 55
+    },
+    {
+      "name": "west-pediment-and-twin-towers",
+      "position": [
+        -84,
+        19,
+        -8
+      ],
+      "lookAt": [
+        -33,
+        19,
+        -4
+      ],
+      "fov": 50
+    },
+    {
+      "name": "open-belfry-and-clock",
+      "position": [
+        -47,
+        29,
+        24
+      ],
+      "lookAt": [
+        -32,
+        29,
+        11
+      ],
+      "fov": 44
+    },
+    {
+      "name": "red-cupolas-and-drum",
+      "position": [
+        -11,
+        33,
+        39
+      ],
+      "lookAt": [
+        8,
+        23,
+        -2
+      ],
+      "fov": 45
+    },
+    {
+      "name": "east-apse-and-side-chapels",
+      "position": [
+        59,
+        14,
+        39
+      ],
+      "lookAt": [
+        22,
+        13,
+        -2
+      ],
+      "fov": 52
+    },
+    {
+      "name": "north-windows-and-terrace",
+      "position": [
+        -9,
+        13,
+        -42
+      ],
+      "lookAt": [
+        -2,
+        11,
+        -10
+      ],
+      "fov": 54
+    },
+    {
+      "name": "overhead-roof-layout",
+      "position": [
+        20,
+        93,
+        32
+      ],
+      "lookAt": [
+        -1,
+        11,
+        -2
+      ],
+      "fov": 55
+    }
+  ],
+  "sourceFacts": {
+    "mappedBuilding": 35184450318723,
+    "reportedHeightMeters": 41.5,
+    "modeledCupolas": 18,
+    "modeledBellTowers": 2,
+    "modeledPorticoColumns": 4,
+    "mainFacade": "west-northwest"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -6,
+        15,
+        -3
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/et/eth/cathedral_of_la_laguna/models/laguna-model.mjs",
+    "export": "buildLagunaSkyline",
+    "surfaces": {
+      "basalt": {
+        "slot": "wall",
+        "graph": "stone_basalt",
+        "roughness": 0.76
+      },
+      "dressed": {
+        "slot": "trim",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.72
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.82
+      },
+      "paintedRoof": {
+        "slot": "roof",
+        "graph": "plaster_lime",
+        "roughness": 0.59
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.68
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.54
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.64
+      },
+      "bell": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.54,
+        "metallic": 0.65
+      }
+    },
+    "errorMeters": 1.87,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLagunaDistrict",
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.76
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.72
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.82
+          },
+          "paintedRoof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.59
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.68
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.54
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.64
+          },
+          "bell": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.54,
+            "metallic": 0.65
+          }
+        },
+        "errorMeters": 0.92
+      },
+      "street": {
+        "export": "buildLagunaStreet",
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.76
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.72
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.82
+          },
+          "paintedRoof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.59
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.68
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.54
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.64
+          },
+          "bell": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.54,
+            "metallic": 0.65
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildLagunaCloseup",
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.76
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.72
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.82
+          },
+          "paintedRoof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.59
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.68
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.54
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.64
+          },
+          "bell": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.54,
+            "metallic": 0.65
+          }
+        },
+        "errorMeters": 0.11
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "cathedral_of_la_laguna-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -94,
+        44,
+        68
+      ],
+      "lookAt": [
+        -1,
+        14,
+        -3
+      ]
+    },
+    {
+      "name": "cathedral_of_la_laguna-district",
+      "reviewLod": "district",
+      "position": [
+        -94,
+        44,
+        68
+      ],
+      "lookAt": [
+        -1,
+        14,
+        -3
+      ]
+    },
+    {
+      "name": "cathedral_of_la_laguna-street",
+      "reviewLod": "street",
+      "position": [
+        -94,
+        44,
+        68
+      ],
+      "lookAt": [
+        -1,
+        14,
+        -3
+      ]
+    },
+    {
+      "name": "cathedral_of_la_laguna-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -94,
+        44,
+        68
+      ],
+      "lookAt": [
+        -1,
+        14,
+        -3
+      ]
+    }
+  ]
+}

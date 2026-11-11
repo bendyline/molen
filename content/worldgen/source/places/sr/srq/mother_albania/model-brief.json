@@ -1,0 +1,376 @@
+{
+  "id": "mother_albania",
+  "title": "Mother Albania",
+  "wikidataId": "Q1639016",
+  "referenceCoordinate": {
+    "longitude": 19.84006941318512,
+    "latitude": 41.30854117115976
+  },
+  "module": "content/worldgen/source/places/sr/srq/mother_albania/models/monument-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-mother-albania.mjs",
+  "builder": "buildMonument",
+  "surfaces": {
+    "sculpture": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.89
+    },
+    "masonry": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.82
+    },
+    "lettering": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.64,
+      "metallic": 0.32
+    },
+    "planting": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.94
+    }
+  },
+  "exportLabel": "Molen original Mother Albania master",
+  "expectedDraftMasterHash": "sha256:5548239010693da0f0bc4e037171f861b89c4d95a980686d57000d4dd31fd1eb",
+  "visualBrief": "Mother Albania lifts a five-pointed star in a leafy wreath above her head. The wind sweeps the long cape behind her in broad angular folds. The pale ashlar pedestal carries a bronze dedication above a pink stone plinth and broad cemetery stairs.",
+  "heightPolicy": "The anchor datum is 203 m above sea level in standard Terrarium. The terrace deck sits just above sampled grade at the pedestal, with embedded footing and descending steps toward the mapped plaza.",
+  "nativeAxes": "+X southwest along the mapped terrace edge, +Z north-northwest toward the open approach and city, +Y up.",
+  "limitations": [
+    "The model uses a published 12 m figure and 10 m pedestal. The taper, sculpted folds, lettering, plinth and stair dimensions are fitted to photographs.",
+    "The named monument point and the signed back edge of the mapped pedestrian terrace fix position and orientation. Standard terrain resolves the surrounding hillside. Exact stair treads and landscaping within the plaza are photograph-based estimates.",
+    "The modeled site covers the pedestal and the nearest stairs and planters. Surrounding cemetery paths, graves and terrain come from the map context."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Mother_Albania%2C_Tirana_2017_05.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Mother_Albania%2C_Tirana_2017_05.jpg",
+      "hash": "sha256:5546d907f39c87257fd645061f9cb9a4fdede16a86300ae6907257cf62cd9ff2",
+      "observed": "Left-side silhouette, uplifted arm, incised face and hair, ashlar joint pattern and the four lines of raised lettering."
+    },
+    {
+      "url": "https://michaelharrison.org.uk/2013/04/king-zogs-remains-return-to-tirana/",
+      "imageUrl": "https://i0.wp.com/michaelharrison.org.uk/wp-content/uploads/2013/04/209-Martyrs-Cemetery-02-10-11-11.jpg",
+      "hash": "sha256:7f213e58c28ae336583627262de87596e0c878311db4d8c4d8b12ddd186178d6",
+      "observed": "Opposite silhouette and the extended rear arm along the upper cape. The pink plinth, stair risers and low planters run across the plaza."
+    },
+    {
+      "url": "https://wikimapia.org/8741710/Mother-Albania",
+      "imageUrl": "https://photos.wikimapia.org/p/00/00/51/65/87_big.jpg",
+      "hash": "sha256:3fc129fa6f06c614f2db8da8941839f266c93e146325e04f845be96641ba4c81",
+      "observed": "Approach from the open terrace. Confirms the signed front of the monument and the broad run of stairs."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "martyrs-cemetery-approach",
+      "position": [
+        21,
+        8.1,
+        30
+      ],
+      "lookAt": [
+        0,
+        10,
+        1
+      ],
+      "fov": 43
+    },
+    {
+      "name": "dedication-and-full-statue",
+      "position": [
+        -3.6,
+        7.2,
+        30
+      ],
+      "lookAt": [
+        0,
+        10.2,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "northwestern-profile-and-cape",
+      "position": [
+        -25,
+        13,
+        13
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 46
+    },
+    {
+      "name": "back-of-the-windswept-cape",
+      "position": [
+        24,
+        12,
+        -17
+      ],
+      "lookAt": [
+        0,
+        11,
+        -1
+      ],
+      "fov": 46
+    },
+    {
+      "name": "face-hand-wreath-and-star",
+      "position": [
+        -7.4,
+        17.6,
+        11
+      ],
+      "lookAt": [
+        -0.55,
+        18.8,
+        0.1
+      ],
+      "fov": 40
+    },
+    {
+      "name": "cape-folds-and-lowered-arm",
+      "position": [
+        10.7,
+        15.1,
+        -1.7
+      ],
+      "lookAt": [
+        0.25,
+        15.2,
+        -0.55
+      ],
+      "fov": 49
+    },
+    {
+      "name": "bronze-dedication",
+      "position": [
+        0.28,
+        6.1,
+        9
+      ],
+      "lookAt": [
+        0,
+        5.95,
+        3.6
+      ],
+      "fov": 40
+    },
+    {
+      "name": "steps-and-pink-stone-plinth",
+      "position": [
+        11,
+        2.6,
+        15.6
+      ],
+      "lookAt": [
+        0,
+        0.1,
+        4
+      ],
+      "fov": 55
+    }
+  ],
+  "materialMethod": "Shared limestone, granite and bronze. The sculpture folds, stone joints, stair nosings, wreath and dedication use modeled geometry.",
+  "sourceFacts": {
+    "figureHeightMeters": 12,
+    "pedestalHeightMeters": 10,
+    "mappedMonument": 17596818015767,
+    "mappedTerrace": 35184639742938,
+    "groundDatumMeters": 203
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        10.7,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/srq/mother_albania/models/monument-model.mjs",
+    "export": "buildMonumentSkyline",
+    "surfaces": {
+      "sculpture": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.89
+      },
+      "masonry": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.82
+      },
+      "lettering": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.64,
+        "metallic": 0.32
+      },
+      "planting": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94
+      }
+    },
+    "errorMeters": 0.89,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMonumentDistrict",
+        "surfaces": {
+          "sculpture": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.82
+          },
+          "lettering": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.64,
+            "metallic": 0.32
+          },
+          "planting": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          }
+        },
+        "errorMeters": 0.41
+      },
+      "street": {
+        "export": "buildMonumentStreet",
+        "surfaces": {
+          "sculpture": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.82
+          },
+          "lettering": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.64,
+            "metallic": 0.32
+          },
+          "planting": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          }
+        },
+        "errorMeters": 0.13
+      },
+      "closeup": {
+        "export": "buildMonumentCloseup",
+        "surfaces": {
+          "sculpture": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89
+          },
+          "masonry": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.82
+          },
+          "lettering": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.64,
+            "metallic": 0.32
+          },
+          "planting": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94
+          }
+        },
+        "errorMeters": 0.044
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "mother_albania-skyline",
+      "position": [
+        21,
+        8.1,
+        30
+      ],
+      "lookAt": [
+        0,
+        10,
+        1
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "mother_albania-district",
+      "position": [
+        21,
+        8.1,
+        30
+      ],
+      "lookAt": [
+        0,
+        10,
+        1
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "mother_albania-street",
+      "position": [
+        21,
+        8.1,
+        30
+      ],
+      "lookAt": [
+        0,
+        10,
+        1
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "mother_albania-closeup",
+      "position": [
+        21,
+        8.1,
+        30
+      ],
+      "lookAt": [
+        0,
+        10,
+        1
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ]
+}

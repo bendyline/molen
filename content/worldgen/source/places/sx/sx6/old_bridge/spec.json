@@ -1,0 +1,502 @@
+{
+  "planId": "old_bridge",
+  "id": "old_bridge",
+  "assetId": "molen.worldgen.structure.old_bridge",
+  "title": "Mustafa Pasha Bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q3555796",
+  "referenceCoordinate": {
+    "longitude": 26.19351,
+    "latitude": 41.76878
+  },
+  "visualBrief": "A gently rising historic stone bridge over the Maritsa with 21 modeled vaults, unequal spans, angled cutwaters, low parapets and a raised rectangular inscription monument at the crest.",
+  "size": [
+    294.0124206542969,
+    16.728373527526855,
+    9.967400074005127
+  ],
+  "actualBounds": {
+    "min": [
+      -147.00621032714844,
+      -4,
+      -5.205999851226807
+    ],
+    "max": [
+      147.00621032714844,
+      12.728373527526855,
+      4.76140022277832
+    ]
+  },
+  "nativeAxes": "+X follows the mapped pedestrian centerline east-southeast. +Z faces the southern side of the Maritsa.",
+  "sourceFacts": {
+    "mappedLengthMeters": 294.0124122263777,
+    "widthMeters": 6.2,
+    "archBaysModeled": 21,
+    "groundDatumMeters": 48,
+    "sourceRoad": 35184529750853,
+    "approachRoad": 35184529750890
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Old_Bridge_Svilengrad_pano.jpg",
+    "https://commons.wikimedia.org/wiki/File:Most_Svilengrad.jpg",
+    "https://commons.wikimedia.org/wiki/File:Mustafa_Pasha_Bridge%2C_Svilengrad_-_1.jpg"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      26.193478256464005,
+      41.76879310465199
+    ],
+    "heading": -0.13064953748228814,
+    "elevationMode": "sea-level",
+    "orientationPolicy": "approximate-visualization",
+    "elevationMeters": 48,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The 48 m sea-level datum is tied to standard terrain. Deck levels at both ends match the mapped pedestrian approaches, and the modeled foundations embed in the native banks.",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 294.0124122263777,
+      "width": 6.2,
+      "outline": [
+        [
+          -147.00621,
+          -3.19
+        ],
+        [
+          147.00621,
+          -3.19
+        ],
+        [
+          147.00621,
+          3.19
+        ],
+        [
+          -147.00621,
+          3.19
+        ]
+      ],
+      "deckEndpoints": [
+        [
+          -147.00621,
+          0
+        ],
+        [
+          147.00621,
+          0
+        ]
+      ],
+      "deckHeights": [
+        5.45304,
+        3.84533
+      ],
+      "deckProfile": [
+        [
+          -147.00621,
+          5.45304,
+          0
+        ],
+        [
+          -140.00621,
+          5.68,
+          0
+        ],
+        [
+          -130,
+          6.44,
+          0
+        ],
+        [
+          -110,
+          6.7,
+          0
+        ],
+        [
+          -83,
+          6.95,
+          0
+        ],
+        [
+          -53,
+          7.29,
+          0
+        ],
+        [
+          -24,
+          7.67,
+          0
+        ],
+        [
+          5,
+          7.84,
+          0
+        ],
+        [
+          26,
+          7.79,
+          0
+        ],
+        [
+          54,
+          7.3,
+          0
+        ],
+        [
+          86,
+          6.54,
+          0
+        ],
+        [
+          111,
+          5.62,
+          0
+        ],
+        [
+          131,
+          4.7,
+          0
+        ],
+        [
+          142.00621,
+          4.23,
+          0
+        ],
+        [
+          147.00621,
+          3.84533,
+          0
+        ]
+      ],
+      "includeConnectedApproaches": true,
+      "pavingAreaIds": [
+        35185609704180
+      ]
+    },
+    "bounds": [
+      26.191537745133285,
+      41.768412649967026,
+      26.195418767794724,
+      41.769173559336956
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:58bf66e9f381d0e12b3bfb2e94a598a8f506a4750d6952cfd6b6c73c3e0c5266",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://data.source.coop/protomaps/openstreetmap/v4.pmtiles",
+    "wikidataId": "Q3555796",
+    "notes": "Original stone bridge on the mapped pedestrian crossing of the Maritsa. Reconstructed deck grades tie into the standard terrain at both mapped approaches."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Shared stone ashlar, weathered limestone, dry stone and painted metal. Metric UVs and linear color variation give the cutwaters, arch rings, coping and deck different finishes without embedded images.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sx/sx6/old_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.96
+      },
+      "limestone": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 0.96
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76
+      }
+    },
+    "errorMeters": 1.35,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          }
+        },
+        "errorMeters": 0.6
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          }
+        },
+        "errorMeters": 0.24
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.96
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76
+          }
+        },
+        "errorMeters": 0.09
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        5.2,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "old_bridge-skyline",
+      "position": [
+        -13,
+        68,
+        246
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        0
+      ],
+      "fov": 58,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "old_bridge-district",
+      "position": [
+        -13,
+        68,
+        246
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        0
+      ],
+      "fov": 58,
+      "reviewLod": "district"
+    },
+    {
+      "name": "old_bridge-street",
+      "position": [
+        -13,
+        68,
+        246
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        0
+      ],
+      "fov": 58,
+      "reviewLod": "street"
+    },
+    {
+      "name": "old_bridge-closeup",
+      "position": [
+        -13,
+        68,
+        246
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        0
+      ],
+      "fov": 58,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "The mapped pedestrian bridge is 294.0 m long. The arch distribution, deck crown and plaque relief are reconstructed from exterior photographs. Vegetation obscures a few terminal bays.",
+    "The river and banks use the viewer’s standard terrain. Foundation embedment and water clearance are approximate. The plaque preserves its relief and frame without reproducing readable text."
+  ],
+  "qaCameras": [
+    {
+      "name": "cutwaters-and-central-arches",
+      "position": [
+        38,
+        10,
+        62
+      ],
+      "lookAt": [
+        4,
+        4.7,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "inscription-and-paved-walk",
+      "position": [
+        -6.9,
+        10.85,
+        -2.25
+      ],
+      "lookAt": [
+        0.86384,
+        10.15,
+        2.35
+      ],
+      "fov": 47
+    },
+    {
+      "name": "east-landing",
+      "position": [
+        161,
+        11,
+        15
+      ],
+      "lookAt": [
+        116,
+        4.5,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "west-landing",
+      "position": [
+        -162,
+        12,
+        14
+      ],
+      "lookAt": [
+        -109,
+        6.4,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "opposite-vaults-and-river",
+      "position": [
+        8,
+        6,
+        -68
+      ],
+      "lookAt": [
+        10,
+        4,
+        0
+      ],
+      "fov": 61
+    },
+    {
+      "name": "open-vault-over-the-maritsa",
+      "position": [
+        -9.09727,
+        3.4,
+        17
+      ],
+      "lookAt": [
+        -9.09727,
+        2.6,
+        -10
+      ],
+      "fov": 60
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 17192,
+    "vertices": 51432,
+    "materials": 4,
+    "bytes": 2060800,
+    "sha256": "sha256:b091657754d2be1d891a862f3fa526c118fcf3046ab539c20e16f44c3cee4b5f"
+  }
+}

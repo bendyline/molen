@@ -1,0 +1,418 @@
+{
+  "id": "salamanca_new_cathedral",
+  "title": "Salamanca New Cathedral",
+  "wikidataId": "Q2462558",
+  "referenceCoordinate": {
+    "longitude": -5.666061487,
+    "latitude": 40.960624772
+  },
+  "module": "content/worldgen/source/places/ez/ez7/salamanca_new_cathedral/models/salamanca-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-salamanca-new-cathedral.mjs",
+  "builder": "buildSalamancaLevel",
+  "surfaces": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.83
+    },
+    "carved": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.77
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.69
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.82
+    },
+    "glass": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.47
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.68
+    }
+  },
+  "exportLabel": "Molen original Salamanca New Cathedral master",
+  "expectedDraftMasterHash": "sha256:559f2df9e2e819a7463efb497cafad537f206582acc9aac14cbd316425a38528",
+  "visualBrief": "Salamanca New Cathedral with its golden sandstone, elaborate west portals, side buttresses and pinnacles, lead-colored crossing dome, and taller tiered bell tower.",
+  "heightPolicy": "The 812.33 m datum comes from standard terrain. Wall foundations adapt to the hillside, with separate sampled approach heights at the west and north doors and the shared tower.",
+  "nativeAxes": "Local -X points west-northwest toward the three west portals. The bell tower stands at the shared southwestern corner. The New Cathedral adjoins the retained Old Cathedral on its south side.",
+  "limitations": [
+    "The site outline, tower tiers and crossing volumes follow PMTiles. Photographs guide the exterior proportions, ornament, roofs and modeled steps.",
+    "The west and north doors depict the exterior. The adjoining Old Cathedral, hillside and approaches retain their native viewer geometry."
+  ],
+  "materialMethod": "Shared jointed and continuous sandstone give the walls and carved stonework their ochre color. Shared slate and clay tile distinguish the dome and roofs. Painted metal and wood provide the glazed openings and doors.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Salamanca_-_Catedral_nueva_(vista_principal).jpg",
+      "hash": "sha256:f562fc272d9c207d91829b4a6f0fe9a5ff56acdcf1f468ea434f3f6fb4637a08",
+      "observed": "Northern side portal, sandstone buttresses, pinnacles and crossing dome."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Catedral_nueva_de_salamanca_.jpg",
+      "hash": "sha256:2be0f5f97591255799e448a78ec0d3d4e1024ccd8d836c4c6ba2ee29b682a0a8",
+      "observed": "Long view of joined cathedral silhouettes."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Salamanca_-_Catedral_Nueva%2C_fachada_occidental_01.jpg",
+      "hash": "sha256:f3dfb07f83adf735ee0ee7bcc77daaf555bd615b73a0902c4f4112543d90f967",
+      "observed": "Carved central mullion, ornamental portal framing and studded doors."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:E-Salamanca-Kathedrale-4-Westfassade.jpg",
+      "hash": "sha256:1c40567e25508ea32f345b2e8dbca02cc2805989488449bc8ff8d0cfff159fca",
+      "observed": "West portal arches, layered carved relief and double studded doors."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "west-tower-and-cathedral",
+      "position": [
+        -165,
+        80,
+        -109
+      ],
+      "lookAt": [
+        -12,
+        30,
+        -5
+      ],
+      "fov": 51
+    },
+    {
+      "name": "west-triptych",
+      "position": [
+        -75,
+        13,
+        -13
+      ],
+      "lookAt": [
+        -58.9,
+        14,
+        -12.7
+      ],
+      "fov": 67
+    },
+    {
+      "name": "north-portal-and-buttresses",
+      "position": [
+        -13,
+        12,
+        -66
+      ],
+      "lookAt": [
+        4.8,
+        15,
+        -36
+      ],
+      "fov": 54
+    },
+    {
+      "name": "bell-chamber-and-cap",
+      "position": [
+        -97,
+        64,
+        -15
+      ],
+      "lookAt": [
+        -65,
+        66,
+        18
+      ],
+      "fov": 48
+    },
+    {
+      "name": "crossing-dome-and-nave",
+      "position": [
+        48,
+        66,
+        -63
+      ],
+      "lookAt": [
+        6,
+        46,
+        -8
+      ],
+      "fov": 50
+    },
+    {
+      "name": "east-chevet-and-chapels",
+      "position": [
+        105,
+        38,
+        -46
+      ],
+      "lookAt": [
+        41,
+        16,
+        -3
+      ],
+      "fov": 53
+    },
+    {
+      "name": "joined-old-cathedral",
+      "position": [
+        -33,
+        50,
+        89
+      ],
+      "lookAt": [
+        -14,
+        23,
+        8
+      ],
+      "fov": 50
+    },
+    {
+      "name": "overhead-cruciform-roofs",
+      "position": [
+        8,
+        150,
+        -15
+      ],
+      "lookAt": [
+        1,
+        23,
+        -5
+      ],
+      "fov": 54
+    }
+  ],
+  "sourceFacts": {
+    "mappedBuilding": 35184669811862,
+    "preservedAdjacentBuilding": 35184431099333,
+    "crossingHeightMeters": 73,
+    "bellTowerHeightMeters": 91,
+    "stairTreads": 9
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -15,
+        31,
+        -6
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ez/ez7/salamanca_new_cathedral/models/salamanca-model.mjs",
+    "export": "buildSalamancaSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.83
+      },
+      "carved": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.77
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.69
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.82
+      },
+      "glass": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.47
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.68
+      }
+    },
+    "errorMeters": 2.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSalamancaDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.83
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.77
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.69
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.82
+          },
+          "glass": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.47
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.68
+          }
+        },
+        "errorMeters": 1.01
+      },
+      "street": {
+        "export": "buildSalamancaStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.83
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.77
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.69
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.82
+          },
+          "glass": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.47
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.68
+          }
+        },
+        "errorMeters": 0.37
+      },
+      "closeup": {
+        "export": "buildSalamancaCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.83
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.77
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.69
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.82
+          },
+          "glass": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.47
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.68
+          }
+        },
+        "errorMeters": 0.13
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "salamanca_new_cathedral-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -165,
+        80,
+        -109
+      ],
+      "lookAt": [
+        -12,
+        30,
+        -5
+      ]
+    },
+    {
+      "name": "salamanca_new_cathedral-district",
+      "reviewLod": "district",
+      "position": [
+        -165,
+        80,
+        -109
+      ],
+      "lookAt": [
+        -12,
+        30,
+        -5
+      ]
+    },
+    {
+      "name": "salamanca_new_cathedral-street",
+      "reviewLod": "street",
+      "position": [
+        -165,
+        80,
+        -109
+      ],
+      "lookAt": [
+        -12,
+        30,
+        -5
+      ]
+    },
+    {
+      "name": "salamanca_new_cathedral-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -165,
+        80,
+        -109
+      ],
+      "lookAt": [
+        -12,
+        30,
+        -5
+      ]
+    }
+  ]
+}

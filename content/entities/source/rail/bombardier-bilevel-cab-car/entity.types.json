@@ -1,0 +1,280 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.rail.bombardier_bilevel_cab_car": {
+      "doc": "Bombardier BiLevel commuter cab car: the BiLevel coach with an operating cab at the front (+Z) end (windscreen, headlights, ditch lights, horn, driver desk and seat with live throttle and brake handles) for push-pull service. Unpowered: it leads a consist pushed by a locomotive; passengers board through the passenger seats.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.bombardier_bilevel_cab_car",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.bombardier_bilevel_cab_car",
+          "color": "#d6d7d1",
+          "spec": {
+            "label": "Bombardier BiLevel Cab Car",
+            "bodyStyle": "passenger-car",
+            "genericLabel": "Bi-level commuter cab car",
+            "width": 2.97,
+            "length": 25.3,
+            "height": 4.84,
+            "centerOfMass": [
+              0,
+              1.8,
+              0
+            ],
+            "wheelbase": 18.3,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.457,
+            "mass": 52000,
+            "engineForce": 1,
+            "maxSpeed": 41.6,
+            "reverseSpeed": 30,
+            "brakeDeceleration": 0.9,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [
+              -0.7,
+              3,
+              11.65
+            ],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00002,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 18.3,
+              "couplerLength": 25.91,
+              "power": 0,
+              "gauge": 1.435,
+              "profile": "coach"
+            }
+          },
+          "visual": {
+            "wheelNodes": [
+              "axle-1",
+              "axle-2",
+              "axle-3",
+              "axle-4"
+            ],
+            "frontWheelNodes": [
+              "axle-1"
+            ],
+            "paintMaterial": "rail-livery-body",
+            "interior": {
+              "nodes": [
+                "close-detail",
+                "throttle-handle",
+                "brake-handle"
+              ],
+              "bindings": [
+                {
+                  "node": "throttle-handle",
+                  "source": "throttle",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": 0.5,
+                  "min": -0.5,
+                  "max": 0.5,
+                  "responseSeconds": 0.2
+                },
+                {
+                  "node": "brake-handle",
+                  "source": "brake",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -0.7,
+                  "responseSeconds": 0.3
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                -0.7,
+                3,
+                11.65
+              ]
+            },
+            {
+              "id": "upper-left-1",
+              "role": "passenger",
+              "position": [
+                0.96,
+                3.82,
+                2.63
+              ]
+            },
+            {
+              "id": "upper-right-1",
+              "role": "passenger",
+              "position": [
+                -0.96,
+                3.82,
+                2.63
+              ]
+            },
+            {
+              "id": "lower-left-1",
+              "role": "passenger",
+              "position": [
+                1.12,
+                1.82,
+                2.63
+              ]
+            },
+            {
+              "id": "lower-right-1",
+              "role": "passenger",
+              "position": [
+                -1.12,
+                1.82,
+                2.63
+              ]
+            },
+            {
+              "id": "upper-left-2",
+              "role": "passenger",
+              "position": [
+                0.96,
+                3.82,
+                -3.48
+              ]
+            },
+            {
+              "id": "upper-right-2",
+              "role": "passenger",
+              "position": [
+                -0.96,
+                3.82,
+                -3.48
+              ]
+            },
+            {
+              "id": "lower-left-2",
+              "role": "passenger",
+              "position": [
+                1.12,
+                1.82,
+                -3.48
+              ]
+            },
+            {
+              "id": "lower-right-2",
+              "role": "passenger",
+              "position": [
+                -1.12,
+                1.82,
+                -3.48
+              ]
+            },
+            {
+              "id": "vestibule",
+              "role": "passenger",
+              "position": [
+                0,
+                2.9,
+                -10.35
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.785,
+              0.55,
+              10.35
+            ],
+            [
+              -1.785,
+              0.55,
+              10.35
+            ],
+            [
+              1.785,
+              0.55,
+              -10.35
+            ],
+            [
+              -1.785,
+              0.55,
+              -10.35
+            ]
+          ],
+          "exits": [
+            [
+              2.385,
+              0,
+              10.35
+            ],
+            [
+              -2.385,
+              0,
+              10.35
+            ],
+            [
+              2.385,
+              0,
+              -10.35
+            ],
+            [
+              -2.385,
+              0,
+              -10.35
+            ]
+          ],
+          "reach": 3
+        }
+      },
+      "assets": [
+        "molen.entities.rail.bombardier_bilevel_cab_car"
+      ]
+    }
+  }
+}

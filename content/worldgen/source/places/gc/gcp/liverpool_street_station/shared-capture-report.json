@@ -1,0 +1,79 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.liverpool_street_station",
+  "inputHash": "sha256:a78c6d659dada42817b7c581d20bf9c3f5e8ccffe47113fac46f6f02c8ae79d9",
+  "sourceHash": "sha256:7dd2efc854193ec60140ab2a95ae79bf6cd6df38c551ec1a908ee95be8227837",
+  "runtimeHash": "sha256:04c7a31e751ed897f125ad137cac9da87b940146493d1844d72d460326c1ab1a",
+  "fixtureHash": "sha256:d54f13d9d36371a2a21f21d1f86ebbfc51fc385060c5f0e7b891171ed74afe8e",
+  "placementHash": "sha256:33277ac87afa0e70aae75f6e6d1ae91be8c6e52778e4ab72b467bbea89cafcdd",
+  "materialGraphs": {
+    "molen.worldgen.material.brick_flemish": {
+      "path": "materials/brick_flemish.matgraph.json",
+      "hash": "sha256:f31107062ebd1a0d46f0ff6e5b9861b0be582d08a8c05f46e424dd12cb0c047c"
+    },
+    "molen.worldgen.material.glass_frit_triangular": {
+      "path": "materials/glass_frit_triangular.matgraph.json",
+      "hash": "sha256:ab416307e458827df9d530e60622e3db805370db7cbf2697ebb4eb0716c967b6"
+    },
+    "molen.worldgen.material.metal_standing_seam": {
+      "path": "materials/metal_standing_seam.matgraph.json",
+      "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+    },
+    "molen.worldgen.material.slate": {
+      "path": "materials/slate.matgraph.json",
+      "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_limestone_weathered": {
+      "path": "materials/stone_limestone_weathered.matgraph.json",
+      "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-liverpool-street-station.png",
+      "hash": "sha256:07863337b2f9f2aafb908b1998ff7486e4baf592656c955c282a68a0d7b095ab",
+      "camera": {
+        "name": "detail-station-and-exchange-square",
+        "position": [
+          223,
+          136,
+          -28
+        ],
+        "lookAt": [
+          -12,
+          6,
+          -3
+        ],
+        "fov": 60,
+        "lightDirection": [
+          0.59,
+          1,
+          0.61
+        ],
+        "detail": true
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "liverpool.street.station",
+        "visibleDraws": 8
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true,
+    "landcoverRestored": true
+  },
+  "errors": [],
+  "notes": "Seven shared graphs resolve once per tier for Flemish-bond brick, weathered limestone, granite, painted iron, slate, standing-seam roofing and tinted glazing. A local translucent material supplies the daylight panels."
+}

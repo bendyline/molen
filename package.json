@@ -10,6 +10,8 @@
     "build": "pnpm -r build",
     "aircraft:calibrate": "node packages/entities/scripts/update-aircraft-performance.mjs && node packages/entities/scripts/generate-models.mjs",
     "aircraft:bench": "node packages/entities/scripts/bench-aircraft.mjs",
+    "vehicles:calibrate": "node packages/entities/scripts/update-vehicle-dynamics.mjs && node packages/entities/scripts/generate-models.mjs",
+    "vehicles:bench": "node packages/entities/scripts/update-vehicle-dynamics.mjs --check --report",
     "clean": "node scripts/clean.mjs",
     "clean:dist": "node scripts/clean.mjs --dist",
     "reinstall": "node scripts/clean.mjs && pnpm install && pnpm -r build && pnpm install",

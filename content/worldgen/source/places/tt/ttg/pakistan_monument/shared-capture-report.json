@@ -1,0 +1,75 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.pakistan_monument",
+  "inputHash": "sha256:21fb61a0bea003f937aac2a5177bada64d3fb2e9b43721040caa4994165e3bab",
+  "sourceHash": "sha256:7efe99134f1ce1ef4074a7e5c8e063465dbde53f4340c17d4512d866c6787185",
+  "runtimeHash": "sha256:0705ef4646d5e054247421c59d4fe85f0f11e8fc6b792ac5c4fedd18e724119b",
+  "fixtureHash": "sha256:2bc31d81e98969a3a47f8cb3133bab3d86eb4dfc5564186c741fc615245879f1",
+  "placementHash": "sha256:e246f930a563cab4a9c628220c3af4466c805849af17a5ae7f783181e780556f",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_sandstone": {
+      "path": "materials/stone_sandstone.matgraph.json",
+      "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+    },
+    "molen.worldgen.material.metal_standing_seam": {
+      "path": "materials/metal_standing_seam.matgraph.json",
+      "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    },
+    "molen.worldgen.material.window_grid": {
+      "path": "materials/window_grid.matgraph.json",
+      "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-main-stair.png",
+      "hash": "sha256:cec7f62d575374de68afa0e541485c26c907e640a549d61652f0710389a6ea60",
+      "camera": {
+        "name": "detail-monument-from-the-main-stair",
+        "position": [
+          46,
+          6.25,
+          29
+        ],
+        "lookAt": [
+          2,
+          10.1,
+          1.8
+        ],
+        "fov": 62,
+        "detail": true,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "pakistan.monument",
+        "visibleMemberDraws": 5
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "liveSupportGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Reuses six shared graphs for sandstone, limestone, granite, painted metal, standing-seam metal and window glazing. Planted surfaces use the shared turf palette."
+}

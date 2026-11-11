@@ -29,8 +29,10 @@ export {
   terrainBuildingCoverage,
 } from './building-coverage';
 export {
+  cloneTerrainGroundMaterial,
   createTerrainGroundMaterial,
   createTerrainGroundMaterialAsync,
+  createTerrainGroundTextureMaterial,
   createTerrainPavementMaterial,
   createTerrainPavementMaterialAsync,
   isTerrainGroundMaterial,
@@ -39,6 +41,7 @@ export {
   type TerrainGroundMaterialOptions,
   type TerrainPavementMaterialOptions,
 } from './ground-material';
+export type { TerrainLandcoverRasterOptions } from './landcover-raster';
 export {
   createTerrainLandcoverWorkerBridge,
   installTerrainLandcoverWorker,
@@ -150,6 +153,18 @@ export {
   type TerrainSurfaceColor,
   terrainPyramidBudgetForQuality,
 } from './pyramid-stream';
+export { placeTerrainYardCars, type TerrainYardCarInput } from './rail-cars';
+export {
+  TERRAIN_RAIL_HEIGHT,
+  TERRAIN_RAILWAY_GROUND,
+  type TerrainRailElectrification,
+  type TerrainRailMode,
+  type TerrainRailService,
+  type TerrainRailTrack,
+  terrainRailElectrified,
+  terrainRailOffset,
+  terrainRailTrack,
+} from './rail-features';
 export {
   createDefaultTerrainSemanticRenderer,
   createTerrainSemanticObject,
@@ -173,6 +188,7 @@ export {
 export {
   assertTerrainSemanticTile,
   createEmptyTerrainSemanticTile,
+  type TerrainBridgeProfileSample,
   type TerrainBuildingFeature,
   type TerrainLandcoverFeature,
   type TerrainPoiFeature,
@@ -213,6 +229,7 @@ export {
   type TerrainSurfaceRenderer,
   type TerrainSurfaceStats,
 } from './surface-client';
+export { TERRAIN_RAIL_MESHES, type TerrainRailLamp } from './surface-rail';
 export {
   type TerrainTrafficSignal,
   type TerrainTrafficSignalColor,
@@ -312,7 +329,12 @@ export {
   createTerrainElevationWorkerSource,
   installTerrainElevationWorker,
 } from './elevation-worker';
-
+export {
+  createTerrainRoadGrading,
+  type TerrainRoadGrading,
+  type TerrainRoadGradingOptions,
+  withTerrainRoadGrading,
+} from './road-grading';
 export {
   TERRAIN_ROAD_SIGN_PATTERNS,
   type TerrainRoadSignPattern,

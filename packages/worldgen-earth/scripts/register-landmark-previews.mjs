@@ -56,6 +56,9 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
   const absolute = proposal.elevationMode === 'sea-level';
   if (absolute && !Number.isFinite(proposal.elevationMeters))
     throw new Error(`${spec.id}: absolute placement needs an explicit finite sea-level elevation`);
+  const minLevel = proposal.minLevel ?? ((spec.actualBounds?.max?.[1] ?? 0) > 150 ? 11 : 13);
+  if (!Number.isInteger(minLevel) || minLevel < 0 || minLevel > 26)
+    throw new Error(`${spec.id}: invalid minimum terrain level`);
   const preview =
     proposal.status === 'preview-proposal' &&
     (proposal.elevationMode === 'terrain-contact' || absolute);
@@ -81,7 +84,7 @@ for (const { dir, spec, sourceHash, inputHash } of await authoredModels()) {
     ...(proposal.terrainReference ? { terrainReference: proposal.terrainReference } : {}),
     ...(proposal.bounds ? { bounds: proposal.bounds } : {}),
     ...(proposal.replaceRoads ? { replaceRoads: proposal.replaceRoads } : {}),
-    minLevel: (spec.actualBounds?.max?.[1] ?? 0) > 150 ? 11 : 13,
+    minLevel,
     status: preview ? 'preview' : historical ? 'historical' : 'draft',
     source: proposal.source,
     note: `${proposal.notes} ${historical ? 'Historical placement requires an explicit viewingDate within the recorded appearance interval; excluded from the default current world.' : preview ? (absolute ? 'Preview places the authored base at the recorded absolute sea-level elevation; local tide and terrain resolution remain host-dependent.' : 'Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items.') : 'Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation.'}`,

@@ -22,7 +22,26 @@ describe('scatter material', () => {
     expect(shader.vertexShader).toContain(`attribute float ${SCATTER_CANOPY_ATTRIBUTE};`);
     expect(shader.vertexShader).toContain('vScatterLocal = transformed;');
     expect(shader.fragmentShader).toContain('diffuseColor.rgb *= scatterFactor();');
-    expect(material.customProgramCacheKey()).toBe('worldgen-scatter@3');
+    expect(material.customProgramCacheKey()).toBe('worldgen-scatter@4');
+    material.dispose();
+  });
+
+  it('shades a crown that does not read the shadow map as one among its neighbours', () => {
+    const material = createScatterMaterial();
+    const shader = {
+      uniforms: {},
+      vertexShader: THREE.ShaderLib.standard.vertexShader,
+      fragmentShader: THREE.ShaderLib.standard.fragmentShader,
+    } as THREE.WebGLProgramParametersWithUniforms;
+    material.onBeforeCompile(shader, {} as THREE.WebGLRenderer);
+    // Guards three upgrades: the unshadowed case of the sun's shadow lookup must still be there.
+    // It follows the map's intensity, so a parked map (which shades the near levels no more)
+    // leaves the distant ones fully lit as well.
+    expect(shader.fragmentShader).toContain(
+      'vDirectionalShadowCoord[ i ] ) : mix( 1.0, scatterStandShade(',
+    );
+    expect(shader.fragmentShader).toContain('directionalLightShadow.shadowIntensity );');
+    expect(shader.fragmentShader).not.toContain('#include <lights_fragment_begin>');
     material.dispose();
   });
 

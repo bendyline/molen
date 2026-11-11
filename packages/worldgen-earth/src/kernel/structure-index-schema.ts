@@ -4,6 +4,57 @@ import { MAX_STRUCTURE_GROUND_OUTLINES, validGroundOutline } from './ground-cuto
 import { isHistoricalStructureAppearance, isStructureViewingDate } from './structure-date';
 
 const finite = z.number().finite();
+const featureIds = z
+  .array(z.union([z.number().int(), z.string().trim().min(1)]))
+  .min(1)
+  .max(64);
+const roadReplacement = z
+  .strictObject({
+    length: finite.positive(),
+    width: finite.positive(),
+    outline: z
+      .array(z.tuple([finite, finite]))
+      .min(3)
+      .max(512)
+      .refine(validGroundOutline, 'road outline must be a simple polygon with positive area')
+      .optional(),
+    deckHeight: finite.optional(),
+    deckHeights: z.tuple([finite, finite]).optional(),
+    deckProfile: z
+      .array(z.tuple([finite, finite, finite]))
+      .min(2)
+      .max(512)
+      .refine(
+        (points) => points.every((p, i) => i === 0 || p[0] > (points[i - 1]?.[0] ?? -Infinity)),
+        'deck profile must be ordered by X',
+      )
+      .optional(),
+    includeTransverseBridges: z.boolean().optional(),
+    deckEndpoints: z
+      .tuple([z.tuple([finite, finite]), z.tuple([finite, finite])])
+      .refine((ends) => ends[0][0] < ends[1][0], 'road endpoints must be ordered by X')
+      .optional(),
+    includeConnectedApproaches: z.boolean().optional(),
+    bridgeFeatureIds: featureIds.optional(),
+    pavingAreaIds: featureIds.optional(),
+  })
+  .refine(
+    (road) => road.deckHeight === undefined || road.deckHeights === undefined,
+    'choose a uniform deck height or separate endpoint heights',
+  )
+  .refine(
+    (road) =>
+      !road.deckEndpoints || road.deckHeight !== undefined || road.deckHeights !== undefined,
+    'explicit road endpoints require deck heights',
+  )
+  .refine(
+    (road) => !road.deckProfile || road.deckHeight !== undefined || road.deckHeights !== undefined,
+    'deck profile requires endpoint deck heights',
+  )
+  .refine(
+    (road) => !road.includeTransverseBridges || !!road.outline,
+    'transverse bridge replacement requires an exact outline',
+  );
 const placementSchema = (runtime: boolean) =>
   z
     .strictObject({
@@ -31,53 +82,8 @@ const placementSchema = (runtime: boolean) =>
         ])
         .refine((b) => b[0] < b[2] && b[1] < b[3], 'extent must be ordered west/south/east/north')
         .optional(),
-      replaceRoads: z
-        .strictObject({
-          length: finite.positive(),
-          width: finite.positive(),
-          outline: z
-            .array(z.tuple([finite, finite]))
-            .min(3)
-            .max(512)
-            .refine(validGroundOutline, 'road outline must be a simple polygon with positive area')
-            .optional(),
-          deckHeight: finite.optional(),
-          deckHeights: z.tuple([finite, finite]).optional(),
-          deckProfile: z
-            .array(z.tuple([finite, finite, finite]))
-            .min(2)
-            .max(512)
-            .refine(
-              (points) =>
-                points.every((p, i) => i === 0 || p[0] > (points[i - 1]?.[0] ?? -Infinity)),
-              'deck profile must be ordered by X',
-            )
-            .optional(),
-          includeTransverseBridges: z.boolean().optional(),
-          deckEndpoints: z
-            .tuple([z.tuple([finite, finite]), z.tuple([finite, finite])])
-            .refine((ends) => ends[0][0] < ends[1][0], 'road endpoints must be ordered by X')
-            .optional(),
-          includeConnectedApproaches: z.boolean().optional(),
-        })
-        .refine(
-          (road) => road.deckHeight === undefined || road.deckHeights === undefined,
-          'choose a uniform deck height or separate endpoint heights',
-        )
-        .refine(
-          (road) =>
-            !road.deckEndpoints || road.deckHeight !== undefined || road.deckHeights !== undefined,
-          'explicit road endpoints require deck heights',
-        )
-        .refine(
-          (road) =>
-            !road.deckProfile || road.deckHeight !== undefined || road.deckHeights !== undefined,
-          'deck profile requires endpoint deck heights',
-        )
-        .refine(
-          (road) => !road.includeTransverseBridges || !!road.outline,
-          'transverse bridge replacement requires an exact outline',
-        )
+      replaceRoads: roadReplacement
+        .safeExtend({ additionalDecks: z.array(roadReplacement).min(1).max(8).optional() })
         .optional(),
       replaceFootprint: z.boolean().optional(),
       buildingCutout: z

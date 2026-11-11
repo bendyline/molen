@@ -61,6 +61,7 @@ import { prepareAgricultureTile } from '../kernel/agriculture';
 import { coarseBuildingTile } from '../kernel/coarse-buildings';
 import { withDistrictLevels } from '../kernel/district-heights';
 import { isLandcoverDesignation } from '../kernel/labels';
+import { LAND_SITE_COLORS, prepareLandSites } from '../kernel/land-sites';
 import type { PlacesContent } from '../kernel/places';
 import type { RegionResolver } from '../kernel/region';
 import { regionScatterId } from '../kernel/region';
@@ -85,6 +86,7 @@ import {
   clipStructureObject,
   footprintCovers,
   footprintOverlapsTile,
+  polygonWithin,
   type StructureFootprint,
   structureFootprint,
   withoutStructureRoads,
@@ -485,13 +487,16 @@ export function createWorldgenSemanticRenderers(
           options.propLod !== false ? await models.prepare(set.modelRef, true) : prepared;
         const distant =
           options.propLod !== false ? await models.prepare(set.modelRef, 'distant') : prepared;
+        // The far model itself for everything but conifers, and then not a level of its own.
+        const horizon =
+          options.propLod !== false ? await models.prepare(set.modelRef, 'horizon') : prepared;
         if (context.signal.aborted) return objects;
         // Instance matrices for every placement: admitted, as a tile's sources resolve together.
         const build = (): THREE.Object3D =>
           options.propLod !== false
             ? createInstancedPlacementLod(
                 set,
-                [prepared, medium, distant],
+                [prepared, medium, distant, horizon],
                 {
                   // One batch per coarser tile: the terrain tile is already the culling unit. On
                   // WebGPU every InstancedMesh pays its own shader build (about 6 ms on the main
@@ -707,7 +712,9 @@ export function createWorldgenSemanticRenderers(
    * landmark's own off-centre parts (an observation level, its legs, a grandstand, a parked
    * roof) contain no anchor, so a polygon at least half covered by the model's own footprint
    * (`footprint`) goes too, as does one covered by a
-   * landmark a neighbouring tile placed (`nearby`).
+   * landmark a neighbouring tile placed (`nearby`). Whatever lies at least half inside a
+   * replaced polygon goes with it: a mapped building's parts (a shaft, a spire) stay
+   * the landmark's even where the model, anchored off them, covers less than half.
    * The extent fallback applies only when no geometry footprint is available; empty corners
    * of a rotated or concave landmark's bounding box can contain unrelated buildings.
    */
@@ -778,12 +785,27 @@ export function createWorldgenSemanticRenderers(
           (maxV - minV) * context.tileSize <= size[1] * FOOTPRINT_SIZE_RATIO + FOOTPRINT_SLACK
         );
       });
-    const removed: number[] = [];
-    const buildings = tile.buildings.filter((feature, i) => {
-      if (!feature.polygons.some(replaces)) return true;
-      removed.push(i);
-      return false;
+    const replaced = new Set<number>();
+    tile.buildings.forEach((feature, i) => {
+      if (feature.polygons.some(replaces)) replaced.add(i);
     });
+    // A replaced building takes what is mapped inside it: a tower's shaft and spire are separate
+    // parts within its outline, often off the anchor and mostly beside the model's footprint.
+    const outlines = [...replaced].flatMap((i) => tile.buildings[i]?.polygons ?? []);
+    if (outlines.length)
+      tile.buildings.forEach((feature, i) => {
+        if (
+          !replaced.has(i) &&
+          feature.polygons.some((polygon) =>
+            outlines.some((outline) => polygonWithin(polygon, outline)),
+          )
+        )
+          replaced.add(i);
+      });
+    const removed = [...replaced].sort((a, b) => a - b);
+    const buildings = replaced.size
+      ? tile.buildings.filter((_, i) => !replaced.has(i))
+      : tile.buildings;
     const filtered = buildings.length === tile.buildings.length ? tile : { ...tile, buildings };
     const mapped = withoutBuildingCutouts(filtered, context, cutouts, wholeBuildings);
     // Kept footprints stay the tile's own: the worldgen worker gets its packet and this edit.
@@ -1371,11 +1393,11 @@ export function createWorldgenSemanticRenderers(
   };
   const classification: TerrainSemanticTileRenderer = {
     async createTile(tile: TerrainSemanticTile, context): Promise<THREE.Object3D | undefined> {
-      tile = prepareAgricultureTile(
-        tile,
-        geometryFor(context, metersPerUnit),
-        options.environment,
-      ).tile;
+      const geometry = geometryFor(context, metersPerUnit);
+      tile = prepareLandSites(
+        prepareAgricultureTile(tile, geometry, options.environment).tile,
+        geometry,
+      );
       const centerX = context.origin[0] + context.tileSize / 2;
       const centerZ = context.origin[1] + context.tileSize / 2;
       const environment = options.environment;
@@ -1441,10 +1463,12 @@ export function createWorldgenSemanticRenderers(
       // The land cover worker gets the tile's packet and this edit, not the tile cloned whole.
       deriveTerrainSemanticTilePacket(tile, surfaceTile);
       // Host colors refine the style pack's palette class by class rather than replacing it.
+      // Classes the land-site layouts add keep their own colors under any palette that does not
+      // name them.
       const colors =
         packColors === undefined && hostColors === undefined
           ? undefined
-          : { ...packColors, ...hostColors };
+          : { ...LAND_SITE_COLORS, ...packColors, ...hostColors };
       const meshOptions: TerrainSemanticMeshOptions = {
         ...(models !== undefined ? { maxTreesPerTile: 0 } : {}),
         // Unmapped ground between a dense block's buildings is paving, not the habitat's lawn.

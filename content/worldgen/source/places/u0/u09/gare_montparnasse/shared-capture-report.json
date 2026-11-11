@@ -1,0 +1,75 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.gare_montparnasse",
+  "inputHash": "sha256:4494961bfc8c6cb965095e8ef5afbcb84d8379b9d4d283fa5d22fa56f0d1e577",
+  "sourceHash": "sha256:b1c3d7c4d2c842ddbb1e7b49d2cdd4eaf1524afb5bc624dcd9f041ace40a650e",
+  "runtimeHash": "sha256:dbd6cd8ed71b070c77d6f9d6e3b1989fd60bf86acc4a89f4cc1df59bb7ebb90b",
+  "fixtureHash": "sha256:54731a07306e48d1ef2837f60c8a52b3e4efe6041c6c9977493a0e646392cc6f",
+  "placementHash": "sha256:74bb65233bf8dce2324716cf33b10c42b285191777ea8c6ee7280c1200af0e39",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_panel": {
+      "path": "materials/concrete_panel.matgraph.json",
+      "hash": "sha256:abe4cae93974b54fcec791eeaf719abfc7b069c87e136f4c371cebdaed7321f4"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    },
+    "molen.worldgen.material.glass_frit_triangular": {
+      "path": "materials/glass_frit_triangular.matgraph.json",
+      "hash": "sha256:ab416307e458827df9d530e60622e3db805370db7cbf2697ebb4eb0716c967b6"
+    },
+    "molen.worldgen.material.metal_standing_seam": {
+      "path": "materials/metal_standing_seam.matgraph.json",
+      "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-montparnasse.png",
+      "hash": "sha256:216b9969cdcfe2b00db4e75c0050eb27513f40bd223542e5c680b5f21a63cc16",
+      "camera": {
+        "name": "detail-station-overview",
+        "position": [
+          -260,
+          240,
+          -402
+        ],
+        "lookAt": [
+          0,
+          1,
+          -92
+        ],
+        "fov": 57,
+        "lightDirection": [
+          -0.55,
+          1,
+          -0.7
+        ],
+        "detail": true
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "gare.montparnasse",
+        "visibleDraws": 8
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true,
+    "landcoverRestored": true
+  },
+  "errors": [],
+  "notes": "Six shared graphs resolve once per tier for plain concrete, panel concrete, zinc, painted metal, granite and tinted glazing. Planting and translucent entrance panes use two local materials. Opaque glazing uses the wall binding to preserve its authored vertex tint."
+}

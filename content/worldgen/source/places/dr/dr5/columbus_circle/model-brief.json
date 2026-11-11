@@ -1,0 +1,446 @@
+{
+  "id": "columbus_circle",
+  "title": "Columbus Circle",
+  "wikidataId": "Q109968",
+  "referenceCoordinate": {
+    "longitude": -73.981898725,
+    "latitude": 40.768069835
+  },
+  "module": "content/worldgen/source/places/dr/dr5/columbus_circle/models/circle-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-columbus-circle.mjs",
+  "builder": "buildCircleLevel",
+  "surfaces": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_granite"
+    },
+    "marble": {
+      "slot": "trim",
+      "graph": "stone_marble"
+    },
+    "bronze": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "metallic": 0.68,
+      "roughness": 0.52
+    },
+    "water": {
+      "slot": "trim",
+      "localRef": "palette:#4b6d69",
+      "name": "Fountain water",
+      "roughness": 0.22,
+      "metallic": 0.21
+    },
+    "jet": {
+      "slot": "trim",
+      "localRef": "palette:#e6f1e9",
+      "name": "Fountain jet",
+      "roughness": 0.29,
+      "metallic": 0.05,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.53
+      ],
+      "doubleSided": true
+    }
+  },
+  "exportLabel": "Molen original Columbus Circle master",
+  "expectedDraftMasterHash": "sha256:18814c07de139b07644c0a7595fb82200adeebe21298fb1e39c3f450aaa48b32",
+  "visualBrief": "Columbus Circle in Manhattan with three mapped fountain arcs, the granite pedestrian island and the rostral monument. The marble summit, the Genius of Discovery, the eagle and the bronze reliefs remain distinct across the detail tiers.",
+  "heightPolicy": "The fixed 23.33 m datum and standard terrain position the steps and grade-matched granite plaza. Three enclosed cuts preserve the recessed fountain water and retain neighboring roads.",
+  "nativeAxes": "Native +X follows the mapped upper pedestal edge toward the east-southeast. Native +Z points toward the southern Eighth Avenue approach. The south Genius identifies the front in the elevation photograph and the Smithsonian record.",
+  "limitations": [
+    "The monument proportions combine seven mapped components with the exterior photographs. The statue height follows the roughly 76-foot total, while the mapped procedural envelope is 25 m. Sculpture faces, drapery and reliefs are medium-fi reconstructions.",
+    "The fountains use fixed water levels and static jet arcs. Paving follows the standard terrain and retains native street, footway and planting data."
+  ],
+  "materialMethod": "Granite, marble and cast bronze use three shared material graphs at metric repeats. The fountain water and jet ribbons use constant-color local PBR surfaces.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Columbus_Monument_Columbus_Circle.jpg",
+      "hash": "sha256:0dbecc8210d6c4c707a6e1a0f0292f416cacf9d6ce8f2f43013af52d82bb5020",
+      "observed": "Sculpture, rostral column, inscriptions and plinth."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Columbus_Circle_in_New_York_City.jpg",
+      "hash": "sha256:9b60c13bd11bd439a7012b22bc144441fa4b78e740526b70ea9c9e7a182ddeab",
+      "observed": "Pedestrian plaza, basin geometry and street relationship."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "circle-from-eighth-avenue",
+      "position": [
+        29,
+        24,
+        64
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "south-genius-and-column",
+      "position": [
+        0,
+        5.5,
+        38
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "ship-prows-and-anchors",
+      "position": [
+        8,
+        14.2,
+        14
+      ],
+      "lookAt": [
+        0,
+        12.6,
+        0.35
+      ],
+      "fov": 49
+    },
+    {
+      "name": "marble-summit",
+      "position": [
+        6,
+        24.5,
+        11
+      ],
+      "lookAt": [
+        0,
+        21.12,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "genius-with-globe",
+      "position": [
+        5.4,
+        6,
+        11.2
+      ],
+      "lookAt": [
+        0.15,
+        3.65,
+        1.6
+      ],
+      "fov": 48
+    },
+    {
+      "name": "north-eagle-and-relief",
+      "position": [
+        5,
+        6.8,
+        -13
+      ],
+      "lookAt": [
+        0,
+        4,
+        -1.55
+      ],
+      "fov": 51
+    },
+    {
+      "name": "fountain-seating-and-jets",
+      "position": [
+        -22,
+        6.1,
+        20
+      ],
+      "lookAt": [
+        -13,
+        1,
+        1
+      ],
+      "fov": 58
+    },
+    {
+      "name": "three-arcs-and-street-joins",
+      "position": [
+        -27,
+        53,
+        20
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "fov": 58
+    }
+  ],
+  "sourceFacts": {
+    "mappedParts": [
+      35184631976927,
+      35184631976928,
+      35184631976929,
+      35184631976930,
+      35184631976931,
+      35184631976933,
+      35184981036284
+    ],
+    "basins": 3,
+    "monumentWikidataId": "Q86518088",
+    "modeledHeightMeters": 23.1648,
+    "mappedEnvelopeMeters": 25
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        8,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/dr/dr5/columbus_circle/models/circle-model.mjs",
+    "export": "buildCircleSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite"
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble"
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "metallic": 0.68,
+        "roughness": 0.52
+      },
+      "water": {
+        "slot": "trim",
+        "localRef": "palette:#4b6d69",
+        "name": "Fountain water",
+        "roughness": 0.22,
+        "metallic": 0.21
+      },
+      "jet": {
+        "slot": "trim",
+        "localRef": "palette:#e6f1e9",
+        "name": "Fountain jet",
+        "roughness": 0.29,
+        "metallic": 0.05,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.53
+        ],
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 1.3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCircleDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "metallic": 0.68,
+            "roughness": 0.52
+          },
+          "water": {
+            "slot": "trim",
+            "localRef": "palette:#4b6d69",
+            "name": "Fountain water",
+            "roughness": 0.22,
+            "metallic": 0.21
+          },
+          "jet": {
+            "slot": "trim",
+            "localRef": "palette:#e6f1e9",
+            "name": "Fountain jet",
+            "roughness": 0.29,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.53
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.56
+      },
+      "street": {
+        "export": "buildCircleStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "metallic": 0.68,
+            "roughness": 0.52
+          },
+          "water": {
+            "slot": "trim",
+            "localRef": "palette:#4b6d69",
+            "name": "Fountain water",
+            "roughness": 0.22,
+            "metallic": 0.21
+          },
+          "jet": {
+            "slot": "trim",
+            "localRef": "palette:#e6f1e9",
+            "name": "Fountain jet",
+            "roughness": 0.29,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.53
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.22
+      },
+      "closeup": {
+        "export": "buildCircleCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite"
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "metallic": 0.68,
+            "roughness": 0.52
+          },
+          "water": {
+            "slot": "trim",
+            "localRef": "palette:#4b6d69",
+            "name": "Fountain water",
+            "roughness": 0.22,
+            "metallic": 0.21
+          },
+          "jet": {
+            "slot": "trim",
+            "localRef": "palette:#e6f1e9",
+            "name": "Fountain jet",
+            "roughness": 0.29,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.53
+            ],
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.07
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "columbus_circle-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        29,
+        24,
+        64
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "columbus_circle-district",
+      "reviewLod": "district",
+      "position": [
+        29,
+        24,
+        64
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "columbus_circle-street",
+      "reviewLod": "street",
+      "position": [
+        29,
+        24,
+        64
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "columbus_circle-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        29,
+        24,
+        64
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    }
+  ]
+}

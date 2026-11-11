@@ -34,8 +34,12 @@ export interface LandcoverBlendRange {
   feature: number;
 }
 
-function rasterize(
-  features: readonly TerrainLandcoverFeature[],
+/**
+ * The feature drawn at each cell center of a `size` by `size` grid over the tile and `margin`
+ * (a share of the tile) round it; -1 where none. Later features cover earlier ones.
+ */
+export function rasterizeLandcoverFeatures(
+  features: readonly Pick<TerrainLandcoverFeature, 'polygons'>[],
   size: number,
   margin: number,
 ): Int16Array {
@@ -152,7 +156,7 @@ export function applyLandcoverBlend(
   const radius = Math.max(BLEND_RADIUS, cell * 1.5);
   const margin = radius / tileSize + 1 / RASTER;
   const size = Math.ceil(RASTER * (1 + margin * 2));
-  const cells = rasterize(features, size, margin);
+  const cells = rasterizeLandcoverFeatures(features, size, margin);
   const scale = size / (1 + margin * 2);
   const near = nearBoundary(cells, size, Math.ceil((radius / tileSize) * scale) + 1);
   const xyz = position.array;

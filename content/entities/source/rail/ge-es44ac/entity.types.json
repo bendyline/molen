@@ -1,0 +1,323 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.rail.ge_es44ac": {
+      "doc": "GE ES44AC (Evolution Series): six-axle AC road freight locomotive with a wide-nose safety cab, C-C Hi-Ad trucks with 42 in wheels, dynamic-brake housing behind the cab and the flared radiator section at the rear, in a generic two-tone livery. Full cab interior (desktop console, live throttle and automatic brake handles, engineer and conductor seats). Drives on track: steering is locked, power at the rail limits tractive effort above starting speed.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.ge_es44ac",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.ge_es44ac",
+          "color": "#3d5a73",
+          "spec": {
+            "label": "GE ES44AC",
+            "bodyStyle": "locomotive",
+            "genericLabel": "Six-axle freight locomotive",
+            "width": 3.12,
+            "length": 21.4,
+            "height": 4.72,
+            "centerOfMass": [
+              0,
+              1.8,
+              0
+            ],
+            "wheelbase": 15.9,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.533,
+            "mass": 195000,
+            "engineForce": 880000,
+            "maxSpeed": 33.5,
+            "reverseSpeed": 33.5,
+            "brakeDeceleration": 0.6,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [
+              -0.72,
+              3.22,
+              7.85
+            ],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00003,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 15.9,
+              "couplerLength": 22.3,
+              "power": 3100000,
+              "gauge": 1.435,
+              "profile": "locomotive"
+            }
+          },
+          "visual": {
+            "wheelNodes": [
+              "axle-1",
+              "axle-2",
+              "axle-3",
+              "axle-4",
+              "axle-5",
+              "axle-6"
+            ],
+            "frontWheelNodes": [
+              "axle-1"
+            ],
+            "paintMaterial": "rail-livery-body",
+            "interior": {
+              "nodes": [
+                "close-detail",
+                "throttle-handle",
+                "brake-handle"
+              ],
+              "bindings": [
+                {
+                  "node": "throttle-handle",
+                  "source": "throttle",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": 0.5,
+                  "min": -0.5,
+                  "max": 0.5,
+                  "responseSeconds": 0.2
+                },
+                {
+                  "node": "brake-handle",
+                  "source": "brake",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -0.7,
+                  "responseSeconds": 0.3
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                -0.72,
+                3.22,
+                7.85
+              ]
+            },
+            {
+              "id": "conductor",
+              "role": "passenger",
+              "position": [
+                0.72,
+                3.22,
+                7.85
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.81,
+              0.45,
+              10.28
+            ],
+            [
+              -1.81,
+              0.45,
+              10.28
+            ]
+          ],
+          "exits": [
+            [
+              2.46,
+              0,
+              10.28
+            ],
+            [
+              -2.46,
+              0,
+              10.28
+            ]
+          ],
+          "reach": 3
+        },
+        "ambientRole": {
+          "role": "rail",
+          "track": "heavy",
+          "cruise": 18,
+          "weight": 3,
+          "consist": {
+            "units": [
+              2,
+              3
+            ],
+            "length": [
+              12,
+              22
+            ],
+            "block": [
+              2,
+              5
+            ],
+            "cars": [
+              {
+                "type": "molen.entities.rail.covered_hopper",
+                "weight": 22,
+                "colors": [
+                  "#b9b7ad",
+                  "#a9a59a",
+                  "#8f8c86",
+                  "#c2b8a3"
+                ]
+              },
+              {
+                "type": "molen.entities.rail.tank_car_dot117",
+                "weight": 18,
+                "colors": [
+                  "#1d1e20",
+                  "#26282a",
+                  "#d9d6cf"
+                ]
+              },
+              {
+                "type": "molen.entities.rail.boxcar_50ft",
+                "weight": 18,
+                "colors": [
+                  "#7a3326",
+                  "#8a4a2c",
+                  "#5f3a2e",
+                  "#2f4f6b",
+                  "#6b6f4a"
+                ]
+              },
+              {
+                "type": "molen.entities.rail.well_car_double_stack",
+                "weight": 16,
+                "colors": [
+                  "#3d3f3c",
+                  "#58402e"
+                ]
+              },
+              {
+                "type": "molen.entities.rail.gondola_52ft",
+                "weight": 10,
+                "colors": [
+                  "#3a3633",
+                  "#5b3527",
+                  "#2f3b33"
+                ]
+              },
+              {
+                "type": "molen.entities.rail.centerbeam_flatcar",
+                "weight": 8,
+                "colors": [
+                  "#4b4a46",
+                  "#5a3e2e"
+                ]
+              },
+              {
+                "type": "molen.entities.rail.autorack_enclosed",
+                "weight": 8,
+                "colors": [
+                  "#6d4a33",
+                  "#8d8b84",
+                  "#7a7369"
+                ]
+              }
+            ]
+          }
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.diesel",
+          "loop": true,
+          "pitch": 0.9,
+          "gain": 1,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [
+              [
+                -1,
+                0.62
+              ],
+              [
+                0,
+                0.55
+              ],
+              [
+                0.5,
+                0.78
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          },
+          "gainFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [
+              [
+                -1,
+                0.75
+              ],
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      "assets": [
+        "molen.entities.rail.ge_es44ac"
+      ]
+    }
+  }
+}

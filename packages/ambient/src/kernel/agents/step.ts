@@ -855,7 +855,7 @@ function placeTrainCar(ref: Ref, lead: Ref, env: AgentEnv): void {
     lead.w.s,
     lead.w.prev,
     lead.w.trail ?? [],
-    spacing * (ref.a.carIndex ?? 1),
+    ref.a.offset ?? spacing * (ref.a.carIndex ?? 1),
   );
   w.lane = back.lane;
   w.s = back.s;

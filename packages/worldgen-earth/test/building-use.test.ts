@@ -57,6 +57,16 @@ function classify(
 }
 
 describe('building use', () => {
+  it('keeps underground footprints out of surface building parts', () => {
+    const station = building('station', 50, { layer: -1 });
+    const entrance = building('entrance', 4, { class: 'building_part', layer: 0 });
+    const tower = building('tower', 8, { class: 'building_part', layer: 2 });
+    expect(buildingPieces([station, entrance, tower]).map((piece) => piece.feature.id)).toEqual([
+      'entrance',
+      'tower',
+    ]);
+  });
+
   it('believes a POI that is the same mapped element as the footprint', () => {
     for (const [cls, use] of [
       ['place_of_worship', 'place_of_worship'],

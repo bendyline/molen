@@ -6,11 +6,13 @@ const mocks = vi.hoisted(() => ({
   construct: vi.fn(),
   timestampGuard: vi.fn(),
   sharedInstancing: vi.fn(),
+  instanceBatches: vi.fn(),
 }));
 
 vi.mock('three/webgpu', () => ({
   // r185+ removed the class. Vitest's strict module mock needs an explicit undefined.
   InstanceNode: undefined,
+  NodeMaterial: class {},
   StorageBufferNode: class {},
   WebGPUBackend: class {
     dispose = vi.fn();
@@ -24,7 +26,19 @@ vi.mock('three/webgpu', () => ({
 vi.mock('../src/three/webgpu-frame-timer', () => ({
   installWebGpuTimestampGuard: mocks.timestampGuard,
 }));
-vi.mock('three/tsl', () => ({ instanceIndex: {}, objectGroup: {} }));
+vi.mock('three/tsl', () => ({
+  attribute: vi.fn(),
+  instanceIndex: {},
+  mat4: vi.fn(),
+  normalLocal: {},
+  objectGroup: {},
+  positionLocal: {},
+  transformNormal: vi.fn(),
+  varyingProperty: vi.fn(),
+}));
+vi.mock('../src/three/webgpu-instance-batches', () => ({
+  installWebGpuInstanceBatches: mocks.instanceBatches,
+}));
 vi.mock('../src/three/webgpu-shared-instancing', () => ({
   installWebGpuSharedInstancing: mocks.sharedInstancing,
 }));
@@ -37,6 +51,7 @@ describe('WebGPU driver initialization transaction', () => {
     mocks.construct.mockReset();
     mocks.timestampGuard.mockReset();
     mocks.sharedInstancing.mockReset();
+    mocks.instanceBatches.mockReset();
     const { WebGPUBackend } = await import('three/webgpu');
     driver = fakeDriver(new WebGPUBackend());
     canvas = { width: 640, height: 480 } as HTMLCanvasElement;
@@ -60,6 +75,11 @@ describe('WebGPU driver initialization transaction', () => {
     expect(stagingTarget.dispose).toHaveBeenCalledOnce();
     expect(driver.info.autoReset).toBe(false);
     expect(mocks.timestampGuard).toHaveBeenCalledExactlyOnceWith(driver);
+    const { NodeMaterial } = await import('three/webgpu');
+    expect(mocks.instanceBatches).toHaveBeenCalledExactlyOnceWith(
+      driver,
+      expect.objectContaining({ NodeMaterial }),
+    );
     expect(mocks.sharedInstancing).toHaveBeenCalledExactlyOnceWith(
       expect.objectContaining({ InstanceNode: undefined }),
     );

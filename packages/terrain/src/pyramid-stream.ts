@@ -1034,6 +1034,11 @@ interface AheadTile {
 const DEFAULT_LOOK_AHEAD_SECONDS: readonly number[] = [3, 6, 12, 20];
 const DEFAULT_MIN_TILE_SECONDS = 5;
 const DEFAULT_FAST_DETAIL = 0.25;
+/**
+ * Layers under way for ground the camera has left may number this many times the layer budget
+ * before they hold new work back: see startQueuedLayerLoads.
+ */
+const STALE_LAYER_ROOM = 2;
 /** A level back in use needs this much more than `minTileSeconds`, so speed noise cannot flip it. */
 const LEVEL_LIMIT_HYSTERESIS = 1.2;
 /** How full the cache may get on tiles ahead alone, before they must replace something. */
@@ -3310,7 +3315,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       this.pendingLayers.has(key) ||
       this.layerRetries.isBlocked(key) ||
       !this.layerEligible(layer, tile.address.level) ||
-      this.pendingLayers.size >= this.budget.maxConcurrentLayerLoads
+      // The caller counts the slots in use; this bounds what is under way altogether.
+      this.pendingLayers.size >= this.budget.maxConcurrentLayerLoads * (1 + STALE_LAYER_ROOM)
     ) {
       return;
     }
@@ -3450,7 +3456,29 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   }
 
   private startQueuedLayerLoads(): void {
-    if (this.pendingLayers.size >= this.budget.maxConcurrentLayerLoads) return;
+    // A layer under way for ground the camera has since left runs on into the warm cache (a
+    // cancelled request leaves its worker job running with nothing to show for it), but no
+    // longer holds a slot. Worker queues take the nearest ground first, so those jobs ran last
+    // while their slots stayed taken: after a turn, new ground waited for a window full of them.
+    const layerCounts = new Map<string, number>();
+    let live = 0;
+    for (const { layer, address } of this.pendingLayers.values()) {
+      const tileKey = terrainPyramidTileKey(address);
+      // Everything this pass could start work for, and the tiles a handoff still waits on.
+      if (
+        !this.wanted.has(tileKey) &&
+        !this.ahead.has(tileKey) &&
+        !this.selected.has(tileKey) &&
+        !this.replacementTiles.has(tileKey) &&
+        !this.displayed.has(tileKey) &&
+        !this.preloading.has(tileKey)
+      )
+        continue;
+      live++;
+      layerCounts.set(layer.id, (layerCounts.get(layer.id) ?? 0) + 1);
+    }
+    const room = this.budget.maxConcurrentLayerLoads * (1 + STALE_LAYER_ROOM);
+    if (live >= this.budget.maxConcurrentLayerLoads || this.pendingLayers.size >= room) return;
     // Everything is judged at the view a build will finish into: a moving camera has left what
     // it sees now by then, and a tile right beneath it is about the last thing worth starting.
     const lead = this.lead;
@@ -3580,9 +3608,6 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     // Each layer has its own downstream workers, but holds a stream slot from fetch through
     // publication. Do not let a slow source (including water) occupy the entire window while
     // the other workers are idle. Lend unused shares when another layer has no queued work.
-    const layerCounts = new Map<string, number>();
-    for (const { layer } of this.pendingLayers.values())
-      layerCounts.set(layer.id, (layerCounts.get(layer.id) ?? 0) + 1);
     const enabledLayers = [...this.layerById.values()].filter(
       (layer) => this.layerVisibility.get(layer.id) === true,
     ).length;
@@ -3591,9 +3616,13 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     // Keep one slot for each other enabled layer even when its heights have not arrived yet.
     // Otherwise lending the entire window to stalled reads starves the next arriving tile.
     const ceiling = Math.max(1, this.budget.maxConcurrentLayerLoads - layerCount + 1);
-    while (jobs.length > 0 && this.pendingLayers.size < this.budget.maxConcurrentLayerLoads) {
+    while (
+      jobs.length > 0 &&
+      live < this.budget.maxConcurrentLayerLoads &&
+      this.pendingLayers.size < room
+    ) {
       const allowed = (job: (typeof jobs)[number]): boolean =>
-        job.ahead === undefined || this.pendingLayers.size < aheadLayers;
+        job.ahead === undefined || live < aheadLayers;
       const withinShare = (job: (typeof jobs)[number]): boolean =>
         (layerCounts.get(job.layer.id) ?? 0) < share;
       const available = jobs.some((job) => allowed(job) && withinShare(job));
@@ -3613,6 +3642,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       if (job) {
         layerCounts.set(job.layer.id, (layerCounts.get(job.layer.id) ?? 0) + 1);
         this.startLayerLoad(job.tile, job.layer);
+        live++;
       }
     }
   }
