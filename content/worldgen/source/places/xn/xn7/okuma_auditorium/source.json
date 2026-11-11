@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.okuma_auditorium",
+  "kind": "static-structure",
+  "title": "Ōkuma Auditorium",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.okuma_auditorium",
+        "output": "assets/places/xn/xn7/okuma_auditorium/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9be3bdea44b95123d223ee1e8d1b8ebba143c85812ce162d4d89a0509971d693"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-okuma-auditorium",
+        "path": "models/generate-okuma-auditorium.mjs"
+      },
+      {
+        "id": "okuma-auditorium-model",
+        "path": "models/okuma-auditorium-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/auditorium-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-okuma-detail.json",
+      "reference-rights/commons-miyashita-2024-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-29101-12900.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

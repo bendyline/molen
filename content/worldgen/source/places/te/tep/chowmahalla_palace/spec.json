@@ -1,0 +1,466 @@
+{
+  "planId": "chowmahalla_palace",
+  "id": "chowmahalla_palace",
+  "assetId": "molen.worldgen.structure.chowmahalla_palace",
+  "title": "Khilwat Mubarak, Chowmahalla Palace",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 78.471654,
+    "latitude": 17.357844
+  },
+  "size": [
+    54.49530220031738,
+    24.800000369548798,
+    50.89676094055176
+  ],
+  "actualBounds": {
+    "min": [
+      -27.323165893554688,
+      -0.699999988079071,
+      -23.66188621520996
+    ],
+    "max": [
+      27.172136306762695,
+      24.100000381469727,
+      27.234874725341797
+    ]
+  },
+  "visualBrief": "The ochre Durbar Hall with five cusped court arches, pale marble stairs, layered cornices and open rooftop pavilions.",
+  "nativeAxes": {
+    "x": "west along the north courtyard elevation",
+    "y": "up",
+    "z": "north toward the main courtyard"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2020-05-23",
+    "validFrom": "2020-01-01",
+    "validUntil": "2021-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Chowmahalla_Palace_Hyderabad_Telangana.jpg",
+    "https://commons.wikimedia.org/wiki/File:Chowmahalla_Palace_Architecture.jpg"
+  ],
+  "stories": [
+    {
+      "id": "chowmahalla-palace-wp",
+      "url": "https://qualla.com/chowmahalla-palace/"
+    }
+  ],
+  "referenceInputHash": "697ee79a2168edd251e0dbacc9e00d5334b426932bf44a0501ccb455f9937ba4",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/te/tep/chowmahalla_palace/models/khilwat-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/te/tep/chowmahalla_palace/models/khilwat-model.mjs",
+    "level": "skyline",
+    "export": "khilwatSkyline",
+    "errorMeters": 0.3,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "marble": {
+        "slot": "foundation",
+        "graph": "stone_marble",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "detail": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.57,
+        "metallic": 0.03
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.13
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "khilwatDistrict",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "foundation",
+            "graph": "stone_marble",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.57,
+            "metallic": 0.03
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.13
+          }
+        }
+      },
+      "street": {
+        "export": "khilwatStreet",
+        "errorMeters": 0.058,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "foundation",
+            "graph": "stone_marble",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.57,
+            "metallic": 0.03
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.13
+          }
+        }
+      },
+      "closeup": {
+        "export": "khilwatCloseup",
+        "errorMeters": 0.021,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "foundation",
+            "graph": "stone_marble",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.57,
+            "metallic": 0.03
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.13
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_marble",
+    "stone_limestone_raw",
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      78.471654,
+      17.357844
+    ],
+    "heading": 3.0409200978699245,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        78.47167988219215,
+        17.35808180568708
+      ],
+      "modelHeight": 0,
+      "basis": "Original ground on the north approach, outside the facade envelope."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          27.172136557623965,
+          23.514874988184797
+        ],
+        [
+          25.89867756529433,
+          -23.661885320335895
+        ],
+        [
+          -25.747649016823882,
+          -23.3678646560337
+        ],
+        [
+          -27.323165106094415,
+          23.514874988184793
+        ]
+      ],
+      "minimumCoverage": 0.96,
+      "basis": "The mapped hall envelope fixes the dated building independently of the wider palace site."
+    },
+    "featureIds": [
+      "way/116030267"
+    ],
+    "source": "https://www.openstreetmap.org/way/116030267",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:871e93dff8108f77953f7304e1aeed9d24a7c9a67aacf0fa240b0608f4bc7e17",
+    "notes": "OpenStreetMap way 116030267 fixes the building envelope, identified as the main Khilwat hall inside the named Chowmahalla compound. The palace operator distinguishes this hall from the separate clock tower. The outline is mapped as a single rectangle. Roof stages and the articulation of wall and veranda faces must be estimated from the May 2020 photography."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "May 2020 exterior of the Khilwat Mubarak Durbar Hall. The clock tower, other palace buildings and interiors are separate.",
+    "The mapped footprint fixes the exterior envelope. The roof heights, rear elevations and ornamental relief are photographic estimates.",
+    "Original elevation samples are preserved. The north stair apron and plinth heights are approximations."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. Kavali Chandrakanth KCK dedicated the exact May 2020 references under CC0. OpenStreetMap contributors supply the mapped envelope under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-khilwat-mubarak-skyline",
+      "position": [
+        -66,
+        40,
+        91
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-khilwat-mubarak-district",
+      "position": [
+        -66,
+        40,
+        91
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-khilwat-mubarak-street",
+      "position": [
+        -66,
+        40,
+        91
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-khilwat-mubarak-closeup",
+      "position": [
+        -66,
+        40,
+        91
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "north-arcade-and-marble-stairs",
+      "position": [
+        -22,
+        12,
+        71
+      ],
+      "lookAt": [
+        0,
+        9.1,
+        19
+      ]
+    },
+    {
+      "name": "open-rooftop-pavilions",
+      "position": [
+        -41,
+        26,
+        55
+      ],
+      "lookAt": [
+        0,
+        18,
+        13
+      ]
+    },
+    {
+      "name": "side-screened-arches-and-cornice",
+      "position": [
+        61,
+        15,
+        -19
+      ],
+      "lookAt": [
+        20,
+        10,
+        1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7552,
+    "vertices": 22656,
+    "materials": 6,
+    "bytes": 1117036,
+    "sha256": "sha256:8bd8de738df037e7f8425d1311b527b3827d737796abda6a64a20031a8a301a0"
+  }
+}

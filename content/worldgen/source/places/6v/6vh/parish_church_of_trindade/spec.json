@@ -1,0 +1,465 @@
+{
+  "planId": "parish_church_of_trindade",
+  "id": "parish_church_of_trindade",
+  "assetId": "molen.worldgen.structure.parish_church_of_trindade",
+  "title": "Parish Church of Trindade",
+  "wikidataId": "Q26257457",
+  "category": "church",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -49.4916623,
+    "latitude": -16.6556178
+  },
+  "size": [
+    18.920000076293945,
+    21.059999346733093,
+    42.56479835510254
+  ],
+  "actualBounds": {
+    "min": [
+      -9.460000038146973,
+      -1.4199999570846558,
+      -20.90239906311035
+    ],
+    "max": [
+      9.460000038146973,
+      19.639999389648438,
+      21.662399291992188
+    ]
+  },
+  "visualBrief": "The old parish church in Trindade, Goiás, with the blue and white façade, twin pointed roofs, arched louvres and central clock gable in August 2024.",
+  "nativeAxes": {
+    "x": "northeast along the church façade",
+    "y": "up",
+    "z": "southeast toward the church square"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2024-08-05",
+    "validFrom": "2024-01-01",
+    "validUntil": "2025-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Igreja_Matriz_do_Divino_Pai_Eterno.jpg"
+  ],
+  "stories": [
+    {
+      "id": "parish-church-of-trindade-wp",
+      "url": "https://qualla.com/parish-church-of-trindade/"
+    }
+  ],
+  "referenceInputHash": "1fb3d00f0aa9fc31fc1de76af56f24a2f1fc5c57967ddb86534f27ed1c05104e",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6v/6vh/parish_church_of_trindade/models/trindade-parish-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/6v/6vh/parish_church_of_trindade/models/trindade-parish-model.mjs",
+    "level": "skyline",
+    "export": "trindadeSkyline",
+    "errorMeters": 0.4,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "painted": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.02
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "spire": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.81,
+        "metallic": 0.07
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "inset": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.64,
+        "metallic": 0.02
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "trindadeDistrict",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.02
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.81,
+            "metallic": 0.07
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "trindadeStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.02
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.81,
+            "metallic": 0.07
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "trindadeCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.02
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.81,
+            "metallic": 0.07
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "inset": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "metal_painted",
+    "tile_ceramic",
+    "slate",
+    "stone_limestone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.77,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -49.4916623,
+      -16.6556178
+    ],
+    "heading": 0.701415218437977,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -49.491533104218554,
+        -16.655764329899554
+      ],
+      "modelHeight": 0,
+      "basis": "Original public terrain close to the entrance and southeast steps."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -9.18025217271638,
+          20.602368081312157
+        ],
+        [
+          9.191878124540661,
+          20.60236808131216
+        ],
+        [
+          9.180252172971588,
+          -20.602368081614284
+        ],
+        [
+          -9.191878123706557,
+          -20.602368081125285
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Named church footprint, OSM way 708162767."
+    },
+    "featureIds": [
+      "way/708162767"
+    ],
+    "source": "https://www.openstreetmap.org/way/708162767",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:53b173234eb7c9b0284ee3ac49398fc12d1eb5fc3303abe5d6c77df41e631585",
+    "notes": "The August 2024 exterior of Igreja Matriz do Divino Pai Eterno in Trindade, Goiás, with blue trim, two pointed-roof towers, clock gable, and long nave. This is the 1912 Santuário Velho overlooking the original square. The 2024 photograph supplies the blue and white appearance. Off-camera openings and roof forms are approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "This is the August 2024 blue and white appearance of the old parish church. Tower heights, roof cladding, side and rear windows, and the clock dial and entrance detail are estimates.",
+    "The independent public elevation field is preserved. The low foundation, steps and exterior ground contact are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license, OpenStreetMap ODbL 1.0 and Bryanlaridma’s exact published first-party CC0 exterior.",
+  "qaLodCameras": [
+    {
+      "name": "whole-trindade-parish-skyline",
+      "position": [
+        40,
+        23,
+        64
+      ],
+      "lookAt": [
+        0,
+        8.2,
+        6.5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-trindade-parish-district",
+      "position": [
+        40,
+        23,
+        64
+      ],
+      "lookAt": [
+        0,
+        8.2,
+        6.5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-trindade-parish-street",
+      "position": [
+        40,
+        23,
+        64
+      ],
+      "lookAt": [
+        0,
+        8.2,
+        6.5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-trindade-parish-closeup",
+      "position": [
+        40,
+        23,
+        64
+      ],
+      "lookAt": [
+        0,
+        8.2,
+        6.5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "blue-and-white-clock-facade",
+      "position": [
+        1.5,
+        9.5,
+        54
+      ],
+      "lookAt": [
+        0,
+        9.3,
+        19
+      ]
+    },
+    {
+      "name": "twin-spires-and-arched-louvres",
+      "position": [
+        31,
+        21,
+        45
+      ],
+      "lookAt": [
+        0,
+        12,
+        18
+      ]
+    },
+    {
+      "name": "long-nave-and-tiled-roof",
+      "position": [
+        -43,
+        23,
+        -36
+      ],
+      "lookAt": [
+        0,
+        8,
+        1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2511,
+    "vertices": 7533,
+    "materials": 6,
+    "bytes": 502036,
+    "sha256": "sha256:95937b99a8f34c75d5390f92facbdb12e91ed9335e80f91b228f1161954c7543"
+  }
+}

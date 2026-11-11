@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.la_plata_museum",
+  "kind": "static-structure",
+  "title": "La Plata Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.la_plata_museum",
+        "output": "assets/places/69/69y/la_plata_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:506f8f89d32eb6ad2e85f072d80af1784cbe35cec3a770062b9fc2e3ecd5c6a4"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-la-plata-museum",
+        "path": "models/generate-la-plata-museum.mjs"
+      },
+      {
+        "id": "la-plata-museum-model",
+        "path": "models/la-plata-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/museum-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-holland-1913-book.json",
+      "references/holland-1913-original.pdf",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-11110-19778.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

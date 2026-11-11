@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.nagoya_tv_tower",
+  "kind": "static-structure",
+  "title": "Nagoya TV Tower",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.nagoya_tv_tower",
+        "output": "assets/places/xn/xn3/nagoya_tv_tower/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:62226346a254c7aaeff1e18901ab733480a0e4889508d0cb9f7fb2965560037f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-nagoya-tv-tower",
+        "path": "models/generate-nagoya-tv-tower.mjs"
+      },
+      {
+        "id": "zimmer-tower-model",
+        "path": "models/nagoya-tv-tower-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/tower-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-tower-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/dem5a_png-15-28845-12960.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

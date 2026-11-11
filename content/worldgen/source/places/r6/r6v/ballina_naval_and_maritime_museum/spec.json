@@ -1,0 +1,470 @@
+{
+  "planId": "ballina_naval_and_maritime_museum",
+  "id": "ballina_naval_and_maritime_museum",
+  "assetId": "molen.worldgen.structure.ballina_naval_and_maritime_museum",
+  "title": "Ballina Naval and Maritime Museum",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 153.56445095,
+    "latitude": -28.873230749999998
+  },
+  "size": [
+    29.804527282714844,
+    13.096969842910767,
+    47.93499946594238
+  ],
+  "actualBounds": {
+    "min": [
+      -14.040858268737793,
+      -3.656970262527466,
+      -23.170000076293945
+    ],
+    "max": [
+      15.76366901397705,
+      9.4399995803833,
+      24.764999389648438
+    ]
+  },
+  "visualBrief": "Buff brick entrance gables, gray metal roofing, a curved entrance canopy and the taller corrugated raft hall at the Ballina Naval and Maritime Museum.",
+  "nativeAxes": {
+    "x": "right across the front toward the north",
+    "y": "up",
+    "z": "outward toward Regatta Avenue"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2017-07-20",
+    "validFrom": "2017-01-01",
+    "validUntil": "2018-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ballina_Naval_and_Maritime_Museum.jpg"
+  ],
+  "stories": [
+    {
+      "id": "ballina-naval-maritime-museum-wp",
+      "url": "https://qualla.com/ballina-naval-maritime-museum/"
+    }
+  ],
+  "referenceInputHash": "ee800a65cb870c749a332bdd8cdba8cf9480c917874bea19abee62bcc26e5f58",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r6/r6v/ballina_naval_and_maritime_museum/models/ballina-maritime-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r6/r6v/ballina_naval_and_maritime_museum/models/ballina-maritime-museum-model.mjs",
+    "level": "skyline",
+    "export": "museumSkyline",
+    "errorMeters": 0.77,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "panel": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.84,
+        "metallic": 0.1
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.8,
+        "metallic": 0.17
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.16
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.44,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "museumDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.84,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.17
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "museumStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.84,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.17
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "museumCloseup",
+        "errorMeters": 0.038,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.84,
+            "metallic": 0.1
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.17
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "metal_corrugated",
+    "metal_standing_seam",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.7,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      153.56445095,
+      -28.873230749999998
+    ],
+    "heading": 1.2068934437659176,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        153.56472416676826,
+        -28.873321873255023
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate forecourt pavement near the public entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          12.84084741513302,
+          -22.91058273104417
+        ],
+        [
+          -13.920963537566507,
+          -22.93011259927507
+        ],
+        [
+          -13.948022309364449,
+          18.001908636086704
+        ],
+        [
+          -12.970073098591953,
+          18.00496602928407
+        ],
+        [
+          -12.96922257746467,
+          22.573520856230147
+        ],
+        [
+          14.857230956178498,
+          22.573520856230147
+        ],
+        [
+          14.862078802535102,
+          11.358102173704667
+        ],
+        [
+          10.728338313448603,
+          11.357384621517632
+        ],
+        [
+          10.730759324374864,
+          5.734029546765269
+        ],
+        [
+          15.367346988223579,
+          5.741423442139076
+        ],
+        [
+          15.36487698109303,
+          -7.526160440790726
+        ],
+        [
+          11.088952841126211,
+          -7.524881328540009
+        ],
+        [
+          11.0916185227786,
+          -11.833994604388781
+        ],
+        [
+          12.832506667712273,
+          -11.829439715319495
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Named museum footprint from OpenStreetMap, ODbL 1.0."
+    },
+    "featureIds": [
+      "way/593958153"
+    ],
+    "source": "https://www.openstreetmap.org/way/593958153",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7e34757f632efa03017fa4f3336db06149ffc3f0ff34cd99b524c6de79429963",
+    "notes": "The named footprint and adjacent building identities constrain the museum envelope. The exact 2017 photo controls the lower gables, corrugated hall, entrance glazing and canopy. Hidden elevations are estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The museum represents July 2017. The visible low gables and tall corrugated hall follow the exact Qualla photo, and the mapped perimeter constrains the whole building. Roof sections and obscured elevations are estimated.",
+    "The original terrain field is preserved. Entrance and riverside paving, window counts and service openings are approximate. Detached boats, flags and landscaping are outside the structure scope."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Footprint © OpenStreetMap contributors, ODbL 1.0. Exact first-party CC0 Qualla exterior photograph.",
+  "qaLodCameras": [
+    {
+      "name": "whole-ballina-maritime-museum-skyline",
+      "position": [
+        -49,
+        22,
+        61
+      ],
+      "lookAt": [
+        0,
+        4.1,
+        2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-ballina-maritime-museum-district",
+      "position": [
+        -49,
+        22,
+        61
+      ],
+      "lookAt": [
+        0,
+        4.1,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-ballina-maritime-museum-street",
+      "position": [
+        -49,
+        22,
+        61
+      ],
+      "lookAt": [
+        0,
+        4.1,
+        2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-ballina-maritime-museum-closeup",
+      "position": [
+        -49,
+        22,
+        61
+      ],
+      "lookAt": [
+        0,
+        4.1,
+        2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "regatta-entry-gables-and-canopy",
+      "position": [
+        -29,
+        5.5,
+        62
+      ],
+      "lookAt": [
+        1.6,
+        4.3,
+        14
+      ]
+    },
+    {
+      "name": "side-link-and-corrugated-raft-hall",
+      "position": [
+        49,
+        13.9,
+        28
+      ],
+      "lookAt": [
+        2.4,
+        4.8,
+        2
+      ]
+    },
+    {
+      "name": "rear-roof-and-service-elevation",
+      "position": [
+        -39,
+        18,
+        -51
+      ],
+      "lookAt": [
+        0,
+        4,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3138,
+    "vertices": 9414,
+    "materials": 5,
+    "bytes": 513420,
+    "sha256": "sha256:21b63ae8fc1db4787056d07cb005033150e4c42f5a32c46c7ffc0d183aa6c1d8"
+  }
+}

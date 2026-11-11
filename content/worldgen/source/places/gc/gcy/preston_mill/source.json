@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.preston_mill",
+  "kind": "static-structure",
+  "title": "Preston Mill, East Linton",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.preston_mill",
+        "output": "assets/places/gc/gcy/preston_mill/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:053f68af10fa31a6ed715971781a169b10eb0453c14649939cd6004516804820"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-mill",
+        "path": "models/generate-mill.mjs"
+      },
+      {
+        "id": "mill-model",
+        "path": "models/mill-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/exterior-controls.json",
+      "native-map/mill-lade.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-pd-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-16142-10204.png",
+      "terrain-sources/terrarium-15-16142-10205.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

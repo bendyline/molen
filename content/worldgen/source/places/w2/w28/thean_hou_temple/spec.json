@@ -1,0 +1,573 @@
+{
+  "planId": "thean_hou_temple",
+  "id": "thean_hou_temple",
+  "assetId": "molen.worldgen.structure.thean_hou_temple",
+  "title": "Thean Hou Temple",
+  "wikidataId": "Q2639733",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 101.68764835,
+    "latitude": 3.1218323999999997
+  },
+  "size": [
+    55.09831428527832,
+    40.74979782104492,
+    73.60686874389648
+  ],
+  "actualBounds": {
+    "min": [
+      -28.638328552246094,
+      -18.181089401245117,
+      -37.516868591308594
+    ],
+    "max": [
+      26.459985733032227,
+      22.568708419799805,
+      36.09000015258789
+    ]
+  },
+  "visualBrief": "Raised white hilltop temple court with red columns, swept amber roofs, a double-tier gate and flanking galleries.",
+  "nativeAxes": {
+    "x": "right across the southern approach",
+    "y": "up",
+    "z": "outward to the southern steps"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2007-12-01",
+    "validFrom": "2007-01-01",
+    "validUntil": "2008-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Thean_Hou_KL_2007_pano_002.jpg",
+    "https://commons.wikimedia.org/wiki/File:Thean_Hou_KL_2007_pano_gate.jpg",
+    "https://commons.wikimedia.org/wiki/File:Thean_Hou_KL_2007_pano_garden.jpg"
+  ],
+  "stories": [
+    {
+      "id": "thean-hou-temple-wp",
+      "url": "https://qualla.com/thean-hou-temple/"
+    }
+  ],
+  "referenceInputHash": "8baf2d6d8b26d083e572bedc14116acb4d635fd072843a74994be2f39eb64fed",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w2/w28/thean_hou_temple/models/thean-hou-temple-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/w2/w28/thean_hou_temple/models/thean-hou-temple-model.mjs",
+    "level": "skyline",
+    "export": "templeSkyline",
+    "errorMeters": 1.15,
+    "surfaces": {
+      "stucco": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_glazed",
+        "roughness": 0.76,
+        "metallic": 0.02
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.87,
+        "metallic": 0.035
+      },
+      "pavement": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "templeDistrict",
+        "errorMeters": 0.63,
+        "surfaces": {
+          "stucco": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.76,
+            "metallic": 0.02
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.035
+          },
+          "pavement": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "templeStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "stucco": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.76,
+            "metallic": 0.02
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.035
+          },
+          "pavement": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "templeCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "stucco": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.76,
+            "metallic": 0.02
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.035
+          },
+          "pavement": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "stone_limestone_raw",
+    "tile_glazed",
+    "metal_painted",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.12,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      101.68764835,
+      3.1218323999999997
+    ],
+    "heading": 0.06358418467083861,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        101.68767121589465,
+        3.1214738016504855
+      ],
+      "modelHeight": 0,
+      "basis": "Ground outside the southern approach at the foot of the mapped projection."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -28.50859039550938,
+          16.110123115144933
+        ],
+        [
+          -25.413673214693144,
+          19.631214550619678
+        ],
+        [
+          -24.61397984766992,
+          20.54102676730607
+        ],
+        [
+          -19.874195080372093,
+          21.14398015343361
+        ],
+        [
+          -17.898660496362417,
+          18.280359145947262
+        ],
+        [
+          -11.923346303202809,
+          18.370790736354046
+        ],
+        [
+          -11.872385341969288,
+          36.288146358204436
+        ],
+        [
+          11.428178103218054,
+          36.28814635820444
+        ],
+        [
+          11.776992214557026,
+          21.363338759757116
+        ],
+        [
+          20.756378497248186,
+          21.678503128199228
+        ],
+        [
+          21.912169102500847,
+          21.7186288606888
+        ],
+        [
+          24.264932501274572,
+          19.927548076447543
+        ],
+        [
+          26.32998609524227,
+          18.106994315260213
+        ],
+        [
+          26.298768639141695,
+          9.850684100946363
+        ],
+        [
+          26.29895913057425,
+          9.147963359625203
+        ],
+        [
+          23.515610792702503,
+          5.981344216265172
+        ],
+        [
+          23.807130440300135,
+          -8.043597631568597
+        ],
+        [
+          14.92587379373803,
+          -9.200255324683205
+        ],
+        [
+          14.611203866599041,
+          -13.704395342121126
+        ],
+        [
+          9.57430414570025,
+          -28.358614458618003
+        ],
+        [
+          5.403348484386785,
+          -28.624179258412813
+        ],
+        [
+          5.915461962759492,
+          -36.667423745272444
+        ],
+        [
+          -5.3882715988965355,
+          -37.38713260434234
+        ],
+        [
+          -5.93787404737277,
+          -28.755087070766674
+        ],
+        [
+          -11.91389557958975,
+          -28.834409207480455
+        ],
+        [
+          -17.09657055301091,
+          -13.034997651573418
+        ],
+        [
+          -17.99903923621063,
+          -8.307181634926263
+        ],
+        [
+          -23.96326046284099,
+          -8.396906936063138
+        ],
+        [
+          -24.853800337529538,
+          5.589895286323174
+        ],
+        [
+          -27.97879344067097,
+          7.789142285466795
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "The named aggregate Thean Hou Temple footprint in OpenStreetMap way 453802547."
+    },
+    "featureIds": [
+      "way/453802547"
+    ],
+    "source": "https://www.openstreetmap.org/way/453802547",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fd0055004de8c588f549dbc4bc170c916a71720d1ea9eb24a3237d5fd672c9f5",
+    "notes": "The map controls the aggregate temple envelope. The nearby unnamed secondary building and detached landscaping remain context."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The source photographs are dated to December 2007. The viewer uses December 1 as the representative date.",
+    "The named footprint controls the aggregate complex and the gate and court photographs control its identifiable upper structures. Individual roof tiers, deck levels, lower podium openings and rear elevations are reasonable estimates.",
+    "Glazed tile, green beams, railings and rising ridge tips are modeled. Fine animal figures, painted ornament and inscriptions are simplified. The surrounding landscape and adjacent unnamed building are context.",
+    "Independent original elevations are preserved. Photographs and the elevation grid establish approximate registration rather than exact surveyed thresholds."
+  ],
+  "sourceLicense": "Original geometry under the repository license. The mapped building outline is ODbL. The three exact Qualla photographs were released to the public domain by their photographer.",
+  "qaLodCameras": [
+    {
+      "name": "whole-thean-hou-temple-skyline",
+      "position": [
+        53,
+        38,
+        72
+      ],
+      "lookAt": [
+        0,
+        6.9,
+        -1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-thean-hou-temple-district",
+      "position": [
+        53,
+        38,
+        72
+      ],
+      "lookAt": [
+        0,
+        6.9,
+        -1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-thean-hou-temple-street",
+      "position": [
+        53,
+        38,
+        72
+      ],
+      "lookAt": [
+        0,
+        6.9,
+        -1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-thean-hou-temple-closeup",
+      "position": [
+        53,
+        38,
+        72
+      ],
+      "lookAt": [
+        0,
+        6.9,
+        -1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "gate-and-stepped-hill-approach",
+      "position": [
+        -9,
+        18,
+        72
+      ],
+      "lookAt": [
+        0,
+        7.1,
+        18.5
+      ]
+    },
+    {
+      "name": "upper-court-and-prayer-hall",
+      "position": [
+        4.1,
+        12,
+        11.4
+      ],
+      "lookAt": [
+        -0.5,
+        12.6,
+        -13.5
+      ]
+    },
+    {
+      "name": "west-podium-and-swept-roof-ranges",
+      "position": [
+        -72,
+        31,
+        13
+      ],
+      "lookAt": [
+        0,
+        4.5,
+        -2.1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 18846,
+    "vertices": 56538,
+    "materials": 6,
+    "bytes": 2449456,
+    "sha256": "sha256:105d0e3a9073edfcaa0c130526ede37395b487ab2b697a8042c152ca85c449ec"
+  }
+}

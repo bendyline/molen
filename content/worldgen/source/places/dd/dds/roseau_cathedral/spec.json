@@ -1,0 +1,397 @@
+{
+  "planId": "roseau_cathedral",
+  "id": "roseau_cathedral",
+  "assetId": "molen.worldgen.structure.roseau_cathedral",
+  "title": "Roseau Cathedral",
+  "wikidataId": "Q4245116",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -61.38549,
+    "latitude": 15.29745
+  },
+  "size": [
+    44.42271614074707,
+    39.749998807907104,
+    54.7819881439209
+  ],
+  "actualBounds": {
+    "min": [
+      -24.19106674194336,
+      -1.2200000286102295,
+      -25.342493057250977
+    ],
+    "max": [
+      20.23164939880371,
+      38.529998779296875,
+      29.439495086669922
+    ]
+  },
+  "visualBrief": "Roseau Cathedral with a tall stone tower, historic spire, pointed openings and weathered masonry ranges.",
+  "nativeAxes": {
+    "x": "southwest across the main façade",
+    "y": "up",
+    "z": "northwest outward from the tower portal"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2008-12-01",
+    "validFrom": "2008-01-01",
+    "validUntil": "2009-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Roseau_Cathedral.jpg"
+  ],
+  "stories": [
+    {
+      "id": "roseau-cathedral-wp",
+      "url": "https://qualla.com/roseau-cathedral/"
+    }
+  ],
+  "referenceInputHash": "c6e8ea30a2fa03873989209816a066453feefcf0a6c4e26978f0ba2564086718",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dd/dds/roseau_cathedral/models/cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dd/dds/roseau_cathedral/models/cathedral-model.mjs",
+    "level": "skyline",
+    "export": "cathedralSkyline",
+    "errorMeters": 0.24,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.91,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cathedralDistrict",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "cathedralStreet",
+        "errorMeters": 0.063,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "cathedralCloseup",
+        "errorMeters": 0.024,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "stone_limestone_weathered",
+    "slate",
+    "plaster_lime"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -61.38549,
+      15.29745
+    ],
+    "heading": -2.4104934188934237,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -61.38570183556074,
+        15.297619574077201
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain just outward from the historic tower portal. The entrance and retaining grade are approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/361451997"
+    ],
+    "source": "https://www.openstreetmap.org/way/361451997",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:35c794ad64070fc96c3237e9fc5bdd8c7a8696fbdb9e4b7bc93eb46571cddb6e",
+    "notes": "OpenStreetMap way 361451997 supplies the native outline and the projecting tower front. The Diocese of Roseau documents the historical central stone tower, spire and façade development. The December 2008 exterior establishes the pre-replacement spire, pointed doors and stone arcades. The 2024 image was excluded to keep the represented appearance in one period."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The exterior represents December 2008. The first of the month is a representative date because the photo records only the month.",
+    "Heights, rear walls, roof divisions and exact step grades are approximate. The portico and niche figures are simplified.",
+    "Interior rooms and the retaining wall beyond the mapped church are outside the model."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. The December 2008 exterior photograph by Nelro is public domain. OpenStreetMap contributors supply mapped geometry under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-roseau-cathedral-skyline",
+      "position": [
+        59,
+        35,
+        76
+      ],
+      "lookAt": [
+        3,
+        13,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-roseau-cathedral-district",
+      "position": [
+        59,
+        35,
+        76
+      ],
+      "lookAt": [
+        3,
+        13,
+        1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-roseau-cathedral-street",
+      "position": [
+        59,
+        35,
+        76
+      ],
+      "lookAt": [
+        3,
+        13,
+        1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-roseau-cathedral-closeup",
+      "position": [
+        59,
+        35,
+        76
+      ],
+      "lookAt": [
+        3,
+        13,
+        1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "historic-tower-and-west-steps",
+      "position": [
+        33,
+        13,
+        72
+      ],
+      "lookAt": [
+        4,
+        14,
+        23
+      ]
+    },
+    {
+      "name": "nave-side-range-and-dome",
+      "position": [
+        -49,
+        28,
+        34
+      ],
+      "lookAt": [
+        1,
+        9,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2286,
+    "vertices": 6858,
+    "materials": 5,
+    "bytes": 577112,
+    "sha256": "sha256:0e420fc83abdedcf978947948aee9772b20eaea51d1588f8053dbceb63a955b7"
+  }
+}

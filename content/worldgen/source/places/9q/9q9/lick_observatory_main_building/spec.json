@@ -1,0 +1,704 @@
+{
+  "planId": "lick_observatory_main_building",
+  "id": "lick_observatory_main_building",
+  "assetId": "molen.worldgen.structure.lick_observatory_main_building",
+  "title": "Lick Observatory Main Building, Mount Hamilton",
+  "wikidataId": "Q104816677",
+  "category": "observatory",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -121.64294785780126,
+    "latitude": 37.34141266265565
+  },
+  "size": [
+    88.36535263061523,
+    17.990847170352936,
+    52.232001304626465
+  ],
+  "actualBounds": {
+    "min": [
+      -40.94685363769531,
+      -0.9864411950111389,
+      -43.5796012878418
+    ],
+    "max": [
+      47.41849899291992,
+      17.004405975341797,
+      8.652400016784668
+    ]
+  },
+  "visualBrief": "Lick Observatory’s main building with the large silver southern dome, smaller northern dome, connecting hall and west visitor entrance.",
+  "nativeAxes": {
+    "x": "south along the linking hall",
+    "y": "up",
+    "z": "west toward the entrance"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2019-08-17",
+    "validFrom": "2019-01-01",
+    "validUntil": "2020-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Lick_Observatory2.JPG",
+    "https://commons.wikimedia.org/wiki/File:Dome_at_Lick_Observatory,_Aug_2019.jpg"
+  ],
+  "stories": [
+    {
+      "id": "james-lick-telescope-wp",
+      "url": "https://qualla.com/james-lick-telescope/"
+    }
+  ],
+  "referenceInputHash": "4716c64297bc9f7906ff612bd9507b16e2c6bb8dc1c639d8b8b4ac5a8eda5a09",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9q/9q9/lick_observatory_main_building/models/lick-observatory-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9q/9q9/lick_observatory_main_building/models/lick-observatory-model.mjs",
+    "level": "skyline",
+    "export": "lickSkyline",
+    "errorMeters": 0.76,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.6,
+        "metallic": 0.32
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.64,
+        "metallic": 0.28
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.44,
+        "metallic": 0.03
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "lickDistrict",
+        "errorMeters": 0.31,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.6,
+            "metallic": 0.32
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.28
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0.03
+          }
+        }
+      },
+      "street": {
+        "export": "lickStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.6,
+            "metallic": 0.32
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.28
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0.03
+          }
+        }
+      },
+      "closeup": {
+        "export": "lickCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.6,
+            "metallic": 0.32
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.28
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0.03
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_raw",
+    "stone_limestone",
+    "metal_standing_seam",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.89,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -121.64294785780126,
+      37.34141266265565
+    ],
+    "heading": -1.8092226803091642,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -121.6430082216875,
+        37.34145483423868
+      ],
+      "modelHeight": 0,
+      "basis": "Original summit terrain near the west visitor entry and step foot."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -39.39990461289527,
+          -0.5116380214300893
+        ],
+        [
+          -38.63032529708639,
+          -1.1631892270431887
+        ],
+        [
+          -37.75403962671428,
+          -1.6585163855984533
+        ],
+        [
+          -37.57192590154809,
+          -24.900723737725624
+        ],
+        [
+          -36.85939706569007,
+          -39.9745071531888
+        ],
+        [
+          -36.9191095355109,
+          -43.56674165799338
+        ],
+        [
+          -24.826827586217476,
+          -43.39995379758431
+        ],
+        [
+          -24.8876120704783,
+          -18.055975514533074
+        ],
+        [
+          -27.061624616704343,
+          -18.092275748383436
+        ],
+        [
+          -27.208762534840346,
+          -9.977763680045449
+        ],
+        [
+          -7.6629254813190215,
+          -9.545946094153487
+        ],
+        [
+          -7.6064241518492155,
+          -12.282955299210524
+        ],
+        [
+          1.1129843119916352,
+          -12.088783885582869
+        ],
+        [
+          1.056482981753232,
+          -9.351774680339027
+        ],
+        [
+          25.938981567268478,
+          -9.35177468033903
+        ],
+        [
+          27.76597112766572,
+          -11.544549603842373
+        ],
+        [
+          29.78181132281808,
+          -13.05458869588864
+        ],
+        [
+          32.65026152610387,
+          -14.261809073366123
+        ],
+        [
+          34.90746773816257,
+          -14.637370797067726
+        ],
+        [
+          37.25382085155888,
+          -14.551878358907715
+        ],
+        [
+          39.40671973853376,
+          -14.036833140423758
+        ],
+        [
+          40.95177443009365,
+          -13.383159669452617
+        ],
+        [
+          43.11235076090217,
+          -11.940969708095789
+        ],
+        [
+          44.50883777970077,
+          -10.531659017124241
+        ],
+        [
+          45.97863645647724,
+          -8.30223542640162
+        ],
+        [
+          46.94374308300498,
+          -5.604044666779061
+        ],
+        [
+          47.214941025936305,
+          -3.074193870509357
+        ],
+        [
+          46.90029484543055,
+          -0.456601668159184
+        ],
+        [
+          46.21008621874398,
+          1.6056064422288987
+        ],
+        [
+          45.12602369410322,
+          3.5085179716098143
+        ],
+        [
+          43.59820250828116,
+          5.282478142711517
+        ],
+        [
+          42.033595391225035,
+          6.528010156531799
+        ],
+        [
+          39.99314450653331,
+          7.606849337626672
+        ],
+        [
+          37.97589748831102,
+          8.215543459565072
+        ],
+        [
+          35.991939372694304,
+          8.442720846679464
+        ],
+        [
+          33.77784689186467,
+          8.288650739340758
+        ],
+        [
+          31.433795573768705,
+          7.647013994772576
+        ],
+        [
+          29.47471691470768,
+          6.656787298644209
+        ],
+        [
+          27.929507811868707,
+          5.483998295178871
+        ],
+        [
+          26.465402166875517,
+          3.8907474088712544
+        ],
+        [
+          0.8192374481173326,
+          2.7283796753770915
+        ],
+        [
+          0.7393778401304065,
+          5.416418407283212
+        ],
+        [
+          -7.4461814696530775,
+          5.156250885861239
+        ],
+        [
+          -7.364231655216476,
+          2.476812079619049
+        ],
+        [
+          -30.642880984027876,
+          1.7226794500147342
+        ],
+        [
+          -30.450899319708377,
+          3.3609888741904577
+        ],
+        [
+          -30.63693630891771,
+          4.480942980504872
+        ],
+        [
+          -31.055669663427608,
+          5.539050482740461
+        ],
+        [
+          -31.59783102829016,
+          6.37213453880291
+        ],
+        [
+          -32.28578647531598,
+          7.076710695898955
+        ],
+        [
+          -33.83037793410426,
+          7.980383821375096
+        ],
+        [
+          -34.79764050794791,
+          8.242800309847635
+        ],
+        [
+          -35.789253565478,
+          8.31076030443799
+        ],
+        [
+          -36.85266566411077,
+          8.177580254146958
+        ],
+        [
+          -37.86470899704073,
+          7.831540187518045
+        ],
+        [
+          -38.79293245969253,
+          7.2647528812020905
+        ],
+        [
+          -39.592343702295,
+          6.520930659076955
+        ],
+        [
+          -40.20295292684757,
+          5.658356620489709
+        ],
+        [
+          -40.62057971938528,
+          4.694230617803531
+        ],
+        [
+          -40.83095863034906,
+          3.734380818785593
+        ],
+        [
+          -40.851177316601216,
+          2.755636526716347
+        ],
+        [
+          -40.49086396457946,
+          1.1743590164723905
+        ],
+        [
+          -40.0324166754212,
+          0.27965008467199404
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Named Main Building footprint from OpenStreetMap way 39869731."
+    },
+    "featureIds": [
+      "way/39869731",
+      "node/258205070"
+    ],
+    "source": "https://www.openstreetmap.org/way/39869731",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a5428579a2b3e6a05f1930fb42234f83dfba6d2f5cec5cbb2e8cec15a1958421",
+    "notes": "Lick Observatory’s historic Main Building on Mount Hamilton, including the Great Lick Refractor’s large south dome, the smaller north dome, the linking hall and attached east range, around August 2019. The two mapped circular wall fits and written building dimensions identify and scale the domes."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The 2019 exterior interpretation covers the Main Building, both attached domes and the east range. It depicts the south observing shutter closed.",
+    "The historic handbook and mapped footprint constrain the main dimensions. East-range fenestration, elevations, roof profiles and material wear are estimated.",
+    "The original summit terrain remains unchanged. The exposed foundation follows an approximate local grade."
+  ],
+  "sourceLicense": "Original geometry under the repository license, OpenStreetMap ODbL 1.0 and two exact first-party public-domain or CC0 Qualla photos.",
+  "qaLodCameras": [
+    {
+      "name": "whole-lick-observatory-skyline",
+      "position": [
+        42,
+        36,
+        94
+      ],
+      "lookAt": [
+        2,
+        6,
+        -5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-lick-observatory-district",
+      "position": [
+        42,
+        36,
+        94
+      ],
+      "lookAt": [
+        2,
+        6,
+        -5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-lick-observatory-street",
+      "position": [
+        42,
+        36,
+        94
+      ],
+      "lookAt": [
+        2,
+        6,
+        -5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-lick-observatory-closeup",
+      "position": [
+        42,
+        36,
+        94
+      ],
+      "lookAt": [
+        2,
+        6,
+        -5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-entrance-and-great-refractor-dome",
+      "position": [
+        17,
+        10.5,
+        64
+      ],
+      "lookAt": [
+        13.4,
+        7,
+        0.9
+      ]
+    },
+    {
+      "name": "north-dome-and-linking-hall",
+      "position": [
+        -64,
+        26,
+        35
+      ],
+      "lookAt": [
+        -20,
+        5.1,
+        -3.5
+      ]
+    },
+    {
+      "name": "east-range-and-two-domes",
+      "position": [
+        -51,
+        32,
+        -86
+      ],
+      "lookAt": [
+        -6.1,
+        6.1,
+        -9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10350,
+    "vertices": 31050,
+    "materials": 6,
+    "bytes": 1481204,
+    "sha256": "sha256:cb8baf2f931bb53837d9edb253e344b50af4b3b68954c275add73db90a28ea27"
+  }
+}

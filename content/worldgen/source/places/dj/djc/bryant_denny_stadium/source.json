@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.bryant_denny_stadium",
+  "kind": "static-structure",
+  "title": "Bryant–Denny Stadium",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.bryant_denny_stadium",
+        "output": "assets/places/dj/djc/bryant_denny_stadium/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3cec836c740f00ead72bcc0343f9e8b6cd60a545ec68833542163537c769f81b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-stadium",
+        "path": "models/generate-stadium.mjs"
+      },
+      {
+        "id": "stadium-model",
+        "path": "models/stadium-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/stadium-and-field-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-pd-originals.json",
+      "reference-rights/commons-pd-panorama.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-8414-13176.png",
+      "terrain-sources/terrarium-15-8415-13176.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

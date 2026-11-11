@@ -1,0 +1,748 @@
+{
+  "planId": "old_fort_of_zanzibar",
+  "id": "old_fort_of_zanzibar",
+  "assetId": "molen.worldgen.structure.old_fort_of_zanzibar",
+  "title": "Old Fort of Zanzibar",
+  "wikidataId": "Q3748659",
+  "category": "fort",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 39.18903206707317,
+    "latitude": -6.161446725609756
+  },
+  "size": [
+    102.17893600463867,
+    16.798280477523804,
+    85.60877227783203
+  ],
+  "actualBounds": {
+    "min": [
+      -55.555912017822266,
+      -1.1923863887786865,
+      -44.19200134277344
+    ],
+    "max": [
+      46.623023986816406,
+      15.605894088745117,
+      41.416770935058594
+    ]
+  },
+  "visualBrief": "Ngome Kongwe, the coral-stone waterfront fort of Stone Town, with rounded bastions, stepped battlements, two open courts and the open-air theatre.",
+  "nativeAxes": {
+    "x": "southwest along Mizingani Road",
+    "y": "up",
+    "z": "northwest toward the waterfront"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2004-07-19",
+    "validFrom": "2004-01-01",
+    "validUntil": "2005-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Fort-Zanzibar.jpg"
+  ],
+  "stories": [
+    {
+      "id": "old-fort-of-zanzibar-wp",
+      "url": "https://qualla.com/old-fort-of-zanzibar/"
+    }
+  ],
+  "referenceInputHash": "ce642f37b0e0e0460abf2fb491e397e146ad010aec3430ce2301e9bf86635319",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ky/kyg/old_fort_of_zanzibar/models/zanzibar-old-fort-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ky/kyg/old_fort_of_zanzibar/models/zanzibar-old-fort-model.mjs",
+    "level": "skyline",
+    "export": "fortSkyline",
+    "errorMeters": 0.91,
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "weathered": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "cut": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "recess": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "fortDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "weathered": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "fortStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "weathered": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "fortCloseup",
+        "errorMeters": 0.044,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "weathered": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_raw",
+    "stone_limestone_weathered",
+    "stone_limestone",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.82,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      39.18903206707317,
+      -6.161446725609756
+    ],
+    "heading": -2.6605635788449393,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        39.18887929105944,
+        -6.161076095977716
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate waterfront paving between the fort wall and Mizingani Road."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          45.73873483824761,
+          24.063508844287604
+        ],
+        [
+          46.28528875754801,
+          25.504002424700232
+        ],
+        [
+          46.508584586899744,
+          27.75522085946189
+        ],
+        [
+          46.29746405395262,
+          29.66669665019243
+        ],
+        [
+          45.330373388407715,
+          31.711007395649656
+        ],
+        [
+          43.7716252375176,
+          33.09492684984611
+        ],
+        [
+          41.99259450764398,
+          34.08762433712086
+        ],
+        [
+          40.07028686292575,
+          34.302355422003956
+        ],
+        [
+          38.43911866552453,
+          34.078862748789476
+        ],
+        [
+          36.96319532335703,
+          33.27087876961441
+        ],
+        [
+          36.09949440787195,
+          32.07923825418099
+        ],
+        [
+          4.637364676363806,
+          35.33522784812471
+        ],
+        [
+          -4.451725163605127,
+          36.05371341480643
+        ],
+        [
+          -4.519879579519813,
+          36.997581860459114
+        ],
+        [
+          -4.805378724977992,
+          37.40107864994592
+        ],
+        [
+          -5.229474915726929,
+          37.54388517074775
+        ],
+        [
+          -11.279486489826798,
+          37.46271072772646
+        ],
+        [
+          -11.26346946430471,
+          39.41739254244562
+        ],
+        [
+          -11.213864872173852,
+          40.924998416015036
+        ],
+        [
+          -11.272970346278843,
+          41.15784538232601
+        ],
+        [
+          -11.399288654111219,
+          41.28027115248209
+        ],
+        [
+          -11.622744476675809,
+          41.301771285962246
+        ],
+        [
+          -17.237614650918587,
+          41.2719087952732
+        ],
+        [
+          -17.415204169324532,
+          41.22944902626935
+        ],
+        [
+          -17.522153363888798,
+          41.123402482091976
+        ],
+        [
+          -17.57342457446237,
+          40.95851694293205
+        ],
+        [
+          -17.631447324770704,
+          37.36206915915105
+        ],
+        [
+          -20.286928498795803,
+          37.30715491327423
+        ],
+        [
+          -20.62297381787497,
+          37.25733547136308
+        ],
+        [
+          -20.82239950787253,
+          37.06535288498923
+        ],
+        [
+          -20.894037965317704,
+          36.67636968383724
+        ],
+        [
+          -20.875723537069263,
+          34.48846777504512
+        ],
+        [
+          -55.44210121263214,
+          34.05239832950073
+        ],
+        [
+          -53.18211980620416,
+          18.455884965790442
+        ],
+        [
+          -47.94684595142818,
+          -11.309025882252923
+        ],
+        [
+          -40.66417001015903,
+          -34.80679372741061
+        ],
+        [
+          -41.73117604661757,
+          -34.98697749771461
+        ],
+        [
+          -43.003502320860036,
+          -35.56313101431596
+        ],
+        [
+          -43.89048948175039,
+          -36.327432962818584
+        ],
+        [
+          -44.63349354114423,
+          -37.10448574030716
+        ],
+        [
+          -45.10938828569662,
+          -38.106279556214616
+        ],
+        [
+          -45.329218923772785,
+          -39.5269328833988
+        ],
+        [
+          -44.913522040249234,
+          -41.25629477482116
+        ],
+        [
+          -44.14041445642852,
+          -42.25916958573852
+        ],
+        [
+          -43.07148755578271,
+          -43.182992020959134
+        ],
+        [
+          -41.89486757266796,
+          -43.78691206464936
+        ],
+        [
+          -40.4567597264529,
+          -44.07855963865754
+        ],
+        [
+          -39.00931099147655,
+          -43.837941484304295
+        ],
+        [
+          -37.51278500690207,
+          -43.06943225356713
+        ],
+        [
+          -36.70060954773513,
+          -42.2813914061785
+        ],
+        [
+          -36.105995363346395,
+          -41.26786326538621
+        ],
+        [
+          -35.742906659937645,
+          -39.57153007476137
+        ],
+        [
+          -35.89860345529005,
+          -37.95760740834975
+        ],
+        [
+          -36.17720991935837,
+          -36.89755348261391
+        ],
+        [
+          -2.8543257500490142,
+          -26.926827479643894
+        ],
+        [
+          -1.8612086840329347,
+          -28.279480991940176
+        ],
+        [
+          -0.5911517737398366,
+          -29.34946809637818
+        ],
+        [
+          0.31565644128023074,
+          -29.84306982238384
+        ],
+        [
+          1.5747058443693422,
+          -30.10260232077378
+        ],
+        [
+          2.7091601101363967,
+          -30.075569764832508
+        ],
+        [
+          4.16814369550085,
+          -29.66569141889031
+        ],
+        [
+          5.710790230070039,
+          -28.722427961927586
+        ],
+        [
+          6.721901737908834,
+          -27.717546246532347
+        ],
+        [
+          7.471544232856486,
+          -26.522650461504302
+        ],
+        [
+          7.877542540728937,
+          -25.2434140233465
+        ],
+        [
+          36.6061123734951,
+          -17.544981254047663
+        ],
+        [
+          36.92398440732951,
+          -18.08226501090106
+        ],
+        [
+          38.248975413800125,
+          -19.424946957849922
+        ],
+        [
+          39.63826025685878,
+          -20.005771478993285
+        ],
+        [
+          41.882159372431545,
+          -19.688507084267428
+        ],
+        [
+          43.775578171698356,
+          -18.436599554251536
+        ],
+        [
+          44.946652105394485,
+          -16.49435993202901
+        ],
+        [
+          45.179759614624004,
+          -14.238020589853535
+        ],
+        [
+          44.419203865792724,
+          -12.11102907151827
+        ],
+        [
+          43.39884572242152,
+          -11.136743817784389
+        ],
+        [
+          42.544523396161814,
+          -10.791545526314328
+        ],
+        [
+          41.33821412836629,
+          -10.441702333386548
+        ],
+        [
+          39.63961655195722,
+          -10.009757253098735
+        ],
+        [
+          40.5639020033482,
+          10.752067182193464
+        ],
+        [
+          40.652348738417075,
+          21.107458548231616
+        ],
+        [
+          43.03656807062533,
+          21.849552495918495
+        ],
+        [
+          44.32557985583479,
+          22.585097517043142
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Mapped Old Fort exterior from OpenStreetMap relation 5310369, way 25103382."
+    },
+    "featureIds": [
+      "way/25103382",
+      "way/355571463",
+      "way/1388891344",
+      "way/355434697",
+      "way/1380038637"
+    ],
+    "source": "https://www.openstreetmap.org/relation/5310369",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b48d3a4b36e1ce908c50c178001414d518b19b8b6056cc8c517154543efe40c9",
+    "notes": "The modern native outline controls the standing fort envelope and its open courtyards. The original street photograph controls the 2004 stonework, opening rhythm and crenellations. Rear elevation and period yard fittings require estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The model depicts the standing fort in July 2004, including the two open courts and the documented open-air theatre.",
+    "The native outer and inner rings constrain the masonry envelope and courtyards. The original photograph informs the waterfront wall color, cornice, two tiers of openings and rounded crenellations. Unseen elevations, the roof walks and theatre seating profiles are reconstructed estimates.",
+    "Original terrain is preserved. The inland field rises toward the rear towers and may include roof or canopy elevations. Wall contact and historical terrace levels are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license, OpenStreetMap ODbL 1.0 and one exact first-party public-domain Qualla photo.",
+  "qaLodCameras": [
+    {
+      "name": "whole-zanzibar-old-fort-skyline",
+      "position": [
+        103,
+        59,
+        143
+      ],
+      "lookAt": [
+        0,
+        6.3,
+        2.4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-zanzibar-old-fort-district",
+      "position": [
+        103,
+        59,
+        143
+      ],
+      "lookAt": [
+        0,
+        6.3,
+        2.4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-zanzibar-old-fort-street",
+      "position": [
+        103,
+        59,
+        143
+      ],
+      "lookAt": [
+        0,
+        6.3,
+        2.4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-zanzibar-old-fort-closeup",
+      "position": [
+        103,
+        59,
+        143
+      ],
+      "lookAt": [
+        0,
+        6.3,
+        2.4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "mizingani-waterfront-gate-and-battlements",
+      "position": [
+        -11,
+        8.4,
+        102
+      ],
+      "lookAt": [
+        -5.2,
+        6.5,
+        24
+      ]
+    },
+    {
+      "name": "eastern-shoulder-with-window-recesses",
+      "position": [
+        -97,
+        18,
+        74
+      ],
+      "lookAt": [
+        -42,
+        7.2,
+        20.5
+      ]
+    },
+    {
+      "name": "two-open-courts-and-amphitheatre",
+      "position": [
+        -45,
+        76,
+        -62
+      ],
+      "lookAt": [
+        -3.2,
+        4.8,
+        0.2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9706,
+    "vertices": 29118,
+    "materials": 5,
+    "bytes": 1494560,
+    "sha256": "sha256:49a1ed1b6cd9466b1427576712856622d7c964aee66ac4dc8305bdb668a88adf"
+  }
+}

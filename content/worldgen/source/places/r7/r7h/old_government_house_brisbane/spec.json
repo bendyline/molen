@@ -1,0 +1,433 @@
+{
+  "planId": "old_government_house_brisbane",
+  "id": "old_government_house_brisbane",
+  "assetId": "molen.worldgen.structure.old_government_house_brisbane",
+  "title": "Old Government House, Brisbane",
+  "wikidataId": "Q2018368",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 153.029075,
+    "latitude": -27.47733
+  },
+  "size": [
+    40.58551788330078,
+    12.259999871253967,
+    56.057504653930664
+  ],
+  "actualBounds": {
+    "min": [
+      -20.864347457885742,
+      -1.1399999856948853,
+      -31.561784744262695
+    ],
+    "max": [
+      19.72117042541504,
+      11.119999885559082,
+      24.49571990966797
+    ]
+  },
+  "visualBrief": "Gardens Point sandstone residence with an open carriage portico, long arched verandas, curved garden pavilions, and a rear service range.",
+  "nativeAxes": {
+    "x": "southwest along the carriage façade",
+    "y": "up",
+    "z": "northwest from the front into the house"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2005-09-04",
+    "validFrom": "2005-01-01",
+    "validUntil": "2009-06-07",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:First-Queenslande-Government-House-2.jpg",
+    "https://commons.wikimedia.org/wiki/File:First-Queensland-Government-House-1.jpg"
+  ],
+  "stories": [
+    {
+      "id": "old-government-house-brisbane-wp",
+      "url": "https://qualla.com/old-government-house-brisbane/"
+    }
+  ],
+  "referenceInputHash": "78ea9cc5588c5b62d4f2938ff68f562732bbd1f7d3b35f66caa8c708bc86bac9",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r7/r7h/old_government_house_brisbane/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r7/r7h/old_government_house_brisbane/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.74,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.69,
+        "metallic": 0.15
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.36,
+        "metallic": 0.06
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.15
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.06
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.15
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.06
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.024,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.15
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.06
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "stone_limestone",
+    "metal_standing_seam",
+    "metal_painted",
+    "stone_basalt_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      153.029075,
+      -27.47733
+    ],
+    "heading": -2.4220666759930767,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        153.02929200741931,
+        -27.477544120150853
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain just outward from the mapped southeast carriage portico. Threshold grade remains approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/361550693"
+    ],
+    "source": "https://www.openstreetmap.org/way/361550693",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:acaea24bba768d715394fabd32d3b117d0c26cd85fdbb0c38376f37a47efdfcb",
+    "notes": "Named OpenStreetMap way 361550693 supplies the original perimeter. Four outer corners register the projecting southeast carriage portico. Queensland heritage entry 600118 and the QUT history identify the property and its sandstone residence and service wing. The two pre-2009 exterior views distinguish the porch and garden arcade. The covered courtyard and rear roof sections are estimates based on written evidence."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Two exact public-domain Qualla originals document the early color appearance, published in September 2005. Their exposure dates are unknown. The stone entrance porch, pediment, arched lower verandas and upper railings follow the photographs.",
+    "The native perimeter anchors the stepped rear service range, covered verandas and two curved wings. Roof arrangement, individual openings, covered courtyard, and height sections are proportional estimates.",
+    "The 128 m original terrain remains unchanged. The field and porch datum guide foundation and stair levels. The separate campus buildings and grounds are outside this asset.",
+    "The model uses original geometry and procedural surfaces. No source photograph pixels are included."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. Figaro’s two published Qualla exterior photographs were dedicated to the public domain. Native map geometry attributed to OpenStreetMap contributors under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-house-skyline",
+      "position": [
+        52,
+        29,
+        -72
+      ],
+      "lookAt": [
+        0,
+        6.1,
+        -2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-house-district",
+      "position": [
+        52,
+        29,
+        -72
+      ],
+      "lookAt": [
+        0,
+        6.1,
+        -2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-house-street",
+      "position": [
+        52,
+        29,
+        -72
+      ],
+      "lookAt": [
+        0,
+        6.1,
+        -2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-house-closeup",
+      "position": [
+        52,
+        29,
+        -72
+      ],
+      "lookAt": [
+        0,
+        6.1,
+        -2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "carriage-portico-and-two-storey-arcades",
+      "position": [
+        -8,
+        9,
+        -65
+      ],
+      "lookAt": [
+        0,
+        5.6,
+        -21
+      ]
+    },
+    {
+      "name": "rounded-garden-pavilion-and-rear-range",
+      "position": [
+        45,
+        15,
+        23
+      ],
+      "lookAt": [
+        0,
+        5.4,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9509,
+    "vertices": 28527,
+    "materials": 6,
+    "bytes": 1398396,
+    "sha256": "sha256:9b9876f3f5ccf5c67731340ad47951721fe3ee239363c3891e0f2ae5bfe89cd2"
+  }
+}

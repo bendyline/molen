@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.st_ignatius_cathedral_san_ignacio_de_velasco",
+  "kind": "static-structure",
+  "title": "St. Ignatius Cathedral, San Ignacio de Velasco",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.st_ignatius_cathedral_san_ignacio_de_velasco",
+        "output": "assets/places/6t/6th/st_ignatius_cathedral_san_ignacio_de_velasco/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:96f83251d88762ad17d552ed93d993c0ac6e4ce0cc083e109aec638514e198df"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-san-ignacio-velasco",
+        "path": "models/generate-san-ignacio-velasco.mjs"
+      },
+      {
+        "id": "san-ignacio-velasco-model",
+        "path": "models/san-ignacio-velasco-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/cathedral-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-san-ignacio-velasco-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-10835-17894.png",
+      "terrain-sources/terrarium-15-10835-17895.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

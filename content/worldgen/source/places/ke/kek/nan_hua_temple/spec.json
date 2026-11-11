@@ -1,0 +1,470 @@
+{
+  "planId": "nan_hua_temple",
+  "id": "nan_hua_temple",
+  "assetId": "molen.worldgen.structure.nan_hua_temple",
+  "title": "Nan Hua Temple Main Shrine",
+  "wikidataId": "Q3218064",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 28.733114,
+    "latitude": -25.824524
+  },
+  "size": [
+    102.88000106811523,
+    28.4843807220459,
+    45.209999084472656
+  ],
+  "actualBounds": {
+    "min": [
+      -55.68000030517578,
+      -5.09526252746582,
+      -19
+    ],
+    "max": [
+      47.20000076293945,
+      23.389118194580078,
+      26.209999084472656
+    ]
+  },
+  "visualBrief": "Nan Hua Temple’s principal shrine around March 2006, with its two curved orange tiled roofs, painted bracket bands, red columns and broad balustraded stone platform.",
+  "nativeAxes": {
+    "x": "north-northwest along the front",
+    "y": "up",
+    "z": "east-northeast toward the courtyard"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2006-03-30",
+    "validFrom": "2006-01-01",
+    "validUntil": "2007-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Nan_Hua_Main_Temple.jpg",
+    "https://commons.wikimedia.org/wiki/File:Nan_Hua_Temple_2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "nan-hua-temple-wp",
+      "url": "https://qualla.com/nan-hua-temple/"
+    }
+  ],
+  "referenceInputHash": "eed8249875b237b8577ecf087456e90c0b650edaa10b4990628d20f6f5d950f2",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ke/kek/nan_hua_temple/models/nan-hua-shrine-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ke/kek/nan_hua_temple/models/nan-hua-shrine-model.mjs",
+    "level": "skyline",
+    "export": "nanHuaSkyline",
+    "errorMeters": 0.66,
+    "surfaces": {
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_glazed",
+        "roughness": 0.73,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "detail": {
+        "slot": "window",
+        "localRef": "palette:#fffdfe",
+        "roughness": 0.76,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "nanHuaDistrict",
+        "errorMeters": 0.38,
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.73,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.76,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "nanHuaStreet",
+        "errorMeters": 0.125,
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.73,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.76,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "nanHuaCloseup",
+        "errorMeters": 0.052,
+        "surfaces": {
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.73,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.76,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "tile_glazed",
+    "stone_granite",
+    "wood_plain",
+    "plaster_lime"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.82,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      28.733114,
+      -25.824524
+    ],
+    "heading": 1.6202657496021673,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        28.733374153271072,
+        -25.824512406168015
+      ],
+      "modelHeight": 0,
+      "basis": "Original composite height at the foot of the middle entrance stairs on the eastern courtyard side."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          29.38299073339288,
+          10.965557827415461
+        ],
+        [
+          29.16262888322297,
+          18.117853765702247
+        ],
+        [
+          -30.209897978161646,
+          18.117853765702243
+        ],
+        [
+          -29.957764080259828,
+          9.873588201059095
+        ],
+        [
+          -55.32083984953364,
+          10.012384668487417
+        ],
+        [
+          -55.132068510857785,
+          2.597679652680986
+        ],
+        [
+          -29.7361937545278,
+          2.9220021224044137
+        ],
+        [
+          -29.56296422671862,
+          -2.8280771298483947
+        ],
+        [
+          -29.466944731499247,
+          -18.724837971401016
+        ],
+        [
+          29.746735053705667,
+          -18.8932224834502
+        ],
+        [
+          29.610071991491786,
+          3.4524245147574444
+        ],
+        [
+          46.85125543806975,
+          3.473334727255459
+        ],
+        [
+          46.63281504704808,
+          11.037058354982205
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Named mapped main shrine, including the short connecting wings within its own outline."
+    },
+    "featureIds": [
+      "way/530642357",
+      "way/530642343",
+      "way/106297587"
+    ],
+    "source": "https://www.openstreetmap.org/way/530642357",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1218585d185a9e43353df21e1aeb626c8cdc0492623280c26a69007cc0a7a14d",
+    "notes": "The principal Nan Hua Temple shrine at Bronkhorstspruit as documented in March 2006. Includes the main two-tier hall, raised podium and stairs, and short roofed connections within the mapped main-shrine footprint. The enclosing precinct, separate main gate, guesthouse and shrine interior are outside the scope. The uploaded March 2006 images establish the early appearance. Exact capture day is unknown. Roof heights, bracket spacing and podium grading are interpreted."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    }
+  ],
+  "limitations": [
+    "The principal shrine is represented around the 2006 upload date. Exterior section heights, off-camera elevations, stair counts and rail motifs are visual estimates.",
+    "The unchanged provider terrain is a composite ground surface. It drops below the raised podium at the rear and north side. The stair feet are approximated against that field. Detached buildings and precinct walls are excluded."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. OpenStreetMap ODbL 1.0 geographic controls. Exact photographer-released public-domain images by Elf-friend.",
+  "qaLodCameras": [
+    {
+      "name": "whole-nan-hua-shrine-skyline",
+      "position": [
+        52,
+        29,
+        94
+      ],
+      "lookAt": [
+        -2,
+        9.9,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-nan-hua-shrine-district",
+      "position": [
+        52,
+        29,
+        94
+      ],
+      "lookAt": [
+        -2,
+        9.9,
+        1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-nan-hua-shrine-street",
+      "position": [
+        52,
+        29,
+        94
+      ],
+      "lookAt": [
+        -2,
+        9.9,
+        1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-nan-hua-shrine-closeup",
+      "position": [
+        52,
+        29,
+        94
+      ],
+      "lookAt": [
+        -2,
+        9.9,
+        1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "east-court-and-raised-shrine",
+      "position": [
+        3,
+        13,
+        78
+      ],
+      "lookAt": [
+        0,
+        10.7,
+        6
+      ]
+    },
+    {
+      "name": "curved-double-eaves-and-short-wings",
+      "position": [
+        -61,
+        44,
+        -51
+      ],
+      "lookAt": [
+        -3,
+        12,
+        0
+      ]
+    },
+    {
+      "name": "central-stairs-columns-and-bracket-band",
+      "position": [
+        20,
+        13,
+        51
+      ],
+      "lookAt": [
+        0,
+        7.2,
+        14
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10840,
+    "vertices": 32520,
+    "materials": 5,
+    "bytes": 1529420,
+    "sha256": "sha256:f268c22c8780ce6237843a6c8a80a7198cab6de761e3d9217db59b75c0f69b8f"
+  }
+}

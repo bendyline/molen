@@ -1,0 +1,434 @@
+{
+  "planId": "saraswathi_mahal_library",
+  "id": "saraswathi_mahal_library",
+  "assetId": "molen.worldgen.structure.saraswathi_mahal_library",
+  "title": "Saraswathi Mahal Library",
+  "wikidataId": "Q3135924",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 79.13646828863095,
+    "latitude": 10.791803853855894
+  },
+  "size": [
+    14.239999771118164,
+    8.490000009536743,
+    12.019999980926514
+  ],
+  "actualBounds": {
+    "min": [
+      -7.119999885559082,
+      -0.49000000953674316,
+      -6.179999828338623
+    ],
+    "max": [
+      7.119999885559082,
+      8,
+      5.840000152587891
+    ]
+  },
+  "visualBrief": "Saraswathi Mahal Library’s recessed two-arch entrance, painted spandrels, blue sign band and raised Saraswati niche.",
+  "nativeAxes": {
+    "x": "right across the public frontage",
+    "y": "up",
+    "z": "out through the painted arches"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2024-11-18",
+    "validFrom": "2024-01-01",
+    "validUntil": "2025-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:%E0%B0%B8%E0%B0%B0%E0%B0%B8%E0%B1%8D%E0%B0%B5%E0%B0%A4%E0%B1%80_%E0%B0%AE%E0%B0%B9%E0%B0%B2%E0%B1%8D_%E0%B0%97%E0%B1%8D%E0%B0%B0%E0%B0%82%E0%B0%A5%E0%B0%BE%E0%B0%B2%E0%B0%AF%E0%B0%AE%E0%B1%81,_%E0%B0%A4%E0%B0%82%E0%B0%9C%E0%B0%BE%E0%B0%B5%E0%B1%82%E0%B0%B0%E0%B1%81_(Saraswathi_Mahal_library,_Tanjavur).jpg"
+  ],
+  "stories": [
+    {
+      "id": "saraswathi-mahal-library-wp",
+      "url": "https://qualla.com/saraswathi-mahal-library/"
+    }
+  ],
+  "referenceInputHash": "fbe2317cf1b95c30aaa5c9d8169f398f0cf08710280bc7a0bee61808fbd499ac",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tc/tcb/saraswathi_mahal_library/models/saraswathi-mahal-library-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tc/tcb/saraswathi_mahal_library/models/saraswathi-mahal-library-model.mjs",
+    "level": "skyline",
+    "export": "librarySkyline",
+    "errorMeters": 0.66,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.82,
+        "metallic": 0.12
+      },
+      "paint": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.86,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "libraryDistrict",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.12
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "libraryStreet",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.12
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "libraryCloseup",
+        "errorMeters": 0.038,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.12
+          },
+          "paint": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_raw",
+    "stone_limestone",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.7,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      79.13646828863095,
+      10.791803853855894
+    ],
+    "heading": 2.792526803190927,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        79.13648768050683,
+        10.791856190311597
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate ground in the entry court just outside the arches."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -7,
+          4.9
+        ],
+        [
+          7,
+          4.9
+        ],
+        [
+          7,
+          -6.1
+        ],
+        [
+          -7,
+          -6.1
+        ]
+      ],
+      "basis": "Only the estimated public entrance wing within the mapped palace and museum footprint."
+    },
+    "featureIds": [
+      "library-public-wing-estimate",
+      "way/52060466"
+    ],
+    "source": "https://www.openstreetmap.org/way/52060466",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a0b44ab378ca60e21f8b00818af68bb5b0e8dba4c713e8ef50d61dea07f38fa0",
+    "notes": "The reference pose and rough façade scale place the model at the photographed entrance. The library has no separately mapped outline in the source response. Scope ends at the public wing; the adjoining palace and the rear stacks lie outside the reconstruction."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The single photograph records the November 2024 public entrance. The rear wall, roof, side returns and depth are approximated. The scope covers the public entrance wing and immediate porch.",
+    "The open arches, powder-blue sign band, muted painted relief and raised niche follow the photographed façade. Small text and figurative detail are simplified.",
+    "Camera position, its recorded pointing direction and photograph-derived scale locate the wing within the mapped palace compound. Width, center and bearing remain approximate. The original independent elevation field is preserved."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Palace map is ODbL. The exact Qualla photograph is CC0.",
+  "qaLodCameras": [
+    {
+      "name": "whole-library-skyline",
+      "position": [
+        -12,
+        7.2,
+        21.3
+      ],
+      "lookAt": [
+        0,
+        3.32,
+        0.9
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-library-district",
+      "position": [
+        -12,
+        7.2,
+        21.3
+      ],
+      "lookAt": [
+        0,
+        3.32,
+        0.9
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-library-street",
+      "position": [
+        -12,
+        7.2,
+        21.3
+      ],
+      "lookAt": [
+        0,
+        3.32,
+        0.9
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-library-closeup",
+      "position": [
+        -12,
+        7.2,
+        21.3
+      ],
+      "lookAt": [
+        0,
+        3.32,
+        0.9
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "painted-double-arcade",
+      "position": [
+        -1.65,
+        3.62,
+        20.1
+      ],
+      "lookAt": [
+        0,
+        3.68,
+        4.38
+      ]
+    },
+    {
+      "name": "niche-and-porch-depth",
+      "position": [
+        9.1,
+        5.4,
+        16.4
+      ],
+      "lookAt": [
+        0.65,
+        3.86,
+        4.54
+      ]
+    },
+    {
+      "name": "wing-return-and-roof",
+      "position": [
+        -15.1,
+        10.3,
+        -13.9
+      ],
+      "lookAt": [
+        0,
+        3.15,
+        -0.3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2584,
+    "vertices": 7752,
+    "materials": 5,
+    "bytes": 513888,
+    "sha256": "sha256:5b737d7a158f20cf5b298b1c0fd7a236db244a61bc1a8823f59d632fbff79592"
+  }
+}

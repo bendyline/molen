@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.cotroceni_palace",
+  "kind": "static-structure",
+  "title": "Cotroceni Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.cotroceni_palace",
+        "output": "assets/places/sx/sxf/cotroceni_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:06887b95ee15e6e3449f6c5a4eec5f283b448dc756fcd95668556e7ff2296ecf"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-cotroceni-palace",
+        "path": "models/generate-cotroceni-palace.mjs"
+      },
+      {
+        "id": "zetland-hall-model",
+        "path": "models/cotroceni-palace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/hall-controls.json",
+      "reference-rights/commons-qualla-hall-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-18755-11859.png",
+      "terrain-sources/terrarium-15-18755-11860.png",
+      "terrain-sources/terrarium-15-18756-11859.png",
+      "terrain-sources/terrarium-15-18756-11860.png",
+      "preview.png",
+      "native-map/palace-controls.json",
+      "reference-rights/commons-qualla-palace-originals.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "roof-sections.json",
+      "qa.json"
+    ]
+  }
+}

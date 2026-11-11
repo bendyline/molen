@@ -1,0 +1,545 @@
+{
+  "planId": "roman_theatre_cartagena",
+  "id": "roman_theatre_cartagena",
+  "assetId": "molen.worldgen.structure.roman_theatre_cartagena",
+  "title": "Roman Theatre of Cartagena",
+  "wikidataId": "Q2627735",
+  "category": "theatre",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -0.9841694341539888,
+    "latitude": 37.59952220136242
+  },
+  "size": [
+    80.87201690673828,
+    19.200000286102295,
+    57.65496826171875
+  ],
+  "actualBounds": {
+    "min": [
+      -40.46004867553711,
+      -3.4000000953674316,
+      -12.555000305175781
+    ],
+    "max": [
+      40.41196823120117,
+      15.800000190734863,
+      45.09996795654297
+    ]
+  },
+  "visualBrief": "The excavated Roman theatre with a steep limestone cavea, grey orchestra ring, low stage deck and uneven stacks of restored stage columns.",
+  "nativeAxes": {
+    "x": "northeast along the stage",
+    "y": "up",
+    "z": "southeast into the seating bowl"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2017-07-27",
+    "validFrom": "2017-01-01",
+    "validUntil": "2018-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Teatro_romano_cartagena.jpg",
+    "https://commons.wikimedia.org/wiki/File:Parte_de_las_columnas_de_la_escena.jpg",
+    "https://commons.wikimedia.org/wiki/File:Cartagena_Roman_Theatre_Seats.jpg",
+    "https://commons.wikimedia.org/wiki/File:Teatro_Romano_de_Cartagena.jpg",
+    "https://commons.wikimedia.org/wiki/File:The_Roman_Theatre,_Cartagena,_Murcia,_Spain.jpg"
+  ],
+  "stories": [
+    {
+      "id": "roman-theatre-cartagena-wp",
+      "url": "https://qualla.com/roman-theatre-cartagena/"
+    }
+  ],
+  "referenceInputHash": "8e30f06958e85decfe67c521e8428c82fd72f35be84df687e967890b20a34525",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ey/eyx/roman_theatre_cartagena/models/cartagena-theatre-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ey/eyx/roman_theatre_cartagena/models/cartagena-theatre-model.mjs",
+    "level": "skyline",
+    "export": "cartagenaSkyline",
+    "errorMeters": 1.1,
+    "surfaces": {
+      "rock": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "seat": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "setts": {
+        "slot": "foundation",
+        "graph": "stone_sandstone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.71,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "foundation",
+        "graph": "wood_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cartagenaDistrict",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "seat": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "setts": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.71,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "foundation",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "cartagenaStreet",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "seat": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "setts": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.71,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "foundation",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "cartagenaCloseup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "seat": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "setts": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.71,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "foundation",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone_raw",
+    "stone_limestone_raw",
+    "stone_sandstone",
+    "stone_marble",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.95,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -0.9841694341539888,
+      37.59952220136242
+    ],
+    "heading": 0.8793796958895385,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -0.9841694341539888,
+        37.59952220136242
+      ],
+      "modelHeight": 0,
+      "basis": "Original public terrain at the fitted orchestra centre; exact exposed floor elevation is estimated from the terrain and archaeology."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -40.61344226076439,
+          19.824253730552357
+        ],
+        [
+          -37.90878943036725,
+          24.191721380641678
+        ],
+        [
+          -33.90380776446225,
+          29.62387276538965
+        ],
+        [
+          -29.446038014371695,
+          34.188928367159846
+        ],
+        [
+          -25.19442175513513,
+          37.56217161949106
+        ],
+        [
+          -20.155823592279667,
+          40.52444613389768
+        ],
+        [
+          -14.490660240187628,
+          42.89940484397314
+        ],
+        [
+          -9.094909620065202,
+          44.18070880832011
+        ],
+        [
+          -4.262372928701787,
+          44.88632309800747
+        ],
+        [
+          0.4270217695078955,
+          45.03491861917249
+        ],
+        [
+          5.390115142914151,
+          44.69363749676421
+        ],
+        [
+          10.835669057024319,
+          43.6782340957185
+        ],
+        [
+          14.128012765708444,
+          42.78495900165757
+        ],
+        [
+          18.319378087660656,
+          41.31928265553856
+        ],
+        [
+          24.07370745616383,
+          38.28512912241781
+        ],
+        [
+          28.572729853673504,
+          34.939018247267285
+        ],
+        [
+          30.790657441237464,
+          32.78261767414801
+        ],
+        [
+          34.15303083720984,
+          29.198071194885237
+        ],
+        [
+          36.829773727285634,
+          25.780314609115706
+        ],
+        [
+          39.568066436345305,
+          21.773501542483817
+        ],
+        [
+          40.83029957818045,
+          19.82424179317859
+        ],
+        [
+          36,
+          11
+        ],
+        [
+          25,
+          5
+        ],
+        [
+          24,
+          -13
+        ],
+        [
+          -27,
+          -13
+        ],
+        [
+          -29,
+          6
+        ],
+        [
+          -33,
+          14
+        ]
+      ],
+      "minimumCoverage": 0.82,
+      "basis": "Mapped outer retaining arc and approximate stage and flank perimeter, excluding the separate cathedral and museum."
+    },
+    "featureIds": [
+      "way/333252162",
+      "way/333252154",
+      "way/333252157",
+      "way/333252158",
+      "way/333252159",
+      "way/333252153",
+      "way/333252150",
+      "way/333252155"
+    ],
+    "source": "https://www.openstreetmap.org/way/333252162",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9927c514c50f1ad96b719bcc2f00f7542d4a5381dc08a4f0c59ab4386752a05f",
+    "notes": "The exposed, restored Roman theatre of Cartagena around July 2017, with surviving seating, orchestra, stage, reconstructed columns and retaining walls. The separately mapped cathedral, museum, and surrounding city are outside the asset. A least-squares circle through the named way’s cavea arc defines the model origin. The outer retaining-wall chord determines the heading. Working perimeter segments outside the mapped rim are an approximation of the stage and flank edges."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "This is the exposed 2017 site. The partly restored stage wall and seating are represented as surviving fabric, with adjacent cathedral and museum outside scope.",
+    "The lower seating follows published dimensions. The spacing and surviving heights of the upper terraces, stage ruins and column fragments are visual estimates.",
+    "The original relief remains unchanged. Exact excavation and exposed floor heights are unavailable, so the visible archaeology and local embedment are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license, native OpenStreetMap ODbL 1.0 and five checked first-party public-domain or CC0 photographs.",
+  "qaLodCameras": [
+    {
+      "name": "whole-cartagena-theatre-skyline",
+      "position": [
+        42,
+        62,
+        72
+      ],
+      "lookAt": [
+        0,
+        5,
+        13
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-cartagena-theatre-district",
+      "position": [
+        42,
+        62,
+        72
+      ],
+      "lookAt": [
+        0,
+        5,
+        13
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-cartagena-theatre-street",
+      "position": [
+        42,
+        62,
+        72
+      ],
+      "lookAt": [
+        0,
+        5,
+        13
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-cartagena-theatre-closeup",
+      "position": [
+        42,
+        62,
+        72
+      ],
+      "lookAt": [
+        0,
+        5,
+        13
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-cavea-from-stage",
+      "position": [
+        12,
+        21,
+        -64
+      ],
+      "lookAt": [
+        0,
+        6,
+        15
+      ]
+    },
+    {
+      "name": "stage-columns-and-orchestra",
+      "position": [
+        22,
+        19,
+        29
+      ],
+      "lookAt": [
+        3,
+        4,
+        -6
+      ]
+    },
+    {
+      "name": "seat-rows-and-radial-stairs",
+      "position": [
+        3,
+        10,
+        -9
+      ],
+      "lookAt": [
+        1,
+        6,
+        21
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 18036,
+    "vertices": 54108,
+    "materials": 5,
+    "bytes": 2359788,
+    "sha256": "sha256:48e9312ec9792d1bedaafb5485f791739370b8dd54c219e727fcd3b493326906"
+  }
+}

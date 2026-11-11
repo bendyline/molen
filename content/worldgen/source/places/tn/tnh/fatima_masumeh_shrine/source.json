@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fatima_masumeh_shrine",
+  "kind": "static-structure",
+  "title": "Fatima Masumeh Shrine",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fatima_masumeh_shrine",
+        "output": "assets/places/tn/tnh/fatima_masumeh_shrine/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ade76ed13428988b5de71eada3ad588c44706c3ed3e862c4cef7e040bd54b9b0"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-shrine",
+        "path": "models/generate-shrine.mjs"
+      },
+      {
+        "id": "shrine-model",
+        "path": "models/shrine-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/shrine-core-and-court-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-originals.json",
+      "reference-rights/commons-meraji-2009-cc0.json",
+      "reference-rights/commons-wayiran-2009-public-domain.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-21014-13018.png",
+      "terrain-sources/terrarium-15-21014-13019.png",
+      "terrain-sources/terrarium-15-21015-13018.png",
+      "terrain-sources/terrarium-15-21015-13019.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

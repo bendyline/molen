@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.marquis_of_sobremonte_provincial_historical_museum",
+  "kind": "static-structure",
+  "title": "Museo Histórico Provincial Marqués de Sobremonte",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.marquis_of_sobremonte_provincial_historical_museum",
+        "output": "assets/places/6d/6d6/marquis_of_sobremonte_provincial_historical_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b1d68cefe750fc7d641333daf238fffcc1e4453a2dbbe930e27d0b023170f01c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-sobremonte-museum",
+        "path": "models/generate-sobremonte-museum.mjs"
+      },
+      {
+        "id": "sobremonte-museum-model",
+        "path": "models/sobremonte-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/museum-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-sobremonte-museum-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-10541-19398.png",
+      "terrain-sources/terrarium-15-10542-19398.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

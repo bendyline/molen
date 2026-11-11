@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.chowmahalla_palace",
+  "kind": "static-structure",
+  "title": "Khilwat Mubarak, Chowmahalla Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.chowmahalla_palace",
+        "output": "assets/places/te/tep/chowmahalla_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8bd8de738df037e7f8425d1311b527b3827d737796abda6a64a20031a8a301a0"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-khilwat",
+        "path": "models/generate-khilwat.mjs"
+      },
+      {
+        "id": "khilwat-model",
+        "path": "models/khilwat-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/exterior-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-pd-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-23526-14779.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

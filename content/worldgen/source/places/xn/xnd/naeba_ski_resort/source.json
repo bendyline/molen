@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.naeba_ski_resort",
+  "kind": "static-structure",
+  "title": "Naeba Prince Hotel and Ski Center",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.naeba_ski_resort",
+        "output": "assets/places/xn/xnd/naeba_ski_resort/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:793e3d3098b3e3678eca5c72827bfa1317855d9ed5a976b127c817034b31c9d3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-naeba-ski-resort",
+        "path": "models/generate-naeba-ski-resort.mjs"
+      },
+      {
+        "id": "naeba-ski-resort-model",
+        "path": "models/naeba-ski-resort-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/resort-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-naeba-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-29015-12777.png",
+      "terrain-sources/terrarium-15-29015-12778.png",
+      "terrain-sources/terrarium-15-29016-12777.png",
+      "terrain-sources/terrarium-15-29016-12778.png",
+      "terrain-sources/terrarium-15-29017-12777.png",
+      "terrain-sources/terrarium-15-29017-12778.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

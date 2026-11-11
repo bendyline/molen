@@ -324,6 +324,43 @@ export async function inspectLocalModel(
   return row;
 }
 
+/** The catalog remains the review authority for explicitly accepted existing models. */
+export async function inspectCatalogCompletion(entry, repository, placements) {
+  const receipt = entry.catalogCompletion;
+  const sourceDir = inside(repository, entry.sourcePath);
+  const catalog = read(path.join(repository, 'content/earth/structures/readiness.json'));
+  const record = catalog?.candidates.find((row) => row.candidateId === receipt.candidateId);
+  const placement = placements.entries.find((row) => row.id === receipt.placementId);
+  const qa = sourceDir && bytes(path.join(sourceDir, 'qa.json'));
+  const current =
+    record?.readiness === 'ready' &&
+    record.asset === receipt.assetId &&
+    record.model.inputHash === receipt.inputHash &&
+    receipt.assetId === entry.otherDeviceReservation?.modelRef &&
+    qa &&
+    hash(qa) === receipt.qaHash &&
+    (await modelInputHash(sourceDir, receipt.assetId)) === receipt.inputHash &&
+    placement?.asset === receipt.assetId &&
+    hash(JSON.stringify(placement)) === receipt.placementHash &&
+    hasUsableStructurePlacement(placement);
+  return {
+    candidateId: entry.modelIdentity,
+    backlogTargetId: entry.structureId,
+    title: entry.name,
+    asset: receipt.assetId,
+    sourcePath: entry.sourcePath,
+    order: entry.order,
+    pilot: !!entry.pilot,
+    readiness: current ? 'accepted-catalog-model' : 'needs-review',
+    blockers: current ? [] : ['catalog-completion-evidence-changed'],
+    technicalReadiness: current ? 'ready' : 'needs-review',
+    geographic: { activePlacement: placement?.id ?? null, verified: !!current },
+    fidelityQa: { target: 'medium-fi', hashBoundReviewPassed: !!current },
+    imagery: { status: 'inherited-authoring-provenance', fidelityReviewPassed: false },
+    catalogCompletion: receipt,
+  };
+}
+
 export async function buildProgress({
   repository = root,
   output = here,
@@ -351,6 +388,10 @@ export async function buildProgress({
   for (const entry of batch.entries) {
     const structure = structures.find((s) => s.id === entry.structureId);
     if (!structure) throw Error(`Structure identity unavailable: ${entry.name}`);
+    if (entry.modelState === 'completed' && entry.catalogCompletion) {
+      rows.push(await inspectCatalogCompletion(entry, repository, placements));
+      continue;
+    }
     const otherDevice = structureCatalogMatches(structure, reserved, entry.modelIdentity);
     if (otherDevice.length || entry.workOwner === 'structure-catalog-other-device') {
       // A newly resolved alias must remain visible without inspecting or approving
@@ -387,6 +428,12 @@ export async function buildProgress({
     ready: rows.filter((r) => r.readiness === 'ready').length,
     started: rows.filter((r) => r.sourcePath).length,
     pilotsReady: rows.filter((r) => r.pilot && r.readiness === 'ready').length,
+    ...(rows.some((r) => r.readiness === 'accepted-catalog-model')
+      ? {
+          acceptedCatalogModels: rows.filter((r) => r.readiness === 'accepted-catalog-model')
+            .length,
+        }
+      : {}),
     ...(rows.some((r) => r.readiness === 'reserved-other-device')
       ? {
           reservedForOtherDevice: rows.filter((r) => r.readiness === 'reserved-other-device')
@@ -418,7 +465,14 @@ export async function buildProgress({
   const text = `# Qualla compat — local 100 — completion progress\n\n**${counts.ready} / ${counts.target} completed. ${rows.some((r) => r.pilot) ? `${counts.pilotsReady} / ${rows.filter((r) => r.pilot).length} pilots completed.` : ''}** ${counts.started} models started; ${counts.target - counts.started} not started.${counts.technicallyValidated === undefined ? '' : `\n\n${counts.technicallyValidated} models retain their technical validation; ${counts.publicDomainImageryVerified} reference sets currently meet the public-domain Qualla imagery policy. Source replacements need renewed visual review before completion.`}\n\nFinish each model using Qualla photographs, current renders and story synchronization in the same authoring pass. Every structure catalog candidate and collection member remains assigned to the other device.\n\nCompletion is recomputed from current evidence; editing geometry, source references, material graphs, terrain or placement invalidates the affected approval. [Machine-readable ledger](readiness.json).\n\n| # | Structure and story | Completion | Remaining checks |\n| ---: | --- | --- | --- |\n${rows
     .map((r) => {
       const s = structures.find((s) => s.id === r.backlogTargetId);
-      return `| ${r.order}${r.pilot ? ' · pilot' : ''} | [${r.title.replaceAll('|', '/')}](https://qualla.com/${s.stories[0].url.split('qualla.com/')[1]}) | ${r.readiness === 'ready' ? 'Complete' : r.readiness === 'not-started' ? 'Not started' : r.readiness === 'reserved-other-device' ? 'Other device' : 'In review'} | ${r.blockers.join('; ') || 'All required evidence current'} |`;
+      const state =
+        {
+          ready: 'Complete',
+          'accepted-catalog-model': 'Complete via existing catalog model',
+          'not-started': 'Not started',
+          'reserved-other-device': 'Other device',
+        }[r.readiness] ?? 'In review';
+      return `| ${r.order}${r.pilot ? ' · pilot' : ''} | [${r.title.replaceAll('|', '/')}](https://qualla.com/${s.stories[0].url.split('qualla.com/')[1]}) | ${state} | ${r.blockers.join('; ') || 'All required evidence current'} |`;
     })
     .join(
       '\n',

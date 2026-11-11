@@ -1,0 +1,434 @@
+{
+  "planId": "adams_building_nottingham",
+  "id": "adams_building_nottingham",
+  "assetId": "molen.worldgen.structure.adams_building_nottingham",
+  "title": "Adams Building, Nottingham",
+  "wikidataId": "Q4680301",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -1.14373,
+    "latitude": 52.95279
+  },
+  "size": [
+    96.34517288208008,
+    25.47999918460846,
+    70.42445945739746
+  ],
+  "actualBounds": {
+    "min": [
+      -50.06850814819336,
+      -1.600000023841858,
+      -25.663000106811523
+    ],
+    "max": [
+      46.27666473388672,
+      23.8799991607666,
+      44.76145935058594
+    ]
+  },
+  "visualBrief": "Red-brick Lace Market warehouse with projecting Italianate bays, pale ashlar dressings, a central staircase and clock gable, and a sequence of dark slate roof ranges around an open court.",
+  "nativeAxes": {
+    "x": "south-southeast along Stoney Street",
+    "y": "up",
+    "z": "west-southwest into the warehouse"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2008-06-30",
+    "validFrom": "2008-01-01",
+    "validUntil": "2021-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Adams-exterior-2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Lace_Market,_Adams_Building_principal_facade_from_Stoney_Street,_April_2008.jpg"
+  ],
+  "stories": [
+    {
+      "id": "adams-building-nottingham-wp",
+      "url": "https://qualla.com/adams-building-nottingham/"
+    }
+  ],
+  "referenceInputHash": "f5777a3be08a24bd609305cf9f09702888dbb51140c9732478f109c8e21ee6f5",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcr/adams_building_nottingham/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gcr/adams_building_nottingham/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.25,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "ashlar": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_sandstone",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.13
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.35,
+        "metallic": 0.04
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.13
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.04
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.075,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.13
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.04
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.13
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.04
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "stone_limestone",
+    "stone_sandstone",
+    "slate",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -1.14373,
+      52.95279
+    ],
+    "heading": -1.2091383449422026,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -1.143388207464573,
+        52.952915921210945
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain near the Stoney Street side of the entrance forecourt. Grade remains approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/166206165",
+      "way/166206174"
+    ],
+    "source": "https://www.openstreetmap.org/relation/3581525",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:64ac351c53be9859203b22ff94c3b9a53e0e2d2db9a77633033c50fbcd18062d",
+    "notes": "OpenStreetMap relation 3581525 identifies the Grade II* Adams Building and supplies its original outer ring and one separately mapped inner courtyard. Historic England entry 1270430 describes the E-plan front and two rear courtyards. Other open spaces are represented as shown by the mapped outer returns. Stoney Street bearing uses the mapped road. The broader rear sections and survey elevations require proportional estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Two verified public-domain Qualla photographs from April and June 2008 guide the modeled front and rear exterior. Historic England’s written record supplies the E-plan front and the character of the slate roofs, stone dressings and arched windows.",
+    "The mapped outline and inner court are retained. The other recesses remain open where the outline turns around them. Heights, roof subdivisions, exact stair and railing positions, and unphotographed walls are proportional estimates.",
+    "The independent terrain field is unchanged. Its reference near Stoney Street provides the approximate elevation basis for the entrance steps. Coarse grades are not a survey.",
+    "The asset is a dated exterior. Recesses, dressings and ironwork use original geometry and shared materials. No photographic pixels or museum interior details are included."
+  ],
+  "sourceLicense": "Original deterministic reconstruction under the repository license. The two published Qualla photos by Superhasn and Smashman were released into the public domain by their authors. The mapped geometry is attributed to OpenStreetMap contributors under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-warehouse-skyline",
+      "position": [
+        68,
+        46,
+        -98
+      ],
+      "lookAt": [
+        -5,
+        10,
+        3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-warehouse-district",
+      "position": [
+        68,
+        46,
+        -98
+      ],
+      "lookAt": [
+        -5,
+        10,
+        3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-warehouse-street",
+      "position": [
+        68,
+        46,
+        -98
+      ],
+      "lookAt": [
+        -5,
+        10,
+        3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-warehouse-closeup",
+      "position": [
+        68,
+        46,
+        -98
+      ],
+      "lookAt": [
+        -5,
+        10,
+        3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "stoney-street-court-and-clock-gable",
+      "position": [
+        22,
+        10,
+        -70
+      ],
+      "lookAt": [
+        -5.2,
+        10.2,
+        -18
+      ]
+    },
+    {
+      "name": "rear-ranges-and-open-courtyard",
+      "position": [
+        -63,
+        44,
+        67
+      ],
+      "lookAt": [
+        -10.2,
+        8.2,
+        11.4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 17792,
+    "vertices": 53376,
+    "materials": 6,
+    "bytes": 2367352,
+    "sha256": "sha256:c319d491ff12d898921dd47962d05d703e6029bda864c217b7d9d09e4fcc8244"
+  }
+}

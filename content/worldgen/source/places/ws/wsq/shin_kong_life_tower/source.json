@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.shin_kong_life_tower",
+  "kind": "static-structure",
+  "title": "Shin Kong Life Tower",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.shin_kong_life_tower",
+        "output": "assets/places/ws/wsq/shin_kong_life_tower/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f57e2aead4daa08352353b6fa50bccaca6f977408ba97e110547dcf4a4b75382"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-shin-kong-tower",
+        "path": "models/generate-shin-kong-tower.mjs"
+      },
+      {
+        "id": "shin-kong-tower-model",
+        "path": "models/shin-kong-tower-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/tower-controls.json",
+      "reference-rights/commons-qualla-tower-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-27444-14027.png",
+      "terrain-sources/terrarium-15-27444-14028.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

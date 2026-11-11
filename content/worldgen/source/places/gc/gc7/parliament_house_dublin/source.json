@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.parliament_house_dublin",
+  "kind": "static-structure",
+  "title": "Parliament House, Dublin",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.parliament_house_dublin",
+        "output": "assets/places/gc/gc7/parliament_house_dublin/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:926f2a1d9f215e4a459d1d4aadc22462883cd5f640351022e47ce57e00815d0b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-dublin-parliament",
+        "path": "models/generate-dublin-parliament.mjs"
+      },
+      {
+        "id": "dublin-parliament-model",
+        "path": "models/dublin-parliament-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/parliament-controls.json",
+      "reference-rights/commons-qualla-parliament-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-15813-10621.png",
+      "terrain-sources/terrarium-15-15813-10622.png",
+      "terrain-sources/terrarium-15-15814-10621.png",
+      "terrain-sources/terrarium-15-15814-10622.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

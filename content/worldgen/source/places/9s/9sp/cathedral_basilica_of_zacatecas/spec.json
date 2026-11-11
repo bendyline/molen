@@ -1,0 +1,528 @@
+{
+  "planId": "cathedral_basilica_of_zacatecas",
+  "id": "cathedral_basilica_of_zacatecas",
+  "assetId": "molen.worldgen.structure.cathedral_basilica_of_zacatecas",
+  "title": "Cathedral Basilica of Zacatecas",
+  "wikidataId": "Q2942252",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -102.57219559473684,
+    "latitude": 22.775595363157894
+  },
+  "size": [
+    39.98952865600586,
+    50.249999046325684,
+    64.19927215576172
+  ],
+  "actualBounds": {
+    "min": [
+      -20.392000198364258,
+      -5.199999809265137,
+      -36.663780212402344
+    ],
+    "max": [
+      19.5975284576416,
+      45.04999923706055,
+      27.535491943359375
+    ]
+  },
+  "visualBrief": "Rose cantera cathedral basilica with carved west front, two open belfries, three-aisle massing and cream crossing dome.",
+  "nativeAxes": {
+    "x": "southwest along the façade",
+    "y": "up",
+    "z": "west-northwest toward the avenue"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2009-02-09",
+    "validFrom": "2007-01-01",
+    "validUntil": "2010-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Catedral_de_zacatecas.JPG",
+    "https://commons.wikimedia.org/wiki/File:Zacatecas_noche_y_d%C3%ADa_25.jpg",
+    "https://commons.wikimedia.org/wiki/File:Zacatecas_38.jpg"
+  ],
+  "stories": [
+    {
+      "id": "cathedral-basilica-of-zacatecas-wp",
+      "url": "https://qualla.com/cathedral-basilica-of-zacatecas/"
+    }
+  ],
+  "referenceInputHash": "5a88fefd976470b732c25e1abfb7efaea6fb9f716727d5cbea04d2b19ba007b2",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9s/9sp/cathedral_basilica_of_zacatecas/models/cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9s/9sp/cathedral_basilica_of_zacatecas/models/cathedral-model.mjs",
+    "level": "skyline",
+    "export": "cathedralSkyline",
+    "errorMeters": 0.48,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "carved": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "cream": {
+        "slot": "roof",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "tiles": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.77,
+        "metallic": 0.32
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#fefcff",
+        "roughness": 0.89,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cathedralDistrict",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "cream": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tiles": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.77,
+            "metallic": 0.32
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#fefcff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "cathedralStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "cream": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tiles": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.77,
+            "metallic": 0.32
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#fefcff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "cathedralCloseup",
+        "errorMeters": 0.03,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "cream": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tiles": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.77,
+            "metallic": 0.32
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#fefcff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "stone_sandstone_raw",
+    "plaster_lime",
+    "tile_ceramic",
+    "metal_bronze_cast"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.85,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -102.57219559473684,
+      22.775595363157894
+    ],
+    "heading": -1.9528863531290754,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -102.5724555403527,
+        22.775700000476903
+      ],
+      "modelHeight": 0,
+      "basis": "Independent grade in front of the main west portal off Avenida Hidalgo."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          16.967713599612473,
+          -36.46292910001296
+        ],
+        [
+          16.969296449767434,
+          -26.99478833584169
+        ],
+        [
+          16.971841896807597,
+          -18.9871728617548
+        ],
+        [
+          16.972500009170354,
+          -7.759857333538777
+        ],
+        [
+          16.966245143033817,
+          18.348162277980304
+        ],
+        [
+          16.96595676690662,
+          22.10924091137095
+        ],
+        [
+          16.965668391146384,
+          25.870319544614134
+        ],
+        [
+          12.045660073813178,
+          25.867330554577077
+        ],
+        [
+          7.730133195658979,
+          25.875855899278257
+        ],
+        [
+          -9.453167787187157,
+          25.867228146443033
+        ],
+        [
+          -14.56140540481615,
+          25.873506947737653
+        ],
+        [
+          -18.737673822487267,
+          25.870319544614134
+        ],
+        [
+          -18.737127680670284,
+          21.12465002098564
+        ],
+        [
+          -18.737581994641427,
+          17.54085631183282
+        ],
+        [
+          -18.744998429885875,
+          -7.765230477480359
+        ],
+        [
+          -18.74820198892183,
+          -27.000161479930732
+        ],
+        [
+          -18.745957809143853,
+          -36.458778434847126
+        ],
+        [
+          -9.63935187810603,
+          -36.45675270564644
+        ],
+        [
+          7.550451268652054,
+          -36.4617994282904
+        ]
+      ],
+      "minimumCoverage": 0.95,
+      "basis": "Replace the named mapped cathedral only during the dated preview."
+    },
+    "featureIds": [
+      "way/746186615"
+    ],
+    "source": "https://www.openstreetmap.org/way/746186615",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:37c6091b37fb47f012e4ae899356adbca9f30c21ebf37e8217b851cc97a599ff",
+    "notes": "The exterior of the Cathedral Basilica of the Assumption of Mary in Zacatecas as recorded in late-2000s photographs. Includes the carved three-tier west front, pink cantera bell towers, lower aisles, north and south entrances, octagonal crossing dome and rear chapel. The separately listed parish house, interiors and surrounding urban buildings are outside scope. The mapped polygon sets the exterior envelope. Individual upper sections and carved fields are proportional estimates based on verified exterior originals and written descriptions."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "The main footprint, 45-meter height, two-stage belfries, three-part west front and octagonal crossing drum are documented. The nave section, roof forms, individual tower dimensions and stone ornament are proportional estimates.",
+    "The Qualla photograph has conflicting 2007 EXIF and 2009 description dates. The model uses the late-2000s exterior corroborated by independent 2008 photographs.",
+    "The 128-meter elevation field is unchanged. The west threshold and side steps follow approximate original provider grade. Interiors, individual statuary identities and the separately mapped parish house are outside scope."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. Geographic outline from OpenStreetMap. The cleared Cocojorgemedina and Álvaro de la Paz Franco exterior photographs inform proportions and finishes.",
+  "qaLodCameras": [
+    {
+      "name": "whole-zacatecas-cathedral-skyline",
+      "position": [
+        70,
+        47,
+        94
+      ],
+      "lookAt": [
+        -1,
+        17,
+        -2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-zacatecas-cathedral-district",
+      "position": [
+        70,
+        47,
+        94
+      ],
+      "lookAt": [
+        -1,
+        17,
+        -2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-zacatecas-cathedral-street",
+      "position": [
+        70,
+        47,
+        94
+      ],
+      "lookAt": [
+        -1,
+        17,
+        -2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-zacatecas-cathedral-closeup",
+      "position": [
+        70,
+        47,
+        94
+      ],
+      "lookAt": [
+        -1,
+        17,
+        -2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "avenida-hidalgo-carved-west-front",
+      "position": [
+        -1,
+        23,
+        91
+      ],
+      "lookAt": [
+        -1,
+        22,
+        23
+      ]
+    },
+    {
+      "name": "south-clock-belfry-and-crossing-dome",
+      "position": [
+        78,
+        32,
+        35
+      ],
+      "lookAt": [
+        0,
+        21,
+        6
+      ]
+    },
+    {
+      "name": "nave-aisles-and-north-portal",
+      "position": [
+        -62,
+        35,
+        -32
+      ],
+      "lookAt": [
+        -1,
+        16,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12862,
+    "vertices": 38586,
+    "materials": 6,
+    "bytes": 1689528,
+    "sha256": "sha256:6a37bac1b1d95585f913346192e7297b996d11a9064f6ff96970a293b941e07b"
+  }
+}

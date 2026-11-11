@@ -1,0 +1,526 @@
+{
+  "planId": "gothenburg_cathedral",
+  "id": "gothenburg_cathedral",
+  "assetId": "molen.worldgen.structure.gothenburg_cathedral",
+  "title": "Gothenburg Cathedral",
+  "wikidataId": "Q1236650",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 11.965317,
+    "latitude": 57.704539
+  },
+  "size": [
+    41.64999961853027,
+    55.499998569488525,
+    60.55205154418945
+  ],
+  "actualBounds": {
+    "min": [
+      -20.729999542236328,
+      -2.6500000953674316,
+      -28.95705223083496
+    ],
+    "max": [
+      20.920000076293945,
+      52.849998474121094,
+      31.594999313354492
+    ]
+  },
+  "visualBrief": "The classical pale stone cathedral, recessed west entrance and portico, dark 52.85-meter clock tower, transepts and rounded east apse.",
+  "nativeAxes": {
+    "x": "south along the entrance face",
+    "y": "up",
+    "z": "west toward the entrance"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2025-12-21",
+    "validFrom": "2025-01-01",
+    "validUntil": "2026-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Cathedral_of_Gothenburg.JPG",
+    "https://commons.wikimedia.org/wiki/File:Cathedral_of_Gothenburg_(east_side).JPG",
+    "https://commons.wikimedia.org/wiki/File:G%C3%B6teborgs_domkyrka_(december_2025,_bild_1).jpg"
+  ],
+  "stories": [
+    {
+      "id": "gothenburg-cathedral-wp",
+      "url": "https://qualla.com/gothenburg-cathedral/"
+    }
+  ],
+  "referenceInputHash": "24729373e968659c04d39dd798f542884bc4e71cbccc15f3b536e912ef9d0a34",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u6/u62/gothenburg_cathedral/models/cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u6/u62/gothenburg_cathedral/models/cathedral-model.mjs",
+    "level": "skyline",
+    "export": "cathedralSkyline",
+    "errorMeters": 0.25,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.11
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.42,
+        "metallic": 0.03
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cathedralDistrict",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.11
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.03
+          }
+        }
+      },
+      "street": {
+        "export": "cathedralStreet",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.11
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.03
+          }
+        }
+      },
+      "closeup": {
+        "export": "cathedralCloseup",
+        "errorMeters": 0.017,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.11
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.03
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_sandstone",
+    "slate",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      11.965317,
+      57.704539
+    ],
+    "heading": -1.4594373664757931,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        11.964784600221535,
+        57.704500054286214
+      ],
+      "modelHeight": 0,
+      "basis": "Independent ground at the west portico approach."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          12.686089194906101,
+          -18.887532473681294
+        ],
+        [
+          12.73449635491437,
+          -6.798996062043234
+        ],
+        [
+          20.57905988913439,
+          -6.831480122908398
+        ],
+        [
+          20.628282620031136,
+          7.453534958866767
+        ],
+        [
+          12.784380041314174,
+          7.480108221736531
+        ],
+        [
+          12.812867891128,
+          16.741635517706623
+        ],
+        [
+          13.206320127827919,
+          29.551012010067296
+        ],
+        [
+          6.34208317441661,
+          29.53153063837734
+        ],
+        [
+          -0.2130507972778677,
+          29.55259835412241
+        ],
+        [
+          -5.3564012759606054,
+          29.569946826283278
+        ],
+        [
+          -11.62702884754625,
+          29.551012010067296
+        ],
+        [
+          -11.6945397444553,
+          16.8319451527421
+        ],
+        [
+          -11.73409059293667,
+          7.569180775007095
+        ],
+        [
+          -20.329128340927824,
+          7.6015315297537835
+        ],
+        [
+          -20.354471290559946,
+          0.31530921388245003
+        ],
+        [
+          -20.37901202732763,
+          -6.67757275402598
+        ],
+        [
+          -16.14300059514757,
+          -6.694641283037715
+        ],
+        [
+          -16.108516412153307,
+          -10.50902827801622
+        ],
+        [
+          -11.800351633336634,
+          -10.470150850605368
+        ],
+        [
+          -11.83238143854693,
+          -18.798459920427824
+        ],
+        [
+          -10.570392227903021,
+          -22.571340689057624
+        ],
+        [
+          -7.9506445789905165,
+          -25.964975912346805
+        ],
+        [
+          -4.57425555650042,
+          -28.01122913145398
+        ],
+        [
+          0.5488425080374122,
+          -28.749007101178552
+        ],
+        [
+          4.056961468312324,
+          -28.266953128959198
+        ],
+        [
+          7.423462889392672,
+          -26.4182677334818
+        ],
+        [
+          10.233240493859729,
+          -23.297246406374576
+        ]
+      ],
+      "minimumCoverage": 0.96,
+      "basis": "The named mapped cathedral outline identifies the dated structure."
+    },
+    "featureIds": [
+      "way/24059735"
+    ],
+    "source": "https://www.openstreetmap.org/way/24059735",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:dd7cd5cb37427a3d00929052b599eab5f4c6c10ee3b1848c2ca5430ffdb90a7c",
+    "notes": "Named OpenStreetMap way 24059735 fixes the cathedral outline. The Church of Sweden identifies the neoclassical cathedral, its 52.85-meter tower and the nave’s north and south transepts. Two older public-domain exterior photographs show the surviving east volumes and window rhythm."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "December 2025 exterior. The surviving east form is guided by two cleared 2008 photographs. Interiors and surrounding grounds are outside the asset.",
+    "Secondary roof junctions, fine clock ornament, window tracery and individual stone courses are approximate.",
+    "The original terrain is retained. Foundation and individual threshold heights are approximate."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. DKjellby dedicated the west view under CC0 and D.O.G.A. dedicated the east views to the public domain. OpenStreetMap contributors supply the footprint under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-gothenburg-cathedral-skyline",
+      "position": [
+        -76,
+        51,
+        92
+      ],
+      "lookAt": [
+        1,
+        21,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-gothenburg-cathedral-district",
+      "position": [
+        -76,
+        51,
+        92
+      ],
+      "lookAt": [
+        1,
+        21,
+        1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-gothenburg-cathedral-street",
+      "position": [
+        -76,
+        51,
+        92
+      ],
+      "lookAt": [
+        1,
+        21,
+        1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-gothenburg-cathedral-closeup",
+      "position": [
+        -76,
+        51,
+        92
+      ],
+      "lookAt": [
+        1,
+        21,
+        1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-portico-and-tower",
+      "position": [
+        -30,
+        17,
+        72
+      ],
+      "lookAt": [
+        0,
+        23,
+        19
+      ]
+    },
+    {
+      "name": "clock-and-cupola",
+      "position": [
+        38,
+        36,
+        63
+      ],
+      "lookAt": [
+        1,
+        42,
+        22
+      ]
+    },
+    {
+      "name": "apse-and-oculi",
+      "position": [
+        -45,
+        14,
+        -64
+      ],
+      "lookAt": [
+        0,
+        10,
+        -16
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3925,
+    "vertices": 11775,
+    "materials": 5,
+    "bytes": 658464,
+    "sha256": "sha256:89ebd6b18b4263db1d1eeac80c56944083598038dcf687e49e5bd64c4d53e705"
+  }
+}

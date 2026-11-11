@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.split_rock_lighthouse",
+  "kind": "static-structure",
+  "title": "Split Rock Lighthouse",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.split_rock_lighthouse",
+        "output": "assets/places/cb/cbr/split_rock_lighthouse/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b602e5f6efee7244e60aa8dd43964c20de42cb906f684e7c5a2bd959d30db93b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-split-rock",
+        "path": "models/generate-split-rock.mjs"
+      },
+      {
+        "id": "split-rock-model",
+        "path": "models/split-rock-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/lighthouse-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-split-rock-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-8067-11498.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

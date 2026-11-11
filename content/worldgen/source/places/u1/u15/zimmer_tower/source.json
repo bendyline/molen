@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.zimmer_tower",
+  "kind": "static-structure",
+  "title": "Zimmer Tower",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.zimmer_tower",
+        "output": "assets/places/u1/u15/zimmer_tower/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f41d4d21dfb04d5d6369d2afaa37f67a42a7b658d8efa46f7eac9452fa6928fb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-zimmer-tower",
+        "path": "models/generate-zimmer-tower.mjs"
+      },
+      {
+        "id": "zimmer-tower-model",
+        "path": "models/zimmer-tower-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/tower-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-tower-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-16799-10951.png",
+      "terrain-sources/terrarium-15-16800-10951.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

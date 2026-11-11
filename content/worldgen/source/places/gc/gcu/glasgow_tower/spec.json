@@ -1,0 +1,656 @@
+{
+  "planId": "glasgow_tower",
+  "id": "glasgow_tower",
+  "assetId": "molen.worldgen.structure.glasgow_tower",
+  "title": "Glasgow Tower",
+  "wikidataId": "Q3533344",
+  "category": "tower",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -4.296128979364305,
+    "latitude": 55.85924096079064
+  },
+  "size": [
+    12.753392696380615,
+    127.30668902397156,
+    12.388988971710205
+  ],
+  "actualBounds": {
+    "min": [
+      -6.562900066375732,
+      -0.3066890239715576,
+      -6.193174839019775
+    ],
+    "max": [
+      6.190492630004883,
+      127,
+      6.19581413269043
+    ]
+  },
+  "visualBrief": "Glasgow Tower at Pacific Quay with triangular aerofoil supports, thin braces, glazed viewing pod and an aerial 127 metres above ground.",
+  "nativeAxes": {
+    "x": "across the photographed side elevation",
+    "y": "up",
+    "z": "toward the reference camera"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2023-10-01",
+    "validFrom": "2023-01-01",
+    "validUntil": "2024-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Glasgow_Tower,_October_2023.jpg"
+  ],
+  "stories": [
+    {
+      "id": "glasgow-tower-wp",
+      "url": "https://qualla.com/glasgow-tower/"
+    }
+  ],
+  "referenceInputHash": "610bdfb9562c2a592814682d8014a6a28f0275fa43b3cfe3580257bb2cac9d6e",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcu/glasgow_tower/models/glasgow-tower-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gcu/glasgow_tower/models/glasgow-tower-model.mjs",
+    "level": "skyline",
+    "export": "glasgowSkyline",
+    "errorMeters": 0.69,
+    "surfaces": {
+      "cladding": {
+        "slot": "wall",
+        "graph": "metal_stainless_beadblasted",
+        "roughness": 0.58,
+        "metallic": 0.34
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.69,
+        "metallic": 0.22
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.66,
+        "metallic": 0.3
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_panel",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.37,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "glasgowDistrict",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "cladding": {
+            "slot": "wall",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.58,
+            "metallic": 0.34
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.22
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.66,
+            "metallic": 0.3
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.37,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "glasgowStreet",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "cladding": {
+            "slot": "wall",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.58,
+            "metallic": 0.34
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.22
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.66,
+            "metallic": 0.3
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.37,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "glasgowCloseup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "cladding": {
+            "slot": "wall",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.58,
+            "metallic": 0.34
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.22
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.66,
+            "metallic": 0.3
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_panel",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.37,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_panel",
+    "metal_painted",
+    "metal_standing_seam",
+    "metal_stainless_beadblasted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.76,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -4.296128979364305,
+      55.85924096079064
+    ],
+    "heading": 0.3150092261435462,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -4.296100712398657,
+        55.859192276609306
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate exterior paving datum on the photograph-facing edge of the mapped base."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.0057325079946615,
+          -1.5167102067252711
+        ],
+        [
+          -5.794388241828133,
+          -2.185449516683405
+        ],
+        [
+          -5.505822153599821,
+          -2.829025351596669
+        ],
+        [
+          -5.1494233425313185,
+          -3.438789177507058
+        ],
+        [
+          -4.86200370824648,
+          -3.8368693021222113
+        ],
+        [
+          -4.545841150825125,
+          -4.202167144459688
+        ],
+        [
+          -4.203426851357623,
+          -4.547202542456829
+        ],
+        [
+          -3.8382097689623427,
+          -4.861391310183154
+        ],
+        [
+          -3.2831016770473145,
+          -5.254198998925157
+        ],
+        [
+          -2.685836978150034,
+          -5.574729241947099
+        ],
+        [
+          -2.060787133269497,
+          -5.839373181866131
+        ],
+        [
+          -1.414850060642439,
+          -6.026962446821294
+        ],
+        [
+          -0.7445768011504914,
+          -6.148081222743068
+        ],
+        [
+          -0.09250611317832913,
+          -6.193175051947465
+        ],
+        [
+          0.5566912419691885,
+          -6.168956814129474
+        ],
+        [
+          1.2030152648349468,
+          -6.075426510776006
+        ],
+        [
+          1.8345856745640985,
+          -5.916455444379487
+        ],
+        [
+          2.75837420373239,
+          -5.54518166856328
+        ],
+        [
+          3.616056888749355,
+          -5.03153625770498
+        ],
+        [
+          4.377933029132911,
+          -4.385197472487793
+        ],
+        [
+          5.034613525661466,
+          -3.5975167789537124
+        ],
+        [
+          5.5642533729978725,
+          -2.7224448297200814
+        ],
+        [
+          5.937151870169918,
+          -1.7696598839659994
+        ],
+        [
+          6.131846163435183,
+          -0.8749444984821035
+        ],
+        [
+          6.190492859775917,
+          0.033978772451670025
+        ],
+        [
+          6.116540917820362,
+          0.9465257444089429
+        ],
+        [
+          5.91439707408521,
+          1.8290082098819507
+        ],
+        [
+          5.584061328762766,
+          2.6814261681014506
+        ],
+        [
+          5.129940417932355,
+          3.470091413080974
+        ],
+        [
+          4.5614234405177445,
+          4.186355411597376
+        ],
+        [
+          4.22839824032459,
+          4.522742275653704
+        ],
+        [
+          3.8725702569058376,
+          4.828282510174076
+        ],
+        [
+          3.4904905314409382,
+          5.113560300354113
+        ],
+        [
+          3.0856080232405647,
+          5.367991459494089
+        ],
+        [
+          2.663862872023331,
+          5.593511641104969
+        ],
+        [
+          2.2287040366097832,
+          5.77953665999113
+        ],
+        [
+          1.780131517490047,
+          5.926066514648472
+        ],
+        [
+          1.262768497747186,
+          6.061888383418709
+        ],
+        [
+          0.7354407526813158,
+          6.1476309042857995
+        ],
+        [
+          0.2006394640652387,
+          6.195813912913739
+        ],
+        [
+          -0.33473745108962505,
+          6.18526904120182
+        ],
+        [
+          -0.8681988110632322,
+          6.12851612479685
+        ],
+        [
+          -1.3972534347652101,
+          6.038075001636167
+        ],
+        [
+          -1.915003404501708,
+          5.892777301345721
+        ],
+        [
+          -2.401137118329802,
+          5.710949816293374
+        ],
+        [
+          -2.873474996856981,
+          5.486785591296553
+        ],
+        [
+          -3.3260769000327812,
+          5.222220278310543
+        ],
+        [
+          -3.756451646329464,
+          4.929773713751391
+        ],
+        [
+          -4.157701318245482,
+          4.588277528014291
+        ],
+        [
+          -4.524843553162724,
+          4.222771395452629
+        ],
+        [
+          -4.872249812483524,
+          3.8168641741497256
+        ],
+        [
+          -5.1855486346132444,
+          3.3869470052530177
+        ],
+        [
+          -5.45535092082042,
+          2.924371356308603
+        ],
+        [
+          -5.694494728954885,
+          2.448369945700864
+        ],
+        [
+          -5.878261720609778,
+          1.9435813582727035
+        ],
+        [
+          -6.025430094088739,
+          1.4273026611536956
+        ],
+        [
+          -6.121628387604822,
+          0.9159249947220287
+        ],
+        [
+          -6.181228062647149,
+          0.3930572178646552
+        ],
+        [
+          -6.189857657673837,
+          -0.12490952828818425
+        ],
+        [
+          -6.1398549526422945,
+          -0.8228074202353557
+        ]
+      ],
+      "minimumCoverage": 0.89,
+      "basis": "Named Glasgow Tower circular footprint, OpenStreetMap way 222709055."
+    },
+    "featureIds": [
+      "way/222709055"
+    ],
+    "source": "https://www.openstreetmap.org/way/222709055",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6993c096ccac507789a36a4773c37b653d95cb690f04dfca5e2f8ab468565d9f",
+    "notes": "The tower rotates. The angle relative to the 2023 camera is a side-on estimate based on the long clear profile; the exact date-specific bearing is unknown."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_beadblasted",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Static 2023 exterior preview with an estimated turntable angle. The tower can rotate and its exact bearing on October 1 is unknown.",
+    "The main heights and circular base are measured controls. The shaft sections, opposite-side details, support sections and visible base details are reconstructed estimates.",
+    "The original Pacific Quay elevation field is preserved. Exposed ground contact and the turntable collar use approximate paving grade."
+  ],
+  "sourceLicense": "Original geometry under the repository license, OpenStreetMap ODbL 1.0 and one exact first-party CC0 Qualla photo.",
+  "qaLodCameras": [
+    {
+      "name": "whole-glasgow-tower-skyline",
+      "position": [
+        53,
+        68,
+        205
+      ],
+      "lookAt": [
+        -0.8,
+        63,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-glasgow-tower-district",
+      "position": [
+        53,
+        68,
+        205
+      ],
+      "lookAt": [
+        -0.8,
+        63,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-glasgow-tower-street",
+      "position": [
+        53,
+        68,
+        205
+      ],
+      "lookAt": [
+        -0.8,
+        63,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-glasgow-tower-closeup",
+      "position": [
+        53,
+        68,
+        205
+      ],
+      "lookAt": [
+        -0.8,
+        63,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "whole-tower-pacific-quay-profile",
+      "position": [
+        0,
+        17,
+        229
+      ],
+      "lookAt": [
+        -1.6,
+        60.7,
+        0
+      ]
+    },
+    {
+      "name": "observation-pod-aerial-and-braces",
+      "position": [
+        17,
+        109,
+        43
+      ],
+      "lookAt": [
+        -1.7,
+        107.2,
+        0
+      ]
+    },
+    {
+      "name": "turntable-enclosure-and-shaft-root",
+      "position": [
+        -11,
+        8.6,
+        32
+      ],
+      "lookAt": [
+        -0.9,
+        6.7,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7112,
+    "vertices": 21336,
+    "materials": 5,
+    "bytes": 987848,
+    "sha256": "sha256:164f7ded159a67fd11202495277547c480c1c3c8fad18200e99f4004b81fb037"
+  }
+}

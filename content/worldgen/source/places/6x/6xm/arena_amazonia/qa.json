@@ -1,11 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.arena_amazonia",
-  "reviewedOn": "2026-10-20",
+  "reviewedOn": "2026-11-09",
   "inputHash": "sha256:d2c247910181a011ebbd52ec458b05db25bcd70fb0080765e2e2c844318053a1",
   "sourceHash": "sha256:9cfe2825273ae10d5a4a442a8864cfcb3de8bb763170924bd4157daf57b72446",
   "runtimeHash": "sha256:815672351de5dddc35ac69ea8777412aee4f04590c077590c3c569f747c608d6",
-  "captureReportHash": "sha256:f8d6983d70a0b0ebfa86e3f51089046c77749b9ed5c4a9180bd5b6078af4622a",
+  "captureReportHash": "sha256:8399f0e5fed29b544a7a087b6853f883c9c32788b6a4e8bc5feffdcd1aa0c15b",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -18,7 +18,8 @@
       "shots/two-tier-bowl-and-deep-diagonal-roof.png",
       "shots/rounded-panel-shoulder-and-compression-rim.png"
     ],
-    "notes": "Inspected48 final current views: source turntable/details, shared-surface placement, noon/late economy/high, four LODs, original native terrain/context and failed load. Own rounded basket shell/large diagonal lozenge membrane panels/real triangular base openings/recessed concrete-glazed galleries, diagonal hollow-box canopy frame/closed skins/open central aperture/inner rim, two orange-red/yellow seating tiers/closed hospitality fascia/pale aisles/neutral football field/goals/supported end displays. Replaced intersecting overlay skins with one partitioned membrane/frame skin and moved the upper service gallery behind the seating during this author/build/inspect pass. Corner rounding/frame repetition are deliberately finite polygonal approximations; roof shoulder retains visible facets."
+    "notes": "Inspected48 final current views: source turntable/details, shared-surface placement, noon/late economy/high, four LODs, original native terrain/context and failed load. Own rounded basket shell/large diagonal lozenge membrane panels/real triangular base openings/recessed concrete-glazed galleries, diagonal hollow-box canopy frame/closed skins/open central aperture/inner rim, two orange-red/yellow seating tiers/closed hospitality fascia/pale aisles/neutral football field/goals/supported end displays. Replaced intersecting overlay skins with one partitioned membrane/frame skin and moved the upper service gallery behind the seating during this author/build/inspect pass. Corner rounding/frame repetition are deliberately finite polygonal approximations; roof shoulder retains visible facets.",
+    "captureReportHash": "sha256:8399f0e5fed29b544a7a087b6853f883c9c32788b6a4e8bc5feffdcd1aa0c15b"
   },
   "sharedSurfaceReview": {
     "status": "passed",
@@ -32,65 +33,8 @@
       "shots/shared/rounded-panel-shoulder-and-compression-rim.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Five existing shared256px graphs: concrete_plain, metal_painted, membrane, fabric_canvas and window_grid. No embedded images, private texture atlas or copied photographic pixels. Runtime reads each required graph once; five near draws/one skyline draw. Separate position/normal GPU streams and equal CPU/GPU byte accounting. Neutral daylight/shared reflected sky/shadows checked; glazing and roof optics remain approximate. Current viewer renders confirm the updated shared membrane, window_grid material graphs in the existing geographic placement.",
-    "captureReportHash": "sha256:0a6934172195ef31834f4b5e08ddcd4a3935f4eac6e0605ac9866efb30525b71",
-    "reviewedOn": "2026-11-09",
-    "inspectedFrameHashes": [
-      {
-        "path": "shots/shared/angle-0.png",
-        "hash": "sha256:d33a8ed725e024ff3de9345258b3bd9db28e0548f0141d2d7650cf48ab9a0d3c"
-      },
-      {
-        "path": "shots/shared/angle-1.png",
-        "hash": "sha256:426b3c3426667b792cb04c49589af785e297fd1f9889ffb65f3b627c17393fbc"
-      },
-      {
-        "path": "shots/shared/angle-2.png",
-        "hash": "sha256:0ff3c96d06469c867bb07ab82ae0de89130d9f0515af3941794d9f8f0f5af633"
-      },
-      {
-        "path": "shots/shared/angle-3.png",
-        "hash": "sha256:fb4403b021eb5efc2ed2a4feaf3ff1b486895206117f1e40e2b2c5dd15ebf6ec"
-      },
-      {
-        "path": "shots/shared/continuous-lozenge-shell-and-open-base.png",
-        "hash": "sha256:95a2f5d4176bccf8b9d395a1be58ff6db483a961b86211dfa94b1318bbca35dc"
-      },
-      {
-        "path": "shots/shared/two-tier-bowl-and-deep-diagonal-roof.png",
-        "hash": "sha256:5623b78ffe50d9dc988f01f768d452d2f7db50b6a452c2f5ed52de3c4c76a041"
-      },
-      {
-        "path": "shots/shared/rounded-panel-shoulder-and-compression-rim.png",
-        "hash": "sha256:5a1856aea63437821f0a01f5493b225f11ffbdf9fdf8b71b16b647345aea0c21"
-      },
-      {
-        "path": "shots/shared/placement.png",
-        "hash": "sha256:7ab693b9f06ff81363a2f50aa3fe13a8e24a06fb4ef6975757aed7ac18a99888"
-      }
-    ],
-    "materialGraphs": {
-      "matgraph:molen.worldgen.material.concrete_plain": {
-        "path": "materials/concrete_plain.matgraph.json",
-        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
-      },
-      "matgraph:molen.worldgen.material.fabric_canvas": {
-        "path": "materials/fabric_canvas.matgraph.json",
-        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
-      },
-      "matgraph:molen.worldgen.material.membrane": {
-        "path": "materials/membrane.matgraph.json",
-        "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
-      },
-      "matgraph:molen.worldgen.material.metal_painted": {
-        "path": "materials/metal_painted.matgraph.json",
-        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
-      },
-      "matgraph:molen.worldgen.material.window_grid": {
-        "path": "materials/window_grid.matgraph.json",
-        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
-      }
-    }
+    "notes": "Five existing shared256px graphs: concrete_plain, metal_painted, membrane, fabric_canvas and window_grid. No embedded images, private texture atlas or copied photographic pixels. Runtime reads each required graph once; five near draws/one skyline draw. Separate position/normal GPU streams and equal CPU/GPU byte accounting. Neutral daylight/shared reflected sky/shadows checked; glazing and roof optics remain approximate.",
+    "captureReportHash": "sha256:a7947d1b4cb2bf10b5a1c331b22980f66e2d6b56d94df0035ba0e25b7e8cb619"
   },
   "mediumFiReview": {
     "status": "passed",
@@ -121,7 +65,7 @@
       "medium-fi/transition-closeup.png"
     ],
     "notes": "Four authored levels preserve the mapped body/open field, lozenge shell silhouette, two tiers and base portals. Far levels merge rows/diagonal members and simplify hidden backs/services. Skyline/district/street/closeup536/2918/12334/48686triangles; initial skyline plus district344624bytes, below3MB phone/6MB laptop asset targets. These are asset budgets/automated renders; physical laptop/phone/tablet and dense-city timings remain pending.",
-    "captureReportHash": "sha256:18636bff14797c6369988878bb67097b51fc34f85be7f1b0a8831c1c3632d562"
+    "captureReportHash": "sha256:d329daed33fc1dee55ad092a5ee67a6380e0ca893370659f8e4919ca43d7a3bb"
   },
   "geographicReview": {
     "status": "passed",
@@ -678,5 +622,18 @@
     "RetainedQ641527/named stadiumPOI35185204834783 identify main parent52776563754247; separate pitch35185451107955 supplies113.000291x76.625125m field-surround axis. Own47-point outer/38-point roof hole establish approximately244x201m body/162x120m roof aperture; roof aperture is not the playing field. Anchor[-60.02814288847929,-3.0832095088176454]/heading0/native east-south/internal X[0.0038910224279519756,0.9999924299435797]/Z[-0.9999924299435797,0.0038910224279519756]. Retain independent Arena Poliesportiva Amadeu Teixeira and neighboring buildings. No exact-QID native field; ordinary photographs/named point/retained identity/native geometry establish the stated approximate fit. Fine20degree/2m facing remains approximate.",
     "POI elevation32 denotes geographic altitude and is not used as architectural height. No qualified native building height. Working common field/podium11.1m above original anchor datum clears the highest boundary sample10.6975m; visible retaining height is a coarse-DEM visualization compromise rather than a surveyed terrace. Basket shoulder31m/canopy34..34.5m above field, two tiers1.4..12m/17..26m, belt12..17m, galleries7/14/23m and rounded lozenge/box dimensions are picture-led estimates. Finite diagonal modules simplify the actual curved frame inventory; no engineering, surveyed floor elevation, exact membrane optics or current-condition claim. Undated project photographs are completed-reference views, not proof of subsequent condition.",
     "Original standard6m Mapzen samples/native roads/water/independent context remain unchanged. Original anchor datum40.077157500617304m defines modelY0. Owned common retaining floor is supported below the minimum original boundary grade; columns extend to individual original samples. A bounded ground opening stays within the main body/all-level occupied floor. Only own stadium parent is replaced using99.5percent whole-feature coverage; generalized merged records use bounded clipping. No surrounding sports-complex platform/DEM edits/water removal. Failure/unload retains or restores original context. The15.65m native boundary range includes coarse roof/ground sampling uncertainty; common platform height is explicitly approximate."
-  ]
+  ],
+  "completionHandoff": {
+    "reviewedOn": "2026-11-09",
+    "originalReviewedOn": "2026-10-20",
+    "scope": "Current inherited model, source and runtime bytes, four detail levels, geographic placement, and regenerated portable, shared material and medium-fi views.",
+    "currentFrames": {
+      "visualReview": 8,
+      "sharedSurfaceReview": 8,
+      "mediumFiReview": 24
+    },
+    "appearance": "The rounded diagonal membrane shell, open pitch, two seating tiers and triangular base openings remain distinct. The lowest detail levels simplify the basket frame and seating.",
+    "sourceImageryUsedInThisReview": false,
+    "sourceImageryBasis": "Inherited catalog authoring provenance remains documented in reference-metadata.json. This technical review did not certify the historical authoring references under the Qualla public-domain policy."
+  }
 }

@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.mohatta_palace",
+  "kind": "static-structure",
+  "title": "Mohatta Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.mohatta_palace",
+        "output": "assets/places/tk/tkr/mohatta_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:384a3cf36d853df49c688f39b722a01c6cda44dfd68cb11ccadcad049db472b2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-mohatta-palace",
+        "path": "models/generate-mohatta-palace.mjs"
+      },
+      {
+        "id": "mohatta-palace-model",
+        "path": "models/mohatta-palace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/palace-controls.json",
+      "reference-rights/commons-qualla-mohatta-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-22485-14051.png",
+      "preview.png",
+      "reference-rights/qualla-original-exif.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

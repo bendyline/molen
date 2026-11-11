@@ -1,0 +1,680 @@
+{
+  "planId": "naeba_ski_resort",
+  "id": "naeba_ski_resort",
+  "assetId": "molen.worldgen.structure.naeba_ski_resort",
+  "title": "Naeba Prince Hotel and Ski Center",
+  "wikidataId": "Q3268287",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 138.78483,
+    "latitude": 36.79315
+  },
+  "size": [
+    177.43244171142578,
+    100.28126907348633,
+    537.8948059082031
+  ],
+  "actualBounds": {
+    "min": [
+      -83.7324447631836,
+      -20.241268157958984,
+      -273.92840576171875
+    ],
+    "max": [
+      93.69999694824219,
+      80.04000091552734,
+      263.9664001464844
+    ]
+  },
+  "visualBrief": "The Naeba resort base with the striped Prince Hotel tower, curved ranks of pale hotel wings, and glazed day-trip ski centre.",
+  "nativeAxes": {
+    "x": "east-northeast toward the river side",
+    "y": "up",
+    "z": "south-southeast along the resort frontage"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2025-12-29",
+    "validFrom": "2025-12-01",
+    "validUntil": "2026-03-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Naeba_ski_resort,_January_2026.jpg",
+    "https://commons.wikimedia.org/wiki/File:Naeba_ski_resort,_January_2026_(35147).jpg",
+    "https://commons.wikimedia.org/wiki/File:Naeba_ski_resort,_January_2026_(41615).jpg",
+    "https://commons.wikimedia.org/wiki/File:Naeba_Ski_Resort_01.JPG"
+  ],
+  "stories": [
+    {
+      "id": "naeba-ski-resort-wp",
+      "url": "https://qualla.com/naeba-ski-resort/"
+    }
+  ],
+  "referenceInputHash": "c2b8f6eae61e7504fc2aeeac570bc6408b7c846903560360c9e7c156246385f3",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xnd/naeba_ski_resort/models/naeba-ski-resort-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xnd/naeba_ski_resort/models/naeba-ski-resort-model.mjs",
+    "level": "skyline",
+    "export": "resortSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "panel": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.74,
+        "metallic": 0.12
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.49,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "resortDistrict",
+        "errorMeters": 0.72,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.49,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "resortStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.49,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "resortCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.74,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.49,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "concrete_panel",
+    "membrane",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 9.6,
+    "groundY": 0,
+    "far": 15000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      138.78483,
+      36.79315
+    ],
+    "heading": 0.21542314131468812,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        138.78456057357704,
+        36.792118852640364
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate original DEM grade adjacent to the hotel’s central slope-side base."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -75.03430734731798,
+          227.68069157214742
+        ],
+        [
+          -40.403327991715855,
+          227.68069157214742
+        ],
+        [
+          -40.39711390347824,
+          263.725513754433
+        ],
+        [
+          -75.03047283089676,
+          263.7363883998783
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -75.03430734731798,
+            227.68069157214742
+          ],
+          [
+            -40.403327991715855,
+            227.68069157214742
+          ],
+          [
+            -40.39711390347824,
+            263.725513754433
+          ],
+          [
+            -75.03047283089676,
+            263.7363883998783
+          ]
+        ],
+        [
+          [
+            -62.6743037364004,
+            130.24303644928068
+          ],
+          [
+            -34.05341350839474,
+            130.10163740148823
+          ],
+          [
+            -10.865651692303498,
+            154.20576923695157
+          ],
+          [
+            -36.13868514414669,
+            177.2892604253238
+          ],
+          [
+            -38.315870951119486,
+            220.68491317037672
+          ],
+          [
+            -83.50311996206894,
+            216.50616943287096
+          ],
+          [
+            -79.50141052384541,
+            164.31371645525712
+          ],
+          [
+            -75.60696439191281,
+            164.698684638916
+          ],
+          [
+            -64.47782725208073,
+            165.800691704289
+          ]
+        ],
+        [
+          [
+            -60.507985500986145,
+            90.2750032080387
+          ],
+          [
+            -48.500664888859035,
+            91.03359211903975
+          ],
+          [
+            -19.966848865244284,
+            92.83313820722188
+          ],
+          [
+            -9.04894414936381,
+            93.52427279429659
+          ],
+          [
+            -8.923264747976607,
+            105.96129973181331
+          ],
+          [
+            -34.05341350839474,
+            130.10163740148823
+          ],
+          [
+            -62.6743037364004,
+            130.24303644928068
+          ]
+        ],
+        [
+          [
+            -44.52915489535007,
+            5.366415500976107
+          ],
+          [
+            -39.76047459009414,
+            5.384310667950134
+          ],
+          [
+            -38.813226066606255,
+            -13.290493190385384
+          ],
+          [
+            -45.00748306061245,
+            -18.178467269727996
+          ],
+          [
+            -8.565745814066325,
+            -83.79544810047686
+          ],
+          [
+            57.45527390728504,
+            -128.6615707037026
+          ],
+          [
+            57.967173663406264,
+            -191.30369839819852
+          ],
+          [
+            77.49144484216265,
+            -190.82607365048824
+          ],
+          [
+            77.44015534881737,
+            -181.33358265570152
+          ],
+          [
+            69.52352594297837,
+            -181.4363545027956
+          ],
+          [
+            68.57139606706599,
+            -108.81707621493196
+          ],
+          [
+            20.2302540250036,
+            -78.31481300190997
+          ],
+          [
+            -14.370273157220772,
+            -25.616094411232083
+          ],
+          [
+            -19.966848865244284,
+            92.83313820722188
+          ],
+          [
+            -48.500664888859035,
+            91.03359211903975
+          ]
+        ],
+        [
+          [
+            55.76459180876631,
+            -221.23122441623042
+          ],
+          [
+            52.51371105133924,
+            -221.30443843323823
+          ],
+          [
+            53.40121748549522,
+            -258.9313711037548
+          ],
+          [
+            56.169134301082366,
+            -258.8612805025517
+          ],
+          [
+            56.517900010632786,
+            -273.7584416799848
+          ],
+          [
+            75.68431494679407,
+            -273.31354116193853
+          ],
+          [
+            75.34845685237664,
+            -259.0175086119205
+          ],
+          [
+            82.4028499062797,
+            -258.85271259943846
+          ],
+          [
+            81.67403420994012,
+            -228.03965516864196
+          ],
+          [
+            87.72766558032131,
+            -227.88872826937103
+          ],
+          [
+            87.62460456468267,
+            -223.58105049348197
+          ],
+          [
+            82.54955883277836,
+            -223.70017012856374
+          ],
+          [
+            82.49640862688955,
+            -221.45552293572135
+          ],
+          [
+            80.82089723823285,
+            -221.01308676310953
+          ],
+          [
+            80.2241252156872,
+            -209.61158684534905
+          ],
+          [
+            80.06172476036247,
+            -205.408056365554
+          ],
+          [
+            79.7632196726265,
+            -193.45129045430824
+          ],
+          [
+            77.55664283903096,
+            -193.50110750716806
+          ],
+          [
+            77.49144484216265,
+            -190.82607365048824
+          ],
+          [
+            57.967173663406264,
+            -191.30369839819852
+          ],
+          [
+            58.025083018216215,
+            -193.57009488239373
+          ],
+          [
+            55.11069230300036,
+            -193.63805067196313
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "Five individually mapped hotel and base building footprints, OpenStreetMap ODbL 1.0."
+    },
+    "featureIds": [
+      "way/391887073",
+      "way/391887074",
+      "way/391887075",
+      "way/391118366",
+      "way/391887072"
+    ],
+    "source": "https://www.openstreetmap.org/way/952129313",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2298a95b750e573221aeadaee758e5ed9a173e1fdb19541d58dacd7ac619ab19",
+    "notes": "The hotel wing outlines and long crescent footprint fix the placement and overall length. Roof plant rooms, some base connections, and vertical measurements are estimated from the cleared views and room-level facts."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    }
+  ],
+  "limitations": [
+    "The exterior represents the Naeba resort base in late December 2025. The long hotel wings and tower use the three cleared same-day images. A cleared 2018 image informs the low day-trip arrival hall.",
+    "Five mapped footprints and the operator’s floor ranges constrain the massing. Roof plant, covered links, individual windows and heights without surveyed controls are approximate. Only the base buildings are modeled.",
+    "The 1,024 m original Terrarium field is preserved. The sampled site grade and lower service foundations are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap outlines ODbL 1.0. Four exact published Qualla photos in the public domain or dedicated to CC0.",
+  "qaLodCameras": [
+    {
+      "name": "whole-naeba-resort-skyline",
+      "position": [
+        -605,
+        300,
+        205
+      ],
+      "lookAt": [
+        -4,
+        18,
+        3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-naeba-resort-district",
+      "position": [
+        -605,
+        300,
+        205
+      ],
+      "lookAt": [
+        -4,
+        18,
+        3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-naeba-resort-street",
+      "position": [
+        -605,
+        300,
+        205
+      ],
+      "lookAt": [
+        -4,
+        18,
+        3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-naeba-resort-closeup",
+      "position": [
+        -605,
+        300,
+        205
+      ],
+      "lookAt": [
+        -4,
+        18,
+        3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "southern-tower-and-ski-front",
+      "position": [
+        -244,
+        111,
+        341
+      ],
+      "lookAt": [
+        -54,
+        31,
+        169
+      ]
+    },
+    {
+      "name": "long-hotel-wing-and-snowfront",
+      "position": [
+        -297,
+        116,
+        -112
+      ],
+      "lookAt": [
+        3,
+        11,
+        -47
+      ]
+    },
+    {
+      "name": "curved-glazed-arrival-hall",
+      "position": [
+        164,
+        20,
+        -260
+      ],
+      "lookAt": [
+        76,
+        -9,
+        -231
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8835,
+    "vertices": 26505,
+    "materials": 5,
+    "bytes": 1216988,
+    "sha256": "sha256:793e3d3098b3e3678eca5c72827bfa1317855d9ed5a976b127c817034b31c9d3"
+  }
+}

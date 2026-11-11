@@ -1,0 +1,469 @@
+{
+  "planId": "lassis_inn",
+  "id": "lassis_inn",
+  "assetId": "molen.worldgen.structure.lassis_inn",
+  "title": "Lassis Inn",
+  "wikidataId": "Q117149430",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -92.2684145,
+    "latitude": 34.7228092
+  },
+  "size": [
+    9.610640525817871,
+    5.063146531581879,
+    14.317500114440918
+  ],
+  "actualBounds": {
+    "min": [
+      -4.180640697479248,
+      -0.20314639806747437,
+      -6.550000190734863
+    ],
+    "max": [
+      5.429999828338623,
+      4.860000133514404,
+      7.767499923706055
+    ]
+  },
+  "visualBrief": "Blue clapboard restaurant with a stepped false front, cream Lassis Inn sign, awning and concrete stairs.",
+  "nativeAxes": {
+    "x": "east along the storefront",
+    "y": "up",
+    "z": "south toward East 27th Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2024-07-05",
+    "validFrom": "2024-01-01",
+    "validUntil": "2025-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Lassis_Inn,_corner_view.jpg",
+    "https://commons.wikimedia.org/wiki/File:Lassis_Inn,_front_view_and_sign.jpg",
+    "https://commons.wikimedia.org/wiki/File:Lassis_Inn,_side_view.jpg",
+    "https://commons.wikimedia.org/wiki/File:Lassis_Inn,_full_building_with_sign.jpg"
+  ],
+  "stories": [
+    {
+      "id": "lassis-inn-wp",
+      "url": "https://qualla.com/lassis-inn/"
+    }
+  ],
+  "referenceInputHash": "e5f3a0b95b8dfb96eb93a4c290e76dc786ee6de1176cd572766e2b259cfc4a95",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9y/9yn/lassis_inn/models/lassis-inn-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9y/9yn/lassis_inn/models/lassis-inn-model.mjs",
+    "level": "skyline",
+    "export": "innSkyline",
+    "errorMeters": 0.51,
+    "surfaces": {
+      "siding": {
+        "slot": "wall",
+        "graph": "wood_painted_lap",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.87,
+        "metallic": 0.06
+      },
+      "shingles": {
+        "slot": "roof",
+        "graph": "shingle_asphalt",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "canopy": {
+        "slot": "roof",
+        "graph": "fabric_canvas",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.61,
+        "metallic": 0.07
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "innDistrict",
+        "errorMeters": 0.26,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.06
+          },
+          "shingles": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.61,
+            "metallic": 0.07
+          }
+        }
+      },
+      "street": {
+        "export": "innStreet",
+        "errorMeters": 0.083,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.06
+          },
+          "shingles": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.61,
+            "metallic": 0.07
+          }
+        }
+      },
+      "closeup": {
+        "export": "innCloseup",
+        "errorMeters": 0.026,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.06
+          },
+          "shingles": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.61,
+            "metallic": 0.07
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_painted_lap",
+    "concrete_plain",
+    "metal_painted",
+    "shingle_asphalt",
+    "fabric_canvas"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -92.2684145,
+      34.7228092
+    ],
+    "heading": -0.004418859857238688,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -92.26841488636472,
+        34.72273733580763
+      ],
+      "modelHeight": 0,
+      "basis": "Parking apron below the south entrance steps."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          3.779314130818054,
+          6.328572556638034
+        ],
+        [
+          3.778281404051616,
+          -6.3285725566437785
+        ],
+        [
+          -3.7701646760216083,
+          -6.328612987059702
+        ],
+        [
+          -3.7782814027514005,
+          6.328572556638033
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "The named restaurant footprint at 518 East 27th Street from OpenStreetMap way 952748548."
+    },
+    "featureIds": [
+      "way/952748548"
+    ],
+    "source": "https://www.openstreetmap.org/way/952748548",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b504a6a7eb370e9d889e9bffbca84759ca110f1226537537de7a86c5de15cb76",
+    "notes": "The scope covers the restaurant and fixtures physically attached to it. The surrounding lot and street remain geographic context."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_asphalt",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.fabric_canvas",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Four July 2024 CC0 photographs establish the stepped false front, blue siding, pale window frames, concrete steps, signs and attached side landing.",
+    "Individual roof pitches, fittings, side ramp dimensions and rear openings are approximations. The attached name uses original geometric letters. Other poster graphics are simplified.",
+    "The detached sign, surrounding lot, landscaping and street are outside the building asset. The original local elevation field is unchanged."
+  ],
+  "sourceLicense": "Original geometry under the repository license. The mapped outline is ODbL. The four selected Qualla photographs are CC0.",
+  "qaLodCameras": [
+    {
+      "name": "whole-lassis-inn-skyline",
+      "position": [
+        15,
+        8,
+        22
+      ],
+      "lookAt": [
+        0,
+        1.85,
+        1.5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-lassis-inn-district",
+      "position": [
+        15,
+        8,
+        22
+      ],
+      "lookAt": [
+        0,
+        1.85,
+        1.5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-lassis-inn-street",
+      "position": [
+        15,
+        8,
+        22
+      ],
+      "lookAt": [
+        0,
+        1.85,
+        1.5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-lassis-inn-closeup",
+      "position": [
+        15,
+        8,
+        22
+      ],
+      "lookAt": [
+        0,
+        1.85,
+        1.5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "south-front-sign-and-stairs",
+      "position": [
+        0.26,
+        3.7,
+        20
+      ],
+      "lookAt": [
+        0,
+        2.32,
+        6
+      ]
+    },
+    {
+      "name": "east-siding-and-service-ramp",
+      "position": [
+        16,
+        5,
+        4.7
+      ],
+      "lookAt": [
+        3.2,
+        1.87,
+        -0.5
+      ]
+    },
+    {
+      "name": "west-wall-and-roof-exhaust",
+      "position": [
+        -14,
+        8.6,
+        -10
+      ],
+      "lookAt": [
+        0,
+        2.03,
+        -1.1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1427,
+    "vertices": 4281,
+    "materials": 6,
+    "bytes": 392780,
+    "sha256": "sha256:9ec4f5d30e0f1b6cad257f941ccfa9fe1d7e909cec255c0ec2b7c46a16b17f05"
+  }
+}

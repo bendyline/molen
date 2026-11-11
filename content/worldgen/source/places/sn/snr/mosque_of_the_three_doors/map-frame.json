@@ -1,0 +1,114 @@
+{
+  "format": "molen/structure-map-frame@1",
+  "candidateId": "QS-34160577699e",
+  "title": "Mosque of the Three Doors",
+  "anchor": [
+    10.102743412814633,
+    35.67734989910957
+  ],
+  "heading": -2.695644767039402,
+  "coordinateSpace": "model-local-xz",
+  "axis": "+Z faces the mapped pedestrian street. +X runs right along the photographed front.",
+  "nativeAxes": {
+    "x": "right from the street",
+    "y": "up",
+    "z": "out to the street"
+  },
+  "source": "Named OpenStreetMap mosque point and adjacent pedestrian centerline, with published wall dimensions and minaret position from Archnet.",
+  "sourceUrl": "https://www.openstreetmap.org/node/5670881750",
+  "identityStatus": "The named mosque point and wikidata identity establish the venue. The approximate dimensioned outline uses the documented prayer hall dimensions and the adjacent street alignment.",
+  "mappedIdentity": {
+    "name": "Three Doors Mosque",
+    "wikidataId": "Q3324931",
+    "namedNode": 5670881750,
+    "streetWay": 1339354787,
+    "address": "Rue de la Mosquée des Trois Portes, Kairouan"
+  },
+  "geometryLabel": "Estimated skewed hall from the published 12 m west wall, 10 m east wall and 11 m depth, plus the published approximately 3.75 m square northwest tower.",
+  "geometry": {
+    "polygons": [
+      [
+        [
+          -5.55,
+          5.5
+        ],
+        [
+          6.45,
+          5.5
+        ],
+        [
+          5.65,
+          -5.5
+        ],
+        [
+          -4.35,
+          -5.5
+        ]
+      ],
+      [
+        [
+          -7.75,
+          5.62
+        ],
+        [
+          -4,
+          5.62
+        ],
+        [
+          -4,
+          1.87
+        ],
+        [
+          -7.75,
+          1.87
+        ]
+      ]
+    ]
+  },
+  "features": [
+    {
+      "id": "node/5670881750",
+      "role": "named-mosque-location",
+      "properties": {
+        "addr:city": "القيروان",
+        "addr:city:ar": "القيروان",
+        "alt_name": "مسجد ابن خيرون;مسجد محمد بن خيرون",
+        "alt_name:ar": "مسجد ابن خيرون;مسجد محمد بن خيرون",
+        "alt_name:fr": "Mosquée Ibn Khayrun",
+        "amenity": "place_of_worship",
+        "denomination": "sunni",
+        "historic": "yes",
+        "name": "مسجد الثلاثة أبواب",
+        "name:ar": "مسجد الثلاثة أبواب",
+        "name:en": "Three Doors Mosque",
+        "name:es": "Mezquita de las Tres Puertas",
+        "name:fr": "Mosquée des Trois Portes",
+        "name:ru": "Мечеть Трёх Дверей",
+        "religion": "muslim",
+        "wikidata": "Q3324931",
+        "wikimedia_commons": "Category:Three Doors Mosque",
+        "wikipedia": "ar:مسجد ابن خيرون",
+        "wikipedia:ar": "مسجد ابن خيرون"
+      }
+    },
+    {
+      "id": "way/1339354787",
+      "role": "adjacent-street-alignment",
+      "properties": {
+        "highway": "pedestrian",
+        "name": "نهج مسجد ابن خيرون",
+        "name:ar": "نهج مسجد ابن خيرون",
+        "name:fr": "Rue de la Mosquée des Trois Portes"
+      }
+    }
+  ],
+  "terrainContact": {
+    "local": [
+      0.34,
+      6.22
+    ],
+    "modelY": 0,
+    "basis": "Approximate street grade outside the central portal."
+  },
+  "notes": "No enclosing building polygon is present in the retrieved OpenStreetMap data. A 1.4 m half-street estimate positions the published wall dimensions from the street centerline. The anchor, outline and setback are approximate."
+}

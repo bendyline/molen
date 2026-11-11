@@ -4,15 +4,17 @@ Start with [BACKLOG.md](BACKLOG.md): a complete set of linked category lists, a 
 starting batch, and counts for new models, existing planned work, existing models needing
 review, and existing coverage. This inventory is **authoring metadata**, excluded from the
 runtime pack by `source/**`. The scanner does not add models or placements; model work is
-tracked in the completed [first 100](batches/QUALLA-001.md) and the active
-[next 300](batches/QUALLA-002.md).
+tracked in the completed [first 100](batches/QUALLA-001.md) and
+[second round of 300](batches/QUALLA-002.md). The active batch covers the
+[next 500 buildings](batches/QUALLA-003.md).
 
 The core100 are complete, including the owner-accepted limitations recorded beside
-Hangar37, Humayun’s Tomb and the Taj Mahal Palace Hotel. Continue the next300;
-do not reopen unchanged completed models for a separate finalization pass.
+Hangar37, Humayun’s Tomb and the Taj Mahal Palace Hotel. Round two closed with
+two accepted existing catalog models whose original authoring provenance is
+documented in the [closeout](batches/research/round-002-closeout-2026-11-09.json).
 
-For the next batch, use `progress.mjs --batch=qualla-002` and
-`sync-completed.mjs --batch=qualla-002 --ids=<model> --write`. Each model is built,
+For the next batch, use `progress.mjs --batch=qualla-003` and
+`sync-completed.mjs --batch=qualla-003 --ids=<model> --write`. Each model is built,
 visually inspected, integrated, and story-linked in one authoring cycle. The
 separate readiness ledger preserves the completed core100 and makes later batches
 resumable. A broad quality/research campaign is not a prerequisite to continuing.

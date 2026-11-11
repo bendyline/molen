@@ -1,0 +1,606 @@
+{
+  "planId": "john_rutledge_house",
+  "id": "john_rutledge_house",
+  "assetId": "molen.worldgen.structure.john_rutledge_house",
+  "title": "John Rutledge House",
+  "wikidataId": "Q6256056",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -79.93363039285715,
+    "latitude": 32.77642727857143
+  },
+  "size": [
+    15.931994915008545,
+    18.551022320985794,
+    28.45328140258789
+  ],
+  "actualBounds": {
+    "min": [
+      -7.407992839813232,
+      -0.2610214054584503,
+      -12.533281326293945
+    ],
+    "max": [
+      8.524002075195312,
+      18.290000915527344,
+      15.920000076293945
+    ]
+  },
+  "visualBrief": "The 116 Broad Street house with a two-story blue-green cast-iron porch, pale five-bay facade, terracotta hoods and slate hip.",
+  "nativeAxes": {
+    "x": "right along the front",
+    "y": "up",
+    "z": "out to Broad Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2019-10-18",
+    "validFrom": "2019-01-01",
+    "validUntil": "2020-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Iron_Porch,_Governor_John_Rutledge_House,_French_Quarter,_Charleston,_SC_(49432383372).jpg",
+    "https://commons.wikimedia.org/wiki/File:Iron_Fence,_Governor_John_Rutledge_House,_French_Quarter,_Charleston,_SC_(49432157096).jpg",
+    "https://commons.wikimedia.org/wiki/File:Governor_John_Rutledge_House,_French_Quarter,_Charleston,_SC_(49431677358).jpg",
+    "https://commons.wikimedia.org/wiki/File:Iron_Porch_Column,_Governor_John_Rutledge_House,_French_Quarter,_Charleston,_SC_(49431678483).jpg",
+    "https://commons.wikimedia.org/wiki/File:Governor_John_Rutledge_House,_French_Quarter,_Charleston,_SC_(49431676188).jpg"
+  ],
+  "stories": [
+    {
+      "id": "john-rutledge-house-wp",
+      "url": "https://qualla.com/john-rutledge-house/"
+    }
+  ],
+  "referenceInputHash": "04caf46eea75151c965d852073ea2e63fb2ba44fb7be9258ad0a1a3bbf0ed414",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dj/djz/john_rutledge_house/models/john-rutledge-house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dj/djz/john_rutledge_house/models/john-rutledge-house-model.mjs",
+    "level": "skyline",
+    "export": "rutledgeSkyline",
+    "errorMeters": 0.95,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.19
+      },
+      "detail": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.64,
+        "metallic": 0.11
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "rutledgeDistrict",
+        "errorMeters": 0.44,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.19
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64,
+            "metallic": 0.11
+          }
+        }
+      },
+      "street": {
+        "export": "rutledgeStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.19
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64,
+            "metallic": 0.11
+          }
+        }
+      },
+      "closeup": {
+        "export": "rutledgeCloseup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.19
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.64,
+            "metallic": 0.11
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "stone_limestone_weathered",
+    "stone_limestone",
+    "slate",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -79.93363039285715,
+      32.77642727857143
+    ],
+    "heading": 0.09691393137777918,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -79.93360960612046,
+        32.77630317726823
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate pavement grade outside the main entrance on Broad Street."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -6.533072726947466,
+          12.638388421421302
+        ],
+        [
+          -6.53298050508192,
+          10.412695457499307
+        ],
+        [
+          -7.087992862940066,
+          10.41466015255454
+        ],
+        [
+          -7.0887442781415455,
+          -5.344277316271288
+        ],
+        [
+          -4.379969579202769,
+          -5.349360691291405
+        ],
+        [
+          -4.382730145349777,
+          -7.642437590591441
+        ],
+        [
+          -1.5435355767558177,
+          -7.634841742704498
+        ],
+        [
+          -1.5405062042782833,
+          -8.439826321739883
+        ],
+        [
+          3.6025791394684075,
+          -8.431938325959763
+        ],
+        [
+          3.6044214919050113,
+          -12.223281597980243
+        ],
+        [
+          8.212203040810095,
+          -12.222697301535332
+        ],
+        [
+          8.204001707583819,
+          10.592746265322093
+        ],
+        [
+          7.733907847569806,
+          10.591782177440415
+        ],
+        [
+          7.732418663986626,
+          12.638388421421302
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -6.533072726947466,
+            12.638388421421302
+          ],
+          [
+            -6.53298050508192,
+            10.412695457499307
+          ],
+          [
+            -7.087992862940066,
+            10.41466015255454
+          ],
+          [
+            -7.0887442781415455,
+            -5.344277316271288
+          ],
+          [
+            -4.379969579202769,
+            -5.349360691291405
+          ],
+          [
+            -4.382730145349777,
+            -7.642437590591441
+          ],
+          [
+            -1.5435355767558177,
+            -7.634841742704498
+          ],
+          [
+            -1.5405062042782833,
+            -8.439826321739883
+          ],
+          [
+            3.6025791394684075,
+            -8.431938325959763
+          ],
+          [
+            3.6044214919050113,
+            -12.223281597980243
+          ],
+          [
+            8.212203040810095,
+            -12.222697301535332
+          ],
+          [
+            8.204001707583819,
+            10.592746265322093
+          ],
+          [
+            7.733907847569806,
+            10.591782177440415
+          ],
+          [
+            7.732418663986626,
+            12.638388421421302
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Mapped body and projecting Broad Street porch."
+    },
+    "featureIds": [
+      "way/1429413600"
+    ],
+    "source": "https://www.openstreetmap.org/way/1429413600",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:34fb60f902c86d5f51eced1b9423106e96e0ca81d23b4acc2992495491a2d488",
+    "notes": "The article coordinate falls on Broad Street. The mapped polygon controls the building position. The 2019 views control the cream facade and blue-green two-storey porch; rear openings are estimated."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The dated photographs control the front and west elevations, color and ironwork. The stepped rear roof and openings, chimney positions and other hidden details are estimates.",
+    "The ornamental ironwork reproduces the principal arched profiles, cast foliage and rail spacing at catalog scale. It simplifies individual cast motifs and the small porch furnishings.",
+    "The original terrain is unchanged, with approximate sidewalk and entry grade. The model scope is the main house and its street porch."
+  ],
+  "sourceLicense": "Original geometry under the repository license. The footprint is ODbL. The five exact Qualla originals are CC0 by Warren LeMay.",
+  "qaLodCameras": [
+    {
+      "name": "whole-house-skyline",
+      "position": [
+        -30,
+        18.5,
+        47
+      ],
+      "lookAt": [
+        0.7,
+        8,
+        4.2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-house-district",
+      "position": [
+        -30,
+        18.5,
+        47
+      ],
+      "lookAt": [
+        0.7,
+        8,
+        4.2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-house-street",
+      "position": [
+        -30,
+        18.5,
+        47
+      ],
+      "lookAt": [
+        0.7,
+        8,
+        4.2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-house-closeup",
+      "position": [
+        -30,
+        18.5,
+        47
+      ],
+      "lookAt": [
+        0.7,
+        8,
+        4.2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "broad-street-facade-and-iron-porch",
+      "position": [
+        -7.6,
+        5.1,
+        35
+      ],
+      "lookAt": [
+        0.45,
+        8.1,
+        9.5
+      ]
+    },
+    {
+      "name": "cast-iron-columns-and-entry",
+      "position": [
+        -6.9,
+        4.5,
+        23
+      ],
+      "lookAt": [
+        0.3,
+        6.7,
+        12
+      ]
+    },
+    {
+      "name": "slate-roof-and-rear-outline",
+      "position": [
+        24,
+        24,
+        -27
+      ],
+      "lookAt": [
+        0.65,
+        8.6,
+        1.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 21274,
+    "vertices": 63822,
+    "materials": 7,
+    "bytes": 2921172,
+    "sha256": "sha256:df5270a8c2bc29e821cb5b28d68ffeb11aee048e1dd4ff7b06a8f3107020d687"
+  }
+}

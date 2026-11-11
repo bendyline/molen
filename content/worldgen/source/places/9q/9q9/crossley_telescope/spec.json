@@ -1,0 +1,526 @@
+{
+  "planId": "crossley_telescope",
+  "id": "crossley_telescope",
+  "assetId": "molen.worldgen.structure.crossley_telescope",
+  "title": "Crossley Telescope Dome",
+  "wikidataId": "Q774840",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -121.64420258601375,
+    "latitude": 37.338219047699454
+  },
+  "size": [
+    16.496195793151855,
+    12.708226442337036,
+    19.127934455871582
+  ],
+  "actualBounds": {
+    "min": [
+      -10.126195907592773,
+      -0.6492264270782471,
+      -6.791495323181152
+    ],
+    "max": [
+      6.369999885559082,
+      12.059000015258789,
+      12.33643913269043
+    ]
+  },
+  "visualBrief": "The Crossley Telescope Dome at Lick Observatory, with its segmented metal hemisphere, round stucco drum and two projecting volumes on the original Mount Hamilton slope.",
+  "nativeAxes": {
+    "x": "right along the mapped entrance",
+    "y": "up",
+    "z": "out through the northwestern entrance"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2019-08-17",
+    "validFrom": "2019-01-01",
+    "validUntil": "2020-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Crossley_telescope_dome,_Aug_2019.jpg"
+  ],
+  "stories": [
+    {
+      "id": "crossley-telescope-wp",
+      "url": "https://qualla.com/crossley-telescope/"
+    }
+  ],
+  "referenceInputHash": "99236d0e9bdebe569b9374fedf33bcb84a6382ac4368c568eea28d9e9d8a6720",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9q/9q9/crossley_telescope/models/crossley-telescope-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9q/9q9/crossley_telescope/models/crossley-telescope-model.mjs",
+    "level": "skyline",
+    "export": "crossleySkyline",
+    "errorMeters": 0.79,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "dome": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.28
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.8,
+        "metallic": 0.13
+      },
+      "steps": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "detail": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.71,
+        "metallic": 0.11
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "crossleyDistrict",
+        "errorMeters": 0.34,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.28
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.13
+          },
+          "steps": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.71,
+            "metallic": 0.11
+          }
+        }
+      },
+      "street": {
+        "export": "crossleyStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.28
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.13
+          },
+          "steps": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.71,
+            "metallic": 0.11
+          }
+        }
+      },
+      "closeup": {
+        "export": "crossleyCloseup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "dome": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.28
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.13
+          },
+          "steps": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.71,
+            "metallic": 0.11
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "metal_painted",
+    "metal_standing_seam",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.05,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -121.64420258601375,
+      37.338219047699454
+    ],
+    "heading": -2.429441788380065,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -121.64428340619553,
+        37.33829613954372
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate ground just outside the mapped northwestern projection."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          5.773606676468434,
+          2.2124398765937907
+        ],
+        [
+          5.193942914127532,
+          3.3444143913879847
+        ],
+        [
+          4.404867801551491,
+          4.339727707268473
+        ],
+        [
+          3.514921424116576,
+          5.086193542999767
+        ],
+        [
+          2.4932822891742337,
+          5.660147596909225
+        ],
+        [
+          2.379039023299856,
+          10.370439329295332
+        ],
+        [
+          -2.7656234648619638,
+          10.370439329295333
+        ],
+        [
+          -2.3826248088833157,
+          5.700977428761908
+        ],
+        [
+          -3.4007815127697563,
+          5.160269429090506
+        ],
+        [
+          -4.30082486900402,
+          4.442108700635295
+        ],
+        [
+          -5.2060238416416516,
+          3.337137030091194
+        ],
+        [
+          -5.826572061401077,
+          2.051418666619097
+        ],
+        [
+          -6.146393925258502,
+          0.7017744232961047
+        ],
+        [
+          -10.126195781243482,
+          -1.0132699978728636
+        ],
+        [
+          -9.03882247501903,
+          -3.8981695184243033
+        ],
+        [
+          -7.944174847458131,
+          -6.791495458280236
+        ],
+        [
+          -3.820610775066515,
+          -5.202349400518701
+        ],
+        [
+          -2.60468366913652,
+          -5.608579410217359
+        ],
+        [
+          -1.4513517742657438,
+          -6.010021681259921
+        ],
+        [
+          -0.24519518188867195,
+          -6.174681573303644
+        ],
+        [
+          1.8512512597083968,
+          -5.89431162585174
+        ],
+        [
+          3.7596978137669006,
+          -4.908573785862815
+        ],
+        [
+          4.71429007481022,
+          -3.996260699518153
+        ],
+        [
+          5.460800700132857,
+          -2.9106314908224675
+        ],
+        [
+          5.964007556201754,
+          -1.637974076629514
+        ],
+        [
+          6.1793124898346505,
+          -0.27561360172905447
+        ],
+        [
+          6.107487486298783,
+          0.9859362600778483
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The mapped round dome footprint and its two attached volumes."
+    },
+    "featureIds": [
+      "way/39869776"
+    ],
+    "source": "https://www.openstreetmap.org/way/39869776",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:40fb6f5c83a6f3728680df92eed13ce17065e74835d988b7f805072a0268d235",
+    "notes": "The telescope’s story point is close to the site. The enclosed named OSM node and fitted drum center control placement. Approximate exterior heights and thresholds will be derived from the photograph and original terrain."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The August 2019 original controls the dome silhouette, pale segmented metal, drum and visible side sash. The telescope instrument and interior are outside the exterior scope.",
+    "Annex details, the northwest door, approach steps, trim and roof-shutter dimensions are approximate. The mapped ring controls the annex locations.",
+    "Original Mount Hamilton elevations are preserved. The thresholds and rock contact are estimated from the source heightfield."
+  ],
+  "sourceLicense": "Original geometry under the repository license. The footprint is ODbL. The exact Qualla photo by Thomson200 is CC0.",
+  "qaLodCameras": [
+    {
+      "name": "whole-dome-skyline",
+      "position": [
+        27,
+        15,
+        34
+      ],
+      "lookAt": [
+        -1,
+        4.8,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-dome-district",
+      "position": [
+        27,
+        15,
+        34
+      ],
+      "lookAt": [
+        -1,
+        4.8,
+        1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-dome-street",
+      "position": [
+        27,
+        15,
+        34
+      ],
+      "lookAt": [
+        -1,
+        4.8,
+        1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-dome-closeup",
+      "position": [
+        27,
+        15,
+        34
+      ],
+      "lookAt": [
+        -1,
+        4.8,
+        1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "northwest-approach-and-dome",
+      "position": [
+        7.2,
+        4.6,
+        28.5
+      ],
+      "lookAt": [
+        0,
+        4.35,
+        3.6
+      ]
+    },
+    {
+      "name": "metal-dome-and-shutter",
+      "position": [
+        21,
+        19,
+        -17
+      ],
+      "lookAt": [
+        0,
+        7.3,
+        0
+      ]
+    },
+    {
+      "name": "side-sash-annex-and-hillside",
+      "position": [
+        -24,
+        8.2,
+        -14.4
+      ],
+      "lookAt": [
+        -3.4,
+        4.2,
+        -1.1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3135,
+    "vertices": 9405,
+    "materials": 5,
+    "bytes": 500980,
+    "sha256": "sha256:4730feb9d27d79180a04a635ef2264f87b5b430bc9cdddf4dbf0f3255d9ec6e4"
+  }
+}

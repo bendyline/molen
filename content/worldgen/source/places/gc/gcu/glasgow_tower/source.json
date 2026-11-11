@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.glasgow_tower",
+  "kind": "static-structure",
+  "title": "Glasgow Tower",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.glasgow_tower",
+        "output": "assets/places/gc/gcu/glasgow_tower/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:164f7ded159a67fd11202495277547c480c1c3c8fad18200e99f4004b81fb037"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-glasgow-tower",
+        "path": "models/generate-glasgow-tower.mjs"
+      },
+      {
+        "id": "glasgow-tower-model",
+        "path": "models/glasgow-tower-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/tower-base.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-glasgow-tower-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-15992-10226.png",
+      "terrain-sources/terrarium-15-15993-10226.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

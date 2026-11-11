@@ -1,0 +1,576 @@
+{
+  "planId": "fatima_masumeh_shrine",
+  "id": "fatima_masumeh_shrine",
+  "assetId": "molen.worldgen.structure.fatima_masumeh_shrine",
+  "title": "Fatima Masumeh Shrine",
+  "wikidataId": "Q212110",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 50.87891666666667,
+    "latitude": 34.64175
+  },
+  "size": [
+    144.61946296691895,
+    42.13000011444092,
+    112.20000076293945
+  ],
+  "actualBounds": {
+    "min": [
+      -29.600000381469727,
+      -6.199999809265137,
+      -80.4000015258789
+    ],
+    "max": [
+      115.01946258544922,
+      35.93000030517578,
+      31.799999237060547
+    ]
+  },
+  "visualBrief": "The gilded mausoleum and two historic open courts at Qom, with three distinct pairs of minarets in 2009.",
+  "nativeAxes": {
+    "x": "east-southeast toward the Mirror Iwan court",
+    "y": "up",
+    "z": "south-southwest along the mapped core"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2009-03-26",
+    "validFrom": "2009-01-01",
+    "validUntil": "2010-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Fatima_Masumeh_Shrine_Qom_City_Iran_Photographer_Mostafa_Meraji_08.jpg",
+    "https://commons.wikimedia.org/wiki/File:Fatima_Masumeh_Shrine_Qom_City_Iran_Photographer_Mostafa_Meraji_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:Fatima_Masumeh_Shrine_Qom_City_Iran_Photographer_Mostafa_Meraji_03.jpg",
+    "https://commons.wikimedia.org/wiki/File:Fatimah_Ma%27sumah_Shrine_Qom_02.jpg"
+  ],
+  "stories": [
+    {
+      "id": "fatima-masumeh-shrine-wp",
+      "url": "https://qualla.com/fatima-masumeh-shrine/"
+    }
+  ],
+  "referenceInputHash": "288f7ca0e04dddbdab0187fcd68e0b313f25f7b0d3af9aaadd1dc311aa17f1b0",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tn/tnh/fatima_masumeh_shrine/models/shrine-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tn/tnh/fatima_masumeh_shrine/models/shrine-model.mjs",
+    "level": "skyline",
+    "export": "shrineSkyline",
+    "errorMeters": 0.58,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "trim",
+        "graph": "tile_glazed",
+        "roughness": 0.53,
+        "metallic": 0
+      },
+      "mosaic": {
+        "slot": "trim",
+        "graph": "tile_mosaic",
+        "roughness": 0.63,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_marble",
+        "roughness": 0.83,
+        "metallic": 0
+      },
+      "gold": {
+        "slot": "roof",
+        "localRef": "palette:#fffef1",
+        "roughness": 0.4,
+        "metallic": 0.66
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#fdfefe",
+        "roughness": 0.77,
+        "metallic": 0
+      },
+      "pennant": {
+        "slot": "trim",
+        "localRef": "palette:#f0fff3",
+        "roughness": 0.96,
+        "metallic": 0,
+        "doubleSided": true
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "shrineDistrict",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.53,
+            "metallic": 0
+          },
+          "mosaic": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.63,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_marble",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "localRef": "palette:#fffef1",
+            "roughness": 0.4,
+            "metallic": 0.66
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#fdfefe",
+            "roughness": 0.77,
+            "metallic": 0
+          },
+          "pennant": {
+            "slot": "trim",
+            "localRef": "palette:#f0fff3",
+            "roughness": 0.96,
+            "metallic": 0,
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "shrineStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.53,
+            "metallic": 0
+          },
+          "mosaic": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.63,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_marble",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "localRef": "palette:#fffef1",
+            "roughness": 0.4,
+            "metallic": 0.66
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#fdfefe",
+            "roughness": 0.77,
+            "metallic": 0
+          },
+          "pennant": {
+            "slot": "trim",
+            "localRef": "palette:#f0fff3",
+            "roughness": 0.96,
+            "metallic": 0,
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "shrineCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.53,
+            "metallic": 0
+          },
+          "mosaic": {
+            "slot": "trim",
+            "graph": "tile_mosaic",
+            "roughness": 0.63,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_marble",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "roof",
+            "localRef": "palette:#fffef1",
+            "roughness": 0.4,
+            "metallic": 0.66
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#fdfefe",
+            "roughness": 0.77,
+            "metallic": 0
+          },
+          "pennant": {
+            "slot": "trim",
+            "localRef": "palette:#f0fff3",
+            "roughness": 0.96,
+            "metallic": 0,
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "tile_glazed",
+    "tile_mosaic",
+    "stone_marble"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.85,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      50.87891666666667,
+      34.64175
+    ],
+    "heading": -0.3117379119748959,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        50.879593799624026,
+        34.641721487932635
+      ],
+      "modelHeight": 0,
+      "basis": "Original provider grade within the open Atabaki court."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -29.905870099715766,
+          -81.10958904550785
+        ],
+        [
+          -30.127921515890602,
+          -25.542142947250284
+        ],
+        [
+          -29.90587009971577,
+          -13.625649717079437
+        ],
+        [
+          -31.74005287213496,
+          24.09911628331059
+        ],
+        [
+          -32.5173839067374,
+          32.46639294748862
+        ],
+        [
+          22.244411344623437,
+          34.889435425224484
+        ],
+        [
+          28.37895564464781,
+          43.684310191763814
+        ],
+        [
+          46.89934003103846,
+          44.45291066530038
+        ],
+        [
+          50.83137841561641,
+          48.14479014440357
+        ],
+        [
+          52.66782732794837,
+          45.48287276688428
+        ],
+        [
+          60.93970338192834,
+          44.606739094480645
+        ],
+        [
+          66.97780080179903,
+          48.742735019443245
+        ],
+        [
+          69.59798636842378,
+          45.67621903355857
+        ],
+        [
+          74.32219144525375,
+          49.28826175555369
+        ],
+        [
+          84.7010027749474,
+          35.780217941750834
+        ],
+        [
+          80.37589500909431,
+          32.0629594943142
+        ],
+        [
+          83.93358232175106,
+          26.799642042904548
+        ],
+        [
+          80.62572929134967,
+          26.836362732354754
+        ],
+        [
+          31.13586493703452,
+          28.08277430693388
+        ],
+        [
+          26.60734852525753,
+          -64.2337104246232
+        ],
+        [
+          46.179584035906394,
+          -64.73971605923299
+        ],
+        [
+          45.83505535494264,
+          -70.07886951445177
+        ],
+        [
+          25.738631654712847,
+          -69.4975122088136
+        ],
+        [
+          24.865986809603438,
+          -81.99965973889134
+        ],
+        [
+          -25.341518475637283,
+          -81.18864452978276
+        ]
+      ],
+      "minimumCoverage": 0.95,
+      "basis": "Use the mapped core building alone to identify the generic footprint for this dated preview."
+    },
+    "featureIds": [
+      "way/1462664905",
+      "way/245086022",
+      "way/1443636758",
+      "way/323644053",
+      "node/13416585640"
+    ],
+    "source": "https://www.openstreetmap.org/way/1443636758",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f8dcab22222de20a98e6c711e529d12719bde9767b0ed73a0be08dcae95fe8fd",
+    "notes": "The 2009 exterior of the historic Fatima Masumeh Shrine core in Qom. Includes the gilded mausoleum dome and drum, the Golden Iwan and north Atiq court, the Mirror Iwan and Atabaki court, their minarets, and connected exterior arcades. The separately mapped Azam Mosque, outer modern halls, and interiors are outside this model. The mapped tomb POI lies about 22 meters from the independently published dome coordinate. It supplies site context; the visible dome is centered on the object coordinate. The old court internal edge and historical section dimensions are approximations."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_mosaic",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.6,
+        0.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Dome height and section, internal Atiq court alignment, iwan details and exact tower placements are visual estimates. The 2009 photographs establish the appearance and size hierarchy.",
+    "The named modern map fixes the overall footprint and the Atabaki court. Its tomb point differs from the published dome coordinate by about 22 meters, so the visible dome uses the latter.",
+    "The original 256-meter provider field remains unchanged. The relief includes probable rooftop and canopy influence, so approaches, foundation exposure and thresholds are approximate.",
+    "This is the historic shrine exterior with the two central courts. Adjacent Azam Mosque, modern outer halls and interiors are outside scope."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. Geographic controls from OpenStreetMap. Verified CC0 photographs by Mostafa Meraji and public-domain photography by Wayiran inform the 2009 exterior.",
+  "qaLodCameras": [
+    {
+      "name": "whole-shrine-skyline",
+      "position": [
+        157,
+        82,
+        95
+      ],
+      "lookAt": [
+        35,
+        9,
+        -19
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-shrine-district",
+      "position": [
+        157,
+        82,
+        95
+      ],
+      "lookAt": [
+        35,
+        9,
+        -19
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-shrine-street",
+      "position": [
+        157,
+        82,
+        95
+      ],
+      "lookAt": [
+        35,
+        9,
+        -19
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-shrine-closeup",
+      "position": [
+        157,
+        82,
+        95
+      ],
+      "lookAt": [
+        35,
+        9,
+        -19
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "mirror-iwan-and-gilded-dome",
+      "position": [
+        89,
+        26,
+        -12
+      ],
+      "lookAt": [
+        19,
+        17,
+        -10
+      ]
+    },
+    {
+      "name": "golden-iwan-from-atiq",
+      "position": [
+        -5,
+        15,
+        -70
+      ],
+      "lookAt": [
+        0,
+        16,
+        -15
+      ]
+    },
+    {
+      "name": "two-courts-and-six-minarets",
+      "position": [
+        105,
+        70,
+        -107
+      ],
+      "lookAt": [
+        30,
+        10,
+        -23
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 14218,
+    "vertices": 42654,
+    "materials": 7,
+    "bytes": 1804884,
+    "sha256": "sha256:ade76ed13428988b5de71eada3ad588c44706c3ed3e862c4cef7e040bd54b9b0"
+  }
+}

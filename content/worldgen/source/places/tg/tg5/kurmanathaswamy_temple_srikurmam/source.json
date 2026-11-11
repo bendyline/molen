@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kurmanathaswamy_temple_srikurmam",
+  "kind": "static-structure",
+  "title": "Sri Kurmanathaswamy Temple, Srikurmam",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kurmanathaswamy_temple_srikurmam",
+        "output": "assets/places/tg/tg5/kurmanathaswamy_temple_srikurmam/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:32d9dde2485090043bb3b3180eaf080f9cb1b8988f21a0b4ab0568e7e346a185"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-srikurmam-temple",
+        "path": "models/generate-srikurmam-temple.mjs"
+      },
+      {
+        "id": "srikurmam-temple-model",
+        "path": "models/srikurmam-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/temple-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-srikurmam-cc0.json",
+      "reference-originals/srikurmam-temple-02.jpg",
+      "reference-originals/srikurmam-temple-04.jpg",
+      "reference-originals/srikurmam-temple-05.jpg",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-24030-14691.png",
+      "terrain-sources/terrarium-15-24030-14692.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

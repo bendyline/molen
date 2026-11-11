@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.southern_branch_of_the_national_palace_museum",
+  "kind": "static-structure",
+  "title": "Southern Branch of the National Palace Museum and Zhimei Bridge",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.southern_branch_of_the_national_palace_museum",
+        "output": "assets/places/ws/wsj/southern_branch_of_the_national_palace_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:afeb8ad43c858c63ce60877e5244bf7d3c1f3f0a43592f7842514ce36c03e947"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-taiwan-palace-south",
+        "path": "models/generate-taiwan-palace-south.mjs"
+      },
+      {
+        "id": "taiwan-palace-south-model",
+        "path": "models/taiwan-palace-south-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/museum-and-bridge-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-museum-and-bridge-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-27332-14184.png",
+      "terrain-sources/terrarium-15-27332-14185.png",
+      "terrain-sources/terrarium-15-27333-14184.png",
+      "terrain-sources/terrarium-15-27333-14185.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

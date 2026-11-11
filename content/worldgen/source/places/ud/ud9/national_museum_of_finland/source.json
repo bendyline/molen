@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.national_museum_of_finland",
+  "kind": "static-structure",
+  "title": "National Museum of Finland",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.national_museum_of_finland",
+        "output": "assets/places/ud/ud9/national_museum_of_finland/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:cf4864297b30371baf0d140b0e750310e261238785ab8691f1f6e2e3a55fe3ed"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-helsinki-museum",
+        "path": "models/generate-helsinki-museum.mjs"
+      },
+      {
+        "id": "helsinki-museum-model",
+        "path": "models/helsinki-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/museum-and-courtyard-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-cc0-originals.json",
+      "reference-rights/commons-same-day-cc0-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-18653-9483.png",
+      "terrain-sources/terrarium-15-18653-9484.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

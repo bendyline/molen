@@ -1,0 +1,451 @@
+{
+  "planId": "army_museum_in_bia_ystok",
+  "id": "army_museum_in_bia_ystok",
+  "assetId": "molen.worldgen.structure.army_museum_in_bia_ystok",
+  "title": "Army Museum in Białystok",
+  "wikidataId": "Q11787250",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 23.166459,
+    "latitude": 53.132163
+  },
+  "size": [
+    25.26356601715088,
+    13.30182158946991,
+    14.62000036239624
+  ],
+  "actualBounds": {
+    "min": [
+      -13.041553497314453,
+      -1.3799999952316284,
+      -7.570000171661377
+    ],
+    "max": [
+      12.222012519836426,
+      11.921821594238281,
+      7.050000190734863
+    ]
+  },
+  "visualBrief": "The former Army Museum exterior at 7 Jana Kilińskiego in August 2020, with beige plaster, street windows, projecting balconies, square-facing lettering and monopitch roof.",
+  "nativeAxes": {
+    "x": "northwest along Jana Kilińskiego",
+    "y": "up",
+    "z": "northeast toward Jana Kilińskiego"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2020-08-02",
+    "validFrom": "2020-01-01",
+    "validUntil": "2021-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:20200802_091744_Muzeum_Wojska_w_Bia%C5%82ymstoku.jpg",
+    "https://commons.wikimedia.org/wiki/File:20200727_123928_Plac_Jana_Paw%C5%82a_II_July_2020.jpg"
+  ],
+  "stories": [
+    {
+      "id": "army-museum-in-bia-ystok-wp",
+      "url": "https://qualla.com/army-museum-in-bia-ystok/"
+    }
+  ],
+  "referenceInputHash": "a529e7c085b1bdc6d6d2d34b765a7782b8c4b2e0b7221f69594dc02db824a364",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u9/u92/army_museum_in_bia_ystok/models/bialystok-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u9/u92/army_museum_in_bia_ystok/models/bialystok-museum-model.mjs",
+    "level": "skyline",
+    "export": "bialystokSkyline",
+    "errorMeters": 0.29,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.1
+      },
+      "detail": {
+        "slot": "window",
+        "localRef": "palette:#fffdfe",
+        "roughness": 0.74,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bialystokDistrict",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.1
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.74,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "bialystokStreet",
+        "errorMeters": 0.064,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.1
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.74,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "bialystokCloseup",
+        "errorMeters": 0.024,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.1
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.74,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.85,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      23.166459,
+      53.132163
+    ],
+    "heading": 2.2314140687896415,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        23.16652302163064,
+        53.132224248514916
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation sampled at the photo-estimated main entrance approach along the mapped Kilińskiego front."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          12.059373595685312,
+          -5.921468395809201
+        ],
+        [
+          12.150788048691101,
+          5.8982583367321055
+        ],
+        [
+          12.138013829337137,
+          6.150541313652657
+        ],
+        [
+          10.345493397812849,
+          6.153214857173559
+        ],
+        [
+          3.48294552081943,
+          6.149140733997228
+        ],
+        [
+          -3.2852874199152096,
+          6.150691261782368
+        ],
+        [
+          -6.870328283109378,
+          6.156038349011535
+        ],
+        [
+          -12.958459390903528,
+          6.153214857173556
+        ],
+        [
+          -12.863892535413305,
+          5.414697885451342
+        ],
+        [
+          -11.285276204733226,
+          -5.234131599367537
+        ],
+        [
+          -11.140401034041648,
+          -6.128096946394242
+        ],
+        [
+          -5.264838306795699,
+          -5.960582530076797
+        ],
+        [
+          -5.22770282569953,
+          -6.752187527811085
+        ],
+        [
+          -0.7868183653815941,
+          -6.75221624091189
+        ],
+        [
+          4.646987127056378,
+          -6.741904912997238
+        ],
+        [
+          8.64854565060287,
+          -6.702704638158553
+        ],
+        [
+          8.636592798462555,
+          -5.925363857269668
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "The original mapped number 7 museum footprint, separate from the adjacent number 7/1."
+    },
+    "featureIds": [
+      "way/231111093",
+      "node/9341475660"
+    ],
+    "source": "https://www.openstreetmap.org/way/231111093",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e6246668fe71270ca902ceabc07b43f8e8ee53a481f4a0c87e8780a74e302287",
+    "notes": "The former Army Museum street building at 7 Jana Kilińskiego in Białystok in its August 2020 museum configuration. Includes the three-storey exterior, projecting balconies, square-facing museum lettering and the rear. The adjacent building at number 7/1, museum exhibits and later site are outside scope. The street line and facade length are mapped. Photos establish windows, balcony projections and painted finishes."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The native outline and two exact 2020 views establish the street building and major window and balcony layout. Roof height, plaque, medallion and obscured rear ground level are simplified estimates.",
+    "The original elevation field is unchanged. The model represents the Kilińskiego premises while used as the museum in August 2020. The adjacent address, interiors and later site are outside scope."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. OpenStreetMap geographic controls, ODbL 1.0. Exact CC0 photographer-released photos by Rakoon.",
+  "qaLodCameras": [
+    {
+      "name": "whole-bialystok-museum-skyline",
+      "position": [
+        -26,
+        13,
+        31
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-bialystok-museum-district",
+      "position": [
+        -26,
+        13,
+        31
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-bialystok-museum-street",
+      "position": [
+        -26,
+        13,
+        31
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-bialystok-museum-closeup",
+      "position": [
+        -26,
+        13,
+        31
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "kilinskiego-street-and-balconies",
+      "position": [
+        -18,
+        8,
+        27
+      ],
+      "lookAt": [
+        0,
+        4,
+        3
+      ]
+    },
+    {
+      "name": "square-medallion-and-rear",
+      "position": [
+        -26,
+        10,
+        -21
+      ],
+      "lookAt": [
+        -4,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "single-pitch-roof-and-mapped-plan",
+      "position": [
+        14,
+        39,
+        -26
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4452,
+    "vertices": 13356,
+    "materials": 4,
+    "bytes": 639592,
+    "sha256": "sha256:ea717dd7bfdb68df0c5871acf03a4b71af87e9c9f63824f4d26ebf8e30253616"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.egyptian_museum",
+  "kind": "static-structure",
+  "title": "Egyptian Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.egyptian_museum",
+        "output": "assets/places/st/stq/egyptian_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:54520c141b3dc960a157cb220e8ae1745248ec2c8b622dcc0df535847611c42c"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-egyptian-museum",
+        "path": "models/generate-egyptian-museum.mjs"
+      },
+      {
+        "id": "egyptian-museum-model",
+        "path": "models/egyptian-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/museum-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-rear-originals.json",
+      "reference-rights/commons-farkas-front-original.json",
+      "references/farkas-front-entrance-original.jpg",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-19226-13514.png",
+      "terrain-sources/terrarium-15-19227-13514.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

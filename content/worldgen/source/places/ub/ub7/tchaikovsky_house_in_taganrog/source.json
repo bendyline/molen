@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.tchaikovsky_house_in_taganrog",
+  "kind": "static-structure",
+  "title": "Tchaikovsky House in Taganrog",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.tchaikovsky_house_in_taganrog",
+        "output": "assets/places/ub/ub7/tchaikovsky_house_in_taganrog/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3bc8ed132769fe9df80103c520cf047b0414bb2bf5f0198f8fc19332378cc1f8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-taganrog-house",
+        "path": "models/generate-taganrog-house.mjs"
+      },
+      {
+        "id": "taganrog-house-model",
+        "path": "models/taganrog-house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/house-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-taganrog-house-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-19928-11496.png",
+      "terrain-sources/terrarium-15-19928-11497.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

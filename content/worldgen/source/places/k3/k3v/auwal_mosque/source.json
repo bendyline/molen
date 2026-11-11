@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.auwal_mosque",
+  "kind": "static-structure",
+  "title": "Auwal Mosque",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.auwal_mosque",
+        "output": "assets/places/k3/k3v/auwal_mosque/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:15099b0e5cfe97c93131a1cad7cc231ef7748e82133f834f1ad55335444dec33"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-auwal-mosque",
+        "path": "models/generate-auwal-mosque.mjs"
+      },
+      {
+        "id": "auwal-mosque-model",
+        "path": "models/auwal-mosque-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/mosque-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-auwal-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-18059-19669.png",
+      "terrain-sources/terrarium-15-18060-19669.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

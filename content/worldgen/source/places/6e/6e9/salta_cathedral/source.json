@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.salta_cathedral",
+  "kind": "static-structure",
+  "title": "Salta Cathedral",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.salta_cathedral",
+        "output": "assets/places/6e/6e9/salta_cathedral/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d08bce07db92222547182655eda80ddb9d722311ee11927595a1a233d567acb3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-salta-cathedral",
+        "path": "models/generate-salta-cathedral.mjs"
+      },
+      {
+        "id": "salta-cathedral-model",
+        "path": "models/salta-cathedral-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/cathedral-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-salta-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-10430-18714.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

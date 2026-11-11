@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.thien_hau_temple_cholon",
+  "kind": "static-structure",
+  "title": "Thien Hau Temple (Cholon)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.thien_hau_temple_cholon",
+        "output": "assets/places/w3/w3g/thien_hau_temple_cholon/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:045a9073b1eaaccf9c0b24b4d4c541f2812e675bef0940dc93772f7df9304656"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-thien-hau-temple",
+        "path": "models/generate-thien-hau-temple.mjs"
+      },
+      {
+        "id": "thien-hau-temple-model",
+        "path": "models/thien-hau-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/temple-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-thien-hau-temple-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-26092-15399.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

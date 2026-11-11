@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.taranaki_cathedral",
+  "kind": "static-structure",
+  "title": "Taranaki Cathedral Church of St Mary",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.taranaki_cathedral",
+        "output": "assets/places/rc/rc5/taranaki_cathedral/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:cb4cd24227e0bbb3762319cb1be80db8e0649f4c05a5769e8332f2a1b72cc8ee"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-taranaki-cathedral",
+        "path": "models/generate-taranaki-cathedral.mjs"
+      },
+      {
+        "id": "taranaki-cathedral-model",
+        "path": "models/taranaki-cathedral-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/cathedral-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-taranaki-cathedral-original.json",
+      "reference-rights/commons-itineris55-companion.json",
+      "references/itineris55-taranaki-cathedral-companion.jpg",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-32228-20251.png",
+      "terrain-sources/terrarium-15-32228-20252.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -17,6 +17,7 @@ import { inspectNewZealandEmbassyReference } from './imagery-new-zealand-embassy
 import { inspectNpsAgencyReference } from './imagery-nps-agency.mjs';
 import { inspectImageryPolicy, PUBLIC_DOMAIN_POLICY } from './imagery-policy.mjs';
 import { inspectQuallaPrimaryRights, modelRightsRoot } from './imagery-primary-rights.mjs';
+import { inspectPublicArchiveReference } from './imagery-public-archives.mjs';
 import { inspectSilesianPeriodicalReference } from './imagery-silesian-periodical.mjs';
 
 const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
@@ -1578,6 +1579,60 @@ export function inspectCommonsSelfReference(dir, reference) {
   };
 }
 
+// Commons publishes the photographer's grant for a verified uploader through
+// this template. Bind the exact native bytes and the file's permission record.
+function inspectCommonsVrtCc0Reference(dir, reference) {
+  const blockers = [];
+  const image = localBytes(dir, reference.path);
+  const snapshot = localBytes(dir, reference.rightsEvidence?.path);
+  const pages = Object.values(snapshotJson(snapshot)?.query?.pages ?? {});
+  const template = pages.find((page) => page.title === 'Template:MSW permission');
+  const page = pages.find((item) => item.title === `File:${reference.filename}`);
+  const info = page?.imageinfo?.[0];
+  const body = page?.revisions?.[0]?.slots?.main?.['*'] ?? '';
+  const templateBody = template?.revisions?.[0]?.slots?.main?.['*'] ?? '';
+  const artist = reference.artist ?? '';
+  const ticket = reference.creatorDedication?.ticket ?? '';
+  const uploader = 'Ms Sarah Welch';
+  const metadata = (key) => info?.extmetadata?.[key]?.value;
+  if (
+    !image ||
+    digest(image) !== plainHash(reference.sha256) ||
+    image.length !== info?.size ||
+    createHash('sha1').update(image).digest('hex') !== info?.sha1
+  )
+    blockers.push('supplemental-image-bytes-unbound');
+  if (!snapshot || digest(snapshot) !== plainHash(reference.rightsEvidence?.sha256))
+    blockers.push('supplemental-rights-snapshot-unbound');
+  if (
+    reference.sourceUrl !== info?.descriptionurl ||
+    reference.downloadUrl !== info?.url ||
+    !info?.url?.startsWith('https://upload.wikimedia.org/') ||
+    !page?.revisions?.[0]?.revid ||
+    !template?.revisions?.[0]?.revid ||
+    !/^[A-Za-z][A-Za-z .'-]+$/.test(artist) ||
+    !/^\d{16}$/.test(ticket) ||
+    info.user !== uploader ||
+    !body.includes(`|source=${artist} (OTRS ${ticket})`) ||
+    !body.includes(`|author=${artist}\n`) ||
+    !body.includes(`{{MSW permission|${artist}}}`) ||
+    !templateBody.includes(
+      `|${artist} = ''Photographs created by ${artist}, India uploaded by [[User:${uploader}]] are released as CC-0.''`,
+    ) ||
+    reference.license !== 'CC0' ||
+    metadata('LicenseShortName') !== 'CC0' ||
+    metadata('AttributionRequired') !== 'false' ||
+    plainText(metadata('Restrictions'))
+  )
+    blockers.push('supplemental-commons-vrt-cc0-unverified');
+  return {
+    path: reference.path,
+    sourceUrl: reference.sourceUrl,
+    blockers,
+    eligible: !blockers.length,
+  };
+}
+
 /** A photographer's primary CC0 dedication, with the exact Commons transfer pinned. */
 export function inspectFlickrCc0Reference(dir, reference) {
   const blockers = [],
@@ -2409,6 +2464,9 @@ export function inspectImageryInventory({
           'expired-danish-svedstrup-fort-drawings',
           'amon-carter-moran1870-public-domain',
           'ndl-tanna1936-public-domain-plates',
+          'commons-mccord-public-domain',
+          'banq-public-domain-atlas',
+          'commons-vrt-cc0',
         ].includes(r.origin),
     )
     .map((r) =>
@@ -2529,6 +2587,14 @@ export function inspectImageryInventory({
                                                                             ),
     );
   additionalProof.push(
+    ...additional
+      .filter((r) => r.origin === 'commons-vrt-cc0')
+      .map((r) => inspectCommonsVrtCc0Reference(dir, r)),
+    ...additional
+      .filter((r) =>
+        ['commons-mccord-public-domain', 'banq-public-domain-atlas'].includes(r.origin),
+      )
+      .map((r) => inspectPublicArchiveReference(dir, r)),
     ...additional
       .filter((r) => r.origin === 'ndl-tanna1936-public-domain-plates')
       .map((r) => inspectNdlTannaReference(dir, r)),

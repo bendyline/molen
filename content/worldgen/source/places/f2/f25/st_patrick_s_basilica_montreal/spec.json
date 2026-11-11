@@ -1,0 +1,543 @@
+{
+  "planId": "st_patrick_s_basilica_montreal",
+  "id": "st_patrick_s_basilica_montreal",
+  "assetId": "molen.worldgen.structure.st_patrick_s_basilica_montreal",
+  "title": "St. Patrick's Basilica, Montreal",
+  "wikidataId": "Q1317109",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -73.5648716,
+    "latitude": 45.50355395
+  },
+  "size": [
+    37.749135971069336,
+    69.93035066127777,
+    73.23979568481445
+  ],
+  "actualBounds": {
+    "min": [
+      -18.259136199951172,
+      -0.3503488302230835,
+      -34.829795837402344
+    ],
+    "max": [
+      19.489999771118164,
+      69.58000183105469,
+      38.40999984741211
+    ]
+  },
+  "visualBrief": "Montréal greystone Gothic Revival basilica with three pointed portals, a rose window, a copper spire and a rounded apse.",
+  "nativeAxes": {
+    "x": "right across the historic facade",
+    "y": "up",
+    "z": "outward toward de La Gauchetière"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1895-01-01",
+    "validFrom": "1890-01-01",
+    "validUntil": "1900-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:1895_(circa),_St_Patrick_Church,_Montreal,_Canada_01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "st-patrick-s-basilica-montreal-wp",
+      "url": "https://qualla.com/st-patrick-s-basilica-montreal/"
+    }
+  ],
+  "referenceInputHash": "eac5402f2da0bec69bd1078b294e219f8d3c093194d154684cb61ea3ceac5794",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/f2/f25/st_patrick_s_basilica_montreal/models/montreal-st-patricks-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/f2/f25/st_patrick_s_basilica_montreal/models/montreal-st-patricks-model.mjs",
+    "level": "skyline",
+    "export": "basilicaSkyline",
+    "errorMeters": 0.88,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.79,
+        "metallic": 0.16
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "basilicaDistrict",
+        "errorMeters": 0.46,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.79,
+            "metallic": 0.16
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "basilicaStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.79,
+            "metallic": 0.16
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "basilicaCloseup",
+        "errorMeters": 0.041,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.79,
+            "metallic": 0.16
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "stone_limestone_raw",
+    "metal_copper",
+    "stone_limestone",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.25,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -73.5648716,
+      45.50355395
+    ],
+    "heading": 1.1525268261488824,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -73.56443239061947,
+        45.50341712157401
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate ground near the original central front approach."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          11.942342305341345,
+          -22.478331945409735
+        ],
+        [
+          11.890091395866818,
+          -25.665405754667717
+        ],
+        [
+          10.004421272151722,
+          -31.469815442451534
+        ],
+        [
+          5.813617589484531,
+          -34.18339338195992
+        ],
+        [
+          -0.9218340208227396,
+          -34.399794242001825
+        ],
+        [
+          -5.397852274019859,
+          -30.574534226584497
+        ],
+        [
+          -7.48675570115557,
+          -25.983204855004182
+        ],
+        [
+          -7.653094542862788,
+          -22.24645263331278
+        ],
+        [
+          -14.664214149622968,
+          -22.562308250548995
+        ],
+        [
+          -15.710123352899789,
+          4.464408046412864
+        ],
+        [
+          -17.89340551084026,
+          4.3761580620479315
+        ],
+        [
+          -17.88559283141605,
+          6.421812525833181
+        ],
+        [
+          -17.876570899596455,
+          9.07312960576219
+        ],
+        [
+          -15.957103261894405,
+          9.253030669461818
+        ],
+        [
+          -16.596071278818854,
+          34.399794241841185
+        ],
+        [
+          -3.8659434612427095,
+          34.7008159297298
+        ],
+        [
+          -3.9506973877718288,
+          36.565627335704065
+        ],
+        [
+          5.327042531260501,
+          36.33502715303095
+        ],
+        [
+          18.439739321187123,
+          34.399794241841185
+        ],
+        [
+          18.41643308171922,
+          6.063894388787909
+        ],
+        [
+          18.406127176506907,
+          -17.556253531138623
+        ],
+        [
+          18.39578789667157,
+          -22.375644659700292
+        ],
+        [
+          14.532359131005265,
+          -22.43426644709166
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "The named St. Patrick’s Basilica outline from OpenStreetMap way 112854784."
+    },
+    "featureIds": [
+      "way/112854784"
+    ],
+    "source": "https://www.openstreetmap.org/way/112854784",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b5eadb4766fa52d51400fb5ac4de3a10bdaa03215f7385b515c4be2d6bf6d858",
+    "notes": "Historic church placement follows the original axis. The 1895 depiction uses the photographic front and documented six-bay proportions for the remainder."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The single circa-1895 stereograph shows the main front through trees. Unseen side and apse details follow the building inventory and mapped envelope. Stone and copper colors are estimates.",
+    "The church and spire use the documented material and overall proportions. Precise tracery, statues and small ornaments are simplified.",
+    "The original composite elevation field was retained. The historic ground registration is approximate.",
+    "The reconstruction covers the church and attached porch. The adjacent buildings, garden, fence and detached gate are outside the modeled footprint."
+  ],
+  "sourceLicense": "Original geometry under the repository license. The mapped footprint is ODbL. The exact historical Qualla stereograph is public domain with a CC0 digitization.",
+  "qaLodCameras": [
+    {
+      "name": "whole-basilica-skyline",
+      "position": [
+        88,
+        40,
+        110
+      ],
+      "lookAt": [
+        0,
+        27,
+        2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-basilica-district",
+      "position": [
+        88,
+        40,
+        110
+      ],
+      "lookAt": [
+        0,
+        27,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-basilica-street",
+      "position": [
+        88,
+        40,
+        110
+      ],
+      "lookAt": [
+        0,
+        27,
+        2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-basilica-closeup",
+      "position": [
+        88,
+        40,
+        110
+      ],
+      "lookAt": [
+        0,
+        27,
+        2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "historic-front-and-spire",
+      "position": [
+        9,
+        22,
+        126
+      ],
+      "lookAt": [
+        0,
+        31.5,
+        20
+      ]
+    },
+    {
+      "name": "rose-and-three-pointed-portals",
+      "position": [
+        32,
+        16,
+        67
+      ],
+      "lookAt": [
+        0,
+        13.5,
+        34
+      ]
+    },
+    {
+      "name": "rounded-apse-and-six-lancet-bays",
+      "position": [
+        -66,
+        28,
+        -64
+      ],
+      "lookAt": [
+        1,
+        14,
+        -16
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 14471,
+    "vertices": 43413,
+    "materials": 6,
+    "bytes": 2016836,
+    "sha256": "sha256:7ba67f5ab5321cae96c727e82770f64ed6f589c8ad16703f62874c3c01c5f96c"
+  }
+}

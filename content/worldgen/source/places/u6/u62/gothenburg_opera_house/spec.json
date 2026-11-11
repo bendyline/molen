@@ -1,0 +1,735 @@
+{
+  "planId": "gothenburg_opera_house",
+  "id": "gothenburg_opera_house",
+  "assetId": "molen.worldgen.structure.gothenburg_opera_house",
+  "title": "Gothenburg Opera House",
+  "wikidataId": "Q2510029",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 11.9632089,
+    "latitude": 57.710656900000004
+  },
+  "size": [
+    152.79493713378906,
+    38.15198993682861,
+    86.19725799560547
+  ],
+  "actualBounds": {
+    "min": [
+      -75.63993835449219,
+      -5.021988868713379,
+      -54.46725845336914
+    ],
+    "max": [
+      77.15499877929688,
+      33.130001068115234,
+      31.729999542236328
+    ]
+  },
+  "visualBrief": "The Gothenburg Opera House at Lilla Bommen, with an ochre public wing, concrete fly towers, glazed foyer, detached entrance frames and curved waterfront galleries.",
+  "nativeAxes": {
+    "x": "east toward the entry frames",
+    "y": "up",
+    "z": "south toward the main forecourt"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2008-07-14",
+    "validFrom": "2008-01-01",
+    "validUntil": "2009-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Gothenburg_Opera_House_S.jpg",
+    "https://commons.wikimedia.org/wiki/File:G%C3%B6teborgsoperan.JPG"
+  ],
+  "stories": [
+    {
+      "id": "gothenburg-opera-house-wp",
+      "url": "https://qualla.com/gothenburg-opera-house/"
+    }
+  ],
+  "referenceInputHash": "b947e754075696060d52fbd5e7aea39d5e738c2b6993bd31b413d1c705e0c3a2",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u6/u62/gothenburg_opera_house/models/gothenburg-opera-house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u6/u62/gothenburg_opera_house/models/gothenburg-opera-house-model.mjs",
+    "level": "skyline",
+    "export": "operaSkyline",
+    "errorMeters": 1.11,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.84,
+        "metallic": 0.16
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.18
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "operaDistrict",
+        "errorMeters": 0.52,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84,
+            "metallic": 0.16
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "operaStreet",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84,
+            "metallic": 0.16
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "operaCloseup",
+        "errorMeters": 0.052,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.84,
+            "metallic": 0.16
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "concrete_panel",
+    "metal_standing_seam",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.7,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      11.9632089,
+      57.710656900000004
+    ],
+    "heading": 0.5958774419708956,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        11.96426343741083,
+        57.710626454596024
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate forecourt paving just outside the public entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -72.59149331180231,
+          -7.731273457141974
+        ],
+        [
+          -72.51396283848825,
+          -19.29946958979521
+        ],
+        [
+          -69.19188664051848,
+          -21.539052343014756
+        ],
+        [
+          -67.03884222752089,
+          -22.64801255772904
+        ],
+        [
+          -62.143125955100516,
+          -23.80705733345664
+        ],
+        [
+          -57.33226555408944,
+          -24.162845264621005
+        ],
+        [
+          -22.284295749214223,
+          -24.162845264621005
+        ],
+        [
+          -16.914520010652037,
+          -29.21026852431396
+        ],
+        [
+          -11.142383534396703,
+          -35.719895754897045
+        ],
+        [
+          -7.035695292606608,
+          -40.14432465666832
+        ],
+        [
+          1.4926134276739411,
+          -47.730529110942925
+        ],
+        [
+          3.4060383912090835,
+          -49.56687420916138
+        ],
+        [
+          6.157349818796021,
+          -51.695844823232676
+        ],
+        [
+          8.370781328330423,
+          -52.777306411003366
+        ],
+        [
+          10.904509518576333,
+          -53.69537413266379
+        ],
+        [
+          13.378191701712508,
+          -53.99511087448684
+        ],
+        [
+          17.576080735386622,
+          -54.389956717313915
+        ],
+        [
+          22.828373415769185,
+          -54.23120923022192
+        ],
+        [
+          29.36217359288437,
+          -52.42337136392188
+        ],
+        [
+          35.41924439428209,
+          -49.64760786811793
+        ],
+        [
+          40.87521573186238,
+          -45.97480434525462
+        ],
+        [
+          44.71112112405256,
+          -42.593572404635395
+        ],
+        [
+          47.5444719830483,
+          -39.40797566219867
+        ],
+        [
+          52.45133304009022,
+          -33.63273121341355
+        ],
+        [
+          55.00562934871815,
+          -30.15216310105949
+        ],
+        [
+          58.77813233853132,
+          -23.774232367627086
+        ],
+        [
+          60.99164080976642,
+          -19.663955313486905
+        ],
+        [
+          63.09970282114796,
+          -15.504131999626868
+        ],
+        [
+          65.0971955833021,
+          -11.096486723255193
+        ],
+        [
+          66.31329262793855,
+          -7.72980587980209
+        ],
+        [
+          68.8666223156024,
+          -0.6453026399765776
+        ],
+        [
+          69.22645353093952,
+          0.04254836200082934
+        ],
+        [
+          76.38750060925199,
+          13.58714390577138
+        ],
+        [
+          63.4347860576884,
+          13.627063096203532
+        ],
+        [
+          54.802040286959524,
+          13.66426812176013
+        ],
+        [
+          54.98942243757673,
+          23.972955710199514
+        ],
+        [
+          54.87178114800133,
+          25.386129056244414
+        ],
+        [
+          54.63396872762074,
+          26.13946566290332
+        ],
+        [
+          54.08986148497582,
+          26.84650280800394
+        ],
+        [
+          53.3449058801892,
+          27.457694231053175
+        ],
+        [
+          52.34307415914273,
+          27.854347628138466
+        ],
+        [
+          51.418122753769104,
+          27.872734820926723
+        ],
+        [
+          51.47051397681615,
+          28.67490939844466
+        ],
+        [
+          30.657610936793176,
+          28.778257321118726
+        ],
+        [
+          30.590856448737327,
+          27.562844042039917
+        ],
+        [
+          30.01195573749416,
+          27.60068936148194
+        ],
+        [
+          29.99899746118043,
+          29.07139847196476
+        ],
+        [
+          21.63708903106437,
+          30.1396065477
+        ],
+        [
+          15.827651715581352,
+          30.262106616476068
+        ],
+        [
+          10.214000926139727,
+          29.629672177268667
+        ],
+        [
+          6.641820199232294,
+          29.144165291333366
+        ],
+        [
+          6.720588814125978,
+          28.84787933537394
+        ],
+        [
+          -14.981487378570911,
+          28.98042578079218
+        ],
+        [
+          -16.08850358698609,
+          28.1759563460315
+        ],
+        [
+          -16.097362339637897,
+          27.51090093034354
+        ],
+        [
+          -15.184906217099337,
+          27.510940594163383
+        ],
+        [
+          -15.134602159825828,
+          25.137508143457108
+        ],
+        [
+          -23.613065507698366,
+          25.212082517282383
+        ],
+        [
+          -48.37963713389499,
+          25.44548370675173
+        ],
+        [
+          -48.84019406143718,
+          25.01212958649803
+        ],
+        [
+          -49.08590076705874,
+          24.791715590883737
+        ],
+        [
+          -49.15343901946658,
+          24.033069647221943
+        ],
+        [
+          -47.27476904398873,
+          24.12340204456838
+        ],
+        [
+          -47.43977820069533,
+          22.98931172119275
+        ],
+        [
+          -74.74190536424209,
+          23.009744453240817
+        ],
+        [
+          -75.42488602754119,
+          22.385214523936835
+        ],
+        [
+          -75.55699001540174,
+          21.83833577847756
+        ],
+        [
+          -74.75319452529126,
+          21.818492342719935
+        ],
+        [
+          -74.72428298457694,
+          16.202562012305684
+        ],
+        [
+          -75.56102427860296,
+          16.334564491059695
+        ],
+        [
+          -75.54647384890025,
+          7.010155517543723
+        ],
+        [
+          -70.66899902773524,
+          7.022338095772955
+        ],
+        [
+          -70.66991855199478,
+          0.041182778423049626
+        ],
+        [
+          -71.51800995927402,
+          0.03098907734099754
+        ],
+        [
+          -74.68642495970582,
+          -0.03277396738146621
+        ],
+        [
+          -74.74182502687056,
+          -7.696470948991955
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Named OpenStreetMap opera-house footprint, ODbL 1.0."
+    },
+    "featureIds": [
+      "way/24502883",
+      "way/1561676092",
+      "way/1561676093",
+      "way/1561676094",
+      "way/1561676095",
+      "way/1561676096",
+      "way/1561676097",
+      "way/1561676098",
+      "way/1561676099",
+      "way/1561676100",
+      "way/1561676101",
+      "way/1561676102",
+      "way/1561676103",
+      "way/1561676104",
+      "way/1561676105",
+      "way/1561676106"
+    ],
+    "source": "https://www.openstreetmap.org/way/24502883",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:49fb5f1ea686e10d671ec1e365de1d5260ac3c78aa9f5deaf7a409aca7a37e8a",
+    "notes": "The named footprint centers the model on the opera house. The two 2008 photos control the public elevation. The contemporary footprint and parts give a basis for estimating less documented waterfront and roof details."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The building represents the public frontage documented in 2008. The map records the surviving outline and roof groups. Unseen waterfront panels, minor alterations, bracing and door details are approximate.",
+    "Original public elevation samples are preserved. Precise paving, quay levels and tidal water levels are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Footprint © OpenStreetMap contributors, ODbL 1.0. Two exact public-domain Qualla exterior photographs.",
+  "qaLodCameras": [
+    {
+      "name": "whole-gothenburg-opera-house-skyline",
+      "position": [
+        134,
+        77,
+        157
+      ],
+      "lookAt": [
+        2,
+        14,
+        -7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-gothenburg-opera-house-district",
+      "position": [
+        134,
+        77,
+        157
+      ],
+      "lookAt": [
+        2,
+        14,
+        -7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-gothenburg-opera-house-street",
+      "position": [
+        134,
+        77,
+        157
+      ],
+      "lookAt": [
+        2,
+        14,
+        -7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-gothenburg-opera-house-closeup",
+      "position": [
+        134,
+        77,
+        157
+      ],
+      "lookAt": [
+        2,
+        14,
+        -7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "south-ochre-galleries-and-stage-tower",
+      "position": [
+        -12,
+        26,
+        159
+      ],
+      "lookAt": [
+        0,
+        14,
+        17
+      ]
+    },
+    {
+      "name": "public-foyer-and-orange-entry-frames",
+      "position": [
+        90,
+        13.5,
+        74
+      ],
+      "lookAt": [
+        44,
+        12,
+        13
+      ]
+    },
+    {
+      "name": "harbour-elevation-and-curving-roofs",
+      "position": [
+        113,
+        58,
+        -122
+      ],
+      "lookAt": [
+        9,
+        10,
+        -15
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3493,
+    "vertices": 10479,
+    "materials": 5,
+    "bytes": 546600,
+    "sha256": "sha256:e6a39391df137d73bf6be992003eb846428fe0c93ae896967c778469e8aa45bd"
+  }
+}

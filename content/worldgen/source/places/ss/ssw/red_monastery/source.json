@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.red_monastery",
+  "kind": "static-structure",
+  "title": "Red Monastery, Sohag",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.red_monastery",
+        "output": "assets/places/ss/ssw/red_monastery/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:232cef127655c7d841c658478cad60986bcc149dae60a4b8717b4b8073864a79"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-red-monastery",
+        "path": "models/generate-red-monastery.mjs"
+      },
+      {
+        "id": "zimmer-tower-model",
+        "path": "models/red-monastery-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/church-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-monastery-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-19261-13875.png",
+      "terrain-sources/terrarium-15-19262-13875.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

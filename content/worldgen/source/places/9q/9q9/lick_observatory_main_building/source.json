@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.lick_observatory_main_building",
+  "kind": "static-structure",
+  "title": "Lick Observatory Main Building, Mount Hamilton",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.lick_observatory_main_building",
+        "output": "assets/places/9q/9q9/lick_observatory_main_building/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:cb8baf2f931bb53837d9edb253e344b50af4b3b68954c275add73db90a28ea27"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-lick-observatory",
+        "path": "models/generate-lick-observatory.mjs"
+      },
+      {
+        "id": "lick-observatory-model",
+        "path": "models/lick-observatory-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/observatory-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-lick-observatory-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-5311-12715.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

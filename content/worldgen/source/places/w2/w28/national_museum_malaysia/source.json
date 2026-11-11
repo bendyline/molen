@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.national_museum_malaysia",
+  "kind": "static-structure",
+  "title": "National Museum of Malaysia",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.national_museum_malaysia",
+        "output": "assets/places/w2/w28/national_museum_malaysia/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:db85f652acfd3b774090648b09681b4008bdc846335100123b5230294ef247b7"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-museum",
+        "path": "models/generate-museum.mjs"
+      },
+      {
+        "id": "museum-model",
+        "path": "models/museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/museum-main-building.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-candidates.json",
+      "reference-rights/commons-exterior-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-25639-16098.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

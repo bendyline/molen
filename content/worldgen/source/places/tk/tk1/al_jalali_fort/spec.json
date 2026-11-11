@@ -1,0 +1,587 @@
+{
+  "planId": "al_jalali_fort",
+  "id": "al_jalali_fort",
+  "assetId": "molen.worldgen.structure.al_jalali_fort",
+  "title": "Al Jalali Fort, Muscat",
+  "wikidataId": "Q5470710",
+  "category": "fort",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 58.597753,
+    "latitude": 23.616775
+  },
+  "size": [
+    120.45849227905273,
+    50.13325119018555,
+    109.14631271362305
+  ],
+  "actualBounds": {
+    "min": [
+      -59.15686798095703,
+      -8.083251953125,
+      -49.30520248413086
+    ],
+    "max": [
+      61.3016242980957,
+      42.04999923706055,
+      59.84111022949219
+    ]
+  },
+  "visualBrief": "The harbor fort on its rocky ridge with staggered round and square towers, the west arches and steep south approach.",
+  "nativeAxes": {
+    "x": "east across the promontory",
+    "y": "up",
+    "z": "south toward the lower approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2024-08-10",
+    "validFrom": "2024-01-01",
+    "validUntil": "2025-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Forte_Aljalali.jpg"
+  ],
+  "stories": [
+    {
+      "id": "al-jalali-fort-wp",
+      "url": "https://qualla.com/al-jalali-fort/"
+    }
+  ],
+  "referenceInputHash": "1f23167275687c372dfdfdea7fd9bfe10944fc8f74eb9b9168ea6f55bb3f8d25",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tk/tk1/al_jalali_fort/models/al-jalali-fort-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tk/tk1/al_jalali_fort/models/al-jalali-fort-model.mjs",
+    "level": "skyline",
+    "export": "jalaliSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "rock": {
+        "slot": "foundation",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.99,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_sandstone",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.18
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "jalaliDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          }
+        }
+      },
+      "street": {
+        "export": "jalaliStreet",
+        "errorMeters": 0.33,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          }
+        }
+      },
+      "closeup": {
+        "export": "jalaliCloseup",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_basalt_raw",
+    "stone_sandstone",
+    "stone_limestone_raw",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.93,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      58.597753,
+      23.616775
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        58.597654957368626,
+        23.61676601688825
+      ],
+      "modelHeight": 0,
+      "basis": "Original public source terrain near the centre of the enclosed fort court."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -5.456784923912811,
+          -22.44200934397606
+        ],
+        [
+          0.050997990539145915,
+          -20.638633593011374
+        ],
+        [
+          2.6416958794893075,
+          -16.0745344705413
+        ],
+        [
+          7.976085627557618,
+          -15.618124558096548
+        ],
+        [
+          24.58103115287722,
+          18.044889457669797
+        ],
+        [
+          37.67731497041291,
+          17.13206963317578
+        ],
+        [
+          40.85958954309464,
+          16.67565972073103
+        ],
+        [
+          43.980666527129394,
+          17.47716005471283
+        ],
+        [
+          46.55096522058862,
+          19.402987245399146
+        ],
+        [
+          48.19310049638155,
+          22.163710616904538
+        ],
+        [
+          48.65208240616078,
+          25.34744805362192
+        ],
+        [
+          47.856513763171534,
+          28.464393795873775
+        ],
+        [
+          45.92878974325829,
+          31.035874033192005
+        ],
+        [
+          43.164698687924485,
+          32.67227054799287
+        ],
+        [
+          39.98242411596748,
+          33.12868046004214
+        ],
+        [
+          36.87154672931583,
+          32.33831207566524
+        ],
+        [
+          6.76233346649572,
+          46.687394438916805
+        ],
+        [
+          -31.32296542315728,
+          38.616731356215645
+        ],
+        [
+          -35.29060904072043,
+          36.17883450782847
+        ],
+        [
+          -40.76779316012418,
+          29.933811074510828
+        ],
+        [
+          -37.116337080280104,
+          24.44576017833732
+        ],
+        [
+          -43.20549707963107,
+          19.269403856468095
+        ],
+        [
+          -40.30881125106966,
+          15.46227727114215
+        ],
+        [
+          -39.860028939398255,
+          -12.723817797660104
+        ],
+        [
+          -36.88174632669894,
+          -26.961580670003958
+        ],
+        [
+          -37.29992984404686,
+          -29.14344268973845
+        ],
+        [
+          -36.85114753237545,
+          -31.30304081105411
+        ],
+        [
+          -35.616996175822614,
+          -33.139812409251554
+        ],
+        [
+          -33.760669341939455,
+          -34.35319485884044
+        ],
+        [
+          -31.588154970337218,
+          -34.765076974843005
+        ],
+        [
+          -29.425840196842806,
+          -34.31979901160767
+        ],
+        [
+          -27.589912559175303,
+          -33.08415266359996
+        ],
+        [
+          -26.376160398113406,
+          -31.225117167379167
+        ],
+        [
+          -25.988575675088974,
+          -28.965331504365217
+        ]
+      ],
+      "minimumCoverage": 0.85,
+      "basis": "Named mapped fort perimeter, relation 2690780, with an independently bounded approach and rock apron."
+    },
+    "featureIds": [
+      "way/200235709",
+      "way/200235741"
+    ],
+    "source": "https://www.openstreetmap.org/relation/2690780",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0fa40b7bdbd97d21436b5d9571272e0468f1c199ae529ff0face0418a84239a1",
+    "notes": "The exterior of restored Al Jalali Fort at Old Muscat as photographed on 10 August 2024, with the full mapped fort and open court, harbor-facing gun ports, round bastions, square keep and lower approach tower. The August 2024 photograph controls the harbor skyline and western details. The court and outer plan come from the named map geometry."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The August 2024 harbor photograph controls the western exterior. The eastern and inland details, exact elevation of the outer towers and local stair alignment are interpreted from the map and written descriptions.",
+    "The underlying public composite terrain is preserved, including its coarse coastal and offshore values. The short rock apron is estimated geometry of the occupied ridge under the masonry. It is separate from the independent terrain.",
+    "The represented exterior covers the fort and its lower stair tower. The Al Alam Palace and surrounding harbor structures are separate sites."
+  ],
+  "sourceLicense": "Original geometry under the repository license, OpenStreetMap ODbL 1.0 and one exact first-party CC0 Qualla photograph.",
+  "qaLodCameras": [
+    {
+      "name": "whole-al-jalali-fort-skyline",
+      "position": [
+        -112,
+        45,
+        -50
+      ],
+      "lookAt": [
+        -5,
+        16,
+        5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-al-jalali-fort-district",
+      "position": [
+        -112,
+        45,
+        -50
+      ],
+      "lookAt": [
+        -5,
+        16,
+        5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-al-jalali-fort-street",
+      "position": [
+        -112,
+        45,
+        -50
+      ],
+      "lookAt": [
+        -5,
+        16,
+        5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-al-jalali-fort-closeup",
+      "position": [
+        -112,
+        45,
+        -50
+      ],
+      "lookAt": [
+        -5,
+        16,
+        5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "harbor-curtain-and-lower-stair",
+      "position": [
+        -122,
+        21,
+        -4
+      ],
+      "lookAt": [
+        -12,
+        15.7,
+        7
+      ]
+    },
+    {
+      "name": "enclosed-court-and-east-bastion",
+      "position": [
+        85,
+        81,
+        -58
+      ],
+      "lookAt": [
+        -7,
+        19.2,
+        6
+      ]
+    },
+    {
+      "name": "south-approach-and-square-keep",
+      "position": [
+        -92,
+        45,
+        104
+      ],
+      "lookAt": [
+        -17,
+        14.3,
+        19
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4387,
+    "vertices": 13161,
+    "materials": 6,
+    "bytes": 808396,
+    "sha256": "sha256:73df761ec92c7dfeef0962e6ec758ba917b490fb64c07551b0a2f66c05c0c82f"
+  }
+}

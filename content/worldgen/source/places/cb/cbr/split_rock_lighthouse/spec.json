@@ -1,0 +1,462 @@
+{
+  "planId": "split_rock_lighthouse",
+  "id": "split_rock_lighthouse",
+  "assetId": "molen.worldgen.structure.split_rock_lighthouse",
+  "title": "Split Rock Lighthouse",
+  "wikidataId": "Q3378404",
+  "category": "lighthouse",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -91.3670172,
+    "latitude": 47.2000916
+  },
+  "size": [
+    7.590000152587891,
+    19.10919952392578,
+    14.039563655853271
+  ],
+  "actualBounds": {
+    "min": [
+      -3.3299999237060547,
+      -1.5,
+      -11
+    ],
+    "max": [
+      4.260000228881836,
+      17.60919952392578,
+      3.0395636558532715
+    ]
+  },
+  "visualBrief": "Split Rock Lighthouse in June 2012, with a buff octagonal tower, glazed iron lantern, exterior gallery, and attached cleaning room on Lake Superior’s North Shore.",
+  "nativeAxes": {
+    "x": "east-southeast across the lighthouse assembly",
+    "y": "up",
+    "z": "south-southwest toward the cliff"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2012-06-01",
+    "validFrom": "2012-01-01",
+    "validUntil": "2013-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Spit_Rock_Lighthouse_2012.jpg",
+    "https://commons.wikimedia.org/wiki/File:Split_Rock_Lighthouse_Blueprint.jpg"
+  ],
+  "stories": [
+    {
+      "id": "split-rock-lighthouse-wp",
+      "url": "https://qualla.com/split-rock-lighthouse/"
+    }
+  ],
+  "referenceInputHash": "06a617122e86780e3629f2e91381081bd279c056dfe31b28df3065606b80efb9",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/cb/cbr/split_rock_lighthouse/models/split-rock-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/cb/cbr/split_rock_lighthouse/models/split-rock-model.mjs",
+    "level": "skyline",
+    "export": "splitRockSkyline",
+    "errorMeters": 0.45,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.69,
+        "metallic": 0.18
+      },
+      "window": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.38,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "splitRockDistrict",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.18
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "splitRockStreet",
+        "errorMeters": 0.085,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.18
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "splitRockCloseup",
+        "errorMeters": 0.036,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.18
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stone_limestone",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.74,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -91.3670172,
+      47.2000916
+    ],
+    "heading": -0.13,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -91.367048740049,
+        47.20011478564899
+      ],
+      "modelHeight": 0,
+      "basis": "Public terrain at the landward side of the lighthouse on the edge of the promontory."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -1.4873411621338464,
+          2.7429075833263616
+        ],
+        [
+          -2.274281601965215,
+          2.1497358432746347
+        ],
+        [
+          -2.829322506712402,
+          1.3466192841431956
+        ],
+        [
+          -3.1123636247801265,
+          0.4069020729583933
+        ],
+        [
+          -3.0893612967488435,
+          -0.5840531179026216
+        ],
+        [
+          -2.7608840578931364,
+          -1.5139051506750727
+        ],
+        [
+          -2.1603852916256248,
+          -2.2884669714264043
+        ],
+        [
+          -1.348146638386998,
+          -2.8437241152677464
+        ],
+        [
+          -0.40839183086073655,
+          -3.1237586719256734
+        ],
+        [
+          0.5792689074173618,
+          -3.095709254406311
+        ],
+        [
+          1.5008974244921591,
+          -2.755906573049639
+        ],
+        [
+          2.2728385223395335,
+          -2.160773860052796
+        ],
+        [
+          2.8203797562485295,
+          -1.3566768132723517
+        ],
+        [
+          3.09592120220722,
+          -0.41597911586780534
+        ],
+        [
+          3.0714757935870263,
+          0.563938059138682
+        ],
+        [
+          2.7415554740398704,
+          1.4827520752723071
+        ],
+        [
+          2.1485563797788547,
+          2.2563334090195966
+        ],
+        [
+          1.3438173973784195,
+          2.8106100652119332
+        ],
+        [
+          0.4115622608954235,
+          3.089664135789452
+        ],
+        [
+          -0.5671557258530348,
+          3.0716722472599103
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "The mapped lighthouse shaft is OpenStreetMap way 390175205."
+    },
+    "featureIds": [
+      "way/390175205"
+    ],
+    "source": "https://www.openstreetmap.org/way/390175205",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e5bad3530a5a45c238e6ec3d82d70afb02cb949b87d788c72462b4053b68f69d",
+    "notes": "The lighthouse building at Split Rock in June 2012, including the buff octagonal tower, glass lantern, gallery, cleaning room and short connecting passage. The separately mapped fog signal house, keepers’ houses and visitor center are distinct structures. The native outline only covers the shaft. The attached cleaning room and short passage follow the construction section and the public exterior photo."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The tower scale follows the 54-foot primary record and the mapped diameter. Exact ground contacts, shaft openings, room width, attachment axis, and non-visible side elevations are estimated from the original section and the cleared view.",
+    "The independent terrain field preserves the local relief and cliff without fitting. It is a public composite elevation surface, which smooths the vertical rock face and may include above-ground returns."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap ODbL 1.0, JMLAX101’s CC0 exterior and the public-domain Minnesota Historical Society construction section.",
+  "qaLodCameras": [
+    {
+      "name": "whole-split-rock-lighthouse-skyline",
+      "position": [
+        20,
+        19,
+        32
+      ],
+      "lookAt": [
+        0,
+        7,
+        -2.8
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-split-rock-lighthouse-district",
+      "position": [
+        20,
+        19,
+        32
+      ],
+      "lookAt": [
+        0,
+        7,
+        -2.8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-split-rock-lighthouse-street",
+      "position": [
+        20,
+        19,
+        32
+      ],
+      "lookAt": [
+        0,
+        7,
+        -2.8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-split-rock-lighthouse-closeup",
+      "position": [
+        20,
+        19,
+        32
+      ],
+      "lookAt": [
+        0,
+        7,
+        -2.8
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "lakeward-tower-and-cleaning-room",
+      "position": [
+        -26,
+        12,
+        28
+      ],
+      "lookAt": [
+        0,
+        8.1,
+        -3
+      ]
+    },
+    {
+      "name": "lantern-and-iron-gallery",
+      "position": [
+        15,
+        16.9,
+        9.6
+      ],
+      "lookAt": [
+        0,
+        13.6,
+        0
+      ]
+    },
+    {
+      "name": "landward-entry-and-passage",
+      "position": [
+        16,
+        7.2,
+        -20
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        -5.8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2182,
+    "vertices": 6546,
+    "materials": 4,
+    "bytes": 423176,
+    "sha256": "sha256:b602e5f6efee7244e60aa8dd43964c20de42cb906f684e7c5a2bd959d30db93b"
+  }
+}

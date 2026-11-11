@@ -67,7 +67,11 @@ export async function linkReservedCatalogStories({ write = false, check = false 
   for (const [alias, candidateId, wikidataId] of bindings) {
     const entry = batch.entries.find((e) => e.modelIdentity === alias);
     assert.equal(entry?.workOwner, 'structure-catalog-other-device');
-    assert.equal(entry.modelState, 'deferred-other-device');
+    assert(
+      entry.modelState === 'deferred-other-device' ||
+        (entry.modelState === 'completed' &&
+          entry.catalogCompletion?.assetId === entry.otherDeviceReservation?.modelRef),
+    );
     assert.equal(entry.otherDeviceReservation?.localAuthoringAllowed, false);
     assert.equal(entry.otherDeviceReservation?.candidateId, candidateId);
     assert.equal(entry.otherDeviceReservation?.wikidataId, wikidataId);

@@ -1,0 +1,491 @@
+{
+  "planId": "westport_house",
+  "id": "westport_house",
+  "assetId": "molen.worldgen.structure.westport_house",
+  "title": "Westport House",
+  "wikidataId": "Q3752984",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -9.53554115,
+    "latitude": 53.8006386
+  },
+  "size": [
+    56.31999969482422,
+    26.31999957561493,
+    42.18000030517578
+  ],
+  "actualBounds": {
+    "min": [
+      -32.619998931884766,
+      -1.4199999570846558,
+      -26.360000610351562
+    ],
+    "max": [
+      23.700000762939453,
+      24.899999618530273,
+      15.819999694824219
+    ]
+  },
+  "visualBrief": "Grey limestone Palladian house, low slate roof with large chimney stacks, south pediment and lake-facing balustraded terraces.",
+  "nativeAxes": {
+    "x": "right along the east entrance front",
+    "y": "up",
+    "z": "east out of the entrance frontage"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2011-04-23",
+    "validFrom": "2011-01-01",
+    "validUntil": "2012-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Westport_House_from_the_boating_lake.JPG",
+    "https://commons.wikimedia.org/wiki/File:Westport_House_southern_elevation.JPG"
+  ],
+  "stories": [
+    {
+      "id": "westport-house-wp",
+      "url": "https://qualla.com/westport-house/"
+    }
+  ],
+  "referenceInputHash": "90e164a98e1d9917cdb7fc08e599a4b885e8dc5a77710a12db747086c2c2ce6f",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gc9/westport_house/models/westport-house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gc9/westport_house/models/westport-house-model.mjs",
+    "level": "skyline",
+    "export": "manorSkyline",
+    "errorMeters": 0.97,
+    "surfaces": {
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "terrace": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "sash": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.54,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "manorDistrict",
+        "errorMeters": 0.57,
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "terrace": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "sash": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "manorStreet",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "terrace": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "sash": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "manorCloseup",
+        "errorMeters": 0.056,
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "terrace": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "sash": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "stone_limestone_raw",
+    "slate",
+    "stone_limestone_weathered",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.15,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -9.53554115,
+      53.8006386
+    ],
+    "heading": 1.3334146216401233,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -9.535289827258683,
+        53.80060268825358
+      ],
+      "modelHeight": 0,
+      "basis": "Ground outside the east entrance and its shallow steps."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          23.360241868736782,
+          -13.555800002786235
+        ],
+        [
+          23.357071089316367,
+          13.555800002600224
+        ],
+        [
+          16.084540779661534,
+          13.5566537946546
+        ],
+        [
+          1.8826260203053233,
+          13.556509668288301
+        ],
+        [
+          -14.781592826790805,
+          13.556855884915079
+        ],
+        [
+          -23.360241867967993,
+          13.55580000260023
+        ],
+        [
+          -23.357071089316367,
+          -13.555800002600224
+        ],
+        [
+          -14.665586141925068,
+          -13.561751481103942
+        ],
+        [
+          16.08771155908195,
+          -13.55494621073186
+        ],
+        [
+          19.79739735458161,
+          -13.559608384936752
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "Named Westport House footprint from OpenStreetMap way 102849613."
+    },
+    "featureIds": [
+      "way/102849613"
+    ],
+    "source": "https://www.openstreetmap.org/way/102849613",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5646987e7655213d1619164e732bf5a3d20b91ad709680c3e554e8a9e183a3bb",
+    "notes": "The stable complex, park landscape and boating lake have separate geographic context. The scope includes only the house and attached steps and terrace."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The two exact Qualla images show the south and west faces in Easter weekend 2011. Camera timestamps give April 23. The boating-lake caption gives Easter Sunday.",
+    "The named footprint fixes the manor’s principal mass. The attached lake terrace and south lower extension, upper roof offsets, north elevation and small carved details are approximate. The east doorcase and attic follow the heritage inventory.",
+    "The independent original elevations are unchanged. Terrace contact and water-level registration are approximate. The lake, park and separate stable complex are outside the asset."
+  ],
+  "sourceLicense": "Original geometry under the repository license. The mapped house outline is ODbL. The two selected Qualla photographs are CC0.",
+  "qaLodCameras": [
+    {
+      "name": "whole-westport-house-skyline",
+      "position": [
+        -59,
+        30,
+        -74
+      ],
+      "lookAt": [
+        -1,
+        9.3,
+        -3.3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-westport-house-district",
+      "position": [
+        -59,
+        30,
+        -74
+      ],
+      "lookAt": [
+        -1,
+        9.3,
+        -3.3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-westport-house-street",
+      "position": [
+        -59,
+        30,
+        -74
+      ],
+      "lookAt": [
+        -1,
+        9.3,
+        -3.3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-westport-house-closeup",
+      "position": [
+        -59,
+        30,
+        -74
+      ],
+      "lookAt": [
+        -1,
+        9.3,
+        -3.3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-lake-terrace-and-sashes",
+      "position": [
+        8.4,
+        13.2,
+        -64
+      ],
+      "lookAt": [
+        -3.5,
+        10.1,
+        -13.2
+      ]
+    },
+    {
+      "name": "south-pediment-and-stonework",
+      "position": [
+        -62,
+        16,
+        -17
+      ],
+      "lookAt": [
+        -23,
+        10.6,
+        0.5
+      ]
+    },
+    {
+      "name": "east-entrance-and-roof-stacks",
+      "position": [
+        15,
+        19,
+        56
+      ],
+      "lookAt": [
+        0,
+        9.7,
+        10.6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11033,
+    "vertices": 33099,
+    "materials": 6,
+    "bytes": 1685532,
+    "sha256": "sha256:753dbb30cb330167ef6556dc8ae667489aa583fbe9946776ce9fbdd148d9b536"
+  }
+}

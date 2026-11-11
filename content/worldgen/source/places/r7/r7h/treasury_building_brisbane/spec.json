@@ -1,0 +1,477 @@
+{
+  "planId": "treasury_building_brisbane",
+  "id": "treasury_building_brisbane",
+  "assetId": "molen.worldgen.structure.treasury_building_brisbane",
+  "title": "Treasury Building, Brisbane",
+  "wikidataId": "Q7836792",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 153.02359,
+    "latitude": -27.47164
+  },
+  "size": [
+    71.34953308105469,
+    32.119999408721924,
+    88.56722640991211
+  ],
+  "actualBounds": {
+    "min": [
+      -34.72651290893555,
+      -5.480000019073486,
+      -44.31874465942383
+    ],
+    "max": [
+      36.62302017211914,
+      26.639999389648438,
+      44.24848175048828
+    ]
+  },
+  "visualBrief": "The former Treasury Building as it stood in 2005, with four sandstone frontages, regular paired sash, deep cornices, raised corner pavilions and a covered courtyard.",
+  "nativeAxes": {
+    "x": "northeast along Elizabeth Street",
+    "y": "up",
+    "z": "southeast across Elizabeth Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2005-11-03",
+    "validFrom": "2005-01-01",
+    "validUntil": "2006-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:StateLibQld_1_139704_Lord_Lamington_addresses_Federation_Day_crowds,_Brisbane,_1901.jpg",
+    "https://commons.wikimedia.org/wiki/File:Old-Treasury-Building-from-Queens-Gardens.jpg"
+  ],
+  "stories": [
+    {
+      "id": "treasury-building-brisbane-wp",
+      "url": "https://qualla.com/treasury-building-brisbane/"
+    }
+  ],
+  "referenceInputHash": "551e55a379d1cd3448faddfa3cf11337e56d2c442e8aee9907a663862ee4d6d9",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r7/r7h/treasury_building_brisbane/models/brisbane-treasury-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r7/r7h/treasury_building_brisbane/models/brisbane-treasury-model.mjs",
+    "level": "skyline",
+    "export": "treasurySkyline",
+    "errorMeters": 0.62,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.79,
+        "metallic": 0.16
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#fffdfe",
+        "roughness": 0.62,
+        "metallic": 0.04
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "detail": {
+        "slot": "trim",
+        "localRef": "palette:#fefffd",
+        "roughness": 0.79,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "treasuryDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.62,
+            "metallic": 0.04
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#fefffd",
+            "roughness": 0.79,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "treasuryStreet",
+        "errorMeters": 0.098,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.62,
+            "metallic": 0.04
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#fefffd",
+            "roughness": 0.79,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "treasuryCloseup",
+        "errorMeters": 0.044,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.62,
+            "metallic": 0.04
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#fefffd",
+            "roughness": 0.79,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.79,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      153.02359,
+      -27.47164
+    ],
+    "heading": 0.72780587380507,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        153.0238873654797,
+        -27.47193611903278
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate original source elevation in the center of the Elizabeth Street frontage."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -33.642308899556646,
+          -43.78059502079509
+        ],
+        [
+          -19.78242118037428,
+          -43.77684327444825
+        ],
+        [
+          -19.78083373877768,
+          -37.45381080636865
+        ],
+        [
+          23.461150895271974,
+          -37.45241816067152
+        ],
+        [
+          23.46628590443037,
+          -43.456362090902246
+        ],
+        [
+          34.3783649257902,
+          -43.454963108697136
+        ],
+        [
+          34.37719852114506,
+          -21.64343800674316
+        ],
+        [
+          33.084305958795504,
+          -21.64734185149883
+        ],
+        [
+          33.08001759983115,
+          22.913263037421448
+        ],
+        [
+          35.1264855513962,
+          22.917656447242727
+        ],
+        [
+          35.12907504193249,
+          42.92848127883675
+        ],
+        [
+          -34.266446733514904,
+          42.92848127883675
+        ],
+        [
+          -34.260256348220956,
+          36.418555455038515
+        ],
+        [
+          -33.233335223861836,
+          36.42403731314871
+        ],
+        [
+          -33.239999969111295,
+          28.993179827730103
+        ],
+        [
+          -34.193053935181915,
+          28.993873774007106
+        ],
+        [
+          -34.20064989705701,
+          22.009470898276035
+        ],
+        [
+          -31.93992372914746,
+          22.010939593177582
+        ],
+        [
+          -31.935200803909442,
+          -22.758010781410057
+        ],
+        [
+          -33.64920445870773,
+          -22.764376708169873
+        ]
+      ],
+      "minimumCoverage": 0.95,
+      "basis": "The complete twenty-vertex outer boundary of OSM Treasury Building relation 7772386."
+    },
+    "featureIds": [
+      "way/543848439",
+      "way/147405360"
+    ],
+    "source": "https://www.openstreetmap.org/relation/7772386",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:458e876b2887b366a16ca57642c123de558c0e61d6bd1da8fd8abc7956b69320",
+    "notes": "The four-front former Treasury Building as it stood in 2005, with the sandstone street walls, corner pavilions and covered central courtyard from the 1990s adaptation. The separate former Land Administration Building, its hotel, and interiors are outside this model. Current footprint is applied to the dated exterior. The conservation plan records the four street elevations and the 1990s roofing of the courtyard. The exact original camera date is unknown."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the completed former Treasury Building in 2005. Original eastern and northern masonry details, covered courtyard geometry, ornament and roof fixtures are approximate. Temporary signs and the neighboring Land Administration Building are excluded.",
+    "The original terrain remains unchanged. The four street grades are sampled from a composite model, which can include modern surface features. The entry stairs and vertical registration are approximate."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. OpenStreetMap ODbL 1.0 geographic controls. Original public-domain references by Figaro and H. W. Mobsby, latter via State Library of Queensland.",
+  "qaLodCameras": [
+    {
+      "name": "whole-brisbane-treasury-skyline",
+      "position": [
+        79,
+        43,
+        100
+      ],
+      "lookAt": [
+        1,
+        13,
+        3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-brisbane-treasury-district",
+      "position": [
+        79,
+        43,
+        100
+      ],
+      "lookAt": [
+        1,
+        13,
+        3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-brisbane-treasury-street",
+      "position": [
+        79,
+        43,
+        100
+      ],
+      "lookAt": [
+        1,
+        13,
+        3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-brisbane-treasury-closeup",
+      "position": [
+        79,
+        43,
+        100
+      ],
+      "lookAt": [
+        1,
+        13,
+        3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "elizabeth-street-from-queens-gardens",
+      "position": [
+        4,
+        17,
+        110
+      ],
+      "lookAt": [
+        0,
+        13,
+        26
+      ]
+    },
+    {
+      "name": "william-and-queen-street-elevations",
+      "position": [
+        -80,
+        24,
+        -85
+      ],
+      "lookAt": [
+        -10,
+        12,
+        -7
+      ]
+    },
+    {
+      "name": "covered-courtyard-and-four-street-wings",
+      "position": [
+        38,
+        98,
+        47
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12004,
+    "vertices": 36012,
+    "materials": 4,
+    "bytes": 1502616,
+    "sha256": "sha256:b421e7d6812ba504b6a769634584a49cb4af50b176d0e16be355c1b584a611e0"
+  }
+}

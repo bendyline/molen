@@ -1,0 +1,415 @@
+{
+  "planId": "fort_chambly",
+  "id": "fort_chambly",
+  "assetId": "molen.worldgen.structure.fort_chambly",
+  "title": "Fort Chambly",
+  "wikidataId": "Q2277786",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -73.276941,
+    "latitude": 45.449485
+  },
+  "size": [
+    54.89131546020508,
+    13.249999642372131,
+    53.11492919921875
+  ],
+  "actualBounds": {
+    "min": [
+      -27.60199737548828,
+      -0.8500000238418579,
+      -26.71961212158203
+    ],
+    "max": [
+      27.289318084716797,
+      12.399999618530273,
+      26.39531707763672
+    ]
+  },
+  "visualBrief": "Low cedar-shingled roofs and four projecting stone bastions enclosing Fort Chambly’s open courtyard.",
+  "nativeAxes": {
+    "x": "east toward the river",
+    "y": "up",
+    "z": "south from the fort"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2003-06-15",
+    "validFrom": "2003-01-01",
+    "validUntil": "2004-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Fort_Chambly_walls.jpg",
+    "https://commons.wikimedia.org/wiki/File:Fort_Chambly_place_d%27armes_and_cannon.jpg",
+    "https://commons.wikimedia.org/wiki/File:Fort_Chambly_river_wall.jpg"
+  ],
+  "stories": [
+    {
+      "id": "fort-chambly-wp",
+      "url": "https://qualla.com/fort-chambly/"
+    }
+  ],
+  "referenceInputHash": "3e90b5f6f5d27b85cade60a3021216e758609a2d344911ce7d1b41aeab43e110",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/f2/f25/fort_chambly/models/fort-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/f2/f25/fort_chambly/models/fort-model.mjs",
+    "level": "skyline",
+    "export": "fortSkyline",
+    "errorMeters": 0.26,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "shingle_cedar",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_painted_shingle",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.91,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "fortDistrict",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "fortStreet",
+        "errorMeters": 0.064,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "fortCloseup",
+        "errorMeters": 0.023,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_drywall",
+    "stone_limestone",
+    "shingle_cedar",
+    "wood_painted_shingle"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -73.276941,
+      45.449485
+    ],
+    "heading": -0.02204270621871752,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -73.27724768061408,
+        45.44948761778468
+      ],
+      "modelHeight": 0,
+      "basis": "Original landward terrain outside the middle of the west curtain. Local doorway and riverbank grade remain approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/1554213",
+      "way/109746492",
+      "way/109746494"
+    ],
+    "source": "https://www.openstreetmap.org/relation/1554213",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:71bca6548a29289315902b8b9ab547c969c69d2634e7337567ce1ea707a3798f",
+    "notes": "OpenStreetMap fort relation 1554213, with outer way 109746492 and courtyard way 109746494. Park geometry carries the site Wikidata identity, separate from the fort perimeter. Clear photos distinguish river and garden walls and show the courtyard roof and dormers. Exact dimensions, roof joins and obscured ranges are approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_shingle",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_cedar",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Represents the surviving stone fort photographed in June 2003. The outer and inner map rings set layout and scale.",
+    "Roof divisions, the landward gate, masonry detailing and individual grades are interpreted where no cleared view provided measurements.",
+    "Only the fort’s architecture is included. The historic-site park, detached exhibits and interiors are outside the model.",
+    "Original elevation remains provider-relative. Foundation details and exact local grades are approximate."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. The three published exterior photographs by Petersent were released into the public domain. OpenStreetMap contributors supply mapped geometry under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-fort-skyline",
+      "position": [
+        76,
+        45,
+        -61
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-fort-district",
+      "position": [
+        76,
+        45,
+        -61
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-fort-street",
+      "position": [
+        76,
+        45,
+        -61
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-fort-closeup",
+      "position": [
+        76,
+        45,
+        -61
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "river-curtain-and-bastions",
+      "position": [
+        62,
+        12,
+        26
+      ],
+      "lookAt": [
+        17,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "open-courtyard-and-dormer-ranges",
+      "position": [
+        15,
+        52,
+        -25
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "landward-entry-and-walls",
+      "position": [
+        -61,
+        10,
+        -18
+      ],
+      "lookAt": [
+        -17,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3563,
+    "vertices": 10689,
+    "materials": 5,
+    "bytes": 644780,
+    "sha256": "sha256:458c4df98ac4f055bddf48d84ddef2b21ead87bbbd2879f81c1020159c676005"
+  }
+}

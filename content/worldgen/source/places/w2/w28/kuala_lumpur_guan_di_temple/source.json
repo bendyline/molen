@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.kuala_lumpur_guan_di_temple",
+  "kind": "static-structure",
+  "title": "Kuala Lumpur Guan Di Temple",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.kuala_lumpur_guan_di_temple",
+        "output": "assets/places/w2/w28/kuala_lumpur_guan_di_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6670a1c644a9faf93bbc64b777dcb677bc498cf97f819810ee4c52dbde0b6063"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-guan-di-temple",
+        "path": "models/generate-guan-di-temple.mjs"
+      },
+      {
+        "id": "zimmer-tower-model",
+        "path": "models/guan-di-temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/temple-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-temple-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-25640-16097.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

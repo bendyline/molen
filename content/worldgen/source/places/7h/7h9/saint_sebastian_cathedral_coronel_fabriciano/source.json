@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.saint_sebastian_cathedral_coronel_fabriciano",
+  "kind": "static-structure",
+  "title": "Saint Sebastian Cathedral, Coronel Fabriciano",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.saint_sebastian_cathedral_coronel_fabriciano",
+        "output": "assets/places/7h/7h9/saint_sebastian_cathedral_coronel_fabriciano/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:32bde9be62065dee9660009d339941932b7f160f044870efda9bc02ea351c187"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-fabriciano-cathedral",
+        "path": "models/generate-fabriciano-cathedral.mjs"
+      },
+      {
+        "id": "fabriciano-cathedral-model",
+        "path": "models/fabriciano-cathedral-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/cathedral-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-fabriciano-cathedral-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-12504-18196.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

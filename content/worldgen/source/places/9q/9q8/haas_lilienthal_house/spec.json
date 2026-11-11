@@ -1,0 +1,561 @@
+{
+  "planId": "haas_lilienthal_house",
+  "id": "haas_lilienthal_house",
+  "assetId": "molen.worldgen.structure.haas_lilienthal_house",
+  "title": "Haas-Lilienthal House",
+  "wikidataId": "Q5636548",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -122.424911,
+    "latitude": 37.793308
+  },
+  "size": [
+    23.24147129058838,
+    18.90000033378601,
+    47.88083076477051
+  ],
+  "actualBounds": {
+    "min": [
+      -13.802435874938965,
+      -1.7999999523162842,
+      -24.686830520629883
+    ],
+    "max": [
+      9.439035415649414,
+      17.100000381469727,
+      23.194000244140625
+    ]
+  },
+  "visualBrief": "The May 2015 Haas-Lilienthal House on Franklin Street, with its Queen Anne turret, shingled gables, entry stair, porch and attached 1929 guest wing.",
+  "nativeAxes": {
+    "x": "north along Franklin",
+    "y": "up",
+    "z": "toward Franklin Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2015-05-23",
+    "validFrom": "2015-01-01",
+    "validUntil": "2016-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Exterior_-_Haas-Lilienthal_House_-_San_Francisco,_CA_-_DSC04914.JPG",
+    "https://commons.wikimedia.org/wiki/File:Exterior_-_Haas-Lilienthal_House_-_San_Francisco,_CA_-_DSC04917.JPG",
+    "https://www.loc.gov/item/ca0652/"
+  ],
+  "stories": [
+    {
+      "id": "haas-lilienthal-house-wp",
+      "url": "https://qualla.com/haas-lilienthal-house/"
+    }
+  ],
+  "referenceInputHash": "51604fe07432c46b3491157a2171acbbfef36705be35c0ac5c71c0c9f34ea895",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9q/9q8/haas_lilienthal_house/models/haas-lilienthal-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9q/9q8/haas_lilienthal_house/models/haas-lilienthal-model.mjs",
+    "level": "skyline",
+    "export": "haasSkyline",
+    "errorMeters": 0.49,
+    "surfaces": {
+      "lap": {
+        "slot": "wall",
+        "graph": "wood_painted_lap",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "shingle": {
+        "slot": "wall",
+        "graph": "siding_shingle",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "shingle_asphalt",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick_flemish",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#fffdfe",
+        "roughness": 0.84,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "haasDistrict",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "lap": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "shingle": {
+            "slot": "wall",
+            "graph": "siding_shingle",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "haasStreet",
+        "errorMeters": 0.084,
+        "surfaces": {
+          "lap": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "shingle": {
+            "slot": "wall",
+            "graph": "siding_shingle",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "haasCloseup",
+        "errorMeters": 0.031,
+        "surfaces": {
+          "lap": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "shingle": {
+            "slot": "wall",
+            "graph": "siding_shingle",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.84,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_painted_lap",
+    "siding_shingle",
+    "shingle_asphalt",
+    "brick_flemish",
+    "stone_limestone"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.85,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -122.424911,
+      37.793308
+    ],
+    "heading": 1.7298645545709472,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -122.42467380814867,
+        37.793336249446334
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation sample near the east stairs on the Franklin Street approach. The survey records two stair runs. Model placement follows the mapped footprint and the front approach is a visual estimate."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -2.726799208735739,
+          -24.53693334951341
+        ],
+        [
+          -2.647350057953661,
+          -14.982393259728887
+        ],
+        [
+          -1.4516058070350488,
+          -14.986570953197038
+        ],
+        [
+          3.177491432694345,
+          -15.027967668729122
+        ],
+        [
+          3.1906304960349425,
+          -13.493470808548933
+        ],
+        [
+          7.694642032756596,
+          -13.52820650297941
+        ],
+        [
+          7.8221558122094095,
+          2.3328759991544112
+        ],
+        [
+          9.233703842169271,
+          2.318772124327914
+        ],
+        [
+          9.28749776191217,
+          8.519322785152164
+        ],
+        [
+          7.864958320029789,
+          8.531663379754034
+        ],
+        [
+          7.873852252046093,
+          15.15265447869804
+        ],
+        [
+          2.613908652173378,
+          15.190850196032866
+        ],
+        [
+          2.6069660505117103,
+          13.336614803646835
+        ],
+        [
+          -2.033122600942187,
+          13.376248237719977
+        ],
+        [
+          -2.0541467250436956,
+          11.047564190008787
+        ],
+        [
+          -3.9508659814698457,
+          11.064018314785015
+        ],
+        [
+          -4.006512343402625,
+          4.453345501808221
+        ],
+        [
+          -3.103511754179773,
+          4.446751018126233
+        ],
+        [
+          -3.1316423224678758,
+          0.9676351469729172
+        ],
+        [
+          -5.536909019048064,
+          0.9915986642532532
+        ],
+        [
+          -5.598440395911241,
+          -5.441833471622735
+        ],
+        [
+          -4.3793199303258765,
+          -5.451170308754293
+        ],
+        [
+          -4.412712619266322,
+          -9.03804121289159
+        ],
+        [
+          -13.54582139630034,
+          -8.961908804288635
+        ],
+        [
+          -13.651229106599462,
+          -22.360495108827912
+        ],
+        [
+          -10.14093623571715,
+          -22.385371160679263
+        ],
+        [
+          -10.166607706223601,
+          -24.47425130957597
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "Native mapped continuous house and connected rear guest wing."
+    },
+    "featureIds": [
+      "way/256993595",
+      "way/1459358560"
+    ],
+    "source": "https://www.openstreetmap.org/way/256993595",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a34107305d8ea19b20bc3b8be02b33445027fdf21a760e1417aa3e28b723ce26",
+    "notes": "The Haas-Lilienthal House exterior at 2007 Franklin Street in San Francisco as photographed in May 2015. Includes the 1886 main residence, pointed southeast turret, stair and covered entry, multiple gables, and the attached 1929 rear guest and garage wing. Interiors and neighboring buildings are outside the reconstruction. The roof and porch are interpreted from the native plan, two exact 2015 originals and the independently verified HABS east-front view."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.siding_shingle",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_asphalt",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        2.1
+      ]
+    }
+  ],
+  "limitations": [
+    "The original mapped envelope is the horizontal control. Tower cap and roof heights, bay widths, carved patterns, rear wing façade and rear roof are approximate. The model focuses on the May 2015 exterior and attached guest wing.",
+    "The original Terrarium field is unchanged. Exterior foundation exposure, two-run stair alignment and attachment to the sidewalk are approximate. The written survey establishes eight and ten risers.",
+    "The modern color references are the exact CC0 Daderot originals. The HABS east-front image supports form and trim. Interior contents and the lot boundary are outside scope."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. OpenStreetMap geographic controls, ODbL 1.0. Exact CC0 Daderot references and public-domain Jack E. Boucher HABS original.",
+  "qaLodCameras": [
+    {
+      "name": "whole-haas-lilienthal-skyline",
+      "position": [
+        -40,
+        25,
+        53
+      ],
+      "lookAt": [
+        -1,
+        6,
+        -0.7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-haas-lilienthal-district",
+      "position": [
+        -40,
+        25,
+        53
+      ],
+      "lookAt": [
+        -1,
+        6,
+        -0.7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-haas-lilienthal-street",
+      "position": [
+        -40,
+        25,
+        53
+      ],
+      "lookAt": [
+        -1,
+        6,
+        -0.7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-haas-lilienthal-closeup",
+      "position": [
+        -40,
+        25,
+        53
+      ],
+      "lookAt": [
+        -1,
+        6,
+        -0.7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "franklin-porch-stairs-and-turret",
+      "position": [
+        -9,
+        9,
+        51
+      ],
+      "lookAt": [
+        1,
+        7,
+        12
+      ]
+    },
+    {
+      "name": "south-gables-and-chimney",
+      "position": [
+        -43,
+        13,
+        17
+      ],
+      "lookAt": [
+        -2,
+        7,
+        2
+      ]
+    },
+    {
+      "name": "rear-guest-wing-and-roof-plan",
+      "position": [
+        -37,
+        57,
+        -45
+      ],
+      "lookAt": [
+        -3,
+        5,
+        -3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3362,
+    "vertices": 10086,
+    "materials": 6,
+    "bytes": 663480,
+    "sha256": "sha256:dd41ee5164956e9cef8ff07f3130cf1e464fbf9a8a805a9cccc0dcf0c6923cee"
+  }
+}

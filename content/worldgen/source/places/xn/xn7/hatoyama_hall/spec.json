@@ -1,0 +1,601 @@
+{
+  "planId": "hatoyama_hall",
+  "id": "hatoyama_hall",
+  "assetId": "molen.worldgen.structure.hatoyama_hall",
+  "title": "Hatoyama Hall",
+  "wikidataId": "Q871522",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 139.73121532222223,
+    "latitude": 35.713819244444444
+  },
+  "size": [
+    28.53936004638672,
+    13.825470089912415,
+    19.240412712097168
+  ],
+  "actualBounds": {
+    "min": [
+      -15.635665893554688,
+      -0.3654700517654419,
+      -9.376266479492188
+    ],
+    "max": [
+      12.903694152832031,
+      13.460000038146973,
+      9.86414623260498
+    ]
+  },
+  "visualBrief": "Hatoyama Hall in Otowa with pale brick, a dormered roof, glazed garden rooms and a west arched carriage porch.",
+  "nativeAxes": {
+    "x": "east along the south facade",
+    "y": "up",
+    "z": "out toward the south garden"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2006-05-04",
+    "validFrom": "2006-01-01",
+    "validUntil": "2007-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hatoyama_Hall_(entrance).jpg",
+    "https://commons.wikimedia.org/wiki/File:Hatoyama_Hall_(garden).jpg"
+  ],
+  "stories": [
+    {
+      "id": "hatoyama-hall-wp",
+      "url": "https://qualla.com/hatoyama-hall/"
+    }
+  ],
+  "referenceInputHash": "ed10dfdbd60fed29762355a4283a7e1fa71d7cec6c43049d2c93baab683374cb",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn7/hatoyama_hall/models/hatoyama-hall-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn7/hatoyama_hall/models/hatoyama-hall-model.mjs",
+    "level": "skyline",
+    "export": "otowaSkyline",
+    "errorMeters": 0.97,
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "brick_longformat",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "footing": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "detail": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.58,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "otowaDistrict",
+        "errorMeters": 0.44,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "otowaStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "otowaCloseup",
+        "errorMeters": 0.056,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "footing": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.58,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_longformat",
+    "stone_limestone",
+    "stone_limestone_weathered",
+    "tile_flat",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      139.73121532222223,
+      35.713819244444444
+    ],
+    "heading": 0.04356936273865857,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        139.73103272092038,
+        35.71381996309707
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate approach to the west porte-cochère."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -8.501239025697439,
+          -9.24626693213026
+        ],
+        [
+          -0.06031592036229955,
+          -9.245971674487244
+        ],
+        [
+          -0.05565870148930646,
+          -5.825013989476121
+        ],
+        [
+          5.680467361276485,
+          -5.831214407520358
+        ],
+        [
+          5.680654236281249,
+          -7.703150169939235
+        ],
+        [
+          12.773693785337738,
+          -7.7059059118195625
+        ],
+        [
+          12.770819976249717,
+          1.6982584420564875
+        ],
+        [
+          11.77558846803573,
+          1.6994394738150485
+        ],
+        [
+          11.77412041681359,
+          6.713510944188848
+        ],
+        [
+          7.521811685125181,
+          6.717546136713398
+        ],
+        [
+          7.519440701337688,
+          9.469646018011185
+        ],
+        [
+          -4.748414802133931,
+          9.469646018011185
+        ],
+        [
+          -4.745376575918886,
+          6.49472476154929
+        ],
+        [
+          -9.458696489738472,
+          6.48980379474136
+        ],
+        [
+          -9.458198155479527,
+          1.4979750936779475
+        ],
+        [
+          -14.985666160560237,
+          1.4909873211940492
+        ],
+        [
+          -14.98504773316237,
+          -3.088562782999726
+        ],
+        [
+          -8.497983073614288,
+          -3.0954521359219607
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -8.501239025697439,
+            -9.24626693213026
+          ],
+          [
+            -0.06031592036229955,
+            -9.245971674487244
+          ],
+          [
+            -0.05565870148930646,
+            -5.825013989476121
+          ],
+          [
+            5.680467361276485,
+            -5.831214407520358
+          ],
+          [
+            5.680654236281249,
+            -7.703150169939235
+          ],
+          [
+            12.773693785337738,
+            -7.7059059118195625
+          ],
+          [
+            12.770819976249717,
+            1.6982584420564875
+          ],
+          [
+            11.77558846803573,
+            1.6994394738150485
+          ],
+          [
+            11.77412041681359,
+            6.713510944188848
+          ],
+          [
+            7.521811685125181,
+            6.717546136713398
+          ],
+          [
+            7.519440701337688,
+            9.469646018011185
+          ],
+          [
+            -4.748414802133931,
+            9.469646018011185
+          ],
+          [
+            -4.745376575918886,
+            6.49472476154929
+          ],
+          [
+            -9.458696489738472,
+            6.48980379474136
+          ],
+          [
+            -9.458198155479527,
+            1.4979750936779475
+          ],
+          [
+            -14.985666160560237,
+            1.4909873211940492
+          ],
+          [
+            -14.98504773316237,
+            -3.088562782999726
+          ],
+          [
+            -8.497983073614288,
+            -3.0954521359219607
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Mapped Otowa mansion and its projecting west porch."
+    },
+    "featureIds": [
+      "way/251437488"
+    ],
+    "source": "https://www.openstreetmap.org/way/251437488",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:eb1af19871571a9fb64091cf3be54222acae79fdd6317bfb1be14f2c6b158d5a",
+    "notes": "The operator identifies the south garden and west car entrance. The exact porch is visible in a 2006 Qualla photograph; rear openings and roof details depend on mapping and written descriptions."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The 2006 entrance photograph sets the west arch, shallow external steps, visible stair and fanlight. Most elevations, roof joins, dormer count, railing and small exterior ornament are estimates.",
+    "The operator documents arched lower and four-panel upper openings on the south sunroom. The local outline controls its width and projection. The surrounding garden and the rest of the interior are outside the model scope.",
+    "The original elevation samples are unchanged. Footings and approach grades are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Mapped footprint is ODbL. The two exact Qualla originals were released to the public domain by the photographer.",
+  "qaLodCameras": [
+    {
+      "name": "whole-hall-skyline",
+      "position": [
+        -36,
+        19,
+        42
+      ],
+      "lookAt": [
+        -1.1,
+        5.5,
+        0.6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-hall-district",
+      "position": [
+        -36,
+        19,
+        42
+      ],
+      "lookAt": [
+        -1.1,
+        5.5,
+        0.6
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-hall-street",
+      "position": [
+        -36,
+        19,
+        42
+      ],
+      "lookAt": [
+        -1.1,
+        5.5,
+        0.6
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-hall-closeup",
+      "position": [
+        -36,
+        19,
+        42
+      ],
+      "lookAt": [
+        -1.1,
+        5.5,
+        0.6
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "garden-sunroom-and-dormers",
+      "position": [
+        -2,
+        7.4,
+        37
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        3
+      ]
+    },
+    {
+      "name": "west-arch-and-stair",
+      "position": [
+        -26,
+        3.1,
+        -1.25
+      ],
+      "lookAt": [
+        -10,
+        2.68,
+        -0.66
+      ]
+    },
+    {
+      "name": "roof-and-north-return",
+      "position": [
+        27,
+        21,
+        -29
+      ],
+      "lookAt": [
+        1,
+        6,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11606,
+    "vertices": 34818,
+    "materials": 6,
+    "bytes": 1750744,
+    "sha256": "sha256:dd77a0f77aabb3129f07e02deb447c2290e0179617db21bbc45b752e1860b697"
+  }
+}

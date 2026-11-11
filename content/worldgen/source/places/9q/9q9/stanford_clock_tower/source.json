@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.stanford_clock_tower",
+  "kind": "static-structure",
+  "title": "Stanford Clock Tower",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "output": "assets/places/9q/9q9/stanford_clock_tower/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d1d4bdf1f02b46a316e5e3bf62fd7942eb85b89da3d60fd897fe7a7b9b8dfd63"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-stanford-clock-tower",
+        "path": "models/generate-stanford-clock-tower.mjs"
+      },
+      {
+        "id": "stanford-clock-tower-model",
+        "path": "models/stanford-clock-tower-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/campus-tower-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-stanford-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-5263-12705.png",
+      "terrain-sources/terrarium-15-5264-12705.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

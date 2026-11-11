@@ -1,0 +1,525 @@
+{
+  "planId": "griffith_mansion",
+  "id": "griffith_mansion",
+  "assetId": "molen.worldgen.structure.griffith_mansion",
+  "title": "Griffith Mansion",
+  "wikidataId": "Q5608901",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -121.80679125000002,
+    "latitude": 38.730346875
+  },
+  "size": [
+    21.409332275390625,
+    10.52999997138977,
+    17.65933132171631
+  ],
+  "actualBounds": {
+    "min": [
+      -9.0600004196167,
+      -0.7799999713897705,
+      -9.909331321716309
+    ],
+    "max": [
+      12.349331855773926,
+      9.75,
+      7.75
+    ]
+  },
+  "visualBrief": "The June 2009 Griffith Mansion in Yolo, with twin polygonal bays, white Italianate siding, arched sash and a columned porch.",
+  "nativeAxes": {
+    "x": "west-northwest along the main facade",
+    "y": "up",
+    "z": "north-northeast toward the entrance approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2009-06-05",
+    "validFrom": "2009-01-01",
+    "validUntil": "2010-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Griffith_Mansion_Tornincasa.jpg",
+    "https://commons.wikimedia.org/wiki/File:Griffith_Mansion_Tornincasa_3.jpg",
+    "https://commons.wikimedia.org/wiki/File:Griffith_Mansion_Tornincasa_5.jpg"
+  ],
+  "stories": [
+    {
+      "id": "griffith-mansion-wp",
+      "url": "https://qualla.com/griffith-mansion/"
+    }
+  ],
+  "referenceInputHash": "5f09f6db6f9c194a55208bdf4fab20da0ba44d5b7730d551a944eab1f6dc285e",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9q/9qc/griffith_mansion/models/griffith-mansion-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9q/9qc/griffith_mansion/models/griffith-mansion-model.mjs",
+    "level": "skyline",
+    "export": "griffithSkyline",
+    "errorMeters": 0.32,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "wood_painted_lap",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "shingle_asphalt",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "detail": {
+        "slot": "window",
+        "localRef": "palette:#fffdfe",
+        "roughness": 0.72,
+        "metallic": 0.04
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "griffithDistrict",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.72,
+            "metallic": 0.04
+          }
+        }
+      },
+      "street": {
+        "export": "griffithStreet",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.72,
+            "metallic": 0.04
+          }
+        }
+      },
+      "closeup": {
+        "export": "griffithCloseup",
+        "errorMeters": 0.021,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_asphalt",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.72,
+            "metallic": 0.04
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_painted_lap",
+    "wood_plain",
+    "stone_granite",
+    "shingle_asphalt"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.86,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -121.80679125000002,
+      38.730346875
+    ],
+    "heading": 2.7914141813866435,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -121.80676446549118,
+        38.73040408423438
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation at the central porch approach. The model threshold is estimated from the ground-level exterior."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -8.65,
+          -5.44
+        ],
+        [
+          -8.65,
+          -8.72
+        ],
+        [
+          -7.66,
+          -9.56
+        ],
+        [
+          -2.55,
+          -9.56
+        ],
+        [
+          -2.55,
+          -5.44
+        ],
+        [
+          8.15,
+          -5.44
+        ],
+        [
+          8.15,
+          -5.04
+        ],
+        [
+          10.22,
+          -5.04
+        ],
+        [
+          10.22,
+          -4.1
+        ],
+        [
+          12,
+          -4.1
+        ],
+        [
+          12,
+          2.64
+        ],
+        [
+          8.15,
+          2.64
+        ],
+        [
+          8.15,
+          5.52
+        ],
+        [
+          6.67,
+          5.52
+        ],
+        [
+          6.67,
+          6.45
+        ],
+        [
+          5.86,
+          7.26
+        ],
+        [
+          3.43,
+          7.26
+        ],
+        [
+          2.62,
+          6.45
+        ],
+        [
+          2.62,
+          5.52
+        ],
+        [
+          -2.64,
+          5.52
+        ],
+        [
+          -2.64,
+          6.43
+        ],
+        [
+          -3.43,
+          7.25
+        ],
+        [
+          -5.96,
+          7.25
+        ],
+        [
+          -6.76,
+          6.43
+        ],
+        [
+          -6.76,
+          5.52
+        ],
+        [
+          -8.65,
+          5.52
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "The approximate house-wall envelope reconstructed from the georeferenced public-domain roof and dated exterior references."
+    },
+    "featureIds": [
+      "front-eaves-line",
+      "rear-eaves-line",
+      "visible-side-range",
+      "visible-rear-return",
+      "entrance-approach-center"
+    ],
+    "source": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:6f5a7e9a3cb4ed5785d795ebfa3a17eb602adb8f93a30c1ca7e768a286a99552",
+    "notes": "The June 2009 exterior of the Griffith Mansion in Yolo, California. Includes the 1886 Italianate main house, its porch, polygonal bays, attached side range and rear addition. Detached buildings, private grounds and interiors are outside the model. Roof pixels are manually read from a magnified public-domain map. Tree cover and roof eaves prevent exact wall delineation."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_asphalt",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        2.1
+      ]
+    }
+  ],
+  "limitations": [
+    "The June 2009 exterior omits interiors, detached buildings and private landscape features. The extent of obscured wall lines, rear windows and roof folds is approximate. Columns, brackets and sash ornament are simplified.",
+    "Federal orthophotography controls scale and position. The original terrain remains unchanged. Step and threshold contact is approximate."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. Roof controls from public-domain USGS USDA NAIP orthoimagery. Three exact public-domain photographs by Greg Ciro Tornincasa.",
+  "qaLodCameras": [
+    {
+      "name": "whole-griffith-mansion-skyline",
+      "position": [
+        26,
+        13,
+        30
+      ],
+      "lookAt": [
+        0.5,
+        4.45,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-griffith-mansion-district",
+      "position": [
+        26,
+        13,
+        30
+      ],
+      "lookAt": [
+        0.5,
+        4.45,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-griffith-mansion-street",
+      "position": [
+        26,
+        13,
+        30
+      ],
+      "lookAt": [
+        0.5,
+        4.45,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-griffith-mansion-closeup",
+      "position": [
+        26,
+        13,
+        30
+      ],
+      "lookAt": [
+        0.5,
+        4.45,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "italianate-front-and-polygonal-bays",
+      "position": [
+        0,
+        7,
+        31
+      ],
+      "lookAt": [
+        0.65,
+        4.55,
+        5
+      ]
+    },
+    {
+      "name": "garden-elevation-and-rear-roofs",
+      "position": [
+        -21,
+        15,
+        -26
+      ],
+      "lookAt": [
+        -0.5,
+        4,
+        -4
+      ]
+    },
+    {
+      "name": "porch-columns-and-balcony",
+      "position": [
+        11,
+        7,
+        21
+      ],
+      "lookAt": [
+        2,
+        3.95,
+        6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4126,
+    "vertices": 12378,
+    "materials": 5,
+    "bytes": 786692,
+    "sha256": "sha256:455c6a70100eb6f46bbce079f6537b6a233643c30abc68f7462cd5b531f9e15c"
+  }
+}

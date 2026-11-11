@@ -1,0 +1,678 @@
+{
+  "planId": "round_church_preslav",
+  "id": "round_church_preslav",
+  "assetId": "molen.worldgen.structure.round_church_preslav",
+  "title": "Round Church, Preslav",
+  "wikidataId": "Q7371012",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 26.81321055,
+    "latitude": 43.142262
+  },
+  "size": [
+    16.571266174316406,
+    8.889586210250854,
+    37.1523323059082
+  ],
+  "actualBounds": {
+    "min": [
+      -8.285633087158203,
+      -5.3862528800964355,
+      -26.325654983520508
+    ],
+    "max": [
+      8.285633087158203,
+      3.503333330154419,
+      10.826677322387695
+    ]
+  },
+  "visualBrief": "The roofless Round Church at Preslav, with an open well court, surviving arches and white-capped scalloped sanctuary.",
+  "nativeAxes": {
+    "x": "right across the approach",
+    "y": "up",
+    "z": "toward the west entry"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2010-06-21",
+    "validFrom": "2010-01-01",
+    "validUntil": "2011-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Preslav_fortress_19.jpg",
+    "https://commons.wikimedia.org/wiki/File:Preslav_fortress_20.jpg",
+    "https://commons.wikimedia.org/wiki/File:Preslav_fortress_21.jpg",
+    "https://commons.wikimedia.org/wiki/File:Preslav_fortress_23.jpg",
+    "https://commons.wikimedia.org/wiki/File:Preslav_fortress_25.jpg",
+    "https://commons.wikimedia.org/wiki/File:Preslav_fortress_26.jpg",
+    "https://commons.wikimedia.org/wiki/File:Preslav_Round_Church.JPG"
+  ],
+  "stories": [
+    {
+      "id": "round-church-preslav-wp",
+      "url": "https://qualla.com/round-church-preslav/"
+    }
+  ],
+  "referenceInputHash": "848408e70df6acb39b80d8a3b6cbf618e8321592ec05333d9e390091c9d70581",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sx/sxe/round_church_preslav/models/round-church-preslav-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sx/sxe/round_church_preslav/models/round-church-preslav-model.mjs",
+    "level": "skyline",
+    "export": "churchSkyline",
+    "errorMeters": 0.83,
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "lime": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.15
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "churchDistrict",
+        "errorMeters": 0.44,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.15
+          }
+        }
+      },
+      "street": {
+        "export": "churchStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.15
+          }
+        }
+      },
+      "closeup": {
+        "export": "churchCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "lime": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.15
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_drywall",
+    "plaster_lime",
+    "stone_limestone_raw",
+    "stone",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.6,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      26.81321055,
+      43.142262
+    ],
+    "heading": -1.6566870962962474,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        26.813077749813463,
+        43.14227034323323
+      ],
+      "modelHeight": 0,
+      "basis": "Western atrium entrance approach."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -8.285632969271607,
+          10.82667751082994
+        ],
+        [
+          -8.284129376004085,
+          -10.826677510610285
+        ],
+        [
+          -6.295314258524687,
+          -10.826715708868134
+        ],
+        [
+          -4.6461944438117415,
+          -10.879030954879253
+        ],
+        [
+          -5.575390487747321,
+          -11.549061180844793
+        ],
+        [
+          -6.824825689741904,
+          -13.732353685208627
+        ],
+        [
+          -7.261255802077023,
+          -16.20576743314089
+        ],
+        [
+          -6.849202203258619,
+          -18.687017281044277
+        ],
+        [
+          -5.619034952600091,
+          -20.879995772892567
+        ],
+        [
+          -3.945350430161473,
+          -21.81490364941803
+        ],
+        [
+          -2.780977843406758,
+          -22.30648251742267
+        ],
+        [
+          -2.128007567550654,
+          -22.379010099739602
+        ],
+        [
+          -2.168941282464098,
+          -24.02230471280931
+        ],
+        [
+          -1.7653106717670897,
+          -25.173960431793684
+        ],
+        [
+          -0.7051680709264405,
+          -26.227244716813505
+        ],
+        [
+          0.6271350579854302,
+          -26.325654349171618
+        ],
+        [
+          1.785640803550434,
+          -25.97701337092186
+        ],
+        [
+          2.332171476223401,
+          -25.33925521760478
+        ],
+        [
+          2.858087170757789,
+          -24.29209356819805
+        ],
+        [
+          2.940016089398603,
+          -22.432209362733303
+        ],
+        [
+          4.125465692725293,
+          -22.28970256752436
+        ],
+        [
+          5.513046388232254,
+          -21.227054251621396
+        ],
+        [
+          6.868513176484793,
+          -19.109959332624705
+        ],
+        [
+          7.447731573608779,
+          -16.665145167812405
+        ],
+        [
+          7.159768390679113,
+          -14.170122118565478
+        ],
+        [
+          6.046781394911379,
+          -11.913860023325569
+        ],
+        [
+          5.184184850554361,
+          -10.902042678251338
+        ],
+        [
+          8.285632970059664,
+          -10.826677510897794
+        ],
+        [
+          8.284129376816896,
+          10.826677510829938
+        ],
+        [
+          -1.6488553007536,
+          10.825913545585532
+        ]
+      ],
+      "basis": "The mapped ruin contains the modeled descending paved surface. Open only this area where viewer terrain would cover the court and naos floors."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -8.285632969271607,
+          10.82667751082994
+        ],
+        [
+          -8.284129376004085,
+          -10.826677510610285
+        ],
+        [
+          -6.295314258524687,
+          -10.826715708868134
+        ],
+        [
+          -4.6461944438117415,
+          -10.879030954879253
+        ],
+        [
+          -5.575390487747321,
+          -11.549061180844793
+        ],
+        [
+          -6.824825689741904,
+          -13.732353685208627
+        ],
+        [
+          -7.261255802077023,
+          -16.20576743314089
+        ],
+        [
+          -6.849202203258619,
+          -18.687017281044277
+        ],
+        [
+          -5.619034952600091,
+          -20.879995772892567
+        ],
+        [
+          -3.945350430161473,
+          -21.81490364941803
+        ],
+        [
+          -2.780977843406758,
+          -22.30648251742267
+        ],
+        [
+          -2.128007567550654,
+          -22.379010099739602
+        ],
+        [
+          -2.168941282464098,
+          -24.02230471280931
+        ],
+        [
+          -1.7653106717670897,
+          -25.173960431793684
+        ],
+        [
+          -0.7051680709264405,
+          -26.227244716813505
+        ],
+        [
+          0.6271350579854302,
+          -26.325654349171618
+        ],
+        [
+          1.785640803550434,
+          -25.97701337092186
+        ],
+        [
+          2.332171476223401,
+          -25.33925521760478
+        ],
+        [
+          2.858087170757789,
+          -24.29209356819805
+        ],
+        [
+          2.940016089398603,
+          -22.432209362733303
+        ],
+        [
+          4.125465692725293,
+          -22.28970256752436
+        ],
+        [
+          5.513046388232254,
+          -21.227054251621396
+        ],
+        [
+          6.868513176484793,
+          -19.109959332624705
+        ],
+        [
+          7.447731573608779,
+          -16.665145167812405
+        ],
+        [
+          7.159768390679113,
+          -14.170122118565478
+        ],
+        [
+          6.046781394911379,
+          -11.913860023325569
+        ],
+        [
+          5.184184850554361,
+          -10.902042678251338
+        ],
+        [
+          8.285632970059664,
+          -10.826677510897794
+        ],
+        [
+          8.284129376816896,
+          10.826677510829938
+        ],
+        [
+          -1.6488553007536,
+          10.825913545585532
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "Named native archaeological church outline, OpenStreetMap way 486119025."
+    },
+    "featureIds": [
+      "way/486119025",
+      "way/194285677"
+    ],
+    "source": "https://www.openstreetmap.org/way/486119025",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ae7cb8dde44f22d3151375ee7ca534a55e86c4bf110733fb507bffa7b9738a2e",
+    "notes": "The full outline controls the visible rotunda, east apse and attached ranges. The overlapping four-corner way is used as an atrium control. Heights and restored details follow the June 2010 photographs."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model depicts the roofless archaeological site and restoration visible in the 2009–10 photographs. Individual broken courses, stucco edges, column repairs and exposed details are simplified.",
+    "The two mapped outlines and the 10.50 m naos dimension control the plan. The spacing and height of the surviving niches, portals and partial arcade are estimated from ground-level photographs.",
+    "The original source field remains unchanged. Floors and lower retaining faces follow approximate grades. The placement opens ground only inside the mapped ruin where the modeled floor covers it, so flat viewer terrain does not obscure the descending court and naos."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap footprint is ODbL. The seven matching Qualla photographs are public domain or CC0.",
+  "qaLodCameras": [
+    {
+      "name": "whole-round-church-preslav-skyline",
+      "position": [
+        25,
+        27,
+        45
+      ],
+      "lookAt": [
+        0,
+        -0.9,
+        -6.9
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-round-church-preslav-district",
+      "position": [
+        25,
+        27,
+        45
+      ],
+      "lookAt": [
+        0,
+        -0.9,
+        -6.9
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-round-church-preslav-street",
+      "position": [
+        25,
+        27,
+        45
+      ],
+      "lookAt": [
+        0,
+        -0.9,
+        -6.9
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-round-church-preslav-closeup",
+      "position": [
+        25,
+        27,
+        45
+      ],
+      "lookAt": [
+        0,
+        -0.9,
+        -6.9
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-entry-well-and-narthex",
+      "position": [
+        1.9,
+        8.8,
+        25
+      ],
+      "lookAt": [
+        0,
+        -0.15,
+        0.3
+      ]
+    },
+    {
+      "name": "sanctuary-niches-and-standing-arcade",
+      "position": [
+        -17,
+        9.4,
+        -28
+      ],
+      "lookAt": [
+        0,
+        -1.95,
+        -14.3
+      ]
+    },
+    {
+      "name": "open-ruin-and-altar-apse",
+      "position": [
+        26,
+        19,
+        -30
+      ],
+      "lookAt": [
+        0,
+        -1.32,
+        -9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5810,
+    "vertices": 17430,
+    "materials": 5,
+    "bytes": 1024160,
+    "sha256": "sha256:24d10ea2d27bd9625abbd1e844590c9461ef4702104c4efc5857cbf9f506a30d"
+  }
+}

@@ -1,0 +1,444 @@
+{
+  "planId": "lyttelton_gaol",
+  "id": "lyttelton_gaol",
+  "assetId": "molen.worldgen.structure.lyttelton_gaol",
+  "title": "Lyttelton Gaol",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 172.72369592241967,
+    "latitude": -43.602248379751465
+  },
+  "size": [
+    52.15999984741211,
+    19.76676109433174,
+    80.6298713684082
+  ],
+  "actualBounds": {
+    "min": [
+      -44.56999969482422,
+      0.34320327639579773,
+      -39.56986999511719
+    ],
+    "max": [
+      7.590000152587891,
+      20.10996437072754,
+      41.060001373291016
+    ]
+  },
+  "visualBrief": "The terraced concrete Lyttelton Gaol, Oxford Street Gothic entrance and cell ranges around open yards.",
+  "nativeAxes": {
+    "x": "south-southwest across the site",
+    "y": "up",
+    "z": "west-northwest toward Oxford Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1903-01-01",
+    "validFrom": "1903-01-01",
+    "validUntil": "1904-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [],
+  "stories": [
+    {
+      "id": "lyttelton-gaol-wp",
+      "url": "https://qualla.com/lyttelton-gaol/"
+    }
+  ],
+  "referenceInputHash": "sha256:b0999c8632b8504450fde41f7480f2007eca4dd22cfdb2cf76714aa65d00ea26",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/rb/rb4/lyttelton_gaol/models/gaol-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/rb/rb4/lyttelton_gaol/models/gaol-model.mjs",
+    "level": "skyline",
+    "export": "gaolSkyline",
+    "errorMeters": 0.52,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "rubble": {
+        "slot": "foundation",
+        "graph": "stone_basalt",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.87,
+        "metallic": 0.09
+      },
+      "siding": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.9,
+        "metallic": 0.07
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "gaolDistrict",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.87,
+            "metallic": 0.09
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.9,
+            "metallic": 0.07
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "gaolStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.87,
+            "metallic": 0.09
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.9,
+            "metallic": 0.07
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "gaolCloseup",
+        "errorMeters": 0.038,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_basalt",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.87,
+            "metallic": 0.09
+          },
+          "siding": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.9,
+            "metallic": 0.07
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "stone_basalt",
+    "stone_sandstone_raw",
+    "metal_corrugated",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.85,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      172.72369592241967,
+      -43.602248379751465
+    ],
+    "heading": -1.9180978673981817,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        172.72308860514707,
+        -43.60221495790764
+      ],
+      "modelHeight": 0,
+      "basis": "Original provider grade beside Oxford Street, near the former entrance side. This does not survey the vanished entrance."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "christchurch-district-plan/425",
+      "way/38319453",
+      "way/38319454"
+    ],
+    "source": "https://gis.ccc.govt.nz/server/rest/services/OpenData/DistrictPlanB/FeatureServer/31",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8bfeeadf7f6269822f03e45063fbc8334ebd2a706b6572ca0071a786a204dfd3",
+    "notes": "The demolished Lyttelton Gaol in its late operating period. The Oxford Street Gothic entrance, principal cell ranges, yards and perimeter are the historical subject. The separate house across Oxford Street and the later Upham clock are outside scope. The present-day mapped legal boundary fixes the site envelope and surviving controls. Historic internal and building alignments are distinct estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The Christchurch City Council boundary and surviving steps establish the site. The vanished building outlines, yard placements and later internal layout are estimated.",
+    "The 1878 gaoler’s yard dimensions are retained. The 1873 and 1875 records distinguish two-storey and three-storey construction. The model uses the published facts to approximate the operating complex around 1903.",
+    "Roof pitches, windows, the appearance of the gate, materials’ color and details are estimates. The reconstruction uses written evidence and mapped controls without adopting archival imagery.",
+    "The original elevation samples remain unchanged. Terraces and foundations use approximate grade registration on the steep site."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. Christchurch City Council and OpenStreetMap supply the cited geographic controls. No source imagery is used.",
+  "qaLodCameras": [
+    {
+      "name": "whole-lyttelton-gaol-skyline",
+      "position": [
+        83,
+        65,
+        91
+      ],
+      "lookAt": [
+        -13,
+        9,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-lyttelton-gaol-district",
+      "position": [
+        83,
+        65,
+        91
+      ],
+      "lookAt": [
+        -13,
+        9,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-lyttelton-gaol-street",
+      "position": [
+        83,
+        65,
+        91
+      ],
+      "lookAt": [
+        -13,
+        9,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-lyttelton-gaol-closeup",
+      "position": [
+        83,
+        65,
+        91
+      ],
+      "lookAt": [
+        -13,
+        9,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "oxford-street-gate-and-residences",
+      "position": [
+        -3,
+        11,
+        79
+      ],
+      "lookAt": [
+        -10,
+        7,
+        37
+      ]
+    },
+    {
+      "name": "terraced-yards-and-cell-wings",
+      "position": [
+        51,
+        41,
+        23
+      ],
+      "lookAt": [
+        -12,
+        8,
+        -7
+      ]
+    },
+    {
+      "name": "upper-retaining-wall-and-work-yard",
+      "position": [
+        -61,
+        47,
+        -65
+      ],
+      "lookAt": [
+        -16,
+        11,
+        -12
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4647,
+    "vertices": 13941,
+    "materials": 6,
+    "bytes": 741608,
+    "sha256": "sha256:ab35a1acd13d1269e721c79646b09c1de8320b220fcb0023e0ff7ea48bcaa1e6"
+  }
+}

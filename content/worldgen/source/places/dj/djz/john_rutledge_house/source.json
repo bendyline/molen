@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.john_rutledge_house",
+  "kind": "static-structure",
+  "title": "John Rutledge House",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.john_rutledge_house",
+        "output": "assets/places/dj/djz/john_rutledge_house/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:df5270a8c2bc29e821cb5b28d68ffeb11aee048e1dd4ff7b06a8f3107020d687"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-john-rutledge-house",
+        "path": "models/generate-john-rutledge-house.mjs"
+      },
+      {
+        "id": "john-rutledge-house-model",
+        "path": "models/john-rutledge-house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/palace-controls.json",
+      "reference-rights/commons-qualla-mohatta-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-9108-13223.png",
+      "preview.png",
+      "native-map/broad-street-house-controls.json",
+      "reference-rights/commons-qualla-john-rutledge-originals.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

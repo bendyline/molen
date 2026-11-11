@@ -1,0 +1,400 @@
+{
+  "planId": "cloncurry_post_office",
+  "id": "cloncurry_post_office",
+  "assetId": "molen.worldgen.structure.cloncurry_post_office",
+  "title": "Cloncurry Post Office",
+  "category": "civic",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 140.505664,
+    "latitude": -20.7053565
+  },
+  "size": [
+    18.126999855041504,
+    8.246236503124237,
+    21.700913429260254
+  ],
+  "actualBounds": {
+    "min": [
+      -9.156999588012695,
+      -0.44999998807907104,
+      -9.960000038146973
+    ],
+    "max": [
+      8.970000267028809,
+      7.796236515045166,
+      11.740913391113281
+    ]
+  },
+  "visualBrief": "The raised timber Cloncurry Post Office around 1910, with a central slatted gable, twin public porches, paired steps and corrugated hip roof.",
+  "nativeAxes": {
+    "x": "roughly east along the office frontage",
+    "y": "up",
+    "z": "south toward Scarr Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1910-01-01",
+    "validFrom": "1909-01-01",
+    "validUntil": "1912-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Stagecoach_outside_the_post_and_telegraph_office_in_Cloncurry,_ca._1910.tif"
+  ],
+  "stories": [
+    {
+      "id": "cloncurry-post-office-wp",
+      "url": "https://qualla.com/cloncurry-post-office/"
+    }
+  ],
+  "referenceInputHash": "d6357a3513e30b725e1bb5223b544e590cde2b6acb2ef42b47c7766554d26426",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/rh/rh7/cloncurry_post_office/models/cloncurry-office-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "stadium-lettering.mjs": "sha256:b05c2e1200c7498700a4f65c488b5ecedbdb844025961be2b4aed4935375ae56"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/rh/rh7/cloncurry_post_office/models/cloncurry-office-model.mjs",
+    "level": "skyline",
+    "export": "officeSkyline",
+    "errorMeters": 0.37,
+    "surfaces": {
+      "timber": {
+        "slot": "wall",
+        "graph": "wood_weatherboard",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_weatherboard",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.79,
+        "metallic": 0.12
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.05
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.54,
+        "metallic": 0.05
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "officeDistrict",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.79,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.05
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "officeStreet",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.79,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.05
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "officeCloseup",
+        "errorMeters": 0.025,
+        "surfaces": {
+          "timber": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_weatherboard",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.79,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.05
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.54,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_weatherboard",
+    "metal_corrugated",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.74,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      140.505664,
+      -20.7053565
+    ],
+    "heading": -0.028424491633575244,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        140.5056611205402,
+        -20.705451233546007
+      ],
+      "modelHeight": 0,
+      "basis": "Public source elevation near the street-facing steps."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/462782527"
+    ],
+    "source": "https://www.openstreetmap.org/way/462782527",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:273c6a486fe4629b5aa5e6e1cb11d7e5d58a1e60fdb424b6f3c5c308026edc08",
+    "notes": "The timber twin-porch and central-gable Cloncurry Post Office around 1910, after its 1906 construction. Includes the raised original office, verandahs, steps and corrugated hip roof. The separate postmaster’s residence and later exchange additions are outside this historical exterior. The photograph shows an open pair of porches beside the projecting gable. Historical depth, rear windows, and colors require estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "This represents the original timber office around 1910. The present-day footprint is a broad site control. Historical depth, rear openings, porch lattice details and structural members are approximate.",
+    "The photograph is monochrome and partly obscured. Timber, trim and roof colors are estimates. The separate former office used as a residence and later exchange additions are outside this model.",
+    "The original public elevation field remains unchanged. Foundation, floor and stair contact are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap ODbL 1.0 and the published public-domain State Library of Queensland ca.1910 exterior.",
+  "qaLodCameras": [
+    {
+      "name": "whole-cloncurry-post-office-skyline",
+      "position": [
+        30,
+        17.5,
+        40
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        1.2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-cloncurry-post-office-district",
+      "position": [
+        30,
+        17.5,
+        40
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        1.2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-cloncurry-post-office-street",
+      "position": [
+        30,
+        17.5,
+        40
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        1.2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-cloncurry-post-office-closeup",
+      "position": [
+        30,
+        17.5,
+        40
+      ],
+      "lookAt": [
+        0,
+        3.7,
+        1.2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "twin-porches-and-central-gable",
+      "position": [
+        1.4,
+        4.9,
+        33
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        8
+      ]
+    },
+    {
+      "name": "raised-timber-frame-and-steps",
+      "position": [
+        20,
+        4.8,
+        22
+      ],
+      "lookAt": [
+        4,
+        2.7,
+        8
+      ]
+    },
+    {
+      "name": "corrugated-roofs-and-rear",
+      "position": [
+        -23,
+        14,
+        -22
+      ],
+      "lookAt": [
+        0,
+        3.9,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3443,
+    "vertices": 10329,
+    "materials": 5,
+    "bytes": 525376,
+    "sha256": "sha256:b714bad3b37e3a971b2c4acd9eb4173d255ad332c95ccd9a9ada3426d0f2f059"
+  }
+}

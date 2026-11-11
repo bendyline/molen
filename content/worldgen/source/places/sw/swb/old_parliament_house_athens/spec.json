@@ -1,0 +1,399 @@
+{
+  "planId": "old_parliament_house_athens",
+  "id": "old_parliament_house_athens",
+  "assetId": "molen.worldgen.structure.old_parliament_house_athens",
+  "title": "Old Parliament House, Athens",
+  "wikidataId": "Q19363322",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 23.73283,
+    "latitude": 37.97763
+  },
+  "size": [
+    48.77119827270508,
+    20.389999389648438,
+    53.936058044433594
+  ],
+  "actualBounds": {
+    "min": [
+      -24.446626663208008,
+      -3.4200000762939453,
+      -28.012849807739258
+    ],
+    "max": [
+      24.32457160949707,
+      16.969999313354492,
+      25.923208236694336
+    ]
+  },
+  "visualBrief": "Neoclassical Athens Old Parliament with two porticos, pale Ionic columns, rusticated ranges and layered roof parapets.",
+  "nativeAxes": {
+    "x": "west-northwest along the portico",
+    "y": "up",
+    "z": "north-northeast into the courtyard"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2014-08-28",
+    "validFrom": "2014-01-01",
+    "validUntil": "2015-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:The_old_parliament_of_Greece_.jpg",
+    "https://commons.wikimedia.org/wiki/File:Old_parliament_of_Greece_in_Stadiou_street_Athens.jpg"
+  ],
+  "stories": [
+    {
+      "id": "old-parliament-house-athens-wp",
+      "url": "https://qualla.com/old-parliament-house-athens/"
+    }
+  ],
+  "referenceInputHash": "f7fed79f472146ac73f318736f5d44c157765f3ae7bdbe054c226f950fd24168",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sw/swb/old_parliament_house_athens/models/parliament-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sw/swb/old_parliament_house_athens/models/parliament-model.mjs",
+    "level": "skyline",
+    "export": "parliamentSkyline",
+    "errorMeters": 0.26,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_sandstone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.9,
+        "metallic": 0.06
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "parliamentDistrict",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.9,
+            "metallic": 0.06
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "parliamentStreet",
+        "errorMeters": 0.067,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.9,
+            "metallic": 0.06
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "parliamentCloseup",
+        "errorMeters": 0.023,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.9,
+            "metallic": 0.06
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_sandstone",
+    "stone_limestone",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      23.73283,
+      37.97763
+    ],
+    "heading": 2.9727086874081396,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        23.732879063914798,
+        37.977829380856264
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain on the north courtyard immediately beyond the modeled entrance steps. Exact tread levels are approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "relation/19040143"
+    ],
+    "source": "https://www.openstreetmap.org/relation/19040143",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:086ff8a65cf44c87ffbb1a20edd03d2b987ad84c432d8d45b9cddc5b4663b4bb",
+    "notes": "OpenStreetMap relation 19040143 supplies the named historic building. Its seven outer ways form one 32-corner ring, including the front and rear courtyard recesses, both central porticos and projecting wings. The two photographs document the same north courtyard entrance. The opposite portico and secondary roof volumes are estimated from the mapped plan and the published building description."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Appearance represents the exterior in August 2014. The north court and portico follow the photographs, with ornament simplified.",
+    "The opposite entrance, rear and side fenestration, roof subdivisions and exact stair profiles are approximate. The mapped perimeter and unmodified terrain set placement.",
+    "Detached monuments, courtyards outside the footprint, freestanding furniture and interiors are outside the model.",
+    "Clearance and foundation measurements are representative. Geometry uses shared surfaces without photographic pixels."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. The two published exterior photographs are by athenswalk under CC0. OpenStreetMap contributors supply mapped geometry under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-parliament-skyline",
+      "position": [
+        59,
+        36,
+        68
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-parliament-district",
+      "position": [
+        59,
+        36,
+        68
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-parliament-street",
+      "position": [
+        59,
+        36,
+        68
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-parliament-closeup",
+      "position": [
+        59,
+        36,
+        68
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "north-ionic-portico-and-courtyard",
+      "position": [
+        -10,
+        7,
+        49
+      ],
+      "lookAt": [
+        0,
+        6,
+        18
+      ]
+    },
+    {
+      "name": "south-portico-and-roof-tiers",
+      "position": [
+        33,
+        22,
+        -46
+      ],
+      "lookAt": [
+        0,
+        6,
+        -10
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8340,
+    "vertices": 25020,
+    "materials": 5,
+    "bytes": 1168668,
+    "sha256": "sha256:4957c48936a76276ab936e0614134f819e4616ffe0bc3e07ed6243299b29d17d"
+  }
+}

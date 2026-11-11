@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.burton_cummings_theatre",
+  "kind": "static-structure",
+  "title": "Burton Cummings Theatre",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.burton_cummings_theatre",
+        "output": "assets/places/cb/cbf/burton_cummings_theatre/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:d6c51e048115fab90bacaa6c6e34d819d36e620f0b24be31216e69be63c77bda"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-burton-cummings-theatre",
+        "path": "models/generate-burton-cummings-theatre.mjs"
+      },
+      {
+        "id": "burton-cummings-theatre-model",
+        "path": "models/burton-cummings-theatre-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/theatre-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-burton-cummings-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-7541-11127.png",
+      "terrain-sources/terrarium-15-7541-11128.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

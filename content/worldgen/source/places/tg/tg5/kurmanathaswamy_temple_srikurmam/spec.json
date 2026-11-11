@@ -1,0 +1,476 @@
+{
+  "planId": "kurmanathaswamy_temple_srikurmam",
+  "id": "kurmanathaswamy_temple_srikurmam",
+  "assetId": "molen.worldgen.structure.kurmanathaswamy_temple_srikurmam",
+  "title": "Sri Kurmanathaswamy Temple, Srikurmam",
+  "wikidataId": "Q25570463",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 84.006514,
+    "latitude": 18.269957
+  },
+  "size": [
+    50.37813758850098,
+    17.550000071525574,
+    40.77764320373535
+  ],
+  "actualBounds": {
+    "min": [
+      -22.25639533996582,
+      -0.6299999952316284,
+      -18.607643127441406
+    ],
+    "max": [
+      28.121742248535156,
+      16.920000076293945,
+      22.170000076293945
+    ]
+  },
+  "visualBrief": "The July 2021 Sri Kurmanathaswamy Temple in Srikurmam with a carved stone sanctum tower, brass flagstaff, connected halls and an open courtyard inside the roofed precinct.",
+  "nativeAxes": {
+    "x": "east-southeast toward the tank",
+    "y": "up",
+    "z": "south-southwest toward the precinct gate"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2021-07-01",
+    "validFrom": "2021-01-01",
+    "validUntil": "2022-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:11th_century_Kurmanatha_Swamy_Temple,_Srikurmam_Andhra_Pradesh_01.jpg",
+    "https://commons.wikimedia.org/wiki/File:11th_century_Kurmanatha_Swamy_Temple,_Srikurmam_Andhra_Pradesh_02.jpg",
+    "https://commons.wikimedia.org/wiki/File:11th_century_Kurmanatha_Swamy_Temple,_Srikurmam_Andhra_Pradesh_04.jpg",
+    "https://commons.wikimedia.org/wiki/File:11th_century_Kurmanatha_Swamy_Temple,_Srikurmam_Andhra_Pradesh_05.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kurmanathaswamy-temple-srikurmam-wp",
+      "url": "https://qualla.com/kurmanathaswamy-temple-srikurmam/"
+    }
+  ],
+  "referenceInputHash": "fc8414810b539ed4ad5bbac760a0645ce2db18197e4b624d1f273c39f36dfb42",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tg/tg5/kurmanathaswamy_temple_srikurmam/models/srikurmam-temple-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tg/tg5/kurmanathaswamy_temple_srikurmam/models/srikurmam-temple-model.mjs",
+    "level": "skyline",
+    "export": "srikurmamSkyline",
+    "errorMeters": 0.56,
+    "surfaces": {
+      "sandstone": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "limestone": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "roof",
+        "graph": "stone_granite",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.75,
+        "metallic": 0.43
+      },
+      "detail": {
+        "slot": "window",
+        "localRef": "palette:#fffdfe",
+        "roughness": 0.83,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "srikurmamDistrict",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.43
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.83,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "srikurmamStreet",
+        "errorMeters": 0.09,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.43
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.83,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "srikurmamCloseup",
+        "errorMeters": 0.038,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.43
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.83,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone_raw",
+    "stone_limestone_weathered",
+    "stone_granite",
+    "metal_bronze_cast"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.9,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      84.006514,
+      18.269957
+    ],
+    "heading": 0.26054395105553946,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        84.00654025193438,
+        18.269762368574007
+      ],
+      "modelHeight": 0,
+      "basis": "Original source height at the south-southwest projecting gate approach."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -22.09267527796616,
+          -18.447642240485223
+        ],
+        [
+          -22.09721815566678,
+          -13.506440789742408
+        ],
+        [
+          -20.88316712222159,
+          -13.505351549890237
+        ],
+        [
+          -20.88039443100437,
+          17.67060560181484
+        ],
+        [
+          -7.896051120197987,
+          17.676051802363798
+        ],
+        [
+          -7.894955433886926,
+          20.913681773691547
+        ],
+        [
+          2.005429528011538,
+          20.914907169006465
+        ],
+        [
+          2.0043338418023557,
+          17.677277197296576
+        ],
+        [
+          25.437042844810506,
+          17.68027260745888
+        ],
+        [
+          25.43372340167789,
+          4.9719724831011
+        ],
+        [
+          27.959486997706662,
+          4.977146373625691
+        ],
+        [
+          27.961870289938542,
+          -14.400162272680372
+        ],
+        [
+          25.43610669536127,
+          -14.40533616281799
+        ],
+        [
+          25.441680690133673,
+          -18.447642240485223
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "The original outer precinct ring of relation 5943168. Its separate inner ring determines the open court in the model."
+    },
+    "featureIds": [
+      "way/395841895",
+      "way/395841899",
+      "node/3986411584"
+    ],
+    "source": "https://www.openstreetmap.org/relation/5943168",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b1d324cef84776143f26b4529e1c8d8399f6bc7dd055748d073e9b2e01872365",
+    "notes": "Sri Kurmanathaswamy Temple in Srikurmam in July 2021, including the historic carved sanctum, connected halls, covered courtyard ranges, and precinct entrances within the mapped building. The detached tank pavilion, animal enclosure and interiors are outside this model. The building outlines and courtyard are mapped. Vertical dimensions and the division between the connected shrines are interpreted from the July 2021 photography."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The July 2021 model covers the mapped temple and courtyard ranges. Heights, roof subdivisions, column spacing and individual relief figures are interpreted from the cleared views. Ornament is simplified at medium fidelity. Detached structures, the tank pavilion, tortoise enclosure and interior shrine contents are excluded.",
+    "Original source elevation samples are preserved. The modeled court pavement and entry threshold are approximate. Ground contact varies slightly around the precinct perimeter."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. OpenStreetMap ODbL 1.0 footprint and exact CC0 originals by G.N. Subrahmanyam.",
+  "qaLodCameras": [
+    {
+      "name": "whole-srikurmam-temple-skyline",
+      "position": [
+        -49,
+        32,
+        53
+      ],
+      "lookAt": [
+        1,
+        5.6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-srikurmam-temple-district",
+      "position": [
+        -49,
+        32,
+        53
+      ],
+      "lookAt": [
+        1,
+        5.6,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-srikurmam-temple-street",
+      "position": [
+        -49,
+        32,
+        53
+      ],
+      "lookAt": [
+        1,
+        5.6,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-srikurmam-temple-closeup",
+      "position": [
+        -49,
+        32,
+        53
+      ],
+      "lookAt": [
+        1,
+        5.6,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "sanctum-and-gilded-crown",
+      "position": [
+        -19,
+        11,
+        -19
+      ],
+      "lookAt": [
+        5,
+        7.7,
+        0
+      ]
+    },
+    {
+      "name": "precinct-and-open-courtyard",
+      "position": [
+        -31,
+        43,
+        -26
+      ],
+      "lookAt": [
+        1,
+        5.3,
+        0
+      ]
+    },
+    {
+      "name": "south-entrance-and-stone-courses",
+      "position": [
+        -18,
+        10,
+        36
+      ],
+      "lookAt": [
+        -1,
+        4.7,
+        14
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16652,
+    "vertices": 49956,
+    "materials": 5,
+    "bytes": 2383572,
+    "sha256": "sha256:32d9dde2485090043bb3b3180eaf080f9cb1b8988f21a0b4ab0568e7e346a185"
+  }
+}

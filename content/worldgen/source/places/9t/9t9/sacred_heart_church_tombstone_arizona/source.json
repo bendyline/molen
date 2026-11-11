@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.sacred_heart_church_tombstone_arizona",
+  "kind": "static-structure",
+  "title": "Sacred Heart Church, Tombstone",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.sacred_heart_church_tombstone_arizona",
+        "output": "assets/places/9t/9t9/sacred_heart_church_tombstone_arizona/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ce5bf2f576e84974cc2ef5bc19ab89e3ea28e12c415175fa22a6d6e343b92cb9"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-sacred-heart-tombstone",
+        "path": "models/generate-sacred-heart-tombstone.mjs"
+      },
+      {
+        "id": "zimmer-tower-model",
+        "path": "models/sacred-heart-tombstone-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/parish-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-parish-originals.json",
+      "reference-rights/commons-1882-parish-hall-original.json",
+      "references/1882-parish-hall-2015-ammodramus-cc0.jpg",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-6365-13337.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

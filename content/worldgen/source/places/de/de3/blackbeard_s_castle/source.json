@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.blackbeard_s_castle",
+  "kind": "static-structure",
+  "title": "Blackbeard’s Castle (Skytsborg)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.blackbeard_s_castle",
+        "output": "assets/places/de/de3/blackbeard_s_castle/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e9f06769fbf6757336ba74f1bc3f26a9abb10ae3dea05d4b4c8f9a3c24c2cc5a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-skytsborg",
+        "path": "models/generate-skytsborg.mjs"
+      },
+      {
+        "id": "skytsborg-model",
+        "path": "models/skytsborg-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/tower-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-skytsborg-postcards.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-10473-14684.png",
+      "terrain-sources/terrarium-15-10473-14685.png",
+      "terrain-sources/terrarium-15-10474-14684.png",
+      "terrain-sources/terrarium-15-10474-14685.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

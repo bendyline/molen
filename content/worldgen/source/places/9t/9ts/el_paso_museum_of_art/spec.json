@@ -1,0 +1,400 @@
+{
+  "planId": "el_paso_museum_of_art",
+  "id": "el_paso_museum_of_art",
+  "assetId": "molen.worldgen.structure.el_paso_museum_of_art",
+  "title": "El Paso Museum of Art",
+  "wikidataId": "Q5351782",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -106.4903,
+    "latitude": 31.7586
+  },
+  "size": [
+    83.71927642822266,
+    12.170000076293945,
+    87.43583297729492
+  ],
+  "actualBounds": {
+    "min": [
+      -38.44239807128906,
+      -1,
+      -38.09382247924805
+    ],
+    "max": [
+      45.276878356933594,
+      11.170000076293945,
+      49.342010498046875
+    ]
+  },
+  "visualBrief": "Two-storey museum with a pale paneled exterior, a recessed plaza entrance, adjoining blue panels and dark glazing, and an angled gallery plan.",
+  "nativeAxes": {
+    "x": "south along the entrance façade",
+    "y": "up",
+    "z": "west into the galleries"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2011-07-01",
+    "validFrom": "2011-01-01",
+    "validUntil": "2025-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:El_Paso_Museum_of_Art._El_Paso,_Texas.jpg"
+  ],
+  "stories": [
+    {
+      "id": "el-paso-museum-of-art-wp",
+      "url": "https://qualla.com/el-paso-museum-of-art/"
+    }
+  ],
+  "referenceInputHash": "641d5692a7a4e225fdc2d239be69bd302aecef54f42291c756f2dd06c820ed80",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9t/9ts/el_paso_museum_of_art/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "stadium-lettering.mjs": "sha256:b05c2e1200c7498700a4f65c488b5ecedbdb844025961be2b4aed4935375ae56"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9t/9ts/el_paso_museum_of_art/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.22,
+    "surfaces": {
+      "panel": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "gravel",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "blue": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.64,
+        "metallic": 0
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.64,
+        "metallic": 0.16
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.27,
+        "metallic": 0.11
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.64,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.11
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.64,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.11
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.03,
+        "surfaces": {
+          "panel": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.64,
+            "metallic": 0
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.11
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "gravel",
+    "concrete_panel",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -106.4903,
+      31.7586
+    ],
+    "heading": -1.4301927922117472,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -106.49019037113504,
+        31.75824106767175
+      ],
+      "modelHeight": 0,
+      "basis": "Original plaza terrain just outward from the named entrance. Floor and threshold grades are approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/262818915",
+      "node/4059893039"
+    ],
+    "source": "https://www.openstreetmap.org/way/262818915",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b503762dd7a607da2043712fd680d7decf301bfaeb7c6d22737ea000dfb9b156",
+    "notes": "Named OpenStreetMap way 262818915 supplies the museum outline and exact Q5351782 identity. Node 4059893039 marks the main entry on the angled plaza edge. The early street view shows the recessed pale front and adjoining blue glazing. The remaining elevations and unseen roof are estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.gravel",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The exact published public-domain Qualla exterior is dated to 2011. It establishes the pale panel grid, paired glazed entry doors, tall mullioned window, blue side wall and pale overhang.",
+    "The mapped perimeter fixes the entire gallery footprint. Roof plan, unseen secondary elevations and precise opening sizes and heights are estimates. Artworks, nearby buildings and reflections are outside scope.",
+    "The original 128 m elevation field remains unchanged. Its plaza contact establishes the approximate entrance grade. The rear walls meet rising terrain without flattening the field.",
+    "This is a dated 2011 exterior with no source-image pixels or modern alterations."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. The published Qualla photo by Wmpearl is explicitly dedicated to the public domain. Map geometry attributed to OpenStreetMap contributors under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-museum-skyline",
+      "position": [
+        110,
+        43,
+        -86
+      ],
+      "lookAt": [
+        5,
+        4.7,
+        2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-museum-district",
+      "position": [
+        110,
+        43,
+        -86
+      ],
+      "lookAt": [
+        5,
+        4.7,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-museum-street",
+      "position": [
+        110,
+        43,
+        -86
+      ],
+      "lookAt": [
+        5,
+        4.7,
+        2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-museum-closeup",
+      "position": [
+        110,
+        43,
+        -86
+      ],
+      "lookAt": [
+        5,
+        4.7,
+        2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "recessed-plaza-entry-and-blue-wing",
+      "position": [
+        55,
+        6,
+        -22
+      ],
+      "lookAt": [
+        37.5,
+        4.25,
+        -9
+      ]
+    },
+    {
+      "name": "whole-gallery-and-angled-rear",
+      "position": [
+        -62,
+        42,
+        74
+      ],
+      "lookAt": [
+        4,
+        4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1068,
+    "vertices": 3204,
+    "materials": 5,
+    "bytes": 309672,
+    "sha256": "sha256:b048e9804372154e096cede550fac2ee28dc76cd53cb9f90eb46d0993be63a07"
+  }
+}

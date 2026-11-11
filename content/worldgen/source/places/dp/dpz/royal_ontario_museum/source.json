@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.royal_ontario_museum",
+  "kind": "static-structure",
+  "title": "Royal Ontario Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.royal_ontario_museum",
+        "output": "assets/places/dp/dpz/royal_ontario_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8ff08fd0347c5a7ef3b3c323b079db2b3263736975e5ff4e0c5355a857536391"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-royal-ontario-museum",
+        "path": "models/generate-royal-ontario-museum.mjs"
+      },
+      {
+        "id": "royal-ontario-museum-model",
+        "path": "models/royal-ontario-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/museum-controls.json",
+      "native-map/planetarium-archived-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-royal-ontario-museum-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-9157-11956.png",
+      "terrain-sources/terrarium-15-9157-11957.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.chateau_de_hautefort",
+  "kind": "static-structure",
+  "title": "Château de Hautefort",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.chateau_de_hautefort",
+        "output": "assets/places/u0/u00/chateau_de_hautefort/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:bc7348f5cd7d30d0f545234310a84b1ada36f87f69b48e9d56681298028d8b24"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-hautefort-chateau",
+        "path": "models/generate-hautefort-chateau.mjs"
+      },
+      {
+        "id": "hautefort-chateau-model",
+        "path": "models/hautefort-chateau-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/chateau-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-hautefort-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-16488-11753.png",
+      "terrain-sources/terrarium-15-16488-11754.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

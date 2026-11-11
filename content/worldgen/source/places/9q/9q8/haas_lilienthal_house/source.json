@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.haas_lilienthal_house",
+  "kind": "static-structure",
+  "title": "Haas-Lilienthal House",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.haas_lilienthal_house",
+        "output": "assets/places/9q/9q8/haas_lilienthal_house/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:dd41ee5164956e9cef8ff07f3130cf1e464fbf9a8a805a9cccc0dcf0c6923cee"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-haas-lilienthal",
+        "path": "models/generate-haas-lilienthal.mjs"
+      },
+      {
+        "id": "haas-lilienthal-model",
+        "path": "models/haas-lilienthal-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/house-and-franklin-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-daderot-2015-originals.json",
+      "reference-rights/loc-habs-catalog.json",
+      "reference-rights/loc-habs-rights.html",
+      "reference-rights/loc-front-creator.json",
+      "reference-rights/habs-boucher-government-role.html",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-5240-12663.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

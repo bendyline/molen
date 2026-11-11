@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.lassis_inn",
+  "kind": "static-structure",
+  "title": "Lassis Inn",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.lassis_inn",
+        "output": "assets/places/9y/9yn/lassis_inn/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9ec4f5d30e0f1b6cad257f941ccfa9fe1d7e909cec255c0ec2b7c46a16b17f05"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-lassis-inn",
+        "path": "models/generate-lassis-inn.mjs"
+      },
+      {
+        "id": "zetland-hall-model",
+        "path": "models/lassis-inn-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/hall-controls.json",
+      "reference-rights/commons-qualla-hall-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-7985-13010.png",
+      "preview.png",
+      "native-map/restaurant-controls.json",
+      "reference-rights/commons-qualla-restaurant-originals.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

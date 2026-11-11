@@ -29,6 +29,7 @@ import { inspectBerlinPrimaryFacts } from './primary-facts-berlin.mjs';
 import { inspectBosschaPrimaryFacts } from './primary-facts-bosscha.mjs';
 import { inspectBrisbanePrimaryFacts } from './primary-facts-brisbane.mjs';
 import { inspectBristolPrimaryFacts } from './primary-facts-bristol.mjs';
+import { inspectBoljoonPrimaryFacts } from './primary-facts-boljoon.mjs';
 import { inspectBruneiPrimaryFacts } from './primary-facts-brunei.mjs';
 import { inspectBujagaliPrimaryFacts } from './primary-facts-bujagali.mjs';
 import { daiichiCases, inspectDaiichiPrimaryFacts } from './primary-facts-daiichi.mjs';
@@ -44,7 +45,9 @@ import { gmtSupportCases, inspectGmtSupportPrimaryFacts } from './primary-facts-
 import { inspectHobartPrimaryFacts } from './primary-facts-hobart.mjs';
 import { inspectIndependencePrimaryFacts } from './primary-facts-independence.mjs';
 import { inspectKaptaiPrimaryFacts } from './primary-facts-kaptai.mjs';
+import { inspectLagosTheatrePrimaryFacts } from './primary-facts-lagos-theatre.mjs';
 import { inspectLasRaicesPrimaryFacts } from './primary-facts-las-raices.mjs';
+import { inspectLytteltonPrimaryFacts } from './primary-facts-lyttelton.mjs';
 import { inspectLitoralPrimaryFacts, litoralCases } from './primary-facts-litoral.mjs';
 import {
   inspectLitoralEstimatedHallPrimaryFacts,
@@ -221,6 +224,9 @@ export function inspectPrimaryFactsReconstruction({
         'brunei-renovation-designer-and-whole-customs-plan-2023': 'brunei_energy_hub',
         'xuma-official-single-storey-and-transmitted-heritage-house-2013': 'dr_xuma_house',
         'hobart-state-heritage-whole-theatre-and-flytower-2024': 'theatre_royal_hobart',
+        'boljoon-museum-church-and-convent-2021': 'boljoon_church',
+        'lagos-national-arts-theatre-mapped-four-sector-saddle-1978': 'national_theatre_nigeria',
+        'lyttelton-historic-concrete-courts-1903': 'lyttelton_gaol',
         'qingdao-municipal-original-office-and-crenellated-tower-2021': 'qingdao_observatory',
         'bristol-restorer-owner-whole-courtyard-hotel-intact-2014': 'bristol_hotel_odesa',
         'ducor-eyewitness-whole-eight-floor-concrete-ruin-2016': 'ducor_hotel',
@@ -383,6 +389,12 @@ export function inspectPrimaryFactsReconstruction({
       return inspectXumaPrimaryFacts({ dir, proof, controls, frame });
     if (proof.case === 'hobart-state-heritage-whole-theatre-and-flytower-2024')
       return inspectHobartPrimaryFacts({ dir, proof, controls, frame });
+    if (proof.case === 'boljoon-museum-church-and-convent-2021')
+      return inspectBoljoonPrimaryFacts({ dir, proof, controls, frame });
+    if (proof.case === 'lagos-national-arts-theatre-mapped-four-sector-saddle-1978')
+      return inspectLagosTheatrePrimaryFacts({ dir, proof, controls, frame });
+    if (proof.case === 'lyttelton-historic-concrete-courts-1903')
+      return inspectLytteltonPrimaryFacts({ dir, proof, controls, frame });
     if (proof.case === 'qingdao-municipal-original-office-and-crenellated-tower-2021')
       return inspectQingdaoPrimaryFacts({ dir, proof, controls, frame });
     if (proof.case === 'bristol-restorer-owner-whole-courtyard-hotel-intact-2014')

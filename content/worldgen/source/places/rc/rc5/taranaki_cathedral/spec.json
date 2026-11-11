@@ -1,0 +1,558 @@
+{
+  "planId": "taranaki_cathedral",
+  "id": "taranaki_cathedral",
+  "assetId": "molen.worldgen.structure.taranaki_cathedral",
+  "title": "Taranaki Cathedral Church of St Mary",
+  "wikidataId": "Q28180949",
+  "category": "religious",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 174.07306472140115,
+    "latitude": -39.06034442496511
+  },
+  "size": [
+    42.829999923706055,
+    15.18664002418518,
+    31.065659523010254
+  ],
+  "actualBounds": {
+    "min": [
+      -16.9950008392334,
+      -2.2162563800811768,
+      -17.790000915527344
+    ],
+    "max": [
+      25.834999084472656,
+      12.970383644104004,
+      13.27565860748291
+    ]
+  },
+  "visualBrief": "Taranaki Cathedral in New Plymouth with steep slate gables, dark andesite walls, recessed Gothic lancets and the open bellcote above the attached hall.",
+  "nativeAxes": {
+    "x": "east-northeast along the nave",
+    "y": "up",
+    "z": "south-southeast toward Pūkākā / Marsland Hill"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2024-07-14",
+    "validFrom": "2024-01-01",
+    "validUntil": "2025-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:NZ_NP_St_Mary%27s_Church_(9).jpg",
+    "https://commons.wikimedia.org/wiki/File:NZ_NP_St_Mary%27s_Church_(10).jpg"
+  ],
+  "stories": [
+    {
+      "id": "taranaki-cathedral-wp",
+      "url": "https://qualla.com/taranaki-cathedral/"
+    }
+  ],
+  "referenceInputHash": "c4ec18ad96f32831f7657039bb66b614479a7e65f56a87ce46dcfc596fbb029a",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/rc/rc5/taranaki_cathedral/models/taranaki-cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/rc/rc5/taranaki_cathedral/models/taranaki-cathedral-model.mjs",
+    "level": "skyline",
+    "export": "cathedralSkyline",
+    "errorMeters": 0.76,
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.64,
+        "metallic": 0.12
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.52,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cathedralDistrict",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "cathedralStreet",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "cathedralCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.12
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_drywall",
+    "slate",
+    "stone_limestone_weathered",
+    "wood_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.86,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      174.07306472140115,
+      -39.06034442496511
+    ],
+    "heading": 0.3719782630120438,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        174.07288179823394,
+        -39.060314020434596
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate paving and lawn grade at the photographed west end."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -12.9062861371275,
+          5.48894913963969
+        ],
+        [
+          -12.905348518584924,
+          -9.733901664370224
+        ],
+        [
+          2.2554071610474002,
+          -9.733901664370224
+        ],
+        [
+          2.2521845288847793,
+          -17.549902791475418
+        ],
+        [
+          10.777332892841232,
+          -17.545758344270272
+        ],
+        [
+          10.778030211325651,
+          -15.526080007379644
+        ],
+        [
+          17.300822051151176,
+          -15.526441773411733
+        ],
+        [
+          17.294349232413744,
+          -9.160070340244099
+        ],
+        [
+          19.937302730797384,
+          -9.156573265534634
+        ],
+        [
+          21.875462855158858,
+          -6.870926810638329
+        ],
+        [
+          21.873875184572043,
+          -3.4660385859322096
+        ],
+        [
+          20.190117196317008,
+          -1.219297886164746
+        ],
+        [
+          17.6680317933113,
+          -1.2234359859278978
+        ],
+        [
+          17.66549861012392,
+          2.754642537113783
+        ],
+        [
+          18.918488690523613,
+          2.7535699315348445
+        ],
+        [
+          18.92886569634092,
+          1.3476187699449325
+        ],
+        [
+          25.624887363385213,
+          1.3550952760527508
+        ],
+        [
+          25.622633899159606,
+          12.490823547811537
+        ],
+        [
+          17.504398938227588,
+          12.490093668305372
+        ],
+        [
+          17.507499433712574,
+          13.0529133304906
+        ],
+        [
+          9.224087263088162,
+          13.047486833334112
+        ],
+        [
+          9.22443788414264,
+          5.5077102189559435
+        ],
+        [
+          6.081906755174881,
+          5.500493930861463
+        ],
+        [
+          6.080397878162566,
+          8.857616297990624
+        ],
+        [
+          3.1272018160437116,
+          8.864521592801042
+        ],
+        [
+          3.1247040839026807,
+          5.493886934295086
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Named OpenStreetMap church footprint, ODbL 1.0."
+    },
+    "featureIds": [
+      "way/371860763",
+      "way/45810321",
+      "way/1180133225",
+      "way/1180133226"
+    ],
+    "source": "https://www.openstreetmap.org/way/371860763",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1e975b3ab3b65c7ada3865cb25fd8de37bc46b5da63f29073414f1bad5298a22",
+    "notes": "The mapped envelope fixes the nave, transept, sanctuary and attached hall orientation. The relative location of the nearby cross is estimated from the two photographs and their camera position."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The exterior represents the cathedral and attached hall in July 2024. The two cleared same-day photographs control the west gable, street-side stonework, hall entrance and memorial silhouette.",
+    "The mapped 26-point envelope fixes the main exterior wall alignments. Heights, secondary roof junctions, unseen elevations and the exact position of the memorial cross are estimates. The cross inscription is simplified to the panel detail.",
+    "The original sampled Terrarium field is preserved. Local lawn, paving and foundation levels remain approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Footprint data © OpenStreetMap contributors, ODbL 1.0. Two first-party exterior photographs dedicated to CC0.",
+  "qaLodCameras": [
+    {
+      "name": "whole-taranaki-cathedral-skyline",
+      "position": [
+        -52,
+        24,
+        -47
+      ],
+      "lookAt": [
+        3.7,
+        5,
+        -1.7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-taranaki-cathedral-district",
+      "position": [
+        -52,
+        24,
+        -47
+      ],
+      "lookAt": [
+        3.7,
+        5,
+        -1.7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-taranaki-cathedral-street",
+      "position": [
+        -52,
+        24,
+        -47
+      ],
+      "lookAt": [
+        3.7,
+        5,
+        -1.7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-taranaki-cathedral-closeup",
+      "position": [
+        -52,
+        24,
+        -47
+      ],
+      "lookAt": [
+        3.7,
+        5,
+        -1.7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "vivian-street-and-memorial",
+      "position": [
+        -30.5,
+        6.6,
+        -33.8
+      ],
+      "lookAt": [
+        -2.5,
+        4.5,
+        0.6
+      ]
+    },
+    {
+      "name": "west-gable-and-hall-bellcote",
+      "position": [
+        -22,
+        10.5,
+        34
+      ],
+      "lookAt": [
+        4.8,
+        5.3,
+        5.4
+      ]
+    },
+    {
+      "name": "eastern-apse-and-north-transept",
+      "position": [
+        42,
+        21,
+        -35
+      ],
+      "lookAt": [
+        11.8,
+        4.1,
+        -7.9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5685,
+    "vertices": 17055,
+    "materials": 6,
+    "bytes": 1043404,
+    "sha256": "sha256:cb4cd24227e0bbb3762319cb1be80db8e0649f4c05a5769e8332f2a1b72cc8ee"
+  }
+}

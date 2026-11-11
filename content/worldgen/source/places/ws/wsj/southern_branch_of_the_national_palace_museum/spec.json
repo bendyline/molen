@@ -1,0 +1,716 @@
+{
+  "planId": "southern_branch_of_the_national_palace_museum",
+  "id": "southern_branch_of_the_national_palace_museum",
+  "assetId": "molen.worldgen.structure.southern_branch_of_the_national_palace_museum",
+  "title": "Southern Branch of the National Palace Museum and Zhimei Bridge",
+  "wikidataId": "Q10927084",
+  "category": "museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 120.29166,
+    "latitude": 23.47435
+  },
+  "size": [
+    157.81584072113037,
+    35.251134157180786,
+    410.5486526489258
+  ],
+  "actualBounds": {
+    "min": [
+      -10.374022483825684,
+      -3.051133394241333,
+      -68.10526275634766
+    ],
+    "max": [
+      147.4418182373047,
+      32.20000076293945,
+      342.4433898925781
+    ]
+  },
+  "visualBrief": "The National Palace Museum’s curved dark galleries, sloping glazed public wing and the Zhimei Bridge’s dark steel arch and S-shaped deck.",
+  "nativeAxes": {
+    "x": "east toward Zhishan Lake",
+    "y": "up",
+    "z": "south toward the Zhimei Bridge approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2015-12-29",
+    "validFrom": "2015-12-28",
+    "validUntil": "2017-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Southern_Branch_of_the_National_Palace_Museum_main_building_and_zhimei_bridge.jpg",
+    "https://commons.wikimedia.org/wiki/File:Southern_Branch_of_the_National_Palace_Museum_zhimei_bridge.jpg"
+  ],
+  "stories": [
+    {
+      "id": "southern-branch-of-the-national-palace-museum-wp",
+      "url": "https://qualla.com/southern-branch-of-the-national-palace-museum/"
+    }
+  ],
+  "referenceInputHash": "ce3c7e7fa8a8c72669b9577392ac581066234c8c45723bbc78fe24bc88d650a0",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ws/wsj/southern_branch_of_the_national_palace_museum/models/taiwan-palace-south-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ws/wsj/southern_branch_of_the_national_palace_museum/models/taiwan-palace-south-model.mjs",
+    "level": "skyline",
+    "export": "museumSkyline",
+    "errorMeters": 1.24,
+    "surfaces": {
+      "metal": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.23
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.43,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "museumDistrict",
+        "errorMeters": 0.58,
+        "surfaces": {
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.23
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "museumStreet",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.23
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "museumCloseup",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "metal": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.23
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.43,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "membrane",
+    "stone_ashlar",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 6.7,
+    "groundY": 0,
+    "far": 10000,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      120.29166,
+      23.47435
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        120.29221823798663,
+        23.473092364355015
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate original DEM ground at the museum’s south side."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          79.04065868395614,
+          18.17847284660085
+        ],
+        [
+          84.17661674204653,
+          32.683402497202295
+        ],
+        [
+          92.32471719747534,
+          44.527796317601144
+        ],
+        [
+          101.49388287327545,
+          53.50014727519141
+        ],
+        [
+          111.97001203149908,
+          59.31102469487862
+        ],
+        [
+          124.84564445657956,
+          68.0830005694678
+        ],
+        [
+          133.74933317496706,
+          75.60819814683984
+        ],
+        [
+          139.70214340703288,
+          83.07773597895577
+        ],
+        [
+          142.8572349368484,
+          90.88123228379483
+        ],
+        [
+          145.72642820606276,
+          90.60293355672331
+        ],
+        [
+          147.03339168703525,
+          94.51024768374755
+        ],
+        [
+          147.2580260366197,
+          97.60492952758057
+        ],
+        [
+          147.44181777547396,
+          100.08735417240993
+        ],
+        [
+          147.3703432099609,
+          103.96127245180591
+        ],
+        [
+          144.63388842017838,
+          104.2284392300635
+        ],
+        [
+          143.94977472273277,
+          110.59591410310277
+        ],
+        [
+          142.03017210982767,
+          117.24168770360906
+        ],
+        [
+          135.59746122235907,
+          127.37176136592758
+        ],
+        [
+          123.10983358107774,
+          141.18651017305945
+        ],
+        [
+          118.05556074299672,
+          145.89532463367
+        ],
+        [
+          113.15444768608506,
+          150.45942375614007
+        ],
+        [
+          110.80599768010167,
+          152.64128577587456
+        ],
+        [
+          114.16530225486208,
+          159.9661082702455
+        ],
+        [
+          117.38165769714537,
+          170.50806404817112
+        ],
+        [
+          113.84877203657601,
+          173.39123885979365
+        ],
+        [
+          104.6285530984514,
+          180.9275683863751
+        ],
+        [
+          102.5966333107541,
+          173.8587807210523
+        ],
+        [
+          98.0835250390926,
+          167.90318796362013
+        ],
+        [
+          96.7765615566691,
+          169.7510915106315
+        ],
+        [
+          80.75604825481838,
+          173.04614843825658
+        ],
+        [
+          89.1900469722994,
+          160.08855970996714
+        ],
+        [
+          70.54539605400737,
+          148.9454786814563
+        ],
+        [
+          55.29068166670963,
+          143.32384439635175
+        ],
+        [
+          49.32766078159851,
+          141.13085042780332
+        ],
+        [
+          29.61089138206172,
+          134.97488258697456
+        ],
+        [
+          10.78244872491543,
+          126.00253162898882
+        ],
+        [
+          -0.7249563052737894,
+          116.00604135599683
+        ],
+        [
+          -7.780516976269261,
+          102.7924177986592
+        ],
+        [
+          -9.761383503093104,
+          87.73089069431022
+        ],
+        [
+          -8.26041762877002,
+          75.19631603083727
+        ],
+        [
+          0.9189586986243786,
+          61.91590077942961
+        ],
+        [
+          25.363260066361825,
+          44.24949759052962
+        ],
+        [
+          33.26630487046862,
+          38.40522432400514
+        ],
+        [
+          35.68622944196506,
+          28.720428624921947
+        ],
+        [
+          36.93192901046981,
+          23.711051539216538
+        ],
+        [
+          36.93192901046981,
+          7.825760202862399
+        ],
+        [
+          36.24781531302418,
+          -4.21900870093303
+        ],
+        [
+          35.951706397926664,
+          -5.666162081151253
+        ],
+        [
+          35.66580813732548,
+          -7.091051563346128
+        ],
+        [
+          33.91978661022936,
+          -15.651520405329311
+        ],
+        [
+          31.499862038732918,
+          -21.82975214457691
+        ],
+        [
+          25.567473111306697,
+          -33.11754851083272
+        ],
+        [
+          17.827798742865596,
+          -43.24762217315125
+        ],
+        [
+          4.135314142358683,
+          -52.42034821453358
+        ],
+        [
+          -10.374022635025682,
+          -58.45386461524522
+        ],
+        [
+          -6.749241104303672,
+          -68.10526446709565
+        ],
+        [
+          7.770306324674977,
+          -62.283255098594516
+        ],
+        [
+          22.555330711066247,
+          -54.00108498368286
+        ],
+        [
+          38.37163096942311,
+          -40.78746142634524
+        ],
+        [
+          50.28746208805105,
+          -25.16933686824869
+        ],
+        [
+          53.91224361877306,
+          -16.653395822707687
+        ],
+        [
+          54.69846383796562,
+          -14.827756173719655
+        ],
+        [
+          56.250482973162164,
+          -11.176476875348108
+        ],
+        [
+          58.772514066405535,
+          -5.254279965148681
+        ],
+        [
+          62.36666364089367,
+          8.170850624399444
+        ],
+        [
+          62.468770162640595,
+          -1.4805492274509848
+        ],
+        [
+          62.540244728153645,
+          -7.514065628558116
+        ],
+        [
+          75.20145345669496,
+          -10.252525102040162
+        ],
+        [
+          75.62009019672799,
+          2.7607233719008786
+        ],
+        [
+          76.20209737242668,
+          5.376731405265803
+        ],
+        [
+          77.83580172473057,
+          3.9963697195131065
+        ],
+        [
+          82.18553956217738,
+          0.3005626250948663
+        ],
+        [
+          84.78925587397912,
+          13.926068298435055
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "Native main museum building outer ring, ODbL 1.0."
+    },
+    "featureIds": [
+      "way/388629208",
+      "way/1492546588",
+      "way/1492546587",
+      "way/1492546586",
+      "way/607114220",
+      "way/607114213"
+    ],
+    "source": "https://www.openstreetmap.org/relation/20372537",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e6583bddd2e76d218337fa3be6fcf1d68c3b86d2b4ea867644a859484af0268b",
+    "notes": "The main museum polygon, mapped voids and signed deck path anchor the structure. The steel span is constrained by the 142 m published length and 25 ribs, with the abutment stations inferred from the photographs."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the main building and Zhimei Bridge at the December 2015 opening. Its main elevations and bridge use two exact public-domain views from the same visit.",
+    "The main building outline and three openings are mapped. Roof curves, the dimensions of the three intersecting volumes and elevations hidden from the photographs are estimates.",
+    "The bridge deck follows its mapped centerline. The published 142 m span and 25 ribs guide the arch. Deck widths, abutment stations and connection details are approximate.",
+    "The original Terrarium field is preserved. Exact pavement and seasonal lake levels require local survey."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap footprint and bridge controls ODbL 1.0. Two exact published Qualla photographs dedicated to the public domain by their creator.",
+  "qaLodCameras": [
+    {
+      "name": "whole-taiwan-palace-and-bridge-skyline",
+      "position": [
+        556,
+        186,
+        236
+      ],
+      "lookAt": [
+        77,
+        10,
+        148
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-taiwan-palace-and-bridge-district",
+      "position": [
+        556,
+        186,
+        236
+      ],
+      "lookAt": [
+        77,
+        10,
+        148
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-taiwan-palace-and-bridge-street",
+      "position": [
+        556,
+        186,
+        236
+      ],
+      "lookAt": [
+        77,
+        10,
+        148
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-taiwan-palace-and-bridge-closeup",
+      "position": [
+        556,
+        186,
+        236
+      ],
+      "lookAt": [
+        77,
+        10,
+        148
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "lakeside-arch-and-museum",
+      "position": [
+        393,
+        27,
+        353
+      ],
+      "lookAt": [
+        95,
+        11,
+        201
+      ]
+    },
+    {
+      "name": "east-curtain-wall-and-courtyards",
+      "position": [
+        255,
+        63,
+        91
+      ],
+      "lookAt": [
+        71,
+        14,
+        75
+      ]
+    },
+    {
+      "name": "south-approach-and-arch-ribs",
+      "position": [
+        27,
+        16.5,
+        345
+      ],
+      "lookAt": [
+        110,
+        7,
+        231
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16123,
+    "vertices": 48369,
+    "materials": 5,
+    "bytes": 2124060,
+    "sha256": "sha256:afeb8ad43c858c63ce60877e5244bf7d3c1f3f0a43592f7842514ce36c03e947"
+  }
+}

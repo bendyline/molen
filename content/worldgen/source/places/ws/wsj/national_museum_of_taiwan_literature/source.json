@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.national_museum_of_taiwan_literature",
+  "kind": "static-structure",
+  "title": "National Museum of Taiwan Literature",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.national_museum_of_taiwan_literature",
+        "output": "assets/places/ws/wsj/national_museum_of_taiwan_literature/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:348f00ce03428c5fed09f446979a70ffb230b3f1d51b697eae3d2f4e5bc3025a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-taiwan-literature",
+        "path": "models/generate-taiwan-literature.mjs"
+      },
+      {
+        "id": "taiwan-literature-model",
+        "path": "models/taiwan-literature-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/museum-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-tainan-literature-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-27325-14232.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.museum_collectie_brands",
+  "kind": "static-structure",
+  "title": "Museum Collectie Brands",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.museum_collectie_brands",
+        "output": "assets/places/u1/u1k/museum_collectie_brands/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2b12ddc2adf8995d13bbdfa20f39e8b8734fd1187470dc503b2b125c1dee8c72"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-museum-collectie-brands",
+        "path": "models/generate-museum-collectie-brands.mjs"
+      },
+      {
+        "id": "museum-collectie-brands-model",
+        "path": "models/museum-collectie-brands-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/museum-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-museum-original.json",
+      "reference-rights/commons-museum-rendition.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-17018-10711.png",
+      "terrain-sources/terrarium-15-17018-10712.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

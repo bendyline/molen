@@ -1,11 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.friday_mosque_of_herat",
-  "reviewedOn": "2026-10-18",
+  "reviewedOn": "2026-11-09",
   "inputHash": "sha256:74d9cf8ef3cb0dfa4441747c1abdc8dce5ab0720f52b3d0f024f4147a9975e05",
   "sourceHash": "sha256:6ad55cdb4593b887a4bc8701707a5486b9b1ac4d900a0ef037ab19c6d4ca85ca",
   "runtimeHash": "sha256:a0389f888a186662d84edf971973b43f7ebb951d64130c26ffe06ced7ce5401c",
-  "captureReportHash": "sha256:13362b9eb4aaa39ccc221e4cda5949c34f547609f94a61fd9414eedfd5d4f973",
+  "captureReportHash": "sha256:68b078996635f72f4332d90436971d3d29c4d47f07c7a866413a6ab123c64cc4",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -21,7 +21,8 @@
       "shots/turquoise-capped-entry-minarets.png",
       "shots/retained-outer-and-open-court.png"
     ],
-    "notes": "Inspected 11 current portable renders including the retained 1024×640 summary. The irregular mapped outer envelope and open courtyard, four pointed court iwans, recessed eastern outer entry, eight capped minarets, cream portal borders, pale flat roofs and two rows of courtyard niche fields are present. The low roof no longer crosses the outer entrance. Fine calligraphy, historic tile artwork, furnishings, detached structures and large unsupported domes are omitted."
+    "notes": "Inspected 11 current portable renders including the retained 1024×640 summary. The irregular mapped outer envelope and open courtyard, four pointed court iwans, recessed eastern outer entry, eight capped minarets, cream portal borders, pale flat roofs and two rows of courtyard niche fields are present. The low roof no longer crosses the outer entrance. Fine calligraphy, historic tile artwork, furnishings, detached structures and large unsupported domes are omitted.",
+    "captureReportHash": "sha256:68b078996635f72f4332d90436971d3d29c4d47f07c7a866413a6ab123c64cc4"
   },
   "sharedSurfaceReview": {
     "status": "passed",
@@ -39,7 +40,7 @@
       "shots/shared/placement.png"
     ],
     "notes": "Inspected 11 current shared-material and geographic-flat views, including the footprint overlay. Six existing 256² graphs provide brick, raw limestone, mosaic tile, lime plaster, marble and plain wood; seven merged roles include local opaque glazing. Metric UVs and linear vertex tints are used, with no embedded images or unique atlas. Shared graphs are read once and model geometry is disposed on eviction. The 123 surrounding host buildings remain separate; courtyard ground is host content. The flat overlay checks pose and replacement, while the retained standard DEM fixture checks approximate contact.",
-    "captureReportHash": "sha256:b8d9b51e994cd79a516cac5e9351ceb107383ca9ac20232d6e5cc280023898d2"
+    "captureReportHash": "sha256:84337b891ec608b0ac623e1bf88f18260926fa5325a64cfd7facd98e6f8954a1"
   },
   "mediumFiReview": {
     "status": "passed",
@@ -73,7 +74,7 @@
       "medium-fi/transition-closeup.png"
     ],
     "notes": "Inspected 27 current medium-fi views: Economy/High, noon/late light, street/block/skyline, silhouette, six details, four matched LODs and four transitions. Courtyard void, five portal frames and capped tower silhouette persist through the LODs. Skyline drops small doors and niches and uses six-sided tower profiles; district restores coarse closed fields, portal borders and galleries; street restores two-tier niche rhythm and inner vault ribs; closeup restores more facets and original coarse diamond centers. The distant footing ribbon extends below the sampled terrain minimum without extra triangles. Whole views retain the model; some detail cameras intentionally crop tower tops. Context houses are synthetic. Physical-device and full-city timing remain pending.",
-    "captureReportHash": "sha256:e552ab2f225189f9108443e845a695144688cd0a2c1340f34f3463125e384ace"
+    "captureReportHash": "sha256:04474d00ac7766d82583dc08d0ab10cd00d6dc11ef8b5090e277c9b6e9c88e4a"
   },
   "geographicReview": {
     "status": "passed",
@@ -147,5 +148,18 @@
     "No retained dimensional facts or current PMTiles height tags are available. All vertical dimensions are estimates: low ranges9.5 m;western prayer iwan27 m;other court iwans21–22 m;eastern outer entry25 m;paired western minarets33 m,eastern entry minarets35 m,and four smaller court towers22 m including turquoise caps. No large hall dome is added without a picture/map control. Fine tile art,calligraphy and vault decoration are abstracted.",
     "Standard Protomaps20261014 /Mapzen-USGS viewer extractN0475;datum 928.5131664399311 m. 1017 building-ring samples span -3.2980975838862605 to 1.4290032496760432 m. Floor -0.31888288261684467 m is the median of 311 outer/court-edge samples plus0.3 m. Footings sample edges at<=3 m. 16 triangulated ring masks preserve the entire retained courtyard hole;preview seating uses the same masks. Courtyard ground,park,roads and neighboring buildings stay host content. Exact thresholds,stairs and grade joins are unverified.",
     "Two inspected pictures guide the exterior entry and deep pointed iwan vocabulary. The retained outer/court rings control horizontal scope. Internal masses,four court iwans,outer entry,tower count/positions/heights and tiled niche arrangement remain estimates. The court stays open to host ground. No large hall dome is added without a control. Fine muqarnas,calligraphy,murals,exact ornament,paving,fixtures,furnished interiors,current whole-site condition and engineering are unverified. Physical-device/full-city timing remains pending."
-  ]
+  ],
+  "completionHandoff": {
+    "reviewedOn": "2026-11-09",
+    "originalReviewedOn": "2026-10-18",
+    "scope": "Current inherited model, source and runtime bytes, four detail levels, geographic placement, and regenerated portable, shared material and medium-fi views.",
+    "currentFrames": {
+      "visualReview": 11,
+      "sharedSurfaceReview": 11,
+      "mediumFiReview": 27
+    },
+    "appearance": "The open courtyard, pointed iwans, capped minarets and repeated tile fields read at the intended scales. Fine ornament remains abstracted.",
+    "sourceImageryUsedInThisReview": false,
+    "sourceImageryBasis": "Inherited catalog authoring provenance remains documented in reference-metadata.json. This technical review did not certify the historical authoring references under the Qualla public-domain policy."
+  }
 }

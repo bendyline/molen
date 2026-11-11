@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.old_fort_of_zanzibar",
+  "kind": "static-structure",
+  "title": "Old Fort of Zanzibar",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.old_fort_of_zanzibar",
+        "output": "assets/places/ky/kyg/old_fort_of_zanzibar/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:49a1ed1b6cd9466b1427576712856622d7c964aee66ac4dc8305bdb668a88adf"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-zanzibar-old-fort",
+        "path": "models/generate-zanzibar-old-fort.mjs"
+      },
+      {
+        "id": "zanzibar-old-fort-model",
+        "path": "models/zanzibar-old-fort-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/fort-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-zanzibar-old-fort-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-19950-16945.png",
+      "terrain-sources/terrarium-15-19950-16946.png",
+      "terrain-sources/terrarium-15-19951-16945.png",
+      "terrain-sources/terrarium-15-19951-16946.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

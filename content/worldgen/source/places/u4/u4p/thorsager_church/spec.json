@@ -1,0 +1,516 @@
+{
+  "planId": "thorsager_church",
+  "id": "thorsager_church",
+  "assetId": "molen.worldgen.structure.thorsager_church",
+  "title": "Thorsager Church",
+  "wikidataId": "Q941536",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 10.4607,
+    "latitude": 56.3423
+  },
+  "size": [
+    29.006123542785645,
+    18.98145627975464,
+    22.294873237609863
+  ],
+  "actualBounds": {
+    "min": [
+      -8.960200309753418,
+      -1.9614558219909668,
+      -11.94493293762207
+    ],
+    "max": [
+      20.045923233032227,
+      17.020000457763672,
+      10.349940299987793
+    ]
+  },
+  "visualBrief": "A round brick Romanesque nave with a swept silver-gray roof and square belfry. The eastern chancel and curved apse, south porch and low west tower block follow the mapped church outline.",
+  "nativeAxes": {
+    "x": "east toward the chancel",
+    "y": "up",
+    "z": "south toward the porch"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2009-04-14",
+    "validFrom": "2009-01-01",
+    "validUntil": "2010-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:ThorsagerK-1.jpg",
+    "https://commons.wikimedia.org/wiki/File:ThorsagerK-2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "thorsager-church-wp",
+      "url": "https://qualla.com/thorsager-church/"
+    }
+  ],
+  "referenceInputHash": "f5f491b7c1cd438311b022848b91189381eecdacf408e3f8cffe8c56acf029c2",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u4/u4p/thorsager_church/models/thorsager-church-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u4/u4p/thorsager_church/models/thorsager-church-model.mjs",
+    "level": "skyline",
+    "export": "churchSkyline",
+    "errorMeters": 0.72,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.77,
+        "metallic": 0.23
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.16
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.53,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "churchDistrict",
+        "errorMeters": 0.33,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.23
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.53,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "churchStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.23
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.53,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "churchCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.23
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.53,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "stone_sandstone_raw",
+    "metal_standing_seam",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.7,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      10.4607,
+      56.3423
+    ],
+    "heading": 0.018435437065194776,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        10.46071399954666,
+        56.34219592124972
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate paving immediately south of the porch."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          17.21300677700704,
+          -7.8548740573464455
+        ],
+        [
+          18.663693634708707,
+          -6.881750493421283
+        ],
+        [
+          19.517691349758387,
+          -5.340668667843122
+        ],
+        [
+          19.72852397241047,
+          -3.3883592552019626
+        ],
+        [
+          18.961202660047107,
+          -1.9328397461420022
+        ],
+        [
+          17.13471460762472,
+          -0.931068450924279
+        ],
+        [
+          17.11933609424204,
+          0.23770131481195214
+        ],
+        [
+          10.252849566246686,
+          0.15563565644461894
+        ],
+        [
+          8.221409990312315,
+          2.5676259632486023
+        ],
+        [
+          4.900898745285089,
+          3.9426694433934593
+        ],
+        [
+          3.5469104761618393,
+          10.108120862168793
+        ],
+        [
+          -2.5255158914953335,
+          8.793705512962088
+        ],
+        [
+          -1.190443881244467,
+          2.650173007492781
+        ],
+        [
+          -3.1905968339486357,
+          0.35312540647277557
+        ],
+        [
+          -8.847009263157018,
+          0.23770131481195225
+        ],
+        [
+          -8.689768686654892,
+          -6.951860862176379
+        ],
+        [
+          -3.7246512761959516,
+          -6.826914858781106
+        ],
+        [
+          -2.8171058534254008,
+          -8.524793485306438
+        ],
+        [
+          -1.0079169557628755,
+          -10.261717241150574
+        ],
+        [
+          1.2518104449978062,
+          -11.333437561998087
+        ],
+        [
+          3.077912657626114,
+          -11.644917827188545
+        ],
+        [
+          5.565927883198528,
+          -11.37636816128875
+        ],
+        [
+          7.84218275911633,
+          -10.33235396066448
+        ],
+        [
+          10.051645823705998,
+          -8.343194748334257
+        ],
+        [
+          17.220599573729757,
+          -8.266686183103669
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Named OpenStreetMap Thorsager Kirke footprint, ODbL 1.0."
+    },
+    "featureIds": [
+      "way/224780905"
+    ],
+    "source": "https://www.openstreetmap.org/way/224780905",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7cbc79944cd4453ecd3836b9f6fb9eba5e311f1ac6c8f83c669be51148d29914",
+    "notes": "The named footprint fixes the nave, chancel, apse, porch and surviving west block. The April 2009 photos control their relative heights and appearance."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the exterior as seen in April 2009. The mapped perimeter fixes component layout. Roof heights, pitch, masonry detail and partly obscured elevations are estimated from two cleared views.",
+    "Original public elevation samples are preserved. Churchyard paving and individual doorway thresholds are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Footprint © OpenStreetMap contributors, ODbL 1.0. Two exact public-domain Qualla exterior photographs.",
+  "qaLodCameras": [
+    {
+      "name": "whole-thorsager-church-skyline",
+      "position": [
+        32,
+        17,
+        37
+      ],
+      "lookAt": [
+        4.5,
+        6,
+        -2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-thorsager-church-district",
+      "position": [
+        32,
+        17,
+        37
+      ],
+      "lookAt": [
+        4.5,
+        6,
+        -2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-thorsager-church-street",
+      "position": [
+        32,
+        17,
+        37
+      ],
+      "lookAt": [
+        4.5,
+        6,
+        -2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-thorsager-church-closeup",
+      "position": [
+        32,
+        17,
+        37
+      ],
+      "lookAt": [
+        4.5,
+        6,
+        -2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "south-porch-and-round-nave",
+      "position": [
+        5,
+        5.8,
+        31
+      ],
+      "lookAt": [
+        3.4,
+        6.8,
+        1
+      ]
+    },
+    {
+      "name": "east-chancel-and-apse",
+      "position": [
+        37,
+        8,
+        10
+      ],
+      "lookAt": [
+        8.5,
+        6.7,
+        -4
+      ]
+    },
+    {
+      "name": "west-block-and-belfry",
+      "position": [
+        -22,
+        12.4,
+        -24
+      ],
+      "lookAt": [
+        2.7,
+        6,
+        -3.6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4413,
+    "vertices": 13239,
+    "materials": 5,
+    "bytes": 660056,
+    "sha256": "sha256:8177c81a9c0fd6ba5765884039155c1016309eb55761fda27780f11ec2fa9c8a"
+  }
+}

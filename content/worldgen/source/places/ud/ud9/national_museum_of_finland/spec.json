@@ -1,0 +1,714 @@
+{
+  "planId": "national_museum_of_finland",
+  "id": "national_museum_of_finland",
+  "assetId": "molen.worldgen.structure.national_museum_of_finland",
+  "title": "National Museum of Finland",
+  "wikidataId": "Q1418136",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 24.931662707812496,
+    "latitude": 60.17489779531248
+  },
+  "size": [
+    67.3499984741211,
+    65.5,
+    80.25935745239258
+  ],
+  "actualBounds": {
+    "min": [
+      -38.42499923706055,
+      -7.5,
+      -48.21976852416992
+    ],
+    "max": [
+      28.924999237060547,
+      58,
+      32.039588928222656
+    ]
+  },
+  "visualBrief": "The Helsinki museum’s irregular granite wings, open courts and 58-meter copper-spired tower in 2012.",
+  "nativeAxes": {
+    "x": "northeast along the entrance wing",
+    "y": "up",
+    "z": "southeast toward the avenue"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2012-08-13",
+    "validFrom": "2012-01-01",
+    "validUntil": "2013-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:National_Museum_of_Finland_-_DSC03828.JPG",
+    "https://commons.wikimedia.org/wiki/File:National_Museum_of_Finland_detail_-_DSC03825.JPG",
+    "https://commons.wikimedia.org/wiki/File:National_Museum_of_Finland_-_DSC03842.JPG",
+    "https://commons.wikimedia.org/wiki/File:National_Museum_of_Finland_-_DSC03843.JPG",
+    "https://commons.wikimedia.org/wiki/File:National_Museum_of_Finland_-_DSC03822.JPG",
+    "https://commons.wikimedia.org/wiki/File:National_Museum_of_Finland_-_DSC03827.JPG"
+  ],
+  "stories": [
+    {
+      "id": "national-museum-of-finland-wp",
+      "url": "https://qualla.com/national-museum-of-finland/"
+    }
+  ],
+  "referenceInputHash": "50b95a3b0814fb3f137298ebe5e4eef56c7943ed013a342884f9d57166031d70",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ud/ud9/national_museum_of_finland/models/helsinki-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ud/ud9/national_museum_of_finland/models/helsinki-museum-model.mjs",
+    "level": "skyline",
+    "export": "helsinkiSkyline",
+    "errorMeters": 0.59,
+    "surfaces": {
+      "granite": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick_flemish",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.84,
+        "metallic": 0.1
+      },
+      "dark": {
+        "slot": "trim",
+        "localRef": "palette:#fffdfe",
+        "roughness": 0.79,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "helsinkiDistrict",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_flemish",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.1
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.79,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "helsinkiStreet",
+        "errorMeters": 0.088,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_flemish",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.1
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.79,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "helsinkiCloseup",
+        "errorMeters": 0.032,
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_flemish",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.1
+          },
+          "dark": {
+            "slot": "trim",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.79,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_granite",
+    "plaster_lime",
+    "slate",
+    "brick_flemish",
+    "metal_copper"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.85,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      24.931662707812496,
+      60.17489779531248
+    ],
+    "heading": 0.4467411501473923,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        24.932057458700545,
+        60.17482296061211
+      ],
+      "modelHeight": 0,
+      "basis": "Original grade below the main entrance stair toward Mannerheimintie."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          24.11216883684551,
+          -46.75970415616775
+        ],
+        [
+          24.231945953534503,
+          -37.65466833159617
+        ],
+        [
+          25.411619855342597,
+          -37.003151600075434
+        ],
+        [
+          25.47038330129582,
+          -34.370559769570804
+        ],
+        [
+          24.33237548513892,
+          -33.54560429062914
+        ],
+        [
+          24.480633503866173,
+          -26.53763356548038
+        ],
+        [
+          24.797033955460677,
+          -11.512357282478884
+        ],
+        [
+          25.721902001202523,
+          -11.328516393026955
+        ],
+        [
+          26.857005101094877,
+          -10.673664301400198
+        ],
+        [
+          27.66139740613666,
+          -9.584756979011917
+        ],
+        [
+          27.94938317346419,
+          -7.879197344577641
+        ],
+        [
+          27.706100569189342,
+          -6.897183988819361
+        ],
+        [
+          27.36316791760922,
+          -6.283833660817086
+        ],
+        [
+          27.813869105729125,
+          -6.314795329913029
+        ],
+        [
+          28.06150510074695,
+          -6.331943844514008
+        ],
+        [
+          28.62113671177054,
+          -6.372439882998968
+        ],
+        [
+          28.71515380096242,
+          3.3374220751703696
+        ],
+        [
+          28.749598543953574,
+          7.007546886144937
+        ],
+        [
+          28.764063276711777,
+          8.656138384674612
+        ],
+        [
+          20.38165654197074,
+          8.738596773644055
+        ],
+        [
+          20.390451570302762,
+          9.668559370302644
+        ],
+        [
+          20.399430441383345,
+          10.610953360077856
+        ],
+        [
+          16.111595721587044,
+          10.655265371257904
+        ],
+        [
+          11.555968502709645,
+          10.694726758470992
+        ],
+        [
+          11.628748099211732,
+          17.96277995274988
+        ],
+        [
+          11.652956488652379,
+          20.270235321620362
+        ],
+        [
+          11.681915370307623,
+          23.23416262312712
+        ],
+        [
+          11.73980371731496,
+          29.49527292249155
+        ],
+        [
+          -15.959379872568483,
+          29.49527292249155
+        ],
+        [
+          -16.69514741253496,
+          30.364798518601866
+        ],
+        [
+          -18.053986971769202,
+          31.343176131969894
+        ],
+        [
+          -19.335847952169107,
+          31.827666730123184
+        ],
+        [
+          -21.287160764139465,
+          31.96677507236482
+        ],
+        [
+          -22.55545415816517,
+          31.69247893835357
+        ],
+        [
+          -24.174342761345752,
+          30.842903203198194
+        ],
+        [
+          -25.60009367119698,
+          29.308219050803775
+        ],
+        [
+          -26.414751745395918,
+          27.189897982118957
+        ],
+        [
+          -26.48046444442762,
+          25.7636230587038
+        ],
+        [
+          -25.997789345549943,
+          23.871792772632464
+        ],
+        [
+          -24.916118257075105,
+          22.2545634535849
+        ],
+        [
+          -24.893476185479628,
+          15.069251230636416
+        ],
+        [
+          -24.890755311621916,
+          13.577012266238029
+        ],
+        [
+          -26.037528740326792,
+          13.13874945279854
+        ],
+        [
+          -26.480758562893506,
+          12.333944090760737
+        ],
+        [
+          -26.36934993958792,
+          11.48625075396012
+        ],
+        [
+          -25.940584849956803,
+          10.642464617383267
+        ],
+        [
+          -24.91303702875508,
+          10.394103748924447
+        ],
+        [
+          -24.995472053837794,
+          9.8485375594922
+        ],
+        [
+          -26.962315889192098,
+          9.943175911070465
+        ],
+        [
+          -28.309977815621036,
+          10.00115867314624
+        ],
+        [
+          -28.32631038981516,
+          8.561508932157926
+        ],
+        [
+          -38.01716909904742,
+          8.671359998276033
+        ],
+        [
+          -38.17574434998966,
+          -5.068665477799051
+        ],
+        [
+          -28.88639054628222,
+          -5.1733610870226645
+        ],
+        [
+          -28.907135342445674,
+          -6.9113642784364995
+        ],
+        [
+          -10.759707789588699,
+          -7.117520264081314
+        ],
+        [
+          -10.788328401176072,
+          -9.723329083462305
+        ],
+        [
+          -10.952021828804861,
+          -24.144689280546935
+        ],
+        [
+          -11.202128619441458,
+          -46.42077011512441
+        ],
+        [
+          12.050939117650227,
+          -46.68680461144802
+        ],
+        [
+          12.036812654440775,
+          -47.977277627223565
+        ],
+        [
+          21.881356431937537,
+          -48.08756703026347
+        ],
+        [
+          21.895666737731222,
+          -46.78466262057298
+        ],
+        [
+          23.05098517203931,
+          -46.774322780651644
+        ]
+      ],
+      "minimumCoverage": 0.95,
+      "basis": "Use the mapped historic museum outline only for the dated generic-building replacement."
+    },
+    "featureIds": [
+      "way/124681352",
+      "way/23181939",
+      "way/23181940",
+      "node/319771993"
+    ],
+    "source": "https://www.openstreetmap.org/relation/6635",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ae7e5b3708d0cae718f75a565ee412ecfffd9032a4029ccffd2c0a6899674586",
+    "notes": "The historic Helsinki National Museum exterior as photographed in August 2012. Includes the 58-meter granite tower, steep copper spire, museum wings and turrets, main entrance stair, and the two open named courtyards. The later addition, collection and interiors are outside scope. The native courtyard outlines and mapped entrance locate the visible components. Original roof forms and materials are refined against the dated photographs."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The original outline, courtyard openings and main entrance are mapped. The historic roof sections, minor turret positions, bay widths and statue relief are proportional estimates informed by the 2012 photographs.",
+    "The tower height is based on the museum’s 58-meter published dimension. The source terrain is unchanged. Original provider elevations include likely canopy and roof effects, and local thresholds and foundations are approximate.",
+    "The scope is the historic exterior and two courtyards in 2012. The later addition and interior galleries are outside scope."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. The outline and courtyards are from OpenStreetMap. Exterior architecture is based on verified CC0 photographs by Daderot.",
+  "qaLodCameras": [
+    {
+      "name": "whole-finnish-national-museum-skyline",
+      "position": [
+        105,
+        76,
+        129
+      ],
+      "lookAt": [
+        -1,
+        18,
+        -6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-finnish-national-museum-district",
+      "position": [
+        105,
+        76,
+        129
+      ],
+      "lookAt": [
+        -1,
+        18,
+        -6
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-finnish-national-museum-street",
+      "position": [
+        105,
+        76,
+        129
+      ],
+      "lookAt": [
+        -1,
+        18,
+        -6
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-finnish-national-museum-closeup",
+      "position": [
+        105,
+        76,
+        129
+      ],
+      "lookAt": [
+        -1,
+        18,
+        -6
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "granite-entrance-and-tower",
+      "position": [
+        72,
+        37,
+        96
+      ],
+      "lookAt": [
+        9,
+        24,
+        4
+      ]
+    },
+    {
+      "name": "linnanpiha-and-halkopiha",
+      "position": [
+        -64,
+        108,
+        -72
+      ],
+      "lookAt": [
+        0,
+        13,
+        -8
+      ]
+    },
+    {
+      "name": "avenue-gallery-and-oriels",
+      "position": [
+        95,
+        35,
+        -41
+      ],
+      "lookAt": [
+        12,
+        20,
+        -14
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8606,
+    "vertices": 25818,
+    "materials": 6,
+    "bytes": 1372840,
+    "sha256": "sha256:cf4864297b30371baf0d140b0e750310e261238785ab8691f1f6e2e3a55fe3ed"
+  }
+}

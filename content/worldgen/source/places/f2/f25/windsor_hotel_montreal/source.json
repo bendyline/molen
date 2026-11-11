@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.windsor_hotel_montreal",
+  "kind": "static-structure",
+  "title": "Windsor Hotel (Montreal)",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.windsor_hotel_montreal",
+        "output": "assets/places/f2/f25/windsor_hotel_montreal/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:5b3bb0adfb01fb44ab63586746ef70912540f2880bb5d466b5fe319a6a2c71f3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-windsor-hotel",
+        "path": "models/generate-windsor-hotel.mjs"
+      },
+      {
+        "id": "windsor-hotel-model",
+        "path": "models/windsor-hotel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/windsor-atlas-and-annex-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/mccord-view-4890-2.json",
+      "reference-rights/commons-view-4890-2.json",
+      "reference-rights/banq-goad-plate-14.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-9687-11722.png",
+      "terrain-sources/terrarium-15-9687-11723.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}
