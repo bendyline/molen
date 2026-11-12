@@ -9,6 +9,7 @@ import {
   sphere,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { tubePath } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
+
 const earcut = createRequire(
   new URL('../../../../../../../../packages/worldgen/package.json', import.meta.url),
 )('earcut').default;

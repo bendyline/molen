@@ -134,7 +134,9 @@ for (const model of authoredPlaceModels.filter(
     camera = { position: model.camera, lookAt: look, fov: 43 };
   const hasTerrain = fs.existsSync(path.join(dir, 'terrain-grid.json'));
   const terrainSourcePaths = hasTerrain
-    ? JSON.parse(fs.readFileSync(path.join(dir, 'terrain-grid.json'))).sources.map(({ path }) => path)
+    ? JSON.parse(fs.readFileSync(path.join(dir, 'terrain-grid.json'))).sources.map(
+        ({ path }) => path,
+      )
     : [];
   const usePortableTerrain = hasTerrain && model.portableGroundY === undefined;
   if (model.portableGroundY !== undefined && !Number.isFinite(model.portableGroundY))
@@ -299,7 +301,12 @@ for (const model of authoredPlaceModels.filter(
         components: {
           environment: {
             ambient: { sky: '#c4dcec', ground: '#7a7258', intensity: 2 },
-            sun: { direction: model.sunDirection ?? [-8, 14, 9], color: '#fff1d8', intensity: 3.5, castShadow: true },
+            sun: {
+              direction: model.sunDirection ?? [-8, 14, 9],
+              color: '#fff1d8',
+              intensity: 3.5,
+              castShadow: true,
+            },
             background: '#c4dcec',
             toneMapping: 'neutral',
             exposure: 1,

@@ -26,7 +26,12 @@ const colors = {
   glass: [0.33, 0.46, 0.49],
   darkGlass: [0.24, 0.34, 0.36],
 };
-const cornerSigns = [[-1, -1], [1, -1], [1, 1], [-1, 1]];
+const cornerSigns = [
+  [-1, -1],
+  [1, -1],
+  [1, 1],
+  [-1, 1],
+];
 const square = (y, half) => cornerSigns.map(([x, z]) => [half * x, y, half * z]);
 const blend = (a, b, t) => a.map((v, i) => v + (b[i] - v) * t);
 const wrap = (i, ring) => (i + 1) % ring.length;
@@ -40,27 +45,42 @@ const ringRails = (out, ring, radius, color, level) => {
 function bracedBays(out, profile, level, bracing) {
   const rings = profile.map(([y, half]) => square(y, half));
   for (let j = 0; j < 4; j++) {
-    loft(out, 'steel', rings.map((ring, i) => {
-      const [x, y, z] = ring[j];
-      const half = profile[i][2] / 2;
-      return cornerSigns.toReversed().map(([dx, dz]) => [x + dx * half, y, z + dz * half]);
-    }), colors.steel);
+    loft(
+      out,
+      'steel',
+      rings.map((ring, i) => {
+        const [x, y, z] = ring[j];
+        const half = profile[i][2] / 2;
+        return cornerSigns.toReversed().map(([dx, dz]) => [x + dx * half, y, z + dz * half]);
+      }),
+      colors.steel,
+    );
   }
   for (let i = 1; i < rings.length; i++) {
-    const lower = rings[i - 1], upper = rings[i];
+    const lower = rings[i - 1],
+      upper = rings[i];
     for (let j = 0; j < 4; j++) {
       const k = (j + 1) % 4;
       if (level > 0) tube(out, 'steel', upper[j], upper[k], bracing * 0.72, colors.darkSteel, 3);
       tube(out, 'steel', lower[j], upper[k], bracing, colors.steel, level >= 2 ? 4 : 3);
-      if (level > 0) tube(out, 'steel', lower[k], upper[j], bracing, colors.steel, level >= 2 ? 4 : 3);
+      if (level > 0)
+        tube(out, 'steel', lower[k], upper[j], bracing, colors.steel, level >= 2 ? 4 : 3);
     }
   }
 }
 
 function groundAndLegs(out, level) {
-  for (const { xz: [x, z], sourceGroundY } of plan.footings) {
-    box(out, 'concrete', [x - 1.37, sourceGroundY - 0.38, z - 1.37],
-      [x + 1.37, 0.72, z + 1.37], colors.concrete);
+  for (const {
+    xz: [x, z],
+    sourceGroundY,
+  } of plan.footings) {
+    box(
+      out,
+      'concrete',
+      [x - 1.37, sourceGroundY - 0.38, z - 1.37],
+      [x + 1.37, 0.72, z + 1.37],
+      colors.concrete,
+    );
     if (level >= 2) {
       box(out, 'steel', [x - 0.56, 0.71, z - 0.56], [x + 0.56, 0.87, z + 0.56], colors.darkSteel);
     }
@@ -75,45 +95,79 @@ function groundAndLegs(out, level) {
     beamPath(out, 'concrete', points, 1.38, 1.08, colors.shadedConcrete);
   }
   const profile = [
-    [0.71, 17.5, 0.7], [15, 15.35, 0.68], [26, 13.54, 0.65],
-    [39, 11.74, 0.57], [53, 10.1, 0.53], [68, 8.56, 0.49],
-    [79, 7.57, 0.46], [90, 6.64, 0.45],
+    [0.71, 17.5, 0.7],
+    [15, 15.35, 0.68],
+    [26, 13.54, 0.65],
+    [39, 11.74, 0.57],
+    [53, 10.1, 0.53],
+    [68, 8.56, 0.49],
+    [79, 7.57, 0.46],
+    [90, 6.64, 0.45],
   ];
-  const controlBays = level === 0 ? [profile[0], profile[2], profile[4], profile[5], profile[7]] : profile;
+  const controlBays =
+    level === 0 ? [profile[0], profile[2], profile[4], profile[5], profile[7]] : profile;
   bracedBays(out, controlBays, level, 0.22);
 }
 
 function glazedFacets(out, ring, top, level, options) {
   const { spacing, rail, glass } = options;
   for (let i = 0; i < ring.length; i++) {
-    const a = ring[i], b = ring[wrap(i, ring)];
-    const [at, bt] = top === null ? [a, b].map(([x, y, z]) => [x, y + options.height, z])
-      : [top[i], top[wrap(i, ring)]];
+    const a = ring[i],
+      b = ring[wrap(i, ring)];
+    const [at, bt] =
+      top === null
+        ? [a, b].map(([x, y, z]) => [x, y + options.height, z])
+        : [top[i], top[wrap(i, ring)]];
     face(out, 'glass', [a, b, bt, at], i % 3 === 0 ? colors.darkGlass : glass);
     if (level === 0) continue;
-    const divisions = level === 1 ? 2 : Math.max(2, Math.round(Math.hypot(b[0] - a[0], b[2] - a[2]) / spacing));
+    const divisions =
+      level === 1 ? 2 : Math.max(2, Math.round(Math.hypot(b[0] - a[0], b[2] - a[2]) / spacing));
     for (let j = 0; j < divisions; j++) {
       const t = j / divisions;
       beam(out, 'steel', blend(a, b, t), blend(at, bt, t), rail, rail, colors.pale);
     }
     if (level >= 2) {
-      beam(out, 'steel', blend(a, at, 0.72), blend(b, bt, 0.72), rail * 0.7, rail * 0.7, colors.pale);
+      beam(
+        out,
+        'steel',
+        blend(a, at, 0.72),
+        blend(b, bt, 0.72),
+        rail * 0.7,
+        rail * 0.7,
+        colors.pale,
+      );
     }
   }
 }
 
 function lowerBuilding(out, level) {
   const floor = (y) => deckRing(y, 25.2, 1.4);
-  loft(out, 'concrete', [floor(section.lowerFloor - 0.55), floor(section.lowerFloor + 0.12)], colors.concrete);
-  glazedFacets(out, floor(15.12), null, level, { height: 10.88, spacing: 2.2, rail: 0.17, glass: colors.darkGlass });
+  loft(
+    out,
+    'concrete',
+    [floor(section.lowerFloor - 0.55), floor(section.lowerFloor + 0.12)],
+    colors.concrete,
+  );
+  glazedFacets(out, floor(15.12), null, level, {
+    height: 10.88,
+    spacing: 2.2,
+    rail: 0.17,
+    glass: colors.darkGlass,
+  });
   for (const y of level === 0 ? [25.8] : [18.5, 22.2, 25.8]) {
     loft(out, 'concrete', [floor(y), floor(y + 0.44)], colors.concrete);
   }
   box(out, 'concrete', [-2.05, -0.42, -2.05], [2.05, 15.22, 2.05], colors.shadedConcrete);
   box(out, 'glass', [-1.68, 0.1, 2.03], [1.68, 3.55, 2.13], colors.darkGlass);
   if (level === 0) return;
-  const shaft = [[26, 1.85, 0.18], [39, 1.85, 0.18], [53, 1.85, 0.17],
-    [68, 1.85, 0.17], [79, 1.85, 0.17], [89.2, 1.85, 0.17]];
+  const shaft = [
+    [26, 1.85, 0.18],
+    [39, 1.85, 0.18],
+    [53, 1.85, 0.17],
+    [68, 1.85, 0.17],
+    [79, 1.85, 0.17],
+    [89.2, 1.85, 0.17],
+  ];
   bracedBays(out, shaft, level, 0.075);
 }
 
@@ -121,8 +175,11 @@ function observationDecks(out, level) {
   const lower = (y, width) => deckRing(y, width, 3.15);
   loft(out, 'steel', [lower(87.4, 14.8), lower(89.73, 18.1)], colors.darkSteel);
   loft(out, 'steel', [lower(89.73, 18.1), lower(90.15, 18.1)], colors.pale);
-  glazedFacets(out, lower(90.15, 18.02), lower(95.25, 17.3), level,
-    { spacing: 1.24, rail: 0.16, glass: colors.glass });
+  glazedFacets(out, lower(90.15, 18.02), lower(95.25, 17.3), level, {
+    spacing: 1.24,
+    rail: 0.16,
+    glass: colors.glass,
+  });
   loft(out, 'steel', [lower(95.25, 17.35), lower(95.68, 17.35), lower(97.5, 13.3)], colors.pale);
   if (level >= 2) {
     const rim = lower(88.98, 17.15);
@@ -134,8 +191,14 @@ function observationDecks(out, level) {
     }
   }
   const balcony = (y, w) => deckRing(y, w, 2.8);
-  loft(out, 'steel', [balcony(97.5, 10.8), balcony(section.outdoorBalcony, 13.15)], colors.darkSteel);
-  const sill = balcony(100.03, 13.04), rim = balcony(102.68, 11.75);
+  loft(
+    out,
+    'steel',
+    [balcony(97.5, 10.8), balcony(section.outdoorBalcony, 13.15)],
+    colors.darkSteel,
+  );
+  const sill = balcony(100.03, 13.04),
+    rim = balcony(102.68, 11.75);
   if (level >= 2) ringRails(out, sill, 0.085, colors.pale, level);
   ringRails(out, rim, 0.09, colors.pale, level);
   for (let i = 0; i < sill.length; i++) {
@@ -143,17 +206,39 @@ function observationDecks(out, level) {
     const divisions = [1, 2, 7, 13][level];
     for (let n = 0; n < divisions; n++) {
       const t = n / divisions;
-      tube(out, 'steel', blend(sill[i], sill[j], t), blend(rim[i], rim[j], t),
-        level >= 2 ? 0.036 : 0.08, colors.pale, 3);
+      tube(
+        out,
+        'steel',
+        blend(sill[i], sill[j], t),
+        blend(rim[i], rim[j], t),
+        level >= 2 ? 0.036 : 0.08,
+        colors.pale,
+        3,
+      );
     }
   }
 }
 
 function antennaArrays(out, level) {
-  const towerHead = [[97.5, 4.9, 0.43], [108, 3.55, 0.36], [121.5, 2.28, 0.29], [section.antennaBase, 1.68, 0.24]];
-  bracedBays(out, level === 0 ? [towerHead[0], towerHead[1], towerHead[3]] : towerHead, level, 0.15);
+  const towerHead = [
+    [97.5, 4.9, 0.43],
+    [108, 3.55, 0.36],
+    [121.5, 2.28, 0.29],
+    [section.antennaBase, 1.68, 0.24],
+  ];
+  bracedBays(
+    out,
+    level === 0 ? [towerHead[0], towerHead[1], towerHead[3]] : towerHead,
+    level,
+    0.15,
+  );
   if (level > 0) box(out, 'steel', [-1.45, 109.1, -1.45], [1.45, 112.3, 1.45], colors.darkSteel);
-  const mast = [[section.antennaBase, 1.1, 0.19], [145, 0.91, 0.18], [156.8, 0.7, 0.16], [164.4, 0.37, 0.13]];
+  const mast = [
+    [section.antennaBase, 1.1, 0.19],
+    [145, 0.91, 0.18],
+    [156.8, 0.7, 0.16],
+    [164.4, 0.37, 0.13],
+  ];
   if (level === 0) {
     tube(out, 'steel', [0, 135, 0], [0, 164.4, 0], 0.68, colors.steel, 3);
   } else {
@@ -162,7 +247,8 @@ function antennaArrays(out, level) {
   tube(out, 'steel', [0, 164.4, 0], [0, 173.2, 0], 0.185, colors.pale, 4);
   tube(out, 'steel', [0, 173.2, 0], [0, section.tip, 0], 0.09, colors.pale, 3);
   const mount = (side, distance, y, width) =>
-    side % 2 === 0 ? [width, y, side === 0 ? distance : -distance]
+    side % 2 === 0
+      ? [width, y, side === 0 ? distance : -distance]
       : [side === 1 ? distance : -distance, y, width];
   for (let side = 0; side < 4; side++) {
     const y0 = side % 2 === 0 ? 137.3 : 134.65;
@@ -170,19 +256,44 @@ function antennaArrays(out, level) {
     const distance = side % 2 === 0 ? 2.54 : 2.2;
     if (level === 0) {
       const [x, , z] = mount(side, distance, y0, 0);
-      const rx = side % 2 === 0 ? 0.64 : 0.09, rz = side % 2 === 0 ? 0.09 : 0.64;
+      const rx = side % 2 === 0 ? 0.64 : 0.09,
+        rz = side % 2 === 0 ? 0.09 : 0.64;
       box(out, 'steel', [x - rx, y0, z - rz], [x + rx, y1, z + rz], colors.pale);
       continue;
     }
     for (const w of [-0.71, 0.71]) {
-      beam(out, 'steel', mount(side, distance, y0, w), mount(side, distance, y1, w), 0.11, 0.15, colors.pale);
+      beam(
+        out,
+        'steel',
+        mount(side, distance, y0, w),
+        mount(side, distance, y1, w),
+        0.11,
+        0.15,
+        colors.pale,
+      );
     }
     const rows = [0, 4, 8, 12][level];
     for (let i = 0; i <= rows; i++) {
       const y = y0 + ((y1 - y0) * i) / rows;
-      tube(out, 'steel', mount(side, distance, y, -0.72), mount(side, distance, y, 0.72), 0.08, colors.pale, 3);
+      tube(
+        out,
+        'steel',
+        mount(side, distance, y, -0.72),
+        mount(side, distance, y, 0.72),
+        0.08,
+        colors.pale,
+        3,
+      );
       if (level >= 2 && i % 2 === 0) {
-        tube(out, 'steel', mount(side, distance * 0.45, y, 0), mount(side, distance, y, 0), 0.08, colors.darkSteel, 3);
+        tube(
+          out,
+          'steel',
+          mount(side, distance * 0.45, y, 0),
+          mount(side, distance, y, 0),
+          0.08,
+          colors.darkSteel,
+          3,
+        );
       }
     }
   }
@@ -207,12 +318,15 @@ export const towerDistrict = (out) => build(out, 1);
 export const towerStreet = (out) => build(out, 2);
 export const towerCloseup = (out) => build(out, 3);
 const recipe = 'nagoya-tv-tower-model.mjs';
-const camera = [110, 74, 220], lookAt = [0, 86, 0];
-const authoredLevels = Object.fromEntries([
-  ['district', 'towerDistrict', 0.75],
-  ['street', 'towerStreet', 0.28],
-  ['closeup', 'towerCloseup', 0.07],
-].map(([level, entry, errorMeters]) => [level, { export: entry, errorMeters, surfaces }]));
+const camera = [110, 74, 220],
+  lookAt = [0, 86, 0];
+const authoredLevels = Object.fromEntries(
+  [
+    ['district', 'towerDistrict', 0.75],
+    ['street', 'towerStreet', 0.28],
+    ['closeup', 'towerCloseup', 0.07],
+  ].map(([level, entry, errorMeters]) => [level, { export: entry, errorMeters, surfaces }]),
+);
 
 export const towerModel = {
   id: plan.model,
@@ -229,7 +343,8 @@ export const towerModel = {
   geographicStatus: 'historical-proposal',
   orientationPolicy: 'approximate-visualization',
   progressLedger: 'qualla-003.PROGRESS.md',
-  brief: 'Silver lattice broadcast tower with four splayed legs, suspended glazed floors and paired observation decks in central Nagoya.',
+  brief:
+    'Silver lattice broadcast tower with four splayed legs, suspended glazed floors and paired observation decks in central Nagoya.',
   appearance: {
     kind: 'historical',
     representedDate: plan.representedDate,
@@ -270,5 +385,6 @@ export const towerModel = {
     authoredLevels,
   },
   limitations: plan.limitations,
-  sourceLicense: 'Original geometry under the repository license. Footprint © OpenStreetMap contributors, ODbL 1.0. Two exact CC0 Qualla exterior photographs. Ground elevations from Geospatial Information Authority of Japan.',
+  sourceLicense:
+    'Original geometry under the repository license. Footprint © OpenStreetMap contributors, ODbL 1.0. Two exact CC0 Qualla exterior photographs. Ground elevations from Geospatial Information Authority of Japan.',
 };

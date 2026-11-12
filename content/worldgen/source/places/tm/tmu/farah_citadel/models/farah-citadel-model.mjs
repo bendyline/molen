@@ -2,8 +2,8 @@
 import { readFileSync } from 'node:fs';
 import {
   loft,
-  radialRing,
   normalFor,
+  radialRing,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import {
   face,

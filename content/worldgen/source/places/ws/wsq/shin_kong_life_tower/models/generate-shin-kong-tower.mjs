@@ -134,7 +134,9 @@ for (const model of authoredPlaceModels.filter(
     camera = { position: model.camera, lookAt: look, fov: 43 };
   const hasTerrain = fs.existsSync(path.join(dir, 'terrain-grid.json'));
   const terrainSourcePaths = hasTerrain
-    ? JSON.parse(fs.readFileSync(path.join(dir, 'terrain-grid.json'))).sources.map(({ path }) => path)
+    ? JSON.parse(fs.readFileSync(path.join(dir, 'terrain-grid.json'))).sources.map(
+        ({ path }) => path,
+      )
     : [];
   const usePortableTerrain = hasTerrain && model.portableGroundY === undefined;
   if (model.portableGroundY !== undefined && !Number.isFinite(model.portableGroundY))

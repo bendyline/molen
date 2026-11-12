@@ -3,9 +3,9 @@ import '../../../../../../../../packages/worldgen/scripts/install-deterministic-
 import fs from 'node:fs';
 import { MeshBufferBuilder } from '../../../../../../../../packages/worldgen/dist/kernel.mjs';
 import {
+  loft,
   normalFor,
   radialRing,
-  loft,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
 import { box, quad } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';

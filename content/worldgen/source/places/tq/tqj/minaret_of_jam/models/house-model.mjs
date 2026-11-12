@@ -2,9 +2,9 @@
 import '../../../../../../../../packages/worldgen/scripts/install-deterministic-math.mjs';
 import fs from 'node:fs';
 import {
+  beam,
   loft,
   normalFor,
-  beam,
 } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
 import { quad } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';

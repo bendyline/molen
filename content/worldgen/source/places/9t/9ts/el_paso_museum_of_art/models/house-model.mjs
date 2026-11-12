@@ -4,8 +4,8 @@ import fs from 'node:fs';
 import { MeshBufferBuilder } from '../../../../../../../../packages/worldgen/dist/kernel.mjs';
 import { normalFor } from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
 import { rgb } from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
-import { box, quad } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
 import { letterAt } from '../../../../../../../../packages/worldgen/scripts/stadium-lettering.mjs';
+import { box, quad } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
 
 const plan = JSON.parse(fs.readFileSync(new URL('../plan-controls.json', import.meta.url)));
 export const surfaces = {

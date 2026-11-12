@@ -272,7 +272,9 @@ function bronzeOrnament(out, tier) {
   }
 }
 function pedestal(out, tier) {
-  layout.steps.forEach((p, i) => step(out, p, i, tier));
+  layout.steps.forEach((p, i) => {
+    step(out, p, i, tier);
+  });
   blocks(
     out,
     'granite',

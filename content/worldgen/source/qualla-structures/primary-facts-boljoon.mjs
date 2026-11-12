@@ -1,6 +1,6 @@
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { createHash } from 'node:crypto';
 
 const museumUrl =
   'https://www.nationalmuseum.gov.ph/2021/11/11/the-patrocinio-de-maria-church-in-boljoon-cebu/';

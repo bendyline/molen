@@ -26,10 +26,10 @@ import { inspectAugerSurfacePrimaryFacts } from './primary-facts-auger-surface.m
 import { augerTowerCases, inspectAugerTowerPrimaryFacts } from './primary-facts-auger-towers.mjs';
 import { inspectAugerWeatherMeterPrimaryFacts } from './primary-facts-auger-weather-meter.mjs';
 import { inspectBerlinPrimaryFacts } from './primary-facts-berlin.mjs';
+import { inspectBoljoonPrimaryFacts } from './primary-facts-boljoon.mjs';
 import { inspectBosschaPrimaryFacts } from './primary-facts-bosscha.mjs';
 import { inspectBrisbanePrimaryFacts } from './primary-facts-brisbane.mjs';
 import { inspectBristolPrimaryFacts } from './primary-facts-bristol.mjs';
-import { inspectBoljoonPrimaryFacts } from './primary-facts-boljoon.mjs';
 import { inspectBruneiPrimaryFacts } from './primary-facts-brunei.mjs';
 import { inspectBujagaliPrimaryFacts } from './primary-facts-bujagali.mjs';
 import { daiichiCases, inspectDaiichiPrimaryFacts } from './primary-facts-daiichi.mjs';
@@ -47,7 +47,6 @@ import { inspectIndependencePrimaryFacts } from './primary-facts-independence.mj
 import { inspectKaptaiPrimaryFacts } from './primary-facts-kaptai.mjs';
 import { inspectLagosTheatrePrimaryFacts } from './primary-facts-lagos-theatre.mjs';
 import { inspectLasRaicesPrimaryFacts } from './primary-facts-las-raices.mjs';
-import { inspectLytteltonPrimaryFacts } from './primary-facts-lyttelton.mjs';
 import { inspectLitoralPrimaryFacts, litoralCases } from './primary-facts-litoral.mjs';
 import {
   inspectLitoralEstimatedHallPrimaryFacts,
@@ -57,6 +56,7 @@ import {
   inspectLitoralMicrosoftEstimatedPrimaryFacts,
   litoralMicrosoftEstimatedCases,
 } from './primary-facts-litoral-microsoft-estimated.mjs';
+import { inspectLytteltonPrimaryFacts } from './primary-facts-lyttelton.mjs';
 import { inspectMaputoPrimaryFacts } from './primary-facts-maputo.mjs';
 import { inspectMarkarPrimaryFacts } from './primary-facts-markar.mjs';
 import { inspectMroAskapPrimaryFacts } from './primary-facts-mro-askap.mjs';
