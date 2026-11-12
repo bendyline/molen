@@ -8,6 +8,7 @@ import {
   boostSpeedMultiplier,
   type JsonObject,
   resolveWeather,
+  snowCoverAt,
   type VehicleDamageState,
   type VehicleData,
   type VehicleSpec,
@@ -129,6 +130,10 @@ export interface VehicleStateData extends VehicleDamageState {
   assist?: number;
   /** Grip of the surface under the wheels relative to dry pavement, when the host reports one. */
   surfaceGrip?: number;
+  /** Meters of lying snow under the vehicle; absent on bare ground. */
+  snowDepth?: number;
+  /** Deep snow is holding the vehicle against its own drive. */
+  stuck?: boolean;
   /** Track-guided vehicles: the rails under it and the route chosen at the next switch. */
   track?: VehicleTrackState;
 }
@@ -198,6 +203,8 @@ export function vehicleMounts(spec: VehicleSpec): MountableData {
     reach: 3,
   };
 }
+/** Share of lying snow left on a paved road: ploughed, then packed down by traffic. */
+const PLOUGHED = 0.3;
 /** What the wheels roll on, relative to dry pavement. */
 export interface VehicleSurface {
   /** Tire friction as a share of the grip on dry pavement. */
@@ -206,18 +213,23 @@ export interface VehicleSurface {
   drag: number;
   /** 0–1 unevenness: shakes the body on its springs as the car moves. */
   roughness: number;
+  /**
+   * Share of the weather's lying snow left on this surface: 1 on open ground (the default), less
+   * on a road that is ploughed and packed down by traffic.
+   */
+  snow?: number;
 }
 /**
  * Stock surfaces by the names map data uses for roads and land cover. Pavement is the baseline;
  * loose and soft ground grips less, drags more and is rougher.
  */
 export const VEHICLE_SURFACES: Readonly<Record<string, VehicleSurface>> = {
-  asphalt: { grip: 1, drag: 0, roughness: 0 },
-  concrete: { grip: 1, drag: 0, roughness: 0 },
-  paved: { grip: 1, drag: 0, roughness: 0 },
-  metal: { grip: 0.75, drag: 0, roughness: 0.1 },
-  wood: { grip: 0.85, drag: 0.05, roughness: 0.2 },
-  stone: { grip: 0.9, drag: 0.05, roughness: 0.35 },
+  asphalt: { grip: 1, drag: 0, roughness: 0, snow: PLOUGHED },
+  concrete: { grip: 1, drag: 0, roughness: 0, snow: PLOUGHED },
+  paved: { grip: 1, drag: 0, roughness: 0, snow: PLOUGHED },
+  metal: { grip: 0.75, drag: 0, roughness: 0.1, snow: PLOUGHED },
+  wood: { grip: 0.85, drag: 0.05, roughness: 0.2, snow: PLOUGHED },
+  stone: { grip: 0.9, drag: 0.05, roughness: 0.35, snow: PLOUGHED },
   gravel: { grip: 0.62, drag: 0.35, roughness: 0.45 },
   dirt: { grip: 0.68, drag: 0.3, roughness: 0.5 },
   grass: { grip: 0.55, drag: 0.6, roughness: 0.6 },
@@ -295,6 +307,30 @@ export function vehicleLocalPoint(
     t.pos[2] + z + qw * tz + qx * ty - qy * tx,
   ];
 }
+/** Depth in meters by which lying snow drags at a wheel as much as packed snow ever does. */
+const SNOW_PACKED_DEPTH = 0.05;
+/**
+ * Rolling resistance of wheels of `wheelRadius` through lying snow `depth` meters deep, in m/s².
+ * `packed` is the drag of a firm snow surface, reached within a few centimeters. `deep` is the
+ * wheels ploughing and the floor dragging: it grows with the square of the depth against the
+ * wheel's size, about 3 m/s² where the snow reaches 60% of the wheel's radius, which is past
+ * what most cars can push through. `tread` (a spec's `looseSurfaceGrip`) wins back 40%.
+ */
+export function snowDrag(
+  depth: number,
+  wheelRadius: number,
+  tread = 0,
+): { packed: number; deep: number } {
+  if (!(depth > 0)) return { packed: 0, deep: 0 };
+  const sink = depth / (0.6 * wheelRadius);
+  const relief = 1 - 0.4 * tread;
+  return {
+    packed:
+      (VEHICLE_SURFACES.snow as VehicleSurface).drag * m.min(1, depth / SNOW_PACKED_DEPTH) * relief,
+    deep: 3 * sink * sink * relief,
+  };
+}
+
 /**
  * Friction left on the road in the weather, as a share of dry grip: a road is wet (or covered) as
  * soon as rain or snow falls, and heavier falls take more. Temperature never turns rain to ice.
@@ -451,10 +487,49 @@ export function stepVehicle(
   // off-road tires win back half of what they take.
   const surface = env.surface?.(pos[0], pos[2], pos[1]);
   const tread = spec.looseSurfaceGrip ?? 0;
-  const surfaceGrip = surface ? surface.grip + m.max(0, 1 - surface.grip) * 0.5 * tread : 1;
-  const surfaceDrag = surface ? surface.drag * (1 - 0.4 * tread) : 0;
-  const roughness = surface?.roughness ?? 0;
-  const road = weatherGrip(env.weather) * surfaceGrip;
+  let surfaceGrip = surface ? surface.grip + m.max(0, 1 - surface.grip) * 0.5 * tread : 1;
+  let surfaceDrag = surface ? surface.drag * (1 - 0.4 * tread) : 0;
+  let roughness = surface?.roughness ?? 0;
+  let weather = weatherGrip(env.weather);
+  // The weather's lying snow at this height. Tires grip it poorly and sink into it: within a
+  // few centimeters it drags like any soft ground, and deeper it ploughs up against the wheels
+  // and the floor until the car cannot pull away. Runners are made for it.
+  const lying = snowCoverAt(env.weather?.snowCover, pos[1]);
+  const runners = spec.runners;
+  let snowDepth = 0;
+  if (runners) {
+    // Edges and paddles bite snow as tires bite pavement, falling snow or not, and float over
+    // any depth; off the snow they scrape.
+    const cover = lying.coverage;
+    surfaceGrip += (1 - surfaceGrip) * cover;
+    weather += (1 - weather) * cover;
+    surfaceDrag =
+      (surfaceDrag + (runners.bareDrag ?? 3)) * (1 - cover) + runners.friction * g * cover;
+    roughness *= 1 - cover;
+    snowDepth = lying.depth;
+  } else if (lying.coverage > 0) {
+    const cover = lying.coverage;
+    const snow = VEHICLE_SURFACES.snow as VehicleSurface;
+    snowDepth = lying.depth * (surface?.snow ?? 1);
+    const snowGrip = snow.grip + (1 - snow.grip) * 0.5 * tread;
+    surfaceGrip += (m.min(surfaceGrip, snowGrip) - surfaceGrip) * cover;
+    const drag = snowDrag(snowDepth, spec.wheelRadius, tread);
+    surfaceDrag = surfaceDrag * (1 - cover) + drag.packed + drag.deep;
+    roughness += (snow.roughness - roughness) * cover;
+    // Snow falling onto snow costs little more: the cover already set the grip.
+    weather += (m.max(weather, 0.85) - weather) * cover;
+  }
+  // Runners meet Coulomb friction: it holds them on a slope too gentle to beat it and lets go
+  // on a steeper one. Tires roll, so their resistance fades toward a stand.
+  const stiction = runners ? 0.05 : 0.5;
+  let stuck = false;
+  // A cycle balances on its tire line, so only the slope along it counts. Runners lie on the
+  // snow: skis and a board also take the slope across them, measured over their own width.
+  const tireLine = spec.cycle !== undefined && runners === undefined;
+  const span = spec.cycle ? spec.width : spec.wheelTrack;
+  // A pair of skis stays flat on the snow through a turn; the lean is the rider's alone.
+  const banks = runners?.flat === true ? 0 : 1;
+  const road = weather * surfaceGrip;
   const friction = (spec.grip / g) * road;
   const frictionRear = ((spec.rearGrip ?? spec.grip) / g) * road;
   const stiffness = spec.corneringStiffness ?? 18;
@@ -608,10 +683,12 @@ export function stepVehicle(
       drive = result.force * vehiclePartAuthority(spec, next, 'engine');
     } else if (
       !braking &&
-      !(throttle > 0 && u >= spec.maxSpeed) &&
+      !(throttle > 0 && u >= (runners?.pushSpeed ?? spec.maxSpeed)) &&
       !(throttle < 0 && u <= -spec.reverseSpeed)
     )
       drive = throttle * spec.engineForce * vehiclePartAuthority(spec, next, 'engine');
+    // What the tires or runners push with along the vehicle, before any resistance.
+    let propel = 0;
     if (next.grounded) {
       // Weight shifts through the springs: the body's dive or squat says how much moved forward
       // and its roll how much moved to the outside wheels. Lift at speed takes some off both.
@@ -707,7 +784,7 @@ export function stepVehicle(
         brake * (1 - bias),
         0.95 * straightRear * m.sqrt(1 - (0.9 * useRear) ** 2),
       );
-      const longFront = pushFront - brakeFront * m.clamp(rolling / 0.5, -1, 1);
+      const longFront = pushFront - brakeFront * m.clamp(rolling / stiction, -1, 1);
       const frontTire = tire(
         slipFront,
         limitFront * m.sqrt(m.max(0, 1 - (longFront / straightFront) ** 2)),
@@ -724,7 +801,7 @@ export function stepVehicle(
         sideRear = -rearLateral * scale;
         skid = 1;
       } else {
-        longRear = pushRear - brakeRear * m.clamp(u / 0.5, -1, 1);
+        longRear = pushRear - brakeRear * m.clamp(u / stiction, -1, 1);
         const rearTire = tire(
           slipRear,
           limitRear * m.sqrt(m.max(0, 1 - (longRear / straightRear) ** 2)),
@@ -736,12 +813,12 @@ export function stepVehicle(
       }
       const frontForward = longFront * m.cos(delta) + frontTire.force * m.sin(delta);
       const frontLeft = -longFront * m.sin(delta) + frontTire.force * m.cos(delta);
+      propel = frontForward + longRear;
       fx =
-        frontForward +
-        longRear -
+        propel -
         (mass * (spec.rollingResistance + surfaceDrag + (2 - frontHealth - rearHealth) * 1.5) +
           stabilityBrake) *
-          m.clamp(u / 0.5, -1, 1);
+          m.clamp(u / stiction, -1, 1);
       fy = frontLeft + sideRear;
       moment = front * frontLeft - rear * sideRear + stability;
     }
@@ -780,10 +857,35 @@ export function stepVehicle(
       if (input.brake && m.abs(v) < 0.5) v = 0;
       if (input.brake && m.abs(r) < 0.05) r = 0;
     }
-    if (!braking && throttle === 0 && m.abs(u) < 0.05 && m.abs(v) < 0.05 && m.abs(r) < 0.01) {
+    // A car at rest with no throttle holds itself. Runners hold only where friction beats the
+    // slope (static friction a little above sliding): otherwise gravity starts them.
+    const resistance = spec.rollingResistance + surfaceDrag;
+    const slides = runners !== undefined && m.abs(slopeForward) > 1.2 * resistance;
+    if (
+      !braking &&
+      throttle === 0 &&
+      !slides &&
+      m.abs(u) < 0.05 &&
+      m.abs(v) < 0.05 &&
+      m.abs(r) < 0.01
+    ) {
       u = 0;
       v = 0;
       r = 0;
+    }
+    // Deep snow holds a car that cannot push through it: at a crawl, what the tires and the
+    // slope give has to beat the whole of the snow's drag, or the car stays where it is.
+    if (
+      snowDepth > 0 &&
+      runners === undefined &&
+      next.grounded &&
+      m.abs(u) < 0.6 &&
+      m.abs(propel / mass + slopeForward) <= resistance
+    ) {
+      u = 0;
+      v = 0;
+      r = 0;
+      stuck = !braking && throttle !== 0;
     }
     u = m.clamp(u, -spec.reverseSpeed, spec.maxSpeed);
     // The sprung body leans against the acceleration it feels: it dives under braking, squats
@@ -813,7 +915,7 @@ export function stepVehicle(
     ];
     const heights: number[] = [];
     for (const z of [spec.wheelbase / 2, -spec.wheelbase / 2]) {
-      for (const x of spec.cycle ? [0] : [-spec.wheelTrack / 2, spec.wheelTrack / 2]) {
+      for (const x of tireLine ? [0] : [-span / 2, span / 2]) {
         const ground = env.groundHeight(
           candidate[0] + fc * x + fs * z,
           candidate[2] - fs * x + fc * z,
@@ -823,7 +925,7 @@ export function stepVehicle(
         heights.push(ground);
       }
     }
-    if (heights.length !== (spec.cycle ? 2 : 4)) {
+    if (heights.length !== (tireLine ? 2 : 4)) {
       u = 0;
       v = 0;
       r = 0;
@@ -832,11 +934,11 @@ export function stepVehicle(
       break;
     }
     const [fl, fr, rl, rr] = (
-      spec.cycle ? [heights[0], heights[0], heights[1], heights[1]] : heights
+      tireLine ? [heights[0], heights[0], heights[1], heights[1]] : heights
     ) as [number, number, number, number];
     const support = (fl + fr + rl + rr) / 4;
     const pitch = m.atan2((rl + rr - fl - fr) / 2, spec.wheelbase);
-    const roll = spec.cycle ? 0 : m.atan2((fr + rr - fl - rl) / 2, spec.wheelTrack);
+    const roll = tireLine ? 0 : m.atan2((fr + rr - fl - rl) / 2, span);
     // Curbs are climbable; abrupt steps and slopes above 35 degrees are barriers.
     if (
       support - pos[1] > spec.maxStepHeight ||
@@ -897,7 +999,7 @@ export function stepVehicle(
       if (env.contacts) {
         const partPose: TransformData = {
           pos: candidate,
-          rot: vehicleRotation(yaw, pitch + bodyPitch, roll + bodyRoll),
+          rot: vehicleRotation(yaw, pitch + bodyPitch, roll + bodyRoll * banks),
         };
         const motion = {
           velocity: [fs * u + fc * v, next.vy, fc * u - fs * v] as [number, number, number],
@@ -991,7 +1093,7 @@ export function stepVehicle(
           if (spec.collisionParts) {
             const partPose: TransformData = {
               pos: candidate,
-              rot: vehicleRotation(next.yaw, next.pitch + bodyPitch, next.roll + bodyRoll),
+              rot: vehicleRotation(next.yaw, next.pitch + bodyPitch, next.roll + bodyRoll * banks),
             };
             const point: [number, number, number] = [
               candidate[0] + spec.centerOfMass[0] * cy + spec.centerOfMass[2] * sy + px,
@@ -1077,13 +1179,17 @@ export function stepVehicle(
     next.shift = engine.shift;
   }
   if (assist > 0 || state.assist !== undefined) next.assist = assist;
-  if (surface) next.surfaceGrip = surfaceGrip;
+  if (surface || lying.coverage > 0) next.surfaceGrip = surfaceGrip;
   else delete next.surfaceGrip;
+  if (snowDepth > 0) next.snowDepth = snowDepth;
+  else delete next.snowDepth;
+  if (stuck) next.stuck = true;
+  else delete next.stuck;
   return {
     transform: {
       ...t,
       pos,
-      rot: vehicleRotation(next.yaw, next.pitch + bodyPitch, next.roll + bodyRoll),
+      rot: vehicleRotation(next.yaw, next.pitch + bodyPitch, next.roll + bodyRoll * banks),
     },
     state: next,
     impact: impact * travel,

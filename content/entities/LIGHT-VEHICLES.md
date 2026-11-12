@@ -35,7 +35,10 @@ the six existing cycles do not, and every existing fleet model regenerates byte-
 The auto-rickshaw is a road vehicle on the car solver: three wheel nodes, the front one steered
 through a leading-link fork, a nose cowl, windscreen, canvas canopy with rolled side curtains,
 open sides, a driver's saddle, a three-seat rear bench and a rear engine. Its `headlights` and
-`wipers` actuators drive a lit lens and a wiper arm sweeping in the windscreen's plane. The boards
+`wipers` actuators drive a lit lens and a wiper arm sweeping in the windscreen's plane. In the
+Earth view and World Explorer the headlight switch also lights a real beam from the nose lamp
+(`spec.headlamps`); the mopeds, kick scooter and existing motorcycles and scooter name their single
+lamp the same way, and the boards name none. The boards
 steer through their trucks: `truck-front` and `truck-rear` turn against each other by half the
 steering angle, and their wheels spin inside them.
 

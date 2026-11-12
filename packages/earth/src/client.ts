@@ -224,6 +224,7 @@ export {
   type EarthRoadSignContent,
   type EarthRoadSigns,
 } from './client/road-signs';
+export { createSnowPace } from './client/snow';
 export {
   type EarthTrain,
   type EarthTrainCar,

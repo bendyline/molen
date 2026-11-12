@@ -8,6 +8,11 @@ import * as THREE from 'three';
 const Agent = componentHandle('ambientAgent');
 const MAX_CARS = 512;
 const MAX_BEAM_CARS = 4;
+/**
+ * A driven vehicle's switched-on beams never drop below this share of their night strength,
+ * so headlights the driver turns on at dusk or by day still visibly light the road ahead.
+ */
+const SWITCHED_BEAM_FLOOR = 0.35;
 
 export interface EarthNightLightingOptions {
   /** Parent in absolute simulation coordinates, normally the terrain stream object. */
@@ -36,6 +41,10 @@ interface Car {
   height: number;
   braking: boolean;
   distance: number;
+  /** Model-space lens centres from `spec.headlamps`; absent, a pair from the body size. */
+  headlamps?: readonly (readonly [number, number, number])[];
+  /** The driven vehicle's headlight switch, when it has one; its model draws its own lens. */
+  switched?: boolean;
 }
 
 /**
@@ -98,8 +107,12 @@ export class EarthNightLighting {
     const night = Math.max(0, Math.min(1, frame.factor));
     for (const light of [...this.streets, ...this.beams]) light.intensity = 0;
     this.front.count = this.rear.count = 0;
-    this.object.visible = night > 0;
-    if (night === 0) return;
+    // A driven vehicle with a headlight switch lights its beams whenever the switch is on, by
+    // day too; everything else waits for dusk.
+    const switched =
+      frame.drivenVehicleId !== undefined ? this.headlightSwitch(frame.drivenVehicleId) : undefined;
+    this.object.visible = night > 0 || switched === true;
+    if (!this.object.visible) return;
     const { camera, direction } = frame;
     // Instance matrices are float32. Keep lenses near a local anchor so Earth coordinates
     // millions of metres from zero do not round a headlight into its bumper or the next lane.
@@ -120,7 +133,17 @@ export class EarthNightLighting {
     const lamps: { key: string; position: THREE.Vector3; distance: number }[] = [];
     const previous = new Set(this.streetKeys);
     let lastSource: THREE.Object3D | undefined;
-    this.options.surface.visitStreetLights((lamp, source) => {
+    // By day (a driven vehicle's headlights on) the street lamps stay dark: skip the walk.
+    const surface = this.options.surface;
+    const visit = (
+      walk: (
+        lamp: Parameters<Parameters<typeof surface.visitStreetLights>[0]>[0],
+        source: THREE.Object3D,
+      ) => void,
+    ): void => {
+      if (night > 0) surface.visitStreetLights(walk);
+    };
+    visit((lamp, source) => {
       if (source !== lastSource) {
         source.updateWorldMatrix(true, false);
         this.sourceMatrix.multiplyMatrices(this.toRoot, source.matrixWorld);
@@ -148,6 +171,8 @@ export class EarthNightLighting {
     const cars: Car[] = [];
     const { world } = this.options;
     for (const [id, transform] of world.query(Transform)) {
+      // By day only a driven vehicle with its headlights on draws anything.
+      if (night === 0 && id !== frame.drivenVehicleId) continue;
       const agent = world.get(id, Agent) as AmbientAgentData | undefined;
       const vehicle = world.get(id, Vehicle);
       if ((agent?.hidden && id !== frame.drivenVehicleId) || (agent && agent.kind !== 'car'))
@@ -176,49 +201,92 @@ export class EarthNightLighting {
         braking:
           world.get(id, VehicleInput)?.brake === true || (agent !== undefined && agent.speed < 0.5),
         distance: id === frame.drivenVehicleId ? -1 : d,
+        ...(vehicle?.spec.headlamps !== undefined ? { headlamps: vehicle.spec.headlamps } : {}),
+        ...(id === frame.drivenVehicleId && switched !== undefined ? { switched } : {}),
       });
     }
     cars.sort((a, b) => a.distance - b.distance || a.id.localeCompare(b.id));
     const selected = cars.slice(0, MAX_CARS);
     this.frontMaterial.color.set('#fff1ce').multiplyScalar(night);
     this.rearMaterial.color.set('#ed2415').multiplyScalar(night);
+    let fronts = 0,
+      rears = 0,
+      beams = 0;
+    const place = (car: Car, x: number, y: number, z: number): void => {
+      this.point
+        .set(x, y, z)
+        .applyQuaternion(this.rotation)
+        .add(this.carPosition(car.position))
+        .sub(this.lensOrigin);
+    };
     for (const [i, car] of selected.entries()) {
       this.rotation.fromArray(car.rotation);
       const height = Math.min(1.25, car.height * 0.44);
       const width = Math.min(0.48, car.width * 0.23);
-      for (const [sideIndex, side] of [-1, 1].entries()) {
-        this.scale.set(width, 0.16, 0.06);
-        this.rear.setColorAt(i * 2 + sideIndex, this.tailTint.setScalar(car.braking ? 2 : 1));
-        for (const [mesh, end] of [
-          [this.front, 1],
-          [this.rear, -1],
-        ] as const) {
-          this.point.set(side * car.width * 0.31, height, end * (car.length / 2 + 0.055));
-          this.point
-            .applyQuaternion(this.rotation)
-            .add(this.carPosition(car.position))
-            .sub(this.lensOrigin);
-          mesh.setMatrixAt(
-            i * 2 + sideIndex,
+      // Tail lamps: a pair at the back, lit from dusk.
+      if (night > 0)
+        for (const side of [-1, 1]) {
+          this.scale.set(width, 0.16, 0.06);
+          this.rear.setColorAt(rears, this.tailTint.setScalar(car.braking ? 2 : 1));
+          place(car, side * car.width * 0.31, height, -(car.length / 2 + 0.055));
+          this.rear.setMatrixAt(
+            rears++,
             this.matrix.compose(this.point, this.rotation, this.scale),
           );
-          const beam = this.beams[i * 2 + sideIndex];
-          if (mesh === this.front && beam && car.distance < 400) {
-            // The lens and beam share an origin, including chassis pitch and floating origins.
-            // A broad, feathered low beam lights the near road without a detached white hotspot.
-            beam.position.copy(this.point).add(this.lensOrigin);
-            beam.target.position.set(0, -6, 18).applyQuaternion(this.rotation).add(beam.position);
-            beam.intensity = 35 * night;
-          }
+        }
+      // Headlamps: where the type says, else a pair guessed from the body. A switch, when the
+      // driven vehicle has one, decides; otherwise they light at dusk.
+      const lit = car.switched ?? night > 0;
+      if (!lit) continue;
+      const lamps: readonly (readonly [number, number, number])[] = car.headlamps ?? [
+        [-car.width * 0.31, height, car.length / 2 + 0.055],
+        [car.width * 0.31, height, car.length / 2 + 0.055],
+      ];
+      const strength = 35 * (car.switched === true ? Math.max(night, SWITCHED_BEAM_FLOOR) : night);
+      for (const [x, y, z] of lamps.slice(0, 2)) {
+        place(car, x, y, z);
+        // The switched vehicle's own model shows its lit lenses.
+        if (car.switched === undefined) {
+          if (car.headlamps) this.scale.set(0.15, 0.12, 0.06);
+          else this.scale.set(width, 0.16, 0.06);
+          this.front.setMatrixAt(
+            fronts++,
+            this.matrix.compose(this.point, this.rotation, this.scale),
+          );
+        }
+        const beam = this.beams[beams];
+        if (beam && car.distance < 400 && i < MAX_BEAM_CARS) {
+          // The lens and beam share an origin, including chassis pitch and floating origins.
+          // A broad, feathered low beam lights the near road without a detached white hotspot.
+          beam.position.copy(this.point).add(this.lensOrigin);
+          beam.target.position.set(0, -6, 18).applyQuaternion(this.rotation).add(beam.position);
+          beam.intensity = strength;
+          beams++;
         }
       }
     }
-    for (const mesh of [this.front, this.rear]) {
-      mesh.count = selected.length * 2;
+    for (const [mesh, count] of [
+      [this.front, fronts],
+      [this.rear, rears],
+    ] as const) {
+      mesh.count = count;
       mesh.instanceMatrix.needsUpdate = true;
       if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
       mesh.computeBoundingSphere();
     }
+  }
+
+  /**
+   * The driven vehicle's headlight switch: on, off, or undefined when its type has no
+   * `headlights` actuator (its lamps then follow the dusk like traffic).
+   */
+  private headlightSwitch(id: string): boolean | undefined {
+    const { world } = this.options;
+    if (world.get(id, Vehicle)?.spec.actuators?.headlights === undefined) return undefined;
+    const position = world.get(id, VehicleState)?.actuators?.headlights;
+    return position !== undefined
+      ? position > 0.5
+      : world.get(id, VehicleInput)?.actuators?.headlights === true;
   }
 
   private readonly position = new THREE.Vector3();

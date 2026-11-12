@@ -17,6 +17,7 @@ const WEBGPU_LEAVES = [
   'webgpu-driver.ts',
   'webgpu-scene-optimizer.ts',
   'webgpu-sky-reflections.ts',
+  'webgpu-snow-cover.ts',
 ];
 
 function walk(dir: string, out: string[] = []): string[] {

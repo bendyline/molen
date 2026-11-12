@@ -27,6 +27,9 @@ const flat = { groundHeight: () => 0 };
 function setup(id: (typeof MOLEN_CYCLE_ENTITY_IDS)[number]) {
   const w = new World({ tickRate: 60, seed: 'riding' });
   installVehicles(w, flat);
+  // Skis and a snowboard need snow under them: on bare ground their runners only scrape.
+  if (molenVehicle(types, id).spec.runners !== undefined)
+    w.spawnRaw({ weather: { snowCover: { level: -1000, transition: 0, depth: 0.4 } } }, 'weather');
   w.spawnRaw(types.components(id), 'cycle');
   w.spawnRaw({ transform: { pos: [1, 0, 0], rot: [0, 0, 0, 1] } }, 'rider');
   return w;

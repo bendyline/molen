@@ -79,11 +79,19 @@ export function cycleRiderPose(
       deck[2] + (ground[2] - deck[2]) * push,
     ]);
   }
+  // Skis lie on the slope across them (the terrain roll); their rider stands plumb on it, one
+  // knee bent more than the other, as on any traverse. Where the skis stay flat through a turn,
+  // the rider alone leans into it.
+  const level =
+    stance === 'standing' && spec?.runners !== undefined
+      ? (state?.roll ?? 0) - (spec.runners.flat === true ? (state?.bodyRoll ?? 0) : 0)
+      : 0;
   return {
     lean: contacts.riderLean + m.abs(steer) * 0.2,
     turn: steer,
     ik: { 'hand.l': hands[0], 'hand.r': hands[1], 'foot.l': feet[0], 'foot.r': feet[1] },
     ...(stance !== 'seated' ? { stance } : {}),
     ...(push > 0 ? { push } : {}),
+    ...(level !== 0 ? { level } : {}),
   };
 }

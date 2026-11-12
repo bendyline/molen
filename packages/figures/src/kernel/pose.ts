@@ -71,6 +71,12 @@ export interface PoseEvalOptions {
     stance?: 'seated' | 'standing' | 'sideways';
     /** Sideways riders: 0 riding across the board to 1 turned forward to push off. */
     push?: number;
+    /**
+     * Roll of the vehicle with the ground across it, in radians (right side down positive),
+     * which an upright rider stands plumb against: on skis crossing a slope the body stays
+     * vertical while the feet follow the skis.
+     */
+    level?: number;
   };
 }
 
@@ -364,7 +370,7 @@ export function evaluatePose(
       // shoulders with the bars. At speed the steering angle fades, so chassis lean dominates.
       // Standing, the counterweight is the hips' smaller sway over the feet.
       const turn = riding.turn ?? 0;
-      const sway = turn * (upright ? 0.3 : 0.75);
+      const sway = turn * (upright ? 0.3 : 0.75) - (riding.level ?? 0);
       if (hips !== undefined) setQuat(cur, hips, [0, 0, dmath.sin(sway / 2), dmath.cos(sway / 2)]);
       if (chest !== undefined)
         setQuat(cur, chest, [0, dmath.sin(turn / 2), 0, dmath.cos(turn / 2)]);

@@ -1408,6 +1408,9 @@ const vehicleBodyStyleSchema = z
     'kick-scooter',
     'skateboard',
     'auto-rickshaw',
+    'skis',
+    'snowboard',
+    'snowmobile',
   ])
   .describe('Generic body style, independent of any make or model name.');
 const handlebarFields = {
@@ -1757,6 +1760,37 @@ const vehicleSpecSchema = z
         .describe(
           'Share of the grip loose surfaces take away that the tires win back (off-road tread). Default 0.',
         ),
+      runners: z
+        .strictObject({
+          friction: num
+            .nonnegative()
+            .max(1)
+            .describe(
+              'Sliding friction coefficient on snow; resists as friction × g. About 0.05 for waxed skis, 0.12 for a snowmobile track.',
+            ),
+          bareDrag: num
+            .nonnegative()
+            .optional()
+            .describe(
+              'Resistance in m/s² off the snow, where runners scrape bare ground. Default 3.',
+            ),
+          pushSpeed: num
+            .positive()
+            .optional()
+            .describe(
+              'Fastest the rider pushing (poling, skating) drives it, m/s; gravity may take it on to maxSpeed. Absent: engineForce works up to maxSpeed.',
+            ),
+          flat: z
+            .boolean()
+            .optional()
+            .describe(
+              'A cycle whose runners stay flat on the snow in a turn (a pair of skis) instead of banking as one plank (a snowboard); the lean stays in vehicleState.bodyRoll for the rider pose. Default false.',
+            ),
+        })
+        .optional()
+        .describe(
+          'Runners in place of tires (skis, a snowboard, a snowmobile): slides on the weather snow cover with this friction, holds its full grip there and floats over any depth; scrapes to a stop off the snow. Slides downhill from rest unless braked.',
+        ),
       cycle: z
         .strictObject({
           maxLean: num.positive().max(1.2).describe('Maximum balanced inward lean in radians.'),
@@ -1790,6 +1824,13 @@ const vehicleSpecSchema = z
         .optional()
         .describe(
           'Self-balancing cycle handling and rider contact points. Driver seat anchors the pelvis.',
+        ),
+      headlamps: z
+        .array(vec3)
+        .max(2)
+        .optional()
+        .describe(
+          'Headlamp lens centres in model-local meters, at most two; night lighting places its beams there. Empty: no headlamps. Absent: a pair guessed from the body size.',
         ),
       handlebar: z
         .strictObject(handlebarFields)
@@ -1832,7 +1873,11 @@ function exclusiveAnimationChannels(
 const vehicleVisualSchema = z
   .strictObject(
     describedFields({
-      wheelNodes: z.array(z.string().min(1)).min(1),
+      wheelNodes: z
+        .array(z.string().min(1))
+        .describe(
+          'Wheel nodes, spun by the wheel angle. At least one, except on a vehicle with runners (skis, a board), which has none.',
+        ),
       frontWheelNodes: z
         .array(z.string().min(1))
         .describe(
@@ -1926,15 +1971,24 @@ registerComponent('boatState', boatStateSchema, {
 });
 registerComponent(
   'vehicle',
-  z.strictObject({
-    kind: z.string().min(1).describe('Stable external entity/type id.'),
-    color: z
-      .string()
-      .regex(/^#[0-9a-fA-F]{6}$/)
-      .describe('Body paint as an sRGB #rrggbb color.'),
-    spec: vehicleSpecSchema.describe('Complete data-driven chassis and handling configuration.'),
-    visual: vehicleVisualSchema.describe('Named GLB nodes/material used by the generic client.'),
-  }),
+  z
+    .strictObject({
+      kind: z.string().min(1).describe('Stable external entity/type id.'),
+      color: z
+        .string()
+        .regex(/^#[0-9a-fA-F]{6}$/)
+        .describe('Body paint as an sRGB #rrggbb color.'),
+      spec: vehicleSpecSchema.describe('Complete data-driven chassis and handling configuration.'),
+      visual: vehicleVisualSchema.describe('Named GLB nodes/material used by the generic client.'),
+    })
+    .superRefine((vehicle, ctx) => {
+      if (vehicle.visual.wheelNodes.length === 0 && vehicle.spec.runners === undefined)
+        ctx.addIssue({
+          code: 'custom',
+          path: ['visual', 'wheelNodes'],
+          message: 'Vehicles without runners need at least one wheel node.',
+        });
+    }),
   {
     description:
       'External wheeled-vehicle instance: stable id, paint, complete physics tuning, and GLB bindings.',
@@ -2110,6 +2164,18 @@ registerComponent(
       .nonnegative()
       .optional()
       .describe('Grip of the surface under the wheels relative to dry pavement; 1 on the road.'),
+    snowDepth: num
+      .nonnegative()
+      .optional()
+      .describe(
+        'Meters of lying snow under the vehicle (the weather snow cover, less what a ploughed road clears); absent on bare ground.',
+      ),
+    stuck: z
+      .boolean()
+      .optional()
+      .describe(
+        'Deep snow is holding the vehicle against its own drive: it cannot pull away from a stand.',
+      ),
     track: z
       .strictObject({
         trail: z

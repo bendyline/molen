@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { selectedAntialias, selectedRendererBackend } from './backend-options';
+import {
+  selectedAmbientOcclusion,
+  selectedAntialias,
+  selectedRendererBackend,
+} from './backend-options';
 
 describe('explorer rendering backend selection', () => {
   it('uses the cheaper streaming preparation path by default', () => {
@@ -15,6 +19,16 @@ describe('explorer rendering backend selection', () => {
       'expected auto, webgpu, or webgl',
     );
     expect(() => selectedRendererBackend(new URLSearchParams('backend='))).toThrow();
+  });
+
+  it('leaves ambient occlusion off unless asked: with it on, near buildings lose their facades', () => {
+    expect(selectedAmbientOcclusion(new URLSearchParams())).toBe(false);
+    expect(selectedAmbientOcclusion(new URLSearchParams({ backend: 'webgpu' }))).toBe(false);
+    expect(selectedAmbientOcclusion(new URLSearchParams({ ao: '0' }))).toBe(false);
+    expect(selectedAmbientOcclusion(new URLSearchParams({ ao: '1' }))).toBe(true);
+    expect(() => selectedAmbientOcclusion(new URLSearchParams({ ao: 'on' }))).toThrow(
+      'expected 0 or 1',
+    );
   });
 
   it('enables multisampling by default with an explicit comparison opt-out', () => {

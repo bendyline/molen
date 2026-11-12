@@ -5,21 +5,23 @@
 // generated atlas cuts leaf cards out along a clump of leaves; every other surface samples its
 // opaque white block, so all levels of detail and every prop still share one program.
 
+import { enableSnowCover } from '@bendyline/molen-client/snow';
 import * as THREE from 'three';
-import type { MeshStandardNodeMaterial, Node } from 'three/webgpu';
+import type { MeshStandardNodeMaterial, Node, NodeBuilder } from 'three/webgpu';
 import { unit01 } from '../kernel/seed';
 
 /** Scatter material for either the legacy WebGL renderer or the WebGPU node renderer. */
 export type ScatterMaterial = THREE.MeshStandardMaterial | MeshStandardNodeMaterial;
 
-const fullyLitTerms = new WeakMap<THREE.Material, Node<'float'>>();
+const distantShadowTerms = new WeakMap<THREE.Material, Node<'float'>>();
 
 /**
- * A node scatter material's constant shadow term: a twin whose `receivedShadowNode` returns it
- * never samples the sun's shadow map. Undefined for the plain (WebGL) material.
+ * A node scatter material's shadow term for its distant levels: a twin whose `receivedShadowNode`
+ * returns it never samples the sun's shadow map, and shades a crown below its top as a stand of
+ * trees shades itself. Undefined for the plain (WebGL) material, which does the same in its hooks.
  */
-export function scatterFullyLitTerm(material: THREE.Material): Node<'float'> | undefined {
-  return fullyLitTerms.get(material);
+export function scatterDistantShadowTerm(material: THREE.Material): Node<'float'> | undefined {
+  return distantShadowTerms.get(material);
 }
 
 /**
@@ -423,6 +425,15 @@ const GLSL = /* glsl */ `
 /** three's lookup of a directional light's shadow ends here; what follows is the unshadowed case. */
 const UNSHADOWED = 'vDirectionalShadowCoord[ i ] ) : 1.0;';
 
+/**
+ * Share of a crown's or prop's up-facing surface that lying snow whitens (see `enableSnowCover`):
+ * foliage holds a dusting with its own color still showing through, where a roof is covered.
+ * Snow clings to steeper faces here than on a building: a conifer is all steep sides, and its
+ * simpler distant shapes are plain cones, so the range reaches down to faces just past vertical.
+ */
+const SCATTER_SNOW = 0.8;
+const SCATTER_SNOW_FACING: readonly [number, number] = [-0.05, 0.55];
+
 /** WebGL scatter material: a standard vertex-color material with the detail in its hooks. */
 export function createScatterMaterial(): THREE.MeshStandardMaterial {
   const material = new THREE.MeshStandardMaterial(parameters());
@@ -456,7 +467,7 @@ export function createScatterMaterial(): THREE.MeshStandardMaterial {
       );
   };
   material.customProgramCacheKey = (): string => 'worldgen-scatter@4';
-  return material;
+  return enableSnowCover(material, SCATTER_SNOW, SCATTER_SNOW_FACING);
 }
 
 /** Scatter material for an initialized renderer's backend; WebGPU builds the same as nodes. */
@@ -468,6 +479,7 @@ export async function createScatterMaterialAsync(
     { MeshStandardNodeMaterial },
     {
       attribute,
+      cameraViewMatrix,
       dot,
       float,
       floor,
@@ -475,12 +487,15 @@ export async function createScatterMaterialAsync(
       fract,
       fwidth,
       If,
+      lightTargetDirection,
       materialColor,
       max,
       mix,
       positionGeometry,
       pow,
       cos,
+      reference,
+      renderGroup,
       smoothstep,
       step,
       clamp,
@@ -583,9 +598,37 @@ export async function createScatterMaterialAsync(
     SCATTER_ALPHA_CUT,
   );
   // No uniforms of its own: replayed render bundles need not refresh every batch each frame.
+  // (Lying snow reads the renderer's, which live in its render group.)
   material.userData.bundleStatic = true;
-  fullyLitTerms.set(material, float(1) as unknown as Node<'float'>);
-  return material;
+  // The sun a crown gets on a distant level, as scatterStandShade in the GLSL path. Without it
+  // those levels stood fully lit, and a forest seen from the air was far paler than on WebGL.
+  // The sun is the scene's shadow-casting directional light; its direction and its shadow's
+  // intensity are three's own per-render uniforms, so the material still has none of its own.
+  const standShade = Fn((_inputs: unknown[], builder: NodeBuilder): F => {
+    const sun = builder.lightsNode
+      ?.getLights()
+      .find(
+        (light): light is THREE.DirectionalLight =>
+          (light as THREE.DirectionalLight).isDirectionalLight === true && light.castShadow,
+      );
+    if (sun === undefined) return float(1) as unknown as F;
+    const plant = step(0.5, canopy);
+    const height = clamp(canopy.sub(1), 0, 1);
+    // r184's typings leave out both methods used here, which three's own light nodes call.
+    const up = (
+      cameraViewMatrix as unknown as { transformDirection(direction: Node): V3 }
+    ).transformDirection(vec3(0, 1, 0));
+    const sunHeight = dot(lightTargetDirection(sun), up);
+    const low = mix(STAND_SHADE_LOW, STAND_SHADE_HIGH, smoothstep(0.15, 0.95, sunHeight));
+    const shade = mix(1, mix(low, 1, smoothstep(0.55, 1, height)), plant);
+    // Only while the sun's shadows are drawn: a parked map shades the near levels no more.
+    const drawn = (
+      reference('intensity', 'float', sun.shadow) as unknown as { setGroup(group: unknown): F }
+    ).setGroup(renderGroup);
+    return mix(1, shade, drawn) as unknown as F;
+  })();
+  distantShadowTerms.set(material, standShade as unknown as Node<'float'>);
+  return enableSnowCover(material, SCATTER_SNOW, SCATTER_SNOW_FACING);
 }
 
 /**

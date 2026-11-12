@@ -1,7 +1,32 @@
+import { enableSnowCover, snowCoverAmount } from '@bendyline/molen-client/snow';
 import * as THREE from 'three';
 import type { GlbSharedSurface } from '../kernel/glb';
 import type { ModelLoader } from './instanced-models';
 import type { NightWindowLighting } from './night-windows';
+
+/**
+ * Let lying snow settle on a landmark's own opaque surfaces (see `enableSnowCover`): its roofs,
+ * decks and ledges whiten above the weather's snow line as generated buildings' do. Glass and
+ * glowing parts stay clear; shared surfaces borrowed from a material set come already marked.
+ */
+function settleSnow(scene: THREE.Object3D): void {
+  scene.traverse((object) => {
+    const mesh = object as THREE.Mesh;
+    if (!mesh.isMesh) return;
+    for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) {
+      const standard = material as THREE.MeshPhysicalMaterial;
+      if (
+        !standard.isMeshStandardMaterial ||
+        standard.transparent ||
+        (standard.transmission ?? 0) > 0 ||
+        standard.userData.molenNightLight !== undefined ||
+        snowCoverAmount(standard) > 0
+      )
+        continue;
+      enableSnowCover(standard);
+    }
+  });
+}
 
 export interface StructureModelLibraryOptions {
   /** Night layers for tagged glass/lamp materials. Caller owns the controller. */
@@ -256,6 +281,7 @@ export class StructureModelLibrary {
                 this.options.nightWindows.attachModel(scene);
               }
               this.bindSurfaces(scene);
+              settleSnow(scene);
             } catch (error) {
               this.disposeOwnedScene(scene);
               throw error;

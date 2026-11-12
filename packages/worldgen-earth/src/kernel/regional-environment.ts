@@ -17,6 +17,7 @@ import {
   type RegionalLibrary,
   type RegionalSelection,
 } from './regional-content';
+import { alpineTreeline } from './treeline';
 import {
   createWildlifeRangeResolver,
   type WildlifeRangeResolver,
@@ -75,6 +76,7 @@ export function createRegionalEnvironment(
     ),
   };
   const seasonAt = plantCalendar(docs.vegetationMonth, metersPerUnit);
+  const treelineAt = alpineTreeline(metersPerUnit);
   const modelAt = (model: string, _x: number, z: number): string => {
     const plant = source.plants[model];
     return plant === undefined ? model : seasonalPlantId(plant, seasonAt(z));
@@ -207,6 +209,8 @@ export function createRegionalEnvironment(
         acceptsRule: (rule, x, z) =>
           scatterAt(bounds[0] + x, bounds[1] + z)?.id === owner.get(rule.id),
         modelAt: (model, x, z) => modelAt(model, bounds[0] + x, bounds[1] + z),
+        // Mountain forest gives out with height: no trees on the glaciers and summits.
+        treeline: (_x, z) => treelineAt(bounds[1] + z),
       };
     },
   };

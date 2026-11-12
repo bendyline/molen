@@ -147,7 +147,7 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
 - **ESM-only, Node ≥ 22.13.** Subpath exports matter: `@bendyline/molen-kernel` also exposes
   `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`, `/platformer`,
   `/determinism`, `/content`, `/vehicles`, `/aircraft`, `/world`; `@bendyline/molen-client`
-  also exposes `/camera-track`, `/vite`, `/vehicles`, `/aircraft`, `/navigation`, `/markers`, `/audio`;
+  also exposes `/camera-track`, `/vite`, `/vehicles`, `/aircraft`, `/navigation`, `/markers`, `/audio`, `/snow`;
   `@bendyline/molen-terrain`, `@bendyline/molen-figures` and `@bendyline/molen-ambient` expose
   only `/kernel` and `/client` (no `.`).
 - **Content lives in `content/`, not in packages.** Each `content/<pack>/` directory builds into

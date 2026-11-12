@@ -2244,6 +2244,54 @@ describe('screen-space terrain pyramid', () => {
     }
   });
 
+  it('refines past a parent whose layer one child cannot build', async () => {
+    const d = descriptor({ maxLevel: 1 });
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 10_000,
+        viewDistance: 100,
+        maxSelectedTiles: 1,
+        maxConcurrentLoads: 4,
+        maxConcurrentLayerLoads: 4,
+        maxResidentTiles: 16,
+        maxRetries: 0,
+        failedRetryDelayMs: 60_000,
+        layers: [
+          {
+            id: 'landuse',
+            category: 'classification',
+            createTile({ address }) {
+              // One tile's land cover throws on every attempt, as a clip that cannot be resolved.
+              if (address.level === 1 && address.x === 0 && address.z === 0)
+                throw new Error('Unable to complete output ring');
+              return new THREE.Group();
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await stream.whenIdle();
+      expect(stream.displayedTiles()).toEqual([{ level: 0, x: 0, z: 0 }]);
+      expect(stream.object.getObjectByName('layer:landuse:0/0/0')?.visible).toBe(true);
+      stream.setBudget({ maxScreenSpaceError: 1, maxSelectedTiles: 8 });
+      stream.update(VIEW);
+      await stream.whenIdle();
+      expect(stream.stats()).toMatchObject({ failedLayers: 1, retryingLayers: 0 });
+      // The parent's land cover does not hold the other three children back for a layer that
+      // will not arrive: they show theirs, and the fourth shows its ground without one.
+      expect(stream.displayedTiles()).toHaveLength(4);
+      expect(stream.object.getObjectByName('layer:landuse:1/1/1')?.visible).toBe(true);
+      expect(stream.object.getObjectByName('layer:landuse:1/0/0')).toBeUndefined();
+      expect(drawn(stream, 'layer:landuse:0/0/0')).toBe(false);
+    } finally {
+      stream.dispose();
+    }
+  });
+
   it('retains the resident parent when one selected child fails', async () => {
     const d = descriptor({ maxLevel: 1 });
     const source: TerrainPyramidHeightSource = {

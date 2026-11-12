@@ -14,6 +14,7 @@ export default defineConfig({
     'src/audio.ts',
     'src/instruments.ts',
     'src/text.ts',
+    'src/snow.ts',
   ],
   format: 'esm',
   dts: true,

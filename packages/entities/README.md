@@ -2,9 +2,9 @@
 
 Ids and helpers for Molen's curated entity collection: trees, a shrub and a boulder, the P-51D and
 OH-6 aircraft, Bendy Small Airliner, eleven Bendy road vehicles, eighty-two real-world reference
-road vehicles, an auto-rickshaw, six RVs (including the 2022 Winnebago View 24D), eleven cycles
-(motorcycles, a scooter, mopeds, bicycles, a shared electric kick scooter and skateboards), eight
-watercraft,
+road vehicles, an auto-rickshaw, a snowmobile, six RVs (including the 2022 Winnebago View 24D),
+thirteen cycles (motorcycles, a scooter, mopeds, bicycles, a shared electric kick scooter,
+skateboards, and skis and a snowboard for lying snow), eight watercraft,
 Bendy Bus, Bendy Light Rail and twelve North American locomotives, passenger cars and freight
 cars. All transport models are controllable; light rail currently
 supports a straight track with traction, braking and reverse. The models and type documents themselves are content, not

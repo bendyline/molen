@@ -41,8 +41,18 @@ export type WeatherData = {
     gusts?: number;
     terrain?: number;
   };
+  snowCover?: {
+    level: number;
+    transition?: number;
+    depth?: number;
+    depthGain?: number;
+    maxDepth?: number;
+  };
   seed?: number;
 };
+
+/** Snow lying on the ground above a snow line; see `snowCoverAt`. */
+export type SnowCoverData = NonNullable<WeatherData['snowCover']>;
 
 /** Data-only weather shared by headless simulation, scripts and rendering. */
 export const weatherSchema: z.ZodType<WeatherData> = z.strictObject({
@@ -187,6 +197,36 @@ export const weatherSchema: z.ZodType<WeatherData> = z.strictObject({
     .describe(
       'Spatial and temporal structure of the wind around the mean atmosphere.windVelocity. Deterministic from seed and simulation time; consumes no simulation RNG.',
     ),
+  snowCover: z
+    .strictObject({
+      level: finite.describe(
+        'Snow line: the absolute world Y in meters where lying snow begins. Ground below it is bare.',
+      ),
+      transition: finite
+        .nonnegative()
+        .optional()
+        .describe(
+          'Height in meters above the snow line over which cover builds from none to complete; default 150. Zero is a hard line.',
+        ),
+      depth: finite
+        .nonnegative()
+        .optional()
+        .describe(
+          'Snow depth in meters where cover becomes complete, at the top of the transition; default 0.15.',
+        ),
+      depthGain: finite
+        .nonnegative()
+        .optional()
+        .describe('Extra depth in meters for each 1000 m of height above that; default 0.6.'),
+      maxDepth: finite
+        .nonnegative()
+        .optional()
+        .describe('Greatest depth in meters at any height; default 1.5.'),
+    })
+    .optional()
+    .describe(
+      'Snow lying on the ground above a snow line, independent of whether snow is falling. Absent means bare ground. Slows walkers, bogs wheeled vehicles down and lets runners glide; renderers whiten ground, roofs and foliage above the line.',
+    ),
   seed: finite
     .int()
     .min(0)
@@ -201,12 +241,58 @@ export type ResolvedWeather = {
   clouds: Required<NonNullable<WeatherData['clouds']>>;
   precipitation: Required<NonNullable<WeatherData['precipitation']>>;
   wind: Required<NonNullable<WeatherData['wind']>>;
+  /** Present only while snow lies on the ground. */
+  snowCover?: ResolvedSnowCover;
   seed: number;
 };
+
+export type ResolvedSnowCover = Required<SnowCoverData>;
+
+/** A snow cover with its defaults filled in. */
+export function resolveSnowCover(data: SnowCoverData): ResolvedSnowCover {
+  return { transition: 150, depth: 0.15, depthGain: 0.6, maxDepth: 1.5, ...data };
+}
+
+/** How much of the ground snow covers at a height, and how deep it lies there. */
+export interface SnowCoverSample {
+  /** Share of the ground covered, 0 (bare) to 1. */
+  coverage: number;
+  /** Depth in meters; 0 where the ground is bare. */
+  depth: number;
+}
+
+const BARE_GROUND: SnowCoverSample = { coverage: 0, depth: 0 };
+
+/**
+ * Snow on the ground at an absolute world height. Cover builds smoothly from the snow line to
+ * complete at the top of the transition, where it is `depth` deep, and deepens by `depthGain` for
+ * each 1000 m above that, up to `maxDepth`. Uses only arithmetic, so simulation and rendering
+ * agree bit for bit on every platform.
+ */
+export function snowCoverAt(cover: SnowCoverData | undefined, altitude: number): SnowCoverSample {
+  if (cover === undefined || !Number.isFinite(altitude)) return BARE_GROUND;
+  const { level, transition, depth, depthGain, maxDepth } = resolveSnowCover(cover);
+  const above = altitude - level;
+  if (above < 0 || (above === 0 && transition > 0)) return BARE_GROUND;
+  const t = transition > 0 ? Math.min(1, above / transition) : 1;
+  const coverage = t * t * (3 - 2 * t);
+  const extra = (Math.max(0, above - transition) * depthGain) / 1000;
+  return { coverage, depth: Math.min(maxDepth, coverage * depth + extra) };
+}
+
+/**
+ * Share of a person's pace left when wading through lying snow `depth` meters deep: all of it
+ * up to boot-sole depth, about 70% at 30 cm, 40% from 60 cm on.
+ */
+export function snowWalkingPace(depth: number): number {
+  const t = Math.min(1, Math.max(0, (depth - 0.03) / 0.57));
+  return 1 - 0.6 * t * t * (3 - 2 * t);
+}
 
 /** Expand validated weather data without changing or retaining its mutable nested values. */
 export function resolveWeather(data: WeatherData = {}): ResolvedWeather {
   return {
+    ...(data.snowCover ? { snowCover: resolveSnowCover(data.snowCover) } : {}),
     atmosphere: {
       temperatureK: 288.15,
       model: 'standard',

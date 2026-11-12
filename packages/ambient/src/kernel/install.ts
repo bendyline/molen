@@ -10,6 +10,7 @@ import {
   type JsonObject,
   Transform,
   type World,
+  weatherOf,
 } from '@bendyline/molen-kernel/world';
 import type { EntityId, JsonValue, PayloadCheck } from '@bendyline/molen-schema';
 import { type AmbientSolid, agentSample, stepAgents } from './agents/step';
@@ -347,6 +348,7 @@ export function installAmbient(world: World, options: AmbientOptions = {}): Ambi
           const t = vehicle !== undefined ? w.get(vehicle, Transform) : undefined;
           if (t !== undefined) driven.push({ x: t.pos[0], z: t.pos[2], radius: 2.6 });
         }
+      const snowCover = weatherOf(w)?.snowCover;
       stepAgents(w, {
         net: network,
         policy: effectivePolicy(),
@@ -354,6 +356,7 @@ export function installAmbient(world: World, options: AmbientOptions = {}): Ambi
         tickRate: w.tickRate,
         dt: ctx.dt,
         solids: driven,
+        ...(snowCover !== undefined ? { snowCover } : {}),
       });
     },
     { phase: 'physics', name: 'ambient-agents', priority: 0 },

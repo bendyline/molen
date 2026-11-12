@@ -242,6 +242,12 @@ installVehicles(world, {
 });
 ```
 
+A surface may also carry `snow`, the share of the weather's lying snow it keeps: 0.3 for the
+paved stock surfaces (ploughed and packed down), 1 for the rest. With a `weather.snowCover` the
+solver adds the snow itself, whatever the surface: grip falls toward the `snow` row's, depth
+drags at the wheels, and deep enough it holds the car fast (`vehicleState.snowDepth`, `stuck`).
+[Snow cover](snow.md#on-wheels) has the numbers.
+
 `looseSurfaceGrip` (0–1, off-road tread) wins back up to half the grip a loose surface takes
 and 40% of its drag. Surface and weather multiply: wet grass is worse than either. The callback
 is asked once per step for each moving car; `vehicleState.surfaceGrip` reports the result. In
@@ -499,8 +505,10 @@ and an `electric_moped`; a shared electric `kick_scooter`; and a push `skateboar
 `electric_skateboard`. Mount, drive and exit them with the same APIs as cars. In the Earth view
 example, select one beside **Drive**, then press **Drive**. **W** supplies motor or pedal power (on
 the skateboard, the rider pushes off), **S** and **Space** brake, **A/D** steer, **V** changes view,
-and **E** steps off once stopped. None has powered reverse. The Earth view API accepts the full
-type ID:
+and **E** steps off once stopped. None has powered reverse. Two more ride on runners over lying
+snow, `skis` and a `snowboard`, beside the `molen.entities.vehicle.snowmobile`: gravity moves
+them down a slope, and [Snow cover](snow.md#the-three-rides) describes them. The Earth view API
+accepts the full type ID:
 
 ```js
 view.setMode('drive', { vehicle: 'molen.entities.cycle.city_bicycle', force: true });
@@ -549,7 +557,8 @@ the steering angle, which matches the turning circle of the solver's single stee
 the same rider contacts as a cycle: `riderLean`, `handlebarPivot`, `grips` and `footrests`, with
 the driver seat as the pelvis anchor. It drives on the car solver with three wheel nodes, one
 steered at the front. Its passengers sit as they do in a car. The auto-rickshaw also has
-`headlights` and `wipers` actuators, so **L** and **K** work in it as in a car.
+`headlights` and `wipers` actuators, so **L** and **K** work in it as in a car; its one beam
+comes from the nose lamp named in `spec.headlamps` (see [Night lighting](night-lighting.md)).
 
 Cycles use the existing `molenVehicle(types, id)` helper and are enumerated separately by
 `MOLEN_CYCLE_ENTITY_IDS`; `MOLEN_VEHICLE_ENTITY_IDS` continues to enumerate cars, trucks and the

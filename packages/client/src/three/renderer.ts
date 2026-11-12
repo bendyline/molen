@@ -10,6 +10,12 @@ import {
 } from '../weather/cloud-shadows';
 import { type CloudQuality, CloudTextures, type CloudUniforms } from '../weather/clouds';
 import { cloudNoise } from '../weather/noise';
+import {
+  createSnowCoverUniforms,
+  injectSnowCover,
+  type SnowCoverUniforms,
+  writeSnowCover,
+} from '../weather/snow-cover';
 import { WeatherVisual } from '../weather/visual';
 import { applyEnvironment, defaultEnvironment, findEnvironmentRig } from './environment';
 import { FarShadow, type FarShadowInfo, type FarShadowView, injectFarShadow } from './far-shadow';
@@ -42,6 +48,8 @@ export type ThreeRenderer = THREE.WebGLRenderer | WebGPURenderer;
 interface CloudBackend {
   material(uniforms: CloudUniforms, textures: CloudTextures): THREE.Material;
   installShadows(uniforms: CloudShadowUniforms): void;
+  /** Lying snow on marked materials (WebGPU: webgpu-snow-cover.ts). */
+  installSnowCover(uniforms: SnowCoverUniforms): void;
 }
 
 interface InitializedRenderer {
@@ -292,6 +300,8 @@ export class Renderer {
   private readonly cloudShadows: CloudShadowUniforms = createCloudShadowUniforms(
     this.cloudTextures.shadow,
   );
+  /** The weather's lying snow, read by every material marked with `enableSnowCover`. */
+  private readonly snowCover: SnowCoverUniforms = createSnowCoverUniforms();
   private readonly cloudBackend: CloudBackend | undefined;
   private releaseCloudShadows: (() => void) | undefined;
   private cloudQualityLevel: CloudQuality = 'medium';
@@ -626,12 +636,14 @@ export class Renderer {
             ? undefined
             : new (await import('./webgpu-scene-optimizer')).WebGpuSceneOptimizer(three);
         const clouds = await import('./webgpu-clouds');
+        const snow = await import('./webgpu-snow-cover');
         return new Renderer(opts, {
           three,
           backend: 'webgpu',
           clouds: {
             material: clouds.createWebGpuCloudMaterial,
             installShadows: (uniforms) => clouds.installWebGpuCloudShadows(three, uniforms),
+            installSnowCover: (uniforms) => snow.installWebGpuSnowCover(three, uniforms),
           },
           ...(optimizer ? { optimizer } : {}),
           ...(opts.reflections === true
@@ -697,15 +709,20 @@ export class Renderer {
     this.three.setPixelRatio(pixelRatio);
     // Before any lit shader is built: every one reads the cloud shadow, which stays off (and
     // costs a uniform test) until weather with clouds and a 'high' cloud quality turn it on.
-    if (this.cloudBackend) this.cloudBackend.installShadows(this.cloudShadows);
-    else {
+    // Lying snow rides the same hooks: marked materials whiten once weather with a snow cover
+    // arrives (setWeather), and until then pay for a uniform test.
+    if (this.cloudBackend) {
+      this.cloudBackend.installShadows(this.cloudShadows);
+      this.cloudBackend.installSnowCover(this.snowCover);
+    } else {
       const far = new FarShadow(this.three as THREE.WebGLRenderer);
       this.farShadow = far;
       this.releaseCloudShadows = installWebGlCloudShadows(
         this.three as THREE.WebGLRenderer,
         this.cloudShadows,
-        (shader) => {
+        (shader, material) => {
           injectFarShadow(shader, far.uniforms);
+          injectSnowCover(shader, this.snowCover, material);
         },
       );
     }
@@ -1549,6 +1566,7 @@ export class Renderer {
     );
     if (weather) weather.writeShadows(this.cloudShadows, cloudShadowed);
     else this.cloudShadows.molenCloudShadow.value.x = 0;
+    writeSnowCover(this.snowCover, weather?.data.snowCover, this.worldOrigin);
     // Every lit shader samples the shadow map, but WebGPU uploads a texture's new data only when
     // some object that binds it refreshes, which static meshes do not: upload it here.
     const shadowMap = this.cloudShadows.molenCloudMap.value;

@@ -345,7 +345,8 @@ describe('road surfaces', () => {
       .transform.pos[2];
 
   it('knows the map names for surfaces and treats the rest as pavement', () => {
-    expect(vehicleSurface('asphalt')).toEqual({ grip: 1, drag: 0, roughness: 0 });
+    // Pavement also says how much lying snow a ploughed road keeps (vehicle-snow.test.ts).
+    expect(vehicleSurface('asphalt')).toEqual({ grip: 1, drag: 0, roughness: 0, snow: 0.3 });
     expect(vehicleSurface('grass')).toBe(VEHICLE_SURFACES.grass);
     expect(vehicleSurface('tarmac-of-the-future')).toBeUndefined();
     expect(vehicleSurface(undefined)).toBeUndefined();

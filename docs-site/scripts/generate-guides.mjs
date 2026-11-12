@@ -117,6 +117,7 @@ const GUIDE_ORDER = [
   'sky',
   'night-lighting',
   'weather',
+  'snow',
   'audio',
   'graphics-performance',
   'adaptive-performance',

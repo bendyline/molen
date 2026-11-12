@@ -348,4 +348,39 @@ describe('handlebar vehicles', () => {
         .length,
     ).toBeGreaterThan(0);
   });
+
+  it('accepts skis, a snowboard and a snowmobile on runners, with no wheel nodes', () => {
+    for (const [category, slug] of [
+      ['cycles', 'skis'],
+      ['cycles', 'snowboard'],
+      ['vehicles', 'snowmobile'],
+    ] as const) {
+      const vehicle = vehicleOf(category, slug) as {
+        spec: { runners?: { friction: number }; bodyStyle: string };
+        visual: { wheelNodes: string[] };
+      };
+      expect(componentIssues('vehicle', vehicle, '/c/vehicle'), slug).toEqual([]);
+      expect(vehicle.spec.runners?.friction, slug).toBeGreaterThan(0);
+      expect(vehicle.visual.wheelNodes, slug).toEqual([]);
+      // Without runners a vehicle still needs a wheel to stand on.
+      const { runners: _runners, ...wheeled } = vehicle.spec;
+      const issues = componentIssues('vehicle', { ...vehicle, spec: wheeled }, '/c/vehicle');
+      expect(
+        issues.map((issue) => issue.path),
+        slug,
+      ).toContain('/c/vehicle/visual/wheelNodes');
+    }
+    const skis = vehicleOf('cycles', 'skis') as { spec: { runners: Record<string, unknown> } };
+    for (const runners of [
+      {},
+      { friction: -0.1 },
+      { friction: 0.05, pushSpeed: 0 },
+      { friction: 0.05, glide: 1 },
+    ])
+      expect(
+        componentIssues('vehicle', { ...skis, spec: { ...skis.spec, runners } }, '/c/vehicle')
+          .length,
+        JSON.stringify(runners),
+      ).toBeGreaterThan(0);
+  });
 });

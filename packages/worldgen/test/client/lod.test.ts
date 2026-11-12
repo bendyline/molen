@@ -2,7 +2,10 @@ import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { createInstancedPlacementLod } from '../../src/client/instanced-lod';
 import { ModelLibrary, type PreparedModel } from '../../src/client/instanced-models';
-import { createScatterMaterialAsync, scatterFullyLitTerm } from '../../src/client/scatter-material';
+import {
+  createScatterMaterialAsync,
+  scatterDistantShadowTerm,
+} from '../../src/client/scatter-material';
 import { disposeWorldgenObject } from '../../src/client/upload';
 import { PLACEMENT_STRIDE, type PlacementSet } from '../../src/kernel/types';
 
@@ -456,7 +459,7 @@ describe('camera-distance instance LOD', () => {
     expect(lod.getCurrentLevel()).toBe(2);
     const distant = mesh.material as THREE.Material & { receivedShadowNode?: () => unknown };
     expect(distant).not.toBe(material);
-    expect(distant.receivedShadowNode?.()).toBe(scatterFullyLitTerm(material));
+    expect(distant.receivedShadowNode?.()).toBe(scatterDistantShadowTerm(material));
     // Shaders are built for the flag, so it stays; the distant level still casts nothing.
     expect(mesh.receiveShadow).toBe(true);
     expect(mesh.castShadow).toBe(false);

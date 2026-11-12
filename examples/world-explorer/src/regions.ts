@@ -11,6 +11,21 @@ export interface WorldRegion {
   detailBounds: [number, number, number, number];
   coverageBounds: [number, number, number, number];
   /**
+   * Further places inside the coverage with fine elevation (through `elevationMaxLevel`) and map
+   * features of their own, away from the main detail window.
+   */
+  detailWindows?: readonly {
+    id: string;
+    label: string;
+    bounds: [number, number, number, number];
+    elevationMaxLevel?: number;
+  }[];
+  /**
+   * Snow line in meters above sea level: lying snow begins here unless `?snow=` says otherwise.
+   * Absent, the region opens without snow on the ground.
+   */
+  snowLevel?: number;
+  /**
    * Open-water color seen from above, from matched orthophotos: deep or turbid water is far
    * darker than the sky it reflects at a glance. Defaults to the shared Earth water color.
    */
@@ -36,7 +51,19 @@ export const DEFAULT_WORLD_REGION: WorldRegion = {
   airport: { id: 'KBFI', runway: '14R/32L' },
   // Include Boeing Field and the neighborhoods south of its runway start.
   detailBounds: [-122.46, 47.49, -121.95, 47.7],
-  coverageBounds: [-123.15, 46.95, -120.9, 48.3],
+  // East past the Cascade crest and south past Mount Rainier and the Tatoosh Range.
+  coverageBounds: [-123.15, 46.6, -120.9, 48.3],
+  detailWindows: [
+    // The summit, Paradise and Sunrise: about 13 m between elevation samples.
+    {
+      id: 'mount-rainier',
+      label: 'Mount Rainier',
+      bounds: [-121.93, 46.73, -121.58, 46.95],
+      elevationMaxLevel: 13,
+    },
+  ],
+  // Rainier's glaciers and the high Cascades keep their snow above about 2,000 m all year.
+  snowLevel: 2000,
   // Puget Sound and Lake Washington read near-black navy in summer NAIP imagery.
   water: '#071f2b',
 };
@@ -134,6 +161,8 @@ export function regionUrl(current: URL, region: WorldRegion): URL {
     'navigation',
     'aircraft',
     'boat',
+    // Each region opens on its own snow line.
+    'snow',
   ])
     next.searchParams.delete(key);
   next.searchParams.set('region', region.id);

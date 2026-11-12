@@ -74,9 +74,11 @@ describe('fleet model contracts', () => {
     if (!id.includes('.watercraft.')) {
       const vehicle = vehicles.get(id);
       const declared = vehicle?.visual.wheelNodes;
+      // Skis, a board and a sled ride on runners: they have the wheel nodes they declare (none).
+      const runners = vehicle?.spec.runners !== undefined;
       const wheels = id.endsWith('.lightrail')
         ? ['bogie-front-wheel-front-left', 'bogie-rear-wheel-rear-right']
-        : declared?.length === 3 || (declared?.length === 4 && vehicle?.spec.cycle)
+        : runners || declared?.length === 3 || (declared?.length === 4 && vehicle?.spec.cycle)
           ? declared
           : id.includes('.cycle.')
             ? ['wheel-front', 'wheel-rear']
@@ -94,9 +96,13 @@ describe('fleet model contracts', () => {
       }
       // Every rider steering with bars has them; a board steers through its trucks.
       if (vehicle?.spec.handlebar !== undefined) expect(names.has('handlebar')).toBe(true);
-      if (vehicle?.spec.cycle?.stance === 'sideways')
-        for (const node of ['truck-front', 'truck-rear']) expect(names.has(node), node).toBe(true);
-      else if (id.includes('.cycle.')) {
+      if (vehicle?.spec.cycle?.stance === 'sideways') {
+        // A skateboard turns on its trucks; a snowboard is one plank with a binding per foot.
+        for (const node of runners
+          ? ['binding-front', 'binding-rear']
+          : ['truck-front', 'truck-rear'])
+          expect(names.has(node), node).toBe(true);
+      } else if (id.includes('.cycle.')) {
         expect(names.has('handlebar')).toBe(true);
         if (id.includes('bicycle'))
           for (const node of ['pedal-crank', 'pedal-left', 'pedal-right'])

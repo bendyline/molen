@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { PLACEMENT_STRIDE, type PlacementSet } from '../kernel/types';
 import { createInstancedPlacements } from './instanced-box';
 import type { PreparedModel } from './instanced-models';
-import { SCATTER_SOLID_UV, scatterFullyLitTerm } from './scatter-material';
+import { SCATTER_SOLID_UV, scatterDistantShadowTerm } from './scatter-material';
 import { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './screen-space-lod';
 
 export interface InstancedPlacementLodOptions {
@@ -111,16 +111,16 @@ function levelMaterial(material: THREE.Material, geometry: THREE.BufferGeometry)
 const unshadowedTwins = new WeakMap<THREE.Material, THREE.Material>();
 
 /**
- * The distant level's material when `source` (the models' shared material) offers a constant shadow
- * term: a twin of `material` that never samples the sun's shadow map. The level used to switch off
- * `receiveShadow` instead, and three keys a mesh's shaders by that flag, so every batch rebuilt its
- * shaders, mid-frame, each time it crossed into the level or back out.
+ * The distant level's material when `source` (the models' shared material) offers its own shadow
+ * term for it: a twin of `material` that never samples the sun's shadow map. The level used to
+ * switch off `receiveShadow` instead, and three keys a mesh's shaders by that flag, so every batch
+ * rebuilt its shaders, mid-frame, each time it crossed into the level or back out.
  */
 function unshadowedMaterial(
   material: THREE.Material,
   source: THREE.Material,
 ): THREE.Material | undefined {
-  const lit = scatterFullyLitTerm(source);
+  const lit = scatterDistantShadowTerm(source);
   if (lit === undefined) return undefined;
   let twin = unshadowedTwins.get(material);
   if (twin === undefined) {

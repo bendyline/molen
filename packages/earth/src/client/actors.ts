@@ -169,6 +169,8 @@ export interface EarthActorHost {
   toWorld(latitude: number, longitude: number): [number, number];
   toGeo(x: number, z: number): { latitude: number; longitude: number };
   groundHeight(x: number, z: number): number | undefined;
+  /** Share of walking pace left at a place (deep snow); see `WalkController.paceAt`. */
+  paceAt?(x: number, y: number, z: number): number;
   types?: TypeLibrary;
   prepare?: (object: THREE.Object3D) => void;
   emit(change: EarthActorChange): void;
@@ -792,6 +794,7 @@ export class EarthActorDirector {
     const collision = new WalkCollision();
     collision.update(stack.root, x, z);
     const walker = new WalkController();
+    if (this.host.paceAt) walker.paceAt = (px, py, pz) => this.host.paceAt?.(px, py, pz) ?? 1;
     walker.reset(x, z);
     const groundCollision = new WalkCollision({ ignoreVehicles: true });
     groundCollision.update(stack.root, x, z);
@@ -851,6 +854,7 @@ export class EarthActorDirector {
   private activate(actor: Actor): void {
     if (actor.walker !== undefined) return;
     const walker = new WalkController();
+    if (this.host.paceAt) walker.paceAt = (px, py, pz) => this.host.paceAt?.(px, py, pz) ?? 1;
     walker.feet.set(actor.pos[0], actor.pos[1], actor.pos[2]);
     walker.ready = true;
     walker.grounded = true;
@@ -1250,7 +1254,8 @@ export class EarthActorDirector {
       const dx = steer.goal[0] - actor.pos[0];
       const dz = steer.goal[1] - actor.pos[2];
       const distance = Math.hypot(dx, dz);
-      const step = Math.min(distance, steer.speed * dt * boostSpeedMultiplier(boosted));
+      const pace = this.host.paceAt?.(actor.pos[0], actor.pos[1], actor.pos[2]) ?? 1;
+      const step = Math.min(distance, steer.speed * pace * dt * boostSpeedMultiplier(boosted));
       const x = actor.pos[0] + (dx / distance) * step;
       const z = actor.pos[2] + (dz / distance) * step;
       const ground = this.host.groundHeight(x, z);

@@ -4,6 +4,8 @@ import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { encodePng16, writePmtilesArchive } from '@bendyline/molen-terrain/kernel';
+import { gzipSync } from 'fflate';
+import { FetchSource, PMTiles, tileIdToZxy } from 'pmtiles';
 import pngjs from 'pngjs';
 
 const { PNG } = pngjs;
@@ -14,7 +16,15 @@ const defaultOutputDirectory = resolve(
   'public/terrain/seattle-bellevue-sammamish',
 );
 const defaultDetailBounds = [-122.46, 47.49, -121.95, 47.7];
-const defaultCoverageBounds = [-123.15, 46.95, -120.9, 48.3];
+// South to 46.6° N: all of Mount Rainier and the Tatoosh Range beyond it.
+const defaultCoverageBounds = [-123.15, 46.6, -120.9, 48.3];
+// Detail windows away from the main one, for the default package only: fine elevation (through
+// `elevationMaxLevel`) and, when a window vector archive is named, map features.
+const defaultDetailWindows = [
+  // Mount Rainier: the summit, Paradise and Sunrise. Level 13 is about 13 m between samples
+  // here, a little coarser than the 10 m 3DEP survey behind these tiles.
+  { id: 'mount-rainier', bounds: [-121.93, 46.73, -121.58, 46.95], elevationMaxLevel: 13 },
+];
 const defaultVectorUrl = 'https://build.protomaps.com/20261023.pmtiles';
 const defaultElevationTemplate =
   'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png';
@@ -58,6 +68,17 @@ function argument(name, fallback) {
   return value;
 }
 
+function argumentsNamed(name) {
+  const values = [];
+  for (let index = 0; index < process.argv.length; index++) {
+    if (process.argv[index] !== name) continue;
+    const value = process.argv[index + 1];
+    if (value === undefined || value.startsWith('--')) throw new Error(`${name} requires a value`);
+    values.push(value);
+  }
+  return values;
+}
+
 function integerArgument(name, fallback) {
   const value = Number(argument(name, String(fallback)));
   if (!Number.isSafeInteger(value) || value < 0 || value > 26) {
@@ -79,6 +100,19 @@ function parseBounds(value) {
   return parsed;
 }
 
+// `id=west,south,east,north[@maxElevationLevel]`
+function parseDetailWindow(value) {
+  const match = /^([a-z0-9-]+)=([^@]+)(?:@(\d+))?$/.exec(value);
+  if (!match) {
+    throw new Error('--detail-window must be id=west,south,east,north[@maxElevationLevel]');
+  }
+  return {
+    id: match[1],
+    bounds: parseBounds(match[2]),
+    ...(match[3] === undefined ? {} : { elevationMaxLevel: Number(match[3]) }),
+  };
+}
+
 function lonToTileX(longitude, level) {
   const count = 2 ** level;
   return Math.max(0, Math.min(count - 1, Math.floor(((longitude + 180) / 360) * count)));
@@ -91,16 +125,43 @@ function latToTileY(latitude, level) {
   return Math.max(0, Math.min(count - 1, Math.floor(normalized * count)));
 }
 
-function tileAddresses(coverageBounds, detailBounds, minLevel, maxLevel, overviewMaxLevel) {
+function tilesInBounds(bounds, level) {
+  const tiles = [];
+  const minX = lonToTileX(bounds[0], level);
+  const maxX = lonToTileX(bounds[2], level);
+  const minY = latToTileY(bounds[3], level);
+  const maxY = latToTileY(bounds[1], level);
+  for (let y = minY; y <= maxY; y++) {
+    for (let x = minX; x <= maxX; x++) tiles.push({ level, x, y });
+  }
+  return tiles;
+}
+
+function tileAddresses(
+  coverageBounds,
+  detailBounds,
+  detailWindows,
+  minLevel,
+  maxLevel,
+  overviewMaxLevel,
+) {
   const addresses = [];
+  const seen = new Set();
+  const add = (tile) => {
+    const key = `${tile.level}/${tile.x}/${tile.y}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    addresses.push(tile);
+  };
   for (let level = minLevel; level <= maxLevel; level++) {
-    const bounds = level <= overviewMaxLevel ? coverageBounds : detailBounds;
-    const minX = lonToTileX(bounds[0], level);
-    const maxX = lonToTileX(bounds[2], level);
-    const minY = latToTileY(bounds[3], level);
-    const maxY = latToTileY(bounds[1], level);
-    for (let y = minY; y <= maxY; y++) {
-      for (let x = minX; x <= maxX; x++) addresses.push({ level, x, y });
+    if (level <= overviewMaxLevel) {
+      for (const tile of tilesInBounds(coverageBounds, level)) add(tile);
+      continue;
+    }
+    for (const tile of tilesInBounds(detailBounds, level)) add(tile);
+    for (const window of detailWindows) {
+      if (level > (window.elevationMaxLevel ?? maxLevel)) continue;
+      for (const tile of tilesInBounds(window.bounds, level)) add(tile);
     }
   }
   return addresses;
@@ -129,6 +190,7 @@ function decodeTerrariumPixel(image, x, y) {
 async function buildElevation(
   coverageBounds,
   detailBounds,
+  detailWindows,
   minLevel,
   maxLevel,
   overviewMaxLevel,
@@ -137,6 +199,7 @@ async function buildElevation(
   const addresses = tileAddresses(
     coverageBounds,
     detailBounds,
+    detailWindows,
     minLevel,
     maxLevel,
     overviewMaxLevel,
@@ -243,13 +306,177 @@ async function replaceFile(path, bytes) {
   await rename(temporaryPath, path);
 }
 
+function localArchive(bytes, key) {
+  return new PMTiles({
+    getKey: () => key,
+    getBytes: async (offset, length) => ({
+      data: bytes.buffer.slice(bytes.byteOffset + offset, bytes.byteOffset + offset + length),
+    }),
+  });
+}
+
+// Every tile of a local archive with its stored (still compressed) bytes, runs expanded.
+async function archiveTiles(archive, bytes) {
+  const header = await archive.getHeader();
+  const tiles = new Map();
+  const visit = async (offset, length) => {
+    const entries = await archive.cache.getDirectory(archive.source, offset, length, header);
+    for (const entry of entries) {
+      if (entry.runLength === 0) {
+        await visit(header.leafDirectoryOffset + entry.offset, entry.length);
+        continue;
+      }
+      const start = bytes.byteOffset + header.tileDataOffset + entry.offset;
+      const data = new Uint8Array(bytes.buffer, start, entry.length);
+      for (let run = 0; run < entry.runLength; run++) {
+        const [z, x, y] = tileIdToZxy(entry.tileId + run);
+        tiles.set(`${z}/${x}/${y}`, { z, x, y, data });
+      }
+    }
+  };
+  await visit(header.rootDirectoryOffset, header.rootDirectoryLength);
+  return { header, tiles };
+}
+
+function unionBounds(boxes) {
+  return [
+    Math.min(...boxes.map((box) => box[0])),
+    Math.min(...boxes.map((box) => box[1])),
+    Math.max(...boxes.map((box) => box[2])),
+    Math.max(...boxes.map((box) => box[3])),
+  ];
+}
+
+async function recordedVectorWindows(sourcePath, windows) {
+  try {
+    const recorded = JSON.parse(await readFile(sourcePath, 'utf8')).features?.windows ?? [];
+    return recorded.filter((entry) => windows.some((window) => window.id === entry.id));
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Add each detail window's map tiles to world.pmtiles, at every zoom, from `url`. Tiles the
+ * archive already holds stay as they are, byte for byte, so the main extract's streets are
+ * untouched and a second run adds nothing. Returns what each window's tiles came from.
+ */
+async function addVectorWindows(vectorPath, windows, url, maxLevel, provenance) {
+  if (windows.length === 0) return [];
+  const bytes = await readFile(vectorPath);
+  const existing = await archiveTiles(localArchive(bytes, vectorPath), bytes);
+  if (existing.header.tileType !== 1 || existing.header.tileCompression !== 2) {
+    throw new Error('world.pmtiles must hold gzip-compressed vector tiles');
+  }
+  const metadata = await localArchive(bytes, vectorPath).getMetadata();
+  const previous = await recordedVectorWindows(
+    resolve(dirname(vectorPath), 'SOURCES.json'),
+    windows,
+  );
+  const remote = new PMTiles(new FetchSource(url));
+  const remoteHeader = await remote.getHeader();
+  const wanted = [];
+  for (const window of windows) {
+    for (let level = 0; level <= Math.min(maxLevel, remoteHeader.maxZoom); level++) {
+      for (const tile of tilesInBounds(window.bounds, level)) {
+        const key = `${tile.level}/${tile.x}/${tile.y}`;
+        if (!existing.tiles.has(key)) wanted.push({ key, window, ...tile });
+      }
+    }
+  }
+  const added = new Map(windows.map((window) => [window.id, 0]));
+  let next = 0;
+  let done = 0;
+  const worker = async () => {
+    while (next < wanted.length) {
+      const tile = wanted[next++];
+      if (!existing.tiles.has(tile.key)) {
+        let response;
+        for (let attempt = 1; ; attempt++) {
+          try {
+            response = await remote.getZxy(tile.level, tile.x, tile.y);
+            break;
+          } catch (error) {
+            if (attempt === 3) throw error;
+            await new Promise((resolveDelay) => setTimeout(resolveDelay, 250 * attempt));
+          }
+        }
+        // The reader hands back decoded tile bytes; store them as the archive stores the rest.
+        if (response?.data !== undefined && !existing.tiles.has(tile.key)) {
+          existing.tiles.set(tile.key, {
+            z: tile.level,
+            x: tile.x,
+            y: tile.y,
+            data: gzipSync(new Uint8Array(response.data), { mtime: 0 }),
+          });
+          added.set(tile.window.id, (added.get(tile.window.id) ?? 0) + 1);
+        }
+      }
+      done++;
+      if (done % 200 === 0 || done === wanted.length) {
+        console.log(`  window vectors ${done}/${wanted.length}`);
+      }
+    }
+  };
+  console.log(`Adding map tiles for ${windows.map((window) => window.id).join(', ')}...`);
+  await Promise.all(Array.from({ length: Math.min(8, wanted.length) }, () => worker()));
+  const total = [...added.values()].reduce((sum, count) => sum + count, 0);
+  if (total > 0) {
+    const { header } = existing;
+    await replaceFile(
+      vectorPath,
+      writePmtilesArchive([...existing.tiles.values()], {
+        tileType: 'mvt',
+        tileCompression: 'gzip',
+        bounds: unionBounds([
+          [header.minLon, header.minLat, header.maxLon, header.maxLat],
+          ...windows.map((window) => window.bounds),
+        ]),
+        center: [header.centerLon, header.centerLat, header.centerZoom],
+        metadata,
+      }),
+    );
+  }
+  return windows.map((window) => {
+    const count = added.get(window.id) ?? 0;
+    const earlier = previous.find((entry) => entry.id === window.id);
+    // Nothing fetched: the tiles are an earlier run's, recorded then.
+    if (count === 0 && earlier) return earlier;
+    return {
+      id: window.id,
+      bounds: window.bounds,
+      url,
+      release: provenance.release ?? (url === provenance.mainUrl ? provenance.mainRelease : url),
+      tiles: count,
+    };
+  });
+}
+
 const outputDirectory = resolve(argument('--output', defaultOutputDirectory));
+const skipVector = process.argv.includes('--skip-vector');
 const pmtilesCli = argument('--pmtiles-cli', process.env.PMTILES_CLI);
-if (pmtilesCli === undefined) {
+if (pmtilesCli === undefined && !skipVector) {
   throw new Error('--pmtiles-cli or PMTILES_CLI must point to the pinned go-pmtiles executable');
 }
+// The built-in detail windows belong to the default package; another region names its own.
+const defaultPackage =
+  !process.argv.includes('--bbox') && !process.argv.includes('--coverage-bbox');
 const detailBounds = parseBounds(argument('--bbox', defaultDetailBounds.join(',')));
 const coverageBounds = parseBounds(argument('--coverage-bbox', defaultCoverageBounds.join(',')));
+const requestedWindows = argumentsNamed('--detail-window').map(parseDetailWindow);
+const detailWindows =
+  requestedWindows.length > 0 ? requestedWindows : defaultPackage ? defaultDetailWindows : [];
+for (const window of detailWindows) {
+  const [west, south, east, north] = window.bounds;
+  if (
+    west < coverageBounds[0] ||
+    south < coverageBounds[1] ||
+    east > coverageBounds[2] ||
+    north > coverageBounds[3]
+  ) {
+    throw new Error(`detail window ${window.id} reaches outside the coverage bounds`);
+  }
+}
 const minLevel = integerArgument('--min-level', 8);
 const maxLevel = integerArgument('--max-level', 15);
 const elevationMaxLevel = integerArgument('--elevation-max-level', Math.min(maxLevel, 14));
@@ -262,6 +489,10 @@ if (overviewMaxLevel < minLevel || overviewMaxLevel >= elevationMaxLevel) {
   throw new Error('--overview-max-level must be at least min-level and below elevation-max-level');
 }
 const vectorUrl = argument('--vector-url', defaultVectorUrl);
+// Daily Protomaps builds expire, so a window added later usually reads a newer one than the
+// main extract did. Each window records the archive and release its tiles came from.
+const windowVectorUrl = argument('--window-vector-url', vectorUrl);
+const windowVectorRelease = argument('--window-vector-release', undefined);
 const elevationTemplate = argument('--elevation-template', defaultElevationTemplate);
 const packageName = argument('--name', 'Seattle, Bellevue, and Sammamish, Washington');
 const packageVersion = argument('--version', '2026-10-23');
@@ -280,7 +511,7 @@ await mkdir(outputDirectory, { recursive: true });
 const vectorPath = resolve(outputDirectory, 'world.pmtiles');
 const vectorTemporaryPath = `${vectorPath}.tmp`;
 console.log(`Extracting Protomaps vectors for ${detailBounds.join(',')}...`);
-if (process.argv.includes('--skip-vector')) {
+if (skipVector) {
   await readFile(vectorPath);
   console.log('  using existing world.pmtiles');
 } else {
@@ -302,12 +533,21 @@ if (process.argv.includes('--skip-vector')) {
   await rename(vectorTemporaryPath, vectorPath);
 }
 
+const vectorWindows = process.argv.includes('--skip-window-vectors')
+  ? await recordedVectorWindows(resolve(outputDirectory, 'SOURCES.json'), detailWindows)
+  : await addVectorWindows(vectorPath, detailWindows, windowVectorUrl, maxLevel, {
+      release: windowVectorRelease,
+      mainUrl: vectorUrl,
+      mainRelease: vectorRelease,
+    });
+
 console.log(
   `Compiling Mapzen Terrarium elevation at levels ${minLevel}-${elevationMaxLevel} (overview through ${overviewMaxLevel})...`,
 );
 const elevation = await buildElevation(
   coverageBounds,
   detailBounds,
+  detailWindows,
   minLevel,
   elevationMaxLevel,
   overviewMaxLevel,
@@ -339,6 +579,7 @@ const sourceLock = {
   format: 'molen/terrain-sources@1',
   coverageBounds,
   detailBounds,
+  ...(detailWindows.length > 0 ? { detailWindows } : {}),
   elevation: {
     id: 'mapzen-terrain-tiles',
     urlTemplate: elevationTemplate,
@@ -364,6 +605,7 @@ const sourceLock = {
     url: vectorUrl,
     profile: 'protomaps-basemap@1',
     maxLevel,
+    ...(vectorWindows.length > 0 ? { windows: vectorWindows } : {}),
     attribution: '© OpenStreetMap contributors',
     extractMinLevel: 0,
     layersPresent: [
@@ -532,6 +774,12 @@ const manifest = {
     sources: [
       { id: 'mapzen-terrain-tiles', release: elevationRelease },
       { id: 'protomaps-basemap', release: vectorRelease },
+      ...vectorWindows
+        .filter((window) => window.release !== vectorRelease)
+        .map((window) => ({
+          id: 'protomaps-basemap',
+          release: `${window.release} (${window.id} window)`,
+        })),
     ],
   },
   files,

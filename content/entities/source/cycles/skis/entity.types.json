@@ -1,0 +1,311 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.cycle.skis": {
+      "doc": "Bendy Skis. Rideable alpine skis with poles: they slide downhill on lying snow under gravity, carve with the steering, stop on their edges and pole along the flat.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.cycle.skis",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.cycle.skis",
+          "color": "#c8372d",
+          "spec": {
+            "label": "Bendy Skis",
+            "bodyStyle": "skis",
+            "genericLabel": "Alpine skis",
+            "width": 0.7,
+            "length": 1.7,
+            "height": 1.2,
+            "centerOfMass": [
+              0,
+              0.9,
+              0
+            ],
+            "wheelbase": 1.1,
+            "wheelTrack": 0,
+            "wheelRadius": 0.02,
+            "mass": 85,
+            "engineForce": 130,
+            "maxSpeed": 38,
+            "reverseSpeed": 0,
+            "brakeDeceleration": 6,
+            "maxSteer": 0.5,
+            "driverEye": [
+              0,
+              1.62,
+              0.05
+            ],
+            "grip": 7.5,
+            "steeringRate": 2.2,
+            "steeringFadeSpeed": 9,
+            "rollingResistance": 0,
+            "aerodynamicResistance": 0.0042,
+            "terrainAlignRate": 6,
+            "supportTolerance": 0.3,
+            "maxStepHeight": 0.35,
+            "maxSlope": 0.95,
+            "drive": "rear",
+            "suspensionDamping": 1,
+            "suspensionFrequency": 2.5,
+            "pitchStiffness": 0,
+            "headlamps": [],
+            "runners": {
+              "friction": 0.05,
+              "bareDrag": 3.5,
+              "pushSpeed": 4.5,
+              "flat": true
+            },
+            "cycle": {
+              "maxLean": 0.6,
+              "riderLean": 0.22,
+              "stance": "standing",
+              "handlebarPivot": [
+                0,
+                1.03,
+                0.2
+              ],
+              "grips": [
+                [
+                  0.3,
+                  1.03,
+                  0.2
+                ],
+                [
+                  -0.3,
+                  1.03,
+                  0.2
+                ]
+              ],
+              "footrests": [
+                [
+                  0.13,
+                  0.17,
+                  -0.05
+                ],
+                [
+                  -0.13,
+                  0.17,
+                  -0.05
+                ]
+              ]
+            }
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "animation": {
+              "sources": {
+                "steering": {
+                  "component": "vehicleState",
+                  "path": [
+                    "steer"
+                  ]
+                },
+                "speed": {
+                  "component": "vehicleState",
+                  "path": [
+                    "speed"
+                  ]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "handlebar",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1
+                },
+                {
+                  "node": "pole-left",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "x",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.6,
+                      0
+                    ],
+                    [
+                      3,
+                      0.95
+                    ]
+                  ],
+                  "ease": "smooth",
+                  "responseSeconds": 0.2
+                },
+                {
+                  "node": "pole-right",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "x",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.6,
+                      0
+                    ],
+                    [
+                      3,
+                      0.95
+                    ]
+                  ],
+                  "ease": "smooth",
+                  "responseSeconds": 0.2
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0,
+                0.92,
+                -0.03
+              ]
+            }
+          ],
+          "exits": [
+            [
+              0.75,
+              0,
+              0
+            ],
+            [
+              -0.75,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              -1.3
+            ]
+          ],
+          "reach": 2.5
+        },
+        "model.signals": {
+          "sources": {
+            "steering": {
+              "component": "vehicleState",
+              "path": [
+                "steer"
+              ]
+            },
+            "speed": {
+              "component": "vehicleState",
+              "path": [
+                "speed"
+              ]
+            }
+          },
+          "bindings": [
+            {
+              "node": "handlebar",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "pole-left",
+              "source": "speed",
+              "property": "rotation",
+              "axis": "x",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.6,
+                  0
+                ],
+                [
+                  3,
+                  0.95
+                ]
+              ],
+              "ease": "smooth",
+              "responseSeconds": 0.2
+            },
+            {
+              "node": "pole-right",
+              "source": "speed",
+              "property": "rotation",
+              "axis": "x",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.6,
+                  0
+                ],
+                [
+                  3,
+                  0.95
+                ]
+              ],
+              "ease": "smooth",
+              "responseSeconds": 0.2
+            }
+          ]
+        }
+      },
+      "assets": [
+        "molen.entities.cycle.skis"
+      ]
+    }
+  }
+}

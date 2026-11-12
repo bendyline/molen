@@ -6,6 +6,7 @@
  * maker's styling, name or emblem is copied.
  */
 import * as T from 'three';
+import { SNOW_VEHICLES } from './snow-vehicles.mjs';
 import { detailKit } from './vehicle-detail.mjs';
 import { panelTools } from './vehicle-interiors.mjs';
 
@@ -1674,6 +1675,8 @@ export const LIGHT_VEHICLES = {
       floor: 0.32,
       tire: [0.1, 0.1],
       eye: [0.66, 0.1],
+      // Headlamp lens centres (spec.headlamps): the nose lamp.
+      lamps: [[0, 0.78, 1.3]],
     },
     build: buildAutoRickshaw,
     detail: autoRickshawDetail,
@@ -1696,6 +1699,7 @@ export const LIGHT_VEHICLES = {
       headlamp: [0, 0.985, 0.375],
       tail: [-0.885, 0.72],
       badge: [0.172, 0.6, -0.42, 0.045],
+      lamps: [[0, 0.985, 0.4]],
     },
     build: buildUnderbone,
     detail: mopedDetail,
@@ -1714,6 +1718,7 @@ export const LIGHT_VEHICLES = {
       tire: [0.09, 0.075],
       eye: [0.66, 0.12],
       badge: [0.205, 0.56, -0.5, 0.045],
+      lamps: [[0, 0.82, 0.47]],
     },
     build: buildElectricMoped,
     detail: mopedDetail,
@@ -1735,6 +1740,7 @@ export const LIGHT_VEHICLES = {
       deck: { front: 0.22, rear: -0.3, top: 0.16, bottom: 0.085 },
       tire: [0.055, 0.05],
       eye: [0.66, 0.08],
+      lamps: [[0, 0.82, 0.3]],
     },
     build: buildKickScooter,
     detail: kickScooterDetail,
@@ -1760,6 +1766,7 @@ export const LIGHT_VEHICLES = {
       ],
       tire: [0.032, 0.026],
       eye: [0.66, 0.06],
+      lamps: [],
     },
     build: (k) => buildBoard(k, false),
     detail: boardDetail,
@@ -1783,8 +1790,11 @@ export const LIGHT_VEHICLES = {
       ],
       tire: [0.052, 0.045],
       eye: [0.66, 0.06],
+      lamps: [],
     },
     build: (k) => buildBoard(k, true),
     detail: boardDetail,
   },
+  // Skis, a snowboard and a snowmobile: snow-vehicles.mjs.
+  ...SNOW_VEHICLES,
 };

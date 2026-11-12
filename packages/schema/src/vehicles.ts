@@ -60,7 +60,10 @@ export type VehicleBodyStyle =
   | 'moped'
   | 'kick-scooter'
   | 'skateboard'
-  | 'auto-rickshaw';
+  | 'auto-rickshaw'
+  | 'skis'
+  | 'snowboard'
+  | 'snowmobile';
 
 /**
  * Where a rider's hands and feet go, in model space, for a vehicle steered by handlebars rather
@@ -107,6 +110,33 @@ export interface CycleSpec extends HandlebarSpec {
     /** Meters travelled per push. */
     stride: number;
   };
+}
+
+/**
+ * Runners in place of tires: skis, a snowboard, a sled, or a snowmobile's skis and track. On the
+ * weather's lying snow the vehicle slides with little friction, its edges or paddles hold the
+ * full `grip`, and it floats over any depth; off the snow it scrapes to a stop. Gravity along a
+ * slope moves it, and at rest only a brake or a slope too gentle to beat the friction holds it.
+ */
+export interface RunnerSpec extends JsonObject {
+  /**
+   * Sliding friction coefficient on snow: it resists as `friction` × g. About 0.05 for waxed
+   * skis, 0.12 for a snowmobile's track.
+   */
+  friction: number;
+  /** Resistance in m/s² off the snow, where runners scrape bare ground; default 3. */
+  bareDrag?: number;
+  /**
+   * Fastest the rider's own pushing (poling, skating) drives it, in m/s; gravity may take it
+   * on to `maxSpeed`. Absent, `engineForce` works up to `maxSpeed`, as an engine does.
+   */
+  pushSpeed?: number;
+  /**
+   * A cycle whose runners stay flat on the snow in a turn (a pair of skis side by side) rather
+   * than banking as one plank (a snowboard). The lean into the turn stays in
+   * `vehicleState.bodyRoll`, where the rider's pose reads it. Default false.
+   */
+  flat?: boolean;
 }
 
 /**
@@ -235,6 +265,8 @@ export interface VehicleSpec extends JsonObject {
   limitedSlip?: number;
   /** Share 0–1 of the grip loose surfaces take away that the tires win back (off-road tread); default 0. */
   looseSurfaceGrip?: number;
+  /** Slides on snow instead of rolling on tires (skis, a board, a snowmobile). */
+  runners?: RunnerSpec;
   /** Two contact patches on the centreline; balances upright at rest and leans into turns. */
   cycle?: CycleSpec;
   /**
@@ -242,6 +274,12 @@ export interface VehicleSpec extends JsonObject {
    * feet, with the seat as the pelvis anchor. Ignored when `cycle` is present.
    */
   handlebar?: HandlebarSpec;
+  /**
+   * Headlamp lens centres in model space, at most two. Hosts that light vehicles at night place
+   * their beams and lit lenses here; empty means no headlamps (a skateboard). Absent, they guess
+   * a pair from the body's width, height and length.
+   */
+  headlamps?: [number, number, number][];
   /** Track-guided running gear: follows a host track guide instead of steering. */
   rail?: RailVehicleSpec;
 }

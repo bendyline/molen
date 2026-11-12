@@ -281,33 +281,42 @@ export function installWebGpuCloudShadows(
   const field = uniform(uniforms.molenCloudField.value).setGroup(renderGroup);
   const weights = uniform(uniforms.molenCloudMix.value).setGroup(renderGroup);
   const fit = uniform(uniforms.molenCloudFit.value).setGroup(renderGroup);
-  const factor = (light: THREE.Light): F => {
-    const toLight = normalize(lightPosition(light).sub(lightTargetPosition(light))).toVar();
-    const world = positionWorld;
-    const cast = mix(shadow.y, shadow.z, fit.z);
-    const xz = world.xz.add(
-      toLight.xz.mul(max(cast.sub(world.y), 0).div(max(toLight.y, 0.05))),
-    ) as unknown as V2;
-    const w = texture(map, xz.mul(field.x).add(field.yz), 0) as unknown as V4;
-    const soft = fit.x;
-    const cell = dot(w, weights).toVar();
-    // A column is thinner, so lighter, where the field is weak.
-    const cover = clamp(
-      cell
-        .add(field.w.mul(soft.add(1)))
-        .sub(1)
-        .div(soft),
-      0,
-      1,
-    ).mul(fit.w.mul(cell.oneMinus()).oneMinus());
-    // Above the layer there is nothing left to cast it; a light below the horizon casts none.
-    const strength = select(
-      toLight.y.greaterThan(0),
-      shadow.x.mul(smoothstep(shadow.y, shadow.z, world.y).oneMinus()),
-      float(0),
-    );
-    return mix(float(1), exp(cover.mul(fit.y).negate()), strength) as unknown as F;
-  };
+  const factor = (light: THREE.Light): F =>
+    Fn(() => {
+      const result = float(1).toVar();
+      // Off (no clouds, or a cloud quality without their shadows) costs a uniform test, as the
+      // GLSL path's early return does. Unbranched, every lit fragment read the cloud map for
+      // each directional light whether or not anything cast a shadow.
+      If(shadow.x.greaterThan(0), () => {
+        const toLight = normalize(lightPosition(light).sub(lightTargetPosition(light))).toVar();
+        const world = positionWorld;
+        const cast = mix(shadow.y, shadow.z, fit.z);
+        const xz = world.xz.add(
+          toLight.xz.mul(max(cast.sub(world.y), 0).div(max(toLight.y, 0.05))),
+        ) as unknown as V2;
+        // An explicit level, so the lookup may sit inside the branch.
+        const w = texture(map, xz.mul(field.x).add(field.yz), 0) as unknown as V4;
+        const soft = fit.x;
+        const cell = dot(w, weights).toVar();
+        // A column is thinner, so lighter, where the field is weak.
+        const cover = clamp(
+          cell
+            .add(field.w.mul(soft.add(1)))
+            .sub(1)
+            .div(soft),
+          0,
+          1,
+        ).mul(fit.w.mul(cell.oneMinus()).oneMinus());
+        // Above the layer there is nothing left to cast it; a light below the horizon casts none.
+        const strength = select(
+          toLight.y.greaterThan(0),
+          shadow.x.mul(smoothstep(shadow.y, shadow.z, world.y).oneMinus()),
+          float(0),
+        );
+        result.assign(mix(float(1), exp(cover.mul(fit.y).negate()), strength));
+      });
+      return result;
+    })() as unknown as F;
   class CloudShadowedLightNode extends DirectionalLightNode {
     override setupDirect(builder: NodeBuilder): { lightDirection: Node; lightColor: Node } {
       const direct = super.setupDirect(builder) as { lightDirection: Node; lightColor: Node };

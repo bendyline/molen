@@ -74,6 +74,9 @@ describe('standing, sideways and handlebar riders', () => {
     ['kick-scooter', 'standing'],
     ['skateboard', 'sideways'],
     ['electric-skateboard', 'sideways'],
+    // On snow: boots in the ski bindings with a hand on each pole, and across a snowboard.
+    ['skis', 'standing'],
+    ['snowboard', 'sideways'],
   ])('%s reaches its deck and grips for every body size', (slug, stance) => {
     const components = riderComponents('cycles', slug);
     expect(components.vehicle.spec.cycle?.stance).toBe(stance);
@@ -130,6 +133,24 @@ describe('standing, sideways and handlebar riders', () => {
       for (const [name, error] of Object.entries(errors))
         expect(error, `${name} steer ${steer}`).toBeLessThan(0.07);
     }
+    expect(cycleRiderPose(components.vehicle, undefined, passenger)).toBeUndefined();
+  });
+
+  it('drives a snowmobile from its seat with hands on the bars and boots on the boards', () => {
+    const components = riderComponents('vehicles', 'snowmobile');
+    expect(components.vehicle.spec.cycle).toBeUndefined();
+    expect(components.vehicle.spec.runners).toBeDefined();
+    const [driver, passenger] = components.mountable.seats;
+    for (const steer of [-components.vehicle.spec.maxSteer, 0, components.vehicle.spec.maxSteer]) {
+      const riding = cycleRiderPose(components.vehicle, { steer } as VehicleStateData, driver);
+      if (!riding) throw new Error('No driver pose');
+      expect(riding.stance).toBeUndefined();
+      const { hips, errors } = contactErrors(rig, riding);
+      expect(hips).toEqual([0, 0, 0]);
+      for (const [name, error] of Object.entries(errors))
+        expect(error, `${name} steer ${steer}`).toBeLessThan(0.07);
+    }
+    expect(passenger?.role).toBe('passenger');
     expect(cycleRiderPose(components.vehicle, undefined, passenger)).toBeUndefined();
   });
 });

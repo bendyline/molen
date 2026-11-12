@@ -210,6 +210,10 @@ async function main(): Promise<void> {
         new Worker(new URL('./material.worker.ts', import.meta.url), { type: 'module' }),
     },
     touchJoystickContainer: stage,
+    // `?snow=1500` lays snow above that height in meters; `?snow=0` covers the lowlands too.
+    ...(Number.isFinite(Number(params.get('snow') ?? 'none'))
+      ? { weather: { snowCover: { level: Number(params.get('snow')) } } }
+      : {}),
   });
   window.__earthView = view;
 

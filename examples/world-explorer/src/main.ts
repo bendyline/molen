@@ -32,6 +32,7 @@ import {
   createEarthTilePreloader,
   createEarthWorldgen,
   createRegionalGroundColor,
+  createSnowPace,
   EARTH_INDEPENDENT_LAYERS,
   EARTH_SHADOW_CASTER_HEIGHT,
   EARTH_WATER_COLOR,
@@ -64,13 +65,13 @@ import {
   updateEarthFog,
   withEarthAirports,
 } from '@bendyline/molen-earth/client';
-import { validateByKind } from '@bendyline/molen-schema';
+import { snowCoverAt, validateByKind } from '@bendyline/molen-schema';
 import type { TerrainSurfaceRenderer } from '@bendyline/molen-terrain/client';
 import {
   createDefaultTerrainSemanticRenderer,
   createProfiledTerrainPackageSemanticLayers,
   createTerrainGroundMaterialAsync,
-  createTerrainGroundTextureMaterial,
+  createTerrainGroundTextureMaterialAsync,
   createTerrainPackagePyramidStream,
   createTerrainPackageStream,
   createTerrainPavementMaterialAsync,
@@ -78,6 +79,7 @@ import {
   createTerrainWaterMaterialAsync,
   sampleTerrainTunnel,
   setTerrainGroundOrigin,
+  setTerrainGroundSnow,
   setTerrainWaterTime,
   type TerrainPackagePyramidStream,
   type TerrainPackageStream,
@@ -114,7 +116,11 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { airportStart } from './airport-start.js';
 import { startExplorerAudio } from './audio.js';
 import { autopilotOptions, autopilotPose } from './autopilot.js';
-import { selectedAntialias, selectedRendererBackend } from './backend-options.js';
+import {
+  selectedAmbientOcclusion,
+  selectedAntialias,
+  selectedRendererBackend,
+} from './backend-options.js';
 import { type ExplorerWorldgenContent, loadExplorerContent } from './content.js';
 import { createExplorerDioramas, DIORAMA_SITES, selectedDiorama } from './dioramas.js';
 import { createFlightInstrumentPanel } from './flight-instrument-panel.js';
@@ -224,6 +230,18 @@ class ProceduralElevationArchive implements TerrainTileArchive {
  * (cycles, trains) read Drive or Reverse.
  */
 function drivelineStatus(vehicles: EarthVehicles): string {
+  // Lying snow under the wheels or runners, and whether it has the vehicle held fast.
+  const lying = vehicles.snow;
+  const snow =
+    lying === undefined
+      ? ''
+      : lying.stuck
+        ? ' · stuck in snow'
+        : ` · snow ${Math.round(lying.depth * 100)} cm`;
+  return `${drivelineGear(vehicles)}${snow}`;
+}
+
+function drivelineGear(vehicles: EarthVehicles): string {
   const driveline = vehicles.driveline;
   if (driveline === undefined) return vehicles.speed < -0.1 ? 'Reverse' : 'Drive';
   // A CVT or a single-speed electric car has no gears to count.
@@ -923,8 +941,8 @@ async function main(): Promise<void> {
   });
   startupStage('renderer');
   // Ambient occlusion (WebGPU): creases, corners and the ground at building and tree bases darken
-  // a little. `?ao=0` turns it off for comparison.
-  const occlusionWanted = params.get('ao') !== '0';
+  // a little. `?ao=1` turns it on: see selectedAmbientOcclusion for why it is off otherwise.
+  const occlusionWanted = selectedAmbientOcclusion(params);
   viewer.renderer.setAmbientOcclusion(occlusionWanted);
   let occlusionOn = occlusionWanted;
   const waterMaterial = await createTerrainWaterMaterialAsync(
@@ -948,11 +966,10 @@ async function main(): Promise<void> {
     ? await createTerrainGroundMaterialAsync({ agriculture: true }, viewer.renderer.backend)
     : undefined;
   // Distant tiles draw land cover, with their roads and roofs, as one texture each instead of the
-  // draped mesh (WebGL, where a material's map reaches the shader). `?farGround=mesh` drapes
-  // every tile, for comparison.
+  // draped mesh. `?farGround=mesh` drapes every tile, for comparison.
   const farGroundMaterial =
-    groundMaterial && viewer.renderer.backend === 'webgl' && params.get('farGround') !== 'mesh'
-      ? createTerrainGroundTextureMaterial({})
+    groundMaterial && params.get('farGround') !== 'mesh'
+      ? await createTerrainGroundTextureMaterialAsync({}, viewer.renderer.backend)
       : undefined;
   // Roads, sidewalks, markings and lots: asphalt wear, concrete slabs and worn paint from the
   // bands' own coordinates. `?ground=flat` keeps the plain vertex colors here too.
@@ -1016,7 +1033,10 @@ async function main(): Promise<void> {
         metersPerUnit,
         quality,
         // WebGL pays full price for every building and plant draw, so it keeps a compact scene.
-        compact: viewer.renderer.backend === 'webgl',
+        // `?compact=0` or `1` sets it on either backend, to compare them drawing the same scene.
+        compact: params.has('compact')
+          ? params.get('compact') !== '0'
+          : viewer.renderer.backend === 'webgl',
         worker: useWorker,
         ...(fieldMaterial ? { groundMaterial: fieldMaterial } : {}),
         ...(farGroundMaterial ? { farGroundMaterial } : {}),
@@ -1733,6 +1753,11 @@ async function main(): Promise<void> {
     const water = vehicles.boatEnvironment.waterAt(x, z);
     return water == null ? water : water.height;
   };
+  // Lying snow (the Snow level control) slows the walk, less on a ploughed road or footway.
+  walker.paceAt = createSnowPace({
+    snowCover: () => weatherControls.snowCover(),
+    surfaceAt: (x, z) => audioTerrain.sample(x, z).surface,
+  });
   let requestedBoat = params.get('boat') ?? undefined;
   let boatAttemptAt = 0;
   let boatSearchStarted = 0;
@@ -1741,7 +1766,13 @@ async function main(): Promise<void> {
     boatAttemptAt = 0;
     boatSearchStarted = 0;
   };
-  const weatherControls = createWeatherControls(viewer.renderer, params, vehicles.world);
+  const regionSnowLevel = selectedRegion(params)?.snowLevel;
+  const weatherControls = createWeatherControls(
+    viewer.renderer,
+    params,
+    vehicles.world,
+    regionSnowLevel === undefined ? {} : { snowLevel: regionSnowLevel },
+  );
   aircraft = new WorldAircraft(
     vehicles.world,
     stream.object,
@@ -2061,17 +2092,30 @@ async function main(): Promise<void> {
     });
   }
   // P on foot: a personal ride from the walker's bag (a skateboard, an electric board, a shared
-  // kick scooter), set down a step ahead and boarded. Each press brings the next one.
-  const personalRides = [
+  // kick scooter), set down a step ahead and boarded. Each press brings the next one. Standing
+  // on lying snow the bag holds skis, a snowboard and a snowmobile instead.
+  const streetRides = [
     'molen.entities.cycle.skateboard',
     'molen.entities.cycle.electric_skateboard',
     'molen.entities.cycle.kick_scooter',
   ].filter((kind) => content.types?.has(kind));
+  const snowRides = [
+    'molen.entities.cycle.skis',
+    'molen.entities.cycle.snowboard',
+    'molen.entities.vehicle.snowmobile',
+  ].filter((kind) => content.types?.has(kind));
   let personalRide = 0;
-  const takePersonalRide = (): void => {
+  // `?ride=skis` (or snowboard, snowmobile, skateboard, kick_scooter…): start on that ride once
+  // the walker stands on the ground.
+  let requestedRide = [...snowRides, ...streetRides].find(
+    (kind) => kind.split('.').at(-1) === params.get('ride'),
+  );
+  const takePersonalRide = (requested?: string): void => {
     if (navigation !== 'walk' || parachute.active || !walker.ready) return;
     if (vehicles.mountedId || flight.mountedKind) return;
-    const kind = personalRides[personalRide++ % Math.max(1, personalRides.length)];
+    const onSnow = snowCoverAt(weatherControls.snowCover(), walker.feet.y).coverage >= 0.5;
+    const personalRides = onSnow && snowRides.length > 0 ? snowRides : streetRides;
+    const kind = requested ?? personalRides[personalRide++ % Math.max(1, personalRides.length)];
     if (kind === undefined) return;
     if (vehicles.world.exists('personal-ride')) vehicles.remove('personal-ride');
     const [fx, , fz] = cameraForward(camera.yaw, 0);
@@ -2086,8 +2130,11 @@ async function main(): Promise<void> {
     if (id !== undefined && vehicles.board(id)) {
       input.map.reset();
       vehicles.view = 'chase';
-      help.textContent =
-        'W ride (push on a skateboard) · S brake · A/D steer and lean · E step off · V change view · drag to look';
+      help.textContent = snowRides.includes(kind)
+        ? kind.endsWith('.snowmobile')
+          ? 'W throttle · S brake, then reverse · A/D steer · Space brake · L headlight · E step off · V change view'
+          : 'Point downhill to slide · A/D carve · S or Space stop on the edges · W push along the flat · E step off · V change view'
+        : 'W ride (push on a skateboard) · S brake · A/D steer and lean · E step off · V change view · drag to look';
     } else help.textContent = vehicles.message || 'No room to set a ride down here';
     canvas.focus();
   };
@@ -2728,12 +2775,14 @@ async function main(): Promise<void> {
       params.has('freeze') ? 0 : vehicles.world.tick * vehicles.world.dt,
       [waterOrigin[0], waterOrigin[2]],
     );
-    if (groundMaterial) setTerrainGroundOrigin(groundMaterial, [waterOrigin[0], waterOrigin[2]]);
-    if (fieldMaterial) setTerrainGroundOrigin(fieldMaterial, [waterOrigin[0], waterOrigin[2]]);
-    if (farGroundMaterial)
-      setTerrainGroundOrigin(farGroundMaterial, [waterOrigin[0], waterOrigin[2]]);
-    if (pavementMaterial)
-      setTerrainGroundOrigin(pavementMaterial, [waterOrigin[0], waterOrigin[2]]);
+    // The pattern stays fixed to the ground across rebases, and the weather's lying snow (the
+    // Snow level control) whitens it above the snow line, drawn in rendered height.
+    const snowCover = weatherControls.snowCover();
+    for (const material of [groundMaterial, fieldMaterial, farGroundMaterial, pavementMaterial]) {
+      if (!material) continue;
+      setTerrainGroundOrigin(material, [waterOrigin[0], waterOrigin[2]]);
+      setTerrainGroundSnow(material, snowCover, waterOrigin[1]);
+    }
     const skyLocation = webMercatorToWgs84(
       camera.pos[0] / metersPerUnit,
       camera.pos[2] / metersPerUnit,
@@ -2867,6 +2916,11 @@ async function main(): Promise<void> {
     });
     gpuTimer?.begin();
     weatherControls.update(now / 1000);
+    if (requestedRide !== undefined && navigation === 'walk' && walker.ready) {
+      const kind = requestedRide;
+      requestedRide = undefined;
+      takePersonalRide(kind);
+    }
     viewer.renderFrame();
     if (firstFrame) {
       startupStage('first-frame');

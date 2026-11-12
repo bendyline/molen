@@ -226,6 +226,7 @@ export type {
   HandlebarSpec,
   RailVehicleProfile,
   RailVehicleSpec,
+  RunnerSpec,
   VehicleBodyStyle,
   VehicleCollisionPart,
   VehicleDamageState,
@@ -236,6 +237,21 @@ export type {
   VehicleSpec,
   VehicleVisualSpec,
 } from './vehicles';
-export type { CloudType, ResolvedWeather, WeatherData, WeatherProfile } from './weather';
-export { resolveWeather, weatherProfile, weatherSchema } from './weather';
+export type {
+  CloudType,
+  ResolvedSnowCover,
+  ResolvedWeather,
+  SnowCoverData,
+  SnowCoverSample,
+  WeatherData,
+  WeatherProfile,
+} from './weather';
+export {
+  resolveSnowCover,
+  resolveWeather,
+  snowCoverAt,
+  snowWalkingPace,
+  weatherProfile,
+  weatherSchema,
+} from './weather';
 export { nearest, nearestWithDistance } from './zod-issues';

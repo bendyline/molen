@@ -23,8 +23,31 @@ fails; `--tier`, `--seconds` and `--params` change the scenario, and `--budgets`
 file. Budgets sit about a quarter above the numbers measured when they were set (2026-11-09, AMD
 Radeon AI PRO R9700): move them deliberately, with the change that earns it. Results and a
 screenshot go to the ignored `.artifacts/scoreboard/<label>/`. It needs an installed Chrome, like
-the flight probe below. It has only been run on that one workstation: an integrated GPU and a
-120 Hz display are the missing rows.
+the flight probe below (`--channel=msedge` uses Edge where Chrome does not launch). It has been
+run on that workstation and on one laptop (below): an integrated GPU and a 120 Hz display are the
+missing rows.
+
+### WebGL and WebGPU
+
+`--params=backend=webgpu` runs the same scoreboard on WebGPU. The budgets are WebGL's; what a view
+is made of fits them on both backends. Measured 2026-11-12 on an NVIDIA RTX Spark N1X laptop
+(Windows on ARM, 20 cores) in headless Edge, at the default tier:
+
+| | WebGL | WebGPU |
+| --- | ---: | ---: |
+| Settled view: main-thread work a frame | 8.5 ms | 15.1 ms |
+| Settled view: triangles / shown memory | 2.66 M / 284 MiB | 2.39 M / 305 MiB |
+| Circle: mean / 95th percentile work | 9.2 / 16.1 ms | 12.9 / 22.0 ms |
+| Circle: frames over 33 ms | 54 | 125 |
+| Circle: heap | 1,931 MiB | 1,906 MiB |
+
+The difference is main-thread work: by the explorer's own readout the settled view took 4 to 5 ms
+of GPU time a frame on WebGPU against 6 to 7 on WebGL. Times moved by 1 to 2 ms between runs (the
+settled WebGPU view read 12.6 to 15.1 ms over four), and by as much again with a test run or a
+package build going on beside them, so run one scoreboard at a time. `&gpuOptimizations=0`
+measured the same as WebGPU with its command caching. WebGPU's ambient occlusion is off in the
+run above, as it is by default (see `selectedAmbientOcclusion` in `src/backend-options.ts`); with
+`&ao=1` the circle had 198 frames over 33 ms.
 
 ## Streaming under flight
 

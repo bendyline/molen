@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { generateWorldgenBatch } from '../../src/kernel/batch';
 import { dilate, RasterGrid, rasterizePolygon, rasterizePolyline } from '../../src/kernel/raster';
-import { samplePlacements } from '../../src/kernel/scatter';
+import { samplePlacements, TREELINE_FADE } from '../../src/kernel/scatter';
 import type { ScatterDoc } from '../../src/kernel/scatter-types';
 import {
   FLAT_GROUND,
@@ -84,6 +84,39 @@ describe('rasters', () => {
 });
 
 describe('scatter sampling', () => {
+  it('thins trees toward a tree line and plants none above it', () => {
+    // A hillside rising 1 m for every meter north: heights 0 to 1,000 m across the request.
+    const hillside = { ...FLAT_GROUND, sampleHeight: (_x: number, z: number): number => z };
+    const run = (treeline?: number): number[] =>
+      samplePlacements({
+        request: request([0, 0, 200, 1000]),
+        doc,
+        pack: identity,
+        ground: hillside,
+        budget,
+        tier: 0,
+        ...(treeline === undefined ? {} : { treeline: () => treeline }),
+      }).flatMap((set) =>
+        Array.from({ length: set.count }, (_, i) => set.data[i * PLACEMENT_STRIDE + 2] as number),
+      );
+    const open = run();
+    const limited = run(700);
+    const count = (heights: number[], from: number, to: number): number =>
+      heights.filter((z) => z >= from && z < to).length;
+    expect(count(open, 700, 1000)).toBeGreaterThan(50);
+    // Nothing above the line; untouched well below it; about half through the fade.
+    expect(count(limited, 700, 1000)).toBe(0);
+    expect(count(limited, 0, 700 - TREELINE_FADE)).toBe(count(open, 0, 700 - TREELINE_FADE));
+    const faded = count(limited, 700 - TREELINE_FADE, 700) / count(open, 700 - TREELINE_FADE, 700);
+    expect(faded).toBeGreaterThan(0.35);
+    expect(faded).toBeLessThan(0.65);
+    // Denser low in the fade than near the line.
+    expect(count(limited, 350, 450)).toBeGreaterThan(count(limited, 600, 700));
+    // Survivors stand exactly where they stood without a line: nothing is re-rolled.
+    const before = new Set(open.map((z) => z.toFixed(4)));
+    for (const z of limited) expect(before.has(z.toFixed(4))).toBe(true);
+  });
+
   it('adds independent forms without losing coverage or species under a tight model budget', () => {
     const varied = structuredClone(doc);
     for (const rule of varied.rules)

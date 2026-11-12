@@ -142,7 +142,15 @@ the same target and copies the image out unshaded, so nothing is built again. Tu
 with `setAmbientOcclusion` changes the target, and every object in view builds its shaders again,
 mid-frame. The World Explorer suspends it above 24 m over the ground and resumes below 18 m, where
 its creases are small but its passes still cost a full-screen share of each frame (about 3 ms of
-a 44 ms rooftop frame on an Apple M2 at High); `?ao=0` turns it off for comparison.
+a 44 ms rooftop frame on an Apple M2 at High).
+
+> [!WARNING]
+> With occlusion on, World Explorer's nearby buildings draw without their facade textures (blank
+> walls, no windows) while their shaders are warmed through `prepareObject` and
+> `prepareMaterialChange`; with occlusion off, or without the warm-up, they draw as they should.
+> The cause is not found. The explorer keeps occlusion off unless `?ao=1` asks for it. Before
+> turning it on in a host that warms shaders, look at materials that gain their textures after
+> they are first drawn.
 
 ## Reflections
 

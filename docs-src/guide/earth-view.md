@@ -77,11 +77,12 @@ ACES filmic tone mapping, and haze in the sky's horizon color. Its values are ex
 a sky color into the fog color for the backend. Terrain and landcover share one ground material
 from `createTerrainGroundMaterialAsync` (`@bendyline/molen-terrain/client`) with world-space
 variation; a custom host passes it to the terrain stream's `material` and to `createEarthWorldgen`
-as `groundMaterial`, and calls `setTerrainGroundOrigin` with the world origin each frame. On
-WebGL the view also draws distant land cover as one texture a tile (see
-[terrain](terrain.md)); a custom host passes `farLandcover: { material:
-createTerrainGroundTextureMaterial() }` to `createEarthWorldgen` and keeps that material's
-origin current the same way. Roads,
+as `groundMaterial`, and calls `setTerrainGroundOrigin` with the world origin each frame (and
+`setTerrainGroundSnow` with the weather's `snowCover`, where it draws [lying snow](snow.md)). The
+view also draws distant land cover as one texture a tile (see [terrain](terrain.md)); a custom
+host passes `farLandcover: { material: await createTerrainGroundTextureMaterialAsync({},
+renderer.backend) }` to `createEarthWorldgen` and keeps that material's origin current the same
+way. Roads,
 sidewalks and lots take `createTerrainPavementMaterialAsync` through the surface renderer's
 `setMaterial`, with the same origin call. Trees, shrubs and props take
 `createScatterMaterialAsync` (`@bendyline/molen-worldgen/client`) as `createEarthWorldgen`'s
@@ -485,6 +486,21 @@ A host composing its own view from the pieces uses the same parts:
 `withEarthAirports`, outside whatever observes tiles), and `bindMapOverrides` and
 `bindMapOverrideEntities` from `@bendyline/molen-earth/client` to rebuild tiles
 (`stream.refreshLayers`) and to add the bundles when the set changes.
+
+## Weather and snow
+
+`weather` at mount, and `view.setWeather(data)` afterwards, set the one
+[`weather`](weather.md) component the whole view shares. The sky draws its clouds, precipitation
+and haze; vehicles feel its wind and its wet or snowy grip; and its `snowCover` lays snow above a
+snow line (in meters above sea level): the ground, roofs and trees whiten, the walker and the
+host's actors wade more slowly, cars bog down, and skis glide. `view.weather` reads it back, and
+`setWeather(undefined)` clears it. Nothing is rebuilt, so a host can change it every frame.
+
+```ts
+view.setWeather({ ...weatherProfile('overcast'), snowCover: { level: 800 } });
+```
+
+See [Snow cover](snow.md) for the snow line, the depth and what each does to movement.
 
 ## Frames and long trips
 

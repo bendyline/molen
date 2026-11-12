@@ -352,6 +352,17 @@ export class EarthVehicles {
       skid: state.skid ?? 0,
     };
   }
+  /**
+   * Lying snow under the mounted vehicle, for a HUD: its depth there in meters (less on a
+   * ploughed road) and whether it is holding the vehicle against its own drive. Undefined on
+   * bare ground and when not driving.
+   */
+  get snow(): { depth: number; stuck: boolean } | undefined {
+    const state = this.mountedId ? this.world.get(this.mountedId, VehicleState) : undefined;
+    return state?.snowDepth === undefined
+      ? undefined
+      : { depth: state.snowDepth, stuck: state.stuck === true };
+  }
   get mountedId(): string | undefined {
     return this.world.get(PLAYER, Mounted)?.vehicle;
   }

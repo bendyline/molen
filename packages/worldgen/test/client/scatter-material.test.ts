@@ -1,3 +1,4 @@
+import { snowCoverAmount } from '@bendyline/molen-client/snow';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import { ModelLibrary } from '../../src/client/instanced-models';
@@ -22,7 +23,12 @@ describe('scatter material', () => {
     expect(shader.vertexShader).toContain(`attribute float ${SCATTER_CANOPY_ATTRIBUTE};`);
     expect(shader.vertexShader).toContain('vScatterLocal = transformed;');
     expect(shader.fragmentShader).toContain('diffuseColor.rgb *= scatterFactor();');
-    expect(material.customProgramCacheKey()).toBe('worldgen-scatter@4');
+    // Crowns and props take the weather's lying snow, thinner than a roof does; the mark is part
+    // of the key, so a WebGPU build is not shared with an unmarked material.
+    expect(material.customProgramCacheKey()).toBe(
+      'worldgen-scatter@4|molen-snow-cover:0.8:-0.05,0.55',
+    );
+    expect(snowCoverAmount(material)).toBe(0.8);
     material.dispose();
   });
 

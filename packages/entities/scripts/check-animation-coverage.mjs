@@ -96,10 +96,14 @@ export async function auditAnimationCoverage({ runtime = false } = {}) {
         // An open, handlebar-steered three-wheeler has no doors, hood or trunk to animate; its
         // lamps and wiper still work.
         const open = kind === 'vehicles' && spec.handlebar !== undefined;
+        // A snowmobile's low screen has no wiper.
+        const sled = open && spec.runners !== undefined;
         if (kind === 'vehicles')
-          for (const key of open
-            ? ['headlights', 'wipers']
-            : ['hood', 'trunk', 'headlights', 'wipers'])
+          for (const key of sled
+            ? ['headlights']
+            : open
+              ? ['headlights', 'wipers']
+              : ['hood', 'trunk', 'headlights', 'wipers'])
             if (!actuators.includes(key) || !channels.has(key)) issues.push(`Missing ${key}`);
         if (kind === 'vehicles' && !open && !actuators.some((n) => n.startsWith('door')))
           issues.push('Missing doors');

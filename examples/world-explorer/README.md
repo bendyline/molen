@@ -92,6 +92,13 @@ change temperature, pressure or wind. These conditions also drive the
 aircraft simulation's wind and air density. Use `?weather=rain` to open a preset; `?freeze=1`
 freezes cloud/particle motion. See [weather and atmosphere](https://molen.dev/guide/weather).
 
+The Snow level list beside it lays snow on the ground: everywhere, or above a line from sea
+level to 4,000 m (`?snow=1500`, `?snow=all`, `?snow=off`). The ground, roofs and trees whiten
+above the line, walking slows, cars lose grip and can get stuck off the ploughed roads, and the
+status line shows the depth under a vehicle. The Seattle region opens with snow above 2,000 m,
+which caps Mount Rainier and the high Cascades. See
+[snow cover](https://molen.dev/guide/snow).
+
 Ambient life fills the mapped streets around you: NPC cars that stop at signals and junctions,
 pedestrians on sidewalks and crossings, trains on rail lines and aircraft overhead. They spawn out of
 view ahead and disappear behind you as you move. Press L to hide or show them; `?ambient=0` turns
@@ -173,7 +180,10 @@ built example to review the zoom-15 building detail and residential height/roof 
 With no query parameters, the example opens the bundled Seattle–Bellevue–Sammamish package: Mapzen/USGS
 elevation compiled to seam-safe PNG16 PMTiles plus a pinned Protomaps/OpenStreetMap regional vector
 extract. A broad level 8-10 elevation overview surrounds the level 11-14 detail window, with
-ancestor-derived fallback between them. Vectors continue through zoom 15 for individual building
+ancestor-derived fallback between them. The overview reaches east over the Cascade crest and
+south to 46.6° N, past Mount Rainier, and a second detail window covers the mountain itself
+(46.73–46.95° N, 121.93–121.58° W: the summit, Paradise and Sunrise) with elevation through
+level 13, about 13 m between samples, and its own map tiles. Vectors continue through zoom 15 for individual building
 footprints and unrounded heights; zoom-15 terrain reuses the zoom-14 DEM. Residential land use
 and mapped parts guide building massing, with low pitched and taller flat residential roofs. Bare, land-classification, and human-feature modes
 therefore share actual coordinates without exposing a hard regional edge at flyover altitude.
@@ -249,7 +259,15 @@ pnpm --filter @bendyline/molen-examples-world-explorer data:regions -- \
   --pmtiles-cli /path/to/pmtiles
 ```
 
-The region catalog in `src/regions.ts` defines the starting locations and extraction bounds.
+The region catalog in `src/regions.ts` defines the starting locations and extraction bounds,
+with each region's further detail windows (`detailWindows`) and its snow line (`snowLevel`). A
+window gets fine elevation and, with `--window-vector-url`, map tiles read from that archive by
+the repository's own PMTiles reader: tiles the package already holds are kept byte for byte, so
+a window can be added from a newer daily build after the main extract's has expired. `--skip-vector`
+keeps the existing `world.pmtiles` (no `go-pmtiles` needed), which is how the Mount Rainier window
+was added: `node scripts/build-sammamish-package.mjs --skip-vector --window-vector-url
+https://build.protomaps.com/20261110.pmtiles --window-vector-release "2026-11-10 daily archive"`.
+`SOURCES.json` records each window's archive, release and tile count.
 The builder defaults to the 2026-10-23 Protomaps snapshot, vector zooms 0–15, and elevation zooms
 8–14 with wider overview coverage through zoom 10. Daily upstream archives expire; use
 `--version YYYY-MM-DD` to select an available date from [Protomaps builds](https://maps.protomaps.com/builds/),
@@ -325,7 +343,12 @@ open. Details use a separate renderer. Download model sheet explicitly generates
 previews; a failed preview leaves its named card and detail controls available.
 
 Press P on foot for a personal ride: a skateboard, an electric skateboard or a shared electric kick
-scooter, set down a step ahead and boarded. Each press brings the next one; E steps off. In regions
+scooter, set down a step ahead and boarded. Each press brings the next one; E steps off. Standing
+on lying snow the bag holds skis, a snowboard and a snowmobile instead: point the skis downhill
+and they slide, A/D carve, S or Space stops on the edges. `?ride=skis` (or `snowboard`,
+`snowmobile`, `skateboard`…) with `navigation=walk` starts on one, so
+`?lat=46.822&lon=-121.728&yaw=1.57&navigation=walk&ride=skis&mode=human` opens on the Muir
+Snowfield of Mount Rainier, skis pointed down it. In regions
 whose fleet has them (South and Southeast Asia, Taiwan, China, parts of Africa and Europe),
 parked motorcycles, scooters, mopeds and auto-rickshaws can be boarded with E like parked cars.
 

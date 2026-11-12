@@ -63,7 +63,9 @@ Select a motorcycle, scooter, moped, bicycle, auto-rickshaw, electric kick scoot
 beside **Drive**, then press **Drive** to ride it. W powers (the skateboarder pushes off), S/Space
 brake, A/D steer, V switches rider/chase view and E dismounts once stopped. The avatar sits on the
 saddle and follows the handlebars and pedals, stands on the kick scooter's deck, or rides the
-boards sideways. A direct start is `?mode=drive&vehicle=molen.entities.cycle.city_bicycle`.
+boards sideways. Skis, a snowboard and a snowmobile are in the list too: they slide on lying
+snow and scrape on bare ground. `?snow=1500` mounts the view with snow above 1,500 m
+(`weather: { snowCover: { level: 1500 } }`), and `?snow=0` covers the lowlands as well. A direct start is `?mode=drive&vehicle=molen.entities.cycle.city_bicycle`.
 
 The Boat button (or `?boat=1`) launches a speedboat on nearby mapped water. W/S thrust, A/D helm,
 Space opposing thrust, hold Shift to anchor below walking speed, V helm/chase, E dry dockside exit.

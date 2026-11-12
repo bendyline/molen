@@ -1,5 +1,10 @@
 import type { BoatEnvironment } from '@bendyline/molen-kernel/boats';
-import type { LiveryData, LiveryVariant, WaterSettings } from '@bendyline/molen-schema';
+import type {
+  LiveryData,
+  LiveryVariant,
+  WaterSettings,
+  WeatherData,
+} from '@bendyline/molen-schema';
 import { selectLivery } from './liveries';
 import { EarthNightLighting } from './night-lighting';
 import { EARTH_WATER_CONDITIONS, EarthWater } from './water';
@@ -47,7 +52,12 @@ import {
 } from '@bendyline/molen-client/navigation';
 import type { FigureData } from '@bendyline/molen-figures/client';
 import { Mountable, Mounted, vehicleLocalPoint } from '@bendyline/molen-kernel/vehicles';
-import { setBoostMode as setWorldBoostMode, Transform, World } from '@bendyline/molen-kernel/world';
+import {
+  setBoostMode as setWorldBoostMode,
+  Transform,
+  Weather,
+  World,
+} from '@bendyline/molen-kernel/world';
 import type { BakedMaterialStore } from '@bendyline/molen-materials';
 import {
   type BlockCache,
@@ -59,7 +69,7 @@ import {
   createDefaultTerrainSemanticRenderer,
   createProfiledTerrainPackageSemanticLayers,
   createTerrainGroundMaterialAsync,
-  createTerrainGroundTextureMaterial,
+  createTerrainGroundTextureMaterialAsync,
   createTerrainPackagePyramidStream,
   createTerrainPavementMaterialAsync,
   createTerrainSurfaceRenderer,
@@ -67,6 +77,7 @@ import {
   createTerrainWaterMaterialAsync,
   sampleTerrainTunnel,
   setTerrainGroundOrigin,
+  setTerrainGroundSnow,
   setTerrainWaterTime,
   type TerrainPyramidBudget,
   type TerrainPyramidHeightSource,
@@ -186,6 +197,7 @@ import {
 import { createEarthTilePreloader } from './preload';
 import { createRegionalGroundColor } from './regional-ground';
 import { createEarthRoadSigns } from './road-signs';
+import { createSnowPace } from './snow';
 import { EarthVehicles } from './vehicles';
 import { EarthWildlife, type EarthWildlifeStats } from './wildlife';
 import {
@@ -254,6 +266,10 @@ export type EarthVehicleStatus =
       assist?: number;
       /** Grip of the surface under the car relative to dry pavement (1 on the road). */
       surfaceGrip?: number;
+      /** Meters of lying snow under the vehicle (less on a ploughed road); absent on bare ground. */
+      snowDepth?: number;
+      /** Deep snow is holding the vehicle against its own drive. */
+      stuck?: boolean;
     }
   | ({ kind: 'aircraft' } & EarthFlightStatus);
 
@@ -441,6 +457,12 @@ export interface EarthViewOptions {
   water?: WaterSettings;
   /** Optional measured water coverage/depth in absolute metric coordinates of the current frame. */
   waterAt?: BoatEnvironment['waterAt'];
+  /**
+   * Weather at mount: clouds, precipitation, visibility and wind, and the snow lying on the
+   * ground (`snowCover`, with its snow line in meters above sea level). Change it with
+   * `setWeather`. Omitted, the sky is clear and the ground bare.
+   */
+  weather?: WeatherData;
   style?: EarthViewStyle;
   /** Keyboard target (default the canvas, which should have `tabindex="0"`). */
   keyTarget?: NavigationKeyTarget;
@@ -763,6 +785,14 @@ export interface EarthView {
   ): Promise<EarthPrefetchResult>;
   /** The sound layer (volume, mute, bus gains) once it has loaded; undefined when silent. */
   readonly audio: AudioLayer | undefined;
+  /**
+   * Set the weather, or clear it with `undefined`, at once and without rebuilding anything. It is
+   * one `weather` component for the whole view: the sky draws its clouds and precipitation,
+   * vehicles feel its wind and wet or snowy grip, and above its `snowCover` snow line the ground,
+   * roofs and trees whiten, walkers slow, cars bog down and skis glide.
+   */
+  setWeather(weather: WeatherData | undefined): void;
+  readonly weather: WeatherData | undefined;
   /** Stop rendering (e.g. while hidden); input and streaming pause with it. */
   setPaused(paused: boolean): void;
   /** Show or hide ambient life (no-op when mounted with `ambient: false`). */
@@ -771,6 +801,8 @@ export interface EarthView {
   dispose(): void;
 }
 
+/** The view world's singleton weather entity. */
+const WEATHER_ENTITY = 'earth-weather';
 const VERTICAL_FOV_DEGREES = 60;
 /** Radians, as terrain views take it; the landmark streamer takes degrees. */
 const VERTICAL_FOV = THREE.MathUtils.degToRad(VERTICAL_FOV_DEGREES);
@@ -1058,14 +1090,22 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       renderer.backend,
     );
     disposers.push(() => fieldMaterial.dispose());
-    // Distant tiles draw their land cover as one texture each (see `farLandcover`): WebGL only,
-    // where a material's `map` reaches the shader.
-    const farGroundMaterial =
-      renderer.backend === 'webgl' ? createTerrainGroundTextureMaterial({}) : undefined;
+    // Distant tiles draw their land cover as one texture each (see `farLandcover`).
+    const farGroundMaterial: THREE.Material | undefined =
+      await createTerrainGroundTextureMaterialAsync({}, renderer.backend);
     if (farGroundMaterial !== undefined) disposers.push(() => farGroundMaterial.dispose());
     // Roads, sidewalks, markings and lots: asphalt, concrete slabs and worn paint.
     const pavementMaterial = await createTerrainPavementMaterialAsync({}, renderer.backend);
     disposers.push(() => pavementMaterial.dispose());
+    const groundMaterials = [
+      groundMaterial,
+      fieldMaterial,
+      ...(farGroundMaterial !== undefined ? [farGroundMaterial] : []),
+      pavementMaterial,
+    ];
+    // One weather for the sky, the simulation and the ground's lying snow (setWeather).
+    let weather = options.weather;
+    if (weather !== undefined) renderer.setWeather(weather);
     // Trees, shrubs and props: leaf speckle and crown occlusion.
     const scatterMaterial = await createScatterMaterialAsync(renderer.backend);
     disposers.push(() => scatterMaterial.dispose());
@@ -1535,6 +1575,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         // steps it once (stepWorld); each piece applies its inputs before and poses models after.
         const world = new World({ tickRate: 60, seed: 'earth', devFreeze: false });
         setWorldBoostMode(world, boostMode);
+        if (weather !== undefined) world.spawnRaw({ weather }, WEATHER_ENTITY);
         let accumulator = 0;
         const stepWorld = (dt: number): void => {
           accumulator = Math.min(accumulator + Math.min(0.1, Math.max(0, dt)), world.dt * 3);
@@ -1755,6 +1796,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       return water == null ? water : water.height;
     };
     walker.boostMode = boostMode;
+    // Lying snow slows anyone on foot: the walker, and the actors the director moves.
+    const snowPace = createSnowPace({
+      snowCover: () => weather?.snowCover,
+      surfaceAt: (x, z) => stack?.audioTerrain.sample(x, z).surface,
+    });
+    walker.paceAt = snowPace;
     const setBoostMode = (enabled: boolean): void => {
       if (boostMode === enabled) return;
       boostMode = enabled;
@@ -2523,6 +2570,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         toWorld: (latitude, longitude) => toWorld(latitude, longitude),
         toGeo: (x, z) => toLatLon(x, z),
         groundHeight: (x, z) => groundHeight(x, z),
+        paceAt: snowPace,
         ...(content?.types !== undefined ? { types: content.types } : {}),
         prepare: (object) => {
           void renderer.prepareObject(object);
@@ -3738,11 +3786,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         origin[0],
         origin[2],
       ]);
-      setTerrainGroundOrigin(groundMaterial, [origin[0], origin[2]]);
-      setTerrainGroundOrigin(fieldMaterial, [origin[0], origin[2]]);
-      if (farGroundMaterial !== undefined)
-        setTerrainGroundOrigin(farGroundMaterial, [origin[0], origin[2]]);
-      setTerrainGroundOrigin(pavementMaterial, [origin[0], origin[2]]);
+      for (const material of groundMaterials) {
+        setTerrainGroundOrigin(material, [origin[0], origin[2]]);
+        // Every frame, as the origin is: the snow line is drawn in rendered height.
+        setTerrainGroundSnow(material, weather?.snowCover, origin[1]);
+      }
       const timing = gpuTimer?.begin() === true;
       viewer.renderFrame();
       if (timing) gpuTimer?.end();
@@ -3877,6 +3925,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                   assist: vehicles.driveline.assist,
                   surfaceGrip: vehicles.driveline.surfaceGrip,
                 }
+              : {}),
+            ...(vehicles.snow
+              ? { snowDepth: vehicles.snow.depth, stuck: vehicles.snow.stuck }
               : {}),
           };
         }
@@ -4031,6 +4082,19 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         ambientOn = enabled;
         stack?.ambient?.setEnabled(enabled);
         stack?.wildlife?.setEnabled(enabled);
+      },
+      get weather() {
+        return weather;
+      },
+      setWeather(next) {
+        weather = next;
+        renderer.setWeather(next);
+        const world = stack?.world;
+        if (world === undefined) return;
+        if (next === undefined) {
+          if (world.exists(WEATHER_ENTITY)) world.destroy(WEATHER_ENTITY);
+        } else if (world.exists(WEATHER_ENTITY)) world.set(WEATHER_ENTITY, Weather, next);
+        else world.spawnRaw({ weather: next }, WEATHER_ENTITY);
       },
       setPaused(next) {
         manuallyPaused = next;

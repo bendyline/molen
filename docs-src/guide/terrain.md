@@ -635,8 +635,9 @@ preserves source height samples, terrain triangle alignment, colors, holes, and 
 
 Distant tiles can draw land cover as one texture each instead: pass `landcoverRaster` in the
 semantic mesh options (`TerrainLandcoverRasterOptions`) and a shared
-`createTerrainGroundTextureMaterial()` as `materials.landcoverRaster` (WebGL materials; keep its
-origin current with `setTerrainGroundOrigin`, as for the ground). Tiles at least `minDepth`
+`createTerrainGroundTextureMaterialAsync({}, renderer.backend)` as `materials.landcoverRaster`
+(`createTerrainGroundTextureMaterial()` is its synchronous WebGL form; keep the material's origin
+current with `setTerrainGroundOrigin`, as for the ground). Tiles at least `minDepth`
 levels coarser than the pyramid's finest (default 2) then paint their classes into a `size`
 texture (default 256 texels across) and draw it on a copy of the tile's own terrain grid, cut by
 shorelines and model openings like the draped mesh. Each class takes the color the draped mesh

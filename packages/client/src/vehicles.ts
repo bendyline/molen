@@ -27,6 +27,7 @@ import {
   twoWheelerProxyGeometry,
   vehicleProxyGeometry,
 } from './vehicle-proxy';
+import { enableSnowCover } from './weather/snow-cover';
 
 export { type RailVehicleProxyDimensions, railVehicleProxyGeometry } from './rail-proxy';
 export type { VehicleCameraOptions, VehicleCameraPose } from './vehicle-camera';
@@ -135,6 +136,10 @@ export function createVehicleVisual(
         ) {
           (material as THREE.MeshStandardMaterial).color.copy(color);
         }
+        // The painted shell of a car or truck takes the weather's lying snow like its distant
+        // stand-in; its cabin, glass and running gear, and anything ridden in the open, do not.
+        if (source.name === vehicle.visual.paintMaterial && vehicle.spec?.cycle === undefined)
+          enableSnowCover(material, VEHICLE_SNOW);
         return material;
       });
       // A material array only draws through geometry groups: keep a single material single, or
@@ -228,11 +233,20 @@ export function createVehicleVisual(
   };
 }
 
-const parkedMaterial = new THREE.MeshStandardMaterial({
-  vertexColors: true,
-  roughness: 0.55,
-  metalness: 0.12,
-});
+/**
+ * Share of a standing vehicle's up-facing bodywork that lying snow whitens (`enableSnowCover`): a
+ * frosting on the roof, hood and trunk rather than a drift, since a car is also driven away.
+ */
+const VEHICLE_SNOW = 0.7;
+
+const parkedMaterial = enableSnowCover(
+  new THREE.MeshStandardMaterial({
+    vertexColors: true,
+    roughness: 0.55,
+    metalness: 0.12,
+  }),
+  VEHICLE_SNOW,
+);
 const paints = new Map<string, THREE.Color>();
 
 /** The shared vertex-coloured material of parked and proxy vehicles. */

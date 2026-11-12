@@ -88,6 +88,12 @@ E-Board), beside the motorcycles, scooter and bicycles. The auto-rickshaw and mo
 appear in traffic and parking only where a regional fleet weights them; see
 [riding cycles](vehicles.md#riding-cycles) and [regional fleets](regional-fleets.md).
 
+Three ride on runners over lying snow: `molen.entities.cycle.skis` (Bendy Skis, a pair with
+bindings and poles), `molen.entities.cycle.snowboard` (Bendy Snowboard) and
+`molen.entities.vehicle.snowmobile` (Bendy Sled, a two-up trail sled). They slide on the
+weather's snow cover and scrape on bare ground, and never park or join traffic; see
+[Snow cover](snow.md#the-three-rides).
+
 All generic road, cycle, water and transit display names use the **Bendy** house brand.
 Asset/type IDs remain stable. P-51D Mustang and OH-6 retain their real identities. Models follow
 the [close-view vehicle detail standard](medium-fi.md#controllable-vehicles-close-view-fidelity).

@@ -495,8 +495,9 @@ band or about 0.4 s.
 
 #### 30. Occlusion without a post pass
 
-**P1 · `a03`, `a16`.** Ambient occlusion is WebGPU-only and the explorer defaults to WebGL, so
-buildings meet the ground with no contact shading. The guide rightly forbids baking it into
+**P1 · `a03`, `a16`.** Ambient occlusion is WebGPU-only and the explorer defaults to WebGL (and
+leaves it off on WebGPU too, where it costs nearby buildings their facade textures: see
+`selectedAmbientOcclusion`), so buildings meet the ground with no contact shading. The guide rightly forbids baking it into
 models.
 
 Darken ground within a couple of meters of walls and under dense canopy from the building

@@ -9618,7 +9618,10 @@ Required: `kind`, `color`, `spec`, `visual`
             "moped",
             "kick-scooter",
             "skateboard",
-            "auto-rickshaw"
+            "auto-rickshaw",
+            "skis",
+            "snowboard",
+            "snowmobile"
           ]
         },
         "genericLabel": {
@@ -9922,6 +9925,36 @@ Required: `kind`, `color`, `spec`, `visual`
           "minimum": 0,
           "maximum": 1
         },
+        "runners": {
+          "description": "Runners in place of tires (skis, a snowboard, a snowmobile): slides on the weather snow cover with this friction, holds its full grip there and floats over any depth; scrapes to a stop off the snow. Slides downhill from rest unless braked.",
+          "type": "object",
+          "properties": {
+            "friction": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Sliding friction coefficient on snow; resists as friction × g. About 0.05 for waxed skis, 0.12 for a snowmobile track."
+            },
+            "bareDrag": {
+              "description": "Resistance in m/s² off the snow, where runners scrape bare ground. Default 3.",
+              "type": "number",
+              "minimum": 0
+            },
+            "pushSpeed": {
+              "description": "Fastest the rider pushing (poling, skating) drives it, m/s; gravity may take it on to maxSpeed. Absent: engineForce works up to maxSpeed.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "flat": {
+              "description": "A cycle whose runners stay flat on the snow in a turn (a pair of skis) instead of banking as one plank (a snowboard); the lean stays in vehicleState.bodyRoll for the rider pose. Default false.",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "friction"
+          ],
+          "additionalProperties": false
+        },
         "cycle": {
           "description": "Self-balancing cycle handling and rider contact points. Driver seat anchors the pelvis.",
           "type": "object",
@@ -9970,7 +10003,7 @@ Required: `kind`, `color`, `spec`, `visual`
               "items": false,
               "minItems": 2,
               "maxItems": 2,
-              "description": "Left and right hand targets in model-local meters; they turn with the bars. A sideways rider holds them free, unturned."
+              "description": "Left and right hand targets in model-local meters; they turn with the bars. A sideways rider holds them free: unturned, moving with the hips of a shorter or taller body."
             },
             "footrests": {
               "type": "array",
@@ -10068,6 +10101,19 @@ Required: `kind`, `color`, `spec`, `visual`
           ],
           "additionalProperties": false
         },
+        "headlamps": {
+          "description": "Headlamp lens centres in model-local meters, at most two; night lighting places its beams there. Empty: no headlamps. Absent: a pair guessed from the body size.",
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "minItems": 3,
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        },
         "handlebar": {
           "description": "Handlebar steering on a vehicle that does not lean (a three-wheeler): the driver contact points, the driver seat anchoring the pelvis. Ignored with cycle.",
           "type": "object",
@@ -10110,7 +10156,7 @@ Required: `kind`, `color`, `spec`, `visual`
               "items": false,
               "minItems": 2,
               "maxItems": 2,
-              "description": "Left and right hand targets in model-local meters; they turn with the bars. A sideways rider holds them free, unturned."
+              "description": "Left and right hand targets in model-local meters; they turn with the bars. A sideways rider holds them free: unturned, moving with the hips of a shorter or taller body."
             },
             "footrests": {
               "type": "array",
@@ -10226,13 +10272,12 @@ Required: `kind`, `color`, `spec`, `visual`
       "type": "object",
       "properties": {
         "wheelNodes": {
-          "minItems": 1,
           "type": "array",
           "items": {
             "type": "string",
             "minLength": 1
           },
-          "description": "External wheelNodes setting."
+          "description": "Wheel nodes, spun by the wheel angle. At least one, except on a vehicle with runners (skis, a board), which has none."
         },
         "frontWheelNodes": {
           "type": "array",
@@ -11042,6 +11087,15 @@ Required: `speed`, `steer`, `yaw`, `pitch`, `roll`, `vy`, `grounded`, `waitingFo
       "type": "number",
       "minimum": 0
     },
+    "snowDepth": {
+      "description": "Meters of lying snow under the vehicle (the weather snow cover, less what a ploughed road clears); absent on bare ground.",
+      "type": "number",
+      "minimum": 0
+    },
+    "stuck": {
+      "description": "Deep snow is holding the vehicle against its own drive: it cannot pull away from a stand.",
+      "type": "boolean"
+    },
     "track": {
       "description": "Track-guided vehicles (spec.rail with a host track guide): where the rails ran.",
       "type": "object",
@@ -11309,6 +11363,40 @@ Required: none
           "maximum": 1
         }
       },
+      "additionalProperties": false
+    },
+    "snowCover": {
+      "description": "Snow lying on the ground above a snow line, independent of whether snow is falling. Absent means bare ground. Slows walkers, bogs wheeled vehicles down and lets runners glide; renderers whiten ground, roofs and foliage above the line.",
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "number",
+          "description": "Snow line: the absolute world Y in meters where lying snow begins. Ground below it is bare."
+        },
+        "transition": {
+          "description": "Height in meters above the snow line over which cover builds from none to complete; default 150. Zero is a hard line.",
+          "type": "number",
+          "minimum": 0
+        },
+        "depth": {
+          "description": "Snow depth in meters where cover becomes complete, at the top of the transition; default 0.15.",
+          "type": "number",
+          "minimum": 0
+        },
+        "depthGain": {
+          "description": "Extra depth in meters for each 1000 m of height above that; default 0.6.",
+          "type": "number",
+          "minimum": 0
+        },
+        "maxDepth": {
+          "description": "Greatest depth in meters at any height; default 1.5.",
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "level"
+      ],
       "additionalProperties": false
     },
     "seed": {

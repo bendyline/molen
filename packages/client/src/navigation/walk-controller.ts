@@ -47,6 +47,12 @@ export class WalkController {
   swimming: boolean = false;
   /** Water surface in world meters; null means dry, undefined means coverage is loading. */
   sampleWaterHeight?: (x: number, z: number) => number | null | undefined;
+  /**
+   * Share of walking and running speed left at the feet (world meters): what the ground costs,
+   * such as deep snow (`snowWalkingPace`). Default 1; values are kept within 0.1–1, and swimming
+   * ignores it.
+   */
+  paceAt?: (x: number, y: number, z: number) => number;
   ready: boolean = false;
   waitingForTerrain: boolean = false;
   private accumulator = 0;
@@ -152,12 +158,15 @@ export class WalkController {
     this.accumulator += Math.min(0.1, Math.max(0, dt));
     while (this.accumulator >= STEP) {
       this.accumulator -= STEP;
+      const moving = input.forward !== 0 || input.right !== 0;
+      const pace =
+        this.swimming || !moving || this.paceAt === undefined
+          ? 1
+          : Math.min(1, Math.max(0.1, this.paceAt(this.feet.x, this.feet.y, this.feet.z)));
       const speed =
         (this.swimming
           ? SWIM_SPEED * (input.sprint ? 1.5 : 1)
-          : input.sprint
-            ? RUN_SPEED
-            : WALK_SPEED) * boostSpeedMultiplier(this.boostMode);
+          : (input.sprint ? RUN_SPEED : WALK_SPEED) * pace) * boostSpeedMultiplier(this.boostMode);
       const vx = forwardX * speed;
       const vz = forwardZ * speed;
       const nextX = this.feet.x + vx * STEP;

@@ -405,7 +405,11 @@ export async function createTerrainWaterMaterialAsync(
     );
   });
   const distanceFade = smoothstep(120, 1600, positionView.length()).oneMinus().toVar();
-  const rippleSlope = detail.mul(gain).mul(distanceFade).toVar();
+  // Ripples fade with distance twice, as in the GLSL path (once with the surface detail, once
+  // with the whole slope); swells and the color variation once. Faded once here, water between
+  // 120 m and 1.6 km carried up to twice the ripple slope it does on WebGL.
+  const rippleFade = distanceFade.mul(distanceFade).toVar();
+  const rippleSlope = detail.mul(gain).mul(rippleFade).toVar();
   const variation = patch.b
     .mul(waveStrength)
     .mul(keep(WATER_RIPPLE_AREA.scale))
@@ -441,15 +445,14 @@ export async function createTerrainWaterMaterialAsync(
   const normal = vec3(slopeX.negate(), 1, slopeZ.negate()).normalize().toVar();
   const dx = dFdx(normal);
   const dy = dFdy(normal);
-  // Specular anti-aliasing; ripples are faded by distance once here, so their variance twice.
+  // Specular anti-aliasing; ripples are faded by distance twice, so their variance by its
+  // fourth power.
   const variance = dx
     .dot(dx)
     .add(dy.dot(dy))
     .mul(WATER_NORMAL_VARIANCE.gain)
     .min(WATER_NORMAL_VARIANCE.max)
-    .add(
-      lost.mul(gain.mul(gain)).mul(WATER_RIPPLE_SLOPE_VARIANCE).mul(distanceFade.mul(distanceFade)),
-    )
+    .add(lost.mul(gain.mul(gain)).mul(WATER_RIPPLE_SLOPE_VARIANCE).mul(rippleFade.mul(rippleFade)))
     .toVar();
   const widen = (roughness: Node<'float'>): Node<'float'> =>
     roughness.pow(4).add(variance).clamp(0, 1).pow(0.25);
@@ -559,7 +562,8 @@ export interface TerrainSemanticMeshMaterials {
   landcover?: THREE.Material;
   /**
    * The shared material for land cover drawn as a texture (`landcoverRaster`), from
-   * `createTerrainGroundTextureMaterial`. Default: one without ground variation.
+   * `createTerrainGroundTextureMaterialAsync` for the renderer's backend. Default: a WebGL one
+   * without ground variation.
    */
   landcoverRaster?: THREE.Material;
   treeTrunk?: THREE.Material;
@@ -617,8 +621,9 @@ export interface TerrainSemanticMeshOptions {
   landcoverDetail?: Readonly<Record<string, readonly [number, number]>>;
   landcoverOffset?: number;
   /**
-   * Draw land cover on distant tiles as one texture a tile instead of the draped mesh (WebGL
-   * materials only): see `TerrainLandcoverRasterOptions`. Omitted, every tile drapes.
+   * Draw land cover on distant tiles as one texture a tile instead of the draped mesh: see
+   * `TerrainLandcoverRasterOptions`, and pass `materials.landcoverRaster` on WebGPU, where the
+   * default material has no shader. Omitted, every tile drapes.
    */
   landcoverRaster?: TerrainLandcoverRasterOptions;
   /**

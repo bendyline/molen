@@ -142,9 +142,9 @@ export interface CreateEarthWorldgenOptions {
    * Draw land cover on distant tiles as one texture a tile, with the tile's mapped roads and
    * building footprints painted in, instead of the draped mesh: a fraction of its triangles,
    * memory and build time, where its crop rows and soft class edges are too small to see.
-   * `material` is `createTerrainGroundTextureMaterial` from `@bendyline/molen-terrain/client`
-   * (WebGL only; keep its origin current with `setTerrainGroundOrigin` like the ground's), owned
-   * by the host. The rest are `TerrainLandcoverRasterOptions`: by default tiles two or more levels
+   * `material` is `createTerrainGroundTextureMaterialAsync` from `@bendyline/molen-terrain/client`
+   * for the renderer's backend (keep its origin current with `setTerrainGroundOrigin` like the
+   * ground's), owned by the host. The rest are `TerrainLandcoverRasterOptions`: by default tiles two or more levels
    * coarser than the finest, 256 texels across.
    */
   farLandcover?: { material: THREE.Material } & TerrainLandcoverRasterOptions;

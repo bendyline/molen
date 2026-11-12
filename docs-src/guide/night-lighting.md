@@ -69,6 +69,16 @@ Each beam starts at its headlight lens and softly lights the road immediately ah
 Their beams illuminate pavement, walls and vehicles ahead. Parked, unoccupied cars keep their
 lamps off and receive light from their surroundings. Hidden/despawned traffic loses its lights.
 
+A driven vehicle whose type has a `headlights` actuator (**L** in the Earth view and World
+Explorer) lights its beams only while that switch is on, and then also at dusk and by day, at a
+little over a third of their night strength. Its own model shows the lit lenses. A driven vehicle
+without that actuator, such as a bicycle, lights up at dusk like traffic.
+
+Lenses and beams come from `vehicle.spec.headlamps` when a type gives it: model-space lens
+centres, at most two, so a single-lamp auto-rickshaw or scooter casts one beam from its real lamp.
+An empty list (a skateboard) lights nothing. Without it, a pair is placed from the body's width,
+height and length.
+
 Traffic lenses are two instanced batches, capped at 512 cars, and all artificial lighting fades
 out at dawn. No light changes the deterministic simulation.
 

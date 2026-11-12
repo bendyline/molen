@@ -3008,6 +3008,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         prepared.add(key);
         continue;
       }
+      // Nothing left to wait for but layers that have given up (their retries are spent).
+      const settled = this.layersReady(tile, true);
       let retained = false;
       for (const previousKey of previousDisplayed) {
         const previousTile = this.resident.get(previousKey);
@@ -3015,6 +3017,12 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           // A bare ancestor has no detail to preserve. Do not pin an entire region to it
           // while new building layers finish; only wait for layers it actually displays.
           if (!this.losesVisibleLayers(previousKey, tile)) continue;
+          // Nor hold a coarser tile for a layer that will not arrive: it kept its whole area
+          // coarse, and every finished sibling beneath it hidden, for as long as the failure
+          // lasted (one land-cover tile that threw froze a neighborhood at four levels too
+          // coarse). The replacement shows without that layer until a later attempt builds it.
+          // Finer ground on screen still stays, since it shows more than the replacement can.
+          if (settled && previousTile.address.level < tile.address.level) continue;
           prepared.add(previousKey);
           retained = true;
         }
@@ -3257,9 +3265,14 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             candidates.add(key);
             continue;
           }
-          if (!this.wantsLayers(tile.address)) {
+          if (
+            !this.wantsLayers(tile.address) ||
+            this.layerRetries.state(`${key}:${layer.id}`) === 'failed'
+          ) {
             // Peripheral ground only gets independent layers. Detail already shown inside it may stay,
-            // but never a coarser ancestor's, which would cover the view beside it.
+            // but never a coarser ancestor's, which would cover the view beside it. The same for a
+            // tile whose layer has given up: the ancestor's, kept for it, would hide the layer on
+            // every finished tile beneath that ancestor for as long as the failure lasts.
             for (const previousKey of previous) {
               const old = this.resident.get(previousKey);
               if (
