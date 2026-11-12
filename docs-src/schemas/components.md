@@ -5506,6 +5506,22 @@ Required: `kind`, `spec`
               "type": "number",
               "exclusiveMinimum": 0
             },
+            "directionalStability": {
+              "description": "Tail-fin weathervaning in forward flight; default 1, 0 disables. The nose turns into the relative wind at directionalStability × airspeed / length rad/s per radian of sideslip, so a banked helicopter turns its nose with its track.",
+              "type": "number",
+              "minimum": 0
+            },
+            "cyclicRate": {
+              "description": "Direct-cyclic pitch and roll rate at full stick with the rotor carrying the weight, rad/s; default cyclicResponse / 4.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "hubStiffness": {
+              "description": "Share of direct-cyclic control power independent of rotor thrust, 0..1; default 0.25. Near 0 for a teetering rotor (no control at zero g), higher for articulated and hingeless rotors.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
             "cyclicTilt": {
               "type": "number",
               "exclusiveMinimum": 0,
@@ -6735,6 +6751,14 @@ Required: `power`, `pitch`, `roll`, `yaw`, `brake`, `engine`, `gear`, `flaps`
       "type": "number",
       "minimum": 0,
       "maximum": 1
+    },
+    "cyclicMode": {
+      "description": "Helicopter cyclic: assisted (default) commands a bounded, self-levelling tilt; direct commands pitch and roll rates with full authority (loops, rolls, straight down). Both are assisted on the ground.",
+      "type": "string",
+      "enum": [
+        "assisted",
+        "direct"
+      ]
     }
   },
   "required": [
@@ -9590,7 +9614,11 @@ Required: `kind`, `color`, `spec`, `visual`
             "passenger-car",
             "bicycle",
             "motorcycle",
-            "scooter"
+            "scooter",
+            "moped",
+            "kick-scooter",
+            "skateboard",
+            "auto-rickshaw"
           ]
         },
         "genericLabel": {
@@ -9942,7 +9970,7 @@ Required: `kind`, `color`, `spec`, `visual`
               "items": false,
               "minItems": 2,
               "maxItems": 2,
-              "description": "Left and right hand targets in model-local meters."
+              "description": "Left and right hand targets in model-local meters; they turn with the bars. A sideways rider holds them free, unturned."
             },
             "footrests": {
               "type": "array",
@@ -9967,7 +9995,31 @@ Required: `kind`, `color`, `spec`, `visual`
               "items": false,
               "minItems": 2,
               "maxItems": 2,
-              "description": "Left and right ankle targets in model-local meters."
+              "description": "Left and right ankle targets on the footrests or deck, in model-local meters."
+            },
+            "stance": {
+              "description": "How the rider stands: on a saddle (seated, default), upright on a deck facing the bars (standing), or across a board left foot forward (sideways). Standing and sideways seats are adult hip positions; the pose fits the hips to each body's legs.",
+              "type": "string",
+              "enum": [
+                "seated",
+                "standing",
+                "sideways"
+              ]
+            },
+            "kick": {
+              "description": "Push-powered (a skateboard): under power the rider turns forward and pushes off the ground with the rear foot.",
+              "type": "object",
+              "properties": {
+                "stride": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Meters travelled per push."
+                }
+              },
+              "required": [
+                "stride"
+              ],
+              "additionalProperties": false
             },
             "pedals": {
               "description": "Bicycle crank geometry and gearing; omitted on motor vehicles.",
@@ -10009,6 +10061,84 @@ Required: `kind`, `color`, `spec`, `visual`
           },
           "required": [
             "maxLean",
+            "riderLean",
+            "handlebarPivot",
+            "grips",
+            "footrests"
+          ],
+          "additionalProperties": false
+        },
+        "handlebar": {
+          "description": "Handlebar steering on a vehicle that does not lean (a three-wheeler): the driver contact points, the driver seat anchoring the pelvis. Ignored with cycle.",
+          "type": "object",
+          "properties": {
+            "riderLean": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Forward torso lean in radians."
+            },
+            "handlebarPivot": {
+              "minItems": 3,
+              "maxItems": 3,
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "description": "Steering pivot in model-local meters."
+            },
+            "grips": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2,
+              "description": "Left and right hand targets in model-local meters; they turn with the bars. A sideways rider holds them free, unturned."
+            },
+            "footrests": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2,
+              "description": "Left and right ankle targets on the footrests or deck, in model-local meters."
+            }
+          },
+          "required": [
             "riderLean",
             "handlebarPivot",
             "grips",
@@ -10105,13 +10235,12 @@ Required: `kind`, `color`, `spec`, `visual`
           "description": "External wheelNodes setting."
         },
         "frontWheelNodes": {
-          "minItems": 1,
           "type": "array",
           "items": {
             "type": "string",
             "minLength": 1
           },
-          "description": "External frontWheelNodes setting."
+          "description": "Wheel nodes turned by the steering angle. Empty when animation bindings pose the steering instead (a skateboard turns its trucks)."
         },
         "steeringWheelNode": {
           "description": "External steeringWheelNode setting.",
@@ -10841,8 +10970,14 @@ Required: `speed`, `steer`, `yaw`, `pitch`, `roll`, `vy`, `grounded`, `waitingFo
       "description": "Accumulated wheel spin angle in radians, wrapped each revolution."
     },
     "pedalAngle": {
-      "description": "Cycle crank angle in radians; advances under forward power and holds while coasting or braking.",
+      "description": "Cycle crank angle in radians; advances under forward power and holds while coasting or braking. On a push-powered cycle, the phase of the current push.",
       "type": "number"
+    },
+    "kick": {
+      "description": "Push-powered cycles: 0 riding sideways to 1 turned forward to push off; eases between them.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
     },
     "lateralSpeed": {
       "description": "Sideways speed in meters per second, positive to the left: the slide.",

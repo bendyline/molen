@@ -9,7 +9,8 @@ import { defineConfig } from 'vitest/config';
 // not expected durations, so raising them costs nothing when things work. testTimeout must stay
 // above the sum of every played scenario's own action timeouts, or vitest kills the run first and
 // the scenario's precise failure message — which action, which probe text — is lost; today the
-// only played scenario is walk-navigation's test/visual/walk-mode.play.json, about 2300s.
+// played scenarios are walk-navigation's test/visual/walk-mode.play.json, about 2300s, and
+// replace-building's test/visual/replace-building.play.json, about 1600s.
 //
 // Scenarios that stream real map data in Human mode (store library, soundscape, live quality,
 // tunnels) were removed from this lane: on CI they failed far more often from software-rendering

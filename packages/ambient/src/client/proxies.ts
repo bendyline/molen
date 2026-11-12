@@ -4,13 +4,22 @@
  * airliner. Bodies are white so `instanceColor` paints them; glass and tyres stay dark.
  */
 
-import { railVehicleProxyGeometry, vehicleProxyGeometry } from '@bendyline/molen-client/vehicles';
+import {
+  railVehicleProxyGeometry,
+  threeWheelerProxyGeometry,
+  twoWheelerProxyGeometry,
+  vehicleProxyGeometry,
+} from '@bendyline/molen-client/vehicles';
 import type { RailVehicleProfile } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
 export type ProxyShape =
   | 'car'
+  /** A motorcycle, scooter or moped (see `twoWheelerProxyGeometry`). */
+  | 'two-wheeler'
+  /** An auto-rickshaw (see `threeWheelerProxyGeometry`). */
+  | 'three-wheeler'
   | 'bus'
   | 'rail'
   | 'aircraft'
@@ -149,6 +158,20 @@ export function proxyGeometry(shape: ProxyShape, dims: ProxyDimensions): THREE.B
       wheelbase: d.length * 0.6,
       wheelTrack: d.width * 0.84,
       wheelRadius: Math.min(0.5, Math.max(0.28, d.length * 0.068)),
+    });
+  else if (shape === 'two-wheeler')
+    geometry = twoWheelerProxyGeometry({
+      ...d,
+      wheelbase: d.length * 0.66,
+      wheelTrack: 0,
+      wheelRadius: Math.min(0.3, Math.max(0.12, d.length * 0.13)),
+    });
+  else if (shape === 'three-wheeler')
+    geometry = threeWheelerProxyGeometry({
+      ...d,
+      wheelbase: d.length * 0.76,
+      wheelTrack: d.width * 0.88,
+      wheelRadius: 0.2,
     });
   else if (shape === 'bus') geometry = busGeometry(d);
   else if (shape === 'rail') geometry = railGeometry(d);

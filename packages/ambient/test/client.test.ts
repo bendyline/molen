@@ -1,4 +1,7 @@
+import { readFileSync } from 'node:fs';
+import type { SeatData } from '@bendyline/molen-kernel/vehicles';
 import { componentHandle, World } from '@bendyline/molen-kernel/world';
+import type { VehicleData } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { createAmbientRenderer, ProxyBatches } from '../src/client';
@@ -101,6 +104,58 @@ describe('proxy batches', () => {
 });
 
 describe('ambient renderer', () => {
+  it('draws riders on two-wheeled traffic, leaning into turns, and two-wheeler proxies', () => {
+    const scooter = (
+      JSON.parse(
+        readFileSync(
+          new URL('../../../content/entities/types/cycle.types.json', import.meta.url),
+          'utf8',
+        ),
+      ).types['molen.entities.cycle.motor_scooter'] as {
+        components: { vehicle: VehicleData; mountable: { seats: SeatData[] } };
+      }
+    ).components;
+    const traffic = (): World => {
+      const world = new World({ tickRate: 30, seed: 'riders' });
+      const ambient = installAmbient(world, {
+        classes: ['car'],
+        types: { car: [{ id: 'test.scooter', length: 1.85, width: 0.7, height: 1.2 }] },
+        policy: { spawnBudget: 20, car: { near: 0, far: 120, keep: 200, perLaneKm: 20, max: 12 } },
+      });
+      ambient.addDocument(gridDocument(4, 90));
+      ambient.setObserver({ pos: [0, 0, 0] });
+      world.stepN(90);
+      return world;
+    };
+    const seat = scooter.mountable.seats.find((s) => s.role === 'driver') as SeatData;
+    const ridden = createAmbientRenderer({
+      world: traffic(),
+      parent: new THREE.Group(),
+      riders: { 'test.scooter': { vehicle: scooter.vehicle, seat } },
+      budget: { skinnedFigures: 32, figureRadius: 150 },
+    });
+    ridden.update([0, 1.7, 0], 1 / 60);
+    const stats = ridden.stats();
+    expect(stats.cars).toBeGreaterThan(0);
+    expect(stats.figures).toBeGreaterThan(0);
+    expect(stats.figures).toBeLessThanOrEqual(stats.cars);
+    // The two-wheeler silhouette is narrow and leaves no car cabin.
+    let narrow = 0;
+    ridden.object.traverse((o) => {
+      const mesh = o as THREE.InstancedMesh;
+      if (!mesh.isInstancedMesh) return;
+      mesh.geometry.computeBoundingBox();
+      const size = mesh.geometry.boundingBox?.getSize(new THREE.Vector3());
+      if (size && size.x < 0.8 && size.z > 1.5) narrow++;
+    });
+    expect(narrow).toBeGreaterThan(0);
+    ridden.dispose();
+    const riderless = createAmbientRenderer({ world: traffic(), parent: new THREE.Group() });
+    riderless.update([0, 1.7, 0], 1 / 60);
+    expect(riderless.stats().figures).toBe(0);
+    riderless.dispose();
+  });
+
   it('renders every class of a live world and cleans up', () => {
     const world = busyWorld();
     const parent = new THREE.Group();

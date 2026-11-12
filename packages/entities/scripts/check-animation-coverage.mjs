@@ -93,10 +93,15 @@ export async function auditAnimationCoverage({ runtime = false } = {}) {
           ]))
             if (!runtimeNames.has(name)) issues.push(`Missing imported node: ${name}`);
         }
+        // An open, handlebar-steered three-wheeler has no doors, hood or trunk to animate; its
+        // lamps and wiper still work.
+        const open = kind === 'vehicles' && spec.handlebar !== undefined;
         if (kind === 'vehicles')
-          for (const key of ['hood', 'trunk', 'headlights', 'wipers'])
+          for (const key of open
+            ? ['headlights', 'wipers']
+            : ['hood', 'trunk', 'headlights', 'wipers'])
             if (!actuators.includes(key) || !channels.has(key)) issues.push(`Missing ${key}`);
-        if (kind === 'vehicles' && !actuators.some((n) => n.startsWith('door')))
+        if (kind === 'vehicles' && !open && !actuators.some((n) => n.startsWith('door')))
           issues.push('Missing doors');
         if (kind === 'aircraft') {
           if (!visual.rotors.length) issues.push('Missing propeller/rotor/turbine');

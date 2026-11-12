@@ -8,6 +8,7 @@
 import {
   type AmbientRenderBudget,
   type AmbientRenderer,
+  type AmbientRider,
   createAmbientRenderer,
 } from '@bendyline/molen-ambient/client';
 import {
@@ -91,6 +92,8 @@ export interface EarthAmbientContent {
   heights: Readonly<Record<string, number>>;
   /** Rail vehicle silhouettes by type id, for far trains. */
   railProfiles?: Readonly<Record<string, RailVehicleProfile>>;
+  /** Two- and three-wheelers whose drivers ride in the open, by type id. */
+  riders?: Readonly<Record<string, AmbientRider>>;
   vehicle(type: string): VehicleData | undefined;
   aircraft(type: string): AircraftSpec | undefined;
   loadModel(type: string, signal?: AbortSignal): Promise<THREE.Object3D | undefined>;
@@ -348,6 +351,7 @@ export class EarthAmbient implements SemanticTileObserver {
         ? {
             heights: content.heights,
             ...(content.railProfiles !== undefined ? { railProfiles: content.railProfiles } : {}),
+            ...(content.riders !== undefined ? { riders: content.riders } : {}),
             vehicles: {
               load: (type, signal) => content.loadModel(type, signal),
               vehicle: (type) => content.vehicle(type),
@@ -664,7 +668,9 @@ export function ambientContentFromTypes(
   const aircraft: AmbientVehicleType[] = [];
   const boats: AmbientVehicleType[] = [];
   const heights: Record<string, number> = {};
+  const riders: Record<string, AmbientRider> = {};
   const vehicles = new Set(types.idsWith('vehicle'));
+  const mountables = new Set(types.idsWith('mountable'));
   const railProfiles: Record<string, RailVehicleProfile> = {};
   for (const id of vehicles) {
     const profile = types.component<VehicleData>(id, 'vehicle').spec.rail?.profile;
@@ -762,7 +768,22 @@ export function ambientContentFromTypes(
         };
     }
     if (role.role === 'car' || role.role === 'bus') cars.push(type);
-    else if (role.role === 'rail') trains.push(type);
+    if (role.role === 'car' && spec !== undefined) {
+      // Ridden in the open: a saddle-ridden motor two-wheeler or a handlebar three-wheeler.
+      const handlebars =
+        spec.handlebar !== undefined ||
+        (spec.cycle !== undefined &&
+          spec.cycle.pedals === undefined &&
+          (spec.cycle.stance ?? 'seated') === 'seated');
+      const seat = mountables.has(id)
+        ? types
+            .component<{ seats?: AmbientRider['seat'][] }>(id, 'mountable')
+            .seats?.find((s) => s.role === 'driver')
+        : undefined;
+      if (handlebars && seat !== undefined)
+        riders[id] = { vehicle: types.component<VehicleData>(id, 'vehicle'), seat };
+    }
+    if (role.role === 'rail') trains.push(type);
     else if (role.role === 'aircraft') aircraft.push(type);
     else if (role.role === 'boat' || role.role === 'ferry')
       boats.push({ ...type, waterway: role.role === 'ferry' ? 'ferry' : 'channel' });
@@ -776,6 +797,7 @@ export function ambientContentFromTypes(
     },
     heights,
     railProfiles,
+    ...(Object.keys(riders).length > 0 ? { riders } : {}),
     vehicle: vehicleOf,
     aircraft: aircraftOf,
     loadModel,

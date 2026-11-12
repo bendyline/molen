@@ -342,6 +342,13 @@ export interface TerrainPyramidStreamStats extends TerrainStreamStats {
   /** Tile layers built so far, and how many of those had been built before and evicted. */
   builtLayers: number;
   rebuiltLayers: number;
+  /**
+   * Of `builtLayers`, those `refreshLayers` built in place of one on screen. A host asked for
+   * these: they are not the cache losing work, and `rebuiltLayers` does not count them.
+   */
+  refreshedLayers: number;
+  /** Tile layers on screen still showing what a `refreshLayers` call is replacing. */
+  refreshingLayers: number;
   /** Tiles the camera's track is about to reach that are not selected yet. */
   aheadTiles: number;
   /** Those of `aheadTiles` already built, layers included. */
@@ -396,6 +403,14 @@ export interface TerrainPyramidStatsOptions {
   geometry?: 'measured' | 'tracked';
 }
 
+/** What `TerrainPyramidStream.refreshLayers` builds again. */
+export interface TerrainPyramidLayerRefresh {
+  /** World X/Z rectangle [minX, minZ, maxX, maxZ]: every resident tile it overlaps or touches. */
+  bounds: readonly [number, number, number, number];
+  /** Layer ids to build again (default: every layer). An unknown id throws. */
+  layers?: readonly string[];
+}
+
 export interface TerrainPyramidStream {
   /**
    * Call once a frame: advances refinement morphs and carries on ground cuts the last pass left
@@ -437,8 +452,9 @@ export interface TerrainPyramidStream {
   /**
    * True when the view's terrain and enabled layers within `radius` of (x, z) are on screen:
    * every selected tile there is displayed with its layers published (a layer that failed for
-   * good does not hold it back). Loads elsewhere in the view do not count, so a host can act on
-   * the ground around a point, such as landing a walker, while the rest of the view streams in.
+   * good does not hold it back), none of them still showing what a `refreshLayers` call is
+   * replacing. Loads elsewhere in the view do not count, so a host can act on the ground around
+   * a point, such as landing a walker, while the rest of the view streams in.
    */
   isAreaReady(x: number, z: number, radius: number): boolean;
   setLayerVisible(id: string, visible: boolean): void;
@@ -450,6 +466,18 @@ export interface TerrainPyramidStream {
   /** Per-tile missing/retrying/abandoned detail, so a host can say which state a hole is in. */
   tileFailures(): Array<TerrainTileFailure<TerrainPyramidTileAddress>>;
   retryFailed(): void;
+  /**
+   * Build layers again where what they are made from changed (a host edited the tiles a layer's
+   * source or renderer hands out). A layer on screen stays until its replacement is prepared and
+   * takes its place in one step, so the ground never stands bare in between; one that is resident
+   * but hidden is dropped and built when next wanted; a build under way starts over. `isAreaReady`
+   * is false for ground still showing what is being replaced.
+   *
+   * Resolves when everything that was on screen has been replaced, or will not be: its tile was
+   * evicted, it left the screen or its layer was hidden, or its build failed for good (what was
+   * there then stays until a later attempt succeeds). `whenIdle` also waits for these builds.
+   */
+  refreshLayers(options: TerrainPyramidLayerRefresh): Promise<void>;
   /**
    * Full counters, including triangle and byte totals gathered by walking every resident tile's
    * objects: for diagnostics, not every frame. Per-frame callers use `loading()`, and a live
@@ -1448,7 +1476,21 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   /** Completed builds per tile, and per tile layer: a second build means the cache lost it. */
   private readonly tileBuilds = new Set<string>();
   private readonly layerBuilds = new Set<string>();
-  private readonly buildCounts = { tiles: 0, rebuiltTiles: 0, layers: 0, rebuiltLayers: 0 };
+  private readonly buildCounts = {
+    tiles: 0,
+    rebuiltTiles: 0,
+    layers: 0,
+    rebuiltLayers: 0,
+    refreshedLayers: 0,
+  };
+  /**
+   * Tile layers on screen whose source changed (see `refreshLayers`), by `"L/x/z:layerId"`. What
+   * each published stays displayed, and counts as built, until its replacement takes its place.
+   * Not the "stale" of STALE_LAYER_ROOM, which is work for ground the camera has left.
+   */
+  private readonly outdatedLayers = new Map<string, { tileKey: string; layerId: string }>();
+  /** `refreshLayers` calls still waiting on some of the tile layers they found on screen. */
+  private refreshWaiters: Array<{ keys: Set<string>; resolve: () => void }> = [];
   private readonly transitions = { refinedInView: 0, coarsenedInView: 0 };
   /** Ancestors of the displayed tiles, as of the last plan: ground refined on screen. */
   private readonly refinedOnScreen = new Set<string>();
@@ -2162,6 +2204,13 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         if (this.layerVisibility.get(id) === true && !this.displayedLayers.get(id)?.has(key))
           return false;
       }
+      // Ground still showing what a refresh is replacing is not ready to stand on: the walls
+      // there are about to change. A replacement that failed for good does not hold it back.
+      for (const id of this.layerById.keys()) {
+        const layerKey = `${key}:${id}`;
+        if (this.outdatedLayers.has(layerKey) && this.layerRetries.state(layerKey) !== 'failed')
+          return false;
+      }
       covered = true;
     }
     return covered;
@@ -2245,6 +2294,82 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     this.plan(this.view);
   }
 
+  refreshLayers(options: TerrainPyramidLayerRefresh): Promise<void> {
+    const ids = options.layers ?? [...this.layerById.keys()];
+    for (const id of ids)
+      if (!this.layerById.has(id)) throw new Error(`unknown terrain pyramid tile layer "${id}"`);
+    const [minX, minZ, maxX, maxZ] = options.bounds;
+    if (![minX, minZ, maxX, maxZ].every(Number.isFinite) || minX > maxX || minZ > maxZ)
+      throw new Error('refresh bounds must be a finite [minX, minZ, maxX, maxZ] rectangle');
+    if (this.disposed) return Promise.resolve();
+    // Decide what is on screen from the current state, not a pass a publication left queued.
+    this.settleVisibility();
+    const waiting = new Set<string>();
+    for (const [tileKey, tile] of this.resident) {
+      // Touching counts: a change on a tile's edge is drawn by both tiles that share it.
+      const [x0, z0, x1, z1] = tileBounds(this.descriptor, tile.address);
+      if (x0 > maxX || x1 < minX || z0 > maxZ || z1 < minZ) continue;
+      for (const id of ids) {
+        const key = `${tileKey}:${id}`;
+        // A build under way was made from what changed. The pump starts it over.
+        const request = this.pendingLayers.get(key);
+        if (request !== undefined) {
+          request.controller.abort();
+          this.pendingLayers.delete(key);
+        }
+        this.layerRetries.clear(key);
+        // The build that follows is asked for, not one the cache lost (see rebuiltLayers).
+        this.layerBuilds.delete(key);
+        if (!tile.layers.has(id) && !tile.emptyLayers.has(id)) continue;
+        if (this.displayedLayers.get(id)?.has(tileKey) === true) {
+          this.outdatedLayers.set(key, { tileKey, layerId: id });
+          waiting.add(key);
+        } else {
+          // Hidden in the warm cache, or prepared behind what is displayed: nothing to keep on
+          // screen, and it must not come back as it was.
+          this.outdatedLayers.delete(key);
+          this.settleRefresh(key);
+          this.dropLayer(tile, id);
+        }
+      }
+    }
+    const refreshed =
+      waiting.size === 0
+        ? Promise.resolve()
+        : new Promise<void>((resolve) => this.refreshWaiters.push({ keys: waiting, resolve }));
+    // Builds are under way (or queued behind a full window) before this returns, so a caller
+    // awaiting `whenIdle` next waits for them too.
+    this.updateVisibility();
+    this.evictUnused();
+    this.startQueuedLoads();
+    this.resolveIdleIfNeeded();
+    return refreshed;
+  }
+
+  /** A tile layer a refresh was waiting on is replaced, or will not be: tell its callers. */
+  private settleRefresh(key: string): void {
+    if (this.refreshWaiters.length === 0) return;
+    this.refreshWaiters = this.refreshWaiters.filter((waiter) => {
+      waiter.keys.delete(key);
+      if (waiter.keys.size > 0) return true;
+      waiter.resolve();
+      return false;
+    });
+  }
+
+  /** Take a tile's layer object (or its empty mark) away, to be built again when next wanted. */
+  private dropLayer(tile: ResidentTile, id: string): void {
+    tile.emptyLayers.delete(id);
+    const object = tile.layers.get(id);
+    if (object === undefined) return;
+    this.groundCutouts.restore(object);
+    tile.object.remove(object);
+    tile.layers.delete(id);
+    this.layerById.get(id)?.disposeTile?.(object);
+    this.trackAllocations(tile);
+    this.cutoutsDirty = true;
+  }
+
   stats(options: TerrainPyramidStatsOptions = {}): TerrainPyramidStreamStats {
     this.settleVisibility();
     let decodedSamples = 0;
@@ -2310,6 +2435,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       rebuiltTiles: this.buildCounts.rebuiltTiles,
       builtLayers: this.buildCounts.layers,
       rebuiltLayers: this.buildCounts.rebuiltLayers,
+      refreshedLayers: this.buildCounts.refreshedLayers,
+      refreshingLayers: this.outdatedLayers.size,
       aheadTiles: this.ahead.size,
       aheadReady: [...this.ahead.keys()].filter((key) => {
         const tile = this.resident.get(key);
@@ -2410,6 +2537,11 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     this.ahead.clear();
     this.groundCutouts.dispose();
     for (const key of [...this.resident.keys()]) this.evict(key);
+    // Nothing is left to replace: refreshes in progress end here.
+    this.outdatedLayers.clear();
+    const waiters = this.refreshWaiters;
+    this.refreshWaiters = [];
+    for (const waiter of waiters) waiter.resolve();
     this.object.removeFromParent();
     if (this.ownsMaterial) this.material.dispose();
     this.source.dispose?.();
@@ -3178,6 +3310,17 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       tile.object.visible = retained;
       this.setAttached(tile, retained);
     }
+    // What a refresh was replacing has left the screen with no replacement under way (the camera
+    // moved on, or the layer was hidden): drop it, or it would come back from the warm cache as
+    // it was. One whose replacement is building keeps it until that lands, hidden or not.
+    for (const [layerKey, { tileKey, layerId }] of this.outdatedLayers) {
+      if (this.displayedLayers.get(layerId)?.has(tileKey) === true) continue;
+      if (this.pendingLayers.has(layerKey)) continue;
+      this.outdatedLayers.delete(layerKey);
+      const tile = this.resident.get(tileKey);
+      if (tile !== undefined) this.dropLayer(tile, layerId);
+      this.settleRefresh(layerKey);
+    }
     this.cutGround();
     this.refreshDisplayedBytes();
   }
@@ -3310,8 +3453,9 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     const tileKey = terrainPyramidTileKey(tile.address);
     const key = `${tileKey}:${layer.id}`;
     if (
-      tile.layers.has(layer.id) ||
-      tile.emptyLayers.has(layer.id) ||
+      // Built already, unless a refresh asked for it again (see refreshLayers).
+      (!this.outdatedLayers.has(key) &&
+        (tile.layers.has(layer.id) || tile.emptyLayers.has(layer.id))) ||
       this.pendingLayers.has(key) ||
       this.layerRetries.isBlocked(key) ||
       !this.layerEligible(layer, tile.address.level) ||
@@ -3379,8 +3523,12 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
               if (object !== undefined) layer.disposeTile?.(object);
               return;
             }
+            // A refresh's replacement: what the tile shows now gives way to it in this one task.
+            const replaced = current.layers.get(layer.id);
+            const refreshed = this.outdatedLayers.delete(key);
             this.buildCounts.layers++;
-            if (this.layerBuilds.has(key)) this.buildCounts.rebuiltLayers++;
+            if (refreshed) this.buildCounts.refreshedLayers++;
+            else if (this.layerBuilds.has(key)) this.buildCounts.rebuiltLayers++;
             this.layerBuilds.add(key);
             const finished = performance.now();
             if (object !== undefined) {
@@ -3395,17 +3543,32 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             });
             if (object === undefined) {
               this.layerRetries.clear(key);
+              // Nothing is there any more: what a refresh was replacing goes with no successor.
+              if (replaced !== undefined) this.dropLayer(current, layer.id);
               current.emptyLayers.add(layer.id);
+              // The pass is queued before the refresh's callers are told, so they resume after it.
               this.requestVisibility();
+              if (refreshed) this.settleRefresh(key);
               return;
             }
             object.name ||= `layer:${layer.id}:${tileKey}`;
             this.layerRetries.clear(key);
-            object.visible = false;
+            // A replacement is on screen at once if what it replaces was: the visibility pass runs
+            // after this task, and cover hidden until then would leave its tile's ground bare
+            // (see TERRAIN_COVERS_GROUND).
+            object.visible = replaced?.visible ?? false;
+            current.emptyLayers.delete(layer.id);
+            if (replaced !== undefined) {
+              this.groundCutouts.restore(replaced);
+              current.object.remove(replaced);
+              this.cutoutsDirty = true;
+            }
             current.layers.set(layer.id, object);
             current.object.add(object);
+            if (replaced !== undefined) layer.disposeTile?.(replaced);
             this.trackAllocations(current);
             this.requestVisibility();
+            if (refreshed) this.settleRefresh(key);
           },
           controller.signal,
           'layer-publication',
@@ -3413,14 +3576,16 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           'normal',
           priority,
         ).catch((error) => {
-          if (object !== undefined && !this.resident.get(tileKey)?.layers.has(layer.id))
+          // Not published. By identity: during a refresh the tile still holds the object this
+          // one was to replace, and a replacement dropped while queued must not leak.
+          if (object !== undefined && this.resident.get(tileKey)?.layers.get(layer.id) !== object)
             layer.disposeTile?.(object);
           throw error;
         });
       })
       .catch((error: unknown) => {
         if (this.disposed || controller.signal.aborted || isAbortError(error)) return;
-        this.layerRetries.markFailed(
+        const state = this.layerRetries.markFailed(
           key,
           { address: tile.address, layerId: layer.id },
           error,
@@ -3430,6 +3595,9 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           },
         );
         this.updateVisibility();
+        // Abandoned for now: what a refresh was replacing stays on screen, still to be replaced
+        // when an attempt after the cool-down succeeds, and its caller stops waiting.
+        if (state === 'failed') this.settleRefresh(key);
         this.options.onError?.(error, { address: tile.address, layerId: layer.id });
       })
       .finally(() => {
@@ -3461,6 +3629,10 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     // longer holds a slot. Worker queues take the nearest ground first, so those jobs ran last
     // while their slots stayed taken: after a turn, new ground waited for a window full of them.
     const layerCounts = new Map<string, number>();
+    // Tiles showing something a refresh is replacing (see refreshLayers). A layer can stay on
+    // screen beneath a tile that is no longer displayed itself, so these are not all in `displayed`.
+    const outdatedTiles = new Set<string>();
+    for (const { tileKey } of this.outdatedLayers.values()) outdatedTiles.add(tileKey);
     let live = 0;
     for (const { layer, address } of this.pendingLayers.values()) {
       const tileKey = terrainPyramidTileKey(address);
@@ -3471,7 +3643,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         !this.selected.has(tileKey) &&
         !this.replacementTiles.has(tileKey) &&
         !this.displayed.has(tileKey) &&
-        !this.preloading.has(tileKey)
+        !this.preloading.has(tileKey) &&
+        !outdatedTiles.has(tileKey)
       )
         continue;
       live++;
@@ -3494,6 +3667,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       ...this.replacementTiles,
       ...this.selected.keys(),
       ...this.preloading,
+      ...outdatedTiles,
     ]);
     const candidates = [...current, ...(this.aheadRoom ? this.ahead.keys() : [])]
       .map((key) => this.resident.get(key))
@@ -3554,12 +3728,15 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       [...this.layerById.values()]
         .filter((layer) => {
           const key = `${terrainPyramidTileKey(tile.address)}:${layer.id}`;
+          // On screen and asked for again: built whether or not the view would start it now.
+          const outdated = this.outdatedLayers.has(key);
           return (
-            (this.independentCategories.has(layer.category) || this.wantsLayers(tile.address)) &&
+            (outdated ||
+              this.independentCategories.has(layer.category) ||
+              this.wantsLayers(tile.address)) &&
             this.layerVisibility.get(layer.id) === true &&
             this.layerEligible(layer, tile.address.level) &&
-            !tile.layers.has(layer.id) &&
-            !tile.emptyLayers.has(layer.id) &&
+            (outdated || (!tile.layers.has(layer.id) && !tile.emptyLayers.has(layer.id))) &&
             !this.pendingLayers.has(key) &&
             !this.layerRetries.isBlocked(key)
           );
@@ -3571,6 +3748,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           preload,
           group,
           hole,
+          outdated: this.outdatedLayers.has(`${terrainPyramidTileKey(tile.address)}:${layer.id}`),
           route: this.preparationTargets.has(terrainPyramidTileKey(tile.address)),
           // Finish the layers needed to release an existing parent before starting newly
           // eligible detail. Otherwise a few slow building jobs occupy every slot while
@@ -3590,8 +3768,10 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     // Fill visible lakes before nearby buildings can occupy every slot. Peripheral water
     // warms after visible work; speculative route jobs still use their reserved slots below.
     // At speed, bare ground keeps its lead: a coarser tile already shows the water beside it.
+    // What a host asked to have replaced on screen goes before all of it: it shows the old state.
     jobs.sort(
       (a, b) =>
+        Number(b.outdated) - Number(a.outdated) ||
         Number(a.preload) - Number(b.preload) ||
         a.group - b.group ||
         Number(b.hole) - Number(a.hole) ||
@@ -3851,7 +4031,12 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     for (const [id, object] of tile.layers) {
       this.layerById.get(id)?.disposeTile?.(object);
     }
-    for (const id of this.layerById.keys()) this.layerRetries.clear(`${key}:${id}`);
+    for (const id of this.layerById.keys()) {
+      const layerKey = `${key}:${id}`;
+      this.layerRetries.clear(layerKey);
+      // A refresh has nothing left to replace here; the tile is built anew if it returns.
+      if (this.outdatedLayers.delete(layerKey)) this.settleRefresh(layerKey);
+    }
     this.object.remove(tile.object);
     tile.object.parent = null;
     tile.surface.geometry.dispose();

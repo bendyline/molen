@@ -173,6 +173,8 @@ export interface EarthPilotControls {
   gear?: number;
   flaps?: number;
   vector?: number;
+  /** Helicopter cyclic toggles between assisted and direct (full authority). */
+  cyclic?: number;
 }
 
 /** A compass heading as the kernel's vehicle yaw (+Z south is yaw 0 in the Earth frame). */
@@ -572,8 +574,13 @@ export class EarthAircraft {
       pos: [t.pos[0], ground + 300, t.pos[2]],
       rot: vehicleRotation(state.yaw, 0, 0),
     });
+    const cyclicMode = this.controls.cyclicMode;
     this.launch(id, aircraft.spec, state.yaw, {});
-    this.controls = { ...(this.world.get(id, AircraftInput) ?? IDLE_AIRCRAFT_INPUT) };
+    // The pilot's cyclic choice survives the reset.
+    this.controls = {
+      ...(this.world.get(id, AircraftInput) ?? IDLE_AIRCRAFT_INPUT),
+      ...(cyclicMode === undefined ? {} : { cyclicMode }),
+    };
     this.message = '';
     return true;
   }
@@ -596,6 +603,11 @@ export class EarthAircraft {
     if ((controls.gear ?? 0) % 2 === 1 && state !== undefined && !state.grounded)
       next.gear = !next.gear;
     if ((controls.flaps ?? 0) % 2 === 1) next.flaps = !next.flaps;
+    if (
+      this.world.get(id, Aircraft)?.spec.model === 'helicopter' &&
+      (controls.cyclic ?? 0) % 2 === 1
+    )
+      next.cyclicMode = next.cyclicMode === 'direct' ? 'assisted' : 'direct';
     if (this.world.get(id, Aircraft)?.spec.poweredLift && (controls.vector ?? 0) > 0)
       next.thrustVector =
         ((Math.round((next.thrustVector ?? 0) * 4) + (controls.vector ?? 0)) % 5) / 4;

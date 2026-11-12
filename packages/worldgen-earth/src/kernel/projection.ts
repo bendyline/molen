@@ -45,3 +45,20 @@ export function projectWgs84(longitude: number, latitude: number): Vec2 {
       : MERCATOR_EARTH_RADIUS_METERS * dmath.log(dmath.tan(dmath.PI / 4 + latRadians / 2));
   return [x, northing === 0 ? 0 : -northing];
 }
+
+/**
+ * Web Mercator X/Z meters (+X east, +Z south) back to WGS84 `[longitude, latitude]` degrees: the
+ * inverse of {@link projectWgs84}, through `dmath` for the same reason.
+ */
+export function unprojectMercator(x: number, z: number): Vec2 {
+  if (!Number.isFinite(x) || !Number.isFinite(z)) {
+    throw new Error('Web Mercator coordinates must be finite');
+  }
+  const longitude = ((x / MERCATOR_EARTH_RADIUS_METERS) * 180) / dmath.PI;
+  const latitude =
+    z === 0
+      ? 0
+      : ((2 * dmath.atan(dmath.exp(-z / MERCATOR_EARTH_RADIUS_METERS)) - dmath.PI / 2) * 180) /
+        dmath.PI;
+  return [longitude, latitude];
+}

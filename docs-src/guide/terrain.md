@@ -466,7 +466,9 @@ per-tile feature/point limits for other MVT producers.
 trees inside forest polygons, combined terrain-draped road ribbons, combined footprint extrusions,
 flat polygonal water, and draped linear waterways. `createTerrainWaterMaterial` provides an opaque
 physical material with optional world-space animation; call `setTerrainWaterTime` each frame to
-advance its highlights without discontinuities across floating-origin shifts. Opaque coverage
+advance its highlights without discontinuities across floating-origin shifts. It folds the origin
+into the ripples in double precision, so water stays sharp at planet-scale coordinates. Ripples a
+pixel cannot resolve fade into a broader highlight instead of shimmering. Opaque coverage
 avoids dark overlap seams while adjacent or parent/child water tiles refine. Expensive semantics
 can be level-bounded, toggled without re-decoding resident objects, and disposed with the elevation
 tile. Applications may replace the decoder, renderer, materials, or model geometry independently.

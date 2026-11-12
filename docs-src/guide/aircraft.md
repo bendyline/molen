@@ -42,6 +42,7 @@ streaming and floating-origin changes. Reloading starts a fresh session.
 | G | Retract/extend airplane gear while airborne |
 | F | Toggle airplane flaps |
 | J | Cycle powered-lift lever: forward, 22.5°, 45°, 67.5°, vertical; Osprey/Harrier only |
+| M | Helicopter cyclic: assisted (bounded tilt, levels itself) or direct (full authority) |
 | V | Cockpit / chase |
 | Mouse | Look around the cockpit |
 | R | Recover at the airfield after an impact |
@@ -83,6 +84,17 @@ forward speed, and just above the ground raise the collective to spend the rotor
 soft touchdown. Hold the collective up instead and the rotor slows, the HUD warns of low rotor
 RPM, and the lift goes with it. An aircraft cannot be exited or switched to free
 flight while airborne. After an impact, R resets its aircraft state and places it on the airfield.
+
+The helicopter's cyclic starts assisted: W/S and A/D ask for a tilt of up to about 30°, and the
+helicopter levels itself when you let go. Press M for direct cyclic. The stick then sets how
+fast the nose pitches and the fuselage rolls, there are no attitude limits, and releasing it holds
+whatever attitude you are in, level or not: in a hover you keep it level yourself. With 45 m/s
+and high collective, holding S loops the OH-6 in about six seconds for a hundred-odd meters of
+height; hold W to point it straight down. Keep the rotor loaded. Control comes from the rotor's
+thrust, so with the collective down, or pushing over into weightlessness, the stick does far less,
+and an inverted rotor drives the helicopter toward the ground. Press M again in any attitude to
+hand back to the assisted cyclic, which rolls the helicopter upright and levels it. On the ground
+both modes behave as assisted.
 
 Bendy Small Airliner: the generic 39-meter twin uses the same airplane controls, with slower
 responses and a lower load-factor limit than the Mustang. Its two independently named engines
@@ -278,13 +290,54 @@ printed pages 126–127, supports these mechanisms; it does not supply a validat
 coefficient set. This model does not reproduce the F-14A's TF30 compressor stalls, the later
 digital flight-control system, or automatic variable wing sweep aerodynamics.
 
-Helicopters retain assisted cyclic and collective controls. An actuator-disc power budget limits
+Helicopters keep an assisted collective and, unless [direct cyclic](#direct-cyclic) is selected,
+an assisted cyclic. An actuator-disc power budget limits
 lift by installed shaft power, induced power, rotor profile losses and parasitic drag power;
 increasing payload cannot create extra engine power. Their calibrated parasitic drag,
 density-dependent lift, ground effect and translational lift are supplemented by optional
 vortex-ring lift loss in powered, slow descent and retreating-blade lift loss above an authored
 equivalent speed. These are qualitative approximations, not blade-element models.
 Powered-lift conversion has the separate limitations described above.
+
+In forward flight the tail fin weathervanes the nose into the relative wind, so banking with the
+cyclic turns the nose along with the track rather than crabbing. The nose aligns at
+`helicopter.directionalStability × airspeed / length` rad/s per radian of sideslip (default 1;
+0 turns it off). In a full-cyclic turn without pedal the OH-6's nose trails its track by about
+4° at 25 m/s and about 1° at 50 m/s; right pedal coordinates the turn. The effect fades out
+below about a fifth of `translationalLiftSpeed`, where the tail sits in the rotor wake, so in a
+hover the pedals alone set the heading and a strong wind slowly turns the nose into it. Pedal
+authority does not change, so at cruise speed the pedals hold only a few degrees of sideslip
+against the fin: turn with the cyclic. Drag is the same in every direction, so a sideslip
+adds no side force.
+
+### Direct cyclic
+
+`aircraftInput.cyclicMode` selects the helicopter cyclic. `assisted` (the default) commands a
+tilt of `cyclicTilt × stick`, bounded by `maxTilt`, that springs back to level, and keeps the
+attitude as Euler angles. `direct` commands body pitch and roll rates and integrates the attitude
+as a quaternion, as the airplanes do, so loops, rolls and vertical dives are possible:
+
+- Full stick gives `helicopter.cyclicRate` rad/s (default `cyclicResponse / 4`, 1 rad/s in the
+  OH-6) with the rotor carrying the weight, reached with the rotor's damping
+  (`cyclicDamping`). Released, the rates die out and the attitude holds. There is no
+  self-levelling, speed stability or pitch weathervaning, so it flies as a rate-command,
+  attitude-hold helicopter, not one that drifts by itself.
+- Control power scales with rotor thrust over weight, clamped to 0..1.5. The share set by
+  `helicopter.hubStiffness` (0..1, default 0.25) comes from the blade hinges and remains at
+  zero g; the rest fades as the rotor unloads. Mast bumping in a teetering rotor is not modelled.
+- The rotor's heave damping, vortex ring, autorotation and climb power act on the climb or
+  descent through the disc, and translational lift, retreating-blade stall and parasite drag act
+  on the flow across it. With the disc level these are the vertical and horizontal airspeed,
+  exactly as in the assisted model; with the disc vertical in a dive, the whole descent runs
+  across the disc. Rotor thrust cannot reverse, so an inverted rotor pushes toward the ground.
+- The tail-fin weathervane works in the fuselage's own frame, so a helicopter banked past 90°
+  sideslips nose-first toward the ground. Pedals command a yaw rate the tail rotor reaches in
+  about an eighth of a second.
+
+On the skids both modes behave as assisted. Switching back to assisted in an unusual attitude
+does not snap: beyond `maxTilt` the limit lets the tilt shrink but not grow, and the cyclic's
+spring flies the helicopter back to level, rolling it upright from inverted in about a second
+and a half.
 
 ### Autorotation
 

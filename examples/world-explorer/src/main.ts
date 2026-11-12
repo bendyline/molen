@@ -119,6 +119,7 @@ import { type ExplorerWorldgenContent, loadExplorerContent } from './content.js'
 import { createExplorerDioramas, DIORAMA_SITES, selectedDiorama } from './dioramas.js';
 import { createFlightInstrumentPanel } from './flight-instrument-panel.js';
 import { formatCameraLocation } from './location-readout.js';
+import { createExplorerOverrides } from './override-controls.js';
 import { createPilotVision } from './pilot-vision.js';
 import { createExplorerQualityController, createStreamStrainMeter } from './quality-policy.js';
 import {
@@ -440,6 +441,10 @@ function createSyntheticAdaptiveLayers(options: {
   uses: boolean;
   surfaceRenderer: TerrainSurfaceRenderer;
   renderers: WorldgenSemanticRenderers | undefined;
+  /** Applied to both layers' renderers: map overrides edit each tile before it is built. */
+  wrap: (
+    renderer: WorldgenSemanticRenderers['humanFeatures'],
+  ) => WorldgenSemanticRenderers['humanFeatures'];
 }): TerrainPyramidTileLayer[] {
   return [
     createTerrainSemanticPyramidLayer({
@@ -459,16 +464,17 @@ function createSyntheticAdaptiveLayers(options: {
                   ? syntheticFeatureTile(address, { stores: options.stores })
                   : syntheticLandcoverTile(address),
       },
-      renderer:
+      renderer: options.wrap(
         options.renderers?.classification ??
-        createDefaultTerrainSemanticRenderer({
-          renderWater: false,
-          renderTransportation: false,
-          renderBuildings: false,
-          treesPerSquareKilometer: 70,
-          maxTreesPerTile: 180,
-          treeHeight: 28,
-        }),
+          createDefaultTerrainSemanticRenderer({
+            renderWater: false,
+            renderTransportation: false,
+            renderBuildings: false,
+            treesPerSquareKilometer: 70,
+            maxTreesPerTile: 180,
+            treeHeight: 28,
+          }),
+      ),
     }),
     createTerrainSemanticPyramidLayer({
       id: humanFeatureLayer.id,
@@ -487,13 +493,14 @@ function createSyntheticAdaptiveLayers(options: {
             uses: options.uses,
           }),
       },
-      renderer:
+      renderer: options.wrap(
         options.renderers?.humanFeatures ??
-        createDefaultTerrainSemanticRenderer({
-          surfaceRenderer: options.surfaceRenderer,
-          renderLandcover: false,
-          renderWater: false,
-        }),
+          createDefaultTerrainSemanticRenderer({
+            surfaceRenderer: options.surfaceRenderer,
+            renderLandcover: false,
+            renderWater: false,
+          }),
+      ),
     }),
   ];
 }
@@ -513,6 +520,8 @@ async function loadWorldgen(options: {
   content: ExplorerWorldgenContent;
   /** Every pack's assets: entity models, style-pack props and material documents. */
   assets: AssetProvider;
+  /** Serves the models a map override places that no pack carries. */
+  overrideAssets: AssetProvider;
   surfaceRenderer: TerrainSurfaceRenderer;
   metersPerUnit: number;
   quality: TerrainQualityPreset;
@@ -549,6 +558,7 @@ async function loadWorldgen(options: {
       : {}),
     content: options.content,
     assets: options.assets,
+    overrideAssets: options.overrideAssets,
     surfaceRenderer: options.surfaceRenderer,
     metersPerUnit: options.metersPerUnit,
     quality: options.quality,
@@ -969,13 +979,16 @@ async function main(): Promise<void> {
       ? webMercatorScaleAtLatitude((space.bounds[1] + space.bounds[3]) / 2)
       : 1;
   const useWorker = params.get('worker') !== '0';
+  // Map overrides (the "Replace building" controls): one set, read by every tile as it is built.
+  const explorerOverrides = createExplorerOverrides({ params, metersPerUnit });
   if (content.roadSigns && space.kind === 'geospatial')
     roadSigns = createEarthRoadSigns(content.roadSigns, metersPerUnit);
   if (content.fleet)
     fleet = createEarthFleet(
       content.fleet,
       roadContent.types.car ?? [],
-      content.parkedVehicles,
+      // Regional two-wheelers and auto-rickshaws park only where a fleet profile weights them.
+      content.fleetParkedVehicles ?? content.parkedVehicles,
       metersPerUnit,
     );
   let worldgen: ExplorerWorldgen | undefined;
@@ -996,8 +1009,10 @@ async function main(): Promise<void> {
                 viewer.renderer.prepareMaterialChange(current, next),
             }
           : {}),
-        content: content.worldgen,
+        // Without the landmarks an override clears, and with the models it places.
+        content: explorerOverrides.worldgenContent(content.worldgen),
         assets: content.assets,
+        overrideAssets: explorerOverrides.assets(content.assets),
         metersPerUnit,
         quality,
         // WebGL pays full price for every building and plant draw, so it keeps a compact scene.
@@ -1053,10 +1068,15 @@ async function main(): Promise<void> {
     const railed = observeSemanticTiles(renderer, explorerTrains.rail);
     const observed =
       wildlifeFeatures !== undefined ? observeSemanticTiles(railed, wildlifeFeatures) : railed;
+    // Map overrides edit the tile inside the airport overlay (which would clear a host's
+    // buildings off airport ground) and outside the observers, so traffic, rails and sound read
+    // the edited map.
     return withEarthAirports(
-      observeSemanticTiles(
-        ambientTiles !== undefined ? observeSemanticTiles(observed, ambientTiles) : observed,
-        audioTerrain.observer,
+      explorerOverrides.wrap(
+        observeSemanticTiles(
+          ambientTiles !== undefined ? observeSemanticTiles(observed, ambientTiles) : observed,
+          audioTerrain.observer,
+        ),
       ),
       content.airports,
     );
@@ -1116,12 +1136,14 @@ async function main(): Promise<void> {
           ? {
               landcoverLayer: {
                 renderer: withEarthAirports(
-                  wildlifeCover !== undefined
-                    ? observeSemanticTiles(
-                        observeSemanticTiles(worldgen.classification, wildlifeCover),
-                        audioTerrain.observer,
-                      )
-                    : observeSemanticTiles(worldgen.classification, audioTerrain.observer),
+                  explorerOverrides.wrap(
+                    wildlifeCover !== undefined
+                      ? observeSemanticTiles(
+                          observeSemanticTiles(worldgen.classification, wildlifeCover),
+                          audioTerrain.observer,
+                        )
+                      : observeSemanticTiles(worldgen.classification, audioTerrain.observer),
+                  ),
                   content.airports,
                 ),
               },
@@ -1130,13 +1152,15 @@ async function main(): Promise<void> {
           : {
               landcoverLayer: {
                 renderer: withEarthAirports(
-                  observeSemanticTiles(
-                    createDefaultTerrainSemanticRenderer({
-                      renderWater: false,
-                      renderTransportation: false,
-                      renderBuildings: false,
-                    }),
-                    audioTerrain.observer,
+                  explorerOverrides.wrap(
+                    observeSemanticTiles(
+                      createDefaultTerrainSemanticRenderer({
+                        renderWater: false,
+                        renderTransportation: false,
+                        renderBuildings: false,
+                      }),
+                      audioTerrain.observer,
+                    ),
                   ),
                   content.airports,
                 ),
@@ -1171,6 +1195,7 @@ async function main(): Promise<void> {
         uses: params.has('uses'),
         renderers: worldgen,
         surfaceRenderer,
+        wrap: explorerOverrides.wrap,
       })
     : realSemanticLayers;
   const hasClassification =
@@ -1405,6 +1430,8 @@ async function main(): Promise<void> {
   dioramaToggle.addEventListener('change', () => {
     dioramas.dispose();
     dioramas = createExplorerDioramas(dioramaToggle.checked, prepareDiorama);
+    // The scenes map overrides brought belong to the director that was just replaced.
+    explorerOverrides.resyncScenes();
   });
   const requestedDiorama = selectedDiorama(params.get('diorama'));
   let fitDioramaCamera =
@@ -1839,7 +1866,7 @@ async function main(): Promise<void> {
     })
     .catch((error: unknown) => console.warn('audio unavailable', error));
   const walkHelp =
-    'WASD walk · Shift run · Space jump · E board vehicle · click to look · Esc release mouse';
+    'WASD walk · Shift run · Space jump · E board vehicle · P personal ride · click to look · Esc release mouse';
   const swimHelp =
     'WASD swim · Shift swim faster · Return to shore to walk · E board vehicle · click to look · Esc release mouse';
   const boatHelp =
@@ -1928,6 +1955,7 @@ async function main(): Promise<void> {
       parachute.dispose();
       besideVehicles.clear();
       explorerTrains.dispose();
+      explorerOverrides.dispose();
       vehicles.dispose();
     }
   });
@@ -2032,6 +2060,37 @@ async function main(): Promise<void> {
       canvas.focus();
     });
   }
+  // P on foot: a personal ride from the walker's bag (a skateboard, an electric board, a shared
+  // kick scooter), set down a step ahead and boarded. Each press brings the next one.
+  const personalRides = [
+    'molen.entities.cycle.skateboard',
+    'molen.entities.cycle.electric_skateboard',
+    'molen.entities.cycle.kick_scooter',
+  ].filter((kind) => content.types?.has(kind));
+  let personalRide = 0;
+  const takePersonalRide = (): void => {
+    if (navigation !== 'walk' || parachute.active || !walker.ready) return;
+    if (vehicles.mountedId || flight.mountedKind) return;
+    const kind = personalRides[personalRide++ % Math.max(1, personalRides.length)];
+    if (kind === undefined) return;
+    if (vehicles.world.exists('personal-ride')) vehicles.remove('personal-ride');
+    const [fx, , fz] = cameraForward(camera.yaw, 0);
+    const x = walker.feet.x + fx * 0.8,
+      z = walker.feet.z + fz * 0.8;
+    const id = vehicles.spawn(
+      kind,
+      [x, sampleHeight(x, z) ?? walker.feet.y, z],
+      Math.PI / 2 - camera.yaw,
+      { id: 'personal-ride', retain: true },
+    );
+    if (id !== undefined && vehicles.board(id)) {
+      input.map.reset();
+      vehicles.view = 'chase';
+      help.textContent =
+        'W ride (push on a skateboard) · S brake · A/D steer and lean · E step off · V change view · drag to look';
+    } else help.textContent = vehicles.message || 'No room to set a ride down here';
+    canvas.focus();
+  };
   const interact = (): void => {
     if (navigation !== 'walk' || parachute.active || (!vehicles.mountedId && !walker.ready)) return;
     // Standing in a lift, E takes it up a storey rather than reaching for a vehicle.
@@ -2060,6 +2119,33 @@ async function main(): Promise<void> {
             : 'W/S accelerate / brake / reverse · A/D steer · Space brake · Shift handbrake · 1–4 doors · 5 hood · 6 rear access · K wipers · L lights · E exit · V change view · drag to look';
     }
   };
+  // The "Replace building" controls act on the scene from here on: its stream, its vehicles and
+  // scenes, and where the viewer stands and looks.
+  explorerOverrides.attach({
+    ...(!adaptive || !hasHumanFeatures || pyramidEarth === undefined
+      ? { unavailable: 'Replacing buildings needs adaptive Human layers.' }
+      : { stream: pyramidEarth.stream }),
+    layers: adaptiveLayers,
+    ...(worldgen !== undefined ? { worldgen } : {}),
+    vehicles,
+    dioramas: () => dioramas,
+    viewer: () => ({
+      position: camera.pos,
+      yaw: camera.yaw,
+      pitch: camera.pitch,
+      ...(navigation === 'walk' && walker.ready
+        ? { feet: { x: walker.feet.x, z: walker.feet.z } }
+        : {}),
+      busy: Boolean(vehicles.mountedId || flight.mountedKind || parachute.active),
+    }),
+    sampleHeight,
+    moveWalker: (x, z) => walker.reset(x, z),
+    onApplied: () => walkCollision.invalidate(),
+    showBuildings: () => {
+      if (hasHumanFeatures) setMode('human');
+    },
+    focus: () => canvas.focus(),
+  });
   window.addEventListener('keydown', (event) => {
     if (event.defaultPrevented) return;
     // Not a reload in mid-flight, wherever focus is; Ctrl+F5 still reloads.
@@ -2080,11 +2166,16 @@ async function main(): Promise<void> {
     )
       return;
     if (event.code === 'KeyB' && !flight.mountedKind && !vehicles.mountedId) spawnBoat();
+    if (event.code === 'KeyP') takePersonalRide();
     // Q takes a lift down a storey; walk binds no other action to it.
     if (event.code === 'KeyQ' && navigation === 'walk' && walker.ready && !vehicles.mountedId)
       rideLift(-1);
     if (event.code === 'KeyR' && !flight.mountedKind && !vehicles.mountedId)
       viewer.renderer.setWorldOrigin([camera.pos[0], 0, camera.pos[2]]);
+    // N replaces the building ahead with the picked sample; U takes the last one back. No
+    // navigation profile binds either key.
+    if (event.code === 'KeyN') explorerOverrides.replace();
+    if (event.code === 'KeyU') explorerOverrides.undo();
     if (
       event.code === 'KeyL' &&
       ambient !== undefined &&
@@ -2839,6 +2930,8 @@ async function main(): Promise<void> {
         navigation === 'walk' && walker.ready ? vehicles.nearest(camera.pos) : undefined;
       const nearAircraft =
         navigation === 'walk' && walker.ready ? flight.nearest(camera.pos) : undefined;
+      // The building a walker faces, read from the map only when the walker moved.
+      const replacePrompt = explorerOverrides.tick();
       const navigationText = flight.mountedKind
         ? flight.status()
         : parachute.status() ||
@@ -2861,7 +2954,7 @@ async function main(): Promise<void> {
                           : walker.swimming
                             ? 'Swimming · Return to shore to walk'
                             : (liftStatus(walker.feet) ??
-                              `Walk mode · ${WALK_EYE_HEIGHT.toFixed(1)}m eye height · ${walker.grounded ? 'On ground' : 'In air'}`)
+                              `Walk mode · ${WALK_EYE_HEIGHT.toFixed(1)}m eye height · ${walker.grounded ? 'On ground' : 'In air'}${replacePrompt !== undefined ? ` · ${replacePrompt}` : ''}`)
                       : 'Fly mode · Explore from above')));
       if (navigationStatus.textContent !== navigationText)
         navigationStatus.textContent = navigationText;

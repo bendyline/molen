@@ -30,12 +30,63 @@ export { ECOLOGY_ATLAS_EXAMPLE, registerEcologyAtlasSchema } from './kernel/ecol
 export { buildingLabels, contextLabelAt, landcoverLabel } from './kernel/labels';
 export type { LandSiteOptions } from './kernel/land-sites';
 export { LAND_SITE_COLORS, landSiteProps, prepareLandSites } from './kernel/land-sites';
-export { mappedPropExclusions, mappedPropRequests } from './kernel/mapped-props';
+export type { MapOverrideStructureOptions } from './kernel/map-override-structures';
+export { withMapOverrideStructures } from './kernel/map-override-structures';
+export {
+  isMapOverrideFeature,
+  MAP_OVERRIDE_COLOR_TAG,
+  MAP_OVERRIDE_COVER_CLASS,
+  MAP_OVERRIDE_ID_PREFIX,
+  MAP_OVERRIDE_MODEL_TAG,
+  MAP_OVERRIDE_PROP_CLASS,
+  MAP_OVERRIDE_SCALE_TAG,
+  MAP_OVERRIDE_STYLE_TAG,
+  MAP_OVERRIDE_TAG,
+  MAP_OVERRIDE_TRIM_TAG,
+  MAP_OVERRIDE_WALL_TAG,
+  mapOverrideFeatureId,
+} from './kernel/map-override-tags';
+export { applyMapOverrides, mapOverrideTileKey } from './kernel/map-override-tile';
+export type {
+  MapOverride,
+  MapOverrideArea,
+  MapOverrideBuilding,
+  MapOverrideChange,
+  MapOverrideClear,
+  MapOverrideFrame,
+  MapOverrideModel,
+  MapOverridePoint,
+  MapOverrideProp,
+  MapOverrideSet,
+  MapOverrideSurface,
+  ResolvedMapOverride,
+  ResolvedMapOverrideBuilding,
+  ResolvedMapOverrideModel,
+  ResolvedMapOverrideProp,
+} from './kernel/map-overrides';
+export {
+  createMapOverrideSet,
+  MAP_OVERRIDE_HOST_MODEL_MIN_LEVEL,
+  MAP_OVERRIDE_LIMITS,
+  MAP_OVERRIDE_MIN_LEVEL,
+  mapOverrideContains,
+  mapOverrideFrame,
+  mapOverridePoint,
+  resolveMapOverride,
+} from './kernel/map-overrides';
+export type { MapOverridesDoc } from './kernel/map-overrides-schema';
+export { registerMapOverridesSchema } from './kernel/map-overrides-schema';
+export {
+  mappedPropExclusions,
+  mappedPropRequests,
+  overridePropRequests,
+} from './kernel/mapped-props';
 export {
   createPlacesContent,
   type PlacesContent,
   type PlacesContentDocs,
 } from './kernel/places';
+export { unprojectMercator } from './kernel/projection';
 export type {
   ProjectedRegion,
   RegionResolver,
@@ -111,7 +162,12 @@ export {
 export type { WorldgenQualityPreset } from './kernel/tile-budgets';
 export { worldgenBuildingCellSize, worldgenTileBudgetForQuality } from './kernel/tile-budgets';
 export type { EdgeDecision } from './kernel/tile-edges';
-export { analyzeTileEdge, buildingClipBuffer, PROTOMAPS_TILE_BUFFER } from './kernel/tile-edges';
+export {
+  analyzeTileEdge,
+  analyzeWholeFootprint,
+  buildingClipBuffer,
+  PROTOMAPS_TILE_BUFFER,
+} from './kernel/tile-edges';
 export type { WorldgenTileInput, WorldgenTileOutput } from './kernel/tile-generate';
 export {
   generateWorldgenTile,
@@ -133,6 +189,7 @@ export { createWorldgenWorkerHandler } from './kernel/worker-protocol';
 
 import { registerBusinessCatalogSchema } from './kernel/business-catalog-schema';
 import { registerEcologyAtlasSchema } from './kernel/ecology-atlas-schema';
+import { registerMapOverridesSchema } from './kernel/map-overrides-schema';
 import { registerRegionAtlasSchema } from './kernel/region-atlas-schema';
 import { registerRegionalCatalogSchema } from './kernel/regional-content-schema';
 import { registerStructurePlacementsSchema } from './kernel/structure-index-schema';
@@ -145,6 +202,7 @@ registerWildlifeRangesSchema();
 registerRegionalCatalogSchema();
 registerBusinessCatalogSchema();
 registerStructurePlacementsSchema();
+registerMapOverridesSchema();
 
 export type { StructureDirectory, StructureShard } from './kernel/structure-directory';
 export { parseStructureDirectory, structureRegionBounds } from './kernel/structure-directory';

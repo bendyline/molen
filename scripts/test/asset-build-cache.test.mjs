@@ -287,6 +287,101 @@ test('successful jobs remain cached when a sibling fails', async () => {
   assert.deepEqual(runIds(await build(root)), []);
 });
 
+// 0xC0000005 is how Windows ends a process for an access violation; only Windows reports it so.
+const windowsOnly = { skip: process.platform !== 'win32' };
+
+test(
+  'a generator that loses a Node process to an access violation runs once more',
+  windowsOnly,
+  async () => {
+    const root = await fixture();
+    // One's own process dies on its first attempt; two starts a process that does.
+    await put(
+      root,
+      'scripts/one.mjs',
+      `
+    import {appendFileSync, existsSync, mkdirSync, writeFileSync} from 'node:fs';
+    appendFileSync('.artifacts/one-attempts.txt', 'attempt\\n');
+    if (!existsSync('.artifacts/one-crashed')) {
+      writeFileSync('.artifacts/one-crashed', '');
+      process.exit(0xC0000005);
+    }
+    mkdirSync('assets/one', {recursive: true});
+    writeFileSync('assets/one/model.glb', 'one');
+  `,
+    );
+    await put(
+      root,
+      'scripts/two.mjs',
+      `
+    import {execFile} from 'node:child_process';
+    import {appendFileSync, existsSync, mkdirSync, writeFileSync} from 'node:fs';
+    import {promisify} from 'node:util';
+    appendFileSync('.artifacts/two-attempts.txt', 'attempt\\n');
+    if (!existsSync('.artifacts/two-crashed')) {
+      writeFileSync('.artifacts/two-crashed', '');
+      await promisify(execFile)(process.execPath, ['-e', 'process.exit(0xC0000005)']);
+    }
+    mkdirSync('assets/two', {recursive: true});
+    writeFileSync('assets/two/model.glb', 'two');
+  `,
+    );
+    const messages = [];
+    const report = await build(root, { log: (message) => messages.push(message) });
+    assert.deepEqual(runIds(report), ['one', 'two']);
+    for (const id of ['one', 'two']) {
+      assert.equal(
+        await readFile(join(root, `.artifacts/${id}-attempts.txt`), 'utf8'),
+        'attempt\nattempt\n',
+      );
+      assert.ok(
+        messages.includes(
+          `  Generator ${id} lost a Node process to an access violation; retrying once in 2 seconds.`,
+        ),
+      );
+      assert.equal(await readFile(join(root, `assets/${id}/model.glb`), 'utf8'), id);
+    }
+    assert.deepEqual(runIds(await build(root)), []);
+  },
+);
+
+test(
+  'a process that crashes on every attempt fails after the second; other failures run once',
+  windowsOnly,
+  async () => {
+    const root = await fixture();
+    await put(
+      root,
+      'scripts/one.mjs',
+      `
+    import {appendFileSync} from 'node:fs';
+    appendFileSync('.artifacts/one-attempts.txt', 'attempt\\n');
+    throw Error('deliberate failure');
+  `,
+    );
+    await put(
+      root,
+      'scripts/two.mjs',
+      `
+    import {appendFileSync} from 'node:fs';
+    appendFileSync('.artifacts/two-attempts.txt', 'attempt\\n');
+    process.exit(0xC0000005);
+  `,
+    );
+    await assert.rejects(build(root), (error) => {
+      assert.match(error.message, /Generator one failed \(exit 1\)/);
+      assert.match(error.message, /deliberate failure/);
+      assert.match(error.message, /Generator two failed \(exit 3221225477\)/);
+      return true;
+    });
+    assert.equal(await readFile(join(root, '.artifacts/one-attempts.txt'), 'utf8'), 'attempt\n');
+    assert.equal(
+      await readFile(join(root, '.artifacts/two-attempts.txt'), 'utf8'),
+      'attempt\nattempt\n',
+    );
+  },
+);
+
 test('after-import progress and its log are visible before the job exits', async () => {
   const root = await fixture();
   const plan = JSON.parse(await readFile(join(root, 'asset-build.json'), 'utf8'));

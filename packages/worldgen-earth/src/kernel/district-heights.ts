@@ -7,6 +7,7 @@ import {
 } from '@bendyline/molen-terrain/kernel';
 import { hashString, ringCentroid, unit01 } from '@bendyline/molen-worldgen/kernel';
 import { buildingLabels, contextLabelForPolygon } from './labels';
+import { isMapOverrideFeature } from './map-override-tags';
 
 /**
  * Uses a commercial core leaves unmeasured. Homes, flats, civic buildings and shops keep their
@@ -68,7 +69,9 @@ export function withDistrictLevels(
       feature.levels !== undefined ||
       (feature.minHeight ?? 0) > 0 ||
       feature.class === 'building_part' ||
-      feature.tags?.['molen:inferred'] !== undefined
+      feature.tags?.['molen:inferred'] !== undefined ||
+      // A host's building is as tall as its owner said, or one level: never a district's guess.
+      isMapOverrideFeature(feature)
     )
       return feature;
     const polygon = feature.polygons[0];

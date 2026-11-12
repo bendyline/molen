@@ -137,6 +137,7 @@ export {
   type TerrainPyramidBudget,
   type TerrainPyramidCoverageBand,
   type TerrainPyramidHeightSource,
+  type TerrainPyramidLayerRefresh,
   type TerrainPyramidLayerTiming,
   type TerrainPyramidLookAheadOptions,
   type TerrainPyramidSelection,
@@ -362,6 +363,7 @@ export {
 } from './semantic-decoder-worker';
 export {
   deriveOverzoomTerrainSemanticTilePacket,
+  deriveTerrainSemanticTileContentHash,
   deriveTerrainSemanticTilePacket,
   keepTerrainSemanticTile,
   packTerrainSemanticTile,

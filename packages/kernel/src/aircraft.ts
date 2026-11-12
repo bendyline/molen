@@ -248,9 +248,6 @@ function bodyAxes(rot: Quat): Axes {
     left: quatRotateVec3(rot, [1, 0, 0]),
   };
 }
-function flightAxes(yaw: number, pitch: number, roll: number): Axes {
-  return bodyAxes(vehicleRotation(yaw, -pitch, roll));
-}
 /** Heading (+left), nose-up pitch and right bank of an orientation: inverts vehicleRotation. */
 function attitude(axes: Axes): { yaw: number; pitch: number; roll: number } {
   return {
@@ -516,6 +513,9 @@ export function stepAircraft(
     };
     let rot: Quat;
     let pos: Vec3;
+    // Whether this substep integrated the attitude as a quaternion (airplanes, and helicopters
+    // on direct cyclic) rather than from the stored Euler angles.
+    let quaternionAttitude = airplane !== undefined;
     // Share of the weight still on the wheels once the wing and thrust carry the rest.
     let wheelLoad = 1;
     let liftoffTrim: number | undefined;
@@ -947,43 +947,23 @@ export function stepAircraft(
       s.equivalentAirspeed = s.airspeed * m.sqrt(density / 1.225);
       const rotorAuthority = aircraftSectionAuthority(spec, s, 'rotor');
       const authority = s.rpm * s.rpm * rotorAuthority;
-      // Rotor disc response with light attitude damping: cyclic commands a tilt, not velocity.
-      s.pitchRate +=
-        (input.pitch * helicopter.cyclicTilt - s.pitch) *
-          authority *
-          h *
-          helicopter.cyclicResponse -
-        s.pitchRate * h * helicopter.cyclicDamping;
-      s.rollRate +=
-        (input.roll * helicopter.cyclicTilt - s.roll) * authority * h * helicopter.cyclicResponse -
-        s.rollRate * h * helicopter.cyclicDamping;
-      if (field?.structured && !s.grounded) {
-        // Uneven gusts across the disc tilt it: an updraft ahead lifts the nose, one on the
-        // left rolls right.
-        const axes = flightAxes(s.yaw, s.pitch, s.roll);
-        const hub = vehicleLocalPoint(t, helicopter.rotorPosition);
-        const reach = 0.7 * helicopter.rotorRadius;
-        const lift = (direction: Vec3, sign: number): number =>
-          dot(windAt(hub.map((v, i) => v + sign * (direction[i] ?? 0) * reach) as Vec3), axes.up);
-        const k = (helicopter.cyclicDamping * authority * h) / (2 * reach);
-        s.pitchRate += k * (lift(axes.forward, 1) - lift(axes.forward, -1));
-        s.rollRate += k * (lift(axes.left, 1) - lift(axes.left, -1));
-      }
-      s.pitch = m.clamp(s.pitch + s.pitchRate * h, -helicopter.maxTilt, helicopter.maxTilt);
-      s.roll = m.clamp(s.roll + s.rollRate * h, -helicopter.maxTilt, helicopter.maxTilt);
       const tailAuthority =
         aircraftSectionAuthority(spec, s, 'tail') * aircraftSectionAuthority(spec, s, 'tailRotor');
-      s.yaw -= input.yaw * authority * h * helicopter.yawRate * tailAuthority;
-      if (tailAuthority < 1) {
-        s.yawRate = ((s.yawRate ?? 0) + h * authority * (1 - tailAuthority) * 1.5) / (1 + h * 0.1);
-        s.yaw += s.yawRate * h;
-      }
-      if (s.grounded) {
-        s.pitch = approach(s.pitch, 0, h * helicopter.groundLevelRate);
-        s.roll = approach(s.roll, 0, h * helicopter.groundLevelRate);
-      }
-      rot = vehicleRotation(s.yaw, -s.pitch, s.roll);
-      const { up } = flightAxes(s.yaw, s.pitch, s.roll);
+      // Assisted cyclic commands a bounded tilt that levels itself, kept as Euler angles. Direct
+      // cyclic commands body rates and integrates the attitude as a quaternion, as the airplanes
+      // do, so the helicopter can loop or point straight down. On the skids both are assisted.
+      const direct = input.cyclicMode === 'direct' && !s.grounded;
+      quaternionAttitude = direct;
+      rot = direct ? quatNormalize(t.rot) : vehicleRotation(s.yaw, -s.pitch, s.roll);
+      // The rotor meets the air as a climb or descent through its disc (`axial`, which drives
+      // heave damping, vortex ring and autorotation) and a flow across it (`edge`, which drives
+      // translational lift, retreating-blade stall and parasite drag). With the disc level these
+      // are the vertical and horizontal airspeed. Tilted far over, the disc turns its edge into
+      // a climb or dive: pointed straight down, the whole descent runs across the disc.
+      const disc: Vec3 = direct ? bodyAxes(rot).up : [0, 1, 0];
+      const axial = (air[1] ?? 0) * disc[1];
+      const edge = air.map((v, i) => v - axial * (disc[i] ?? 0));
+      const horizontal = m.hypot(edge[0] ?? 0, edge[1] ?? 0, edge[2] ?? 0);
       s.angleOfAttack = 0;
       s.stalled = false;
       const agl = m.max(0, t.pos[1] - ground);
@@ -992,8 +972,7 @@ export function stepAircraft(
       const translational =
         1 +
         helicopter.translationalLift *
-          m.clamp(m.hypot(air[0] ?? 0, air[2] ?? 0) / helicopter.translationalLiftSpeed, 0, 1);
-      const horizontal = m.hypot(air[0] ?? 0, air[2] ?? 0);
+          m.clamp(horizontal / helicopter.translationalLiftSpeed, 0, 1);
       const rotorDragDensity = helicopter.powerLimitedRotor ? density / 1.225 : 1;
       const induced = m.sqrt(
         weight /
@@ -1002,7 +981,7 @@ export function stepAircraft(
             2 * density * m.PI * helicopter.rotorRadius ** 2 * (helicopter.rotorDiscs ?? 1),
           ),
       );
-      const descent = -(air[1] ?? 0) / m.max(1, induced);
+      const descent = -axial / m.max(1, induced);
       const ring =
         helicopter.vortexRing && !s.grounded
           ? m.smoothstep((descent - 0.4) / 0.8) *
@@ -1035,7 +1014,7 @@ export function stepAircraft(
       const upflow = autorotating
         ? m.min(
             0.8,
-            m.max(0, -(air[1] ?? 0)) /
+            m.max(0, -axial) /
               (0.15 *
                 m.max(
                   20,
@@ -1086,7 +1065,7 @@ export function stepAircraft(
           );
           return (
             (thrust * vi) / ((helicopter.rotorEfficiency ?? 0.75) * groundEffect) +
-            thrust * m.max(0, air[1] ?? 0) +
+            thrust * m.max(0, axial) +
             profilePower +
             parasitePower
           );
@@ -1097,7 +1076,7 @@ export function stepAircraft(
           // holds its speed, and a pull at the bottom spends that speed on a last cushion.
           const engine = engines[0];
           const rotor = engine ? bank[engine.id] : undefined;
-          const need = required(lift) + lift * m.min(0, air[1] ?? 0);
+          const need = required(lift) + lift * m.min(0, axial);
           const stored =
             (helicopter.rotorInertiaTime ?? 2) *
             ((weight * m.sqrt(weight / m.max(0.01, 2 * 1.225 * discArea))) /
@@ -1121,13 +1100,120 @@ export function stepAircraft(
       }
       lift *= rotorAuthority;
       if ((s.actuators?.eject ?? 0) > 0.08) lift = 0;
+      const axes = bodyAxes(rot);
+      const gust = (): void => {
+        if (!field?.structured) return;
+        // Uneven gusts across the disc tilt it: an updraft ahead lifts the nose, one on the
+        // left rolls right.
+        const hub = vehicleLocalPoint(t, helicopter.rotorPosition);
+        const reach = 0.7 * helicopter.rotorRadius;
+        const gustLift = (direction: Vec3, sign: number): number =>
+          dot(windAt(hub.map((v, i) => v + sign * (direction[i] ?? 0) * reach) as Vec3), axes.up);
+        const k = (helicopter.cyclicDamping * authority * h) / (2 * reach);
+        s.pitchRate += k * (gustLift(axes.forward, 1) - gustLift(axes.forward, -1));
+        s.rollRate += k * (gustLift(axes.left, 1) - gustLift(axes.left, -1));
+      };
+      // The tail fin weathervanes the nose into the relative wind, so a banked helicopter's
+      // nose follows its curving track instead of crabbing sideways. The fin's restoring moment
+      // and its damping both grow with dynamic pressure, so the nose aligns at a rate
+      // proportional to airspeed over the tail arm. Below about 7 kt the tail sits in the rotor
+      // wake and only the pedals hold the heading.
+      const weathervane = (speed: number): number =>
+        ((helicopter.directionalStability ?? 1) *
+          tailAuthority *
+          m.smoothstep((speed / helicopter.translationalLiftSpeed - 0.2) / 0.5)) /
+        spec.length;
+      if (direct) {
+        // Cyclic tilts the disc against the mast and the hub drags the fuselage after it: the
+        // stick sets a pitch and roll rate, which the turning disc damps. Part of the hub moment
+        // comes from the blade hinges and the rest from the thrust's lever arm, so control
+        // fades as the rotor unloads in a push-over. With `hubStiffness` 0 (a teetering rotor)
+        // none is left at zero g.
+        const stiffness = helicopter.hubStiffness ?? 0.25;
+        const control = authority * (stiffness + (1 - stiffness) * m.clamp(lift / weight, 0, 1.5));
+        const command =
+          (helicopter.cyclicRate ?? helicopter.cyclicResponse / 4) *
+          (helicopter.cyclicDamping + 0.3) *
+          control;
+        const damping = 1 + h * (helicopter.cyclicDamping * authority + 0.3);
+        s.pitchRate = (s.pitchRate + h * command * m.clamp(input.pitch, -1, 1)) / damping;
+        s.rollRate = (s.rollRate + h * command * m.clamp(input.roll, -1, 1)) / damping;
+        gust();
+        // The tail rotor yaws the fuselage with the pedals and damps its yawing; with the tail
+        // gone the main rotor's torque spins it instead.
+        const pedals = 8 * tailAuthority;
+        s.yawRate =
+          ((s.yawRate ?? 0) +
+            h *
+              (-pedals * m.clamp(input.yaw, -1, 1) * authority * helicopter.yawRate +
+                authority * (1 - tailAuthority) * 1.5)) /
+          (1 + h * (pedals + 0.1));
+        // The fin works in the fuselage's own frame, so it weathervanes inverted or nose-down.
+        const along = dot(air, axes.forward);
+        const lateral = dot(air, axes.left);
+        const across = m.hypot(along, lateral);
+        const vane = weathervane(across);
+        const turn: Vec3 = [
+          -s.pitchRate,
+          s.yawRate + (vane * lateral) / (1 + h * vane * across),
+          s.rollRate,
+        ];
+        const angle = m.hypot(turn[0], turn[1], turn[2]) * h;
+        if (angle > 0)
+          rot = quatNormalize(
+            quatMul(rot, quatFromAxisAngle(turn.map((v) => (v * h) / angle) as Vec3, angle)),
+          );
+      } else {
+        // Rotor disc response with light attitude damping: cyclic commands a tilt, not velocity.
+        s.pitchRate +=
+          (input.pitch * helicopter.cyclicTilt - s.pitch) *
+            authority *
+            h *
+            helicopter.cyclicResponse -
+          s.pitchRate * h * helicopter.cyclicDamping;
+        s.rollRate +=
+          (input.roll * helicopter.cyclicTilt - s.roll) *
+            authority *
+            h *
+            helicopter.cyclicResponse -
+          s.rollRate * h * helicopter.cyclicDamping;
+        if (!s.grounded) gust();
+        // A tilt past the limit, left over from direct cyclic, recovers but cannot grow.
+        const pitchLimit = m.max(helicopter.maxTilt, m.abs(s.pitch));
+        const rollLimit = m.max(helicopter.maxTilt, m.abs(s.roll));
+        s.pitch = m.clamp(s.pitch + s.pitchRate * h, -pitchLimit, pitchLimit);
+        s.roll = m.clamp(s.roll + s.rollRate * h, -rollLimit, rollLimit);
+        s.yaw -= input.yaw * authority * h * helicopter.yawRate * tailAuthority;
+        if (!s.grounded) {
+          const vane = weathervane(horizontal);
+          // Leftward air speed (yaw is +left): horizontal speed times the sine of the sideslip.
+          const lateral = (air[0] ?? 0) * m.cos(s.yaw) - (air[2] ?? 0) * m.sin(s.yaw);
+          s.yaw += (h * vane * lateral) / (1 + h * vane * horizontal);
+        }
+        if (tailAuthority < 1) {
+          s.yawRate =
+            ((s.yawRate ?? 0) + h * authority * (1 - tailAuthority) * 1.5) / (1 + h * 0.1);
+          s.yaw += s.yawRate * h;
+        } else if (s.yawRate) {
+          // Pedals set the heading directly here: a direct-cyclic yaw rate does not carry over.
+          s.yawRate = 0;
+        }
+        if (s.grounded) {
+          s.pitch = approach(s.pitch, 0, h * helicopter.groundLevelRate);
+          s.roll = approach(s.roll, 0, h * helicopter.groundLevelRate);
+        }
+        rot = vehicleRotation(s.yaw, -s.pitch, s.roll);
+      }
+      const { up } = bodyAxes(rot);
       const force = [0, -weight, 0];
       for (let i = 0; i < 3; i++)
         force[i] =
           (force[i] ?? 0) +
           (up[i] ?? 0) * lift -
-          (air[i] ?? 0) *
-            (i === 1 ? helicopter.verticalDrag : rotorHorizontalDrag) *
+          (direct
+            ? axial * (disc[i] ?? 0) * helicopter.verticalDrag +
+              (edge[i] ?? 0) * rotorHorizontalDrag
+            : (air[i] ?? 0) * (i === 1 ? helicopter.verticalDrag : rotorHorizontalDrag)) *
             rotorDragDensity;
       for (let i = 0; i < 3; i++)
         s.velocity[i] = (s.velocity[i] ?? 0) + ((force[i] ?? 0) / mass) * h;
@@ -1151,7 +1237,7 @@ export function stepAircraft(
     s.grounded = pos[1] <= support;
     if (previous.grounded && !s.grounded && liftoffTrim !== undefined) s.pitchTrim = liftoffTrim;
     if (s.grounded) {
-      const touchdown = airplane
+      const touchdown = quaternionAttitude
         ? attitude(bodyAxes(rot))
         : { yaw: s.yaw, pitch: s.pitch, roll: s.roll };
       const hard =
@@ -1220,7 +1306,7 @@ export function stepAircraft(
       s.velocity = s.velocity.map((v) => -v * 0.08) as Vec3;
     } else t = candidate;
     stepAircraftDebris(s, spec, env, id, h);
-    if (airplane) {
+    if (quaternionAttitude) {
       const pose = attitude(bodyAxes(t.rot));
       s.yaw = pose.yaw;
       s.pitch = pose.pitch;

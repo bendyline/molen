@@ -35,6 +35,10 @@ This batch adds 24 original polygonal reference models: four each for China, Jap
 
 ## Regional mixing
 
+South and Southeast Asia, the Philippines and Taiwan have their own profiles too, and several
+regions add motorcycles, scooters, mopeds and auto-rickshaws; see
+[LIGHT-VEHICLES.md](LIGHT-VEHICLES.md).
+
 [fleets/road.json](fleets/road.json) holds relative visual weights, inheritance and atlas bindings. These are deliberately approximate and are not claimed sales shares. Existing older vehicles remain available, and imported models share IDs across regions. The shortlist defaults to 16 model types per market. The four new core models lead each primary profile, while subregional profiles vary their weights. Generic fallback vehicles retain Bendy names; reference models use their manufacturer/model identity. Aircraft and ships remain global.
 
 The atlas's Korean peninsula region uses a predominantly South Korean fleet. Export trim and steering-side reuse are approximations, especially for shared older cars and Africa's different traffic conventions. Driving side is a separate host setting. Coverage is a starting library, not a comprehensive reconstruction of each country's vehicle stock.

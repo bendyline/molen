@@ -4,6 +4,7 @@ import {
 } from '@bendyline/molen-terrain/kernel';
 import { describe, expect, it } from 'vitest';
 import { districtLevels, withDistrictLevels } from '../src/kernel/district-heights';
+import { MAP_OVERRIDE_TAG } from '../src/kernel/map-override-tags';
 
 /** A square footprint `side` tile units across with its lower corner at (u, v). */
 function square(u: number, v: number, side: number): TerrainBuildingFeature['polygons'] {
@@ -57,6 +58,28 @@ describe('district height priors', () => {
     for (let i = 0; i < 10; i++)
       suburb.buildings.push({ id: i, class: 'building', polygons: square(i * 0.1, 0.5, 0.02) });
     expect(withDistrictLevels(suburb, [0, 0], 1000)).toBe(suburb);
+  });
+
+  it("leaves a host's building at the height its owner gave it, or none", () => {
+    // In the middle of a core that raises every unmeasured block around it.
+    const tile = downtown();
+    const index = 12 * 25 + 12;
+    const mapped = tile.buildings[index] as TerrainBuildingFeature;
+    const { id: _id, ...unmeasured } = mapped;
+    const host: TerrainBuildingFeature = {
+      ...unmeasured,
+      id: 'override:lot:hall',
+      tags: { [MAP_OVERRIDE_TAG]: 'lot' },
+    };
+    tile.buildings[index] = host;
+    const result = withDistrictLevels(tile, [0, 0], 1000);
+    expect(result.buildings[index]).toBe(host);
+    expect(result.buildings[index + 1]?.levels).toBeGreaterThanOrEqual(2);
+    // The tag alone decides it: the same footprint untagged gets the district's prior.
+    tile.buildings[index] = { ...unmeasured, id: 'mapped' };
+    expect(withDistrictLevels(tile, [0, 0], 1000).buildings[index]?.levels).toBeGreaterThanOrEqual(
+      2,
+    );
   });
 
   it('does not count a lone big box as a dense block', () => {

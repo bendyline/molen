@@ -12,6 +12,7 @@ import { EARTH_WATER_CONDITIONS, EarthWater } from './water';
 import {
   AdaptiveQualityController,
   type AdaptiveQualityReason,
+  type AssetProvider,
   applyEnvironment,
   createViewer,
   type EnvironmentData,
@@ -92,8 +93,15 @@ import {
   type StructureStreamingOptions,
   type StructureStreamingStats,
 } from '@bendyline/molen-worldgen/client';
-import type { StructureTerrainSampler } from '@bendyline/molen-worldgen-earth/client';
-import { isStructureViewingDate } from '@bendyline/molen-worldgen-earth/kernel';
+import {
+  type StructureTerrainSampler,
+  withMapOverrides,
+} from '@bendyline/molen-worldgen-earth/client';
+import {
+  createMapOverrideSet,
+  isStructureViewingDate,
+  withMapOverrideStructures,
+} from '@bendyline/molen-worldgen-earth/kernel';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import {
@@ -142,6 +150,14 @@ import {
   earthNightFactor,
   earthShadowFocus,
 } from './look';
+import {
+  bindMapOverrideEntities,
+  bindMapOverrides,
+  type EarthBuildingHit,
+  type EarthOverride,
+  type EarthOverrides,
+  type MapOverrideBinding,
+} from './overrides';
 import {
   createEarthAdmissionGovernor,
   EARTH_CALIBRATION_QUALITY,
@@ -373,6 +389,17 @@ export interface EarthViewOptions {
   actors?: EarthActorSettings;
   /** Bounded scripted set pieces. Content loads only while nearby and scheduled active. */
   dioramas?: EarthDioramaOptions;
+  /**
+   * Places where the host replaces the mapped world: a rectangle to clear and what stands there
+   * instead. Change them later through {@link EarthView.overrides}.
+   */
+  overrides?: readonly EarthOverride[];
+  /**
+   * Loads the models an override places that no content pack carries: `load(ref)` returns a
+   * GLB's bytes. Without it such a ref is asked of `content`, which serves a host's own content
+   * pack; a model that cannot be loaded is not drawn and says so once on the console.
+   */
+  overrideAssets?: AssetProvider;
   /** Boardable parked aircraft on mapped airport aprons (default true when airport data exists). */
   airportTraffic?: boolean;
   /** What the interact key (E) reaches on foot; change it later with {@link EarthView.setInteraction}. */
@@ -589,6 +616,11 @@ export interface EarthViewEvents {
     reason?: string;
   };
   camerachange: EarthCameraState;
+  /**
+   * The overrides changed (`pending`: the view still shows what stood there before), or that
+   * change reached the screen (`applied`).
+   */
+  overridechange: { revision: number; state: 'pending' | 'applied'; ids: readonly string[] };
   /** A host-provided terrain region became active; update visible attribution. */
   terrainchange: { key?: string; credits: EarthCredit[] };
   markerclick: { id: string };
@@ -629,6 +661,8 @@ export interface EarthViewStats {
    */
   worldgen?: { tiles: number; buildings: number; standIns: number };
   structures?: StructureStreamingStats;
+  /** Overrides registered, and tile layers still showing what a change of them replaced. */
+  overrides?: { count: number; refreshing: number };
 }
 
 /** What {@link EarthView.cacheStats} reports. */
@@ -642,6 +676,23 @@ export interface EarthCacheStats {
 export interface EarthView {
   /** Register geographic set pieces; no content is fetched until one is nearby. */
   readonly dioramas: EarthDioramas;
+  /**
+   * Places where the host replaces the mapped world: add, change and remove them while the view
+   * runs. They are geographic, so they stay through re-anchors of the view.
+   */
+  readonly overrides: EarthOverrides;
+  /**
+   * The mapped building or landmark at a place, or the nearest within `radius` meters (default
+   * 6): its outline and extent, to name what the viewer is looking at or to size an override
+   * that replaces it. Undefined when nothing is there, without content packs, or before the
+   * detailed map around the place has streamed. It reads map data: for a key press or a slow
+   * poll, not every frame.
+   */
+  buildingAt(place: {
+    latitude: number;
+    longitude: number;
+    radius?: number;
+  }): EarthBuildingHit | undefined;
   readonly viewer: MolenClient;
   readonly input: NavigationInputSource;
   /** Required data credits; keep them visible whenever the view is. */
@@ -822,6 +873,8 @@ interface EarthStack {
   wildlife: EarthWildlife | undefined;
   audioTerrain: EarthAudioTerrain;
   viewDistance: number;
+  /** The view's map overrides, bound to this stack's tiles. */
+  overrides: MapOverrideBinding;
   dispose(): void;
 }
 
@@ -1057,6 +1110,19 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       ).scene;
     };
 
+    // The view's map overrides are geographic: one set serves every stack the view anchors.
+    const overrideSet = createMapOverrideSet<EarthOverride>(options.overrides ?? []);
+    const worldgenContent =
+      content?.worldgen !== undefined
+        ? {
+            ...content.worldgen,
+            // Without the landmarks an override clears, and with the models it places.
+            structures: withMapOverrideStructures(content.worldgen.structures, overrideSet, {
+              isCatalogAsset: (asset) => content.worldgen?.pack.assets[asset] !== undefined,
+            }),
+          }
+        : undefined;
+
     let stack: EarthStack | undefined;
     const cockpitPointer = bindAircraftCockpitPointer({
       element: canvas,
@@ -1100,7 +1166,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           ? createEarthFleet(
               content.fleet,
               ambientContent.types.car ?? [],
-              content.parkedVehicles,
+              content.fleetParkedVehicles ?? content.parkedVehicles,
               metersPerUnit,
               options.fleet,
             )
@@ -1145,7 +1211,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         surface.setMaterial(pavementMaterial);
         parts.push(() => surface.dispose());
         const worldgen =
-          content?.worldgen !== undefined
+          content !== undefined && worldgenContent !== undefined
             ? createEarthWorldgen({
                 ...(options.buildingInfill !== undefined
                   ? { buildingInfill: options.buildingInfill }
@@ -1165,8 +1231,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 ...(options.sampleStructureTerrain
                   ? { sampleStructureTerrain: options.sampleStructureTerrain }
                   : {}),
-                content: content.worldgen,
+                content: worldgenContent,
                 assets: content.assets,
+                ...(options.overrideAssets !== undefined
+                  ? { overrideAssets: options.overrideAssets }
+                  : {}),
                 surfaceRenderer: surface,
                 metersPerUnit,
                 quality: quality(),
@@ -1269,26 +1338,37 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 worldgen !== undefined
                   ? {
                       visible: true,
+                      // Map overrides edit the tile inside the airport overlay (which would
+                      // clear a host's buildings off airport ground) and outside the observers,
+                      // so wildlife and sound read the edited map.
                       renderer: withEarthAirports(
-                        wildlifeCover !== undefined
-                          ? observeSemanticTiles(
-                              observeSemanticTiles(worldgen.classification, wildlifeCover),
-                              audioTerrain.observer,
-                            )
-                          : observeSemanticTiles(worldgen.classification, audioTerrain.observer),
+                        withMapOverrides(
+                          wildlifeCover !== undefined
+                            ? observeSemanticTiles(
+                                observeSemanticTiles(worldgen.classification, wildlifeCover),
+                                audioTerrain.observer,
+                              )
+                            : observeSemanticTiles(worldgen.classification, audioTerrain.observer),
+                          overrideSet,
+                          { metersPerUnit },
+                        ),
                         content?.airports,
                       ),
                     }
                   : {
                       visible: true,
                       renderer: withEarthAirports(
-                        observeSemanticTiles(
-                          createDefaultTerrainSemanticRenderer({
-                            renderWater: false,
-                            renderTransportation: false,
-                            renderBuildings: false,
-                          }),
-                          audioTerrain.observer,
+                        withMapOverrides(
+                          observeSemanticTiles(
+                            createDefaultTerrainSemanticRenderer({
+                              renderWater: false,
+                              renderTransportation: false,
+                              renderBuildings: false,
+                            }),
+                            audioTerrain.observer,
+                          ),
+                          overrideSet,
+                          { metersPerUnit },
                         ),
                         content?.airports,
                       ),
@@ -1309,11 +1389,15 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 return {
                   visible: true,
                   renderer: withEarthAirports(
-                    observeSemanticTiles(
-                      ambientTiles !== undefined
-                        ? observeSemanticTiles(inner, ambientTiles)
-                        : inner,
-                      audioTerrain.observer,
+                    withMapOverrides(
+                      observeSemanticTiles(
+                        ambientTiles !== undefined
+                          ? observeSemanticTiles(inner, ambientTiles)
+                          : inner,
+                        audioTerrain.observer,
+                      ),
+                      overrideSet,
+                      { metersPerUnit },
                     ),
                     content?.airports,
                   ),
@@ -1402,6 +1486,15 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           stream.dispose();
         });
         renderer.worldRoot.add(stream.object);
+        // A change of overrides builds the tiles around it again, in this stack's frame.
+        const overrideBinding = bindMapOverrides(overrideSet, {
+          stream,
+          metersPerUnit,
+          layers,
+          ...(worldgen !== undefined ? { worldgen } : {}),
+          onError: (error) => report(error, 'map overrides'),
+        });
+        parts.push(() => overrideBinding.dispose());
         // Scenery past the focused shadow map is shadowed from the far one (see earthShadowFocus).
         renderer.setFarShadowCasters(stream.object);
         // Look ahead along the camera's track into the byte cache (bytes only, spare slots only).
@@ -1558,6 +1651,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           wildlife,
           audioTerrain,
           viewDistance: budget.viewDistance,
+          overrides: overrideBinding,
           dispose: cleanup,
         };
       } catch (error) {
@@ -1628,6 +1722,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       actorchange: new Set(),
       vehiclechange: new Set(),
       camerachange: new Set(),
+      overridechange: new Set(),
       terrainchange: new Set(),
       markerclick: new Set(),
       modechange: new Set(),
@@ -2099,7 +2194,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
      * so the ground there is no place to leave a car.
      */
     const nearLandmark = (x: number, z: number): boolean => {
-      const structures = content?.worldgen?.structures;
+      const structures = worldgenContent?.structures;
       if (structures === undefined) return false;
       const { latitude, longitude } = toLatLon(x, z);
       const dLat = 0.0015;
@@ -2687,6 +2782,162 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       },
     };
 
+    /** Resolves once the tiles on screen show every change of overrides made so far. */
+    const tilesApplied = async (): Promise<void> => {
+      for (;;) {
+        // A re-anchor builds its tiles from the overrides as they are by then.
+        while (anchoring !== undefined) await anchoring;
+        const current = stack;
+        await current?.overrides.whenApplied();
+        if (anchoring === undefined && stack === current) return;
+      }
+    };
+    /** Changes whose `applied` event has not been emitted yet. */
+    const announcements = new Set<Promise<void>>();
+    const overridesApi: EarthOverrides = {
+      set: (override) => overrideSet.set(override),
+      remove: (id) => overrideSet.delete(id),
+      get: (id) => overrideSet.get(id),
+      list: () => overrideSet.list(),
+      clear: () => overrideSet.replace([]),
+      get revision() {
+        return overrideSet.revision;
+      },
+      whenApplied(waitOptions = {}) {
+        const applied = (async (): Promise<void> => {
+          await tilesApplied();
+          // After the `applied` events: a host that awaits this reads what they left behind.
+          while (announcements.size > 0) await Promise.all([...announcements]);
+        })();
+        const waitSignal = waitOptions.signal;
+        if (waitSignal === undefined) return applied;
+        return new Promise<void>((resolve, reject) => {
+          const abort = (): void => reject(new DOMException('Wait aborted', 'AbortError'));
+          if (waitSignal.aborted) {
+            abort();
+            return;
+          }
+          waitSignal.addEventListener('abort', abort, { once: true });
+          void applied
+            .then(resolve, reject)
+            .finally(() => waitSignal.removeEventListener('abort', abort));
+        });
+      },
+    };
+    /**
+     * A point 1.5 m outside whichever building of the named overrides stands around world X/Z,
+     * or undefined when none does: where to stand a walker a new building appeared around.
+     */
+    const outsideOverrideBuildings = (
+      x: number,
+      z: number,
+      ids: readonly string[],
+    ): [number, number] | undefined => {
+      for (const id of ids)
+        for (const building of overrideSet.resolved(id)?.buildings ?? []) {
+          const ring = building.ring.map(([px, pz]): [number, number] => [
+            px * metersPerUnit,
+            pz * metersPerUnit,
+          ]);
+          const inside = (qx: number, qz: number): boolean => {
+            let within = false;
+            for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+              const [ax, az] = ring[i] as [number, number];
+              const [bx, bz] = ring[j] as [number, number];
+              if (az > qz !== bz > qz && qx < ((bx - ax) * (qz - az)) / (bz - az) + ax)
+                within = !within;
+            }
+            return within;
+          };
+          if (!inside(x, z)) continue;
+          let best:
+            | { point: [number, number]; normal: [number, number]; distance: number }
+            | undefined;
+          for (let i = 0; i < ring.length; i++) {
+            const [ax, az] = ring[i] as [number, number];
+            const [bx, bz] = ring[(i + 1) % ring.length] as [number, number];
+            const dx = bx - ax;
+            const dz = bz - az;
+            const length = Math.hypot(dx, dz);
+            if (length === 0) continue;
+            const t = Math.max(0, Math.min(1, ((x - ax) * dx + (z - az) * dz) / (length * length)));
+            const point: [number, number] = [ax + t * dx, az + t * dz];
+            const distance = Math.hypot(x - point[0], z - point[1]);
+            if (best === undefined || distance < best.distance)
+              best = { point, normal: [dz / length, -dx / length], distance };
+          }
+          if (best === undefined) continue;
+          // The edge's normal, turned to point away from the building.
+          const sign = inside(
+            best.point[0] + best.normal[0] * 0.05,
+            best.point[1] + best.normal[1] * 0.05,
+          )
+            ? -1
+            : 1;
+          return [
+            best.point[0] + best.normal[0] * sign * 1.5,
+            best.point[1] + best.normal[1] * sign * 1.5,
+          ];
+        }
+      return undefined;
+    };
+    // Each task's changes are announced once: `pending` now, `applied` when the tiles on screen
+    // show them. The view announces, not a stack: a change made while the view re-anchors (no
+    // stack is bound then) or still pending when the old stack goes is told like any other.
+    let announcing: { ids: Set<string>; tiles: boolean } | undefined;
+    disposers.push(
+      overrideSet.subscribe((change) => {
+        if (announcing === undefined) {
+          const batch = { ids: new Set<string>(), tiles: false };
+          announcing = batch;
+          let told!: () => void;
+          const announcement = new Promise<void>((resolve) => {
+            told = resolve;
+          });
+          announcements.add(announcement);
+          const finish = (): void => {
+            announcements.delete(announcement);
+            told();
+          };
+          queueMicrotask(() => {
+            announcing = undefined;
+            if (disposed) {
+              finish();
+              return;
+            }
+            const ids = [...batch.ids];
+            const revision = overrideSet.revision;
+            emit('overridechange', { revision, state: 'pending', ids });
+            void tilesApplied()
+              .then(() => {
+                if (disposed) return;
+                emit('overridechange', { revision, state: 'applied', ids });
+                if (!batch.tiles) return;
+                // What stands there changed under the collision tree, and perhaps around the
+                // walker. (Judged by the footprints declared: where a terrain package has no
+                // map features to draw them on, a walker inside one is still stepped out.)
+                collision.invalidate();
+                if (mode !== 'walk' || pending !== undefined || !walker.ready) return;
+                const clear = outsideOverrideBuildings(walker.feet.x, walker.feet.z, ids);
+                if (clear !== undefined) enterWalk(clear[0], clear[1], look.yaw);
+              })
+              .finally(finish);
+          });
+        }
+        for (const id of change.ids) announcing.ids.add(id);
+        if (change.tiles) announcing.tiles = true;
+      }),
+    );
+    const overrideEntities = bindMapOverrideEntities(
+      overrideSet,
+      { actors: actorDirector.api, vehicles: ownedApi, dioramas: dioramaDirector },
+      {
+        whenApplied: () => overridesApi.whenApplied(),
+        onError: (error, context) => report(error, context),
+      },
+    );
+    disposers.push(() => overrideEntities.dispose());
+
     /** The frame event's view of the viewer. */
     const frameState = (current: EarthStack, dt: number, now: number): EarthFrame => {
       const here = whereabouts(current);
@@ -3179,7 +3430,13 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         throttle: pilot?.throttle ?? 0,
         brake: frameInput.jump,
         ...(pilot !== undefined
-          ? { engine: pilot.engine, gear: pilot.gear, flaps: pilot.flaps, vector: pilot.vector }
+          ? {
+              engine: pilot.engine,
+              gear: pilot.gear,
+              flaps: pilot.flaps,
+              vector: pilot.vector,
+              cyclic: pilot.cyclic,
+            }
           : {}),
       });
       // Cars hold still; the shared world step runs the flight model.
@@ -3670,6 +3927,23 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       vehicles: ownedApi,
       actors: actorDirector.api,
       dioramas: dioramaDirector,
+      overrides: overridesApi,
+      buildingAt({ latitude, longitude, radius = 6 }) {
+        const [x, z] = toWorld(latitude, longitude);
+        const hit = stack?.worldgen?.buildingsNear(x, z, radius)[0];
+        if (hit === undefined) return undefined;
+        const geo = ([px, pz]: readonly [number, number]): [number, number] => {
+          const place = toLatLon(px, pz);
+          return [place.longitude, place.latitude];
+        };
+        const [west, north] = geo([hit.bounds[0], hit.bounds[1]]);
+        const [east, south] = geo([hit.bounds[2], hit.bounds[3]]);
+        return {
+          ...hit,
+          outlines: hit.outlines.map((ring) => ring.map(geo)),
+          bounds: [west, south, east, north],
+        };
+      },
       airfields,
       interactable,
       setInteraction(settings) {
@@ -3718,6 +3992,14 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           ...(stack?.wildlife !== undefined ? { wildlife: stack.wildlife.stats() } : {}),
           ...(stack?.worldgen?.structureStats()
             ? { structures: stack.worldgen.structureStats() }
+            : {}),
+          ...(overrideSet.list().length > 0 || (streamStats?.refreshingLayers ?? 0) > 0
+            ? {
+                overrides: {
+                  count: overrideSet.list().length,
+                  refreshing: streamStats?.refreshingLayers ?? 0,
+                },
+              }
             : {}),
           ...(stack?.worldgen !== undefined
             ? (() => {

@@ -1,0 +1,282 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.cycle.kick_scooter": {
+      "doc": "Bendy Share Scooter. Rideable shared electric kick scooter: the rider stands on the deck, self-balancing handling, animated bars.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.cycle.kick_scooter",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.cycle.kick_scooter",
+          "color": "#3c9a6b",
+          "spec": {
+            "label": "Bendy Share Scooter",
+            "bodyStyle": "kick-scooter",
+            "genericLabel": "Electric kick scooter",
+            "width": 0.55,
+            "length": 1.2,
+            "height": 1.2,
+            "centerOfMass": [
+              0,
+              0.85,
+              -0.05
+            ],
+            "wheelbase": 0.88,
+            "wheelTrack": 0,
+            "wheelRadius": 0.135,
+            "mass": 105,
+            "engineForce": 165,
+            "maxSpeed": 7,
+            "reverseSpeed": 0,
+            "brakeDeceleration": 4.5,
+            "maxSteer": 0.55,
+            "driverEye": [
+              0,
+              1.71,
+              0.01
+            ],
+            "grip": 7,
+            "steeringRate": 2.5,
+            "steeringFadeSpeed": 5,
+            "rollingResistance": 0.1,
+            "aerodynamicResistance": 0.008,
+            "terrainAlignRate": 3,
+            "supportTolerance": 0.05,
+            "maxStepHeight": 0.06,
+            "maxSlope": 0.4,
+            "drive": "rear",
+            "suspensionDamping": 1,
+            "suspensionFrequency": 2.4,
+            "pitchStiffness": 0.012,
+            "cycle": {
+              "maxLean": 0.45,
+              "riderLean": 0.08,
+              "stance": "standing",
+              "handlebarPivot": [
+                0,
+                0.5,
+                0.3353
+              ],
+              "grips": [
+                [
+                  0.235,
+                  1.07,
+                  0.16
+                ],
+                [
+                  -0.235,
+                  1.07,
+                  0.16
+                ]
+              ],
+              "footrests": [
+                [
+                  0.035,
+                  0.235,
+                  0.08
+                ],
+                [
+                  -0.045,
+                  0.235,
+                  -0.19
+                ]
+              ]
+            },
+            "collisionParts": [
+              {
+                "id": "wheel-rear",
+                "role": "rearWheel",
+                "center": [
+                  0,
+                  0.135,
+                  -0.44
+                ],
+                "radius": 0.1215,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": [
+                  "wheel-rear"
+                ],
+                "probes": [
+                  [
+                    0,
+                    0.135,
+                    -0.44
+                  ]
+                ]
+              },
+              {
+                "id": "wheel-front",
+                "role": "frontWheel",
+                "center": [
+                  0,
+                  0.180041,
+                  0.448916
+                ],
+                "radius": 0.1215,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": [
+                  "wheel-front"
+                ],
+                "probes": [
+                  [
+                    0,
+                    0.180041,
+                    0.448916
+                  ]
+                ]
+              }
+            ]
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front",
+              "wheel-rear"
+            ],
+            "frontWheelNodes": [
+              "wheel-front"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "animation": {
+              "sources": {
+                "steering": {
+                  "component": "vehicleState",
+                  "path": [
+                    "steer"
+                  ]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "handlebar",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0,
+                1.05,
+                -0.07
+              ]
+            }
+          ],
+          "exits": [
+            [
+              0.875,
+              0,
+              -0.07
+            ],
+            [
+              -0.875,
+              0,
+              -0.07
+            ],
+            [
+              0,
+              0,
+              -1.2
+            ]
+          ],
+          "reach": 2.5
+        },
+        "model.signals": {
+          "sources": {
+            "steering": {
+              "component": "vehicleState",
+              "path": [
+                "steer"
+              ]
+            },
+            "wheelAngle": {
+              "component": "vehicleState",
+              "path": [
+                "wheelAngle"
+              ]
+            }
+          },
+          "bindings": [
+            {
+              "node": "handlebar",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "wheel-front",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "wheel-front-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-rear-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            }
+          ]
+        }
+      },
+      "assets": [
+        "molen.entities.cycle.kick_scooter"
+      ]
+    }
+  }
+}

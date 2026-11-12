@@ -27,9 +27,11 @@ import {
   createResolvedMaterialSet,
   ModelLibrary,
   NightWindowLighting,
+  routeStructureModels,
   type ScreenSpaceLodPolicy,
   StructureLodStreamer,
   StructureModelLibrary,
+  type StructureModelLibraryOptions,
   type StructureStreamingOptions,
   type StructureStreamingStats,
   type StructureStreamingView,
@@ -95,6 +97,18 @@ export interface CreateEarthWorldgenOptions {
   sampleStructureTerrain?: StructureTerrainSampler;
   content: EarthWorldgenContent;
   assets: AssetProvider;
+  /**
+   * Loads the models a map override places that the style pack does not carry: `load(ref)`
+   * returns a GLB's bytes (default `assets`, which serves a host's own content pack). Such a
+   * model is drawn at one detail level: static meshes in meters, +Y up, its origin on the ground
+   * and its front toward +Z, without Draco, meshopt or KTX2 compression.
+   */
+  overrideAssets?: AssetProvider;
+  /**
+   * Largest model `overrideAssets` may bring in: file bytes (default 32 MiB) and triangles
+   * (default 300,000). A larger one is not drawn, and says so once on the console.
+   */
+  overrideModelLimits?: { maxBytes?: number; maxTriangles?: number };
   surfaceRenderer: TerrainSurfaceRenderer;
   metersPerUnit: number;
   quality: TerrainQualityPreset;
@@ -243,23 +257,55 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
   const sharedRefs = new Set(Object.entries(pack.materials).map(([ref, kind]) => `${kind}:${ref}`));
   const structureLoader = new GLTFLoader();
   const ownedImageScenes = new WeakSet<THREE.Object3D>();
+  const libraryOptions: StructureModelLibraryOptions = {
+    nightWindows,
+    ownsImageBitmaps: (scene) => ownedImageScenes.has(scene),
+    resolveSurface: ({ ref, slot }) =>
+      sharedRefs.has(ref) ? materials.materialFor(slot, ref) : undefined,
+  };
+  // A host's own models, placed by map overrides: any ref the style pack does not carry. They
+  // come whole, without the catalog's source-derived detail levels, so each is bounded here.
+  const hostModelLimits = {
+    maxBytes: options.overrideModelLimits?.maxBytes ?? 32 * 1024 * 1024,
+    maxTriangles: options.overrideModelLimits?.maxTriangles ?? 300_000,
+  };
+  const loadHostModel = async (ref: string): Promise<THREE.Object3D> => {
+    const bytes = await (options.overrideAssets ?? options.assets).load(ref);
+    if (bytes.byteLength > hostModelLimits.maxBytes)
+      throw new Error(
+        `override model is ${bytes.byteLength} bytes; the limit is ${hostModelLimits.maxBytes}`,
+      );
+    const parsed = await structureLoader.parseAsync(bytes, '');
+    let triangles = 0;
+    parsed.scene.traverse((object) => {
+      const { isMesh, geometry } = object as THREE.Mesh;
+      if (isMesh) triangles += (geometry.index ?? geometry.getAttribute('position')).count / 3;
+    });
+    if (triangles > hostModelLimits.maxTriangles) {
+      parsed.scene.traverse((object) => {
+        const mesh = object as THREE.Mesh;
+        if (!mesh.isMesh) return;
+        mesh.geometry.dispose();
+        for (const material of [mesh.material].flat()) material.dispose();
+      });
+      throw new Error(
+        `override model has ${Math.round(triangles)} triangles; the limit is ${hostModelLimits.maxTriangles}`,
+      );
+    }
+    if (hasOnlyEmbeddedImages(parsed.parser.json)) ownedImageScenes.add(parsed.scene);
+    return parsed.scene;
+  };
+  const isCatalogModel = (ref: string): boolean => pack.assets[ref] !== undefined;
   const legacyStructures =
     options.landmarkStreaming === false
-      ? new StructureModelLibrary(
-          async (ref) => {
-            const parsed = await structureLoader.parseAsync(await options.assets.load(ref), '');
-            // Embedded images get fresh blob URLs per parse. URI/data-URI images may be borrowed
-            // from Three's host-global cache, even when this GLTFParser is new.
-            if (hasOnlyEmbeddedImages(parsed.parser.json)) ownedImageScenes.add(parsed.scene);
-            return parsed.scene;
-          },
-          {
-            nightWindows,
-            ownsImageBitmaps: (scene) => ownedImageScenes.has(scene),
-            resolveSurface: ({ ref, slot }) =>
-              sharedRefs.has(ref) ? materials.materialFor(slot, ref) : undefined,
-          },
-        )
+      ? new StructureModelLibrary(async (ref) => {
+          if (!isCatalogModel(ref)) return loadHostModel(ref);
+          const parsed = await structureLoader.parseAsync(await options.assets.load(ref), '');
+          // Embedded images get fresh blob URLs per parse. URI/data-URI images may be borrowed
+          // from Three's host-global cache, even when this GLTFParser is new.
+          if (hasOnlyEmbeddedImages(parsed.parser.json)) ownedImageScenes.add(parsed.scene);
+          return parsed.scene;
+        }, libraryOptions)
       : undefined;
   const structureManifests = new Map<string, AssetSidecar>();
   const streamingStructures =
@@ -305,7 +351,20 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
               sharedRefs.has(ref) ? materials.materialFor(slot, ref) : undefined,
           },
         );
-  const structureObjects = streamingStructures ?? legacyStructures;
+  // The streamer knows only the style pack's landmarks; a plain library beside it loads the rest.
+  const hostStructures =
+    streamingStructures !== undefined
+      ? new StructureModelLibrary(loadHostModel, libraryOptions)
+      : undefined;
+  const routedStructures =
+    streamingStructures !== undefined && hostStructures !== undefined
+      ? routeStructureModels({
+          primary: streamingStructures,
+          isPrimary: isCatalogModel,
+          secondary: hostStructures,
+        })
+      : undefined;
+  const structureObjects = routedStructures ?? legacyStructures;
   if (!structureObjects) throw new Error('No structure model source');
   let preparation: Promise<void> | undefined;
   let disposed = false;
@@ -416,7 +475,10 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
       pool?.dispose();
       renderers.dispose();
       generator?.dispose();
-      structureObjects.dispose();
+      routedStructures?.dispose();
+      streamingStructures?.dispose();
+      hostStructures?.dispose();
+      legacyStructures?.dispose();
       nightWindows.dispose();
       materials.dispose();
       models.dispose();

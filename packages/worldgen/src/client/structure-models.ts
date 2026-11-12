@@ -309,3 +309,60 @@ export class StructureModelLibrary {
     this.ready.clear();
   }
 }
+
+export interface StructureModelRouteOptions {
+  /** The source of the refs `isPrimary` accepts. */
+  primary: StructureModelSource;
+  /** Whether a ref is the primary source's. It must answer the same for a ref every time. */
+  isPrimary: (ref: string) => boolean;
+  /** The source of every other ref. */
+  secondary: StructureModelSource;
+  /**
+   * Hold a secondary model this long after it is released, ms (default 5000). A tile's children
+   * take its place a moment after it goes; without the hold a model with no warm cache of its
+   * own would be loaded and parsed again for them.
+   */
+  keepAliveMs?: number;
+}
+
+/**
+ * Two model sources behind one: each ref goes to the source `isPrimary` names for it, for its
+ * whole life (a model is instantiated and released by the source that acquired it). It lets a
+ * streamed catalog and a plain library of a host's own models serve the same placements.
+ * `dispose` drops the releases it is holding; the sources stay the caller's to dispose.
+ */
+export function routeStructureModels(
+  options: StructureModelRouteOptions,
+): StructureModelSource & { dispose(): void } {
+  const { primary, secondary, isPrimary } = options;
+  const keepAliveMs = options.keepAliveMs ?? 5000;
+  const held = new Set<ReturnType<typeof setTimeout>>();
+  let disposed = false;
+  const sourceOf = (ref: string): StructureModelSource => (isPrimary(ref) ? primary : secondary);
+  return {
+    acquire: (ref, acquire) => sourceOf(ref).acquire(ref, acquire),
+    instantiate: (model, instance) => sourceOf(model.ref).instantiate(model, instance),
+    release(ref) {
+      if (isPrimary(ref)) {
+        primary.release(ref);
+        return;
+      }
+      if (disposed || keepAliveMs <= 0) {
+        secondary.release(ref);
+        return;
+      }
+      // The reference is kept until the timer gives it back: an acquire in between finds the
+      // model still loaded and adds its own.
+      const timer = setTimeout(() => {
+        held.delete(timer);
+        secondary.release(ref);
+      }, keepAliveMs);
+      held.add(timer);
+    },
+    dispose() {
+      disposed = true;
+      for (const timer of held) clearTimeout(timer);
+      held.clear();
+    },
+  };
+}

@@ -268,6 +268,9 @@ function hash(x: number, z: number): number {
   return ((value ^ (value >>> 16)) >>> 0) / 4294967296;
 }
 
+/** Parked kinds at most this wide (meters) are two-wheelers, parked in rows across a bay. */
+const PARKED_TWO_WHEELER_WIDTH = 1;
+
 /** Stable weighted selection, shared by synchronous and worker surface generation. */
 export function pickParkedVehicle(
   vehicles: readonly TerrainParkedVehicle[],
@@ -299,6 +302,8 @@ export function createTerrainSurfaceObject(
       : { ...regionalProfile, drivingSide: options.drivingSide };
   const side = signProfile.drivingSide === 'left' ? -1 : 1;
   const parkedVehicles = details.parkedVehicles ?? [];
+  // The parked two-wheelers among them, gathered the first time a bay draws one.
+  let twoWheelers: TerrainParkedVehicle[] | undefined;
   const detailed =
     context.pyramid.maxLevel - context.address.level <= (details.detailLevelsBelowMax ?? 0);
   const group = new THREE.Group();
@@ -1963,41 +1968,63 @@ export function createTerrainSurfaceObject(
               fixtureCount < maxFixtures &&
               seed < (details.parkingOccupancy ?? 0.7)
             ) {
-              const x = center[0],
-                z = center[1];
-              const yaw = -angle + (side < 0 ? Math.PI : 0);
-              const wx = context.origin[0] + x,
-                wz = context.origin[1] + z;
-              const vehicle = pickParkedVehicle(parkedVehicles, hash(wx + 19.7, wz - 37.1));
-              if (!vehicle) continue;
-              fixtureCount++;
-              stats.parkedCars++;
-              const palette = vehicle.colors?.length
-                ? vehicle.colors
-                : ['#b7c0c5', '#566d82', '#914c40', '#e0dccc', '#3e4b50', '#8d989b'];
-              const color = palette[Math.floor(seed * 79) % palette.length] as string;
-              const kind = vehicle.id;
-              const spec = vehicle.spec;
-              const heights = [spec.wheelbase / 2, -spec.wheelbase / 2].flatMap((wheelZ) =>
-                [-spec.wheelTrack / 2, spec.wheelTrack / 2].map(
-                  (wheelX) =>
-                    pavement.groundHeight(
-                      x + Math.cos(yaw) * wheelX + Math.sin(yaw) * wheelZ,
-                      z - Math.sin(yaw) * wheelX + Math.cos(yaw) * wheelZ,
-                    ) + 0.3,
-                ),
+              const baseYaw = -angle + (side < 0 ? Math.PI : 0);
+              const wx = context.origin[0] + center[0],
+                wz = context.origin[1] + center[1];
+              const first = pickParkedVehicle(parkedVehicles, hash(wx + 19.7, wz - 37.1));
+              if (!first) continue;
+              // Motorcycles, scooters and mopeds stand two or three to a car's bay, side by side
+              // and a little staggered, each its own pick from the region's two-wheelers.
+              const row = first.spec.width <= PARKED_TWO_WHEELER_WIDTH;
+              twoWheelers ??= parkedVehicles.filter(
+                (v) => v.spec.width <= PARKED_TWO_WHEELER_WIDTH,
               );
-              const [fl, fr, rl, rr] = heights as [number, number, number, number];
-              vehicles.push({
-                id: `parked-car:${Math.round(wx * 10)}:${Math.round(wz * 10)}`,
-                kind,
-                color,
-                spec,
-                position: [wx, (fl + fr + rl + rr) / 4, wz],
-                yaw,
-                pitch: Math.atan2((rl + rr - fl - fr) / 2, spec.wheelbase),
-                roll: Math.atan2((fr + rr - fl - rl) / 2, spec.wheelTrack),
-              });
+              const count = row ? 2 + Math.floor(hash(wx - 7.3, wz + 2.9) * 2) : 1;
+              for (let k = 0; k < count && fixtureCount < maxFixtures; k++) {
+                const vehicle =
+                  k === 0
+                    ? first
+                    : (pickParkedVehicle(twoWheelers, hash(wx + 19.7 + k * 3.1, wz - 37.1 - k)) ??
+                      first);
+                const across = row ? (k - (count - 1) / 2) * (2.65 / count) : 0;
+                const stagger = row ? (hash(wx + k * 1.7, wz + 4.1) - 0.5) * 0.5 : 0;
+                const x = center[0] + dx * across - dz * side * stagger,
+                  z = center[1] + dz * across + dx * side * stagger;
+                const yaw = baseYaw + (row ? (hash(wz + k, wx - k) - 0.5) * 0.16 : 0);
+                const px = context.origin[0] + x,
+                  pz = context.origin[1] + z;
+                fixtureCount++;
+                stats.parkedCars++;
+                const palette = vehicle.colors?.length
+                  ? vehicle.colors
+                  : ['#b7c0c5', '#566d82', '#914c40', '#e0dccc', '#3e4b50', '#8d989b'];
+                const paint = row ? hash(px * 1.3, pz * 0.7) : seed;
+                const color = palette[Math.floor(paint * 79) % palette.length] as string;
+                const kind = vehicle.id;
+                const spec = vehicle.spec;
+                const heights = [spec.wheelbase / 2, -spec.wheelbase / 2].flatMap((wheelZ) =>
+                  [-spec.wheelTrack / 2, spec.wheelTrack / 2].map(
+                    (wheelX) =>
+                      pavement.groundHeight(
+                        x + Math.cos(yaw) * wheelX + Math.sin(yaw) * wheelZ,
+                        z - Math.sin(yaw) * wheelX + Math.cos(yaw) * wheelZ,
+                      ) + 0.3,
+                  ),
+                );
+                const [fl, fr, rl, rr] = heights as [number, number, number, number];
+                vehicles.push({
+                  id: `parked-car:${Math.round(px * 10)}:${Math.round(pz * 10)}`,
+                  kind,
+                  color,
+                  spec,
+                  position: [px, (fl + fr + rl + rr) / 4, pz],
+                  yaw,
+                  pitch: Math.atan2((rl + rr - fl - fr) / 2, spec.wheelbase),
+                  // A cycle's track is zero: it stands upright.
+                  roll:
+                    spec.wheelTrack > 0 ? Math.atan2((fr + rr - fl - rl) / 2, spec.wheelTrack) : 0,
+                });
+              }
             }
           }
         }

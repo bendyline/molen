@@ -7,6 +7,7 @@ import {
   wgs84ToWorld,
 } from '@bendyline/molen-terrain/kernel';
 import polygonClipping, { type MultiPolygon, type Polygon } from 'polygon-clipping';
+import { isMapOverrideFeature } from '../kernel/map-override-tags';
 import type { StructurePlacement } from '../kernel/structure-index';
 
 type Point = [number, number];
@@ -90,6 +91,8 @@ export function withoutBuildingCutouts(
   }));
   let changed = false;
   const buildings = tile.buildings.flatMap((feature) => {
+    // What a host placed is not the map's to trim: a landmark beside it leaves it whole.
+    if (isMapOverrideFeature(feature)) return [feature];
     // A tiny source overlap with a neighboring building must not trim that neighbor or
     // leave a thin procedural wall from the building the landmark replaces. Evaluate
     // all polygons and holes together, using the union of this placement's masks.

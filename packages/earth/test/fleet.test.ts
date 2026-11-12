@@ -5,6 +5,7 @@ import { wgs84ToWorld } from '@bendyline/molen-terrain/kernel';
 import type { RegionAtlasDoc } from '@bendyline/molen-worldgen-earth/kernel';
 import { describe, expect, it } from 'vitest';
 import { ambientContentFromTypes } from '../src/client/ambient';
+import { earthParkedVehicles } from '../src/client/content';
 import { createEarthFleet } from '../src/client/fleet';
 
 const json = async (path: string) =>
@@ -12,13 +13,18 @@ const json = async (path: string) =>
 const atlas = (await json('earth/world.atlas.json')) as RegionAtlasDoc;
 const catalog = (await json('entities/fleets/road.json')) as FleetCatalog;
 const docs = await Promise.all(
-  ['vehicle', 'transit'].map((name) => json(`entities/types/${name}.types.json`)),
+  ['vehicle', 'transit', 'cycle'].map((name) => json(`entities/types/${name}.types.json`)),
 );
 const types = createTypeLibrary(docs);
 const content = ambientContentFromTypes(types, async () => {
   throw new Error('Fleet metadata must not load models');
 });
-const fleet = createEarthFleet({ catalogs: [catalog], atlas }, content.types.car ?? [], [], 1);
+const fleet = createEarthFleet(
+  { catalogs: [catalog], atlas },
+  content.types.car ?? [],
+  earthParkedVehicles(types, true),
+  1,
+);
 
 describe('Earth regional fleets', () => {
   it.each([
@@ -36,6 +42,11 @@ describe('Earth regional fleets', () => {
     ['Johannesburg', 28.04, -26.2, 'africa-south'],
     ['Casablanca', -7.59, 33.57, 'africa-north'],
     ['Seattle', -122.33, 47.61, 'north-america'],
+    ['Delhi', 77.21, 28.61, 'south-asia'],
+    ['Bangkok', 100.5, 13.76, 'southeast-asia'],
+    ['Jakarta', 106.85, -6.21, 'southeast-asia-maritime'],
+    ['Manila', 120.98, 14.6, 'philippines'],
+    ['Taipei', 121.56, 25.03, 'taiwan'],
   ] as const)('resolves %s without architecture overlays hiding its fleet', (_name, lon, lat, expected) => {
     const [x, z] = wgs84ToWorld(1, lon, lat);
     expect(fleet.profileAt(x, z)).toBe(expected);
@@ -60,6 +71,42 @@ describe('Earth regional fleets', () => {
       library.select('library.china').weights.has('molen.entities.vehicle.byd_seagull_2024'),
     ).toBe(true);
     expect(library.select('jp').weights.has('molen.entities.vehicle.honda_n_box_2024')).toBe(true);
+  });
+  it('rides auto-rickshaws and two-wheelers where they are common, never by default', () => {
+    const rickshaw = 'molen.entities.vehicle.auto_rickshaw';
+    const scooter = 'molen.entities.cycle.motor_scooter';
+    const at = (lon: number, lat: number) => wgs84ToWorld(1, lon, lat);
+    const [dx, dz] = at(77.21, 28.61);
+    const delhi = fleet.carsAt(dx, dz).map((car) => car.id);
+    expect(delhi).toContain(rickshaw);
+    expect(delhi.some((id) => id.includes('.cycle.'))).toBe(true);
+    const parked = fleet.parkedAt(dx, dz).map((car) => car.id);
+    expect(parked).toContain(rickshaw);
+    expect(parked.some((id) => id.includes('.cycle.'))).toBe(true);
+    const [tx, tz] = at(121.56, 25.03);
+    expect(fleet.carsAt(tx, tz).map((car) => car.id)).toContain(scooter);
+    // Region-only types weigh nothing outside a fleet: no default traffic or parking.
+    const [sx, sz] = at(-122.33, 47.61);
+    expect(fleet.carsAt(sx, sz).map((car) => car.id)).not.toContain(rickshaw);
+    expect((content.types.car ?? []).find((car) => car.id === rickshaw)?.weight).toBe(0);
+    const defaults = earthParkedVehicles(types, false).map((car) => car.id);
+    expect(defaults).not.toContain(rickshaw);
+    expect(defaults.some((id) => id.includes('.cycle.'))).toBe(false);
+    // Riders: two-wheelers and the auto-rickshaw draw their drivers; cars do not.
+    expect(Object.keys(content.riders ?? {})).toEqual(
+      expect.arrayContaining([rickshaw, scooter, 'molen.entities.cycle.underbone_moped']),
+    );
+    expect(content.riders?.['molen.entities.vehicle.sedan']).toBeUndefined();
+    // Bicycles, kick scooters and boards never park or join traffic.
+    const regional = earthParkedVehicles(types, true).map((car) => car.id);
+    for (const id of [
+      'molen.entities.cycle.city_bicycle',
+      'molen.entities.cycle.kick_scooter',
+      'molen.entities.cycle.skateboard',
+    ]) {
+      expect(regional).not.toContain(id);
+      expect(content.riders?.[id]).toBeUndefined();
+    }
   });
   it('has a compact fallback and keeps boat/aircraft catalogs outside the road filter', () => {
     const [x, z] = wgs84ToWorld(1, -140, 0);

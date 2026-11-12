@@ -1,0 +1,321 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.cycle.underbone_moped": {
+      "doc": "Bendy Moped. Rideable underbone moped: step-through frame, leg shields, self-balancing handling, saddle, animated steering.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.cycle.underbone_moped",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.cycle.underbone_moped",
+          "color": "#2e5b8a",
+          "spec": {
+            "label": "Bendy Moped",
+            "bodyStyle": "moped",
+            "genericLabel": "Underbone moped",
+            "width": 0.7,
+            "length": 1.92,
+            "height": 1.08,
+            "centerOfMass": [
+              0,
+              0.6,
+              -0.05
+            ],
+            "wheelbase": 1.24,
+            "wheelTrack": 0,
+            "wheelRadius": 0.29,
+            "mass": 175,
+            "engineForce": 800,
+            "maxSpeed": 24,
+            "reverseSpeed": 0,
+            "brakeDeceleration": 7,
+            "maxSteer": 0.6,
+            "driverEye": [
+              0,
+              1.465,
+              -0.14
+            ],
+            "grip": 8,
+            "steeringRate": 2.5,
+            "steeringFadeSpeed": 12,
+            "rollingResistance": 0.12,
+            "aerodynamicResistance": 0.003,
+            "terrainAlignRate": 2.5,
+            "supportTolerance": 0.06,
+            "maxStepHeight": 0.18,
+            "maxSlope": 0.55,
+            "drive": "rear",
+            "suspensionDamping": 1,
+            "suspensionFrequency": 2,
+            "pitchStiffness": 0.012,
+            "cycle": {
+              "maxLean": 0.6,
+              "riderLean": 0.22,
+              "handlebarPivot": [
+                0,
+                0.93,
+                0.2546
+              ],
+              "grips": [
+                [
+                  0.32,
+                  1,
+                  0.17
+                ],
+                [
+                  -0.32,
+                  1,
+                  0.17
+                ]
+              ],
+              "footrests": [
+                [
+                  0.16,
+                  0.37,
+                  -0.1
+                ],
+                [
+                  -0.16,
+                  0.37,
+                  -0.1
+                ]
+              ]
+            },
+            "collisionParts": [
+              {
+                "id": "wheel-rear",
+                "role": "rearWheel",
+                "center": [
+                  0,
+                  0.29,
+                  -0.62
+                ],
+                "radius": 0.261,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": [
+                  "wheel-rear"
+                ],
+                "probes": [
+                  [
+                    0,
+                    0.29,
+                    -0.62
+                  ]
+                ]
+              },
+              {
+                "id": "wheel-front",
+                "role": "frontWheel",
+                "center": [
+                  0,
+                  0.39038,
+                  0.627994
+                ],
+                "radius": 0.261,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": [
+                  "wheel-front"
+                ],
+                "probes": [
+                  [
+                    0,
+                    0.39038,
+                    0.627994
+                  ]
+                ]
+              }
+            ]
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front",
+              "wheel-rear"
+            ],
+            "frontWheelNodes": [
+              "wheel-front"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "animation": {
+              "sources": {
+                "steering": {
+                  "component": "vehicleState",
+                  "path": [
+                    "steer"
+                  ]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "handlebar",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0,
+                0.805,
+                -0.3
+              ]
+            }
+          ],
+          "exits": [
+            [
+              0.95,
+              0,
+              -0.3
+            ],
+            [
+              -0.95,
+              0,
+              -0.3
+            ],
+            [
+              0,
+              0,
+              -1.56
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 0,
+          "cruise": 10,
+          "max": 16,
+          "colors": [
+            "#2e5b8a",
+            "#a8352e",
+            "#1f2124",
+            "#c8c8c2",
+            "#2f6b45",
+            "#2e5b8a"
+          ]
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.car",
+          "loop": true,
+          "pitch": 1.8,
+          "gain": 0.7,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleState.speed",
+            "curve": [
+              [
+                0,
+                0.85
+              ],
+              [
+                8,
+                1.15
+              ],
+              [
+                24,
+                1.5
+              ]
+            ]
+          }
+        },
+        "model.signals": {
+          "sources": {
+            "steering": {
+              "component": "vehicleState",
+              "path": [
+                "steer"
+              ]
+            },
+            "wheelAngle": {
+              "component": "vehicleState",
+              "path": [
+                "wheelAngle"
+              ]
+            }
+          },
+          "bindings": [
+            {
+              "node": "handlebar",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "wheel-front",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "wheel-front-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-rear-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            }
+          ]
+        }
+      },
+      "assets": [
+        "molen.entities.cycle.underbone_moped"
+      ]
+    }
+  }
+}

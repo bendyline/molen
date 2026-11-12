@@ -10,6 +10,13 @@ import {
   unit01,
   type Vec2,
 } from '@bendyline/molen-worldgen/kernel';
+import {
+  isMapOverrideFeature,
+  MAP_OVERRIDE_COLOR_TAG,
+  MAP_OVERRIDE_MODEL_TAG,
+  MAP_OVERRIDE_PROP_CLASS,
+  MAP_OVERRIDE_SCALE_TAG,
+} from './map-override-tags';
 import type { RegionalEnvironment } from './regional-environment';
 import type { TileGeometry } from './semantic-adapter';
 
@@ -109,9 +116,14 @@ function heading(poi: TerrainPoiFeature, tile: TerrainSemanticTile): number {
   }
   return yaw;
 }
+/** How far below the finest level a map override's props are still placed. */
+const OVERRIDE_PROP_LEVELS = 1;
+
 /**
  * Mapped trees (when `trees`) and street furniture. Furniture is placed only for landmark models
- * the `furniture` library holds; pass undefined for none.
+ * the `furniture` library holds; pass undefined for none. Mapped objects are placed on the finest
+ * level only; a host's (map overrides) one level coarser too, as a place built on purpose should
+ * not lose its trees and lamps the moment its tile coarsens.
  */
 export function mappedPropRequests(
   tile: TerrainSemanticTile,
@@ -120,10 +132,11 @@ export function mappedPropRequests(
   furniture: Pick<LandmarkLibrary, 'get'> | undefined,
   environment?: RegionalEnvironment,
 ): ModelPlacementRequest[] {
-  if (geom.levelBelowMax !== 0) return [];
+  if (geom.levelBelowMax > OVERRIDE_PROP_LEVELS) return [];
   const output: ModelPlacementRequest[] = [],
     seen = new Set<string>();
   for (const poi of tile.pois ?? []) {
+    if (geom.levelBelowMax !== 0 && !isMapOverrideFeature(poi)) continue;
     const [u, v] = poi.point;
     if (u < 0 || v < 0 || u >= 1 || v >= 1) continue;
     const identity = mappedPoiIdentity(poi, geom);
@@ -196,11 +209,75 @@ export function mappedPropRequests(
   }
   return output;
 }
-/** Exclude around mapped crowns (including neighbors' buffered records) before scattering. */
-export function mappedPropExclusions(tile: TerrainSemanticTile, size: number): ScatterExclusion[] {
+
+function scaleTag(value: string | undefined): [number, number, number] {
+  const parts = value?.split(',').map(Number) ?? [];
+  return parts.length === 3 && parts.every((part) => Number.isFinite(part) && part > 0)
+    ? (parts as [number, number, number])
+    : [1, 1, 1];
+}
+
+/** `#rrggbb` as sRGB-encoded components in 0..1, as an instance tint takes it. */
+function colorTag(value: string | undefined): [number, number, number] | undefined {
+  if (value === undefined || !/^#[0-9a-fA-F]{6}$/.test(value)) return undefined;
+  const rgb = Number.parseInt(value.slice(1), 16);
+  return [((rgb >> 16) & 0xff) / 255, ((rgb >> 8) & 0xff) / 255, (rgb & 0xff) / 255];
+}
+
+/**
+ * The models a map override places by ref: its `MAP_OVERRIDE_PROP_CLASS` POIs, with the model,
+ * scale and tint their tags carry. Each tile the point reaches holds the POI, and the one whose
+ * unit square holds it places it, on the same levels as a host's other props.
+ */
+export function overridePropRequests(
+  tile: TerrainSemanticTile,
+  geom: TileGeometry,
+): ModelPlacementRequest[] {
+  if (geom.levelBelowMax > OVERRIDE_PROP_LEVELS) return [];
+  const output: ModelPlacementRequest[] = [],
+    seen = new Set<string>();
+  for (const poi of tile.pois ?? []) {
+    if (poi.class !== MAP_OVERRIDE_PROP_CLASS) continue;
+    const model = poi.tags?.[MAP_OVERRIDE_MODEL_TAG];
+    const [u, v] = poi.point;
+    if (!model || u < 0 || v < 0 || u >= 1 || v >= 1) continue;
+    const identity = mappedPoiIdentity(poi, geom);
+    if (seen.has(identity)) continue;
+    seen.add(identity);
+    const color = colorTag(poi.tags?.[MAP_OVERRIDE_COLOR_TAG]);
+    output.push({
+      identity,
+      model,
+      at: [u * geom.size, v * geom.size],
+      yaw: poi.heading ?? 0,
+      scale: scaleTag(poi.tags?.[MAP_OVERRIDE_SCALE_TAG]),
+      ...(color !== undefined ? { color } : {}),
+    });
+  }
+  return output;
+}
+
+/**
+ * Exclude around mapped crowns (including neighbors' buffered records) before scattering. With
+ * `hostOnly`, around a host's (map overrides) alone: the ones a coarser tile still places.
+ */
+export function mappedPropExclusions(
+  tile: TerrainSemanticTile,
+  size: number,
+  hostOnly = false,
+): ScatterExclusion[] {
   return (tile.pois ?? [])
-    .filter((p) =>
-      ['tree', 'street_lamp', 'bench', 'bicycle_parking', 'charging_station'].includes(p.class),
+    .filter(
+      (p) =>
+        [
+          'tree',
+          'street_lamp',
+          'bench',
+          'bicycle_parking',
+          'charging_station',
+          MAP_OVERRIDE_PROP_CLASS,
+        ].includes(p.class) &&
+        (!hostOnly || isMapOverrideFeature(p)),
     )
     .map((p) => {
       const x = p.point[0] * size,

@@ -252,6 +252,7 @@ export {
 } from './route-shields';
 export {
   deriveOverzoomTerrainSemanticTilePacket,
+  deriveTerrainSemanticTileContentHash,
   deriveTerrainSemanticTilePacket,
   keepTerrainSemanticTile,
   packTerrainSemanticTile,

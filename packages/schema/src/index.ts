@@ -222,6 +222,8 @@ export type { VehicleInteriorBinding, VehicleInteriorSpec } from './vehicle-inte
 export { vehicleInteriorSchema } from './vehicle-interior';
 export type {
   CycleSpec,
+  CycleStance,
+  HandlebarSpec,
   RailVehicleProfile,
   RailVehicleSpec,
   VehicleBodyStyle,

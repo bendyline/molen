@@ -98,7 +98,8 @@ export function inferTerrainParkingAreas(
     ...tile.water.flatMap((f) => f.polygons ?? []),
     ...tile.landcover
       .filter((f) =>
-        /aerodrome|airport|apron|runway|taxiway|parking|car_park|grass|garden|wood|forest|park|playground|pitch|wetland|scrub|village_green|recreation_ground/.test(
+        // `cleared` is ground a host replaced (a map override): no lot is inferred across it.
+        /aerodrome|airport|apron|runway|taxiway|parking|car_park|grass|garden|wood|forest|park|playground|pitch|wetland|scrub|village_green|recreation_ground|cleared/.test(
           `${f.class} ${f.subclass ?? ''}`,
         ),
       )

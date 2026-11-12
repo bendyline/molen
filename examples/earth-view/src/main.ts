@@ -4,11 +4,14 @@
 // first view; `?ambient=0` turns off ambient life (traffic, people, trains and aircraft);
 // `?package=<manifest>|qualla` replaces the regional packages with one terrain package;
 // `?companion=1` gives the walker a body (V for third person) and a companion who follows it,
-// rides along in the passenger seat and steps out again.
+// rides along in the passenger seat and steps out again. The "Replace Needle" button swaps the
+// Space Needle for a place of the host's own and back (a map override); `?override=1` mounts
+// with it already in place.
 
 import { composeMarkerImage } from '@bendyline/molen-client/markers';
 import { createNavigationControls } from '@bendyline/molen-client/navigation';
 import {
+  type EarthOverride,
   type EarthView,
   type EarthViewMode,
   loadEarthContent,
@@ -35,6 +38,75 @@ const controls = document.getElementById('modes') as HTMLFieldSetElement;
 const help = document.getElementById('help') as HTMLParagraphElement;
 const retry = document.getElementById('retry') as HTMLButtonElement;
 retry.addEventListener('click', () => location.reload());
+
+const SPACE_NEEDLE = { latitude: 47.62051, longitude: -122.3493 };
+
+/**
+ * A map override: the rectangle around the Space Needle is cleared (the landmark, the mapped
+ * footprints, trees, street furniture and parking) and the host's own place stands there. Its
+ * contents are laid out in meters from the rectangle's center, +x east and +z south. Buildings
+ * are generated like the rest of the city; the people, the car and the market scene come and go
+ * with the override.
+ */
+const NEEDLE_YARD: EarthOverride = {
+  id: 'needle-yard',
+  area: { center: [SPACE_NEEDLE.longitude, SPACE_NEEDLE.latitude], size: [150, 110] },
+  surface: 'plaza',
+  buildings: [
+    {
+      id: 'warehouse',
+      rect: { center: [-40, -20], size: [56, 36] },
+      height: 10,
+      use: 'warehouse',
+      wall: '#b9b4a8',
+      name: 'Needle Street Warehouse',
+    },
+    { id: 'office', rect: { center: [-46, 30], size: [26, 16] }, levels: 2, use: 'office' },
+  ],
+  props: [
+    { id: 'lamp-nw', kind: 'street_lamp', position: [-70, -50] },
+    { id: 'lamp-ne', kind: 'street_lamp', position: [70, -50] },
+    { id: 'lamp-sw', kind: 'street_lamp', position: [-70, 50] },
+    { id: 'lamp-se', kind: 'street_lamp', position: [70, 50] },
+    { id: 'bench-a', kind: 'bench', position: [4, -30], heading: Math.PI / 2 },
+    { id: 'bench-b', kind: 'bench', position: [4, 30], heading: Math.PI / 2 },
+    { id: 'rack', kind: 'bike_rack', position: [-26, 44] },
+    { id: 'tree-a', kind: 'tree', position: [-8, 48], height: 9, crownDiameter: 6 },
+    { id: 'tree-b', kind: 'tree', position: [20, 48], height: 11, crownDiameter: 7 },
+    { id: 'tree-c', kind: 'tree', position: [48, 48], height: 9, crownDiameter: 6 },
+  ],
+  actors: [
+    {
+      id: 'foreman',
+      figure: { preset: 'human.adult', palette: { top: '#d9822b' } },
+      position: [-8, -6],
+      heading: Math.PI / 2,
+      interactable: true,
+    },
+    {
+      id: 'visitor',
+      figure: { preset: 'human.adult', height: 1.64, palette: { top: '#3d5a80' } },
+      position: [2, 12],
+      behaviour: { kind: 'goTo', to: [2, -36] },
+    },
+    { id: 'dog', figure: { preset: 'dog' }, position: [-6, -4], heading: Math.PI / 2 },
+  ],
+  vehicles: [
+    {
+      id: 'van',
+      type: 'molen.entities.vehicle.sedan',
+      position: [-22, 44],
+      heading: Math.PI / 2,
+      color: '#2f5a3b',
+    },
+  ],
+  // A scripted scene on the east half of the yard, loaded while the viewer is near.
+  scene: {
+    load: (signal) => loadDiorama('market', signal),
+    position: [40, 0],
+    groundFootprint: [28, 22],
+  },
+};
 
 let hideTimer = 0;
 function show(text: string): void {
@@ -105,6 +177,8 @@ async function main(): Promise<void> {
             })),
     },
     ambient: params.get('ambient') === '0' ? false : { density: 0.6 },
+    // Overrides can be there from the start, or set and removed while the view runs (below).
+    ...(params.get('override') === '1' ? { overrides: [NEEDLE_YARD] } : {}),
     camera: {
       latitude: Number(
         params.get('lat') ??
@@ -227,7 +301,28 @@ async function main(): Promise<void> {
   });
 
   document.getElementById('seattle')?.addEventListener('click', () => {
-    view.flyTo({ latitude: 47.62051, longitude: -122.3493, range: 950, heading: 0.9, pitch: 0.48 });
+    view.flyTo({ ...SPACE_NEEDLE, range: 950, heading: 0.9, pitch: 0.48 });
+  });
+
+  // Replace the Space Needle with the host's own place, and put it back. The view goes on
+  // showing what stood there until the replacement is ready, then says the change is applied.
+  const needleButton = document.getElementById('needle') as HTMLButtonElement;
+  const replaced = (): boolean => view.overrides.get(NEEDLE_YARD.id) !== undefined;
+  needleButton.setAttribute('aria-pressed', String(replaced()));
+  needleButton.addEventListener('click', () => {
+    if (replaced()) view.overrides.remove(NEEDLE_YARD.id);
+    else view.overrides.set(NEEDLE_YARD);
+    view.flyTo({ ...SPACE_NEEDLE, range: 380, heading: 0.9, pitch: 0.55 });
+    canvas.focus();
+  });
+  view.on('overridechange', ({ state }) => {
+    needleButton.setAttribute('aria-pressed', String(replaced()));
+    if (state === 'applied')
+      show(
+        replaced()
+          ? 'A warehouse yard stands where the Space Needle was'
+          : 'The Space Needle is back',
+      );
   });
 
   view.on('message', ({ text }) => show(text));

@@ -80,6 +80,14 @@ The Bendy road fleet has eleven mountable models. Alongside compact, sedan, SUV,
 `taxi`, `offroad` and `box_truck`. They expose the usual wheel pivots, paint material, driver
 seat and vehicle tuning, and join the ambient car pool.
 
+Personal and regional vehicles complete it: `molen.entities.vehicle.auto_rickshaw` (Bendy Auto,
+the three-wheeled taxi of South Asia, steered by handlebars) and, under `molen.entities.cycle.`,
+an `underbone_moped` (Bendy Moped), an `electric_moped` (Bendy E-Moped), a shared electric
+`kick_scooter` (Bendy Share Scooter), a push `skateboard` and an `electric_skateboard` (Bendy
+E-Board), beside the motorcycles, scooter and bicycles. The auto-rickshaw and motor two-wheelers
+appear in traffic and parking only where a regional fleet weights them; see
+[riding cycles](vehicles.md#riding-cycles) and [regional fleets](regional-fleets.md).
+
 All generic road, cycle, water and transit display names use the **Bendy** house brand.
 Asset/type IDs remain stable. P-51D Mustang and OH-6 retain their real identities. Models follow
 the [close-view vehicle detail standard](medium-fi.md#controllable-vehicles-close-view-fidelity).

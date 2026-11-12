@@ -249,6 +249,24 @@ export interface HelicopterPhysicsSpec extends JsonObject {
    * `powerLimitedRotor`.
    */
   rotorInertiaTime?: number;
+  /**
+   * Tail-fin weathervaning in forward flight, default 1; 0 disables it. The nose turns into
+   * the relative wind at `directionalStability × airspeed / length` rad/s per radian of
+   * sideslip, fading out below about a fifth of `translationalLiftSpeed`, so a banked
+   * helicopter's nose follows its turning track.
+   */
+  directionalStability?: number;
+  /**
+   * Direct-cyclic pitch and roll rate at full stick with the rotor carrying the weight, rad/s.
+   * Default `cyclicResponse / 4`.
+   */
+  cyclicRate?: number;
+  /**
+   * Share of direct-cyclic control power that does not depend on rotor thrust, 0..1, default
+   * 0.25. The rest fades as the rotor unloads: near 0 for a teetering rotor, which has no
+   * control at zero g, higher for articulated and most for hingeless rotors.
+   */
+  hubStiffness?: number;
   rotorPosition: [number, number, number];
   rotorRadius: number;
   cyclicTilt: number;
@@ -422,6 +440,13 @@ export interface AircraftInputData extends JsonObject {
   flaps: boolean | number;
   /** Powered-lift lever: 0 forward, 1 vertical. Omitted selects forward thrust. */
   thrustVector?: number;
+  /**
+   * Helicopter cyclic. `assisted` (the default) commands a bounded tilt that levels itself when
+   * the stick is released. `direct` commands pitch and roll rates with full authority, so the
+   * helicopter can loop, roll or point straight down, and holds its attitude when released.
+   * On the ground both behave as assisted.
+   */
+  cyclicMode?: 'assisted' | 'direct';
 }
 export interface AircraftStateData extends JsonObject {
   actuators?: ActuatorPositions;

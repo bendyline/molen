@@ -19,6 +19,7 @@ import { emptyWorldgenStats } from '@bendyline/molen-worldgen/kernel';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import { createWorldgenSemanticRenderers } from '../src/client/renderers';
+import { withoutBuildingCutouts } from '../src/client/structure-building-cutout';
 import type { WorldgenGenerateRequest } from '../src/client/worker-bridge';
 import { createStructureIndex } from '../src/kernel/structure-index';
 import type { WorldgenTileOutput } from '../src/kernel/tile-generate';
@@ -1439,4 +1440,446 @@ it('awaits regional placement coverage before generating a terrain tile', async 
   expect(generate).toHaveBeenCalled();
   if (object) renderers.humanFeatures.disposeTile?.(object);
   renderers.dispose();
+});
+
+describe('map overrides in the worldgen renderers', () => {
+  const settle = async (): Promise<void> => {
+    for (let i = 0; i < 20; i++) await new Promise((resolve) => setTimeout(resolve, 0));
+  };
+  /** A footprint by world X/Z, on the 200 m tile whose west edge is at `originX`. */
+  const box = (
+    minX: number,
+    minZ: number,
+    maxX: number,
+    maxZ: number,
+    originX = 0,
+  ): { outer: [number, number][] } => ({
+    outer: [
+      [(minX - originX) / 200, minZ / 200],
+      [(maxX - originX) / 200, minZ / 200],
+      [(maxX - originX) / 200, maxZ / 200],
+      [(minX - originX) / 200, maxZ / 200],
+    ],
+  });
+  /** What a map override leaves on the buildings it injects. */
+  const host = { 'molen:override': 'lot' };
+  type Ids = Array<string | number | undefined>;
+  const solid = (width: number, height: number, depth: number): THREE.Mesh =>
+    new THREE.Mesh(new THREE.BoxGeometry(width, height, depth), new THREE.MeshStandardMaterial());
+
+  it('keeps a host building where a landmark replaces the mapped footprint', async () => {
+    // A 40 m wide landmark anchored at world (50, 60) on a 200 m tile at the origin.
+    const objects = new StructureModelLibrary(async () =>
+      new THREE.Group().add(solid(40, 180, 40)),
+    );
+    const received: Ids[] = [];
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures: createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'Landmark',
+        entries: [
+          {
+            id: 'tower',
+            title: 'Tower',
+            asset: 'tower-model',
+            anchor: worldToWgs84(1, 50, 60),
+            replaceFootprint: true,
+            minLevel: 0,
+            status: 'preview',
+            source: 'test',
+          },
+        ],
+      }),
+      structureObjects: objects,
+      roads: { renderTransportation: false },
+      generator: {
+        generate: async (request: WorldgenGenerateRequest) => {
+          if (request.features?.buildings)
+            received.push(request.tile.buildings.map((building) => building.id));
+          return output();
+        },
+        dispose() {},
+      },
+    });
+    const root = await renderers.humanFeatures.createTile(
+      {
+        ...createEmptyTerrainSemanticTile(),
+        buildings: [
+          // The landmark's own mapped footprint, and a part mapped inside it.
+          { id: 'mapped', polygons: [box(32, 42, 68, 78)] },
+          { id: 'mapped-part', class: 'building_part', polygons: [box(40, 50, 50, 60)] },
+          // What a host put in the same place: under the model, and inside the replaced outline.
+          { id: 'override:lot:shed', polygons: [box(32, 42, 68, 78)], tags: host },
+          { id: 'override:lot:kiosk', polygons: [box(52, 62, 60, 70)], tags: host },
+        ],
+      },
+      context(new AbortController().signal),
+    );
+    expect(root?.getObjectByName('structure:tower')).toBeDefined();
+    expect(received).toEqual([['override:lot:shed', 'override:lot:kiosk']]);
+    if (root) renderers.humanFeatures.disposeTile?.(root);
+    renderers.dispose();
+    objects.dispose();
+  });
+
+  it('leaves a host building whole where a landmark cuts mapped buildings', () => {
+    const footprint = box(20, 20, 120, 120);
+    const source = {
+      ...createEmptyTerrainSemanticTile(),
+      buildings: [
+        { id: 'mapped', polygons: [footprint] },
+        { id: 'override:lot:shed', polygons: [box(20, 20, 120, 120)], tags: host },
+      ],
+    };
+    const cutout: [number, number][] = [
+      [40, 40],
+      [60, 40],
+      [60, 60],
+      [40, 60],
+    ];
+    // Trimmed at the mask, and dropped whole above a coverage share: neither touches the host's.
+    const trimmed = withoutBuildingCutouts(source, { origin: [0, 0], tileSize: 200 }, [cutout]);
+    expect(trimmed.buildings[0]?.polygons[0]?.holes).toHaveLength(1);
+    expect(trimmed.buildings[1]).toBe(source.buildings[1]);
+    const dropped = withoutBuildingCutouts(
+      source,
+      { origin: [0, 0], tileSize: 200 },
+      [],
+      [
+        {
+          outlines: [
+            [
+              [0, 0],
+              [200, 0],
+              [200, 200],
+              [0, 200],
+            ],
+          ],
+          minimumCoverage: 0.9,
+        },
+      ],
+    );
+    expect(dropped.buildings).toEqual([source.buildings[1]]);
+  });
+
+  /**
+   * An L-shaped landmark anchored at world (150, 60) on the tile at the origin: a 40 m block,
+   * and an arm that reaches 30 m into the next tile east. `hide()` takes it off the map, as a
+   * map override clearing it does.
+   */
+  function ballpark() {
+    const objects = new StructureModelLibrary(async () => {
+      const arm = solid(60, 50, 20);
+      arm.position.x = 50;
+      return new THREE.Group().add(solid(40, 60, 40), arm);
+    });
+    const index = createStructureIndex({
+      format: 'molen/structure-placements@1',
+      title: 'Landmark',
+      entries: [
+        {
+          id: 'ballpark',
+          title: 'Ballpark',
+          asset: 'ballpark-model',
+          anchor: worldToWgs84(1, 150, 60),
+          replaceFootprint: true,
+          minLevel: 0,
+          status: 'preview',
+          source: 'test',
+        },
+      ],
+    });
+    let hidden = false;
+    // Buildings handed to the generator per tile X, in call order.
+    const received: Record<number, Ids[]> = { 0: [], 1: [] };
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures: {
+        ...index,
+        query: (bounds, options) => (hidden ? [] : index.query(bounds, options)),
+      },
+      structureObjects: objects,
+      roads: { renderTransportation: false },
+      generator: {
+        generate: async (request: WorldgenGenerateRequest) => {
+          if (request.features?.buildings)
+            received[request.geom.x]?.push(request.tile.buildings.map((building) => building.id));
+          return output();
+        },
+        dispose() {},
+      },
+    });
+    return {
+      renderers,
+      received,
+      hide: () => {
+        hidden = true;
+      },
+      tile: async (
+        x: number,
+        buildings: Array<{
+          id: string;
+          polygons: Array<{ outer: [number, number][] }>;
+          tags?: Record<string, string>;
+        }>,
+      ): Promise<THREE.Object3D> => {
+        const ctx = context(new AbortController().signal);
+        ctx.address = { ...ctx.address, x };
+        ctx.origin = [x * 200, 0];
+        const root = await renderers.humanFeatures.createTile(
+          { ...createEmptyTerrainSemanticTile(), buildings },
+          ctx,
+        );
+        if (!root) throw new Error(`Missing tile ${x}`);
+        return root;
+      },
+      dispose: () => {
+        renderers.dispose();
+        objects.dispose();
+      },
+    };
+  }
+  // Under the landmark's block on its own tile, and under its arm on the next.
+  const under = { id: 'under', polygons: [box(135, 45, 165, 75)] };
+  const shed = { id: 'override:lot:shed', polygons: [box(135, 45, 165, 75)], tags: host };
+  const part = { id: 'part', polygons: [box(205, 52, 225, 68, 200)] };
+
+  it("generates a replaced tile under the outgoing tile's landmark footprint unless it was superseded", async () => {
+    const f = ballpark();
+    const outgoing = await f.tile(0, [under]);
+    expect(outgoing.getObjectByName('structure:ballpark')).toBeDefined();
+    expect(f.received[0]).toEqual([[]]);
+    // The map changes: the landmark is cleared. A rectangle elsewhere supersedes nothing here.
+    f.hide();
+    f.renderers.supersede([1000, 1000, 1100, 1100]);
+    const replacement = await f.tile(0, [under, shed]);
+    expect(replacement.getObjectByName('structure:ballpark')).toBeUndefined();
+    // The outgoing tile still shares the footprint: the mapped building under it is dropped, and
+    // only the tag keeps what the host placed.
+    expect(f.received[0]).toEqual([[], ['override:lot:shed']]);
+    // It heals when the outgoing tile goes, with a second generation of the replacement.
+    f.renderers.humanFeatures.disposeTile?.(outgoing);
+    await settle();
+    expect(f.received[0]).toEqual([[], ['override:lot:shed'], ['under', 'override:lot:shed']]);
+    f.renderers.humanFeatures.disposeTile?.(replacement);
+    f.dispose();
+  });
+
+  it('builds the replacement of a superseded tile once, and hands a neighbour its buildings back once', async () => {
+    const f = ballpark();
+    const outgoing = await f.tile(0, [under]);
+    const neighbour = await f.tile(1, [part]);
+    expect(f.received).toEqual({ 0: [[]], 1: [[]] });
+    f.hide();
+    // Inside the first tile only: a rectangle touching a tile's edge reaches it too.
+    f.renderers.supersede([10, 10, 190, 190]);
+    const replacement = await f.tile(0, [under, shed]);
+    // Generated as the map now is, while the outgoing tile and its landmark are still there.
+    expect(outgoing.getObjectByName('structure:ballpark')).toBeDefined();
+    expect(f.received[0]).toEqual([[], ['under', 'override:lot:shed']]);
+    await settle();
+    expect(f.received[1]).toEqual([[]]);
+    f.renderers.humanFeatures.disposeTile?.(outgoing);
+    await settle();
+    // The replacement stands as generated; the neighbour under the arm is generated again, once.
+    expect(f.received[0]).toEqual([[], ['under', 'override:lot:shed']]);
+    expect(f.received[1]).toEqual([[], ['part']]);
+    for (const root of [replacement, neighbour]) f.renderers.humanFeatures.disposeTile?.(root);
+    f.dispose();
+  });
+
+  it('spends no quality rebuild on a superseded tile', async () => {
+    const f = ballpark();
+    const outgoing = await f.tile(0, [under]);
+    const neighbour = await f.tile(1, [part]);
+    f.renderers.supersede([10, 10, 190, 190]);
+    f.renderers.setQuality('high');
+    await settle();
+    expect(f.received[0]).toHaveLength(1);
+    expect(f.received[1]).toHaveLength(2);
+    // Not superseded: rebuilt as any resident is.
+    f.renderers.setQuality('economy');
+    await settle();
+    expect(f.received[0]).toHaveLength(1);
+    expect(f.received[1]).toHaveLength(3);
+    for (const root of [outgoing, neighbour]) f.renderers.humanFeatures.disposeTile?.(root);
+    f.dispose();
+  });
+
+  /**
+   * Two neighbouring tiles of a small town: a tower that replaces its footprint on the first,
+   * and on the second only a statue, which replaces nothing.
+   */
+  async function town() {
+    const objects = new StructureModelLibrary(async (ref) =>
+      new THREE.Group().add(ref === 'statue-model' ? solid(10, 6, 10) : solid(40, 180, 40)),
+    );
+    const placement = (id: string, x: number, z: number, replaceFootprint: boolean) => ({
+      id,
+      title: id === 'tower' ? 'Tower' : 'Statue',
+      asset: `${id}-model`,
+      anchor: worldToWgs84(1, x, z),
+      ...(replaceFootprint ? { replaceFootprint } : {}),
+      minLevel: 0,
+      status: 'preview' as const,
+      source: 'test',
+    });
+    const renderers = createWorldgenSemanticRenderers(pack, {
+      structures: createStructureIndex({
+        format: 'molen/structure-placements@1',
+        title: 'Landmarks',
+        entries: [placement('tower', 50, 60, true), placement('statue', 350, 150, false)],
+      }),
+      structureObjects: objects,
+      roads: { renderTransportation: false },
+      generator: { generate: async () => output(), dispose() {} },
+    });
+    const roots: THREE.Object3D[] = [];
+    const tile = async (x: number, buildings: unknown[]): Promise<THREE.Object3D> => {
+      const ctx = context(new AbortController().signal);
+      ctx.address = { ...ctx.address, x };
+      ctx.origin = [x * 200, 0];
+      const root = await renderers.humanFeatures.createTile(
+        { ...createEmptyTerrainSemanticTile(), buildings } as ReturnType<
+          typeof createEmptyTerrainSemanticTile
+        >,
+        ctx,
+      );
+      if (!root) throw new Error(`Missing tile ${x}`);
+      roots.push(root);
+      return root;
+    };
+    const depot = {
+      id: 'a',
+      class: 'building',
+      subclass: 'warehouse',
+      name: 'Depot',
+      height: 12,
+      levels: 3,
+      polygons: [box(90, 90, 110, 110)],
+    };
+    const rest = [
+      { id: 'b', polygons: [box(120, 90, 130, 110)] },
+      // Cut by the tile's east edge; the other half is on the next tile under the same id.
+      { id: 'edge', polygons: [box(180, 20, 200, 40)] },
+      { id: 'outline', class: 'building', polygons: [box(20, 120, 60, 160)] },
+      { id: 'part', class: 'building_part', polygons: [box(30, 130, 40, 140)] },
+      { id: 'orphan', class: 'building_part', polygons: [box(150, 20, 160, 30)] },
+      { id: 'override:lot:shed', polygons: [box(100, 160, 120, 180)], tags: host },
+    ];
+    await tile(0, [depot, ...rest]);
+    await tile(1, [{ id: 'edge', polygons: [box(200, 20, 220, 40, 200)] }]);
+    return {
+      renderers,
+      tile,
+      rest,
+      dispose: () => {
+        for (const root of roots) renderers.humanFeatures.disposeTile?.(root);
+        renderers.dispose();
+        objects.dispose();
+      },
+    };
+  }
+  /** A hit with its numbers rounded: tile coordinates do not come back to the last bit. */
+  const rounded = <T>(value: T): T =>
+    JSON.parse(
+      JSON.stringify(value, (_key, item) =>
+        typeof item === 'number' ? Math.round(item * 1e6) / 1e6 : item,
+      ),
+    );
+
+  it('finds the buildings near a point, nearest first, within the radius', async () => {
+    const t = await town();
+    const near = t.renderers.buildingsNear(112, 100, 30);
+    expect(near.map((hit) => hit.id)).toEqual(['a', 'b']);
+    expect(rounded(near[0])).toEqual({
+      kind: 'building',
+      id: 'a',
+      name: 'Depot',
+      class: 'warehouse',
+      outlines: [
+        [
+          [90, 90],
+          [110, 90],
+          [110, 110],
+          [90, 110],
+        ],
+      ],
+      bounds: [90, 90, 110, 110],
+      height: 12,
+      levels: 3,
+      distance: 2,
+    });
+    expect(near[1]?.distance).toBeCloseTo(8, 6);
+    // The default radius is 30.
+    expect(t.renderers.buildingsNear(112, 100).map((hit) => hit.id)).toEqual(['a', 'b']);
+    // Inside a footprint the distance is 0.
+    expect(t.renderers.buildingsNear(100, 100, 5).map((hit) => [hit.id, hit.distance])).toEqual([
+      ['a', 0],
+    ]);
+    expect(t.renderers.buildingsNear(112, 100, 5).map((hit) => hit.id)).toEqual(['a']);
+    expect(t.renderers.buildingsNear(112, 100, 1)).toEqual([]);
+    expect(t.renderers.buildingsNear(1000, 1000, 30)).toEqual([]);
+    t.dispose();
+    expect(t.renderers.buildingsNear(100, 100, 5)).toEqual([]);
+  });
+
+  it('reports a building once, whole: across a tile edge and with its parts', async () => {
+    const t = await town();
+    const edge = t.renderers.buildingsNear(200, 30, 5);
+    expect(edge.map((hit) => hit.id)).toEqual(['edge']);
+    expect(edge[0]?.outlines).toHaveLength(2);
+    expect(rounded(edge[0]?.bounds)).toEqual([180, 20, 220, 40]);
+    expect(edge[0]?.distance).toBeCloseTo(0, 6);
+    // A part is the outline around it; one with no outline is its own building.
+    expect(t.renderers.buildingsNear(35, 135, 5).map((hit) => hit.id)).toEqual(['outline']);
+    expect(t.renderers.buildingsNear(155, 25, 2).map((hit) => hit.id)).toEqual(['orphan']);
+    // What a host placed says which override it came with.
+    expect(t.renderers.buildingsNear(110, 170, 5)).toMatchObject([
+      { kind: 'building', id: 'override:lot:shed', override: 'lot', distance: 0 },
+    ]);
+    expect(t.renderers.buildingsNear(100, 100, 5)[0]?.override).toBeUndefined();
+    t.dispose();
+  });
+
+  it('reports the landmarks standing on a tile, whether or not they replace a footprint', async () => {
+    const t = await town();
+    const [lon, lat] = worldToWgs84(1, 50, 60);
+    const tower = t.renderers.buildingsNear(50, 60, 5);
+    expect(tower).toHaveLength(1);
+    expect(tower[0]).toMatchObject({ kind: 'landmark', id: 'tower', name: 'Tower', distance: 0 });
+    expect(tower[0]?.anchor?.[0]).toBeCloseTo(lon, 12);
+    expect(tower[0]?.anchor?.[1]).toBeCloseTo(lat, 12);
+    // The extent it stands on: the 40 m model around its anchor, to the footprint grid's cell.
+    const [minX, minZ, maxX, maxZ] = tower[0]?.bounds ?? [0, 0, 0, 0];
+    for (const [value, expected] of [
+      [minX, 30],
+      [minZ, 40],
+      [maxX, 70],
+      [maxZ, 80],
+    ] as const)
+      expect(Math.abs(value - expected)).toBeLessThan(2);
+    expect(tower[0]?.outlines).toHaveLength(1);
+    // A landmark that replaces nothing is standing there all the same, on a tile of its own.
+    const statue = t.renderers.buildingsNear(350, 150, 2);
+    expect(statue).toMatchObject([{ kind: 'landmark', id: 'statue', name: 'Statue', distance: 0 }]);
+    expect(rounded(statue[0]?.bounds)).toEqual([345, 145, 355, 155]);
+    // From outside, its distance is to its extent.
+    expect(t.renderers.buildingsNear(365, 150, 12)[0]?.distance).toBeCloseTo(10, 6);
+    t.dispose();
+  });
+
+  it('reads the tile that replaces another at the same address', async () => {
+    const t = await town();
+    const replacement = await t.tile(0, [
+      { id: 'a2', polygons: [box(90, 90, 110, 110)] },
+      ...t.rest,
+    ]);
+    expect(t.renderers.buildingsNear(100, 100, 5).map((hit) => hit.id)).toEqual(['a2']);
+    // Still one building across the edge, from the replacement and the neighbour.
+    expect(t.renderers.buildingsNear(200, 30, 5)[0]?.outlines).toHaveLength(2);
+    expect(t.renderers.buildingsNear(50, 60, 5).map((hit) => hit.id)).toEqual(['tower']);
+    t.renderers.humanFeatures.disposeTile?.(replacement);
+    expect(t.renderers.buildingsNear(100, 100, 5).map((hit) => hit.id)).toEqual(['a']);
+    t.dispose();
+  });
 });

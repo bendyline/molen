@@ -93,8 +93,16 @@ export function createFigureRuntime(world: World): FigureRuntime {
     const mounted = world.get(id, Mounted);
     if (mounted === undefined) return undefined;
     if (world.has(mounted.vehicle, Figure)) return 'pelvis';
-    if (world.get(mounted.vehicle, Vehicle)?.spec.cycle !== undefined) return 'pelvis';
-    return world.has(mounted.vehicle, Vehicle) ? 'eye' : 'pelvis';
+    const spec = world.get(mounted.vehicle, Vehicle)?.spec;
+    if (spec?.cycle !== undefined) return 'pelvis';
+    // A handlebar's driver sits on a saddle; its passengers sit as in a car.
+    if (
+      spec?.handlebar !== undefined &&
+      world.get(mounted.vehicle, Mountable)?.seats.find((seat) => seat.id === mounted.seat)
+        ?.role === 'driver'
+    )
+      return 'pelvis';
+    return spec !== undefined ? 'eye' : 'pelvis';
   };
 
   const poseFor = (id: EntityId, tick: number): FigurePose | undefined => {

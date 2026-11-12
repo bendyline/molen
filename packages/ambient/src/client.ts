@@ -20,6 +20,7 @@ export type {
   AmbientRenderer,
   AmbientRendererOptions,
   AmbientRenderStats,
+  AmbientRider,
 } from './client/renderer';
 export { createAmbientRenderer } from './client/renderer';
 export { type WildlifeRenderBudget, WildlifeRenderer } from './client/wildlife';

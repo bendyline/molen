@@ -13,6 +13,153 @@ export interface VehicleProxyDimensions {
 const templates = new Map<string, THREE.BufferGeometry>();
 type Point = [number, number, number];
 
+/** Collects flat-coloured faces; `paint` marks where the tinted body ends. */
+function proxyBuilder() {
+  const positions: number[] = [];
+  const colors: number[] = [];
+  let bodyVertices = 0;
+  const triangle = (a: Point, b: Point, c: Point, color: THREE.Color): void => {
+    positions.push(...a, ...b, ...c);
+    for (let i = 0; i < 3; i++) colors.push(color.r, color.g, color.b);
+  };
+  const quad = (a: Point, b: Point, c: Point, d: Point, color: THREE.Color): void => {
+    triangle(a, b, d, color);
+    triangle(b, c, d, color);
+  };
+  /** An axis-aligned box from min to max corners; the bottom face is left out. */
+  const box = (min: Point, max: Point, color: THREE.Color, taperTop = 1): void => {
+    const [x0, y0, z0] = min;
+    const [x1, y1, z1] = max;
+    const cx = (x0 + x1) / 2;
+    const tx0 = cx + (x0 - cx) * taperTop,
+      tx1 = cx + (x1 - cx) * taperTop;
+    quad([x0, y0, z1], [x1, y0, z1], [tx1, y1, z1], [tx0, y1, z1], color);
+    quad([x1, y0, z0], [x0, y0, z0], [tx0, y1, z0], [tx1, y1, z0], color);
+    quad([x1, y0, z1], [x1, y0, z0], [tx1, y1, z0], [tx1, y1, z1], color);
+    quad([x0, y0, z0], [x0, y0, z1], [tx0, y1, z1], [tx0, y1, z0], color);
+    quad([tx0, y1, z1], [tx1, y1, z1], [tx1, y1, z0], [tx0, y1, z0], color);
+  };
+  /** An eight-sided tyre on an x axle, both caps. */
+  const tyre = (
+    x: number,
+    z: number,
+    r: number,
+    width: number,
+    tread: THREE.Color,
+    face: THREE.Color,
+  ) => {
+    const rings = [-1, 1].map((side) =>
+      Array.from({ length: 8 }, (_, i): Point => {
+        const a = (i * Math.PI) / 4;
+        return [x + (side * width) / 2, r + Math.cos(a) * r, z + Math.sin(a) * r];
+      }),
+    );
+    const [left, right] = rings as [Point[], Point[]];
+    for (let i = 0; i < 8; i++) {
+      const j = (i + 1) % 8;
+      quad(left[i] as Point, left[j] as Point, right[j] as Point, right[i] as Point, tread);
+    }
+    for (let i = 1; i < 7; i++) {
+      triangle(right[0] as Point, right[i] as Point, right[i + 1] as Point, face);
+      triangle(left[0] as Point, left[i + 1] as Point, left[i] as Point, face);
+    }
+  };
+  return {
+    triangle,
+    quad,
+    box,
+    tyre,
+    /** Everything added so far is tinted body. */
+    paint(): void {
+      bodyVertices = positions.length / 3;
+    },
+    finish(key: string): THREE.BufferGeometry {
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+      geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+      geometry.computeVertexNormals();
+      geometry.computeBoundingBox();
+      geometry.computeBoundingSphere();
+      geometry.userData.bodyVertices = bodyVertices;
+      templates.set(key, geometry);
+      return geometry;
+    },
+  };
+}
+
+const PROXY_TYRE = new THREE.Color('#20242a');
+const PROXY_WHEEL = new THREE.Color('#424950');
+const PROXY_SEAT = new THREE.Color('#26292d');
+const PROXY_GLASS = new THREE.Color('#4d6178');
+const PROXY_CANOPY = new THREE.Color('#e2b33c');
+const PROXY_PAINT = new THREE.Color('#ffffff');
+
+/**
+ * Street-distance silhouette of a parked motorcycle, scooter or moped: two tyres in line, a
+ * painted body and front shield, seat and bars. About 110 triangles, one material, painted faces
+ * first. Never dispose the cached result.
+ */
+export function twoWheelerProxyGeometry(spec: VehicleProxyDimensions): THREE.BufferGeometry {
+  const { width: w, length: l, height: h, wheelbase: wb, wheelRadius: r } = spec;
+  const key = `two:${w}:${l}:${h}:${wb}:${r}`;
+  const cached = templates.get(key);
+  if (cached) return cached;
+  const b = proxyBuilder();
+  const body = Math.min(0.32, w * 0.42) / 2;
+  const seat = h * 0.7;
+  // Body from behind the front wheel to the tail, rising to the seat; a shield ahead of the knees.
+  b.box([-body, r * 0.9, -l * 0.45], [body, seat - 0.05, wb * 0.12], PROXY_PAINT, 0.85);
+  b.box([-body * 1.1, r * 1.1, wb * 0.22], [body * 1.1, h * 0.82, wb * 0.36], PROXY_PAINT, 0.8);
+  b.box([-0.05, r, wb * 0.36], [0.05, h * 0.84, wb * 0.46], PROXY_PAINT);
+  b.paint();
+  b.box(
+    [-body * 0.85, seat - 0.05, -l * 0.42],
+    [body * 0.85, seat + 0.04, -wb * 0.02],
+    PROXY_SEAT,
+    0.8,
+  );
+  b.box([-w * 0.45, h * 0.86, wb * 0.24], [w * 0.45, h * 0.9, wb * 0.3], PROXY_SEAT);
+  for (const z of [-wb / 2, wb / 2]) b.tyre(0, z, r, 0.09, PROXY_TYRE, PROXY_WHEEL);
+  return b.finish(key);
+}
+
+/**
+ * Street-distance silhouette of a parked auto-rickshaw: a body tapering to the nose under a
+ * canvas canopy on four posts, a windscreen, one front and two rear tyres. About 170 triangles,
+ * one material, painted faces first. Never dispose the cached result.
+ */
+export function threeWheelerProxyGeometry(spec: VehicleProxyDimensions): THREE.BufferGeometry {
+  const { width: w, length: l, height: h, wheelbase: wb, wheelTrack: track, wheelRadius: r } = spec;
+  const key = `three:${w}:${l}:${h}:${wb}:${track}:${r}`;
+  const cached = templates.get(key);
+  if (cached) return cached;
+  const b = proxyBuilder();
+  const front = l / 2 - 0.05,
+    rear = -l / 2;
+  const belt = h * 0.55;
+  // Rear tub over the rear axle, the cab floor and the rounded nose cowl over the front wheel.
+  b.box([-w / 2, r * 1.3, rear], [w / 2, belt, -l * 0.12], PROXY_PAINT);
+  b.box([-w * 0.42, r * 1.3, -l * 0.12], [w * 0.42, r * 1.6, front - 0.4], PROXY_PAINT);
+  b.box([-w * 0.34, r * 2.3, front - 0.45], [w * 0.34, belt + 0.06, front], PROXY_PAINT, 0.7);
+  b.paint();
+  const roof = h - 0.06;
+  b.box([-w * 0.48, roof, rear + 0.08], [w * 0.48, h, front - 0.5], PROXY_CANOPY, 0.94);
+  for (const x of [-w * 0.46, w * 0.46])
+    for (const z of [rear + 0.12, -0.08])
+      b.box([x - 0.025, belt, z - 0.025], [x + 0.025, roof, z + 0.025], PROXY_SEAT);
+  const glassZ = front - 0.48;
+  b.quad(
+    [-w * 0.32, belt + 0.06, glassZ + 0.06],
+    [w * 0.32, belt + 0.06, glassZ + 0.06],
+    [w * 0.32, roof, glassZ - 0.04],
+    [-w * 0.32, roof, glassZ - 0.04],
+    PROXY_GLASS,
+  );
+  b.tyre(0, wb / 2, r, 0.1, PROXY_TYRE, PROXY_WHEEL);
+  for (const x of [-track / 2, track / 2]) b.tyre(x, -wb / 2, r, 0.1, PROXY_TYRE, PROXY_WHEEL);
+  return b.finish(key);
+}
+
 /**
  * Shared street-distance silhouette for parked cars and instanced traffic. Painted faces come
  * first so a static batch can tint the body and roof without tinting the glass, tyres or lamps.

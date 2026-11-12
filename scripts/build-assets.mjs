@@ -579,20 +579,32 @@ async function restoreMoved(root, moved, backup, keep) {
   }
 }
 
-// Retry individual imports only for transient Windows file locks. A failed batch (especially
-// the LOD pass) must report its error rather than silently rerunning every successful model.
-async function withWindowsRetry(work, log) {
+const FILE_LOCK = {
+  what: 'hit a Windows file lock',
+  pattern:
+    /\b(?:EBUSY|EPERM|EACCES|EUNKNOWN|UNKNOWN): (?:resource busy or locked|operation not permitted|permission denied|unknown error), (?:open|read|write|rename|unlink|copyfile)\b/i,
+};
+// Windows ended a Node process for an access violation (0xC0000005) before it reported anything.
+// `run` says "exit 3221225477" when that was the job's own process; a process the job started
+// leaves "code: 3221225477" (execFile) or "status: 3221225477" (spawnSync) in the job's output.
+// A job's own errors exit 1, so this is the runtime failing rather than the job. It is rare, but
+// a full build starts thousands of processes.
+const PROCESS_CRASH = {
+  what: 'lost a Node process to an access violation',
+  pattern: /\b(?:exit|code:|status:) 3221225477\b/,
+};
+
+// Retry individual generators and imports only for failures that Windows caused rather than the
+// job. A failed batch (especially the LOD pass) must report its error rather than silently
+// rerunning every successful model.
+async function withWindowsRetry(work, log, label, transients) {
   try {
     return await work();
   } catch (error) {
-    if (
-      process.platform !== 'win32' ||
-      !/\b(?:EBUSY|EPERM|EACCES|EUNKNOWN|UNKNOWN): (?:resource busy or locked|operation not permitted|permission denied|unknown error), (?:open|read|write|rename|unlink|copyfile)\b/i.test(
-        error.message,
-      )
-    )
-      throw error;
-    log('  Import hit a Windows file lock; retrying once in 2 seconds.');
+    const transient =
+      process.platform === 'win32' && transients.find(({ pattern }) => pattern.test(error.message));
+    if (!transient) throw error;
+    log(`  ${label} ${transient.what}; retrying once in 2 seconds.`);
     await new Promise((done) => setTimeout(done, 2000));
     return work();
   }
@@ -737,16 +749,26 @@ async function build({
         async (job) => {
           // The preload cannot see into other runtimes; their writes stay in declared trees.
           if (job.command[0] !== 'node') await rollback.backupTrees(job.outputs ?? []);
-          const trace = await cache.begin(job);
-          const seconds = await run(job.command, {
-            root,
-            python,
-            log: join(logs, `${job.id}.log`),
-            label: `Generator ${job.id}`,
-            trace,
-            signal,
-            rollback,
-          });
+          let trace;
+          const seconds = await withWindowsRetry(
+            async () => {
+              // Processes of a crashed attempt that did finish left their records: trace afresh.
+              if (trace) await rm(trace, { recursive: true, force: true });
+              trace = await cache.begin(job);
+              return run(job.command, {
+                root,
+                python,
+                log: join(logs, `${job.id}.log`),
+                label: `Generator ${job.id}`,
+                trace,
+                signal,
+                rollback,
+              });
+            },
+            log,
+            `Generator ${job.id}`,
+            [PROCESS_CRASH],
+          );
           await cache.complete(job, trace);
           report.generators.push({ id: job.id, seconds });
           log(`  ${job.id}: ${seconds}s`);
@@ -813,6 +835,8 @@ async function build({
                 rollback,
               }),
             log,
+            `Import ${entry.id}`,
+            [FILE_LOCK, PROCESS_CRASH],
           );
         }
         await imported.get(entry.id)();

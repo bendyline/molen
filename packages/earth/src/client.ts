@@ -3,6 +3,22 @@
 // cars, flyable aircraft, sky and haze, performance tiers, credits) are exported for hosts that
 // compose their own.
 
+// The map override declaration a view takes, and the frame its contents are laid out in. The
+// pieces a host composing its own view needs (`createMapOverrideSet`, `withMapOverrides`,
+// `withMapOverrideStructures`) are `@bendyline/molen-worldgen-earth`'s.
+export {
+  type MapOverride,
+  type MapOverrideArea,
+  type MapOverrideBuilding,
+  type MapOverrideClear,
+  type MapOverrideFrame,
+  type MapOverrideModel,
+  type MapOverridePoint,
+  type MapOverrideProp,
+  type MapOverrideSurface,
+  mapOverrideFrame,
+  mapOverridePoint,
+} from '@bendyline/molen-worldgen-earth/kernel';
 export type {
   EarthActorBehaviour,
   EarthActorChange,
@@ -144,6 +160,21 @@ export {
   type EarthNightLightingFrame,
   type EarthNightLightingOptions,
 } from './client/night-lighting';
+export {
+  bindMapOverrideEntities,
+  bindMapOverrides,
+  type EarthBuildingHit,
+  type EarthOverride,
+  type EarthOverrideActor,
+  type EarthOverrideScene,
+  type EarthOverrides,
+  type EarthOverrideVehicle,
+  MAP_OVERRIDE_REFRESH_MARGIN,
+  type MapOverrideBinding,
+  type MapOverrideBindingChange,
+  type MapOverrideEntities,
+  type MapOverrideEntitySinks,
+} from './client/overrides';
 export {
   createEarthAdmissionGovernor,
   EARTH_CALIBRATION_QUALITY,

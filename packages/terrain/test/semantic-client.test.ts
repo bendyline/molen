@@ -358,7 +358,7 @@ describe('normalized semantic mesh adapter', () => {
     expect(material.transparent).toBe(false);
     expect(material.depthWrite).toBe(true);
     expect(material.userData.terrainWaterMaterial).toBe(true);
-    expect(material.customProgramCacheKey()).toBe('terrain-water@3:[]');
+    expect(material.customProgramCacheKey()).toBe('terrain-water@4:[]');
     expect(() => setTerrainWaterTime(material, 2.5, [100, 200])).not.toThrow();
   });
   it('closes banks against a separate raised landcover layer when this tile renders only water', () => {

@@ -56,23 +56,56 @@ export type VehicleBodyStyle =
   | 'passenger-car'
   | 'bicycle'
   | 'motorcycle'
-  | 'scooter';
+  | 'scooter'
+  | 'moped'
+  | 'kick-scooter'
+  | 'skateboard'
+  | 'auto-rickshaw';
 
-/** Self-balancing two-wheel handling and metric rider contact points, in model space. */
-export interface CycleSpec extends JsonObject {
-  maxLean: number;
+/**
+ * Where a rider's hands and feet go, in model space, for a vehicle steered by handlebars rather
+ * than a wheel. The driver seat is the pelvis anchor.
+ */
+export interface HandlebarSpec extends JsonObject {
+  /** Forward torso lean in radians. */
   riderLean: number;
   handlebarPivot: [number, number, number];
-  /** Left, then right hand grips. */
+  /**
+   * Left, then right hand grips; they turn with the bars about `handlebarPivot`. A `sideways`
+   * rider has no bars: these are free hand positions for an adult, which do not turn and move
+   * with the hips of a shorter or taller body.
+   */
   grips: [[number, number, number], [number, number, number]];
-  /** Left, then right ankle targets on the footrests (used without pedals). */
+  /** Left, then right ankle targets on the footrests or deck (used without pedals). */
   footrests: [[number, number, number], [number, number, number]];
+}
+
+/**
+ * How a cycle's rider stands: on a saddle (`seated`, the default), upright on a deck facing the
+ * bars (`standing`), or across a board with the left foot forward (`sideways`). A standing or
+ * sideways rider's seat is where an adult's hips go; the pose lowers or raises the hips to the
+ * body's own leg length, keeping the hands and feet on their targets.
+ */
+export type CycleStance = 'seated' | 'standing' | 'sideways';
+
+/** Self-balancing two-wheel handling and metric rider contact points, in model space. */
+export interface CycleSpec extends HandlebarSpec {
+  maxLean: number;
+  stance?: CycleStance;
   pedals?: {
     center: [number, number, number];
     radius: number;
     halfWidth: number;
     /** Wheel revolutions per crank revolution. */
     ratio: number;
+  };
+  /**
+   * Push-powered (a skateboard): under power the rider turns forward and pushes off the ground
+   * with the rear foot, one push per `stride` meters travelled, then rides sideways again.
+   */
+  kick?: {
+    /** Meters travelled per push. */
+    stride: number;
   };
 }
 
@@ -204,6 +237,11 @@ export interface VehicleSpec extends JsonObject {
   looseSurfaceGrip?: number;
   /** Two contact patches on the centreline; balances upright at rest and leans into turns. */
   cycle?: CycleSpec;
+  /**
+   * Handlebar steering on a vehicle that does not lean (a three-wheeler): the driver's hands and
+   * feet, with the seat as the pelvis anchor. Ignored when `cycle` is present.
+   */
+  handlebar?: HandlebarSpec;
   /** Track-guided running gear: follows a host track guide instead of steering. */
   rail?: RailVehicleSpec;
 }
@@ -242,6 +280,7 @@ export type RailVehicleProfile =
 /** Named-node bindings for a GLB-backed wheeled vehicle. */
 export interface VehicleVisualSpec extends JsonObject {
   wheelNodes: string[];
+  /** Wheel nodes turned by the steering; empty when animation bindings pose the steering. */
   frontWheelNodes: string[];
   /** Legacy explicit steering binding. Prefer interior.bindings for new models. */
   steeringWheelNode?: string;

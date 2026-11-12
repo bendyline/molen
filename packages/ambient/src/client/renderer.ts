@@ -1,4 +1,4 @@
-import type { RailVehicleProfile } from '@bendyline/molen-schema';
+import type { RailVehicleProfile, VehicleData } from '@bendyline/molen-schema';
 /**
  * `createAmbientRenderer`: draws a main-thread world's ambient agents (the Earth view's shared
  * vehicle world, or any host stepping a World itself). Cars, buses and rail cars are instanced
@@ -7,10 +7,12 @@ import type { RailVehicleProfile } from '@bendyline/molen-schema';
  */
 
 import type { SceneAdmission } from '@bendyline/molen-client';
-import type { FigureData } from '@bendyline/molen-figures/client';
+import { cycleRiderPose, type FigureData } from '@bendyline/molen-figures/client';
+import type { SeatData, VehicleStateData } from '@bendyline/molen-kernel/vehicles';
 import { componentHandle, Transform, type World } from '@bendyline/molen-kernel/world';
 import * as THREE from 'three';
 import { AmbientAgent, type AmbientAgentData } from '../kernel/components';
+import { DEFAULT_TEMPLATES } from '../kernel/templates';
 import { AmbientAircraft, type AmbientAircraftModels } from './aircraft';
 import { ProxyBatches } from './batches';
 import { type AmbientVehicleModels, type DetailCandidate, VehicleDetail } from './detail';
@@ -52,7 +54,30 @@ export interface AmbientRendererOptions {
   heights?: Readonly<Record<string, number>>;
   /** Rail vehicle silhouettes by type id (`spec.rail.profile`), for train proxies. */
   railProfiles?: Readonly<Record<string, RailVehicleProfile>>;
+  /**
+   * Car types ridden in the open, by type id: two-wheelers and auto-rickshaws, whose driver is
+   * drawn on the saddle (two-wheelers also lean into their turns and draw as two-wheelers).
+   */
+  riders?: Readonly<Record<string, AmbientRider>>;
   budget?: Partial<AmbientRenderBudget>;
+}
+
+/** The driver drawn on a two- or three-wheeler in traffic. */
+export interface AmbientRider {
+  /** The vehicle's data; `spec.cycle` or `spec.handlebar` places the hands and feet. */
+  vehicle: VehicleData;
+  /** The driver seat: the pelvis position in model space. */
+  seat: SeatData;
+}
+
+/** Per-rider heading history: lean and bar angle follow the turn rate, tick to tick. */
+interface Ridden {
+  tick: number;
+  yaw: number;
+  rate: number;
+  roll: number;
+  figure: FigureData;
+  seen: number;
 }
 
 export interface AmbientRenderStats {
@@ -147,6 +172,90 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
     }
     return color;
   };
+  const ridden = new Map<string, Ridden>();
+  let frame = 0;
+  /**
+   * The rider's walker for a ridden agent, and the body rotation both draw with: a two-wheeler
+   * leans into its turn (a = g tan θ, eased) up to the type's lean limit.
+   */
+  const ride = (
+    id: string,
+    agent: Readonly<AmbientAgentData>,
+    pos: readonly [number, number, number],
+    rot: readonly [number, number, number, number],
+    rider: AmbientRider,
+    dt: number,
+    tick: number,
+  ): { rot: [number, number, number, number]; walker: WalkerView } => {
+    const [qx, qy, qz, qw] = rot;
+    const yaw = Math.atan2(2 * (qx * qz + qw * qy), 1 - 2 * (qx * qx + qy * qy));
+    let state = ridden.get(id);
+    if (state === undefined) {
+      // Dressed as an adult pedestrian of the same seed would be.
+      const figure = DEFAULT_TEMPLATES.pedestrian({
+        id,
+        kind: 'pedestrian',
+        type: 'human.adult',
+        seed: agent.seed,
+      }).figure as FigureData | undefined;
+      state = {
+        tick,
+        yaw,
+        rate: 0,
+        roll: 0,
+        figure: figure ?? { preset: 'human.adult', seed: id },
+        seen: frame,
+      };
+      ridden.set(id, state);
+    } else if (tick !== state.tick) {
+      let turn = yaw - state.yaw;
+      if (turn > Math.PI) turn -= 2 * Math.PI;
+      else if (turn < -Math.PI) turn += 2 * Math.PI;
+      state.rate = turn / ((tick - state.tick) / world.tickRate);
+      state.tick = tick;
+      state.yaw = yaw;
+    }
+    state.seen = frame;
+    const spec = rider.vehicle.spec;
+    const maxLean = spec.cycle?.maxLean ?? 0;
+    const target = Math.max(
+      -maxLean,
+      Math.min(maxLean, -Math.atan2(agent.speed * state.rate, 9.81)),
+    );
+    state.roll += (target - state.roll) * Math.min(1, dt * 4);
+    let body: [number, number, number, number] = [qx, qy, qz, qw];
+    if (maxLean > 0) {
+      const s = Math.sin(state.roll / 2),
+        c = Math.cos(state.roll / 2);
+      body = [qx * c + qy * s, qy * c - qx * s, qz * c + qw * s, qw * c - qz * s];
+    }
+    const steer = Math.max(
+      -spec.maxSteer,
+      Math.min(spec.maxSteer, Math.atan2(spec.wheelbase * state.rate, Math.max(1, agent.speed))),
+    );
+    const seat = new THREE.Vector3(...rider.seat.position).applyQuaternion(
+      new THREE.Quaternion(...body),
+    );
+    return {
+      rot: body,
+      walker: {
+        id: `${id}:rider`,
+        figure: state.figure,
+        pos: [pos[0] + seat.x, pos[1] + seat.y, pos[2] + seat.z],
+        rot: body,
+        speed: 0,
+        since: agent.spawnedTick,
+        hidden: false,
+        mode: 'sit',
+        anchor: 'pelvis',
+        riding: cycleRiderPose(
+          rider.vehicle,
+          { steer, speed: agent.speed } as VehicleStateData,
+          rider.seat,
+        ),
+      },
+    };
+  };
   let lastSelect = Number.NEGATIVE_INFINITY;
   let elapsed = 0;
   let counts: AmbientRenderStats = {
@@ -168,6 +277,7 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
       elapsed += dt;
       if (!object.visible) return;
       const tick = world.tick;
+      frame++;
       batches.begin(camera);
       const walkers: WalkerView[] = [];
       const planes: {
@@ -229,6 +339,13 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
             continue;
           }
         }
+        const rider = agent.kind === 'car' ? options.riders?.[agent.type] : undefined;
+        let rot = t.rot;
+        if (rider !== undefined) {
+          const ridden = ride(id, agent, t.pos, t.rot, rider, dt, tick);
+          rot = ridden.rot;
+          walkers.push(ridden.walker);
+        }
         if (agent.kind === 'car' || agent.kind === 'train') {
           // Long vehicles count from their nearest end.
           const distance = Math.max(
@@ -239,13 +356,19 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
           if (distance < 80)
             candidates.push({ id, type: agent.type, color: agent.color ?? '#d8d8d4', distance });
           if (detail?.has(id) === true) {
-            detail.update(id, t.pos, t.rot, agent.speed, dt);
+            detail.update(id, t.pos, rot, agent.speed, dt);
             continue;
           }
         }
         const profile = agent.kind === 'train' ? options.railProfiles?.[agent.type] : undefined;
         const shape: ProxyShape =
-          profile !== undefined ? `rail-${profile}` : proxyShapeFor(agent.kind, agent.length);
+          profile !== undefined
+            ? `rail-${profile}`
+            : rider?.vehicle.spec.cycle !== undefined
+              ? 'two-wheeler'
+              : rider?.vehicle.spec.bodyStyle === 'auto-rickshaw'
+                ? 'three-wheeler'
+                : proxyShapeFor(agent.kind, agent.length);
         const height =
           options.heights?.[agent.type] ??
           proxyHeight(shape, agent.length, agent.width, agent.type);
@@ -254,12 +377,13 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
           shape,
           dims: { length: agent.length, width: agent.width, height },
           pos: t.pos,
-          rot: t.rot,
+          rot,
           scale: age >= FADE_TICKS ? 1 : Math.max(0.05, age / FADE_TICKS),
           color: colorOf(agent.color),
         });
       }
       const proxies = batches.end();
+      for (const [id, state] of ridden) if (state.seen !== frame) ridden.delete(id);
       figures.update(walkers, camera, tick, world.tickRate);
       aircraft?.sync(planes, dt);
       if (detail !== undefined && elapsed - lastSelect >= 0.2) {

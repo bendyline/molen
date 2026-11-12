@@ -1,4 +1,6 @@
 import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { createTypeLibrary } from '@bendyline/molen-kernel/content';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import { Heightfield } from '../src/heightfield';
@@ -485,6 +487,55 @@ describe('surface styles', () => {
     const none = place([]);
     expect(none.cars).toEqual([]);
     expect(none.stats.parkedCars).toBe(0);
+  });
+
+  it('parks two-wheelers two or three to a bay, upright, and auto-rickshaws one to a bay', () => {
+    const cycles = createTypeLibrary([
+      JSON.parse(
+        readFileSync(
+          new URL('../../../content/entities/types/cycle.types.json', import.meta.url),
+          'utf8',
+        ),
+      ),
+      JSON.parse(
+        readFileSync(
+          new URL('../../../content/entities/types/vehicle.types.json', import.meta.url),
+          'utf8',
+        ),
+      ),
+    ]);
+    const kind = (id: string): TerrainParkedVehicle => ({
+      id,
+      spec: cycles.component<import('@bendyline/molen-schema').VehicleData>(id, 'vehicle').spec,
+    });
+    const place = (vehicles: TerrainParkedVehicle[]) =>
+      createTerrainSurfaceObject(fixture(), context(), {
+        details: { maxFixturesPerTile: 600, parkedVehicles: vehicles, roadSigns: false },
+      }).userData.vehicles as import('@bendyline/molen-schema').VehiclePlacement[];
+    const sedans = place([kind('molen.entities.vehicle.sedan')]);
+    const bikes = place([
+      kind('molen.entities.cycle.underbone_moped'),
+      kind('molen.entities.cycle.motor_scooter'),
+    ]);
+    // The same occupied bays, each holding a row of two or three.
+    expect(bikes.length).toBeGreaterThanOrEqual(sedans.length * 2);
+    expect(bikes.length).toBeLessThanOrEqual(sedans.length * 3);
+    expect(new Set(bikes.map((bike) => bike.kind)).size).toBe(2);
+    expect(new Set(bikes.map((bike) => bike.id)).size).toBe(bikes.length);
+    for (const bike of bikes) {
+      expect(bike.roll).toBe(0);
+      // Within its bay: every bike has a sedan's bay centre within half a bay's diagonal.
+      expect(
+        Math.min(
+          ...sedans.map((car) =>
+            Math.hypot(car.position[0] - bike.position[0], car.position[2] - bike.position[2]),
+          ),
+        ),
+      ).toBeLessThan(1.5);
+    }
+    const autos = place([kind('molen.entities.vehicle.auto_rickshaw')]);
+    const plan = (cars: typeof sedans) => cars.map((car) => [car.position[0], car.position[2]]);
+    expect(plan(autos)).toEqual(plan(sedans));
   });
 
   it('keeps lane dividers out of intersections and does not detect bridges or grade-separated crossings', () => {

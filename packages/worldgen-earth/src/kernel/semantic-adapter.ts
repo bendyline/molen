@@ -7,6 +7,7 @@
 import {
   polygonArea,
   roadWidth,
+  type TerrainBuildingFeature,
   type TerrainSemanticPolygon,
   type TerrainSemanticTile,
   waterwayWidth,
@@ -35,20 +36,36 @@ import {
   inferBuildingFootprints,
 } from './building-infill';
 import { type BuildingPiece, buildingPieces } from './building-parts';
-import { applyBuildingUse, associateBuildingUses, type BuildingUseEvidence } from './building-use';
+import {
+  applyBuildingUse,
+  applyDeclaredBuildingUse,
+  associateBuildingUses,
+  type BuildingUseEvidence,
+} from './building-use';
 import { applyBusinessAppearance, associateBusinesses } from './businesses';
 import { withDistrictLevels } from './district-heights';
 import { corridor } from './infill-geometry';
 import { contextLabelForPolygon, isLandcoverDesignation, landcoverLabel } from './labels';
 import { landSiteProps, prepareLandSites } from './land-sites';
-import { mappedPropExclusions, mappedPropRequests } from './mapped-props';
+import {
+  isMapOverrideFeature,
+  MAP_OVERRIDE_STYLE_TAG,
+  MAP_OVERRIDE_TRIM_TAG,
+  MAP_OVERRIDE_WALL_TAG,
+} from './map-override-tags';
+import { mappedPropExclusions, mappedPropRequests, overridePropRequests } from './mapped-props';
 import { applyParkingStructure, associateParkingStructures } from './parking-structures';
 import type { PlacesContent } from './places';
 import { type RegionResolver, regionScatterId, regionStyleRules } from './region';
 import type { RegionAtlasDoc } from './region-atlas-types';
 import type { RegionalEnvironment } from './regional-environment';
 import { residentialTreePolygons } from './residential-trees';
-import { analyzeTileEdge, buildingClipBuffer, PROTOMAPS_TILE_BUFFER } from './tile-edges';
+import {
+  analyzeTileEdge,
+  analyzeWholeFootprint,
+  buildingClipBuffer,
+  PROTOMAPS_TILE_BUFFER,
+} from './tile-edges';
 
 export interface TileGeometry {
   level: number;
@@ -111,6 +128,31 @@ function toMeters(
   };
 }
 
+/**
+ * What a host's building (a map override) says outright, from the tags it travels with: built
+ * ahead of its neighbours, in its own style when the pack has it, and in its own colors.
+ */
+function hostBuildingChoices(
+  feature: TerrainBuildingFeature,
+  styles: ResolvedStylePack['archstyles'],
+): Pick<BuildingRequest, 'priority' | 'style' | 'appearance'> {
+  const style = feature.tags?.[MAP_OVERRIDE_STYLE_TAG];
+  const wall = feature.tags?.[MAP_OVERRIDE_WALL_TAG];
+  const trim = feature.tags?.[MAP_OVERRIDE_TRIM_TAG];
+  return {
+    priority: 1,
+    ...(style !== undefined && styles[style] !== undefined ? { style } : {}),
+    ...(wall !== undefined || trim !== undefined
+      ? {
+          appearance: {
+            ...(wall !== undefined ? { wall } : {}),
+            ...(trim !== undefined ? { trim } : {}),
+          },
+        }
+      : {}),
+  };
+}
+
 /** Scatter label for ground that no mapped landcover or land-use polygon covers. */
 export const OPEN_GROUND_LABEL = 'open_ground';
 
@@ -149,8 +191,9 @@ export function scatterRequestFromTile(
       });
     }
   }
+  // A host's props (map overrides) are placed one level coarser than mapped ones, so kept clear there.
   const exclusions: ScatterExclusion[] =
-    geom.levelBelowMax === 0 ? mappedPropExclusions(tile, size) : [];
+    geom.levelBelowMax <= 1 ? mappedPropExclusions(tile, size, geom.levelBelowMax !== 0) : [];
   for (const feature of tile.buildings) {
     for (const polygon of feature.polygons) {
       exclusions.push({
@@ -275,27 +318,34 @@ export function semanticTileToBatch(
   let clippedPieces = 0;
   if (options.features?.buildings !== false) {
     const pieces = buildingPieces(tile.buildings);
+    // A host's buildings (map overrides) say what they are. No tenant, car park or use is argued
+    // for them from the map around them, which would repaint and re-sign what their owner chose.
+    const mapped = pieces.some((piece) => isMapOverrideFeature(piece.feature))
+      ? pieces.filter((piece) => !isMapOverrideFeature(piece.feature))
+      : pieces;
     const businesses =
       geom.levelBelowMax === 0 && !tile.buildingsGeneralized && options.places !== undefined
         ? associateBusinesses(
             tile,
-            pieces.filter((piece) => piece.feature.tags?.['molen:inferred'] === undefined),
+            mapped.filter((piece) => piece.feature.tags?.['molen:inferred'] === undefined),
             options.places.businesses,
           )
         : new Map();
     const parkingStructures =
       geom.levelBelowMax === 0 && !tile.buildingsGeneralized
-        ? associateParkingStructures(tile, pieces, size)
+        ? associateParkingStructures(tile, mapped, size)
         : new Map();
     const finest = geom.levelBelowMax === 0 && !tile.buildingsGeneralized;
     const buildingUses: ReadonlyMap<BuildingPiece, BuildingUseEvidence> = finest
-      ? associateBuildingUses(tile, pieces, size, (piece) =>
+      ? associateBuildingUses(tile, mapped, size, (piece) =>
           contextLabelForPolygon(piece.polygon, ringCentroid(piece.polygon.outer), tile.landcover),
         )
       : new Map();
     for (const piece of pieces) {
       const { feature, labels, polygon: source, polygonIndex } = piece;
-      const decision = analyzeTileEdge(source, buffer);
+      const host = isMapOverrideFeature(feature);
+      // Every tile a host's footprint reaches holds all of it: its center's tile renders it.
+      const decision = host ? analyzeWholeFootprint(source) : analyzeTileEdge(source, buffer);
       if (decision.mode === 'skip') {
         skippedByOwnership++;
         continue;
@@ -338,7 +388,11 @@ export function semanticTileToBatch(
               ...(decision.seamEdges.length > 0 ? { seamEdges: decision.seamEdges } : {}),
             }
           : {}),
+        ...(host ? hostBuildingChoices(feature, options.pack.archstyles) : {}),
       };
+      // Before any rule is consulted: the declared use is the same answer at every level.
+      if (host && feature.subclass !== undefined)
+        applyDeclaredBuildingUse(request, feature.subclass, options.pack.archstyles);
       if (
         request.style === undefined &&
         ((straddles && atlas !== undefined && options.regions !== undefined) ||
@@ -363,6 +417,7 @@ export function semanticTileToBatch(
           request.identity,
         ).style;
       }
+      // None of these maps holds a host's piece (see `mapped`).
       const occupants = businesses.get(piece);
       if (occupants !== undefined)
         applyBusinessAppearance(request, piece, occupants, tile, size, options.pack.archstyles);
@@ -423,8 +478,11 @@ export function semanticTileToBatch(
         options.features?.buildings !== false ? options.places?.landmarks : undefined,
         options.environment,
       ),
-      // Stand-in boxes are drawn with the buildings, so that pass alone asks for them.
-      ...(options.features?.buildings !== false ? landSiteProps(tile, geom) : []),
+      // Stand-in boxes are drawn with the buildings, so that pass alone asks for them; so are the
+      // models a host (a map override) places by ref.
+      ...(options.features?.buildings !== false
+        ? [...landSiteProps(tile, geom), ...overridePropRequests(tile, geom)]
+        : []),
     ],
     ...(scatter !== undefined ? { scatter } : {}),
     ...(scatterEnvironment !== undefined ? { scatterEnvironment } : {}),

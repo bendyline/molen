@@ -220,6 +220,7 @@ export function createNavigationControls(
             [A.gear, 'Landing gear'],
             [A.flaps, 'Flaps'],
             [A.vector, 'Thrust vector'],
+            [A.cyclic, 'Helicopter cyclic: assisted / direct'],
             [A.recover, 'Recover'],
           ] as Array<[string, string]>)
         : ([

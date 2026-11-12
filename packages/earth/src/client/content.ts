@@ -129,6 +129,34 @@ export function earthRailCars(types: TypeLibrary): TerrainParkedVehicle[] {
   return cars;
 }
 
+/**
+ * Vehicle types that may stand parked, in type order. Rail vehicles stand on track and
+ * player-controllable transit is not a curbside car. With `regional`, seated motor two-wheelers
+ * (cycles without pedals ridden from a saddle) and region-only types (an `ambientRole.weight` of
+ * 0) join: a fleet profile decides where they appear. Bicycles, kick scooters and boards never
+ * park.
+ */
+export function earthParkedVehicles(types: TypeLibrary, regional: boolean): TerrainParkedVehicle[] {
+  const parked: TerrainParkedVehicle[] = [];
+  for (const id of types.idsWith('vehicle')) {
+    const spec = types.component<VehicleData>(id, 'vehicle').spec;
+    if (spec.rail !== undefined) continue;
+    const role = types.components(id).ambientRole as
+      | { role?: string; weight?: number; colors?: string[] }
+      | undefined;
+    if (role !== undefined && role.role !== 'car') continue;
+    const cycle = spec.cycle;
+    if (
+      cycle !== undefined &&
+      (cycle.pedals !== undefined || (cycle.stance ?? 'seated') !== 'seated')
+    )
+      continue;
+    if (!regional && (cycle !== undefined || role?.weight === 0)) continue;
+    parked.push({ id, spec, ...(role?.colors ? { colors: role.colors } : {}) });
+  }
+  return parked;
+}
+
 export interface EarthWorldgenContent {
   /** Vehicles that may stand in a car park's stalls; none leaves its decks empty. */
   parkedVehicles?: readonly TerrainParkedVehicle[];
@@ -161,6 +189,12 @@ export interface EarthContent {
   types?: TypeLibrary;
   /** Parked-car kinds for street surfaces, in type order. */
   parkedVehicles: TerrainParkedVehicle[];
+  /**
+   * The kinds a regional fleet may park (`createEarthFleet`): `parkedVehicles` plus seated motor
+   * two-wheelers and region-only types (an `ambientRole.weight` of 0, such as the auto-rickshaw),
+   * which stand only where a fleet profile weights them.
+   */
+  fleetParkedVehicles?: TerrainParkedVehicle[];
   /**
    * Rolling stock that stands in rail yards and on sidings (`TerrainSurfaceDetails.railCars`):
    * freight cars weighted and painted as the library's locomotives make up their trains, yard
@@ -559,24 +593,10 @@ export async function loadEarthContent(
           earthPack.manifest.provides.atlas?.[0] ?? 'world.atlas.json',
         )))
       : undefined;
+  const fleetParkedVehicles: TerrainParkedVehicle[] =
+    types !== undefined ? earthParkedVehicles(types, true) : [];
   const parkedVehicles: TerrainParkedVehicle[] =
-    types
-      ?.idsWith('vehicle')
-      .filter((id) => types.component<VehicleData>(id, 'vehicle').spec.cycle === undefined)
-      // Rail vehicles stand on track, never at the curb.
-      .filter((id) => types.component<VehicleData>(id, 'vehicle').spec.rail === undefined)
-      // Player-controllable transit must not become ordinary curbside parked cars.
-      .filter((id) => {
-        const role = (types.components(id).ambientRole as { role?: string } | undefined)?.role;
-        return role === undefined || role === 'car';
-      })
-      .map((id) => ({
-        id,
-        spec: types.component<VehicleData>(id, 'vehicle').spec,
-        ...((types.components(id).ambientRole as { colors?: string[] } | undefined)?.colors
-          ? { colors: (types.components(id).ambientRole as { colors: string[] }).colors }
-          : {}),
-      })) ?? [];
+    types !== undefined ? earthParkedVehicles(types, false) : [];
   const railCars = types !== undefined ? earthRailCars(types) : [];
   return {
     packs,
@@ -588,6 +608,7 @@ export async function loadEarthContent(
       ? { fleet: { catalogs: fleetCatalogs, ...(fleetAtlas ? { atlas: fleetAtlas } : {}) } }
       : {}),
     parkedVehicles,
+    fleetParkedVehicles,
     railCars,
     assets: {
       load: (ref, options) => packs.readBytes(styleIndex[ref] ?? ref, options),

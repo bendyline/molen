@@ -8,9 +8,11 @@ import {
   type TerrainPackageDescriptor,
   writePmtilesArchive,
 } from '@bendyline/molen-terrain/kernel';
+import { mapOverridePoint } from '@bendyline/molen-worldgen-earth/kernel';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { EarthContent } from '../src/client/content';
 import type { EarthFrame } from '../src/client/earth-view';
+import type { EarthOverride } from '../src/client/overrides';
 import { ENTITY_TYPES } from './entity-types';
 import { nextTimerTurn } from './view-harness';
 
@@ -959,6 +961,420 @@ describe('mountEarthView game hooks', () => {
     view.input.map.release('KeyE');
     await pump(1);
     expect(view.mode).toBe('walk');
+    view.dispose();
+  });
+});
+
+// Map overrides through the facade: the mount option, the `view.overrides` handle and its
+// events, the entities an override brings, and what happens to them across a re-anchor. The flat
+// package has no map layers, so there is no tile to build again here (overrides-stream.test.ts
+// covers that against a real stream); what is under test is the view's own wiring.
+describe('mountEarthView overrides', () => {
+  const HOME = { latitude: 47.6, longitude: -122.33 };
+  const SEDAN = 'molen.entities.vehicle.sedan';
+  const PERSON = { preset: 'human.adult' as const, height: 1.72 };
+  const lot = (extra: Partial<EarthOverride> = {}): EarthOverride => ({
+    id: 'lot',
+    area: { center: [HOME.longitude, HOME.latitude], size: [80, 60] },
+    buildings: [{ id: 'shed', rect: { size: [48, 30] }, height: 9 }],
+    ...extra,
+  });
+  /** A point of `lot`'s frame as a place. */
+  const inLot = (x: number, z: number): { latitude: number; longitude: number } => {
+    const [longitude, latitude] = mapOverridePoint(
+      { center: [HOME.longitude, HOME.latitude], heading: 0 },
+      [x, z],
+    );
+    return { latitude, longitude };
+  };
+
+  async function mountOverrides(
+    options: { overrides?: readonly EarthOverride[]; types?: boolean } = {},
+  ) {
+    const canvas = fakeCanvas();
+    const errors: Array<{ error: unknown; context: string }> = [];
+    const content = {
+      packs: {
+        readBytes: async () => {
+          throw new Error('no models in unit tests');
+        },
+      },
+      types: ENTITY_TYPES,
+      parkedVehicles: [],
+      assets: { load: async () => new Uint8Array(), loadText: async () => '' },
+      stars: async () => [],
+    } as unknown as EarthContent;
+    const view = await mountEarthView({
+      canvas: canvas as unknown as HTMLCanvasElement,
+      terrain: earth,
+      archives: { elevation: archive },
+      ...(options.types ? { content, audio: false as const, ambient: false as const } : {}),
+      ...(options.overrides !== undefined ? { overrides: options.overrides } : {}),
+      camera: { ...HOME, range: 2_000, heading: 0 },
+      style: { sky: false },
+      onError: (error, context) => errors.push({ error, context }),
+    });
+    const events: string[] = [];
+    view.on('overridechange', ({ revision, state, ids }) =>
+      events.push(`${revision}:${state}:${ids.join(',')}`),
+    );
+    return { view, canvas, errors, events };
+  }
+
+  /** Pump frames until `promise` settles, as a browser keeps drawing while a host awaits. */
+  async function drawn<T>(promise: Promise<T>, limit = 2_000): Promise<T> {
+    let settled = false;
+    promise.then(
+      () => {
+        settled = true;
+      },
+      () => {
+        settled = true;
+      },
+    );
+    for (let i = 0; i < limit && !settled; i++) await pump(1);
+    if (!settled) throw new Error('still waiting after pumping frames');
+    return promise;
+  }
+
+  it('takes overrides at mount, and refuses to mount with one it cannot place', async () => {
+    const first = lot();
+    const { view, errors, events } = await mountOverrides({ overrides: [first] });
+    // Kept as given, not copied: a host's own fields on an override stay on it.
+    expect(view.overrides.list()).toEqual([first]);
+    expect(view.overrides.get('lot')).toBe(first);
+    expect(view.overrides.get('other')).toBeUndefined();
+    expect(view.overrides.revision).toBe(0);
+    expect(view.stats().overrides).toEqual({ count: 1, refreshing: 0 });
+    // The first tiles are built from them: nothing to apply, nothing announced.
+    await view.overrides.whenApplied();
+    await pump(10);
+    expect(events).toEqual([]);
+    expect(errors).toEqual([]);
+    view.dispose();
+
+    viewerState.disposed = 0;
+    const canvas = fakeCanvas();
+    await expect(
+      mountEarthView({
+        canvas: canvas as unknown as HTMLCanvasElement,
+        terrain: earth,
+        archives: { elevation: archive },
+        overrides: [first, lot({ id: 'bad', minLevel: 99 })],
+        camera: { ...HOME, range: 2_000 },
+        style: { sky: false },
+      }),
+    ).rejects.toThrow(/map override "bad".*minLevel/);
+    // Nothing is left running behind the failed mount.
+    expect(viewerState.disposed).toBe(1);
+    expect(canvas.listenerCount()).toBe(0);
+    const frames = viewerState.frames;
+    await pump(3);
+    expect(viewerState.frames).toBe(frames);
+  });
+
+  it('adds, replaces and removes overrides while running, announcing each change', async () => {
+    const { view, events, errors } = await mountOverrides();
+    await pump(10);
+    expect(view.overrides.list()).toEqual([]);
+    expect(view.stats().overrides).toBeUndefined();
+    // Nothing to wait for: at once, with or without a signal.
+    await view.overrides.whenApplied();
+    await view.overrides.whenApplied({ signal: new AbortController().signal });
+
+    const first = lot();
+    view.overrides.set(first);
+    expect(view.overrides.revision).toBe(1);
+    expect(view.overrides.get('lot')).toBe(first);
+    // Announced once the task that made the change is over, then again when it is on screen.
+    expect(events).toEqual([]);
+    await view.overrides.whenApplied();
+    expect(events).toEqual(['1:pending:lot', '1:applied:lot']);
+    expect(view.stats().overrides).toEqual({ count: 1, refreshing: 0 });
+
+    // One it cannot place throws and changes nothing.
+    expect(() => view.overrides.set(lot({ minLevel: 99 }))).toThrow(/map override "lot"/);
+    expect(() => view.overrides.set({ ...lot(), id: 'Not An Id' })).toThrow(/id must be/);
+    expect(view.overrides.revision).toBe(1);
+    expect(view.overrides.get('lot')).toBe(first);
+    await view.overrides.whenApplied();
+    expect(events).toHaveLength(2);
+
+    // The changes of one task are announced together.
+    const other = lot({
+      id: 'other',
+      area: { center: [HOME.longitude + 0.01, HOME.latitude], size: [40, 40] },
+    });
+    view.overrides.set(other);
+    view.overrides.set(lot({ surface: 'paved' }));
+    expect(view.overrides.revision).toBe(3);
+    await view.overrides.whenApplied();
+    expect(events.slice(2)).toEqual(['3:pending:other,lot', '3:applied:other,lot']);
+    expect(view.overrides.list().map((override) => override.id)).toEqual(['lot', 'other']);
+    expect(view.stats().overrides?.count).toBe(2);
+
+    expect(view.overrides.remove('other')).toBe(true);
+    expect(view.overrides.remove('other')).toBe(false);
+    expect(view.overrides.revision).toBe(4);
+    await view.overrides.whenApplied();
+    expect(events.slice(4)).toEqual(['4:pending:other', '4:applied:other']);
+
+    view.overrides.clear();
+    await view.overrides.whenApplied();
+    expect(events.slice(6)).toEqual(['5:pending:lot', '5:applied:lot']);
+    expect(view.overrides.list()).toEqual([]);
+    expect(view.stats().overrides).toBeUndefined();
+    // Clearing nothing is no change.
+    view.overrides.clear();
+    expect(view.overrides.revision).toBe(5);
+    await view.overrides.whenApplied();
+    expect(events).toHaveLength(8);
+    expect(errors).toEqual([]);
+    // Without content packs there is no map of buildings to ask.
+    expect(view.buildingAt(HOME)).toBeUndefined();
+    expect(view.buildingAt({ ...HOME, radius: 500 })).toBeUndefined();
+    view.dispose();
+  });
+
+  it('lets a host abandon its wait for a change to reach the screen', async () => {
+    const { view } = await mountOverrides();
+    await pump(10);
+    const gone = new AbortController();
+    gone.abort();
+    await expect(view.overrides.whenApplied({ signal: gone.signal })).rejects.toMatchObject({
+      name: 'AbortError',
+    });
+    // A far jump rebuilds the frame: until it is up, changes are not on screen.
+    view.jumpTo({ latitude: 40.7, longitude: -74.0, range: 2_000 });
+    view.overrides.set(lot());
+    const controller = new AbortController();
+    let outcome = 'waiting';
+    view.overrides.whenApplied({ signal: controller.signal }).then(
+      () => {
+        outcome = 'applied';
+      },
+      (error: Error) => {
+        outcome = error.name;
+      },
+    );
+    const order: string[] = [];
+    view.on('terrainchange', () => order.push('frame'));
+    const patient = view.overrides.whenApplied().then(() => {
+      order.push('applied');
+    });
+    const microtasks = async (count: number): Promise<void> => {
+      for (let i = 0; i < count; i++) await Promise.resolve();
+    };
+    await microtasks(2);
+    expect(outcome).toBe('waiting');
+    controller.abort();
+    await microtasks(5);
+    expect(outcome).toBe('AbortError');
+    // The other wait goes on, and ends once the new frame stands.
+    await drawn(patient);
+    expect(order).toEqual(['frame', 'applied']);
+    expect(view.stats().frameLatitude).toBeCloseTo(40.7, 6);
+    expect(view.overrides.get('lot')).toBeDefined();
+    view.dispose();
+  });
+
+  it('brings the people, vehicles and scene an override declares, and takes them away with it', async () => {
+    const { view, errors } = await mountOverrides({ types: true });
+    await pump(10);
+    const load = vi.fn(async () => {
+      throw new Error('never near enough to load in this test');
+    });
+    view.overrides.set(
+      lot({
+        actors: [
+          { id: 'guard', figure: PERSON, position: [0, 20], heading: Math.PI / 2 },
+          { id: 'dog', figure: { preset: 'dog' }, position: [2, 20] },
+        ],
+        vehicles: [
+          // A type the mounted packs do not have: reported, and the rest still applies.
+          { id: 'ghost', type: 'no.such.vehicle', position: [10, 0] },
+          { id: 'car', type: SEDAN, position: [-30, 22], heading: Math.PI },
+        ],
+      }),
+    );
+    // People at once; vehicles once the ground they stand on has been rebuilt.
+    expect(view.actors.list()).toEqual(['lot/guard', 'lot/dog']);
+    expect(view.vehicles.list()).toEqual([]);
+    await view.overrides.whenApplied();
+    await nextTimerTurn();
+    expect(view.vehicles.list()).toEqual(['lot/car']);
+    expect(errors.map(({ context }) => context)).toEqual(['override vehicle lot/ghost']);
+    expect(String(errors[0]?.error)).toMatch(/no\.such\.vehicle/);
+    // Laid out in the override's frame: +z is south, headings are compass headings.
+    await drawn(view.vehicles.whenPlaced('lot/car'));
+    const car = view.vehicles.pose('lot/car');
+    expect(car?.latitude).toBeCloseTo(inLot(-30, 22).latitude, 5);
+    expect(car?.longitude).toBeCloseTo(inLot(-30, 22).longitude, 5);
+    expect(car?.heading).toBeCloseTo(Math.PI, 2);
+    for (let i = 0; i < 120 && view.actors.pose('lot/guard')?.placed !== true; i++) await pump(1);
+    const guard = view.actors.pose('lot/guard');
+    expect(guard?.placed).toBe(true);
+    expect(guard?.latitude).toBeCloseTo(inLot(0, 20).latitude, 5);
+    expect(guard?.longitude).toBeCloseTo(inLot(0, 20).longitude, 5);
+    expect(guard?.heading).toBeCloseTo(Math.PI / 2, 2);
+    expect(guard?.latitude).toBeLessThan(HOME.latitude);
+
+    // A scene is a diorama on the override's rectangle; this one is 5 km off and stays unloaded.
+    view.overrides.set(
+      lot({
+        id: 'plaza',
+        area: { center: [HOME.longitude + 0.07, HOME.latitude], size: [70, 50] },
+        buildings: [],
+        scene: { load },
+      }),
+    );
+    expect(view.dioramas.list()).toEqual(['plaza/scene']);
+    expect(view.dioramas.status('plaza/scene')).toBe('idle');
+    await view.overrides.whenApplied();
+    await pump(5);
+    expect(load).not.toHaveBeenCalled();
+
+    // Set again with one actor fewer: the others stay as they are, the car where it stands.
+    const before = view.actors.pose('lot/guard');
+    view.overrides.set(
+      lot({
+        actors: [{ id: 'guard', figure: PERSON, position: [0, 20], heading: Math.PI / 2 }],
+        vehicles: [{ id: 'car', type: SEDAN, position: [-30, 22], heading: Math.PI }],
+      }),
+    );
+    await view.overrides.whenApplied();
+    await nextTimerTurn();
+    expect(view.actors.list()).toEqual(['lot/guard']);
+    expect(view.actors.pose('lot/guard')?.placed).toBe(before?.placed);
+    expect(view.vehicles.list()).toEqual(['lot/car']);
+    expect(view.vehicles.pose('lot/car')?.placed).toBe(true);
+
+    // Gone with their overrides.
+    expect(view.overrides.remove('lot')).toBe(true);
+    expect(view.actors.list()).toEqual([]);
+    expect(view.vehicles.list()).toEqual([]);
+    expect(view.dioramas.list()).toEqual(['plaza/scene']);
+    view.overrides.clear();
+    expect(view.dioramas.list()).toEqual([]);
+    await view.overrides.whenApplied();
+    expect(errors).toHaveLength(1);
+    view.dispose();
+  });
+
+  it('keeps overrides and what they brought through a re-anchor of the view', async () => {
+    const { view, errors } = await mountOverrides({ types: true });
+    await pump(10);
+    view.overrides.set(lot({ actors: [{ id: 'guard', figure: PERSON, position: [0, 20] }] }));
+    await view.overrides.whenApplied();
+    for (let i = 0; i < 120 && view.actors.pose('lot/guard')?.placed !== true; i++) await pump(1);
+    expect(view.actors.pose('lot/guard')?.placed).toBe(true);
+
+    // A far jump rebuilds the metric frame; a change made meanwhile lands in the new one.
+    view.jumpTo({ latitude: 40.7, longitude: -74.0, range: 2_000 });
+    const away = lot({
+      id: 'away',
+      area: { center: [-74.0, 40.7], size: [50, 50] },
+      actors: [{ id: 'host', figure: PERSON, position: [0, 0] }],
+    });
+    view.overrides.set(away);
+    await drawn(view.overrides.whenApplied());
+    await settle(view);
+    await pump(5);
+    expect(view.stats().frameLatitude).toBeCloseTo(40.7, 6);
+    expect(view.overrides.list().map((override) => override.id)).toEqual(['lot', 'away']);
+    expect(view.overrides.get('away')).toBe(away);
+    expect(view.stats().overrides).toEqual({ count: 2, refreshing: 0 });
+    expect([...view.actors.list()].sort()).toEqual(['away/host', 'lot/guard']);
+    // The one left behind keeps its place; the one here stands on the new frame's ground.
+    const guard = view.actors.pose('lot/guard');
+    expect(guard?.placed).toBe(false);
+    expect(guard?.latitude).toBeCloseTo(inLot(0, 20).latitude, 5);
+    for (let i = 0; i < 240 && view.actors.pose('away/host')?.placed !== true; i++) await pump(1);
+    const host = view.actors.pose('away/host');
+    expect(host?.placed).toBe(true);
+    expect(host?.latitude).toBeCloseTo(40.7, 5);
+    expect(host?.longitude).toBeCloseTo(-74.0, 5);
+
+    // And back: the first override's guard is placed again where it was declared.
+    view.jumpTo({ ...HOME, range: 2_000 });
+    await drawn(view.overrides.whenApplied());
+    await settle(view);
+    for (let i = 0; i < 240 && view.actors.pose('lot/guard')?.placed !== true; i++) await pump(1);
+    expect(view.actors.pose('lot/guard')?.placed).toBe(true);
+    expect(view.actors.pose('lot/guard')?.latitude).toBeCloseTo(inLot(0, 20).latitude, 5);
+    expect(view.overrides.list()).toHaveLength(2);
+    // Removed in this frame, it takes its actor with it as before.
+    view.overrides.remove('away');
+    expect(view.actors.list()).toEqual(['lot/guard']);
+    expect(errors).toEqual([]);
+    view.dispose();
+  });
+
+  it('announces a change made while the view re-anchors, once the new frame shows it', async () => {
+    const { view, events, errors } = await mountOverrides();
+    // No terrain stack is bound between a far jump and the new frame standing: the view itself
+    // tells of the change, and of its being applied when that frame is up.
+    view.jumpTo({ latitude: 40.7, longitude: -74.0, range: 2_000 });
+    view.overrides.set(lot({ id: 'away', area: { center: [-74.0, 40.7], size: [50, 50] } }));
+    await Promise.resolve();
+    expect(events).toEqual(['1:pending:away']);
+    await drawn(view.overrides.whenApplied());
+    await settle(view);
+    expect(view.stats().frameLatitude).toBeCloseTo(40.7, 6);
+    expect(events).toEqual(['1:pending:away', '1:applied:away']);
+    // A change left pending when its frame goes is applied in the next one, and said so once.
+    view.overrides.set(lot());
+    view.jumpTo({ ...HOME, range: 2_000 });
+    await drawn(view.overrides.whenApplied());
+    await settle(view);
+    expect(events).toEqual(['1:pending:away', '1:applied:away', '2:pending:lot', '2:applied:lot']);
+    expect(errors).toEqual([]);
+    view.dispose();
+  });
+
+  it('stands a walker outside a building that an override puts around them', async () => {
+    const { view } = await mountOverrides();
+    await pump(10);
+    expect(view.setMode('walk', { at: { ...HOME, heading: Math.PI / 2 } })).toBe(true);
+    await pump(30);
+    expect(view.walker.ready).toBe(true);
+    const [x0, z0] = view.toWorld(HOME.latitude, HOME.longitude);
+    const feet = (): [number, number] => {
+      const pose = view.walker.pose();
+      if (pose === undefined) throw new Error('not walking');
+      return view.toWorld(pose.latitude, pose.longitude);
+    };
+    // An override elsewhere leaves the walker alone.
+    view.overrides.set(
+      lot({ id: 'far', area: { center: [HOME.longitude + 0.01, HOME.latitude], size: [40, 40] } }),
+    );
+    await view.overrides.whenApplied();
+    await pump(10);
+    expect(view.walker.ready).toBe(true);
+    expect(feet()[0]).toBeCloseTo(x0, 3);
+    expect(feet()[1]).toBeCloseTo(z0, 3);
+    // A hall 20 m by 12 m around the walker, whose north wall is the nearest: 4 m away.
+    view.overrides.set(
+      lot({ buildings: [{ id: 'hall', rect: { center: [0, 2], size: [20, 12] }, levels: 2 }] }),
+    );
+    await view.overrides.whenApplied();
+    for (let i = 0; i < 120 && !view.walker.ready; i++) await pump(1);
+    await pump(10);
+    expect(view.walker.ready).toBe(true);
+    const [x, z] = feet();
+    // A meter and a half outside that wall, still facing the way they were.
+    expect(x).toBeCloseTo(x0, 1);
+    expect(z0 - z).toBeCloseTo(5.5, 1);
+    expect(view.walker.pose()?.heading).toBeCloseTo(Math.PI / 2, 3);
+    expect(view.walker.pose()?.altitude).toBeCloseTo(100, 0);
+    expect(view.mode).toBe('walk');
+    // Outside the footprint, a later change of the same override does not move them again.
+    view.overrides.set(
+      lot({ buildings: [{ id: 'hall', rect: { center: [0, 2], size: [20, 12] }, levels: 3 }] }),
+    );
+    await view.overrides.whenApplied();
+    await pump(10);
+    expect(feet()[1]).toBeCloseTo(z, 3);
     view.dispose();
   });
 });

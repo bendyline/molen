@@ -33,6 +33,42 @@ illustrative performances, not live events or exact reconstructions. The airport
 but lies outside the bundled detailed street extract. Scripts load only when their sites are
 near. Use the host time slider to see fireworks at dusk.
 
+**Replace building** swaps part of the mapped world for the sample's own content, through
+[map overrides](https://molen.dev/guide/earth-view). Pick a set, then walk up to a building in
+Walk mode and press **N** (the prompt names the building ahead), or look down at one in Fly mode
+and press **Replace**. The building, its landmark model if it has one, and the trees, street
+furniture and parked cars around it are cleared, and the set is built in their place. What stood
+there stays on screen until its replacement is ready. Pressing **N** on a replacement swaps in the
+set now picked, on the same ground. **U** (or **Undo**) takes the most recent replacement back and
+**Clear all** takes back every one. With nothing mapped in reach the set goes on the open ground
+ahead.
+
+| Set | What it shows |
+|---|---|
+| Box | One generated building |
+| Warehouse | A building with a declared use and colors, street furniture, parked vehicles |
+| School campus | Six buildings on a plaza, trees and benches, a bus and a car |
+| Landmark (catalog model) | A landmark model of the content packs, placed by asset id |
+| Custom model | A model of the sample's own, built in memory and served by its own asset provider |
+| Market square (scene) | A scripted scene loaded while you are near |
+| Pocket park (roads cleared) | Roads cut at the rectangle, grass, a pavilion and trees |
+| Empty lot | The clearing alone |
+
+`?override=<set>&overrideAt=<lat>,<lon>` places a set when the page opens, before any tile is
+built; `<set>` is `box`, `warehouse`, `school`, `landmark`, `model`, `market`, `park` or `empty`,
+and `&overrideHeading=<degrees>` turns it clockwise from north. For example
+`?lat=47.6198&lon=-122.3493&alt=120&navigation=walk&override=school&overrideAt=47.62051,-122.3493`
+opens beside a school campus where the Space Needle stands.
+
+The sets are data in `src/override-samples.ts`; `src/override-controls.ts` is the wiring a host
+that composes its own view needs: one override set, a wrapper on the tile renderers, the landmark
+index wrapped, and a binding that rebuilds the tiles under a change. The people some sets declare
+are not shown here (this sample has no actors); the
+[Earth view sample](https://github.com/bendyline/molen/tree/main/examples/earth-view) shows them.
+Clearing roads leaves the ground graded as the road left it, and bridges, tunnels and railways are
+never cut. Without a style pack (`?style=none`) there is no map to read a building from, so a set
+is always placed on the ground ahead.
+
 The standalone [sky observatory](sky.html) previews the reusable Earth/custom sky system without
 loading terrain. Open `/sky.html` on the dev server for date/location controls, accelerated time,
 Sun/Moon tracking, a full-moon preset and an authored fantasy world. See
@@ -287,6 +323,11 @@ The structure library enables search and detail browsing as soon as the catalog 
 images render only near the viewport, yield between structures, and pause while a detail dialog is
 open. Details use a separate renderer. Download model sheet explicitly generates the remaining
 previews; a failed preview leaves its named card and detail controls available.
+
+Press P on foot for a personal ride: a skateboard, an electric skateboard or a shared electric kick
+scooter, set down a step ahead and boarded. Each press brings the next one; E steps off. In regions
+whose fleet has them (South and Southeast Asia, Taiwan, China, parts of Africa and Europe),
+parked motorcycles, scooters, mopeds and auto-rickshaws can be boarded with E like parked cars.
 
 Press B near mapped water (or use `?boat=1`) to launch a speedboat. W/S thrust, A/D helm,
 Space opposing thrust, hold Shift to anchor below walking speed, V helm/chase, E dockside exit.

@@ -492,12 +492,15 @@ a cab car, and seven kinds of freight car. See [Reusable entities](entities.md).
 
 ## Riding cycles
 
-The entities pack includes six rideable types: `molen.entities.cycle.standard_motorcycle`,
-`cruiser_motorcycle`, `motor_scooter`, `city_bicycle`, `road_bicycle` and `cargo_bicycle` (the same
-namespace prefix applies to each). Mount, drive and exit them with the same APIs as cars. In the
-Earth view example, select a cycle beside **Drive**, then press **Drive**. **W** supplies motor or
-pedal power, **S** and **Space** brake, **A/D** steer, **V** changes view, and **E** steps off once
-stopped. These cycles have no powered reverse. The Earth view API accepts the full type ID:
+The entities pack includes eleven rideable types under `molen.entities.cycle.`: the
+`standard_motorcycle`, `cruiser_motorcycle` and `motor_scooter`; the `city_bicycle`, `road_bicycle`
+and `cargo_bicycle`; an `underbone_moped` (the step-through commuter of South and Southeast Asia)
+and an `electric_moped`; a shared electric `kick_scooter`; and a push `skateboard` and an
+`electric_skateboard`. Mount, drive and exit them with the same APIs as cars. In the Earth view
+example, select one beside **Drive**, then press **Drive**. **W** supplies motor or pedal power (on
+the skateboard, the rider pushes off), **S** and **Space** brake, **A/D** steer, **V** changes view,
+and **E** steps off once stopped. None has powered reverse. The Earth view API accepts the full
+type ID:
 
 ```js
 view.setMode('drive', { vehicle: 'molen.entities.cycle.city_bicycle', force: true });
@@ -516,14 +519,47 @@ optional `pedals` describe metric contact points in model space. The figures cap
 Earth avatar renderer share the same pose evaluator: hands follow the turning handlebars and
 feet follow the pedals or footrests. At low-speed steering lock the rider counterweights at the
 saddle and turns the shoulders to keep both grips within reach. The stock dimensions fit an adult human; unusually small
-or large figures may not reach every contact point. The cockpit uses `spec.driverEye` separately
+or large figures may not reach every contact point of a seated cycle. The cockpit uses `spec.driverEye` separately
 from the saddle. `vehicle.visual.animation` binds the moving parts in Earth; `model.signals`
 provides the same steering, wheel and pedal animation in ordinary Molen scenes.
 
+### Standing and sideways riders
+
+`cycle.stance` says how the rider stands: on a saddle (`seated`, the default), upright on a deck
+facing the bars (`standing`, the kick scooter), or across a board with the left foot forward
+(`sideways`, the skateboards). A standing or sideways rider's driver seat is where an adult's hips
+go; the pose stands on the idle pose rather than the seated one and raises or lowers the hips to
+each body's own legs, so shorter and taller riders keep their feet on the deck and their hands on
+the grips. A sideways rider turns across the board, looks down it and leans with it; their
+`grips` are free hand positions held out beside the hips, which do not turn with the steering.
+
+`cycle.kick` makes a cycle push-powered. Under power a sideways rider turns forward and pushes off
+the ground with the rear foot, one push per `kick.stride` meters (never slower than a push from
+rest), then rides sideways again. `vehicleState.pedalAngle` is the phase of the current push and
+`vehicleState.kick` eases from 0 (sideways) to 1 (turned to push); a push under way when the power
+stops finishes before the rider settles.
+
+A board steers through its trucks rather than a turned wheel: its `visual.frontWheelNodes` is
+empty and `visual.animation` turns `truck-front` and `truck-rear` against each other, each by half
+the steering angle, which matches the turning circle of the solver's single steered axle.
+
+### Handlebar three-wheelers
+
+`spec.handlebar` gives a vehicle that does not lean (the `molen.entities.vehicle.auto_rickshaw`)
+the same rider contacts as a cycle: `riderLean`, `handlebarPivot`, `grips` and `footrests`, with
+the driver seat as the pelvis anchor. It drives on the car solver with three wheel nodes, one
+steered at the front. Its passengers sit as they do in a car. The auto-rickshaw also has
+`headlights` and `wipers` actuators, so **L** and **K** work in it as in a car.
+
 Cycles use the existing `molenVehicle(types, id)` helper and are enumerated separately by
-`MOLEN_CYCLE_ENTITY_IDS`; `MOLEN_VEHICLE_ENTITY_IDS` continues to enumerate cars and trucks.
-Cycles are excluded from automatic car parking and ambient traffic. Balance is assisted; this
-is grounded riding, without falls, wheelies, jumps, gears or stunt simulation.
+`MOLEN_CYCLE_ENTITY_IDS`; `MOLEN_VEHICLE_ENTITY_IDS` continues to enumerate cars, trucks and the
+auto-rickshaw. Motor two-wheelers (the motorcycle, scooter and both mopeds) and the auto-rickshaw
+carry an `ambientRole` of weight 0: they never appear in default traffic or parking, only in
+regions whose fleet profile weights them (see [Regional vehicle fleets](regional-fleets.md)). In
+traffic their riders are drawn on the saddle and two-wheelers lean into turns; parked, two-wheelers
+stand two or three to a bay. Bicycles, kick scooters and skateboards never park or join traffic.
+Balance is assisted; this is grounded riding, without falls, wheelies, jumps, gears or stunt
+simulation.
 
 For a repeatable mounted-rider review in the engine repository:
 

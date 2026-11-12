@@ -1,0 +1,350 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.cycle.skateboard": {
+      "doc": "Bendy Skateboard. Rideable push skateboard: the rider stands across the deck, pushes off under power, leans into turns.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.cycle.skateboard",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.cycle.skateboard",
+          "color": "#c8452f",
+          "spec": {
+            "label": "Bendy Skateboard",
+            "bodyStyle": "skateboard",
+            "genericLabel": "Skateboard",
+            "width": 0.21,
+            "length": 0.8,
+            "height": 0.15,
+            "centerOfMass": [
+              0,
+              0.9,
+              0
+            ],
+            "wheelbase": 0.36,
+            "wheelTrack": 0,
+            "wheelRadius": 0.0265,
+            "mass": 78,
+            "engineForce": 120,
+            "maxSpeed": 5.5,
+            "reverseSpeed": 0,
+            "brakeDeceleration": 2.5,
+            "maxSteer": 0.5,
+            "driverEye": [
+              0,
+              1.64,
+              0.06
+            ],
+            "grip": 6,
+            "steeringRate": 2,
+            "steeringFadeSpeed": 6,
+            "rollingResistance": 0.08,
+            "aerodynamicResistance": 0.006,
+            "terrainAlignRate": 4,
+            "supportTolerance": 0.03,
+            "maxStepHeight": 0.025,
+            "maxSlope": 0.3,
+            "drive": "rear",
+            "suspensionDamping": 1,
+            "suspensionFrequency": 3,
+            "pitchStiffness": 0.006,
+            "cycle": {
+              "maxLean": 0.3,
+              "riderLean": 0.15,
+              "stance": "sideways",
+              "kick": {
+                "stride": 2.2
+              },
+              "handlebarPivot": [
+                0,
+                0.1,
+                0.18
+              ],
+              "grips": [
+                [
+                  -0.18,
+                  1.03,
+                  0.25
+                ],
+                [
+                  -0.15,
+                  1.01,
+                  -0.28
+                ]
+              ],
+              "footrests": [
+                [
+                  0,
+                  0.17,
+                  0.17
+                ],
+                [
+                  0,
+                  0.17,
+                  -0.21
+                ]
+              ]
+            },
+            "collisionParts": [
+              {
+                "id": "wheel-front-left",
+                "role": "rearWheel",
+                "center": [
+                  0.086,
+                  0.0265,
+                  0.18
+                ],
+                "radius": 0.02385,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": [
+                  "wheel-front-left"
+                ],
+                "probes": [
+                  [
+                    0.086,
+                    0.0265,
+                    0.18
+                  ]
+                ]
+              },
+              {
+                "id": "wheel-front-right",
+                "role": "rearWheel",
+                "center": [
+                  -0.086,
+                  0.0265,
+                  0.18
+                ],
+                "radius": 0.02385,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": [
+                  "wheel-front-right"
+                ],
+                "probes": [
+                  [
+                    -0.086,
+                    0.0265,
+                    0.18
+                  ]
+                ]
+              },
+              {
+                "id": "wheel-rear-left",
+                "role": "rearWheel",
+                "center": [
+                  0.086,
+                  0.0265,
+                  -0.18
+                ],
+                "radius": 0.02385,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": [
+                  "wheel-rear-left"
+                ],
+                "probes": [
+                  [
+                    0.086,
+                    0.0265,
+                    -0.18
+                  ]
+                ]
+              },
+              {
+                "id": "wheel-rear-right",
+                "role": "rearWheel",
+                "center": [
+                  -0.086,
+                  0.0265,
+                  -0.18
+                ],
+                "radius": 0.02385,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": [
+                  "wheel-rear-right"
+                ],
+                "probes": [
+                  [
+                    -0.086,
+                    0.0265,
+                    -0.18
+                  ]
+                ]
+              }
+            ]
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "animation": {
+              "sources": {
+                "steering": {
+                  "component": "vehicleState",
+                  "path": [
+                    "steer"
+                  ]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "truck-front",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -0.5
+                },
+                {
+                  "node": "truck-rear",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": 0.5
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0,
+                0.98,
+                0
+              ]
+            }
+          ],
+          "exits": [
+            [
+              0.6,
+              0,
+              0
+            ],
+            [
+              -0.6,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              -0.9
+            ]
+          ],
+          "reach": 2.5
+        },
+        "model.signals": {
+          "sources": {
+            "steering": {
+              "component": "vehicleState",
+              "path": [
+                "steer"
+              ]
+            },
+            "wheelAngle": {
+              "component": "vehicleState",
+              "path": [
+                "wheelAngle"
+              ]
+            }
+          },
+          "bindings": [
+            {
+              "node": "truck-front",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -0.5
+            },
+            {
+              "node": "truck-rear",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": 0.5
+            },
+            {
+              "node": "wheel-front-left-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-front-right-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-rear-left-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-rear-right-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            }
+          ]
+        }
+      },
+      "assets": [
+        "molen.entities.cycle.skateboard"
+      ]
+    }
+  }
+}

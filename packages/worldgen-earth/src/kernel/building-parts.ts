@@ -7,6 +7,7 @@ import {
 } from '@bendyline/molen-terrain/kernel';
 import polygonClipping, { type Polygon } from 'polygon-clipping';
 import { buildingLabels } from './labels';
+import { isMapOverrideFeature } from './map-override-tags';
 
 export interface BuildingPiece {
   feature: TerrainBuildingFeature;
@@ -46,7 +47,9 @@ export function buildingPieces(features: readonly TerrainBuildingFeature[]): Bui
   });
   const parts = pieces.filter(isPart);
   if (parts.length === 0) return pieces;
-  const outlines = pieces.filter((piece) => !isPart(piece));
+  // A host's building (a map override) is whole as declared: it adopts no mapped part and is not
+  // cut into what remains around one.
+  const outlines = pieces.filter((piece) => !isPart(piece) && !isMapOverrideFeature(piece.feature));
   const children = new Map<BuildingPiece, BuildingPiece[]>();
   for (const part of parts) {
     const partBounds = polygonBounds(part.polygon);

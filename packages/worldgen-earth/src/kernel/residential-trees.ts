@@ -21,6 +21,7 @@ import {
 import polygonClipping, { type Polygon } from 'polygon-clipping';
 import { identityFor } from './building-identity';
 import { buildingLabels, contextLabelForPolygon, isPlaceOutline, landcoverLabel } from './labels';
+import { isMapOverrideFeature } from './map-override-tags';
 import { regionScatterId, regionStyleRules } from './region';
 import type { SemanticAdapterOptions, TileGeometry } from './semantic-adapter';
 import { buildingClipBuffer, PROTOMAPS_TILE_BUFFER } from './tile-edges';
@@ -73,6 +74,8 @@ export function residentialTreePolygons(
   const buffer = buildingClipBuffer(tile, geom.level, options.buffer ?? PROTOMAPS_TILE_BUFFER);
   for (const feature of tile.buildings) {
     if (
+      // A host's building (a map override) stands on ground its owner laid out: no yard is guessed.
+      isMapOverrideFeature(feature) ||
       feature.class === 'building_part' ||
       (feature.minHeight ?? 0) > 0 ||
       (feature.levels ?? 0) > 3 ||

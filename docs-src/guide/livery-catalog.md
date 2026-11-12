@@ -6,7 +6,7 @@ Find each vehicle’s livery ids, photograph links and adaptation notes in this 
 
 ## Evidence and scope
 
-All 385 choices across 192 vehicle types have linked real-world photographs. Every vehicle has two choices; the F-16B has three. Colors and visible layout were compared with the photographs and the rendered models. These are **photo-based adaptations** (`inspired` provenance), not exact historical or factory replicas.
+All 397 choices across 198 vehicle types have linked real-world photographs. Every vehicle has two choices; the F-16B has three. Colors and visible layout were compared with the photographs and the rendered models. These are **photo-based adaptations** (`inspired` provenance), not exact historical or factory replicas.
 
 Paint values are visual estimates, not measured paint codes. Camouflage uses approximate masks; complex emblems and small stencils may be omitted. Generic Bendy bodies adapt finishes from the photographed real vehicles. Each entry explains its scope. Source photos are linked for inspection and attribution; they are not shipped as textures.
 
@@ -1891,6 +1891,17 @@ Type: `molen.entities.vehicle.wuling_hongguang_mini_ev_2025`.
 
 Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
 
+### Bendy Auto
+
+Type: `molen.entities.vehicle.auto_rickshaw`.
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `delhi-cng` | Delhi CNG green | [Photo](https://commons.wikimedia.org/wiki/File:Auto-rickshaw_in_Delhi.jpeg) |
+| `mumbai-black` | Mumbai black and yellow | [Photo](https://commons.wikimedia.org/wiki/File:Auto-rickshaw_in_Mumbai_2009-09-26.jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
 ### Bendy Box Truck
 
 Type: `molen.entities.vehicle.box_truck`.
@@ -2124,6 +2135,39 @@ Type: `molen.entities.cycle.cruiser_motorcycle`.
 
 **Heritage red and cream.** Red body and cream tank inset adapted from the pictured Heritage Softail to the Bendy cruiser. The tank panel, body geometry and equipment are simplified; logos and pinstripes are omitted. Paint tones are visual approximations.
 
+### Bendy E-Board
+
+Type: `molen.entities.cycle.electric_skateboard`.
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `bamboo` | Bamboo | [Photo](https://commons.wikimedia.org/wiki/File:Electric_skateboard_at_TED.jpg) |
+| `red-stain` | Red stain | [Photo](https://commons.wikimedia.org/wiki/File:Electric_skateboard(800,600,400watt).jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
+### Bendy E-Moped
+
+Type: `molen.entities.cycle.electric_moped`.
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `battery-silver` | Battery scooter silver | [Photo](https://commons.wikimedia.org/wiki/File:Yadea_G5_2023-09-24.jpg) |
+| `lime-green` | Lime green | [Photo](https://commons.wikimedia.org/wiki/File:Niu_UQi_Sport_Electric_Scooter.jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
+### Bendy Moped
+
+Type: `molen.entities.cycle.underbone_moped`.
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `step-through-blue` | Step-through blue-grey | [Photo](https://commons.wikimedia.org/wiki/File:Honda_super_cub,_1st_Gen._1958,_Left_side.jpg) |
+| `commuter-black` | Commuter gloss black | [Photo](https://commons.wikimedia.org/wiki/File:2026_Honda_Wave_110_Special_Edition_(Alloy_Type).jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
 ### Bendy Motorcycle
 
 Type: `molen.entities.cycle.standard_motorcycle`.
@@ -2154,6 +2198,28 @@ Type: `molen.entities.cycle.motor_scooter`.
 | --- | --- | --- |
 | `vespa-red` | Vespa red | [Photo](https://commons.wikimedia.org/wiki/File:Vespa_Prima_125b.jpg) |
 | `primavera-white` | Primavera white | [Photo](https://commons.wikimedia.org/wiki/File:08-2024_Vespa_Primavera_Alter-Markt_Potsdam.jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
+### Bendy Share Scooter
+
+Type: `molen.entities.cycle.kick_scooter`.
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `black` | Black | [Photo](https://commons.wikimedia.org/wiki/File:Xiaomi_M365_Scooter.jpg) |
+| `graphite` | Graphite | [Photo](https://commons.wikimedia.org/wiki/File:Elektrische-tretroller.jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
+### Bendy Skateboard
+
+Type: `molen.entities.cycle.skateboard`.
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `green-graphic` | Green graphic | [Photo](https://commons.wikimedia.org/wiki/File:Nash_Vintage_60's_Wooden_Deck_Shark_Skateboard.jpg) |
+| `blue-graphic` | Blue graphic | [Photo](https://commons.wikimedia.org/wiki/File:Street-skateboard.jpg) |
 
 Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
 
@@ -2657,3 +2723,15 @@ Attribution and license labels below describe the linked source photographs. No 
 380. [Little Venice waterbus, London - geograph.org.uk - 3137027.jpg — Jaggery (CC BY-SA 2.0)](https://commons.wikimedia.org/wiki/File:Little_Venice_waterbus,_London_-_geograph.org.uk_-_3137027.jpg)
 381. [Washington State Ferry 2.jpg — Chiwauk (CC BY-SA 4.0)](https://commons.wikimedia.org/wiki/File:Washington_State_Ferry_2.jpg)
 382. [Finferries ship Jurmo.jpg — Ypsilon from Finland (CC0)](https://commons.wikimedia.org/wiki/File:Finferries_ship_Jurmo.jpg)
+383. [Auto-rickshaw in Delhi.jpeg — User:psubhashish (CC BY-SA 3.0)](https://commons.wikimedia.org/wiki/File:Auto-rickshaw_in_Delhi.jpeg)
+384. [Auto-rickshaw in Mumbai 2009-09-26.jpg — Ting Chen (CC BY-SA 2.0)](https://commons.wikimedia.org/wiki/File:Auto-rickshaw_in_Mumbai_2009-09-26.jpg)
+385. [Honda super cub, 1st Gen. 1958, Left side.jpg — Mj-bird (CC BY-SA 3.0)](https://commons.wikimedia.org/wiki/File:Honda_super_cub,_1st_Gen._1958,_Left_side.jpg)
+386. [2026 Honda Wave 110 Special Edition (Alloy Type).jpg — Chanokchon (CC BY-SA 4.0)](https://commons.wikimedia.org/wiki/File:2026_Honda_Wave_110_Special_Edition_(Alloy_Type).jpg)
+387. [Yadea G5 2023-09-24.jpg — Wikisympathisant (CC BY-SA 4.0)](https://commons.wikimedia.org/wiki/File:Yadea_G5_2023-09-24.jpg)
+388. [Niu UQi Sport Electric Scooter.jpg — Anon user (CC BY-SA 4.0)](https://commons.wikimedia.org/wiki/File:Niu_UQi_Sport_Electric_Scooter.jpg)
+389. [Xiaomi M365 Scooter.jpg — Sprucecopse (CC0)](https://commons.wikimedia.org/wiki/File:Xiaomi_M365_Scooter.jpg)
+390. [Elektrische-tretroller.jpg — Ubahnverleih (CC0)](https://commons.wikimedia.org/wiki/File:Elektrische-tretroller.jpg)
+391. [Nash Vintage 60's Wooden Deck Shark Skateboard.jpg — H. Michael Karshis (CC BY 2.0)](https://commons.wikimedia.org/wiki/File:Nash_Vintage_60's_Wooden_Deck_Shark_Skateboard.jpg)
+392. [Street-skateboard.jpg — PowerPCG5 (CC BY 4.0)](https://commons.wikimedia.org/wiki/File:Street-skateboard.jpg)
+393. [Electric skateboard at TED.jpg — Steve Jurvetson (CC BY 2.0)](https://commons.wikimedia.org/wiki/File:Electric_skateboard_at_TED.jpg)
+394. [Electric skateboard(800,600,400watt).jpg — Aleksandr Ponomarenko (Public domain)](https://commons.wikimedia.org/wiki/File:Electric_skateboard(800,600,400watt).jpg)

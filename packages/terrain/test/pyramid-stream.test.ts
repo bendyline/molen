@@ -4423,3 +4423,525 @@ describe('terrain work at speed', () => {
     }
   });
 });
+
+describe('refreshing resident layers', () => {
+  // The root and its four children. A descent leaves the children on screen with the root
+  // resident behind them, hidden: both states a refresh has to deal with.
+  const d = descriptor({ maxLevel: 1 });
+  const HIGH = { ...VIEW, position: [2, 20_000, 2] as [number, number, number] };
+  const NEAR: [number, number, number, number] = [1, 1, 2, 2];
+  const tick = (): Promise<void> => new Promise((resolve) => setTimeout(resolve, 0));
+  const names = (objects: readonly THREE.Object3D[]): string[] => objects.map((o) => o.name);
+
+  interface HeldBuild {
+    key: string;
+    version: number;
+    signal: AbortSignal;
+    /** Finish the build with this object (default: the numbered one it would have made). */
+    finish(object?: THREE.Object3D): void;
+  }
+
+  /**
+   * A layer whose builds are numbered per tile, `<id>:<tile>:v<n>`, so a test can tell what is
+   * drawn from what replaced it. While `state.hold` accepts a tile its builds wait in `held`.
+   */
+  function numbered(id: string, category: TerrainPyramidTileLayer['category'] = 'human-feature') {
+    const builds = new Map<string, number>();
+    const held: HeldBuild[] = [];
+    const disposed: THREE.Object3D[] = [];
+    const state: {
+      hold: boolean | ((key: string) => boolean);
+      make: (key: string, version: number) => THREE.Object3D | undefined;
+      onDispose?: (object: THREE.Object3D) => void;
+    } = {
+      hold: false,
+      make(key, version) {
+        const group = new THREE.Group();
+        group.name = `${id}:${key}:v${version}`;
+        return group;
+      },
+    };
+    const layer: TerrainPyramidTileLayer = {
+      id,
+      category,
+      createTile({ address, signal }) {
+        const key = terrainPyramidTileKey(address);
+        const version = (builds.get(key) ?? 0) + 1;
+        builds.set(key, version);
+        const hold = typeof state.hold === 'function' ? state.hold(key) : state.hold;
+        if (!hold) return state.make(key, version);
+        return new Promise<THREE.Object3D | undefined>((resolve) =>
+          held.push({
+            key,
+            version,
+            signal,
+            finish: (object) => resolve(object ?? state.make(key, version)),
+          }),
+        );
+      },
+      disposeTile(object) {
+        state.onDispose?.(object);
+        disposed.push(object);
+      },
+    };
+    return { layer, builds, held, disposed, state };
+  }
+
+  type StreamOptions = Parameters<typeof createTerrainPyramidStream>[2];
+
+  function open(
+    layers: TerrainPyramidTileLayer[],
+    extra: Partial<StreamOptions> = {},
+  ): ReturnType<typeof createTerrainPyramidStream> {
+    return createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: HIGH,
+        maxScreenSpaceError: 1,
+        viewDistance: 30_000,
+        maxSelectedTiles: 8,
+        maxConcurrentLoads: 4,
+        maxConcurrentLayerLoads: 8,
+        maxResidentTiles: 16,
+        retryDelayMs: 1,
+        layers,
+        ...extra,
+      },
+    );
+  }
+
+  /** The root built and shown from far above, then its four children from close by. */
+  async function descended(
+    layers: TerrainPyramidTileLayer[],
+    extra: Partial<StreamOptions> = {},
+  ): Promise<ReturnType<typeof createTerrainPyramidStream>> {
+    const stream = open(layers, extra);
+    await stream.whenIdle();
+    stream.update(VIEW);
+    await stream.whenIdle();
+    return stream;
+  }
+
+  it('replaces a layer on screen in one step, where the rectangle reaches and for the layers named', async () => {
+    const detail = numbered('detail');
+    const water = numbered('water', 'hydrology');
+    const stream = await descended([detail.layer, water.layer]);
+    try {
+      expect(stream.displayedTiles()).toHaveLength(4);
+      expect(drawn(stream, 'detail:1/0/0:v1')).toBe(true);
+      const neighbour = stream.object.getObjectByName('detail:1/1/0:v1');
+      // What the scene held at the moment the old object was handed back.
+      const atDisposal: Array<{ name: string; attached: boolean; successor: boolean }> = [];
+      detail.state.onDispose = (object) =>
+        atDisposal.push({
+          name: object.name,
+          attached: object.parent !== null,
+          successor: drawn(stream, 'detail:1/0/0:v2'),
+        });
+      detail.state.hold = true;
+      let settled = false;
+      let idle = false;
+      const refreshed = stream.refreshLayers({ bounds: NEAR, layers: ['detail'] }).then(() => {
+        settled = true;
+      });
+      void stream.whenIdle().then(() => {
+        idle = true;
+      });
+      await tick();
+      await tick();
+      // One build, for the one tile on screen the rectangle reaches. The root reaches it too but
+      // is hidden behind its children: its layer went at once, to be built when next wanted.
+      expect(detail.held.map((build) => build.key)).toEqual(['1/0/0']);
+      expect(atDisposal).toEqual([{ name: 'detail:0/0/0:v1', attached: false, successor: false }]);
+      expect([...water.builds.values()]).toEqual([1, 1, 1, 1, 1]);
+      // Meanwhile nothing changes on screen, and nobody is told it is done.
+      expect(drawn(stream, 'detail:1/0/0:v1')).toBe(true);
+      expect(settled).toBe(false);
+      expect(idle).toBe(false);
+      expect(stream.isAreaReady(2, 2, 1)).toBe(false);
+      expect(stream.isAreaReady(12, 12, 1)).toBe(true);
+      expect(stream.stats()).toMatchObject({ refreshingLayers: 1, refreshedLayers: 0 });
+      detail.held[0]?.finish();
+      await refreshed;
+      // The old object left as the new one arrived, already drawn: never both, never neither.
+      expect(atDisposal[1]).toEqual({ name: 'detail:1/0/0:v1', attached: false, successor: true });
+      expect(names(detail.disposed)).toEqual(['detail:0/0/0:v1', 'detail:1/0/0:v1']);
+      expect(drawn(stream, 'detail:1/0/0:v2')).toBe(true);
+      expect(stream.object.getObjectByName('detail:1/0/0:v1')).toBeUndefined();
+      expect(stream.object.getObjectByName('detail:1/1/0:v1')).toBe(neighbour);
+      expect(stream.isAreaReady(2, 2, 1)).toBe(true);
+      await stream.whenIdle();
+      expect(stream.stats()).toMatchObject({
+        refreshingLayers: 0,
+        refreshedLayers: 1,
+        rebuiltLayers: 0,
+      });
+      // A point on the edge two tiles share reaches both of them, and no others.
+      detail.state.hold = false;
+      await stream.refreshLayers({ bounds: [8, 2, 8, 2], layers: ['detail'] });
+      expect(Object.fromEntries(detail.builds)).toEqual({
+        '0/0/0': 1,
+        '1/0/0': 3,
+        '1/1/0': 2,
+        '1/0/1': 1,
+        '1/1/1': 1,
+      });
+      expect(drawn(stream, 'detail:1/0/0:v3')).toBe(true);
+      expect(drawn(stream, 'detail:1/1/0:v2')).toBe(true);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('never brings back from the warm cache what a refresh replaced', async () => {
+    const detail = numbered('detail');
+    const stream = await descended([detail.layer]);
+    try {
+      const refreshed = stream.refreshLayers({ bounds: [0, 0, 16, 16] });
+      // The hidden root's layer is gone before the call returns.
+      expect(names(detail.disposed)).toEqual(['detail:0/0/0:v1']);
+      await refreshed;
+      expect(stream.stats()).toMatchObject({ refreshedLayers: 4, refreshingLayers: 0 });
+      // Back up: the root is shown again, with a layer made after the change.
+      stream.update(HIGH);
+      await stream.whenIdle();
+      expect(stream.displayedTiles()).toEqual([{ level: 0, x: 0, z: 0 }]);
+      expect(drawn(stream, 'detail:0/0/0:v2')).toBe(true);
+      // Asked for, each of them: none is the cache losing work.
+      expect(stream.stats().rebuiltLayers).toBe(0);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('starts a build under way over, and again when a second refresh overtakes the first', async () => {
+    const detail = numbered('detail');
+    detail.state.hold = true;
+    const stream = open([detail.layer], { initialView: VIEW });
+    try {
+      // First builds, none finished: the four children, bare so far.
+      await expect
+        .poll(() => detail.held.filter((build) => build.key.startsWith('1/')).length)
+        .toBe(4);
+      const first = detail.held.find((build) => build.key === '1/0/0') as HeldBuild;
+      await stream.refreshLayers({ bounds: NEAR });
+      // Nothing was on screen to wait for, and the build made from the old state is cancelled.
+      expect(first.signal.aborted).toBe(true);
+      await expect.poll(() => detail.builds.get('1/0/0')).toBe(2);
+      const late = new THREE.Group();
+      late.name = 'late';
+      first.finish(late);
+      await expect.poll(() => detail.disposed).toContain(late);
+      for (const build of detail.held) if (build !== first) build.finish();
+      detail.state.hold = false;
+      await stream.whenIdle();
+      expect(drawn(stream, 'detail:1/0/0:v2')).toBe(true);
+      expect(stream.object.getObjectByName('late')).toBeUndefined();
+
+      // On screen now. Two refreshes in a row: the second cancels the first one's build, and what
+      // was there stays until the second one's lands.
+      detail.held.length = 0;
+      detail.state.hold = true;
+      const one = stream.refreshLayers({ bounds: NEAR });
+      await expect.poll(() => detail.held.length).toBe(1);
+      const two = stream.refreshLayers({ bounds: NEAR });
+      await expect.poll(() => detail.held.length).toBe(2);
+      const [overtaken, current] = detail.held as [HeldBuild, HeldBuild];
+      expect(overtaken.signal.aborted).toBe(true);
+      expect(current.signal.aborted).toBe(false);
+      overtaken.finish();
+      await expect.poll(() => names(detail.disposed)).toContain('detail:1/0/0:v3');
+      expect(drawn(stream, 'detail:1/0/0:v2')).toBe(true);
+      expect(stream.stats().refreshingLayers).toBe(1);
+      current.finish();
+      await Promise.all([one, two]);
+      expect(drawn(stream, 'detail:1/0/0:v4')).toBe(true);
+      expect(names(detail.disposed).filter((name) => name === 'detail:1/0/0:v2')).toHaveLength(1);
+      expect(stream.stats()).toMatchObject({ refreshedLayers: 1, refreshingLayers: 0 });
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('lets go of a refresh whose tiles are evicted before their replacements land', async () => {
+    const detail = numbered('detail');
+    const stream = await descended([detail.layer]);
+    try {
+      detail.state.hold = (key) => key.startsWith('1/');
+      const refreshed = stream.refreshLayers({ bounds: [0, 0, 16, 16] });
+      await expect.poll(() => detail.held.length).toBe(4);
+      // Up and away with no memory to spare for hidden tiles: the root takes over and the
+      // children are evicted with their replacements still building.
+      stream.setBudget({ maxResidentBytes: 1 });
+      stream.update(HIGH);
+      await refreshed;
+      expect(stream.residentTiles()).toEqual([{ level: 0, x: 0, z: 0 }]);
+      expect(detail.held.every((build) => build.signal.aborted)).toBe(true);
+      expect(stream.stats().refreshingLayers).toBe(0);
+      for (const build of detail.held) build.finish();
+      // The root's first layer, each child's, and each child's late replacement: once each.
+      await expect.poll(() => detail.disposed.length).toBe(9);
+      expect(new Set(detail.disposed).size).toBe(9);
+      expect(drawn(stream, 'detail:0/0/0:v2')).toBe(true);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('lets go of a refresh whose layer is hidden, and builds anew when it is shown again', async () => {
+    const detail = numbered('detail');
+    const stream = await descended([detail.layer]);
+    try {
+      detail.state.hold = true;
+      const refreshed = stream.refreshLayers({ bounds: NEAR });
+      await expect.poll(() => detail.held.length).toBe(1);
+      stream.setLayerVisible('detail', false);
+      await refreshed;
+      expect(detail.held[0]?.signal.aborted).toBe(true);
+      expect(names(detail.disposed)).toEqual(['detail:0/0/0:v1', 'detail:1/0/0:v1']);
+      detail.state.hold = false;
+      stream.setLayerVisible('detail', true);
+      await stream.whenIdle();
+      // The refreshed tile shows a build made after the change; its neighbours what they had.
+      expect(drawn(stream, 'detail:1/0/0:v3')).toBe(true);
+      expect(drawn(stream, 'detail:1/1/0:v1')).toBe(true);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('takes a tile layer from nothing to something and back', async () => {
+    const detail = numbered('detail');
+    let empty = true;
+    const make = detail.state.make;
+    detail.state.make = (key, version) =>
+      key === '1/0/0' && empty ? undefined : make(key, version);
+    const stream = await descended([detail.layer]);
+    try {
+      expect(stream.isAreaReady(2, 2, 1)).toBe(true);
+      expect(stream.object.getObjectByName('detail:1/0/0:v1')).toBeUndefined();
+      empty = false;
+      await stream.refreshLayers({ bounds: NEAR });
+      expect(drawn(stream, 'detail:1/0/0:v2')).toBe(true);
+      empty = true;
+      await stream.refreshLayers({ bounds: NEAR });
+      expect(stream.object.getObjectByName('detail:1/0/0:v2')).toBeUndefined();
+      expect(names(detail.disposed)).toContain('detail:1/0/0:v2');
+      // Built and empty: the ground there is ready, with nothing more to wait for.
+      expect(stream.isAreaReady(2, 2, 1)).toBe(true);
+      await stream.whenIdle();
+      expect(detail.builds.get('1/0/0')).toBe(3);
+      expect(stream.stats()).toMatchObject({ refreshedLayers: 2, refreshingLayers: 0 });
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('keeps what was there when the replacement fails, until a later attempt succeeds', async () => {
+    const detail = numbered('detail');
+    let failing = false;
+    const make = detail.state.make;
+    detail.state.make = (key, version) => {
+      if (failing) throw new Error('replacement failed');
+      return make(key, version);
+    };
+    const onError = vi.fn();
+    const stream = await descended([detail.layer], {
+      maxRetries: 1,
+      failedRetryDelayMs: 0,
+      onError,
+    });
+    try {
+      failing = true;
+      // Resolves once the retries are spent: the caller is not left waiting on a dead build.
+      await stream.refreshLayers({ bounds: NEAR });
+      expect(onError).toHaveBeenCalledTimes(2);
+      expect(drawn(stream, 'detail:1/0/0:v1')).toBe(true);
+      expect(names(detail.disposed)).toEqual(['detail:0/0/0:v1']);
+      // Abandoned work does not hold the ground back, but it is still owed.
+      expect(stream.isAreaReady(2, 2, 1)).toBe(true);
+      expect(stream.stats()).toMatchObject({
+        refreshingLayers: 1,
+        refreshedLayers: 0,
+        failedLayers: 1,
+      });
+      failing = false;
+      stream.retryFailed();
+      await stream.whenIdle();
+      expect(drawn(stream, 'detail:1/0/0:v4')).toBe(true);
+      expect(names(detail.disposed)).toEqual(['detail:0/0/0:v1', 'detail:1/0/0:v1']);
+      expect(stream.stats()).toMatchObject({
+        refreshingLayers: 0,
+        refreshedLayers: 1,
+        failedLayers: 0,
+      });
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('keeps the bare ground hidden under cover while the cover is replaced', async () => {
+    const flat = descriptor({ maxLevel: 0, skirts: false });
+    // The ground's draw mask and whether cover was drawn, as each old cover was handed back.
+    const handoffs: Array<{ mask: number; covered: boolean }> = [];
+    let surface: THREE.Mesh | undefined;
+    const stream = createTerrainPyramidStream(
+      flat,
+      { load: async (address) => flatTile(flat, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 10_000,
+        viewDistance: 100,
+        maxSelectedTiles: 1,
+        maxResidentTiles: 2,
+        maxConcurrentLoads: 1,
+        layers: [
+          {
+            id: 'landcover',
+            category: 'classification',
+            createTile() {
+              const cover = new THREE.Group();
+              cover.userData[TERRAIN_COVERS_GROUND] = true;
+              return cover;
+            },
+            disposeTile() {
+              if (surface !== undefined)
+                handoffs.push({
+                  mask: surface.layers.mask,
+                  covered: drawn(stream, 'layer:landcover:0/0/0'),
+                });
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await stream.whenIdle();
+      surface = stream.object.getObjectByName('surface:0/0/0') as THREE.Mesh;
+      expect(surface.layers.mask).toBe(0);
+      const before = stream.object.getObjectByName('layer:landcover:0/0/0');
+      await stream.refreshLayers({ bounds: [0, 0, 16, 16] });
+      const after = stream.object.getObjectByName('layer:landcover:0/0/0');
+      expect(after).not.toBe(before);
+      expect(after?.visible).toBe(true);
+      // Still undrawn when the old cover was handed back, with the new cover drawn over it.
+      expect(handoffs).toEqual([{ mask: 0, covered: true }]);
+      expect(surface.layers.mask).toBe(0);
+    } finally {
+      stream.dispose();
+    }
+  });
+
+  it('closes the ground openings of what it replaces, and opens those of the replacement', async () => {
+    // whenIdle waits for loading, not frame-budgeted cuts: a fixed clock lets each pass finish.
+    const clock = vi.spyOn(performance, 'now').mockReturnValue(0);
+    const flat = descriptor({ maxLevel: 0 });
+    let opening = true;
+    const stream = createTerrainPyramidStream(
+      flat,
+      { load: async (address) => flatTile(flat, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 10_000,
+        viewDistance: 100,
+        maxSelectedTiles: 4,
+        maxResidentTiles: 16,
+        maxConcurrentLoads: 4,
+        layers: [
+          {
+            id: 'cutters',
+            category: 'human-feature',
+            createTile() {
+              const group = new THREE.Group();
+              if (!opening) return group;
+              const owner = new THREE.Object3D();
+              setTerrainGroundCutout(owner, [
+                [2, 2],
+                [6, 2],
+                [6, 6],
+              ]);
+              group.add(owner);
+              return group;
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await stream.whenIdle();
+      const surface = stream.object.getObjectByName('surface:0/0/0') as THREE.Mesh;
+      const cut = (): boolean => surface.geometry !== terrainGroundSourceGeometry(surface);
+      expect(cut()).toBe(true);
+      opening = false;
+      await stream.refreshLayers({ bounds: [0, 0, 16, 16] });
+      expect(cut()).toBe(false);
+      opening = true;
+      await stream.refreshLayers({ bounds: [0, 0, 16, 16] });
+      expect(cut()).toBe(true);
+    } finally {
+      stream.dispose();
+      clock.mockRestore();
+    }
+  });
+
+  it('hands back a replacement cancelled while it waits for its frame', async () => {
+    const callbacks: Array<() => void> = [];
+    const queue = new FrameAdmissionQueue({
+      maxJobs: 8,
+      schedule: (callback) => callbacks.push(callback),
+    });
+    const frame = async (): Promise<void> => {
+      await tick();
+      callbacks.shift()?.();
+      await tick();
+    };
+    const detail = numbered('detail');
+    const stream = open([detail.layer], { initialView: VIEW, admission: queue });
+    try {
+      for (let i = 0; i < 60 && !stream.isAreaReady(2, 2, 1); i++) await frame();
+      expect(drawn(stream, 'detail:1/0/0:v1')).toBe(true);
+      for (let i = 0; i < 60 && (queue.pending > 0 || callbacks.length > 0); i++) await frame();
+      const one = stream.refreshLayers({ bounds: NEAR });
+      // Built and waiting in the frame queue to be published; no frame runs.
+      await tick();
+      await tick();
+      expect(queue.pending).toBeGreaterThan(0);
+      expect(drawn(stream, 'detail:1/0/0:v1')).toBe(true);
+      const two = stream.refreshLayers({ bounds: NEAR });
+      await tick();
+      // The tile still holds the object it was to replace, so only identity tells that this one
+      // was never published.
+      expect(names(detail.disposed).filter((name) => name.startsWith('detail:1/0/0'))).toEqual([
+        'detail:1/0/0:v2',
+      ]);
+      for (let i = 0; i < 60 && !drawn(stream, 'detail:1/0/0:v3'); i++) await frame();
+      await Promise.all([one, two]);
+      expect(drawn(stream, 'detail:1/0/0:v3')).toBe(true);
+      expect(names(detail.disposed).filter((name) => name.startsWith('detail:1/0/0'))).toEqual([
+        'detail:1/0/0:v2',
+        'detail:1/0/0:v1',
+      ]);
+    } finally {
+      stream.dispose();
+      queue.dispose();
+    }
+  });
+
+  it('refuses a layer it does not have, and a rectangle that is not one', async () => {
+    const detail = numbered('detail');
+    const stream = await descended([detail.layer]);
+    try {
+      expect(() => stream.refreshLayers({ bounds: NEAR, layers: ['buildings'] })).toThrow(
+        'unknown terrain pyramid tile layer "buildings"',
+      );
+      expect(() => stream.refreshLayers({ bounds: [0, 0, Number.NaN, 1] })).toThrow(/rectangle/);
+      expect(() => stream.refreshLayers({ bounds: [2, 0, 1, 1] })).toThrow(/rectangle/);
+      // Nothing was touched by the calls that threw.
+      expect(detail.disposed).toEqual([]);
+      expect(stream.stats().refreshingLayers).toBe(0);
+    } finally {
+      stream.dispose();
+    }
+  });
+});

@@ -101,6 +101,46 @@ it.each([
   }
 });
 
+/** Mean luminance step between neighbouring water pixels: blocks and streaks raise it. */
+function roughness(image: Buffer): number {
+  const png = PNG.sync.read(image);
+  const lum = (x: number, y: number): number => {
+    const i = (y * png.width + x) * 4;
+    return (
+      (png.data[i] ?? 0) * 0.2126 +
+      (png.data[i + 1] ?? 0) * 0.7152 +
+      (png.data[i + 2] ?? 0) * 0.0722
+    );
+  };
+  let sum = 0;
+  let count = 0;
+  for (let y = 300; y < png.height - 1; y++) {
+    for (let x = 0; x < png.width - 1; x++) {
+      sum += Math.abs(lum(x, y) - lum(x + 1, y)) + Math.abs(lum(x, y) - lum(x, y + 1));
+      count++;
+    }
+  }
+  return sum / count;
+}
+
+it('keeps ripples as fine far from the world origin as beside it', async () => {
+  // The explorer's floating origin over Seattle, in its metric frame. Added to positions in
+  // 32-bit floats there, X rounds to whole metres: ripples broke into flickering blocks.
+  const seattle: [number, number] = [-9_178_687.42, -4_074_173.34];
+  const { page, errors } = await open();
+  try {
+    await page.evaluate(() => window.waterQA.frame(7));
+    const home = roughness(await capture(page, 'home'));
+    await page.evaluate((at) => window.waterQA.frame(7, false, at, at), seattle);
+    const away = roughness(await capture(page, 'seattle'));
+    expect(away).toBeLessThan(home * 1.25);
+    expect(away).toBeGreaterThan(home * 0.75);
+    expect(errors).toEqual([]);
+  } finally {
+    await page.close();
+  }
+});
+
 it.each(['still', 'flat'])('keeps %s water stable with no authored swells', async (setting) => {
   const { page, errors } = await open(`noSwells&${setting}`);
   try {

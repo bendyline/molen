@@ -224,11 +224,16 @@ export const MOLEN_VEHICLE_ENTITY_IDS = [
   'molen.entities.vehicle.toyota_hiace_2024',
   'molen.entities.vehicle.isuzu_d_max_2024',
   'molen.entities.vehicle.suzuki_swift_2024',
+  'molen.entities.vehicle.auto_rickshaw',
   'molen.entities.transit.bus',
   'molen.entities.transit.lightrail',
 ] as const;
 
-/** Rideable motorcycles and bicycles, sharing the vehicle and mountable capabilities. */
+/**
+ * Rideable motorcycles, bicycles, mopeds, a shared electric kick scooter and skateboards, sharing
+ * the vehicle and mountable capabilities. `vehicle.spec.cycle.stance` says whether the rider sits,
+ * stands on a deck or stands across a board.
+ */
 export const MOLEN_CYCLE_ENTITY_IDS = [
   'molen.entities.cycle.standard_motorcycle',
   'molen.entities.cycle.cruiser_motorcycle',
@@ -236,6 +241,11 @@ export const MOLEN_CYCLE_ENTITY_IDS = [
   'molen.entities.cycle.city_bicycle',
   'molen.entities.cycle.road_bicycle',
   'molen.entities.cycle.cargo_bicycle',
+  'molen.entities.cycle.underbone_moped',
+  'molen.entities.cycle.electric_moped',
+  'molen.entities.cycle.kick_scooter',
+  'molen.entities.cycle.skateboard',
+  'molen.entities.cycle.electric_skateboard',
 ] as const;
 
 /** Player-controllable watercraft with ambient roles; the origin is the waterline. */
@@ -303,6 +313,7 @@ export const MOLEN_ENTITY_IDS = [
   'molen.entities.vehicle.toyota_hiace_2024',
   'molen.entities.vehicle.isuzu_d_max_2024',
   'molen.entities.vehicle.suzuki_swift_2024',
+  'molen.entities.vehicle.auto_rickshaw',
   'molen.entities.vehicle.mini_cooper_countryman_2012',
   'molen.entities.vehicle.acura_mdx_2019',
   'molen.entities.vehicle.winnebago_view_2022',
@@ -469,6 +480,11 @@ export const MOLEN_ENTITY_IDS = [
   'molen.entities.cycle.city_bicycle',
   'molen.entities.cycle.road_bicycle',
   'molen.entities.cycle.cargo_bicycle',
+  'molen.entities.cycle.underbone_moped',
+  'molen.entities.cycle.electric_moped',
+  'molen.entities.cycle.kick_scooter',
+  'molen.entities.cycle.skateboard',
+  'molen.entities.cycle.electric_skateboard',
   'molen.entities.watercraft.speedboat',
   'molen.entities.watercraft.sailboat',
   'molen.entities.watercraft.fishing_boat',
@@ -525,6 +541,7 @@ const MODEL_PATHS: Record<MolenEntityId, string> = {
   'molen.entities.vehicle.taxi': 'assets/molen/entities/vehicle/taxi/model.glb',
   'molen.entities.vehicle.offroad': 'assets/molen/entities/vehicle/offroad/model.glb',
   'molen.entities.vehicle.box_truck': 'assets/molen/entities/vehicle/box_truck/model.glb',
+  'molen.entities.vehicle.auto_rickshaw': 'assets/molen/entities/vehicle/auto_rickshaw/model.glb',
   'molen.entities.cycle.standard_motorcycle':
     'assets/molen/entities/cycle/standard_motorcycle/model.glb',
   'molen.entities.cycle.cruiser_motorcycle':
@@ -533,6 +550,12 @@ const MODEL_PATHS: Record<MolenEntityId, string> = {
   'molen.entities.cycle.city_bicycle': 'assets/molen/entities/cycle/city_bicycle/model.glb',
   'molen.entities.cycle.road_bicycle': 'assets/molen/entities/cycle/road_bicycle/model.glb',
   'molen.entities.cycle.cargo_bicycle': 'assets/molen/entities/cycle/cargo_bicycle/model.glb',
+  'molen.entities.cycle.underbone_moped': 'assets/molen/entities/cycle/underbone_moped/model.glb',
+  'molen.entities.cycle.electric_moped': 'assets/molen/entities/cycle/electric_moped/model.glb',
+  'molen.entities.cycle.kick_scooter': 'assets/molen/entities/cycle/kick_scooter/model.glb',
+  'molen.entities.cycle.skateboard': 'assets/molen/entities/cycle/skateboard/model.glb',
+  'molen.entities.cycle.electric_skateboard':
+    'assets/molen/entities/cycle/electric_skateboard/model.glb',
   'molen.entities.watercraft.speedboat': 'assets/molen/entities/watercraft/speedboat/model.glb',
   'molen.entities.watercraft.sailboat': 'assets/molen/entities/watercraft/sailboat/model.glb',
   'molen.entities.watercraft.fishing_boat':

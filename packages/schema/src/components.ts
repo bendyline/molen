@@ -1404,8 +1404,24 @@ const vehicleBodyStyleSchema = z
     'bicycle',
     'motorcycle',
     'scooter',
+    'moped',
+    'kick-scooter',
+    'skateboard',
+    'auto-rickshaw',
   ])
   .describe('Generic body style, independent of any make or model name.');
+const handlebarFields = {
+  riderLean: num.min(0).max(1).describe('Forward torso lean in radians.'),
+  handlebarPivot: vec3.describe('Steering pivot in model-local meters.'),
+  grips: z
+    .tuple([vec3, vec3])
+    .describe(
+      'Left and right hand targets in model-local meters; they turn with the bars. A sideways rider holds them free: unturned, moving with the hips of a shorter or taller body.',
+    ),
+  footrests: z
+    .tuple([vec3, vec3])
+    .describe('Left and right ankle targets on the footrests or deck, in model-local meters.'),
+};
 const railVehicleSpecSchema = z
   .strictObject({
     truckCenters: num
@@ -1744,14 +1760,21 @@ const vehicleSpecSchema = z
       cycle: z
         .strictObject({
           maxLean: num.positive().max(1.2).describe('Maximum balanced inward lean in radians.'),
-          riderLean: num.min(0).max(1).describe('Forward torso lean in radians.'),
-          handlebarPivot: vec3.describe('Steering pivot in model-local meters.'),
-          grips: z
-            .tuple([vec3, vec3])
-            .describe('Left and right hand targets in model-local meters.'),
-          footrests: z
-            .tuple([vec3, vec3])
-            .describe('Left and right ankle targets in model-local meters.'),
+          ...handlebarFields,
+          stance: z
+            .enum(['seated', 'standing', 'sideways'])
+            .optional()
+            .describe(
+              "How the rider stands: on a saddle (seated, default), upright on a deck facing the bars (standing), or across a board left foot forward (sideways). Standing and sideways seats are adult hip positions; the pose fits the hips to each body's legs.",
+            ),
+          kick: z
+            .strictObject({
+              stride: num.positive().describe('Meters travelled per push.'),
+            })
+            .optional()
+            .describe(
+              'Push-powered (a skateboard): under power the rider turns forward and pushes off the ground with the rear foot.',
+            ),
           pedals: z
             .strictObject({
               center: vec3.describe('Crank centre in model-local meters.'),
@@ -1767,6 +1790,12 @@ const vehicleSpecSchema = z
         .optional()
         .describe(
           'Self-balancing cycle handling and rider contact points. Driver seat anchors the pelvis.',
+        ),
+      handlebar: z
+        .strictObject(handlebarFields)
+        .optional()
+        .describe(
+          'Handlebar steering on a vehicle that does not lean (a three-wheeler): the driver contact points, the driver seat anchoring the pelvis. Ignored with cycle.',
         ),
       rail: railVehicleSpecSchema.optional(),
     }),
@@ -1804,7 +1833,11 @@ const vehicleVisualSchema = z
   .strictObject(
     describedFields({
       wheelNodes: z.array(z.string().min(1)).min(1),
-      frontWheelNodes: z.array(z.string().min(1)).min(1),
+      frontWheelNodes: z
+        .array(z.string().min(1))
+        .describe(
+          'Wheel nodes turned by the steering angle. Empty when animation bindings pose the steering instead (a skateboard turns its trucks).',
+        ),
       steeringWheelNode: z.string().min(1).optional(),
       paintMaterial: z.string().min(1),
       interior: vehicleInteriorSchema.optional(),
@@ -2023,7 +2056,14 @@ registerComponent(
     pedalAngle: num
       .optional()
       .describe(
-        'Cycle crank angle in radians; advances under forward power and holds while coasting or braking.',
+        'Cycle crank angle in radians; advances under forward power and holds while coasting or braking. On a push-powered cycle, the phase of the current push.',
+      ),
+    kick: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe(
+        'Push-powered cycles: 0 riding sideways to 1 turned forward to push off; eases between them.',
       ),
     lateralSpeed: num
       .optional()
@@ -2475,6 +2515,25 @@ const helicopterPhysicsSchema = z.strictObject(
       .optional()
       .describe(
         'Seconds of hover power stored in the rotor at full speed; default 2. Sets how long an unpowered rotor carries the helicopter (autorotation); needs powerLimitedRotor.',
+      ),
+    directionalStability: num
+      .nonnegative()
+      .optional()
+      .describe(
+        'Tail-fin weathervaning in forward flight; default 1, 0 disables. The nose turns into the relative wind at directionalStability × airspeed / length rad/s per radian of sideslip, so a banked helicopter turns its nose with its track.',
+      ),
+    cyclicRate: num
+      .positive()
+      .optional()
+      .describe(
+        'Direct-cyclic pitch and roll rate at full stick with the rotor carrying the weight, rad/s; default cyclicResponse / 4.',
+      ),
+    hubStiffness: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe(
+        'Share of direct-cyclic control power independent of rotor thrust, 0..1; default 0.25. Near 0 for a teetering rotor (no control at zero g), higher for articulated and hingeless rotors.',
       ),
     cyclicTilt: num.positive(),
     cyclicResponse: num.positive(),
@@ -3130,6 +3189,12 @@ registerComponent(
       .max(1)
       .optional()
       .describe('Powered-lift lever: 0 forward to 1 vertical.'),
+    cyclicMode: z
+      .enum(['assisted', 'direct'])
+      .optional()
+      .describe(
+        'Helicopter cyclic: assisted (default) commands a bounded, self-levelling tilt; direct commands pitch and roll rates with full authority (loops, rolls, straight down). Both are assisted on the ground.',
+      ),
   }),
   {
     owner: 'kernel/aircraft',

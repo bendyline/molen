@@ -1,5 +1,10 @@
 # Cycle riding review
 
+> Later: five more rideable types (two mopeds, a shared kick scooter and two skateboards), standing
+> and sideways riders, and regional parking and traffic for motor two-wheelers. See
+> [LIGHT-VEHICLES.md](LIGHT-VEHICLES.md); the exclusion from parking and traffic below describes
+> this review's state.
+
 The six fleet cycles are now mountable vehicles: standard and cruiser motorcycles, a motor
 scooter, and city, road and front-box cargo bicycles. The existing medium-fi models gained
 articulated handlebars, bicycle cranks and level pedals, and motorcycle footrests. Geometry is

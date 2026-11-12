@@ -13,6 +13,7 @@ import {
 } from '../src/aircraft';
 import { setBoostMode } from '../src/boost';
 import { Transform, type TransformData } from '../src/component';
+import { quatRotateVec3 } from '../src/math3d';
 import { applyKeyframeTo, stateHash, takeKeyframe } from '../src/snapshot';
 import { Mounted, mountEntity, unmountEntity, vehicleRotation } from '../src/vehicles';
 import { World } from '../src/world';
@@ -217,6 +218,130 @@ describe('aircraft flight and mounting', () => {
     expect(Math.abs(result.transform.pos[1] - 20)).toBeLessThan(2);
     expect(result.transform.pos[0]).toBe(0);
     expect(result.transform.pos[2]).toBe(0);
+  });
+  it('turns a banked helicopter nose with its track in forward flight', () => {
+    const base = specFor('oh6');
+    const rotor = base.helicopter;
+    if (!rotor) throw new Error('Missing helicopter physics');
+    const bank = (speed: number, directionalStability?: number, ticks = 180) => {
+      const spec: AircraftSpec = { ...base, helicopter: { ...rotor, directionalStability } };
+      let result = {
+        transform: { pos: [0, 300, 0], rot: [0, 0, 0, 1] } as TransformData,
+        state: {
+          ...initialAircraftState(),
+          grounded: false,
+          rpm: 1,
+          velocity: [0, 0, speed] as [number, number, number],
+        },
+      };
+      // Three seconds of full right cyclic by default, no pedal. Heading and track are +left.
+      for (let i = 0; i < ticks; i++)
+        result = stepAircraft(
+          result.transform,
+          result.state,
+          { ...running, power: 0.56, roll: 1 },
+          spec,
+          1 / 60,
+          flat,
+        );
+      const [vx, , vz] = result.state.velocity;
+      return { heading: result.state.yaw, track: Math.atan2(vx, vz) };
+    };
+    const cruise = bank(25);
+    expect(cruise.track).toBeLessThan(-0.4);
+    expect(cruise.heading).toBeLessThan(-0.4);
+    expect(Math.abs(cruise.heading - cruise.track)).toBeLessThan(0.15);
+    // Without the fin the old model crabbed: the track turned and the nose did not.
+    const crab = bank(25, 0);
+    expect(crab.track).toBeLessThan(-0.4);
+    expect(crab.heading).toBe(0);
+    // In a hover the tail sits in the rotor wake: a brief bank drifts without turning the nose.
+    const drift = bank(0, undefined, 90);
+    expect(drift.track).toBeCloseTo(-Math.PI / 2, 2);
+    expect(Math.abs(drift.heading)).toBeLessThan(0.01);
+  });
+  describe('direct cyclic', () => {
+    type Flight = { transform: TransformData; state: AircraftStateData };
+    const start = (speed: number): Flight => ({
+      transform: { pos: [0, 1000, 0], rot: [0, 0, 0, 1] },
+      state: {
+        ...initialAircraftState(),
+        grounded: false,
+        rpm: 1,
+        velocity: [0, 0, speed],
+      },
+    });
+    const fly = (
+      flight: Flight,
+      seconds: number,
+      input: Partial<AircraftInputData>,
+      each?: (flight: Flight) => void,
+    ): Flight => {
+      let result = flight;
+      for (let i = 0; i < seconds * 60; i++) {
+        result = stepAircraft(
+          result.transform,
+          result.state,
+          { ...running, power: 0.49, cyclicMode: 'direct', ...input },
+          specFor('oh6'),
+          1 / 60,
+          flat,
+        );
+        each?.(result);
+      }
+      return result;
+    };
+    const nose = (f: Flight) => quatRotateVec3(f.transform.rot, [0, 0, 1]);
+    const top = (f: Flight) => quatRotateVec3(f.transform.rot, [0, 1, 0]);
+
+    it('loops through vertical, inverted and straight down', () => {
+      let climb = 0;
+      let inverted = 1;
+      let dive = 0;
+      const loop = fly(start(45), 5, { pitch: 1, power: 0.75 }, (f) => {
+        climb = Math.max(climb, nose(f)[1]);
+        inverted = Math.min(inverted, top(f)[1]);
+        dive = Math.min(dive, nose(f)[1]);
+        expect(f.state.crashed).toBe(false);
+      });
+      expect(climb).toBeGreaterThan(0.99);
+      expect(inverted).toBeLessThan(-0.95);
+      expect(dive).toBeLessThan(-0.99);
+      // Telemetry follows the quaternion: an assisted model could not leave its 0.65 rad limit.
+      expect(Math.abs(loop.state.pitch)).toBeGreaterThan(0.65);
+    });
+
+    it('holds its attitude with the stick released', () => {
+      const hover = fly(start(0), 3, {});
+      expect(hover.transform.rot).toEqual([0, 0, 0, 1]);
+      // Push the nose down, release, and let the rotor damp the pitch rate out.
+      const pushed = fly(fly(start(30), 1, { pitch: -1, power: 0.5 }), 1.5, { power: 0.5 });
+      const held = fly(pushed, 2, { power: 0.5 });
+      expect(nose(pushed)[1]).toBeLessThan(-0.6);
+      expect(nose(pushed)[1]).toBeGreaterThan(-0.95);
+      expect(nose(held)[1]).toBeCloseTo(nose(pushed)[1], 2);
+    });
+
+    it('loses cyclic authority as the rotor unloads', () => {
+      const unloaded = fly(start(30), 0.5, { pitch: -1, power: 0 });
+      const loaded = fly(start(30), 0.5, { pitch: -1, power: 0.5 });
+      expect(Math.abs(unloaded.state.pitchRate)).toBeLessThan(
+        0.4 * Math.abs(loaded.state.pitchRate),
+      );
+    });
+
+    it('rolls an inverted helicopter upright when assisted cyclic is selected', () => {
+      const inverted = fly(start(40), 2.7, { roll: 1, power: 0.6 });
+      expect(top(inverted)[1]).toBeLessThan(-0.9);
+      let roll = inverted.state.roll;
+      const recovered = fly(inverted, 3, { power: 0.6, cyclicMode: 'assisted' }, (f) => {
+        // Recovery is flown, not snapped: no step turns the airframe more than a few degrees.
+        expect(Math.abs(f.state.roll - roll)).toBeLessThan(0.08);
+        roll = f.state.roll;
+      });
+      expect(top(recovered)[1]).toBeGreaterThan(0.9);
+      expect(recovered.state.crashed).toBe(false);
+    });
   });
   it('flaps add lift without spuriously reducing the stall angle during rotation', () => {
     const t: TransformData = { pos: [0, 100, 0], rot: vehicleRotation(0, -0.2, 0) };

@@ -10,6 +10,7 @@ import {
   wgs84ToWorld,
   worldToWgs84,
 } from '@bendyline/molen-terrain/kernel';
+import { isMapOverrideFeature } from './map-override-tags';
 import type { TileGeometry } from './semantic-adapter';
 import type { StructureMapRule, StructurePlacement } from './structure-index';
 import { analyzeTileEdge, PROTOMAPS_TILE_BUFFER } from './tile-edges';
@@ -62,12 +63,23 @@ interface TileIdentities {
   bridges: IdentityIndex<TerrainTransportationFeature>;
 }
 
+/**
+ * The tile's features a catalogued model may stand for. A host's own buildings and props (map
+ * overrides) are not among them: a rule or a mapped identity must never claim one, or replace it.
+ */
+function mappedFeatures(tile: TerrainSemanticTile): Feature[] {
+  const features: Feature[] = [
+    ...(tile.buildingsGeneralized ? [] : tile.buildings),
+    ...(tile.pois ?? []),
+  ];
+  return features.some(isMapOverrideFeature)
+    ? features.filter((feature) => !isMapOverrideFeature(feature))
+    : features;
+}
+
 function tileIdentities(tile: TerrainSemanticTile): TileIdentities {
   return {
-    features: identityIndex<Feature>([
-      ...(tile.buildingsGeneralized ? [] : tile.buildings),
-      ...(tile.pois ?? []),
-    ]),
+    features: identityIndex<Feature>(mappedFeatures(tile)),
     bridges: identityIndex(tile.transportation.filter((road) => road.bridge && !road.tunnel)),
   };
 }
@@ -374,11 +386,8 @@ export function matchMapStructures(
   const result: StructurePlacement[] = [];
   const counts = new Map<string, number>();
   const occupied = geographic.map((entry) => wgs84ToWorld(geometry.metersPerUnit, ...entry.anchor));
-  const features: Feature[] = [
-    ...(tile.buildingsGeneralized ? [] : tile.buildings),
-    ...(tile.pois ?? []),
-  ];
   if (rules.length === 0) return result;
+  const features = mappedFeatures(tile);
   const index = ruleIndex(rules);
   for (const feature of features) {
     if (result.length >= Math.max(0, Math.min(64, maxPerTile))) break;
@@ -395,8 +404,10 @@ export function matchMapStructures(
       // Use its sole complete containing footprint for fit; never the nearest house.
       const containing =
         rule.fit === 'footprint' && 'point' in feature && !tile.buildingsGeneralized
-          ? tile.buildings.filter((building) =>
-              building.polygons.some((polygon) => pointInPolygon(feature.point, polygon)),
+          ? tile.buildings.filter(
+              (building) =>
+                !isMapOverrideFeature(building) &&
+                building.polygons.some((polygon) => pointInPolygon(feature.point, polygon)),
             )
           : [];
       if (containing.length > 1) continue;

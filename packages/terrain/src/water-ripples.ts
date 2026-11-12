@@ -66,27 +66,106 @@ export const WATER_RIPPLE_LAYERS: ReadonlyArray<{
   { scale: 2.17, direction: [-0.8, 0.6], drift: [0.019, 0.009], weight: 0.6 },
 ];
 
+/** Slow patches that bend the layers and vary their energy, read once per pixel. */
+export const WATER_RIPPLE_AREA = { scale: 0.009, drift: [0.001, 0] } as const;
+
+/**
+ * A layer fades out as one pixel grows from the first to the second fraction of its texture
+ * repeat: from about 2.5 texels, where the finest wave (8.4 texels) still spans three pixels,
+ * to 8 texels, where it is below one. Mipmaps average a finer layer's slopes, but the
+ * reflection of what remains still swings from sky to shore between neighbouring pixels.
+ */
+export const WATER_RIPPLE_FADE: readonly [number, number] = [2.5 / 256, 8 / 256];
+
+/**
+ * Twice the per-axis slope variance one unit-weight layer contributes: the texture's slope
+ * channels measure 0.17 RMS, and the second channel enters at 0.65. Ripples a pixel can no
+ * longer show return this much GGX alpha² as roughness, so they still spread the highlight.
+ */
+export const WATER_RIPPLE_SLOPE_VARIANCE: number = 0.17 * 0.17 * (1 + 0.65 * 0.65);
+
+/**
+ * Geometric specular anti-aliasing (Kaplanyan and Tokuyoshi): how fast the shading normal
+ * turns between neighbouring pixels, as GGX alpha², capped so a shoreline's swing between
+ * pixels cannot turn the whole surface matte.
+ */
+export const WATER_NORMAL_VARIANCE = { gain: 0.5, max: 0.18 } as const;
+
+/** The second ripple sample axis, shortened to stretch ripples across the first. */
+const ACROSS = 0.65;
+
+const fract = (value: number): number => value - Math.floor(value);
+
+/**
+ * Wrap the parts of each layer's texture coordinate that come from the world origin and from
+ * time, in double precision, into one repeat of the texture. Shaders add them to coordinates
+ * of camera-relative positions: adding a planet-scale origin in 32-bit floats instead rounds
+ * positions to a metre or more, so the ripples break into flickering blocks.
+ */
+export function waterRippleOffsets(
+  origin: readonly [number, number],
+  waveScale: number,
+  phase: number,
+  area: THREE.Vector2,
+  layers: ReadonlyArray<{ readonly value: THREE.Vector2 }>,
+): void {
+  const px = origin[0] * waveScale;
+  const pz = origin[1] * waveScale;
+  area.set(
+    fract(px * WATER_RIPPLE_AREA.scale + WATER_RIPPLE_AREA.drift[0] * phase),
+    fract(pz * WATER_RIPPLE_AREA.scale + WATER_RIPPLE_AREA.drift[1] * phase),
+  );
+  WATER_RIPPLE_LAYERS.forEach(({ scale, direction: [x, y], drift: [dx, dy] }, index) => {
+    layers[index]?.value.set(
+      fract((px * x + pz * y) * scale + dx * phase),
+      fract((pz * x - px * y) * ACROSS * scale + dy * phase),
+    );
+  });
+}
+
 const literal = (value: number): string => value.toFixed(6);
 
 export const WATER_RIPPLES_GLSL: string = /* glsl */ `
   uniform sampler2D terrainWaterRipples;
-  vec3 terrainWaterDetail(vec2 worldPosition, float phase) {
-    vec2 p = worldPosition * terrainWaterWaveScale;
+  uniform vec2 terrainWaterAreaOffset;
+  ${WATER_RIPPLE_LAYERS.map((_, i) => `uniform vec2 terrainWaterLayerOffset${i};`).join('\n  ')}
+  // xy: ripple slope; z: surface variation; w: slope variance too fine for this pixel to show.
+  vec4 terrainWaterDetail(vec2 localPosition) {
+    vec2 p = localPosition * terrainWaterWaveScale;
+    // One pixel's extent along its longer axis: across the view at grazing angles.
+    float footprint = length(fwidth(p));
     // Slow patches bend the wavelets and vary their energy, instead of tinting the water
     // with broad, painted-looking sine bands. Four filtered reads for the entire surface.
-    vec3 area = texture2D(terrainWaterRipples, p * 0.009 + vec2(phase * 0.001, 0.0)).rgb * 2.0 - 1.0;
+    vec3 area = texture2D(terrainWaterRipples,
+      p * ${literal(WATER_RIPPLE_AREA.scale)} + terrainWaterAreaOffset).rgb * 2.0 - 1.0;
     vec2 warp = area.rg * 0.025;
+    float gain = (1.0 + area.b * 0.7) * terrainWaterWaveStrength * 14.0;
     vec2 slope = vec2(0.0);
+    float lost = 0.0;
     ${WATER_RIPPLE_LAYERS.map(
-      ({ scale, direction: [x, y], drift: [dx, dy], weight }, i) => `
+      ({ scale, direction: [x, y], weight }, i) => `
+      float keep${i} = 1.0 - smoothstep(${literal(WATER_RIPPLE_FADE[0])}, ${literal(WATER_RIPPLE_FADE[1])},
+        footprint * ${literal(scale)});
       vec2 uv${i} = vec2(dot(p, vec2(${literal(x)}, ${literal(y)})),
-        dot(p, vec2(${literal(-y)}, ${literal(x)}))) * vec2(1.0, 0.65) * ${literal(scale)};
-      vec2 n${i} = texture2D(terrainWaterRipples, uv${i} + warp +
-        vec2(${literal(dx)}, ${literal(dy)}) * phase).rg * 2.0 - 1.0;
+        dot(p, vec2(${literal(-y)}, ${literal(x)}))) * vec2(1.0, ${literal(ACROSS)}) * ${literal(scale)};
+      vec2 n${i} = texture2D(terrainWaterRipples, uv${i} + warp + terrainWaterLayerOffset${i}).rg * 2.0 - 1.0;
       slope += (vec2(${literal(x)}, ${literal(y)}) * n${i}.x +
-        vec2(${literal(-y)}, ${literal(x)}) * n${i}.y * 0.65) * ${literal(weight)};`,
+        vec2(${literal(-y)}, ${literal(x)}) * n${i}.y * ${literal(ACROSS)}) * ${literal(weight)} * keep${i};
+      lost += ${literal(weight * weight)} * (1.0 - keep${i} * keep${i});`,
     ).join('\n')}
-    return vec3(slope * (1.0 + area.b * 0.7) * terrainWaterWaveStrength * 14.0,
-      area.b * terrainWaterWaveStrength);
+    float areaKeep = 1.0 - smoothstep(${literal(WATER_RIPPLE_FADE[0])}, ${literal(WATER_RIPPLE_FADE[1])},
+      footprint * ${literal(WATER_RIPPLE_AREA.scale)});
+    return vec4(slope * gain, area.b * terrainWaterWaveStrength * areaKeep,
+      lost * gain * gain * ${literal(WATER_RIPPLE_SLOPE_VARIANCE)});
+  }
+  float terrainWaterNormalVariance(vec3 normal) {
+    vec3 dx = dFdx(normal);
+    vec3 dy = dFdy(normal);
+    return min(${literal(WATER_NORMAL_VARIANCE.gain)} * (dot(dx, dx) + dot(dy, dy)),
+      ${literal(WATER_NORMAL_VARIANCE.max)});
+  }
+  // Specular anti-aliasing: GGX alpha² grows by the slope variance a pixel averages over.
+  float terrainWaterRoughness(float roughness, float variance) {
+    return pow(clamp(pow(roughness, 4.0) + variance, 0.0, 1.0), 0.25);
   }
 `;

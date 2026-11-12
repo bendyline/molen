@@ -1,5 +1,10 @@
-import { createEmptyTerrainSemanticTile, worldToWgs84 } from '@bendyline/molen-terrain/kernel';
+import {
+  createEmptyTerrainSemanticTile,
+  type TerrainPoiFeature,
+  worldToWgs84,
+} from '@bendyline/molen-terrain/kernel';
 import { describe, expect, it } from 'vitest';
+import { MAP_OVERRIDE_TAG } from '../src/kernel/map-override-tags';
 import type { TileGeometry } from '../src/kernel/semantic-adapter';
 import type { StructureMapRule, StructurePlacement } from '../src/kernel/structure-index';
 import {
@@ -86,6 +91,79 @@ describe('mapped reusable structures', () => {
     expect(entries[0]?.anchor[0]).toBeCloseTo(worldToWgs84(1, 210, 220)[0]);
     tile.buildingsGeneralized = true;
     expect(matchMapStructures(tile, geometry, [windmill])[0]?.replaceFootprint).toBe(false);
+  });
+
+  it("never claims a host's building or prop for a category model or a mapped identity", () => {
+    const outer: [number, number][] = [
+      [0.2, 0.2],
+      [0.22, 0.2],
+      [0.22, 0.24],
+      [0.2, 0.24],
+    ];
+    const hostTags = { [MAP_OVERRIDE_TAG]: 'lot' };
+    const tile = createEmptyTerrainSemanticTile();
+    // What a map override put here: a building it calls a windmill, and a prop of the same class.
+    tile.buildings = [
+      {
+        id: 'override:lot:mill',
+        class: 'building',
+        subclass: 'windmill',
+        name: 'Unique tower',
+        height: 45,
+        polygons: [{ outer }],
+        tags: hostTags,
+      },
+    ];
+    tile.pois = [
+      { id: 'override:lot:lamp', class: 'street_lamp', point: [0.6, 0.6], tags: hostTags },
+    ];
+    const footprint: StructureMapRule = {
+      ...windmill,
+      match: { subclasses: ['windmill'] },
+      fit: 'footprint',
+      replaceFootprint: true,
+    };
+    const lamps: StructureMapRule = {
+      ...windmill,
+      id: 'lamp',
+      match: { classes: ['street_lamp'] },
+    };
+    expect(matchMapStructures(tile, geometry, [footprint, lamps])).toEqual([]);
+    // A mapped point of the kind inside the host's walls stands on its own: the host's building
+    // is not its shell, so nothing sizes a model to that footprint or asks for it to be replaced.
+    const inside: TerrainPoiFeature = {
+      id: 'p',
+      class: 'man_made',
+      subclass: 'windmill',
+      point: [0.21, 0.22],
+    };
+    const entries = matchMapStructures({ ...tile, pois: [...tile.pois, inside] }, geometry, [
+      { ...footprint, replaceFootprint: false },
+    ]);
+    expect(entries).toHaveLength(1);
+    expect(entries[0]?.id).toContain('map.windmill.');
+    expect(entries[0]?.replaceFootprint).toBe(false);
+    expect(entries[0]?.scale).toEqual([1, 1, 1]);
+    // Nor does a catalogued landmark that follows a mapped footprint take the host's by name.
+    const entry: StructurePlacement = {
+      id: 'unique',
+      title: 'Unique tower',
+      asset: 'unique.tower',
+      anchor: worldToWgs84(1, 210, 220),
+      source: 'https://example.com',
+      status: 'preview',
+      orientation: 'mapped',
+      mapIdentity: { names: ['Unique tower'] },
+    };
+    expect(orientMappedStructure(entry, tile, geometry)).toBeUndefined();
+    expect(orientMappedStructures([entry], tile, geometry)).toEqual([]);
+    // Untagged, the same features are the map's: both rules and the identity claim them.
+    const { tags: _tags, ...mapped } = tile.buildings[0] as (typeof tile.buildings)[number];
+    const { tags: _poiTags, ...lamp } = tile.pois[0] as (typeof tile.pois)[number];
+    const untagged = { ...tile, buildings: [mapped], pois: [lamp] };
+    expect(orientMappedStructure(entry, untagged, geometry)?.heading).toBeCloseTo(Math.PI / 2);
+    const claimed = matchMapStructures(untagged, geometry, [footprint, lamps]);
+    expect(claimed.map((placement) => placement.replaceFootprint)).toEqual([true, false]);
   });
 
   it('has half-open tile ownership, independent rule limits, and a hard tile budget', () => {

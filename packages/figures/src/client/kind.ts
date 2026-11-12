@@ -190,14 +190,22 @@ class FigureHandle implements KindHandle {
     if (attachment !== undefined && mirror.peek(this.id, 'parent') !== undefined) {
       return attachment.anchor ?? 'origin';
     }
-    const mounted = mirror.peek(this.id, 'mounted') as { vehicle?: string } | undefined;
+    const mounted = mirror.peek(this.id, 'mounted') as
+      | { vehicle?: string; seat?: string }
+      | undefined;
     if (mounted?.vehicle === undefined) return undefined;
     if (mirror.peek(mounted.vehicle, 'figure') !== undefined) return 'pelvis';
+    const spec = (mirror.peek(mounted.vehicle, 'vehicle') as VehicleData | undefined)?.spec;
+    if (spec?.cycle !== undefined) return 'pelvis';
+    // A handlebar's driver sits on a saddle; its passengers sit as in a car.
     if (
-      (mirror.peek(mounted.vehicle, 'vehicle') as VehicleData | undefined)?.spec.cycle !== undefined
+      spec?.handlebar !== undefined &&
+      (mirror.peek(mounted.vehicle, 'mountable') as MountableData | undefined)?.seats.find(
+        (seat) => seat.id === mounted.seat,
+      )?.role === 'driver'
     )
       return 'pelvis';
-    return mirror.peek(mounted.vehicle, 'vehicle') !== undefined ? 'eye' : 'pelvis';
+    return spec !== undefined ? 'eye' : 'pelvis';
   }
 
   private lookTarget(intent: FigureIntentData | undefined): Vec3 | undefined {

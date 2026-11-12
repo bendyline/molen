@@ -7,6 +7,8 @@ import {
   createVehicleVisual,
   isParkedVehicleHidden,
   setParkedVehicleHidden,
+  threeWheelerProxyGeometry,
+  twoWheelerProxyGeometry,
   vehicleProxyGeometry,
 } from '../src/vehicles';
 
@@ -104,6 +106,62 @@ describe('vehicle visuals', () => {
       expect(paintedRoof).toBeGreaterThan(0);
       expect(slopedGlass).toBeGreaterThan(0);
     }
+  });
+
+  it('draws parked two-wheelers and auto-rickshaws as their own light silhouettes', () => {
+    const scooter: VehicleSpec = {
+      ...SPEC,
+      width: 0.7,
+      length: 1.85,
+      height: 1.2,
+      wheelbase: 1.39,
+      wheelTrack: 0,
+      wheelRadius: 0.23,
+      bodyStyle: 'scooter',
+      cycle: {
+        maxLean: 0.6,
+        riderLean: 0.2,
+        handlebarPivot: [0, 1, 0.36],
+        grips: [
+          [0.3, 1, 0.22],
+          [-0.3, 1, 0.22],
+        ],
+        footrests: [
+          [0.13, 0.34, 0.1],
+          [-0.13, 0.34, 0.1],
+        ],
+      },
+    };
+    const auto: VehicleSpec = {
+      ...SPEC,
+      width: 1.3,
+      length: 2.63,
+      height: 1.76,
+      wheelbase: 2,
+      wheelTrack: 1.15,
+      wheelRadius: 0.205,
+      bodyStyle: 'auto-rickshaw',
+    };
+    for (const [spec, geometry, triangles] of [
+      [scooter, twoWheelerProxyGeometry(scooter), 110],
+      [auto, threeWheelerProxyGeometry(auto), 170],
+    ] as const) {
+      const position = geometry.getAttribute('position');
+      expect(position.count / 3).toBeLessThanOrEqual(triangles);
+      expect(geometry.boundingBox?.min.y).toBeCloseTo(0);
+      expect(geometry.boundingBox?.max.y).toBeLessThanOrEqual(spec.height + 0.01);
+      expect(geometry.boundingBox?.max.x).toBeLessThanOrEqual(spec.width / 2 + 0.06);
+      expect(geometry.userData.bodyVertices).toBeGreaterThan(0);
+      expect(geometry.userData.bodyVertices).toBeLessThan(position.count);
+      const batch = createParkedVehicleBatch([
+        { id: 'parked', kind: 'test', color: '#22aa44', spec, position: [0, 0, 0], yaw: 0 },
+      ]);
+      const mesh = batch.children[0] as THREE.Mesh;
+      expect(mesh.geometry.getAttribute('position').count).toBe(position.count);
+      const colors = mesh.geometry.getAttribute('color');
+      expect(new THREE.Color().fromBufferAttribute(colors, 0).getHexString()).toBe('22aa44');
+    }
+    expect(twoWheelerProxyGeometry({ ...scooter })).toBe(twoWheelerProxyGeometry(scooter));
   });
 
   it('caches all wheel dimensions independently and paints the roof with the parked body', () => {

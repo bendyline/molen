@@ -22,18 +22,30 @@ import {
   type VehicleInteriorSignals,
   type VehicleInteriorVisual,
 } from './vehicle-interior';
-import { vehicleProxyGeometry } from './vehicle-proxy';
+import {
+  threeWheelerProxyGeometry,
+  twoWheelerProxyGeometry,
+  vehicleProxyGeometry,
+} from './vehicle-proxy';
 
 export { type RailVehicleProxyDimensions, railVehicleProxyGeometry } from './rail-proxy';
 export type { VehicleCameraOptions, VehicleCameraPose } from './vehicle-camera';
 export { vehicleCameraPose } from './vehicle-camera';
 export type { VehicleInteriorSignals, VehicleInteriorVisual } from './vehicle-interior';
 export { createVehicleInteriorVisual } from './vehicle-interior';
-export { type VehicleProxyDimensions, vehicleProxyGeometry } from './vehicle-proxy';
+export {
+  threeWheelerProxyGeometry,
+  twoWheelerProxyGeometry,
+  type VehicleProxyDimensions,
+  vehicleProxyGeometry,
+} from './vehicle-proxy';
 
 /** The stand-in for a parked vehicle: a rail car's silhouette on track, a car's on the street. */
 function parkedProxyGeometry(spec: VehiclePlacement['spec']): THREE.BufferGeometry {
-  return spec.rail !== undefined ? railVehicleProxyGeometry(spec) : vehicleProxyGeometry(spec);
+  if (spec.rail !== undefined) return railVehicleProxyGeometry(spec);
+  if (spec.cycle !== undefined) return twoWheelerProxyGeometry(spec);
+  if (spec.bodyStyle === 'auto-rickshaw') return threeWheelerProxyGeometry(spec);
+  return vehicleProxyGeometry(spec);
 }
 
 export interface VehicleVisual {

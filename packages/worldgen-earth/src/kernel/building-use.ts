@@ -132,6 +132,37 @@ const USE_STYLES: Readonly<Partial<Record<BuildingUse, string>>> = {
   library: 'molen.worldgen.catalog.public_library',
 };
 
+/** Uses that need no POI to name them: a host may declare any of these outright. */
+const BUILDING_USES: ReadonlySet<string> = new Set<BuildingUse>([
+  'mall',
+  'office',
+  'skyscraper',
+  'apartments',
+  'apartment_tower',
+  'hotel',
+  'hospital',
+  'school',
+  'place_of_worship',
+  'theatre',
+  'cinema',
+  'museum',
+  'sports_hall',
+  'civic',
+  'station',
+  'fire_station',
+  'library',
+]);
+
+/**
+ * Exteriors for declared uses the pack's own rules would misread: they send a warehouse of any
+ * size to a shopping mall or a shop front, which is right for an unlabelled retail shed and wrong
+ * for a building whose owner said what it is.
+ */
+const DECLARED_STYLES: Readonly<Record<string, string>> = {
+  warehouse: 'molen.worldgen.generic.warehouse',
+  industrial: 'molen.worldgen.generic.warehouse',
+};
+
 /** Smaller than this, a footprint is a kiosk or an outbuilding of whatever it stands in. */
 const MIN_AREA = 180;
 /** Below this, a mapped use on land like a campus is a shed, not a teaching block. */
@@ -269,4 +300,25 @@ export function applyBuildingUse(
   if (style === undefined) return;
   if (styles[style] !== undefined) request.style = style;
   request.labels = [evidence.use, ...request.labels];
+}
+
+/**
+ * Give a building request the use its owner declared (a map override's `use`, carried as the
+ * feature's subclass). Nothing is argued from POIs, land or shape, so the answer is the same at
+ * every tile level: the inside follows the use, and the outside does too unless the request
+ * already names a style. Packs without the style keep their architecture.
+ */
+export function applyDeclaredBuildingUse(
+  request: BuildingRequest,
+  label: string,
+  styles: ResolvedStylePack['archstyles'],
+): void {
+  const use: BuildingUse | undefined =
+    USE_BY_POI[label] ?? (BUILDING_USES.has(label) ? (label as BuildingUse) : undefined);
+  if (use !== undefined) request.interiorLabels = [use, ...(request.interiorLabels ?? [])];
+  if (request.style !== undefined) return;
+  const style = (use !== undefined ? USE_STYLES[use] : undefined) ?? DECLARED_STYLES[label];
+  if (style === undefined || styles[style] === undefined) return;
+  request.style = style;
+  if (use !== undefined && !request.labels.includes(use)) request.labels = [use, ...request.labels];
 }

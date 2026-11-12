@@ -51,11 +51,13 @@ export {
 } from './client/scatter-material';
 export { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './client/screen-space-lod';
 export {
+  routeStructureModels,
   type StructureAcquireOptions,
   type StructureInstanceOptions,
   type StructureModel,
   StructureModelLibrary,
   type StructureModelLibraryOptions,
+  type StructureModelRouteOptions,
   type StructureModelSource,
 } from './client/structure-models';
 export {

@@ -64,6 +64,10 @@
       #hud { max-height: calc(100vh - 60px); }
       #navigation { display: flex; gap: 7px; margin: 10px 0 0; padding: 0; border: 0; pointer-events: auto; }
       #navigation-status { margin: 7px 0 0; color: #bde5c8; font-size: 12px; }
+      #override-controls { margin: 10px 0 0; padding: 0; border: 0; pointer-events: auto; }
+      #override-controls legend { float: left; margin-right: 8px; color: #a9c2d1; font-size: 12px; line-height: 28px; }
+      #override-controls > div { display: flex; flex-wrap: wrap; gap: 7px; clear: both; margin-top: 7px; }
+      #override-status { margin: 6px 0 0; color: #9fb8c7; font-size: 11px; }
       button {
         border: 1px solid rgb(255 255 255 / 18%); border-radius: 7px; padding: 7px 10px;
         color: #deedf6; background: rgb(255 255 255 / 7%); cursor: pointer; font: 600 12px inherit;
@@ -233,6 +237,16 @@
       </fieldset>
       <p id="worldgen-status" role="status" hidden>Loading buildings…</p>
       <p id="navigation-status" role="status">Fly mode · Explore from above</p>
+      <fieldset id="override-controls">
+        <legend>Replace building</legend>
+        <select id="override-sample" aria-label="What to put in its place"></select>
+        <div>
+          <button type="button" id="override-replace" title="Replace the building ahead (N)">Replace</button>
+          <button type="button" id="override-undo" title="Undo the last replacement (U)">Undo</button>
+          <button type="button" id="override-clear" title="Remove every replacement">Clear all</button>
+        </div>
+        <p id="override-status" role="status"></p>
+      </fieldset>
       <fieldset id="aircraft-picker" aria-label="Visit an aircraft" style="display:flex;gap:7px;border:0;padding:0;margin-top:8px;pointer-events:auto">
         <button type="button" data-aircraft="p51d" title="Visit the P-51D">P-51 Mustang</button>
         <button type="button" data-aircraft="oh6" title="Visit the OH-6">OH-6</button>

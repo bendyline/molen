@@ -98,8 +98,13 @@ export interface VehicleStateData extends VehicleDamageState {
   grounded: boolean;
   waitingForTerrain: boolean;
   wheelAngle: number;
-  /** Bicycle crank angle; holds while coasting or braking. */
+  /**
+   * Bicycle crank angle; holds while coasting or braking. On a push-powered cycle, the phase of
+   * the current push.
+   */
   pedalAngle?: number;
+  /** Push-powered cycles: 0 riding sideways to 1 turned forward to push off. */
+  kick?: number;
   /** Sideways speed in m/s, positive to the left: the slide. */
   lateralSpeed?: number;
   /** Yaw rate in rad/s, positive turning left. */
@@ -1041,6 +1046,18 @@ export function stepVehicle(
         ((next.pedalAngle ?? 0) +
           (m.max(0, u) * h) / (spec.wheelRadius * spec.cycle.pedals.ratio)) %
         m.TAU;
+    const kick = spec.cycle?.kick;
+    if (kick) {
+      // A push-powered rider pushes once per stride under power, no slower than a push from
+      // rest takes; a push under way when the power stops finishes, then holds at zero.
+      const pushing = throttle > 0 && !braking && next.grounded;
+      const phase = next.pedalAngle ?? 0;
+      if (pushing || phase !== 0) {
+        const advanced = phase + m.max(m.max(0, u) / kick.stride, 0.9) * m.TAU * h;
+        next.pedalAngle = !pushing && advanced >= m.TAU ? 0 : advanced % m.TAU;
+      }
+      next.kick = approach(next.kick ?? 0, pushing || next.pedalAngle !== 0 ? 1 : 0, h * 4);
+    }
     pos = candidate;
   }
   next.speed = u * travel;

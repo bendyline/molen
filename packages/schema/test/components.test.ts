@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
 import {
@@ -301,5 +302,50 @@ describe('component field descriptions', () => {
       walk(z.toJSONSchema(getComponent(name)?.zod as z.ZodType, { io: 'input' }), name);
     }
     expect(missing).toEqual([]);
+  });
+});
+
+describe('handlebar vehicles', () => {
+  const vehicleOf = (category: string, slug: string): Record<string, unknown> => {
+    const doc = JSON.parse(
+      readFileSync(
+        new URL(
+          `../../../content/entities/source/${category}/${slug}/entity.types.json`,
+          import.meta.url,
+        ),
+        'utf8',
+      ),
+    );
+    return (Object.values(doc.types)[0] as { components: { vehicle: Record<string, unknown> } })
+      .components.vehicle;
+  };
+
+  it('accepts sideways push boards, standing riders and handlebar three-wheelers', () => {
+    const board = vehicleOf('cycles', 'skateboard');
+    // A board steers through its trucks: no wheel node turns with the steering.
+    expect((board.visual as { frontWheelNodes: string[] }).frontWheelNodes).toEqual([]);
+    expect(componentIssues('vehicle', board, '/c/vehicle')).toEqual([]);
+    expect(componentIssues('vehicle', vehicleOf('cycles', 'kick-scooter'), '/c/vehicle')).toEqual(
+      [],
+    );
+    expect(
+      componentIssues('vehicle', vehicleOf('vehicles', 'auto-rickshaw'), '/c/vehicle'),
+    ).toEqual([]);
+  });
+
+  it('rejects an unknown stance and a car with neither a track nor cycle tuning', () => {
+    const board = vehicleOf('cycles', 'skateboard') as {
+      spec: { cycle: Record<string, unknown> };
+    };
+    const lying = {
+      ...board,
+      spec: { ...board.spec, cycle: { ...board.spec.cycle, stance: 'lying' } },
+    };
+    expect(componentIssues('vehicle', lying, '/c/vehicle').length).toBeGreaterThan(0);
+    const auto = vehicleOf('vehicles', 'auto-rickshaw') as { spec: Record<string, unknown> };
+    expect(
+      componentIssues('vehicle', { ...auto, spec: { ...auto.spec, wheelTrack: 0 } }, '/c/vehicle')
+        .length,
+    ).toBeGreaterThan(0);
   });
 });

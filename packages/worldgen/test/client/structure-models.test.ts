@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
-import { StructureModelLibrary } from '../../src/client/structure-models';
+import { routeStructureModels, StructureModelLibrary } from '../../src/client/structure-models';
 
 function texturedModel() {
   const texture = new THREE.Texture();
@@ -182,5 +182,81 @@ describe('full-fidelity structure streaming', () => {
     library.release('model');
     expect(dispose).toHaveBeenCalledTimes(1);
     library.dispose();
+  });
+});
+
+describe('routing structure models between two sources', () => {
+  function source(name: string) {
+    const scene = new THREE.Group();
+    const model = (ref: string) => ({ ref, scene, bounds: new THREE.Box3() });
+    return {
+      acquire: vi.fn(async (ref: string) => model(ref)),
+      instantiate: vi.fn(() => {
+        const instance = new THREE.Group();
+        instance.name = name;
+        return instance;
+      }),
+      release: vi.fn(),
+    };
+  }
+
+  it('keeps each ref with the source that owns it, for acquire, instantiate and release', async () => {
+    const catalog = source('catalog');
+    const host = source('host');
+    const routed = routeStructureModels({
+      primary: catalog,
+      isPrimary: (ref) => ref.startsWith('pack.'),
+      secondary: host,
+      keepAliveMs: 0,
+    });
+    const options = { position: [1, 2, 3] as const };
+    const tower = await routed.acquire('pack.tower', options);
+    const kiosk = await routed.acquire('my.kiosk', options);
+    expect(catalog.acquire).toHaveBeenCalledWith('pack.tower', options);
+    expect(host.acquire).toHaveBeenCalledWith('my.kiosk', options);
+    expect(routed.instantiate(tower).name).toBe('catalog');
+    expect(routed.instantiate(kiosk).name).toBe('host');
+    routed.release('pack.tower');
+    routed.release('my.kiosk');
+    expect(catalog.release).toHaveBeenCalledWith('pack.tower');
+    expect(host.release).toHaveBeenCalledWith('my.kiosk');
+    expect(catalog.release).toHaveBeenCalledTimes(1);
+    expect(host.release).toHaveBeenCalledTimes(1);
+  });
+
+  it('holds a released host model long enough for the next tile to take it over', async () => {
+    vi.useFakeTimers();
+    try {
+      const loads = vi.fn(async () => texturedModel().scene);
+      const library = new StructureModelLibrary(loads);
+      const routed = routeStructureModels({
+        primary: source('catalog'),
+        isPrimary: () => false,
+        secondary: library,
+        keepAliveMs: 5000,
+      });
+      // A parent tile lets go; its child asks a moment later.
+      await routed.acquire('my.kiosk');
+      routed.release('my.kiosk');
+      await vi.advanceTimersByTimeAsync(1000);
+      const again = await routed.acquire('my.kiosk');
+      expect(loads).toHaveBeenCalledTimes(1);
+      // The held reference comes back without taking the child's away.
+      await vi.advanceTimersByTimeAsync(5000);
+      expect(() => routed.instantiate(again)).not.toThrow();
+      // Let go for good: the model is freed once the hold runs out, and loads afresh after.
+      routed.release('my.kiosk');
+      await vi.advanceTimersByTimeAsync(5000);
+      expect(() => routed.instantiate(again)).toThrow('no longer acquired');
+      await routed.acquire('my.kiosk');
+      expect(loads).toHaveBeenCalledTimes(2);
+      // Disposal drops what is still held instead of releasing into a disposed library.
+      routed.release('my.kiosk');
+      routed.dispose();
+      library.dispose();
+      await vi.advanceTimersByTimeAsync(10_000);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 });
