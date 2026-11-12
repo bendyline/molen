@@ -14,4 +14,4 @@ Heights, rear walls, roof divisions and exact step grades are approximate. The p
 
 Interior rooms and the retaining wall beyond the mapped church are outside the model.
 
-Build: `node content/worldgen/source/places/dd/dds/roseau_cathedral/models/generate-house.mjs`. Add `--check` to verify exact regeneration. 2286 triangles; 5 materials; no embedded photographs.
+Build: `node content/worldgen/source/places/dd/dds/roseau_cathedral/models/generate-cathedral.mjs`. Add `--check` to verify exact regeneration. 2286 triangles; 5 materials; no embedded photographs.

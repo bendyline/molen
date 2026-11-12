@@ -14,4 +14,4 @@ The courtyard opening follows the mapped excavation with a small overlap into th
 
 Roof reconstruction, underground passages, adjacent ruins and uncertain ancient details are outside this model.
 
-Build: `node content/worldgen/source/places/tj/tjk/temple_of_anahita_bishapur/models/generate-house.mjs`. Add `--check` to verify exact regeneration. 1676 triangles; 4 materials; no embedded photographs.
+Build: `node content/worldgen/source/places/tj/tjk/temple_of_anahita_bishapur/models/generate-temple.mjs`. Add `--check` to verify exact regeneration. 1676 triangles; 4 materials; no embedded photographs.

@@ -14,4 +14,4 @@ The location and footprint derive from an approximately registered university ca
 
 The original terrain is preserved. Veranda and exterior stair footing heights remain approximate.
 
-Build: `node content/worldgen/source/places/r7/r7h/blair_pavilion_ipswich/models/generate-house.mjs`. Add `--check` to verify exact regeneration. 2488 triangles; 6 materials; no embedded photographs.
+Build: `node content/worldgen/source/places/r7/r7h/blair_pavilion_ipswich/models/generate-pavilion.mjs`. Add `--check` to verify exact regeneration. 2488 triangles; 6 materials; no embedded photographs.

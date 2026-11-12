@@ -14,4 +14,4 @@ The source elevation field is preserved without flattening. Entrance tread and t
 
 The neighboring garden, detached São Miguel Chapel and cathedral interiors are outside the model.
 
-Build: `node content/worldgen/source/places/ey/eyd/faro_cathedral/models/generate-house.mjs`. Add `--check` to verify exact regeneration. 2333 triangles; 6 materials; no embedded photographs.
+Build: `node content/worldgen/source/places/ey/eyd/faro_cathedral/models/generate-cathedral.mjs`. Add `--check` to verify exact regeneration. 2333 triangles; 6 materials; no embedded photographs.

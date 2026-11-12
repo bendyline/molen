@@ -16,4 +16,4 @@ Detached monuments, courtyards outside the footprint, freestanding furniture and
 
 Clearance and foundation measurements are representative. Geometry uses shared surfaces without photographic pixels.
 
-Build: `node content/worldgen/source/places/sw/swb/old_parliament_house_athens/models/generate-house.mjs`. Add `--check` to verify exact regeneration. 8340 triangles; 5 materials; no embedded photographs.
+Build: `node content/worldgen/source/places/sw/swb/old_parliament_house_athens/models/generate-parliament.mjs`. Add `--check` to verify exact regeneration. 8340 triangles; 5 materials; no embedded photographs.

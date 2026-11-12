@@ -14,4 +14,4 @@ The courtyard and perimeter use the original elevation source. Entrance threshol
 
 Garden structures, interior rooms, vehicles and later decorations are outside the model.
 
-Build: `node content/worldgen/source/places/dh/dhj/hotel_nacional_de_cuba/models/generate-house.mjs`. Add `--check` to verify exact regeneration. 10348 triangles; 5 materials; no embedded photographs.
+Build: `node content/worldgen/source/places/dh/dhj/hotel_nacional_de_cuba/models/generate-hotel.mjs`. Add `--check` to verify exact regeneration. 10348 triangles; 5 materials; no embedded photographs.

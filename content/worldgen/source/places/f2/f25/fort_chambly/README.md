@@ -16,4 +16,4 @@ Only the fort’s architecture is included. The historic-site park, detached exh
 
 Original elevation remains provider-relative. Foundation details and exact local grades are approximate.
 
-Build: `node content/worldgen/source/places/f2/f25/fort_chambly/models/generate-house.mjs`. Add `--check` to verify exact regeneration. 3563 triangles; 5 materials; no embedded photographs.
+Build: `node content/worldgen/source/places/f2/f25/fort_chambly/models/generate-fort.mjs`. Add `--check` to verify exact regeneration. 3563 triangles; 5 materials; no embedded photographs.

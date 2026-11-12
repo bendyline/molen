@@ -368,8 +368,10 @@ for (const model of authoredPlaceModels.filter(
           'research-preparation.json',
           'construction-preparation.json',
           'plan-controls.json',
-          'native-map/palace-controls.json',
-          'reference-rights/commons-qualla-mohatta-originals.json',
+          'native-map/main-house-controls.json',
+          'reference-rights/commons-first-revision.json',
+          'reference-rights/commons-qualla-drayton-original.json',
+          'reference-rights/habs-measured-sheets.json',
           ...(hasTerrain
             ? ['terrain-grid.json', 'terrain-review.terrain.json', 'terrain-review.height.png']
             : []),

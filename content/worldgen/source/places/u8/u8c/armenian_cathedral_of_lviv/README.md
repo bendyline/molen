@@ -18,4 +18,4 @@ A preserved original elevation field supplies placement. Thresholds and foundati
 
 Cleared exterior photographs remain in the local story corpus. The recipe uses its own geometry and shared materials.
 
-Build: `node content/worldgen/source/places/u8/u8c/armenian_cathedral_of_lviv/models/generate-house.mjs`. Add `--check` to verify exact regeneration. 2912 triangles; 5 materials; no embedded photographs.
+Build: `node content/worldgen/source/places/u8/u8c/armenian_cathedral_of_lviv/models/generate-cathedral.mjs`. Add `--check` to verify exact regeneration. 2912 triangles; 5 materials; no embedded photographs.

@@ -14,4 +14,4 @@ The separately painted mural and street furniture are outside this architectural
 
 The blank side of the tower, main podium roof and concealed east elevations use simplified geometry.
 
-Build: `node content/worldgen/source/places/9q/9q5/capitol_records_building/models/generate-house.mjs`. Add `--check` to verify exact regeneration. 7120 triangles; 5 materials; no embedded photographs.
+Build: `node content/worldgen/source/places/9q/9q5/capitol_records_building/models/generate-tower.mjs`. Add `--check` to verify exact regeneration. 7120 triangles; 5 materials; no embedded photographs.

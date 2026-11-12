@@ -351,7 +351,7 @@ for (const model of authoredPlaceModels.filter(
           path: `models/${generatorName}`,
         },
         {
-          id: 'zetland-hall-model',
+          id: 'cotroceni-palace-model',
           path: 'models/cotroceni-palace-model.mjs',
         },
       ],
@@ -368,8 +368,8 @@ for (const model of authoredPlaceModels.filter(
           'research-preparation.json',
           'construction-preparation.json',
           'plan-controls.json',
-          'native-map/hall-controls.json',
-          'reference-rights/commons-qualla-hall-originals.json',
+          'native-map/palace-controls.json',
+          'reference-rights/commons-qualla-palace-originals.json',
           ...(hasTerrain
             ? ['terrain-grid.json', 'terrain-review.terrain.json', 'terrain-review.height.png']
             : []),

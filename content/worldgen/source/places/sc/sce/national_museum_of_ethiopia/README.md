@@ -14,4 +14,4 @@ The artwork above the main entrance is represented by a plain recess. The attach
 
 Entrance grade and facade dimensions are approximate. The 128-meter source elevation field is preserved without grading or flattening.
 
-Build: `node content/worldgen/source/places/sc/sce/national_museum_of_ethiopia/models/generate-house.mjs`. Add `--check` to verify exact regeneration. 2866 triangles; 5 materials; no embedded photographs.
+Build: `node content/worldgen/source/places/sc/sce/national_museum_of_ethiopia/models/generate-museum.mjs`. Add `--check` to verify exact regeneration. 2866 triangles; 5 materials; no embedded photographs.

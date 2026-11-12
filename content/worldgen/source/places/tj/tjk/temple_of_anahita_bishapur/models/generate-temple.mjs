@@ -336,11 +336,11 @@ for (const model of authoredPlaceModels.filter(
       ],
       generators: [
         {
-          id: 'generate-house',
-          path: 'models/generate-house.mjs',
+          id: 'generate-temple',
+          path: 'models/generate-temple.mjs',
         },
         {
-          id: 'house-model',
+          id: 'temple-model',
           path: 'models/temple-model.mjs',
         },
       ],
@@ -368,7 +368,7 @@ for (const model of authoredPlaceModels.filter(
     ['source.json', source],
     [
       'README.md',
-      `# ${model.title}\n\n${model.brief}\n\n![Molen preview](preview.png)\n\nAuthoring state: **${model.reviewStatus ?? 'draft exterior; geographic activation pending'}**. Current completion evidence is in [qa.json](qa.json) and the [${model.progressLedger ? 'completion ledger' : 'local 100 ledger'}](../../../../qualla-structures/batches/${model.progressLedger ?? 'PROGRESS.md'}).\n\n${refs.stories.map((s) => `- [${s.title}](${s.url})`).join('\n')}\n\n${limitations.join('\n\n')}\n\nBuild: \`node ${sourcePath}/models/generate-house.mjs\`. Add \`--check\` to verify exact regeneration. ${mesh.triangleCount} triangles; ${mesh.groups.length} materials; no embedded photographs.\n`,
+      `# ${model.title}\n\n${model.brief}\n\n![Molen preview](preview.png)\n\nAuthoring state: **${model.reviewStatus ?? 'draft exterior; geographic activation pending'}**. Current completion evidence is in [qa.json](qa.json) and the [${model.progressLedger ? 'completion ledger' : 'local 100 ledger'}](../../../../qualla-structures/batches/${model.progressLedger ?? 'PROGRESS.md'}).\n\n${refs.stories.map((s) => `- [${s.title}](${s.url})`).join('\n')}\n\n${limitations.join('\n\n')}\n\nBuild: \`node ${sourcePath}/models/generate-temple.mjs\`. Add \`--check\` to verify exact regeneration. ${mesh.triangleCount} triangles; ${mesh.groups.length} materials; no embedded photographs.\n`,
     ],
   ])
     emit(path.join(dir, name), value);

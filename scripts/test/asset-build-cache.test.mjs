@@ -289,56 +289,71 @@ test('successful jobs remain cached when a sibling fails', async () => {
 
 // 0xC0000005 is how Windows ends a process for an access violation; only Windows reports it so.
 const windowsOnly = { skip: process.platform !== 'win32' };
+const crashRetry = (id) =>
+  `  Generator ${id} lost a Node process to an access violation; retrying once in 2 seconds.`;
+
+/**
+ * Build a fixture whose generators are `scripts`; each records every attempt that reaches it in
+ * `.artifacts/<id>-attempts.txt`. A real access violation (the flake the retry exists for) can
+ * also end an attempt before its script's first line, and the deliberate crash then spends the one
+ * retry. Only that evidence, an attempt the build made that its script never saw, earns one more
+ * run on a fresh fixture, so a retry that is broken still fails.
+ */
+async function crashScenario(scripts) {
+  for (let run = 1; ; run++) {
+    const root = await fixture();
+    for (const [id, text] of Object.entries(scripts)) await put(root, `scripts/${id}.mjs`, text);
+    const messages = [];
+    const outcome = await build(root, { log: (message) => messages.push(message) }).then(
+      (report) => ({ report }),
+      (error) => ({ error }),
+    );
+    let lost = false;
+    for (const id of Object.keys(scripts)) {
+      const made = messages.includes(crashRetry(id)) ? 2 : 1;
+      const seen = await readFile(join(root, `.artifacts/${id}-attempts.txt`), 'utf8').catch(
+        () => '',
+      );
+      if (seen.split('\n').length - 1 < made) lost = true;
+    }
+    if (run === 1 && lost) continue;
+    return { root, messages, ...outcome };
+  }
+}
 
 test(
   'a generator that loses a Node process to an access violation runs once more',
   windowsOnly,
   async () => {
-    const root = await fixture();
-    // One's own process dies on its first attempt; two starts a process that does.
-    await put(
-      root,
-      'scripts/one.mjs',
-      `
+    // On the first attempt that reaches it, one's own process dies; two starts a process that does.
+    const { root, messages, report, error } = await crashScenario({
+      one: `
     import {appendFileSync, existsSync, mkdirSync, writeFileSync} from 'node:fs';
+    const first = !existsSync('.artifacts/one-attempts.txt');
     appendFileSync('.artifacts/one-attempts.txt', 'attempt\\n');
-    if (!existsSync('.artifacts/one-crashed')) {
-      writeFileSync('.artifacts/one-crashed', '');
-      process.exit(0xC0000005);
-    }
+    if (first) process.exit(0xC0000005);
     mkdirSync('assets/one', {recursive: true});
     writeFileSync('assets/one/model.glb', 'one');
   `,
-    );
-    await put(
-      root,
-      'scripts/two.mjs',
-      `
+      two: `
     import {execFile} from 'node:child_process';
     import {appendFileSync, existsSync, mkdirSync, writeFileSync} from 'node:fs';
     import {promisify} from 'node:util';
+    const first = !existsSync('.artifacts/two-attempts.txt');
     appendFileSync('.artifacts/two-attempts.txt', 'attempt\\n');
-    if (!existsSync('.artifacts/two-crashed')) {
-      writeFileSync('.artifacts/two-crashed', '');
-      await promisify(execFile)(process.execPath, ['-e', 'process.exit(0xC0000005)']);
-    }
+    if (first) await promisify(execFile)(process.execPath, ['-e', 'process.exit(0xC0000005)']);
     mkdirSync('assets/two', {recursive: true});
     writeFileSync('assets/two/model.glb', 'two');
   `,
-    );
-    const messages = [];
-    const report = await build(root, { log: (message) => messages.push(message) });
+    });
+    if (error) throw error;
     assert.deepEqual(runIds(report), ['one', 'two']);
     for (const id of ['one', 'two']) {
       assert.equal(
         await readFile(join(root, `.artifacts/${id}-attempts.txt`), 'utf8'),
         'attempt\nattempt\n',
       );
-      assert.ok(
-        messages.includes(
-          `  Generator ${id} lost a Node process to an access violation; retrying once in 2 seconds.`,
-        ),
-      );
+      assert.ok(messages.includes(crashRetry(id)));
       assert.equal(await readFile(join(root, `assets/${id}/model.glb`), 'utf8'), id);
     }
     assert.deepEqual(runIds(await build(root)), []);
@@ -349,31 +364,22 @@ test(
   'a process that crashes on every attempt fails after the second; other failures run once',
   windowsOnly,
   async () => {
-    const root = await fixture();
-    await put(
-      root,
-      'scripts/one.mjs',
-      `
+    const { root, error } = await crashScenario({
+      one: `
     import {appendFileSync} from 'node:fs';
     appendFileSync('.artifacts/one-attempts.txt', 'attempt\\n');
     throw Error('deliberate failure');
   `,
-    );
-    await put(
-      root,
-      'scripts/two.mjs',
-      `
+      two: `
     import {appendFileSync} from 'node:fs';
     appendFileSync('.artifacts/two-attempts.txt', 'attempt\\n');
     process.exit(0xC0000005);
   `,
-    );
-    await assert.rejects(build(root), (error) => {
-      assert.match(error.message, /Generator one failed \(exit 1\)/);
-      assert.match(error.message, /deliberate failure/);
-      assert.match(error.message, /Generator two failed \(exit 3221225477\)/);
-      return true;
     });
+    assert.ok(error, 'the build should fail');
+    assert.match(error.message, /Generator one failed \(exit 1\)/);
+    assert.match(error.message, /deliberate failure/);
+    assert.match(error.message, /Generator two failed \(exit 3221225477\)/);
     assert.equal(await readFile(join(root, '.artifacts/one-attempts.txt'), 'utf8'), 'attempt\n');
     assert.equal(
       await readFile(join(root, '.artifacts/two-attempts.txt'), 'utf8'),

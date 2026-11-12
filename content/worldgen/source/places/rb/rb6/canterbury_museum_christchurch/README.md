@@ -14,4 +14,4 @@ The temporary exhibition banner and street furnishings are outside this architec
 
 The original elevation field is preserved. Local floor and threshold levels are representative.
 
-Build: `node content/worldgen/source/places/rb/rb6/canterbury_museum_christchurch/models/generate-house.mjs`. Add `--check` to verify exact regeneration. 2036 triangles; 6 materials; no embedded photographs.
+Build: `node content/worldgen/source/places/rb/rb6/canterbury_museum_christchurch/models/generate-museum.mjs`. Add `--check` to verify exact regeneration. 2036 triangles; 6 materials; no embedded photographs.
