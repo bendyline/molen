@@ -6,7 +6,7 @@ Find each vehicle’s livery ids, photograph links and adaptation notes in this 
 
 ## Evidence and scope
 
-All 397 choices across 198 vehicle types have linked real-world photographs. Every vehicle has two choices; the F-16B has three. Colors and visible layout were compared with the photographs and the rendered models. These are **photo-based adaptations** (`inspired` provenance), not exact historical or factory replicas.
+All 403 choices across 201 vehicle types have linked real-world photographs. Every vehicle has two choices; the F-16B has three. Colors and visible layout were compared with the photographs and the rendered models. These are **photo-based adaptations** (`inspired` provenance), not exact historical or factory replicas.
 
 Paint values are visual estimates, not measured paint codes. Camouflage uses approximate masks; complex emblems and small stencils may be omitted. Generic Bendy bodies adapt finishes from the photographed real vehicles. Each entry explains its scope. Source photos are linked for inspection and attribution; they are not shipped as textures.
 
@@ -2037,6 +2037,17 @@ Type: `molen.entities.vehicle.sedan`.
 
 Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
 
+### Bendy Sled
+
+Type: `molen.entities.vehicle.snowmobile`.
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `trail-red` | Trail red | [Photo](https://commons.wikimedia.org/wiki/File:Snowmobile_Lynx_Enduro_400.jpg) |
+| `trail-blue` | Trail blue | [Photo](https://commons.wikimedia.org/wiki/File:Snowmobile.jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
 ### Bendy Sports Coupe
 
 Type: `molen.entities.vehicle.sports_coupe`.
@@ -2220,6 +2231,28 @@ Type: `molen.entities.cycle.skateboard`.
 | --- | --- | --- |
 | `green-graphic` | Green graphic | [Photo](https://commons.wikimedia.org/wiki/File:Nash_Vintage_60's_Wooden_Deck_Shark_Skateboard.jpg) |
 | `blue-graphic` | Blue graphic | [Photo](https://commons.wikimedia.org/wiki/File:Street-skateboard.jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
+### Bendy Skis
+
+Type: `molen.entities.cycle.skis`.
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `black-topsheet` | Black topsheet | [Photo](https://commons.wikimedia.org/wiki/File:Rossignol_Experience_88_Ti_Skis.jpg) |
+| `white-topsheet` | White topsheet | [Photo](https://commons.wikimedia.org/wiki/File:Snowborad_and_ski.jpeg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
+### Bendy Snowboard
+
+Type: `molen.entities.cycle.snowboard`.
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `white-deck` | White deck | [Photo](https://commons.wikimedia.org/wiki/File:White-Snowboard-With-Bindings.jpg) |
+| `black-deck` | Black deck | [Photo](https://commons.wikimedia.org/wiki/File:Snowboard-In-The-Snow-2008.jpg) |
 
 Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
 
@@ -2735,3 +2768,9 @@ Attribution and license labels below describe the linked source photographs. No 
 392. [Street-skateboard.jpg — PowerPCG5 (CC BY 4.0)](https://commons.wikimedia.org/wiki/File:Street-skateboard.jpg)
 393. [Electric skateboard at TED.jpg — Steve Jurvetson (CC BY 2.0)](https://commons.wikimedia.org/wiki/File:Electric_skateboard_at_TED.jpg)
 394. [Electric skateboard(800,600,400watt).jpg — Aleksandr Ponomarenko (Public domain)](https://commons.wikimedia.org/wiki/File:Electric_skateboard(800,600,400watt).jpg)
+395. [Rossignol Experience 88 Ti Skis.jpg — Викидим (CC BY-SA 4.0)](https://commons.wikimedia.org/wiki/File:Rossignol_Experience_88_Ti_Skis.jpg)
+396. [Snowborad and ski.jpeg — nafoooo (CC BY-SA 3.0)](https://commons.wikimedia.org/wiki/File:Snowborad_and_ski.jpeg)
+397. [White-Snowboard-With-Bindings.jpg (public domain)](https://commons.wikimedia.org/wiki/File:White-Snowboard-With-Bindings.jpg)
+398. [Snowboard-In-The-Snow-2008.jpg — Kham Tran (CC BY-SA 3.0)](https://commons.wikimedia.org/wiki/File:Snowboard-In-The-Snow-2008.jpg)
+399. [Snowmobile Lynx Enduro 400.jpg — Dirk Unger (public domain)](https://commons.wikimedia.org/wiki/File:Snowmobile_Lynx_Enduro_400.jpg)
+400. [Snowmobile.jpg — Anthere (CC BY-SA 3.0)](https://commons.wikimedia.org/wiki/File:Snowmobile.jpg)

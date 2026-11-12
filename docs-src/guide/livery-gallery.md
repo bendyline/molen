@@ -6,7 +6,7 @@ Compare every vehicle’s photo-based liveries side by side, then follow the pho
 
 ## Evidence and scope
 
-All 397 choices across 198 vehicle types have linked real-world photographs. Every vehicle has two choices; the F-16B has three. Colors and visible layout were compared with the photographs and the rendered models. These are **photo-based adaptations** (`inspired` provenance), not exact historical or factory replicas.
+All 403 choices across 201 vehicle types have linked real-world photographs. Every vehicle has two choices; the F-16B has three. Colors and visible layout were compared with the photographs and the rendered models. These are **photo-based adaptations** (`inspired` provenance), not exact historical or factory replicas.
 
 Paint values are visual estimates, not measured paint codes. Camouflage uses approximate masks; complex emblems and small stencils may be omitted. Generic Bendy bodies adapt finishes from the photographed real vehicles. Each entry explains its scope. Source photos are linked for inspection and attribution; they are not shipped as textures.
 
@@ -2397,6 +2397,19 @@ Type: `molen.entities.vehicle.sedan`.
 
 Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
 
+### Bendy Sled
+
+Type: `molen.entities.vehicle.snowmobile`.
+
+[![Bendy Sled livery comparison: Trail red, Trail blue](https://molen.dev/guide-media/liveries/snowmobile.png)](https://molen.dev/guide-media/liveries/snowmobile.png)
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `trail-red` | Trail red | [Photo](https://commons.wikimedia.org/wiki/File:Snowmobile_Lynx_Enduro_400.jpg) |
+| `trail-blue` | Trail blue | [Photo](https://commons.wikimedia.org/wiki/File:Snowmobile.jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
 ### Bendy Sports Coupe
 
 Type: `molen.entities.vehicle.sports_coupe`.
@@ -2612,6 +2625,32 @@ Type: `molen.entities.cycle.skateboard`.
 | --- | --- | --- |
 | `green-graphic` | Green graphic | [Photo](https://commons.wikimedia.org/wiki/File:Nash_Vintage_60's_Wooden_Deck_Shark_Skateboard.jpg) |
 | `blue-graphic` | Blue graphic | [Photo](https://commons.wikimedia.org/wiki/File:Street-skateboard.jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
+### Bendy Skis
+
+Type: `molen.entities.cycle.skis`.
+
+[![Bendy Skis livery comparison: Black topsheet, White topsheet](https://molen.dev/guide-media/liveries/skis.png)](https://molen.dev/guide-media/liveries/skis.png)
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `black-topsheet` | Black topsheet | [Photo](https://commons.wikimedia.org/wiki/File:Rossignol_Experience_88_Ti_Skis.jpg) |
+| `white-topsheet` | White topsheet | [Photo](https://commons.wikimedia.org/wiki/File:Snowborad_and_ski.jpeg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
+### Bendy Snowboard
+
+Type: `molen.entities.cycle.snowboard`.
+
+[![Bendy Snowboard livery comparison: White deck, Black deck](https://molen.dev/guide-media/liveries/snowboard.png)](https://molen.dev/guide-media/liveries/snowboard.png)
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `white-deck` | White deck | [Photo](https://commons.wikimedia.org/wiki/File:White-Snowboard-With-Bindings.jpg) |
+| `black-deck` | Black deck | [Photo](https://commons.wikimedia.org/wiki/File:Snowboard-In-The-Snow-2008.jpg) |
 
 Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
 
