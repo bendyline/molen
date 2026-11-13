@@ -1,3 +1,22 @@
+## @bendyline/molen-client [0.0.14](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.13...@bendyline/molen-client@0.0.14) (2026-11-13)
+
+### Bug Fixes
+
+* Content and viz fixes ([3c5f9e3](https://github.com/bendyline/molen/commit/3c5f9e3961e1e54fcee991ad09c60269375b21b5))
+* Content updates ([367de13](https://github.com/bendyline/molen/commit/367de13cb3c115800c17ef7614d65187f0449dcc))
+* Content updates and fixes ([ac637c6](https://github.com/bendyline/molen/commit/ac637c6216aaedeb8fb21e5f83adf5a4e2422615))
+* Molen updates ([217cf96](https://github.com/bendyline/molen/commit/217cf96f65af76ed2711d478fc21d2a5885b9bb3))
+* More updates ([ea383ad](https://github.com/bendyline/molen/commit/ea383adce8b0a53f2c51169a71381c41b497de6c))
+* New modalities ([e23cde6](https://github.com/bendyline/molen/commit/e23cde65a9319ea3f132a6dfd241eba54432b936))
+* Perf updates ([fb0481d](https://github.com/bendyline/molen/commit/fb0481d3dae755770f65936edb9817fde7a0c05b))
+* Snow ([56ba8ca](https://github.com/bendyline/molen/commit/56ba8ca18a2f124aa9e6b9c324ac0d6b4857b68f))
+
+
+### Dependencies
+
+* **@bendyline/molen-materials:** upgraded to 0.0.12
+* **@bendyline/molen-schema:** upgraded to 0.0.11
+
 ## @bendyline/molen-client [0.0.13](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.12...@bendyline/molen-client@0.0.13) (2026-11-07)
 
 ### Bug Fixes

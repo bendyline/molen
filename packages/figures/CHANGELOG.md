@@ -1,3 +1,18 @@
+## @bendyline/molen-figures [0.0.14](https://github.com/bendyline/molen/compare/@bendyline/molen-figures@0.0.13...@bendyline/molen-figures@0.0.14) (2026-11-13)
+
+### Bug Fixes
+
+* Content updates and fixes ([ac637c6](https://github.com/bendyline/molen/commit/ac637c6216aaedeb8fb21e5f83adf5a4e2422615))
+* New modalities ([e23cde6](https://github.com/bendyline/molen/commit/e23cde65a9319ea3f132a6dfd241eba54432b936))
+* Snow ([56ba8ca](https://github.com/bendyline/molen/commit/56ba8ca18a2f124aa9e6b9c324ac0d6b4857b68f))
+
+
+### Dependencies
+
+* **@bendyline/molen-kernel:** upgraded to 0.0.11
+* **@bendyline/molen-schema:** upgraded to 0.0.11
+* **@bendyline/molen-client:** upgraded to 0.0.14
+
 ## @bendyline/molen-figures [0.0.13](https://github.com/bendyline/molen/compare/@bendyline/molen-figures@0.0.12...@bendyline/molen-figures@0.0.13) (2026-11-07)
 
 
