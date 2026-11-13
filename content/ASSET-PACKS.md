@@ -93,6 +93,37 @@ only the relevant archived captures. Neither `assets:fetch` nor `assets:build` f
 Normal model work does not update this lock, pack captures or publish a review release. New
 captures remain local; any separate archive publication requires the owner's explicit request.
 
+### Reference material
+
+Research references stay out of Git too: reference photos and scans, plans, scanned books and
+other PDFs, and raw terrain downloads. That is every file with an extension under a
+`references/`, `reference-images/`, `reference-originals/` or `terrain-sources/` directory, except
+text records (JSON, Markdown, text, scripts, CSV, HTML, XML and the like), plus any PDF or TIFF
+under `content/`. [`scripts/reference-material.mjs`](../scripts/reference-material.mjs) defines
+the rule and the first block of `.gitignore` mirrors it. No generator reads these files (the asset
+build's job records show it), so they are not asset inputs, and an edit to one never names a new
+bundle. The text records beside them stay in Git.
+
+`reference-lock.json` pins every file's size and SHA-256 and the release archive that holds it.
+Archives are plain tars grouped by place geohash2 cell. Packing is incremental: an archive whose
+files are unchanged keeps pointing at the release that already holds it, so a new place adds one
+small archive instead of re-uploading everything.
+
+```sh
+pnpm references:fetch --prefix content/worldgen/source/places/c2/c23/space_needle/  # restore
+pnpm references:pack     # after adding or changing references: pin them, pack new archives
+pnpm references:check    # every pinned file is on disk with its bytes, nothing unpinned
+pnpm references:publish --target <commit SHA>   # owner: upload the archives this lock added
+```
+
+`pnpm source:check` accepts a manifest document that is reference material when the lock pins it,
+whether or not it is on disk, and fails for a local reference that is not pinned yet (run
+`references:pack`) or for reference material tracked in Git. Fetching keeps local edits unless
+`--force`. Packing refuses to drop a pinned file that is merely missing from disk; restore it, or
+pass `--prune` when it was removed on purpose. Publishing checks that every older release the
+lock points at is published and never replaces an attachment outside a draft. It is an
+outward-facing upload, so it is the owner's step, like `reviews:publish`.
+
 ### Restore model assets
 
 In the engine repository, with Node 22.13 or newer:
@@ -149,7 +180,9 @@ Release integrity checks still read and hash the actual bytes.
 The first build after installing this cache records the dependencies. Later unchanged builds
 report zero generators and zero imports. `pnpm assets:build --force` explicitly rebuilds all
 generators and imports, including derived GLBs. Keep `.artifacts/asset-build/jobs/` to retain
-local build records; removing it requests a fresh baseline. Fresh CI checkouts build from source.
+local build records; removing it requests a fresh baseline. Records hold repository-relative paths
+and content hashes, so they move between machines: CI starts each build from an earlier one's
+records and bundle (see [In CI](#in-ci)).
 Non-Node generators declare their output trees in `asset-build.json`; those authored trees and
 the generator's scripts and pinned requirements form their cache inputs.
 
@@ -161,8 +194,38 @@ there from `examples/lantern-dungeon/tools/requirements.txt` (the first install 
 access). Later builds reuse that environment without installing again. System Python packages
 are left alone. Set `PYTHON` to choose an interpreter explicitly; that override must already
 have the required version and pinned packages. All Python checks finish before generators start.
-A full build takes a few minutes on a workstation and writes about 18 GB. The report and one log
-per generator are in `.artifacts/asset-build/`.
+A full build (about 1,100 generators and 2,400 imports, then the landmark LODs) takes roughly
+1.5–2 hours on a workstation and 90 minutes on a hosted CI runner, and writes about 18 GB. The
+report and one log per generator are in `.artifacts/asset-build/`.
+
+### In CI
+
+`.github/workflows/ci.yml` splits by what a job needs:
+
+- `check` needs no GLBs and waits for nothing. It compiles packages with plain `tsdown`, then
+  runs `tsc`, lint, the docs check, `assets:test` and the production audit, so those errors
+  surface in minutes. The full package builds run content validators that open GLBs
+  (`validate-structure-materials` reads every `source.glb`); `unit` runs them in `pretest:unit`.
+- `assets` restores or builds this commit's bundle (`.github/actions/fetch-assets`), then runs
+  `assets:check` and `source:check`, which hash GLBs.
+- `unit`, `docs-site`, `packed` and `golden` read GLBs. Each waits for `check` and `assets`, then
+  restores the bundle `assets` left in the Actions cache.
+
+When no bundle exists for the inputs (a pull request that changes models), `fetch-assets` builds
+it, starting from an earlier build instead of from nothing:
+
+1. It restores the newest job records this branch can see from the Actions cache
+   (`molen-asset-seed-*`: this pull request's last build, else main's), with the landmark LOD
+   reports and `seed.json`, a copy of that build's `installed.json`.
+2. `node scripts/asset-packs.mjs seed` installs the bundle those records describe, from its
+   cached archives or its release. Without one, it installs the newest published bundle.
+3. `pnpm assets:build --compile` reruns only the jobs whose recorded inputs or outputs differ.
+   Records are checked against the bytes on disk, so a seed that does not match costs reruns,
+   never a wrong GLB. With no records at all, generators rerun but unchanged imports and LODs are
+   still verified and kept.
+4. `pnpm assets:pack` reuses every archive whose files and bytes are unchanged (from the seed or
+   any manifest in `.artifacts/asset-packs/`), compressing only changed groups.
+5. The job saves its records as the next seed, and its archives under `molen-assets-<release>`.
 
 ## Change a model
 
@@ -468,8 +531,9 @@ weathered-wood maps.
 
 ## Releases
 
-The Assets workflow runs on every pull request, on `main`, weekly and on demand. On `main` it
-runs `pnpm assets:publish --target <commit>`. That packs the built GLBs into `.tar.gz` archives
+CI's `assets` job runs on every pull request and every push to `main`. When a push to `main`
+built a new bundle, the `publish-assets` job runs `pnpm assets:publish --target <commit>`. That
+packs the built GLBs into `.tar.gz` archives
 grouped by content role and geohash2 cell, about 256 MiB each. It uploads them with
 `asset-manifest.json` and `ASSET-NOTICES.txt` to a draft release, checks every attachment's
 digest, then publishes the release without marking it latest. A release that is already
@@ -498,3 +562,11 @@ git ls-files -- '*.glb' | grep -v '^content/entities/source/vehicles/' | xargs g
 ```
 
 Removing them from the index does not remove old blobs from history.
+
+Reference material committed before it moved to `reference-lock.json` leaves the index the same
+way, once it is pinned and its archives are published. `pnpm references:untrack` refuses until
+every tracked file is pinned with its current bytes, then writes the list and prints the command:
+
+```sh
+git rm --cached --quiet --pathspec-from-file=.artifacts/reference-packs/untrack.txt
+```

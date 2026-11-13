@@ -17,7 +17,12 @@ async function readJson(path: string): Promise<unknown> {
 
 const pack = await resolveStylePackDocuments(await readJson('stylepack.json'), readJson);
 
-/** File-backed provider: material ids resolve through the pack's material map. */
+/**
+ * File-backed provider: material ids resolve through the pack's material map. Graphs bake at
+ * 32² instead of their authored 256² and up: this suite checks how the set wraps each baked slot,
+ * not the pixels (material-library.test covers those), and the full-size library took over a
+ * minute of CPU on a loaded CI runner.
+ */
 const provider: AssetProvider = {
   async load(ref: string): Promise<ArrayBuffer> {
     const bytes = await readFile(resolve(packDir, ref));
@@ -26,7 +31,8 @@ const provider: AssetProvider = {
   async loadText(ref: string): Promise<string> {
     const path = pack.root.materials[ref];
     if (path === undefined) throw new Error(`unknown material ${ref}`);
-    return readFile(resolve(packDir, path), 'utf8');
+    const doc = JSON.parse(await readFile(resolve(packDir, path), 'utf8')) as object;
+    return JSON.stringify({ ...doc, size: [32, 32] });
   },
 };
 
@@ -240,7 +246,7 @@ describe('resolved material set', () => {
     expect(unprepared).toBe(set.materialFor('wall', 'palette:#ffffff'));
     set.dispose();
     expect(wall.map?.image).toBeDefined();
-  }, 60_000); // Prepare the shared procedural material library, including normal/PBR maps.
+  }, 30_000); // Prepares the whole shared material library, normal and PBR maps included.
 
   it('records failures instead of throwing and keeps rendering flat', async () => {
     const resolver = new MaterialResolver(undefined);

@@ -3,7 +3,17 @@ import { execFileSync, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { once } from 'node:events';
 import { existsSync, writeFileSync } from 'node:fs';
-import { mkdir, mkdtemp, readdir, readFile, rm, stat, utimes, writeFile } from 'node:fs/promises';
+import {
+  cp,
+  mkdir,
+  mkdtemp,
+  readdir,
+  readFile,
+  rm,
+  stat,
+  utimes,
+  writeFile,
+} from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve, sep } from 'node:path';
 import { afterEach, test } from 'node:test';
@@ -11,6 +21,7 @@ import { pathToFileURL } from 'node:url';
 import { createAssetFileCache } from '../asset-file-cache.mjs';
 import { assetInputs } from '../asset-inputs.mjs';
 import { createJobCache } from '../asset-job-cache.mjs';
+import { packAssets, SEED, seedAssets } from '../asset-packs.mjs';
 import { recoverInterruptedBuild } from '../asset-rollback.mjs';
 import { buildAssetsFromSource } from '../build-assets.mjs';
 import { traceVerifiedAssetOutputs } from '../verified-asset-outputs.mjs';
@@ -262,6 +273,33 @@ test('only a changed model is regenerated, and shared dynamic recipe changes inv
   await put(root, 'scripts/helper.mjs', 'export const suffix = "new geometry";');
   assert.deepEqual(runIds(await build(root)), ['one', 'two']);
   assert.deepEqual(runIds(await build(root)), []);
+});
+
+test('a fresh checkout seeded with an earlier build reruns only what changed since', async () => {
+  // CI: one runner builds and keeps its bundle and job records; the next starts from them.
+  const earlier = await fixture();
+  await put(earlier, 'LICENSE', 'Fixture license\n');
+  assert.deepEqual(runIds(await build(earlier)), ['one', 'two']);
+  await packAssets({ root: earlier, log: () => {} });
+  const fresh = await fixture();
+  await put(fresh, 'LICENSE', 'Fixture license\n');
+  await put(fresh, 'inputs/one.json', '{"shape":"changed"}');
+  const jobs = join(earlier, '.artifacts/asset-build/jobs');
+  for (const name of await readdir(jobs))
+    if (name.endsWith('.json'))
+      await put(fresh, `.artifacts/asset-build/jobs/${name}`, await readFile(join(jobs, name)));
+  await put(fresh, SEED, await readFile(join(earlier, '.artifacts/asset-packs/installed.json')));
+  await cp(join(earlier, '.artifacts/asset-packs'), join(fresh, '.artifacts/asset-packs'), {
+    recursive: true,
+  });
+  const fail = () => {
+    throw new Error('The cached seed needs no download');
+  };
+  assert.ok(await seedAssets({ root: fresh, fetchImpl: fail, log: () => {} }));
+  assert.deepEqual(runIds(await build(fresh)), ['one']);
+  assert.equal(await readFile(join(fresh, 'assets/two/model.glb'), 'utf8'), 'twogeometry');
+  assert.equal(await readFile(join(fresh, 'assets/one/model.glb'), 'utf8'), 'changedgeometry');
+  assert.equal((await readFile(join(fresh, '.artifacts/runs.txt'), 'utf8')).trim(), 'one');
 });
 
 test('missing or corrupted output rebuilds only its generator; force rebuilds all', async () => {

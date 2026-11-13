@@ -18,6 +18,8 @@ import {
   publishAssets,
   ReleaseMissingError,
   readStamp,
+  SEED,
+  seedAssets,
   validateManifest,
   verifyArchive,
   writeStamp,
@@ -322,6 +324,146 @@ test('a new bundle replaces the old one and removes its stale outputs, but not l
   await assert.rejects(checkAssets({ root, log: quiet }), /Changed assets\/test\/model.glb/);
   await fetchAssets({ root, force: true, fetchImpl: releaseServer(second.source), log: quiet });
   assert.equal(await readFile(join(root, kept), 'utf8'), 'version two');
+});
+
+/** Copy a build's install record where a later build's restored job records keep it. */
+async function saveSeed(source, destination) {
+  await mkdir(join(destination, '.artifacts/asset-build'), { recursive: true });
+  await cp(join(source, '.artifacts/asset-packs/installed.json'), join(destination, SEED));
+}
+/** GitHub's release list and download URLs for several published fixtures, by release name. */
+function gitHubServer(published, requested = []) {
+  return async (url) => {
+    requested.push(url);
+    if (url.startsWith('https://api.github.com/')) {
+      return Response.json(
+        published.map(({ release, published_at, draft = false }) => ({
+          tag_name: release,
+          draft,
+          published_at,
+          assets: [{ name: 'asset-manifest.json' }],
+        })),
+      );
+    }
+    const release = url.split('/').at(-2);
+    const entry = published.find((p) => p.release === release && !p.draft);
+    if (!entry) return new Response('Not Found', { status: 404 });
+    return releaseServer(entry.source)(url);
+  };
+}
+
+test('seeds a fresh checkout from the bundle its job records name, using cached archives', async () => {
+  const runtime = 'content/worldgen/assets/places/c2/c23/seattle/model.glb';
+  const earlier = await publishedFixture([[runtime, Buffer.from('seattle as built before')]]);
+  // The new checkout changed its recipe: its own bundle exists nowhere yet.
+  const fresh = await fixture({ source: '{"shape":"sphere"}' });
+  await cp(join(earlier.source, '.artifacts/asset-packs'), join(fresh, '.artifacts/asset-packs'), {
+    recursive: true,
+  });
+  await saveSeed(earlier.source, fresh);
+  const release = await seedAssets({
+    root: fresh,
+    fetchImpl: () => {
+      throw new Error('A fully cached seed must not touch the network');
+    },
+    log: quiet,
+  });
+  assert.equal(release, earlier.installed.release);
+  assert.equal(await readFile(join(fresh, runtime), 'utf8'), 'seattle as built before');
+  const stamp = await readStamp(fresh);
+  assert.equal(stamp.from, 'seed');
+  assert.equal(stamp.release, earlier.installed.release);
+  // The seed is what a build starts from, never this checkout's bundle.
+  await assert.rejects(checkAssets({ root: fresh, log: quiet }), /built from other inputs/);
+});
+
+test('without a usable recorded seed, starts from the newest published bundle', async () => {
+  const path = 'assets/test/model.glb';
+  const older = await publishedFixture([[path, Buffer.from('older main')]]);
+  const newer = await publishedFixture([[path, Buffer.from('newer main')]], {
+    source: '{"shape":"torus"}',
+  });
+  const draft = await publishedFixture([[path, Buffer.from('unfinished draft')]], {
+    source: '{"shape":"cone"}',
+  });
+  const gone = await publishedFixture([[path, Buffer.from('evicted pull request')]], {
+    source: '{"shape":"prism"}',
+  });
+  const fresh = await fixture({ source: '{"shape":"sphere"}' });
+  await saveSeed(gone.source, fresh); // its archives are neither cached here nor published
+  const requested = [];
+  const release = await seedAssets({
+    root: fresh,
+    fetchImpl: gitHubServer(
+      [
+        { ...older.installed, source: older.source, published_at: '2026-11-01T00:00:00Z' },
+        { ...newer.installed, source: newer.source, published_at: '2026-11-10T00:00:00Z' },
+        {
+          ...draft.installed,
+          source: draft.source,
+          published_at: '2026-11-11T00:00:00Z',
+          draft: true,
+        },
+      ],
+      requested,
+    ),
+    log: quiet,
+  });
+  assert.equal(release, newer.installed.release);
+  assert.equal(await readFile(join(fresh, path), 'utf8'), 'newer main');
+  assert.ok(requested.some((url) => url.includes(`/${gone.installed.release}/`)));
+  assert.ok(!requested.some((url) => url.includes(`/${older.installed.release}/`)));
+  assert.deepEqual((await readStamp(fresh)).inputs, []);
+});
+
+test('with nothing to start from, a seed leaves no install record and does not fail', async () => {
+  const fresh = await fixture();
+  await writeStamp(fresh, {
+    ...(await assetInputs(fresh)),
+    from: 'fetch',
+    files: [{ path: 'assets/test/model.glb', size: 1, sha256: 'a'.repeat(64) }],
+  });
+  const messages = [];
+  const release = await seedAssets({
+    root: fresh,
+    fetchImpl: async () => new Response('rate limited', { status: 403 }),
+    log: (line) => messages.push(line),
+  });
+  assert.equal(release, undefined);
+  assert.equal(await readStamp(fresh), undefined);
+  assert.match(messages.join('\n'), /HTTP 403[\s\S]*runs every job/);
+});
+
+test('repacking reuses unchanged archives and recompresses only changed groups', async () => {
+  const seattle = 'content/worldgen/assets/places/c2/c23/seattle/model.glb';
+  const chicago = 'content/worldgen/assets/places/dp/dp3/chicago/model.glb';
+  const { source, manifest: first } = await publishedFixture([
+    [seattle, Buffer.from('seattle')],
+    [chicago, Buffer.from('chicago')],
+  ]);
+  await asset(source, recipe, Buffer.from('{"shape":"sphere"}'));
+  await asset(source, seattle, Buffer.from('seattle, rebuilt'));
+  await installFixture(source);
+  const messages = [];
+  const second = await packAssets({ root: source, log: (line) => messages.push(line) });
+  const byName = (manifest) => new Map(manifest.archives.map((a) => [a.file, a.sha256]));
+  assert.equal(
+    byName(second).get('worldgen-models-dp-part-001.tar.gz'),
+    byName(first).get('worldgen-models-dp-part-001.tar.gz'),
+  );
+  assert.notEqual(
+    byName(second).get('worldgen-models-c2-part-001.tar.gz'),
+    byName(first).get('worldgen-models-c2-part-001.tar.gz'),
+  );
+  assert.deepEqual(
+    messages.filter((line) => line.startsWith('Reused')),
+    ['Reused worldgen-models-dp-part-001.tar.gz: 1 GLBs unchanged'],
+  );
+  // The reused archive restores the second bundle like any other.
+  const fresh = await fixture({ source: '{"shape":"sphere"}' });
+  await fetchAssets({ root: fresh, fetchImpl: releaseServer(source), log: quiet });
+  assert.equal(await readFile(join(fresh, chicago), 'utf8'), 'chicago');
+  assert.equal(await readFile(join(fresh, seattle), 'utf8'), 'seattle, rebuilt');
 });
 
 test('rejects corrupt downloads without installing any GLB', async () => {

@@ -29,7 +29,11 @@ const pack: ResolvedStylePack = await resolveStylePackDocuments(
 );
 
 function meanLuminance(doc: MatGraphDoc): number {
-  const image = bakeMatGraph(doc).slots.baseColor;
+  // Bake the base color alone. It comes out byte-identical, and skipping the normal and
+  // roughness slots halves a bake that ran past a minute on a loaded CI runner.
+  const baseColor = doc.outputs.baseColor;
+  if (baseColor === undefined) return 0;
+  const image = bakeMatGraph({ ...doc, outputs: { baseColor } }).slots.baseColor;
   if (image === undefined) return 0;
   let sum = 0;
   const pixels = image.width * image.height;
