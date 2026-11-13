@@ -1422,7 +1422,8 @@ async function main(): Promise<void> {
           aspect: window.innerWidth / window.innerHeight,
         },
         onError: (error, context) => {
-          if (context.layerId !== undefined) lastLayerError = (error as Error).message;
+          if (context.layerId !== undefined)
+            lastLayerError = `${context.layerId}: ${(error as Error).message}`;
           else lastTileError = (error as Error).message;
         },
       })
@@ -3119,7 +3120,10 @@ async function main(): Promise<void> {
         `geometry ${(stats.geometryBytes / 1_048_576).toFixed(1)}MiB · ${(stats.triangles / 1_000).toFixed(0)}k triangles`,
         `${stats.drawCalls} draws · ${stats.instances} instances`,
         `layers ${stats.layerObjects} objects · ${adaptiveStats?.retryingLayers ?? 0} retrying · ${stats.failedLayers} failed · origin ${origin[0].toFixed(0)}, ${origin[2].toFixed(0)}m`,
-        ...(stats.failedLayers > 0 && lastLayerError !== undefined
+        // Shown while layers retry too, as tile errors are: a layer that times out every attempt
+        // spends minutes "retrying" before it counts as failed.
+        ...(stats.failedLayers + (adaptiveStats?.retryingLayers ?? 0) > 0 &&
+        lastLayerError !== undefined
           ? [`layer error: ${lastLayerError}`]
           : []),
         worldgenSummary,

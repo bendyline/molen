@@ -230,6 +230,72 @@ describe('sparse graphics work', () => {
     queue.dispose();
   });
 
+  it('runs the same share of sustained software-rendering frames, but not of one hitch or idle time', () => {
+    let time = 0;
+    const queue = new FrameAdmissionQueue({
+      maxMilliseconds: 2,
+      now: () => time,
+      schedule: () => {},
+    });
+    let ran = 0;
+    const counts: number[] = [];
+    // A 2 ms slice of a layer build per job, plenty always waiting (and cancelled at the end).
+    const frame = (outsideMs: number): void => {
+      while (queue.pending < 40)
+        queue
+          .run(
+            () => {
+              time += 2;
+              ran++;
+            },
+            { label: 'slice' },
+          )
+          .catch(() => {});
+      ran = 0;
+      queue.flush();
+      counts.push(ran);
+      time += outsideMs;
+    };
+    // 60 frames a second, one 500 ms hitch among them: one 2 ms slice a frame throughout.
+    for (const outside of [14, 14, 500, 14, 14]) frame(outside);
+    expect(counts).toEqual([1, 1, 1, 1, 1]);
+    // 440 ms frames: from the third in a row, 2 ms of every 16.7 is 52.8 ms, 26 slices.
+    counts.length = 0;
+    for (let i = 0; i < 5; i++) frame(440);
+    expect(counts).toEqual([1, 1, 1, 26, 26]);
+    // Back at an interactive rate, the fixed budget at once.
+    counts.length = 0;
+    frame(14);
+    frame(14);
+    expect(counts).toEqual([26, 1]);
+    queue.dispose();
+
+    // Idle time is not a frame: work arriving after ten quiet seconds gets the fixed budget.
+    const idle = new FrameAdmissionQueue({
+      maxMilliseconds: 2,
+      now: () => time,
+      schedule: () => {},
+    });
+    for (let i = 0; i < 3; i++) {
+      void idle.run(() => {
+        time += 2;
+      });
+      idle.flush();
+      time += 10_000;
+    }
+    let afterIdle = 0;
+    for (let job = 0; job < 10; job++)
+      idle
+        .run(() => {
+          time += 2;
+          afterIdle++;
+        })
+        .catch(() => {});
+    idle.flush();
+    expect(afterIdle).toBe(1);
+    idle.dispose();
+  });
+
   it('forgets an overrun once nothing is waiting', () => {
     let time = 0;
     const queue = new FrameAdmissionQueue({

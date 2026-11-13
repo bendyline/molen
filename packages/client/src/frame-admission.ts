@@ -55,6 +55,15 @@ interface Job {
 }
 /** The frame length per-frame budgets are set for: 60 frames a second. */
 const NOMINAL_FRAME_MS = 1000 / 60;
+/**
+ * Frames at least this long, `SLOW_FRAMES` in a row while work waits, are software rendering
+ * (200 ms to a second a frame), not a device to keep interactive: there the budget is the same
+ * share of the frame as of one at 60 a second. Interactive rates keep the fixed budget, which a
+ * busy frame cannot spare (see earthAdmission). A fixed 2 ms of a 450 ms frame left streaming
+ * under half a percent of the time, and a town's layers spent their two-minute deadline queued.
+ */
+const SLOW_FRAME_MS = 100;
+const SLOW_FRAMES = 3;
 export class FrameAdmissionQueue implements SceneAdmission {
   private jobs: Job[] = [];
   private background: Job[] = [];
@@ -66,6 +75,10 @@ export class FrameAdmissionQueue implements SceneAdmission {
   private overrunMs = 0;
   /** When the last flush finished, so a repaying frame knows how long it was. */
   private lastFlushEnd: number | undefined;
+  /** The last flush left work waiting, so the time since it ended is a frame, not idle time. */
+  private continuing = false;
+  /** Frame lengths outside the queue while work waited, newest last, at most SLOW_FRAMES. */
+  private readonly recentFrames: number[] = [];
   private readonly clock: () => number;
   private readonly schedule: (callback: () => void) => void;
   private maxMs: number;
@@ -180,6 +193,8 @@ export class FrameAdmissionQueue implements SceneAdmission {
   /** Hold queued uploads/preparation while the view is inactive; keep resources for resume. */
   setPaused(paused: boolean): void {
     this.paused = paused;
+    // A paused stretch is not a frame.
+    if (paused) this.continuing = false;
     if (!paused) this.request();
   }
   private request(): void {
@@ -201,15 +216,18 @@ export class FrameAdmissionQueue implements SceneAdmission {
    * The budget is a share of a frame at 60 a second. A frame that comes later than that repays
    * the same share of its own length: under software rendering a frame takes 200 ms or more, and
    * a job that waits on the GPU once is charged for a whole such frame, so repaying 2 ms a frame
-   * left the queue idle for minutes. At 60 frames a second and faster nothing changes.
+   * left the queue idle for minutes. At 60 frames a second and faster nothing changes. Sustained
+   * frames that slow also run that share of themselves (see SLOW_FRAME_MS).
    */
   flush(): void {
     if (this.disposed || this.paused) return;
+    const sinceLast = this.lastFlushEnd === undefined ? 0 : this.clock() - this.lastFlushEnd;
+    const budget = this.frameBudget(sinceLast);
     if (this.overrunMs > 0) {
-      const sinceLast = this.lastFlushEnd === undefined ? 0 : this.clock() - this.lastFlushEnd;
       const repaid = Math.max(this.maxMs, (sinceLast * this.maxMs) / NOMINAL_FRAME_MS);
       this.overrunMs = Math.max(0, this.overrunMs - repaid);
       this.lastFlushEnd = this.clock();
+      this.continuing = this.pending > 0;
       this.request();
       return;
     }
@@ -262,7 +280,7 @@ export class FrameAdmissionQueue implements SceneAdmission {
       if (
         count > 0 &&
         (count >= this.maxJobs ||
-          this.clock() - start + (this.expected.get(label) ?? 0) > this.maxMs ||
+          this.clock() - start + (this.expected.get(label) ?? 0) > budget ||
           bytes + cost > this.maxBytes)
       )
         break;
@@ -302,9 +320,26 @@ export class FrameAdmissionQueue implements SceneAdmission {
       });
     }
     // With nothing waiting there is nothing to pace.
-    this.overrunMs = this.pending > 0 ? Math.max(0, this.clock() - start - this.maxMs) : 0;
+    this.overrunMs = this.pending > 0 ? Math.max(0, this.clock() - start - budget) : 0;
     this.lastFlushEnd = this.clock();
+    this.continuing = this.pending > 0;
     this.request();
+  }
+  /**
+   * This frame's work allowance: the fixed budget, or for sustained software-rendering frames the
+   * same share of the shortest recent one. One long frame (a hitch) changes nothing.
+   */
+  private frameBudget(sinceLast: number): number {
+    if (!this.continuing) this.recentFrames.length = 0;
+    else {
+      this.recentFrames.push(sinceLast);
+      if (this.recentFrames.length > SLOW_FRAMES) this.recentFrames.shift();
+    }
+    if (this.recentFrames.length < SLOW_FRAMES) return this.maxMs;
+    const shortest = Math.min(...this.recentFrames);
+    return shortest >= SLOW_FRAME_MS
+      ? Math.max(this.maxMs, (shortest * this.maxMs) / NOMINAL_FRAME_MS)
+      : this.maxMs;
   }
   dispose(): void {
     this.disposed = true;

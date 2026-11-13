@@ -164,6 +164,9 @@ type MolenAircraftData = {
       retreatingBladeSpeed?: number;
       rotorDiscs?: number;
       rotorInertiaTime?: number;
+      directionalStability?: number;
+      cyclicRate?: number;
+      hubStiffness?: number;
       cyclicTilt: number;
       cyclicResponse: number;
       cyclicDamping: number;
@@ -327,6 +330,7 @@ type MolenAircraftInputData = {
   gear: boolean;
   flaps: boolean | number;
   thrustVector?: number;
+  cyclicMode?: 'assisted' | 'direct';
 };
 /** Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. */
 type MolenAircraftStateData = {
@@ -1304,7 +1308,7 @@ type MolenVehicleData = {
         mode?: 'position' | 'cycle' | 'latch';
       }>;
     label: string;
-    bodyStyle?: 'city' | 'hatchback' | 'sedan' | 'fastback' | 'coupe' | 'roadster' | 'wagon' | 'crossover' | 'suv' | 'offroad' | 'pickup' | 'van' | 'cargo-van' | 'box-truck' | 'motorhome' | 'bus' | 'light-rail' | 'locomotive' | 'freight-car' | 'passenger-car' | 'bicycle' | 'motorcycle' | 'scooter';
+    bodyStyle?: 'city' | 'hatchback' | 'sedan' | 'fastback' | 'coupe' | 'roadster' | 'wagon' | 'crossover' | 'suv' | 'offroad' | 'pickup' | 'van' | 'cargo-van' | 'box-truck' | 'motorhome' | 'bus' | 'light-rail' | 'locomotive' | 'freight-car' | 'passenger-car' | 'bicycle' | 'motorcycle' | 'scooter' | 'moped' | 'kick-scooter' | 'skateboard' | 'auto-rickshaw' | 'skis' | 'snowboard' | 'snowmobile';
     genericLabel?: string;
     width: number;
     length: number;
@@ -1360,18 +1364,35 @@ type MolenVehicleData = {
     stabilityControl?: boolean;
     limitedSlip?: number;
     looseSurfaceGrip?: number;
+    runners?: {
+      friction: number;
+      bareDrag?: number;
+      pushSpeed?: number;
+      flat?: boolean;
+    };
     cycle?: {
       maxLean: number;
       riderLean: number;
       handlebarPivot: [number, number, number];
       grips: [[number, number, number], [number, number, number]];
       footrests: [[number, number, number], [number, number, number]];
+      stance?: 'seated' | 'standing' | 'sideways';
+      kick?: {
+        stride: number;
+      };
       pedals?: {
         center: [number, number, number];
         radius: number;
         halfWidth: number;
         ratio: number;
       };
+    };
+    headlamps?: [number, number, number][];
+    handlebar?: {
+      riderLean: number;
+      handlebarPivot: [number, number, number];
+      grips: [[number, number, number], [number, number, number]];
+      footrests: [[number, number, number], [number, number, number]];
     };
     rail?: {
       truckCenters: number;
@@ -1473,6 +1494,7 @@ type MolenVehicleStateData = {
   waitingForTerrain: boolean;
   wheelAngle: number;
   pedalAngle?: number;
+  kick?: number;
   lateralSpeed?: number;
   yawRate?: number;
   bodyPitch?: number;
@@ -1486,6 +1508,8 @@ type MolenVehicleStateData = {
   shift?: number;
   assist?: number;
   surfaceGrip?: number;
+  snowDepth?: number;
+  stuck?: boolean;
   track?: {
     trail: number[];
     prefer: -1 | 0 | 1;
@@ -1541,6 +1565,13 @@ type MolenWeatherData = {
     turbulence?: number;
     gusts?: number;
     terrain?: number;
+  };
+  snowCover?: {
+    level: number;
+    transition?: number;
+    depth?: number;
+    depthGain?: number;
+    maxDepth?: number;
   };
   seed?: number;
 };

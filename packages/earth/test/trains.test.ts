@@ -103,7 +103,8 @@ describe('trains among standing cars', () => {
     expect(front).toBeLessThan(rear + 1.5);
     expect(front).toBeGreaterThan(rear - 6);
     expect(Math.abs(vehicles.world.get(lead, VehicleState)?.speed ?? 1)).toBeLessThan(0.5);
-  });
+    // Four simulated minutes at 30 Hz: 6-8 s of wall time, over vitest's 5 s default.
+  }, 30_000);
 
   it('keeps switchers working yard tracks clear of standing cars and the main line', () => {
     const { vehicles, trains } = setup();

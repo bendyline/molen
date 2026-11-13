@@ -76,8 +76,11 @@ holds on average: a 20 ms instanced shader build every third frame rather than e
 the frame rate, for the same throughput. The budget is a share of a frame at 60 a second, so a
 frame that comes slower repays the same share of its own length. Under software rendering, where
 a frame takes 200 ms or more and one wait on the GPU charges a job for all of it, repaying the
-fixed budget per frame left the queue idle for minutes. `setLimits` changes the budget from the
-next frame on.
+fixed budget per frame left the queue idle for minutes. Frames that slow, three in a row (100 ms
+or more each while work waits), also get that share of themselves as budget: 2 ms of a 450 ms
+software frame left streaming under half a percent of the time, and a town's semantic layers
+spent their two-minute deadline in the queue. Interactive rates and a single long frame keep the
+fixed budget. `setLimits` changes the budget from the next frame on.
 A job's `priority` is `'normal'`, `'background'` or `'urgent'` (ahead of normal jobs, in its own
 order). Background jobs run in budget normal jobs leave and, once one has waited
 `backgroundWaitMs` (default 750), take a turn after every `backgroundShare` other jobs (default

@@ -1,8 +1,8 @@
-import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
+import { sourceHash } from './fixtures/source-hash.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
@@ -11,8 +11,7 @@ import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/u3/u3t/malbork_castle'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
-const read = async (p) => JSON.parse(await readFile(p)),
-  hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
+const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
   const g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12))),
     bin = 28 + b.readUInt32LE(12);
@@ -108,8 +107,8 @@ it('reproduces the untouched Malbork master and binds the signed frame and retai
     grade.checks[0].modelHeight,
     8,
   );
-  expect(hash(await readFile(`${source}/${grade.sourceRaster}`))).toBe(grade.sourceRasterHash);
-  expect(hash(await readFile(`${source}/${grade.surfaceRaster}`))).toBe(grade.surfaceRasterHash);
+  expect(await sourceHash(`${source}/${grade.sourceRaster}`)).toBe(grade.sourceRasterHash);
+  expect(await sourceHash(`${source}/${grade.surfaceRaster}`)).toBe(grade.surfaceRasterHash);
   expect(grade.grid.heights).toHaveLength(6660);
   expect(grade.grid.heights.every((v) => Number.isFinite(v) && v > 4 && v < 21)).toBe(true);
 });
