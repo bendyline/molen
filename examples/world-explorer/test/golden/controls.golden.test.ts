@@ -143,6 +143,8 @@ it('keeps aircraft controls live after panel clicks without taking keys from typ
   const status = page.locator('#navigation-status');
   const throttle = async (): Promise<number> =>
     Number((await status.textContent())?.match(/Throttle (\d+)%/)?.[1]);
+  const rpm = async (): Promise<number> =>
+    Number((await status.textContent())?.match(/RPM (\d+)%/)?.[1]);
   const raiseThrottle = async (): Promise<void> => {
     const before = await throttle();
     await page.keyboard.down('Equal');
@@ -150,7 +152,12 @@ it('keeps aircraft controls live after panel clicks without taking keys from typ
     await page.keyboard.up('Equal');
   };
   try {
-    await page.goto(`${url}/?synthetic=1&worldgen=0&audio=0&backend=webgl`);
+    // Noon in Seattle. Left out, the sky takes noon in the browser's own time zone: night there
+    // on a UTC machine such as CI's, where software rendering ran half as fast as by day and a
+    // panel click outlasted its 30 s.
+    await page.goto(
+      `${url}/?synthetic=1&worldgen=0&audio=0&backend=webgl&date=2026-11-11T20:00:00Z`,
+    );
     await page
       .locator('#aircraft-catalog option[value="cessna_182t"]')
       .waitFor({ state: 'attached', timeout: 120_000 });
@@ -160,6 +167,9 @@ it('keeps aircraft controls live after panel clicks without taking keys from typ
     await status.filter({ hasText: 'Throttle' }).waitFor({ timeout: 60_000 });
     await page.keyboard.press('KeyI');
     await status.filter({ hasText: 'Engine on' }).waitFor({ timeout: 60_000 });
+    // "Engine on" is the switch. The exit is refused once the engine turns over, above 12% RPM
+    // (it idles at 18%); clicked before, as slow frames allow, the pilot simply climbs out.
+    await expect.poll(rpm, { timeout: 60_000 }).toBeGreaterThan(12);
 
     // A running engine refuses the exit, so this button stops before its usual focus hand-back.
     await page.locator('button[data-navigation="walk"]').click();

@@ -33,6 +33,12 @@ describe('browser: replacing a building', () => {
     // The sample came from the page address, and undoing it said so.
     expect(frames.get('02-replaced')?.probes.overrides).toContain('Box placed');
     expect(frames.get('03-undone')?.probes.overrides).toContain('Undone');
+    // The view is lit (mean brightness 150 or so). Unlit, ground and buildings are all black and
+    // every comparison below is between empty frames.
+    expect(
+      (await frameStats(path('01-before'))).luminance,
+      'the first view is dark',
+    ).toBeGreaterThan(60);
 
     // The replaced view is still: two captures of it are one frame.
     const still = await diffImages(
