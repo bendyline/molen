@@ -14,6 +14,18 @@ import {
 } from './skinned-mesh-builder';
 import type { ResolvedFigureDescriptor } from './types';
 
+/** Neck [base width, head width, base depth, head depth] in body radii, by species. */
+const NECK_SHAPES: Readonly<Partial<Record<string, readonly [number, number, number, number]>>> & {
+  dog: readonly [number, number, number, number];
+} = {
+  dog: [0.86, 0.42, 0.86, 0.46],
+  cat: [0.86, 0.48, 0.84, 0.5],
+  horse: [0.6, 0.3, 0.98, 0.5],
+  deer: [0.62, 0.3, 0.8, 0.42],
+  cow: [0.8, 0.44, 0.98, 0.56],
+  sheep: [0.82, 0.42, 0.82, 0.44],
+};
+
 export function buildQuadrupedBody(
   d: ResolvedFigureDescriptor,
   rig: FigureRig,
@@ -99,58 +111,63 @@ export function buildQuadrupedBody(
   const neck = P('neck'),
     head = P('head'),
     dir = unit(sub(head, neck));
-  const up: Vec3 = [0, dir[2], -dir[1]];
-  const equine = d.species === 'horse',
-    feline = d.species === 'cat';
+  const feline = d.species === 'cat';
   const base = add(neck, scale(dir, -0.5 * r));
-  previous = undefined;
-  const neckSections = tier === 0 ? 6 : tier === 1 ? 4 : 3;
-  for (let i = 0; i <= neckSections; i++) {
-    const t = i / neckSections;
-    const width = dmath.lerp(0.82, feline ? 0.42 : 0.4, t) * r;
-    const depth = dmath.lerp(equine ? 1.08 : 0.82, equine ? 0.6 : 0.43, t) * r;
-    const s =
-      t < 0.45
-        ? blend(J('chest'), 1 - t / 0.45, J('neck'), t / 0.45)
-        : blend(J('neck'), 1 - (t - 0.45) * 1.3, J('head'), (t - 0.45) * 1.3);
-    const ring = surfaceRing(
+  // Neck half-width and half-depth (body radii) at its base and at the head; a horse's neck
+  // is deep and narrow, a cat's short and thick. The top ring fits inside the skull.
+  const [w0, w1, d0, d1] = NECK_SHAPES[d.species] ?? NECK_SHAPES.dog;
+  // The neck stays full through its middle and narrows toward the jaw; a straight taper
+  // thinned it early and read as long.
+  const taper = (t: number): number => dmath.pow(t, 1.3);
+  const neckWidth = (t: number): number =>
+    dmath.lerp(w0 * r, dmath.min(w1 * r, 0.45 * m.headWidth), taper(t));
+  const neckDepth = (t: number): number =>
+    dmath.lerp(d0 * r, dmath.min(d1 * r, 0.46 * m.headHeight), taper(t));
+  // Sections stand square to the neck, then turn toward the head's own axis over the upper
+  // neck: the crest arches into the poll and the throat curves under the jaw. Square to the
+  // neck all the way, the top section stood out behind the skull as a ridge.
+  const neckUp = (t: number): Vec3 => {
+    const turn = dmath.smoothstep(dmath.clamp((t - 0.35) / 0.65, 0, 1));
+    const theta = dmath.lerp(-m.neckPitch, m.headPitch, turn);
+    return [0, dmath.cos(theta), dmath.sin(theta)];
+  };
+  const neckRing = (
+    t: number,
+    widthScale: number,
+    s: ReturnType<typeof blend>,
+    color?: ReturnType<typeof parseColor>,
+  ): RingRef => {
+    const depth = neckDepth(t) * widthScale;
+    return surfaceRing(
       c,
       'skin',
       mix(base, head, t),
-      up,
-      width,
+      neckUp(t),
+      neckWidth(t) * widthScale,
       depth,
       depth,
       c.sides,
       s,
-      (p, _x, y) => coat(c, p, y),
+      color === undefined ? (p, _x, y) => coat(c, p, y) : () => color,
     );
+  };
+  previous = undefined;
+  const neckSections = tier === 0 ? 6 : tier === 1 ? 4 : 3;
+  for (let i = 0; i <= neckSections; i++) {
+    const t = i / neckSections;
+    const s =
+      t < 0.45
+        ? blend(J('chest'), 1 - t / 0.45, J('neck'), t / 0.45)
+        : blend(J('neck'), 1 - (t - 0.45) * 1.3, J('head'), (t - 0.45) * 1.3);
+    const ring = neckRing(t, 1, s);
     if (previous) b.loft('skin', previous, ring);
     previous = ring;
   }
   // A thin collar follows the widened throat and is emitted only once, outside the mirror pass.
   if (d.species === 'dog' || feline) {
     const accent = parseColor(d.palette.accent);
-    const a = b.ring(
-      'accent',
-      mix(base, head, 0.31),
-      dir,
-      0.704 * r,
-      0.711 * r,
-      c.sides,
-      skin(J('neck')),
-      accent,
-    );
-    const z = b.ring(
-      'accent',
-      mix(base, head, 0.38),
-      dir,
-      0.675 * r,
-      0.684 * r,
-      c.sides,
-      skin(J('neck')),
-      accent,
-    );
+    const a = neckRing(0.31, 1.03, skin(J('neck')), accent);
+    const z = neckRing(0.38, 1.03, skin(J('neck')), accent);
     b.loft('accent', a, z);
   }
   if (d.features.mane) {
@@ -158,8 +175,8 @@ export function buildQuadrupedBody(
     let last: RingRef | undefined;
     for (let i = 0; i <= neckSections; i++) {
       const t = i / neckSections,
-        depth = dmath.lerp(equine ? 1.08 : 0.82, equine ? 0.6 : 0.43, t) * r;
-      const center = add(mix(base, head, t), scale(up, depth * 0.95));
+        depth = neckDepth(t);
+      const center = add(mix(base, head, t), scale(neckUp(t), depth * 0.95));
       const s = blend(J('neck'), 1 - t * 0.7, J('head'), t * 0.7);
       const ring = b.ring('hair', center, dir, 0.13 * r, 0.23 * r, c.limbSides, s, c.hair);
       if (last) b.loft('hair', last, ring);

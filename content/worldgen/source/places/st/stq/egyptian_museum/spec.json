@@ -1,0 +1,541 @@
+{
+  "planId": "egyptian_museum",
+  "id": "egyptian_museum",
+  "assetId": "molen.worldgen.structure.egyptian_museum",
+  "title": "Egyptian Museum",
+  "wikidataId": "Q201219",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 31.23360165,
+    "latitude": 30.0478467
+  },
+  "size": [
+    125.90865707397461,
+    22.33285903930664,
+    130.35122680664062
+  ],
+  "actualBounds": {
+    "min": [
+      -63.00463104248047,
+      -2.762859344482422,
+      -65.2016372680664
+    ],
+    "max": [
+      62.90402603149414,
+      19.56999969482422,
+      65.14958953857422
+    ]
+  },
+  "visualBrief": "The Egyptian Museum’s salmon Beaux-Arts exterior, recessed Tahrir Square arch, dark rear gallery windows and skylit roofs.",
+  "nativeAxes": {
+    "x": "right across the main facade",
+    "y": "up",
+    "z": "out toward the entrance steps"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2019-05-12",
+    "validFrom": "2019-01-01",
+    "validUntil": "2020-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Egyptian_Museum,_al-Q%C4%81hirah,_CG,_EGY_(46992942315).jpg",
+    "https://commons.wikimedia.org/wiki/File:Egyptian_Museum,_al-Q%C4%81hirah,_CG,_EGY_(47856992642).jpg",
+    "https://commons.wikimedia.org/wiki/File:Egyptian_Museum_in_the_Cairo.JPG"
+  ],
+  "stories": [
+    {
+      "id": "egyptian-museum-wp",
+      "url": "https://qualla.com/egyptian-museum/"
+    }
+  ],
+  "referenceInputHash": "cf580f50e48fc8c7bf3aff021f73de7101578da42eb45d0626b083a373376eb4",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/st/stq/egyptian_museum/models/egyptian-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/st/stq/egyptian_museum/models/egyptian-museum-model.mjs",
+    "level": "skyline",
+    "export": "museumSkyline",
+    "errorMeters": 1.08,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.82,
+        "metallic": 0.18
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.18
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.44,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "museumDistrict",
+        "errorMeters": 0.56,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.18
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "museumStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.18
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "museumCloseup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.18
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_sandstone_raw",
+    "metal_standing_seam",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.7,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      31.23360165,
+      30.0478467
+    ],
+    "heading": 0.001011609051878932,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        31.233600760236577,
+        30.04721037985414
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate paved approach to the main entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -62.66056721149618,
+          31.640419181327196
+        ],
+        [
+          -62.66457227892686,
+          54.65016565063802
+        ],
+        [
+          -60.62175141409835,
+          54.641100232515804
+        ],
+        [
+          -60.61276108115936,
+          64.80458403718247
+        ],
+        [
+          -44.76170360224109,
+          64.80948716097447
+        ],
+        [
+          -44.766429622870405,
+          59.955950097898686
+        ],
+        [
+          -11.75382177135782,
+          59.95595009789868
+        ],
+        [
+          -11.744951637028338,
+          60.712931995874705
+        ],
+        [
+          2.3041935969059106,
+          60.7160122883072
+        ],
+        [
+          11.439032708716267,
+          60.7141212228825
+        ],
+        [
+          11.430331492407088,
+          59.79016017418233
+        ],
+        [
+          45.02109300526543,
+          59.79074503985904
+        ],
+        [
+          45.02652848014261,
+          63.94296966949651
+        ],
+        [
+          62.56386747143301,
+          63.94957865190782
+        ],
+        [
+          62.54868325287033,
+          31.332935799514562
+        ],
+        [
+          41.00280094749082,
+          31.333403692319465
+        ],
+        [
+          40.98077313118809,
+          -61.195426683442925
+        ],
+        [
+          30.33309860506659,
+          -61.19506601653941
+        ],
+        [
+          30.339716503689555,
+          -58.2116954419733
+        ],
+        [
+          14.922274270780598,
+          -58.21615991650778
+        ],
+        [
+          14.927386845834718,
+          -63.27006221269154
+        ],
+        [
+          8.01843933054741,
+          -63.26591941401571
+        ],
+        [
+          8.020049679077646,
+          -64.85778731785275
+        ],
+        [
+          -6.453074906738373,
+          -64.86129651178172
+        ],
+        [
+          -6.454595165840092,
+          -63.35848415526138
+        ],
+        [
+          -13.56589646259841,
+          -63.35454605957241
+        ],
+        [
+          -13.571380656544061,
+          -57.93328963179478
+        ],
+        [
+          -27.938510404218068,
+          -57.93669160074493
+        ],
+        [
+          -27.944689116878315,
+          -61.35420796719469
+        ],
+        [
+          -39.49814897373466,
+          -61.3436316459425
+        ],
+        [
+          -39.48621875987911,
+          31.641598660573937
+        ]
+      ],
+      "minimumCoverage": 0.91,
+      "basis": "Named OpenStreetMap Egyptian Museum footprint, ODbL 1.0."
+    },
+    "featureIds": [
+      "way/10873198"
+    ],
+    "source": "https://www.openstreetmap.org/way/10873198",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ca8955d6b28c54e708abd2dfc64d446b59d6cb48fc95a7cc7da8f3b71e792212",
+    "notes": "The exact May 2019 Qualla photographs cover the rear pavilions. An independently cleared front entrance photograph from 2008 controls surviving portal elements. Other outer details and roofs are approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The Egyptian Museum on Tahrir Square is represented in May 2019. The opening depth, roof lights, flank details and extent of some roof alterations are approximate. The 2008 front photograph informs the surviving entrance stonework.",
+    "Fine carvings and inscriptions are represented by simplified relief and plaques. The original Terrarium samples are preserved, and the steep local source readings cover some lower side elevations in the terrain view."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Footprint © OpenStreetMap contributors, ODbL 1.0. Two exact Qualla CC0 originals and one first-party public-domain photograph.",
+  "qaLodCameras": [
+    {
+      "name": "whole-egyptian-museum-skyline",
+      "position": [
+        -160,
+        84,
+        199
+      ],
+      "lookAt": [
+        0,
+        8.6,
+        2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-egyptian-museum-district",
+      "position": [
+        -160,
+        84,
+        199
+      ],
+      "lookAt": [
+        0,
+        8.6,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-egyptian-museum-street",
+      "position": [
+        -160,
+        84,
+        199
+      ],
+      "lookAt": [
+        0,
+        8.6,
+        2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-egyptian-museum-closeup",
+      "position": [
+        -160,
+        84,
+        199
+      ],
+      "lookAt": [
+        0,
+        8.6,
+        2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "tahrir-arch-and-ionic-portal",
+      "position": [
+        5,
+        10.6,
+        111
+      ],
+      "lookAt": [
+        0,
+        9.9,
+        60
+      ]
+    },
+    {
+      "name": "south-corner-pavilions-and-salmon-wings",
+      "position": [
+        106,
+        31,
+        141
+      ],
+      "lookAt": [
+        12,
+        9.8,
+        39
+      ]
+    },
+    {
+      "name": "rear-arched-windows-and-gallery-skylights",
+      "position": [
+        -99,
+        35,
+        -118
+      ],
+      "lookAt": [
+        0,
+        10.5,
+        -26
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11890,
+    "vertices": 35670,
+    "materials": 5,
+    "bytes": 1550108,
+    "sha256": "sha256:54520c141b3dc960a157cb220e8ae1745248ec2c8b622dcc0df535847611c42c"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "format": "molen/scene@3",
+  "name": "El Paso Museum of Art model review",
+  "seed": "el_paso_museum_of_art",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.el_paso_museum_of_art",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            3.4172401428222656,
+            0,
+            5.624094009399414
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            157.38449935913087,
+            0.3,
+            157.38449935913087
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#b4b4a6",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
+            "castShadow": true
+          },
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      110,
+      43,
+      -86
+    ],
+    "lookAt": [
+      5,
+      4.7,
+      2
+    ],
+    "fov": 43
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

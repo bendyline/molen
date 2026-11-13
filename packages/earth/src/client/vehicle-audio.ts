@@ -16,7 +16,16 @@ import type {
 } from '@bendyline/molen-schema';
 
 const Boat = componentHandle('boat');
-const NO_CABIN_DOOR = new Set(['bicycle', 'motorcycle', 'scooter', 'light-rail']);
+const NO_CABIN_DOOR = new Set([
+  'bicycle',
+  'motorcycle',
+  'scooter',
+  'moped',
+  'kick-scooter',
+  'skateboard',
+  'auto-rickshaw',
+  'light-rail',
+]);
 const PAVEMENT = new Set(['concrete', 'asphalt', 'paved']);
 interface Previous {
   snapshot: AircraftStateData | VehicleStateData;

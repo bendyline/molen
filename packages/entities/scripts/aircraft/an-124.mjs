@@ -24,11 +24,11 @@ export const an124Frame = () => ({
   radius: 3.7,
   cy: 6.2,
   ry: 4.1,
-  cabinZ: 27.0,
+  cabinZ: 27.33,
   cabinWidth: 3.0,
-  eye: [0.98, 9.45, 27],
-  panelZ: 28.4,
-  floor: 7.55,
+  eye: [0.98, 9.38, 27.33],
+  panelZ: 28.2,
+  floor: 8.01,
 });
 const rect = (x, y, w, h, z) => [
   [x - w / 2, y - h / 2, z],
@@ -244,10 +244,10 @@ export function buildAn124(s) {
     glaze(3, 1, side, [[0.04, 0.4, 0.5, 0.95]]);
     glaze(4, 1, side, [[0.06, 0.4, 0.12, 0.88]]);
     glaze(5, 1, side, [[0.06, 0.4, 0.04, 0.28]]);
-    // Wipers parked on the front panes.
+    // Wiper parked along the sill below the front pane, off the glass the pilot looks through.
     const lift = (q) => [q[0], q[1] + 0.02, q[2] + 0.012];
-    d.rod(lift(front(0.3, 0.33)), lift(front(0.55, 0.6)), 0.012, dark);
-    d.rod(lift(front(0.55, 0.6)), lift(front(0.78, 0.86)), 0.01, dark);
+    d.rod(lift(front(0.2, 0.24)), lift(front(0.45, 0.24)), 0.012, dark);
+    d.rod(lift(front(0.45, 0.24)), lift(front(0.68, 0.23)), 0.01, dark);
   }
   // Plan-view calibrated stations. Anhedral (about 5.5 degrees) is matched to a long-lens frontal
   // photograph (Moffett, visor up): the drawing's front view droops the outer panels too far.
@@ -691,6 +691,12 @@ function cockpit(root, m) {
     liner = mat('AN124-liner', '#c4c3ba', { side: T.DoubleSide }),
     seat = mat('AN124-seat', '#343d47'),
     cushion = mat('AN124-cushion', '#697e87'),
+    visor = mat('AN124-sun-visor', '#2b2622', {
+      transparent: true,
+      opacity: 0.6,
+      depthWrite: false,
+      side: T.DoubleSide,
+    }),
     belt = mat('AN124-belt', '#aaa99e'),
     wood = mat('AN124-desktop', '#805332');
   const sources = Object.fromEntries(
@@ -722,19 +728,19 @@ function cockpit(root, m) {
   });
   // Relative coordinates from RAF-YYC's frontal photograph;3m panel span is an estimate.
   const px = (u) => ((880 - u) * 3) / 1040,
-    py = (v) => 8.6 + ((670 - v) * 3) / 1040,
-    z = 28.4,
+    py = (v) => 8.71 + ((670 - v) * 3) / 1040,
+    z = 28.2,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz];
   const contour = [
     [360, 810],
-    [360, 620],
+    [360, 680],
     [420, 555],
     [760, 550],
     [760, 540],
     [1040, 540],
     [1040, 555],
     [1340, 555],
-    [1400, 620],
+    [1400, 680],
     [1400, 810],
     [1030, 810],
     [1030, 755],
@@ -911,19 +917,19 @@ function cockpit(root, m) {
     missing: 'hide',
   });
   // Glareshield radios/autoflight housings, separate from the roof-mounted panel.
-  // Housings sit under the raked windshield glass.
-  d.box([2.5, 0.13, 0.22], [0, 8.85, 28.34], m.dark);
-  d.box([1.2, 0.22, 0.2], [0, 8.97, 28.33], m.dark);
+  // Housings sit under the raked windshield glass, brought aft and up with the panel.
+  d.box([2.5, 0.13, 0.22], [0, 8.96, 28.14], m.dark);
+  d.box([1.2, 0.22, 0.2], [0, 9.08, 28.13], m.dark);
   for (const side of [-1, 1]) {
-    d.box([0.57, 0.2, 0.025], [side * 0.31, 9.08, 28.24], side > 0 ? m.dark : face);
-    d.box([0.27, 0.06, 0.008], [side * 0.31, 9.12, 28.22], black);
-    d.text('--', [side * 0.31, 9.12, 28.21], 0.018, Math.PI, ink);
-    for (let j = 0; j < 4; j++) pt.knob(side * 0.31 - 0.21 + j * 0.14, 9.03, 28.21, 0.018);
+    d.box([0.57, 0.2, 0.025], [side * 0.31, 9.19, 28.04], side > 0 ? m.dark : face);
+    d.box([0.27, 0.06, 0.008], [side * 0.31, 9.23, 28.02], black);
+    d.text('--', [side * 0.31, 9.23, 28.01], 0.018, Math.PI, ink);
+    for (let j = 0; j < 4; j++) pt.knob(side * 0.31 - 0.21 + j * 0.14, 9.14, 28.01, 0.018);
   }
-  d.box([0.36, 0.16, 0.09], [0, 9.28, 28.1], m.dark);
-  d.text('NAV --', [0, 9.28, 28.05], 0.02, Math.PI, ink, 'display');
+  d.box([0.36, 0.16, 0.09], [0, 9.39, 27.9], m.dark);
+  d.text('NAV --', [0, 9.39, 27.85], 0.02, Math.PI, ink, 'display');
   // Long pedestal with four tall ivory levers, low radar scopes and offset flap handle.
-  const ped = group(cabin, 'AN124-pedestal', [0, 8.12, 27.4]);
+  const ped = group(cabin, 'AN124-pedestal', [0, 8.37, 27.05]);
   ped.rotation.x = Math.PI / 2;
   const td = detailKit(ped, ped.name),
     tp = panelTools(td);
@@ -975,7 +981,9 @@ function cockpit(root, m) {
       });
   }
   td.finish();
-  // Overhead, two ventilation fans and narrow sun visors around the main windshield.
+  // Overhead, two ventilation fans and sun visors. AN-124 flight deck photograph: the three-bladed
+  // fans hang from the windshield header beside the center post, about 17 cm across, and the tinted
+  // visors stow up against the ceiling at each side.
   const over = group(cabin, 'AN124-overhead', [0, 9.48, 25.2]);
   over.rotation.x = -Math.PI / 2;
   const od = detailKit(over, over.name),
@@ -994,35 +1002,39 @@ function cockpit(root, m) {
     }
   od.finish();
   for (const side of [-1, 1]) {
-    const fan = group(cabin, `AN124-cabin-fan-${side}`, [side * 0.52, 9.55, 27.25]),
+    const fan = group(cabin, `AN124-cabin-fan-${side}`, [side * 0.34, 9.65, 27.55]),
       fd = detailKit(fan, fan.name);
-    fd.rod([0, 0.19, 0.04], [0, 0, 0], 0.014, m.metal);
-    fd.ring(0.11, 0.01, [0, 0, 0], m.dark);
+    fd.rod([0, 0.11, 0.04], [0, 0, 0], 0.012, m.metal);
     for (let j = 0; j < 3; j++) {
       const a = (j * Math.PI * 2) / 3;
-      ellipsoid(fd, [Math.sin(a) * 0.055, Math.cos(a) * 0.055, 0], [0.05, 0.067, 0.012], m.dark, 8);
+      ellipsoid(fd, [Math.sin(a) * 0.045, Math.cos(a) * 0.045, 0], [0.04, 0.05, 0.01], m.dark, 8);
     }
-    ellipsoid(fd, [0, 0, -0.01], [0.03, 0.03, 0.035], m.dark, 8);
+    ellipsoid(fd, [0, 0, -0.01], [0.022, 0.022, 0.03], m.dark, 8);
     fd.finish();
-    d.box([0.5, 0.025, 0.28], [side * 1.28, 9.4, 27.45], m.dark);
+    d.box([0.36, 0.012, 0.26], [side * 1.15, 9.45, 27.55], visor).rotation.x = -0.43;
   }
   // Columns, U-shaped handwheels, pedal pairs and six seats.
-  function seatAt(name, x, z, rotation = 0) {
-    const g = group(cabin, `AN124-seat-${name}`, [x, 7.55, z]);
+  // The pilots sit on a raised platform: their eye stands level with the windshield, far above the
+  // crew floor. The roof closes in over them, so their seat backs are cut down.
+  function seatAt(name, x, z, rotation = 0, rise = 0) {
+    const g = group(cabin, `AN124-seat-${name}`, [x, 7.55 + rise, z]),
+      backHeight = rise ? 0.72 : 0.94,
+      backTop = 0.57 + backHeight;
     g.rotation.y = rotation;
     const dd = detailKit(g, g.name);
     dd.box([0.45, 0.35, 0.55], [0, 0.22, 0], m.metal);
     beveledBox(dd, [0.67, 0.17, 0.7], [0, 0.52, 0], cushion, 0.03);
-    beveledBox(dd, [0.67, 0.94, 0.19], [0, 1.04, -0.34], seat, 0.035);
-    beveledBox(dd, [0.48, 0.23, 0.2], [0, 1.6, -0.38], seat, 0.03);
+    beveledBox(dd, [0.67, backHeight, 0.19], [0, 0.57 + backHeight / 2, -0.34], seat, 0.035);
+    beveledBox(dd, [0.48, 0.2, 0.2], [0, backTop + 0.02, -0.38], seat, 0.03);
     for (const dx of [-0.36, 0.36]) beveledBox(dd, [0.08, 0.07, 0.44], [dx, 0.78, 0], seat, 0.012);
-    for (const dx of [-0.17, 0.17]) dd.rod([dx, 1.5, -0.22], [dx * 0.5, 0.61, -0.21], 0.025, belt);
+    for (const dx of [-0.17, 0.17])
+      dd.rod([dx, backTop - 0.01, -0.22], [dx * 0.5, 0.61, -0.21], 0.025, belt);
     dd.rod([-0.26, 0.62, -0.2], [0.24, 0.62, 0.2], 0.025, belt);
     dd.finish();
   }
   for (const side of [-1, 1]) {
     const x = side * 0.98,
-      col = group(cabin, `AN124-column-${side}`, [x, 7.65, 27.85]),
+      col = group(cabin, `AN124-column-${side}`, [x, 7.7, 27.85]),
       cd = detailKit(col, col.name);
     cd.rod([0, 0, 0], [0, 0.91, -0.1], 0.07, m.dark);
     for (let j = 0; j < 8; j++) cd.ring(0.075, 0.012, [0, 0.55 + j * 0.04, -0.06], m.dark, 'y');
@@ -1061,7 +1073,7 @@ function cockpit(root, m) {
       scale: 0.65,
     });
     for (const dx of [-0.18, 0.18]) {
-      const pg = group(cabin, `AN124-pedal-${side}-${Math.sign(dx)}`, [x + dx, 7.79, 28.37]),
+      const pg = group(cabin, `AN124-pedal-${side}-${Math.sign(dx)}`, [x + dx, 8.18, 28.08]),
         pd = detailKit(pg, pg.name);
       pd.box([0.23, 0.28, 0.05], [0, 0, 0], m.metal);
       for (let j = 0; j < 6; j++)
@@ -1075,7 +1087,7 @@ function cockpit(root, m) {
         scale: Math.sign(dx) * 0.055,
       });
     }
-    seatAt(`pilot-${side}`, x, 26.7);
+    seatAt(`pilot-${side}`, x, 27.23, 0, 0.46);
     for (const [j, zz] of [24.3, 22.6].entries())
       seatAt(`crew-${side}-${j}`, side * 1.06, zz, (-side * Math.PI) / 2);
   }
@@ -1147,6 +1159,10 @@ function cockpit(root, m) {
   d.box([2.7, 0.05, 3.2], [0, 9.48, 22.8], liner);
   for (const zz of [21.5, 22.7, 23.9]) d.rod([-1.33, 9.445, zz], [1.33, 9.445, zz], 0.008, m.metal);
   sheet(d, m.bulkhead, liner, [0, 0, 1], [rect(0, 8.5, 0.8, 1.9, 20.9)]);
+  // Raised pilots' platform and its step. The whole pilot station sits 0.1 m lower than first
+  // authored, under the raked windshield and level roof of the rebuilt nose.
+  d.box([3, 0.46, 2.55], [0, 7.78, 26.875], m.dark);
+  d.box([3, 0.23, 0.32], [0, 7.665, 25.45], m.dark);
 
   d.finish();
   return { nodes: ['cockpit'], sources, derived, bindings };

@@ -14,7 +14,12 @@ import {
   type TransformData,
   type World,
 } from '@bendyline/molen-kernel/world';
-import { boostSpeedMultiplier } from '@bendyline/molen-schema';
+import {
+  boostSpeedMultiplier,
+  type SnowCoverData,
+  snowCoverAt,
+  snowWalkingPace,
+} from '@bendyline/molen-schema';
 import { AmbientAgent, type AmbientAgentData } from '../components';
 import type { TransportNetwork } from '../graph/network';
 import {
@@ -53,7 +58,12 @@ export interface AgentEnv {
   dt: number;
   /** Solids cars yield to (queried from the world by the caller). */
   solids: readonly AmbientSolid[];
+  /** The weather's lying snow: pedestrians wade through it more slowly. */
+  snowCover?: SnowCoverData;
 }
+
+/** Share of lying snow left on a footway: trodden down, but not ploughed like a road. */
+const FOOTWAY_SNOW = 0.5;
 
 type Mutable<T> = { -readonly [K in keyof T]: T[K] };
 
@@ -657,7 +667,12 @@ function stepWalker(ref: Ref, occupancy: ReadonlyMap<string, Ref[]>, env: AgentE
   const { a, w } = ref;
   const lane = ref.lane as TransportLane;
   const edge = ref.edge as TransportEdge;
-  const pace = (1.15 + 0.5 * unit01(a.seed, 2)) * (env.speedScale ?? 1);
+  // The height where the footway starts stands in for the walker's: a block is nearly level.
+  const snow =
+    env.snowCover === undefined
+      ? 1
+      : snowWalkingPace(snowCoverAt(env.snowCover, edge.ys[0] ?? 0).depth * FOOTWAY_SNOW);
+  const pace = (1.15 + 0.5 * unit01(a.seed, 2)) * (env.speedScale ?? 1) * snow;
   if (a.state === 'idle') {
     const idleTicks = (3 + 15 * unit01(a.seed, 3000 + a.hops)) * tickRate;
     if (tick - a.since < idleTicks) {
@@ -855,7 +870,7 @@ function placeTrainCar(ref: Ref, lead: Ref, env: AgentEnv): void {
     lead.w.s,
     lead.w.prev,
     lead.w.trail ?? [],
-    spacing * (ref.a.carIndex ?? 1),
+    ref.a.offset ?? spacing * (ref.a.carIndex ?? 1),
   );
   w.lane = back.lane;
   w.s = back.s;

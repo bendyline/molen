@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.baron_empain_palace",
+  "kind": "static-structure",
+  "title": "Baron Empain Palace",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.baron_empain_palace",
+        "output": "assets/places/st/stq/baron_empain_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:de7e729c5fe8f497b9821adb44ba38f967547d6d6c9f91db7be765495cc86100"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-baron-empain-palace",
+        "path": "models/generate-baron-empain-palace.mjs"
+      },
+      {
+        "id": "baron-empain-palace-model",
+        "path": "models/baron-empain-palace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/palace-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-baron-empain-original.json",
+      "terrain-ground-comparison.json",
+      "terrain-ground-grid.json",
+      "terrain-ground-review.terrain.json",
+      "terrain-ground-review.height.png",
+      "terrain-sources/gedtm30-heliopolis-window.tif",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-19235-13509.png",
+      "terrain-sources/terrarium-15-19235-13510.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

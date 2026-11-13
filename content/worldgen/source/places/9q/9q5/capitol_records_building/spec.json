@@ -1,0 +1,403 @@
+{
+  "planId": "capitol_records_building",
+  "id": "capitol_records_building",
+  "assetId": "molen.worldgen.structure.capitol_records_building",
+  "title": "Capitol Records Building",
+  "wikidataId": "Q2937482",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -118.326369,
+    "latitude": 34.103155
+  },
+  "size": [
+    55.135793685913086,
+    59.34999918937683,
+    36.355727195739746
+  ],
+  "actualBounds": {
+    "min": [
+      -22.955686569213867,
+      -1.5499999523162842,
+      -20.89815902709961
+    ],
+    "max": [
+      32.18010711669922,
+      57.79999923706055,
+      15.457568168640137
+    ]
+  },
+  "visualBrief": "Thirteen-storey cylindrical Capitol Records Building, with pale stacked ledges, rooftop lettering and tapered antenna.",
+  "nativeAxes": {
+    "x": "south parallel to Vine Street",
+    "y": "up",
+    "z": "west toward Vine Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2022-07-08",
+    "validFrom": "2022-01-01",
+    "validUntil": "2023-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Aerial_Capitol_Records_Building.jpg",
+    "https://commons.wikimedia.org/wiki/File:Capitol_Records_(Hollywood)_en_juillet_2022.JPG"
+  ],
+  "stories": [
+    {
+      "id": "capitol-records-building-wp",
+      "url": "https://qualla.com/capitol-records-building/"
+    }
+  ],
+  "referenceInputHash": "03ef782b8842eb650fc8c4b14288551e5bd212eb78df17b61a787317841c3296",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9q/9q5/capitol_records_building/models/tower-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9q/9q5/capitol_records_building/models/tower-model.mjs",
+    "level": "skyline",
+    "export": "towerSkyline",
+    "errorMeters": 0.28,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "edge": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.09
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.81,
+        "metallic": 0.05
+      },
+      "sign": {
+        "slot": "trim",
+        "localRef": "palette:#f1f1f1",
+        "roughness": 0.92,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "towerDistrict",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "edge": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.09
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.81,
+            "metallic": 0.05
+          },
+          "sign": {
+            "slot": "trim",
+            "localRef": "palette:#f1f1f1",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "towerStreet",
+        "errorMeters": 0.068,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "edge": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.09
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.81,
+            "metallic": 0.05
+          },
+          "sign": {
+            "slot": "trim",
+            "localRef": "palette:#f1f1f1",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "towerCloseup",
+        "errorMeters": 0.025,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "edge": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.09
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.81,
+            "metallic": 0.05
+          },
+          "sign": {
+            "slot": "trim",
+            "localRef": "palette:#f1f1f1",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_plain",
+    "metal_painted",
+    "membrane"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -118.326369,
+      34.103155
+    ],
+    "heading": -1.5655311278664268,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -118.32655290612665,
+        34.10301675469483
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain next to the Vine Street frontage of the podium. Threshold heights are approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/422141102",
+      "way/907834019",
+      "way/907834020"
+    ],
+    "source": "https://www.openstreetmap.org/way/422141102",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:66dff252b438c5f8ab0e03a60176c6689e6b6dd242eb711142341cf942631372",
+    "notes": "OpenStreetMap way 422141102 supplies the native building outline. Building parts 907834019 and 907834020 distinguish the cylindrical tower and low podium. Los Angeles HCM 857 confirms the identity. The 2022 street photo establishes the stack, windows and sign. The 2009 aerial supports the podium form, rooftop volume and blank northeast arc only. The mural is excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    }
+  ],
+  "limitations": [
+    "July 2022 exterior. Individual window divisions, rooftop fixtures and spire height are approximate.",
+    "The separately painted mural and street furniture are outside this architectural scope. The original elevation field is preserved, with representative door and foundation details.",
+    "The blank side of the tower, main podium roof and concealed east elevations use simplified geometry."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. Benoît Prieur’s street photograph is CC0. Jelson25’s aerial photograph is public domain. OpenStreetMap contributors supply mapped geometry under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-capitol-records-skyline",
+      "position": [
+        72,
+        41,
+        94
+      ],
+      "lookAt": [
+        2,
+        25,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-capitol-records-district",
+      "position": [
+        72,
+        41,
+        94
+      ],
+      "lookAt": [
+        2,
+        25,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-capitol-records-street",
+      "position": [
+        72,
+        41,
+        94
+      ],
+      "lookAt": [
+        2,
+        25,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-capitol-records-closeup",
+      "position": [
+        72,
+        41,
+        94
+      ],
+      "lookAt": [
+        2,
+        25,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "vine-street-podium-and-tower",
+      "position": [
+        33,
+        16,
+        74
+      ],
+      "lookAt": [
+        5,
+        25,
+        1
+      ]
+    },
+    {
+      "name": "roof-sign-and-aerial",
+      "position": [
+        30,
+        53,
+        53
+      ],
+      "lookAt": [
+        1,
+        46,
+        0
+      ]
+    },
+    {
+      "name": "east-tower-and-studio-wing",
+      "position": [
+        -64,
+        43,
+        -72
+      ],
+      "lookAt": [
+        -1,
+        21,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7120,
+    "vertices": 21360,
+    "materials": 5,
+    "bytes": 986120,
+    "sha256": "sha256:9692378f05507c1b11fc726aea64dc6715a945768ebe93c6fdb80d6fefdd4200"
+  }
+}

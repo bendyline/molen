@@ -1,0 +1,485 @@
+{
+  "planId": "gorlitz_department_store",
+  "id": "gorlitz_department_store",
+  "assetId": "molen.worldgen.structure.gorlitz_department_store",
+  "title": "Görlitz Department Store",
+  "wikidataId": "Q1559538",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 14.987588525,
+    "latitude": 51.152755875
+  },
+  "size": [
+    69.20385360717773,
+    30.515000820159912,
+    35.7597599029541
+  ],
+  "actualBounds": {
+    "min": [
+      -36.08766174316406,
+      -1.0199999809265137,
+      -18.215740203857422
+    ],
+    "max": [
+      33.11619186401367,
+      29.4950008392334,
+      17.54401969909668
+    ]
+  },
+  "visualBrief": "Art Nouveau department store with tall stone piers, a shallow pediment, a covered public arcade and a red mansard roof.",
+  "nativeAxes": {
+    "x": "along the long elevation toward Demianiplatz",
+    "y": "up",
+    "z": "outward at the north elevation"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2014-06-17",
+    "validFrom": "2014-01-01",
+    "validUntil": "2016-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:G%C3%B6rlitz,_AB._037.JPG",
+    "https://commons.wikimedia.org/wiki/File:G%C3%B6rlitz,_AB._039.JPG",
+    "https://commons.wikimedia.org/wiki/File:R%C3%BCckseite_Warenhaus_G%C3%B6rlitz.jpg"
+  ],
+  "stories": [
+    {
+      "id": "gorlitz-department-store-wp",
+      "url": "https://qualla.com/gorlitz-department-store/"
+    }
+  ],
+  "referenceInputHash": "8188998c5499de15306b2a88635ee09284010001c7da36e620d7716b8ec7481a",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u3/u34/gorlitz_department_store/models/gorlitz-store-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u3/u34/gorlitz_department_store/models/gorlitz-store-model.mjs",
+    "level": "skyline",
+    "export": "storeSkyline",
+    "errorMeters": 0.88,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "dress": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "service": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "storeDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "service": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "storeStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "service": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "storeCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "dress": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "service": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_raw",
+    "stone_sandstone",
+    "tile_ceramic",
+    "plaster_lime",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.18,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      14.987588525,
+      51.152755875
+    ],
+    "heading": 2.9325342425154393,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        14.98739876838605,
+        51.152973971140305
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate pavement grade along the north frontage toward Demianiplatz."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          30.378251057479687,
+          -16.160435434867757
+        ],
+        [
+          -27.860928809425715,
+          -17.915367248293965
+        ],
+        [
+          -27.88161677514158,
+          -14.883971952504414
+        ],
+        [
+          -32.39433013063849,
+          -14.723143035720643
+        ],
+        [
+          -32.24032466427687,
+          -1.1115293471960985
+        ],
+        [
+          -35.76945438880868,
+          -1.1593758392361933
+        ],
+        [
+          -35.39917856756509,
+          17.037901342367487
+        ],
+        [
+          32.8818563197181,
+          17.03790134236747
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "The named Kaufhaus Görlitz polygon from OpenStreetMap way 25646212."
+    },
+    "featureIds": [
+      "way/25646212"
+    ],
+    "source": "https://www.openstreetmap.org/way/25646212",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:bd61d138162e50796e38d2d29c70c4f3b7628d9fe77b4eeeceba375b1c670986",
+    "notes": "The street arcade is at the western end within the mapped envelope. The 1913 department store and rear service building form the modeled scope."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "The photographed south façade, west arcade and east loading wing control the design. The north façade and less visible roof details use approximate symmetry and the mapped perimeter.",
+    "The terraced mansard section, four principal floor bands and narrow light court reflect the documented massing. Story-era height and small reliefs are approximate.",
+    "The original composite terrain was preserved. Foundations and arcade paving follow approximate street grade.",
+    "The three exact Qualla photos are retained in the local Qualla corpus and recorded here with their hashes."
+  ],
+  "sourceLicense": "Original geometry under the repository license. The OpenStreetMap footprint is ODbL. The three exact Qualla exterior photographs were dedicated to the public domain under CC0.",
+  "qaLodCameras": [
+    {
+      "name": "whole-store-skyline",
+      "position": [
+        68,
+        24,
+        -78
+      ],
+      "lookAt": [
+        0,
+        10.8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-store-district",
+      "position": [
+        68,
+        24,
+        -78
+      ],
+      "lookAt": [
+        0,
+        10.8,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-store-street",
+      "position": [
+        68,
+        24,
+        -78
+      ],
+      "lookAt": [
+        0,
+        10.8,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-store-closeup",
+      "position": [
+        68,
+        24,
+        -78
+      ],
+      "lookAt": [
+        0,
+        10.8,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "south-front-and-covered-arcade",
+      "position": [
+        62,
+        13,
+        -48
+      ],
+      "lookAt": [
+        2,
+        10,
+        -5
+      ]
+    },
+    {
+      "name": "arcade-opening-and-vaults",
+      "position": [
+        49,
+        3.3,
+        -23
+      ],
+      "lookAt": [
+        27,
+        4,
+        -4
+      ]
+    },
+    {
+      "name": "east-service-towers-and-canopy",
+      "position": [
+        -64,
+        16,
+        35
+      ],
+      "lookAt": [
+        -19,
+        9.1,
+        2.2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13290,
+    "vertices": 39870,
+    "materials": 6,
+    "bytes": 1793104,
+    "sha256": "sha256:34066b53f65d0bf12be76da77f017c297f1bd00b564ab82aed1cc2a0382413f2"
+  }
+}

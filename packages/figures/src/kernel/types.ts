@@ -32,10 +32,26 @@ export type FigureSpecies = 'human' | 'dog' | 'cat' | 'horse' | 'deer' | 'cow' |
 
 export type FigureAge = 'child' | 'adult' | 'elder';
 
-export type FigureHairStyle = 'none' | 'cap' | 'bob' | 'long';
+/** Hair styles, shortest first. `cap` is the short default; `balding` keeps a side-and-back fringe. */
+export const FIGURE_HAIR_STYLES: readonly [
+  'none',
+  'buzz',
+  'balding',
+  'cap',
+  'crop',
+  'bob',
+  'long',
+  'ponytail',
+  'bun',
+  'afro',
+] = ['none', 'buzz', 'balding', 'cap', 'crop', 'bob', 'long', 'ponytail', 'bun', 'afro'];
+export type FigureHairStyle = (typeof FIGURE_HAIR_STYLES)[number];
+export type FigureFacialHair = 'none' | 'stubble' | 'mustache' | 'beard';
+/** Human body form: shoulder, waist, hip and chest shape (bipeds; ignored by quadrupeds). */
+export type FigureForm = 'neutral' | 'masculine' | 'feminine';
 export type FigureHandStyle = 'mitten' | 'fingers';
 export type FigureSleeveStyle = 'none' | 'short' | 'long';
-export type FigureLegwearStyle = 'shorts' | 'long';
+export type FigureLegwearStyle = 'shorts' | 'long' | 'skirt';
 export type FigureTailStyle = 'none' | 'short' | 'long' | 'bushy';
 export type FigureEarStyle = 'none' | 'round' | 'pointed' | 'floppy';
 export type FigureHornStyle = 'none' | 'short' | 'long' | 'antlers';
@@ -62,7 +78,9 @@ export interface FigureProportions extends JsonObject {
 }
 
 export interface FigureFeatures extends JsonObject {
+  form: FigureForm;
   hair: FigureHairStyle;
+  facialHair: FigureFacialHair;
   hands: FigureHandStyle;
   sleeves: FigureSleeveStyle;
   legs: FigureLegwearStyle;

@@ -99,6 +99,75 @@ describe('trains', () => {
     expect(dwelt).toBe(true);
   });
 
+  it('make up mixed trains and keep light and heavy rolling stock on their own lines', () => {
+    const run = (subclass: string) => {
+      const world = new World({ tickRate: 30, seed: `rail-${subclass}` });
+      const ambient = installAmbient(world, {
+        classes: ['train'],
+        policy: { train: { near: 0, far: 4000, keep: 6000, perLaneKm: 5, max: 2 } },
+        types: {
+          train: [
+            {
+              id: 'loco',
+              length: 22,
+              width: 3.1,
+              track: 'heavy',
+              consist: {
+                units: [2, 2],
+                length: [6, 6],
+                block: [2, 3],
+                cars: [
+                  { id: 'hopper', length: 17.5, width: 3.2, colors: ['#aaaaaa'] },
+                  { id: 'tank', length: 18, width: 3.2 },
+                ],
+              },
+            },
+            { id: 'lrv', length: 27, width: 2.65, cars: 2, track: 'light' },
+          ],
+        },
+      });
+      ambient.addDocument({
+        format: 'molen/transport-network@1',
+        ways: [
+          {
+            class: 'rail',
+            subclass,
+            points: [
+              [-2000, 0],
+              [2000, 0],
+            ],
+          },
+        ],
+      });
+      ambient.setObserver({ pos: [0, 0, 300] });
+      world.stepN(30 * 30);
+      return list(world, 'train');
+    };
+    // Light rail only on the light line.
+    const light = run('light_rail');
+    expect(light.length).toBeGreaterThan(0);
+    for (const { a } of light) expect(a.type).toBe('lrv');
+    // Freight on the heavy line: two units, six cars in blocks, each at its offset.
+    const heavy = run('rail');
+    const leads = heavy.filter(({ a }) => a.consist === undefined);
+    expect(leads.length).toBeGreaterThan(0);
+    for (const lead of leads) {
+      const cars = heavy.filter(({ a }) => a.consist === lead.id);
+      expect(cars).toHaveLength(7);
+      expect(lead.a.type).toBe('loco');
+      expect(cars.filter(({ a }) => a.type === 'loco')).toHaveLength(1);
+      let previous = 0;
+      for (const { a, t: tr } of cars.sort((x, y) => (x.a.carIndex ?? 0) - (y.a.carIndex ?? 0))) {
+        expect(['loco', 'hopper', 'tank']).toContain(a.type);
+        expect(a.offset ?? 0).toBeGreaterThan(previous);
+        previous = a.offset ?? 0;
+        const d = Math.hypot(tr.pos[0] - lead.t.pos[0], tr.pos[2] - lead.t.pos[2]);
+        expect(d).toBeCloseTo(a.offset ?? 0, 0);
+        if (a.type === 'hopper') expect(a.color).toBe('#aaaaaa');
+      }
+    }
+  });
+
   it('dwell at a station for the time the document gives', () => {
     const world = new World({ tickRate: 30, seed: 'rail-dwell' });
     const ambient = installAmbient(world, {

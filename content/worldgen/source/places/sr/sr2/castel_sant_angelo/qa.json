@@ -32,8 +32,65 @@
       "shots/shared/arched-south-entrance-recess-and-curtain.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Five existing256px graphs: brick_longformat warm brick keep/curtains/corbel course, with coarse0.75-per-metre UV tiling; stone_limestone_raw base/courses/gate/threshold and flat terrace paving; plaster_lime upper-room render; metal_painted schematic patinated roof figure/dark static gate/slits; storefront opaque gallery/window panes. Generic stone substitutes for historic marble/masonry/paving; opaque shared glazing/paint substitute for dark openings. No new graph/private atlas/embedded image. Six textured draws/one skyline draw; linear palette tints, separate POSITION/NORMAL streams/equal CPU-GPU bytes. Each native textured run reads every graph once; all LOD unloads release model geometry.",
-    "captureReportHash": "sha256:6f63cb36e8a5e2392487fe105f6a13fdaccd738d9440fc0db4a18c0961590db2"
+    "notes": "Five existing256px graphs: brick_longformat warm brick keep/curtains/corbel course, with coarse0.75-per-metre UV tiling; stone_limestone_raw base/courses/gate/threshold and flat terrace paving; plaster_lime upper-room render; metal_painted schematic patinated roof figure/dark static gate/slits; storefront opaque gallery/window panes. Generic stone substitutes for historic marble/masonry/paving; opaque shared glazing/paint substitute for dark openings. No new graph/private atlas/embedded image. Six textured draws/one skyline draw; linear palette tints, separate POSITION/NORMAL streams/equal CPU-GPU bytes. Each native textured run reads every graph once; all LOD unloads release model geometry. Current viewer renders confirm the updated shared storefront material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:63290076ff65d44c6329b2d6bfe463be1a1feb5b7f420771dcb4f671996b2d6b",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:ec3d0604ba60197d6d900316a7bfdfaa9ba3a5a69bad7d7c7dee64270d2a9bc7"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:65194264a9f3b3c08059ad069f96cd08dab543e85f6f79a79a9a4cd4770ef618"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:b6c650b0f695c2ea6d226c299471cdff7b0416e0e88bbedaa7ad92f98dcaa799"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:3de49c92af88c7d13b07e63977586f5d13cf48797f366fe6b4e089e3178c9e80"
+      },
+      {
+        "path": "shots/shared/south-front-circular-keep-and-connected-ramparts.png",
+        "hash": "sha256:4d5c5c77f5fb911ede01f416989f698b4295ac8861dfb36fc111caf46200bd81"
+      },
+      {
+        "path": "shots/shared/northwest-bastions-open-courts-and-upper-terraces.png",
+        "hash": "sha256:3f9c4aa91d8ef124190310755e130ada6fdda249aa90ef98b69543f547a8cc47"
+      },
+      {
+        "path": "shots/shared/arched-south-entrance-recess-and-curtain.png",
+        "hash": "sha256:7b37f1c01b9e1cbf517651c18bf78ac2d3795ea8ae4bce15477d11675ca0a246"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:b56c42bae282cce896472bfc07ed3660f268ccdd27038ad833561df6dee71db8"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick_longformat": {
+        "path": "materials/brick_longformat.matgraph.json",
+        "hash": "sha256:4fdf393d228a5d543b82290a8f382b2cbfd7a67279bc504e4e526d59ed2335a8"
+      },
+      "matgraph:molen.worldgen.material.plaster_lime": {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

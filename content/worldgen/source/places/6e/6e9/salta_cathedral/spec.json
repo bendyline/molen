@@ -1,0 +1,447 @@
+{
+  "planId": "salta_cathedral",
+  "id": "salta_cathedral",
+  "assetId": "molen.worldgen.structure.salta_cathedral",
+  "title": "Salta Cathedral",
+  "wikidataId": "Q2942778",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -65.410413,
+    "latitude": -24.788161
+  },
+  "size": [
+    43.239999771118164,
+    39.16000151634216,
+    94.26000213623047
+  ],
+  "actualBounds": {
+    "min": [
+      -21.15999984741211,
+      -1.7599999904632568,
+      -47.33000183105469
+    ],
+    "max": [
+      22.079999923706055,
+      37.400001525878906,
+      46.93000030517578
+    ]
+  },
+  "visualBrief": "Salta Cathedral around 2008, with the plaza arcade, classical pink and cream front, open twin belfries, and a dome above the cruciform nave.",
+  "nativeAxes": {
+    "x": "east-southeast along the cathedral front",
+    "y": "up",
+    "z": "south-southwest toward Plaza 9 de Julio"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2008-05-04",
+    "validFrom": "2008-01-01",
+    "validUntil": "2009-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Catedralsalta.jpg"
+  ],
+  "stories": [
+    {
+      "id": "salta-cathedral-wp",
+      "url": "https://qualla.com/salta-cathedral/"
+    }
+  ],
+  "referenceInputHash": "0792df78749f057cd7ca75d1f36316a8ecefcd022eaf7489a23ebc2fcc781a54",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/6e/6e9/salta_cathedral/models/salta-cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/6e/6e9/salta_cathedral/models/salta-cathedral-model.mjs",
+    "level": "skyline",
+    "export": "saltaSkyline",
+    "errorMeters": 0.64,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.76,
+        "metallic": 0.37
+      },
+      "detail": {
+        "slot": "window",
+        "localRef": "palette:#fffdfe",
+        "roughness": 0.74,
+        "metallic": 0.04
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "saltaDistrict",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.76,
+            "metallic": 0.37
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.74,
+            "metallic": 0.04
+          }
+        }
+      },
+      "street": {
+        "export": "saltaStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.76,
+            "metallic": 0.37
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.74,
+            "metallic": 0.04
+          }
+        }
+      },
+      "closeup": {
+        "export": "saltaCloseup",
+        "errorMeters": 0.043,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.76,
+            "metallic": 0.37
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.74,
+            "metallic": 0.04
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "tile_ceramic",
+    "metal_bronze_cast"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.83,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -65.410413,
+      -24.788161
+    ],
+    "heading": -0.10712204187640392,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -65.41045663435729,
+        -24.78857559814241
+      ],
+      "modelHeight": 0,
+      "basis": "Original source height near the central entrance steps on España Street."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -20.708309639547842,
+          38.726212066271046
+        ],
+        [
+          -20.451401537437892,
+          44.99080870973155
+        ],
+        [
+          21.50790777043164,
+          44.99080870973155
+        ],
+        [
+          19.87284705083328,
+          -55.47534548521592
+        ],
+        [
+          -16.949499948274394,
+          -44.66367385635701
+        ],
+        [
+          -15.644842976193875,
+          -12.491948245603801
+        ],
+        [
+          -14.6306293306972,
+          32.575358792170434
+        ],
+        [
+          -20.7338320410019,
+          32.81740195780152
+        ]
+      ],
+      "minimumCoverage": 0.89,
+      "basis": "The named eight-vertex cathedral envelope in OpenStreetMap way 110346974."
+    },
+    "featureIds": [
+      "way/110346974"
+    ],
+    "source": "https://www.openstreetmap.org/way/110346974",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e8f0c29abc6b126628fa50752affe67aa8293cb9d13b52f828b9ef0b25762e23",
+    "notes": "The Salta Cathedral basilica exterior around the 2008 photograph publication, including the pink and cream main front, twin open bell towers, nave, side aisles, crossing dome and choir. The nearby Archbishop’s Palace, separately identified structures and interiors are outside the model. The main elevation is documented by the cleared photograph. The side and rear are approximate, especially where the coarse native outline covers later roof junctions or attached fabric."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "The southern front is based on the exact published public-domain photo. The native upload date anchors the circa-2008 representation. The crossing and rear volumes follow the heritage description, with estimated roof color, side and rear openings, and approximate dome and tower heights.",
+    "Street grade and façade steps are approximate. The original elevation samples include a west-to-east slope across the front. The exterior depicts the basilica, with a simplified choir and attached exterior fabric."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. OpenStreetMap ODbL 1.0 footprint and exact Hugopujszo photographer-released public-domain photograph.",
+  "qaLodCameras": [
+    {
+      "name": "whole-salta-cathedral-skyline",
+      "position": [
+        48,
+        29,
+        118
+      ],
+      "lookAt": [
+        0,
+        16,
+        10
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-salta-cathedral-district",
+      "position": [
+        48,
+        29,
+        118
+      ],
+      "lookAt": [
+        0,
+        16,
+        10
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-salta-cathedral-street",
+      "position": [
+        48,
+        29,
+        118
+      ],
+      "lookAt": [
+        0,
+        16,
+        10
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-salta-cathedral-closeup",
+      "position": [
+        48,
+        29,
+        118
+      ],
+      "lookAt": [
+        0,
+        16,
+        10
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "plaza-arcade-and-twin-belfries",
+      "position": [
+        39,
+        12,
+        103
+      ],
+      "lookAt": [
+        0,
+        17,
+        43
+      ]
+    },
+    {
+      "name": "nave-transept-and-crossing-dome",
+      "position": [
+        66,
+        49,
+        -58
+      ],
+      "lookAt": [
+        0,
+        13,
+        -5
+      ]
+    },
+    {
+      "name": "cream-columns-and-lobed-window",
+      "position": [
+        12,
+        12,
+        78
+      ],
+      "lookAt": [
+        1,
+        12,
+        45
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6391,
+    "vertices": 19173,
+    "materials": 5,
+    "bytes": 913092,
+    "sha256": "sha256:d08bce07db92222547182655eda80ddb9d722311ee11927595a1a233d567acb3"
+  }
+}

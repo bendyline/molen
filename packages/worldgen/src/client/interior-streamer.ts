@@ -3,9 +3,11 @@ import { distancePointToRing, pointInPolygon } from '../kernel/geometry2d';
 import { resolveInteriorProfile, validateInteriorCatalog } from '../kernel/interior-catalog';
 import { generateInteriorGeometrySteps } from '../kernel/interior-geometry';
 import { generateInteriorPlanSteps } from '../kernel/interior-plan';
+import { interiorToLocal } from '../kernel/interior-site';
 import type {
   InteriorGenerateOptions,
   InteriorGeometry,
+  InteriorPlan,
   InteriorSite,
 } from '../kernel/interior-types';
 import { MeshBufferBuilder } from '../kernel/mesh-buffers';
@@ -26,6 +28,19 @@ export interface InteriorStreamingOptions extends InteriorGenerateOptions {
    * the first frame drawing a new interior built its programs mid-frame, 100 ms or more each.
    */
   prepare?: (object: THREE.Object3D, signal: AbortSignal, parent: THREE.Object3D) => Promise<void>;
+  /**
+   * Dress an interior with host content, such as a car park's cars, as it is published. Objects
+   * added to `group` are disposed with it. `origin` converts site coordinates to the host's.
+   */
+  furnish?: (plan: InteriorPlan, group: THREE.Group, origin: Vec2) => void;
+}
+/** The lift a viewer is standing in. */
+export interface InteriorElevatorStop {
+  identity: string;
+  /** Site storey the viewer is on. */
+  level: number;
+  /** Floor height of each storey the lift serves, in the same frame as the viewer. */
+  floors: number[];
 }
 export interface InteriorStreamingStats {
   sites: number;
@@ -47,6 +62,10 @@ interface Entry {
   bytes: number;
   failed: boolean;
   estimatedBytes?: number;
+  /** The published plan, while it has lifts to answer for. */
+  plan?: InteriorPlan;
+  /** A storey a lift has been asked for, built before anyone is moved to it. */
+  requested?: number;
 }
 interface Region {
   root: THREE.Object3D;
@@ -60,6 +79,13 @@ interface Region {
 interface Candidate {
   entry: Entry;
   distance: number;
+}
+function nearestStorey(site: InteriorSite, y: number): number {
+  const storeys = site.storeys ?? [];
+  let best = 0;
+  for (const [level, storey] of storeys.entries())
+    if (storey.floor <= y + 0.5 || level === 0) best = level;
+  return best;
 }
 function visible(root: THREE.Object3D): boolean {
   if (!root.parent) return false;
@@ -96,7 +122,15 @@ export class InteriorStreamer {
     depthWrite: false,
   });
   private readonly cover = new THREE.MeshBasicMaterial({ color: 0x33434b, side: THREE.DoubleSide });
-  private job: { entry: Entry; steps: Generator<void, InteriorGeometry, void> } | undefined;
+  private readonly furnish: InteriorStreamingOptions['furnish'];
+  private job:
+    | {
+        entry: Entry;
+        steps: Generator<void, InteriorGeometry, void>;
+        plan?: InteriorPlan;
+        focus: number;
+      }
+    | undefined;
   private readonly counters: InteriorStreamingStats = {
     sites: 0,
     resident: 0,
@@ -125,8 +159,9 @@ export class InteriorStreamer {
       throw new RangeError(
         'Interior streaming needs positive finite budgets, an integer resident cap, and unloadDistance > loadDistance',
       );
-    const { prepare, ...generation } = options;
+    const { prepare, furnish, ...generation } = options;
     this.prepare = prepare;
+    this.furnish = furnish;
     this.generation = { ...generation, catalog: validateInteriorCatalog(generation.catalog) };
   }
 
@@ -164,6 +199,20 @@ export class InteriorStreamer {
           [1, 1, 1],
         );
       }
+      for (const cover of site.covers ?? [])
+        builder.addQuad(
+          'window',
+          'palette:#ffffff',
+          cover as [Vec3, Vec3, Vec3, Vec3],
+          [0, 1, 0],
+          [
+            [0, 0],
+            [1, 0],
+            [1, 1],
+            [0, 1],
+          ],
+          [1, 1, 1],
+        );
       region.entries.push({
         site,
         region,
@@ -226,6 +275,7 @@ export class InteriorStreamer {
     entry.object.removeFromParent();
     disposeWorldgenObject(entry.object);
     delete entry.object;
+    delete entry.plan;
     this.counters.bytes -= entry.bytes;
     entry.bytes = 0;
     this.active.delete(entry);
@@ -286,10 +336,28 @@ export class InteriorStreamer {
     const keep = new Set(wanted.map((c) => c.entry));
     for (const entry of this.active) if (!keep.has(entry)) this.evict(entry);
     if (this.job && !keep.has(this.job.entry)) this.job = undefined;
+    // A tower is built around whoever is in it: a floor a lift was asked for, or the one they
+    // walked to. It keeps its old floors until the new ones replace them.
+    const focusFor = (entry: Entry, distance: number): number | undefined => {
+      const levels = entry.plan?.tower?.levels;
+      if (levels === undefined) return undefined;
+      const want =
+        entry.requested ?? (distance < 1 ? nearestStorey(entry.site, position[1]) : undefined);
+      return want !== undefined && !levels.includes(want) ? want : undefined;
+    };
     // Preempt a farther pending job if the camera approaches a different entrance.
-    const next = wanted.find((c) => !c.entry.object)?.entry;
-    if (next && this.job?.entry !== next)
-      this.job = { entry: next, steps: this.generate(next.site) };
+    let next = wanted.find((c) => !c.entry.object)?.entry;
+    let focus = next ? nearestStorey(next.site, position[1]) : 0;
+    if (!next)
+      for (const candidate of wanted) {
+        const want = focusFor(candidate.entry, candidate.distance);
+        if (want === undefined) continue;
+        next = candidate.entry;
+        focus = want;
+        break;
+      }
+    if (next && (this.job?.entry !== next || this.job.focus !== focus))
+      this.job = { entry: next, steps: this.generate(next.site, focus), focus };
     try {
       const workStarted = performance.now();
       let steps = 0;
@@ -297,9 +365,13 @@ export class InteriorStreamer {
         const step = this.job.steps.next();
         if (!step.done) continue;
         const entry = this.job.entry,
+          plan = this.job.plan,
           geometry = step.value;
         entry.estimatedBytes = geometry.bytes;
         this.job = undefined;
+        // A resident tower rebuilt around another floor.
+        const rebuilt = entry.object !== undefined;
+        if (rebuilt) this.evict(entry, false);
         // Keep the nearest occupied interior even when more distant furnishings exhaust memory.
         for (const candidate of [...wanted].reverse()) {
           if (this.counters.bytes + geometry.bytes <= o.maxBytes) break;
@@ -346,12 +418,21 @@ export class InteriorStreamer {
           if (name === 'glass') mesh.userData.walkDoubleSided = true;
           root.add(mesh);
         }
+        // A host that cannot dress an interior must not cost the walker the building.
+        if (plan && this.furnish)
+          try {
+            this.furnish(plan, root, entry.region.origin);
+          } catch (error) {
+            console.warn('[molen] interior furnishing:', error);
+          }
         entry.object = root;
         entry.bytes = geometry.bytes;
         this.active.add(entry);
         this.counters.bytes += geometry.bytes;
         this.counters.generated++;
-        if (this.prepare === undefined) this.publish(entry);
+        // A rebuilt tower swaps in the same frame its old floors left, since a viewer stands on
+        // them, and draws with the materials its first build already prepared.
+        if (this.prepare === undefined || rebuilt) this.publish(entry, plan);
         else {
           const preparing = new AbortController();
           entry.preparing = preparing;
@@ -361,7 +442,7 @@ export class InteriorStreamer {
             .then(() => {
               if (entry.preparing !== preparing) return;
               delete entry.preparing;
-              this.publish(entry);
+              this.publish(entry, plan);
             });
         }
         break; // At most one upload per frame.
@@ -375,17 +456,63 @@ export class InteriorStreamer {
     this.counters.lastWorkMs = performance.now() - started;
   }
 
-  private publish(entry: Entry): void {
+  private publish(entry: Entry, plan: InteriorPlan | undefined): void {
     if (entry.object === undefined) return;
     entry.region.root.add(entry.object);
+    // A tower's lifts answer once its floors are in the scene, not while they are being prepared:
+    // a viewer moved to a storey before then would drop through a floor that is not shown yet.
+    if (plan?.tower) {
+      entry.plan = plan;
+      if (entry.requested !== undefined && plan.tower.levels.includes(entry.requested))
+        delete entry.requested;
+    }
     this.gates(entry.region);
   }
 
-  private *generate(site: InteriorSite): Generator<void, InteriorGeometry, void> {
-    const plan = yield* generateInteriorPlanSteps(site, this.generation);
+  private *generate(site: InteriorSite, focus: number): Generator<void, InteriorGeometry, void> {
+    const plan = yield* generateInteriorPlanSteps(site, { ...this.generation, focus });
+    if (this.job) this.job.plan = plan;
     yield;
     return yield* generateInteriorGeometrySteps(plan, this.generation.catalog);
   }
+  /** The lift at a metric position, if it is standing in one of a resident building. */
+  elevatorAt(position: readonly [number, number, number]): InteriorElevatorStop | undefined {
+    for (const entry of this.active) {
+      const tower = entry.plan?.tower;
+      const storeys = entry.site.storeys;
+      if (!tower?.elevators.length || !storeys || storeys.length < 2) continue;
+      const [x, z] = interiorToLocal(entry.site, [
+        position[0] - entry.region.origin[0],
+        position[2] - entry.region.origin[1],
+      ]);
+      const inside = tower.elevators.some(
+        ({ bounds: [x0, z0, x1, z1] }) => x >= x0 && x <= x1 && z >= z0 && z <= z1,
+      );
+      const level = nearestStorey(entry.site, position[1]);
+      if (inside)
+        return {
+          identity: entry.site.identity,
+          level,
+          floors: storeys.map((storey) => storey.floor),
+        };
+    }
+    return undefined;
+  }
+
+  /**
+   * Ask a resident tower for a storey. True once it is built and a viewer can be moved there;
+   * until then keep asking, because moving first would drop them through a floor that is not yet.
+   */
+  requestStorey(identity: string, level: number): boolean {
+    for (const entry of this.active) {
+      if (entry.site.identity !== identity) continue;
+      if (entry.plan?.tower?.levels.includes(level)) return true;
+      entry.requested = level;
+      return false;
+    }
+    return false;
+  }
+
   stats(): InteriorStreamingStats {
     return { ...this.counters, resident: this.active.size, pending: this.job ? 1 : 0 };
   }

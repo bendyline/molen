@@ -61,6 +61,17 @@ export function crispLandcover(feature: TerrainLandcoverFeature): boolean {
       'pedestrian',
       'pavement',
       'parking',
+      // Mown and raked ground ends on a line: a green or a bunker is smaller than the soft edge.
+      'golf_fairway',
+      'golf_green',
+      'golf_tee',
+      'golf_bunker',
+      // Courts, skinned infields and painted lines are edged the same way.
+      'sports_turf',
+      'sports_court',
+      'sports_blacktop',
+      'sports_dirt',
+      'sports_line',
     ].includes(landcoverAppearance(feature))
   );
 }

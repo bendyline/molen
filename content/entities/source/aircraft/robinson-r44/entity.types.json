@@ -44,8 +44,8 @@
             ],
             "pilotEye": [
               -0.3,
-              1.43,
-              1.05
+              1.5,
+              0.88
             ],
             "hardLandingSpeed": 4.5,
             "hardLandingRoll": 0.35,
@@ -665,7 +665,8 @@
               "rotorEfficiency": 0.75,
               "profilePowerFraction": 0.12,
               "fixedGear": true,
-              "gearTransitTime": 0
+              "gearTransitTime": 0,
+              "rotorInertiaTime": 1.6
             },
             "actuators": {
               "eject": {
@@ -764,7 +765,10 @@
                 },
                 "engines": []
               }
-            ]
+            ],
+            "fuel": {
+              "capacity": 133
+            }
           }
         },
         "aircraftInput": {
@@ -810,8 +814,8 @@
               "role": "driver",
               "position": [
                 -0.3,
-                1.43,
-                1.05
+                1.5,
+                0.88
               ]
             },
             {
@@ -819,8 +823,8 @@
               "role": "passenger",
               "position": [
                 0.3,
-                1.43,
-                1.05
+                1.5,
+                0.88
               ]
             }
           ],
@@ -828,14 +832,14 @@
             [
               1.44,
               0,
-              1.05
+              0.88
             ]
           ],
           "exits": [
             [
               2.14,
               0,
-              1.05
+              0.88
             ]
           ],
           "reach": 4

@@ -1,0 +1,569 @@
+{
+  "planId": "little_white_house",
+  "id": "little_white_house",
+  "assetId": "molen.worldgen.structure.little_white_house",
+  "title": "Little White House",
+  "wikidataId": "Q2714456",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -84.6876258,
+    "latitude": 32.881392649999995
+  },
+  "size": [
+    17.920000076293945,
+    10.747499942779541,
+    18.492755889892578
+  ],
+  "actualBounds": {
+    "min": [
+      -9,
+      -4.247499942779541,
+      -9.27275562286377
+    ],
+    "max": [
+      8.920000076293945,
+      6.5,
+      9.220000267028809
+    ]
+  },
+  "visualBrief": "Pale clapboard cottage with a four-column portico, shuttered sashes, a shingle roof and a curved rear sun deck.",
+  "nativeAxes": {
+    "x": "right along the entrance elevation",
+    "y": "up",
+    "z": "outward to the east garden approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2016-10-29",
+    "validFrom": "2016-01-01",
+    "validUntil": "2018-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:16_24_062_little_white_house.jpg",
+    "https://commons.wikimedia.org/wiki/File:17_06_001_little_white_house.jpg"
+  ],
+  "stories": [
+    {
+      "id": "little-white-house-wp",
+      "url": "https://qualla.com/little-white-house/"
+    }
+  ],
+  "referenceInputHash": "9de27880662cc3dc9ca1510f0f9d3bb177f50f081647012675e2bc813341ac2a",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dj/djg/little_white_house/models/little-white-house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dj/djg/little_white_house/models/little-white-house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.59,
+    "surfaces": {
+      "siding": {
+        "slot": "wall",
+        "graph": "wood_painted_lap",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "paint": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "shingles": {
+        "slot": "roof",
+        "graph": "shingle_cedar",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "foundation",
+        "graph": "brick",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "awning": {
+        "slot": "roof",
+        "graph": "fabric_canvas",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.48,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "shingles": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "awning": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.105,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "shingles": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "awning": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.025,
+        "surfaces": {
+          "siding": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "shingles": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "foundation",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "awning": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_painted_lap",
+    "wood_plain",
+    "shingle_cedar",
+    "stone_limestone_raw",
+    "brick",
+    "fabric_canvas"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.14,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -84.6876258,
+      32.881392649999995
+    ],
+    "heading": 1.599913975534209,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -84.68749749310344,
+        32.881395788361594
+      ],
+      "modelHeight": 0,
+      "basis": "East approach outside the front porch."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -0.3386188942198727,
+          -9.21275524882226
+        ],
+        [
+          -1.652480322499285,
+          -8.839511157911396
+        ],
+        [
+          -2.745461896900786,
+          -8.020264686887755
+        ],
+        [
+          -3.4804986445879917,
+          -6.8726066288413
+        ],
+        [
+          -3.7533629452545445,
+          -5.5337892603012655
+        ],
+        [
+          -3.6774226986297025,
+          -1.6409236194522787
+        ],
+        [
+          -8.825551716718198,
+          -1.5383490140377547
+        ],
+        [
+          -8.666930445555957,
+          6.780672991787735
+        ],
+        [
+          -3.5747097490443283,
+          6.68582253992918
+        ],
+        [
+          -3.5336572743117984,
+          9.099971797040231
+        ],
+        [
+          -0.1797340442788034,
+          9.038664698677229
+        ],
+        [
+          3.464041514552105,
+          8.967094739314609
+        ],
+        [
+          3.4245903245537206,
+          6.880330783771276
+        ],
+        [
+          8.672864415569991,
+          6.780672991787737
+        ],
+        [
+          8.6307232613102,
+          4.403902159191117
+        ],
+        [
+          8.495622096156179,
+          -2.8108358835016034
+        ],
+        [
+          3.882688815318119,
+          -2.730083364241511
+        ],
+        [
+          3.8237683321333464,
+          -5.6778474345384655
+        ],
+        [
+          3.4319926793265703,
+          -7.138900892779201
+        ],
+        [
+          2.4868176411278595,
+          -8.335496598586984
+        ],
+        [
+          1.1605633373412307,
+          -9.06621238042255
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "The named cottage and its attached exterior perimeter from OpenStreetMap way 324614887."
+    },
+    "featureIds": [
+      "way/324614887"
+    ],
+    "source": "https://www.openstreetmap.org/way/324614887",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3822ad1d1298d97483e4206b3ab38ca487d4de87f01a05b9213e03a134b1da28",
+    "notes": "Only the attached dwelling, entry and sun deck form this asset. The guest cottage, servants’ cottage and museum have separate footprints."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_cedar",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.fabric_canvas",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "The October 2016 photograph sets the white clapboard front, four columns, black-green shutters, roof and chimney. The March 2017 photograph sets the sun deck rail and dark-green fabric awning.",
+    "The main outline, porch extent and deck arc come from the named mapped house. Roof pitches, supports below the sun deck, concealed rear openings, and exact foundation and sill heights are estimates.",
+    "The separate guest cottage, servants’ cottage and museum are outside the dwelling model. The original local elevations are unchanged."
+  ],
+  "sourceLicense": "Original geometry under the repository license. The mapped outline is ODbL. The two exact Qualla photographs are CC0.",
+  "qaLodCameras": [
+    {
+      "name": "whole-little-white-house-skyline",
+      "position": [
+        19,
+        10,
+        31
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        1.2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-little-white-house-district",
+      "position": [
+        19,
+        10,
+        31
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        1.2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-little-white-house-street",
+      "position": [
+        19,
+        10,
+        31
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        1.2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-little-white-house-closeup",
+      "position": [
+        19,
+        10,
+        31
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        1.2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "east-porch-and-shuttered-windows",
+      "position": [
+        0,
+        4,
+        29
+      ],
+      "lookAt": [
+        0,
+        2.46,
+        6.7
+      ]
+    },
+    {
+      "name": "sun-deck-and-awning",
+      "position": [
+        -13,
+        5.9,
+        -20
+      ],
+      "lookAt": [
+        -0.45,
+        1.01,
+        -5.6
+      ]
+    },
+    {
+      "name": "gable-and-slope-foundations",
+      "position": [
+        22,
+        8.7,
+        -8.8
+      ],
+      "lookAt": [
+        1.7,
+        0.55,
+        0.3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3079,
+    "vertices": 9237,
+    "materials": 7,
+    "bytes": 602064,
+    "sha256": "sha256:26cde314da020d6541e4e74a3172ccec7897a55d6742cd7164f699015d5b94dc"
+  }
+}

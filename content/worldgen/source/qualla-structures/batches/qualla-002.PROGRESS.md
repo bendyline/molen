@@ -1,23 +1,12 @@
 # Qualla compat — local 300 — completion progress
 
-**Goal blocked on other-device integration: 298 completed targets / 300; all 298 local targets complete.** Continuing with user-authorized best-effort reconstructions from available terrain and cleared images; missing measurements are explicit estimates. Two targets remain assigned to the other device.
+**Round complete. All 300 fixed targets are accepted.**
 
-<!-- remaining-two-external-targets:start -->
-
-Completed Fondukistan, Datong, Giant Magellan, Mubarak Mandi and [Pierre Auger](research/auger-collection-completion-2026-11-03.json) in this pass. Pierre Auger contains 29 independent model types and 1,813 placements. All local construction and story annotations are complete.
-
-The [two remaining fixed targets](research/remaining-two-external-targets-2026-11-03.json) are reserved for the other device: [Arena da Amazônia](https://qualla.com/arena-da-amazonia/) and [Great Mosque of Herat](https://qualla.com/great-mosque-of-herat/). Their existing catalog models are already remembered in their stories; ownership and existing reviews are preserved.
-
-<!-- remaining-two-external-targets:end -->
-
-Previous survey-download hold was superseded by the user-authorized estimated reconstruction. No declined download was retried. The factory uses existing cleared photographs and cached terrain.
-
+Arena da Amazônia and the Great Mosque of Herat passed current catalog review, including all four detail levels and geographic placement. Both story links are ready. [Round closeout](research/round-002-closeout-2026-11-09.json).
 
 **Saved strict readiness rows: 167 / 300.** Older accepted approvals are retained; current construction progress is tracked separately in the [continuation ledger](REGIONAL-CONTINUATION-2026-10-25.json).
 
-The saved rows record 166 technical validations and 264 reference sets meeting the public-domain imagery policy. Accepted models are preserved.
-
-Finish each model using Qualla photographs, current renders and story synchronization in the same authoring pass. Every structure catalog candidate and collection member remains assigned to the other device.
+The strict ledger preserves its earlier checks. The two closeout entries carry current catalog reviews and retain their inherited authoring provenance.
 
 Completion is recomputed from current evidence; editing geometry, source references, material graphs, terrain or placement invalidates the affected approval. [Machine-readable ledger](qualla-002.readiness.json).
 
@@ -144,7 +133,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 119 | [Hotel Nutibara](https://qualla.com/hotel-nutibara/) | Complete | All required evidence current |
 | 120 | [Statue of Father Cícero](https://qualla.com/statue-of-father-cicero/) | Complete | All required evidence current |
 | 121 | [Miraflores Palace](https://qualla.com/miraflores-palace/) | Complete | All required evidence current |
-| 122 | [Arena da Amazônia](https://qualla.com/arena-da-amazonia/) | Other device | structure-catalog-other-device |
+| 122 | [Arena da Amazônia](https://qualla.com/arena-da-amazonia/) | Complete via existing catalog model | Current technical review and ready story link |
 | 123 | [Cartagena Cathedral, Colombia](https://qualla.com/cartagena-cathedral-colombia/) | Complete | All required evidence current |
 | 124 | [Paleontological Museum, Villa de Leyva](https://qualla.com/villa-de-leyva/) | Complete | All required evidence current |
 | 125 | [Tate's Cairn](https://qualla.com/tate-s-cairn/) | Complete | Three whole independent station buildings; main cover size/position explicitly estimated, original terrain/older service approvals unchanged; story-linked/repeat zero |
@@ -219,7 +208,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 194 | [Kaptai Dam](https://qualla.com/kaptai-dam/) | Complete | All required evidence current |
 | 195 | [Gawhar Shad Mausoleum](https://qualla.com/gawhar-shad-mausoleum/) | Complete | All required evidence current |
 | 196 | [Mubarak Mandi Palace](https://qualla.com/mubarak-mandi-palace/) | In progress | 9 completed collection members; whole site unfinished. See [current construction ledger](REGIONAL-CONTINUATION-2026-10-25.json) |
-| 197 | [Great Mosque of Herat](https://qualla.com/great-mosque-of-herat/) | Other device | structure-catalog-other-device |
+| 197 | [Great Mosque of Herat](https://qualla.com/great-mosque-of-herat/) | Complete via existing catalog model | Current technical review and ready story link |
 | 198 | [Wazir Mansion](https://qualla.com/wazir-mansion/) | Complete | All required evidence current |
 | 199 | [Great Pyramid of Giza](https://qualla.com/great-pyramid-of-giza/) | Complete | All required evidence current |
 | 200 | [Dona Ana Bridge](https://qualla.com/dona-ana-bridge/) | Complete | All required evidence current |

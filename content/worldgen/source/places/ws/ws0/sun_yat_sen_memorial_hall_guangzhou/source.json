@@ -1,0 +1,61 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.sun_yat_sen_memorial_hall_guangzhou",
+  "kind": "static-structure",
+  "title": "Sun Yat-sen Memorial Hall, Guangzhou",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.sun_yat_sen_memorial_hall_guangzhou",
+        "output": "assets/places/ws/ws0/sun_yat_sen_memorial_hall_guangzhou/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2c43345b1fe7d9d099af17c5cb74a01babaef8bf4ee96df634281b33da8de590"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-memorial",
+        "path": "models/generate-memorial.mjs"
+      },
+      {
+        "id": "memorial-model",
+        "path": "models/memorial-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/exterior-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/gabled-range-native-original.json",
+      "reference-rights/qualla-distant-hall-original.json",
+      "reference-rights/south-front-native-original.json",
+      "references/gabled-range-2013-huangdan2060-cc0.jpg",
+      "references/south-front-2013-huangdan2060-cc0.jpg",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-26693-14218.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "native-map/roof-and-portico-controls.json",
+      "qa.json"
+    ]
+  }
+}

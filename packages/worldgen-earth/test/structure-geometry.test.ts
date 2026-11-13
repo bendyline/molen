@@ -87,6 +87,163 @@ const context = {
     height: { min: 0, max: 1 },
   }),
 } as TerrainPyramidTileLayerContext;
+
+it('suppresses only the paving area represented by a loaded bridge', () => {
+  const tile = createEmptyTerrainSemanticTile();
+  const polygons = [
+    {
+      outer: [
+        [0.2, 0.48],
+        [0.8, 0.48],
+        [0.8, 0.52],
+        [0.2, 0.52],
+      ] as [number, number][],
+    },
+  ];
+  const deck = { id: 42, class: 'pedestrian', polygons };
+  const bank = { id: 43, class: 'pedestrian', polygons };
+  tile.landcover.push(deck, bank);
+  const bridge: StructurePlacement = {
+    ...entry,
+    replaceRoads: { length: 100, width: 20, pavingAreaIds: [42] },
+  };
+  expect(withoutStructureRoads(tile, context, [], 1)).toBe(tile);
+  const result = withoutStructureRoads(tile, context, [bridge], 1);
+  expect(result.landcover).toEqual([bank]);
+  expect(result.landcover[0]).toBe(bank);
+  expect(tile.landcover).toEqual([deck, bank]);
+});
+
+it('replaces selected bridge centerlines and preserves neighboring overpasses', () => {
+  const tile = createEmptyTerrainSemanticTile();
+  const parallel = {
+    id: 22,
+    class: 'highway',
+    bridge: true,
+    lines: [
+      [
+        [0.4, 0.51],
+        [0.6, 0.51],
+      ],
+      [
+        [0.45, 0.53],
+        [0.55, 0.53],
+      ],
+    ] as [number, number][][],
+  };
+  tile.transportation.push(
+    {
+      id: 11,
+      class: 'highway',
+      bridge: true,
+      lines: [
+        [
+          [0.4, 0.5],
+          [0.6, 0.5],
+        ],
+      ],
+    },
+    {
+      id: 'ramp',
+      class: 'highway',
+      bridge: true,
+      lines: [
+        [
+          [0.5, 0.48],
+          [0.5, 0.52],
+        ],
+      ],
+    },
+    parallel,
+    {
+      class: 'highway',
+      bridge: true,
+      lines: [
+        [
+          [0.4, 0.49],
+          [0.6, 0.49],
+        ],
+      ],
+    },
+  );
+  const bridge: StructurePlacement = {
+    ...entry,
+    replaceRoads: {
+      length: 100,
+      width: 20,
+      bridgeFeatureIds: [11, 'ramp'],
+      includeConnectedApproaches: true,
+    },
+  };
+  const result = withoutStructureRoads(tile, context, [bridge], 1);
+  expect(result.transportation).toEqual(tile.transportation.slice(2));
+  expect(result.transportation[0]).toBe(parallel);
+});
+
+it('joins parallel decks to native approaches at their own heights', () => {
+  const tile = createEmptyTerrainSemanticTile();
+  for (const [id, z] of [
+    [11, 0.44],
+    [22, 0.56],
+  ] as const) {
+    tile.transportation.push(
+      {
+        id,
+        class: 'highway',
+        bridge: true,
+        lines: [
+          [
+            [0.25, z],
+            [0.75, z],
+          ],
+        ],
+      },
+      {
+        id: id + 1,
+        class: 'highway',
+        lines: [
+          [
+            [0.75, z],
+            [0.95, z],
+          ],
+        ],
+      },
+    );
+  }
+  const deck = (id: number, z: number, y: number) => ({
+    length: 100,
+    width: 10,
+    outline: [
+      [-50, z - 5],
+      [50, z - 5],
+      [50, z + 5],
+      [-50, z + 5],
+    ] as [number, number][],
+    deckEndpoints: [
+      [-50, z],
+      [50, z],
+    ] as [[number, number], [number, number]],
+    deckHeight: y,
+    bridgeFeatureIds: [id],
+    includeConnectedApproaches: true,
+  });
+  const result = withoutStructureRoads(
+    tile,
+    context,
+    [
+      {
+        ...entry,
+        replaceRoads: { ...deck(11, -12, 4), additionalDecks: [deck(22, 12, 9)] },
+      },
+    ],
+    1,
+  );
+  expect(result.transportation.map((road) => road.id)).toEqual([12, 23]);
+  expect(result.transportation.map((road) => road.bridgeConnections?.[0]?.elevation)).toEqual([
+    4, 9,
+  ]);
+});
+
 describe('curved bridge road ends', () => {
   it('joins carriageway branches at an existing interior bridge node, preserving unrelated roads', () => {
     const tile = createEmptyTerrainSemanticTile();

@@ -1,0 +1,68 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.roman_walls_of_lugo",
+  "inputHash": "sha256:819f8829242e70d2fd2cd981b91550f8117ebf3c682480c9f79715566157c52b",
+  "sourceHash": "sha256:007440b5dd9da121cb5bad87001790102978e2e86bb0d1f87e0b9a7802036327",
+  "runtimeHash": "sha256:9f97b5d0b91d3f25f87a75dfaca9ed1e8e4b805275e8b74a328fc17ce694f992",
+  "fixtureHash": "sha256:a2e4f2e42c358f7eab88bdc1d1d21c30c778919f11c922057741f145e39a6e62",
+  "placementHash": "sha256:40d160cce5824998849aa62283699910e3ab9dd0b88d2700e6578657412af10f",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_drywall": {
+      "path": "materials/stone_drywall.matgraph.json",
+      "hash": "sha256:a3bd96f1a584b9da94425ad12ed716a17a528cd76d22ce4468cb18476a7a3619"
+    },
+    "molen.worldgen.material.stone_ashlar": {
+      "path": "materials/stone_ashlar.matgraph.json",
+      "hash": "sha256:f5692cbd995206b1475a803b027d181a664bd3a20df51db34667f205abce8093"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-lugo.png",
+      "hash": "sha256:8c07387446a684da53c6f940678ec52d27e7cbb80168eae10fbadfb088c2c6cb",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          360.85332000000005,
+          14.24054,
+          -192.88551999999999
+        ],
+        "lookAt": [
+          339.14118,
+          11.64054,
+          -190.52275
+        ],
+        "fov": 53,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.45,
+          1,
+          0.64
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "roman.walls.of.lugo",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Three shared material graphs provide slate-like rubble, dressed arch stones and rampart paving. The rubble repeat is compressed vertically in model meters to reflect thin slate courses. Each graph resolves once."
+}

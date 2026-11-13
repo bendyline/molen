@@ -1,0 +1,260 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.rail.mpi_mp36ph_3c": {
+      "doc": "MPI MP36PH-3C: cab-forward commuter passenger locomotive with a full-width cowl carbody, raked windscreen, head-end-power compartment behind the cab, Blomberg B trucks with 40 in wheels, in a generic commuter livery (rail-livery-stripe band, rail-livery-accent pinstripe). Full cab interior (desktop console, live throttle and automatic brake handles, engineer and conductor seats). Drives on track with locked steering.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.mpi_mp36ph_3c",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.mpi_mp36ph_3c",
+          "color": "#c3c6c5",
+          "spec": {
+            "label": "MPI MP36PH-3C",
+            "bodyStyle": "locomotive",
+            "genericLabel": "Commuter passenger locomotive",
+            "width": 3.2,
+            "length": 19.8,
+            "height": 4.75,
+            "centerOfMass": [
+              0,
+              1.8,
+              0
+            ],
+            "wheelbase": 12.5,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.508,
+            "mass": 129000,
+            "engineForce": 290000,
+            "maxSpeed": 49,
+            "reverseSpeed": 49,
+            "brakeDeceleration": 0.6,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [
+              -0.72,
+              3.25,
+              8.05
+            ],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00003,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 12.5,
+              "couplerLength": 20.6,
+              "power": 2200000,
+              "gauge": 1.435,
+              "profile": "locomotive"
+            }
+          },
+          "visual": {
+            "wheelNodes": [
+              "axle-1",
+              "axle-2",
+              "axle-3",
+              "axle-4"
+            ],
+            "frontWheelNodes": [
+              "axle-1"
+            ],
+            "paintMaterial": "rail-livery-body",
+            "interior": {
+              "nodes": [
+                "close-detail",
+                "throttle-handle",
+                "brake-handle"
+              ],
+              "bindings": [
+                {
+                  "node": "throttle-handle",
+                  "source": "throttle",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": 0.5,
+                  "min": -0.5,
+                  "max": 0.5,
+                  "responseSeconds": 0.2
+                },
+                {
+                  "node": "brake-handle",
+                  "source": "brake",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -0.7,
+                  "responseSeconds": 0.3
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                -0.72,
+                3.25,
+                8.05
+              ]
+            },
+            {
+              "id": "conductor",
+              "role": "passenger",
+              "position": [
+                0.72,
+                3.25,
+                8.05
+              ]
+            }
+          ],
+          "entries": [
+            [
+              1.8,
+              0.45,
+              7.35
+            ],
+            [
+              -1.8,
+              0.45,
+              7.35
+            ]
+          ],
+          "exits": [
+            [
+              2.5,
+              0,
+              7.35
+            ],
+            [
+              -2.5,
+              0,
+              7.35
+            ]
+          ],
+          "reach": 3
+        },
+        "ambientRole": {
+          "role": "rail",
+          "track": "heavy",
+          "cruise": 22,
+          "weight": 1.5,
+          "consist": {
+            "units": [
+              1,
+              1
+            ],
+            "length": [
+              3,
+              5
+            ],
+            "block": [
+              3,
+              5
+            ],
+            "cars": [
+              {
+                "type": "molen.entities.rail.bombardier_bilevel_coach"
+              }
+            ]
+          }
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.diesel",
+          "loop": true,
+          "pitch": 0.95,
+          "gain": 0.95,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [
+              [
+                -1,
+                0.62
+              ],
+              [
+                0,
+                0.55
+              ],
+              [
+                0.5,
+                0.78
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          },
+          "gainFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [
+              [
+                -1,
+                0.75
+              ],
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
+        }
+      },
+      "assets": [
+        "molen.entities.rail.mpi_mp36ph_3c"
+      ]
+    }
+  }
+}

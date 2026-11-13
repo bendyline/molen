@@ -50,7 +50,10 @@ export interface WorldgenBatchInput {
   fallbackStyle?: string;
   scatterId?: string;
   /** A composed scatter channel with its own identity and optional spatial rule gate. */
-  scatterEnvironment?: Pick<ScatterSampleInput, 'doc' | 'pack' | 'acceptsRule' | 'modelAt'>;
+  scatterEnvironment?: Pick<
+    ScatterSampleInput,
+    'doc' | 'pack' | 'acceptsRule' | 'modelAt' | 'treeline'
+  >;
   budgets?: Partial<WorldgenBudgets>;
   /** Detail tier for the batch (0 = full). */
   tier?: number;
@@ -515,9 +518,7 @@ export function* generateWorldgenBatchSteps(
       prop.at[1],
       prop.yaw ?? 0,
       ...(prop.scale ?? [1, 1, 1]),
-      1,
-      1,
-      1,
+      ...(prop.color ?? [1, 1, 1]),
     );
     fixed.set(prop.model, list);
     usedInstances++;
@@ -544,6 +545,9 @@ export function* generateWorldgenBatchSteps(
         : {}),
       ...(input.scatterEnvironment?.modelAt !== undefined
         ? { modelAt: input.scatterEnvironment.modelAt }
+        : {}),
+      ...(input.scatterEnvironment?.treeline !== undefined
+        ? { treeline: input.scatterEnvironment.treeline }
         : {}),
       ground,
       budget: {

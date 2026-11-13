@@ -39,12 +39,21 @@ const water = await createTerrainWaterMaterialAsync(
   backend,
 );
 const plane = new THREE.PlaneGeometry(3000, 3000).rotateX(-Math.PI / 2);
-renderer.worldRoot.add(new THREE.Mesh(plane, water));
+const surface = new THREE.Mesh(plane, water);
+renderer.worldRoot.add(surface);
 const api = {
-  async frame(time: number, far = false, origin: [number, number] = [0, 0]) {
+  /** `place` moves the water and the camera together to an absolute world X, Z. */
+  async frame(
+    time: number,
+    far = false,
+    origin: [number, number] = [0, 0],
+    place: [number, number] = [0, 0],
+  ) {
+    surface.position.set(place[0], 0, place[1]);
+    surface.updateMatrix();
     renderer.setCamera({
-      position: [0, far ? 180 : 7, far ? 300 : 25],
-      lookAt: [0, 0, far ? -250 : -30],
+      position: [place[0], far ? 180 : 7, place[1] + (far ? 300 : 25)],
+      lookAt: [place[0], 0, place[1] + (far ? -250 : -30)],
     });
     renderer.setWorldOrigin([origin[0], 0, origin[1]]);
     setTerrainWaterTime(water, time, origin);

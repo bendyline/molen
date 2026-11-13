@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.paris_gare_de_lyon",
+  "kind": "static-structure",
+  "title": "Paris Gare de Lyon",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json",
+      "model-brief.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.paris_gare_de_lyon",
+        "output": "assets/places/u0/u09/paris_gare_de_lyon/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:7f64d71b9dc4fc4d9b042f61e00efc156de81de2741b79e337ab85578570fcca"
+      }
+    ],
+    "generators": [
+      {
+        "id": "paris_gare_de_lyon",
+        "path": "models/station-model.mjs"
+      },
+      {
+        "id": "paris_gare_de_lyon_clock_tower",
+        "path": "models/clock-tower.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "preview.png",
+      "map-frame.json",
+      "placement-draft.json",
+      "layout.json",
+      "pmtiles-map.json",
+      "terrain-grid.json",
+      "review-scope.json",
+      "reference-observations.json",
+      "terrain-review.height.png",
+      "terrain-review.terrain.json",
+      "import-report.json",
+      "placement-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json",
+      "QA-REVIEW.md",
+      "site-preview.png"
+    ]
+  }
+}

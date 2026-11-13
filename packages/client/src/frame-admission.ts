@@ -4,7 +4,8 @@ export interface AdmissionOptions {
   signal?: AbortSignal;
   label?: string;
   /**
-   * Background jobs run only in frame budget that no normal job is waiting for. Urgent jobs run
+   * Background jobs run in frame budget that no normal job is waiting for, and once one has waited
+   * `backgroundWaitMs` it takes a turn after every `backgroundShare` other jobs. Urgent jobs run
    * before normal ones, in their own order: small work the view is visibly waiting on, such as
    * terrain ground. Sustained urgent traffic shares service with waiting normal work.
    */
@@ -23,11 +24,21 @@ export interface AdmissionSample {
 }
 export interface SceneAdmission {
   run<T>(task: () => T, options?: AdmissionOptions): Promise<T>;
+  /** Jobs waiting, where the queue can say, so optional work can hold off behind a backlog. */
+  readonly pending?: number;
 }
 export interface FrameAdmissionOptions {
   maxMilliseconds?: number;
   maxBytes?: number;
   maxJobs?: number;
+  /**
+   * How long a background job waits (ms, default 750) before the lane takes turns with the others,
+   * and how many other jobs run between its turns (default 8). In flight normal work never runs
+   * out, and what waited behind it (texture upgrades, the levels an object is not showing yet)
+   * arrived seconds late: a second on average over a town, five at worst.
+   */
+  backgroundWaitMs?: number;
+  backgroundShare?: number;
   now?: () => number;
   schedule?: (callback: () => void) => void;
   onSample?: (sample: AdmissionSample) => void;
@@ -42,6 +53,17 @@ interface Job {
   /** A queued background job's promise, the key `promote` finds it by. */
   promise?: Promise<unknown>;
 }
+/** The frame length per-frame budgets are set for: 60 frames a second. */
+const NOMINAL_FRAME_MS = 1000 / 60;
+/**
+ * Frames at least this long, `SLOW_FRAMES` in a row while work waits, are software rendering
+ * (200 ms to a second a frame), not a device to keep interactive: there the budget is the same
+ * share of the frame as of one at 60 a second. Interactive rates keep the fixed budget, which a
+ * busy frame cannot spare (see earthAdmission). A fixed 2 ms of a 450 ms frame left streaming
+ * under half a percent of the time, and a town's layers spent their two-minute deadline queued.
+ */
+const SLOW_FRAME_MS = 100;
+const SLOW_FRAMES = 3;
 export class FrameAdmissionQueue implements SceneAdmission {
   private jobs: Job[] = [];
   private background: Job[] = [];
@@ -49,6 +71,14 @@ export class FrameAdmissionQueue implements SceneAdmission {
   private scheduled = false;
   private disposed = false;
   private paused = false;
+  /** Milliseconds past its budget the last flush ran, repaid from the frames after it. */
+  private overrunMs = 0;
+  /** When the last flush finished, so a repaying frame knows how long it was. */
+  private lastFlushEnd: number | undefined;
+  /** The last flush left work waiting, so the time since it ended is a frame, not idle time. */
+  private continuing = false;
+  /** Frame lengths outside the queue while work waited, newest last, at most SLOW_FRAMES. */
+  private readonly recentFrames: number[] = [];
   private readonly clock: () => number;
   private readonly schedule: (callback: () => void) => void;
   private maxMs: number;
@@ -56,6 +86,10 @@ export class FrameAdmissionQueue implements SceneAdmission {
   private maxJobs: number;
   private urgentStreak = 0;
   private orderedStreak = 0;
+  /** Jobs from the other lanes since the background lane last ran one. */
+  private foregroundStreak = 0;
+  private readonly backgroundWaitMs: number;
+  private readonly backgroundShare: number;
   /** Recent work time per label (ms, smoothed): what the next job of that kind will likely take. */
   private readonly expected = new Map<string, number>();
   constructor(private readonly options: FrameAdmissionOptions = {}) {
@@ -69,6 +103,12 @@ export class FrameAdmissionQueue implements SceneAdmission {
     this.maxMs = options.maxMilliseconds ?? 2;
     this.maxBytes = options.maxBytes ?? 2 * 1024 * 1024;
     this.maxJobs = options.maxJobs ?? 32;
+    this.backgroundWaitMs = options.backgroundWaitMs ?? 750;
+    this.backgroundShare = options.backgroundShare ?? 8;
+    if (!(this.backgroundWaitMs >= 0) || !(this.backgroundShare >= 1))
+      throw new RangeError(
+        'Background admission needs a nonnegative wait and a share of 1 or more',
+      );
     this.setLimits({});
   }
   /**
@@ -153,6 +193,8 @@ export class FrameAdmissionQueue implements SceneAdmission {
   /** Hold queued uploads/preparation while the view is inactive; keep resources for resume. */
   setPaused(paused: boolean): void {
     this.paused = paused;
+    // A paused stretch is not a frame.
+    if (paused) this.continuing = false;
     if (!paused) this.request();
   }
   private request(): void {
@@ -163,14 +205,43 @@ export class FrameAdmissionQueue implements SceneAdmission {
       this.flush();
     });
   }
-  /** One frame's budget. Exposed for hosts with a manual frame loop and deterministic tests. */
+  /**
+   * One frame's budget. Exposed for hosts with a manual frame loop and deterministic tests.
+   *
+   * A job cannot be split, so one can take several frames' budget by itself, and a queue of them
+   * would hold every frame at that length however small the budget. A frame that overruns repays
+   * the excess from the frames after it, so the budget holds on average: a 20 ms shader build
+   * every third frame, rather than every frame at half the frame rate, for the same throughput.
+   *
+   * The budget is a share of a frame at 60 a second. A frame that comes later than that repays
+   * the same share of its own length: under software rendering a frame takes 200 ms or more, and
+   * a job that waits on the GPU once is charged for a whole such frame, so repaying 2 ms a frame
+   * left the queue idle for minutes. At 60 frames a second and faster nothing changes. Sustained
+   * frames that slow also run that share of themselves (see SLOW_FRAME_MS).
+   */
   flush(): void {
     if (this.disposed || this.paused) return;
+    const sinceLast = this.lastFlushEnd === undefined ? 0 : this.clock() - this.lastFlushEnd;
+    const budget = this.frameBudget(sinceLast);
+    if (this.overrunMs > 0) {
+      const repaid = Math.max(this.maxMs, (sinceLast * this.maxMs) / NOMINAL_FRAME_MS);
+      this.overrunMs = Math.max(0, this.overrunMs - repaid);
+      this.lastFlushEnd = this.clock();
+      this.continuing = this.pending > 0;
+      this.request();
+      return;
+    }
     const start = this.clock();
     let bytes = 0,
       count = 0;
     for (;;) {
-      const lane = this.jobs.length > 0 ? this.jobs : this.background;
+      // A background job that has waited its time out takes a turn among the others.
+      const overdue =
+        this.jobs.length > 0 &&
+        this.foregroundStreak >= this.backgroundShare &&
+        this.background.length > 0 &&
+        this.clock() - (this.background[0] as Job).queued >= this.backgroundWaitMs;
+      const lane = this.jobs.length > 0 && !overdue ? this.jobs : this.background;
       // A flying camera continuously produces urgent terrain. Strict priority left semantic
       // decode/publication waiting tens of seconds, even with idle geometry workers. After
       // two urgent jobs, serve one normal job that has waited at least 50 ms. Keep the streak
@@ -209,7 +280,7 @@ export class FrameAdmissionQueue implements SceneAdmission {
       if (
         count > 0 &&
         (count >= this.maxJobs ||
-          this.clock() - start + (this.expected.get(label) ?? 0) > this.maxMs ||
+          this.clock() - start + (this.expected.get(label) ?? 0) > budget ||
           bytes + cost > this.maxBytes)
       )
         break;
@@ -220,6 +291,7 @@ export class FrameAdmissionQueue implements SceneAdmission {
         next.reject(new DOMException('Admission cancelled', 'AbortError'));
         continue;
       }
+      this.foregroundStreak = lane === this.background ? 0 : this.foregroundStreak + 1;
       this.urgentStreak = next.options.priority === 'urgent' ? this.urgentStreak + 1 : 0;
       if (next.options.priority !== 'urgent')
         this.orderedStreak =
@@ -247,7 +319,27 @@ export class FrameAdmissionQueue implements SceneAdmission {
         background: next.options.priority === 'background',
       });
     }
+    // With nothing waiting there is nothing to pace.
+    this.overrunMs = this.pending > 0 ? Math.max(0, this.clock() - start - budget) : 0;
+    this.lastFlushEnd = this.clock();
+    this.continuing = this.pending > 0;
     this.request();
+  }
+  /**
+   * This frame's work allowance: the fixed budget, or for sustained software-rendering frames the
+   * same share of the shortest recent one. One long frame (a hitch) changes nothing.
+   */
+  private frameBudget(sinceLast: number): number {
+    if (!this.continuing) this.recentFrames.length = 0;
+    else {
+      this.recentFrames.push(sinceLast);
+      if (this.recentFrames.length > SLOW_FRAMES) this.recentFrames.shift();
+    }
+    if (this.recentFrames.length < SLOW_FRAMES) return this.maxMs;
+    const shortest = Math.min(...this.recentFrames);
+    return shortest >= SLOW_FRAME_MS
+      ? Math.max(this.maxMs, (shortest * this.maxMs) / NOMINAL_FRAME_MS)
+      : this.maxMs;
   }
   dispose(): void {
     this.disposed = true;

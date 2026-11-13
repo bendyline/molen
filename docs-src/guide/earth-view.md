@@ -5,6 +5,7 @@ composes:
 
 - streamed terrain from a `molen/terrain-package@1`;
 - worldgen buildings, seeded infill for streets with missing outlines, street surfaces, trees and parked cars from content packs;
+- laid-out golf courses, cemetery headstones and marked sports pitches where the map names them (see [worldgen](worldgen.md#golf-courses-cemeteries-and-sports-pitches));
 - traffic, pedestrians, trains and aircraft that come and go around the viewer;
 - orbit, walk, drive and fly navigation, with cars and aircraft the host can put the viewer in;
 - markers placed by latitude/longitude;
@@ -76,7 +77,12 @@ ACES filmic tone mapping, and haze in the sky's horizon color. Its values are ex
 a sky color into the fog color for the backend. Terrain and landcover share one ground material
 from `createTerrainGroundMaterialAsync` (`@bendyline/molen-terrain/client`) with world-space
 variation; a custom host passes it to the terrain stream's `material` and to `createEarthWorldgen`
-as `groundMaterial`, and calls `setTerrainGroundOrigin` with the world origin each frame. Roads,
+as `groundMaterial`, and calls `setTerrainGroundOrigin` with the world origin each frame (and
+`setTerrainGroundSnow` with the weather's `snowCover`, where it draws [lying snow](snow.md)). The
+view also draws distant land cover as one texture a tile (see [terrain](terrain.md)); a custom
+host passes `farLandcover: { material: await createTerrainGroundTextureMaterialAsync({},
+renderer.backend) }` to `createEarthWorldgen` and keeps that material's origin current the same
+way. Roads,
 sidewalks and lots take `createTerrainPavementMaterialAsync` through the surface renderer's
 `setMaterial`, with the same origin call. Trees, shrubs and props take
 `createScatterMaterialAsync` (`@bendyline/molen-worldgen/client`) as `createEarthWorldgen`'s
@@ -108,6 +114,17 @@ preserving aircraft and contact-shadow detail on the runway. The renderer rounds
 to a stable size (and holds it through small changes). This pushes
 the shadow boundary farther into the distance in aerial views, trading some shadow sharpness
 for coverage at the same map resolution. Walking and driving keep their tighter footprints.
+
+On WebGL a second, wider shadow map covers what lies past that footprint: around the camera
+itself, four times the focused map's half-width and between 2 and 6 km. It is drawn from the
+terrain stream's scenery only, about once a second, and surfaces beyond the focused map read
+it, so buildings no longer gain their shadows in a ring around a low aircraft. Trees past
+their near levels read no shadow map; their crowns are shaded as trees among neighbours
+instead, so they match the shadowed trees near the camera. They cast no shadows of their own,
+so from the air the ground carries tree shadows only around the aircraft: the LOD policy's
+`distantShadows` extends them, at a cost the [worldgen guide](worldgen.md) gives. A custom
+host gets the far map from `earthShadowFocus` (its `far` square) and
+`renderer.setFarShadowCasters(stream.object)`.
 
 Earth viewers reserve a 4096-pixel sun map before preparing materials. WebGPU retains that
 allocation across quality changes, so High really uses 4096 pixels even after starting at a
@@ -155,9 +172,11 @@ mode menu passes `{ force: true }` to step out at once, which also removes a veh
 added.
 
 `view.vehicleStatus()` describes the car or aircraft the viewer is in for a HUD: speed and
-heading for a car; airspeed, altitude and height above ground, vertical speed, attitude, load
-factor (g), sideslip, power, engine, gear, flaps and stall/impact flags for an aircraft (SI units,
-compass radians). Both carry the type's `label` and, where the type declares them, its name-free
+heading for a car, with its gear, engine rev/min, traction or stability control at work
+(`assist`) and the grip of the surface under it (`surfaceGrip`); airspeed, altitude and height
+above ground, vertical speed, attitude, load factor (g), sideslip, power, engine, gear, flaps,
+fuel remaining, stall buffet, the pilot's `greyout` and `redout` under g, and stall/impact flags
+for an aircraft (SI units, compass radians). Both carry the type's `label` and, where the type declares them, its name-free
 `genericLabel` (`Full-size pickup`) and `bodyStyle`, so a HUD that must not show a real
 manufacturer or model name has something to show instead. An airplane started in flight is trimmed for level flight at its launch speed.
 `view.setThrottle(power)` sets an aircraft's throttle or collective from an on-screen lever.
@@ -348,6 +367,141 @@ viewer is in; otherwise `none`. A handler that calls `claim()` synchronously tak
 nothing else happens. Unclaimed, the view boards or leaves a vehicle as it always did (or explains
 why there is nothing to board), and does nothing for an actor or a pedestrian.
 
+### Overrides: replacing mapped places
+
+```ts
+const warehouseYard: EarthOverride = {
+  id: 'needle-yard',
+  // The rectangle to replace: its center, and its width and depth in meters.
+  area: { center: [-122.3493, 47.62051], size: [150, 110], heading: 0 },
+  clear: { roads: false },             // what goes; see the table below
+  surface: 'plaza',                    // the ground left behind
+  buildings: [
+    { id: 'shed', rect: { center: [-40, -20], size: [56, 36] }, height: 10, use: 'warehouse' },
+    { id: 'office', outline: [[-59, 22], [-33, 22], [-33, 38], [-59, 38]], levels: 2, wall: '#d8d2c4' },
+  ],
+  models: [{ id: 'tank', asset: 'my.host.tank', position: [-40, 44] }],
+  props: [
+    { id: 'lamp', kind: 'street_lamp', position: [-70, -50] },
+    { id: 'oak', kind: 'tree', position: [20, 48], height: 11 },
+  ],
+  actors: [{ id: 'foreman', figure: { preset: 'human.adult' }, position: [-8, -6] }],
+  vehicles: [{ id: 'van', type: 'molen.entities.vehicle.sedan', position: [-22, 44], heading: Math.PI / 2 }],
+  scene: { load: (signal) => loadMyScene(signal), position: [40, 0] },
+};
+
+const view = await mountEarthView({
+  /* … */
+  overrides: [warehouseYard],          // there from the first frame, or:
+});
+view.overrides.set(warehouseYard);     // add it, or replace the one with this id
+await view.overrides.whenApplied();    // the replacement is on screen
+view.overrides.remove('needle-yard');  // the mapped place comes back
+view.on('overridechange', ({ state, ids }) => { /* 'pending', then 'applied' */ });
+```
+
+An override replaces one rectangle of the mapped world with a place of the host's own: the
+rectangle is cleared, and the override's buildings, models and props stand there instead. Pass
+overrides at mount, and add, change and remove them while the view runs with `view.overrides`
+(`set`, `remove`, `get`, `list`, `clear`). They are geographic, so they stay through re-anchors.
+`set` throws, changing nothing, when an override is invalid.
+
+Everything inside an override is laid out in its own frame: meters from the rectangle's center,
+`[x, z]` with +x east and +z south, turned by the area's `heading`. Every heading is a compass
+heading in radians, clockwise seen from above, and each one inside the override adds to the
+area's. `mapOverridePoint(frame, [x, z])` gives the `[longitude, latitude]` of a point of that
+frame, for anything the host places beside the override itself. `area` may instead be
+`{ bounds: [west, south, east, north] }`. A rectangle is 1 to 2000 m a side.
+
+`clear` says what leaves the rectangle:
+
+| Flag | Default | Removes |
+|---|---|---|
+| `buildings` | `true` | Mapped footprints at least half inside the rectangle. `'clip'` cuts every footprint at its edge instead. |
+| `landmarks` | `true` | Catalogued landmark models anchored in it. |
+| `vegetation` | `true` | Land cover, scattered plants and mapped trees. |
+| `props` | `true` | Mapped street furniture. |
+| `parking` | `true` | Parking lots, their aisles and driveways, and the cars parked there. |
+| `roads` | `false` | Roads and paths whose center line is in it, cut at its edge. |
+
+`surface` is the ground left behind: `ground` (the default), `grass`, `paved`, `plaza`, `gravel`,
+`bare` or `sand`. With `vegetation: false` the mapped ground stays as it is.
+
+What stands there:
+
+- **`buildings`** are generated by the same generator as the mapped city, from a footprint
+  (`rect`, or an `outline` ring) and a `height` or a number of `levels`. They get the city's detail
+  levels, interiors and collision. `use` names what the building is as map data would
+  (`warehouse`, `school`, `house`) and picks a look; `style` names an architecture style of the
+  style pack outright; `wall` and `trim` are `#rrggbb` colors. At most 64 an override.
+- **`models`** are placed whole. `asset` is either a structure asset id of the style pack (any
+  catalogued landmark, streamed with its detail levels) or a ref of the host's own. A ref the
+  packs do not carry is loaded as a GLB through the mount option `overrideAssets`
+  (`{ load(ref), loadText(ref) }`), or through `content` when the model is in a content pack the
+  host opened. A host's own model is drawn at one detail level, from tile level 13 by default: use
+  static meshes in meters, +Y up, the origin on the ground and the front toward +Z, without Draco,
+  meshopt or KTX2 compression, at most 32 MiB and 300,000 triangles. At most 16 an override.
+- **`props`** are small things drawn many at a time: a `kind` (`tree`, `street_lamp`, `bench`,
+  `bike_rack`, `charger`) or a `model` ref with an optional `scale` and `color`. At most 256.
+
+A change does not flash. The view goes on showing what stood there, emits `overridechange` with
+`state: 'pending'`, builds the map tiles around the rectangle again, swaps them in, and emits
+`applied`; `whenApplied()` resolves then. Ambient traffic on a rebuilt tile starts over, so its
+cars are gone for a second. A walker who ends up inside a building that appeared is stood just
+outside its nearest wall.
+
+The bundles come and go with the override. `actors` become [actors](#actors-companions-and-npcs)
+and `vehicles` become [owned vehicles](#owned-vehicles), each under the id
+`<override id>/<its id>`, so `view.actors.setBehaviour('needle-yard/foreman', …)` and
+`view.vehicles.board('needle-yard/van')` reach them. `scene` is registered as a
+[diorama](dioramas.md) standing on the rectangle, as `<override id>/scene`. Setting an override
+again keeps the entities whose declaration did not change as they are (a car that was driven off
+stays where it is), replaces the changed ones, and replaces them all when the area moved or
+turned.
+
+`view.buildingAt({ latitude, longitude, radius })` answers "what building is here": the mapped
+footprint or landmark at a place, or the nearest within `radius` meters (default 6), with its
+outline, bounds, name and class. Use its `bounds` to size the rectangle that replaces it. It reads
+map data, so call it on a key press, not every frame. A building an override placed comes back
+with `override` set to that override's id.
+
+Overrides are plain data apart from `scene.load`, and `molen/map-overrides@1` documents hold them:
+`{ "format": "molen/map-overrides@1", "overrides": [ … ] }` validates with `molen validate` (see
+the [schema](../schemas/map-overrides.md)).
+
+Limits of this version:
+
+- The terrain is not reshaped. Buildings are fitted to the ground as mapped ones are, and a model
+  stands on the ground at its origin.
+- Cleared roads leave their grading: the ground stays leveled where the road ran. Bridges,
+  tunnels, railways and runways are never cut, and traffic turns around at the new dead ends.
+- From high altitude a generated building is a plain block in a neutral color, as every building
+  is at that distance.
+- Vehicles the host owns elsewhere are not moved out of the way of a building that appears.
+
+A host composing its own view from the pieces uses the same parts:
+`createMapOverrideSet` and `withMapOverrideStructures` from
+`@bendyline/molen-worldgen-earth/kernel`, `withMapOverrides` from
+`@bendyline/molen-worldgen-earth/client` around the land-cover and feature renderers (inside
+`withEarthAirports`, outside whatever observes tiles), and `bindMapOverrides` and
+`bindMapOverrideEntities` from `@bendyline/molen-earth/client` to rebuild tiles
+(`stream.refreshLayers`) and to add the bundles when the set changes.
+
+## Weather and snow
+
+`weather` at mount, and `view.setWeather(data)` afterwards, set the one
+[`weather`](weather.md) component the whole view shares. The sky draws its clouds, precipitation
+and haze; vehicles feel its wind and its wet or snowy grip; and its `snowCover` lays snow above a
+snow line (in meters above sea level): the ground, roofs and trees whiten, the walker and the
+host's actors wade more slowly, cars bog down, and skis glide. `view.weather` reads it back, and
+`setWeather(undefined)` clears it. Nothing is rebuilt, so a host can change it every frame.
+
+```ts
+view.setWeather({ ...weatherProfile('overcast'), snowCover: { level: 800 } });
+```
+
+See [Snow cover](snow.md) for the snow line, the depth and what each does to movement.
+
 ## Frames and long trips
 
 Heights stay in meters. Horizontal distances are exact at the frame latitude and drift away from it
@@ -496,8 +650,9 @@ offline.
 With a byte cache the view also prefetches. It follows the camera's own track, so it works for an
 orbit pan, a car and an aircraft alike. It places virtual views 20, 40 and 60 seconds ahead,
 selects their tiles the way the stream would, and reads those archive tiles into the cache. It
-reads bytes only and decodes nothing, two reads at a time, only while the stream has a free load
-slot, and pauses when the page is hidden, offline or on Save-Data. It waits out camera animations
+reads bytes only and decodes nothing, two reads at a time, only while the stream has a free terrain
+load slot, and pauses when the page is hidden, offline or on Save-Data. The stream itself builds
+the tiles the next 20 seconds of the track reach (see the terrain guide's moving cameras). It waits out camera animations
 (a fly-to, getting into a vehicle), whose momentary speed is not travel, and never looks more than
 15 km ahead. Tune it with `prefetch` (`horizonSeconds`, `stepsSeconds`, `maxConcurrent`,
 `maxDistanceMeters`), or turn it off with `prefetch: false`. A host
@@ -579,6 +734,10 @@ its center is outside the view. Extended structures use either `datum: 'sea-leve
 absolute `elevation`, or a `terrainReference` with the host sampler described below. Every
 tile must resolve the same model origin, avoiding inconsistent ground samples between tiles.
 
+These placements come with the content packs. A host that wants to take a landmark away, or put
+its own buildings and models in a place, declares an
+[override](#overrides-replacing-mapped-places) instead.
+
 Models with `groundCutout` stay whole in each intersecting resident tile. Their floors and
 openings therefore remain together while adjacent tiles load, including when the anchor tile
 is absent. These instances share the library's geometry and textures and release with their
@@ -612,6 +771,11 @@ nearest profile segment's interpolated height. The model's scale and resolved da
 inside the exact outline, such as paths covered by viewing pods. It requires an outline;
 untagged ground crossings, tunnels, through crossings with both endpoints outside the model,
 and bridge segments outside the outline remain independent.
+Use `replaceRoads.bridgeFeatureIds` when other mapped overpasses cross or overlap the bridge
+footprint. The selected IDs use the host tile decoder's feature IDs and constrain both bridge
+replacement and approach matching. A model with separate carriageways can supply each deck's
+outline, endpoints and heights in `replaceRoads.additionalDecks`. All decks use the same model
+origin and orientation.
 If the asset includes its retaining walls and approach pavement, set
 `replaceRoads.includeConnectedApproaches: true`. A grade road is then clipped inside the outline
 only if it shares a covered endpoint with a mapped bridge and continues outward along the bridge
@@ -624,6 +788,9 @@ itself stays unchanged. Raised ground approaches receive retaining side and end 
 to the original terrain; their paving supplies the top. These supports follow the model's
 load and unload lifetime. They provide approximate continuity where coarse elevation data
 misses a bank or quay; they do not establish surveyed ground levels.
+If the map also draws the deck as a pedestrian plaza or paved area, list its mapped feature
+IDs in `replaceRoads.pavingAreaIds`. The loaded landmark removes those areas from the road
+surface pass. A failed load keeps the map paving, and nearby plazas stay in place.
 Sunken structures can declare `groundCutout: { outline: [[x, z], ...], basis: 'source evidence' }` on a placement. The simple polygon uses native model metres and follows the same heading and scale as the model. It should bound the ground opening covered by the authored concourse or rim. The terrain pyramid subtracts the polygon from actual elevation and draped ground triangles across tile and LOD boundaries, preserving interpolated heights and surface attributes along its edge. The cutout becomes active only when its successfully loaded structure is visible, and the original ground returns on layer hiding or eviction. Failed or cancelled models leave the ground intact. Heights remain available for anchoring; an opening does not itself author walkable floors or collision. Separate excavations can add `additionalOutlines: [[[x, z], ...], ...]` to the same object (up to 64 total polygons). Ground between those outlines stays intact; every opening needs matching model geometry. Client integrations can register the same set with `setTerrainGroundCutouts(object, outlines)`. The singular `setTerrainGroundCutout` remains available for one polygon.
 
 Bridge openings can set `groundCutout.minHeight` to a native model Y threshold. Only ground
@@ -733,7 +900,10 @@ has loaded; failed models keep the procedural building. In exact data a polygon 
 anchor falls inside it, when it lies wholly inside the loaded model's horizontal extent around the
 anchor, or when at least half of it stands on the model's own ground footprint (its triangles
 stamped on a 64-cell grid). The last two catch a landmark's off-centre mapped parts: a tower's
-legs and observation level, a grandstand, a ballpark's parked roof. The footprint also reaches
+legs and observation level, a grandstand, a ballpark's parked roof. Whatever lies at least half
+inside a replaced polygon goes with it: map sources draw a tower as an outline plus separate
+parts (a shaft, a spire), and those parts go even where an off-centre model covers less than
+half of them. Buildings in a replaced ring's courtyard stay. The footprint also reaches
 neighbouring tiles, so a stadium anchored near a tile edge clears its mapped stands there too.
 Those tiles regenerate their buildings when the landmark loads, and again when its tile is evicted.
 A ring polygon whose hole holds the anchor (a stadium bowl, a cloister) goes under the size rule
@@ -1037,7 +1207,8 @@ These regional forms are visual priors, not surveyed attributes of individual bu
   192–768 MiB, or 256 MiB on touch devices and 512 MiB elsewhere without a report. Above 1 the
   level steps down, and since stepping down selects fewer, coarser tiles, pressure falls rather
   than cascading to the minimum. The terrain cache keeps at least the budget, so ground just left
-  is still warm when the view pans back.
+  is still warm when the view pans back. `earthTerrainBudget(tierBudget, memoryBudget)` and
+  `earthWorldgenCacheBytes` give a host of its own the same limits.
 - `stats().worldgen` counts styled building generation since the current terrain stream started
   (with content packs): tiles generated, buildings drawn as geometry, and instanced stand-ins.
 - Window blur and hidden tabs automatically pause simulation, rendering, queued GPU preparation,
@@ -1099,7 +1270,8 @@ Use `dioramas: { maxActive, placements }` or `view.dioramas.add(...)` for bounde
 pieces such as a football game, apron traffic or a market. Each geographic placement supplies
 a lazy scene loader, optional calendar policy, and entry/exit distances. It waits for terrain,
 plays nearby, and releases its local world when out of range. See [Dioramas](dioramas.md) for
-the full contract and current prototype limits.
+the full contract and current prototype limits. A diorama does not clear what the map shows
+under it; an [override](#overrides-replacing-mapped-places) does, and can carry a scene of its own.
 
 ## Airport layouts
 
@@ -1110,6 +1282,13 @@ samples along the runways; it is not surveyed runway elevation or slope data. Th
 samples are independent of camera detail and tile load order. Hosts composing a pyramid stream
 can pass `transformHeightfield: createAirportTerrainGrading(content.airports)` alongside their
 `withEarthAirports` semantic renderers.
+
+Roads are graded the same way, a step earlier: the ground is leveled under every road, and
+bridges are stacked clear of what they cross. `mountEarthView` does both by default;
+`roadGrading: { earthworks: false }` keeps the ground as surveyed and `roadGrading: false`
+turns both off. A host composing its own stream applies the road grading before the airport's
+with `composeEarthGroundGrading(semantic.roadGrading, airportGrading)`. See
+[Road grading](surface-rendering.md#road-grading).
 
 The `molen.earth` content pack supplies a lazy worldwide runway catalog and a detailed Boeing
 Field layout. Both Earth hosts use measured runway endpoints and widths, draw runway numbers,

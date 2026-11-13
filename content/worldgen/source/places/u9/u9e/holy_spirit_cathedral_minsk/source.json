@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.holy_spirit_cathedral_minsk",
+  "kind": "static-structure",
+  "title": "Holy Spirit Cathedral, Minsk",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.holy_spirit_cathedral_minsk",
+        "output": "assets/places/u9/u9e/holy_spirit_cathedral_minsk/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b819aaa9362ccf877c1f6e8c28a8703afe05a1a1794bbce0a152dda5682204a3"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-minsk-cathedral",
+        "path": "models/generate-minsk-cathedral.mjs"
+      },
+      {
+        "id": "minsk-cathedral-model",
+        "path": "models/minsk-cathedral-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/cathedral-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-holy-spirit-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-18891-10535.png",
+      "terrain-sources/terrarium-15-18891-10536.png",
+      "terrain-sources/terrarium-15-18892-10535.png",
+      "terrain-sources/terrarium-15-18892-10536.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

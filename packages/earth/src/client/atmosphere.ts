@@ -39,6 +39,32 @@ export function updateEarthFog(fog: Fog, viewDistance: number, altitude: number)
   fog.near = Math.min(fog.far * 0.25, Math.max(2_000, altitude * 1.5));
 }
 
+/**
+ * How far terrain needs streaming under `updateEarthFog`'s haze: to where the haze is complete in
+ * every corner of the frame, and never past `viewDistance`. Below 3.3 km of altitude the haze is
+ * complete at 20 km whatever the tier, while tiers select out to 60-110 km: flying at 900 m, 29%
+ * of the tiles in view at Balanced and 43% at Ultra lay wholly behind it, each with its land
+ * cover, water and building layers loaded. Use it only where the haze takes the drawn sky's
+ * horizon color, so ground that ends inside the haze ends invisibly.
+ *
+ * three fogs by view depth, not distance, so ground toward a corner of the frame at depth `far`
+ * is farther away than `far`: the reach is the fog's far distance over the cosine of the corner's
+ * angle from the view axis. Rounded up to 2 km so a climbing camera replans in steps.
+ */
+export function earthStreamDistance(
+  viewDistance: number,
+  altitude: number,
+  aspect: number,
+  verticalFov: number = MathUtils.degToRad(60),
+): number {
+  if (!(viewDistance > 0) || !Number.isFinite(viewDistance))
+    throw new RangeError('View distance must be finite and positive');
+  const far = Math.min(viewDistance * 0.9, Math.max(20_000, altitude * 6));
+  const half = Math.tan(verticalFov / 2);
+  const corner = Math.sqrt(1 + half * half * (1 + Math.max(0, aspect) ** 2));
+  return Math.min(viewDistance, Math.ceil((far * corner) / 2_000) * 2_000);
+}
+
 /** Default sun height above the horizon, degrees. */
 export const EARTH_SUN_ELEVATION = 26;
 /** Default sun compass bearing, degrees (0 north, clockwise): the south-east. */

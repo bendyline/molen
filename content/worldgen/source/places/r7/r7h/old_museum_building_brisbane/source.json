@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.old_museum_building_brisbane",
+  "kind": "static-structure",
+  "title": "Old Museum Building, Brisbane",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.old_museum_building_brisbane",
+        "output": "assets/places/r7/r7h/old_museum_building_brisbane/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ffb5e19893dfa341d5b506445613887cffa28166341effe42eeb0e4fcec0c4a5"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-brisbane-old-museum",
+        "path": "models/generate-brisbane-old-museum.mjs"
+      },
+      {
+        "id": "brisbane-old-museum-model",
+        "path": "models/brisbane-old-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/museum-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-museum-tower-original.json",
+      "reference-rights/commons-lowanmk22-2019.json",
+      "references/lowanmk22-old-museum-2019.jpg",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-30312-18984.png",
+      "terrain-sources/terrarium-15-30313-18984.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

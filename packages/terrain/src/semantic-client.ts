@@ -1,10 +1,11 @@
 import type { WaterWave } from '@bendyline/molen-schema';
 /** Format-neutral semantic-tile loading and default three.js mesh adapters. */
 
+import { InstanceBatch } from '@bendyline/molen-client/instancing';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import type { MeshPhysicalNodeMaterial, Node } from 'three/webgpu';
-import { appendAgricultureAttributes } from './agriculture-surface';
+import { agricultureFarColor, appendAgricultureAttributes } from './agriculture-surface';
 import {
   sampleTerrainBuildingCoverage,
   type TerrainBuildingCoverage,
@@ -16,9 +17,23 @@ import {
   setTerrainShorelineCutouts,
   type TerrainGroundOutline,
 } from './ground-cutout';
-import { createTerrainGroundMaterial } from './ground-material';
+import {
+  createTerrainGroundMaterial,
+  createTerrainGroundTextureMaterial,
+  terrainGroundFarDetail,
+} from './ground-material';
 import { landcoverAppearance, orderLandcover } from './landcover-appearance';
 import { applyLandcoverBlend, type LandcoverBlendRange } from './landcover-blend';
+import {
+  createLandcoverRasterMesh,
+  landcoverCanopyTint,
+  landcoverRasterGrid,
+  landcoverRasterSize,
+  paintLandcoverFeatures,
+  paintLandcoverRaster,
+  type TerrainLandcoverRasterData,
+  type TerrainLandcoverRasterOptions,
+} from './landcover-raster';
 import { visibleLandcoverPolygons } from './landcover-surface';
 import { appendTerrainSurfaceArea, TerrainSurfaceMeshBuilder } from './linear-features';
 import {
@@ -30,8 +45,10 @@ import {
   polygonBounds,
 } from './polygon';
 import type { TerrainPyramidTileLayer, TerrainPyramidTileLayerContext } from './pyramid-stream';
+import { TERRAIN_RAILWAY_GROUND } from './rail-features';
 import {
   assertTerrainSemanticTile,
+  type TerrainLandcoverFeature,
   type TerrainSemanticLine,
   type TerrainSemanticPoint,
   type TerrainSemanticPolygon,
@@ -46,7 +63,16 @@ import {
 } from './surface-client';
 import type { TerrainSurfaceOptions } from './surface-styles';
 import { tagTerrainObject } from './tagged-objects';
-import { WATER_RIPPLE_LAYERS, WATER_RIPPLES_GLSL, waterRippleTexture } from './water-ripples';
+import {
+  WATER_NORMAL_VARIANCE,
+  WATER_RIPPLE_AREA,
+  WATER_RIPPLE_FADE,
+  WATER_RIPPLE_LAYERS,
+  WATER_RIPPLE_SLOPE_VARIANCE,
+  WATER_RIPPLES_GLSL,
+  waterRippleOffsets,
+  waterRippleTexture,
+} from './water-ripples';
 import { buildTerrainWaterBanks } from './water-shoreline';
 import { weldVertices } from './weld-vertices';
 
@@ -99,15 +125,48 @@ export interface TerrainWaterMaterialOptions {
 /** Physical water for either the legacy WebGL renderer or the WebGPU node renderer. */
 export type TerrainWaterMaterial = THREE.MeshPhysicalMaterial | MeshPhysicalNodeMaterial;
 
+/**
+ * What the water shaders read. Time and the floating world origin never reach the GPU: each
+ * frame folds them, in double precision, into ripple texture offsets and swell phases wrapped
+ * to one period, so shaders only ever add them to small camera-relative positions.
+ */
 interface TerrainWaterShaderState {
-  time: THREE.IUniform<number>;
-  worldOrigin: THREE.IUniform<THREE.Vector2>;
   waveScale: THREE.IUniform<number>;
   waveStrength: THREE.IUniform<number>;
-  waveSpeed: THREE.IUniform<number>;
+  waveSpeed: number;
+  swells: readonly WaterWave[];
+  areaOffset: THREE.IUniform<THREE.Vector2>;
+  layerOffsets: ReadonlyArray<THREE.IUniform<THREE.Vector2>>;
+  swellPhases: ReadonlyArray<THREE.IUniform<number>>;
 }
 
 const terrainWaterShaderStates = new WeakMap<THREE.Material, TerrainWaterShaderState>();
+
+/** Swell phase at the origin and time, `k (origin · direction - speed t)`, wrapped to a turn. */
+function swellPhase(wave: WaterWave, origin: readonly [number, number], seconds: number): number {
+  const k = (2 * Math.PI) / wave.wavelength;
+  const along = origin[0] * Math.sin(wave.direction) + origin[1] * Math.cos(wave.direction);
+  const phase = (k * (along - wave.speed * seconds)) % (2 * Math.PI);
+  return phase < 0 ? phase + 2 * Math.PI : phase;
+}
+
+function updateTerrainWaterState(
+  state: TerrainWaterShaderState,
+  seconds: number,
+  origin: readonly [number, number],
+): void {
+  waterRippleOffsets(
+    origin,
+    state.waveScale.value,
+    seconds * state.waveSpeed,
+    state.areaOffset.value,
+    state.layerOffsets,
+  );
+  state.swells.forEach((wave, index) => {
+    const uniform = state.swellPhases[index];
+    if (uniform) uniform.value = swellPhase(wave, origin, seconds);
+  });
+}
 
 function terrainWaterParameters(
   options: TerrainWaterMaterialOptions,
@@ -139,20 +198,20 @@ function terrainWaterParameters(
 export function createTerrainWaterMaterial(
   options: TerrainWaterMaterialOptions = {},
 ): THREE.MeshPhysicalMaterial {
-  const state: TerrainWaterShaderState = {
-    time: { value: 0 },
-    worldOrigin: { value: new THREE.Vector2() },
-    waveScale: { value: options.waveScale ?? 0.035 },
-    waveStrength: { value: options.waveStrength ?? 0.035 },
-    waveSpeed: { value: options.waveSpeed ?? 0.55 },
-  };
   const swells = options.swells ?? [];
+  const state = terrainWaterState(
+    options,
+    swells,
+    () => ({ value: new THREE.Vector2() }),
+    (_, value) => ({ value }),
+  );
   const literal = (n: number): string => Number(n).toFixed(9);
   const slopes = swells
     .map((w, index) => {
       const k = (2 * Math.PI) / w.wavelength;
-      return `float swellPhase${index} = ${literal(k)} * (dot(vTerrainWaterWorldPosition, vec2(${literal(Math.sin(w.direction))}, ${literal(Math.cos(w.direction))})) - ${literal(w.speed)} * terrainWaterTime);
-        slope += vec2(${literal(Math.sin(w.direction))}, ${literal(Math.cos(w.direction))}) * ${literal(w.amplitude * k)} * cos(swellPhase${index}) * (1.0 - smoothstep(0.5, 2.5, fwidth(swellPhase${index})));`;
+      const direction = `vec2(${literal(Math.sin(w.direction))}, ${literal(Math.cos(w.direction))})`;
+      return `float swellPhase${index} = ${literal(k)} * dot(vTerrainWaterPosition, ${direction}) + terrainWaterSwellPhase${index};
+        slope += ${direction} * ${literal(w.amplitude * k)} * cos(swellPhase${index}) * (1.0 - smoothstep(0.5, 2.5, fwidth(swellPhase${index})));`;
     })
     .join('\n');
   const material = new THREE.MeshPhysicalMaterial(terrainWaterParameters(options));
@@ -162,29 +221,33 @@ export function createTerrainWaterMaterial(
     // Renderer-wide hooks (a Molen renderer's cloud shadows) live on the prototype.
     THREE.Material.prototype.onBeforeCompile.call(material, shader, renderer);
     Object.assign(shader.uniforms, {
-      terrainWaterTime: state.time,
-      terrainWaterWorldOrigin: state.worldOrigin,
       terrainWaterWaveScale: state.waveScale,
       terrainWaterWaveStrength: state.waveStrength,
-      terrainWaterWaveSpeed: state.waveSpeed,
+      terrainWaterAreaOffset: state.areaOffset,
       terrainWaterRipples: { value: waterRippleTexture() },
+      ...Object.fromEntries(
+        state.layerOffsets.map((offset, index) => [`terrainWaterLayerOffset${index}`, offset]),
+      ),
+      ...Object.fromEntries(
+        state.swellPhases.map((phase, index) => [`terrainWaterSwellPhase${index}`, phase]),
+      ),
     });
+    // Camera-relative: the floating origin keeps model matrices small, and the origin itself
+    // arrives folded into the ripple offsets and swell phases.
     shader.vertexShader = `
-      varying vec2 vTerrainWaterWorldPosition;
-      uniform vec2 terrainWaterWorldOrigin;
+      varying vec2 vTerrainWaterPosition;
     ${shader.vertexShader}`.replace(
       '#include <begin_vertex>',
       `#include <begin_vertex>
-       vTerrainWaterWorldPosition = (modelMatrix * vec4(transformed, 1.0)).xz + terrainWaterWorldOrigin;`,
+       vTerrainWaterPosition = (modelMatrix * vec4(transformed, 1.0)).xz;`,
     );
     // Evaluate distance per fragment: a large water polygon can pass under the camera
     // even when all its corners are beyond the ripple fade distance.
     shader.fragmentShader = `
-      varying vec2 vTerrainWaterWorldPosition;
-      uniform float terrainWaterTime;
+      varying vec2 vTerrainWaterPosition;
       uniform float terrainWaterWaveScale;
       uniform float terrainWaterWaveStrength;
-      uniform float terrainWaterWaveSpeed;
+      ${swells.map((_, index) => `uniform float terrainWaterSwellPhase${index};`).join('\n')}
 
       ${WATER_RIPPLES_GLSL}
     ${shader.fragmentShader}`
@@ -194,7 +257,12 @@ export function createTerrainWaterMaterial(
          vec2 slope = terrainWaterSurface.xy;
          ${slopes}
          slope *= terrainWaterDistanceFade;
-         normal = normalize(mat3(viewMatrix) * vec3(-slope.x, 1.0, -slope.y));`,
+         vec3 terrainWaterNormal = normalize(vec3(-slope.x, 1.0, -slope.y));
+         normal = normalize(mat3(viewMatrix) * terrainWaterNormal);
+         // Ripples are faded by distance twice, so their variance by its fourth power.
+         float terrainWaterVariance = terrainWaterNormalVariance(terrainWaterNormal) +
+           terrainWaterSurface.w * pow(terrainWaterDistanceFade, 4.0);
+         roughnessFactor = terrainWaterRoughness(roughnessFactor, terrainWaterVariance);`,
       )
       .replace(
         '#include <clearcoat_normal_fragment_maps>',
@@ -204,14 +272,19 @@ export function createTerrainWaterMaterial(
          #endif`,
       )
       .replace(
+        '#include <lights_physical_fragment>',
+        `#include <lights_physical_fragment>
+         #ifdef USE_CLEARCOAT
+           material.clearcoatRoughness =
+             terrainWaterRoughness(material.clearcoatRoughness, terrainWaterVariance);
+         #endif`,
+      )
+      .replace(
         '#include <color_fragment>',
         `#include <color_fragment>
-         vec3 terrainWaterSurface = terrainWaterDetail(vTerrainWaterWorldPosition,
-           terrainWaterTime * terrainWaterWaveSpeed);
-         float terrainWaterFootprint = length(fwidth(vTerrainWaterWorldPosition)) * terrainWaterWaveScale;
+         vec4 terrainWaterSurface = terrainWaterDetail(vTerrainWaterPosition);
          float terrainWaterDistanceFade = 1.0 - smoothstep(120.0, 1600.0, length(vViewPosition));
-         terrainWaterSurface *= terrainWaterDistanceFade *
-           (1.0 - smoothstep(0.5, 2.0, terrainWaterFootprint));
+         terrainWaterSurface.xyz *= terrainWaterDistanceFade;
          diffuseColor.rgb *= 1.0 + terrainWaterSurface.z * 0.35;`,
       )
       .replace(
@@ -224,9 +297,29 @@ export function createTerrainWaterMaterial(
          );`,
       );
   };
-  material.customProgramCacheKey = (): string => `terrain-water@3:${JSON.stringify(swells)}`;
+  material.customProgramCacheKey = (): string => `terrain-water@4:${JSON.stringify(swells)}`;
   terrainWaterShaderStates.set(material, state);
   return material;
+}
+
+/** One state shape for both backends: plain uniform objects for GLSL, uniform nodes for TSL. */
+function terrainWaterState(
+  options: TerrainWaterMaterialOptions,
+  swells: readonly WaterWave[],
+  vector: (name: string) => THREE.IUniform<THREE.Vector2>,
+  scalar: (name: string, value: number) => THREE.IUniform<number>,
+): TerrainWaterShaderState {
+  const state: TerrainWaterShaderState = {
+    waveScale: scalar('terrainWaterWaveScale', options.waveScale ?? 0.035),
+    waveStrength: scalar('terrainWaterWaveStrength', options.waveStrength ?? 0.035),
+    waveSpeed: options.waveSpeed ?? 0.55,
+    swells,
+    areaOffset: vector('terrainWaterAreaOffset'),
+    layerOffsets: WATER_RIPPLE_LAYERS.map((_, index) => vector(`terrainWaterLayerOffset${index}`)),
+    swellPhases: swells.map((_, index) => scalar(`terrainWaterSwellPhase${index}`, 0)),
+  };
+  updateTerrainWaterState(state, 0, [0, 0]);
+  return state;
 }
 
 /**
@@ -255,48 +348,73 @@ export async function createTerrainWaterMaterialAsync(
       fwidth,
       smoothstep,
       cameraViewMatrix,
+      dFdx,
+      dFdy,
+      materialClearcoatRoughness,
     },
   ] = await Promise.all([import('three/webgpu'), import('three/tsl')]);
-  const time = uniform(0).setName('terrainWaterTime');
-  const worldOrigin = uniform(new THREE.Vector2()).setName('terrainWaterWorldOrigin');
-  const waveScale = uniform(options.waveScale ?? 0.035).setName('terrainWaterWaveScale');
-  const waveStrength = uniform(options.waveStrength ?? 0.035).setName('terrainWaterWaveStrength');
-  const waveSpeed = uniform(options.waveSpeed ?? 0.55).setName('terrainWaterWaveSpeed');
-  const worldPosition = positionWorld.xz.add(worldOrigin).toVar();
-  const phase = time.mul(waveSpeed).toVar();
-  const p = worldPosition.mul(waveScale).toVar();
+  const swells = options.swells ?? [];
+  // The same uniform shapes the GLSL path uses, as nodes; see TerrainWaterShaderState.
+  const state = terrainWaterState(
+    options,
+    swells,
+    (name) => uniform(new THREE.Vector2()).setName(name),
+    (name, value) => uniform(value).setName(name),
+  );
+  // The state holds the uniform nodes created above under the shared IUniform shape.
+  const scalarNode = (value: THREE.IUniform<number>): Node<'float'> =>
+    value as unknown as Node<'float'>;
+  const vectorNode = (value: THREE.IUniform<THREE.Vector2>): Node<'vec2'> =>
+    value as unknown as Node<'vec2'>;
+  const waveScale = scalarNode(state.waveScale);
+  const waveStrength = scalarNode(state.waveStrength);
+  // Camera-relative: the origin arrives folded into the offsets and phases.
+  const position = positionWorld.xz.toVar();
+  const p = position.mul(waveScale).toVar();
+  // One pixel's extent along its longer axis: across the view at grazing angles.
+  const footprint = fwidth(p).length().toVar();
+  const keep = (scale: number): Node<'float'> =>
+    smoothstep(WATER_RIPPLE_FADE[0], WATER_RIPPLE_FADE[1], footprint.mul(scale)).oneMinus();
   const ripples = waterRippleTexture();
-  const patch = texture(ripples, p.mul(0.009).add(vec2(phase.mul(0.001), 0)))
+  const patch = texture(ripples, p.mul(WATER_RIPPLE_AREA.scale).add(vectorNode(state.areaOffset)))
     .rgb.mul(2)
     .sub(1)
     .toVar();
   const warp = patch.rg.mul(0.025).toVar();
+  const gain = patch.b.mul(0.7).add(1).mul(waveStrength).mul(14).toVar();
   let detail: Node<'vec2'> = vec2(0);
-  for (const {
-    scale,
-    direction: [x, y],
-    drift,
-    weight,
-  } of WATER_RIPPLE_LAYERS) {
+  let lost: Node<'float'> = float(0);
+  WATER_RIPPLE_LAYERS.forEach(({ scale, direction: [x, y], weight }, index) => {
+    const kept = keep(scale).toVar();
+    const offset = state.layerOffsets[index];
+    if (offset === undefined) throw new Error('missing ripple layer offset');
     const uv = vec2(p.dot(vec2(x, y)), p.dot(vec2(-y, x)))
       .mul(vec2(1, 0.65))
       .mul(scale)
       .add(warp)
-      .add(vec2(...drift).mul(phase));
+      .add(vectorNode(offset));
     const n = texture(ripples, uv).rg.mul(2).sub(1).toVar();
-    detail = detail.add(vec2(x, y).mul(n.x).add(vec2(-y, x).mul(n.y).mul(0.65)).mul(weight));
-  }
-  const footprint = fwidth(worldPosition).length().mul(waveScale);
-  const fade = smoothstep(120, 1600, positionView.length())
-    .oneMinus()
-    .mul(smoothstep(0.5, 2, footprint).oneMinus());
-  const rippleSlope = detail
-    .mul(patch.b.mul(0.7).add(1))
+    detail = detail.add(
+      vec2(x, y).mul(n.x).add(vec2(-y, x).mul(n.y).mul(0.65)).mul(kept.mul(weight)),
+    );
+    lost = lost.add(
+      kept
+        .mul(kept)
+        .oneMinus()
+        .mul(weight * weight),
+    );
+  });
+  const distanceFade = smoothstep(120, 1600, positionView.length()).oneMinus().toVar();
+  // Ripples fade with distance twice, as in the GLSL path (once with the surface detail, once
+  // with the whole slope); swells and the color variation once. Faded once here, water between
+  // 120 m and 1.6 km carried up to twice the ripple slope it does on WebGL.
+  const rippleFade = distanceFade.mul(distanceFade).toVar();
+  const rippleSlope = detail.mul(gain).mul(rippleFade).toVar();
+  const variation = patch.b
     .mul(waveStrength)
-    .mul(14)
-    .mul(fade)
+    .mul(keep(WATER_RIPPLE_AREA.scale))
+    .mul(distanceFade)
     .toVar();
-  const variation = patch.b.mul(waveStrength).mul(fade).toVar();
   const material = new MeshPhysicalNodeMaterial(terrainWaterParameters(options));
   material.name = 'terrain-water';
   material.userData.terrainWaterMaterial = true;
@@ -304,37 +422,53 @@ export async function createTerrainWaterMaterialAsync(
   // types. Their implementations are already proxied nodes; this adds only the missing types.
   const baseColor = materialColor as unknown as Node<'vec4'>;
   const baseRoughness = materialRoughness as unknown as Node<'float'>;
+  const baseClearcoatRoughness = materialClearcoatRoughness as unknown as Node<'float'>;
   // Affect only RGB, preserving authored opacity and any subsequently attached color map alpha.
   material.colorNode = vec4(baseColor.rgb.mul(variation.mul(0.35).add(1)), baseColor.a);
   let slopeX: Node<'float'> = float(rippleSlope.x),
     slopeZ: Node<'float'> = float(rippleSlope.y);
-  for (const wave of options.swells ?? []) {
+  swells.forEach((wave, index) => {
     const k = (2 * Math.PI) / wave.wavelength;
     const dx = Math.sin(wave.direction),
       dz = Math.cos(wave.direction);
-    const phase = worldPosition.x
-      .mul(dx)
-      .add(worldPosition.y.mul(dz))
-      .sub(time.mul(wave.speed))
-      .mul(k);
+    const start = state.swellPhases[index];
+    if (start === undefined) throw new Error('missing swell phase');
+    const phase = position.x.mul(dx).add(position.y.mul(dz)).mul(k).add(scalarNode(start));
     const slope = phase
       .cos()
       .mul(wave.amplitude * k)
-      .mul(smoothstep(120, 1600, positionView.length()).oneMinus())
+      .mul(distanceFade)
       .mul(smoothstep(0.5, 2.5, fwidth(phase)).oneMinus());
     slopeX = slopeX.add(slope.mul(dx));
     slopeZ = slopeZ.add(slope.mul(dz));
-  }
-  material.normalNode = cameraViewMatrix
-    .mul(vec4(vec3(slopeX.negate(), 1, slopeZ.negate()).normalize(), 0))
-    .xyz.normalize();
+  });
+  const normal = vec3(slopeX.negate(), 1, slopeZ.negate()).normalize().toVar();
+  const dx = dFdx(normal);
+  const dy = dFdy(normal);
+  // Specular anti-aliasing; ripples are faded by distance twice, so their variance by its
+  // fourth power.
+  const variance = dx
+    .dot(dx)
+    .add(dy.dot(dy))
+    .mul(WATER_NORMAL_VARIANCE.gain)
+    .min(WATER_NORMAL_VARIANCE.max)
+    .add(lost.mul(gain.mul(gain)).mul(WATER_RIPPLE_SLOPE_VARIANCE).mul(rippleFade.mul(rippleFade)))
+    .toVar();
+  const widen = (roughness: Node<'float'>): Node<'float'> =>
+    roughness.pow(4).add(variance).clamp(0, 1).pow(0.25);
+  material.normalNode = cameraViewMatrix.mul(vec4(normal, 0)).xyz.normalize();
   material.clearcoatNormalNode = material.normalNode;
-  material.roughnessNode = baseRoughness.add(variation.mul(1.5)).clamp(0.08, 1);
-  terrainWaterShaderStates.set(material, { time, worldOrigin, waveScale, waveStrength, waveSpeed });
+  material.roughnessNode = widen(baseRoughness.add(variation.mul(1.5)).clamp(0.08, 1));
+  material.clearcoatRoughnessNode = widen(baseClearcoatRoughness);
+  terrainWaterShaderStates.set(material, state);
   return material;
 }
 
-/** Advance a terrain water material and preserve wave continuity across floating-origin shifts. */
+/**
+ * Advance a terrain water material and preserve wave continuity across floating-origin shifts.
+ * `worldOrigin` is the renderer's floating origin (X, Z): any size works, since it is folded in
+ * double precision into wrapped offsets rather than added on the GPU.
+ */
 export function setTerrainWaterTime(
   material: THREE.Material,
   seconds: number,
@@ -343,8 +477,7 @@ export function setTerrainWaterTime(
   const state = terrainWaterShaderStates.get(material);
   if (state === undefined)
     throw new Error('material was not created by a terrain water material factory');
-  state.time.value = seconds;
-  state.worldOrigin.value.set(worldOrigin[0], worldOrigin[1]);
+  updateTerrainWaterState(state, seconds, worldOrigin);
 }
 
 /** Connect any normalized semantic source/renderer pair to adaptive terrain residency. */
@@ -381,6 +514,7 @@ const DEFAULT_TREE_CANOPY_MATERIAL = new THREE.MeshStandardMaterial({
   roughness: 0.96,
 });
 const DEFAULT_LANDCOVER_MATERIAL = createTerrainGroundMaterial({ agriculture: true, strength: 0 });
+const DEFAULT_LANDCOVER_RASTER_MATERIAL = createTerrainGroundTextureMaterial({ strength: 0 });
 const DEFAULT_BUILDING_MATERIAL = new THREE.MeshStandardMaterial({
   color: '#b9ab96',
   roughness: 0.84,
@@ -426,6 +560,12 @@ const DEFAULT_LANDCOVER_COLORS: Readonly<Record<string, string>> = {
 
 export interface TerrainSemanticMeshMaterials {
   landcover?: THREE.Material;
+  /**
+   * The shared material for land cover drawn as a texture (`landcoverRaster`), from
+   * `createTerrainGroundTextureMaterialAsync` for the renderer's backend. Default: a WebGL one
+   * without ground variation.
+   */
+  landcoverRaster?: THREE.Material;
   treeTrunk?: THREE.Material;
   treeCanopy?: THREE.Material;
   road?: THREE.Material;
@@ -480,6 +620,12 @@ export interface TerrainSemanticMeshOptions {
    */
   landcoverDetail?: Readonly<Record<string, readonly [number, number]>>;
   landcoverOffset?: number;
+  /**
+   * Draw land cover on distant tiles as one texture a tile instead of the draped mesh: see
+   * `TerrainLandcoverRasterOptions`, and pass `materials.landcoverRaster` on WebGPU, where the
+   * default material has no shader. Omitted, every tile drapes.
+   */
+  landcoverRaster?: TerrainLandcoverRasterOptions;
   /**
    * Built-up ground. Unmapped ground and broad land-use classes blend toward `color` (default:
    * the `urban_ground` land-cover color, else `pavement`) as the share of nearby ground under
@@ -570,6 +716,9 @@ function landcoverColor(value: string, options: TerrainSemanticMeshOptions): THR
   for (const [candidate, color] of Object.entries(colors)) {
     if (normalized.includes(normalizedClass(candidate))) return new THREE.Color(color);
   }
+  // Railway land (yards and corridors) is ballast and cinders, not the generic lawn green, even
+  // where a host palette does not name it.
+  if (normalized === 'railway') return new THREE.Color(TERRAIN_RAILWAY_GROUND);
   return new THREE.Color('#78836b');
 }
 
@@ -658,12 +807,12 @@ function addTrees(
   options: TerrainSemanticMeshOptions,
 ): void {
   if (placements.length === 0) return;
-  const trunk = new THREE.InstancedMesh(
+  const trunk = new InstanceBatch(
     options.treeTrunkGeometry ?? DEFAULT_TREE_TRUNK_GEOMETRY,
     options.materials?.treeTrunk ?? DEFAULT_TREE_TRUNK_MATERIAL,
     placements.length,
   );
-  const canopy = new THREE.InstancedMesh(
+  const canopy = new InstanceBatch(
     options.treeCanopyGeometry ?? DEFAULT_TREE_CANOPY_GEOMETRY,
     options.materials?.treeCanopy ?? DEFAULT_TREE_CANOPY_MATERIAL,
     placements.length,
@@ -690,6 +839,9 @@ function addTrees(
   trunk.instanceMatrix.needsUpdate = true;
   canopy.instanceMatrix.needsUpdate = true;
   if (canopy.instanceColor !== null) canopy.instanceColor.needsUpdate = true;
+  // Released with the tile (see disposeTerrainSurfaceObject); the tree models stay shared.
+  trunk.userData.terrainOwnedInstances = true;
+  canopy.userData.terrainOwnedInstances = true;
   group.add(trunk, canopy);
 }
 
@@ -824,16 +976,23 @@ function shapeFromPolygon(
   return shape;
 }
 
-export function createLandcoverMesh(
+/** A land cover feature's ground color and detail, at tile-local meters. */
+interface LandcoverPaint {
+  /** One color, or the color at a point (a scratch value: copy it before the next call). */
+  colorAt: THREE.Color | ((x: number, z: number) => THREE.Color);
+  /** [brush, bare] ground detail (see `landcoverDetail`), none over paving. */
+  detailAt(x: number, z: number): [number, number];
+}
+
+/**
+ * How each feature of `tile` is colored: its class or crop color, a world-space palette area's in
+ * its place, and built-up ground blended toward paving. Shared by the draped mesh and the raster.
+ */
+function landcoverPainter(
   tile: TerrainSemanticTile,
-  context: TerrainPyramidTileLayerContext,
+  context: Pick<TerrainPyramidTileLayerContext, 'origin' | 'tileSize'>,
   options: TerrainSemanticMeshOptions,
-): THREE.Mesh | undefined {
-  const builder = new TerrainSurfaceMeshBuilder(context);
-  tile = { ...tile, landcover: orderLandcover(tile.landcover) };
-  const visible = visibleLandcoverPolygons(tile.landcover);
-  const ranges: LandcoverBlendRange[] = [];
-  const colorsAt: ((x: number, z: number) => THREE.Color)[] = [];
+): (feature: TerrainLandcoverFeature) => LandcoverPaint {
   const urban = options.urbanGround;
   const coverage = urban ? (urban.coverage ?? terrainBuildingCoverage(tile)) : undefined;
   const urbanClasses = new Set(urban?.classes ?? URBAN_GROUND_CLASSES);
@@ -845,9 +1004,7 @@ export function createLandcoverMesh(
   );
   const urbanFrom = urban?.from ?? 0.15;
   const urbanFull = Math.max(urbanFrom + 0.01, urban?.full ?? 0.45);
-  for (let featureIndex = 0; featureIndex < tile.landcover.length; featureIndex++) {
-    const feature = tile.landcover[featureIndex];
-    if (feature === undefined) continue;
+  return (feature) => {
     const color = feature.cultivation
       ? new THREE.Color(feature.cultivation.color)
       : landcoverColor(landcoverAppearance(feature), options);
@@ -895,6 +1052,141 @@ export function createLandcoverMesh(
             const t = pavedAt(x, z);
             return t > 0 ? paved.copy(base).lerp(urbanColor, t) : base;
           };
+    return {
+      colorAt,
+      detailAt(x, z) {
+        const worldX = context.origin[0] + x,
+          worldZ = context.origin[1] + z;
+        const detail =
+          palettes?.find(
+            ({ bounds: b }) => worldX >= b[0] && worldX < b[2] && worldZ >= b[1] && worldZ < b[3],
+          )?.detail ?? ownDetail;
+        if (detail === undefined) return [0, 0];
+        const open = 1 - (pavedAt?.(x, z) ?? 0);
+        return [detail[0] * open, detail[1] * open];
+      },
+    };
+  };
+}
+
+/**
+ * A distant tile's land cover as a texture and the grid it is drawn on (see
+ * `TerrainLandcoverRasterOptions`): every array is new, so a worker can transfer them. Each class
+ * takes the color the draped mesh settles to with distance: crop rows and shrub crowns at their
+ * mean, class boundaries at the polygon edge.
+ */
+export function createLandcoverRasterData(
+  tile: TerrainSemanticTile,
+  context: Pick<
+    TerrainPyramidTileLayerContext,
+    'address' | 'pyramid' | 'origin' | 'tileSize' | 'heightfield' | 'surfaceResolution'
+  >,
+  options: TerrainSemanticMeshOptions,
+  size: number,
+): TerrainLandcoverRasterData | undefined {
+  const landcover = orderLandcover(tile.landcover);
+  if (landcover.length === 0) return undefined;
+  const painter = landcoverPainter({ ...tile, landcover }, context, options);
+  const scratch = new THREE.Color();
+  const canopy = landcoverCanopyTint(
+    options.landcoverRaster,
+    context.pyramid.maxLevel - context.address.level,
+  );
+  const woods = options.forestClasses ?? DEFAULT_FOREST_CLASSES;
+  const colors = landcover.map((feature) => {
+    const paint = painter(feature);
+    const cultivation = feature.cultivation;
+    if (cultivation !== undefined) return agricultureFarColor(cultivation, new THREE.Color());
+    const { colorAt, detailAt } = paint;
+    const wooded = canopy !== undefined && classMatches(landcoverAppearance(feature), woods);
+    // A class without detail, a palette or a canopy keeps one color: resolved once, not per texel.
+    if (
+      typeof colorAt !== 'function' &&
+      detailAt(0, 0)[0] === 0 &&
+      !options.landcoverPaletteAreas &&
+      !wooded
+    )
+      return colorAt;
+    return (u: number, v: number): THREE.Color => {
+      const x = u * context.tileSize,
+        z = v * context.tileSize;
+      scratch.copy(typeof colorAt === 'function' ? colorAt(x, z) : colorAt);
+      terrainGroundFarDetail(scratch, detailAt(x, z)[0]);
+      return wooded && canopy !== undefined
+        ? canopy(scratch, context.origin[0] + x, context.origin[1] + z)
+        : scratch;
+    };
+  });
+  const { pixels, opaque } = paintLandcoverRaster(landcover, size, colors);
+  if (options.landcoverRaster?.features !== false)
+    paintLandcoverFeatures(
+      pixels,
+      size,
+      context.tileSize,
+      tile.transportation,
+      tile.buildings,
+      options.landcoverRaster,
+    );
+  return {
+    size,
+    pixels,
+    opaque,
+    ...landcoverRasterGrid(
+      context.heightfield,
+      context.origin,
+      context.tileSize,
+      context.surfaceResolution ?? context.heightfield.cols,
+      options.landcoverOffset ?? 0.18,
+    ),
+  };
+}
+
+/** Land cover for one tile: the texture on distant tiles when asked for, else the draped mesh. */
+export function createLandcoverSurface(
+  tile: TerrainSemanticTile,
+  context: TerrainPyramidTileLayerContext,
+  options: TerrainSemanticMeshOptions,
+): THREE.Mesh | undefined {
+  const size = landcoverRasterSize(
+    options.landcoverRaster,
+    context.address.level,
+    context.pyramid.maxLevel,
+  );
+  if (size === undefined) return createLandcoverMesh(tile, context, options);
+  const data = createLandcoverRasterData(tile, context, options, size);
+  return data === undefined ? undefined : landcoverRasterMesh(data, context, options);
+}
+
+/** The mesh for raster data, marked as ground that openings and shorelines cut. */
+export function landcoverRasterMesh(
+  data: TerrainLandcoverRasterData,
+  context: Pick<TerrainPyramidTileLayerContext, 'tileSize'>,
+  options: Pick<TerrainSemanticMeshOptions, 'materials'>,
+): THREE.Mesh {
+  const mesh = createLandcoverRasterMesh(
+    data,
+    context.tileSize,
+    options.materials?.landcoverRaster ?? DEFAULT_LANDCOVER_RASTER_MATERIAL,
+  );
+  markTerrainGroundSurface(mesh);
+  return mesh;
+}
+
+export function createLandcoverMesh(
+  tile: TerrainSemanticTile,
+  context: TerrainPyramidTileLayerContext,
+  options: TerrainSemanticMeshOptions,
+): THREE.Mesh | undefined {
+  const builder = new TerrainSurfaceMeshBuilder(context);
+  tile = { ...tile, landcover: orderLandcover(tile.landcover) };
+  const visible = visibleLandcoverPolygons(tile.landcover);
+  const ranges: LandcoverBlendRange[] = [];
+  const colorsAt: ((x: number, z: number) => THREE.Color)[] = [];
+  const painter = landcoverPainter(tile, context, options);
+  for (let featureIndex = 0; featureIndex < tile.landcover.length; featureIndex++) {
+    const feature = tile.landcover[featureIndex];
+    if (feature === undefined) continue;
+    const { colorAt, detailAt } = painter(feature);
     // One height for every class: covered faces were removed above, so neighbors meet edge to
     // edge. Staggered layers left a sliver at each boundary that a grazing view saw through
     // once the covered terrain beneath stopped drawing.
@@ -903,17 +1195,7 @@ export function createLandcoverMesh(
     for (const polygon of visible[featureIndex] ?? [])
       appendTerrainSurfaceArea(builder, polygon, colorAt, offset);
     appendAgricultureAttributes(builder, start, feature);
-    builder.attributeSince('landcoverDetail', 2, start, (x, z) => {
-      const worldX = context.origin[0] + x,
-        worldZ = context.origin[1] + z;
-      const detail =
-        palettes?.find(
-          ({ bounds: b }) => worldX >= b[0] && worldX < b[2] && worldZ >= b[1] && worldZ < b[3],
-        )?.detail ?? ownDetail;
-      if (detail === undefined) return [0, 0];
-      const open = 1 - (pavedAt?.(x, z) ?? 0);
-      return [detail[0] * open, detail[1] * open];
-    });
+    builder.attributeSince('landcoverDetail', 2, start, detailAt);
     colorsAt[featureIndex] = typeof colorAt === 'function' ? colorAt : () => colorAt;
     if (builder.vertexCount > start)
       ranges.push({ start, end: builder.vertexCount, feature: featureIndex });
@@ -1084,6 +1366,7 @@ function* buildingMeshSteps(
     }
   };
   for (const feature of tile.buildings) {
+    if ((feature.layer ?? 0) < 0) continue;
     yield* pauseWhenDue(clock);
     const height = Math.max(
       0.5,
@@ -1318,7 +1601,7 @@ function* semanticObjectSteps(
   clock: SliceClock,
 ): Generator<void, void> {
   if ((options.renderLandcover ?? true) && (options.renderLandcoverSurface ?? true)) {
-    const landcover = createLandcoverMesh(tile, context, options);
+    const landcover = createLandcoverSurface(tile, context, options);
     if (landcover !== undefined) group.add(landcover);
     yield* pauseWhenDue(clock);
   }

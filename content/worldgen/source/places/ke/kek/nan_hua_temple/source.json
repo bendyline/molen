@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.nan_hua_temple",
+  "kind": "static-structure",
+  "title": "Nan Hua Temple Main Shrine",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.nan_hua_temple",
+        "output": "assets/places/ke/kek/nan_hua_temple/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f268c22c8780ce6237843a6c8a80a7198cab6de761e3d9217db59b75c0f69b8f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-nan-hua-shrine",
+        "path": "models/generate-nan-hua-shrine.mjs"
+      },
+      {
+        "id": "nan-hua-shrine-model",
+        "path": "models/nan-hua-shrine-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/shrine-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-nan-hua-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-18999-18818.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

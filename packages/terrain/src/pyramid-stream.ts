@@ -25,11 +25,13 @@ import {
   refreshChunkEdgeNormals,
   type TerrainNeighborHeightSampler,
 } from './mesh';
+import { TerrainCameraTrack } from './pyramid-motion';
 import {
   type TerrainPyramidDescriptor,
   type TerrainPyramidTileAddress,
   terrainPyramidAddressAt,
   terrainPyramidAncestor,
+  terrainPyramidParent,
   terrainPyramidTileCount,
   terrainPyramidTileKey,
   terrainPyramidTileOrigin,
@@ -71,6 +73,22 @@ export interface TerrainPyramidSelectionOptions {
   viewDistance: number;
   /** Selection ceiling; the selector raises error and then shortens range if needed. */
   maxSelectedTiles: number;
+  /** The finest level to refine to, when it should stop short of the descriptor's. */
+  maxLevel?: number;
+  /**
+   * How far past `maxScreenSpaceError` a tile's error must go before it refines into its
+   * children, as a multiple of it (1 or more; default 1). Above 1 that detail reaches less far
+   * from the camera: a fast camera keeps its finest levels around itself, rather than giving
+   * them up or building them across the whole view.
+   */
+  refineScale?: (tile: TerrainPyramidTileAddress) => number;
+  /**
+   * The ground heights a tile really holds, when known (a tile without any inherits its nearest
+   * known ancestor's). Without it a tile can reach anywhere in the descriptor's height range, and
+   * a camera inside that range measures no height above the ground: an aircraft at 3 km over a
+   * package whose range reaches 5 km refines the land beneath it as if it stood there.
+   */
+  tileHeight?: (address: TerrainPyramidTileAddress) => { min: number; max: number } | undefined;
   /**
    * Degrees beyond the camera's horizontal view (and its small guard band) where ground stays
    * selected at reduced detail, so turning the camera reveals terrain and layers that are already
@@ -82,6 +100,17 @@ export interface TerrainPyramidSelectionOptions {
    * weighted error exceeds the budget, so they stay a level or two coarser than the view.
    */
   peripheralDetail?: number;
+  /**
+   * Error weight of ground everywhere else round the camera, in (0, 1] (default: none, so that
+   * ground is not selected at all). A camera can look round faster than ground can load: a
+   * quarter turn in a third of a second, against seconds for a tile and its layers. With a
+   * small weight (0.1 or so) the whole circle stays selected several levels coarser than the
+   * view, with the layers of `independentLayers` on it, so a look to the side shows coarse
+   * finished ground that refines rather than bare ground that fills in.
+   */
+  surroundDetail?: number;
+  /** How far round the camera `surroundDetail` reaches, world units (default: `viewDistance`). */
+  surroundDistance?: number;
 }
 
 export interface TerrainPyramidSelection {
@@ -162,6 +191,15 @@ export interface TerrainPyramidStreamOptions
   /** Optional refinement height morph for bare surfaces. Grounded layers retain atomic handoff. */
   morphMilliseconds?: number;
   /**
+   * Layer categories built for ground outside the view as well (the peripheral band and the
+   * surround) and shown as soon as each is ready, rather than together with the tile's other
+   * layers. Default `['hydrology']`. A host whose land cover is the ground's color adds
+   * `'classification'`: without it, ground the camera turns to face is bare until every layer
+   * of its tile has been built, and reads as a hole in the world. Handoffs between levels are
+   * unchanged: a replacement still waits for every layer its predecessor shows.
+   */
+  independentLayers?: readonly TerrainTileLayerCategory[];
+  /**
    * Sun shadows: every tile surface and layer mesh receives them, and layer meshes standing
    * taller than `shadowCasterHeight` meters (default 1.5: buildings, trees, landmarks) cast
    * them; flat roads and landcover do not. A layer part can opt in or out explicitly with
@@ -209,7 +247,54 @@ export interface TerrainPyramidStreamOptions
   /** Soft resident height/geometry byte cap; displayed coverage is never removed to meet it. */
   maxResidentBytes?: number | undefined;
   initialView?: TerrainPyramidView;
+  /**
+   * Build ahead of a moving camera (on by default). The stream follows the camera's track through
+   * `update`, so it works for anything that moves it: a car, an aircraft, an orbit pan.
+   */
+  lookAhead?: TerrainPyramidLookAheadOptions | false;
+  /** Clock for the camera's track, ms (default `performance.now`). */
+  now?: () => number;
   onError?: (error: unknown, context: TerrainPyramidStreamErrorContext) => void;
+  /** Where each finished layer's time went, for a host's diagnostics. */
+  onLayerTiming?: (sample: TerrainPyramidLayerTiming) => void;
+}
+
+/**
+ * How far ahead of a moving camera tiles are built. Tiles the track reaches are built while the
+ * stream has capacity beyond what the camera sees now, and stay hidden until selected, so they
+ * appear finished. They are the first thing given up under memory pressure.
+ */
+export interface TerrainPyramidLookAheadOptions {
+  /** Times along the predicted track to select tiles for (default 3, 6, 12 and 20 seconds). */
+  seconds?: readonly number[];
+  /** Most tiles tracked ahead of the camera (default the budget's `maxSelectedTiles`). */
+  maxTiles?: number;
+  /**
+   * Levels whose tiles the camera crosses in less than this keep their detail only near the
+   * camera (default 5 seconds; 0 turns it off). Each level finer is four times the tiles for the
+   * same ground, so a fast camera that refined its whole view to the finest level would build
+   * far more than the stream can finish, and finish little of it.
+   */
+  minTileSeconds?: number;
+  /**
+   * How much of the work of one full-detail level each of those faster levels may take, in
+   * [0, 1] (default 0.25). The faster the camera crosses a level, the nearer it its detail stops.
+   * This limits building only: finer ground already built stays while the view would show it
+   * at rest, so speeding up or turning does not take detail off the screen. 0 builds none.
+   */
+  fastDetail?: number;
+}
+
+/** One layer build, by phase, in milliseconds. */
+export interface TerrainPyramidLayerTiming {
+  layerId: string;
+  level: number;
+  /** Generating the object: reading its source, worker time, and scene assembly. */
+  createMs: number;
+  /** GPU preparation: uploads and shaders, which run in the frame budget. */
+  prepareMs: number;
+  /** Waiting for a frame to publish it. */
+  publishMs: number;
 }
 
 /** World coordinates and slope, with linear RGB. Undefined preserves the package palette. */
@@ -251,6 +336,60 @@ export interface TerrainPyramidStreamStats extends TerrainStreamStats {
   maxDisplayedLevel: number | undefined;
   effectiveScreenSpaceError: number;
   effectiveViewDistance: number;
+  /** Terrain surfaces built so far, and how many of those had been built before and evicted. */
+  builtTiles: number;
+  rebuiltTiles: number;
+  /** Tile layers built so far, and how many of those had been built before and evicted. */
+  builtLayers: number;
+  rebuiltLayers: number;
+  /**
+   * Of `builtLayers`, those `refreshLayers` built in place of one on screen. A host asked for
+   * these: they are not the cache losing work, and `rebuiltLayers` does not count them.
+   */
+  refreshedLayers: number;
+  /** Tile layers on screen still showing what a `refreshLayers` call is replacing. */
+  refreshingLayers: number;
+  /** Tiles the camera's track is about to reach that are not selected yet. */
+  aheadTiles: number;
+  /** Those of `aheadTiles` already built, layers included. */
+  aheadReady: number;
+  /** The camera's speed along its track, world units per second. */
+  cameraSpeed: number;
+  /**
+   * The finest level refined across the whole view at that speed; finer levels refine only near
+   * the camera (`lookAhead.fastDetail`).
+   */
+  speedLevel: number;
+  /**
+   * Times ground in the camera's view changed level so far: replaced by finer tiles, and by
+   * coarser ones. Detail arriving is the point of streaming; detail given up while in view
+   * reads as popping.
+   */
+  refinedInView: number;
+  coarsenedInView: number;
+}
+
+/** How finished the view is within one distance band; see `TerrainPyramidStream.viewCoverage`. */
+export interface TerrainPyramidCoverageBand {
+  /** Band limits in world units from the camera; the last band's `to` is Infinity. */
+  from: number;
+  to: number;
+  /** In-view selected tiles in the band. */
+  tiles: number;
+  /** Drawn at their selected detail, with every layer. */
+  complete: number;
+  /** Drawn from another level's tiles that carry layers. */
+  stale: number;
+  /** Terrain drawn, with layers still missing. */
+  bare: number;
+  /** Nothing drawn. */
+  empty: number;
+  /**
+   * Mean level of the ground drawn over the band's selected tiles, weighted by area; undefined
+   * when nothing is drawn. `complete` is measured against the selection, which coarsens at speed,
+   * so it reads the same for coarse and fine ground; this says how fine the ground is.
+   */
+  drawnLevel: number | undefined;
 }
 
 export interface TerrainPyramidStatsOptions {
@@ -262,6 +401,14 @@ export interface TerrainPyramidStatsOptions {
    * refreshing a few times a second stalled a frame each time.
    */
   geometry?: 'measured' | 'tracked';
+}
+
+/** What `TerrainPyramidStream.refreshLayers` builds again. */
+export interface TerrainPyramidLayerRefresh {
+  /** World X/Z rectangle [minX, minZ, maxX, maxZ]: every resident tile it overlaps or touches. */
+  bounds: readonly [number, number, number, number];
+  /** Layer ids to build again (default: every layer). An unknown id throws. */
+  layers?: readonly string[];
 }
 
 export interface TerrainPyramidStream {
@@ -305,8 +452,9 @@ export interface TerrainPyramidStream {
   /**
    * True when the view's terrain and enabled layers within `radius` of (x, z) are on screen:
    * every selected tile there is displayed with its layers published (a layer that failed for
-   * good does not hold it back). Loads elsewhere in the view do not count, so a host can act on
-   * the ground around a point, such as landing a walker, while the rest of the view streams in.
+   * good does not hold it back), none of them still showing what a `refreshLayers` call is
+   * replacing. Loads elsewhere in the view do not count, so a host can act on the ground around
+   * a point, such as landing a walker, while the rest of the view streams in.
    */
   isAreaReady(x: number, z: number, radius: number): boolean;
   setLayerVisible(id: string, visible: boolean): void;
@@ -319,6 +467,18 @@ export interface TerrainPyramidStream {
   tileFailures(): Array<TerrainTileFailure<TerrainPyramidTileAddress>>;
   retryFailed(): void;
   /**
+   * Build layers again where what they are made from changed (a host edited the tiles a layer's
+   * source or renderer hands out). A layer on screen stays until its replacement is prepared and
+   * takes its place in one step, so the ground never stands bare in between; one that is resident
+   * but hidden is dropped and built when next wanted; a build under way starts over. `isAreaReady`
+   * is false for ground still showing what is being replaced.
+   *
+   * Resolves when everything that was on screen has been replaced, or will not be: its tile was
+   * evicted, it left the screen or its layer was hidden, or its build failed for good (what was
+   * there then stays until a later attempt succeeds). `whenIdle` also waits for these builds.
+   */
+  refreshLayers(options: TerrainPyramidLayerRefresh): Promise<void>;
+  /**
    * Full counters, including triangle and byte totals gathered by walking every resident tile's
    * objects: for diagnostics, not every frame. Per-frame callers use `loading()`, and a live
    * diagnostics panel passes `{ geometry: 'tracked' }`.
@@ -326,6 +486,11 @@ export interface TerrainPyramidStream {
   stats(options?: TerrainPyramidStatsOptions): TerrainPyramidStreamStats;
   /** Tiles and layers loading now, in constant time. */
   loading(): { tiles: number; layers: number };
+  /**
+   * What the camera sees right now, by distance: `edges` are ascending band limits in world units.
+   * Walks the selection, so sample it a few times a second at most.
+   */
+  viewCoverage(edges: readonly number[]): TerrainPyramidCoverageBand[];
   whenIdle(): Promise<void>;
   dispose(): void;
 }
@@ -469,6 +634,20 @@ function requireSelectionOptions(options: TerrainPyramidSelectionOptions): void 
       options.peripheralDetail > 1)
   ) {
     throw new Error('terrain pyramid peripheralDetail must be in (0, 1]');
+  }
+  if (
+    options.surroundDetail !== undefined &&
+    (!Number.isFinite(options.surroundDetail) ||
+      options.surroundDetail <= 0 ||
+      options.surroundDetail > 1)
+  ) {
+    throw new Error('terrain pyramid surroundDetail must be in (0, 1]');
+  }
+  if (
+    options.surroundDistance !== undefined &&
+    (!Number.isFinite(options.surroundDistance) || options.surroundDistance <= 0)
+  ) {
+    throw new Error('terrain pyramid surroundDistance must be finite and positive');
   }
 }
 
@@ -642,12 +821,15 @@ function pyramidAddressesOverlap(
   );
 }
 
+type TileHeight = (address: TerrainPyramidTileAddress) => { min: number; max: number };
+
 function selectAt(
   descriptor: TerrainPyramidDescriptor,
   view: TerrainPyramidView,
   maxScreenSpaceError: number,
   viewDistance: number,
   guardRadians = VIEW_GUARD_RADIANS,
+  heightOf: TileHeight = () => descriptor.height,
 ): TerrainPyramidTileAddress[] {
   const selected: TerrainPyramidTileAddress[] = [];
   const pixelsPerRadian = view.viewportHeight / (2 * Math.tan(view.verticalFov / 2));
@@ -655,7 +837,7 @@ function selectAt(
     const bounds = tileBounds(descriptor, address);
     if (descriptor.coverage !== undefined && !boxesIntersect(bounds, descriptor.coverage)) return;
     if (!intersectsHorizontalView(view, bounds, guardRadians)) return;
-    const distance = distanceToBounds(view.position, bounds, descriptor.height);
+    const distance = distanceToBounds(view.position, bounds, heightOf(address));
     if (distance > viewDistance) return;
     const size = descriptor.rootSize / 2 ** address.level;
     const geometricError = size / (descriptor.tileResolution - 1);
@@ -672,16 +854,8 @@ function selectAt(
       return;
     }
     const children = childAddresses(address).sort((a, b) => {
-      const distanceA = distanceToBounds(
-        view.position,
-        tileBounds(descriptor, a),
-        descriptor.height,
-      );
-      const distanceB = distanceToBounds(
-        view.position,
-        tileBounds(descriptor, b),
-        descriptor.height,
-      );
+      const distanceA = distanceToBounds(view.position, tileBounds(descriptor, a), heightOf(a));
+      const distanceB = distanceToBounds(view.position, tileBounds(descriptor, b), heightOf(b));
       return distanceA - distanceB || a.z - b.z || a.x - b.x;
     });
     for (const child of children) visit(child);
@@ -737,26 +911,58 @@ export function selectTerrainPyramidTiles(
   const peripheralGuard =
     VIEW_GUARD_RADIANS + THREE.MathUtils.degToRad(options.peripheralDegrees ?? 0);
   const peripheralDetail = options.peripheralDetail ?? 0.4;
+  const surroundDetail = options.surroundDetail ?? 0;
+  const surroundDistance = Math.min(
+    options.viewDistance,
+    options.surroundDistance ?? options.viewDistance,
+  );
   const focal = view.viewportHeight / (2 * Math.tan(view.verticalFov / 2));
-  // 1 inside the view (with its guard band), `peripheralDetail` in the peripheral band, else 0.
+  const knownHeight = options.tileHeight;
+  const heights = new Map<string, { min: number; max: number }>();
+  const heightOf: TileHeight =
+    knownHeight === undefined
+      ? () => descriptor.height
+      : (tile) => {
+          const key = terrainPyramidTileKey(tile);
+          let height = heights.get(key);
+          if (height === undefined) {
+            const parent = terrainPyramidParent(tile);
+            height =
+              knownHeight(tile) ??
+              (tile.level > descriptor.minLevel && parent !== undefined
+                ? heightOf(parent)
+                : descriptor.height);
+            heights.set(key, height);
+          }
+          return height;
+        };
+  // 1 inside the view (with its guard band), `peripheralDetail` in the peripheral band, then
+  // `surroundDetail` for the rest of the circle within its distance, else 0.
   const weight = (tile: TerrainPyramidTileAddress): number => {
     const bounds = tileBounds(descriptor, tile);
     if (descriptor.coverage !== undefined && !boxesIntersect(bounds, descriptor.coverage)) return 0;
-    if (distanceToBounds(view.position, bounds, descriptor.height) > options.viewDistance) return 0;
+    const distance = distanceToBounds(view.position, bounds, heightOf(tile));
+    if (distance > options.viewDistance) return 0;
     if (intersectsHorizontalView(view, bounds)) return 1;
-    return peripheralGuard > VIEW_GUARD_RADIANS &&
+    if (
+      peripheralGuard > VIEW_GUARD_RADIANS &&
       intersectsHorizontalView(view, bounds, peripheralGuard)
-      ? peripheralDetail
-      : 0;
+    )
+      return peripheralDetail;
+    return distance <= surroundDistance ? surroundDetail : 0;
   };
   const projected = (tile: TerrainPyramidTileAddress): number =>
     (((terrainPyramidTileSize(descriptor, tile.level) / (descriptor.tileResolution - 1)) * focal) /
-      Math.max(
-        1,
-        distanceToBounds(view.position, tileBounds(descriptor, tile), descriptor.height),
-      )) *
+      Math.max(1, distanceToBounds(view.position, tileBounds(descriptor, tile), heightOf(tile)))) *
     weight(tile);
   const visible = (tile: TerrainPyramidTileAddress): boolean => weight(tile) > 0;
+  const refineScale = options.refineScale;
+  // Error measured against what refining into the next level needs, so the heap still spends a
+  // limited tile budget on whatever is furthest over it.
+  const excess = (tile: TerrainPyramidTileAddress): number => {
+    const scale = refineScale?.(tile) ?? 1;
+    return projected(tile) / (scale >= 1 ? scale : 1);
+  };
   // Start with mandatory coarse coverage, then spend the remaining tile budget on the most
   // visible error. Every node is visited once; no whole-tree threshold retry traversals.
   const roots = selectAt(
@@ -765,25 +971,32 @@ export function selectTerrainPyramidTiles(
     Number.MAX_VALUE,
     options.viewDistance,
     peripheralGuard,
+    heightOf,
   ).sort(
     (a, b) =>
-      distanceToBounds(view.position, tileBounds(descriptor, a), descriptor.height) -
-        distanceToBounds(view.position, tileBounds(descriptor, b), descriptor.height) ||
+      distanceToBounds(view.position, tileBounds(descriptor, a), heightOf(a)) -
+        distanceToBounds(view.position, tileBounds(descriptor, b), heightOf(b)) ||
       a.z - b.z ||
       a.x - b.x,
   );
   const selected = new Map(
     roots.slice(0, options.maxSelectedTiles).map((t) => [terrainPyramidTileKey(t), t]),
   );
-  type Candidate = { tile: TerrainPyramidTileAddress; error: number };
+  // `priority` is the error over what refining needs. A tile refined last time needs `hysteresis`
+  // less, in the threshold and in the order a tight tile budget goes: ranked by bare error, the
+  // last refinements the budget allows changed hands as the camera moved, and ground in view
+  // stepped back and forth between levels.
+  type Candidate = { tile: TerrainPyramidTileAddress; error: number; priority: number };
   const heap: Candidate[] = [];
   const push = (tile: TerrainPyramidTileAddress): void => {
-    const item = { tile, error: projected(tile) };
+    const error = excess(tile);
+    const refined = previousRefined.has(terrainPyramidTileKey(tile));
+    const item = { tile, error, priority: error / (refined ? 1 - hysteresis : 1) };
     let index = heap.length;
     heap.push(item);
     while (index > 0) {
       const parent = (index - 1) >> 1;
-      if ((heap[parent]?.error ?? 0) >= item.error) break;
+      if ((heap[parent]?.priority ?? 0) >= item.priority) break;
       heap[index] = heap[parent] as Candidate;
       index = parent;
     }
@@ -796,8 +1009,9 @@ export function selectTerrainPyramidTiles(
       let i = 0;
       while (i * 2 + 1 < heap.length) {
         let child = i * 2 + 1;
-        if ((heap[child + 1]?.error ?? -Infinity) > (heap[child]?.error ?? -Infinity)) child++;
-        if ((heap[child]?.error ?? 0) <= last.error) break;
+        if ((heap[child + 1]?.priority ?? -Infinity) > (heap[child]?.priority ?? -Infinity))
+          child++;
+        if ((heap[child]?.priority ?? 0) <= last.priority) break;
         heap[i] = heap[child] as Candidate;
         i = child;
       }
@@ -807,13 +1021,11 @@ export function selectTerrainPyramidTiles(
   };
   for (const tile of selected.values()) push(tile);
   let effectiveError = options.maxScreenSpaceError;
+  const finestLevel = Math.min(descriptor.maxLevel, options.maxLevel ?? descriptor.maxLevel);
   while (heap.length > 0) {
-    const { tile, error } = pop();
-    if (tile.level >= descriptor.maxLevel) continue;
-    const threshold =
-      options.maxScreenSpaceError *
-      (previousRefined.has(terrainPyramidTileKey(tile)) ? 1 - hysteresis : 1);
-    if (error <= threshold) continue;
+    const { tile, error, priority } = pop();
+    if (tile.level >= finestLevel) continue;
+    if (priority <= options.maxScreenSpaceError) continue;
     const children = childAddresses(tile).filter(visible);
     if (children.length === 0) continue;
     if (selected.size + children.length - 1 > options.maxSelectedTiles) {
@@ -840,6 +1052,42 @@ interface WantedTile {
   inView: boolean;
 }
 
+/** A tile the camera's track reaches in `seconds`, at `distance` from the camera then. */
+interface AheadTile {
+  address: TerrainPyramidTileAddress;
+  seconds: number;
+  distance: number;
+}
+
+const DEFAULT_LOOK_AHEAD_SECONDS: readonly number[] = [3, 6, 12, 20];
+const DEFAULT_MIN_TILE_SECONDS = 5;
+const DEFAULT_FAST_DETAIL = 0.25;
+/**
+ * Layers under way for ground the camera has left may number this many times the layer budget
+ * before they hold new work back: see startQueuedLayerLoads.
+ */
+const STALE_LAYER_ROOM = 2;
+/** A level back in use needs this much more than `minTileSeconds`, so speed noise cannot flip it. */
+const LEVEL_LIMIT_HYSTERESIS = 1.2;
+/** How full the cache may get on tiles ahead alone, before they must replace something. */
+const AHEAD_ROOM_FRACTION = 0.9;
+/**
+ * Once the cache gives up a tile ahead to stay in budget, building ahead waits until what it keeps
+ * is this far under the byte cap. A tile ahead keeps growing after it loads, as its layers arrive,
+ * so room judged when its ground arrived was gone by the time its buildings did.
+ */
+const AHEAD_RESUME_FRACTION = 0.75;
+/** Tiles ahead wait while the frame queue holds this many jobs: they take only spare capacity. */
+const MAX_AHEAD_BACKLOG = 12;
+/** Tile selection along the track runs this often, ms; the track changes slowly. */
+const LOOK_AHEAD_INTERVAL_MS = 250;
+/** Work is ordered for where the camera will be when it finishes: this much past a layer's build time. */
+const LEAD_LATENCY_FACTOR = 1.5;
+const MIN_LEAD_SECONDS = 1;
+const MAX_LEAD_SECONDS = 6;
+/** With no update for this long the camera has stopped, however fast it was going, ms. */
+const TRACK_SILENCE_MS = 1_200;
+
 /**
  * `userData` flag for a tile layer object that drapes its whole tile with opaque ground (for
  * example landcover over a full-tile background). While that object is displayed, the stream
@@ -848,6 +1096,8 @@ interface WantedTile {
 export const TERRAIN_COVERS_GROUND: 'terrainCoversGround' = 'terrainCoversGround';
 
 interface ResidentTile {
+  /** Whether the tile's group is among the stream object's children. */
+  attached: boolean;
   morph?: SurfaceHeightMorph;
   allocations?: Set<ArrayBufferLike>;
   address: TerrainPyramidTileAddress;
@@ -949,11 +1199,14 @@ function freezeStaticTransforms(root: THREE.Object3D): void {
   for (const child of root.children) freezeStaticTransforms(child);
 }
 
-function objectGeometryStats(root: THREE.Object3D, visibleOnly: boolean): ObjectGeometryStats {
+function objectGeometryStats(
+  root: THREE.Object3D,
+  visibleOnly: boolean,
+  allocations = new Set<ArrayBufferLike>(),
+): ObjectGeometryStats {
   // Visible counts need no byte totals: skip the per-buffer bookkeeping on that walk.
   const countBytes = !visibleOnly;
   const seen = new Set<THREE.BufferGeometry>();
-  const allocations = new Set<ArrayBufferLike>();
   let bytes = 0;
   let triangles = 0;
   let instances = 0;
@@ -1161,6 +1414,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   private readonly material: THREE.Material;
   private readonly ownsMaterial: boolean;
   private readonly layerById = new Map<string, TerrainPyramidTileLayer>();
+  /** Categories built outside the view and published on their own (see `independentLayers`). */
+  private readonly independentCategories: ReadonlySet<TerrainTileLayerCategory>;
   private readonly layerVisibility = new Map<string, boolean>();
   private readonly resident = new Map<string, ResidentTile>();
   /** Height probes repeat within a finest-level cell (wheels, collision sweeps, parked craft).
@@ -1218,6 +1473,50 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   private allocationsVersion = 0;
   private countedVersion = -1;
   private countedTiles = new Set<string>();
+  /** Completed builds per tile, and per tile layer: a second build means the cache lost it. */
+  private readonly tileBuilds = new Set<string>();
+  private readonly layerBuilds = new Set<string>();
+  private readonly buildCounts = {
+    tiles: 0,
+    rebuiltTiles: 0,
+    layers: 0,
+    rebuiltLayers: 0,
+    refreshedLayers: 0,
+  };
+  /**
+   * Tile layers on screen whose source changed (see `refreshLayers`), by `"L/x/z:layerId"`. What
+   * each published stays displayed, and counts as built, until its replacement takes its place.
+   * Not the "stale" of STALE_LAYER_ROOM, which is work for ground the camera has left.
+   */
+  private readonly outdatedLayers = new Map<string, { tileKey: string; layerId: string }>();
+  /** `refreshLayers` calls still waiting on some of the tile layers they found on screen. */
+  private refreshWaiters: Array<{ keys: Set<string>; resolve: () => void }> = [];
+  private readonly transitions = { refinedInView: 0, coarsenedInView: 0 };
+  /** Ancestors of the displayed tiles, as of the last plan: ground refined on screen. */
+  private readonly refinedOnScreen = new Set<string>();
+  private readonly clock: () => number;
+  private readonly track: TerrainCameraTrack;
+  private readonly lookAhead: Required<
+    Pick<TerrainPyramidLookAheadOptions, 'seconds' | 'minTileSeconds' | 'fastDetail'>
+  > &
+    Pick<TerrainPyramidLookAheadOptions, 'maxTiles'>;
+  /** The finest level refined across the whole view at the camera's speed; finer ones stay near. */
+  private speedLevel: number;
+  private readonly lookAheadEnabled: boolean;
+  /** Tiles the camera's track reaches next, soonest first. */
+  private readonly ahead = new Map<string, AheadTile>();
+  private aheadQueue: AheadTile[] = [];
+  private aheadPlannedAt = Number.NEGATIVE_INFINITY;
+  /** Whether residency can take more look-ahead work without displacing anything wanted. */
+  private aheadRoom = true;
+  /** Set when the cache gave up a tile ahead: see AHEAD_RESUME_FRACTION. */
+  private aheadMemoryHold = false;
+  /** The view a finished build will meet: set while the camera is moving. */
+  private lead: TerrainPyramidView | undefined;
+  /** Smoothed time a layer takes from start to publication, ms. */
+  private layerLatencyMs = 1_000;
+  /** Ends travel when updates stop, for a host that updates only while the camera moves. */
+  private trackSilence: ReturnType<typeof setTimeout> | undefined;
 
   constructor(
     private readonly descriptor: TerrainPyramidDescriptor,
@@ -1225,6 +1524,26 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     private readonly options: TerrainPyramidStreamOptions,
   ) {
     requireDescriptor(descriptor);
+    this.clock = options.now ?? (() => performance.now());
+    const finest = terrainPyramidTileSize(descriptor, descriptor.maxLevel);
+    // A step past a few of the finest tiles within one update is a teleport, not travel.
+    this.track = new TerrainCameraTrack(finest * 4);
+    this.lookAheadEnabled = options.lookAhead !== false;
+    const lookAhead = options.lookAhead === false ? undefined : options.lookAhead;
+    this.lookAhead = {
+      seconds: [...(lookAhead?.seconds ?? DEFAULT_LOOK_AHEAD_SECONDS)].sort((a, b) => a - b),
+      minTileSeconds: lookAhead?.minTileSeconds ?? DEFAULT_MIN_TILE_SECONDS,
+      fastDetail: lookAhead?.fastDetail ?? DEFAULT_FAST_DETAIL,
+      ...(lookAhead?.maxTiles !== undefined ? { maxTiles: lookAhead.maxTiles } : {}),
+    };
+    this.speedLevel = descriptor.maxLevel;
+    if (this.lookAhead.seconds.some((seconds) => !Number.isFinite(seconds) || seconds <= 0)) {
+      throw new RangeError('terrain lookAhead seconds must be finite and positive');
+    }
+    const { fastDetail } = this.lookAhead;
+    if (!(fastDetail >= 0 && fastDetail <= 1)) {
+      throw new RangeError('terrain lookAhead fastDetail must be in [0, 1]');
+    }
     this.budget = {
       maxScreenSpaceError: options.maxScreenSpaceError,
       viewDistance: options.viewDistance,
@@ -1243,8 +1562,13 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       ...(options.peripheralDetail === undefined
         ? {}
         : { peripheralDetail: options.peripheralDetail }),
+      ...(options.surroundDetail === undefined ? {} : { surroundDetail: options.surroundDetail }),
+      ...(options.surroundDistance === undefined
+        ? {}
+        : { surroundDistance: options.surroundDistance }),
     };
     requireBudget(this.budget);
+    this.independentCategories = new Set(options.independentLayers ?? ['hydrology']);
     this.retryPolicy = resolveTerrainTileRetryPolicy(options);
     if (Number.isNaN(options.layerTimeoutMs) || (options.layerTimeoutMs ?? 0) < 0)
       throw new RangeError('terrain layerTimeoutMs must be zero, positive, or Infinity');
@@ -1298,16 +1622,209 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       position: [...future.position],
       ...(future.direction === undefined ? {} : { direction: [...future.direction] }),
     }));
-    this.view = {
+    this.track.sample(this.clock(), view.position);
+    this.plan({
       ...view,
       position: [...view.position],
       ...(view.direction === undefined ? {} : { direction: [...view.direction] }),
+    });
+    clearTimeout(this.trackSilence);
+    this.trackSilence = undefined;
+    // A camera that stopped would otherwise keep the detail limit and look-ahead of its last speed.
+    if (this.track.speed > 0) {
+      this.trackSilence = setTimeout(() => {
+        this.trackSilence = undefined;
+        this.track.reset();
+        if (!this.disposed && this.view !== undefined) this.plan(this.view);
+      }, TRACK_SILENCE_MS);
+    }
+  }
+
+  /** Where a view moves to along the camera's track, looking as far around as the track turns. */
+  private predictedView(view: TerrainPyramidView, seconds: number): TerrainPyramidView | undefined {
+    const predicted = this.track.predict(seconds);
+    if (predicted === undefined) return undefined;
+    const [x, y, z] = predicted.position;
+    const direction = view.direction;
+    const cos = Math.cos(predicted.turn);
+    const sin = Math.sin(predicted.turn);
+    return {
+      ...view,
+      position: [x, Math.max(y, this.descriptor.height.min), z],
+      ...(direction === undefined
+        ? {}
+        : {
+            direction: [
+              direction[0] * cos - direction[2] * sin,
+              direction[1],
+              direction[0] * sin + direction[2] * cos,
+            ],
+          }),
     };
+  }
+
+  /**
+   * A resident tile's ground, from the bottom of the package's range up to the highest ground it
+   * holds: height above that ground is what coarsens it. A camera below a tile's lowest ground (in
+   * a tunnel, beneath a cliff) is not taken farther from it; it measures across, as before.
+   */
+  private readonly tileHeight = (
+    address: TerrainPyramidTileAddress,
+  ): { min: number; max: number } | undefined => {
+    const extent = this.resident.get(terrainPyramidTileKey(address))?.heightfield.heightExtent();
+    return extent === undefined
+      ? undefined
+      : { min: Math.min(extent.min, this.descriptor.height.min), max: extent.max };
+  };
+
+  /** The finest level whose tiles the camera stays over long enough to be worth building. */
+  private updateSpeedLevel(): void {
+    const { descriptor } = this;
+    const limit = this.lookAhead.minTileSeconds;
+    const speed = this.track.speed;
+    if (!this.lookAheadEnabled || limit <= 0 || speed === 0) {
+      this.speedLevel = descriptor.maxLevel;
+      return;
+    }
+    let level = descriptor.maxLevel;
+    while (level > descriptor.minLevel && terrainPyramidTileSize(descriptor, level) / speed < limit)
+      level--;
+    // Coarsen at once; refine again only with a margin.
+    while (
+      level > this.speedLevel &&
+      terrainPyramidTileSize(descriptor, level) / speed < limit * LEVEL_LIMIT_HYSTERESIS
+    )
+      level--;
+    this.speedLevel = level;
+  }
+
+  /**
+   * The selection's error multiple for refining `tile` into its children at the camera's speed.
+   * A moving camera starts tiles of a level at a rate of its speed times the level's reach over
+   * its tile area; a level just slow enough to build across the view sets the rate the stream
+   * can keep up with. A faster level keeps `fastDetail` of that rate by shortening its reach,
+   * which the error multiple divides (or, past the view distance, the reach the view distance
+   * leaves it).
+   *
+   * The limit is on building. Children already built cost nothing to show, and giving them up
+   * while in view (as the camera speeds up, crosses a level's limit or turns) reads as detail
+   * popping out; they keep the ordinary error, like ground at rest.
+   */
+  private readonly refineScale = (tile: TerrainPyramidTileAddress): number => {
+    const view = this.view;
+    const level = tile.level + 1;
+    if (
+      level <= this.speedLevel ||
+      view === undefined ||
+      this.refinedOnScreen.has(terrainPyramidTileKey(tile)) ||
+      this.childrenBuilt(tile)
+    )
+      return 1;
+    const { minTileSeconds, fastDetail } = this.lookAhead;
+    if (fastDetail === 0) return Number.POSITIVE_INFINITY;
+    const { descriptor, budget } = this;
+    const crossing = terrainPyramidTileSize(descriptor, level) / this.track.speed;
+    const share = (fastDetail * crossing) / minTileSeconds;
+    // Where the selection would otherwise refine a parent into this level.
+    const focal = view.viewportHeight / (2 * Math.tan(view.verticalFov / 2));
+    const parentError =
+      terrainPyramidTileSize(descriptor, level - 1) / (descriptor.tileResolution - 1);
+    const reach = (parentError * focal) / budget.maxScreenSpaceError;
+    return Math.max(1, reach / (share * Math.min(reach, budget.viewDistance)));
+  };
+
+  /** Whether every child of `tile` is resident with its layers, ready to show. */
+  private childrenBuilt(tile: TerrainPyramidTileAddress): boolean {
+    const { coverage } = this.descriptor;
+    return childAddresses(tile).every((child) => {
+      if (coverage !== undefined && !boxesIntersect(tileBounds(this.descriptor, child), coverage))
+        return true;
+      const resident = this.resident.get(terrainPyramidTileKey(child));
+      return resident !== undefined && this.layersReady(resident);
+    });
+  }
+
+  /** Whether the track will cross enough ground in time for looking ahead to change anything. */
+  private travelling(): boolean {
+    if (!this.lookAheadEnabled) return false;
+    const horizon = this.lookAhead.seconds.at(-1) ?? 0;
+    const finest = terrainPyramidTileSize(this.descriptor, this.descriptor.maxLevel);
+    return this.track.speed * horizon >= finest / 2;
+  }
+
+  /** Select tiles along the track, soonest first, leaving out what the camera already selects. */
+  private planAhead(view: TerrainPyramidView): void {
+    if (this.lead === undefined) {
+      this.ahead.clear();
+      this.aheadPlannedAt = Number.NEGATIVE_INFINITY;
+      return;
+    }
+    const now = this.clock();
+    if (now - this.aheadPlannedAt < LOOK_AHEAD_INTERVAL_MS) return;
+    this.aheadPlannedAt = now;
+    this.ahead.clear();
+    const limit = this.lookAhead.maxTiles ?? this.budget.maxSelectedTiles;
+    for (const seconds of this.lookAhead.seconds) {
+      const future = this.predictedView(view, seconds);
+      if (future === undefined) return;
+      const tiles = selectTerrainPyramidTiles(this.descriptor, future, {
+        maxScreenSpaceError: this.budget.maxScreenSpaceError,
+        viewDistance: this.budget.viewDistance,
+        maxSelectedTiles: this.budget.maxSelectedTiles,
+        hysteresis: 0,
+        tileHeight: this.tileHeight,
+        refineScale: this.refineScale,
+      })
+        .tiles.map((address) => ({
+          address,
+          seconds,
+          distance: distanceToBounds(
+            future.position,
+            tileBounds(this.descriptor, address),
+            this.descriptor.height,
+          ),
+        }))
+        .sort((a, b) => a.distance - b.distance);
+      for (const tile of tiles) {
+        if (this.ahead.size >= limit) return;
+        const key = terrainPyramidTileKey(tile.address);
+        if (!this.ahead.has(key) && !this.selected.has(key)) this.ahead.set(key, tile);
+      }
+    }
+  }
+
+  private plan(view: TerrainPyramidView): void {
+    this.view = view;
+    // Order work for where the camera will be once it is done, not where it is now.
+    this.lead = this.travelling()
+      ? this.predictedView(
+          view,
+          Math.max(
+            MIN_LEAD_SECONDS,
+            Math.min(MAX_LEAD_SECONDS, (LEAD_LATENCY_FACTOR * this.layerLatencyMs) / 1000),
+          ),
+        )
+      : undefined;
+    const focus = this.lead ?? view;
     this.usage++;
     this.renewCutWindow(performance.now());
+    this.updateSpeedLevel();
+    this.refinedOnScreen.clear();
+    for (const key of this.displayed) {
+      const address = this.resident.get(key)?.address;
+      if (address === undefined) continue;
+      for (let level = address.level - 1; level >= this.descriptor.minLevel; level--) {
+        const ancestor = terrainPyramidTileKey(terrainPyramidAncestor(address, level));
+        // Its own ancestors came with it.
+        if (this.refinedOnScreen.has(ancestor)) break;
+        this.refinedOnScreen.add(ancestor);
+      }
+    }
     this.selection = selectTerrainPyramidTiles(this.descriptor, this.view, {
       ...this.budget,
       previousTiles: this.selection.tiles,
+      tileHeight: this.tileHeight,
+      refineScale: this.refineScale,
     });
     this.selected.clear();
     this.wanted.clear();
@@ -1321,8 +1838,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       const bounds = tileBounds(this.descriptor, address);
       this.wanted.set(key, {
         address,
-        distance: distanceToBounds(view.position, bounds, this.descriptor.height),
-        inView: intersectsHorizontalView(view, bounds, 0),
+        distance: distanceToBounds(focus.position, bounds, this.descriptor.height),
+        inView: intersectsHorizontalView(focus, bounds, 0),
       });
     };
     for (const address of selectCoarseCoverage(
@@ -1360,6 +1877,13 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     // Prepare future leaves directly: speculative ancestors consume slots and memory without
     // improving current coverage. Keep the real selection/error budget for each future view;
     // reducing its selection budget would predict coarser tiles than travel actually needs.
+    // The same ground heights and speed limit apply, or a fast camera would prepare leaves finer
+    // than its selection will reach.
+    const futureSelection: TerrainPyramidSelectionOptions = {
+      ...this.budget,
+      tileHeight: this.tileHeight,
+      refineScale: this.refineScale,
+    };
     const byteCap = this.budget.maxResidentBytes;
     // A full hidden cache is reclaimable. Only displayed pressure should suspend the route;
     // otherwise a long flight would permanently stop preloading once its cache first fills.
@@ -1384,7 +1908,11 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           tileBounds(this.descriptor, address),
           this.descriptor.height,
         );
-      const nearest = selectTerrainPyramidTiles(this.descriptor, future, this.budget).tiles.sort(
+      const nearest = selectTerrainPyramidTiles(
+        this.descriptor,
+        future,
+        futureSelection,
+      ).tiles.sort(
         (a, b) => distance(a) - distance(b) || b.level - a.level || a.z - b.z || a.x - b.x,
       )[0];
       if (nearest === undefined) continue;
@@ -1418,17 +1946,26 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         loadWanted.add(key);
       }
     }
+    this.planAhead(view);
     // A route change must not leave all height slots occupied by obsolete requests. Delete
     // before restarting; the old request's identity-checked settlement cannot delete a retry.
     for (const [key, request] of this.pending) {
-      if (!this.wanted.has(key) && !this.visiblyRetains(key)) {
+      if (!this.wanted.has(key) && !this.ahead.has(key) && !this.visiblyRetains(key)) {
         request.controller.abort();
         this.pending.delete(key);
       }
     }
     for (const [key, tile] of this.resident) {
-      if (this.wanted.has(key)) tile.lastUsed = this.usage;
+      if (this.wanted.has(key) || this.ahead.has(key)) tile.lastUsed = this.usage;
     }
+    this.aheadQueue = [...this.ahead].flatMap(([key, tile]) =>
+      this.wanted.has(key) ||
+      this.resident.has(key) ||
+      this.pending.has(key) ||
+      this.retries.isBlocked(key)
+        ? []
+        : [tile],
+    );
     this.queue = [...this.wanted.values()]
       .filter((tile) => {
         const key = terrainPyramidTileKey(tile.address);
@@ -1451,7 +1988,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           a.address.z - b.address.z ||
           a.address.x - b.address.x,
       );
-    this.retries.forgetUnwanted((key) => loadWanted.has(key));
+    this.retries.forgetUnwanted((key) => loadWanted.has(key) || this.ahead.has(key));
     this.updateVisibility();
     this.evictUnused();
     this.startQueuedLoads();
@@ -1472,7 +2009,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       return;
     this.budget = next;
     this.rejectedPreloads.clear();
-    if (this.view !== undefined) this.update(this.view, this.preloadViews);
+    if (this.view !== undefined) this.plan(this.view);
     else {
       this.selection.effectiveScreenSpaceError = next.maxScreenSpaceError;
       this.selection.effectiveViewDistance = next.viewDistance;
@@ -1667,6 +2204,13 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         if (this.layerVisibility.get(id) === true && !this.displayedLayers.get(id)?.has(key))
           return false;
       }
+      // Ground still showing what a refresh is replacing is not ready to stand on: the walls
+      // there are about to change. A replacement that failed for good does not hold it back.
+      for (const id of this.layerById.keys()) {
+        const layerKey = `${key}:${id}`;
+        if (this.outdatedLayers.has(layerKey) && this.layerRetries.state(layerKey) !== 'failed')
+          return false;
+      }
       covered = true;
     }
     return covered;
@@ -1747,7 +2291,83 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     if (this.disposed || this.view === undefined) return;
     this.retries.clearAll();
     this.layerRetries.clearAll();
-    this.update(this.view, this.preloadViews);
+    this.plan(this.view);
+  }
+
+  refreshLayers(options: TerrainPyramidLayerRefresh): Promise<void> {
+    const ids = options.layers ?? [...this.layerById.keys()];
+    for (const id of ids)
+      if (!this.layerById.has(id)) throw new Error(`unknown terrain pyramid tile layer "${id}"`);
+    const [minX, minZ, maxX, maxZ] = options.bounds;
+    if (![minX, minZ, maxX, maxZ].every(Number.isFinite) || minX > maxX || minZ > maxZ)
+      throw new Error('refresh bounds must be a finite [minX, minZ, maxX, maxZ] rectangle');
+    if (this.disposed) return Promise.resolve();
+    // Decide what is on screen from the current state, not a pass a publication left queued.
+    this.settleVisibility();
+    const waiting = new Set<string>();
+    for (const [tileKey, tile] of this.resident) {
+      // Touching counts: a change on a tile's edge is drawn by both tiles that share it.
+      const [x0, z0, x1, z1] = tileBounds(this.descriptor, tile.address);
+      if (x0 > maxX || x1 < minX || z0 > maxZ || z1 < minZ) continue;
+      for (const id of ids) {
+        const key = `${tileKey}:${id}`;
+        // A build under way was made from what changed. The pump starts it over.
+        const request = this.pendingLayers.get(key);
+        if (request !== undefined) {
+          request.controller.abort();
+          this.pendingLayers.delete(key);
+        }
+        this.layerRetries.clear(key);
+        // The build that follows is asked for, not one the cache lost (see rebuiltLayers).
+        this.layerBuilds.delete(key);
+        if (!tile.layers.has(id) && !tile.emptyLayers.has(id)) continue;
+        if (this.displayedLayers.get(id)?.has(tileKey) === true) {
+          this.outdatedLayers.set(key, { tileKey, layerId: id });
+          waiting.add(key);
+        } else {
+          // Hidden in the warm cache, or prepared behind what is displayed: nothing to keep on
+          // screen, and it must not come back as it was.
+          this.outdatedLayers.delete(key);
+          this.settleRefresh(key);
+          this.dropLayer(tile, id);
+        }
+      }
+    }
+    const refreshed =
+      waiting.size === 0
+        ? Promise.resolve()
+        : new Promise<void>((resolve) => this.refreshWaiters.push({ keys: waiting, resolve }));
+    // Builds are under way (or queued behind a full window) before this returns, so a caller
+    // awaiting `whenIdle` next waits for them too.
+    this.updateVisibility();
+    this.evictUnused();
+    this.startQueuedLoads();
+    this.resolveIdleIfNeeded();
+    return refreshed;
+  }
+
+  /** A tile layer a refresh was waiting on is replaced, or will not be: tell its callers. */
+  private settleRefresh(key: string): void {
+    if (this.refreshWaiters.length === 0) return;
+    this.refreshWaiters = this.refreshWaiters.filter((waiter) => {
+      waiter.keys.delete(key);
+      if (waiter.keys.size > 0) return true;
+      waiter.resolve();
+      return false;
+    });
+  }
+
+  /** Take a tile's layer object (or its empty mark) away, to be built again when next wanted. */
+  private dropLayer(tile: ResidentTile, id: string): void {
+    tile.emptyLayers.delete(id);
+    const object = tile.layers.get(id);
+    if (object === undefined) return;
+    this.groundCutouts.restore(object);
+    tile.object.remove(object);
+    tile.layers.delete(id);
+    this.layerById.get(id)?.disposeTile?.(object);
+    this.trackAllocations(tile);
+    this.cutoutsDirty = true;
   }
 
   stats(options: TerrainPyramidStatsOptions = {}): TerrainPyramidStreamStats {
@@ -1760,11 +2380,22 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     }
     const failures = this.retries.counts();
     const layerFailures = this.layerRetries.counts();
-    const allocatedBytes =
-      options.geometry === 'tracked'
-        ? this.geometryBytes
-        : objectGeometryStats(this.object, false).bytes;
     const visibleGeometry = objectGeometryStats(this.object, true);
+    let allocatedBytes = this.geometryBytes;
+    if (options.geometry !== 'tracked') {
+      const counted = new Set<ArrayBufferLike>();
+      allocatedBytes = objectGeometryStats(this.object, false, counted).bytes;
+      // Hidden tiles are out of the scene graph, and walking them would make a large cache cost a
+      // hitch at each sample; nothing changes them while they wait, so their tracked buffers stand.
+      for (const tile of this.resident.values()) {
+        if (tile.attached) continue;
+        for (const buffer of tile.allocations ?? []) {
+          if (counted.has(buffer)) continue;
+          counted.add(buffer);
+          allocatedBytes += buffer.byteLength;
+        }
+      }
+    }
     const levels = this.displayedTiles().map((tile) => tile.level);
     let fallbackLeaves = 0;
     for (const address of this.selected.values()) {
@@ -1800,11 +2431,89 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       maxDisplayedLevel: levels.length > 0 ? Math.max(...levels) : undefined,
       effectiveScreenSpaceError: this.selection.effectiveScreenSpaceError,
       effectiveViewDistance: this.selection.effectiveViewDistance,
+      builtTiles: this.buildCounts.tiles,
+      rebuiltTiles: this.buildCounts.rebuiltTiles,
+      builtLayers: this.buildCounts.layers,
+      rebuiltLayers: this.buildCounts.rebuiltLayers,
+      refreshedLayers: this.buildCounts.refreshedLayers,
+      refreshingLayers: this.outdatedLayers.size,
+      aheadTiles: this.ahead.size,
+      aheadReady: [...this.ahead.keys()].filter((key) => {
+        const tile = this.resident.get(key);
+        return tile !== undefined && this.layersReady(tile);
+      }).length,
+      cameraSpeed: this.track.speed,
+      speedLevel: this.speedLevel,
+      refinedInView: this.transitions.refinedInView,
+      coarsenedInView: this.transitions.coarsenedInView,
     };
   }
 
   loading(): { tiles: number; layers: number } {
     return { tiles: this.pending.size, layers: this.pendingLayers.size };
+  }
+
+  viewCoverage(edges: readonly number[]): TerrainPyramidCoverageBand[] {
+    this.settleVisibility();
+    const bands: TerrainPyramidCoverageBand[] = [...edges, Number.POSITIVE_INFINITY].map(
+      (to, index) => ({
+        from: index === 0 ? 0 : (edges[index - 1] as number),
+        to,
+        tiles: 0,
+        complete: 0,
+        stale: 0,
+        bare: 0,
+        empty: 0,
+        drawnLevel: undefined,
+      }),
+    );
+    const view = this.view;
+    if (view === undefined) return bands;
+    const levelArea = bands.map(() => ({ sum: 0, area: 0 }));
+    const addLevel = (band: number, address: TerrainPyramidTileAddress, level: number): void => {
+      const area = terrainPyramidTileSize(this.descriptor, address.level) ** 2;
+      const entry = levelArea[band] as { sum: number; area: number };
+      entry.sum += level * area;
+      entry.area += area;
+    };
+    const visibleLayers = [...this.layerById.values()].filter(
+      (layer) => this.layerVisibility.get(layer.id) === true,
+    );
+    const layersShown = (key: string, level: number): boolean =>
+      visibleLayers.every(
+        (layer) =>
+          !this.layerEligible(layer, level) ||
+          this.displayedLayers.get(layer.id)?.has(key) === true,
+      );
+    const drawn = [...this.displayed]
+      .map((key) => ({ key, tile: this.resident.get(key) }))
+      .filter((entry) => entry.tile !== undefined) as Array<{ key: string; tile: ResidentTile }>;
+    for (const [key, address] of this.selected) {
+      const bounds = tileBounds(this.descriptor, address);
+      if (!intersectsHorizontalView(view, bounds, 0)) continue;
+      const distance = distanceToBounds(view.position, bounds, this.descriptor.height);
+      const index = bands.findIndex((entry) => distance < entry.to);
+      const band = bands[index] as TerrainPyramidCoverageBand;
+      band.tiles++;
+      if (this.displayed.has(key)) {
+        if (layersShown(key, address.level)) band.complete++;
+        else band.bare++;
+        addLevel(index, address, address.level);
+        continue;
+      }
+      const covering = drawn.filter(({ tile }) => pyramidAddressesOverlap(tile.address, address));
+      if (covering.length === 0) band.empty++;
+      else if (covering.every(({ key: id, tile }) => layersShown(id, tile.address.level)))
+        band.stale++;
+      else band.bare++;
+      if (covering.length > 0)
+        addLevel(index, address, Math.max(...covering.map(({ tile }) => tile.address.level)));
+    }
+    bands.forEach((band, index) => {
+      const { sum, area } = levelArea[index] as { sum: number; area: number };
+      if (area > 0) band.drawnLevel = sum / area;
+    });
+    return bands;
   }
 
   whenIdle(): Promise<void> {
@@ -1815,6 +2524,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
+    clearTimeout(this.trackSilence);
     for (const request of this.pending.values()) request.controller.abort();
     for (const request of this.pendingLayers.values()) request.controller.abort();
     this.pending.clear();
@@ -1823,8 +2533,15 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     this.layerRetries.dispose();
     this.morphing.clear();
     this.queue = [];
+    this.aheadQueue = [];
+    this.ahead.clear();
     this.groundCutouts.dispose();
     for (const key of [...this.resident.keys()]) this.evict(key);
+    // Nothing is left to replace: refreshes in progress end here.
+    this.outdatedLayers.clear();
+    const waiters = this.refreshWaiters;
+    this.refreshWaiters = [];
+    for (const waiter of waiters) waiter.resolve();
     this.object.removeFromParent();
     if (this.ownsMaterial) this.material.dispose();
     this.source.dispose?.();
@@ -1860,78 +2577,100 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       const wanted = this.queue.splice(nextIndex, 1)[0] as WantedTile;
       const key = terrainPyramidTileKey(wanted.address);
       if (!this.wanted.has(key) || this.resident.has(key) || this.pending.has(key)) continue;
-      const controller = new AbortController();
-      this.pending.set(key, { address: wanted.address, controller });
-      const resolution = this.budget.maxSurfaceTileResolution;
-      const request = loadTerrainTileWithTimeout<PreparedTile | undefined>(
-        async (signal): Promise<PreparedTile | undefined> => {
-          const prepared = this.source.loadPrepared
-            ? await this.source.loadPrepared(wanted.address, signal, resolution)
-            : await this.source
-                .load(wanted.address, signal)
-                .then((heightfield) =>
-                  heightfield === undefined ? undefined : { heightfield, geometry: undefined },
-                );
-          if (!prepared || signal.aborted || !this.options.transformHeightfield) return prepared;
-          const heightfield = await this.options.transformHeightfield(
-            {
-              address: wanted.address,
-              pyramid: this.descriptor,
-              descriptor: surfaceDescriptor(this.descriptor, wanted.address),
-              heightfield: prepared.heightfield,
-              surfaceResolution: surfaceResolution(this.descriptor, resolution),
-              origin: terrainPyramidTileOrigin(this.descriptor, wanted.address),
-              tileSize: terrainPyramidTileSize(this.descriptor, wanted.address.level),
-              signal,
-            },
-            this.source,
-          );
-          if (heightfield === prepared.heightfield) return prepared;
-          // Graded ground beside an airport was meshed on the main thread, up to 20 ms a tile in one
-          // admitted job, while a takeoff streamed in every tile around the field.
-          const geometry = await this.source.meshPrepared?.(
-            heightfield,
-            wanted.address,
+      this.startLoad(wanted.address);
+    }
+    // Then tiles ahead of the camera, keeping a load free for anything the camera turns to see.
+    const aheadLoads = Math.max(1, this.budget.maxConcurrentLoads - 1);
+    while (
+      this.queue.length === 0 &&
+      this.pending.size < aheadLoads &&
+      this.aheadQueue.length > 0 &&
+      this.resident.size + this.pending.size < this.budget.maxResidentTiles &&
+      this.hasRoomAhead()
+    ) {
+      const next = this.aheadQueue.shift() as AheadTile;
+      const key = terrainPyramidTileKey(next.address);
+      if (
+        this.ahead.has(key) &&
+        !this.wanted.has(key) &&
+        !this.resident.has(key) &&
+        !this.pending.has(key)
+      )
+        this.startLoad(next.address);
+    }
+  }
+
+  private startLoad(address: TerrainPyramidTileAddress): void {
+    const key = terrainPyramidTileKey(address);
+    const controller = new AbortController();
+    this.pending.set(key, { address, controller });
+    const resolution = this.budget.maxSurfaceTileResolution;
+    const request = loadTerrainTileWithTimeout<PreparedTile | undefined>(
+      async (signal): Promise<PreparedTile | undefined> => {
+        const prepared = this.source.loadPrepared
+          ? await this.source.loadPrepared(address, signal, resolution)
+          : await this.source
+              .load(address, signal)
+              .then((heightfield) =>
+                heightfield === undefined ? undefined : { heightfield, geometry: undefined },
+              );
+        if (!prepared || signal.aborted || !this.options.transformHeightfield) return prepared;
+        const heightfield = await this.options.transformHeightfield(
+          {
+            address,
+            pyramid: this.descriptor,
+            descriptor: surfaceDescriptor(this.descriptor, address),
+            heightfield: prepared.heightfield,
+            surfaceResolution: surfaceResolution(this.descriptor, resolution),
+            origin: terrainPyramidTileOrigin(this.descriptor, address),
+            tileSize: terrainPyramidTileSize(this.descriptor, address.level),
             signal,
-            resolution,
-          );
-          return geometry === undefined ? { heightfield } : { heightfield, geometry };
-        },
-        controller.signal,
-        this.retryPolicy.requestTimeoutMs,
-      );
-      void request
-        .then(async (prepared) => {
-          if (this.disposed || controller.signal.aborted) return;
-          if (prepared === undefined) {
+          },
+          this.source,
+        );
+        if (heightfield === prepared.heightfield) return prepared;
+        // Graded ground beside an airport was meshed on the main thread, up to 20 ms a tile in one
+        // admitted job, while a takeoff streamed in every tile around the field.
+        const geometry = await this.source.meshPrepared?.(heightfield, address, signal, resolution);
+        return geometry === undefined ? { heightfield } : { heightfield, geometry };
+      },
+      controller.signal,
+      this.retryPolicy.requestTimeoutMs,
+    );
+    void request
+      .then(async (prepared) => {
+        if (this.disposed || controller.signal.aborted) return;
+        if (prepared === undefined) {
+          // A track running off the data's edge is not worth a report, but must not ask again.
+          if (this.wanted.has(key) || this.ahead.has(key)) {
+            this.retries.markMissing(key, address);
             if (this.wanted.has(key)) {
-              this.retries.markMissing(key, wanted.address);
               this.options.onError?.(new Error(`terrain pyramid tile ${key} is missing`), {
-                address: wanted.address,
+                address,
               });
             }
-            return;
           }
-          this.retries.clear(key);
-          await this.addResident(
-            wanted.address,
-            prepared.heightfield,
-            controller.signal,
-            resolution,
-            prepared.geometry,
-          );
-        })
-        .catch((error: unknown) => {
-          if (this.disposed || controller.signal.aborted || isAbortError(error)) return;
-          this.retries.markFailed(key, wanted.address, error, () => this.retryDueTiles());
-          this.options.onError?.(error, { address: wanted.address });
-        })
-        .finally(() => {
-          if (this.pending.get(key)?.controller === controller) this.pending.delete(key);
-          this.startQueuedLoads();
-          this.resolveIdleIfNeeded();
-        });
-    }
+          return;
+        }
+        this.retries.clear(key);
+        await this.addResident(
+          address,
+          prepared.heightfield,
+          controller.signal,
+          resolution,
+          prepared.geometry,
+        );
+      })
+      .catch((error: unknown) => {
+        if (this.disposed || controller.signal.aborted || isAbortError(error)) return;
+        this.retries.markFailed(key, address, error, () => this.retryDueTiles());
+        this.options.onError?.(error, { address });
+      })
+      .finally(() => {
+        if (this.pending.get(key)?.controller === controller) this.pending.delete(key);
+        this.startQueuedLoads();
+        this.resolveIdleIfNeeded();
+      });
   }
 
   /** A backoff delay elapsed: replan against the latest view, which requeues the tile. */
@@ -1940,7 +2679,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       this.resolveIdleIfNeeded();
       return;
     }
-    this.update(this.view, this.preloadViews);
+    this.plan(this.view);
     this.resolveIdleIfNeeded();
   }
 
@@ -2040,6 +2779,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           surface.mesh.visible = false;
           freezeStaticTransforms(object);
           this.resident.set(key, {
+            attached: true,
             address,
             heightfield,
             object,
@@ -2054,6 +2794,9 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             ...(morph ? { morph } : {}),
             emptyLayers: new Set(),
           });
+          this.buildCounts.tiles++;
+          if (this.tileBuilds.has(key)) this.buildCounts.rebuiltTiles++;
+          this.tileBuilds.add(key);
           this.trackAllocations(this.resident.get(key) as ResidentTile);
           this.decodedHeightBytes +=
             heightfield.cols * heightfield.rows * Float32Array.BYTES_PER_ELEMENT;
@@ -2265,6 +3008,8 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         prepared.add(key);
         continue;
       }
+      // Nothing left to wait for but layers that have given up (their retries are spent).
+      const settled = this.layersReady(tile, true);
       let retained = false;
       for (const previousKey of previousDisplayed) {
         const previousTile = this.resident.get(previousKey);
@@ -2272,6 +3017,12 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           // A bare ancestor has no detail to preserve. Do not pin an entire region to it
           // while new building layers finish; only wait for layers it actually displays.
           if (!this.losesVisibleLayers(previousKey, tile)) continue;
+          // Nor hold a coarser tile for a layer that will not arrive: it kept its whole area
+          // coarse, and every finished sibling beneath it hidden, for as long as the failure
+          // lasted (one land-cover tile that threw froze a neighborhood at four levels too
+          // coarse). The replacement shows without that layer until a later attempt builds it.
+          // Finer ground on screen still stays, since it shows more than the replacement can.
+          if (settled && previousTile.address.level < tile.address.level) continue;
           prepared.add(previousKey);
           retained = true;
         }
@@ -2283,6 +3034,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     // A retained parent suppresses every replacement beneath it until all siblings are ready.
     const displayed = this.withoutCoveredDescendants(prepared);
     this.displayed = displayed;
+    this.countTransitions(previousDisplayed, displayed);
     for (const [key, tile] of this.resident) {
       const tileVisible = displayed.has(key);
       if (tileVisible && !tile.surface.visible && tile.morph && !this.morphing.has(tile))
@@ -2291,18 +3043,11 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       tile.surface.visible = tileVisible;
     }
     this.updateLayerVisibility();
+    // A tile the camera no longer wants may come round again. Let its semantic work finish into
+    // the warm resident cache: a cancelled request leaves its worker job running with nothing to
+    // show for it. Eviction and explicit layer toggles are the boundaries that abort it.
     for (const [key, request] of this.pendingLayers) {
-      // A temporarily hidden tile may become visible again on the next camera/LOD update. Let its
-      // semantic work finish into the warm resident cache; eviction and explicit layer toggles
-      // remain the lifecycle boundaries that abort it.
-      const tileKey = terrainPyramidTileKey(request.address);
-      if (
-        this.layerVisibility.get(request.layer.id) !== true ||
-        (!displayed.has(tileKey) &&
-          !this.wanted.has(tileKey) &&
-          !this.replacementTiles.has(tileKey) &&
-          !this.displayedLayers.get(request.layer.id)?.has(tileKey))
-      ) {
+      if (this.layerVisibility.get(request.layer.id) !== true) {
         request.controller.abort();
         this.pendingLayers.delete(key);
       }
@@ -2314,11 +3059,34 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         this.layerVisibility.get(layerId) === true &&
         (displayed.has(tileKey) ||
           this.wanted.has(tileKey) ||
+          this.ahead.has(tileKey) ||
           this.replacementTiles.has(tileKey) ||
           this.displayedLayers.get(layerId)?.has(tileKey) === true)
       );
     });
     this.startQueuedLayerLoads();
+  }
+
+  /** Count ground on screen that changed level: detail arriving, and detail given up. */
+  private countTransitions(previous: ReadonlySet<string>, next: ReadonlySet<string>): void {
+    const view = this.view;
+    if (view === undefined) return;
+    const before = [...previous]
+      .map((key) => this.resident.get(key)?.address)
+      .filter((address): address is TerrainPyramidTileAddress => address !== undefined);
+    const inView = (address: TerrainPyramidTileAddress): boolean =>
+      intersectsHorizontalView(view, tileBounds(this.descriptor, address), 0);
+    for (const key of next) {
+      if (previous.has(key)) continue;
+      const address = this.resident.get(key)?.address;
+      if (address === undefined || !inView(address)) continue;
+      const replaced = before.filter((old) => pyramidAddressesOverlap(old, address));
+      // Detail given up counts only where it was on screen: a large tile's bounds reach into the
+      // view beside the camera after the finer ground it covers has left it.
+      if (replaced.some((old) => old.level > address.level && inView(old)))
+        this.transitions.coarsenedInView++;
+      else if (replaced.some((old) => old.level < address.level)) this.transitions.refinedInView++;
+    }
   }
 
   /** Choose one non-overlapping cut, keeping a parent whenever a child still needs it. */
@@ -2352,23 +3120,49 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
 
   /**
    * Expensive detail is built for ground in the camera's view and its guard band.
-   * Peripheral terrain also prepares hydrology, so a turn never starts with a dry lakebed.
+   * Peripheral and surround terrain also prepare the independent layers (hydrology by
+   * default), so a turn never starts with a dry lakebed.
    */
   private wantsLayers(address: TerrainPyramidTileAddress): boolean {
-    const peripheral = (this.budget.peripheralDegrees ?? 0) > 0;
+    const peripheral =
+      (this.budget.peripheralDegrees ?? 0) > 0 || (this.budget.surroundDetail ?? 0) > 0;
     return (
       this.preparationTargets.has(terrainPyramidTileKey(address)) ||
       !peripheral ||
       this.view === undefined ||
+      this.ahead.has(terrainPyramidTileKey(address)) ||
       intersectsHorizontalView(this.view, tileBounds(this.descriptor, address))
     );
+  }
+
+  /** Whether a coarser tile on screen already draws the layers this tile has yet to build. */
+  private coveredByCoarserLayers(tile: ResidentTile): boolean {
+    for (const layer of this.layerById.values()) {
+      if (
+        this.layerVisibility.get(layer.id) !== true ||
+        !this.layerEligible(layer, tile.address.level) ||
+        tile.layers.has(layer.id) ||
+        tile.emptyLayers.has(layer.id)
+      )
+        continue;
+      const shown = this.displayedLayers.get(layer.id);
+      let covered = false;
+      for (let level = tile.address.level - 1; level >= this.descriptor.minLevel; level--) {
+        if (shown?.has(terrainPyramidTileKey(terrainPyramidAncestor(tile.address, level)))) {
+          covered = true;
+          break;
+        }
+      }
+      if (!covered) return false;
+    }
+    return true;
   }
 
   private layersReady(tile: ResidentTile, allowFailed = false): boolean {
     const detail = this.wantsLayers(tile.address);
     for (const layer of this.layerById.values()) {
       if (
-        (detail || layer.category === 'hydrology') &&
+        (detail || this.independentCategories.has(layer.category)) &&
         this.layerVisibility.get(layer.id) === true &&
         this.layerEligible(layer, tile.address.level) &&
         !tile.layers.has(layer.id) &&
@@ -2402,7 +3196,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     return false;
   }
 
-  /** Publish hydrology independently; retain atomic detail and coverage during handoffs. */
+  /** Publish independent layers on their own; retain atomic detail and coverage during handoffs. */
   private updateLayerVisibility(): void {
     // Match the surface handoff's losesVisibleLayers rule. A replacement may already carry
     // every layer its predecessor displayed, while a newly eligible layer is still building.
@@ -2463,7 +3257,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             continue;
           }
           if (
-            (layer.category === 'hydrology' ||
+            (this.independentCategories.has(layer.category) ||
               ready(tile) ||
               inheritedReady.get(key)?.has(layer.id)) &&
             (tile.layers.has(layer.id) || tile.emptyLayers.has(layer.id))
@@ -2471,9 +3265,14 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             candidates.add(key);
             continue;
           }
-          if (!this.wantsLayers(tile.address)) {
-            // Peripheral ground only gets hydrology. Detail already shown inside it may stay,
-            // but never a coarser ancestor's, which would cover the view beside it.
+          if (
+            !this.wantsLayers(tile.address) ||
+            this.layerRetries.state(`${key}:${layer.id}`) === 'failed'
+          ) {
+            // Peripheral ground only gets independent layers. Detail already shown inside it may stay,
+            // but never a coarser ancestor's, which would cover the view beside it. The same for a
+            // tile whose layer has given up: the ancestor's, kept for it, would hide the layer on
+            // every finished tile beneath that ancestor for as long as the failure lasts.
             for (const previousKey of previous) {
               const old = this.resident.get(previousKey);
               if (
@@ -2522,6 +3321,18 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       const retained = this.visiblyRetains(key);
       if (tile.object.visible !== retained) this.cutoutsDirty = true;
       tile.object.visible = retained;
+      this.setAttached(tile, retained);
+    }
+    // What a refresh was replacing has left the screen with no replacement under way (the camera
+    // moved on, or the layer was hidden): drop it, or it would come back from the warm cache as
+    // it was. One whose replacement is building keeps it until that lands, hidden or not.
+    for (const [layerKey, { tileKey, layerId }] of this.outdatedLayers) {
+      if (this.displayedLayers.get(layerId)?.has(tileKey) === true) continue;
+      if (this.pendingLayers.has(layerKey)) continue;
+      this.outdatedLayers.delete(layerKey);
+      const tile = this.resident.get(tileKey);
+      if (tile !== undefined) this.dropLayer(tile, layerId);
+      this.settleRefresh(layerKey);
     }
     this.cutGround();
     this.refreshDisplayedBytes();
@@ -2571,6 +3382,24 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         }
       }
     for (const tile of changed) this.trackAllocations(tile);
+  }
+
+  /**
+   * A hidden tile leaves the scene graph, not only the draw list: `updateMatrixWorld` and every
+   * `traverse` also walk invisible objects, so a warm cache of hundreds of tiles would cost frame
+   * time for drawing nothing. The tile keeps its `parent`, so world matrices still resolve while
+   * its layers prepare, and refreshes them on return in case the world moved while it was away.
+   */
+  private setAttached(tile: ResidentTile, attached: boolean): void {
+    if (tile.attached === attached) return;
+    tile.attached = attached;
+    if (attached) {
+      this.object.add(tile.object);
+      tile.object.matrixWorldNeedsUpdate = true;
+    } else {
+      this.object.remove(tile.object);
+      tile.object.parent = this.object;
+    }
   }
 
   private refreshDisplayedBytes(): void {
@@ -2637,17 +3466,22 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     const tileKey = terrainPyramidTileKey(tile.address);
     const key = `${tileKey}:${layer.id}`;
     if (
-      tile.layers.has(layer.id) ||
-      tile.emptyLayers.has(layer.id) ||
+      // Built already, unless a refresh asked for it again (see refreshLayers).
+      (!this.outdatedLayers.has(key) &&
+        (tile.layers.has(layer.id) || tile.emptyLayers.has(layer.id))) ||
       this.pendingLayers.has(key) ||
       this.layerRetries.isBlocked(key) ||
       !this.layerEligible(layer, tile.address.level) ||
-      this.pendingLayers.size >= this.budget.maxConcurrentLayerLoads
+      // The caller counts the slots in use; this bounds what is under way altogether.
+      this.pendingLayers.size >= this.budget.maxConcurrentLayerLoads * (1 + STALE_LAYER_ROOM)
     ) {
       return;
     }
     const controller = new AbortController();
     this.pendingLayers.set(key, { address: tile.address, layer, controller });
+    const started = performance.now();
+    let created = started;
+    let prepared = started;
     const origin = terrainPyramidTileOrigin(this.descriptor, tile.address);
     const tileSize = terrainPyramidTileSize(this.descriptor, tile.address.level);
     const priority = (): number => this.layerPriority(tile.address);
@@ -2670,6 +3504,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           priority,
           ...(scoped ? { admission: scoped } : {}),
         });
+        created = performance.now();
         if (object !== undefined) {
           // A renderer builds each mesh's shaders for its shadow flags too: marked after preparing,
           // every instanced batch (three builds those per object) was built again mid-frame.
@@ -2687,6 +3522,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
             delete object.userData.admissionOrder;
           }
         }
+        prepared = performance.now();
         return object;
       },
       controller.signal,
@@ -2700,19 +3536,52 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
               if (object !== undefined) layer.disposeTile?.(object);
               return;
             }
+            // A refresh's replacement: what the tile shows now gives way to it in this one task.
+            const replaced = current.layers.get(layer.id);
+            const refreshed = this.outdatedLayers.delete(key);
+            this.buildCounts.layers++;
+            if (refreshed) this.buildCounts.refreshedLayers++;
+            else if (this.layerBuilds.has(key)) this.buildCounts.rebuiltLayers++;
+            this.layerBuilds.add(key);
+            const finished = performance.now();
+            if (object !== undefined) {
+              this.layerLatencyMs += 0.1 * (finished - started - this.layerLatencyMs);
+            }
+            this.options.onLayerTiming?.({
+              layerId: layer.id,
+              level: tile.address.level,
+              createMs: created - started,
+              prepareMs: prepared - created,
+              publishMs: finished - prepared,
+            });
             if (object === undefined) {
               this.layerRetries.clear(key);
+              // Nothing is there any more: what a refresh was replacing goes with no successor.
+              if (replaced !== undefined) this.dropLayer(current, layer.id);
               current.emptyLayers.add(layer.id);
+              // The pass is queued before the refresh's callers are told, so they resume after it.
               this.requestVisibility();
+              if (refreshed) this.settleRefresh(key);
               return;
             }
             object.name ||= `layer:${layer.id}:${tileKey}`;
             this.layerRetries.clear(key);
-            object.visible = false;
+            // A replacement is on screen at once if what it replaces was: the visibility pass runs
+            // after this task, and cover hidden until then would leave its tile's ground bare
+            // (see TERRAIN_COVERS_GROUND).
+            object.visible = replaced?.visible ?? false;
+            current.emptyLayers.delete(layer.id);
+            if (replaced !== undefined) {
+              this.groundCutouts.restore(replaced);
+              current.object.remove(replaced);
+              this.cutoutsDirty = true;
+            }
             current.layers.set(layer.id, object);
             current.object.add(object);
+            if (replaced !== undefined) layer.disposeTile?.(replaced);
             this.trackAllocations(current);
             this.requestVisibility();
+            if (refreshed) this.settleRefresh(key);
           },
           controller.signal,
           'layer-publication',
@@ -2720,14 +3589,16 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           'normal',
           priority,
         ).catch((error) => {
-          if (object !== undefined && !this.resident.get(tileKey)?.layers.has(layer.id))
+          // Not published. By identity: during a refresh the tile still holds the object this
+          // one was to replace, and a replacement dropped while queued must not leak.
+          if (object !== undefined && this.resident.get(tileKey)?.layers.get(layer.id) !== object)
             layer.disposeTile?.(object);
           throw error;
         });
       })
       .catch((error: unknown) => {
         if (this.disposed || controller.signal.aborted || isAbortError(error)) return;
-        this.layerRetries.markFailed(
+        const state = this.layerRetries.markFailed(
           key,
           { address: tile.address, layerId: layer.id },
           error,
@@ -2737,6 +3608,9 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           },
         );
         this.updateVisibility();
+        // Abandoned for now: what a refresh was replacing stays on screen, still to be replaced
+        // when an attempt after the cool-down succeeds, and its caller stops waiting.
+        if (state === 'failed') this.settleRefresh(key);
         this.options.onError?.(error, { address: tile.address, layerId: layer.id });
       })
       .finally(() => {
@@ -2763,28 +3637,63 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   }
 
   private startQueuedLayerLoads(): void {
-    if (this.pendingLayers.size >= this.budget.maxConcurrentLayerLoads) return;
-    const view = this.view;
+    // A layer under way for ground the camera has since left runs on into the warm cache (a
+    // cancelled request leaves its worker job running with nothing to show for it), but no
+    // longer holds a slot. Worker queues take the nearest ground first, so those jobs ran last
+    // while their slots stayed taken: after a turn, new ground waited for a window full of them.
+    const layerCounts = new Map<string, number>();
+    // Tiles showing something a refresh is replacing (see refreshLayers). A layer can stay on
+    // screen beneath a tile that is no longer displayed itself, so these are not all in `displayed`.
+    const outdatedTiles = new Set<string>();
+    for (const { tileKey } of this.outdatedLayers.values()) outdatedTiles.add(tileKey);
+    let live = 0;
+    for (const { layer, address } of this.pendingLayers.values()) {
+      const tileKey = terrainPyramidTileKey(address);
+      // Everything this pass could start work for, and the tiles a handoff still waits on.
+      if (
+        !this.wanted.has(tileKey) &&
+        !this.ahead.has(tileKey) &&
+        !this.selected.has(tileKey) &&
+        !this.replacementTiles.has(tileKey) &&
+        !this.displayed.has(tileKey) &&
+        !this.preloading.has(tileKey) &&
+        !outdatedTiles.has(tileKey)
+      )
+        continue;
+      live++;
+      layerCounts.set(layer.id, (layerCounts.get(layer.id) ?? 0) + 1);
+    }
+    const room = this.budget.maxConcurrentLayerLoads * (1 + STALE_LAYER_ROOM);
+    if (live >= this.budget.maxConcurrentLayerLoads || this.pendingLayers.size >= room) return;
+    // Everything is judged at the view a build will finish into: a moving camera has left what
+    // it sees now by then, and a tile right beneath it is about the last thing worth starting.
+    const lead = this.lead;
+    const view = lead ?? this.view;
     const detailedParents = new Set<string>();
     for (const [id, keys] of this.displayedLayers)
       for (const key of keys) if (this.resident.get(key)?.layers.has(id)) detailedParents.add(key);
     // Selected leaves already in the resident cache can prepare their detail while another
     // child's terrain is still loading. Publication remains coverage-safe in updateLayerVisibility.
     // The selection's camera guard band also warms detail just outside the current view.
-    const candidates = [
-      ...new Set([
-        ...this.displayed,
-        ...this.replacementTiles,
-        ...this.selected.keys(),
-        ...this.preloading,
-      ]),
-    ]
+    const current = new Set([
+      ...this.displayed,
+      ...this.replacementTiles,
+      ...this.selected.keys(),
+      ...this.preloading,
+      ...outdatedTiles,
+    ]);
+    const candidates = [...current, ...(this.aheadRoom ? this.ahead.keys() : [])]
       .map((key) => this.resident.get(key))
       .filter((tile): tile is ResidentTile => tile !== undefined)
       .map((tile) => {
+        const key = terrainPyramidTileKey(tile.address);
         const bounds = tileBounds(this.descriptor, tile.address);
+        const ahead = current.has(key) ? undefined : this.ahead.get(key);
         const distance =
-          view === undefined ? 0 : distanceToBounds(view.position, bounds, this.descriptor.height);
+          ahead?.distance ??
+          (view === undefined
+            ? 0
+            : distanceToBounds(view.position, bounds, this.descriptor.height));
         // A detailed parent stays visible until its replacement family is ready. Give the
         // immediate family its parent's distance, or a ready tile beneath the aircraft can stay
         // hidden while unrelated, individually nearer leaves consume every layer slot.
@@ -2792,10 +3701,9 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         // made every level-15 leaf across a city equally urgent, defeating live priorities.
         let familyDistance = distance;
         let inView = view === undefined || intersectsHorizontalView(view, bounds, 0);
-        if (view && tile.address.level > this.descriptor.minLevel) {
+        if (ahead === undefined && view && tile.address.level > this.descriptor.minLevel) {
           const parent = terrainPyramidAncestor(tile.address, tile.address.level - 1);
-          const key = terrainPyramidTileKey(parent);
-          if (detailedParents.has(key)) {
+          if (detailedParents.has(terrainPyramidTileKey(parent))) {
             const parentBounds = tileBounds(this.descriptor, parent);
             familyDistance = distanceToBounds(view.position, parentBounds, this.descriptor.height);
             inView = intersectsHorizontalView(view, parentBounds, 0);
@@ -2803,10 +3711,14 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         }
         return {
           tile,
-          preload: this.preloading.has(terrainPyramidTileKey(tile.address)),
-          inView,
-          selected: this.selected.has(terrainPyramidTileKey(tile.address)),
-          replacement: this.replacementTiles.has(terrainPyramidTileKey(tile.address)),
+          ahead,
+          preload: this.preloading.has(key),
+          // What the camera will see, then ground it reaches next, then ground it has passed.
+          group: ahead !== undefined ? 1 : inView ? 0 : 2,
+          // At speed, ground with nothing on it comes before more detail for ground that has some.
+          hole: lead !== undefined && !this.coveredByCoarserLayers(tile),
+          selected: this.selected.has(key),
+          replacement: this.replacementTiles.has(key),
           familyDistance,
           distance,
         };
@@ -2814,7 +3726,9 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       .sort(
         (a, b) =>
           Number(a.preload) - Number(b.preload) ||
-          Number(b.inView) - Number(a.inView) ||
+          a.group - b.group ||
+          Number(b.hole) - Number(a.hole) ||
+          (a.ahead?.seconds ?? 0) - (b.ahead?.seconds ?? 0) ||
           a.familyDistance - b.familyDistance ||
           Number(b.replacement) - Number(a.replacement) ||
           Number(b.selected) - Number(a.selected) ||
@@ -2823,16 +3737,19 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           a.tile.address.z - b.tile.address.z ||
           a.tile.address.x - b.tile.address.x,
       );
-    const jobs = candidates.flatMap(({ tile, preload, inView }) =>
+    const jobs = candidates.flatMap(({ tile, ahead, preload, group, hole }) =>
       [...this.layerById.values()]
         .filter((layer) => {
           const key = `${terrainPyramidTileKey(tile.address)}:${layer.id}`;
+          // On screen and asked for again: built whether or not the view would start it now.
+          const outdated = this.outdatedLayers.has(key);
           return (
-            (layer.category === 'hydrology' || this.wantsLayers(tile.address)) &&
+            (outdated ||
+              this.independentCategories.has(layer.category) ||
+              this.wantsLayers(tile.address)) &&
             this.layerVisibility.get(layer.id) === true &&
             this.layerEligible(layer, tile.address.level) &&
-            !tile.layers.has(layer.id) &&
-            !tile.emptyLayers.has(layer.id) &&
+            (outdated || (!tile.layers.has(layer.id) && !tile.emptyLayers.has(layer.id))) &&
             !this.pendingLayers.has(key) &&
             !this.layerRetries.isBlocked(key)
           );
@@ -2840,8 +3757,11 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         .map((layer) => ({
           tile,
           layer,
+          ahead,
           preload,
-          inView,
+          group,
+          hole,
+          outdated: this.outdatedLayers.has(`${terrainPyramidTileKey(tile.address)}:${layer.id}`),
           route: this.preparationTargets.has(terrainPyramidTileKey(tile.address)),
           // Finish the layers needed to release an existing parent before starting newly
           // eligible detail. Otherwise a few slow building jobs occupy every slot while
@@ -2860,19 +3780,27 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     );
     // Fill visible lakes before nearby buildings can occupy every slot. Peripheral water
     // warms after visible work; speculative route jobs still use their reserved slots below.
+    // At speed, bare ground keeps its lead: a coarser tile already shows the water beside it.
+    // What a host asked to have replaced on screen goes before all of it: it shows the old state.
     jobs.sort(
       (a, b) =>
+        Number(b.outdated) - Number(a.outdated) ||
         Number(a.preload) - Number(b.preload) ||
-        Number(b.inView) - Number(a.inView) ||
+        a.group - b.group ||
+        Number(b.hole) - Number(a.hole) ||
         Number(b.layer.category === 'hydrology') - Number(a.layer.category === 'hydrology') ||
         Number(b.handoff) - Number(a.handoff),
     );
+    // Tiles ahead leave a slot free: a layer holds one for about a second, too long for ground
+    // the camera turns to see to wait behind ground it has yet to reach. They also wait out a
+    // backlog on the main thread: the frame queue is the scarce thing, and they are optional.
+    const aheadLayers =
+      (this.options.admission?.pending ?? 0) > MAX_AHEAD_BACKLOG
+        ? 0
+        : Math.max(1, this.budget.maxConcurrentLayerLoads - 1);
     // Each layer has its own downstream workers, but holds a stream slot from fetch through
     // publication. Do not let a slow source (including water) occupy the entire window while
     // the other workers are idle. Lend unused shares when another layer has no queued work.
-    const layerCounts = new Map<string, number>();
-    for (const { layer } of this.pendingLayers.values())
-      layerCounts.set(layer.id, (layerCounts.get(layer.id) ?? 0) + 1);
     const enabledLayers = [...this.layerById.values()].filter(
       (layer) => this.layerVisibility.get(layer.id) === true,
     ).length;
@@ -2881,12 +3809,19 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     // Keep one slot for each other enabled layer even when its heights have not arrived yet.
     // Otherwise lending the entire window to stalled reads starves the next arriving tile.
     const ceiling = Math.max(1, this.budget.maxConcurrentLayerLoads - layerCount + 1);
-    while (jobs.length > 0 && this.pendingLayers.size < this.budget.maxConcurrentLayerLoads) {
+    while (
+      jobs.length > 0 &&
+      live < this.budget.maxConcurrentLayerLoads &&
+      this.pendingLayers.size < room
+    ) {
+      const allowed = (job: (typeof jobs)[number]): boolean =>
+        job.ahead === undefined || live < aheadLayers;
       const withinShare = (job: (typeof jobs)[number]): boolean =>
         (layerCounts.get(job.layer.id) ?? 0) < share;
-      const available = jobs.some(withinShare);
+      const available = jobs.some((job) => allowed(job) && withinShare(job));
       const eligible = (job: (typeof jobs)[number]): boolean =>
-        available ? withinShare(job) : (layerCounts.get(job.layer.id) ?? 0) < ceiling;
+        allowed(job) &&
+        (available ? withinShare(job) : (layerCounts.get(job.layer.id) ?? 0) < ceiling);
       const first = jobs.findIndex(eligible);
       if (first < 0) break;
       const preloadIndex = this.reservePreloadSlot(
@@ -2900,6 +3835,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       if (job) {
         layerCounts.set(job.layer.id, (layerCounts.get(job.layer.id) ?? 0) + 1);
         this.startLayerLoad(job.tile, job.layer);
+        live++;
       }
     }
   }
@@ -2907,10 +3843,11 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   /**
    * A layer job's live priority (see TerrainPyramidTileLayerContext.priority), ordered as
    * startQueuedLayerLoads orders new jobs: ground in view first, then by distance, a family
-   * replacing a detailed parent at its parent's distance so the family finishes together.
+   * replacing a detailed parent at its parent's distance so the family finishes together. A
+   * moving camera is judged where a build will finish, as there.
    */
   private layerPriority(address: TerrainPyramidTileAddress): number {
-    const view = this.view;
+    const view = this.lead ?? this.view;
     if (view === undefined) return 0;
     const tileKey = terrainPyramidTileKey(address);
     const cached = this.layerPriorities.get(tileKey);
@@ -2968,19 +3905,50 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       this.resident.size <= targetResident &&
       (this.budget.maxResidentBytes === undefined ||
         this.geometryBytes + this.decodedHeightBytes <= this.budget.maxResidentBytes);
+    if (underBudget()) {
+      this.aheadRoom = this.hasRoomAhead();
+      return;
+    }
+    // Nearest stays, not most recent. Least-recently-used is the worst policy for a loop: flying
+    // a circle, the ground used longest ago is the ground coming up next. Distance in tile widths
+    // says how far the camera is from selecting a tile again, and drops ground it has truly left.
+    const view = this.view;
+    const remoteness = new Map<ResidentTile, number>();
+    const remote = (tile: ResidentTile): number => {
+      let value = remoteness.get(tile);
+      if (value === undefined) {
+        value =
+          view === undefined
+            ? 0
+            : distanceToBounds(
+                view.position,
+                tileBounds(this.descriptor, tile.address),
+                this.descriptor.height,
+              ) / terrainPyramidTileSize(this.descriptor, tile.address.level);
+        remoteness.set(tile, value);
+      }
+      return value;
+    };
     const stale = [...this.resident.entries()]
       .filter(
         ([key]) =>
-          !this.visiblyRetains(key) && !this.wanted.has(key) && !this.replacementTiles.has(key),
+          !this.visiblyRetains(key) &&
+          !this.wanted.has(key) &&
+          !this.replacementTiles.has(key) &&
+          !this.ahead.has(key),
       )
       .sort(
         ([, a], [, b]) =>
-          a.lastUsed - b.lastUsed || b.address.level - a.address.level || a.address.z - b.address.z,
+          remote(b) - remote(a) ||
+          a.lastUsed - b.lastUsed ||
+          b.address.level - a.address.level ||
+          a.address.z - b.address.z,
       );
     for (const [key] of stale) {
       if (underBudget()) break;
       this.evict(key);
     }
+    this.aheadRoom = this.hasRoomAhead();
 
     // Speculation is reclaimable before any current-view parent. Drop its queue entry too,
     // otherwise a full cache would continually rebuild and evict the same speculative leaf.
@@ -3012,13 +3980,52 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
           !this.selected.has(key) &&
           !this.replacementTiles.has(key) &&
           !this.coarseWanted.has(key) &&
+          !this.ahead.has(key) &&
           tile.address.level < this.descriptor.maxLevel,
       )
       .sort(([, a], [, b]) => a.address.level - b.address.level || a.lastUsed - b.lastUsed);
     for (const [key] of coveredParents) {
-      if (underBudget()) break;
+      if (underBudget()) return;
       this.evict(key);
     }
+    // Tiles ahead are speculative: they go last, the farthest along the track first.
+    for (const key of [...this.ahead.keys()].reverse()) {
+      if (underBudget()) return;
+      if (this.resident.has(key) && !this.visiblyRetains(key) && !this.wanted.has(key)) {
+        this.evict(key);
+        this.aheadMemoryHold = true;
+      }
+    }
+  }
+
+  /**
+   * Whether building another tile ahead would stay in budget once the cache has given up all it
+   * gives up first. Tiles ahead are the last thing kept, so at the limit a new one only pushes
+   * out the last. Counting a tile it could replace as room was not enough: eviction goes on past
+   * that tile while still over budget, to the tiles ahead themselves, and a helicopter over
+   * Seattle built and evicted the same tiles ahead about ten times a second while the ground
+   * beneath it waited. Loads on their way in count at an average tile's size, or a burst of them
+   * each judged against the same room overshoots it.
+   */
+  private hasRoomAhead(): boolean {
+    const { maxResidentBytes, maxResidentTiles } = this.budget;
+    const total = this.geometryBytes + this.decodedHeightBytes;
+    let tiles = this.pending.size;
+    let kept = 0;
+    for (const [key, tile] of this.resident) {
+      if (!this.visiblyRetains(key) && !this.wanted.has(key) && !this.ahead.has(key)) continue;
+      tiles++;
+      kept += tile.geometryBytes + tile.decodedHeightBytes;
+    }
+    // Shared buffers count once in the total but once per tile in each tile's own bytes.
+    const average = this.resident.size > 0 ? total / this.resident.size : 0;
+    const bytes = Math.min(kept, total) + this.pending.size * average;
+    const fraction = this.aheadMemoryHold ? AHEAD_RESUME_FRACTION : AHEAD_ROOM_FRACTION;
+    const room =
+      tiles < maxResidentTiles * AHEAD_ROOM_FRACTION &&
+      (maxResidentBytes === undefined || bytes < maxResidentBytes * fraction);
+    if (room) this.aheadMemoryHold = false;
+    return room;
   }
 
   private evict(key: string): void {
@@ -3037,8 +4044,14 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     for (const [id, object] of tile.layers) {
       this.layerById.get(id)?.disposeTile?.(object);
     }
-    for (const id of this.layerById.keys()) this.layerRetries.clear(`${key}:${id}`);
-    tile.object.removeFromParent();
+    for (const id of this.layerById.keys()) {
+      const layerKey = `${key}:${id}`;
+      this.layerRetries.clear(layerKey);
+      // A refresh has nothing left to replace here; the tile is built anew if it returns.
+      if (this.outdatedLayers.delete(layerKey)) this.settleRefresh(layerKey);
+    }
+    this.object.remove(tile.object);
+    tile.object.parent = null;
     tile.surface.geometry.dispose();
     this.resident.delete(key);
     this.trackAllocations(tile, true);

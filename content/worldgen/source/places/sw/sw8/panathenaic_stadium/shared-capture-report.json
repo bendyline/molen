@@ -1,0 +1,80 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.panathenaic_stadium",
+  "inputHash": "sha256:d776facb0592c586bc50db2821c55e300fac2724225b75243889cfeba50d1f75",
+  "sourceHash": "sha256:bbacc8ae509269b147d2faf638b6a40bc853f944fffb50909b47e9afac9c82a0",
+  "runtimeHash": "sha256:5ead54015bec9a9b32620eb86a2885d92c522fdb47cf545169c8b2382a7ee324",
+  "fixtureHash": "sha256:d7e88730c3a432682dc9f8049524b3c4f7ffa14fb081b2fec5e4d6451c0906d0",
+  "placementHash": "sha256:788d528d032633db64418c3bafb7e0615a9eaabbf2edfaf07a41925608cfb8b7",
+  "materialGraphs": {
+    "molen.worldgen.material.fabric_canvas": {
+      "path": "materials/fabric_canvas.matgraph.json",
+      "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+    },
+    "molen.worldgen.material.stone_marble": {
+      "path": "materials/stone_marble.matgraph.json",
+      "hash": "sha256:e6034ab9ef8375ec8f3a57c697aa21e059e2953742b15ce3b3e486c2f71af7cf"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    },
+    "molen.worldgen.material.gravel": {
+      "path": "materials/gravel.matgraph.json",
+      "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-panathenaic-stadium.png",
+      "hash": "sha256:850f89ac1431a63a075cdaa5c38dd39534b94f9ca65d34796b82bafd5ab4d008",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -171,
+          28,
+          45
+        ],
+        "lookAt": [
+          -5,
+          8,
+          0
+        ],
+        "fov": 51,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.62,
+          1,
+          -0.35
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "panathenaic.stadium",
+        "visibleDraws": 6
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Marble seats, granite paving, a dark concrete track, gravel infield, painted metal and canvas reuse six shared graphs. Each resolves once for the loaded stadium."
+}

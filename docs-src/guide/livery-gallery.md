@@ -6,7 +6,7 @@ Compare every vehicle’s photo-based liveries side by side, then follow the pho
 
 ## Evidence and scope
 
-All 385 choices across 192 vehicle types have linked real-world photographs. Every vehicle has two choices; the F-16B has three. Colors and visible layout were compared with the photographs and the rendered models. These are **photo-based adaptations** (`inspired` provenance), not exact historical or factory replicas.
+All 403 choices across 201 vehicle types have linked real-world photographs. Every vehicle has two choices; the F-16B has three. Colors and visible layout were compared with the photographs and the rendered models. These are **photo-based adaptations** (`inspired` provenance), not exact historical or factory replicas.
 
 Paint values are visual estimates, not measured paint codes. Camouflage uses approximate masks; complex emblems and small stencils may be omitted. Generic Bendy bodies adapt finishes from the photographed real vehicles. Each entry explains its scope. Source photos are linked for inspection and attribution; they are not shipped as textures.
 
@@ -2227,6 +2227,19 @@ Type: `molen.entities.vehicle.wuling_hongguang_mini_ev_2025`.
 
 Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
 
+### Bendy Auto
+
+Type: `molen.entities.vehicle.auto_rickshaw`.
+
+[![Bendy Auto livery comparison: Delhi CNG green, Mumbai black and yellow](https://molen.dev/guide-media/liveries/auto_rickshaw.png)](https://molen.dev/guide-media/liveries/auto_rickshaw.png)
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `delhi-cng` | Delhi CNG green | [Photo](https://commons.wikimedia.org/wiki/File:Auto-rickshaw_in_Delhi.jpeg) |
+| `mumbai-black` | Mumbai black and yellow | [Photo](https://commons.wikimedia.org/wiki/File:Auto-rickshaw_in_Mumbai_2009-09-26.jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
 ### Bendy Box Truck
 
 Type: `molen.entities.vehicle.box_truck`.
@@ -2384,6 +2397,19 @@ Type: `molen.entities.vehicle.sedan`.
 
 Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
 
+### Bendy Sled
+
+Type: `molen.entities.vehicle.snowmobile`.
+
+[![Bendy Sled livery comparison: Trail red, Trail blue](https://molen.dev/guide-media/liveries/snowmobile.png)](https://molen.dev/guide-media/liveries/snowmobile.png)
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `trail-red` | Trail red | [Photo](https://commons.wikimedia.org/wiki/File:Snowmobile_Lynx_Enduro_400.jpg) |
+| `trail-blue` | Trail blue | [Photo](https://commons.wikimedia.org/wiki/File:Snowmobile.jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
 ### Bendy Sports Coupe
 
 Type: `molen.entities.vehicle.sports_coupe`.
@@ -2498,6 +2524,45 @@ Type: `molen.entities.cycle.cruiser_motorcycle`.
 
 **Heritage red and cream.** Red body and cream tank inset adapted from the pictured Heritage Softail to the Bendy cruiser. The tank panel, body geometry and equipment are simplified; logos and pinstripes are omitted. Paint tones are visual approximations.
 
+### Bendy E-Board
+
+Type: `molen.entities.cycle.electric_skateboard`.
+
+[![Bendy E-Board livery comparison: Bamboo, Red stain](https://molen.dev/guide-media/liveries/electric_skateboard.png)](https://molen.dev/guide-media/liveries/electric_skateboard.png)
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `bamboo` | Bamboo | [Photo](https://commons.wikimedia.org/wiki/File:Electric_skateboard_at_TED.jpg) |
+| `red-stain` | Red stain | [Photo](https://commons.wikimedia.org/wiki/File:Electric_skateboard(800,600,400watt).jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
+### Bendy E-Moped
+
+Type: `molen.entities.cycle.electric_moped`.
+
+[![Bendy E-Moped livery comparison: Battery scooter silver, Lime green](https://molen.dev/guide-media/liveries/electric_moped.png)](https://molen.dev/guide-media/liveries/electric_moped.png)
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `battery-silver` | Battery scooter silver | [Photo](https://commons.wikimedia.org/wiki/File:Yadea_G5_2023-09-24.jpg) |
+| `lime-green` | Lime green | [Photo](https://commons.wikimedia.org/wiki/File:Niu_UQi_Sport_Electric_Scooter.jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
+### Bendy Moped
+
+Type: `molen.entities.cycle.underbone_moped`.
+
+[![Bendy Moped livery comparison: Step-through blue-grey, Commuter gloss black](https://molen.dev/guide-media/liveries/underbone_moped.png)](https://molen.dev/guide-media/liveries/underbone_moped.png)
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `step-through-blue` | Step-through blue-grey | [Photo](https://commons.wikimedia.org/wiki/File:Honda_super_cub,_1st_Gen._1958,_Left_side.jpg) |
+| `commuter-black` | Commuter gloss black | [Photo](https://commons.wikimedia.org/wiki/File:2026_Honda_Wave_110_Special_Edition_(Alloy_Type).jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
 ### Bendy Motorcycle
 
 Type: `molen.entities.cycle.standard_motorcycle`.
@@ -2534,6 +2599,58 @@ Type: `molen.entities.cycle.motor_scooter`.
 | --- | --- | --- |
 | `vespa-red` | Vespa red | [Photo](https://commons.wikimedia.org/wiki/File:Vespa_Prima_125b.jpg) |
 | `primavera-white` | Primavera white | [Photo](https://commons.wikimedia.org/wiki/File:08-2024_Vespa_Primavera_Alter-Markt_Potsdam.jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
+### Bendy Share Scooter
+
+Type: `molen.entities.cycle.kick_scooter`.
+
+[![Bendy Share Scooter livery comparison: Black, Graphite](https://molen.dev/guide-media/liveries/kick_scooter.png)](https://molen.dev/guide-media/liveries/kick_scooter.png)
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `black` | Black | [Photo](https://commons.wikimedia.org/wiki/File:Xiaomi_M365_Scooter.jpg) |
+| `graphite` | Graphite | [Photo](https://commons.wikimedia.org/wiki/File:Elektrische-tretroller.jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
+### Bendy Skateboard
+
+Type: `molen.entities.cycle.skateboard`.
+
+[![Bendy Skateboard livery comparison: Green graphic, Blue graphic](https://molen.dev/guide-media/liveries/skateboard.png)](https://molen.dev/guide-media/liveries/skateboard.png)
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `green-graphic` | Green graphic | [Photo](https://commons.wikimedia.org/wiki/File:Nash_Vintage_60's_Wooden_Deck_Shark_Skateboard.jpg) |
+| `blue-graphic` | Blue graphic | [Photo](https://commons.wikimedia.org/wiki/File:Street-skateboard.jpg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
+### Bendy Skis
+
+Type: `molen.entities.cycle.skis`.
+
+[![Bendy Skis livery comparison: Black topsheet, White topsheet](https://molen.dev/guide-media/liveries/skis.png)](https://molen.dev/guide-media/liveries/skis.png)
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `black-topsheet` | Black topsheet | [Photo](https://commons.wikimedia.org/wiki/File:Rossignol_Experience_88_Ti_Skis.jpg) |
+| `white-topsheet` | White topsheet | [Photo](https://commons.wikimedia.org/wiki/File:Snowborad_and_ski.jpeg) |
+
+Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
+
+### Bendy Snowboard
+
+Type: `molen.entities.cycle.snowboard`.
+
+[![Bendy Snowboard livery comparison: White deck, Black deck](https://molen.dev/guide-media/liveries/snowboard.png)](https://molen.dev/guide-media/liveries/snowboard.png)
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `white-deck` | White deck | [Photo](https://commons.wikimedia.org/wiki/File:White-Snowboard-With-Bindings.jpg) |
+| `black-deck` | Black deck | [Photo](https://commons.wikimedia.org/wiki/File:Snowboard-In-The-Snow-2008.jpg) |
 
 Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.
 

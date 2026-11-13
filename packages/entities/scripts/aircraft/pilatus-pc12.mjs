@@ -143,7 +143,7 @@ export const pc12Frame = () => ({
   ry: 0.915,
   cabinZ: 2.05,
   cabinWidth: 1.52,
-  eye: [0.35, 2.65, 2.05],
+  eye: [0.35, 2.62, 2.05],
   panelZ: 2.84,
   floor: 1.25,
 });
@@ -780,7 +780,7 @@ function pc12Cockpit(root, m) {
     sh = 0.158496,
     k = sw / 165,
     px = (u) => (682 - u) * k,
-    py = (v) => 2.32 - (v - 240) * k,
+    py = (v) => 2.28 - (v - 240) * k,
     z = 2.84,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz];
   const rect = (x, y, w, h, zz = z) => [
@@ -828,7 +828,15 @@ function pc12Cockpit(root, m) {
   for (let i = 1; i < edge.length - 2; i++) {
     const a = edge[i],
       b = edge[i + 1];
-    quad(d, a, b, [b[0], b[1], 3.19], [a[0], a[1], 3.19], black, [0, 1, 0]);
+    quad(
+      d,
+      a,
+      b,
+      [b[0] * 0.93, b[1] - 0.13, 3.12],
+      [a[0] * 0.93, a[1] - 0.13, 3.12],
+      black,
+      [0, 1, 0],
+    );
   }
   const sources = {
     trueAirspeed: { component: 'aircraftState', path: ['airspeed'] },
@@ -1242,8 +1250,8 @@ function pc12Cockpit(root, m) {
         );
     }
   }
-  const oh = group(cabin, 'PC12-overhead', [0, 2.73, 2.25]);
-  oh.rotation.x = -0.7;
+  const oh = group(cabin, 'PC12-overhead', [0, 2.75, 2.25]);
+  oh.rotation.x = -1.1;
   const od = detailKit(oh, oh.name);
   beveledBox(od, [0.26, 0.3, 0.02], [0, 0, 0], face, 0.01);
   for (let row = 0; row < 4; row++)
@@ -1258,7 +1266,8 @@ function pc12Cockpit(root, m) {
     [3, -2.9, 0],
   ])
     for (const side of [-1, 1]) {
-      const g = group(cabin, `PC12-seat-${row}-${side}`, [side * 0.39, 1.56, zz]);
+      const crew = row === 0 ? 0.17 : 0,
+        g = group(cabin, `PC12-seat-${row}-${side}`, [side * 0.39, 1.56 + crew, zz]);
       g.rotation.y = facing;
       const dd = detailKit(g, g.name);
       beveledBox(dd, [0.47, 0.15, 0.5], [0, 0, 0], leather, 0.04);
@@ -1302,7 +1311,7 @@ function pc12Cockpit(root, m) {
       for (const yy of [0.19, 0.42]) dd.rod([-0.13, yy, -0.13], [0.13, yy, -0.13], 0.0015, wood);
       for (const x of [-0.21, 0.21]) {
         dd.rod([x, 0.2, -0.13], [x, 0.2, 0.17], 0.026, leather);
-        dd.rod([x, -0.22, -0.1], [x, -0.05, -0.1], 0.015, m.metal);
+        dd.rod([x, -0.22 - crew, -0.1], [x, -0.05, -0.1], 0.015, m.metal);
       }
       dd.rod([-0.17, 0.087, -0.12], [0.17, 0.087, 0.1], 0.013, black);
       dd.box([0.035, 0.018, 0.035], [0, 0.092, 0], m.metal);

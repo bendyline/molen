@@ -383,6 +383,36 @@ A serialized generation request: labeled building outlines, optional labeled pol
               "minLength": 1
             }
           },
+          "parking": {
+            "type": "object",
+            "properties": {
+              "levels": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 16,
+                "description": "Storeys below the roof deck."
+              },
+              "entrances": {
+                "maxItems": 8,
+                "type": "array",
+                "items": {
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "description": "[x, z] in local meters."
+                },
+                "description": "Mapped vehicle entrances near the footprint, strongest first."
+              }
+            },
+            "required": [
+              "levels"
+            ],
+            "additionalProperties": false,
+            "description": "Model a multi-storey car park: decks, ramps and bays instead of rooms."
+          },
           "outline": {
             "minItems": 3,
             "type": "array",
@@ -699,6 +729,30 @@ A serialized generation request: labeled building outlines, optional labeled pol
               {
                 "type": "number",
                 "exclusiveMinimum": 0
+              }
+            ],
+            "items": false,
+            "minItems": 3,
+            "maxItems": 3
+          },
+          "color": {
+            "description": "Instance tint, sRGB-encoded red, green and blue in 0..1; default white.",
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
               }
             ],
             "items": false,

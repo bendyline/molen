@@ -1,0 +1,423 @@
+{
+  "id": "nhat_tan_bridge",
+  "title": "Nhật Tân Bridge",
+  "wikidataId": "Q3023944",
+  "referenceCoordinate": {
+    "longitude": 105.822380701,
+    "latitude": 21.098157676
+  },
+  "module": "content/worldgen/source/places/w7/w7g/nhat_tan_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-nhat-tan-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.86
+    },
+    "pavement": {
+      "slot": "wall",
+      "graph": "gravel",
+      "roughness": 0.88
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.64,
+      "metallic": 0.37
+    },
+    "stays": {
+      "slot": "trim",
+      "graph": "metal_stainless",
+      "roughness": 0.59,
+      "metallic": 0.55
+    }
+  },
+  "exportLabel": "Molen original Nhật Tân Bridge master",
+  "expectedDraftMasterHash": "sha256:62c80cc01ce47e2e19f6a6e3ff6dc8ede122796adcb739ad01567d677bb19e78",
+  "visualBrief": "Nhật Tân Bridge with five concrete A-frame towers, two planes of cable fans, the six-span Red River deck, curved approach viaducts, median, roadway markings and lamp standards.",
+  "heightPolicy": "The central deck crowns at 34.60 m above sea level and falls about 0.5% across the main spans. Both approach grades meet the native road surfaces and clear the mapped cross streets. The elevations represent a visual fit to standard viewer terrain.",
+  "nativeAxes": "+X follows the signed road axis from Võ Chí Công toward Võ Nguyên Giáp and the airport. +Z points across the bridge toward the east-southeast.",
+  "limitations": [
+    "PMTiles and the aerial photograph establish the curved approach alignment and five visible pylon stations. The replacement corridor follows the mapped car and motorcycle paths, which occasionally fall just outside the physical bridge outline. Exact pier and roadway fitting dimensions outside the main span are visually inferred.",
+    "Pylon top elevations use the published tower-height pattern in an approximate sea-level frame. Standard Terrarium determines visible foundation contact and road joins. Bathymetry, engineering clearances and physical-device performance were not surveyed."
+  ],
+  "materialMethod": "Shared concrete, gravel, painted steel and stainless steel provide the slab, towers, road, rails and stays. Metric UVs retain their physical repeat at every detail tier.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Nhat_Tan_Bridge_and_Red_River_(27051545130).jpg",
+      "hash": "sha256:a00d426bd2625e4ba9aad3bcd2a5931bc359f7de49139dbe992694d863c7265a",
+      "observed": "Cable stays and repeated tower rhythm over the river."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Inverted_V_Arches_(18373617190).jpg",
+      "hash": "sha256:5fd9a8a3314b722e13b349dc75ba86c99a15203d065ca17192626e8997ce3034",
+      "observed": "Pylon profile, deck furniture, median and stay anchorages."
+    },
+    {
+      "url": "https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9",
+      "zoom": 17,
+      "hash": "sha256:12b79f3f2ad9be2d388c1c104bc5085a14ecc6a0fb1a4495490b1a885a26b57e",
+      "observation": "The five pylon shadows meet the road center near stations -1052, -752, -452, -152 and 148 m in the signed PMTiles frame."
+    },
+    {
+      "url": "https://www.jb-honshi.co.jp/corp_index/technology/lbec/information_center/pdf/news-56.pdf",
+      "observed": "P11 to P17 is 1500 m with four 300 m center spans and two 150 m edge spans. Fig. 6 records the five pylon heights."
+    },
+    {
+      "url": "https://www.jsce.or.jp/committee/concrete/e/newsletter/newsletter43/Newsletter43_files/Tanaka%20award/1.pdf",
+      "observed": "Five A-frame concrete pylons, twin 3 m steel edge girders, concrete slabs and a shallow deck crown."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "river-crossing-and-approaches",
+      "position": [
+        -350,
+        530,
+        1810
+      ],
+      "lookAt": [
+        -83,
+        25,
+        28
+      ],
+      "fov": 64
+    },
+    {
+      "name": "five-towers-over-red-river",
+      "position": [
+        -820,
+        207,
+        483
+      ],
+      "lookAt": [
+        -451,
+        53,
+        39
+      ],
+      "fov": 59
+    },
+    {
+      "name": "deck-and-open-tower-arches",
+      "position": [
+        -626,
+        40,
+        29
+      ],
+      "lookAt": [
+        -281,
+        66,
+        52
+      ],
+      "fov": 53
+    },
+    {
+      "name": "center-tower-and-stays",
+      "position": [
+        -411,
+        135,
+        142
+      ],
+      "lookAt": [
+        -457,
+        72,
+        41
+      ],
+      "fov": 52
+    },
+    {
+      "name": "river-footing-and-edge-girders",
+      "position": [
+        -515,
+        15,
+        116
+      ],
+      "lookAt": [
+        -434,
+        25,
+        42
+      ],
+      "fov": 54
+    },
+    {
+      "name": "south-viaduct-and-road-join",
+      "position": [
+        -1804,
+        77,
+        31
+      ],
+      "lookAt": [
+        -1619,
+        17,
+        -66
+      ],
+      "fov": 59
+    },
+    {
+      "name": "north-viaduct-and-road-join",
+      "position": [
+        1490,
+        93,
+        135
+      ],
+      "lookAt": [
+        1660,
+        12,
+        -57
+      ],
+      "fov": 61
+    },
+    {
+      "name": "deck-lanes-and-motorbike-shoulders",
+      "position": [
+        -860,
+        33,
+        7
+      ],
+      "lookAt": [
+        -730,
+        49,
+        19
+      ],
+      "fov": 53
+    }
+  ],
+  "sourceFacts": {
+    "mainSpanMeters": 1500,
+    "pylonStations": [
+      {
+        "x": -1052,
+        "z": -2.1108600000000006,
+        "deck": 20.6,
+        "top": 97.31,
+        "bottom": -15.25,
+        "footing": -5.297232999999999
+      },
+      {
+        "x": -752,
+        "z": 18.057532,
+        "deck": 22.1,
+        "top": 99.81,
+        "bottom": -15.25,
+        "footing": 2.6830339999999997
+      },
+      {
+        "x": -452,
+        "z": 40.434237,
+        "deck": 23.6,
+        "top": 100.56,
+        "bottom": -15.25,
+        "footing": -3.3277300000000003
+      },
+      {
+        "x": -152,
+        "z": 60.867405,
+        "deck": 22.1,
+        "top": 99.81,
+        "bottom": -15.25,
+        "footing": -5.38179
+      },
+      {
+        "x": 148,
+        "z": 82.972495,
+        "deck": 20.6,
+        "top": 97.31,
+        "bottom": -15.25,
+        "footing": -0.751774
+      }
+    ],
+    "approachPiers": 51,
+    "mappedAlignmentMeters": 3691.067467,
+    "deckEdgeGirderHeightMeters": 3
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -452,
+        32,
+        42
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/w7/w7g/nhat_tan_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.86
+      },
+      "pavement": {
+        "slot": "wall",
+        "graph": "gravel",
+        "roughness": 0.88
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.64,
+        "metallic": 0.37
+      },
+      "stays": {
+        "slot": "trim",
+        "graph": "metal_stainless",
+        "roughness": 0.59,
+        "metallic": 0.55
+      }
+    },
+    "errorMeters": 5.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.86
+          },
+          "pavement": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.88
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.37
+          },
+          "stays": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.59,
+            "metallic": 0.55
+          }
+        },
+        "errorMeters": 2.1
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.86
+          },
+          "pavement": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.88
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.37
+          },
+          "stays": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.59,
+            "metallic": 0.55
+          }
+        },
+        "errorMeters": 0.72
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.86
+          },
+          "pavement": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.88
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.37
+          },
+          "stays": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.59,
+            "metallic": 0.55
+          }
+        },
+        "errorMeters": 0.19
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "nhat_tan_bridge-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -350,
+        530,
+        1810
+      ],
+      "lookAt": [
+        -83,
+        25,
+        28
+      ]
+    },
+    {
+      "name": "nhat_tan_bridge-district",
+      "reviewLod": "district",
+      "position": [
+        -350,
+        530,
+        1810
+      ],
+      "lookAt": [
+        -83,
+        25,
+        28
+      ]
+    },
+    {
+      "name": "nhat_tan_bridge-street",
+      "reviewLod": "street",
+      "position": [
+        -350,
+        530,
+        1810
+      ],
+      "lookAt": [
+        -83,
+        25,
+        28
+      ]
+    },
+    {
+      "name": "nhat_tan_bridge-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -350,
+        530,
+        1810
+      ],
+      "lookAt": [
+        -83,
+        25,
+        28
+      ]
+    }
+  ]
+}

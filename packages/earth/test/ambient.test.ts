@@ -309,3 +309,47 @@ describe('earth ambient life', () => {
     ambient.dispose();
   });
 });
+
+describe('ambient rolling stock from an entity library', () => {
+  it('resolves a locomotive consist to its cars and keeps light and heavy track apart', async () => {
+    const { ambientContentFromTypes } = await import('../src/client/ambient');
+    const vehicle = (length: number, width: number, height: number) => ({
+      kind: 'x',
+      color: '#334455',
+      spec: { length, width, height },
+      visual: { wheelNodes: [], frontWheelNodes: [], paintMaterial: 'p' },
+    });
+    const library: Record<string, Record<string, unknown>> = {
+      loco: {
+        vehicle: vehicle(21.4, 3.1, 4.7),
+        ambientRole: {
+          role: 'rail',
+          track: 'heavy',
+          consist: {
+            units: [2, 3],
+            length: [10, 20],
+            cars: [{ type: 'hopper', weight: 2, colors: ['#aaaaaa'] }, { type: 'missing' }],
+          },
+        },
+      },
+      hopper: { vehicle: vehicle(16.9, 3.2, 4.6) },
+      lrv: { vehicle: vehicle(27, 2.65, 3.6), ambientRole: { role: 'rail', track: 'light' } },
+    };
+    const types = {
+      idsWith: (component: string) =>
+        Object.keys(library).filter((id) => library[id]?.[component] !== undefined),
+      component: <T>(id: string, component: string) => library[id]?.[component] as T,
+    };
+    const content = ambientContentFromTypes(types, async () => undefined);
+    const trains = content.types.train ?? [];
+    const loco = trains.find((t) => t.id === 'loco');
+    expect(loco?.track).toBe('heavy');
+    // The car without a type in the library is left out; the hopper takes its own size.
+    expect(loco?.consist?.cars).toEqual([
+      { id: 'hopper', length: 16.9, width: 3.2, height: 4.6, weight: 2, colors: ['#aaaaaa'] },
+    ]);
+    expect(loco?.consist?.units).toEqual([2, 3]);
+    expect(content.heights.hopper).toBe(4.6);
+    expect(trains.find((t) => t.id === 'lrv')?.track).toBe('light');
+  });
+});

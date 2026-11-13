@@ -34,8 +34,69 @@
       "shots/shared/ground-colonnade-depth-and-lower-entrance.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Six material roles share five existing 256px graphs: stone_limestone (wall/trim variants), brick, metal_standing_seam, storefront and metal_painted. Canonical metric UVs, sRGB-to-linear tint and baked graph means for skyline. Six textured draws/one skyline; no embedded image, private atlas or new graph. Separate POSITION/NORMAL streams and equal CPU/GPU geometry accounting. Each used graph reads once and unloading disposes all geometry. Flat portable/shared/synthetic planes intersect native-grade foundations and bury much of the distant colonnade; turntables without a plane and original native terrain show the complete geometry.",
-    "captureReportHash": "sha256:4de5ec221e938615ef6b4229768b10b86b8a64cd7353ec4c4eaea646840292e9"
+    "notes": "Six material roles share five existing 256px graphs: stone_limestone (wall/trim variants), brick, metal_standing_seam, storefront and metal_painted. Canonical metric UVs, sRGB-to-linear tint and baked graph means for skyline. Six textured draws/one skyline; no embedded image, private atlas or new graph. Separate POSITION/NORMAL streams and equal CPU/GPU geometry accounting. Each used graph reads once and unloading disposes all geometry. Flat portable/shared/synthetic planes intersect native-grade foundations and bury much of the distant colonnade; turntables without a plane and original native terrain show the complete geometry. Current viewer renders confirm the updated shared storefront material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:54d1fb54b7c3c092969bd48ba91c7350d56941d2d4b9478404849ba42286deed",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:97a1476eb8d4a7244e017f35a8f26de1bd21e21f702dbacab3d549ffc3c098b5"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:f0666ea4197bd1dbf226e859af4eb1d8df260db043e8deedb11e44ad9014363f"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:ab55e2964f412fdfdf8c77de6ff60bc87d059ea8478b610c200aa85dcff196e8"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:2a31e2531142665aa35c77a9549578b1468417c3f78cae9c57bc0a6c9ed31864"
+      },
+      {
+        "path": "shots/shared/east-pediment-window-orders-and-ground-colonnade.png",
+        "hash": "sha256:c6a496443b771e088f54fc13701936eee3f28d1ca4bd8feebb1bb74649700317"
+      },
+      {
+        "path": "shots/shared/two-covered-court-roofs-central-hall-and-domes.png",
+        "hash": "sha256:48bd86d7329955d2baf25b3fd2ef2a93b9d8cd2a42c1f55974d2be8a104b1eca"
+      },
+      {
+        "path": "shots/shared/west-stone-brick-wings-and-pediment.png",
+        "hash": "sha256:810532f4bc6a9650a4ccec5b0e84ae23efe625b1827f2cebfc43acc94f8a54eb"
+      },
+      {
+        "path": "shots/shared/ground-colonnade-depth-and-lower-entrance.png",
+        "hash": "sha256:2f4fb208b742dd40159010820d7ab85460b5499b73efded13096dc87a480e85a"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:798f880d238a9a6bcd864a611c9529b4b64cd3dcfacf94bf967598f895f5f089"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone": {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.old_parliament_house_athens",
+  "kind": "static-structure",
+  "title": "Old Parliament House, Athens",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.old_parliament_house_athens",
+        "output": "assets/places/sw/swb/old_parliament_house_athens/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4957c48936a76276ab936e0614134f819e4616ffe0bc3e07ed6243299b29d17d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-parliament",
+        "path": "models/generate-parliament.mjs"
+      },
+      {
+        "id": "parliament-model",
+        "path": "models/parliament-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/exterior-controls.json",
+      "reference-rights/commons-cc0-originals.json",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-18544-12642.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

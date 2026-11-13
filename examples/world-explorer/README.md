@@ -33,6 +33,42 @@ illustrative performances, not live events or exact reconstructions. The airport
 but lies outside the bundled detailed street extract. Scripts load only when their sites are
 near. Use the host time slider to see fireworks at dusk.
 
+**Replace building** swaps part of the mapped world for the sample's own content, through
+[map overrides](https://molen.dev/guide/earth-view). Pick a set, then walk up to a building in
+Walk mode and press **N** (the prompt names the building ahead), or look down at one in Fly mode
+and press **Replace**. The building, its landmark model if it has one, and the trees, street
+furniture and parked cars around it are cleared, and the set is built in their place. What stood
+there stays on screen until its replacement is ready. Pressing **N** on a replacement swaps in the
+set now picked, on the same ground. **U** (or **Undo**) takes the most recent replacement back and
+**Clear all** takes back every one. With nothing mapped in reach the set goes on the open ground
+ahead.
+
+| Set | What it shows |
+|---|---|
+| Box | One generated building |
+| Warehouse | A building with a declared use and colors, street furniture, parked vehicles |
+| School campus | Six buildings on a plaza, trees and benches, a bus and a car |
+| Landmark (catalog model) | A landmark model of the content packs, placed by asset id |
+| Custom model | A model of the sample's own, built in memory and served by its own asset provider |
+| Market square (scene) | A scripted scene loaded while you are near |
+| Pocket park (roads cleared) | Roads cut at the rectangle, grass, a pavilion and trees |
+| Empty lot | The clearing alone |
+
+`?override=<set>&overrideAt=<lat>,<lon>` places a set when the page opens, before any tile is
+built; `<set>` is `box`, `warehouse`, `school`, `landmark`, `model`, `market`, `park` or `empty`,
+and `&overrideHeading=<degrees>` turns it clockwise from north. For example
+`?lat=47.6198&lon=-122.3493&alt=120&navigation=walk&override=school&overrideAt=47.62051,-122.3493`
+opens beside a school campus where the Space Needle stands.
+
+The sets are data in `src/override-samples.ts`; `src/override-controls.ts` is the wiring a host
+that composes its own view needs: one override set, a wrapper on the tile renderers, the landmark
+index wrapped, and a binding that rebuilds the tiles under a change. The people some sets declare
+are not shown here (this sample has no actors); the
+[Earth view sample](https://github.com/bendyline/molen/tree/main/examples/earth-view) shows them.
+Clearing roads leaves the ground graded as the road left it, and bridges, tunnels and railways are
+never cut. Without a style pack (`?style=none`) there is no map to read a building from, so a set
+is always placed on the ground ahead.
+
 The standalone [sky observatory](sky.html) previews the reusable Earth/custom sky system without
 loading terrain. Open `/sky.html` on the dev server for date/location controls, accelerated time,
 Sun/Moon tracking, a full-moon preset and an authored fantasy world. See
@@ -55,6 +91,13 @@ ground. Expand Weather details to mix those variables (cloud type, cover, depth,
 change temperature, pressure or wind. These conditions also drive the
 aircraft simulation's wind and air density. Use `?weather=rain` to open a preset; `?freeze=1`
 freezes cloud/particle motion. See [weather and atmosphere](https://molen.dev/guide/weather).
+
+The Snow level list beside it lays snow on the ground: everywhere, or above a line from sea
+level to 4,000 m (`?snow=1500`, `?snow=all`, `?snow=off`). The ground, roofs and trees whiten
+above the line, walking slows, cars lose grip and can get stuck off the ploughed roads, and the
+status line shows the depth under a vehicle. The Seattle region opens with snow above 2,000 m,
+which caps Mount Rainier and the high Cascades. See
+[snow cover](https://molen.dev/guide/snow).
 
 Ambient life fills the mapped streets around you: NPC cars that stop at signals and junctions,
 pedestrians on sidewalks and crossings, trains on rail lines and aircraft overhead. They spawn out of
@@ -137,7 +180,10 @@ built example to review the zoom-15 building detail and residential height/roof 
 With no query parameters, the example opens the bundled Seattle–Bellevue–Sammamish package: Mapzen/USGS
 elevation compiled to seam-safe PNG16 PMTiles plus a pinned Protomaps/OpenStreetMap regional vector
 extract. A broad level 8-10 elevation overview surrounds the level 11-14 detail window, with
-ancestor-derived fallback between them. Vectors continue through zoom 15 for individual building
+ancestor-derived fallback between them. The overview reaches east over the Cascade crest and
+south to 46.6° N, past Mount Rainier, and a second detail window covers the mountain itself
+(46.73–46.95° N, 121.93–121.58° W: the summit, Paradise and Sunrise) with elevation through
+level 13, about 13 m between samples, and its own map tiles. Vectors continue through zoom 15 for individual building
 footprints and unrounded heights; zoom-15 terrain reuses the zoom-14 DEM. Residential land use
 and mapped parts guide building massing, with low pitched and taller flat residential roofs. Bare, land-classification, and human-feature modes
 therefore share actual coordinates without exposing a hard regional edge at flyover altitude.
@@ -183,7 +229,9 @@ coordinates. Undeclared profiles and PNG8 classification remain bare rather than
 
 Use `?lat=47.62051&lon=-122.3493` to inspect the Space Needle, or
 `?lat=47.6163&lon=-122.0356` for Sammamish. `quality=economy|balanced|high`
-to select portable streaming budgets. `?alt=17000&pitch=-0.35` reproduces a high-altitude camera;
+to select portable streaming budgets. `?memory=3072` sets the terrain and layer memory budget in
+MiB, past what the browser reports (2 GiB on a desktop with 16 or more cores, otherwise at most
+768 MiB). `?alt=17000&pitch=-0.35` reproduces a high-altitude camera;
 `yaw` and `pitch` are radians. The HUD exposes attribution, adaptive level/error state, fallback
 counts, resident samples, geometry memory, triangle/draw estimates, instances, failures, and
 evictions. A separate location panel stays visible in Fly and Walk modes, even with `hud=0`.
@@ -211,7 +259,15 @@ pnpm --filter @bendyline/molen-examples-world-explorer data:regions -- \
   --pmtiles-cli /path/to/pmtiles
 ```
 
-The region catalog in `src/regions.ts` defines the starting locations and extraction bounds.
+The region catalog in `src/regions.ts` defines the starting locations and extraction bounds,
+with each region's further detail windows (`detailWindows`) and its snow line (`snowLevel`). A
+window gets fine elevation and, with `--window-vector-url`, map tiles read from that archive by
+the repository's own PMTiles reader: tiles the package already holds are kept byte for byte, so
+a window can be added from a newer daily build after the main extract's has expired. `--skip-vector`
+keeps the existing `world.pmtiles` (no `go-pmtiles` needed), which is how the Mount Rainier window
+was added: `node scripts/build-sammamish-package.mjs --skip-vector --window-vector-url
+https://build.protomaps.com/20261110.pmtiles --window-vector-release "2026-11-10 daily archive"`.
+`SOURCES.json` records each window's archive, release and tile count.
 The builder defaults to the 2026-10-23 Protomaps snapshot, vector zooms 0–15, and elevation zooms
 8–14 with wider overview coverage through zoom 10. Daily upstream archives expire; use
 `--version YYYY-MM-DD` to select an available date from [Protomaps builds](https://maps.protomaps.com/builds/),
@@ -245,6 +301,11 @@ Circa 1910 changes the surface treatment of the present-day map; it does not rec
 
 See [Surface styles and parameterized line features](../../docs-src/guide/surface-rendering.md) for the shared rendering API, parking inference rules, budgets, and rail/utility profile examples.
 
+Roads are graded with the tiles around each one: the ground is leveled under every road, and
+bridges are stacked clear of what they cross (6.5 m over a road, 8.4 m over a railway). For a
+comparison, `?roadGrading=0` turns both off and `?earthworks=0` only the leveling. See
+[Road grading](../../docs-src/guide/surface-rendering.md#road-grading).
+
 Performance defaults to **Auto (device)**: six tiers respond to frame time and resident buffer
 pressure, controlling render resolution, terrain refinement/range, concurrency, cache sizes,
 vegetation/building LOD, and surface decorations. Manual presets switch live without moving the
@@ -252,9 +313,17 @@ camera. Object detail follows projected screen size with hysteresis; buildings r
 and wall shapes while distant materials and facade details simplify. Spatial cells improve
 frustum culling. The live viewer requests multisample antialiasing on both graphics backends so
 geometry and surface-marking edges stay smoother when Auto lowers the drawing-buffer resolution;
-use `?antialias=0` only for a controlled performance comparison. Worldgen textures already use
+use `?antialias=0` only for a controlled performance comparison. `?renderScale=1.5` draws that
+many times the usual pixels each way and lets the browser scale the frame down: thin distant
+edges (taxiway lines, roof lines, tree tops) flicker less, for about that factor squared in GPU
+work. Worldgen textures already use
 mipmaps and anisotropic filtering. Worldgen, land-cover and road/parking construction run in
 separate workers.
+
+`?autopilot=circle` or `?autopilot=straight` flies a repeatable path from the URL's start
+(`speed` in m/s, `radius` in meters, `dive` in radians, `start` seconds to wait first), for
+reproducing a streaming problem exactly; `?tier=N` holds one adaptive tier while comparing runs.
+See [the flight measurements](test/performance/README.md).
 
 The performance HUD reports frame/p90 and optional asynchronous GPU timing, actual rendered
 draws/triangles, resolution and memory budgets. Streaming selection runs at 10 Hz; navigation runs
@@ -272,6 +341,16 @@ The structure library enables search and detail browsing as soon as the catalog 
 images render only near the viewport, yield between structures, and pause while a detail dialog is
 open. Details use a separate renderer. Download model sheet explicitly generates the remaining
 previews; a failed preview leaves its named card and detail controls available.
+
+Press P on foot for a personal ride: a skateboard, an electric skateboard or a shared electric kick
+scooter, set down a step ahead and boarded. Each press brings the next one; E steps off. Standing
+on lying snow the bag holds skis, a snowboard and a snowmobile instead: point the skis downhill
+and they slide, A/D carve, S or Space stops on the edges. `?ride=skis` (or `snowboard`,
+`snowmobile`, `skateboard`…) with `navigation=walk` starts on one, so
+`?lat=46.822&lon=-121.728&yaw=1.57&navigation=walk&ride=skis&mode=human` opens on the Muir
+Snowfield of Mount Rainier, skis pointed down it. In regions
+whose fleet has them (South and Southeast Asia, Taiwan, China, parts of Africa and Europe),
+parked motorcycles, scooters, mopeds and auto-rickshaws can be boarded with E like parked cars.
 
 Press B near mapped water (or use `?boat=1`) to launch a speedboat. W/S thrust, A/D helm,
 Space opposing thrust, hold Shift to anchor below walking speed, V helm/chase, E dockside exit.

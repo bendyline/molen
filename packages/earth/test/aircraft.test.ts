@@ -85,6 +85,31 @@ describe('earth aircraft', () => {
     wall.geometry.dispose();
     (wall.material as THREE.Material).dispose();
   });
+  it('toggles a helicopter between assisted and direct cyclic, and only a helicopter', async () => {
+    const { aircraft, vehicles, fly } = setup(async () => new THREE.Group());
+    const id = aircraft.spawn(OH6, { position: [0, 500, 0], heading: 0, airborne: {} });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(aircraft.board(id)).toBe(true);
+    fly(1 / 30, { cyclic: 1 });
+    expect(vehicles.world.get(id, AircraftInput)?.cyclicMode).toBe('direct');
+    // Full aft stick pitches the nose past the assisted cyclic's 0.65 rad limit.
+    fly(1.2, { pitch: 1 });
+    expect(vehicles.world.get(id, AircraftState)?.pitch).toBeGreaterThan(0.75);
+    fly(1 / 30, { cyclic: 1 });
+    expect(vehicles.world.get(id, AircraftInput)?.cyclicMode).toBe('assisted');
+    fly(4);
+    expect(Math.abs(vehicles.world.get(id, AircraftState)?.pitch ?? 1)).toBeLessThan(0.2);
+    aircraft.dispose();
+    const plane = setup(async () => new THREE.Group());
+    const p51 = plane.aircraft.spawn(P51, { position: [0, 500, 0], heading: 0, airborne: {} });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(plane.aircraft.board(p51)).toBe(true);
+    plane.fly(1 / 30, { cyclic: 1 });
+    expect(plane.vehicles.world.get(p51, AircraftInput)?.cyclicMode).toBeUndefined();
+    plane.aircraft.dispose();
+    plane.vehicles.dispose();
+    vehicles.dispose();
+  });
   it('retains cockpit power, mixes spring-loaded axes with keyboard intent, and drives independent engines', async () => {
     const { aircraft, vehicles, fly } = setup(async () => new THREE.Group());
     const id = aircraft.spawn('molen.entities.aircraft.baron_g58', {

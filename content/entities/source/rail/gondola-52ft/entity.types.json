@@ -1,0 +1,114 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.rail.gondola_52ft": {
+      "doc": "52 ft mill gondola with exterior-post sides, fixed ends and a steel floor, carrying a heaped scrap load (node load, hideable). Unpowered car for track-guided consists; vehicle.color repaints the carbody.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.gondola_52ft",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.gondola_52ft",
+          "color": "#5d4a3c",
+          "spec": {
+            "label": "52 ft mill gondola",
+            "bodyStyle": "freight-car",
+            "genericLabel": "Gondola",
+            "width": 3.2,
+            "length": 16,
+            "height": 2.6,
+            "centerOfMass": [
+              0,
+              1.5,
+              0
+            ],
+            "wheelbase": 12.7,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.457,
+            "mass": 90000,
+            "engineForce": 1,
+            "maxSpeed": 31.3,
+            "reverseSpeed": 30,
+            "brakeDeceleration": 0.45,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [
+              0,
+              2.5,
+              0
+            ],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00001,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 12.7,
+              "couplerLength": 17,
+              "power": 0,
+              "gauge": 1.435,
+              "profile": "gondola"
+            }
+          },
+          "visual": {
+            "wheelNodes": [
+              "axle-1",
+              "axle-2",
+              "axle-3",
+              "axle-4"
+            ],
+            "frontWheelNodes": [
+              "axle-1"
+            ],
+            "paintMaterial": "rail-livery-body"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.rail.gondola_52ft"
+      ]
+    }
+  }
+}

@@ -187,4 +187,51 @@ describe('AdaptiveQualityController', () => {
     expect(() => controller.setLevel(Number.NaN)).toThrow(RangeError);
     expect(() => controller.setBounds(4, 2)).toThrow(RangeError);
   });
+
+  it('lowers detail on a second long stall within a minute, and not on the first', () => {
+    const controller = new AdaptiveQualityController({ initialLevel: 3 });
+    run(controller, 3000);
+    expect(controller.sample(1500)).toBeUndefined();
+    run(controller, 3000);
+    expect(controller.sample(1500)).toEqual({ previousLevel: 3, level: 2, reason: 'frame-time' });
+    // The step starts the count again: one more stall is a first one.
+    run(controller, 3000);
+    expect(controller.sample(1500)).toBeUndefined();
+    expect(controller.getStats().level).toBe(2);
+  });
+
+  it('forgets a stall after a minute of rendering, and can ignore repeats altogether', () => {
+    const spaced = new AdaptiveQualityController({ initialLevel: 3, maxLevel: 3 });
+    expect(spaced.sample(1500)).toBeUndefined();
+    run(spaced, 61000);
+    expect(spaced.sample(1500)).toBeUndefined();
+    const tolerant = new AdaptiveQualityController({ initialLevel: 3, pauseRepeatMs: 0 });
+    expect(tolerant.sample(1500)).toBeUndefined();
+    run(tolerant, 1000);
+    expect(tolerant.sample(1500)).toBeUndefined();
+  });
+
+  it('holds upgrades while streaming is strained and steps down once it is sustained', () => {
+    const controller = new AdaptiveQualityController({ initialLevel: 2, strainDelayMs: 4000 });
+    expect(run(controller, 3500, 1000 / 60, { strained: true })).toEqual([]);
+    expect(run(controller, 2000, 1000 / 60, { strained: true })).toEqual([
+      { previousLevel: 2, level: 1, reason: 'streaming' },
+    ]);
+    // Strain that clears starts the count again and lets recovery proceed.
+    const recovering = new AdaptiveQualityController({ initialLevel: 2 });
+    expect(run(recovering, 9000, 1000 / 60, { strained: true })).toEqual([]);
+    expect(run(recovering, 11000).map((change) => change.level)).toEqual([3]);
+  });
+
+  it('requires the configured share of frame work before stepping up', () => {
+    const strict = new AdaptiveQualityController({ initialLevel: 2, upgradeWorkFraction: 0.6 });
+    expect(run(strict, 30000, 1000 / 60, { cpuFrameMs: 12 })).toEqual([]);
+    expect(run(strict, 11000, 1000 / 60, { cpuFrameMs: 8 }).map((change) => change.level)).toEqual([
+      3,
+    ]);
+    const lenient = new AdaptiveQualityController({ initialLevel: 2 });
+    expect(
+      run(lenient, 11000, 1000 / 60, { cpuFrameMs: 12 }).map((change) => change.level),
+    ).toEqual([3]);
+  });
 });

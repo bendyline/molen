@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { createOverzoomTerrainSemanticSource } from '../src/semantic-overzoom';
 import {
   composeTerrainSemanticTile,
+  deriveTerrainSemanticTileContentHash,
   deriveTerrainSemanticTilePacket,
   keepTerrainSemanticTile,
   packTerrainSemanticTile,
@@ -166,6 +167,79 @@ describe('semantic tile packets', () => {
       expect(terrainSemanticTileFromPacket(structuredClone(packet))).toEqual(tile);
     }
     expect(terrainSemanticTilePacket(roads)?.edits).toHaveLength(2);
+  });
+
+  it('carries a derived tile whose POIs changed, with or without POIs to start from', () => {
+    const triangle: [number, number][] = [
+      [0.1, 0.1],
+      [0.3, 0.1],
+      [0.3, 0.3],
+    ];
+    // A tile with POIs of its own: one kept, one dropped, one added.
+    const base = createEmptyTerrainSemanticTile();
+    base.buildings.push({ id: 1, class: 'building', polygons: [{ outer: triangle }] });
+    base.pois = [
+      { id: 'a', class: 'bench', point: [0.2, 0.2] },
+      { id: 'b', class: 'tree', point: [0.4, 0.4] },
+    ];
+    rememberTerrainSemanticTilePacket(base, packTerrainSemanticTile(base));
+    const edited = {
+      ...base,
+      pois: [base.pois[0], { id: 'c', class: 'street_lamp', point: [0.6, 0.6], height: 5 }],
+    } as typeof base;
+    deriveTerrainSemanticTilePacket(base, edited);
+    // A tile with no POI list gains one.
+    const bare = createEmptyTerrainSemanticTile();
+    bare.buildings.push({ id: 2, class: 'building', polygons: [{ outer: triangle }] });
+    rememberTerrainSemanticTilePacket(bare, packTerrainSemanticTile(bare));
+    const gained = {
+      ...bare,
+      pois: [{ id: 'd', class: 'bench', point: [0.5, 0.5] }],
+    } as typeof bare;
+    deriveTerrainSemanticTilePacket(bare, gained);
+    // POIs joined from a land-cover tile are the ones an edit's indexes count into.
+    const land = createEmptyTerrainSemanticTile();
+    land.pois = [
+      { id: 'e', class: 'bus_stop', point: [0.6, 0.6] },
+      { id: 'f', class: 'tree', point: [0.7, 0.7] },
+    ];
+    rememberTerrainSemanticTilePacket(land, packTerrainSemanticTile(land));
+    const composed = composeTerrainSemanticTile(bare, land, { pois: true });
+    const trimmed = { ...composed, pois: [composed.pois?.[1]] } as typeof composed;
+    deriveTerrainSemanticTilePacket(composed, trimmed);
+    for (const [from, tile] of [
+      [base, edited],
+      [bare, gained],
+      [bare, trimmed],
+    ] as const) {
+      const packet = terrainSemanticTilePacket(tile);
+      if (packet === undefined) throw new Error('derived tile has no packet');
+      expect(packet.points).toBe(terrainSemanticTilePacket(from)?.points);
+      expect(terrainSemanticTileFromPacket(structuredClone(packet))).toEqual(tile);
+    }
+    // Dropping the list altogether is not an edit: the tile is cloned whole instead.
+    const { pois: _pois, ...rest } = base;
+    const dropped = rest as typeof base;
+    deriveTerrainSemanticTilePacket(base, dropped);
+    expect(terrainSemanticTilePacket(dropped)).toBeUndefined();
+  });
+
+  it('derives a content hash from the base tile and what the edit was', () => {
+    const base = createEmptyTerrainSemanticTile();
+    setTerrainSemanticTileContentHash(base, 'base');
+    const edited = { ...base, buildings: [] };
+    deriveTerrainSemanticTileContentHash(base, edited, 'edit:1');
+    expect(terrainSemanticTileContentHash(edited)).toBe('base|edit:1');
+    // The first key stands: a tile's hash names its content once.
+    deriveTerrainSemanticTileContentHash(base, edited, 'edit:2');
+    expect(terrainSemanticTileContentHash(edited)).toBe('base|edit:1');
+    deriveTerrainSemanticTileContentHash(base, base, 'same');
+    expect(terrainSemanticTileContentHash(base)).toBe('base');
+    // Without a base hash the edited tile gets none, and a cache hashes its content.
+    const unhashed = createEmptyTerrainSemanticTile();
+    const fromUnhashed = { ...unhashed, buildings: [] };
+    deriveTerrainSemanticTileContentHash(unhashed, fromUnhashed, 'edit:1');
+    expect(terrainSemanticTileContentHash(fromUnhashed)).toBeUndefined();
   });
 
   it('derives no packet when a new feature shares a part with a kept one, or more changed', () => {

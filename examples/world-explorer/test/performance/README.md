@@ -1,3 +1,82 @@
+# Performance evaluation
+
+## Scoreboard
+
+`run-scoreboard.mjs` measures one settled view and one flight in the real explorer and checks
+them against `scoreboard-budgets.json`:
+
+```sh
+node test/performance/run-scoreboard.mjs --label=main
+```
+
+The settled view (900 m over Bellevue, Balanced detail, 1440 x 900) reports what a frame is made
+of: draws, triangles, visible geometry memory, land cover's memory and triangles and how many
+tiles draw it as a texture, and plant triangles (`sceneComposition` in the explorer's flight
+report). The flight (laps at 250 m/s) reports long frames, main-thread work, rebuilt tiles,
+evictions, ground that coarsened in view, peak visible memory, heap, the level drawn within
+2 km, and how long background preparation waited.
+
+What a view is made of is the same on every run with the same window (three runs gave identical
+counts), so those budgets fail the run. Times depend on the machine and on what else it is
+doing; their budgets are marked `advisory` and fail only with `--strict`. `--report-only` never
+fails; `--tier`, `--seconds` and `--params` change the scenario, and `--budgets` names another
+file. Budgets sit about a quarter above the numbers measured when they were set (2026-11-09, AMD
+Radeon AI PRO R9700): move them deliberately, with the change that earns it. Results and a
+screenshot go to the ignored `.artifacts/scoreboard/<label>/`. It needs an installed Chrome, like
+the flight probe below (`--channel=msedge` uses Edge where Chrome does not launch). It has been
+run on that workstation and on one laptop (below): an integrated GPU and a 120 Hz display are the
+missing rows.
+
+### WebGL and WebGPU
+
+`--params=backend=webgpu` runs the same scoreboard on WebGPU. The budgets are WebGL's; what a view
+is made of fits them on both backends. Measured 2026-11-12 on an NVIDIA RTX Spark N1X laptop
+(Windows on ARM, 20 cores) in headless Edge, at the default tier:
+
+| | WebGL | WebGPU |
+| --- | ---: | ---: |
+| Settled view: main-thread work a frame | 8.5 ms | 15.1 ms |
+| Settled view: triangles / shown memory | 2.66 M / 284 MiB | 2.39 M / 305 MiB |
+| Circle: mean / 95th percentile work | 9.2 / 16.1 ms | 12.9 / 22.0 ms |
+| Circle: frames over 33 ms | 54 | 125 |
+| Circle: heap | 1,931 MiB | 1,906 MiB |
+
+The difference is main-thread work: by the explorer's own readout the settled view took 4 to 5 ms
+of GPU time a frame on WebGPU against 6 to 7 on WebGL. Times moved by 1 to 2 ms between runs (the
+settled WebGPU view read 12.6 to 15.1 ms over four), and by as much again with a test run or a
+package build going on beside them, so run one scoreboard at a time. `&gpuOptimizations=0`
+measured the same as WebGPU with its command caching. WebGPU's ambient occlusion is off in the
+run above, as it is by default (see `selectedAmbientOcclusion` in `src/backend-options.ts`); with
+`&ao=1` the circle had 198 frames over 33 ms.
+
+## Streaming under flight
+
+`run-flight-streaming.mjs` flies a scripted camera through the real explorer and reports what the
+camera faces by distance band, and how many tile builds repeated work the cache should have kept:
+
+```sh
+node test/performance/run-flight-streaming.mjs --flight=circle --tier=3 --shots=0 --label=before
+```
+
+Each band's `drawnLevel` is how fine the ground drawn there is. `complete` is measured against a
+selection that coarsens at speed, so it reads the same for coarse ground as for fine; compare
+`drawnLevel` when a change moves detail, and look at the screenshots. `coarsenedInView` counts
+ground on screen that stepped back to a coarser level during the flight, which reads as popping;
+`refinedInView` counts detail arriving.
+
+`--params=wave=0.35` swings the autopilot's speed 35% either side of `--speed` every 20 seconds
+(`wavePeriod=`), as a pilot on the throttle does: a constant speed hides what speed changes do.
+
+`--flight` is `circle` (over Bellevue, repeated laps) or `straight` (Bellevue across the lake into
+Seattle). Results go to the ignored `.artifacts/flight-streaming/`. `--tier` holds one adaptive
+tier so runs compare like with like; without it Auto can change tier mid-flight. `--profile=N`
+records N seconds of main-thread CPU. Runs vary, so compare several and read the flight at the
+same point on its path rather than one summary number.
+
+It needs an installed Chrome, because Playwright's Chromium finds no WebGPU adapter headless. The
+flights themselves are the explorer's `?autopilot=` URL parameter, which also works by hand:
+`/?mode=human&autopilot=circle&speed=250&alt=900&radius=4000`.
+
 # Landmark performance evaluation
 
 **Decision, 2026-10-03:** keep the high-detail source masters, but develop separately

@@ -1,3 +1,31 @@
+# Reference material stays out of Git: research photos, scans, plans, PDFs and raw terrain
+# downloads. reference-lock.json pins their bytes; `pnpm references:fetch` restores them. Text
+# records beside them stay. Keep this block first, so every rule below still overrides it, and in
+# step with scripts/reference-material.mjs. See content/ASSET-PACKS.md.
+content/**/references/**/*.*
+content/**/reference-images/**/*.*
+content/**/reference-originals/**/*.*
+content/**/terrain-sources/**/*.*
+content/**/*.pdf
+content/**/*.tif
+content/**/*.tiff
+!content/**/*.json
+!content/**/*.md
+!content/**/*.txt
+!content/**/*.py
+!content/**/*.mjs
+!content/**/*.js
+!content/**/*.csv
+!content/**/*.htm
+!content/**/*.html
+!content/**/*.xml
+!content/**/*.tfw
+!content/**/*.prj
+!content/**/*.asc
+!content/**/*.yaml
+!content/**/*.yml
+!content/**/*.geojson
+!content/**/*.svg
 node_modules/
 dist/
 dist-types/

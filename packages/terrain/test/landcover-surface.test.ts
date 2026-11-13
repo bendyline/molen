@@ -60,6 +60,43 @@ describe('land-cover coverage', () => {
     }
   });
 
+  it.each([
+    'sweepEvent',
+    'outputRing',
+    'outputRingMany',
+  ])('resolves coverage where the exact clip throws (%s)', (name) => {
+    const cases = JSON.parse(
+      readFileSync(new URL('./fixtures/landcover-clip-failures.json', import.meta.url), 'utf8'),
+    ) as Record<string, TerrainLandcoverFeature[]>;
+    const features = cases[name] as TerrainLandcoverFeature[];
+    const visible = visibleLandcoverPolygons(features);
+    const points = features.flatMap((feature) => feature.polygons.flatMap((p) => p.outer));
+    const min = [0, 1].map((axis) =>
+      Math.max(0, Math.min(...points.map((p) => p[axis] as number))),
+    );
+    const max = [0, 1].map((axis) =>
+      Math.min(1, Math.max(...points.map((p) => p[axis] as number))),
+    );
+    let covered = 0;
+    for (let i = 0.5; i < 40; i++) {
+      for (let j = 0.5; j < 40; j++) {
+        const point: [number, number] = [
+          (min[0] as number) + (((max[0] as number) - (min[0] as number)) * i) / 40,
+          (min[1] as number) + (((max[1] as number) - (min[1] as number)) * j) / 40,
+        ];
+        const expected = features.findLastIndex((f) =>
+          f.polygons.some((p) => pointInPolygon(point, p)),
+        );
+        const covering = visible.flatMap((polygons, index) =>
+          polygons.filter((p) => pointInPolygon(point, p)).map(() => index),
+        );
+        expect(covering).toEqual(expected < 0 ? [] : [expected]);
+        if (expected >= 0) covered++;
+      }
+    }
+    expect(covered).toBeGreaterThan(100);
+  });
+
   it('unions overlapping polygons of one feature and ignores degenerate rings', () => {
     const visible = visibleLandcoverPolygons([
       { class: 'forest', polygons: [rectangle(-1, 0.75), rectangle(0.25, 2), rectangle(0.5, 0.5)] },

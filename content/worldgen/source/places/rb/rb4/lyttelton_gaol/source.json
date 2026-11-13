@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.lyttelton_gaol",
+  "kind": "static-structure",
+  "title": "Lyttelton Gaol",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.lyttelton_gaol",
+        "output": "assets/places/rb/rb4/lyttelton_gaol/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ab35a1acd13d1269e721c79646b09c1de8320b220fcb0023e0ff7ea48bcaa1e6"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-gaol",
+        "path": "models/generate-gaol.mjs"
+      },
+      {
+        "id": "gaol-model",
+        "path": "models/gaol-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/site-and-surviving-steps.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-candidate-original.json",
+      "reference-rights/te-uaka-collection-rights.json",
+      "reference-rights/period-architecture-facts.json",
+      "primary-facts-reconstruction.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-32105-20802.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

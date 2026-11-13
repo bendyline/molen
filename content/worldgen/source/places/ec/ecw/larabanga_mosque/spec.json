@@ -1,0 +1,399 @@
+{
+  "planId": "larabanga_mosque",
+  "id": "larabanga_mosque",
+  "assetId": "molen.worldgen.structure.larabanga_mosque",
+  "title": "Larabanga Mosque",
+  "wikidataId": "Q490898",
+  "category": "mosque",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -1.859929,
+    "latitude": 9.220327000000001
+  },
+  "size": [
+    9.43913745880127,
+    5.000000208616257,
+    9.557408332824707
+  ],
+  "actualBounds": {
+    "min": [
+      -4.719568729400635,
+      -0.2199999988079071,
+      -4.7787041664123535
+    ],
+    "max": [
+      4.719568729400635,
+      4.78000020980835,
+      4.7787041664123535
+    ]
+  },
+  "visualBrief": "Restored Larabanga Mosque with its whitewashed tapered adobe buttresses, dark plinth, timber torons, unequal towers and small patterned entry.",
+  "nativeAxes": {
+    "x": "east along the south wall",
+    "y": "up",
+    "z": "south from the mosque"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2010-02-17",
+    "validFrom": "2009-01-01",
+    "validUntil": "2011-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Larabanga_Mosque05.jpg",
+    "https://commons.wikimedia.org/wiki/File:Larabanga.jpg"
+  ],
+  "stories": [
+    {
+      "id": "larabanga-mosque-wp",
+      "url": "https://qualla.com/larabanga-mosque/"
+    }
+  ],
+  "referenceInputHash": "4d1f04fcc0aa83d1ef67220176b867b4dad5f4e95175832d088668bf5e4dee13",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ec/ecw/larabanga_mosque/models/larabanga-mosque-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ec/ecw/larabanga_mosque/models/larabanga-mosque-model.mjs",
+    "level": "skyline",
+    "export": "larabangaSkyline",
+    "errorMeters": 0.25,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "earth": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "timber": {
+        "slot": "trim",
+        "graph": "wood_log",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.93,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "larabangaDistrict",
+        "errorMeters": 0.105,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_log",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "larabangaStreet",
+        "errorMeters": 0.046,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_log",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "larabangaCloseup",
+        "errorMeters": 0.018,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "timber": {
+            "slot": "trim",
+            "graph": "wood_log",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.93,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "earth_rammed",
+    "wood_log"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.7,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -1.859929,
+      9.220327000000001
+    ],
+    "heading": -0.024898728629943804,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -1.8599300082471122,
+        9.22028703754321
+      ],
+      "modelHeight": 0,
+      "basis": "Public source elevation near the photographed south entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -5.585880287329916,
+          -5.384048621165656
+        ],
+        [
+          5.5925010731493625,
+          -5.384048621166263
+        ],
+        [
+          5.585880287310447,
+          5.384048621363945
+        ],
+        [
+          -5.592501073144439,
+          5.384048621363945
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Mapped historic mosque envelope from OSM way 709927303, with the national board’s approximate 8m body dimensions."
+    },
+    "featureIds": [
+      "way/709927303",
+      "node/7067987939"
+    ],
+    "source": "https://www.openstreetmap.org/way/709927303",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a94616d538ab32959e99bb00b08efbd576fc8576ec2115589c615f2a27ff93fa",
+    "notes": "The whitewashed Larabanga Mosque after restoration, around the 2010 Qualla publication. The exterior includes the tapered earthen buttresses, projecting timber torons, tall minaret and mihrab tower, and the small entrance with its patterned panel. The mapped baobab and photographs support an approximate south-facing frontage. Individual buttress spacing, exact section and rear details require interpretation."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_rammed",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_log",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.75
+      ]
+    }
+  ],
+  "limitations": [
+    "The 2010 publication date anchors the whitewashed appearance. The approximate 8m body scale follows the Ghana Museums and Monuments Board. The tower heights, corner profiles, rear door positions and timber sizes are estimates.",
+    "The relief of the earthen plaster and the entry grille are simplified for medium-fi viewing. The original terrain field is preserved and threshold registration is approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license, OpenStreetMap ODbL 1.0 and two exact first-party public-domain Qualla photographs.",
+  "qaLodCameras": [
+    {
+      "name": "whole-larabanga-mosque-skyline",
+      "position": [
+        11,
+        8,
+        15.3
+      ],
+      "lookAt": [
+        0,
+        2.1,
+        0.3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-larabanga-mosque-district",
+      "position": [
+        11,
+        8,
+        15.3
+      ],
+      "lookAt": [
+        0,
+        2.1,
+        0.3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-larabanga-mosque-street",
+      "position": [
+        11,
+        8,
+        15.3
+      ],
+      "lookAt": [
+        0,
+        2.1,
+        0.3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-larabanga-mosque-closeup",
+      "position": [
+        11,
+        8,
+        15.3
+      ],
+      "lookAt": [
+        0,
+        2.1,
+        0.3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "south-entry-torons-and-buttresses",
+      "position": [
+        0.1,
+        2.75,
+        15.8
+      ],
+      "lookAt": [
+        0,
+        2.28,
+        3
+      ]
+    },
+    {
+      "name": "tapered-minaret-and-earthen-roof",
+      "position": [
+        13,
+        9,
+        9.4
+      ],
+      "lookAt": [
+        0.3,
+        2.48,
+        0
+      ]
+    },
+    {
+      "name": "mihrab-tower-and-west-elevation",
+      "position": [
+        -12.2,
+        4.1,
+        -7.4
+      ],
+      "lookAt": [
+        0,
+        2.16,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3316,
+    "vertices": 9948,
+    "materials": 4,
+    "bytes": 505648,
+    "sha256": "sha256:ecfbc073e4cfdcf1301f25dc66f115b928f05d6b4c5185ff8d7f135054a0c3bd"
+  }
+}

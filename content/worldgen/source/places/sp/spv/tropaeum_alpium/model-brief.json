@@ -1,0 +1,329 @@
+{
+  "id": "tropaeum_alpium",
+  "title": "Tropaeum Alpium",
+  "wikidataId": "Q747588",
+  "referenceCoordinate": {
+    "longitude": 7.4017556,
+    "latitude": 43.74479405
+  },
+  "module": "content/worldgen/source/places/sp/spv/tropaeum_alpium/models/trophy-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-tropaeum-alpium.mjs",
+  "builder": "buildTrophyLevel",
+  "surfaces": {
+    "rubble": {
+      "slot": "wall",
+      "graph": "stone_drywall",
+      "roughness": 0.95
+    },
+    "dressed": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.83
+    },
+    "marble": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.74
+    }
+  },
+  "exportLabel": "Molen original Tropaeum Alpium master",
+  "expectedDraftMasterHash": "sha256:b701df7878bfe975b544368782de88dcf176ebd64fabf14d8e7c5ed244cfd8a5",
+  "visualBrief": "The square foundation, weathered Roman rubble, restored west inscription with flanking trophies, four full columns, broken shafts, curved entablature and uneven tower crown distinguish the present ruin.",
+  "heightPolicy": "The 487.95 m podium datum sits above the highest sampled corner. The stone foundation extends to 484.85 m and meets the standard terrain without a ground cut.",
+  "nativeAxes": "The mapped +X axis points north-northeast. The restored inscription and column arcade face -Z toward the west-northwest. The exposed rubble mass extends toward the east-southeast.",
+  "limitations": [
+    "The plan follows the mapped footprint and standard elevation tiles. Relative heights of surviving masonry, the broken upper rim and the relief figures are approximated from photographs.",
+    "The model depicts the standing ruin with its restored inscription and surviving columns. Nearby park paths and terrain use the viewer’s native data."
+  ],
+  "materialMethod": "Shared dry stone gives the exposed core its irregular masonry. Weathered limestone serves the dressed podium and columns, and shared marble supplies the west dedication and trophy reliefs.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Troph%C3%A9e_des_Alpes%2C_La_Turbie_P1040724.jpg",
+      "hash": "sha256:b94bc8cd763ea70a6dec37c98ab25ec0f27f7f280ddd220a8cba2bb20401bf84",
+      "observed": "Broken rear masonry, irregular crown and stepped courses around the plinth."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Tropaeum_Alpium_from_the_cemetery_of_La_Turbie_-_La_Turbie_2014.JPG",
+      "hash": "sha256:91e0e6a30992e819c344981b8a3ddb524246f39466e955da7cf102e890b21e30",
+      "observed": "Surviving silhouette and hillside."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:La-Turbie-.jpg",
+      "hash": "sha256:b8ae30dcfb2b09b52d81d206b54d4d6843b601ebd9b0ef6e8db9c4c4e7de1956",
+      "observed": "Restored west face, fragment of the entablature, and full hilltop silhouette."
+    },
+    {
+      "url": "https://www.trophee-auguste.fr/decouvrir/histoire-du-trophee-d-auguste",
+      "hash": "sha256:70106ae8c0eaf7663c3bc748b4dbb07f1eb68f9f5a0f94c5e72ba1d5ba2fb6e6",
+      "observed": "Restored columns against the uneven surviving core."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "west-inscription-and-columns",
+      "position": [
+        -35,
+        24,
+        -63
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "fov": 46
+    },
+    {
+      "name": "west-dedication-and-trophies",
+      "position": [
+        -1,
+        7.4,
+        -30
+      ],
+      "lookAt": [
+        0.2,
+        7.55,
+        -13
+      ],
+      "fov": 61
+    },
+    {
+      "name": "arcade-and-broken-columns",
+      "position": [
+        -22,
+        24,
+        -23
+      ],
+      "lookAt": [
+        0,
+        20,
+        -6
+      ],
+      "fov": 57
+    },
+    {
+      "name": "south-edge-and-ruin",
+      "position": [
+        -47,
+        18,
+        16
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "east-rubble-and-crown",
+      "position": [
+        18,
+        29,
+        48
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "north-terraces-and-foundation",
+      "position": [
+        45,
+        14,
+        10
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "overhead-arcade-and-profile",
+      "position": [
+        -19,
+        63,
+        -17
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "fov": 52
+    }
+  ],
+  "sourceFacts": {
+    "mappedBuilding": 35184617054371,
+    "reportedHeightMeters": 35,
+    "standingColumns": 4,
+    "brokenColumns": 3,
+    "mainFacade": "west-northwest"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        15,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sp/spv/tropaeum_alpium/models/trophy-model.mjs",
+    "export": "buildTrophySkyline",
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.95
+      },
+      "dressed": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.83
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.74
+      }
+    },
+    "errorMeters": 1.65,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTrophyDistrict",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.83
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.74
+          }
+        },
+        "errorMeters": 0.76
+      },
+      "street": {
+        "export": "buildTrophyStreet",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.83
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.74
+          }
+        },
+        "errorMeters": 0.27
+      },
+      "closeup": {
+        "export": "buildTrophyCloseup",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.95
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.83
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.74
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "tropaeum_alpium-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -35,
+        24,
+        -63
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "tropaeum_alpium-district",
+      "reviewLod": "district",
+      "position": [
+        -35,
+        24,
+        -63
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "tropaeum_alpium-street",
+      "reviewLod": "street",
+      "position": [
+        -35,
+        24,
+        -63
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "tropaeum_alpium-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -35,
+        24,
+        -63
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    }
+  ]
+}

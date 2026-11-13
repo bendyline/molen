@@ -29,16 +29,21 @@ export {
   terrainBuildingCoverage,
 } from './building-coverage';
 export {
+  cloneTerrainGroundMaterial,
   createTerrainGroundMaterial,
   createTerrainGroundMaterialAsync,
+  createTerrainGroundTextureMaterial,
+  createTerrainGroundTextureMaterialAsync,
   createTerrainPavementMaterial,
   createTerrainPavementMaterialAsync,
   isTerrainGroundMaterial,
   setTerrainGroundOrigin,
+  setTerrainGroundSnow,
   type TerrainGroundMaterial,
   type TerrainGroundMaterialOptions,
   type TerrainPavementMaterialOptions,
 } from './ground-material';
+export type { TerrainLandcoverRasterOptions } from './landcover-raster';
 export {
   createTerrainLandcoverWorkerBridge,
   installTerrainLandcoverWorker,
@@ -50,12 +55,14 @@ export {
   joinTerrainLines,
   sampleTerrainLine,
   TERRAIN_PAVEMENT,
+  TERRAIN_ROAD_WEAR_STEP,
   TERRAIN_SURFACE_KIND,
   type TerrainLineBand,
   type TerrainLinePath,
   type TerrainLineProfile,
   type TerrainLineRepeater,
   type TerrainLineSample,
+  type TerrainRoadWear,
   type TerrainSurfaceKind,
   terrainLinePath,
 } from './linear-features';
@@ -130,7 +137,11 @@ export {
   selectTerrainPyramidTiles,
   TERRAIN_COVERS_GROUND,
   type TerrainPyramidBudget,
+  type TerrainPyramidCoverageBand,
   type TerrainPyramidHeightSource,
+  type TerrainPyramidLayerRefresh,
+  type TerrainPyramidLayerTiming,
+  type TerrainPyramidLookAheadOptions,
   type TerrainPyramidSelection,
   type TerrainPyramidSelectionOptions,
   type TerrainPyramidStatsOptions,
@@ -145,6 +156,18 @@ export {
   type TerrainSurfaceColor,
   terrainPyramidBudgetForQuality,
 } from './pyramid-stream';
+export { placeTerrainYardCars, type TerrainYardCarInput } from './rail-cars';
+export {
+  TERRAIN_RAIL_HEIGHT,
+  TERRAIN_RAILWAY_GROUND,
+  type TerrainRailElectrification,
+  type TerrainRailMode,
+  type TerrainRailService,
+  type TerrainRailTrack,
+  terrainRailElectrified,
+  terrainRailOffset,
+  terrainRailTrack,
+} from './rail-features';
 export {
   createDefaultTerrainSemanticRenderer,
   createTerrainSemanticObject,
@@ -168,6 +191,7 @@ export {
 export {
   assertTerrainSemanticTile,
   createEmptyTerrainSemanticTile,
+  type TerrainBridgeProfileSample,
   type TerrainBuildingFeature,
   type TerrainLandcoverFeature,
   type TerrainPoiFeature,
@@ -203,10 +227,12 @@ export {
   createTerrainSurfaceObject,
   createTerrainSurfaceRenderer,
   disposeTerrainSurfaceObject,
+  pickParkedVehicle,
   type TerrainSurfaceGenerator,
   type TerrainSurfaceRenderer,
   type TerrainSurfaceStats,
 } from './surface-client';
+export { TERRAIN_RAIL_MESHES, type TerrainRailLamp } from './surface-rail';
 export {
   type TerrainTrafficSignal,
   type TerrainTrafficSignalColor,
@@ -306,7 +332,12 @@ export {
   createTerrainElevationWorkerSource,
   installTerrainElevationWorker,
 } from './elevation-worker';
-
+export {
+  createTerrainRoadGrading,
+  type TerrainRoadGrading,
+  type TerrainRoadGradingOptions,
+  withTerrainRoadGrading,
+} from './road-grading';
 export {
   TERRAIN_ROAD_SIGN_PATTERNS,
   type TerrainRoadSignPattern,
@@ -334,6 +365,7 @@ export {
 } from './semantic-decoder-worker';
 export {
   deriveOverzoomTerrainSemanticTilePacket,
+  deriveTerrainSemanticTileContentHash,
   deriveTerrainSemanticTilePacket,
   keepTerrainSemanticTile,
   packTerrainSemanticTile,

@@ -113,7 +113,11 @@ function dependenciesCurrent(root, dependencies, fileCache) {
   );
 }
 
-export async function createJobCache(root, plan, { force = false, inputs = [], fileCache } = {}) {
+export async function createJobCache(
+  root,
+  plan,
+  { force = false, inputs = [], fileCache, beforeWrite = () => {} } = {},
+) {
   const directory = join(root, '.artifacts/asset-build/jobs');
   const tracingCode = await readFile(join(ROOT, 'scripts/trace-asset-job.mjs'));
   const cacheCode = await readFile(fileURLToPath(import.meta.url));
@@ -126,6 +130,12 @@ export async function createJobCache(root, plan, { force = false, inputs = [], f
   const records = new Map();
   const completed = new Map();
   const recordPath = (job) => join(directory, `${job.id}.json`);
+  const writeRecord = async (id, record) => {
+    const file = recordPath({ id });
+    const temporary = `${file}.${randomUUID()}.tmp`;
+    await writeFile(temporary, `${JSON.stringify(record)}\n`);
+    await rename(temporary, file);
+  };
   // Non-Node generators declare their output trees; their scripts and authored files in those
   // trees are conservative dependencies. Node jobs record their actual reads via the preload.
   const externalInputs = (job) =>
@@ -173,6 +183,7 @@ export async function createJobCache(root, plan, { force = false, inputs = [], f
       records.set(job.id, record);
       return (
         !force &&
+        !record.stale &&
         record.key === identity(job) &&
         record.outputs.length > 0 &&
         dependenciesCurrent(root, record.dependencies, fileCache) &&
@@ -182,8 +193,9 @@ export async function createJobCache(root, plan, { force = false, inputs = [], f
     outputs(job) {
       return records.get(job.id)?.outputs.map((output) => output.path) ?? [];
     },
+    /** A record that still vouches for the job's outputs (a stale one only owns them). */
     known(job) {
-      return records.has(job.id);
+      return records.has(job.id) && !records.get(job.id).stale;
     },
     async restore(job) {
       for (const { path, bytes } of records.get(job.id)?.replay ?? []) {
@@ -201,6 +213,7 @@ export async function createJobCache(root, plan, { force = false, inputs = [], f
             /* Non-JSON output must match its bytes. */
           }
         }
+        beforeWrite(file);
         await writeFile(temporary, built);
         await rename(temporary, file);
       }
@@ -223,7 +236,13 @@ export async function createJobCache(root, plan, { force = false, inputs = [], f
     },
     async begin(job) {
       await mkdir(directory, { recursive: true });
-      await rm(recordPath(job), { force: true });
+      // A running job's record can no longer vouch for its outputs, but it still owns them: an
+      // interrupted build must not leave the next one to set every derived model aside.
+      const record = records.get(job.id);
+      if (record && !record.stale) {
+        record.stale = true;
+        await writeRecord(job.id, record);
+      } else if (!record) await rm(recordPath(job), { force: true });
       const trace = join(directory, `${job.id}-${randomUUID()}`);
       await mkdir(trace);
       return trace;
@@ -288,14 +307,17 @@ export async function createJobCache(root, plan, { force = false, inputs = [], f
     },
     async save() {
       // Metadata reconciliation restores committed inputs. Never bless edits made while a job
-      // was running, or an output another job subsequently overwrote.
+      // was running, or an output another job subsequently overwrote. Such a record is kept
+      // stale: never reused, but it still owns its outputs. Dropping it made the next build set
+      // aside every output of a job that reads a generator-rewritten index (the landmark LODs
+      // read structure-index.json), so that job rebuilt all of them on every run.
       for (const [id, record] of completed) {
+        const { productPaths, ...saved } = record;
         if (
           !dependenciesCurrent(root, record.dependencies, fileCache) ||
           !(await outputsCurrent(root, record.outputs, fileCache))
         )
-          continue;
-        const { productPaths, ...saved } = record;
+          saved.stale = true;
         saved.products = [];
         for (const path of productPaths) {
           const info = await stat(join(root, path)).catch((error) => {
@@ -303,10 +325,7 @@ export async function createJobCache(root, plan, { force = false, inputs = [], f
           });
           if (info?.isFile()) saved.products.push(await outputInfo(root, path, fileCache));
         }
-        const file = recordPath({ id });
-        const temporary = `${file}.${randomUUID()}.tmp`;
-        await writeFile(temporary, `${JSON.stringify(saved)}\n`);
-        await rename(temporary, file);
+        await writeRecord(id, saved);
       }
       await fileCache?.save();
     },

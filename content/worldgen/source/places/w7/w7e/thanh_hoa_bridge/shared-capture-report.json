@@ -1,0 +1,66 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.thanh_hoa_bridge",
+  "inputHash": "sha256:54109f7580a57de344ffe87cf8832e1e6227f9789bd1d567bbc52a72d0945c2a",
+  "sourceHash": "sha256:50b3d5ed443dc0602fd72f4c4a0acc6be9f5ecd92b9b4dba8c11b3eaa475afe1",
+  "runtimeHash": "sha256:2471a27b4b893f103c32d3e37238b274368bd7ab61490c3090767a442354e6e6",
+  "fixtureHash": "sha256:e7f52376dea402c249ac6de3ea6e426faf6f1ee79ca4686d3ebc37725a4ac251",
+  "placementHash": "sha256:1bd41d31c9acdfddb51172c569d6fd1d2660a923b7094a9b40f894d0af383a97",
+  "materialGraphs": {
+    "molen.worldgen.material.gravel": {
+      "path": "materials/gravel.matgraph.json",
+      "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.wood_plain": {
+      "path": "materials/wood_plain.matgraph.json",
+      "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+    },
+    "molen.worldgen.material.concrete_boardformed": {
+      "path": "materials/concrete_boardformed.matgraph.json",
+      "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-thanh-hoa-bridge.png",
+      "hash": "sha256:9e9947167e0ced8fa5f625efb2f34f590e7e148c836fb75deecd0529382ce988",
+      "camera": {
+        "name": "detail-two-trusses-over-ma",
+        "position": [
+          28,
+          36,
+          132
+        ],
+        "lookAt": [
+          0,
+          12,
+          0
+        ],
+        "fov": 50,
+        "group": "detail",
+        "lightDirection": [
+          -0.57,
+          1,
+          0.64
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "thanh.hoa.bridge",
+        "visibleDraws": 4
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Board-formed concrete, road aggregate, painted steel and wood resolve once per required tier. Skyline and district use three shared materials."
+}

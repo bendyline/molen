@@ -1,0 +1,72 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.pingtang_bridge",
+  "inputHash": "sha256:d65e6f9c1f50e481c86f9ddbe014b42d179a784635b830de6e3b82a262ece443",
+  "sourceHash": "sha256:90806abde4d69e2d24efe38e3cf110e1b5744afbe7b46fe863dbf6c03fa40474",
+  "runtimeHash": "sha256:e889d1f7406f5807da297b8555a4473e823ddccf2315dfad4ec3220fb116ba48",
+  "fixtureHash": "sha256:7bd8f67c6159bebb493bf52be50095fd4d237836774acb2379280099a56e4884",
+  "placementHash": "sha256:72052bf39c00038b7e59f5f69a961caa78c82a9b603269f36fcbffccc04d0edf",
+  "materialGraphs": {
+    "molen.worldgen.material.gravel": {
+      "path": "materials/gravel.matgraph.json",
+      "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.metal_stainless": {
+      "path": "materials/metal_stainless.matgraph.json",
+      "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-bridge.png",
+      "hash": "sha256:b6342f46161c6357fb50203d10e0e91b7c38aa9b221209ab1cb3c148119df293",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -463,
+          517.25,
+          1975
+        ],
+        "lookAt": [
+          -341,
+          156.25,
+          0
+        ],
+        "fov": 54,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.45,
+          1,
+          0.64
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "pingtang.bridge",
+        "visibleDraws": 4
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Skyline and district use three shared graphs. Street and close-up add painted metal. Each graph resolves once per viewer session. All levels use metric UVs and linear vertex colors."
+}

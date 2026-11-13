@@ -1,0 +1,519 @@
+{
+  "planId": "burton_cummings_theatre",
+  "id": "burton_cummings_theatre",
+  "assetId": "molen.worldgen.structure.burton_cummings_theatre",
+  "title": "Burton Cummings Theatre",
+  "wikidataId": "Q5000839",
+  "category": "theatre",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -97.14353617058823,
+    "latitude": 49.89583242941177
+  },
+  "size": [
+    41.8770809173584,
+    22.490000307559967,
+    43.96099853515625
+  ],
+  "actualBounds": {
+    "min": [
+      -24.55936622619629,
+      -0.3100000023841858,
+      -26.959999084472656
+    ],
+    "max": [
+      17.31771469116211,
+      22.18000030517578,
+      17.000999450683594
+    ]
+  },
+  "visualBrief": "The 2014 Burton Cummings Theatre in Winnipeg, with its limestone Smith Street arch, green blade sign, cream marquee and attached buff-brick auditorium and stage tower.",
+  "nativeAxes": {
+    "x": "north-northwest along the entrance facade",
+    "y": "up",
+    "z": "east-northeast toward Smith Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2014-07-30",
+    "validFrom": "2014-01-01",
+    "validUntil": "2015-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Burton_Cummings_Theatre_in_Winnipeg,_Manitoba.jpg"
+  ],
+  "stories": [
+    {
+      "id": "burton-cummings-theatre-wp",
+      "url": "https://qualla.com/burton-cummings-theatre/"
+    }
+  ],
+  "referenceInputHash": "767f4c886c24d5b0e4871c899de6d89f45f54ed15e4456f1018d4106e340dc52",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/cb/cbf/burton_cummings_theatre/models/burton-cummings-theatre-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/cb/cbf/burton_cummings_theatre/models/burton-cummings-theatre-model.mjs",
+    "level": "skyline",
+    "export": "theatreSkyline",
+    "errorMeters": 0.74,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.83,
+        "metallic": 0.12
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.62,
+        "metallic": 0.14
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.49,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "theatreDistrict",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.49,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "theatreStreet",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.49,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "theatreCloseup",
+        "errorMeters": 0.036,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.49,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "stone_limestone",
+    "stone_limestone_raw",
+    "metal_standing_seam",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.82,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -97.14353617058823,
+      49.89583242941177
+    ],
+    "heading": 1.90331555209148,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -97.14331285029178,
+        49.895927727479
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate sidewalk paving just beyond the entrance canopy."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -19.986242219016845,
+          -24.80096658034146
+        ],
+        [
+          16.696012285655776,
+          -25.030155602603383
+        ],
+        [
+          16.90981876090077,
+          0.064085016581366
+        ],
+        [
+          16.969360883339725,
+          10.872705281226475
+        ],
+        [
+          17.31195651941823,
+          10.869633357779854
+        ],
+        [
+          17.317592575012608,
+          11.50126242766871
+        ],
+        [
+          14.95801200369262,
+          11.51333263919773
+        ],
+        [
+          14.955534853242046,
+          11.92973679690556
+        ],
+        [
+          14.636324352554745,
+          11.933298052756502
+        ],
+        [
+          14.635756167841759,
+          13.640073015593934
+        ],
+        [
+          -2.982727232484347,
+          13.640073015593932
+        ],
+        [
+          -6.425273378726437,
+          0.2824090370052301
+        ],
+        [
+          -19.787662217972052,
+          0.3714676212029344
+        ],
+        [
+          -24.242564517351767,
+          0.3806562050435316
+        ],
+        [
+          -24.489278827185665,
+          0.37890729361400144
+        ],
+        [
+          -24.53536687892479,
+          -22.74560537172411
+        ],
+        [
+          -21.941253137140194,
+          -24.800912209045975
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Named whole theatre outline from OpenStreetMap way 33166375."
+    },
+    "featureIds": [
+      "way/33166375",
+      "way/1287110811"
+    ],
+    "source": "https://www.openstreetmap.org/way/33166375",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ecd135471d41382d6931faf127c47f88d9c95050a54ca33e76b1394dea11c111",
+    "notes": "The map controls the offset entrance and rectangular auditorium envelope. The 2014 Qualla photograph shows the side of the marquee, brick and the vertical sign. The public heritage register describes the front elevation and rear masses."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the Burton Cummings Theatre on July 30, 2014, including the Smith Street entrance and the attached brick auditorium and stage block.",
+    "The exact Qualla photograph controls the side of the marquee, vertical green sign, and buff auditorium brick. The heritage designation records the limestone arch, third-floor blind windows and modillion cornice. Rear exit locations, tower placement and ornament profiles are reconstructed estimates.",
+    "The original elevation field is preserved. Contact follows approximate pavement at the theatre entrance."
+  ],
+  "sourceLicense": "Original geometry under the repository license, OpenStreetMap ODbL 1.0 and one exact Qualla CC0 photo.",
+  "qaLodCameras": [
+    {
+      "name": "whole-burton-cummings-skyline",
+      "position": [
+        -44,
+        25,
+        66
+      ],
+      "lookAt": [
+        -1.1,
+        9.1,
+        -3.2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-burton-cummings-district",
+      "position": [
+        -44,
+        25,
+        66
+      ],
+      "lookAt": [
+        -1.1,
+        9.1,
+        -3.2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-burton-cummings-street",
+      "position": [
+        -44,
+        25,
+        66
+      ],
+      "lookAt": [
+        -1.1,
+        9.1,
+        -3.2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-burton-cummings-closeup",
+      "position": [
+        -44,
+        25,
+        66
+      ],
+      "lookAt": [
+        -1.1,
+        9.1,
+        -3.2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "smith-street-limestone-arch-and-marquee",
+      "position": [
+        0.3,
+        7.2,
+        44
+      ],
+      "lookAt": [
+        5.4,
+        7,
+        13.4
+      ]
+    },
+    {
+      "name": "buff-brick-entrance-return-and-blade-sign",
+      "position": [
+        -26,
+        8.7,
+        48
+      ],
+      "lookAt": [
+        1.8,
+        7.8,
+        8.1
+      ]
+    },
+    {
+      "name": "auditorium-and-stage-tower",
+      "position": [
+        48,
+        26,
+        -59
+      ],
+      "lookAt": [
+        -2.3,
+        9.5,
+        -8.7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4559,
+    "vertices": 13677,
+    "materials": 6,
+    "bytes": 793432,
+    "sha256": "sha256:d6c51e048115fab90bacaa6c6e34d819d36e620f0b24be31216e69be63c77bda"
+  }
+}

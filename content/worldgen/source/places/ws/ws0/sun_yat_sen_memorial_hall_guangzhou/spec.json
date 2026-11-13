@@ -1,0 +1,555 @@
+{
+  "planId": "sun_yat_sen_memorial_hall_guangzhou",
+  "id": "sun_yat_sen_memorial_hall_guangzhou",
+  "assetId": "molen.worldgen.structure.sun_yat_sen_memorial_hall_guangzhou",
+  "title": "Sun Yat-sen Memorial Hall, Guangzhou",
+  "wikidataId": "Q1051254",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 113.25936,
+    "latitude": 23.136175
+  },
+  "size": [
+    74.20365905761719,
+    61.23000144958496,
+    84.63109588623047
+  ],
+  "actualBounds": {
+    "min": [
+      -36.95290756225586,
+      -12.600000381469727,
+      -40.47133255004883
+    ],
+    "max": [
+      37.25075149536133,
+      48.630001068115234,
+      44.15976333618164
+    ]
+  },
+  "visualBrief": "Sun Yat-sen Memorial Hall in Guangzhou with its octagonal blue roof, gold finial, and four glazed double-eaved ranges.",
+  "nativeAxes": {
+    "x": "east along the entrance front",
+    "y": "up",
+    "z": "south toward the approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2013-05-02",
+    "validFrom": "2013-01-01",
+    "validUntil": "2014-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:A_distant_view_of_Sun_Yat-sen_Memorial_Hall_(Guangzhou).jpg",
+    "https://commons.wikimedia.org/wiki/File:Sun_Yat-sen_Memorial_Hall_(Guangzhou).jpg",
+    "https://commons.wikimedia.org/wiki/File:Sun_Yat-sen_Memorial_Hall_(Guangzhou),_picture4.jpg"
+  ],
+  "stories": [
+    {
+      "id": "sun-yat-sen-memorial-hall-guangzhou-wp",
+      "url": "https://qualla.com/sun-yat-sen-memorial-hall-guangzhou/"
+    }
+  ],
+  "referenceInputHash": "ac97201bf0154fe00789981ba55b215b64c50575cb8989a240ea6b496332f12c",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ws/ws0/sun_yat_sen_memorial_hall_guangzhou/models/memorial-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ws/ws0/sun_yat_sen_memorial_hall_guangzhou/models/memorial-model.mjs",
+    "level": "skyline",
+    "export": "memorialSkyline",
+    "errorMeters": 0.48,
+    "surfaces": {
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_glazed",
+        "roughness": 0.75,
+        "metallic": 0.02,
+        "doubleSided": true
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.42,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "memorialDistrict",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.75,
+            "metallic": 0.02,
+            "doubleSided": true
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "memorialStreet",
+        "errorMeters": 0.085,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.75,
+            "metallic": 0.02,
+            "doubleSided": true
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "memorialCloseup",
+        "errorMeters": 0.03,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.75,
+            "metallic": 0.02,
+            "doubleSided": true
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_granite",
+    "stucco",
+    "tile_glazed",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.65,
+    "groundY": -0.15,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      113.25936,
+      23.136175
+    ],
+    "heading": -0.05635496672916745,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        113.25934304938632,
+        23.135809294997145
+      ],
+      "modelHeight": 0,
+      "basis": "Independent terrain immediately south of the main entrance landing."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -22.874705179878372,
+          44.159762658250614
+        ],
+        [
+          -22.877032944228105,
+          31.57138699307034
+        ],
+        [
+          -29.89757190891285,
+          24.350090964315225
+        ],
+        [
+          -36.9529056824797,
+          24.357807095221037
+        ],
+        [
+          -36.94882694828902,
+          -22.29153145352115
+        ],
+        [
+          -29.81194132376131,
+          -22.291011982072014
+        ],
+        [
+          -22.924806275554783,
+          -29.43265491482335
+        ],
+        [
+          -22.930606312446944,
+          -40.47133274436463
+        ],
+        [
+          23.968725350195154,
+          -40.471332743852074
+        ],
+        [
+          23.96460611081871,
+          -29.59992478157033
+        ],
+        [
+          30.924423356842844,
+          -22.23057617896567
+        ],
+        [
+          37.250750126383885,
+          -22.222512562547397
+        ],
+        [
+          37.24596287083651,
+          24.41992162650778
+        ],
+        [
+          30.87414843221118,
+          24.426847512160656
+        ],
+        [
+          24.02725835654829,
+          31.662412921392686
+        ],
+        [
+          24.02462648437977,
+          44.159762658250614
+        ]
+      ],
+      "basis": "Limit the display opening to the estimated granite platform and attached entrance stair apron. This prevents the independent surface from rising through the hall and steps while preserving its original samples."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -20.19133201759148,
+          37.74338688739369
+        ],
+        [
+          -20.193391986042574,
+          26.984091447068668
+        ],
+        [
+          -26.40625832647155,
+          20.812043559243783
+        ],
+        [
+          -32.64991653316788,
+          20.818638542923964
+        ],
+        [
+          -32.64630703388409,
+          -20.736308328856882
+        ],
+        [
+          -26.330479047576382,
+          -20.735825099601875
+        ],
+        [
+          -20.235669270402465,
+          -27.37921387425428
+        ],
+        [
+          -20.240802046413226,
+          -37.647751390106635
+        ],
+        [
+          21.263031283358544,
+          -37.64775138962984
+        ],
+        [
+          21.259385938777623,
+          -27.53481375029798
+        ],
+        [
+          27.41851624499367,
+          -20.679605747875044
+        ],
+        [
+          33.01703551007424,
+          -20.672104709346417
+        ],
+        [
+          33.01279900074027,
+          20.871727885904086
+        ],
+        [
+          27.374025161248834,
+          20.87764744629116
+        ],
+        [
+          21.314830404025038,
+          27.061891385805716
+        ],
+        [
+          21.31250131361042,
+          37.74338688739369
+        ]
+      ],
+      "minimumCoverage": 0.96,
+      "basis": "Suppress only the generic shape matching the mapped memorial hall footprint."
+    },
+    "featureIds": [
+      "way/613715001"
+    ],
+    "source": "https://www.openstreetmap.org/way/613715001",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:bca0fe0561c3b17598f85fc304920934dcd27a2efd1ad4bc62922ba9bfadb53d",
+    "notes": "OpenStreetMap way 613715001 is the named main memorial building. Guangzhou’s heritage register identifies the 49-meter octagonal hall, four attached wings, blue glazed roofing, and rising roof tiers. The named park multipolygon is distinct and excluded from the placement."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    }
+  ],
+  "limitations": [
+    "May 2013 main hall. Detached gate, garden structures, monument and statue are outside the exterior asset.",
+    "Roof tier sections, mouldings, inscriptions, and individual glazing bays are approximate where the accepted images provide incomplete coverage.",
+    "The original terrain samples are preserved. The renderer clips the source surface inside the estimated granite apron to clear the hall and entrance steps. Retaining edges and local thresholds are approximate."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. Huangdan2060 released the cited original photographs under CC0. OpenStreetMap contributors supply the mapped controls under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-guangzhou-memorial-hall-skyline",
+      "position": [
+        55,
+        38,
+        111
+      ],
+      "lookAt": [
+        0,
+        21,
+        7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-guangzhou-memorial-hall-district",
+      "position": [
+        55,
+        38,
+        111
+      ],
+      "lookAt": [
+        0,
+        21,
+        7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-guangzhou-memorial-hall-street",
+      "position": [
+        55,
+        38,
+        111
+      ],
+      "lookAt": [
+        0,
+        21,
+        7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-guangzhou-memorial-hall-closeup",
+      "position": [
+        55,
+        38,
+        111
+      ],
+      "lookAt": [
+        0,
+        21,
+        7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "south-portico-and-octagonal-crown",
+      "position": [
+        6,
+        21,
+        114
+      ],
+      "lookAt": [
+        0,
+        23,
+        6
+      ]
+    },
+    {
+      "name": "gabled-range-and-painted-brackets",
+      "position": [
+        82,
+        24,
+        25
+      ],
+      "lookAt": [
+        12,
+        20,
+        3
+      ]
+    },
+    {
+      "name": "blue-glazed-eaves-and-finial",
+      "position": [
+        47,
+        51,
+        63
+      ],
+      "lookAt": [
+        1,
+        33,
+        6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 15975,
+    "vertices": 47925,
+    "materials": 5,
+    "bytes": 2159504,
+    "sha256": "sha256:2c43345b1fe7d9d099af17c5cb74a01babaef8bf4ee96df634281b33da8de590"
+  }
+}

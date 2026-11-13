@@ -1,0 +1,398 @@
+{
+  "id": "general_belgrano_bridge",
+  "title": "General Belgrano Bridge",
+  "wikidataId": "Q3396551",
+  "referenceCoordinate": {
+    "longitude": -58.860757648944855,
+    "latitude": -27.468465060691933
+  },
+  "module": "content/worldgen/source/places/6e/6en/general_belgrano_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-general-belgrano-bridge.mjs",
+  "builder": "buildBelgranoLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_boardformed",
+      "roughness": 0.92
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.96
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.83,
+      "metallic": 0.13
+    }
+  },
+  "exportLabel": "Molen original General Belgrano Bridge master",
+  "expectedDraftMasterHash": "sha256:a80ed65099441bc40d861997fab42d3d688f5076e15a8650356853e81e9224a1",
+  "visualBrief": "A long RN16 deck rises over the Paraná River to twin split-leg concrete pylons. Two planes of cable stays support the main spans. The approach viaduct, red triangular fenders, sidewalks and curved Corrientes landing remain distinct at viewing scale.",
+  "heightPolicy": "The two skewed road joints meet the sampled RN16 approaches. The deck rises to clear the mapped Paraná water and pier bases extend below the standard terrain.",
+  "nativeAxes": "Local +X points southeast from the Chaco RN16 connection toward the curved Corrientes connection at Avenida 3 de Abril. The two exact PMTiles approach matches fix the sign.",
+  "limitations": [
+    "The authored 2.24 km crossing follows the full PMTiles RN16 bridge and approach alignment. Published bridge-length conventions exclude different portions of the mapped landings.",
+    "Tower locations, approach pier spacing, deck grades and fender forms are reconstructed from exterior photographs and standard viewer terrain. The center span uses the recorded 245 m length. The bridge does not encode surveyed structural dimensions or hydraulic clearance.",
+    "The current viewer river and riverbanks are retained. The amount of exposed pier and fender above water varies with host water levels."
+  ],
+  "references": [
+    {
+      "url": "https://www.openstreetmap.org/way/458510977",
+      "observed": "Named bridge outline and mapped road alignment"
+    },
+    {
+      "url": "https://www.radiosudamericana.com/chaco/multimedia/imagenes/fotos/2024-05-10/407761.jpg_nota.jpg",
+      "hash": "sha256:223c10fef98a4e4532d7dcc00f589b606115150d01865049be07235fc26800c6",
+      "observed": "Corrientes curve and bridge spans"
+    },
+    {
+      "url": "https://dinamicarg.com/wp-content/uploads/2023/08/Puente-Interprovincial-General-Manuel-Belgrano-768x512.jpg",
+      "hash": "sha256:3d8b87d2f977e93af3d3a1167d2744283f1f87bd2d1ae44925369e9d0ad5cc20",
+      "observed": "Pylon bases and fenders"
+    },
+    {
+      "url": "https://www.aacarreteras.org.ar/pdfs/revista-carreteras/126.pdf",
+      "observed": "Repair project describes the 245 m central span, the 163 m side spans and the 20 m suspended middle segment."
+    },
+    {
+      "url": "https://desarrollovisit.ciudaddecorrientes.gov.ar/quehacer/puente-interprovincial-gral-manuel-belgrano/",
+      "observed": "Corrientes municipal overview identifies the city approach at Avenida 3 de Abril, towers and navigation clearance."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "parana-river-crossing",
+      "position": [
+        285,
+        970,
+        905
+      ],
+      "lookAt": [
+        20,
+        15,
+        45
+      ],
+      "fov": 64,
+      "lightDirection": [
+        0.45,
+        1,
+        0.77
+      ]
+    },
+    {
+      "name": "paired-stay-towers",
+      "position": [
+        400,
+        103,
+        368
+      ],
+      "lookAt": [
+        327,
+        35,
+        112
+      ],
+      "fov": 58,
+      "lightDirection": [
+        0.45,
+        1,
+        0.77
+      ]
+    },
+    {
+      "name": "stay-fan-from-deck",
+      "position": [
+        475,
+        36,
+        101
+      ],
+      "lookAt": [
+        359,
+        49,
+        111
+      ],
+      "fov": 69,
+      "lightDirection": [
+        0.45,
+        1,
+        0.77
+      ]
+    },
+    {
+      "name": "through-navigation-span",
+      "position": [
+        334,
+        6,
+        296
+      ],
+      "lookAt": [
+        333,
+        31,
+        111
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.45,
+        1,
+        0.77
+      ]
+    },
+    {
+      "name": "corrientes-curve",
+      "position": [
+        907,
+        109,
+        380
+      ],
+      "lookAt": [
+        807,
+        20,
+        130
+      ],
+      "fov": 66,
+      "lightDirection": [
+        0.45,
+        1,
+        0.77
+      ]
+    },
+    {
+      "name": "chaco-viaduct-and-landing",
+      "position": [
+        -1033,
+        62,
+        156
+      ],
+      "lookAt": [
+        -873,
+        8,
+        22
+      ],
+      "fov": 61,
+      "lightDirection": [
+        0.45,
+        1,
+        0.77
+      ]
+    },
+    {
+      "name": "corrientes-landing",
+      "position": [
+        1165,
+        47,
+        65
+      ],
+      "lookAt": [
+        1021,
+        8,
+        52
+      ],
+      "fov": 61,
+      "lightDirection": [
+        0.45,
+        1,
+        0.77
+      ]
+    }
+  ],
+  "materialMethod": "Shared board-formed concrete, plain concrete and painted metal supply the model surfaces. Geometry supplies split concrete legs, stay anchorages, paired approach piers, fenders, lamps and expansion joints.",
+  "sourceFacts": {
+    "mappedBridgeWay": 458510977,
+    "mappedPathLength": 2237.53819028655,
+    "centralSpanMeters": 245,
+    "sideSpanMeters": 163,
+    "widthMeters": 11.9,
+    "approachPiersAndAbutments": 25,
+    "towers": 2
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        70,
+        13,
+        68
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/6e/6en/general_belgrano_bridge/models/bridge-model.mjs",
+    "export": "buildBelgranoSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.92
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.13
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBelgranoDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.92
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.13
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildBelgranoStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.92
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.13
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildBelgranoCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.92
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.13
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "general_belgrano_bridge-skyline",
+      "position": [
+        285,
+        970,
+        905
+      ],
+      "lookAt": [
+        20,
+        15,
+        45
+      ],
+      "fov": 64,
+      "lightDirection": [
+        0.45,
+        1,
+        0.77
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "general_belgrano_bridge-district",
+      "position": [
+        285,
+        970,
+        905
+      ],
+      "lookAt": [
+        20,
+        15,
+        45
+      ],
+      "fov": 64,
+      "lightDirection": [
+        0.45,
+        1,
+        0.77
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "general_belgrano_bridge-street",
+      "position": [
+        285,
+        970,
+        905
+      ],
+      "lookAt": [
+        20,
+        15,
+        45
+      ],
+      "fov": 64,
+      "lightDirection": [
+        0.45,
+        1,
+        0.77
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "general_belgrano_bridge-closeup",
+      "position": [
+        285,
+        970,
+        905
+      ],
+      "lookAt": [
+        20,
+        15,
+        45
+      ],
+      "fov": 64,
+      "lightDirection": [
+        0.45,
+        1,
+        0.77
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

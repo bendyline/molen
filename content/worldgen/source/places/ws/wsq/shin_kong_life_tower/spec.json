@@ -1,0 +1,965 @@
+{
+  "planId": "shin_kong_life_tower",
+  "id": "shin_kong_life_tower",
+  "assetId": "molen.worldgen.structure.shin_kong_life_tower",
+  "title": "Shin Kong Life Tower",
+  "wikidataId": "Q704778",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 121.515311,
+    "latitude": 25.045936
+  },
+  "size": [
+    40.378990173339844,
+    245.49999392032623,
+    85.39732360839844
+  ],
+  "actualBounds": {
+    "min": [
+      -20.120994567871094,
+      -1.350000023841858,
+      -48.279327392578125
+    ],
+    "max": [
+      20.25799560546875,
+      244.14999389648438,
+      37.11799621582031
+    ]
+  },
+  "visualBrief": "A rose-colored 244-metre Taipei tower with teal ribbon glazing, broad department-store podium and a stepped pyramidal crown.",
+  "nativeAxes": {
+    "x": "east across the south façade",
+    "y": "up",
+    "z": "south toward Xuchang Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2014-08-06",
+    "validFrom": "2014-01-01",
+    "validUntil": "2015-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Shin_Kong_Life_Tower_View_from_Presidential_Building_Plaza_20140806.jpg"
+  ],
+  "stories": [
+    {
+      "id": "shin-kong-life-tower-wp",
+      "url": "https://qualla.com/shin-kong-life-tower/"
+    }
+  ],
+  "referenceInputHash": "01a7c9ec35686dc82352c69ea0c0b8af9ec34e5d7e7828fbb4c57fca3db4311c",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ws/wsq/shin_kong_life_tower/models/shin-kong-tower-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ws/wsq/shin_kong_life_tower/models/shin-kong-tower-model.mjs",
+    "level": "skyline",
+    "export": "towerSkyline",
+    "errorMeters": 1.35,
+    "surfaces": {
+      "rose": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_panel",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.42,
+        "metallic": 0.16
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.78,
+        "metallic": 0.16
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.16
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "towerDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "rose": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_panel",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.16
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.16
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.16
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "towerStreet",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "rose": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_panel",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.16
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.16
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.16
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "towerCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "rose": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_panel",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.16
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.16
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.16
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_granite",
+    "concrete_panel",
+    "metal_standing_seam",
+    "metal_painted",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.6,
+    "groundY": 0,
+    "far": 3300,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      121.515311,
+      25.045936
+    ],
+    "heading": 0.009315689913211465,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        121.51530619685487,
+        25.046403101542243
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate plaza paving in front of the north entrances."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -16.35802084618221,
+          -40.151219278242394
+        ],
+        [
+          -16.36139129187797,
+          -37.6241885852441
+        ],
+        [
+          -16.916053063178985,
+          -37.62935579178676
+        ],
+        [
+          -20.022470083612486,
+          -37.62489774987013
+        ],
+        [
+          -20.0205259821458,
+          -34.58572566902728
+        ],
+        [
+          -20.02565933413263,
+          -31.869460053252055
+        ],
+        [
+          -20.02252435991047,
+          -9.470977414885947
+        ],
+        [
+          -20.028124920972616,
+          -0.20884606275143575
+        ],
+        [
+          -20.028307237451514,
+          9.55429521101486
+        ],
+        [
+          -20.028516503526607,
+          31.229138606387366
+        ],
+        [
+          -20.035516460662127,
+          34.1457706115344
+        ],
+        [
+          -20.032120555194997,
+          37.02910216774969
+        ],
+        [
+          -17.167737763623002,
+          37.02238934517887
+        ],
+        [
+          -13.96057684895513,
+          37.03000226154454
+        ],
+        [
+          -9.290918408860321,
+          37.02897488176451
+        ],
+        [
+          12.71589337560711,
+          37.033605668697284
+        ],
+        [
+          13.986676770590375,
+          37.03431180295853
+        ],
+        [
+          17.012415714256537,
+          37.02910216774969
+        ],
+        [
+          20.159171773068184,
+          37.025019923072364
+        ],
+        [
+          20.163268120766006,
+          34.420068967562564
+        ],
+        [
+          20.160079615869314,
+          31.514474479370605
+        ],
+        [
+          20.175095552723885,
+          -31.806659551990837
+        ],
+        [
+          20.172529249545878,
+          -34.779042836903706
+        ],
+        [
+          20.168718544367312,
+          -37.61784852875686
+        ],
+        [
+          17.092659503723812,
+          -37.62424010538673
+        ],
+        [
+          16.517724512948504,
+          -37.61846374456072
+        ],
+        [
+          16.522028261216768,
+          -40.2456776320472
+        ],
+        [
+          16.30503746641962,
+          -40.77092341947457
+        ],
+        [
+          15.986887974806724,
+          -41.26371430045334
+        ],
+        [
+          15.587334507298056,
+          -41.679336512977024
+        ],
+        [
+          15.126650280501654,
+          -42.02873362444103
+        ],
+        [
+          14.604627893843384,
+          -42.28964270247321
+        ],
+        [
+          14.051521626829873,
+          -42.46178189982949
+        ],
+        [
+          13.477519938627067,
+          -42.55618873349164
+        ],
+        [
+          11.855118066535848,
+          -42.70489214892667
+        ],
+        [
+          7.255741842031484,
+          -42.66981272611842
+        ],
+        [
+          7.254549475151795,
+          -44.70705891286194
+        ],
+        [
+          5.247474938728498,
+          -44.703491873250336
+        ],
+        [
+          5.25605623130333,
+          -46.70724971261349
+        ],
+        [
+          4.343320732585285,
+          -47.25010946131419
+        ],
+        [
+          3.379020733463582,
+          -47.67099282959818
+        ],
+        [
+          2.36336363450866,
+          -47.992162749442116
+        ],
+        [
+          1.3262926129328225,
+          -48.17994297505708
+        ],
+        [
+          0.21779867261623076,
+          -48.2793291164445
+        ],
+        [
+          -0.7917142783239313,
+          -48.17740937675935
+        ],
+        [
+          -1.8222263507404461,
+          -47.986625807194
+        ],
+        [
+          -2.8337096071089896,
+          -47.67320821274192
+        ],
+        [
+          -3.5429611793412863,
+          -47.323577743429574
+        ],
+        [
+          -3.8059945282423326,
+          -47.2369686945857
+        ],
+        [
+          -4.71870419437544,
+          -46.69998228667555
+        ],
+        [
+          -4.717097026351189,
+          -44.70726196428082
+        ],
+        [
+          -6.754425842273738,
+          -44.70397677270424
+        ],
+        [
+          -6.754166777966552,
+          -42.56654739147256
+        ],
+        [
+          -11.050896517186423,
+          -42.53978095854831
+        ],
+        [
+          -11.191875749519243,
+          -42.563359179465046
+        ],
+        [
+          -11.888138954868081,
+          -42.52531581059899
+        ],
+        [
+          -12.88870784863916,
+          -42.30085599523137
+        ],
+        [
+          -13.515414740392249,
+          -42.15084032161652
+        ],
+        [
+          -14.08150937428922,
+          -42.0113924185265
+        ],
+        [
+          -14.67879159026163,
+          -41.772043168587864
+        ],
+        [
+          -15.15495299223463,
+          -41.54269799431714
+        ],
+        [
+          -15.591293857253742,
+          -41.257319693063195
+        ],
+        [
+          -16.049670845179325,
+          -40.77176290084601
+        ],
+        [
+          -16.35802084618221,
+          -40.151219278242394
+        ]
+      ],
+      "basis": "The mapped building and its entry structures bound the display opening. The composite ground includes neighboring roof heights."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -16.35802084618221,
+          -40.151219278242394
+        ],
+        [
+          -16.36139129187797,
+          -37.6241885852441
+        ],
+        [
+          -16.916053063178985,
+          -37.62935579178676
+        ],
+        [
+          -20.022470083612486,
+          -37.62489774987013
+        ],
+        [
+          -20.0205259821458,
+          -34.58572566902728
+        ],
+        [
+          -20.02565933413263,
+          -31.869460053252055
+        ],
+        [
+          -20.02252435991047,
+          -9.470977414885947
+        ],
+        [
+          -20.028124920972616,
+          -0.20884606275143575
+        ],
+        [
+          -20.028307237451514,
+          9.55429521101486
+        ],
+        [
+          -20.028516503526607,
+          31.229138606387366
+        ],
+        [
+          -20.035516460662127,
+          34.1457706115344
+        ],
+        [
+          -20.032120555194997,
+          37.02910216774969
+        ],
+        [
+          -17.167737763623002,
+          37.02238934517887
+        ],
+        [
+          -13.96057684895513,
+          37.03000226154454
+        ],
+        [
+          -9.290918408860321,
+          37.02897488176451
+        ],
+        [
+          12.71589337560711,
+          37.033605668697284
+        ],
+        [
+          13.986676770590375,
+          37.03431180295853
+        ],
+        [
+          17.012415714256537,
+          37.02910216774969
+        ],
+        [
+          20.159171773068184,
+          37.025019923072364
+        ],
+        [
+          20.163268120766006,
+          34.420068967562564
+        ],
+        [
+          20.160079615869314,
+          31.514474479370605
+        ],
+        [
+          20.175095552723885,
+          -31.806659551990837
+        ],
+        [
+          20.172529249545878,
+          -34.779042836903706
+        ],
+        [
+          20.168718544367312,
+          -37.61784852875686
+        ],
+        [
+          17.092659503723812,
+          -37.62424010538673
+        ],
+        [
+          16.517724512948504,
+          -37.61846374456072
+        ],
+        [
+          16.522028261216768,
+          -40.2456776320472
+        ],
+        [
+          16.30503746641962,
+          -40.77092341947457
+        ],
+        [
+          15.986887974806724,
+          -41.26371430045334
+        ],
+        [
+          15.587334507298056,
+          -41.679336512977024
+        ],
+        [
+          15.126650280501654,
+          -42.02873362444103
+        ],
+        [
+          14.604627893843384,
+          -42.28964270247321
+        ],
+        [
+          14.051521626829873,
+          -42.46178189982949
+        ],
+        [
+          13.477519938627067,
+          -42.55618873349164
+        ],
+        [
+          11.855118066535848,
+          -42.70489214892667
+        ],
+        [
+          7.255741842031484,
+          -42.66981272611842
+        ],
+        [
+          7.254549475151795,
+          -44.70705891286194
+        ],
+        [
+          5.247474938728498,
+          -44.703491873250336
+        ],
+        [
+          5.25605623130333,
+          -46.70724971261349
+        ],
+        [
+          4.343320732585285,
+          -47.25010946131419
+        ],
+        [
+          3.379020733463582,
+          -47.67099282959818
+        ],
+        [
+          2.36336363450866,
+          -47.992162749442116
+        ],
+        [
+          1.3262926129328225,
+          -48.17994297505708
+        ],
+        [
+          0.21779867261623076,
+          -48.2793291164445
+        ],
+        [
+          -0.7917142783239313,
+          -48.17740937675935
+        ],
+        [
+          -1.8222263507404461,
+          -47.986625807194
+        ],
+        [
+          -2.8337096071089896,
+          -47.67320821274192
+        ],
+        [
+          -3.5429611793412863,
+          -47.323577743429574
+        ],
+        [
+          -3.8059945282423326,
+          -47.2369686945857
+        ],
+        [
+          -4.71870419437544,
+          -46.69998228667555
+        ],
+        [
+          -4.717097026351189,
+          -44.70726196428082
+        ],
+        [
+          -6.754425842273738,
+          -44.70397677270424
+        ],
+        [
+          -6.754166777966552,
+          -42.56654739147256
+        ],
+        [
+          -11.050896517186423,
+          -42.53978095854831
+        ],
+        [
+          -11.191875749519243,
+          -42.563359179465046
+        ],
+        [
+          -11.888138954868081,
+          -42.52531581059899
+        ],
+        [
+          -12.88870784863916,
+          -42.30085599523137
+        ],
+        [
+          -13.515414740392249,
+          -42.15084032161652
+        ],
+        [
+          -14.08150937428922,
+          -42.0113924185265
+        ],
+        [
+          -14.67879159026163,
+          -41.772043168587864
+        ],
+        [
+          -15.15495299223463,
+          -41.54269799431714
+        ],
+        [
+          -15.591293857253742,
+          -41.257319693063195
+        ],
+        [
+          -16.049670845179325,
+          -40.77176290084601
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "The named tower-and-podium envelope from OpenStreetMap way 204711206."
+    },
+    "featureIds": [
+      "way/204711206"
+    ],
+    "source": "https://www.openstreetmap.org/relation/8945537",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:242d944ec9fa71370d21c62abc1a05073a548136ad8f94a3e440fbc4afd07c84",
+    "notes": "The municipal 244.15 m figure sets the mast height. The photographed rose tower and documented retail floor count control the podium and office separation."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The exact 2014 Qualla photograph controls the rose tower and visible façade bands. The lower retail openings are partly obscured and their layout is approximate.",
+    "The footprint, office setbacks and crown profiles follow the mapped relation. The retail roof height, pale crown screen, shallow glazing and some rooftop equipment are interpreted.",
+    "The local permit-derived 244.15 m mast figure controls scale. The international tall-building database reports 244.8 m.",
+    "The original composite elevation field contains urban surface artifacts. The model uses the north plaza sample for approximate placement and a display opening confined to the mapped building so the podium is visible."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Mapped footprints are ODbL. The photographer released the exact Qualla photo under CC0.",
+  "qaLodCameras": [
+    {
+      "name": "whole-taipei-tower-skyline",
+      "position": [
+        -246,
+        150,
+        360
+      ],
+      "lookAt": [
+        0,
+        120,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-taipei-tower-district",
+      "position": [
+        -246,
+        150,
+        360
+      ],
+      "lookAt": [
+        0,
+        120,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-taipei-tower-street",
+      "position": [
+        -246,
+        150,
+        360
+      ],
+      "lookAt": [
+        0,
+        120,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-taipei-tower-closeup",
+      "position": [
+        -246,
+        150,
+        360
+      ],
+      "lookAt": [
+        0,
+        120,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "southwest-photo-elevation",
+      "position": [
+        -147,
+        97,
+        363
+      ],
+      "lookAt": [
+        0,
+        120,
+        1
+      ]
+    },
+    {
+      "name": "stepped-crown-and-pyramid",
+      "position": [
+        -84,
+        223,
+        103
+      ],
+      "lookAt": [
+        0,
+        210,
+        0
+      ]
+    },
+    {
+      "name": "north-retail-base-and-entrances",
+      "position": [
+        -70,
+        25,
+        -113
+      ],
+      "lookAt": [
+        0,
+        23,
+        -28
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9896,
+    "vertices": 29688,
+    "materials": 6,
+    "bytes": 1462368,
+    "sha256": "sha256:f57e2aead4daa08352353b6fa50bccaca6f977408ba97e110547dcf4a4b75382"
+  }
+}

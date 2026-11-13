@@ -1,0 +1,525 @@
+{
+  "planId": "lyric_theatre_london",
+  "id": "lyric_theatre_london",
+  "assetId": "molen.worldgen.structure.lyric_theatre_london",
+  "title": "Lyric Theatre, London",
+  "wikidataId": "Q3269699",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -0.1337883111111111,
+    "latitude": 51.51134723888889
+  },
+  "size": [
+    54.397809982299805,
+    20.74526447057724,
+    41.02754211425781
+  ],
+  "actualBounds": {
+    "min": [
+      -28.923192977905273,
+      -0.6052650809288025,
+      -18.002601623535156
+    ],
+    "max": [
+      25.47461700439453,
+      20.139999389648438,
+      23.024940490722656
+    ]
+  },
+  "visualBrief": "The Lyric Theatre as photographed in 2007, with its brick and stone Shaftesbury Avenue front, slate roofs, theatre canopy and retained Hunter house on Great Windmill Street.",
+  "nativeAxes": {
+    "x": "right from Shaftesbury Avenue",
+    "y": "up",
+    "z": "toward Shaftesbury Avenue"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2007-04",
+    "validFrom": "2007-04-01",
+    "validUntil": "2007-05-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:LyricLondon.JPG"
+  ],
+  "stories": [
+    {
+      "id": "lyric-theatre-london-wp",
+      "url": "https://qualla.com/lyric-theatre-london/"
+    }
+  ],
+  "referenceInputHash": "a099676b9f121cb445eea55d351d56250a117aae936a309cc3063c89b446e31d",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/gc/gcp/lyric_theatre_london/models/lyric-theatre-london-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac",
+    "stadium-lettering.mjs": "sha256:b05c2e1200c7498700a4f65c488b5ecedbdb844025961be2b4aed4935375ae56"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/gc/gcp/lyric_theatre_london/models/lyric-theatre-london-model.mjs",
+    "level": "skyline",
+    "export": "lyricSkyline",
+    "errorMeters": 1.05,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "canopy": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.77,
+        "metallic": 0.25
+      },
+      "timber": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.83,
+        "metallic": 0
+      },
+      "detail": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.76,
+        "metallic": 0.05
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "lyricDistrict",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.25
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "lyricStreet",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.25
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "lyricCloseup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "canopy": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.77,
+            "metallic": 0.25
+          },
+          "timber": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.76,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "stone_limestone",
+    "slate",
+    "metal_standing_seam",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -0.1337883111111111,
+      51.51134723888889
+    ],
+    "heading": 0.930093124685056,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -0.1334187144284816,
+        51.511328119547606
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate Shaftesbury Avenue grade outside the right-hand entrance pavilion."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -22.095461635258577,
+          -11.878218852176623
+        ],
+        [
+          -21.380122851914567,
+          -11.607896781082541
+        ],
+        [
+          -4.289743688361223,
+          -5.131328496586141
+        ],
+        [
+          -3.510132589787669,
+          -7.12128070390616
+        ],
+        [
+          8.133368888557237,
+          -3.5919736715120703
+        ],
+        [
+          9.395817726960853,
+          -7.169110894730984
+        ],
+        [
+          13.250416615798757,
+          -17.95931044423598
+        ],
+        [
+          17.701160428031297,
+          -16.403866997586814
+        ],
+        [
+          14.066574487016133,
+          -6.175249052421419
+        ],
+        [
+          12.420910610583867,
+          -1.8457046892503932
+        ],
+        [
+          25.47461721446558,
+          2.550623283405894
+        ],
+        [
+          18.789131166293107,
+          20.792390436924247
+        ],
+        [
+          8.163172674792886,
+          19.74511299142317
+        ],
+        [
+          -5.816599019743017,
+          20.792390436924244
+        ],
+        [
+          -5.501993202198395,
+          13.765201372216467
+        ],
+        [
+          -10.212940981739543,
+          11.600070307218704
+        ],
+        [
+          -28.74957496841486,
+          3.0907659291130045
+        ],
+        [
+          -25.838600875080722,
+          -3.452614173735066
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Named mapped Lyric Theatre envelope, including the Hunter house and stage end."
+    },
+    "featureIds": [
+      "way/149173469"
+    ],
+    "source": "https://www.openstreetmap.org/way/149173469",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9945bec48679d999b7bc2fe30f8f238f97cd0ee59f483b86530699bc8c632478",
+    "notes": "Outline vertices 13, 12 and 11 face Shaftesbury Avenue. Vertices 16, 17 and 0 identify the retained house front facing Great Windmill Street. The published story pin is approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The April 2007 original guides the photographed brick and stone front, gables, canopied entrance, blade and advertising board. Its signs and carved detail are simplified.",
+    "The stage is behind the retained Hunter house. The unpictured stage and auditorium roof profiles, parapets, service openings and relative heights are approximated from the mapped plan and written record.",
+    "The elevation field is unchanged. Pavement contacts are estimates sampled from the original elevation tiles."
+  ],
+  "sourceLicense": "Original geometry under the repository license. The mapped footprint is ODbL. The exact Qualla photo was released worldwide to the public domain by KF.",
+  "qaLodCameras": [
+    {
+      "name": "whole-theatre-skyline",
+      "position": [
+        -44,
+        25,
+        70
+      ],
+      "lookAt": [
+        -4,
+        8.5,
+        3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-theatre-district",
+      "position": [
+        -44,
+        25,
+        70
+      ],
+      "lookAt": [
+        -4,
+        8.5,
+        3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-theatre-street",
+      "position": [
+        -44,
+        25,
+        70
+      ],
+      "lookAt": [
+        -4,
+        8.5,
+        3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-theatre-closeup",
+      "position": [
+        -44,
+        25,
+        70
+      ],
+      "lookAt": [
+        -4,
+        8.5,
+        3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "shaftesbury-avenue-pavilions-and-canopy",
+      "position": [
+        -10,
+        7.2,
+        49
+      ],
+      "lookAt": [
+        7,
+        9.5,
+        20
+      ]
+    },
+    {
+      "name": "right-hand-entrance-and-signs",
+      "position": [
+        4.6,
+        5,
+        39
+      ],
+      "lookAt": [
+        14.1,
+        7.6,
+        22
+      ]
+    },
+    {
+      "name": "hunter-house-and-stage-roofs",
+      "position": [
+        -58,
+        22,
+        -4
+      ],
+      "lookAt": [
+        -15,
+        8.4,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4708,
+    "vertices": 14124,
+    "materials": 6,
+    "bytes": 762940,
+    "sha256": "sha256:0e955b6f983472bf32cc1dd6a7ddd89e0bac76edf1ca2786516bc99d7147fad6"
+  }
+}

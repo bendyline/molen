@@ -1,0 +1,362 @@
+{
+  "id": "mother_armenia",
+  "title": "Mother Armenia",
+  "wikidataId": "Q2389195",
+  "referenceCoordinate": {
+    "longitude": 44.52467501163483,
+    "latitude": 40.1951550887205
+  },
+  "module": "content/worldgen/source/places/sz/szp/mother_armenia/models/monument-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-mother-armenia.mjs",
+  "builder": "buildMonument",
+  "surfaces": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_basalt_raw",
+      "roughness": 0.78
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.83
+    },
+    "copper": {
+      "slot": "trim",
+      "graph": "metal_copper",
+      "roughness": 0.68,
+      "metallic": 0.32
+    }
+  },
+  "exportLabel": "Molen original Mother Armenia master",
+  "expectedDraftMasterHash": "sha256:229b5c214f4f62c4efd74a1fe4d4d12c910a11179c861a6324cb5dfeb7748162",
+  "visualBrief": "Mother Armenia stands with an 11 m sword held across her waist and a round shield at her feet. The dark tuff museum pedestal has a recessed carved portal, side entries, flanking wings and a dentil cornice. Broad steps lead up from Victory Park.",
+  "heightPolicy": "The standard Terrarium datum is 1,142 m above sea level. The museum podium extends below the sampled slope. The broad stair sits above the mapped approach grade at its center and blends into the existing ground near the lower edges.",
+  "nativeAxes": "+Z southwest toward the museum entrance and city, +X southeast along the front face, +Y up.",
+  "limitations": [
+    "The model follows the city’s published 51 m combined height, 22 m copper statue and 11 m sword. Museum massing, carved ornament, folds and facial features are reconstructed from photographs.",
+    "The named statue, museum point and three mapped building polygons define the southwest-facing placement. The stairs and embedded podium use the standard Terrarium grade.",
+    "A shared volcanic stone material approximates the photographed black tuff. The museum entrance recess and side portals are modeled. Interior galleries and surrounding military exhibits are outside this asset."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Mother_Armenia.JPG",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Mother_Armenia.JPG/960px-Mother_Armenia.JPG",
+      "hash": "sha256:3c622e44c7a664643d1609433b770b66b0585e857eecec8d49a3b17fa52e5569",
+      "observed": "Low-angle silhouette shows the rear mass, balcony rails, squared sleeves and the horizontal sword."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Mother_Armenia%2C_Park_of_Victory%2C_Yerevan.jpg",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Mother_Armenia%2C_Park_of_Victory%2C_Yerevan.jpg/960px-Mother_Armenia%2C_Park_of_Victory%2C_Yerevan.jpg",
+      "hash": "sha256:2f1bbccff55c4456d7a5cc2a96de62ea7feca1bc7a799989ea05f10a4c7a41dc",
+      "observed": "Daylight view identifies the copper pose, radial shield, dark stone courses, broad stairs, carved portal and layered cornice."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Mother_Armenia_statue_in_Victory_Park_of_Yerevan_on_Victory_Day_May_9_2021.jpg",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/Mother_Armenia_statue_in_Victory_Park_of_Yerevan_on_Victory_Day_May_9_2021.jpg/960px-Mother_Armenia_statue_in_Victory_Park_of_Yerevan_on_Victory_Day_May_9_2021.jpg",
+      "hash": "sha256:9928188d0757a10efa71c47c3b6c6324c2aa6c0c9bfec1937dc1fb1c2c914211",
+      "observed": "Straight-on view confirms the symmetric wings, narrow openings, arch and upper relief, stair axis, shield and full figure."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "mother-armenia-from-victory-park",
+      "position": [
+        42,
+        14,
+        78
+      ],
+      "lookAt": [
+        0,
+        22,
+        2
+      ],
+      "fov": 43
+    },
+    {
+      "name": "southwest-front-and-museum-stair",
+      "position": [
+        0.1,
+        13,
+        81
+      ],
+      "lookAt": [
+        -0.45,
+        23,
+        1
+      ],
+      "fov": 47
+    },
+    {
+      "name": "rear-and-stepped-pedestal",
+      "position": [
+        -53,
+        23,
+        -54
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "copper-figure-sword-and-shield",
+      "position": [
+        15,
+        39,
+        27
+      ],
+      "lookAt": [
+        0,
+        39.5,
+        1.4
+      ],
+      "fov": 48
+    },
+    {
+      "name": "sword-grip-head-and-chased-copper",
+      "position": [
+        8.8,
+        43.6,
+        15.5
+      ],
+      "lookAt": [
+        0,
+        43.8,
+        1.9
+      ],
+      "fov": 45
+    },
+    {
+      "name": "portal-and-carved-stone",
+      "position": [
+        -4.75,
+        6.15,
+        21
+      ],
+      "lookAt": [
+        -0.89,
+        5.92,
+        10.1
+      ],
+      "fov": 51
+    },
+    {
+      "name": "side-museum-entry",
+      "position": [
+        -31,
+        7,
+        1.3
+      ],
+      "lookAt": [
+        -13.1,
+        4.73,
+        -0.55
+      ],
+      "fov": 55,
+      "lightDirection": [
+        -0.84,
+        1,
+        -0.45
+      ]
+    },
+    {
+      "name": "shield-and-dentil-cornice",
+      "position": [
+        -10.9,
+        27.6,
+        21
+      ],
+      "lookAt": [
+        0,
+        28.6,
+        3.3
+      ],
+      "fov": 49
+    }
+  ],
+  "materialMethod": "Shared dark volcanic stone, dressed granite and copper. The tuff courses, arch stones, recessed doors, reliefs, crown, sword and shield use geometry.",
+  "sourceFacts": {
+    "totalHeightMeters": 51,
+    "sculptureHeightMeters": 22,
+    "swordLengthMeters": 11,
+    "mappedMonument": 17592561609660,
+    "mappedMuseum": 17603467023257,
+    "mappedPedestalParts": [
+      35184818950467,
+      35185589578182,
+      35185589578183
+    ],
+    "groundDatumMeters": 1142
+  },
+  "mediumFiContext": {
+    "groundY": -0.45,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        25,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sz/szp/mother_armenia/models/monument-model.mjs",
+    "export": "buildMonumentSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_basalt_raw",
+        "roughness": 0.78
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.83
+      },
+      "copper": {
+        "slot": "trim",
+        "graph": "metal_copper",
+        "roughness": 0.68,
+        "metallic": 0.32
+      }
+    },
+    "errorMeters": 1.02,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMonumentDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.78
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.83
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.68,
+            "metallic": 0.32
+          }
+        },
+        "errorMeters": 0.47
+      },
+      "street": {
+        "export": "buildMonumentStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.78
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.83
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.68,
+            "metallic": 0.32
+          }
+        },
+        "errorMeters": 0.132
+      },
+      "closeup": {
+        "export": "buildMonumentCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.78
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.83
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.68,
+            "metallic": 0.32
+          }
+        },
+        "errorMeters": 0.038
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "mother_armenia-skyline",
+      "position": [
+        42,
+        14,
+        78
+      ],
+      "lookAt": [
+        0,
+        22,
+        2
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "mother_armenia-district",
+      "position": [
+        42,
+        14,
+        78
+      ],
+      "lookAt": [
+        0,
+        22,
+        2
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "mother_armenia-street",
+      "position": [
+        42,
+        14,
+        78
+      ],
+      "lookAt": [
+        0,
+        22,
+        2
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "mother_armenia-closeup",
+      "position": [
+        42,
+        14,
+        78
+      ],
+      "lookAt": [
+        0,
+        22,
+        2
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ]
+}

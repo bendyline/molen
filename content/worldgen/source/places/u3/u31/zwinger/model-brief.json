@@ -1,0 +1,473 @@
+{
+  "id": "zwinger",
+  "title": "Dresden Zwinger",
+  "wikidataId": "Q155107",
+  "referenceCoordinate": {
+    "longitude": 13.73391376,
+    "latitude": 51.053034472
+  },
+  "module": "packages/worldgen/scripts/zwinger-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-zwinger.mjs",
+  "builder": "buildZwingerLevel",
+  "surfaces": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.95
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.91
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_ashlar",
+      "roughness": 0.99
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "metallic": 0.39,
+      "roughness": 0.67
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.92
+    },
+    "glazing": {
+      "slot": "window",
+      "graph": "metal_painted",
+      "metallic": 0.03,
+      "roughness": 0.73
+    },
+    "bronze": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "metallic": 0.67,
+      "roughness": 0.45
+    },
+    "lawn": {
+      "slot": "foundation",
+      "graph": "earth_rammed",
+      "roughness": 1
+    }
+  },
+  "exportLabel": "Molen original Dresden Zwinger master",
+  "expectedDraftMasterHash": "sha256:aa63c38676cbd805ee580e8d5a263f686532b66546786e48bb23e4be0e861648",
+  "visualBrief": "The Dresden Zwinger encloses an open courtyard with curved sandstone arcades, four corner pavilions, two domed end pavilions and Semper Gallery. The copper and gold Kronentor frames the open passage and its stone moat crossing.",
+  "heightPolicy": "The 115 m sea-level datum is rounded from the sampled courtyard. The pavilions and terrace foundations fit local terrain and the moat bridge follows its mapped approaches.",
+  "nativeAxes": "Positive X runs from the Wallpavillon toward the Glockenspielpavillon. Positive Z runs from Semper Gallery toward the Kronentor and its moat bridge.",
+  "limitations": [
+    "Mapped footprints, the moat crossing and courtyard basin outlines set the site fit. Pavilion profiles and stone details are reconstructed from visible exterior photographs.",
+    "Garden surfaces follow the restored courtyard layout. Fountain plumbing, sculptural likenesses and room interiors are outside this exterior model.",
+    "The viewer supplies terrain, mapped water and surrounding streets. The model includes low perimeter stones, terrace paving and the covered pedestrian route through the Kronentor."
+  ],
+  "references": [
+    {
+      "url": "https://www.mdr.de/nachrichten/sachsen/dresden/dresden-radebeul/zwinger-innenhof-sanierung-wiedereroeffnung-100.html",
+      "observed": "The courtyard following its restoration."
+    },
+    {
+      "url": "https://media.guruwalk.com/xwlqewnuqyaccao512fvhyhmbjgz",
+      "observed": "Aerial view of the pavilion roofs, courtyard and galleries."
+    },
+    {
+      "url": "https://media.guruwalk.com/xwlqewnuqyaccao512fvhyhmbjgz",
+      "hash": "sha256:78fc806b13a8078724f0c47cba917d46ca558d57d0c454107f63a7f89a85f99d",
+      "observed": "Curved galleries, all pavilion and roof silhouettes, four basin and lawn quadrants and the moat-side entrance."
+    },
+    {
+      "url": "https://images.mdr.de/image/1530e8c0-1e9c-4dd8-809a-47ae399cc49b/AAABnT5MyyA/AAABnSStdoM/4x3/zwinger-116.jpg?width=1280",
+      "hash": "sha256:9d07541539246e45e79a57e9e680d7303954c795d8d39f6a4e2408a0d6dd08a7",
+      "observed": "Restored parterre, glazed arcade bays, terraced stairs, Semper facade and the Kronentor crown."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "zwinger-court-and-moat",
+      "position": [
+        89,
+        165,
+        190
+      ],
+      "lookAt": [
+        0,
+        4,
+        10
+      ],
+      "fov": 60
+    },
+    {
+      "name": "courtyard-from-semper-gallery",
+      "position": [
+        1,
+        83,
+        -75
+      ],
+      "lookAt": [
+        0,
+        1,
+        38
+      ],
+      "fov": 62
+    },
+    {
+      "name": "kronentor-and-moat-crossing",
+      "position": [
+        26,
+        27,
+        131
+      ],
+      "lookAt": [
+        -1,
+        7,
+        72
+      ],
+      "fov": 57
+    },
+    {
+      "name": "open-kronentor-passage",
+      "position": [
+        -0.6,
+        2.4,
+        100
+      ],
+      "lookAt": [
+        -1.25,
+        4.5,
+        70
+      ],
+      "fov": 63
+    },
+    {
+      "name": "wallpavillon-curved-arcades",
+      "position": [
+        -57,
+        17,
+        18
+      ],
+      "lookAt": [
+        -96,
+        6,
+        11
+      ],
+      "fov": 61
+    },
+    {
+      "name": "glockenspiel-and-porcelain-wing",
+      "position": [
+        52,
+        19,
+        11
+      ],
+      "lookAt": [
+        100,
+        9,
+        13
+      ],
+      "fov": 58
+    },
+    {
+      "name": "semper-gallery-and-basin",
+      "position": [
+        21,
+        12,
+        13
+      ],
+      "lookAt": [
+        -6,
+        11,
+        -48
+      ],
+      "fov": 61
+    }
+  ],
+  "materialMethod": "Eight shared surface graphs supply sandstone, limestone trim, ashlar, copper and slate roofs, glazing, gilt bronze and garden earth. Geometry provides arches, stone balustrades, steps and window surrounds.",
+  "sourceFacts": {
+    "mappedPrecinct": "relation/4283218",
+    "semperGallery": 52776561411254,
+    "mappedFootbridge": "way/192288898",
+    "ownedBuildingFeatures": 34,
+    "mappedBasins": 4,
+    "terrainDatumMeters": 115
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        6,
+        10
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/zwinger-model.mjs",
+    "export": "buildZwingerSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.95
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.91
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.99
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "metallic": 0.39,
+        "roughness": 0.67
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.92
+      },
+      "glazing": {
+        "slot": "window",
+        "graph": "metal_painted",
+        "metallic": 0.03,
+        "roughness": 0.73
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "metallic": 0.67,
+        "roughness": 0.45
+      },
+      "lawn": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 1
+      }
+    },
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildZwingerDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.99
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "metallic": 0.39,
+            "roughness": 0.67
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "metal_painted",
+            "metallic": 0.03,
+            "roughness": 0.73
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "metallic": 0.67,
+            "roughness": 0.45
+          },
+          "lawn": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.72
+      },
+      "street": {
+        "export": "buildZwingerStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.99
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "metallic": 0.39,
+            "roughness": 0.67
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "metal_painted",
+            "metallic": 0.03,
+            "roughness": 0.73
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "metallic": 0.67,
+            "roughness": 0.45
+          },
+          "lawn": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "closeup": {
+        "export": "buildZwingerCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.99
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "metallic": 0.39,
+            "roughness": 0.67
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "metal_painted",
+            "metallic": 0.03,
+            "roughness": 0.73
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "metallic": 0.67,
+            "roughness": 0.45
+          },
+          "lawn": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "zwinger-skyline",
+      "position": [
+        89,
+        165,
+        190
+      ],
+      "lookAt": [
+        0,
+        4,
+        10
+      ],
+      "fov": 60,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "zwinger-district",
+      "position": [
+        89,
+        165,
+        190
+      ],
+      "lookAt": [
+        0,
+        4,
+        10
+      ],
+      "fov": 60,
+      "reviewLod": "district"
+    },
+    {
+      "name": "zwinger-street",
+      "position": [
+        89,
+        165,
+        190
+      ],
+      "lookAt": [
+        0,
+        4,
+        10
+      ],
+      "fov": 60,
+      "reviewLod": "street"
+    },
+    {
+      "name": "zwinger-closeup",
+      "position": [
+        89,
+        165,
+        190
+      ],
+      "lookAt": [
+        0,
+        4,
+        10
+      ],
+      "fov": 60,
+      "reviewLod": "closeup"
+    }
+  ]
+}

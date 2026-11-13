@@ -1,0 +1,1084 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+    "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411"
+  },
+  "sourceHash": "sha256:b34d1b560e785caa1bb841e6099660c13738f99e715f88b8ac60bb05cc5b05ac",
+  "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
+    },
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:969d17fe3627ddb56e51a64f5d0119fd1db3e250a2ddf4ae2fa87421c17159e7",
+      "bytes": 78412,
+      "gzipBytes": 18883,
+      "triangles": 963,
+      "cpuBytes": 74648,
+      "gpuBytes": 74648,
+      "errorMeters": 0.57,
+      "drawCalls": 3
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:209f5af1cf7b8f13828217c478c371af704349181e0b17661159d6e0e51aef75",
+      "bytes": 166020,
+      "gzipBytes": 40876,
+      "triangles": 2019,
+      "cpuBytes": 162236,
+      "gpuBytes": 162236,
+      "errorMeters": 0.32,
+      "drawCalls": 3
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:455bdbae5098e703070c9f3bb17914613cd3dba427b60d672b1adb0370df7916",
+      "bytes": 302244,
+      "gzipBytes": 75128,
+      "triangles": 3685,
+      "cpuBytes": 298448,
+      "gpuBytes": 298448,
+      "errorMeters": 0.105,
+      "drawCalls": 3
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:f389bbc0294bb689a20770551b7ca718ecfe45c55168e9a4e324f907cf1e396c",
+      "bytes": 358452,
+      "gzipBytes": 86801,
+      "triangles": 4413,
+      "cpuBytes": 354656,
+      "gpuBytes": 354656,
+      "errorMeters": 0.045,
+      "drawCalls": 3
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:393fc24b2f5b899b8e9f7138a3c8c46109314d5ab3f8982a29690eca72d7af8a"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:785678979faf4a46f08ceabd2c8f7ca738f7dfecc2986eb954a8f101035d6f88"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:e0f35269a967c2a8dca92ca027b1227db13b2a746fd07c107a4ac3c11588a4c9",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:f389bbc0294bb689a20770551b7ca718ecfe45c55168e9a4e324f907cf1e396c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 43423,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          38.7672,
+          34.769999999999996,
+          68.20570000000001
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:f2eb8b53f8632bfb6627b02273824844a7ff26a39008a06bceca8c566a60966f",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:f389bbc0294bb689a20770551b7ca718ecfe45c55168e9a4e324f907cf1e396c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 43423,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          38.7672,
+          34.769999999999996,
+          68.20570000000001
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:d6f4c034972818a941b15ec37f116192a5131b8515bc17b4c8729c4cf9de1abe",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:f389bbc0294bb689a20770551b7ca718ecfe45c55168e9a4e324f907cf1e396c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 43423,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          38.7672,
+          34.769999999999996,
+          68.20570000000001
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:d1ee8f87e9fb7bfa459d0e26d91aa7cd3c9bffe0087ae644323f375927e2814c",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:f389bbc0294bb689a20770551b7ca718ecfe45c55168e9a4e324f907cf1e396c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 43423,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          38.7672,
+          34.769999999999996,
+          68.20570000000001
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:de9d5e7e8dde364202406a7c039889ec8c74565a2d239f6ebc5734830e7b4ebb",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:209f5af1cf7b8f13828217c478c371af704349181e0b17661159d6e0e51aef75",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 41029,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          78.9472,
+          64.28999999999999,
+          137.9057
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:88a1f769339ff4ae32dd6e09fce641834c60aaf6f134abe9903f4c8ee0f6eb45",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:209f5af1cf7b8f13828217c478c371af704349181e0b17661159d6e0e51aef75",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 41029,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          78.9472,
+          64.28999999999999,
+          137.9057
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:cb7543e6238e98a15e47c61bec25405fd81bc531d87bdf40707257d3b32809d5",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:209f5af1cf7b8f13828217c478c371af704349181e0b17661159d6e0e51aef75",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 41029,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          78.9472,
+          64.28999999999999,
+          137.9057
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:12eeaf7f1a13529b1d21d85e08e44f8c9bd97aecec110b2308c64458761b9f02",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:209f5af1cf7b8f13828217c478c371af704349181e0b17661159d6e0e51aef75",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 41029,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          78.9472,
+          64.28999999999999,
+          137.9057
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:d53fb401783cc61eb7de9bb45bae93061179982b8f4f233439bce5702a80cec0",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:969d17fe3627ddb56e51a64f5d0119fd1db3e250a2ddf4ae2fa87421c17159e7",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 39973,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          158.48719999999997,
+          95.45,
+          275.66569999999996
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:af7928481aeccbc9d275e498619d3ddad4d68b374e45ca9f8b61beb8b22145fd",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:969d17fe3627ddb56e51a64f5d0119fd1db3e250a2ddf4ae2fa87421c17159e7",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 39973,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          158.48719999999997,
+          95.45,
+          275.66569999999996
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:ddf1980a054f0d5ee6b41225f9b49d4ee4986b4ba62cffe047358d1bdd728ac5",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:969d17fe3627ddb56e51a64f5d0119fd1db3e250a2ddf4ae2fa87421c17159e7",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 39973,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          158.48719999999997,
+          95.45,
+          275.66569999999996
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:c2aff00d5452202f4051894b6643d18407c5bfa1f5ac5fb32caf2be9dd43cffc",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:969d17fe3627ddb56e51a64f5d0119fd1db3e250a2ddf4ae2fa87421c17159e7",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 39973,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          158.48719999999997,
+          95.45,
+          275.66569999999996
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:5adb299a2c8a2d980c896c88b5cdee094dfc415925a7ab00941576b4abc7fa0a",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:969d17fe3627ddb56e51a64f5d0119fd1db3e250a2ddf4ae2fa87421c17159e7",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 5,
+        "triangles": 33733,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          158.48719999999997,
+          95.45,
+          275.66569999999996
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/south-facade-and-pavilion-roofs.png",
+      "hash": "sha256:d1613a339c0ae72eb72af1be121da148351945838a1687c7f84032e7abcdffb8",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:f389bbc0294bb689a20770551b7ca718ecfe45c55168e9a4e324f907cf1e396c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 43423,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          1,
+          13,
+          87
+        ],
+        "lookAt": [
+          0,
+          14,
+          4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-wing-plan-and-slate-roofs.png",
+      "hash": "sha256:14a50dc825dbc8a4d177bbf70544c84f1fe40989d3ee732213a8b8c2c0574d39",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:f389bbc0294bb689a20770551b7ca718ecfe45c55168e9a4e324f907cf1e396c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 43423,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          -48,
+          47,
+          -74
+        ],
+        "lookAt": [
+          -3,
+          13,
+          -3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/central-stairs-and-limestone-bays.png",
+      "hash": "sha256:03ab64a97f41de2f6608d2cc751b928af923bed802b61dd513455976914d4d66",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:f389bbc0294bb689a20770551b7ca718ecfe45c55168e9a4e324f907cf1e396c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 43423,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          19,
+          12,
+          47
+        ],
+        "lookAt": [
+          1,
+          10,
+          4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-cheverny-chateau-skyline.png",
+      "hash": "sha256:2849250de9897e490264854177467e61acc0f95583b650f9a65871a8643fd74c",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:969d17fe3627ddb56e51a64f5d0119fd1db3e250a2ddf4ae2fa87421c17159e7",
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 39973,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          34,
+          23,
+          94
+        ],
+        "lookAt": [
+          -0.6,
+          13.45,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-cheverny-chateau-district.png",
+      "hash": "sha256:47cfe9c9e04299960fa6ee94dd12ffe1ee9c5c16d4e562cc89740ae41e2e727b",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:209f5af1cf7b8f13828217c478c371af704349181e0b17661159d6e0e51aef75",
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 41029,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          34,
+          23,
+          94
+        ],
+        "lookAt": [
+          -0.6,
+          13.45,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-cheverny-chateau-street.png",
+      "hash": "sha256:f36ba0da05d69424460c3c23c5fb3d6f95cb720c311959e1b7428f4a706dbb5d",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:455bdbae5098e703070c9f3bb17914613cd3dba427b60d672b1adb0370df7916",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 42695,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          34,
+          23,
+          94
+        ],
+        "lookAt": [
+          -0.6,
+          13.45,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-cheverny-chateau-closeup.png",
+      "hash": "sha256:009f61b5fdb9ef5f54e755b1d39c1834c899ce87b29eb8f5f7fa091bfec664e5",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:f389bbc0294bb689a20770551b7ca718ecfe45c55168e9a4e324f907cf1e396c",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 43423,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          34,
+          23,
+          94
+        ],
+        "lookAt": [
+          -0.6,
+          13.45,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:1b2e0ba293b324bf09d4baa64ffe8e2aedd09c0f93bcb7ed5eaec63aabab017a",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:969d17fe3627ddb56e51a64f5d0119fd1db3e250a2ddf4ae2fa87421c17159e7",
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 39973,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          78.9472,
+          64.28999999999999,
+          137.9057
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:88a1f769339ff4ae32dd6e09fce641834c60aaf6f134abe9903f4c8ee0f6eb45",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:209f5af1cf7b8f13828217c478c371af704349181e0b17661159d6e0e51aef75",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 41029,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          78.9472,
+          64.28999999999999,
+          137.9057
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:0e50582b4decbf59ebbb498b05528dd9987b034ebfe4686a719736400295e165",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:455bdbae5098e703070c9f3bb17914613cd3dba427b60d672b1adb0370df7916",
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 42695,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          78.9472,
+          64.28999999999999,
+          137.9057
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:a5d37729ff15264b3c09d62d2b04f52ff77ce8d5e12ada6237d8bb12b92ce10f",
+      "state": {
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "runtimeHash": "sha256:8f4bf3918ee0967bc08338e8c605b395427967fc2c0378a9d9563d3bd1211411",
+        "lodHash": "sha256:f389bbc0294bb689a20770551b7ca718ecfe45c55168e9a4e324f907cf1e396c",
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 43423,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u03/chateau_de_cheverny/terrain-review.height.png"
+        },
+        "position": [
+          78.9472,
+          64.28999999999999,
+          137.9057
+        ],
+        "lookAt": [
+          -0.5928,
+          22.47,
+          0.1457
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.82,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

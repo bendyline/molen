@@ -51,6 +51,7 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `character` | kernel/character | Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). |
 | `collider` | kernel/kinematics | 2.5D kinematic collider (circle or XZ AABB) with layer/mask bitmasks. |
 | `collider3d` | physics-rapier | 3D collider (ball/cuboid/capsule/hull/trimesh/asset/heightfield) with layer/mask, sensor, and material params. Static without a rigidbody. |
+| `coupled` | kernel/vehicles | A rail car in a consist: rides the leader's track trail at a fixed distance behind it, sharing its speed. Powered cars add their traction to the leader's (multiple-unit control); every car adds its mass and brakes. |
 | `environment` | client | Singleton scene environment: optional Earth/custom sky, ambient/sun lighting, background, fog, tone mapping, shadow quality tier. |
 | `figure` | figures | What a figure is: a preset plus descriptor overrides (height, build, proportions, features, palette) and how it faces its motion. Pair with renderable.kind "figure". |
 | `figureAttachment` | figures | Follow a named socket of the parent figure (with `parent`): the figures systems write localTransform from the evaluated pose each tick. |
@@ -225,6 +226,11 @@ Required: `kind`, `type`, `lane`, `s`, `speed`, `seed`, `length`, `width`, `stat
       "exclusiveMinimum": 0,
       "maximum": 9007199254740991,
       "description": "Train cars: position behind the lead (1 = first)."
+    },
+    "offset": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Train cars: metres behind the lead's centre (default from carIndex)."
     },
     "trail": {
       "type": "array",
@@ -418,6 +424,114 @@ Required: `role`
       "exclusiveMinimum": 0,
       "maximum": 9007199254740991,
       "description": "Rail: cars per consist (default 2)."
+    },
+    "track": {
+      "type": "string",
+      "enum": [
+        "light",
+        "heavy"
+      ],
+      "description": "Rail: tram and light-rail lines (light) or the rest (heavy); default any."
+    },
+    "consist": {
+      "type": "object",
+      "properties": {
+        "units": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          ],
+          "items": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Copies of this type at the head, inclusive range (default [1, 1])."
+        },
+        "length": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          ],
+          "items": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Cars after the units, inclusive range."
+        },
+        "block": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          ],
+          "items": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Cars of one type in a row, inclusive range (default [1, 1])."
+        },
+        "cars": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Car entity type id."
+              },
+              "weight": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Relative draw weight (default 1)."
+              },
+              "colors": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Paints this car picks from (#rrggbb)."
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false
+          },
+          "description": "The car pool."
+        }
+      },
+      "required": [
+        "length",
+        "cars"
+      ],
+      "additionalProperties": false,
+      "description": "Rail: a mixed train this type leads; supersedes cars."
     },
     "colors": {
       "minItems": 1,
@@ -3503,15 +3617,40 @@ Required: `preset`
     "features": {
       "type": "object",
       "properties": {
+        "form": {
+          "type": "string",
+          "enum": [
+            "neutral",
+            "masculine",
+            "feminine"
+          ],
+          "description": "Human body form: shoulder, waist, hip and chest shape (bipeds)."
+        },
         "hair": {
           "type": "string",
           "enum": [
             "none",
+            "buzz",
+            "balding",
             "cap",
+            "crop",
             "bob",
-            "long"
+            "long",
+            "ponytail",
+            "bun",
+            "afro"
           ],
-          "description": "Hair shell style."
+          "description": "Hair style: none, buzz, balding, cap (short), crop, bob, long, ponytail, bun, afro."
+        },
+        "facialHair": {
+          "type": "string",
+          "enum": [
+            "none",
+            "stubble",
+            "mustache",
+            "beard"
+          ],
+          "description": "Facial hair (humans), drawn in the hair color."
         },
         "hands": {
           "type": "string",
@@ -3534,9 +3673,10 @@ Required: `preset`
           "type": "string",
           "enum": [
             "shorts",
-            "long"
+            "long",
+            "skirt"
           ],
-          "description": "Legwear length (bottom color extent)."
+          "description": "Legwear: shorts, long trousers, or a knee-length skirt (bottom color)."
         },
         "tail": {
           "type": "string",
@@ -4701,6 +4841,16 @@ Required: `kind`, `spec`
               "description": "Propeller polar moment of inertia in kg m², for gyroscopic precession. Default 0.",
               "type": "number",
               "minimum": 0
+            },
+            "fuelConsumption": {
+              "description": "Specific fuel consumption when the aircraft declares fuel: kg per joule of shaft work for a propeller or rotor engine (default 7.5e-8 with a manual mixture, 9.5e-8 otherwise), kg per newton-second of thrust for a jet (default 2e-5).",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "afterburnerFuelConsumption": {
+              "description": "Jet consumption in kg per newton-second of total thrust at full reheat. Default 5.4e-5.",
+              "type": "number",
+              "exclusiveMinimum": 0
             }
           },
           "required": [
@@ -4865,6 +5015,16 @@ Required: `kind`, `spec`
                 "description": "Propeller polar moment of inertia in kg m², for gyroscopic precession. Default 0.",
                 "type": "number",
                 "minimum": 0
+              },
+              "fuelConsumption": {
+                "description": "Specific fuel consumption when the aircraft declares fuel: kg per joule of shaft work for a propeller or rotor engine (default 7.5e-8 with a manual mixture, 9.5e-8 otherwise), kg per newton-second of thrust for a jet (default 2e-5).",
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "afterburnerFuelConsumption": {
+                "description": "Jet consumption in kg per newton-second of total thrust at full reheat. Default 5.4e-5.",
+                "type": "number",
+                "exclusiveMinimum": 0
               },
               "id": {
                 "type": "string",
@@ -5229,6 +5389,21 @@ Required: `kind`, `spec`
               "type": "number",
               "exclusiveMinimum": 0,
               "description": "Tire side grip with full weight on the wheels: lateral deceleration in m/s² and yaw grip in 1/s."
+            },
+            "tailwheel": {
+              "description": "Main wheels ahead of the center of mass with a tailwheel: a firm touchdown pitches the nose up and hard braking lifts the tail. Default false (nosewheel).",
+              "type": "boolean"
+            },
+            "gearRebound": {
+              "description": "Share of the sink speed beyond 0.6 m/s that struts and tires give back at touchdown. Default 0.45.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "pilotGTolerance": {
+              "description": "Sustained positive g the pilot holds before vision dims. Default 4.5, or 6.5 when maxLoadFactor is 7.5 or more.",
+              "type": "number",
+              "exclusiveMinimum": 0
             }
           },
           "required": [
@@ -5325,6 +5500,27 @@ Required: `kind`, `spec`
               "type": "integer",
               "minimum": 1,
               "maximum": 2
+            },
+            "rotorInertiaTime": {
+              "description": "Seconds of hover power stored in the rotor at full speed; default 2. Sets how long an unpowered rotor carries the helicopter (autorotation); needs powerLimitedRotor.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "directionalStability": {
+              "description": "Tail-fin weathervaning in forward flight; default 1, 0 disables. The nose turns into the relative wind at directionalStability × airspeed / length rad/s per radian of sideslip, so a banked helicopter turns its nose with its track.",
+              "type": "number",
+              "minimum": 0
+            },
+            "cyclicRate": {
+              "description": "Direct-cyclic pitch and roll rate at full stick with the rotor carrying the weight, rad/s; default cyclicResponse / 4.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "hubStiffness": {
+              "description": "Share of direct-cyclic control power independent of rotor thrust, 0..1; default 0.25. Near 0 for a teetering rotor (no control at zero g), higher for articulated and hingeless rotors.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
             },
             "cyclicTilt": {
               "type": "number",
@@ -5459,6 +5655,21 @@ Required: `kind`, `spec`
             "rollAuthority",
             "yawAuthority",
             "damping"
+          ],
+          "additionalProperties": false
+        },
+        "fuel": {
+          "description": "Fuel on board: mass is the aircraft with full tanks, it lightens as fuel burns and the engines stop when the tanks are dry. Omitted is unlimited fuel at constant mass.",
+          "type": "object",
+          "properties": {
+            "capacity": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Usable fuel in kg with full tanks."
+            }
+          },
+          "required": [
+            "capacity"
           ],
           "additionalProperties": false
         },
@@ -6540,6 +6751,14 @@ Required: `power`, `pitch`, `roll`, `yaw`, `brake`, `engine`, `gear`, `flaps`
       "type": "number",
       "minimum": 0,
       "maximum": 1
+    },
+    "cyclicMode": {
+      "description": "Helicopter cyclic: assisted (default) commands a bounded, self-levelling tilt; direct commands pitch and roll rates with full authority (loops, rolls, straight down). Both are assisted on the ground.",
+      "type": "string",
+      "enum": [
+        "assisted",
+        "direct"
+      ]
     }
   },
   "required": [
@@ -6801,6 +7020,29 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
     "loadFactor": {
       "description": "Airplane aerodynamic and thrust load along its up axis, in g.",
       "type": "number"
+    },
+    "fuel": {
+      "description": "Fuel remaining in kg when the aircraft declares fuel; absent is full tanks.",
+      "type": "number",
+      "minimum": 0
+    },
+    "buffet": {
+      "description": "Airplane pre-stall and stalled-wing buffet, 0..1: a cue to shake the view, starting a few degrees before the stall.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "greyout": {
+      "description": "Pilot strain under positive g, 0..1: vision starts to dim near 0.3 and is gone at 1.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "redout": {
+      "description": "Pilot strain under negative g, 0..1.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
     },
     "engines": {
       "description": "Authoritative individual spool, rotor phase, failure and thrust state; initialized by the solver.",
@@ -8893,6 +9135,48 @@ Required: `vel`, `slide`
 
 ## Owner: kernel/vehicles
 
+### `coupled`
+
+A rail car in a consist: rides the leader's track trail at a fixed distance behind it, sharing its speed. Powered cars add their traction to the leader's (multiple-unit control); every car adds its mass and brakes.
+
+Required: `leader`, `offset`
+
+```json
+{
+  "leader": "train-1-loco",
+  "offset": 21.5
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "leader": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Entity ID of the track-guided vehicle at the head of the consist."
+    },
+    "offset": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Distance in meters along the track from the leader's centre back to this car's centre."
+    }
+  },
+  "required": [
+    "leader",
+    "offset"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
 ### `mountable`
 
 Mount points in local meters, ordered safe exit candidates, and interaction reach. Seat position is the rider camera anchor.
@@ -9325,9 +9609,19 @@ Required: `kind`, `color`, `spec`, `visual`
             "motorhome",
             "bus",
             "light-rail",
+            "locomotive",
+            "freight-car",
+            "passenger-car",
             "bicycle",
             "motorcycle",
-            "scooter"
+            "scooter",
+            "moped",
+            "kick-scooter",
+            "skateboard",
+            "auto-rickshaw",
+            "skis",
+            "snowboard",
+            "snowmobile"
           ]
         },
         "genericLabel": {
@@ -9503,6 +9797,164 @@ Required: `kind`, `color`, `spec`, `visual`
           "type": "number",
           "exclusiveMinimum": 0
         },
+        "powertrain": {
+          "description": "Engine, gears and driveline: wheel force is engine torque through the selected gear. Without one the constant engineForce drives the vehicle up to maxSpeed.",
+          "type": "object",
+          "properties": {
+            "power": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Peak power at the engine or motor shaft, in watts."
+            },
+            "peakPowerRpm": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Engine speed at peak power, rev/min."
+            },
+            "redline": {
+              "description": "Rev limit, rev/min. Default 1.1 × peakPowerRpm.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "idle": {
+              "description": "Idle speed, rev/min. Default 800, or 0 for an electric motor.",
+              "type": "number",
+              "minimum": 0
+            },
+            "curve": {
+              "description": "Torque curve shape. Default gasoline; turbo and diesel hold a low-speed torque plateau, electric holds its peak torque from rest up to peakPowerRpm and then constant power.",
+              "type": "string",
+              "enum": [
+                "gasoline",
+                "turbo",
+                "diesel",
+                "electric"
+              ]
+            },
+            "gears": {
+              "minItems": 1,
+              "maxItems": 12,
+              "type": "array",
+              "items": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "description": "Overall ratios (gearbox × final drive: engine revs per wheel rev), lowest gear first."
+            },
+            "continuous": {
+              "description": "Continuously variable transmission ranging between the first and last gears ratios.",
+              "type": "boolean"
+            },
+            "reverse": {
+              "description": "Overall reverse ratio. Default first gear.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "efficiency": {
+              "description": "Share of engine torque that reaches the wheels. Default 0.9.",
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1
+            },
+            "shiftTime": {
+              "description": "Seconds of reduced drive during a gear change. Default 0.3.",
+              "type": "number",
+              "minimum": 0
+            },
+            "engineBraking": {
+              "description": "Engine braking off the throttle (regeneration for an electric motor), as a share of the torque at peak power. Default 0.2.",
+              "type": "number",
+              "minimum": 0
+            },
+            "response": {
+              "description": "How fast delivered torque follows the pedal, 1/s. Default 8; turbo and diesel 4, electric 20.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "inertia": {
+              "description": "Rotating inertia of the engine, flywheel and gearbox input in kg m², spun up with the car (most in low gears). Default 0.1 + power / 1 MW, or 0.06 for an electric motor.",
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "power",
+            "peakPowerRpm",
+            "gears"
+          ],
+          "additionalProperties": false
+        },
+        "rearGrip": {
+          "description": "Rear tire grip in m/s² where it differs from the front (wider rear tires). Default grip.",
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "tireLoadSensitivity": {
+          "description": "Share of its friction a tire loses when its load doubles from a quarter of the weight. Default 0.25; the heavier and the stiffer-sprung axle slides first. 0 keeps grip proportional to load.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.6
+        },
+        "rollBalance": {
+          "description": "Front axle share of the roll stiffness. Default 0.6; the stiffer axle carries more of the cornering weight transfer and loses grip first, so more is understeer.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "aerodynamicLift": {
+          "description": "Aerodynamic lift as an acceleration per (m/s)² of airspeed, in 1/m; negative is downforce. Default 0.",
+          "type": "number"
+        },
+        "tractionControl": {
+          "description": "Traction control holds wheelspin at the grip limit. Default true.",
+          "type": "boolean"
+        },
+        "stabilityControl": {
+          "description": "Stability control brakes one wheel to catch a slide. Default true.",
+          "type": "boolean"
+        },
+        "limitedSlip": {
+          "description": "How far the driven axle resists one-wheel spin: 0 open differential (the unloaded inside wheel spins first), 1 locked. Default 0.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "looseSurfaceGrip": {
+          "description": "Share of the grip loose surfaces take away that the tires win back (off-road tread). Default 0.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "runners": {
+          "description": "Runners in place of tires (skis, a snowboard, a snowmobile): slides on the weather snow cover with this friction, holds its full grip there and floats over any depth; scrapes to a stop off the snow. Slides downhill from rest unless braked.",
+          "type": "object",
+          "properties": {
+            "friction": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Sliding friction coefficient on snow; resists as friction × g. About 0.05 for waxed skis, 0.12 for a snowmobile track."
+            },
+            "bareDrag": {
+              "description": "Resistance in m/s² off the snow, where runners scrape bare ground. Default 3.",
+              "type": "number",
+              "minimum": 0
+            },
+            "pushSpeed": {
+              "description": "Fastest the rider pushing (poling, skating) drives it, m/s; gravity may take it on to maxSpeed. Absent: engineForce works up to maxSpeed.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "flat": {
+              "description": "A cycle whose runners stay flat on the snow in a turn (a pair of skis) instead of banking as one plank (a snowboard); the lean stays in vehicleState.bodyRoll for the rider pose. Default false.",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "friction"
+          ],
+          "additionalProperties": false
+        },
         "cycle": {
           "description": "Self-balancing cycle handling and rider contact points. Driver seat anchors the pelvis.",
           "type": "object",
@@ -9551,7 +10003,7 @@ Required: `kind`, `color`, `spec`, `visual`
               "items": false,
               "minItems": 2,
               "maxItems": 2,
-              "description": "Left and right hand targets in model-local meters."
+              "description": "Left and right hand targets in model-local meters; they turn with the bars. A sideways rider holds them free: unturned, moving with the hips of a shorter or taller body."
             },
             "footrests": {
               "type": "array",
@@ -9576,7 +10028,31 @@ Required: `kind`, `color`, `spec`, `visual`
               "items": false,
               "minItems": 2,
               "maxItems": 2,
-              "description": "Left and right ankle targets in model-local meters."
+              "description": "Left and right ankle targets on the footrests or deck, in model-local meters."
+            },
+            "stance": {
+              "description": "How the rider stands: on a saddle (seated, default), upright on a deck facing the bars (standing), or across a board left foot forward (sideways). Standing and sideways seats are adult hip positions; the pose fits the hips to each body's legs.",
+              "type": "string",
+              "enum": [
+                "seated",
+                "standing",
+                "sideways"
+              ]
+            },
+            "kick": {
+              "description": "Push-powered (a skateboard): under power the rider turns forward and pushes off the ground with the rear foot.",
+              "type": "object",
+              "properties": {
+                "stride": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Meters travelled per push."
+                }
+              },
+              "required": [
+                "stride"
+              ],
+              "additionalProperties": false
             },
             "pedals": {
               "description": "Bicycle crank geometry and gearing; omitted on motor vehicles.",
@@ -9624,6 +10100,143 @@ Required: `kind`, `color`, `spec`, `visual`
             "footrests"
           ],
           "additionalProperties": false
+        },
+        "headlamps": {
+          "description": "Headlamp lens centres in model-local meters, at most two; night lighting places its beams there. Empty: no headlamps. Absent: a pair guessed from the body size.",
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "minItems": 3,
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        },
+        "handlebar": {
+          "description": "Handlebar steering on a vehicle that does not lean (a three-wheeler): the driver contact points, the driver seat anchoring the pelvis. Ignored with cycle.",
+          "type": "object",
+          "properties": {
+            "riderLean": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Forward torso lean in radians."
+            },
+            "handlebarPivot": {
+              "minItems": 3,
+              "maxItems": 3,
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "description": "Steering pivot in model-local meters."
+            },
+            "grips": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2,
+              "description": "Left and right hand targets in model-local meters; they turn with the bars. A sideways rider holds them free: unturned, moving with the hips of a shorter or taller body."
+            },
+            "footrests": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2,
+              "description": "Left and right ankle targets on the footrests or deck, in model-local meters."
+            }
+          },
+          "required": [
+            "riderLean",
+            "handlebarPivot",
+            "grips",
+            "footrests"
+          ],
+          "additionalProperties": false
+        },
+        "rail": {
+          "description": "External rail setting.",
+          "type": "object",
+          "properties": {
+            "truckCenters": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Distance between the two truck (bogie) pivots along the body, meters. The body rides as the chord between them on curves."
+            },
+            "couplerLength": {
+              "description": "Length over the coupler pulling faces, meters; spacing in a consist. Default length.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "power": {
+              "description": "Power at the rail in watts. Tractive effort is engineForce up to power / speed; 0 (default) is an unpowered car that only brakes.",
+              "type": "number",
+              "minimum": 0
+            },
+            "gauge": {
+              "description": "Track gauge between rail heads, meters. Default 1.435 (standard gauge).",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "profile": {
+              "description": "Silhouette of the low-detail stand-in drawn at a distance (parked in a yard, far traffic). Default box.",
+              "type": "string",
+              "enum": [
+                "box",
+                "hopper",
+                "tank",
+                "gondola",
+                "flat",
+                "well",
+                "autorack",
+                "locomotive",
+                "coach",
+                "railcar"
+              ]
+            }
+          },
+          "required": [
+            "truckCenters"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
@@ -9659,22 +10272,20 @@ Required: `kind`, `color`, `spec`, `visual`
       "type": "object",
       "properties": {
         "wheelNodes": {
-          "minItems": 1,
           "type": "array",
           "items": {
             "type": "string",
             "minLength": 1
           },
-          "description": "External wheelNodes setting."
+          "description": "Wheel nodes, spun by the wheel angle. At least one, except on a vehicle with runners (skis, a board), which has none."
         },
         "frontWheelNodes": {
-          "minItems": 1,
           "type": "array",
           "items": {
             "type": "string",
             "minLength": 1
           },
-          "description": "External frontWheelNodes setting."
+          "description": "Wheel nodes turned by the steering angle. Empty when animation bindings pose the steering instead (a skateboard turns its trucks)."
         },
         "steeringWheelNode": {
           "description": "External steeringWheelNode setting.",
@@ -10404,8 +11015,14 @@ Required: `speed`, `steer`, `yaw`, `pitch`, `roll`, `vy`, `grounded`, `waitingFo
       "description": "Accumulated wheel spin angle in radians, wrapped each revolution."
     },
     "pedalAngle": {
-      "description": "Cycle crank angle in radians; advances under forward power and holds while coasting or braking.",
+      "description": "Cycle crank angle in radians; advances under forward power and holds while coasting or braking. On a push-powered cycle, the phase of the current push.",
       "type": "number"
+    },
+    "kick": {
+      "description": "Push-powered cycles: 0 riding sideways to 1 turned forward to push off; eases between them.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
     },
     "lateralSpeed": {
       "description": "Sideways speed in meters per second, positive to the left: the slide.",
@@ -10436,6 +11053,92 @@ Required: `speed`, `steer`, `yaw`, `pitch`, `roll`, `vy`, `grounded`, `waitingFo
       "type": "number",
       "minimum": 0,
       "maximum": 1
+    },
+    "gear": {
+      "description": "Selected gear with a powertrain: -1 reverse, 1 upward forward gears.",
+      "type": "integer",
+      "minimum": -1,
+      "maximum": 12
+    },
+    "rpm": {
+      "description": "Engine speed in rev/min with a powertrain; rises and falls with the gears.",
+      "type": "number",
+      "minimum": 0
+    },
+    "engineLoad": {
+      "description": "0–1 share of the engine torque being delivered, after its throttle response.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "shift": {
+      "description": "Seconds until the gearbox may change gear again; drive is reduced as it starts.",
+      "type": "number",
+      "minimum": 0
+    },
+    "assist": {
+      "description": "0–1: how hard traction or stability control is intervening.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "surfaceGrip": {
+      "description": "Grip of the surface under the wheels relative to dry pavement; 1 on the road.",
+      "type": "number",
+      "minimum": 0
+    },
+    "snowDepth": {
+      "description": "Meters of lying snow under the vehicle (the weather snow cover, less what a ploughed road clears); absent on bare ground.",
+      "type": "number",
+      "minimum": 0
+    },
+    "stuck": {
+      "description": "Deep snow is holding the vehicle against its own drive: it cannot pull away from a stand.",
+      "type": "boolean"
+    },
+    "track": {
+      "description": "Track-guided vehicles (spec.rail with a host track guide): where the rails ran.",
+      "type": "object",
+      "properties": {
+        "trail": {
+          "maxItems": 3072,
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "Recent track centreline under the vehicle, newest first, as flat x, y, z triples in world meters about 2 m apart; coupled cars ride on it."
+        },
+        "prefer": {
+          "anyOf": [
+            {
+              "type": "number",
+              "const": -1
+            },
+            {
+              "type": "number",
+              "const": 0
+            },
+            {
+              "type": "number",
+              "const": 1
+            }
+          ],
+          "description": "Route at the next switch: -1 left, 0 straight on, 1 right."
+        },
+        "ended": {
+          "description": "True while the vehicle stands at the end of its track.",
+          "type": "boolean"
+        },
+        "ref": {
+          "description": "The host track guide's reference for the piece of track under the head.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "trail",
+        "prefer"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [
@@ -10660,6 +11363,40 @@ Required: none
           "maximum": 1
         }
       },
+      "additionalProperties": false
+    },
+    "snowCover": {
+      "description": "Snow lying on the ground above a snow line, independent of whether snow is falling. Absent means bare ground. Slows walkers, bogs wheeled vehicles down and lets runners glide; renderers whiten ground, roofs and foliage above the line.",
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "number",
+          "description": "Snow line: the absolute world Y in meters where lying snow begins. Ground below it is bare."
+        },
+        "transition": {
+          "description": "Height in meters above the snow line over which cover builds from none to complete; default 150. Zero is a hard line.",
+          "type": "number",
+          "minimum": 0
+        },
+        "depth": {
+          "description": "Snow depth in meters where cover becomes complete, at the top of the transition; default 0.15.",
+          "type": "number",
+          "minimum": 0
+        },
+        "depthGain": {
+          "description": "Extra depth in meters for each 1000 m of height above that; default 0.6.",
+          "type": "number",
+          "minimum": 0
+        },
+        "maxDepth": {
+          "description": "Greatest depth in meters at any height; default 1.5.",
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "level"
+      ],
       "additionalProperties": false
     },
     "seed": {

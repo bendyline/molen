@@ -1,0 +1,394 @@
+/** The brick Airport Road school building as photographed in May 2015. */
+import fs from 'node:fs';
+import { createRequire } from 'node:module';
+import {
+  beam,
+  normalFor,
+} from '../../../../../../../../packages/worldgen/scripts/authored-structure-mesh.mjs';
+import {
+  B as box,
+  cleanRing,
+  rgb,
+} from '../../../../../../../../packages/worldgen/scripts/landmark-model-helpers.mjs';
+import { quad } from '../../../../../../../../packages/worldgen/scripts/structure-mesh.mjs';
+
+const require = createRequire(
+  new URL('../../../../../../../../packages/worldgen/package.json', import.meta.url),
+);
+const { default: earcut } = require('earcut');
+const read = (name) => JSON.parse(fs.readFileSync(new URL(`../${name}.json`, import.meta.url)));
+const plan = read('plan-controls'),
+  terrain = read('terrain-grid');
+const [outline] = read('map-frame').geometry.polygons;
+const white = 'palette:#ffffff',
+  up = [0, 1, 0];
+const surfaces = {
+  brick: { slot: 'wall', graph: 'brick', roughness: 0.93, metallic: 0 },
+  limestone: { slot: 'trim', graph: 'stone_limestone', roughness: 0.91, metallic: 0 },
+  roof: { slot: 'roof', graph: 'membrane', roughness: 0.93, metallic: 0 },
+  metal: { slot: 'trim', graph: 'metal_painted', roughness: 0.71, metallic: 0.14 },
+  glass: { slot: 'window', localRef: white, roughness: 0.49, metallic: 0 },
+};
+const c = Object.fromEntries(
+  Object.entries({
+    brick: 'ad705d',
+    wing: '9c6558',
+    base: 'a16b5a',
+    trim: 'd1c5aa',
+    shade: 'aba59a',
+    roof: '92918b',
+    metal: '817e74',
+    lettering: 'dcdacf',
+    glass: '4e595a',
+    darkGlass: '3d4849',
+    clerestory: '7a8683',
+  }).map(([name, hex]) => [name, rgb(hex)]),
+);
+const lerp = (a, b, t) => a + (b - a) * t;
+
+function ground(x, z) {
+  const u = (x - terrain.origin[0]) / terrain.stepMeters;
+  const v = (z - terrain.origin[1]) / terrain.stepMeters;
+  const i = Math.floor(u),
+    j = Math.floor(v),
+    dx = u - i,
+    dz = v - j;
+  const [a, b] = [terrain.heightsMeters[j], terrain.heightsMeters[j + 1]];
+  return (
+    lerp(lerp(a[i], a[i + 1], dx), lerp(b[i], b[i + 1], dx), dz) - terrain.modelDatumElevationMeters
+  );
+}
+
+function face(out, slot, points, expected, color) {
+  let normal = normalFor(...points);
+  if (normal.reduce((sum, value, i) => sum + value * expected[i], 0) < 0) {
+    points = [...points].reverse();
+    normal = normalFor(...points);
+  }
+  if (points.length === 4) quad(out, slot, points, normal, color);
+  else
+    out.addTriangle(
+      slot,
+      white,
+      points,
+      normal,
+      [
+        [0, 0],
+        [1, 0],
+        [0, 1],
+      ],
+      color,
+    );
+}
+
+function clip(input, axis, limit, side) {
+  const output = [];
+  for (let i = 0; i < input.length; i++) {
+    const a = input[i],
+      b = input[(i + 1) % input.length];
+    const insideA = (a[axis] - limit) * side >= 0,
+      insideB = (b[axis] - limit) * side >= 0;
+    if (insideA) output.push(a);
+    if (insideA !== insideB) {
+      const t = (limit - a[axis]) / (b[axis] - a[axis]);
+      output.push([lerp(a[0], b[0], t), lerp(a[1], b[1], t)]);
+    }
+  }
+  return output;
+}
+
+const outlineRing = cleanRing(outline);
+const ranges = plan.section.ranges.map((range) => {
+  const [minX, maxX, minZ, maxZ] = range.bounds;
+  const ring = cleanRing(
+    [
+      [0, minX, 1],
+      [0, maxX, -1],
+      [1, minZ, 1],
+      [1, maxZ, -1],
+    ].reduce((ring, [axis, limit, side]) => clip(ring, axis, limit, side), outlineRing),
+  );
+  const area = ring.reduce((sum, [x, z], i) => {
+    const [xx, zz] = ring[(i + 1) % ring.length];
+    return sum + x * zz - z * xx;
+  }, 0);
+  return { ...range, ring: area < 0 ? ring.reverse() : ring };
+});
+
+function wall(a, b) {
+  const dx = b[0] - a[0],
+    dz = b[1] - a[1],
+    length = Math.hypot(dx, dz),
+    ux = dx / length,
+    uz = dz / length;
+  return {
+    length,
+    normal: [uz, 0, -ux],
+    at: (u, y, offset = 0) => [a[0] + ux * u + uz * offset, y, a[1] + uz * u - ux * offset],
+  };
+}
+
+function rect(out, wall, slot, left, right, base, top, color, offset = 0) {
+  const { at, normal } = wall;
+  face(
+    out,
+    slot,
+    [
+      at(left, base, offset),
+      at(right, base, offset),
+      at(right, top, offset),
+      at(left, top, offset),
+    ],
+    normal,
+    color,
+  );
+}
+
+function window(out, w, x, bottom, width, height, lod, color) {
+  rect(out, w, 'glass', x - width / 2, x + width / 2, bottom, bottom + height, color, 0.024);
+  if (lod > 1) {
+    rect(
+      out,
+      w,
+      'limestone',
+      x - width / 2 - 0.09,
+      x + width / 2 + 0.09,
+      bottom - 0.13,
+      bottom,
+      c.trim,
+      0.048,
+    );
+    rect(out, w, 'metal', x - 0.031, x + 0.031, bottom, bottom + height, c.metal, 0.041);
+  }
+}
+
+function brickRange(out, { ring, top, name }, lod) {
+  const triangles = earcut(ring.flat());
+  for (let i = 0; i < triangles.length; i += 3) {
+    const roof = triangles.slice(i, i + 3).map((index) => {
+      const [x, z] = ring[index];
+      return [x, top - 0.04, z];
+    });
+    face(out, 'roof', roof, up, c.roof);
+  }
+  for (let i = 0; i < ring.length; i++) {
+    const a = ring[i],
+      b = ring[(i + 1) % ring.length],
+      w = wall(a, b),
+      { at, length, normal } = w;
+    if (length < 0.028) continue;
+    const baseA = Math.min(-0.32, ground(...a) - 0.29),
+      baseB = Math.min(-0.32, ground(...b) - 0.29);
+    const tint = name === 'academic' ? c.wing : c.brick;
+    face(
+      out,
+      'brick',
+      [at(0, baseA), at(length, baseB), at(length, top), at(0, top)],
+      normal,
+      tint,
+    );
+    const partition = [
+      [0, 9.0],
+      [1, -23.25],
+      [1, 34.78],
+    ].some(([axis, cut]) => Math.abs(a[axis] - cut) < 0.00001 && Math.abs(b[axis] - cut) < 0.00001);
+    if (partition) continue;
+    rect(out, w, 'limestone', 0, length, top - 0.32, top + 0.055, c.trim, 0.068);
+    if (lod === 0 && length < 10.0) continue;
+    const band = name === 'south' ? 5.59 : name === 'gym' ? 5.42 : 3.25;
+    rect(out, w, 'limestone', 0, length, band, band + 0.32, c.trim, 0.034);
+    if (lod > 1 && name === 'academic')
+      rect(out, w, 'limestone', 0, length, 1.06, 1.2, c.shade, 0.037);
+    if (length < 6.6 || name === 'south') continue;
+    const margin = 1.74,
+      count = Math.max(1, Math.round((length - 2 * margin) / (lod ? 4.25 : 8.9)));
+    for (let n = 0; n < count; n++) {
+      const x = margin + ((n + 0.5) * (length - 2 * margin)) / count;
+      if (name === 'gym') window(out, w, x, 7.39, 1.37, 1.03, lod, c.clerestory);
+      else window(out, w, x, 1.52, 1.88, 1.68, lod, n % 4 === 2 ? c.darkGlass : c.glass);
+    }
+  }
+}
+
+const glyphs = {
+  A: ['01110', '11011', '11011', '11111', '11011'],
+  C: ['01111', '11000', '11000', '11000', '01111'],
+  E: ['11111', '11000', '11110', '11000', '11111'],
+  G: ['01111', '11000', '11011', '11011', '01111'],
+  H: ['11011', '11011', '11111', '11011', '11011'],
+  I: ['111', '010', '010', '010', '111'],
+  L: ['11000', '11000', '11000', '11000', '11111'],
+  N: ['11001', '11101', '11011', '11011', '11001'],
+  O: ['01110', '11011', '11011', '11011', '01110'],
+  R: ['11110', '11011', '11110', '11011', '11011'],
+  S: ['01111', '11000', '01110', '00011', '11110'],
+  T: ['11111', '01110', '01110', '01110', '01110'],
+};
+function lettering(out) {
+  const sign = 'CENTRAL CATHOLIC HIGH SCHOOL',
+    height = 0.63,
+    cell = height / 5;
+  let x = 14.64;
+  for (const char of sign) {
+    const strokes = glyphs[char];
+    if (!strokes) {
+      x += 3 * cell;
+      continue;
+    }
+    for (const [row, stroke] of strokes.entries()) {
+      for (const match of stroke.matchAll(/1+/g)) {
+        const start = x + match.index * cell,
+          end = start + match[0].length * cell;
+        const y = 8.04 - (row + 1) * cell;
+        face(
+          out,
+          'metal',
+          [
+            [start, y, 61.49],
+            [end, y, 61.49],
+            [end, y + cell, 61.49],
+            [start, y + cell, 61.49],
+          ],
+          [0, 0, 1],
+          c.lettering,
+        );
+      }
+    }
+    x += (strokes[0].length + 1) * cell;
+  }
+}
+
+function southEntrance(out, lod) {
+  const door = wall([7.8, 31.67], [-9.1, 31.67]);
+  rect(out, door, 'glass', 0.65, 15.92, 0.16, 3.28, c.darkGlass, 0.032);
+  box(out, 'limestone', -0.8, 3.45, 32.12, 17.9, 0.39, 2.68, c.trim);
+  for (const x of [-7.72, -1.55, 5.82])
+    box(out, 'brick', x, -0.34, 33.12, 0.39, 3.87, 0.41, c.base);
+  if (lod > 0) {
+    for (let i = 1; i < 8; i++) {
+      const x = lerp(0.7, 15.87, i / 8);
+      rect(out, door, 'metal', x - 0.056, x + 0.056, 0.19, 3.29, c.metal, 0.054);
+    }
+    rect(out, door, 'metal', 0.7, 15.89, 2.34, 2.42, c.metal, 0.061);
+  }
+  const center = [10.42, 2.55, 43.76],
+    facets = lod ? 16 : 8;
+  const circle = (radius, x) =>
+    Array.from({ length: facets }, (_, i) => {
+      const a = (Math.PI * 2 * i) / facets;
+      return [x, center[1] + radius * Math.cos(a), center[2] + radius * Math.sin(a)];
+    });
+  const outside = circle(0.79, 9.92),
+    inside = circle(0.64, 9.9);
+  for (let i = 0; i < facets; i++) {
+    const j = (i + 1) % facets;
+    face(out, 'limestone', [outside[i], outside[j], inside[j], inside[i]], [-1, 0, 0], c.trim);
+  }
+  for (let i = 1; i < facets - 1; i++)
+    face(out, 'glass', [inside[0], inside[i], inside[i + 1]], [-1, 0, 0], c.clerestory);
+  if (lod > 1) {
+    beam(out, 'metal', [9.88, 1.93, 43.76], [9.88, 3.17, 43.76], 0.08, 0.075, c.shade);
+    beam(out, 'metal', [9.88, 2.55, 43.14], [9.88, 2.55, 44.38], 0.08, 0.075, c.shade);
+  }
+  if (lod === 3) {
+    for (const u of [3.37, 4.12, 7.15, 7.9, 10.9, 11.65, 14.7, 15.45]) {
+      beam(out, 'metal', door.at(u, 0.97, 0.081), door.at(u, 1.29, 0.081), 0.036, 0.048, c.trim);
+    }
+    lettering(out);
+  }
+}
+
+function rooftop(out, lod) {
+  for (const [x, y, z, width, depth] of [
+    [-34, 5.46, 5.0, 5.85, 4.5],
+    [31, 10.39, -44, 6.8, 5.1],
+    [30, 9.81, 49.1, 7.15, 4.5],
+  ]) {
+    box(out, 'metal', x, y, z, width, lod > 1 ? 1.18 : 0.75, depth, c.shade);
+    if (lod > 1) box(out, 'roof', x, y + 1.12, z, width + 0.32, 0.13, depth + 0.32, c.roof);
+  }
+}
+
+function build(out, lod) {
+  for (const range of ranges) brickRange(out, range, lod);
+  southEntrance(out, lod);
+  rooftop(out, lod);
+}
+export const schoolSkyline = (out) => build(out, 0);
+export const schoolDistrict = (out) => build(out, 1);
+export const schoolStreet = (out) => build(out, 2);
+export const schoolCloseup = (out) => build(out, 3);
+const recipe = 'bloomington-central-catholic-model.mjs';
+const camera = [155, 102, 166],
+  lookAt = [-4, 3.7, 2];
+const authoredLevels = Object.fromEntries(
+  [
+    ['district', 'schoolDistrict', 0.32],
+    ['street', 'schoolStreet', 0.12],
+    ['closeup', 'schoolCloseup', 0.04],
+  ].map(([level, entry, errorMeters]) => [level, { export: entry, errorMeters, surfaces }]),
+);
+export const schoolModel = {
+  id: plan.model,
+  key: plan.model,
+  title: plan.title,
+  cell: plan.cell,
+  wikidataId: plan.wikidataId,
+  recipe,
+  surfaces,
+  build: schoolCloseup,
+  category: 'landmark',
+  quality: 'medium-fi-exterior',
+  reviewStatus: 'review-in-qa.json',
+  geographicStatus: 'historical-proposal',
+  orientationPolicy: 'approximate-visualization',
+  progressLedger: 'qualla-003.PROGRESS.md',
+  brief:
+    'Bloomington’s red-brick Airport Road school with its pale belt courses, chamfered entrance range, recessed doors and tall gym.',
+  appearance: {
+    kind: 'historical',
+    representedDate: plan.representedDate,
+    validFrom: plan.validFrom,
+    validUntil: plan.validUntil,
+    currentWorldEligible: false,
+  },
+  camera,
+  lookAt,
+  buildingCutout: {
+    outline,
+    minimumCoverage: 0.93,
+    basis: 'Address-bearing native school footprint, OpenStreetMap ODbL 1.0.',
+  },
+  mediumFiContext: {
+    scale: 2.65,
+    groundY: 0,
+    terrain: { descriptor: 'terrain-review.terrain.json', heightmap: 'terrain-review.height.png' },
+  },
+  embeddedCanonicalGraphs: ['brick', 'stone_limestone', 'membrane', 'metal_painted'],
+  qaCameras: [
+    {
+      name: 'south-entrance-and-brick-belt-courses',
+      position: [-29, 8.3, 104],
+      lookAt: [10.1, 4.4, 43.4],
+    },
+    { name: 'classroom-wing-and-south-roofs', position: [-132, 49, 107], lookAt: [-9, 4.7, 1.4] },
+    { name: 'gym-roof-and-high-clerestory', position: [108, 35, -120], lookAt: [25, 5.5, -37] },
+  ],
+  qaLodCameras: ['skyline', 'district', 'street', 'closeup'].map((reviewLod) => ({
+    name: `whole-bloomington-school-${reviewLod}`,
+    position: camera,
+    lookAt,
+    reviewLod,
+  })),
+  runtimeLodOverlay: {
+    module: `content/worldgen/source/places/${plan.cell}/${plan.model}/models/${recipe}`,
+    level: 'skyline',
+    export: 'schoolSkyline',
+    errorMeters: 0.81,
+    surfaces,
+    authoredLevels,
+  },
+  limitations: plan.limitations,
+  sourceLicense:
+    'Original geometry under the repository license. Footprint © OpenStreetMap contributors, ODbL 1.0. Two exact first-party CC0 Qualla photographs.',
+};

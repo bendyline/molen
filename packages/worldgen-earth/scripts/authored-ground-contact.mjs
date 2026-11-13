@@ -5,9 +5,10 @@ export function hasAuthoredGroundContact(spec) {
   if (!Number.isFinite(min) || !Number.isFinite(max)) return false;
   if (Math.abs(min) <= 0.01) return true;
   const proposal = spec.geographicProposal;
+  const absoluteDatum =
+    proposal?.elevationMode === 'sea-level' && Number.isFinite(proposal.elevationMeters);
   return (
-    min < 0 &&
-    max >= 0 &&
+    ((min < 0 && max >= 0) || absoluteDatum) &&
     proposal?.groundModelY === 0 &&
     proposal.groundContactReviewed === true &&
     typeof proposal.groundContactBasis === 'string' &&

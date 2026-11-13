@@ -56,6 +56,8 @@ export interface AmbientAgentData extends JsonObject {
   hidden?: boolean;
   consist?: string;
   carIndex?: number;
+  /** Train cars: distance behind the lead's centre, metres (default from `carIndex`). */
+  offset?: number;
   trail?: string[];
   served?: string;
   air?: AmbientAirCorridor;
@@ -89,6 +91,18 @@ export interface AmbientRoleData extends JsonObject {
   cars?: number;
   colors?: string[];
   visual?: AmbientRoleVisual;
+  /** Rail: `light` (tram, light rail) or `heavy` track; absent runs on any. */
+  track?: 'light' | 'heavy';
+  /** Rail: a mixed train this type leads. Car types come from the same library. */
+  consist?: AmbientRoleConsist;
+}
+
+/** {@link AmbientRoleData.consist}: car types by id, with draw weights and paints. */
+export interface AmbientRoleConsist extends JsonObject {
+  units?: [number, number];
+  length: [number, number];
+  block?: [number, number];
+  cars: { type: string; weight?: number; colors?: string[] }[];
 }
 
 export interface AmbientObserverState extends JsonObject {

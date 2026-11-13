@@ -1,0 +1,362 @@
+{
+  "id": "baths_of_caracalla",
+  "title": "Baths of Caracalla",
+  "wikidataId": "Q502098",
+  "referenceCoordinate": {
+    "longitude": 12.492449325,
+    "latitude": 41.878933905
+  },
+  "module": "packages/worldgen/scripts/caracalla-baths-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-caracalla-baths.mjs",
+  "builder": "buildCaracallaLevel",
+  "surfaces": {
+    "brick": {
+      "slot": "wall",
+      "graph": "brick_longformat",
+      "roughness": 0.95
+    },
+    "core": {
+      "slot": "foundation",
+      "graph": "stone_drywall",
+      "roughness": 1
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_travertine",
+      "roughness": 0.96
+    },
+    "earth": {
+      "slot": "foundation",
+      "graph": "earth_rammed",
+      "roughness": 1
+    }
+  },
+  "exportLabel": "Molen original Baths of Caracalla master",
+  "expectedDraftMasterHash": "sha256:ea4a9866367261dce8f50892cd24101d6bfebecb85519d4f9f92d0e156cd587a",
+  "visualBrief": "The roofless Baths of Caracalla follow the mapped Roman bath block. The paired palaestrae surround a tall open frigidarium with deep brick arches and exposed piers. The dry natatio, curving rooms, detached caldarium fragments and surviving enclosure walls preserve the site’s uneven silhouette.",
+  "heightPolicy": "The 32 m sea-level datum is rounded from the sampled frigidarium ground. Exposed masonry feet extend into the standard elevation samples. The site’s open courts and paths use host terrain.",
+  "nativeAxes": "Positive X follows the transverse bath axis southeast, from the western to the eastern palaestra. Positive Z follows the central axis southwest, from the natatio toward the surviving caldarium fragment.",
+  "limitations": [
+    "The visible ruins follow the mapped exterior rings and courtyards. Upper wall profiles, arch dimensions and surviving fabric are modeled from current photographs.",
+    "The baths remain open to the sky. The source represents standing fabric and visible perimeter remnants, with underground rooms and lost roofs outside the scope.",
+    "Footings meet the standard viewer terrain. Small excavated grade changes and individual masonry courses are approximated."
+  ],
+  "references": [
+    {
+      "url": "https://www.sixt.com/magazine/travel/what-to-do-in-rome/",
+      "observed": "Aerial photo of the whole archaeological enclosure and the central bath block."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:The_frigidarium_at_the_Baths_of_Caracalla.jpg",
+      "observed": "West-facing photograph of the open frigidarium and surviving brick piers."
+    },
+    {
+      "url": "https://www.sixt.com/magazine/wp-content/uploads/sites/6/2023/03/rome-baths-caracalla-1024x576.jpg",
+      "hash": "sha256:f2787024a7b6f399c3809fbae79960292b158cab710777aaf17ed5fbc8146fe7",
+      "observed": "Existing open roofs, broken wall tops, paired court wings, projecting round chambers and detached masonry."
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/The_frigidarium_at_the_Baths_of_Caracalla.jpg",
+      "hash": "sha256:93f56abc178cc46a1a0c3ff7db8b4461674f7630cf2f78d6280627174cb9ec99",
+      "observed": "Tall frigidarium arches, deep wall returns, remnant brick facing and exposed core."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "open-baths-and-enclosure",
+      "position": [
+        34,
+        172,
+        206
+      ],
+      "lookAt": [
+        7,
+        4,
+        -61
+      ],
+      "fov": 56
+    },
+    {
+      "name": "bath-block-from-caldarium",
+      "position": [
+        30,
+        107,
+        83
+      ],
+      "lookAt": [
+        8,
+        9,
+        -62
+      ],
+      "fov": 61
+    },
+    {
+      "name": "open-frigidarium",
+      "position": [
+        4,
+        2.3,
+        -68
+      ],
+      "lookAt": [
+        -41,
+        12,
+        -78
+      ],
+      "fov": 63,
+      "lightDirection": [
+        0.88,
+        1,
+        0.33
+      ]
+    },
+    {
+      "name": "natatio-recesses",
+      "position": [
+        32,
+        16,
+        -92
+      ],
+      "lookAt": [
+        -10,
+        10,
+        -128
+      ],
+      "fov": 62
+    },
+    {
+      "name": "western-palaestra",
+      "position": [
+        -93,
+        23,
+        -50
+      ],
+      "lookAt": [
+        -62,
+        10,
+        -85
+      ],
+      "fov": 58
+    },
+    {
+      "name": "eastern-court-arcades",
+      "position": [
+        96,
+        32,
+        -74
+      ],
+      "lookAt": [
+        57,
+        10,
+        -72
+      ],
+      "fov": 59
+    },
+    {
+      "name": "detached-caldarium-masonry",
+      "position": [
+        33,
+        18,
+        31
+      ],
+      "lookAt": [
+        9,
+        5,
+        -6
+      ],
+      "fov": 61
+    }
+  ],
+  "materialMethod": "Shared long-format brick, rubble stone, travertine and rammed earth provide metric surfaces. Vertex tints distinguish brick facing and exposed core. Apertures, fallen wall profiles and detached ruins use geometry.",
+  "sourceFacts": {
+    "mappedPrecinct": "relation/13476232",
+    "mainBathFeature": 52776560856694,
+    "ownedMasonryFeatures": 10,
+    "namedRoomControls": 6,
+    "terrainDatumMeters": 32
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        7,
+        8,
+        -60
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/caracalla-baths-model.mjs",
+    "export": "buildCaracallaSkyline",
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_longformat",
+        "roughness": 0.95
+      },
+      "core": {
+        "slot": "foundation",
+        "graph": "stone_drywall",
+        "roughness": 1
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_travertine",
+        "roughness": 0.96
+      },
+      "earth": {
+        "slot": "foundation",
+        "graph": "earth_rammed",
+        "roughness": 1
+      }
+    },
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCaracallaDistrict",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.95
+          },
+          "core": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 1
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.96
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.72
+      },
+      "street": {
+        "export": "buildCaracallaStreet",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.95
+          },
+          "core": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 1
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.96
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "closeup": {
+        "export": "buildCaracallaCloseup",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.95
+          },
+          "core": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 1
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_travertine",
+            "roughness": 0.96
+          },
+          "earth": {
+            "slot": "foundation",
+            "graph": "earth_rammed",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "baths_of_caracalla-skyline",
+      "position": [
+        34,
+        172,
+        206
+      ],
+      "lookAt": [
+        7,
+        4,
+        -61
+      ],
+      "fov": 56,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "baths_of_caracalla-district",
+      "position": [
+        34,
+        172,
+        206
+      ],
+      "lookAt": [
+        7,
+        4,
+        -61
+      ],
+      "fov": 56,
+      "reviewLod": "district"
+    },
+    {
+      "name": "baths_of_caracalla-street",
+      "position": [
+        34,
+        172,
+        206
+      ],
+      "lookAt": [
+        7,
+        4,
+        -61
+      ],
+      "fov": 56,
+      "reviewLod": "street"
+    },
+    {
+      "name": "baths_of_caracalla-closeup",
+      "position": [
+        34,
+        172,
+        206
+      ],
+      "lookAt": [
+        7,
+        4,
+        -61
+      ],
+      "fov": 56,
+      "reviewLod": "closeup"
+    }
+  ]
+}

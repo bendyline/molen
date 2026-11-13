@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.ballina_naval_and_maritime_museum",
+  "kind": "static-structure",
+  "title": "Ballina Naval and Maritime Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.ballina_naval_and_maritime_museum",
+        "output": "assets/places/r6/r6v/ballina_naval_and_maritime_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:21b63ae8fc1db4787056d07cb005033150e4c42f5a32c46c7ffc0d183aa6c1d8"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-ballina-maritime-museum",
+        "path": "models/generate-ballina-maritime-museum.mjs"
+      },
+      {
+        "id": "ballina-maritime-museum-model",
+        "path": "models/ballina-maritime-museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/museum-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-museum-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-30361-19130.png",
+      "terrain-sources/terrarium-15-30361-19131.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

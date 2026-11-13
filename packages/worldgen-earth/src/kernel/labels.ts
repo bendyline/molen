@@ -46,14 +46,29 @@ export function landcoverLabel(feature: TerrainLandcoverFeature): string {
     .join(' ');
 }
 
-/** A protection boundary does not describe the physical ground under it. */
-export function isLandcoverDesignation(feature: TerrainLandcoverFeature): boolean {
+const PROTECTIONS = ['nature_reserve', 'national_park', 'protected_area'];
+// `other` is the Protomaps basemap's class for a neighbourhood outline. It reports that in place
+// of any land use mapped on the same outline, so the outline alone says nothing about the ground.
+const PLACE_OUTLINES = ['neighbourhood', 'other'];
+
+/** One of `classes`, with no subclass that says what the ground is. */
+function onlyClassed(feature: TerrainLandcoverFeature, classes: readonly string[]): boolean {
   return (
-    ['nature_reserve', 'national_park', 'protected_area'].includes(feature.class) &&
+    classes.includes(feature.class) &&
     (feature.subclass === undefined ||
       feature.subclass === feature.class ||
-      ['nature_reserve', 'national_park', 'protected_area'].includes(feature.subclass))
+      classes.includes(feature.subclass))
   );
+}
+
+/** An outline that names a place: it says where the place is, not what may stand on it. */
+export function isPlaceOutline(feature: TerrainLandcoverFeature): boolean {
+  return onlyClassed(feature, PLACE_OUTLINES);
+}
+
+/** A protection boundary or a named place does not describe the physical ground under it. */
+export function isLandcoverDesignation(feature: TerrainLandcoverFeature): boolean {
+  return onlyClassed(feature, PROTECTIONS) || isPlaceOutline(feature);
 }
 
 // Land use is stronger evidence of building use than a lawn or tree canopy polygon.

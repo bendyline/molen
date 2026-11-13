@@ -40,28 +40,28 @@
             "centerOfMass": [
               0,
               0.5445,
-              0
+              0.216
             ],
             "wheelbase": 3.085,
             "wheelTrack": 1.5953,
             "wheelRadius": 0.375,
-            "mass": 2151,
-            "engineForce": 7313.4,
-            "maxSpeed": 46,
+            "mass": 2225,
+            "engineForce": 22487,
+            "maxSpeed": 49.58,
             "reverseSpeed": 7,
-            "brakeDeceleration": 8,
+            "brakeDeceleration": 9.1,
             "maxSteer": 0.52,
-            "grip": 8,
+            "grip": 8.1,
             "driverEye": [
               -0.4267,
               1.545,
               0.25
             ],
-            "drive": "all",
+            "drive": "rear",
             "steeringRate": 1.8,
             "steeringFadeSpeed": 18,
             "rollingResistance": 0.15,
-            "aerodynamicResistance": 0.0025,
+            "aerodynamicResistance": 0.000308,
             "terrainAlignRate": 1.8,
             "supportTolerance": 0.08,
             "maxStepHeight": 0.22,
@@ -1068,7 +1068,32 @@
                   "actuator": "trunk"
                 }
               }
-            ]
+            ],
+            "corneringStiffness": 16.6,
+            "rollStiffness": 0.09,
+            "pitchStiffness": 0.046,
+            "suspensionFrequency": 1.45,
+            "suspensionDamping": 0.48,
+            "rollBalance": 0.565,
+            "brakeBias": 0.68,
+            "aerodynamicLift": 0.000069,
+            "limitedSlip": 0.3,
+            "looseSurfaceGrip": 0.4,
+            "powertrain": {
+              "power": 150000,
+              "peakPowerRpm": 3400,
+              "redline": 4400,
+              "curve": "diesel",
+              "gears": [
+                14.81,
+                8.513,
+                5.458,
+                3.62,
+                2.45,
+                1.682
+              ],
+              "efficiency": 0.901
+            }
           },
           "visual": {
             "wheelNodes": [
@@ -1319,6 +1344,49 @@
           "wheelAngle": 0,
           "grounded": true,
           "waitingForTerrain": false
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.diesel",
+          "loop": true,
+          "pitch": 0.92,
+          "gain": 1.1,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleState.rpm",
+            "curve": [
+              [
+                0,
+                0.7
+              ],
+              [
+                800,
+                0.8
+              ],
+              [
+                2640,
+                1.35
+              ],
+              [
+                4400,
+                1.9
+              ]
+            ]
+          },
+          "gainFrom": {
+            "signal": "vehicleState.engineLoad",
+            "curve": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
         }
       },
       "assets": [

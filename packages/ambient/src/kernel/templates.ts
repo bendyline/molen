@@ -23,10 +23,43 @@ export interface AmbientVehicleType {
   max?: number;
   /** Body colours to pick from (default: a realistic car palette). */
   colors?: string[];
-  /** Rail: cars per consist. */
+  /** Rail: cars per consist (every car this type), unless `consist` makes the train up. */
   cars?: number;
+  /**
+   * Rail: the tracks it runs on. `light` keeps to tram and light-rail lines, `heavy` to the
+   * rest; absent runs anywhere.
+   */
+  track?: 'light' | 'heavy';
+  /** Rail: a mixed train led by this type (its units, then cars drawn from a pool). */
+  consist?: AmbientConsist;
   /** Vessels: ferry service or general navigation channel. */
   waterway?: 'ferry' | 'channel';
+}
+
+/** A car a {@link AmbientConsist} draws from. */
+export interface AmbientConsistCar {
+  /** Content type id. */
+  id: string;
+  length: number;
+  width: number;
+  height?: number;
+  /** Relative draw weight (default 1). */
+  weight?: number;
+  colors?: string[];
+}
+
+/**
+ * How a train led by a rail type makes up: `units` copies of the lead type (multiple-unit
+ * locomotives), then `length` cars drawn in blocks of `block` alike from `cars`.
+ */
+export interface AmbientConsist {
+  /** Lead units, inclusive range (default [1, 1]). */
+  units?: [number, number];
+  /** Cars after the units, inclusive range. */
+  length: [number, number];
+  /** Cars of one type in a row, inclusive range (default [1, 1]). */
+  block?: [number, number];
+  cars: AmbientConsistCar[];
 }
 
 export interface AmbientPedestrianType {
@@ -116,61 +149,153 @@ interface Outfit {
   hair: string;
   top: string;
   bottom: string;
+  /** Figure features: body form, hair style, facial hair, sleeves, legwear. */
+  look: Record<string, string>;
+  shoes?: string;
 }
 
+const outfit = (
+  height: number,
+  build: number,
+  skin: string,
+  hair: string,
+  top: string,
+  bottom: string,
+  look: Record<string, string>,
+  shoes?: string,
+): Outfit => ({ height, build, skin, hair, top, bottom, look, ...(shoes ? { shoes } : {}) });
+
+// Skin tones from light to deep, hair colours, and a few common clothing colours.
+const [SKIN0, SKIN1, SKIN2, SKIN3, SKIN4, SKIN5, SKIN6] = [
+  '#f1d3bd',
+  '#e0b597',
+  '#d3a080',
+  '#c68b62',
+  '#9b6645',
+  '#6c4430',
+  '#4a2e21',
+] as const;
+const BLACK = '#1f1a17',
+  DARK = '#3b2a20',
+  BROWN = '#6b4a2e',
+  AUBURN = '#7a3b22',
+  LIGHT = '#a8793f',
+  BLOND = '#d8c29a';
+const NAVY = '#2f3b52',
+  INK = '#1f1f24',
+  WHITE = '#e8e6de',
+  GREY = '#8a8f96',
+  KHAKI = '#c9b48a',
+  RED = '#6b2f2f',
+  GREEN = '#2f5a3b',
+  BLUE = '#3b6ea5',
+  RUST = '#b0553a',
+  PLUM = '#5a3b6b',
+  MUSTARD = '#c9a227';
+
 // A fixed wardrobe per age: walkers share bodies (and generated geometry) instead of each
-// needing its own, while a street still looks varied.
+// needing its own, while a street still looks varied: body forms, hair styles, facial hair,
+// sleeves, trousers, shorts and skirts across the range of skin tones.
 const ADULTS: readonly Outfit[] = [
-  {
-    height: 1.62,
-    build: -0.2,
-    skin: '#f1d3bd',
-    hair: '#3b2a20',
-    top: '#2f3b52',
-    bottom: '#1f1f24',
-  },
-  { height: 1.78, build: 0.2, skin: '#c68b62', hair: '#1f1a17', top: '#e8e6de', bottom: '#2f3b52' },
-  { height: 1.7, build: 0, skin: '#6c4430', hair: '#1f1a17', top: '#6b2f2f', bottom: '#8a8f96' },
-  { height: 1.84, build: 0.4, skin: '#e0b597', hair: '#a8793f', top: '#2f5a3b', bottom: '#c9b48a' },
-  {
-    height: 1.58,
-    build: -0.4,
-    skin: '#9b6645',
-    hair: '#1f1a17',
-    top: '#3b6ea5',
-    bottom: '#1f1f24',
-  },
-  { height: 1.74, build: 0.1, skin: '#f1d3bd', hair: '#d8c29a', top: '#1f1f24', bottom: '#2f3b52' },
-  { height: 1.66, build: 0.3, skin: '#4a2e21', hair: '#1f1a17', top: '#b0553a', bottom: '#1f1f24' },
-  { height: 1.8, build: -0.1, skin: '#e0b597', hair: '#6b4a2e', top: '#8a8f96', bottom: '#1f1f24' },
-  { height: 1.68, build: 0, skin: '#c68b62', hair: '#3b2a20', top: '#5a3b6b', bottom: '#8a8f96' },
-  { height: 1.76, build: 0.5, skin: '#f1d3bd', hair: '#9a9a9a', top: '#2f3b52', bottom: '#c9b48a' },
-  { height: 1.6, build: 0.2, skin: '#9b6645', hair: '#3b2a20', top: '#e8e6de', bottom: '#3b6ea5' },
-  {
-    height: 1.72,
-    build: -0.3,
-    skin: '#6c4430',
-    hair: '#1f1a17',
-    top: '#2f5a3b',
-    bottom: '#1f1f24',
-  },
+  outfit(1.78, 0.2, SKIN3, BLACK, WHITE, NAVY, { form: 'masculine', hair: 'cap' }),
+  outfit(1.64, -0.2, SKIN0, DARK, NAVY, INK, { form: 'feminine', hair: 'long' }),
+  outfit(1.7, 0, SKIN5, BLACK, RED, GREY, {
+    form: 'masculine',
+    hair: 'buzz',
+    facialHair: 'stubble',
+    sleeves: 'short',
+  }),
+  outfit(1.84, 0.4, SKIN1, LIGHT, GREEN, KHAKI, {
+    form: 'masculine',
+    hair: 'crop',
+    facialHair: 'beard',
+  }),
+  outfit(1.6, -0.3, SKIN4, BLACK, BLUE, INK, {
+    form: 'feminine',
+    hair: 'ponytail',
+    legs: 'skirt',
+  }),
+  outfit(1.68, 0, SKIN0, BLOND, INK, NAVY, { form: 'feminine', hair: 'bob' }, WHITE),
+  outfit(1.75, 0.1, SKIN6, BLACK, RUST, INK, { form: 'masculine', hair: 'afro' }),
+  outfit(1.8, -0.1, SKIN1, BROWN, GREY, INK, {
+    form: 'masculine',
+    hair: 'cap',
+    facialHair: 'mustache',
+  }),
+  outfit(1.66, -0.1, SKIN3, DARK, PLUM, GREY, { form: 'feminine', hair: 'bun', legs: 'skirt' }),
+  outfit(1.72, 0, SKIN0, AUBURN, WHITE, BLUE, { hair: 'crop', sleeves: 'short' }, INK),
+  outfit(1.65, 0.2, SKIN5, BLACK, MUSTARD, NAVY, {
+    form: 'feminine',
+    hair: 'afro',
+    legs: 'skirt',
+    sleeves: 'short',
+  }),
+  outfit(1.76, 0.5, SKIN0, '#9a9a9a', NAVY, KHAKI, {
+    form: 'masculine',
+    hair: 'balding',
+    facialHair: 'beard',
+  }),
+  outfit(1.7, -0.2, SKIN2, LIGHT, WHITE, GREEN, { form: 'feminine', hair: 'long' }),
+  outfit(1.82, 0.3, SKIN4, BLACK, INK, NAVY, {
+    form: 'masculine',
+    hair: 'buzz',
+    sleeves: 'short',
+  }),
+  outfit(
+    1.62,
+    0,
+    SKIN0,
+    BROWN,
+    RUST,
+    KHAKI,
+    {
+      form: 'feminine',
+      hair: 'ponytail',
+      legs: 'shorts',
+      sleeves: 'short',
+    },
+    WHITE,
+  ),
+  outfit(1.74, 0.1, SKIN3, DARK, BLUE, INK, {
+    form: 'masculine',
+    hair: 'cap',
+    facialHair: 'stubble',
+  }),
+  outfit(1.58, 0.1, SKIN4, BLACK, WHITE, RED, { form: 'feminine', hair: 'bob', legs: 'skirt' }),
+  outfit(1.69, -0.3, SKIN2, DARK, PLUM, GREY, { hair: 'crop' }),
+  outfit(1.72, -0.3, SKIN6, BLACK, GREEN, INK, { form: 'feminine', hair: 'bun' }),
+  outfit(1.8, 0, SKIN1, BROWN, INK, NAVY, {
+    form: 'masculine',
+    hair: 'ponytail',
+    facialHair: 'beard',
+  }),
 ];
 const ELDERS: readonly Outfit[] = [
-  { height: 1.64, build: 0.2, skin: '#f1d3bd', hair: '#c8c8c4', top: '#8a8f96', bottom: '#2f3b52' },
-  { height: 1.72, build: 0.3, skin: '#c68b62', hair: '#e6e6e2', top: '#6b4a2e', bottom: '#1f1f24' },
-  { height: 1.58, build: 0, skin: '#6c4430', hair: '#b8b8b4', top: '#5a3b6b', bottom: '#8a8f96' },
+  outfit(1.72, 0.3, SKIN0, '#c8c8c4', GREY, NAVY, {
+    form: 'masculine',
+    hair: 'balding',
+    facialHair: 'mustache',
+  }),
+  outfit(1.6, 0.2, SKIN3, '#e6e6e2', BROWN, INK, {
+    form: 'feminine',
+    hair: 'bob',
+    legs: 'skirt',
+  }),
+  outfit(1.7, 0, SKIN5, '#b8b8b4', PLUM, GREY, { form: 'masculine', hair: 'cap' }),
+  outfit(1.58, 0.1, SKIN0, '#d8d8d4', BLUE, NAVY, { form: 'feminine', hair: 'bun' }),
+  outfit(1.68, 0.2, SKIN4, '#e6e6e2', GREEN, KHAKI, {
+    form: 'masculine',
+    hair: 'balding',
+    facialHair: 'beard',
+  }),
+  outfit(1.62, -0.1, SKIN1, '#bdbdb8', RUST, INK, { form: 'feminine', hair: 'crop' }),
 ];
 const CHILDREN: readonly Outfit[] = [
-  { height: 1.2, build: 0, skin: '#f1d3bd', hair: '#a8793f', top: '#b0553a', bottom: '#2f3b52' },
-  {
-    height: 1.35,
-    build: -0.2,
-    skin: '#9b6645',
-    hair: '#1f1a17',
-    top: '#3b6ea5',
-    bottom: '#1f1f24',
-  },
-  { height: 1.28, build: 0.1, skin: '#e0b597', hair: '#3b2a20', top: '#2f5a3b', bottom: '#c9b48a' },
+  outfit(1.2, 0, SKIN0, LIGHT, RUST, NAVY, { hair: 'cap' }),
+  outfit(1.35, -0.2, SKIN4, BLACK, BLUE, INK, { hair: 'ponytail', legs: 'skirt' }),
+  outfit(1.28, 0.1, SKIN1, DARK, GREEN, KHAKI, { hair: 'crop', legs: 'long', sleeves: 'long' }),
+  outfit(1.15, 0, SKIN5, BLACK, MUSTARD, NAVY, { hair: 'afro' }),
+  outfit(1.3, 0, SKIN0, BLOND, PLUM, GREY, { hair: 'bob', legs: 'skirt' }, WHITE),
 ];
 
 function outfitFor(preset: string, seed: number): Outfit {
@@ -185,13 +310,20 @@ export const DEFAULT_TEMPLATES: Readonly<Record<AmbientKind, AmbientTemplate>> =
   train: (agent) => ({ renderable: { kind: 'ambient-vehicle', ref: agent.type } }),
   aircraft: (agent) => ({ renderable: { kind: 'ambient-vehicle', ref: agent.type } }),
   pedestrian: (agent) => {
-    const outfit = outfitFor(agent.type, agent.seed);
+    const dress = outfitFor(agent.type, agent.seed);
     return {
       figure: {
         preset: agent.type as AmbientPedestrianType['preset'],
-        height: outfit.height,
-        build: outfit.build,
-        palette: { skin: outfit.skin, hair: outfit.hair, top: outfit.top, bottom: outfit.bottom },
+        height: dress.height,
+        build: dress.build,
+        palette: {
+          skin: dress.skin,
+          hair: dress.hair,
+          top: dress.top,
+          bottom: dress.bottom,
+          ...(dress.shoes ? { shoes: dress.shoes } : {}),
+        },
+        features: { ...dress.look },
         facing: 'manual',
         speedSource: 'transform',
       },

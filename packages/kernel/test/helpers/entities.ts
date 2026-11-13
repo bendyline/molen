@@ -5,7 +5,7 @@ import { createTypeLibrary } from '../../src/type-library';
 // Tests read the molen.entities type documents from the repository's content directory; no
 // package ships them.
 const types = createTypeLibrary(
-  ['entities', 'aircraft', 'vehicle'].map((name) =>
+  ['entities', 'aircraft', 'vehicle', 'cycle'].map((name) =>
     JSON.parse(
       readFileSync(
         new URL(`../../../../content/entities/types/${name}.types.json`, import.meta.url),

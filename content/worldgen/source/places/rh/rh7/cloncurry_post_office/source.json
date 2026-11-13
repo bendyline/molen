@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.cloncurry_post_office",
+  "kind": "static-structure",
+  "title": "Cloncurry Post Office",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.cloncurry_post_office",
+        "output": "assets/places/rh/rh7/cloncurry_post_office/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b714bad3b37e3a971b2c4acd9eb4173d255ad332c95ccd9a9ada3426d0f2f059"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-cloncurry-office",
+        "path": "models/generate-cloncurry-office.mjs"
+      },
+      {
+        "id": "cloncurry-office-model",
+        "path": "models/cloncurry-office-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/office-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-cloncurry-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-29173-18310.png",
+      "terrain-sources/terrarium-15-29173-18311.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

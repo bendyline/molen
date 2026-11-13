@@ -12,6 +12,27 @@ export interface TerrainLinePath {
   points: TerrainSemanticPoint[];
   distances: number[];
   length: number;
+  /**
+   * Offset normals at the first and last vertex where the line continues into another one (a road
+   * split into two features where its tags change, such as a bridge's ends): the miter a single
+   * line would have there, so the two lines' bands meet on one seam instead of leaving a wedge on
+   * the outside of the bend. Absent, an end is square. Set before the path is first sampled.
+   */
+  startJoin?: TerrainSemanticPoint;
+  endJoin?: TerrainSemanticPoint;
+}
+
+/**
+ * The offset normal `sampleTerrainLine` uses where a line arriving along `incoming` leaves along
+ * `outgoing` (unit directions): the bisector, lengthened so offset edges stay parallel, with the
+ * lengthening capped for sharp turns.
+ */
+export function terrainLineMiter(
+  incoming: TerrainSemanticPoint,
+  outgoing: TerrainSemanticPoint,
+): TerrainSemanticPoint {
+  const divisor = Math.max(0.5, 1 + incoming[0] * outgoing[0] + incoming[1] * outgoing[1]);
+  return [(-incoming[1] - outgoing[1]) / divisor, (incoming[0] + outgoing[0]) / divisor];
 }
 
 export interface TerrainLineSample {
@@ -102,6 +123,8 @@ function lineJoins(path: TerrainLinePath): TerrainSemanticPoint[] {
       (points[0]?.[1] ?? 0) - (points[last]?.[1] ?? 0),
     ) < 0.0001;
   const joins = points.map((p, i): TerrainSemanticPoint => {
+    if (!closed && i === 0 && path.startJoin) return path.startJoin;
+    if (!closed && i === last && path.endJoin) return path.endJoin;
     const previous = points[i - 1] ?? (closed ? points[last - 1] : undefined);
     const next = points[i + 1] ?? (closed ? points[1] : undefined);
     const direction = (a: TerrainSemanticPoint, b: TerrainSemanticPoint): TerrainSemanticPoint => {
@@ -110,8 +133,7 @@ function lineJoins(path: TerrainLinePath): TerrainSemanticPoint[] {
     };
     const incoming = previous ? direction(previous, p) : direction(p, next ?? p);
     const outgoing = next ? direction(p, next) : incoming;
-    const divisor = Math.max(0.5, 1 + incoming[0] * outgoing[0] + incoming[1] * outgoing[1]);
-    return [(-incoming[1] - outgoing[1]) / divisor, (incoming[0] + outgoing[0]) / divisor];
+    return terrainLineMiter(incoming, outgoing);
   });
   pathJoins.set(path, joins);
   return joins;

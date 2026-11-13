@@ -1,0 +1,62 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.al_sarafiya_bridge",
+  "inputHash": "sha256:ddcc78db95755b336124fcc8d1c66231003eef89299955e4a5700805bd1ce815",
+  "sourceHash": "sha256:26dd491c03033db8e0964252814be994aebcfe52c83d069075c04c2065446300",
+  "runtimeHash": "sha256:23326290d2d41ef7f04ff643cf499c62f0b2658273d07394a2be9504eb080e74",
+  "fixtureHash": "sha256:d83c38318260222c0acbfd9bc05cf6dbabc131e6317397222f9c08dad72f7bb1",
+  "placementHash": "sha256:8b0b9105a181a9112aacff0486e7bcea5724aa09fc8cabf64f948925575588ef",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_boardformed": {
+      "path": "materials/concrete_boardformed.matgraph.json",
+      "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-al-sarafiya-bridge.png",
+      "hash": "sha256:9d84def6b317b4d8892b1a32b2a59bc78992cefffd253e118737548fc2ed1460",
+      "camera": {
+        "name": "detail-two-high-trusses-and-river-piers",
+        "position": [
+          16,
+          62,
+          180
+        ],
+        "lookAt": [
+          0,
+          1,
+          -4
+        ],
+        "fov": 65,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ],
+        "detail": true
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "al.sarafiya.bridge",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Board-formed concrete, plain concrete and painted metal each resolve once per detail level."
+}

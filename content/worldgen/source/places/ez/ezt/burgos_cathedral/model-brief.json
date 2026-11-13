@@ -1,0 +1,402 @@
+{
+  "id": "burgos_cathedral",
+  "title": "Burgos Cathedral",
+  "wikidataId": "Q744420",
+  "referenceCoordinate": {
+    "longitude": -3.704328638,
+    "latitude": 42.340703446
+  },
+  "module": "content/worldgen/source/places/ez/ezt/burgos_cathedral/models/cathedral-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-burgos-cathedral.mjs",
+  "builder": "buildCathedralLevel",
+  "surfaces": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw"
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw"
+    },
+    "foundation": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered"
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_flat"
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate"
+    },
+    "glass": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain"
+    }
+  },
+  "exportLabel": "Molen original Burgos Cathedral master",
+  "expectedDraftMasterHash": "sha256:4e5d56c717b5976af948e81009e9247d1a338d27edfba3e1bc831487beb73659",
+  "visualBrief": "Burgos Cathedral with its twin openwork spires, Santa María rose and portal, octagonal crossing lantern, Sarmental front, Constable Chapel, and open cloister.",
+  "heightPolicy": "The 870 m model datum and the standard Terrarium surface establish the height of the stepped entrances, retaining walls and below-grade foundation skirts. No ground, water or road cuts are needed.",
+  "nativeAxes": "Native +X follows the nave toward the apse on the northeast side. The Santa María façade and its twin mapped towers face the southwest end. Native +Z points toward the south plaza and Sarmental front.",
+  "limitations": [
+    "The model uses the mapped cathedral and ordinary exterior photographs. Vertical profiles, tracery, sculptures and small masonry details are visual approximations.",
+    "The cloister court remains open. The closed portals represent the exterior only, and surrounding plazas, the fountain and adjacent buildings remain in the host map."
+  ],
+  "materialMethod": "Six shared material graphs supply limestone, weathered stone, slate, flat clay tiles, painted metal and wood at metric repeats. Trim uses a second tint of the limestone graph.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:West_facade_of_Burgos_Cathedral.jpg",
+      "hash": "sha256:e295573e2e96568ac91b1d500c54f7b37d806d18f140c40e647aeabeb8566a32",
+      "observed": "Three west portal bays, rose, statuary and twin openwork spires."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Catedral_de_Burgos,_vista_desde_el_sur.jpg",
+      "hash": "sha256:01dd93ac5f6dff8d1db35dc8f813c552b85a8c36ae1443707f44d870fecde8ec",
+      "observed": "South transept, crossing tower, roofs and attached chapels."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "cathedral-and-south-plaza",
+      "position": [
+        -132,
+        65,
+        131
+      ],
+      "lookAt": [
+        -4,
+        21,
+        -2
+      ],
+      "fov": 51
+    },
+    {
+      "name": "santa-maria-west-front",
+      "position": [
+        -113,
+        20,
+        -11
+      ],
+      "lookAt": [
+        -46,
+        36,
+        -12
+      ],
+      "fov": 50
+    },
+    {
+      "name": "openwork-spires",
+      "position": [
+        -75,
+        69,
+        1
+      ],
+      "lookAt": [
+        -43.5,
+        57,
+        -11.5
+      ],
+      "fov": 55
+    },
+    {
+      "name": "sarmental-portal-and-rose",
+      "position": [
+        -2,
+        15,
+        49
+      ],
+      "lookAt": [
+        -1.2,
+        14,
+        15
+      ],
+      "fov": 55
+    },
+    {
+      "name": "cimborrio-pinnacles",
+      "position": [
+        24,
+        70,
+        36
+      ],
+      "lookAt": [
+        -1,
+        48,
+        -12
+      ],
+      "fov": 52
+    },
+    {
+      "name": "constable-chapel",
+      "position": [
+        89,
+        44,
+        -14
+      ],
+      "lookAt": [
+        53,
+        24,
+        -17
+      ],
+      "fov": 51
+    },
+    {
+      "name": "cloister-court",
+      "position": [
+        27,
+        28,
+        25
+      ],
+      "lookAt": [
+        21,
+        8,
+        32
+      ],
+      "fov": 60
+    },
+    {
+      "name": "east-end-and-roofs",
+      "position": [
+        113,
+        78,
+        83
+      ],
+      "lookAt": [
+        25,
+        22,
+        -5
+      ],
+      "fov": 52
+    }
+  ],
+  "sourceFacts": {
+    "mappedPartCount": 181,
+    "curatedVolumes": 28,
+    "openworkSpireHeightMeters": 75,
+    "crossingPinnacleHeightMeters": 65,
+    "entryStairs": [
+      "Santa María",
+      "Sarmental"
+    ],
+    "openCloister": true
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        21,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ez/ezt/burgos_cathedral/models/cathedral-model.mjs",
+    "export": "buildCathedralSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw"
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw"
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered"
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat"
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate"
+      },
+      "glass": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain"
+      }
+    },
+    "errorMeters": 2.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCathedralDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat"
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate"
+          },
+          "glass": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain"
+          }
+        },
+        "errorMeters": 0.9
+      },
+      "street": {
+        "export": "buildCathedralStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat"
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate"
+          },
+          "glass": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain"
+          }
+        },
+        "errorMeters": 0.33
+      },
+      "closeup": {
+        "export": "buildCathedralCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw"
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat"
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate"
+          },
+          "glass": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain"
+          }
+        },
+        "errorMeters": 0.09
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "burgos_cathedral-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -132,
+        65,
+        131
+      ],
+      "lookAt": [
+        -4,
+        21,
+        -2
+      ]
+    },
+    {
+      "name": "burgos_cathedral-district",
+      "reviewLod": "district",
+      "position": [
+        -132,
+        65,
+        131
+      ],
+      "lookAt": [
+        -4,
+        21,
+        -2
+      ]
+    },
+    {
+      "name": "burgos_cathedral-street",
+      "reviewLod": "street",
+      "position": [
+        -132,
+        65,
+        131
+      ],
+      "lookAt": [
+        -4,
+        21,
+        -2
+      ]
+    },
+    {
+      "name": "burgos_cathedral-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -132,
+        65,
+        131
+      ],
+      "lookAt": [
+        -4,
+        21,
+        -2
+      ]
+    }
+  ]
+}

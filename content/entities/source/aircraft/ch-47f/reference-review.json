@@ -33,12 +33,12 @@
     "mode": "fixed",
     "position": [
       0,
-      2.58,
+      2.5,
       5.45
     ],
     "lookAt": [
       0,
-      2.03,
+      2.05,
       6.72
     ],
     "fov": 91
@@ -47,7 +47,7 @@
     "mode": "top-down-ortho",
     "center": [
       0,
-      -1.95
+      -2.09
     ],
     "viewHeight": 1.45,
     "cameraHeight": 3.65
@@ -162,7 +162,7 @@
       ],
       "modelAnchor": [
         0,
-        -2.04
+        -2.18
       ],
       "scaleControls": {
         "pixels": 104,
@@ -200,12 +200,13 @@
     ],
     "visual": "Individually inspected side/front/top and cockpit overlays, all four turntable views, lit three-quarter scene, pilot forward view, downward panel view and centered cabin view. Confirmed five-screen ordering, side/chin glass openings and unblocked forward sightline; no exterior weapons."
   },
-  "sourceHash": "sha256:2a24de6b02dbc5abc44b39b4ea1f44e39ad0a659f20652ba45c5f4e2a03f1fe4",
-  "runtimeHash": "sha256:aba3fb837d6d467fcbd106c081299da0b35ff378c9c69bb69c70429e78022c5e",
+  "sourceHash": "sha256:43850bdb30510a63f3b966c43872d7092e19825d899fcab2505c8e4e7da7c5e9",
+  "runtimeHash": "sha256:41a43435441cef69f86d81aa6ba8222dade585e743d216fa72342e1af8c815d6",
   "limitations": [
     "Published drawing labels all dimensions approximate; side profile shows a ground attitude and rotor coning/droop that differ from the modeled parked state. Front drawing is low resolution and not consistent enough for fine contour tolerances.",
     "Cockpit photo is wide angle, with oblique outer screens and crew/kneeboard occlusions. Central display scale uses Collins dimensions; outer panel widths, coaming depth, seat placement and overhead switch spacing remain estimates.",
-    "Cargo seating, switches and avionics graphics are deliberately simplified. The photograph is a specific 2022 cockpit fit and does not establish every CH-47F equipment option."
+    "Cargo seating, switches and avionics graphics are deliberately simplified. The photograph is a specific 2022 cockpit fit and does not establish every CH-47F equipment option.",
+    "The shortened overhead stays aft of the windscreen top, so unlike the aircraft it does not run forward down the center post. Over-nose vision of -14 degrees is limited by the modeled sill height."
   ],
   "controlReview": {
     "checked": "2026-10-22",
@@ -224,6 +225,45 @@
       "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
       "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
       "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  },
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "Rays from the pilotEye through source.glb (cockpit-sweep), seat view at the runtime camera (+Z, 60 degrees vertical), an exterior nose render, and sections through the pilot plane and at hood height, each checked against a photograph of the real aircraft.",
+    "findings": [
+      "The eye stood 1.08 m over the cushion and looked over the whole panel, which sat 0.5 m below it and under the sill, so no instrument was in view. The sweep cushion reading of 0.74 m was the cyclic grip.",
+      "The overhead console ran 0.7 m out through the windscreen: the poked reading, and the black slab above the glass from outside.",
+      "The pedestal was mounted with the wrong sign of tilt and ran forward into the nose instead of aft between the seats.",
+      "The wiper parked dead ahead of the pilot. The Army photograph shows the wipers by the center posts, and the glareshield meeting the glass with no skin between."
+    ],
+    "before": {
+      "eye": [
+        -0.57,
+        2.63,
+        6.12
+      ],
+      "eyeToPanelMeters": 0.6,
+      "headroomMeters": 0.21,
+      "eyeAboveCushionMeters": 1.08,
+      "hoodTopHeightMeters": 2.16,
+      "cockpitVerticesOutsidePercent": 0.6
+    },
+    "after": {
+      "eye": [
+        -0.57,
+        2.42,
+        6.08
+      ],
+      "eyeToPanelMeters": 0.64,
+      "headroomMeters": 0.4,
+      "eyeAboveCushionMeters": 0.8,
+      "hoodTopHeightMeters": 2.24,
+      "cockpitVerticesOutsidePercent": 0.2
+    },
+    "corrections": [
+      "Eye lowered 0.21 m and moved 0.04 m aft; crew seats raised 0.06 m.",
+      "Panel raised 0.14 m to meet the sill, hood shortened, with its forward end dropped under the nose skin; scale, layout and bindings unchanged.",
+      "Pedestal tilt corrected. Overhead ends at the windscreen top, with six switch rows instead of nine. Wipers moved inboard; cyclic grip moved forward of the eye line."
     ]
   }
 }

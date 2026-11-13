@@ -1,0 +1,474 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.auto_rickshaw": {
+      "doc": "Bendy Auto. Drivable three-wheeled auto-rickshaw: handlebar steering, open sides, canvas canopy, driver saddle and a three-seat rear bench.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.auto_rickshaw",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.auto_rickshaw",
+          "color": "#2f7d3b",
+          "spec": {
+            "label": "Bendy Auto",
+            "bodyStyle": "auto-rickshaw",
+            "genericLabel": "Auto-rickshaw",
+            "width": 1.3,
+            "length": 2.63,
+            "height": 1.76,
+            "centerOfMass": [
+              0,
+              0.62,
+              -0.25
+            ],
+            "wheelbase": 2,
+            "wheelTrack": 1.15,
+            "wheelRadius": 0.205,
+            "mass": 520,
+            "engineForce": 1500,
+            "maxSpeed": 15,
+            "reverseSpeed": 3,
+            "brakeDeceleration": 6,
+            "maxSteer": 0.55,
+            "driverEye": [
+              0,
+              1.45,
+              0.22
+            ],
+            "grip": 7,
+            "steeringRate": 2.2,
+            "steeringFadeSpeed": 10,
+            "rollingResistance": 0.12,
+            "aerodynamicResistance": 0.012,
+            "terrainAlignRate": 2.5,
+            "supportTolerance": 0.06,
+            "maxStepHeight": 0.12,
+            "maxSlope": 0.4,
+            "drive": "rear",
+            "rollStiffness": 0.09,
+            "pitchStiffness": 0.03,
+            "suspensionFrequency": 1.8,
+            "suspensionDamping": 0.5,
+            "actuators": {
+              "headlights": {
+                "seconds": 0
+              },
+              "wipers": {
+                "seconds": 1.4,
+                "mode": "cycle"
+              }
+            },
+            "headlamps": [
+              [
+                0,
+                0.78,
+                1.3
+              ]
+            ],
+            "handlebar": {
+              "riderLean": 0.1,
+              "handlebarPivot": [
+                0,
+                0.9,
+                0.6097
+              ],
+              "grips": [
+                [
+                  0.33,
+                  1.02,
+                  0.5
+                ],
+                [
+                  -0.33,
+                  1.02,
+                  0.5
+                ]
+              ],
+              "footrests": [
+                [
+                  0.14,
+                  0.42,
+                  0.54
+                ],
+                [
+                  -0.14,
+                  0.42,
+                  0.54
+                ]
+              ]
+            },
+            "collisionParts": [
+              {
+                "id": "wheel-front",
+                "role": "frontWheel",
+                "center": [
+                  -0.008,
+                  0.356793,
+                  0.963068
+                ],
+                "radius": 0.1845,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": [
+                  "wheel-front"
+                ],
+                "probes": [
+                  [
+                    -0.008,
+                    0.356793,
+                    0.963068
+                  ]
+                ]
+              },
+              {
+                "id": "wheel-rear-left",
+                "role": "rearWheel",
+                "center": [
+                  0.575,
+                  0.205,
+                  -1
+                ],
+                "radius": 0.1845,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": [
+                  "wheel-rear-left"
+                ],
+                "probes": [
+                  [
+                    0.575,
+                    0.205,
+                    -1
+                  ]
+                ]
+              },
+              {
+                "id": "wheel-rear-right",
+                "role": "rearWheel",
+                "center": [
+                  -0.575,
+                  0.205,
+                  -1
+                ],
+                "radius": 0.1845,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": [
+                  "wheel-rear-right"
+                ],
+                "probes": [
+                  [
+                    -0.575,
+                    0.205,
+                    -1
+                  ]
+                ]
+              }
+            ]
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [
+              "wheel-front"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "animation": {
+              "sources": {
+                "steering": {
+                  "component": "vehicleState",
+                  "path": [
+                    "steer"
+                  ]
+                },
+                "headlights": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "headlights"
+                  ]
+                },
+                "wipers": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "wipers"
+                  ]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "handlebar",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1
+                },
+                {
+                  "node": "wiper",
+                  "source": "wipers",
+                  "property": "rotation",
+                  "axis": "z",
+                  "keys": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.5,
+                      1.35
+                    ],
+                    [
+                      1,
+                      0
+                    ]
+                  ],
+                  "ease": "smooth"
+                },
+                {
+                  "node": "headlights-lit",
+                  "source": "headlights",
+                  "property": "visible",
+                  "scale": 1
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0,
+                0.79,
+                0.12
+              ]
+            },
+            {
+              "id": "passenger-left",
+              "role": "passenger",
+              "position": [
+                0.33,
+                1.42,
+                -0.74
+              ]
+            },
+            {
+              "id": "passenger-right",
+              "role": "passenger",
+              "position": [
+                -0.33,
+                1.42,
+                -0.74
+              ]
+            }
+          ],
+          "exits": [
+            [
+              1.05,
+              0,
+              0.12
+            ],
+            [
+              -1.05,
+              0,
+              0.12
+            ],
+            [
+              1.05,
+              0,
+              -0.32
+            ],
+            [
+              -1.05,
+              0,
+              -0.32
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 0,
+          "cruise": 9,
+          "max": 14,
+          "colors": [
+            "#2f7d3b",
+            "#2f7d3b",
+            "#2f7d3b",
+            "#1f2124",
+            "#1f2124",
+            "#e3b524",
+            "#2a5f9e",
+            "#8c2a2a"
+          ]
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.car",
+          "loop": true,
+          "pitch": 1.5,
+          "gain": 0.8,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleState.speed",
+            "curve": [
+              [
+                0,
+                0.8
+              ],
+              [
+                5,
+                1.05
+              ],
+              [
+                15,
+                1.4
+              ]
+            ]
+          }
+        },
+        "model.signals": {
+          "sources": {
+            "steering": {
+              "component": "vehicleState",
+              "path": [
+                "steer"
+              ]
+            },
+            "wheelAngle": {
+              "component": "vehicleState",
+              "path": [
+                "wheelAngle"
+              ]
+            },
+            "headlights": {
+              "component": "vehicleState",
+              "path": [
+                "actuators",
+                "headlights"
+              ]
+            },
+            "wipers": {
+              "component": "vehicleState",
+              "path": [
+                "actuators",
+                "wipers"
+              ]
+            }
+          },
+          "bindings": [
+            {
+              "node": "handlebar",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "wheel-front",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "wiper",
+              "source": "wipers",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0.5,
+                  1.35
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              "ease": "smooth"
+            },
+            {
+              "node": "headlights-lit",
+              "source": "headlights",
+              "property": "visible",
+              "scale": 1
+            },
+            {
+              "node": "wheel-front-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-rear-left-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-rear-right-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            }
+          ]
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.auto_rickshaw"
+      ]
+    }
+  }
+}

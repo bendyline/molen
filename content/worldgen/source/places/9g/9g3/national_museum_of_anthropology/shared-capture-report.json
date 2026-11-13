@@ -1,0 +1,80 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.national_museum_of_anthropology",
+  "inputHash": "sha256:f19ed2f3d1f1b4e1bfa35df1c2db31b7ddb067624657b3e9749d9189b59d42b2",
+  "sourceHash": "sha256:b159080b2430a0ca8a449ea405f64f54b93bdfdccb8b5676d9a40ce36f09b6a1",
+  "runtimeHash": "sha256:caf0423251f642b5c195b79bd438daf107b35e7a8a6483134c2d964df64e43e0",
+  "fixtureHash": "sha256:298a875de910a1995a7c6ae3a53773a25f440808b6af6243c92043623bcc2c43",
+  "placementHash": "sha256:85b7dddedb0b0f72fd789b9bf91d35c4545921d22fa74d1787c5aa090a8b141f",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_panel": {
+      "path": "materials/concrete_panel.matgraph.json",
+      "hash": "sha256:abe4cae93974b54fcec791eeaf719abfc7b069c87e136f4c371cebdaed7321f4"
+    },
+    "molen.worldgen.material.metal_standing_seam": {
+      "path": "materials/metal_standing_seam.matgraph.json",
+      "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+    },
+    "molen.worldgen.material.metal_bronze_cast": {
+      "path": "materials/metal_bronze_cast.matgraph.json",
+      "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_basalt": {
+      "path": "materials/stone_basalt.matgraph.json",
+      "hash": "sha256:41efa6ad89840fdf50772224f4eabb544099dc0cafa791c3a85f916b44b9bf8c"
+    },
+    "molen.worldgen.material.window_grid": {
+      "path": "materials/window_grid.matgraph.json",
+      "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-national-museum-of-anthropology.png",
+      "hash": "sha256:8526078c8bf168ef5ba5591478f13282e6eac3aaa527616060339732c19b82ef",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          39,
+          8,
+          12
+        ],
+        "lookAt": [
+          -52,
+          5,
+          -7
+        ],
+        "fov": 50,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          0.75,
+          1,
+          0.49
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "national.museum.of.anthropology",
+        "visibleDraws": 8
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Six shared material graphs resolve once per tier. The two water materials use vertex colors and material factors."
+}

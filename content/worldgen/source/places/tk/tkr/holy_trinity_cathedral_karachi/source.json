@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.holy_trinity_cathedral_karachi",
+  "kind": "static-structure",
+  "title": "Holy Trinity Cathedral, Karachi",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.holy_trinity_cathedral_karachi",
+        "output": "assets/places/tk/tkr/holy_trinity_cathedral_karachi/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:fe31c3017f97c59d4303fae96bfdf59cf50407f5ae4bd00b0a916b9f4704a9b0"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-holy-trinity-karachi",
+        "path": "models/generate-holy-trinity-karachi.mjs"
+      },
+      {
+        "id": "holy-trinity-karachi-model",
+        "path": "models/holy-trinity-karachi-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/church-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-cathedral-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-22485-14047.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

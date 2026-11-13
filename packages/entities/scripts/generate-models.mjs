@@ -109,7 +109,15 @@ async function loadBundles() {
       });
     }
   }
-  const kindOrder = { nature: 0, aircraft: 1, vehicle: 2, transit: 3, cycle: 4, watercraft: 5 };
+  const kindOrder = {
+    nature: 0,
+    aircraft: 1,
+    vehicle: 2,
+    transit: 3,
+    cycle: 4,
+    watercraft: 5,
+    rail: 6,
+  };
   bundles.sort(
     (a, b) =>
       (kindOrder[a.manifest.kind] ?? Number.MAX_SAFE_INTEGER) -
@@ -186,6 +194,7 @@ function projectDocument(bundles) {
       'types/transit.types.json',
       'types/cycle.types.json',
       'types/watercraft.types.json',
+      'types/rail.types.json',
     ],
     assets,
     reservations: [
@@ -349,6 +358,14 @@ await emit(
     bundles,
     'watercraft',
     'Waterline-aligned boats, cargo ships and ferries for ambient water routes.',
+  ),
+);
+await emit(
+  'types/rail.types.json',
+  aggregateTypes(
+    bundles,
+    'rail',
+    'North American locomotives, passenger cars and freight cars for track-guided consists.',
   ),
 );
 await emit('project.json', projectDocument(bundles));

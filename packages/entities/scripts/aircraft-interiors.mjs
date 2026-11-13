@@ -52,14 +52,27 @@ export function addAircraftCockpit(root, s, f) {
       : f.cabinWidth,
     eye = f.eye,
     py = eye[1] - 0.48,
-    pz = f.panelZ;
+    pz = f.panelZ,
+    // Transport kit noses close in around the deck: see deckFit in aircraft/transport-kit.mjs.
+    deck = f.deck;
   transportCoaming(cabin, s, f, padded);
   const text = (label, x, y, z, h = 0.026, role = 'panel') =>
     d.text(label, [x, y, z], h, pi, d.ivory, role);
   // Floor, inner sidewalls and footwell stop the outside skin appearing through controls.
-  const compactJet = s.slug === 'citation-cj4';
+  const span = (fore) => (deck ? fore + deck.aft : 0),
+    mid = (fore) => (deck ? eye[2] + (fore - deck.aft) / 2 : 0);
+  // The kit CJ4 deck is fitted by deckFit; this narrow footwell only serves a non-kit CJ4.
+  const compactJet = s.slug === 'citation-cj4' && !deck;
   const floorWidth = compactJet ? width * 0.54 : width + 0.12;
-  const floorDepth = compactJet ? 2 : f.fighter ? (s.tandem ? 3.4 : 2.1) : 2.8;
+  const floorDepth = deck
+    ? span(deck.fore)
+    : compactJet
+      ? 2
+      : f.fighter
+        ? s.tandem
+          ? 3.4
+          : 2.1
+        : 2.8;
   if (f.profile) {
     const sections = Array.from({ length: 42 }, (_, i) => {
       const z = eye[2] - 2.1 + i * 0.08;
@@ -78,7 +91,11 @@ export function addAircraftCockpit(root, s, f) {
       thickness: 0.055,
     });
   } else
-    d.box([floorWidth, 0.055, floorDepth], [0, f.floor, eye[2] - (compactJet ? 0.25 : 0.3)], panel);
+    d.box(
+      [floorWidth, 0.055, floorDepth],
+      [0, f.floor, deck ? mid(deck.fore) : eye[2] - (compactJet ? 0.25 : 0.3)],
+      panel,
+    );
   for (const side of [-1, 1]) {
     if (compactJet && !f.profile) {
       // A small circular fuselage needs a narrow footwell and sloping lower liners.
@@ -91,7 +108,11 @@ export function addAircraftCockpit(root, s, f) {
       );
       wall.rotation.z = -side * Math.atan2(spread, rise);
     } else if (!f.profile)
-      d.box([0.04, 0.65, 2.55], [side * (width / 2 + 0.03), f.floor + 0.34, eye[2] - 0.22], panel);
+      d.box(
+        [0.04, 0.65, deck ? span(deck.wallFore) : 2.55],
+        [side * (width / 2 + 0.03), f.floor + 0.34, deck ? mid(deck.wallFore) : eye[2] - 0.22],
+        panel,
+      );
     d.rod(
       [side * (width / 2 - 0.04), eye[1] - 0.52, eye[2] + 0.1],
       [side * (width / 2 - 0.04), eye[1] - 0.52, eye[2] - 0.5],
@@ -161,10 +182,49 @@ export function addAircraftCockpit(root, s, f) {
     const sy = station.y - 0.48,
       sz = station.z + 0.67;
     const panelWidth =
-      s.shape === 'robinson' ? 0.55 : s.slug === 'bell-206b' ? width * 0.82 : width;
+      deck?.panelWidth ??
+      (s.shape === 'robinson' ? 0.55 : s.slug === 'bell-206b' ? width * 0.82 : width);
     // All faces point toward the pilot (-Z); panel thickness is forward of the displays.
-    d.box([panelWidth, 0.43, 0.08], [0, sy, sz + 0.055], panel);
-    d.box([panelWidth + 0.035, 0.055, 0.24], [0, sy + 0.24, sz + 0.08], padded);
+    if (deck) {
+      const half = panelWidth / 2,
+        face = new T.Shape(
+          [
+            [-half, -0.215],
+            [half, -0.215],
+            [half, 0.125],
+            [deck.panelTop, 0.215],
+            [-deck.panelTop, 0.215],
+            [-half, 0.125],
+          ].map(([x, y]) => new T.Vector2(x, y)),
+        );
+      d.add(new T.ExtrudeGeometry(face, { depth: 0.08, bevelEnabled: false }), panel, [
+        0,
+        sy,
+        sz + 0.015,
+      ]);
+      // A thin padded hood running forward to the sill, narrowing with the nose, with a rolled lip
+      // over the panel and a slim mode control strip under the lip. No slab, no billboard.
+      const { near, far } = deck.hood,
+        lip = sz - 0.07,
+        y = sy + 0.262,
+        plan = new T.Shape([
+          new T.Vector2(-near, 0),
+          new T.Vector2(near, 0),
+          new T.Vector2(far, 0.2),
+          new T.Vector2(-far, 0.2),
+        ]);
+      // Falls away from the pilot, so the lip and not the far edge sets the view over the nose.
+      d.add(
+        new T.ExtrudeGeometry(plan, { depth: 0.022, bevelEnabled: false }).rotateX(pi / 2 + 0.24),
+        padded,
+        [0, y, lip],
+      );
+      d.rod([-near, y - 0.012, lip], [near, y - 0.012, lip], 0.017, padded);
+      d.box([panelWidth * 0.62, 0.08, 0.05], [0, sy + 0.195, sz], d.dark);
+    } else {
+      d.box([panelWidth, 0.43, 0.08], [0, sy, sz + 0.055], panel);
+      d.box([panelWidth + 0.035, 0.055, 0.24], [0, sy + 0.24, sz + 0.08], padded);
+    }
     d.box([panelWidth, 0.045, 0.22], [0, sy - 0.23, sz - 0.02], panel);
     const count = s.screens ?? (f.heli ? 0 : 2);
     if (count === 0) {
@@ -281,14 +341,14 @@ export function addAircraftCockpit(root, s, f) {
             i === 0 ? 0.04 : i === 1 ? 0.02 : 2.8,
           );
     } else {
-      const maxWidth = Math.min(width - 0.08, 2.3),
-        w = Math.min(
-          f.large && count === 4 ? 0.47 : 0.34,
-          (maxWidth - (count - 1) * 0.035) / count,
-        ),
+      // Kit decks keep their measured display sizes; the larger profiled-transport displays
+      // apply only off the kit.
+      const roomy = f.large && !deck,
+        maxWidth = Math.min((deck ? panelWidth : width) - 0.08, 2.3),
+        w = Math.min(roomy && count === 4 ? 0.47 : 0.34, (maxWidth - (count - 1) * 0.035) / count),
         h = Math.min(
-          f.large && (count === 4 || count === 5) ? 0.32 : 0.255,
-          w * (count === 5 ? 0.94 : 0.85),
+          roomy && (count === 4 || count === 5) ? 0.32 : 0.255,
+          w * (roomy && count === 5 ? 0.94 : 0.85),
         );
       if (count === 8) {
         for (let i = 0; i < 8; i++)
@@ -302,19 +362,28 @@ export function addAircraftCockpit(root, s, f) {
             `transport-${i}${station.suffix}`,
           );
       } else if (count === 6) {
+        const k = deck ? Math.min(1, (panelWidth - 0.04) / 1.96) : 1;
         for (const side of [-1, 1])
           for (let i = 0; i < 2; i++)
             screen(
-              side * (0.43 + i * 0.36),
+              side * (0.43 + i * 0.36) * k,
               sy + 0.025,
               sz,
-              0.32,
-              0.245,
+              0.32 * k,
+              0.245 * k,
               i === 1 ? 'attitude' : 'map',
               `${side}-${i}${station.suffix}`,
             );
         for (let i = 0; i < 2; i++)
-          screen(0, sy + 0.09 - i * 0.17, sz, 0.26, 0.145, 'bars', `center-${i}${station.suffix}`);
+          screen(
+            0,
+            sy + 0.09 - i * 0.17,
+            sz,
+            0.26 * k,
+            0.145 * k,
+            'bars',
+            `center-${i}${station.suffix}`,
+          );
       } else
         for (let i = 0; i < count; i++)
           screen(
@@ -339,11 +408,11 @@ export function addAircraftCockpit(root, s, f) {
               row ? 0.02 : 0.04,
             );
       // Standby round instruments remain distinct from the main screen layout.
-      const spareX = count === 2 ? 0 : width * 0.34;
+      const spareX = count === 2 ? 0 : (deck ? panelWidth : width) * 0.34;
       for (let i = 0; i < (count <= 3 ? 3 : 2); i++)
         gauge(
           spareX + (count <= 3 ? 0 : (i - 0.5) * 0.09),
-          sy - (count === 5 ? 0.175 : 0.13) - (count <= 3 ? i * 0.065 : 0),
+          sy - (roomy && count === 5 ? 0.175 : 0.13) - (count <= 3 ? i * 0.065 : 0),
           sz,
           0.027,
           `standby-${i}${station.suffix}`,
@@ -376,21 +445,21 @@ export function addAircraftCockpit(root, s, f) {
         for (let i = 0; i < 3; i++) tools.knob(x + (i - 1) * 0.055, sy + 0.23, sz - 0.101, 0.009);
         text('EFIS', x, sy + 0.28, sz - 0.098, 0.009);
       }
-    } else
+    } else {
+      const strip = (panelWidth * (deck ? 0.56 : 0.8)) / (f.fighter ? 7 : 12);
       for (let i = 0; i < (f.fighter ? 7 : 12); i++) {
-        const x =
-          (i - ((f.fighter ? 7 : 12) - 1) / 2) * ((panelWidth * 0.8) / (f.fighter ? 7 : 12));
+        const x = (i - ((f.fighter ? 7 : 12) - 1) / 2) * strip;
         tools.knob(x, sy + 0.19, sz - 0.03, 0.009);
         d.box([0.017, 0.007, 0.003], [x, sy + 0.165, sz - 0.039], i % 4 === 0 ? d.amber : d.dark);
       }
-    if (!f.profile)
       text(
         f.fighter ? 'FLIGHT' : f.heli ? 'ROTOR SYSTEMS' : 'FLIGHT GUIDANCE',
         0,
-        sy + 0.27,
-        sz - 0.05,
-        0.024,
+        deck ? sy + 0.213 : sy + 0.27,
+        deck ? sz - 0.027 : sz - 0.05,
+        deck ? 0.008 : 0.024,
       );
+    }
     // Lower switch banks and circuit-breaker strips are separate geometry, not photographic decals.
     if (!f.fighter && s.shape !== 'robinson')
       for (let i = 0; i < 12; i++) {
@@ -428,8 +497,8 @@ export function addAircraftCockpit(root, s, f) {
     }
     const seatXs = f.fighter ? [0] : [Math.abs(eye[0]), -Math.abs(eye[0])];
     for (const [seatIndex, x] of seatXs.entries()) {
-      const seatZ = station.z - 0.23,
-        seatY = station.y - 0.74;
+      const seatZ = station.z - (deck ? 0.18 : 0.23),
+        seatY = station.y - (deck ? 0.8 : 0.74);
       d.box([0.43, 0.13, 0.49], [x, seatY, seatZ], seat);
       const back = d.box([0.43, 0.57, 0.12], [x, seatY + 0.3, seatZ - 0.25], seat);
       back.rotation.x = 0.08;
@@ -464,7 +533,12 @@ export function addAircraftCockpit(root, s, f) {
         );
       const sideStick = s.control?.includes('side'),
         stick = f.fighter || f.heli || s.control === 'stick' || sideStick;
-      const controlX = sideStick ? Math.sign(x || 1) * (width / 2 - 0.17) : x,
+      // Side sticks sit on an outboard console. A kit deck is narrower than the profiled one, so
+      // its console fills the gap between the seat cushion and the sidewall instead.
+      const sideWidth = deck ? Math.min(0.3, width / 2 - 0.02 - (Math.abs(x) + 0.225)) : 0.3,
+        controlX = sideStick
+          ? Math.sign(x || 1) * (deck ? width / 2 - 0.02 - sideWidth / 2 : width / 2 - 0.17)
+          : x,
         controlZ = station.z + 0.3;
       const control = group(cabin, `control-${seatIndex}${station.suffix}`, [
         controlX,
@@ -476,8 +550,8 @@ export function addAircraftCockpit(root, s, f) {
         c.rod([0, sideStick ? -0.07 : -0.32, 0], [0, 0.03, 0], 0.018, c.metal);
         if (sideStick) {
           c.box([0.13, 0.055, 0.15], [0, -0.075, 0], padded);
-          d.box([0.3, 0.3, 0.85], [controlX, station.y - 0.81, station.z + 0.1], panel);
-          d.box([0.3, 0.035, 0.85], [controlX, station.y - 0.642, station.z + 0.1], padded);
+          d.box([sideWidth, 0.3, 0.85], [controlX, station.y - 0.81, station.z + 0.1], panel);
+          d.box([sideWidth, 0.035, 0.85], [controlX, station.y - 0.642, station.z + 0.1], padded);
         }
         c.box([0.045, 0.12, 0.045], [0, 0.07, 0], padded);
         c.box([0.014, 0.012, 0.012], [0.017, 0.13, -0.02], c.red);
@@ -549,7 +623,8 @@ export function addAircraftCockpit(root, s, f) {
     }
   if (f.large) {
     if (s.slug === 'a220-300') {
-      const pedestal = group(cabin, 'center-pedestal-display', [0, eye[1] - 0.76, eye[2] + 0.52]);
+      // Rests on the pedestal top, wherever the floor puts the pedestal.
+      const pedestal = group(cabin, 'center-pedestal-display', [0, consoleY + 0.16, eye[2] + 0.52]);
       pedestal.rotation.x = 0.58;
       const p = detailKit(pedestal, 'pedestal-display');
       panelTools(p).display(0, 0, 0, 0.35, 0.26, 'bars');
@@ -637,17 +712,20 @@ export function addAircraftCockpit(root, s, f) {
     text(s.category === 'vtol' ? 'NOZZLE' : 'NACELLE', consoleX, py - 0.29, pz - 0.04, 0.025);
   }
   if (f.large || f.heli) {
-    const oz = eye[2] - 0.1,
+    // Kit transport decks (deckFit) set their own overhead; profiled noses fit it to the roof.
+    const oz = deck ? eye[2] + deck.overheadZ : eye[2] - 0.1,
       ow = Math.min(0.72, width * 0.6),
-      oy = f.profile
-        ? Math.min(
-            eye[1] + 0.48,
-            ...[-0.29, 0, 0.29].map((dz) => {
-              const [, w, b, t] = transportSection(s, f.profile, oz + dz);
-              return (b + t) / 2 + ((t - b) / 2) * Math.sqrt(1 - (ow / 2 / w) ** 2) - 0.08;
-            }),
-          )
-        : eye[1] + 0.48;
+      oy = deck
+        ? eye[1] + deck.overheadY
+        : f.profile
+          ? Math.min(
+              eye[1] + 0.48,
+              ...[-0.29, 0, 0.29].map((dz) => {
+                const [, w, b, t] = transportSection(s, f.profile, oz + dz);
+                return (b + t) / 2 + ((t - b) / 2) * Math.sqrt(1 - (ow / 2 / w) ** 2) - 0.08;
+              }),
+            )
+          : eye[1] + 0.48;
     d.box([ow, 0.055, 0.58], [0, oy, oz], panel);
     for (let r = 0; r < 5; r++)
       for (let c = 0; c < 8; c++) {

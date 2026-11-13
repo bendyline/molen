@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.al_jalali_fort",
+  "kind": "static-structure",
+  "title": "Al Jalali Fort, Muscat",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.al_jalali_fort",
+        "output": "assets/places/tk/tk1/al_jalali_fort/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:73df761ec92c7dfeef0962e6ec758ba917b490fb64c07551b0a2f66c05c0c82f"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-al-jalali-fort",
+        "path": "models/generate-al-jalali-fort.mjs"
+      },
+      {
+        "id": "al-jalali-fort-model",
+        "path": "models/al-jalali-fort-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/fort-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-al-jalali-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-21717-14170.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

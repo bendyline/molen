@@ -1,0 +1,438 @@
+{
+  "id": "pakistan_monument",
+  "title": "Pakistan Monument",
+  "wikidataId": "Q3695640",
+  "referenceCoordinate": {
+    "longitude": 73.06831687688828,
+    "latitude": 33.693407922304445
+  },
+  "module": "content/worldgen/source/places/tt/ttg/pakistan_monument/models/monument-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-pakistan-monument.mjs",
+  "builder": "buildMonument",
+  "surfaces": {
+    "sandstone": {
+      "slot": "wall",
+      "graph": "stone_sandstone"
+    },
+    "limestone": {
+      "slot": "trim",
+      "graph": "stone_limestone"
+    },
+    "granite": {
+      "slot": "foundation",
+      "graph": "stone_granite"
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "turf": {
+      "slot": "foundation",
+      "localRef": "palette:#7b8963",
+      "roughness": 1
+    }
+  },
+  "exportLabel": "Molen original Pakistan Monument master",
+  "expectedDraftMasterHash": "sha256:7efe99134f1ce1ef4074a7e5c8e063465dbde53f4340c17d4512d866c6787185",
+  "visualBrief": "Seven independent curved petal shells above a faceted sandstone podium. The open interior has a tapered star and crescent, carved relief panels and broad divided stairs. Approach pillars, planted terraces, a barrel-roofed museum and a circular overlook complete the hilltop complex.",
+  "heightPolicy": "The 574 m model datum follows standard terrain. The podium rises 4.92 m above this datum. Both stair landings, pillar bases, museum footing and the overlook adapt to the retained native terrain samples.",
+  "nativeAxes": "From the named monument point toward the mapped Unity, Faith, Discipline Pillars and public approach.",
+  "limitations": [
+    "The four large petal footprints and the museum outline come from PMTiles. Three smaller petals and the star use photo-based dimensions. The visible relief compositions are simplified geometric interpretations.",
+    "The raised podium, stairs, museum thresholds and paths follow the standard terrain height field. Museum interiors and exact inscriptions remain simplified."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Pakistan_Monument_Aerial_View.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/02/Pakistan_Monument_Aerial_View.jpg",
+      "hash": "sha256:e11c165ce3a9a1592c188f8e3517426a50823e8581cfc7a860a090b18c8f42d1",
+      "observed": "aerial"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Pakistan_Monument_at_sunset.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/df/Pakistan_Monument_at_sunset.jpg",
+      "hash": "sha256:ea7a696cab53959aeaed37068b16ddb50b7a26fd7e44ea5cabe7655be325f91e",
+      "observed": "plaza"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:PAKISTAN_MONUMENT.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3c/PAKISTAN_MONUMENT.jpg",
+      "hash": "sha256:764f42da246b061191f9a96df8ab91e8574ddfb239fd5bd5f9879ac316de6725",
+      "observed": "petals"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:The_Pakistan_Monument%2C_Islamabad.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/The_Pakistan_Monument%2C_Islamabad.jpg",
+      "hash": "sha256:b223a31ddf3bc8c6de03e7de3cc2bfb0220d1051e1b988c798ddf5097e10b45a",
+      "observed": "approach"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Depictions_of_Quaid_e_Azam%2C_Fatimah_Jinnah%2C_Badshahi_Masjid%2C_Minar_e_Pakistan_and_Tomb_of_Quaid_on_one_of_the_petal_walls_of_the_Pakistan_Monument.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/56/Depictions_of_Quaid_e_Azam%2C_Fatimah_Jinnah%2C_Badshahi_Masjid%2C_Minar_e_Pakistan_and_Tomb_of_Quaid_on_one_of_the_petal_walls_of_the_Pakistan_Monument.jpg",
+      "hash": "sha256:bc5f7f9dadb66f26bdc1ace27bcd1e452199d81fdc5e7a713ea2abc3c86db75c",
+      "observed": "Inner stone panel with paired busts and a mosque/minaret panorama, surrounded by floral borders."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "shakarparian-and-the-complete-complex",
+      "position": [
+        184,
+        114,
+        190
+      ],
+      "lookAt": [
+        38,
+        0,
+        24
+      ],
+      "fov": 61
+    },
+    {
+      "name": "monument-from-the-main-stair",
+      "position": [
+        46,
+        6.25,
+        29
+      ],
+      "lookAt": [
+        2,
+        10.1,
+        1.8
+      ],
+      "fov": 62
+    },
+    {
+      "name": "plaza-star-and-interior-petals",
+      "position": [
+        24,
+        7.55,
+        10.7
+      ],
+      "lookAt": [
+        0,
+        10.4,
+        -1.6
+      ],
+      "fov": 64
+    },
+    {
+      "name": "relief-and-shell-ribs",
+      "position": [
+        6,
+        7,
+        -4.6
+      ],
+      "lookAt": [
+        14.4,
+        10.5,
+        -9.7
+      ],
+      "fov": 57
+    },
+    {
+      "name": "outer-podium-and-overlook",
+      "position": [
+        -68,
+        20,
+        -48
+      ],
+      "lookAt": [
+        -11,
+        4.2,
+        -1.2
+      ],
+      "fov": 58
+    },
+    {
+      "name": "museum-forecourt",
+      "position": [
+        68,
+        6,
+        57
+      ],
+      "lookAt": [
+        90.4,
+        4.5,
+        70.4
+      ],
+      "fov": 61
+    },
+    {
+      "name": "unity-faith-discipline-pillars",
+      "position": [
+        95,
+        8,
+        -1
+      ],
+      "lookAt": [
+        69,
+        5.7,
+        1.9
+      ],
+      "fov": 58
+    },
+    {
+      "name": "openings-between-the-petals",
+      "position": [
+        40,
+        23,
+        21
+      ],
+      "lookAt": [
+        -2.7,
+        12.4,
+        0.3
+      ],
+      "fov": 54
+    }
+  ],
+  "materialMethod": "Six shared graphs provide sandstone, limestone, granite, painted metal, standing-seam roofing and window glazing. The curved relief is original geometry using shared stone.",
+  "sourceFacts": {
+    "modeledPetals": 7,
+    "mappedPetals": [
+      35184844136300,
+      35184844136301,
+      35184844136303,
+      52776568125189
+    ],
+    "stairs": 18,
+    "groundDatumMeters": 574,
+    "museumFootprint": 35184844136305,
+    "approachPillars": [
+      35184844136283,
+      35184844136284,
+      35184844136285,
+      35184844136286
+    ]
+  },
+  "mediumFiContext": {
+    "groundY": -8,
+    "scale": 1,
+    "focus": {
+      "center": [
+        45,
+        4,
+        28
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/tt/ttg/pakistan_monument/models/monument-model.mjs",
+    "export": "buildMonumentSkyline",
+    "surfaces": {
+      "sandstone": {
+        "slot": "wall",
+        "graph": "stone_sandstone"
+      },
+      "limestone": {
+        "slot": "trim",
+        "graph": "stone_limestone"
+      },
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite"
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "turf": {
+        "slot": "foundation",
+        "localRef": "palette:#7b8963",
+        "roughness": 1
+      }
+    },
+    "errorMeters": 2.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMonumentDistrict",
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone"
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone"
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "turf": {
+            "slot": "foundation",
+            "localRef": "palette:#7b8963",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.85
+      },
+      "street": {
+        "export": "buildMonumentStreet",
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone"
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone"
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "turf": {
+            "slot": "foundation",
+            "localRef": "palette:#7b8963",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.31
+      },
+      "closeup": {
+        "export": "buildMonumentCloseup",
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone"
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone"
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "turf": {
+            "slot": "foundation",
+            "localRef": "palette:#7b8963",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.11
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "pakistan_monument-skyline",
+      "position": [
+        184,
+        114,
+        190
+      ],
+      "lookAt": [
+        38,
+        0,
+        24
+      ],
+      "fov": 61,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "pakistan_monument-district",
+      "position": [
+        184,
+        114,
+        190
+      ],
+      "lookAt": [
+        38,
+        0,
+        24
+      ],
+      "fov": 61,
+      "reviewLod": "district"
+    },
+    {
+      "name": "pakistan_monument-street",
+      "position": [
+        184,
+        114,
+        190
+      ],
+      "lookAt": [
+        38,
+        0,
+        24
+      ],
+      "fov": 61,
+      "reviewLod": "street"
+    },
+    {
+      "name": "pakistan_monument-closeup",
+      "position": [
+        184,
+        114,
+        190
+      ],
+      "lookAt": [
+        38,
+        0,
+        24
+      ],
+      "fov": 61,
+      "reviewLod": "closeup"
+    }
+  ]
+}

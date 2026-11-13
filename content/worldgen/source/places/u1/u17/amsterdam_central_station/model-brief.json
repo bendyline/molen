@@ -1,0 +1,924 @@
+{
+  "id": "amsterdam_central_station",
+  "title": "Amsterdam Centraal",
+  "wikidataId": "Q50719",
+  "referenceCoordinate": {
+    "longitude": 4.900700827,
+    "latitude": 52.379000011
+  },
+  "module": "packages/worldgen/scripts/amsterdam-centraal-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-amsterdam-centraal.mjs",
+  "builder": "buildAmsterdamCentraalLevel",
+  "surfaces": {
+    "brick": {
+      "slot": "wall",
+      "graph": "brick_flemish",
+      "roughness": 0.94
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.93
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.93
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.9
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.85
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.73,
+      "metallic": 0.2
+    },
+    "frame": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.73,
+      "metallic": 0.2
+    },
+    "dial": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.73,
+      "metallic": 0.2
+    },
+    "black": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.73,
+      "metallic": 0.2
+    },
+    "glazing": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.36,
+      "metallic": 0.12
+    },
+    "skylight": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.36,
+      "metallic": 0.12
+    },
+    "clear": {
+      "slot": "window",
+      "localRef": "palette:#eff7ff",
+      "roughness": 0.29,
+      "metallic": 0.08,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.68
+      ],
+      "doubleSided": true
+    },
+    "letter": {
+      "slot": "window",
+      "localRef": "palette:#eff7ff",
+      "roughness": 0.29,
+      "metallic": 0.08,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.68
+      ],
+      "doubleSided": true
+    },
+    "platform": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "asphalt": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "yellow": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    }
+  },
+  "exportLabel": "Molen original Amsterdam Centraal master",
+  "expectedDraftMasterHash": "sha256:8675f2d5822e28095ccd98e1847e435b53fed2ca00be37b1e797f25261f21623",
+  "visualBrief": "Amsterdam Centraal pairs the red-brick Cuypers frontage, wind dial, clock, gables and mansards with three arched rail sheds. Glazed end screens leave the tracks open below. The modern IJ-side bus canopy spans its raised deck, with the red AMSTERDAM lettering formed in the glass.",
+  "heightPolicy": "The six-meter sea-level datum follows standard viewer terrain. The masonry bases reach the sampled station island and six platform strips follow local grades with boarding edges clear of mapped rail lines.",
+  "nativeAxes": "+X follows the platforms east-southeast. Positive Z faces the Stationsplein and Damrak city side. Negative Z faces the IJ and the bus canopy.",
+  "limitations": [
+    "The PMTiles footprints set the position of the historic frontage and four long roofs. The six-meter datum follows standard viewer terrain. Facade ornaments and most elevations are exterior photo estimates.",
+    "The exterior includes the visible platform canopies, glazed end screens, rail platforms and the raised IJ bus deck. Platform fittings and roof lettering are simplified at viewer scale. Active rail, streets, ferry water and surrounding buildings stay in the underlying map."
+  ],
+  "references": [
+    {
+      "url": "https://mijnstation.nl/en/amsterdam/about-this-station/architecture/",
+      "observed": "Cuypers frontage and modern IJ hall"
+    },
+    {
+      "url": "https://www.prorail.nl/nieuws/fotos-onder-de-kap-van-amsterdam-centraal",
+      "observed": "Three train shed roofs, including the 306 m south roof and fifty ribs"
+    },
+    {
+      "url": "https://www.spoorbeeld.nl/databank/windwijzers-en-klokken",
+      "observed": "Clock and wind indicator dials"
+    },
+    {
+      "url": "https://www.benthemcrouwel.com/projects/bus-station-amsterdam-cs",
+      "observed": "Curved glass bus canopy, raised platform, and 22-meter AMSTERDAM lettering."
+    },
+    {
+      "url": "https://www.spoorbeeld.nl/sites/default/files/2021-07/AmsterdamCentraal_gevel-overzicht_0.JPG",
+      "hash": "sha256:15abc6b2a26bb44bb401157d07d50afe5300e1733a781f51a8cd8600e6d57e72",
+      "observed": "cuypers front"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Amsterdam_Central_Station1.jpg",
+      "hash": "sha256:a5f5958658fdaecfc19a96a1042e84a456edacd469bb36b902bdf4a823beecf0",
+      "observed": "station front wide"
+    },
+    {
+      "url": "https://cms.benthemcrouwel.com/dynamic/images/427_Kap_busstation_Amsterdam_CS_427_BenthemCrouwel_c_Gemeente_Amsterdam_medium.jpg",
+      "hash": "sha256:712801d8b6c94ec07f7b13799d537fb204444ee7a07ae38c9954ef0b34dfe367",
+      "observed": "bus canopy architect"
+    },
+    {
+      "url": "https://cms.benthemcrouwel.com/dynamic/images/445_Masterplan_Stationseiland_N61_medium.jpg",
+      "hash": "sha256:3eda2a56d903f458236ecb6f2312ca6dad781415db63ae3537605d07e0607265",
+      "observed": "station island aerial"
+    },
+    {
+      "url": "https://www.nationalestaalprijs.nl/sites/default/files/styles/global_header_image/public/imported_files/1469/asdcs_kappen.jpg?itok=re7atFmt",
+      "hash": "sha256:f849335de1b8bf06e728a9963b20266f698919bb2550b9827899b96a0ca7b9ec",
+      "observed": "train sheds steel award"
+    }
+  ],
+  "cameras": [
+    {
+      "name": "station-island-and-city-front",
+      "position": [
+        218,
+        137,
+        218
+      ],
+      "lookAt": [
+        -4,
+        10,
+        3
+      ],
+      "fov": 63,
+      "lightDirection": [
+        0.58,
+        1,
+        0.76
+      ]
+    },
+    {
+      "name": "cuypers-clock-wind-dial-and-gable",
+      "position": [
+        -2,
+        12.1,
+        113.5
+      ],
+      "lookAt": [
+        0,
+        16.1,
+        87
+      ],
+      "fov": 74,
+      "lightDirection": [
+        -0.31,
+        1,
+        0.82
+      ]
+    },
+    {
+      "name": "east-wing-and-south-shed",
+      "position": [
+        153,
+        54,
+        132
+      ],
+      "lookAt": [
+        78,
+        12,
+        54
+      ],
+      "fov": 66,
+      "lightDirection": [
+        0.7,
+        1,
+        0.6
+      ]
+    },
+    {
+      "name": "ij-side-amsterdam-canopy",
+      "position": [
+        -30,
+        76,
+        -213
+      ],
+      "lookAt": [
+        -29,
+        10,
+        -51
+      ],
+      "fov": 64,
+      "lightDirection": [
+        0.29,
+        1,
+        -0.8
+      ]
+    },
+    {
+      "name": "west-train-shed-screens-and-open-tracks",
+      "position": [
+        -187,
+        15,
+        28
+      ],
+      "lookAt": [
+        -130,
+        10,
+        29
+      ],
+      "fov": 72,
+      "lightDirection": [
+        -0.83,
+        1,
+        0.35
+      ]
+    },
+    {
+      "name": "historic-south-shed-platform",
+      "position": [
+        -81,
+        4,
+        40
+      ],
+      "lookAt": [
+        5,
+        12,
+        35
+      ],
+      "fov": 77,
+      "lightDirection": [
+        -0.6,
+        1,
+        0.55
+      ]
+    },
+    {
+      "name": "bus-deck-and-glazed-ribs",
+      "position": [
+        -57,
+        5.6,
+        -81
+      ],
+      "lookAt": [
+        57,
+        12,
+        -67
+      ],
+      "fov": 72,
+      "lightDirection": [
+        0.5,
+        1,
+        -0.62
+      ]
+    }
+  ],
+  "materialMethod": "Seven shared graphs cover Flemish brick, limestone, slate, standing-seam roofs, painted metal, opaque glazing and paving. One local alpha material serves transparent canopy glass, tinted lettering and glazed screens. All lettering and window detail is geometry.",
+  "sourceFacts": {
+    "station": "way/57856845",
+    "terrainDatumMeters": 6,
+    "footprintPartIds": [
+      35184429945677,
+      35184641213332,
+      35184796611949,
+      35184823621977,
+      35184823621979,
+      35184823621981,
+      35184878281659,
+      35184961588010,
+      35185124375728,
+      35185124375729,
+      35185124375730,
+      35185124417248,
+      35185124417249,
+      35185124417250,
+      35185124417251,
+      35185124417252,
+      35185124417254,
+      35185124417255,
+      35185124417256,
+      35185124417257,
+      35185124417258,
+      35185124742394,
+      35185124742397,
+      35185124742398,
+      35185124742399,
+      35185124742400,
+      35185124742402,
+      35185124742403,
+      35185124742404,
+      35185124742405,
+      35185124742406,
+      35185124742407,
+      35185124827440,
+      35185124827441,
+      35185124827442,
+      35185124827443,
+      35185611856533,
+      35185611856534,
+      35185611856535,
+      35185611856538,
+      35185611856539,
+      35185611856540,
+      35185611856541,
+      35185611856542,
+      35185611856543,
+      35185611856544,
+      35185611856545,
+      35185611856546,
+      35185611856547,
+      35185611856548,
+      35185611856549,
+      35185611856550,
+      35185611856551,
+      35185611856552,
+      35185611856553,
+      35185611856554,
+      35185611856555,
+      35185611856556,
+      35185611856557,
+      35185611856558,
+      35185612244262,
+      35185612244263,
+      35185612244264,
+      35185612244265,
+      35185612244266,
+      35185612244267,
+      35185612402973,
+      35185612402974
+    ],
+    "southShedRibs": 50,
+    "southShedLengthMeters": 306,
+    "roofLettering": "AMSTERDAM"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -4,
+        12,
+        3
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/amsterdam-centraal-model.mjs",
+    "export": "buildAmsterdamCentraalSkyline",
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.94
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.93
+      },
+      "gold": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.93
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.85
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.2
+      },
+      "frame": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.2
+      },
+      "dial": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.2
+      },
+      "black": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.2
+      },
+      "glazing": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.36,
+        "metallic": 0.12
+      },
+      "skylight": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.36,
+        "metallic": 0.12
+      },
+      "clear": {
+        "slot": "window",
+        "localRef": "palette:#eff7ff",
+        "roughness": 0.29,
+        "metallic": 0.08,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.68
+        ],
+        "doubleSided": true
+      },
+      "letter": {
+        "slot": "window",
+        "localRef": "palette:#eff7ff",
+        "roughness": 0.29,
+        "metallic": 0.08,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.68
+        ],
+        "doubleSided": true
+      },
+      "platform": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "asphalt": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "yellow": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      }
+    },
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAmsterdamCentraalDistrict",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.2
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.2
+          },
+          "dial": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.2
+          },
+          "black": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.2
+          },
+          "glazing": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.36,
+            "metallic": 0.12
+          },
+          "skylight": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.36,
+            "metallic": 0.12
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#eff7ff",
+            "roughness": 0.29,
+            "metallic": 0.08,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.68
+            ],
+            "doubleSided": true
+          },
+          "letter": {
+            "slot": "window",
+            "localRef": "palette:#eff7ff",
+            "roughness": 0.29,
+            "metallic": 0.08,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.68
+            ],
+            "doubleSided": true
+          },
+          "platform": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "asphalt": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "yellow": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          }
+        },
+        "errorMeters": 0.72
+      },
+      "street": {
+        "export": "buildAmsterdamCentraalStreet",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.2
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.2
+          },
+          "dial": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.2
+          },
+          "black": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.2
+          },
+          "glazing": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.36,
+            "metallic": 0.12
+          },
+          "skylight": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.36,
+            "metallic": 0.12
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#eff7ff",
+            "roughness": 0.29,
+            "metallic": 0.08,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.68
+            ],
+            "doubleSided": true
+          },
+          "letter": {
+            "slot": "window",
+            "localRef": "palette:#eff7ff",
+            "roughness": 0.29,
+            "metallic": 0.08,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.68
+            ],
+            "doubleSided": true
+          },
+          "platform": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "asphalt": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "yellow": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "closeup": {
+        "export": "buildAmsterdamCentraalCloseup",
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.2
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.2
+          },
+          "dial": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.2
+          },
+          "black": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.2
+          },
+          "glazing": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.36,
+            "metallic": 0.12
+          },
+          "skylight": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.36,
+            "metallic": 0.12
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#eff7ff",
+            "roughness": 0.29,
+            "metallic": 0.08,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.68
+            ],
+            "doubleSided": true
+          },
+          "letter": {
+            "slot": "window",
+            "localRef": "palette:#eff7ff",
+            "roughness": 0.29,
+            "metallic": 0.08,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.68
+            ],
+            "doubleSided": true
+          },
+          "platform": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "asphalt": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "yellow": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "amsterdam_central_station-skyline",
+      "position": [
+        218,
+        137,
+        218
+      ],
+      "lookAt": [
+        -4,
+        10,
+        3
+      ],
+      "fov": 63,
+      "lightDirection": [
+        0.58,
+        1,
+        0.76
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "amsterdam_central_station-district",
+      "position": [
+        218,
+        137,
+        218
+      ],
+      "lookAt": [
+        -4,
+        10,
+        3
+      ],
+      "fov": 63,
+      "lightDirection": [
+        0.58,
+        1,
+        0.76
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "amsterdam_central_station-street",
+      "position": [
+        218,
+        137,
+        218
+      ],
+      "lookAt": [
+        -4,
+        10,
+        3
+      ],
+      "fov": 63,
+      "lightDirection": [
+        0.58,
+        1,
+        0.76
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "amsterdam_central_station-closeup",
+      "position": [
+        218,
+        137,
+        218
+      ],
+      "lookAt": [
+        -4,
+        10,
+        3
+      ],
+      "fov": 63,
+      "lightDirection": [
+        0.58,
+        1,
+        0.76
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

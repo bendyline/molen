@@ -24,9 +24,10 @@ export const r44Frame = () => ({
   radius: 0.64,
   cy: 1.1,
   ry: 0.7,
-  cabinZ: 1.05,
+  cabinZ: 0.88,
   cabinWidth: 1.2,
-  eye: [-0.3, 1.43, 1.05],
+  // Over the cushion rather than ahead of its front edge, 0.77 m above it and 0.27 m under the roof.
+  eye: [-0.3, 1.5, 0.88],
   panelZ: 1.67,
   floor: 0.47,
   mainRotorPosition: [0, 3.19, 0],
@@ -188,7 +189,8 @@ export function buildR44(s) {
       shell.strip(d, shell.region(door.map(([z, y]) => [z, y, side])), 0.008, trim, false);
     for (const z of [0.32, 1.17]) {
       d.rod(q(z, 0.9, 0.006), q(z + 0.075, 0.9, 0.006), 0.008, metal);
-      for (const y of [1.43, 0.87]) d.box([0.022, 0.05, 0.035], q(z + 0.3, y), metal);
+      // The upper hinge sits on the door frame, not on bare windscreen above it.
+      for (const y of [1.0, 0.87]) d.box([0.022, 0.05, 0.035], q(z + 0.3, y), metal);
     }
     for (let i = 0; i < 7; i++)
       d.rod(q(-1.42, 0.94 + i * 0.045, 0.004), q(-1.2, 1.0 + i * 0.045, 0.004), 0.012, trim);
@@ -487,8 +489,31 @@ function cockpit(root, m, shell) {
     );
   }
   for (const x of [-0.14, -0.19]) tools.knob(x, 1.015, z - 0.025, 0.012);
-  const pedestal = group(cabin, 'R44-pedestal', [0, 0.8, 1.38]);
+  // The compact center pedestal runs from under the pod down to the floor, as in the cockpit photo.
+  const pedestal = group(cabin, 'R44-pedestal', [0, 0.708, 1.464]);
   pedestal.rotation.x = 0.64;
+  for (const x of [-0.14, 0.14])
+    sheet(
+      d,
+      [
+        [x, 0.965, 1.655],
+        [x, 0.48, 1.655],
+        [x, 0.48, 1.27],
+      ],
+      face,
+      [Math.sign(x), 0, 0],
+    );
+  sheet(
+    d,
+    [
+      [-0.14, 0.965, 1.655],
+      [0.14, 0.965, 1.655],
+      [0.14, 0.48, 1.655],
+      [-0.14, 0.48, 1.655],
+    ],
+    face,
+    [0, 0, 1],
+  );
   const pd = detailKit(pedestal, 'R44-pedestal'),
     pt = panelTools(pd);
   pd.box([0.28, 0.64, 0.19], [0, 0, 0.06], face);

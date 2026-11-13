@@ -1,0 +1,619 @@
+{
+  "planId": "hamburg_city_hall",
+  "id": "hamburg_city_hall",
+  "assetId": "molen.worldgen.structure.hamburg_city_hall",
+  "title": "Hamburg City Hall",
+  "wikidataId": "Q3987",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 9.992599552380952,
+    "latitude": 53.55052437619048
+  },
+  "size": [
+    112.05521392822266,
+    113.20000004768372,
+    62.06655788421631
+  ],
+  "actualBounds": {
+    "min": [
+      -54.891605377197266,
+      -1.2000000476837158,
+      -8.324999809265137
+    ],
+    "max": [
+      57.16360855102539,
+      112,
+      53.74155807495117
+    ]
+  },
+  "visualBrief": "Hamburg’s Rathausmarkt frontage with its sandstone window bays, green copper mansards, central gilded clocks and open Hygieia courtyard.",
+  "nativeAxes": {
+    "x": "southeast along the front",
+    "y": "up",
+    "z": "southwest toward the courtyard"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2010-06-04",
+    "validFrom": "2009-01-01",
+    "validUntil": "2011-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hamburg_Rathaus_1.JPG",
+    "https://commons.wikimedia.org/wiki/File:Hamburg_Rathaus_2.JPG",
+    "https://commons.wikimedia.org/wiki/File:Rathausturm_Hamburg.jpg"
+  ],
+  "stories": [
+    {
+      "id": "hamburg-city-hall-wp",
+      "url": "https://qualla.com/hamburg-city-hall/"
+    }
+  ],
+  "referenceInputHash": "aab01f4a5f502fa5fc36d9cc89fe683c3fda2cade7ff26d23b93fb9694bbecae",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u1x/hamburg_city_hall/models/hamburg-city-hall-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u1/u1x/hamburg_city_hall/models/hamburg-city-hall-model.mjs",
+    "level": "skyline",
+    "export": "rathausSkyline",
+    "errorMeters": 0.94,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.81,
+        "metallic": 0.19
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.18
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.51,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "rathausDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.81,
+            "metallic": 0.19
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.18
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.51,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "rathausStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.81,
+            "metallic": 0.19
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.18
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.51,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "rathausCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.81,
+            "metallic": 0.19
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.18
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.51,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_sandstone",
+    "stone_sandstone_raw",
+    "metal_copper",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.05,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      9.992599552380952,
+      53.55052437619048
+    ],
+    "heading": -0.8542321990206727,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        9.99269817651203,
+        53.55057541194238
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate Rathausmarkt paving at the central entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          54.90249902574744,
+          42.29956901295259
+        ],
+        [
+          49.173606106709,
+          42.3176932179551
+        ],
+        [
+          44.56947684489371,
+          42.315642555690545
+        ],
+        [
+          44.56841805020896,
+          41.8761886955177
+        ],
+        [
+          43.823212855337985,
+          41.867365781023985
+        ],
+        [
+          40.023928677806076,
+          41.87346101103539
+        ],
+        [
+          23.99318573427869,
+          42.32948841025194
+        ],
+        [
+          20.29175562420469,
+          42.34187954470478
+        ],
+        [
+          20.307090843353077,
+          33.40919113054
+        ],
+        [
+          -20.585506111246275,
+          33.42652479983683
+        ],
+        [
+          -20.56535026114334,
+          37.759232050274534
+        ],
+        [
+          -19.24922229471882,
+          37.75663612123643
+        ],
+        [
+          -19.239297306919116,
+          38.67742667322118
+        ],
+        [
+          -21.232889763552482,
+          38.695119799776144
+        ],
+        [
+          -21.22977081742994,
+          40.267779703466836
+        ],
+        [
+          -19.236471778289697,
+          40.26737227389165
+        ],
+        [
+          -19.22455030568199,
+          41.32146127106386
+        ],
+        [
+          -20.412710842526437,
+          41.3127288965433
+        ],
+        [
+          -20.42315277140888,
+          42.68062325757782
+        ],
+        [
+          -24.524980219254275,
+          42.69509073001356
+        ],
+        [
+          -40.36800096873291,
+          42.63051615562745
+        ],
+        [
+          -43.70724791900387,
+          42.6338580253496
+        ],
+        [
+          -43.7038992214987,
+          43.189324634338206
+        ],
+        [
+          -45.083717485479774,
+          43.180299017871796
+        ],
+        [
+          -48.46117861379624,
+          43.176667960934786
+        ],
+        [
+          -54.72160645600523,
+          43.1440411489944
+        ],
+        [
+          -54.53393616943735,
+          -3.290868975806248
+        ],
+        [
+          -45.06134855405808,
+          -3.302112820968741
+        ],
+        [
+          -44.93530771530534,
+          -1.1926260507437654
+        ],
+        [
+          -7.647989871310578,
+          -1.3418568237444997
+        ],
+        [
+          -7.736064968358164,
+          -6.189795137216439
+        ],
+        [
+          -5.879127591982983,
+          -6.186185701178188
+        ],
+        [
+          -5.887349512544964,
+          -6.956392110907098
+        ],
+        [
+          -0.7337231901008994,
+          -6.958110342600751
+        ],
+        [
+          5.412355534426123,
+          -6.963688008833873
+        ],
+        [
+          5.446346991550149,
+          -6.2061186779361055
+        ],
+        [
+          7.260432945633678,
+          -6.1872093434473125
+        ],
+        [
+          7.367937268201569,
+          -1.4802194252559482
+        ],
+        [
+          43.888860186404145,
+          -1.3936105362877456
+        ],
+        [
+          43.90000382532914,
+          -3.3046729391081087
+        ],
+        [
+          54.42844072345123,
+          -3.290868975806255
+        ],
+        [
+          54.48947642326926,
+          5.910063616330984
+        ],
+        [
+          56.92050672574702,
+          5.96640986637145
+        ],
+        [
+          56.99360853359854,
+          33.5260160360488
+        ],
+        [
+          54.87433855020552,
+          33.67105021497818
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "Named native OpenStreetMap city hall perimeter, ODbL 1.0."
+    },
+    "featureIds": [
+      "way/142944431",
+      "way/255659996",
+      "way/255659998",
+      "way/255885434",
+      "way/255885435",
+      "way/284404483",
+      "way/284404484",
+      "way/284404485",
+      "way/284404486",
+      "way/284404487",
+      "way/284404488",
+      "way/284404490",
+      "way/284404492",
+      "way/284404493",
+      "way/284404494",
+      "way/284404495",
+      "way/284404496",
+      "way/284404497",
+      "way/284404498",
+      "way/284404499",
+      "way/284404500",
+      "way/613990240"
+    ],
+    "source": "https://www.openstreetmap.org/way/142944431",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:eeb285667bd773466324896f60283ab73d2cccbccade3443359e74c2b5288de6",
+    "notes": "The mapped 109-metre corner-to-corner line and corner projections agree with the city’s 111-metre architectural frontage. Rear roof profiles follow mapped parts. Small sculptural features are simplified."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Hamburg City Hall is represented in its 2009–2010 exterior, including the Rathausmarkt façade, clock tower, roofs and Hygieia courtyard fountain.",
+    "The official 111 m width and 112 m tower height and mapped roof parts constrain the main proportions. Individual statues, unseen windows and small roof ornaments are simplified.",
+    "The original Terrarium samples are preserved. Plaza paving, façade thresholds and courtyard grade are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Mapped parts © OpenStreetMap contributors, ODbL 1.0. Three exact Qualla exterior photos dedicated to CC0 by their creators.",
+  "qaLodCameras": [
+    {
+      "name": "whole-hamburg-rathaus-skyline",
+      "position": [
+        140,
+        114,
+        -188
+      ],
+      "lookAt": [
+        0,
+        47,
+        13
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-hamburg-rathaus-district",
+      "position": [
+        140,
+        114,
+        -188
+      ],
+      "lookAt": [
+        0,
+        47,
+        13
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-hamburg-rathaus-street",
+      "position": [
+        140,
+        114,
+        -188
+      ],
+      "lookAt": [
+        0,
+        47,
+        13
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-hamburg-rathaus-closeup",
+      "position": [
+        140,
+        114,
+        -188
+      ],
+      "lookAt": [
+        0,
+        47,
+        13
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "rathausmarkt-and-clock-tower",
+      "position": [
+        61,
+        47,
+        -143
+      ],
+      "lookAt": [
+        0,
+        45,
+        3
+      ]
+    },
+    {
+      "name": "sandstone-portal-and-copper-dormers",
+      "position": [
+        27,
+        16,
+        -50
+      ],
+      "lookAt": [
+        0,
+        20,
+        -6.3
+      ]
+    },
+    {
+      "name": "hygieia-courtyard-and-rear-roofs",
+      "position": [
+        67,
+        38,
+        111
+      ],
+      "lookAt": [
+        1.6,
+        13.6,
+        33
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9639,
+    "vertices": 28917,
+    "materials": 5,
+    "bytes": 1303124,
+    "sha256": "sha256:f8d6f45992b3b78e0c60e425954832cab2864b5c232fa88edbc6f130a57eceb6"
+  }
+}

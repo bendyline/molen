@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.chateau_de_cheverny",
+  "kind": "static-structure",
+  "title": "Château de Cheverny",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.chateau_de_cheverny",
+        "output": "assets/places/u0/u03/chateau_de_cheverny/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b34d1b560e785caa1bb841e6099660c13738f99e715f88b8ac60bb05cc5b05ac"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-cheverny-chateau",
+        "path": "models/generate-cheverny-chateau.mjs"
+      },
+      {
+        "id": "cheverny-chateau-model",
+        "path": "models/cheverny-chateau-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/chateau-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-cheverny-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-16516-11458.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

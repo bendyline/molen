@@ -1,0 +1,346 @@
+{
+  "id": "italia_viaduct",
+  "title": "Italia Viaduct",
+  "wikidataId": "Q15228912",
+  "referenceCoordinate": {
+    "longitude": 15.960339233279228,
+    "latitude": 39.93860205021918
+  },
+  "module": "content/worldgen/source/places/sr/sr5/italia_viaduct/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-italia-viaduct.mjs",
+  "builder": "buildItaliaLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_boardformed",
+      "roughness": 0.94
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.96
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.84,
+      "metallic": 0.1
+    }
+  },
+  "exportLabel": "Molen original Italia Viaduct master",
+  "expectedDraftMasterHash": "sha256:a46fea7a61e57ad2cc88bf330ceb4d95dbdfb97263992c3d23857d8518c1eb00",
+  "visualBrief": "The two current A2 carriageways follow the curved red-brown steel girder across the Lao gorge. Tall pale piers carry the three main spans. At the north bank the decks spread toward the twin tunnel mouths, while the southern decks curve into the mapped approaches.",
+  "heightPolicy": "The 314 m sea-level datum is the rounded sampled terrain at the northern main pier. Bank grades set the deck and the pier foundations extend into the terrain. The host terrain and two tunnel mouths supply the surrounding site.",
+  "nativeAxes": "Positive X follows the A2 from the north tunnel mouths toward the southeast approach. Positive Z points northeast across the gorge.",
+  "limitations": [
+    "Two current A2 carriageway traces fix the deck alignment, the separated north landings and the curved south approach. Adjacent tunnel mouths and downstream bridges remain host features.",
+    "The steel girder, support rhythm and pier profiles follow exterior photos. Pier stations, road grades and the exact clearance are visualization estimates on the standard terrain samples.",
+    "The rendered gorge relief comes from standard elevation tiles. The sampled visual clearance varies with the terrain resolution and host data."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Viadotto_Italia_(2).png",
+      "observed": "2017 roadway configuration."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Viadotto_Italia,_autostrada_A3.jpg",
+      "observed": "Historic gorge elevation and original piers; distinguish the older approaches."
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Viadotto_Italia_(2).png",
+      "hash": "sha256:a0e70cbf200b56f35d328bf61b7545cad5623ac15d35e1d14465c27534e059e7",
+      "observed": "Current red-brown girder, revised approaches and pale tapered piers."
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Viadotto_Italia%2C_autostrada_A3.jpg",
+      "hash": "sha256:3a1fe30219919ed65a7abd7ab3a64b013029d44e77647a7d70d9b2411970beed",
+      "observed": "Original tall pier silhouettes and Lao gorge profile. The older approach differs from the current alignment."
+    },
+    {
+      "url": "https://www.lestradedellinformazione.it/sites/default/files/assets/41344132convegnoSAIE.pdf",
+      "observed": "Historical design dimensions for the 125 and 175 m main steel spans."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-lao-gorge-crossing",
+      "position": [
+        10,
+        396,
+        685
+      ],
+      "lookAt": [
+        3,
+        122,
+        56
+      ],
+      "fov": 67
+    },
+    {
+      "name": "red-steel-girder-and-gorge",
+      "position": [
+        -125,
+        226,
+        397
+      ],
+      "lookAt": [
+        -49,
+        105,
+        60
+      ],
+      "fov": 56
+    },
+    {
+      "name": "paired-carriageways",
+      "position": [
+        -353,
+        210,
+        50
+      ],
+      "lookAt": [
+        -108,
+        177,
+        62
+      ],
+      "fov": 57
+    },
+    {
+      "name": "gorge-piers-and-footings",
+      "position": [
+        -188,
+        110,
+        -125
+      ],
+      "lookAt": [
+        -46,
+        99,
+        61
+      ],
+      "fov": 60
+    },
+    {
+      "name": "north-bridge-and-tunnel-joins",
+      "position": [
+        -590,
+        243,
+        121
+      ],
+      "lookAt": [
+        -490,
+        173,
+        12
+      ],
+      "fov": 59
+    },
+    {
+      "name": "southern-curved-approach",
+      "position": [
+        592,
+        213,
+        -133
+      ],
+      "lookAt": [
+        466,
+        148,
+        23
+      ],
+      "fov": 60
+    },
+    {
+      "name": "under-the-main-steel-span",
+      "position": [
+        -20,
+        95,
+        226
+      ],
+      "lookAt": [
+        -37,
+        144,
+        59
+      ],
+      "fov": 65
+    }
+  ],
+  "materialMethod": "Shared board-formed concrete, plain concrete and painted metal supply the pier, roadway and girder finishes. Authored geometry supplies the bearings, deck edges, guardrails and expansion joints.",
+  "sourceFacts": {
+    "representativeMappedWay": 33746138,
+    "mappedAxialLengthMeters": 1111.86368,
+    "mainSpanMeters": [
+      125,
+      175,
+      125
+    ],
+    "modeledSupports": 25,
+    "northTunnelMouths": 2,
+    "terrainDatumMeters": 314
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        122,
+        56
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/sr5/italia_viaduct/models/bridge-model.mjs",
+    "export": "buildItaliaSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.94
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.1
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildItaliaDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.1
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildItaliaStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.1
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildItaliaCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.1
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "italia_viaduct-skyline",
+      "position": [
+        10,
+        396,
+        685
+      ],
+      "lookAt": [
+        3,
+        122,
+        56
+      ],
+      "fov": 67,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "italia_viaduct-district",
+      "position": [
+        10,
+        396,
+        685
+      ],
+      "lookAt": [
+        3,
+        122,
+        56
+      ],
+      "fov": 67,
+      "reviewLod": "district"
+    },
+    {
+      "name": "italia_viaduct-street",
+      "position": [
+        10,
+        396,
+        685
+      ],
+      "lookAt": [
+        3,
+        122,
+        56
+      ],
+      "fov": 67,
+      "reviewLod": "street"
+    },
+    {
+      "name": "italia_viaduct-closeup",
+      "position": [
+        10,
+        396,
+        685
+      ],
+      "lookAt": [
+        3,
+        122,
+        56
+      ],
+      "fov": 67,
+      "reviewLod": "closeup"
+    }
+  ]
+}

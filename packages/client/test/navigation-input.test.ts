@@ -26,6 +26,8 @@ class FakeSurface {
     this.listeners.get(type)?.delete(listener);
   }
   setPointerCapture(id: number): void {
+    // Like the DOM, which refuses capture from the moment a lock is requested.
+    if (this.lockRequests > 0) throw new Error('InvalidStateError');
     this.captured.add(id);
   }
   releasePointerCapture(id: number): void {
@@ -138,9 +140,15 @@ describe('navigation pointer gestures', () => {
     gestures.setPointerLock(true);
     surface.emit('pointerdown', pointer(1, 0, 0));
     expect(surface.lockRequests).toBe(1);
+    // Captured first, so drag-look still tracks the pointer if the lock is declined.
+    expect(surface.captured.has(1)).toBe(true);
     surface.ownerDocument.pointerLockElement = surface;
     surface.emit('pointermove', { ...pointer(1, 0, 0), movementX: 4, movementY: -2 });
     expect(gestures.consume().look).toEqual([4, -2]);
+    surface.emit('pointerup', pointer(1, 0, 0));
+    // The next click lands with the pointer locked, where the refused capture must not escape.
+    surface.emit('pointerdown', pointer(2, 0, 0));
+    expect(surface.captured.has(2)).toBe(false);
     gestures.dispose();
     expect(surface.count()).toBe(0);
   });
@@ -279,6 +287,7 @@ describe('navigation input source', () => {
     surface.emit('keyup', { code: 'KeyG' });
     surface.emit('keydown', { code: 'KeyI' });
     surface.emit('keydown', { code: 'KeyJ' });
+    surface.emit('keydown', { code: 'KeyM' });
     const frame = source.read(0);
     // S pulls the nose up (pitch = -forward), D banks right, Z is left rudder.
     expect(frame.move.forward).toBe(-1);
@@ -290,6 +299,7 @@ describe('navigation input source', () => {
       gear: 1,
       flaps: 0,
       vector: 1,
+      cyclic: 1,
       recover: 0,
     });
     // Switches are presses, not holds; held axes persist.
@@ -297,6 +307,7 @@ describe('navigation input source', () => {
     expect(next.pilot?.gear).toBe(0);
     expect(next.pilot?.engine).toBe(0);
     expect(next.pilot?.vector).toBe(0);
+    expect(next.pilot?.cyclic).toBe(0);
     expect(next.pilot?.throttle).toBe(1);
     source.dispose();
   });
@@ -340,6 +351,23 @@ describe('navigation input source', () => {
     expect(source.read(0).pilot?.power).toBe(1);
     pad.connected = false;
     expect(source.read(0).pilot?.power).toBeUndefined();
+    source.dispose();
+  });
+
+  it('sets pilot power with = and - and leaves Ctrl chords to the browser', () => {
+    const surface = new FakeSurface();
+    const source = new NavigationInputSource({ element: surface, profile: 'pilot' });
+    surface.emit('keydown', { code: 'Equal' });
+    expect(source.read(0).pilot?.throttle).toBe(1);
+    surface.emit('keyup', { code: 'Equal' });
+    surface.emit('keydown', { code: 'Minus' });
+    expect(source.read(0).pilot?.throttle).toBe(-1);
+    surface.emit('keyup', { code: 'Minus' });
+    surface.emit('keydown', { code: 'ControlLeft', ctrlKey: true });
+    expect(source.read(0).pilot?.throttle).toBe(0);
+    // Ctrl+W closes the tab, so it must not also read as nose-down.
+    surface.emit('keydown', { code: 'KeyW', ctrlKey: true });
+    expect(source.read(0).move.forward).toBe(0);
     source.dispose();
   });
 });

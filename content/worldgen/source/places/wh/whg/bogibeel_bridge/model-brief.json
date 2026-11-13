@@ -1,0 +1,378 @@
+{
+  "id": "bogibeel_bridge",
+  "title": "Bogibeel Bridge",
+  "wikidataId": "Q14812635",
+  "referenceCoordinate": {
+    "longitude": 94.760498006,
+    "latitude": 27.408183344
+  },
+  "module": "content/worldgen/source/places/wh/whg/bogibeel_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-bogibeel-bridge.mjs",
+  "builder": "buildBogibeelLevel",
+  "surfaces": {
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.08
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.91
+    },
+    "road": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.96
+    },
+    "ballast": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.95
+    },
+    "tie": {
+      "slot": "foundation",
+      "graph": "wood_plain",
+      "roughness": 0.95
+    }
+  },
+  "exportLabel": "Molen original Bogibeel Bridge master",
+  "expectedDraftMasterHash": "sha256:b0ad721a78aaa19ca8ee088037a8a8a2c52cf9314686ac5860009d3bd6728764",
+  "visualBrief": "A long double-deck bridge crosses the Brahmaputra on paired concrete shafts and wide pier bases. Repeated steel trusses enclose both lower tracks. A dark three-lane highway with striped barriers and single-arm lamps runs above them.",
+  "heightPolicy": "The 99 m sea-level datum uses the standard viewer terrain and PMTiles water. The upper road joins the clipped NH15 approaches. Independent lower rail embankments follow the two mapped track alignments, and the two lower service crossings remain open.",
+  "nativeAxes": "Positive X goes from the northwest landing to the southeast landing. Positive Z faces northeast.",
+  "limitations": [
+    "PMTiles controls the crossing length, highway alignment, two rail traces and the lower riverbank routes. Span spacing, truss sections and the bank transition grades are photo-based exterior estimates.",
+    "The river surface and exposed pier height vary with the viewer terrain and water data. The railway is represented as visible geometry."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bogibeel_Bridge_view.jpg",
+      "hash": "sha256:1fd2c19457072bf8fb2e8bd3ff402ab836689f7cd0ee96bda6b9a877da97065a",
+      "observed": "Repeated steel trusses, pier rhythm and upper highway deck from the river."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:The_Bogibeel_Bridge_(middle_portion).jpg",
+      "hash": "sha256:3d2b89632be19025a3c81213ec538a235285d22fe9a6e734a9ba979d97ab7663",
+      "observed": "Visible truss and upper deck details in the center of the crossing."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-crossing",
+      "position": [
+        225,
+        830,
+        3340
+      ],
+      "lookAt": [
+        -20,
+        9,
+        0
+      ],
+      "fov": 59
+    },
+    {
+      "name": "trusses-and-paired-piers",
+      "position": [
+        -1460,
+        16,
+        155
+      ],
+      "lookAt": [
+        -1650,
+        7,
+        0
+      ],
+      "fov": 53
+    },
+    {
+      "name": "rail-deck-and-cross-frames",
+      "position": [
+        -935,
+        7,
+        30
+      ],
+      "lookAt": [
+        -890,
+        10,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "highway-and-barriers",
+      "position": [
+        586,
+        21,
+        3
+      ],
+      "lookAt": [
+        715,
+        18,
+        -0.5
+      ],
+      "fov": 56
+    },
+    {
+      "name": "north-bank-transition",
+      "position": [
+        -2537,
+        34,
+        108
+      ],
+      "lookAt": [
+        -2431,
+        7,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "south-bank-transition",
+      "position": [
+        2515,
+        32,
+        104
+      ],
+      "lookAt": [
+        2420,
+        8,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "opposite-river-elevation",
+      "position": [
+        1511,
+        26,
+        -192
+      ],
+      "lookAt": [
+        1680,
+        9,
+        0
+      ],
+      "fov": 54
+    }
+  ],
+  "materialMethod": "Shared concrete, painted metal, gravel and wood color the trusses, paired piers, highway, ballast and ties. The barrier pattern, structural voids and cross frames use authored geometry.",
+  "sourceFacts": {
+    "mappedBridgeWay": 656821388,
+    "mappedLengthMeters": 4949.241,
+    "spanCount": 41,
+    "roadLanes": 3,
+    "railTracks": 2
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        8,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wh/whg/bogibeel_bridge/models/bridge-model.mjs",
+    "export": "buildBogibeelSkyline",
+    "surfaces": {
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.08
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.91
+      },
+      "road": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96
+      },
+      "ballast": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.95
+      },
+      "tie": {
+        "slot": "foundation",
+        "graph": "wood_plain",
+        "roughness": 0.95
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBogibeelDistrict",
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.08
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.95
+          },
+          "tie": {
+            "slot": "foundation",
+            "graph": "wood_plain",
+            "roughness": 0.95
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildBogibeelStreet",
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.08
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.95
+          },
+          "tie": {
+            "slot": "foundation",
+            "graph": "wood_plain",
+            "roughness": 0.95
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildBogibeelCloseup",
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.08
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.91
+          },
+          "road": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.95
+          },
+          "tie": {
+            "slot": "foundation",
+            "graph": "wood_plain",
+            "roughness": 0.95
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "bogibeel_bridge-skyline",
+      "position": [
+        225,
+        830,
+        3340
+      ],
+      "lookAt": [
+        -20,
+        9,
+        0
+      ],
+      "fov": 59,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "bogibeel_bridge-district",
+      "position": [
+        225,
+        830,
+        3340
+      ],
+      "lookAt": [
+        -20,
+        9,
+        0
+      ],
+      "fov": 59,
+      "reviewLod": "district"
+    },
+    {
+      "name": "bogibeel_bridge-street",
+      "position": [
+        225,
+        830,
+        3340
+      ],
+      "lookAt": [
+        -20,
+        9,
+        0
+      ],
+      "fov": 59,
+      "reviewLod": "street"
+    },
+    {
+      "name": "bogibeel_bridge-closeup",
+      "position": [
+        225,
+        830,
+        3340
+      ],
+      "lookAt": [
+        -20,
+        9,
+        0
+      ],
+      "fov": 59,
+      "reviewLod": "closeup"
+    }
+  ]
+}

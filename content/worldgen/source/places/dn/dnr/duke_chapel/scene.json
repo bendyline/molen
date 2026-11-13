@@ -1,0 +1,81 @@
+{
+  "format": "molen/scene@3",
+  "name": "Duke Chapel model review",
+  "seed": "duke_chapel",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.duke_chapel",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -34,
+              38,
+              32
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
+            "castShadow": true
+          },
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      -103,
+      63,
+      117
+    ],
+    "lookAt": [
+      0,
+      25.1,
+      3.6
+    ],
+    "fov": 43
+  },
+  "terrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

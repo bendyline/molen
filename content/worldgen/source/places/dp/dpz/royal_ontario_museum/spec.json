@@ -1,0 +1,1001 @@
+{
+  "planId": "royal_ontario_museum",
+  "id": "royal_ontario_museum",
+  "assetId": "molen.worldgen.structure.royal_ontario_museum",
+  "title": "Royal Ontario Museum",
+  "wikidataId": "Q649250",
+  "category": "museum",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -79.39471086379311,
+    "latitude": 43.667713472413794
+  },
+  "size": [
+    115.2690658569336,
+    40.15481746196747,
+    191.90757751464844
+  ],
+  "actualBounds": {
+    "min": [
+      -59.86831283569336,
+      -1.1247919797897339,
+      -107.95486450195312
+    ],
+    "max": [
+      55.400753021240234,
+      39.030025482177734,
+      83.95271301269531
+    ]
+  },
+  "visualBrief": "Toronto’s Royal Ontario Museum in 2015 with the sloping aluminum and glass Crystal, the two limestone wings, Queen’s Park entrance and the former planetarium.",
+  "nativeAxes": {
+    "x": "west along Bloor Street",
+    "y": "up",
+    "z": "north toward Bloor Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2015-05-27",
+    "validFrom": "2015-01-01",
+    "validUntil": "2016-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:McLaughlin_Planetarium_-_Royal_Ontario_Museum_-_DSC09895.JPG",
+    "https://commons.wikimedia.org/wiki/File:ROMCrystal3.jpg"
+  ],
+  "stories": [
+    {
+      "id": "royal-ontario-museum-wp",
+      "url": "https://qualla.com/royal-ontario-museum/"
+    }
+  ],
+  "referenceInputHash": "1e2f66c096b12988ff70ff67909c8234dbe2d7bbef53fd9fae9ca531d662ab41",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dp/dpz/royal_ontario_museum/models/royal-ontario-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dp/dpz/royal_ontario_museum/models/royal-ontario-museum-model.mjs",
+    "level": "skyline",
+    "export": "museumSkyline",
+    "errorMeters": 1.25,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "aluminum": {
+        "slot": "wall",
+        "graph": "metal_standing_seam",
+        "roughness": 0.73,
+        "metallic": 0.24
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.82,
+        "metallic": 0.14
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.39,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "museumDistrict",
+        "errorMeters": 0.52,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "aluminum": {
+            "slot": "wall",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0.24
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.82,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.39,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "museumStreet",
+        "errorMeters": 0.21,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "aluminum": {
+            "slot": "wall",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0.24
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.82,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.39,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "museumCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "aluminum": {
+            "slot": "wall",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0.24
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.82,
+            "metallic": 0.14
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.39,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "stone_limestone",
+    "concrete_plain",
+    "metal_standing_seam",
+    "metal_copper"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.05,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -79.39471086379311,
+      43.667713472413794
+    ],
+    "heading": -2.863103252659599,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -79.39490346102554,
+        43.66839679382084
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate street grade at the Bloor Street Crystal entrance approach."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          50.51235083358026,
+          45.52109308620957
+        ],
+        [
+          37.93682126067431,
+          45.59573901413505
+        ],
+        [
+          47.822887741627724,
+          66.81984762563808
+        ],
+        [
+          36.413229234206746,
+          68.17723729182116
+        ],
+        [
+          24.029889591990084,
+          66.40803720758841
+        ],
+        [
+          18.437959520600867,
+          65.60807924842402
+        ],
+        [
+          14.689360477800712,
+          65.06887094524079
+        ],
+        [
+          11.17355320420435,
+          67.6991343065107
+        ],
+        [
+          -0.11167081790210176,
+          76.11996623358296
+        ],
+        [
+          -2.9073693050717306,
+          70.66625351317896
+        ],
+        [
+          -9.460017427169097,
+          76.7120957517457
+        ],
+        [
+          -17.300654122151354,
+          83.95271091249973
+        ],
+        [
+          -34.878101697845565,
+          76.56505734605992
+        ],
+        [
+          -33.15227662225642,
+          68.03921932127065
+        ],
+        [
+          -41.57844859634692,
+          68.18875676648996
+        ],
+        [
+          -46.90764213558553,
+          68.28596041992738
+        ],
+        [
+          -46.923390422390966,
+          66.73000170093623
+        ],
+        [
+          -47.74917000798006,
+          8.60374682457848
+        ],
+        [
+          -47.76434179177604,
+          7.719478660554193
+        ],
+        [
+          -47.77373256512253,
+          7.1957823194410455
+        ],
+        [
+          -51.8777095750395,
+          7.284380384568431
+        ],
+        [
+          -54.312658387715416,
+          7.306018809485469
+        ],
+        [
+          -55.48836196661902,
+          7.31720308739556
+        ],
+        [
+          -59.63842534612724,
+          7.50840445592787
+        ],
+        [
+          -59.86831360300699,
+          -11.869478580569812
+        ],
+        [
+          -55.68330560212165,
+          -11.772815888160533
+        ],
+        [
+          -54.77065101797494,
+          -11.801320861424113
+        ],
+        [
+          -52.022068112438106,
+          -11.953267738472023
+        ],
+        [
+          -47.97390766135886,
+          -12.080980907368913
+        ],
+        [
+          -47.965642940737624,
+          -12.402802692879906
+        ],
+        [
+          -49.60175939460068,
+          -72.87952813436436
+        ],
+        [
+          -44.19064590031302,
+          -72.99962139134014
+        ],
+        [
+          -35.509350237721996,
+          -73.19199428842728
+        ],
+        [
+          -34.0088438626971,
+          -73.22609140147208
+        ],
+        [
+          -29.078814135800553,
+          -73.33322151623585
+        ],
+        [
+          -25.411089853874536,
+          -73.41919442914778
+        ],
+        [
+          -22.47651281664192,
+          -73.46007180282477
+        ],
+        [
+          -12.799020914818048,
+          -73.68021954303283
+        ],
+        [
+          22.322971117165228,
+          -74.69517450027575
+        ],
+        [
+          22.49704783036364,
+          -68.56693698981904
+        ],
+        [
+          28.01223550151548,
+          -68.55307114064605
+        ],
+        [
+          27.95557291512432,
+          -74.24250662020668
+        ],
+        [
+          55.073077370866926,
+          -74.82526391341878
+        ],
+        [
+          55.076660650785335,
+          -58.522373603974685
+        ],
+        [
+          49.28456143652844,
+          -58.53436766298577
+        ],
+        [
+          49.49281806999811,
+          -39.637368746437915
+        ],
+        [
+          52.05710939825623,
+          -38.38317644481981
+        ],
+        [
+          52.00349652441844,
+          -34.29988290784445
+        ],
+        [
+          49.53316135072816,
+          -32.74848418810916
+        ],
+        [
+          49.889094822247074,
+          -13.137735858245172
+        ],
+        [
+          55.40075358861739,
+          -11.793405579495543
+        ],
+        [
+          52.203084618782995,
+          -5.911378163859949
+        ],
+        [
+          52.08771794578125,
+          -1.7878510957672358
+        ],
+        [
+          49.69299911982052,
+          -0.29587839342519295
+        ],
+        [
+          50.05987517293214,
+          25.222793767516933
+        ],
+        [
+          52.60617159352298,
+          26.657089448100752
+        ],
+        [
+          52.55255871968521,
+          30.740382985076113
+        ],
+        [
+          50.366877211533534,
+          32.29212353864069
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Named museum envelope and archived planetarium footprint from OpenStreetMap.",
+      "outlines": [
+        [
+          [
+            50.51235083358026,
+            45.52109308620957
+          ],
+          [
+            37.93682126067431,
+            45.59573901413505
+          ],
+          [
+            47.822887741627724,
+            66.81984762563808
+          ],
+          [
+            36.413229234206746,
+            68.17723729182116
+          ],
+          [
+            24.029889591990084,
+            66.40803720758841
+          ],
+          [
+            18.437959520600867,
+            65.60807924842402
+          ],
+          [
+            14.689360477800712,
+            65.06887094524079
+          ],
+          [
+            11.17355320420435,
+            67.6991343065107
+          ],
+          [
+            -0.11167081790210176,
+            76.11996623358296
+          ],
+          [
+            -2.9073693050717306,
+            70.66625351317896
+          ],
+          [
+            -9.460017427169097,
+            76.7120957517457
+          ],
+          [
+            -17.300654122151354,
+            83.95271091249973
+          ],
+          [
+            -34.878101697845565,
+            76.56505734605992
+          ],
+          [
+            -33.15227662225642,
+            68.03921932127065
+          ],
+          [
+            -41.57844859634692,
+            68.18875676648996
+          ],
+          [
+            -46.90764213558553,
+            68.28596041992738
+          ],
+          [
+            -46.923390422390966,
+            66.73000170093623
+          ],
+          [
+            -47.74917000798006,
+            8.60374682457848
+          ],
+          [
+            -47.76434179177604,
+            7.719478660554193
+          ],
+          [
+            -47.77373256512253,
+            7.1957823194410455
+          ],
+          [
+            -51.8777095750395,
+            7.284380384568431
+          ],
+          [
+            -54.312658387715416,
+            7.306018809485469
+          ],
+          [
+            -55.48836196661902,
+            7.31720308739556
+          ],
+          [
+            -59.63842534612724,
+            7.50840445592787
+          ],
+          [
+            -59.86831360300699,
+            -11.869478580569812
+          ],
+          [
+            -55.68330560212165,
+            -11.772815888160533
+          ],
+          [
+            -54.77065101797494,
+            -11.801320861424113
+          ],
+          [
+            -52.022068112438106,
+            -11.953267738472023
+          ],
+          [
+            -47.97390766135886,
+            -12.080980907368913
+          ],
+          [
+            -47.965642940737624,
+            -12.402802692879906
+          ],
+          [
+            -49.60175939460068,
+            -72.87952813436436
+          ],
+          [
+            -44.19064590031302,
+            -72.99962139134014
+          ],
+          [
+            -35.509350237721996,
+            -73.19199428842728
+          ],
+          [
+            -34.0088438626971,
+            -73.22609140147208
+          ],
+          [
+            -29.078814135800553,
+            -73.33322151623585
+          ],
+          [
+            -25.411089853874536,
+            -73.41919442914778
+          ],
+          [
+            -22.47651281664192,
+            -73.46007180282477
+          ],
+          [
+            -12.799020914818048,
+            -73.68021954303283
+          ],
+          [
+            22.322971117165228,
+            -74.69517450027575
+          ],
+          [
+            22.49704783036364,
+            -68.56693698981904
+          ],
+          [
+            28.01223550151548,
+            -68.55307114064605
+          ],
+          [
+            27.95557291512432,
+            -74.24250662020668
+          ],
+          [
+            55.073077370866926,
+            -74.82526391341878
+          ],
+          [
+            55.076660650785335,
+            -58.522373603974685
+          ],
+          [
+            49.28456143652844,
+            -58.53436766298577
+          ],
+          [
+            49.49281806999811,
+            -39.637368746437915
+          ],
+          [
+            52.05710939825623,
+            -38.38317644481981
+          ],
+          [
+            52.00349652441844,
+            -34.29988290784445
+          ],
+          [
+            49.53316135072816,
+            -32.74848418810916
+          ],
+          [
+            49.889094822247074,
+            -13.137735858245172
+          ],
+          [
+            55.40075358861739,
+            -11.793405579495543
+          ],
+          [
+            52.203084618782995,
+            -5.911378163859949
+          ],
+          [
+            52.08771794578125,
+            -1.7878510957672358
+          ],
+          [
+            49.69299911982052,
+            -0.29587839342519295
+          ],
+          [
+            50.05987517293214,
+            25.222793767516933
+          ],
+          [
+            52.60617159352298,
+            26.657089448100752
+          ],
+          [
+            52.55255871968521,
+            30.740382985076113
+          ],
+          [
+            50.366877211533534,
+            32.29212353864069
+          ]
+        ],
+        [
+          [
+            -5.721346949127341,
+            -79.54121255165803
+          ],
+          [
+            -12.812657342816198,
+            -79.46155527115347
+          ],
+          [
+            -25.430113973800808,
+            -78.94735395027837
+          ],
+          [
+            -33.49983583375382,
+            -79.57583071228967
+          ],
+          [
+            -34.65861163730232,
+            -92.80507239929285
+          ],
+          [
+            -33.67687638668161,
+            -107.19373871637129
+          ],
+          [
+            -5.360991533350234,
+            -107.95486698686258
+          ],
+          [
+            -4.8795464143397425,
+            -94.64141465730088
+          ]
+        ]
+      ]
+    },
+    "featureIds": [
+      "way/4942687",
+      "way/992716630",
+      "way/992716631",
+      "way/992716629",
+      "way/992716625",
+      "way/992716627",
+      "way/992716628",
+      "way/30327147",
+      "way/992716632",
+      "way/992716633",
+      "way/992716634",
+      "way/992716635",
+      "way/992716636",
+      "way/992716637",
+      "way/992716638",
+      "way/992716639",
+      "way/992716640",
+      "way/992753871",
+      "way/992716642",
+      "way/992716643",
+      "way/992716644",
+      "way/992716645",
+      "way/992716646",
+      "way/992716647",
+      "way/992716648",
+      "way/992716649",
+      "way/992716650",
+      "way/992716651",
+      "way/992716652",
+      "way/992716653",
+      "way/992716654",
+      "way/992716655",
+      "way/992716656",
+      "way/1290816551",
+      "node/214312074",
+      "way/12000625"
+    ],
+    "source": "https://www.openstreetmap.org/way/4942687",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:acd8f73b21136b70d823b84ceff654f269ad6c4e40cb14eaae9b1ebe4a77e501",
+    "notes": "Mapped modern roof heights and directions constrain a photographic reconstruction of the five interlocking volumes. The whole-outline height is an OSM parent-container value. Use individual component heights. The 2011 planetarium exterior predates the 2015 Crystal reference and is used for the earlier configuration retained in 2015. The former McLaughlin Planetarium is matched to named archived way 12000625 from the November 2024 snapshot. Its dome profile is controlled by the 2011 exterior and period planetarium documentation."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The model depicts the 2015 museum complex, including the former planetarium. It predates later plaza changes and demolition of the planetarium.",
+    "The mapped outlines, heights and roof bearings control the masses. Some cantilever angles, glazed facet seams, fenestration and unphotographed elevations are estimates.",
+    "The original terrain remains unchanged. The building and pavement contacts use approximate local elevations."
+  ],
+  "sourceLicense": "Original geometry under the repository license, OpenStreetMap ODbL 1.0 and two exact first-party CC0 Qualla photographs.",
+  "qaLodCameras": [
+    {
+      "name": "whole-royal-ontario-museum-skyline",
+      "position": [
+        135,
+        110,
+        177
+      ],
+      "lookAt": [
+        0,
+        12.5,
+        -11.3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-royal-ontario-museum-district",
+      "position": [
+        135,
+        110,
+        177
+      ],
+      "lookAt": [
+        0,
+        12.5,
+        -11.3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-royal-ontario-museum-street",
+      "position": [
+        135,
+        110,
+        177
+      ],
+      "lookAt": [
+        0,
+        12.5,
+        -11.3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-royal-ontario-museum-closeup",
+      "position": [
+        135,
+        110,
+        177
+      ],
+      "lookAt": [
+        0,
+        12.5,
+        -11.3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "bloor-crystal-cantilevers-and-glazing",
+      "position": [
+        -13,
+        8.5,
+        145
+      ],
+      "lookAt": [
+        4.1,
+        15.3,
+        60.2
+      ]
+    },
+    {
+      "name": "queens-park-stone-entrance-and-tower",
+      "position": [
+        -127,
+        22,
+        10
+      ],
+      "lookAt": [
+        -43.7,
+        12.1,
+        -8.7
+      ]
+    },
+    {
+      "name": "mclaughlin-planetarium-and-south-wing",
+      "position": [
+        -100,
+        11,
+        -150
+      ],
+      "lookAt": [
+        -29,
+        12.5,
+        -79.5
+      ]
+    },
+    {
+      "name": "whole-museum-heritage-wings-and-crystal",
+      "position": [
+        -160,
+        113,
+        155
+      ],
+      "lookAt": [
+        -4,
+        12.4,
+        -9.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 28639,
+    "vertices": 85917,
+    "materials": 6,
+    "bytes": 3762720,
+    "sha256": "sha256:8ff08fd0347c5a7ef3b3c323b079db2b3263736975e5ff4e0c5355a857536391"
+  }
+}

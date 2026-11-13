@@ -1,0 +1,114 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.rail.covered_hopper": {
+      "doc": "Three-bay 5,161 cu ft covered hopper for grain and plastics: exterior-post sides, sloped end sheets over end platforms, three hopper bays with outlet gates, continuous roof trough hatch. Unpowered car for track-guided consists; vehicle.color repaints the carbody.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.covered_hopper",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.covered_hopper",
+          "color": "#a4a8a6",
+          "spec": {
+            "label": "3-bay 5,161 cu ft covered hopper",
+            "bodyStyle": "freight-car",
+            "genericLabel": "Covered hopper",
+            "width": 3.2,
+            "length": 16.9,
+            "height": 4.6,
+            "centerOfMass": [
+              0,
+              2.1,
+              0
+            ],
+            "wheelbase": 13.3,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.457,
+            "mass": 110000,
+            "engineForce": 1,
+            "maxSpeed": 31.3,
+            "reverseSpeed": 30,
+            "brakeDeceleration": 0.45,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [
+              0,
+              2.5,
+              0
+            ],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00001,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 13.3,
+              "couplerLength": 18,
+              "power": 0,
+              "gauge": 1.435,
+              "profile": "hopper"
+            }
+          },
+          "visual": {
+            "wheelNodes": [
+              "axle-1",
+              "axle-2",
+              "axle-3",
+              "axle-4"
+            ],
+            "frontWheelNodes": [
+              "axle-1"
+            ],
+            "paintMaterial": "rail-livery-body"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.rail.covered_hopper"
+      ]
+    }
+  }
+}

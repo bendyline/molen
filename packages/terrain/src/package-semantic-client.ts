@@ -19,6 +19,11 @@ import {
 } from './package-client';
 import type { TerrainPackageDescriptor } from './package-types';
 import type { TerrainPyramidHeightSource, TerrainPyramidTileLayer } from './pyramid-stream';
+import {
+  createTerrainRoadGrading,
+  type TerrainRoadGrading,
+  withTerrainRoadGrading,
+} from './road-grading';
 import { createBuildingDetailTerrainSemanticSource } from './semantic-building-detail';
 import {
   createDefaultTerrainSemanticRenderer,
@@ -57,6 +62,18 @@ export interface CreateTerrainPackageSemanticLayersOptions
   /** Render inferred underground corridors in the finest feature levels. Share the stream's elevation source. */
   tunnels?: { heights: TerrainPyramidHeightSource; minLevel?: number };
   /**
+   * Grade roads with their neighboring tiles: bridges clear what they cross and meet at tile
+   * edges, and (with the returned `roadGrading.transformHeightfield` on the stream) the ground
+   * is leveled under every road. `heights` is the stream's elevation source; `earthworks: false`
+   * keeps the bridge grading only. Off by default.
+   */
+  roadGrading?: {
+    heights: TerrainPyramidHeightSource;
+    earthworks?: boolean;
+    /** Coarsest rendered grid (meters between vertices) whose ground is leveled (default 28). */
+    maxSpacing?: number;
+  };
+  /**
    * Serve terrain levels finer than a sidecar's last level from that level's tiles, rescaled and
    * clipped (default true). Without it the finest terrain tiles near the camera have no water,
    * roads or buildings whenever the vector archive stops short of the terrain.
@@ -78,6 +95,11 @@ export interface TerrainPackageSemanticLayers {
   package: TerrainPackageDescriptor;
   semantics: OpenTerrainPackageSemantics;
   layers: TerrainPyramidTileLayer[];
+  /**
+   * Present when `roadGrading` was asked for and the package has roads: pass its
+   * `transformHeightfield` to the terrain stream to level the ground for them.
+   */
+  roadGrading?: TerrainRoadGrading;
 }
 
 export type CreateProfiledTerrainPackageSemanticLayersOptions = Omit<
@@ -114,6 +136,7 @@ export async function createTerrainPackageSemanticLayers(
     waterLayer,
     featuresLayer,
     tunnels,
+    roadGrading,
     overzoom = true,
     buildingDetail,
     admission,
@@ -135,6 +158,7 @@ export async function createTerrainPackageSemanticLayers(
         };
   const semantics = await openTerrainPackageSemantics(pkg, openOptions);
   const layers: TerrainPyramidTileLayer[] = [];
+  let grading: TerrainRoadGrading | undefined;
   let landcoverSource = semantics.landcover?.source;
   let featuresSource = semantics.features?.source;
   if (
@@ -301,34 +325,43 @@ export async function createTerrainPackageSemanticLayers(
         renderLandcover: false,
         renderWater: false,
       });
+    const bored = tunnels
+      ? withTerrainTunnels(
+          inner,
+          featuresSource as TerrainPackageSemanticSource,
+          tunnels.heights,
+          tunnels.minLevel ?? semantics.features.maxLevel,
+        )
+      : inner;
+    // Roads are detailed on the finest two levels the layer reaches; the ground is graded for
+    // them there, wherever the layer itself starts.
+    const detailLevel = defaultMinimumLevel(
+      semantics.features.minLevel,
+      reach(semantics.features.maxLevel),
+      2,
+    );
+    if (roadGrading && pkg.features?.layers.includes('transportation') === true)
+      grading = createTerrainRoadGrading({
+        // The plain road tiles, shared with every other reader of this sidecar.
+        features: featuresSource as TerrainPackageSemanticSource,
+        heights: roadGrading.heights,
+        minLevel: detailLevel,
+        ...(roadGrading.earthworks !== undefined ? { earthworks: roadGrading.earthworks } : {}),
+        ...(roadGrading.maxSpacing !== undefined ? { maxSpacing: roadGrading.maxSpacing } : {}),
+      });
     layers.push(
       createTerrainSemanticPyramidLayer({
         id: style.id ?? 'human-features',
         category: 'human-feature',
         source: enrich(surfaceSource),
-        renderer: tunnels
-          ? withTerrainTunnels(
-              inner,
-              featuresSource as TerrainPackageSemanticSource,
-              tunnels.heights,
-              tunnels.minLevel ?? semantics.features.maxLevel,
-            )
-          : inner,
+        renderer: grading ? withTerrainRoadGrading(bored, grading) : bored,
         visible: style.visible ?? false,
-        minLevel:
-          style.minLevel ??
-          (distantCoverage
-            ? semantics.features.minLevel
-            : defaultMinimumLevel(
-                semantics.features.minLevel,
-                reach(semantics.features.maxLevel),
-                2,
-              )),
+        minLevel: style.minLevel ?? (distantCoverage ? semantics.features.minLevel : detailLevel),
         maxLevel: style.maxLevel ?? reach(semantics.features.maxLevel),
       }),
     );
   }
-  return { package: pkg, semantics, layers };
+  return { package: pkg, semantics, layers, ...(grading ? { roadGrading: grading } : {}) };
 }
 
 /** Select a built-in decoder only from an explicit package profile declaration. */

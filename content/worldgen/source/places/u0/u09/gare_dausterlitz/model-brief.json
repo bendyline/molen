@@ -1,0 +1,942 @@
+{
+  "id": "gare_dausterlitz",
+  "title": "Gare d'Austerlitz",
+  "wikidataId": "Q734017",
+  "referenceCoordinate": {
+    "longitude": 2.365833333,
+    "latitude": 48.842222222
+  },
+  "module": "packages/worldgen/scripts/gare-dausterlitz-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-gare-dausterlitz.mjs",
+  "builder": "buildAusterlitzLevel",
+  "surfaces": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.91
+    },
+    "pier": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.91
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.92
+    },
+    "pale": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.92
+    },
+    "shadow": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.92
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.86
+    },
+    "zinc": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.79,
+      "metallic": 0.13
+    },
+    "under": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.79,
+      "metallic": 0.13
+    },
+    "floor": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "bed": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "deck": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "tactile": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "iron": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.15
+    },
+    "green": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.15
+    },
+    "red": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.15
+    },
+    "dark": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.15
+    },
+    "white": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.15
+    },
+    "glass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.39
+    },
+    "lightGlass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.39
+    },
+    "clear": {
+      "slot": "window",
+      "localRef": "palette:#d2e7ed",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.33
+      ],
+      "alphaMode": "BLEND",
+      "doubleSided": true,
+      "roughness": 0.31
+    }
+  },
+  "exportLabel": "Molen original Gare d’Austerlitz master",
+  "expectedDraftMasterHash": "sha256:24a5f31b2f6c45296557e822e8ea4a8501e3853d40278875169835e009c68fc0",
+  "visualBrief": "The Seine clock pavilion and limestone wings frame the glazed historic hall. Iron lattice roof trusses and the Métro 5 crossing remain visible over the public concourse. The southern shed covers four mapped platforms and eight surface tracks.",
+  "heightPolicy": "The 41 m sea-level datum and external approach heights come from standard viewer terrain. Bounded terrain and paving cuts clear the historic hall and rail floors. The eastern track fan meets a cross-slope sampled along the station edge.",
+  "nativeAxes": "The 103.5 m mapped roof edge aligns the station axis toward the surface rail fan. Named Paris Austerlitz and Métro 5 features distinguish the terminal from the Seine and Muséum approaches.",
+  "limitations": [
+    "The station shows the heritage envelope, restored hall and above-ground transport arrangement. Construction equipment, temporary diversions, underground levels and future retail changes are outside the modeled scope.",
+    "The 52-meter historic clear span follows SNCF documentation. Heights, façade recesses and the elevated Métro deck section are photo- and terrain-based reconstructions.",
+    "The fitted hall floor and station-end railway grades follow the standard viewer terrain approaches. The modeled elevated Métro deck covers the station crossing and its immediate ends."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Gare_d'Austerlitz_Fa%C3%A7ade_Seine.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Gare_d'Austerlitz_Fa%C3%A7ade_Seine.jpg",
+      "hash": "sha256:e937a90103bf188f3427d53437a554f3083787a1b910ee6152b96672090b18e5",
+      "observed": "seine front"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Grande_halle_m%C3%A9tallique_-_Gare_d'Austerlitz.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Grande_halle_m%C3%A9tallique_-_Gare_d'Austerlitz.jpg",
+      "hash": "sha256:99b6351019246b7826ac47b1bf58cf6b97fe83ab5d37349eb0bb3e76fb87b84c",
+      "observed": "metal hall"
+    },
+    {
+      "url": "https://www.garesetconnexions.sncf/fr/actualites/renovation-verrieres-paris-austerlitz-gare-lyon",
+      "imageUrl": "https://www.garesetconnexions.sncf/sites/default/files/styles/landscape/public/2024-02/_h0a6223_g.satre_non-libre-de-droits.jpg?h=c057dada&itok=pXnTLwQa",
+      "hash": "sha256:e9974475721f9b26b96fc1fa6f1e1f7c2b52229d7bbdfe88856dc1904da74ec3",
+      "observed": "hall renovated"
+    }
+  ],
+  "cameras": [
+    {
+      "name": "seine-and-train-hall",
+      "position": [
+        -161,
+        143,
+        -160
+      ],
+      "lookAt": [
+        46,
+        5,
+        7
+      ],
+      "fov": 61,
+      "lightDirection": [
+        -0.52,
+        1,
+        -0.77
+      ]
+    },
+    {
+      "name": "seine-clock-pavilion",
+      "position": [
+        13,
+        2.2,
+        -76
+      ],
+      "lookAt": [
+        4,
+        9.4,
+        -41
+      ],
+      "fov": 64,
+      "lightDirection": [
+        -0.45,
+        1,
+        -0.82
+      ]
+    },
+    {
+      "name": "cour-museum-portal",
+      "position": [
+        -101,
+        1.35,
+        21
+      ],
+      "lookAt": [
+        -82,
+        6.3,
+        26
+      ],
+      "fov": 67,
+      "lightDirection": [
+        -0.78,
+        1,
+        0.54
+      ]
+    },
+    {
+      "name": "interior-glazed-roof",
+      "position": [
+        25,
+        1.78,
+        27.65
+      ],
+      "lookAt": [
+        91,
+        15.9,
+        27.65
+      ],
+      "fov": 68,
+      "lightDirection": [
+        0.64,
+        1,
+        -0.57
+      ]
+    },
+    {
+      "name": "metro-5-crossing",
+      "position": [
+        42,
+        0.74,
+        20.8
+      ],
+      "lookAt": [
+        -28,
+        9.5,
+        30.5
+      ],
+      "fov": 64,
+      "lightDirection": [
+        0.44,
+        1,
+        0.52
+      ]
+    },
+    {
+      "name": "metro-platform",
+      "position": [
+        -29.6,
+        9.19,
+        26.5
+      ],
+      "lookAt": [
+        -23.7,
+        9.33,
+        -28
+      ],
+      "fov": 63,
+      "lightDirection": [
+        0.61,
+        1,
+        -0.7
+      ]
+    },
+    {
+      "name": "surface-platforms",
+      "position": [
+        182,
+        -1.75,
+        31.8
+      ],
+      "lookAt": [
+        118,
+        1.7,
+        31.8
+      ],
+      "fov": 67,
+      "lightDirection": [
+        0.74,
+        1,
+        -0.61
+      ]
+    },
+    {
+      "name": "east-sheds-and-glazing",
+      "position": [
+        229,
+        80,
+        112
+      ],
+      "lookAt": [
+        85,
+        4,
+        22
+      ],
+      "fov": 61,
+      "lightDirection": [
+        0.73,
+        1,
+        0.42
+      ]
+    }
+  ],
+  "materialMethod": "Seven shared graphs supply limestone, weathered limestone, granite, painted iron, slate, standing-seam zinc and tinted glazing. The open hall uses an untextured translucent local material for its daylight panels.",
+  "sourceFacts": {
+    "station": "way/62380197",
+    "terrainDatumMeters": 41,
+    "footprintPartIds": [
+      35184434469029,
+      35185104436804,
+      35184434469032,
+      35185100912246,
+      35185010276098,
+      35184780414090,
+      35184780414092,
+      35184780414097
+    ],
+    "clearHallSpanMeters": 52,
+    "passengerPlatforms": 4,
+    "surfaceTracks": 8,
+    "metroTrackId": 35184395456860
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        55,
+        5,
+        12
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/gare-dausterlitz-model.mjs",
+    "export": "buildAusterlitzSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.91
+      },
+      "pier": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.91
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.92
+      },
+      "pale": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.92
+      },
+      "shadow": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.92
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.86
+      },
+      "zinc": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.79,
+        "metallic": 0.13
+      },
+      "under": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.79,
+        "metallic": 0.13
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "bed": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "deck": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "tactile": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.15
+      },
+      "green": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.15
+      },
+      "red": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.15
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.15
+      },
+      "white": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.15
+      },
+      "glass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.39
+      },
+      "lightGlass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.39
+      },
+      "clear": {
+        "slot": "window",
+        "localRef": "palette:#d2e7ed",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.33
+        ],
+        "alphaMode": "BLEND",
+        "doubleSided": true,
+        "roughness": 0.31
+      }
+    },
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAusterlitzDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "shadow": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.13
+          },
+          "under": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.13
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "bed": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "tactile": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.39
+          },
+          "lightGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.39
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#d2e7ed",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.33
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.31
+          }
+        },
+        "errorMeters": 0.72
+      },
+      "street": {
+        "export": "buildAusterlitzStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "shadow": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.13
+          },
+          "under": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.13
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "bed": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "tactile": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.39
+          },
+          "lightGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.39
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#d2e7ed",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.33
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.31
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "closeup": {
+        "export": "buildAusterlitzCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "shadow": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.13
+          },
+          "under": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.13
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "bed": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "tactile": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.39
+          },
+          "lightGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.39
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#d2e7ed",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.33
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.31
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "gare_dausterlitz-skyline",
+      "position": [
+        -161,
+        143,
+        -160
+      ],
+      "lookAt": [
+        46,
+        5,
+        7
+      ],
+      "fov": 61,
+      "lightDirection": [
+        -0.52,
+        1,
+        -0.77
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "gare_dausterlitz-district",
+      "position": [
+        -161,
+        143,
+        -160
+      ],
+      "lookAt": [
+        46,
+        5,
+        7
+      ],
+      "fov": 61,
+      "lightDirection": [
+        -0.52,
+        1,
+        -0.77
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "gare_dausterlitz-street",
+      "position": [
+        -161,
+        143,
+        -160
+      ],
+      "lookAt": [
+        46,
+        5,
+        7
+      ],
+      "fov": 61,
+      "lightDirection": [
+        -0.52,
+        1,
+        -0.77
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "gare_dausterlitz-closeup",
+      "position": [
+        -161,
+        143,
+        -160
+      ],
+      "lookAt": [
+        46,
+        5,
+        7
+      ],
+      "fov": 61,
+      "lightDirection": [
+        -0.52,
+        1,
+        -0.77
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

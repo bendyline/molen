@@ -59,7 +59,25 @@ export interface PoseEvalOptions {
   /** Re-anchor the root so this point sits at the figure origin (seats, saddles). */
   anchor?: FigureAnchor;
   /** Saddle-relative contact points for a cycle rider, evaluated after the seated pose. */
-  riding?: { lean: number; turn?: number; ik: Partial<Record<FigureIkEffector, Vec3>> };
+  riding?: {
+    lean: number;
+    turn?: number;
+    ik: Partial<Record<FigureIkEffector, Vec3>>;
+    /**
+     * Default `seated`. A `standing` or `sideways` rider stands on the idle pose instead of the
+     * seated one, the hips raised or lowered to this body's legs; a sideways rider turns across
+     * the board, left foot forward, and looks down it.
+     */
+    stance?: 'seated' | 'standing' | 'sideways';
+    /** Sideways riders: 0 riding across the board to 1 turned forward to push off. */
+    push?: number;
+    /**
+     * Roll of the vehicle with the ground across it, in radians (right side down positive),
+     * which an upright rider stands plumb against: on skis crossing a slope the body stays
+     * vertical while the feet follow the skis.
+     */
+    level?: number;
+  };
 }
 
 const DEG = dmath.PI / 180;
@@ -226,8 +244,16 @@ function applyIk(
   model: Float32Array,
   effector: FigureIkEffector,
   goal: Vec3,
+  /** Turns the knee or elbow direction with a body turned this far about Y. */
+  poleYaw = 0,
 ): void {
-  const { chain, pole } = IK_CHAINS[effector];
+  const { chain } = IK_CHAINS[effector];
+  let { pole } = IK_CHAINS[effector];
+  if (poleYaw !== 0) {
+    const c = dmath.cos(poleYaw),
+      s = dmath.sin(poleYaw);
+    pole = [pole[0] * c + pole[2] * s, pole[1], -pole[0] * s + pole[2] * c];
+  }
   const u = rig.index[chain[0]];
   const l = rig.index[chain[1]];
   const e = rig.index[chain[2]];
@@ -295,7 +321,11 @@ export function evaluatePose(
       ? out
       : { rig, local: new Float32Array(jointCount * 7) };
   const [cur, prev] = scratch(jointCount);
-  const mode = state?.mode ?? 'idle';
+  const riding = rig.archetype === 'biped' ? opts.riding : undefined;
+  const stance = riding?.stance ?? 'seated';
+  // A rider standing on a deck or a board stands on the idle pose, whatever the host's seat mode.
+  const upright = riding !== undefined && stance !== 'seated';
+  const mode = upright ? 'idle' : (state?.mode ?? 'idle');
   const phase = state === undefined ? 0 : figurePhase(state, tick, opts.tickRate);
   const seed = opts.seed ?? 0;
   modePose(rig, mode, phase, state?.gait, tick, opts.tickRate, seed, cur);
@@ -313,19 +343,38 @@ export function evaluatePose(
       if (index !== undefined) setQuat(cur, index, quatNormalize(q));
     }
   }
-  if (opts.riding !== undefined && rig.archetype === 'biped') {
+  // A sideways rider faces the board's right side; pushing off turns them forward.
+  const push = stance === 'sideways' ? dmath.clamp(riding?.push ?? 0, 0, 1) : 0;
+  const bodyYaw = stance === 'sideways' ? dmath.lerp(-84 * DEG, -18 * DEG, push) : 0;
+  if (riding !== undefined) {
     // Replace the chair's upright torso with the posture authored for these handlebars.
     const spine = rig.index.spine;
     if (spine !== undefined)
-      setQuat(cur, spine, [dmath.sin(opts.riding.lean / 2), 0, 0, dmath.cos(opts.riding.lean / 2)]);
-    // At walking-speed steering lock the rider counterweights at the saddle and turns their
-    // shoulders with the bars. At speed the steering angle fades, so chassis lean dominates.
-    const turn = opts.riding.turn ?? 0;
+      setQuat(cur, spine, [dmath.sin(riding.lean / 2), 0, 0, dmath.cos(riding.lean / 2)]);
     const hips = rig.index.hips,
       chest = rig.index.chest;
-    if (hips !== undefined)
-      setQuat(cur, hips, [0, 0, dmath.sin((turn * 0.75) / 2), dmath.cos((turn * 0.75) / 2)]);
-    if (chest !== undefined) setQuat(cur, chest, [0, dmath.sin(turn / 2), 0, dmath.cos(turn / 2)]);
+    if (stance === 'sideways') {
+      // Hips across the board, shoulders opened a little toward the nose, head down the board.
+      const open = (1 - push) * 22 * DEG;
+      if (hips !== undefined)
+        setQuat(cur, hips, [0, dmath.sin(bodyYaw / 2), 0, dmath.cos(bodyYaw / 2)]);
+      if (chest !== undefined)
+        setQuat(cur, chest, [0, dmath.sin(open / 2), 0, dmath.cos(open / 2)]);
+      const look = -bodyYaw - open;
+      const neck = rig.index.neck,
+        head = rig.index.head;
+      if (neck !== undefined) rotateY(cur, neck, 0.4 * look);
+      if (head !== undefined) rotateY(cur, head, 0.6 * look);
+    } else {
+      // At walking-speed steering lock the rider counterweights at the saddle and turns their
+      // shoulders with the bars. At speed the steering angle fades, so chassis lean dominates.
+      // Standing, the counterweight is the hips' smaller sway over the feet.
+      const turn = riding.turn ?? 0;
+      const sway = turn * (upright ? 0.3 : 0.75) - (riding.level ?? 0);
+      if (hips !== undefined) setQuat(cur, hips, [0, 0, dmath.sin(sway / 2), dmath.cos(sway / 2)]);
+      if (chest !== undefined)
+        setQuat(cur, chest, [0, dmath.sin(turn / 2), 0, dmath.cos(turn / 2)]);
+    }
   }
   writeLocals(rig, cur, pose.local);
   const needsModel =
@@ -335,31 +384,50 @@ export function evaluatePose(
     (opts.anchor !== undefined && opts.anchor !== 'origin');
   if (!needsModel) return pose;
   const model = scratchModel(jointCount);
-  if (opts.riding !== undefined && rig.archetype === 'biped') {
+  // How far an upright rider's hips sit below the seat, which is an adult's hip position.
+  let drop = 0;
+  if (riding !== undefined) {
     poseModelSpace(pose, model);
     const hips = rig.index.hips;
     const origin = hips === undefined ? [0, 0, 0] : readTransform(model, hips).pos;
+    if (upright) drop = fitHips(rig, model, origin, riding.ik, stance, push);
     for (const effector of ['hand.l', 'hand.r', 'foot.l', 'foot.r'] as const) {
-      const target = opts.riding.ik[effector];
+      const target = riding.ik[effector];
       if (target === undefined) continue;
-      applyIk(rig, cur, model, effector, [
-        target[0] + (origin[0] ?? 0),
-        target[1] + (origin[1] ?? 0),
-        target[2] + (origin[2] ?? 0),
-      ]);
+      // Feet and grips stay where the vehicle has them; a sideways rider's free hands move
+      // with the hips instead.
+      const free = stance === 'sideways' && effector.startsWith('hand');
+      applyIk(
+        rig,
+        cur,
+        model,
+        effector,
+        [
+          target[0] + (origin[0] ?? 0),
+          target[1] + (origin[1] ?? 0) + (free ? 0 : drop),
+          target[2] + (origin[2] ?? 0),
+        ],
+        bodyYaw,
+      );
     }
     writeLocals(rig, cur, pose.local);
     poseModelSpace(pose, model);
-    // Keep the shoes level on the pedals/footrests as the knees flex.
-    for (const name of ['foot.l', 'foot.r']) {
+    // Keep the shoes level on the pedals/footrests as the knees flex. A standing rider's rear
+    // foot splays out; a sideways rider's feet lie across the board, turning forward to push.
+    const feet = footYaws(riding.ik, stance, push);
+    for (const [k, name] of (['foot.l', 'foot.r'] as const).entries()) {
       const index = rig.index[name];
       const joint = index === undefined ? undefined : rig.joints[index];
-      if (index !== undefined && joint !== undefined && joint.parent >= 0)
-        setQuat(
-          cur,
-          index,
-          quatConjugate(quatMul(readTransform(model, joint.parent).rot ?? IDENTITY, joint.bindRot)),
-        );
+      if (index === undefined || joint === undefined || joint.parent < 0) continue;
+      const level = quatConjugate(
+        quatMul(readTransform(model, joint.parent).rot ?? IDENTITY, joint.bindRot),
+      );
+      const yaw = feet[k] ?? 0;
+      setQuat(
+        cur,
+        index,
+        yaw === 0 ? level : quatMul(level, [0, dmath.sin(yaw / 2), 0, dmath.cos(yaw / 2)]),
+      );
     }
     writeLocals(rig, cur, pose.local);
   }
@@ -387,11 +455,66 @@ export function evaluatePose(
     }
     if (p !== undefined) {
       pose.local[0] = (pose.local[0] as number) - p[0];
-      pose.local[1] = (pose.local[1] as number) - p[1];
+      pose.local[1] = (pose.local[1] as number) - p[1] - (opts.anchor === 'pelvis' ? drop : 0);
       pose.local[2] = (pose.local[2] as number) - p[2];
     }
   }
   return pose;
+}
+
+/**
+ * How far an upright rider's hips must drop below the seat (negative: rise) so the farther foot
+ * reaches its target with the knee slightly bent: nearly straight standing, a soft crouch riding
+ * sideways, the push leg reaching for the ground. Feet are seat-relative, as `riding.ik`.
+ */
+function fitHips(
+  rig: FigureRig,
+  model: Float32Array,
+  origin: readonly number[],
+  ik: Partial<Record<FigureIkEffector, Vec3>>,
+  stance: 'seated' | 'standing' | 'sideways',
+  push: number,
+): number {
+  const extension = stance === 'standing' ? 0.97 : dmath.lerp(0.9, 0.97, push);
+  let drop = Number.NEGATIVE_INFINITY;
+  for (const effector of ['foot.l', 'foot.r'] as const) {
+    const goal = ik[effector];
+    const { chain } = IK_CHAINS[effector];
+    const u = rig.index[chain[0]],
+      l = rig.index[chain[1]],
+      e = rig.index[chain[2]];
+    if (goal === undefined || u === undefined || l === undefined || e === undefined) continue;
+    const lower = rig.joints[l] as FigureJoint,
+      end = rig.joints[e] as FigureJoint;
+    const reach =
+      extension *
+      (dmath.hypot(lower.bindPos[0], lower.bindPos[1], lower.bindPos[2]) +
+        dmath.hypot(end.bindPos[0], end.bindPos[1], end.bindPos[2]));
+    const root = readTransform(model, u).pos;
+    const dx = goal[0] + (origin[0] ?? 0) - root[0],
+      dz = goal[2] + (origin[2] ?? 0) - root[2];
+    const below = root[1] - (goal[1] + (origin[1] ?? 0));
+    const vertical = dmath.sqrt(dmath.max(0, reach * reach - dx * dx - dz * dz));
+    drop = dmath.max(drop, below - vertical);
+  }
+  return Number.isFinite(drop) ? drop : 0;
+}
+
+/**
+ * Each shoe's turn about Y from straight ahead, left then right. Seated riders keep both
+ * forward; a standing rider's rear foot splays out; a sideways rider's feet point across the
+ * board toward its right side, the front one angled to the nose, both turning forward to push.
+ */
+function footYaws(
+  ik: Partial<Record<FigureIkEffector, Vec3>>,
+  stance: 'seated' | 'standing' | 'sideways',
+  push: number,
+): [number, number] {
+  if (stance === 'seated') return [0, 0];
+  if (stance === 'sideways')
+    return [dmath.lerp(-72 * DEG, -8 * DEG, push), dmath.lerp(-98 * DEG, -24 * DEG, push)];
+  // Splay the trailing foot outward: the right toward -x, the left toward +x.
+  return (ik['foot.l']?.[2] ?? 0) >= (ik['foot.r']?.[2] ?? 0) ? [0, -20 * DEG] : [20 * DEG, 0];
 }
 
 /** A figure-space transform into world space through the entity transform. */

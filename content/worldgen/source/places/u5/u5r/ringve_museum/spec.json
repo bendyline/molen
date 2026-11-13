@@ -1,0 +1,494 @@
+{
+  "planId": "ringve_museum",
+  "id": "ringve_museum",
+  "assetId": "molen.worldgen.structure.ringve_museum",
+  "title": "Ringve Manor House",
+  "wikidataId": "Q960829",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 10.453641,
+    "latitude": 63.447281
+  },
+  "size": [
+    31.039999961853027,
+    14.259999752044678,
+    17.06229305267334
+  ],
+  "actualBounds": {
+    "min": [
+      -15.625,
+      -2.6500000953674316,
+      -8.219292640686035
+    ],
+    "max": [
+      15.414999961853027,
+      11.609999656677246,
+      8.843000411987305
+    ]
+  },
+  "visualBrief": "Ringve’s main manor house in September 2009, with the garden gable, painted timber siding, ochre surrounds and two unequal towers, including the open lookout.",
+  "nativeAxes": {
+    "x": "east along the main wing",
+    "y": "up",
+    "z": "south toward the garden"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2009-09-10",
+    "validFrom": "2009-01-01",
+    "validUntil": "2010-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ringve_Museum,_Trondheim_-_IMG_8816.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ringve_Museum,_Trondheim_-_IMG_8819.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ringve_Museum.jpg"
+  ],
+  "stories": [
+    {
+      "id": "ringve-museum-wp",
+      "url": "https://qualla.com/ringve-museum/"
+    }
+  ],
+  "referenceInputHash": "be5ab97ad6859e7f1ec9087045af46c4ffe10eb52f03f43f6f31229b7800cd81",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u5/u5r/ringve_museum/models/ringve-manor-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u5/u5r/ringve_museum/models/ringve-manor-model.mjs",
+    "level": "skyline",
+    "export": "ringveSkyline",
+    "errorMeters": 0.35,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "wood_painted_lap",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "detail": {
+        "slot": "window",
+        "localRef": "palette:#fffdfe",
+        "roughness": 0.75,
+        "metallic": 0.05
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "ringveDistrict",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.75,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "ringveStreet",
+        "errorMeters": 0.064,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.75,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "ringveCloseup",
+        "errorMeters": 0.024,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "detail": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.75,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "wood_painted_lap",
+    "wood_plain",
+    "slate",
+    "stone_granite"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.85,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      10.453641,
+      63.447281
+    ],
+    "heading": -0.06956820808422788,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        10.453440835659096,
+        63.447231044327175
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation at the western garden-side stoop beneath the tall tower."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          5.957014648635959,
+          -0.41508869062980336
+        ],
+        [
+          12.166762818135973,
+          -0.06666212454327736
+        ],
+        [
+          12.185452397806737,
+          -0.5143220805129675
+        ],
+        [
+          14.980868671631434,
+          -0.485929694757702
+        ],
+        [
+          15.146452683580291,
+          -7.416011336310153
+        ],
+        [
+          12.343298357346528,
+          -7.555453943537128
+        ],
+        [
+          12.361987937017295,
+          -8.003113899506818
+        ],
+        [
+          -15.342929832872601,
+          -8.003113899506818
+        ],
+        [
+          -15.383301364034686,
+          -0.2783133684993824
+        ],
+        [
+          -11.907018779191313,
+          -0.286205251909078
+        ],
+        [
+          -12.121889817506796,
+          4.504794002523765
+        ],
+        [
+          -6.7541239714404036,
+          4.510168560895973
+        ],
+        [
+          -6.82079717783771,
+          8.063357744213423
+        ],
+        [
+          -6.8267253991889305,
+          8.264631770893184
+        ],
+        [
+          -2.102624086088327,
+          8.482241417061775
+        ],
+        [
+          3.0514918310197605,
+          8.714523128522403
+        ],
+        [
+          3.0762407421899165,
+          8.210646246939081
+        ],
+        [
+          3.381477313747041,
+          1.9961647118725478
+        ],
+        [
+          5.837139118719983,
+          2.159820826059227
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "The original mapped principal manor house, including its attached projections."
+    },
+    "featureIds": [
+      "way/42276662",
+      "node/199409849"
+    ],
+    "source": "https://www.openstreetmap.org/way/42276662",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7dc6ec3febd8021b9f69ccaf64ed8a24abd9909727bb747452e78cb76e967e6f",
+    "notes": "Ringve Music Museum’s main manor house, Hovedbygningen, as seen in September 2009 before the 2015 fire. Includes the long wooden range, projecting garden room, two unequal towers, and attached entrances at either end. The separate stable, Wessel building, arboretum and exhibition interiors are outside this model. The ground plan is from the current mapping of the restored building. Preserved external footprints are interpreted alongside the pre-fire photographs."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The modern mapped perimeter represents the historic envelope evident in the cleared 2006 and 2009 photos. Roof heights, timber braces, window details, threshold and foundation exposure are approximate.",
+    "The original provider terrain is unchanged. Modern relief slopes east to west around the building. The model represents the main manor before the 2015 fire. The detached museum ranges, formal gardens and interiors are outside scope."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. OpenStreetMap geographic controls, ODbL 1.0. Exact photographer-released public-domain photos by Daderot and Mahlum.",
+  "qaLodCameras": [
+    {
+      "name": "whole-ringve-manor-skyline",
+      "position": [
+        -34,
+        15,
+        36
+      ],
+      "lookAt": [
+        -1,
+        5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-ringve-manor-district",
+      "position": [
+        -34,
+        15,
+        36
+      ],
+      "lookAt": [
+        -1,
+        5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-ringve-manor-street",
+      "position": [
+        -34,
+        15,
+        36
+      ],
+      "lookAt": [
+        -1,
+        5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-ringve-manor-closeup",
+      "position": [
+        -34,
+        15,
+        36
+      ],
+      "lookAt": [
+        -1,
+        5,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "garden-gable-and-open-lookout",
+      "position": [
+        -18,
+        10,
+        34
+      ],
+      "lookAt": [
+        -3,
+        4.8,
+        3
+      ]
+    },
+    {
+      "name": "yard-front-and-end-gables",
+      "position": [
+        -31,
+        13,
+        -31
+      ],
+      "lookAt": [
+        -2,
+        4,
+        -4
+      ]
+    },
+    {
+      "name": "twin-tower-and-manor-roof-plan",
+      "position": [
+        21,
+        44,
+        27
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6458,
+    "vertices": 19374,
+    "materials": 5,
+    "bytes": 1004976,
+    "sha256": "sha256:ce2f3e495eae5eaacc8c1670fa8d7f4c4eca0f139be0f0cda8b52f6fcfca275d"
+  }
+}

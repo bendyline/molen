@@ -14,6 +14,19 @@ export interface AdaptiveQualityOptions {
   cooldownMs?: number;
   /** An isolated longer interval is treated as a pause; repeated ones remain overload. */
   pauseFrameMs?: number;
+  /**
+   * A second isolated pause within this much measured time of the last one is a stall, not a
+   * tab resume, and lowers detail (default 60 s). The first is still ignored.
+   */
+  pauseRepeatMs?: number;
+  /**
+   * Measured frame work must stay under this share of the target before detail goes up
+   * (default 0.9). A step up costs more than the level it leaves, so a host whose levels differ
+   * a lot in cost sets it lower: at 0.9 a frame using 15 of its 16.7 ms counted as headroom.
+   */
+  upgradeWorkFraction?: number;
+  /** Sustained `strained` samples before stepping down (default 10 s). */
+  strainDelayMs?: number;
 }
 
 export interface AdaptiveQualitySample {
@@ -31,9 +44,22 @@ export interface AdaptiveQualitySample {
   gpuFrameMs?: number;
   /** Estimated resident working set / memory budget. Values above one lower detail. */
   memoryPressure?: number;
+  /**
+   * The level asks for more than streaming can hold or deliver, by the host's own measure: tiles
+   * rebuilt after eviction, a view that crowds its cache. Frame times do not show this (the work
+   * runs outside the frame), so a level can look affordable while it never finishes loading.
+   * Blocks upgrades at once and lowers detail when sustained (`strainDelayMs`). Report only strain
+   * the level causes: a slow network strains every level alike, and stepping down would not help.
+   */
+  strained?: boolean;
 }
 
-export type AdaptiveQualityReason = 'frame-time' | 'memory-pressure' | 'headroom' | 'manual';
+export type AdaptiveQualityReason =
+  | 'frame-time'
+  | 'memory-pressure'
+  | 'streaming'
+  | 'headroom'
+  | 'manual';
 
 export interface AdaptiveQualityChange {
   previousLevel: number;
@@ -86,6 +112,12 @@ export class AdaptiveQualityController {
   private readonly increaseDelayMs: number;
   private readonly cooldownMs: number;
   private readonly pauseFrameMs: number;
+  private readonly pauseRepeatMs: number;
+  private readonly upgradeWorkFraction: number;
+  private readonly strainDelayMs: number;
+  private lastPauseMs = Number.NEGATIVE_INFINITY;
+  private strained = false;
+  private strainMs = 0;
   private readonly frames: number[] = [];
   private frameCursor = 0;
   private clockMs = 0;
@@ -128,6 +160,9 @@ export class AdaptiveQualityController {
     this.increaseDelayMs = positive(options.increaseDelayMs ?? 10000, 'increaseDelayMs');
     this.cooldownMs = positive(options.cooldownMs ?? 2000, 'cooldownMs', true);
     this.pauseFrameMs = positive(options.pauseFrameMs ?? 1000, 'pauseFrameMs');
+    this.pauseRepeatMs = positive(options.pauseRepeatMs ?? 60_000, 'pauseRepeatMs', true);
+    this.upgradeWorkFraction = positive(options.upgradeWorkFraction ?? 0.9, 'upgradeWorkFraction');
+    this.strainDelayMs = positive(options.strainDelayMs ?? 10_000, 'strainDelayMs', true);
   }
 
   /** No allocation in the usual per-frame path. A change object is returned only on a step. */
@@ -139,8 +174,17 @@ export class AdaptiveQualityController {
     }
     if (!Number.isFinite(frameMs) || frameMs <= 0) return;
     if (frameMs > this.pauseFrameMs && !this.previousPause) {
+      // One long frame is a tab resume or a breakpoint. A second within a minute of rendering is
+      // the level stalling the page (a collection over a multi-gigabyte heap, a blocked upload),
+      // which no window average shows: each stall also clears the window it would be counted in.
+      const repeated = this.clockMs - this.lastPauseMs < this.pauseRepeatMs;
+      this.lastPauseMs = this.clockMs;
       this.resetMeasurements();
       this.previousPause = true;
+      if (repeated && this.level > this.minLevel) {
+        this.lastPauseMs = Number.NEGATIVE_INFINITY;
+        return this.change(this.level - 1, 'frame-time');
+      }
       return;
     }
     this.previousPause = frameMs > this.pauseFrameMs;
@@ -153,6 +197,7 @@ export class AdaptiveQualityController {
     if (this.frames.length < 512) this.frames.push(elapsed);
     else this.frames[this.frameCursor++ % 512] = elapsed;
     this.loading ||= sample.loading === true;
+    this.strained ||= sample.strained === true;
     if (Number.isFinite(sample.cpuFrameMs) && (sample.cpuFrameMs ?? 0) > 0) {
       this.cpuTotalMs += sample.cpuFrameMs ?? 0;
       this.cpuSamples++;
@@ -228,6 +273,7 @@ export class AdaptiveQualityController {
     const measured = this.cpuSamples > 0 || this.gpuSamples > 0;
     const measuredBoth = this.cpuSamples > 0 && this.gpuSamples > 0;
     const loading = this.loading;
+    const strained = this.strained;
     this.resetWindow();
     const overloaded =
       mean > this.targetFrameMs * 1.18 ||
@@ -236,16 +282,18 @@ export class AdaptiveQualityController {
     // Real CPU/GPU work, when supplied, must also have margin; submission time is not GPU time.
     const headroom =
       (!loading || measuredBoth) &&
+      !strained &&
       memory < 0.85 &&
       mean <= this.targetFrameMs * 1.05 &&
       this.p90FrameMs <= this.targetFrameMs * 1.15 &&
-      work < this.targetFrameMs * 0.9;
+      work < this.targetFrameMs * this.upgradeWorkFraction;
     // Streaming work (uploads, shader builds, worker results) runs outside the measured frame.
     // When the host measures its frame work and that work fits, slow frames during loading are
     // the loading itself; lower detail would only restart streaming and prolong them.
     const renderBound = !loading || !measured || work > this.targetFrameMs * 0.75;
     this.overloadMs = overloaded && renderBound ? this.overloadMs + elapsed : 0;
     this.headroomMs = headroom ? this.headroomMs + elapsed : 0;
+    this.strainMs = strained ? this.strainMs + elapsed : 0;
     if (this.warmupElapsedMs < this.warmupMs) return;
     // Memory is a hard resource budget, so it may step down during the normal timing cooldown.
     // A step frees memory only once its replacements load, and until then the smaller budget
@@ -261,6 +309,9 @@ export class AdaptiveQualityController {
     if (this.clockMs - this.lastChangeMs < this.cooldownMs) return;
     if (overloaded && this.overloadMs >= this.decreaseDelayMs && this.level > this.minLevel) {
       return this.change(this.level - 1, 'frame-time');
+    }
+    if (strained && this.strainMs >= this.strainDelayMs && this.level > this.minLevel) {
+      return this.change(this.level - 1, 'streaming');
     }
     if (
       headroom &&
@@ -288,6 +339,7 @@ export class AdaptiveQualityController {
     this.lastChangeMs = this.clockMs;
     this.overloadMs = 0;
     this.headroomMs = 0;
+    this.strainMs = 0;
     return { previousLevel, level, reason };
   }
 
@@ -296,6 +348,7 @@ export class AdaptiveQualityController {
     this.frameCursor = 0;
     this.windowMs = 0;
     this.loading = false;
+    this.strained = false;
     this.cpuTotalMs = 0;
     this.cpuSamples = 0;
     this.gpuTotalMs = 0;
@@ -309,6 +362,7 @@ export class AdaptiveQualityController {
     this.warmupElapsedMs = 0;
     this.overloadMs = 0;
     this.headroomMs = 0;
+    this.strainMs = 0;
     this.smoothedFrameMs = undefined;
     this.p90FrameMs = undefined;
     this.slowFrameRatio = 0;

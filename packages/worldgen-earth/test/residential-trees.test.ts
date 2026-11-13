@@ -11,6 +11,7 @@ import {
 } from '@bendyline/molen-terrain/kernel';
 import { FLAT_GROUND, generateWorldgenBatch, type Vec2 } from '@bendyline/molen-worldgen/kernel';
 import { describe, expect, it } from 'vitest';
+import { MAP_OVERRIDE_COVER_CLASS, MAP_OVERRIDE_TAG } from '../src/kernel/map-override-tags';
 import { createRegionResolver } from '../src/kernel/region';
 import type { RegionAtlasDoc } from '../src/kernel/region-atlas-types';
 import { semanticTileToBatch, type TileGeometry } from '../src/kernel/semantic-adapter';
@@ -143,6 +144,20 @@ describe('residential tree infill', () => {
     expect(trees(tile)).toEqual([]);
   });
 
+  it('plants the same yards inside a named neighbourhood outline as on unlabelled ground', () => {
+    // `other` is the Protomaps basemap's class for the outline. Unclassified footprints count
+    // too: they are homes only where no land use says otherwise.
+    for (const kind of ['other', 'neighbourhood'])
+      for (const use of ['house', 'building']) {
+        const tile = neighborhood();
+        for (const building of tile.buildings) building.class = use;
+        const unlabelled = trees(tile);
+        expect(unlabelled.length).toBeGreaterThan(0);
+        tile.landcover = [{ class: kind, polygons: [{ outer: rect(0, 0, 1, 1) }] }];
+        expect(trees(tile)).toEqual(unlabelled);
+      }
+  });
+
   it('protects roads, water, parking, sports fields, mapped trees and existing forest', () => {
     const tile = neighborhood();
     tile.transportation = [
@@ -199,6 +214,49 @@ describe('residential tree infill', () => {
     expect(result.length).toBeGreaterThan(0);
     for (const tree of result)
       expect(pointInPolygon([tree.x / 200, tree.z / 200], { outer: opening })).toBe(true);
+  });
+
+  it("guesses no yard around a host's building, and plants nothing on ground a host cleared", () => {
+    // Homes a map override placed: their owner laid the ground out, so no canopy is inferred.
+    const hosted = neighborhood();
+    for (const building of hosted.buildings) {
+      building.id = `override:lot:home-${building.id}`;
+      building.tags = { [MAP_OVERRIDE_TAG]: 'lot' };
+    }
+    expect(batch(hosted).scatter?.polygons.some((p) => p.label === 'home_canopy')).toBe(false);
+    expect(trees(hosted)).toEqual([]);
+
+    // Mapped homes beside a cleared strip: their canopy stops at its edge.
+    const strip = rect(0.27, 0, 0.13, 1);
+    const inStrip = (x: number): boolean => x > 0.27 * 200 && x < 0.4 * 200;
+    const everything = (tile: TerrainSemanticTile) =>
+      generateWorldgenBatch({ ...batch(tile), ground: FLAT_GROUND }).placements.flatMap((set) =>
+        Array.from({ length: set.count }, (_, i) => set.data[i * 10] as number),
+      );
+    const tile = neighborhood();
+    const before = everything(tile);
+    expect(before.filter(inStrip).length).toBeGreaterThan(10);
+    tile.landcover = [
+      {
+        id: 'override:lot:ground',
+        class: MAP_OVERRIDE_COVER_CLASS,
+        subclass: 'grass',
+        density: 0,
+        polygons: [{ outer: strip }],
+      },
+    ];
+    const cleared = batch(tile).scatter?.polygons ?? [];
+    expect(cleared.find((p) => p.label === 'cleared grass')?.density).toBe(0);
+    const canopy = cleared.filter((p) => p.label === 'home_canopy');
+    expect(canopy.length).toBeGreaterThan(0);
+    for (const patch of canopy)
+      for (const [x] of patch.ring)
+        expect(x <= 0.27 * 200 + 1e-6 || x >= 0.4 * 200 - 1e-6).toBe(true);
+    // Trees and ground cover alike: nothing lands on the strip, and the yards beside it remain.
+    const after = everything(tile);
+    expect(after.filter(inStrip)).toEqual([]);
+    expect(after.length).toBeGreaterThan(40);
+    expect(after.length).toBeLessThan(before.length);
   });
 
   it('rejects steep ground and obeys instance budgets', () => {

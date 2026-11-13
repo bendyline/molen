@@ -1,0 +1,500 @@
+{
+  "planId": "red_monastery",
+  "id": "red_monastery",
+  "assetId": "molen.worldgen.structure.red_monastery",
+  "title": "Red Monastery, Sohag",
+  "wikidataId": "Q7304611",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 31.61991255,
+    "latitude": 26.554746449999996
+  },
+  "size": [
+    41.24600410461426,
+    15.029740929603577,
+    28.800339698791504
+  ],
+  "actualBounds": {
+    "min": [
+      -20.744365692138672,
+      -1.5197407007217407,
+      -11.02534008026123
+    ],
+    "max": [
+      20.501638412475586,
+      13.510000228881836,
+      17.774999618530273
+    ]
+  },
+  "visualBrief": "Coptic monastery church at Sohag with its battered brick exterior, roofless nave, sanctuary dome and southern keep.",
+  "nativeAxes": {
+    "x": "toward the eastern sanctuary",
+    "y": "up",
+    "z": "toward the south courtyard"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2024-05-11",
+    "validFrom": "2024-01-01",
+    "validUntil": "2025-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:%D8%A7%D9%84%D8%AF%D9%8A%D8%B1_%D8%A7%D9%84%D8%A3%D8%AD%D9%85%D8%B1.jpg"
+  ],
+  "stories": [
+    {
+      "id": "red-monastery-wp",
+      "url": "https://qualla.com/red-monastery/"
+    }
+  ],
+  "referenceInputHash": "68a3bfdd06805723f97012cb34f4bf4e09854b8daa98f00aa888ca3ef4cc63e8",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ss/ssw/red_monastery/models/red-monastery-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ss/ssw/red_monastery/models/red-monastery-model.mjs",
+    "level": "skyline",
+    "export": "monasterySkyline",
+    "errorMeters": 0.79,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "earth": {
+        "slot": "wall",
+        "graph": "earth_adobe",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "limestone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "plaster_lime",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "shadow": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "monasteryDistrict",
+        "errorMeters": 0.41,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "wall",
+            "graph": "earth_adobe",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "monasteryStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "wall",
+            "graph": "earth_adobe",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "monasteryCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "earth": {
+            "slot": "wall",
+            "graph": "earth_adobe",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "earth_adobe",
+    "stone_limestone_raw",
+    "stone_ashlar",
+    "plaster_lime",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      31.61991255,
+      26.554746449999996
+    ],
+    "heading": 0.5448349485678833,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        31.61990197975119,
+        26.554623390863956
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation immediately outside the south wall."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          20.237011098942162,
+          -10.846889625478816
+        ],
+        [
+          20.501638911796018,
+          10.868942032797275
+        ],
+        [
+          -20.71611262604552,
+          10.868942032797271
+        ],
+        [
+          -20.02253738336526,
+          -10.890994441623505
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "Named historic church envelope, OpenStreetMap way 515100191."
+    },
+    "featureIds": [
+      "way/515100191"
+    ],
+    "source": "https://www.openstreetmap.org/way/515100191",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c58bfbbbabadbf45d87e125dd4aee210855083670b81a00927c266b19e4b9a1d",
+    "notes": "The footprint fixes the 41 by 22 metre shell. The reference photo is interpreted as a near-end view of the solid western face and the side wall. The roofless nave and eastern triconch follow published conservation accounts."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.earth_adobe",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.35,
+        0.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model depicts the May 2024 exterior of the historic church and southern keep. The protected wall paintings and the modern buildings surrounding the courtyard are outside this exterior model’s scope.",
+    "The Qualla photo gives the batter, cornice and two rows of niches. The photographed dominant wall is interpreted as the western end. Exact rear opening counts, the heights of the top surfaces and the keep’s geometry are estimated.",
+    "The open nave, east sanctuary, dome and southern keep follow published architectural records. The mapped outline controls the main church; the keep and roof subdivision are approximate. The original elevation samples remain unchanged."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap footprint is ODbL. Eng-Bavly dedicated the exact May 2024 Qualla exterior photograph under CC0.",
+  "qaLodCameras": [
+    {
+      "name": "whole-red-monastery-skyline",
+      "position": [
+        -52,
+        24,
+        -47
+      ],
+      "lookAt": [
+        -1.2,
+        5.9,
+        1.2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-red-monastery-district",
+      "position": [
+        -52,
+        24,
+        -47
+      ],
+      "lookAt": [
+        -1.2,
+        5.9,
+        1.2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-red-monastery-street",
+      "position": [
+        -52,
+        24,
+        -47
+      ],
+      "lookAt": [
+        -1.2,
+        5.9,
+        1.2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-red-monastery-closeup",
+      "position": [
+        -52,
+        24,
+        -47
+      ],
+      "lookAt": [
+        -1.2,
+        5.9,
+        1.2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "west-end-and-two-rows-of-arches",
+      "position": [
+        -42,
+        9.2,
+        -27
+      ],
+      "lookAt": [
+        -10,
+        5.1,
+        0
+      ]
+    },
+    {
+      "name": "south-portal-and-four-storey-keep",
+      "position": [
+        -8,
+        11,
+        48
+      ],
+      "lookAt": [
+        -8,
+        5.2,
+        6.7
+      ]
+    },
+    {
+      "name": "roofless-nave-and-east-dome",
+      "position": [
+        26,
+        30,
+        -22
+      ],
+      "lookAt": [
+        2.7,
+        3.9,
+        0.1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 6188,
+    "vertices": 18564,
+    "materials": 7,
+    "bytes": 1041076,
+    "sha256": "sha256:232cef127655c7d841c658478cad60986bcc149dae60a4b8717b4b8073864a79"
+  }
+}

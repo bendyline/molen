@@ -56,6 +56,7 @@ external data with `weatherSchema.parse` before using it in typed code.
 | `clouds.baseAltitude`, `thickness`, `scale` | Absolute base Y and depth of the layer, and the horizontal pattern repeat size, in meters. |
 | `clouds.cirrus`, `cirrusAltitude` | Coverage 0–1 of a thin, wispy high cirrus layer (default 0) and its absolute Y (default 9000 m). Independent of the main layer. |
 | `precipitation.kind`, `intensity` | Explicit none/rain/snow and 0–1 visual intensity; not calibrated mm/hour. |
+| `snowCover.level`, `transition`, `depth`, `depthGain`, `maxDepth` | Snow lying on the ground above a snow line at absolute world Y `level`, building over `transition` meters to `depth` and deepening with height. Absent: bare ground. Independent of falling snow; see [Snow cover](snow.md). |
 | `visibility` | Approximate visual fade distance in meters, independent of clouds and precipitation. |
 | `wind.referenceHeight` | Height above ground in meters where `windVelocity` applies; default 10. |
 | `wind.shear` | Power-law exponent of wind speed with height, to 600 m; default 0 (uniform). About 0.14 over open country, 0.3 over cities. |
@@ -190,7 +191,9 @@ clear foreground are preserved when weather visibility reaches beyond that limit
 deck the fog turns grey. Removing weather restores the authored fog and lighting. Clouds are a
 visual volume: flying through one does not simulate icing, turbulence or condensation (wind
 turbulence is the `wind` block's). Precipitation is a local visual field, including above cloud
-layers, without roof/terrain collision, splash, accumulation or wet-material response.
+layers, without roof/terrain collision, splash or wet-material response, and it does not build
+up: snow on the ground is the authored `snowCover` block, which whitens the ground, roofs and
+trees above its snow line ([Snow cover](snow.md)).
 
 ## World explorer
 
@@ -204,6 +207,9 @@ visibility, temperature, pressure and wind, marking the profile Custom. Cloud qu
 graphics quality; High casts cloud shadows. Temperature and pressure controls
 refer to sea level, displayed in °C and hPa and stored in kelvin and pascals. The same component
 is installed in the explorer's vehicle/aircraft simulation.
+
+The Snow level list lays snow on the ground: everywhere, or above a line from sea level to
+4,000 m (`?snow=1500`, `?snow=all`, `?snow=off`); see [Snow cover](snow.md#world-explorer).
 
 Use `?weather=rain` or another preset id. Custom edits are session-local. `?freeze=1` freezes
 weather motion for comparisons. The day slider changes lighting without moving the camera

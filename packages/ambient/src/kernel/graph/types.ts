@@ -90,6 +90,13 @@ export interface TransportLane {
   length: number;
   /** Surface lift above the edge's baked heights (sidewalks sit on the kerb). */
   readonly lift: number;
+  /**
+   * The surface under this lane at each edge path vertex (indexed like the edge's `ys`), sampled
+   * at the lane's own offset. A road draped over a hillside tilts across its width, and lanes at
+   * the centreline's height ran half a metre into its uphill side. Absent where the edge's heights
+   * were given rather than sampled; the lane then follows `ys`.
+   */
+  readonly ys?: Float64Array;
   /** Node the lane starts from and ends at. */
   readonly start: string;
   readonly end: string;

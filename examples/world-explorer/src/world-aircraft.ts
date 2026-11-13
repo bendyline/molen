@@ -20,6 +20,7 @@ import {
   IDLE_AIRCRAFT_INPUT,
   initialAircraftState,
   installAircraft,
+  refuelAircraft,
 } from '@bendyline/molen-kernel/aircraft';
 import type { TypeLibrary } from '@bendyline/molen-kernel/content';
 import { Mounted, mountEntity, Vehicle, vehicleLocalPoint } from '@bendyline/molen-kernel/vehicles';
@@ -87,7 +88,7 @@ function skipWhenHidden(object: THREE.Object3D): void {
   };
 }
 export const AIRCRAFT_HELP: string =
-  'I engine · =/− power · W/S pitch · A/D bank · Z/C pedals · Space brakes · G gear · F flaps · B speed brake · H hook · O canopy · J nozzle/nacelles · V view · F5 flyby · E exit (in flight, eject) · R recover after impact';
+  'I engine · =/− power · W/S pitch · A/D bank · Z/C pedals · Space brakes · G gear · F flaps · B speed brake · H hook · O canopy · J nozzle/nacelles · M helicopter cyclic assisted/direct · V view · F5 flyby · E exit (in flight, eject) · R recover after impact';
 
 /** Whether `box` overlaps any parked or flying aircraft other than `except`: an obstacle for cars. */
 export function aircraftBlocks(world: World, box: OBB, except?: string): boolean {
@@ -590,6 +591,8 @@ export class WorldAircraft {
       return false;
     }
     this.inputs = { ...(this.world.get(id, AircraftInput) ?? IDLE_AIRCRAFT_INPUT) };
+    // The ground crew has been: a parked aircraft is boarded with full tanks.
+    refuelAircraft(this.world, id);
     this.pointerAxes.clear();
     this.cockpitBrake = false;
     this.message = '';
@@ -602,15 +605,23 @@ export class WorldAircraft {
     if (code === 'KeyF') this.inputs.flaps = !this.inputs.flaps;
     if (code === 'KeyJ' && this.aircraftData(this.typeId(this.mountedKind)).spec.poweredLift)
       this.inputs.thrustVector = ((Math.round((this.inputs.thrustVector ?? 0) * 4) + 1) % 5) / 4;
+    if (
+      code === 'KeyM' &&
+      this.aircraftData(this.typeId(this.mountedKind)).spec.model === 'helicopter'
+    )
+      this.inputs.cyclicMode = this.inputs.cyclicMode === 'direct' ? 'assisted' : 'direct';
     if (code === 'KeyR' && this.state?.crashed) {
       const kind = this.mountedKind;
       const yaw = this.spawnYaw(kind);
+      const cyclicMode = this.inputs.cyclicMode;
       this.world.set(`aircraft-${kind}`, Transform, {
         pos: this.spawnPosition(kind),
         rot: [0, Math.sin(yaw / 2), 0, Math.cos(yaw / 2)],
       });
+      // The pilot's cyclic choice survives the reset.
       this.inputs = {
         ...this.types.component<AircraftInputData>(this.typeId(kind), 'aircraftInput'),
+        ...(cyclicMode === undefined ? {} : { cyclicMode }),
       };
       this.world.set(`aircraft-${kind}`, AircraftState, {
         ...initialAircraftState(yaw),
@@ -647,6 +658,7 @@ export class WorldAircraft {
       ['gear', 'KeyG'],
       ['flaps', 'KeyF'],
       ['vector', 'KeyJ'],
+      ['cyclic', 'KeyM'],
       ['recover', 'KeyR'],
     ] as const) {
       for (let i = 0; i < (pilot?.[action] ?? 0); i++) this.key(code);
@@ -670,8 +682,11 @@ export class WorldAircraft {
     };
     flyAircraft(this.world, PLAYER, this.inputs);
   }
-  /** `camera` (absolute, like the aircraft) keeps distant cockpits out of the frame. */
-  render(camera?: readonly [number, number, number]): void {
+  /**
+   * `camera` (absolute, like the aircraft) keeps distant cockpits out of the frame. `shadowTexel`
+   * (`Renderer.shadowTexelSize`) takes the flown aircraft out of a sun shadow map too coarse for it.
+   */
+  render(camera?: readonly [number, number, number], shadowTexel?: number): void {
     // A cockpit shows within tens of meters of the camera. A pilot rolling or flying past the
     // parked aircraft never looks into theirs, and each is a hundred more draws switched on for
     // the seconds it takes to pass: on a takeoff roll, enough to push adaptive quality down.
@@ -705,6 +720,7 @@ export class WorldAircraft {
           Math.hypot(t.pos[0] - camera[0], t.pos[1] - camera[1], t.pos[2] - camera[2]) > 12;
         visual.updateView(kind !== pilot && (passing || distantApron) ? FAR_AWAY : camera);
       }
+      visual.updateShadows(kind === pilot ? shadowTexel : undefined);
       const channels = this.world.get(`aircraft-${kind}`, Aircraft)?.spec.visual;
       visual.update(
         s,
@@ -745,6 +761,11 @@ export class WorldAircraft {
       view,
       lookYaw,
       lookPitch,
+      // The airframe shakes the pilot's seat before and in a stall.
+      shake: {
+        amount: this.world.get(`aircraft-${kind}`, AircraftState)?.buffet ?? 0,
+        time: performance.now() / 1000,
+      },
       obstructionDistance: (from, to) => {
         const a = new THREE.Vector3().fromArray(from).sub(this.collision.origin);
         const b = new THREE.Vector3().fromArray(to).sub(this.collision.origin);
@@ -773,12 +794,25 @@ export class WorldAircraft {
             ? 'OVERSPEED — reduce speed / check gear and flaps'
             : s.stalled
               ? 'STALL — nose down, power up, wings level'
-              : this.message ||
-                (s.grounded
-                  ? airplane && s.airspeed >= (kind === 'airliner' ? 65 : 42)
-                    ? 'Rotate gently — S'
-                    : 'On ground'
-                  : 'Airborne');
+              : s.fuel === 0
+                ? airplane
+                  ? 'OUT OF FUEL — glide to a landing'
+                  : 'OUT OF FUEL — lower collective, autorotate'
+                : !airplane && !s.grounded && s.rpm < 0.85
+                  ? 'LOW ROTOR RPM — lower collective'
+                  : (s.greyout ?? 0) > 0.3
+                    ? 'GREYING OUT — ease the pull'
+                    : (s.buffet ?? 0) > 0.25
+                      ? 'BUFFET — close to the stall'
+                      : spec.fuel !== undefined &&
+                          (s.fuel ?? spec.fuel.capacity) < 0.1 * spec.fuel.capacity
+                        ? 'FUEL LOW'
+                        : this.message ||
+                          (s.grounded
+                            ? airplane && s.airspeed >= (kind === 'airliner' ? 65 : 42)
+                              ? 'Rotate gently — S'
+                              : 'On ground'
+                            : 'Airborne');
     const load = airplane && !s.grounded ? `${(s.loadFactor ?? 1).toFixed(1)} g · ` : '';
     const reheat = Math.max(
       0,
@@ -802,7 +836,11 @@ export class WorldAircraft {
         : flapPosition === 0
           ? 'up'
           : `${Math.round(flapPosition * 100)}%`;
-    return `${spec.label} · ${(s.airspeed * 1.94384).toFixed(0)} KTAS · ${airData}${(s.altitudeAGL * 3.28084).toFixed(0)} ft AGL · ${(s.verticalSpeed * 196.85).toFixed(0)} ft/min · ${load}${airplane ? 'Throttle' : 'Collective'} ${(this.inputs.power * 100).toFixed(0)}% · RPM ${(s.rpm * 100).toFixed(0)}% · ${this.inputs.engine ? 'Engine on' : 'Engine off'} · ${airplane ? `Gear ${gear} · Flaps ${flaps} · ` : ''}${spec.poweredLift ? `Vector ${Math.round((s.thrustVectorPosition ?? 0) * 90)}° · ` : ''}${alert}`;
+    const fuel =
+      spec.fuel === undefined
+        ? ''
+        : `Fuel ${Math.round(((s.fuel ?? spec.fuel.capacity) / spec.fuel.capacity) * 100)}% · `;
+    return `${spec.label} · ${(s.airspeed * 1.94384).toFixed(0)} KTAS · ${airData}${(s.altitudeAGL * 3.28084).toFixed(0)} ft AGL · ${(s.verticalSpeed * 196.85).toFixed(0)} ft/min · ${load}${airplane ? 'Throttle' : 'Collective'} ${(this.inputs.power * 100).toFixed(0)}% · RPM ${(s.rpm * 100).toFixed(0)}% · ${this.inputs.engine ? 'Engine on' : 'Engine off'} · ${fuel}${airplane ? `Gear ${gear} · Flaps ${flaps} · ` : ''}${spec.poweredLift ? `Vector ${Math.round((s.thrustVectorPosition ?? 0) * 90)}° · ` : ''}${spec.model === 'helicopter' ? `Cyclic ${this.inputs.cyclicMode === 'direct' ? 'direct' : 'assisted'} · ` : ''}${alert}`;
   }
   exitHint(): void {
     this.message =

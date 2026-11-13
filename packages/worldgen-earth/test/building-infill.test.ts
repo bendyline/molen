@@ -371,6 +371,31 @@ describe('seeded building infill', () => {
     ).toEqual([]);
   });
 
+  it('builds inside a named neighbourhood outline, which is not a land use', () => {
+    // `other` is the Protomaps basemap's class for one, `neighbourhood` the OpenMapTiles one.
+    for (const kind of ['other', 'neighbourhood']) {
+      const tile = streets();
+      tile.landcover.push({ class: kind, polygons: [rectangle(0, 0, 1, 1)] });
+      const homes = infer(tile);
+      expect(homes.length).toBeGreaterThan(30);
+      expect(homes).toEqual(infer(streets()));
+    }
+    // The outline is no evidence of housing: a lone street inside it stays empty.
+    const lone = streets();
+    lone.transportation = [required(lone.transportation[2])];
+    lone.landcover.push({ class: 'other', polygons: [rectangle(0, 0, 1, 1)] });
+    expect(infer(lone)).toEqual([]);
+    // Land mapped inside the outline still excludes its own ground.
+    const park = streets();
+    park.landcover.push(
+      { class: 'other', polygons: [rectangle(0, 0, 1, 1)] },
+      { class: 'park', polygons: [rectangle(0, 0, 0.5, 1)] },
+    );
+    const corners = infer(park).flatMap((home) => required(home.polygons[0]).outer);
+    expect(corners.length).toBeGreaterThan(0);
+    expect(corners.every(([x]) => x > 0.5)).toBe(true);
+  });
+
   it('rejects a narrow obstacle through a footprint, even when all corners are outside it', () => {
     const tile = streets(),
       candidate = required(infer(tile)[0]);

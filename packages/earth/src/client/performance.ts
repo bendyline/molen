@@ -40,13 +40,15 @@ const SPECS = [
 // cars, pedestrians, trains, aircraft, detailed cars, skinned figures, figure radius (m),
 // activity radius (m), pose evaluations per frame. Car and pedestrian caps are a third of what
 // they were (High drew 320 cars and 40 people), matching the lower spawn density in ambient.ts.
+// Trains count consists: a freight is a few locomotives and a score of cars, drawn far as
+// instanced stand-ins and in full only near the camera.
 const AMBIENT = [
   [8, 1, 0, 0, 2, 6, 60, 250, 4],
-  [16, 2, 0, 1, 4, 12, 80, 350, 8],
-  [32, 4, 1, 1, 6, 20, 100, 450, 12],
-  [54, 6, 1, 2, 8, 32, 120, 600, 20],
-  [80, 9, 2, 3, 12, 48, 150, 800, 32],
-  [108, 13, 2, 4, 16, 64, 180, 1000, 48],
+  [16, 2, 1, 1, 4, 12, 80, 350, 8],
+  [32, 4, 2, 1, 6, 20, 100, 450, 12],
+  [54, 6, 3, 2, 8, 32, 120, 600, 20],
+  [80, 9, 4, 3, 12, 48, 150, 800, 32],
+  [108, 13, 6, 4, 16, 64, 180, 1000, 48],
 ] as const;
 
 /**
@@ -204,6 +206,8 @@ export interface EarthDeviceMemory {
   deviceMemory?: number;
   /** A touch-first device (phone or tablet), whose tabs are killed early under memory pressure. */
   touch?: boolean;
+  /** `navigator.hardwareConcurrency`, logical cores. */
+  cores?: number;
 }
 
 function browserDeviceMemory(): EarthDeviceMemory {
@@ -212,8 +216,16 @@ function browserDeviceMemory(): EarthDeviceMemory {
       ? (navigator as Navigator & { deviceMemory?: number }).deviceMemory
       : undefined;
   const touch = typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
-  return { ...(reported !== undefined ? { deviceMemory: reported } : {}), touch };
+  const cores = typeof navigator !== 'undefined' ? navigator.hardwareConcurrency : undefined;
+  return {
+    ...(reported !== undefined ? { deviceMemory: reported } : {}),
+    touch,
+    ...(cores !== undefined ? { cores } : {}),
+  };
 }
+
+/** Logical cores past which a desktop reporting the browser's 8 GiB ceiling is a workstation. */
+const WORKSTATION_CORES = 16;
 
 /**
  * Terrain and layer geometry a device can keep on screen, bytes. Adaptive quality measures memory
@@ -222,16 +234,78 @@ function browserDeviceMemory(): EarthDeviceMemory {
  * view's geometry stayed the same. The terrain cache also keeps at least this much, so ground
  * just left is still warm when the view pans back. 96 MiB per reported GiB within 192–768 MiB;
  * without a report, 256 MiB on touch devices and 512 MiB elsewhere.
+ *
+ * Chromium reports at most 8 GiB, so 8 means "8 or more", and a workstation got a laptop's budget.
+ * A dense city at High displays more than 768 MiB on its own (Seattle about 1.5-2 GiB), which left
+ * no room for hidden ground: every tile left the cache the moment it left the view. A desktop at
+ * that ceiling with WORKSTATION_CORES or more logical cores gets 2 GiB.
  */
 export function earthMemoryBudget(device: EarthDeviceMemory = browserDeviceMemory()): number {
-  const { deviceMemory, touch } = device;
-  const mib =
-    deviceMemory !== undefined && Number.isFinite(deviceMemory) && deviceMemory > 0
-      ? Math.min(768, Math.max(192, deviceMemory * 96))
-      : touch
-        ? 256
-        : 512;
+  const { deviceMemory, touch, cores } = device;
+  const reported = deviceMemory !== undefined && Number.isFinite(deviceMemory) && deviceMemory > 0;
+  if (reported && deviceMemory >= 8 && touch !== true && (cores ?? 0) >= WORKSTATION_CORES)
+    return 2048 * MIB;
+  const mib = reported ? Math.min(768, Math.max(192, deviceMemory * 96)) : touch ? 256 : 512;
   return mib * MIB;
+}
+
+/** Ground kept loaded past each side of the view, degrees, so a turn reveals terrain at once. */
+const PERIPHERAL_DEGREES = 20;
+/** How much of the view's detail that ground keeps, so it stays a level or two coarser. */
+const PERIPHERAL_DETAIL = 0.4;
+/** Tiles the terrain cache keeps at most; bytes normally stop it first. */
+const MAX_RESIDENT_TILES = 1024;
+/**
+ * Detail kept for ground the rest of the way round the camera, and how far (meters). A look to
+ * the side takes a third of a second; the ground it faces took 3 s to finish at Balanced on a
+ * fast desktop and 20 s on a slow main thread, and until then was bare terrain with straight
+ * tile edges. At this weight the circle holds a dozen or so tiles, three or more levels coarser
+ * than the view, with water and land cover on them (see `EARTH_INDEPENDENT_LAYERS`).
+ */
+const SURROUND_DETAIL = 0.1;
+const SURROUND_DISTANCE = 12_000;
+/** The surround needs tiles to spare: tiers below this many selected tiles go without. */
+const SURROUND_MIN_TILES = 40;
+
+/**
+ * Layers an Earth terrain stream builds outside the view and shows as each is ready: water, and
+ * land cover, which is the ground's color (pass as the stream's `independentLayers`). Buildings,
+ * roads and trees stay with the view.
+ */
+export const EARTH_INDEPENDENT_LAYERS: readonly ['hydrology', 'classification'] = [
+  'hydrology',
+  'classification',
+];
+
+/**
+ * A terrain budget for an Earth view, from a tier's or a preset's. Ground just left must stay warm
+ * up to the device's memory budget, whatever the level. A dense city's view alone can pass a
+ * tier's own byte cap, and with no room for hidden tiles everything leaves the cache the moment it
+ * leaves the view: a circle at 250 m/s then rebuilt 70% of its tiles, and the capacity that took
+ * was not spent on the ground ahead.
+ */
+export function earthTerrainBudget(
+  base: TerrainPyramidBudget,
+  memoryBudget: number,
+): TerrainPyramidBudget {
+  return {
+    ...base,
+    peripheralDegrees: PERIPHERAL_DEGREES,
+    peripheralDetail: PERIPHERAL_DETAIL,
+    ...(base.maxSelectedTiles >= SURROUND_MIN_TILES
+      ? { surroundDetail: SURROUND_DETAIL, surroundDistance: SURROUND_DISTANCE }
+      : {}),
+    maxResidentBytes: Math.max(base.maxResidentBytes ?? 0, memoryBudget),
+    maxResidentTiles: Math.max(
+      base.maxResidentTiles,
+      Math.min(MAX_RESIDENT_TILES, Math.round(memoryBudget / MIB)),
+    ),
+  };
+}
+
+/** Generated buildings kept in CPU memory: what a tile's return needs after leaving the cache. */
+export function earthWorldgenCacheBytes(tierBytes: number, memoryBudget: number): number {
+  return Math.max(tierBytes, memoryBudget / 4);
 }
 
 /**

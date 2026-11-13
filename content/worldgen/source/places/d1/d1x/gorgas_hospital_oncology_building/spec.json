@@ -1,0 +1,433 @@
+{
+  "planId": "gorgas_hospital_oncology_building",
+  "id": "gorgas_hospital_oncology_building",
+  "assetId": "molen.worldgen.structure.gorgas_hospital_oncology_building",
+  "title": "Gorgas Hospital Oncology Building, Ancón",
+  "wikidataId": "Q6041441",
+  "category": "hospital",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -79.54558735,
+    "latitude": 8.9598567
+  },
+  "size": [
+    51.67909622192383,
+    23.83782422542572,
+    72.03009414672852
+  ],
+  "actualBounds": {
+    "min": [
+      -25.839548110961914,
+      -1.0778239965438843,
+      -34.6100959777832
+    ],
+    "max": [
+      25.839548110961914,
+      22.760000228881836,
+      37.41999816894531
+    ]
+  },
+  "visualBrief": "The Ancón oncology block with its angled concrete entrance, exposed stacked floorplates, recessed glazing and terra-cotta lattice galleries.",
+  "nativeAxes": {
+    "x": "along the long facade as seen from the street",
+    "y": "up",
+    "z": "toward Calle Gorgas"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2012-05-13",
+    "validFrom": "2012-01-01",
+    "validUntil": "2013-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hospital_Gorgas_Panama.JPG"
+  ],
+  "stories": [
+    {
+      "id": "gorgas-hospital-wp",
+      "url": "https://qualla.com/gorgas-hospital/"
+    }
+  ],
+  "referenceInputHash": "3c4246944ecd65d8eb606aba5137ebae08e1fe1e4fa2a8a34f53d2d506c14f0f",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/d1/d1x/gorgas_hospital_oncology_building/models/gorgas-oncology-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/d1/d1x/gorgas_hospital_oncology_building/models/gorgas-oncology-model.mjs",
+    "level": "skyline",
+    "export": "hospitalSkyline",
+    "errorMeters": 0.85,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "slab": {
+        "slot": "trim",
+        "graph": "concrete_panel",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick_glazed",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.48,
+        "metallic": 0.06
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hospitalDistrict",
+        "errorMeters": 0.44,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "slab": {
+            "slot": "trim",
+            "graph": "concrete_panel",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_glazed",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.06
+          }
+        }
+      },
+      "street": {
+        "export": "hospitalStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "slab": {
+            "slot": "trim",
+            "graph": "concrete_panel",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_glazed",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.06
+          }
+        }
+      },
+      "closeup": {
+        "export": "hospitalCloseup",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "slab": {
+            "slot": "trim",
+            "graph": "concrete_panel",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_glazed",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.06
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_boardformed",
+    "concrete_panel",
+    "concrete_plain",
+    "brick_glazed"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.84,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -79.54558735,
+      8.9598567
+    ],
+    "heading": 2.5598185257624584,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -79.54526618696603,
+        8.960044792162154
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate sidewalk grade near the photographed sloped concrete entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -25.830547349612857,
+          -34.6010972768436
+        ],
+        [
+          25.827514846567034,
+          -34.60109727684362
+        ],
+        [
+          25.830547348415948,
+          34.6010972778675
+        ],
+        [
+          -25.82751484776395,
+          34.60109727786752
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Named oncology building envelope, OpenStreetMap way 73814947."
+    },
+    "featureIds": [
+      "way/73814947",
+      "way/198518933"
+    ],
+    "source": "https://www.openstreetmap.org/way/73814947",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c658555ce87a799395a612c0dda92519dfc33d7b67c933b027c56a390d9d23a0",
+    "notes": "The native rectangle sets the exterior envelope. The photograph controls the tower and podium setbacks, tall repetitive window fins, flared entrance portal and terracotta lattice strips."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_panel",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        3,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_glazed",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.75
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The 2012 exterior covers the oncology block and its podium on the historic hospital grounds.",
+    "The street photo establishes the exposed concrete facade and fins. The tower depth, rear elevations and selected terrace details are estimates.",
+    "The original hillside elevation remains unchanged. The podium and street contact use approximate local grade."
+  ],
+  "sourceLicense": "Original geometry under the repository license, OpenStreetMap ODbL 1.0 and one exact first-party CC0 Qualla photo.",
+  "qaLodCameras": [
+    {
+      "name": "whole-gorgas-oncology-building-skyline",
+      "position": [
+        69,
+        45,
+        106
+      ],
+      "lookAt": [
+        -2.4,
+        9,
+        -1.5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-gorgas-oncology-building-district",
+      "position": [
+        69,
+        45,
+        106
+      ],
+      "lookAt": [
+        -2.4,
+        9,
+        -1.5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-gorgas-oncology-building-street",
+      "position": [
+        69,
+        45,
+        106
+      ],
+      "lookAt": [
+        -2.4,
+        9,
+        -1.5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-gorgas-oncology-building-closeup",
+      "position": [
+        69,
+        45,
+        106
+      ],
+      "lookAt": [
+        -2.4,
+        9,
+        -1.5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "calle-gorgas-portal-and-concrete-slabs",
+      "position": [
+        -37,
+        5.1,
+        68
+      ],
+      "lookAt": [
+        -6,
+        11.5,
+        21
+      ]
+    },
+    {
+      "name": "podium-galleries-and-lattice",
+      "position": [
+        22,
+        5.9,
+        58
+      ],
+      "lookAt": [
+        10.8,
+        5.9,
+        33.2
+      ]
+    },
+    {
+      "name": "upper-hospital-floorplates-and-rear-terrace",
+      "position": [
+        54,
+        43,
+        -67
+      ],
+      "lookAt": [
+        -6,
+        10.8,
+        -9.8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9888,
+    "vertices": 29664,
+    "materials": 5,
+    "bytes": 1292028,
+    "sha256": "sha256:b97183d1ae5863be6f6af9e96919afd1e008b071536a6cf5271ba76cccb27bd0"
+  }
+}

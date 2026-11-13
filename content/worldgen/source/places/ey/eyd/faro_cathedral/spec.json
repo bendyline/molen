@@ -1,0 +1,434 @@
+{
+  "planId": "faro_cathedral",
+  "id": "faro_cathedral",
+  "assetId": "molen.worldgen.structure.faro_cathedral",
+  "title": "Faro Cathedral",
+  "wikidataId": "Q648397",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -7.934704,
+    "latitude": 37.01334
+  },
+  "size": [
+    39.57155418395996,
+    21.79000014066696,
+    51.408931732177734
+  ],
+  "actualBounds": {
+    "min": [
+      -20.346603393554688,
+      -0.949999988079071,
+      -23.4296817779541
+    ],
+    "max": [
+      19.224950790405273,
+      20.84000015258789,
+      27.979249954223633
+    ]
+  },
+  "visualBrief": "White Faro Cathedral ranges and the stone bell tower with a double Gothic porch and three open bell bays.",
+  "nativeAxes": {
+    "x": "south-southeast along the bell tower façade",
+    "y": "up",
+    "z": "west-southwest from the portal into the square"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2014-07-28",
+    "validFrom": "2014-01-01",
+    "validUntil": "2015-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Faro_-_July_2014_(70).JPG",
+    "https://commons.wikimedia.org/wiki/File:Faro_-_July_2014_(75).JPG"
+  ],
+  "stories": [
+    {
+      "id": "faro-cathedral-wp",
+      "url": "https://qualla.com/faro-cathedral/"
+    }
+  ],
+  "referenceInputHash": "c4b07bce751911e7d2d62becbeb6e43180d6dbc14639c69de910366498307a1b",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ey/eyd/faro_cathedral/models/cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ey/eyd/faro_cathedral/models/cathedral-model.mjs",
+    "level": "skyline",
+    "export": "cathedralSkyline",
+    "errorMeters": 0.23,
+    "surfaces": {
+      "white": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.83,
+        "metallic": 0.18
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.87,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cathedralDistrict",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.83,
+            "metallic": 0.18
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "cathedralStreet",
+        "errorMeters": 0.058,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.83,
+            "metallic": 0.18
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "cathedralCloseup",
+        "errorMeters": 0.022,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.83,
+            "metallic": 0.18
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_weathered",
+    "stone_limestone",
+    "tile_ceramic",
+    "metal_bronze_cast"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -7.934704,
+      37.01334
+    ],
+    "heading": -1.3620736483377618,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -7.935005610484922,
+        37.01327707748118
+      ],
+      "modelHeight": 0,
+      "basis": "Original plaza terrain immediately in front of the mapped west portal and stairs. Threshold levels are approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/182814167",
+      "way/433056356",
+      "way/433056357"
+    ],
+    "source": "https://www.openstreetmap.org/way/182814167",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:927ff02e52cc2c1aa8598fc44f7e1aed44ce33c0238f915c1f76b4d59a0eb799",
+    "notes": "OpenStreetMap church way 182814167 and bell tower way 433056356 provide the two touching native outlines. Garden way 433056357 distinguishes the neighboring open space. The two July 2014 views establish the portal, triple bell opening and long white north elevation. South-facing roofs, rear height and small trim are estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The exterior represents July 2014. Bell sizes, carved ornament, masonry courses and elevations obscured in the accepted photos are approximate.",
+    "The source elevation field is preserved without flattening. Entrance tread and threshold dimensions are representative.",
+    "The neighboring garden, detached São Miguel Chapel and cathedral interiors are outside the model."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. Two exterior photographs by Benoît Prieur are under CC0. OpenStreetMap contributors supply mapped geometry under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-faro-cathedral-skyline",
+      "position": [
+        -57,
+        30,
+        65
+      ],
+      "lookAt": [
+        0,
+        7,
+        2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-faro-cathedral-district",
+      "position": [
+        -57,
+        30,
+        65
+      ],
+      "lookAt": [
+        0,
+        7,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-faro-cathedral-street",
+      "position": [
+        -57,
+        30,
+        65
+      ],
+      "lookAt": [
+        0,
+        7,
+        2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-faro-cathedral-closeup",
+      "position": [
+        -57,
+        30,
+        65
+      ],
+      "lookAt": [
+        0,
+        7,
+        2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "plaza-portal-and-bell-crown",
+      "position": [
+        24,
+        9,
+        58
+      ],
+      "lookAt": [
+        1,
+        9,
+        18
+      ]
+    },
+    {
+      "name": "north-range-and-side-chapel",
+      "position": [
+        -56,
+        18,
+        24
+      ],
+      "lookAt": [
+        -7,
+        6,
+        3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2333,
+    "vertices": 6999,
+    "materials": 6,
+    "bytes": 589616,
+    "sha256": "sha256:8ee0a6869d8d707145866edb5c9e8958362eb21ab48bd95a98ed4c346c900a48"
+  }
+}

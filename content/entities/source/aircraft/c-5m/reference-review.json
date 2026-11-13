@@ -28,7 +28,8 @@
       "title": "Upgraded C-5B AMP instrument panel",
       "author": "US federal government; original photographer uncredited; uploaded by Voytek S",
       "license": "Commons marks public domain US federal government work; incomplete original provenance",
-      "scope": "Frontal six-screen arrangement, tall yokes, central backup strip, fire controls and quadrant.720x540px. Used for relative positions with estimated3.1m panel width; not a measured cockpit drawing."
+      "scope": "Frontal six-screen arrangement, tall yokes, central backup strip, fire controls and quadrant.720x540px. Used for relative positions with estimated3.1m panel width; not a measured cockpit drawing.",
+      "local": ".artifacts/aircraft/references/c-5m/cockpit.jpg"
     },
     {
       "url": "https://commons.wikimedia.org/wiki/File:220421-F-FV908-113_(52018855097).jpg",
@@ -61,8 +62,8 @@
     ],
     "lookAt": [
       0,
-      8.06,
-      32
+      8.22,
+      32.1
     ],
     "fov": 85
   },
@@ -71,10 +72,10 @@
     "mode": "top-down-ortho",
     "center": [
       0,
-      -8.13
+      -8.29
     ],
     "viewHeight": 2.2,
-    "cameraHeight": 13.5
+    "cameraHeight": 13.3
   },
   "instrumentState": {
     "trueAirspeed": 0,
@@ -217,7 +218,11 @@
       "Dedicated C-5M geometry replaces the generic transport: long double-deck fuselage, visor seam, seven windscreen panes, swept anhedral wing, tall T-tail and CF6/F138 nacelles with recessed fans and core exits. Overlay comparison shortened the tail trailing edge; close views replaced stretched glazing and moved the overhead panel wholly inside the sloping roof.",
       "Twenty-eight wheels: four six-wheel tandem main bogies with two tires forward and four aft, plus four nose wheels. Gear fairings, axle/hub detail, fixed door outlines and selective structural seams/fasteners are polygonal geometry.",
       "Six portrait AMP displays, offset backup strip, central round instruments, four striped fire-handle plates, radio shelf, full-height control columns, U-shaped handwheels, four throttles, paired FMS keypads, pedals, overhead and upper-deck engineer station. Layout independently cross-checked against a2022 USAF photograph and public rescue illustrations.",
-      "Named derived signals convert units, decode digits and indicate data availability. Dual flight displays share expression definitions; four engine gauges read independent normalized simulator RPM. Fixed swept/canted hinge mounts retain their world axes while moving controls. Unsupported avionics/system readings stay blank."
+      "Named derived signals convert units, decode digits and indicate data availability. Dual flight displays share expression definitions; four engine gauges read independent normalized simulator RPM. Fixed swept/canted hinge mounts retain their world axes while moving controls. Unsupported avionics/system readings stay blank.",
+      "The seat stood 0.9 m aft of the eye and 1.3 m under it. Eye moved forward to [0.86, 8.76, 31.25]; floor raised 0.5 m to 7.45, with seats, columns, pedals, pedestal, side liners, engineer station and door following. The cushion is under the eye at 0.77 m.",
+      "Fire handles: C-5M_Cockpit.jpg shows black and yellow plates about 0.19 by 0.15 m with red handles about 5 cm wide. The model had white plates 0.23 by 0.21 m and 8 cm handles, and they are resized and recoloured.",
+      "The wiper is parked along the sill: the wiper was the solid object dead ahead that read as -2 degrees over the nose.",
+      "Primary display brought into the entry view: panel 0.16 m up and 0.1 m forward. C-5M_Cockpit.jpg shows the high shelf ending at the pilot's primary display, with the radios beside the fire plates, so the shelf is cut to 1.64 m and the pilot's displays sit under a low side hood."
     ],
     "independentDimensions": "Roster length75.31m/span67.89m/height19.84m retained. Lockheed2011 and USAF rescue documents give approximately75.53–75.54m/67.88–67.91m/19.84–19.85m: length differs0.3%, recorded rather than silently fitted. Published stabilizer span68ft9in=20.955m independently sets the tail span. DVIDS primary caption confirms four2+4-wheel main bogies. The illustrative front drawing is too tall when scaled by span; published height takes precedence. Panel width3.1m is estimated from a frontal photograph, not an independent cockpit measurement.",
     "visual": "Personally inspected final-source side/top/front/panel overlays, eight standard views and13 detail/state captures: zero, cruise, limits, negative altitude, missing telemetry, console, overhead, close exterior, gear-up, tail, both control extremes and seats. Final geometry/sightline check,25 instrument tests and byte-identical regeneration passed. Roof clearance correction was measured by raycasting the imported mesh.",
@@ -228,12 +233,51 @@
       "Gear retracts by translation/hiding, without the actual90degree truck rotation, steering or kneeling sequence. Flaps rotate without full Fowler travel. Cargo visor/ramp stay closed; hold, relief cabin and engineer station are not fully furnished. Fasteners are selective structural detail, not a manufacturing rivet schedule. Assisted flight tuning is not certified C-5M performance."
     ]
   },
-  "sourceHash": "sha256:2e890d39d0f84bc400c7b5aa39a949cbc70255c392807859caf8378ff2d74d21",
-  "runtimeHash": "sha256:c776da8154c12dcaa5f200f20abdaf696d07f7b92a09fcec750c7457aeecfe90",
+  "sourceHash": "sha256:1647e214e2bff6769104bea6d66e0a3fe0eef43ed8a89790d8b7a33a1b336b77",
+  "runtimeHash": "sha256:b5cb60d937d0839f1867d91ea89db1a0ddfc29ecbdbcb5814d9b4f873aea4b0a",
   "limitations": [
     "Exterior drawings are illustrative legacy C-5 general arrangements, not exact C-5M production cross-sections. The front view has a scale inconsistency; it is a qualitative check. CF6 nacelles are reconstructed from M-model photographs, not matched to the legacy TF39 illustration. Airfoils, local fairings, nose curvature and glazing remain approximations.",
     "Cockpit dimensions are estimated. The main panel is comparatively well documented; overhead switch groups, engineer station, seats and sidewalls are simplified. The low-resolution frontal AMP photo has incomplete original provenance; the independent2022 USAF photograph provides primary visual confirmation. No photographic pixels are distributed in the model.",
     "Live flight display symbols are an original simulator adaptation. Speed is TAS, altitude geometric, heading true. Engine gauges explicitly show normalized simulator RPM, not independently modeled CF6 N1/N2. N2/EGT/fuel flow, navigation, flight management, autopilot, radios, hydraulic/electrical systems and warning logic are not simulated and stay blank.",
-    "Gear retracts by translation/hiding, without the actual90degree truck rotation, steering or kneeling sequence. Flaps rotate without full Fowler travel. Cargo visor/ramp stay closed; hold, relief cabin and engineer station are not fully furnished. Fasteners are selective structural detail, not a manufacturing rivet schedule. Assisted flight tuning is not certified C-5M performance."
-  ]
+    "Gear retracts by translation/hiding, without the actual90degree truck rotation, steering or kneeling sequence. Flaps rotate without full Fowler travel. Cargo visor/ramp stay closed; hold, relief cabin and engineer station are not fully furnished. Fasteners are selective structural detail, not a manufacturing rivet schedule. Assisted flight tuning is not certified C-5M performance.",
+    "Raised floor height is set from the eye, not from a drawing."
+  ],
+  "cockpitSweep": {
+    "method": "packages/entities/scripts/cockpit-sweep.mjs from spec.pilotEye at the runtime camera; seat, nose and front views rendered and inspected. World-explorer enters the seat at lookPitch -0.18, so the frame runs +19.7 to -40.3 degrees. The primary display has to sit near -30 and close to straight ahead.",
+    "columns": "outside%, overNose degrees, headroom, wall, panel, cushion, seatback (m)",
+    "before": [
+      37,
+      -2,
+      0.22,
+      0.67,
+      0.78,
+      1.85,
+      4.05
+    ],
+    "after": [
+      46,
+      -11,
+      0.28,
+      0.82,
+      0.93,
+      0.73,
+      0.4
+    ],
+    "attitudeDisplay": {
+      "sweepColumn": {
+        "before": -39,
+        "after": -26
+      },
+      "cardCenterElevationAndYaw": {
+        "before": [
+          -43.1,
+          1.5
+        ],
+        "after": [
+          -30.8,
+          1.4
+        ]
+      }
+    }
+  }
 }

@@ -15,7 +15,14 @@ const types = createTypeLibrary(
   ),
 );
 
-/** The molen.entities vehicles, in type-document order, as a host with the pack builds them. */
+/**
+ * The molen.entities vehicles, in type-document order, as a host with the pack builds its
+ * default list: region-only types (an `ambientRole.weight` of 0, such as the auto-rickshaw)
+ * park only where a regional fleet weights them.
+ */
 export const PARKED_VEHICLES: readonly TerrainParkedVehicle[] = types
   .idsWith('vehicle')
+  .filter(
+    (id) => (types.components(id).ambientRole as { weight?: number } | undefined)?.weight !== 0,
+  )
   .map((id) => ({ id, spec: types.component<VehicleData>(id, 'vehicle').spec }));

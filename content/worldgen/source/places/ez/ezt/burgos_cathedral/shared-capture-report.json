@@ -1,0 +1,80 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.burgos_cathedral",
+  "inputHash": "sha256:8fa1394e262955d52ad2fda12ee553479b5af4739d0382b0cc5c58fe2663fb14",
+  "sourceHash": "sha256:4e5d56c717b5976af948e81009e9247d1a338d27edfba3e1bc831487beb73659",
+  "runtimeHash": "sha256:393bd806d133f441e7fb299094d62b646bcf60b5230c21d6976f936d45e2038c",
+  "fixtureHash": "sha256:10244556b9e757f165110bb42043577e164c097788dadae15b7d14599077afd8",
+  "placementHash": "sha256:d892d012c6ff7fc5d5afdb8b9493f538e1c2fa6c1a7bda8848a6504d1a2101e5",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    },
+    "molen.worldgen.material.slate": {
+      "path": "materials/slate.matgraph.json",
+      "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+    },
+    "molen.worldgen.material.tile_flat": {
+      "path": "materials/tile_flat.matgraph.json",
+      "hash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_limestone_weathered": {
+      "path": "materials/stone_limestone_weathered.matgraph.json",
+      "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
+    },
+    "molen.worldgen.material.wood_plain": {
+      "path": "materials/wood_plain.matgraph.json",
+      "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-burgos-cathedral.png",
+      "hash": "sha256:6d8db16665f5d04cb07bb8952a909fa9931e5a3aa6f284df4e3da0180ece6a12",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -88,
+          22,
+          70
+        ],
+        "lookAt": [
+          -14,
+          30,
+          -12
+        ],
+        "fov": 48,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.55,
+          1,
+          0.34
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "burgos.cathedral",
+        "visibleDraws": 7
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Limestone, weathered stone, slate, flat clay tile, painted metal and wood use six reusable material graphs. Each graph resolves once across the model, including two limestone tints."
+}

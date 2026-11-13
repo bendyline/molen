@@ -32,8 +32,61 @@
       "shots/shared/green-corner-ramp-closed-guards-and-ground-contacts.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Four existing256-square graphs: concrete_plain, metal_painted, fabric_canvas and window_grid. Concrete supplies cores/decks/supports/common floor; tinted paint supplies orange masts/green ramps/zebra tiers/pale steel/trim/neutral displays/marks/lights; shared canvas supplies pale canopy and turf grain; window-grid supplies opaque recessed glazing. Separate roof/wall canvas slots create five near draws. Zero embedded images or unique atlas; every nearby graph read once. Metric repeats/linear palette conversion/separate POSITION and NORMAL uploads/equal reported CPU and GPU geometry bytes pass. Shared opaque fabric/glazing approximate surfaces without bespoke image textures or original optical transmission.",
-    "captureReportHash": "sha256:fcd3c166c8300d79b4696f2a5bff20e8b0d9c73ae832d34a98ef257573f3f282"
+    "notes": "Four existing256-square graphs: concrete_plain, metal_painted, fabric_canvas and window_grid. Concrete supplies cores/decks/supports/common floor; tinted paint supplies orange masts/green ramps/zebra tiers/pale steel/trim/neutral displays/marks/lights; shared canvas supplies pale canopy and turf grain; window-grid supplies opaque recessed glazing. Separate roof/wall canvas slots create five near draws. Zero embedded images or unique atlas; every nearby graph read once. Metric repeats/linear palette conversion/separate POSITION and NORMAL uploads/equal reported CPU and GPU geometry bytes pass. Shared opaque fabric/glazing approximate surfaces without bespoke image textures or original optical transmission. The shared window_grid graph changed after the original review. Eight new shared-material views confirm the revised glazing in the existing geographic placement.",
+    "captureReportHash": "sha256:b101c42c139511c9800412aa51e0649bc8b2b25b84620d65edde6baa4e418d34",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:746dd1ae641e5fcf4c20b2230394fa51f87fc5d864a2b7573ed464aa57569d3f"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:4bed89c59b9613cb454b915789cdd67ff3eb5cf0adb92310bffc68d08f5826eb"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:45b743cf034df720c125a6136a6c56349cc405b7642a5253a2878aabda93ffc5"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:1399ca51a3191329bd17fc3462e436a5b0cb2cd54011e9546a438457a806cb25"
+      },
+      {
+        "path": "shots/shared/orange-lattice-giraffe-masts-stays-and-access-cores.png",
+        "hash": "sha256:b2661d64d27aec6e893367bcd4c0ed55a2f631f48752dde6bd097a88f33bf7be"
+      },
+      {
+        "path": "shots/shared/three-zebra-tiers-vent-gap-and-canopy-underside.png",
+        "hash": "sha256:d27aa75fb8870fa2ee6e198c5c1c463b2cc246fd31babad7cfff15ef1109ef8d"
+      },
+      {
+        "path": "shots/shared/green-corner-ramp-closed-guards-and-ground-contacts.png",
+        "hash": "sha256:a2481d1627fc9308d8c29792211580f3f80408b9a9bc5298f7e59feb5cb53b3a"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:f526e4344ce93848a1331fcd16873a756c2907097dd361caf3cbab1f5af9e3fd"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

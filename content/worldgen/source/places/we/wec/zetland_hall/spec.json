@@ -1,0 +1,443 @@
+{
+  "planId": "zetland_hall",
+  "id": "zetland_hall",
+  "assetId": "molen.worldgen.structure.zetland_hall",
+  "title": "Zetland Hall",
+  "wikidataId": "Q8069763",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 114.158163,
+    "latitude": 22.276423
+  },
+  "size": [
+    14.758978843688965,
+    19.335399866104126,
+    28.843788146972656
+  ],
+  "actualBounds": {
+    "min": [
+      -6.815356254577637,
+      -3.715399980545044,
+      -14.039976119995117
+    ],
+    "max": [
+      7.943622589111328,
+      15.619999885559082,
+      14.803812026977539
+    ]
+  },
+  "visualBrief": "Buff stucco hall with three deeply recessed gridded lights and the main entrance on Kennedy Road.",
+  "nativeAxes": {
+    "x": "right along the main elevation",
+    "y": "up",
+    "z": "outward toward Kennedy Road"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2007-10-01",
+    "validFrom": "2007-01-01",
+    "validUntil": "2008-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:HK_Zetland_Hall.jpg",
+    "https://commons.wikimedia.org/wiki/File:HK_Zetland_Hall_Sign.jpg",
+    "https://commons.wikimedia.org/wiki/File:HK_Zetland_Hall_Stone.jpg"
+  ],
+  "stories": [
+    {
+      "id": "zetland-hall-wp",
+      "url": "https://qualla.com/zetland-hall/"
+    }
+  ],
+  "referenceInputHash": "5ca15c6a2edf92d89c598066f5beb383b751c9cc1c10a4bec466f84f81d6abb5",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/we/wec/zetland_hall/models/zetland-hall-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/we/wec/zetland_hall/models/zetland-hall-model.mjs",
+    "level": "skyline",
+    "export": "hallSkyline",
+    "errorMeters": 0.79,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "glazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.55,
+        "metallic": 0.12
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hallDistrict",
+        "errorMeters": 0.37,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.12
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "hallStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.12
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "hallCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.12
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "stone_granite",
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.23,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      114.158163,
+      22.276423
+    ],
+    "heading": -0.3560427547548696,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        114.15810784455748,
+        22.276285758520483
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate pavement outside the Kennedy Road entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          6.7196973131803395,
+          -6.430227167655664
+        ],
+        [
+          5.564408352149812,
+          -13.910547924499093
+        ],
+        [
+          -3.9711422010145405,
+          -13.012887535374013
+        ],
+        [
+          -6.02270378339889,
+          -5.230727466728615
+        ],
+        [
+          -6.42970192571568,
+          11.583812196738362
+        ],
+        [
+          7.813861886709722,
+          11.583812196738364
+        ]
+      ],
+      "minimumCoverage": 0.94,
+      "basis": "The named Zetland Hall envelope from OpenStreetMap way 533484361."
+    },
+    "featureIds": [
+      "way/533484361"
+    ],
+    "source": "https://www.openstreetmap.org/way/533484361",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:542c13b296041e35375258a7dc7b0264ac14657a0240b884b063fac5ce8c4c7d",
+    "notes": "The photo looks from near the Tramway Path junction. The tall residential tower behind the hall has a separate footprint."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The wall photo and two detail photographs control the Kennedy Road facade. Height, roof equipment, rear openings and side volume proportions are estimated.",
+    "The adjoining high-rise has a separate footprint. The model covers the hall and its attached service volumes.",
+    "The independent Hong Kong Lands Department 5 m ground elevations are preserved as an unmodified site crop. The entrance and foundation use approximate grades from those values.",
+    "The exact three Qualla reference photographs remain in the image corpus with their hashes in the model records."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Mapped footprint is ODbL. The photographer released all three exact Qualla files to the public domain.",
+  "qaLodCameras": [
+    {
+      "name": "whole-zetland-hall-skyline",
+      "position": [
+        -38,
+        19,
+        52
+      ],
+      "lookAt": [
+        0,
+        6.1,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-zetland-hall-district",
+      "position": [
+        -38,
+        19,
+        52
+      ],
+      "lookAt": [
+        0,
+        6.1,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-zetland-hall-street",
+      "position": [
+        -38,
+        19,
+        52
+      ],
+      "lookAt": [
+        0,
+        6.1,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-zetland-hall-closeup",
+      "position": [
+        -38,
+        19,
+        52
+      ],
+      "lookAt": [
+        0,
+        6.1,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "kennedy-road-and-tramway-path",
+      "position": [
+        -20,
+        8.9,
+        39
+      ],
+      "lookAt": [
+        0,
+        6.4,
+        6
+      ]
+    },
+    {
+      "name": "entry-and-recessed-window-grid",
+      "position": [
+        4,
+        5.5,
+        29
+      ],
+      "lookAt": [
+        0.7,
+        4.8,
+        11
+      ]
+    },
+    {
+      "name": "rear-service-side-and-roof",
+      "position": [
+        -27,
+        18,
+        -29
+      ],
+      "lookAt": [
+        0,
+        7,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1904,
+    "vertices": 5712,
+    "materials": 5,
+    "bytes": 494176,
+    "sha256": "sha256:8e889cb38d5edcf6fdf6bca28b4fe91cca88169d6f8ea6228ab7e7d8778232ed"
+  }
+}

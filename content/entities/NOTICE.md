@@ -1,6 +1,6 @@
 # molen.entities notice
 
-This pack (nature, aircraft, road vehicles, motorhomes, cycles, transit and watercraft) is Molen's
+This pack (nature, aircraft, road vehicles, motorhomes, cycles, transit, watercraft and rail) is Molen's
 own work, licensed under the MIT License with the rest of the Molen repository.
 
 Interior research photographs retain their individual licenses. The citation and attribution
@@ -49,6 +49,19 @@ The generic vehicle collection (`compact`, `pickup`, `sedan`, `suv`, `van`, `box
 `electric-hatchback`, `offroad`, `sports-coupe`, `station-wagon`, `taxi`), the five other
 motorhomes and every cycle, transit and watercraft model are original Bendy designs and carry
 Molen's own `BENDY` house lettering.
+
+## Real rail rolling-stock identities
+
+Three locomotives (GE ES44AC, EMD GP38-2, MPI MP36PH-3C) and two passenger cars (Bombardier
+BiLevel coach and cab car) use manufacturer and model names to identify what each original
+polygonal interpretation depicts; the seven freight cars use generic class names (boxcar,
+covered hopper, DOT-117 tank car and so on). The names live in asset IDs, labels and documents
+only; the catalog is [RAIL.md](RAIL.md). Dimensions are rounded authoring targets and running
+data is game tuning. **The geometry carries no railroad or manufacturer mark:** no logos,
+heralds, wordmarks, builder's plates, real reporting marks or real liveries. Liveries are
+generic two-tone and commuter schemes; the only lettering is the fictional reporting mark `MLN`
+(locomotives) or `MLNX` (cars) with plain numbers, unbranded containers and lumber wrap, and
+generic stencils such as the DOT-117 class marking.
 
 ## Statement
 

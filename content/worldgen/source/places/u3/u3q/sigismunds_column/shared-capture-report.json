@@ -1,0 +1,68 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.sigismunds_column",
+  "inputHash": "sha256:04b7ba1bc5761f8c86c0f3d210b891bee690d67c3c1065b7f5e274854c51779e",
+  "sourceHash": "sha256:2eb2d1b8a0b737a959fce198cb7c1dc258253906c5a72946c55fbd06db519f30",
+  "runtimeHash": "sha256:ef91116086d852406c0f69f8b05a0e426ec23dc7fe1b1ee789cfb1a06361f317",
+  "fixtureHash": "sha256:ccc262fce2e91fa9a4f2440143db8d0353ebd82084627eb29a751adf8c4309ea",
+  "placementHash": "sha256:d28dcdc1cfdb85384120eaf47afbe1ce8613b5b6422745f41e831b3dafd34476",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    },
+    "molen.worldgen.material.metal_bronze_cast": {
+      "path": "materials/metal_bronze_cast.matgraph.json",
+      "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-sigismund.png",
+      "hash": "sha256:efcb084175d35a6e16810d611ae8c4421dc3a71b3fd1d66bb41e0cf2c6f46973",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -9,
+          4,
+          30
+        ],
+        "lookAt": [
+          0,
+          10.5,
+          0
+        ],
+        "fov": 52,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.45,
+          1,
+          0.64
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "sigismunds.column",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The monument binds three reused graphs for granite, limestone and cast bronze. Tinted graphite bronze serves the inscriptions and the modeled sculpture. Each graph resolves once per fixture."
+}

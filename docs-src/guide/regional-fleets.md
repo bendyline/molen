@@ -1,10 +1,12 @@
 # Regional vehicle fleets
 
 Earth traffic and parked cars share a small fleet catalog. It assigns relative weights to existing
-vehicle type IDs and contains no models. China, Japan, Korea, several European, South American and
-African markets, and North America have separate mixtures. These are visual approximations, not
-sales or registration statistics. Unknown areas use a global fallback. Aircraft and ships keep
-their independent global pools.
+vehicle type IDs and contains no models. China, Japan, Korea, South Asia, mainland and maritime
+Southeast Asia, the Philippines, Taiwan, several European, South American and African markets,
+and North America have separate mixtures, including motorcycles, scooters, mopeds and
+auto-rickshaws where they are common. These are visual approximations, not sales or registration
+statistics. Unknown areas use a global fallback. Aircraft and ships keep their independent global
+pools.
 
 ## Content and selection
 
@@ -50,6 +52,24 @@ Existing traffic changes naturally through despawning, without replacing a car b
 `fleet.parkedAt` as the third argument of `createTerrainSurfaceRenderer`. Hosts without fleet
 content retain their original behavior.
 
+## Two- and three-wheelers
+
+Motor two-wheelers and the auto-rickshaw are region-only: their `ambientRole` has a `weight` of 0,
+so default traffic never picks them and the default parked list (`EarthContent.parkedVehicles`,
+also used for garages) leaves them out. A fleet profile that weights them brings them in. Build
+the fleet from `EarthContent.fleetParkedVehicles`, which adds seated motor two-wheelers and
+region-only types to the parked candidates; `mountEarthView` does. Bicycles, kick scooters and
+skateboards are never parked or in traffic: players ride them by choice.
+
+Parked two-wheelers stand two or three to a car's bay, side by side and a little staggered, each
+its own pick from the region's two-wheelers; an auto-rickshaw takes a bay like a car. At a
+distance they draw as their own silhouettes, not as small cars. In traffic, a two- or
+three-wheeler's driver is drawn on the saddle with the shared riding pose (hands on the bars,
+which turn with the bend), and two-wheelers lean into turns up to their `cycle.maxLean`.
+`ambientContentFromTypes` finds these riders (`EarthAmbientContent.riders`); custom hosts pass
+them to `createAmbientRenderer` as `riders`. Riders share the skinned-figure budget with
+pedestrians, so beyond it a two-wheeler draws riderless.
+
 ## Downloads and residency
 
 World Explorer builds an entity archive for distribution and a versioned directory manifest for
@@ -85,7 +105,9 @@ exceptions, owned until removal. Aircraft keep their existing budget.
 ## Coverage and authoring
 
 The initial expansion adds 24 shared models, predominantly 2024 plus the 2025 four-door Wuling
-Hongguang MINI EV. Profiles also reuse older and US-market models. Country-specific trim,
+Hongguang MINI EV. Profiles also reuse older and US-market models. Generic two- and three-wheelers
+(an underbone moped, an electric moped, the motor scooter and standard motorcycle, and an
+auto-rickshaw) stand in for each region's many local makes. Country-specific trim,
 steering variants, fleet age distributions and local commercial coverage remain approximate.
 The atlas groups the Korean peninsula; that fleet profile primarily represents South Korea.
 Some shared models use export-market bodies or steering layouts. Road driving side comes from

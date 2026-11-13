@@ -112,6 +112,10 @@ export function createSkyControls(
       if (fog instanceof Fog) {
         horizon.copy(nightHorizon).lerp(dayHorizon, frame.daylight);
         horizon.lerp(twilight, Math.sin(Math.PI * frame.daylight) * 0.35);
+        // The dome is drawn at EARTH_SKY_DOME.brightness, horizon included. At the palette's
+        // full brightness, hazed ground stood in front of a darker sky as a pale band, with
+        // distant mountains as white cut-outs.
+        horizon.multiplyScalar(EARTH_SKY_DOME.brightness);
         earthHazeColor(renderer.backend, horizon, fog.color);
       }
       const { sun, moon } = frame.earth;

@@ -8,6 +8,7 @@ import {
   MOLEN_AMBIENT_AIRCRAFT_ENTITY_IDS,
   MOLEN_CYCLE_ENTITY_IDS,
   MOLEN_ENTITY_IDS,
+  MOLEN_RAIL_ENTITY_IDS,
   MOLEN_RV_ENTITY_IDS,
   MOLEN_TRANSIT_ENTITY_IDS,
   MOLEN_VEHICLE_ENTITY_IDS,
@@ -59,6 +60,7 @@ describe('entity content parity', () => {
     expect(types.idsWith('vehicle')).toEqual([
       ...MOLEN_VEHICLE_ENTITY_IDS,
       ...MOLEN_CYCLE_ENTITY_IDS,
+      ...MOLEN_RAIL_ENTITY_IDS,
     ]);
     expect(molenAircraft(types, 'molen.entities.aircraft.p51d').spec).toBeDefined();
     expect(molenVehicle(types, 'molen.entities.vehicle.van').spec).toBeDefined();

@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.saumarez_homestead",
+  "kind": "static-structure",
+  "title": "Saumarez Homestead",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.saumarez_homestead",
+        "output": "assets/places/r6/r6e/saumarez_homestead/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:24a3520af831a4cfbe9ed6ddc33080e16c82a2fc504559c95c0029d555a7790b"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-saumarez",
+        "path": "models/generate-saumarez.mjs"
+      },
+      {
+        "id": "saumarez-model",
+        "path": "models/saumarez-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/exterior-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-pd-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-30181-19305.png",
+      "terrain-sources/terrarium-15-30182-19305.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

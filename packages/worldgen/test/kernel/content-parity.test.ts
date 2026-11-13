@@ -36,7 +36,7 @@ describe('worldgen content parity', () => {
     }).toEqual({
       definitions: 'a26a3fee4cff25bb',
       signs: '9798f722883bfda5',
-      interiors: '995f0f16478baf2f',
+      interiors: '34ea2d69750909d9',
     });
   });
 });

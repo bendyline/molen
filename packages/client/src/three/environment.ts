@@ -102,7 +102,9 @@ export function applyEnvironment(renderer: Renderer, env: EnvironmentData): void
   scene.add(rig);
 
   renderer.three.shadowMap.enabled = shadows !== 'off';
-  renderer.three.shadowMap.type = shadows === 'low' ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
+  // WebGL has no soft type any more (three replaces it with PCF and warns); see setShadowQuality.
+  renderer.three.shadowMap.type =
+    shadows === 'low' || renderer.backend === 'webgl' ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
 
   renderer.three.setClearColor(
     env.background !== undefined ? new THREE.Color(env.background) : renderer.defaultClearColor,

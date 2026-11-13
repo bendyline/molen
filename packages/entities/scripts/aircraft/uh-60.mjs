@@ -24,10 +24,10 @@ export const uh60Frame = () => ({
   radius: 1.1811,
   cy: 1.3,
   ry: 0.9,
-  cabinZ: 2.8,
+  cabinZ: 2.68,
   cabinWidth: 2.2,
-  eye: [-0.56, 1.8, 2.67],
-  panelZ: 3.18,
+  eye: [-0.56, 1.91, 2.68],
+  panelZ: 3.4,
   floor: 0.56,
   mainRotorPosition: [0, 3.42, 0],
 });
@@ -254,8 +254,6 @@ export function buildUH60(s) {
     d.rod([side * 1.2, 0.9, 1.84], [side * 1.35382, 0.35, 1.14], 0.045, metal);
     d.rod([side * 1.12, 0.61, 2.15], [side * 1.35382, 0.33, 1.14], 0.031, paint);
     wheel(d, [side * 1.35382, 0.32, 1.14], 0.32, 0.254, rubber, metal, paint);
-    for (const z of [3.82, 3.22])
-      d.rod([side * 0.95, 1.67, z], [side * 1.15, 1.68, z + 0.35], 0.009, metal);
     d.box([0.05, 0.05, 0.08], [side * 1.2, 2.15, 1.65], side < 0 ? d.green : d.red);
   }
   // Transmission fairing and paired T700 nacelles with open intakes and upward exhausts.
@@ -516,10 +514,14 @@ function cockpit(root, m) {
     face = mat('UH60-instrument-face', '#343c3e'),
     seat = mat('UH60-upholstery', '#434949'),
     belt = mat('UH60-harness', '#9b9b8c'),
-    z = 3.18,
-    k = 1.63 / 1660;
+    z = 3.4,
+    // The photograph has no absolute size. Its displays are the UH-60M's 6 by 8 in MFDs, which makes
+    // the face 1.25 m wide; the 1.63 m cabin-fit width used before drew them 1.3 times too large.
+    k = 1.25 / 1660,
+    fit = k / (1.63 / 1660);
+  // The scallop's rear lip stands 0.245 m below the eye and clears the windscreen sill forward of it.
   const px = (u) => (912 - u) * k,
-    py = (v) => 1.63 - (v - 230) * k,
+    py = (v) => 1.58 - (v - 230) * k,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz],
     pt = panelTools(d);
   const contour = [
@@ -540,16 +542,13 @@ function cockpit(root, m) {
     [70, 544],
   ].map(([u, v]) => at(u, v));
   sheet(d, contour, face, [0, 0, -1]);
-  sheet(
-    d,
-    contour.map((p) => [p[0], p[1], z + 0.28]),
-    m.trim,
-    [0, 0, 1],
-  );
+  // The forward end drops so the box stays under the sloping nose skin.
+  const forward = (p) => [p[0], p[1] - 0.14, z + 0.26];
+  sheet(d, contour.map(forward), m.trim, [0, 0, 1]);
   for (let i = 0; i < contour.length; i++) {
     const a = contour[i],
       b = contour[(i + 1) % contour.length];
-    quad(d, a, b, [b[0], b[1], z + 0.28], [a[0], a[1], z + 0.28], m.trim, [0, 1, 0]);
+    quad(d, a, b, forward(b), forward(a), m.trim, [0, 1, 0]);
   }
   // The deep scalloped coaming is a separate curved cover above the flat face.
   const brow = [
@@ -563,12 +562,12 @@ function cockpit(root, m) {
     [1550, 138],
     [1770, 185],
     [1840, 290],
-  ].map(([u, v]) => at(u, v, -0.015));
+  ].map(([u, v]) => at(u, 230 - (230 - v) * 0.59, -0.015));
   sheet(d, [...brow, ...contour.slice(0, 7).reverse()], m.trim, [0, 0, -1]);
   for (let i = 0; i < brow.length - 1; i++) {
     const a = brow[i],
       b = brow[i + 1];
-    quad(d, a, b, [b[0], b[1] - 0.24, z + 0.36], [a[0], a[1] - 0.24, z + 0.36], m.trim, [0, 1, 0]);
+    quad(d, a, b, [b[0], b[1] - 0.25, z + 0.3], [a[0], a[1] - 0.25, z + 0.3], m.trim, [0, 1, 0]);
   }
   outline(d, brow, 0.024, m.trim, false);
   const displays = [
@@ -580,8 +579,8 @@ function cockpit(root, m) {
   for (const [u, v, kind] of displays) {
     const x = px(u),
       y = py(v),
-      w = 0.264,
-      h = 0.202;
+      w = 0.203,
+      h = 0.155;
     glassDisplay(d, x, y, z - 0.023, w, h, kind);
     for (const side of [-1, 1]) {
       for (let i = 0; i < 9; i++)
@@ -599,19 +598,19 @@ function cockpit(root, m) {
     }
     pt.knob(x - w * 0.48, y - h * 0.58, z - 0.047, 0.011);
     if (kind === 'attitude') {
-      const g = group(cabin, `UH60-horizon-${u}`, [x, y + 0.036, z - 0.068]),
+      const g = group(cabin, `UH60-horizon-${u}`, [x, y + 0.028, z - 0.068]),
         dd = detailKit(g, 'horizon');
-      dd.box([0.067, 0.0015, 0.001], [0, 0, 0], dd.amber);
+      dd.box([0.05, 0.0015, 0.001], [0, 0, 0], dd.amber);
       dd.finish();
       bindings.push({ node: g.name, source: 'roll', property: 'rotation', axis: 'z', scale: 1 });
     }
   }
-  glassDisplay(d, px(917), py(349), z - 0.025, 0.068, 0.064, 'attitude');
-  pt.gauge(px(917), py(442), z - 0.015, 0.035, undefined, false);
+  glassDisplay(d, px(917), py(349), z - 0.025, 0.068 * fit, 0.064 * fit, 'attitude');
+  pt.gauge(px(917), py(442), z - 0.015, 0.035 * fit, undefined, false);
   for (const u of [590, 1228]) {
-    d.box([0.37, 0.08, 0.018], at(u, 558, -0.012), m.trim);
+    d.box([0.37 * fit, 0.08 * fit, 0.018], at(u, 558, -0.012), m.trim);
     for (let i = 0; i < 3; i++)
-      d.box([0.084, 0.02, 0.005], at(u - 102 + i * 100, 535, -0.024), d.dark);
+      d.box([0.084 * fit, 0.02 * fit, 0.005], at(u - 102 + i * 100, 535, -0.024), d.dark);
     for (let i = 0; i < 5; i++) {
       pt.knob(px(u - 56 + i * 37), py(579), z - 0.04, 0.01);
       d.text(
@@ -627,23 +626,23 @@ function cockpit(root, m) {
   }
   for (const u of [245, 1580])
     for (let i = 0; i < 5; i++)
-      d.box([0.018, 0.022, 0.013], at(u + (i - 2) * 30, 563, -0.02), m.trim);
+      d.box([0.018 * fit, 0.022 * fit, 0.013], at(u + (i - 2) * 30, 563, -0.02), m.trim);
   for (const u of [225, 1608]) {
-    d.box([0.16, 0.04, 0.08], at(u, 170, -0.12), m.trim);
+    d.box([0.16 * fit, 0.04 * fit, 0.06], at(u, 205, -0.05), m.trim);
     for (let i = 0; i < 3; i++)
-      d.box([0.043, 0.022, 0.005], at(u + (i - 1) * 49, 171, -0.163), d.dark);
+      d.box([0.043 * fit, 0.022 * fit, 0.005], at(u + (i - 1) * 49, 206, -0.083), d.dark);
   }
   pt.knob(px(919), py(567), z - 0.032, 0.015);
   d.text('UH-60M', at(918, 258, -0.013), 0.009, Math.PI, d.ivory);
   for (const u of [120, 360, 765, 1050, 1430, 1700])
     d.add(new T.CircleGeometry(0.003, 8).rotateY(Math.PI), m.metal, at(u, 600, -0.006));
-  const pg = group(cabin, 'UH60-center-console', [0, 0.9, 2.56]);
+  const pg = group(cabin, 'UH60-center-console', [0, 0.9, 2.9]);
   pg.rotation.x = 1.1;
   const pd = detailKit(pg, 'console'),
     ppt = panelTools(pd);
   pd.box([0.81, 1.12, 0.17], [0, 0, 0.07], face);
-  d.box([0.78, 0.32, 1.08], [0, 0.7, 2.64], face);
-  d.box([0.77, 0.1, 0.31], [0, 1.15, 3.19], face);
+  d.box([0.78, 0.32, 0.56], [0, 0.7, 3.1], face);
+  d.box([0.77, 0.1, 0.2], [0, 1.15, 3.37], face);
   for (const x of [-0.26, 0.26]) {
     pd.box([0.23, 0.35, 0.03], [x, 0.24, -0.035], m.trim);
     pd.box([0.15, 0.11, 0.004], [x, 0.33, -0.054], pd.dark);
@@ -697,7 +696,7 @@ function cockpit(root, m) {
     beveledBox(sd, [0.26, 0.18, 0.14], [x, y + 0.72, z - 0.24], seat);
     for (const side of [-1, 1]) {
       sd.rod(
-        [x + side * 0.19, y - 0.26, z - 0.13],
+        [x + side * 0.19, 0.6, z - 0.13],
         [x + side * 0.19, y - 0.07, z - 0.13],
         0.019,
         m.metal,
@@ -721,29 +720,30 @@ function cockpit(root, m) {
   };
   for (const side of [-1, 1]) {
     const x = side * 0.56;
-    addSeat(cabin, x, 0.88, 2.61, true);
+    // Armored crew seats ride high: the cushion sits 0.8 m under the eye.
+    addSeat(cabin, x, 1.05, 2.61, true);
     const cg = group(cabin, `UH60-cyclic-${side}`, [x, 0.58, 2.96]),
       cd = detailKit(cg, 'cyclic');
     outline(
       cd,
       [
         [0, 0, 0],
-        [0, 0.25, 0],
-        [0, 0.39, -0.2],
-        [0, 0.58, -0.2],
+        [0, 0.42, 0],
+        [0, 0.56, -0.2],
+        [0, 0.75, -0.2],
       ],
       0.02,
       m.trim,
       false,
     );
-    beveledBox(cd, [0.075, 0.16, 0.075], [0, 0.6, -0.2], m.trim, 0.012);
-    cd.box([0.025, 0.02, 0.015], [0, 0.67, -0.245], cd.red);
+    beveledBox(cd, [0.075, 0.16, 0.075], [0, 0.77, -0.2], m.trim, 0.012);
+    cd.box([0.025, 0.02, 0.015], [0, 0.84, -0.245], cd.red);
     cd.finish();
     bindings.push(
       { node: cg.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.15 },
       { node: cg.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.15 },
     );
-    const lg = group(cabin, `UH60-collective-${side}`, [x + 0.27, 0.7, 2.39]),
+    const lg = group(cabin, `UH60-collective-${side}`, [x + 0.27, 0.87, 2.39]),
       ld = detailKit(lg, 'collective');
     ld.rod([0, 0, 0], [0, 0.23, 0.43], 0.026, m.trim);
     beveledBox(ld, [0.11, 0.07, 0.2], [0, 0.24, 0.45], m.trim, 0.01);
@@ -751,7 +751,7 @@ function cockpit(root, m) {
     ld.finish();
     bindings.push({ node: lg.name, source: 'power', property: 'rotation', axis: 'x', scale: -0.4 });
     for (const j of [-1, 1]) {
-      const g = group(cabin, `UH60-pedal-${side}-${j}`, [x + j * 0.14, 0.68, 3.52]),
+      const g = group(cabin, `UH60-pedal-${side}-${j}`, [x + j * 0.14, 0.8, 3.52]),
         dd = detailKit(g, 'pedal');
       dd.box([0.15, 0.05, 0.09], [0, 0, 0], m.metal);
       dd.rod([0, 0, 0], [0, -0.1, 0.1], 0.016, m.trim);

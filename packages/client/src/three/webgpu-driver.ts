@@ -1,9 +1,25 @@
-import { instanceIndex, objectGroup } from 'three/tsl';
+import {
+  attribute,
+  instanceIndex,
+  mat4,
+  normalLocal,
+  objectGroup,
+  positionLocal,
+  transformNormal,
+  varyingProperty,
+} from 'three/tsl';
 import * as WebGPU from 'three/webgpu';
-import { CanvasTarget, StorageBufferNode, WebGPUBackend, WebGPURenderer } from 'three/webgpu';
+import {
+  CanvasTarget,
+  NodeMaterial,
+  StorageBufferNode,
+  WebGPUBackend,
+  WebGPURenderer,
+} from 'three/webgpu';
 import type { RendererOptions } from './renderer';
 import { installWebGpuDepthBiasGuard } from './webgpu-depth-bias';
 import { installWebGpuTimestampGuard } from './webgpu-frame-timer';
+import { installWebGpuInstanceBatches } from './webgpu-instance-batches';
 import { installWebGpuRenderObjectRelease } from './webgpu-render-object-release';
 import { installWebGpuSharedInstancing } from './webgpu-shared-instancing';
 
@@ -36,6 +52,15 @@ export async function createWebGpuDriver(options: RendererOptions): Promise<WebG
     installWebGpuTimestampGuard(renderer);
     installWebGpuDepthBiasGuard(renderer);
     installWebGpuRenderObjectRelease(renderer);
+    installWebGpuInstanceBatches(renderer, {
+      NodeMaterial,
+      attribute,
+      mat4,
+      positionLocal,
+      normalLocal,
+      transformNormal,
+      varyingProperty,
+    });
     installWebGpuSharedInstancing({
       // r185 replaced InstanceNode with TSL functions. Reflect keeps bundlers from requiring
       // the removed named export; newer revisions retain their native instancing path.

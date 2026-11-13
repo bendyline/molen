@@ -11,12 +11,36 @@ export interface WorldRegion {
   detailBounds: [number, number, number, number];
   coverageBounds: [number, number, number, number];
   /**
+   * Further places inside the coverage with fine elevation (through `elevationMaxLevel`) and map
+   * features of their own, away from the main detail window.
+   */
+  detailWindows?: readonly {
+    id: string;
+    label: string;
+    bounds: [number, number, number, number];
+    elevationMaxLevel?: number;
+  }[];
+  /**
+   * Snow line in meters above sea level: lying snow begins here unless `?snow=` says otherwise.
+   * Absent, the region opens without snow on the ground.
+   */
+  snowLevel?: number;
+  /**
    * Open-water color seen from above, from matched orthophotos: deep or turbid water is far
    * darker than the sky it reflects at a glance. Defaults to the shared Earth water color.
    */
   water?: string;
-  /** Surface colors over the selected street style, where local paving reads differently. */
-  surfaces?: Partial<Pick<TerrainSurfaceStyle, 'road' | 'parking' | 'sidewalk' | 'curb'>>;
+  /**
+   * Surface colors over the selected street style, where local paving reads differently, and the
+   * railways: `railElectrification: 'all'` where main lines run under catenary too, and the main
+   * lines' gauge where it is not standard.
+   */
+  surfaces?: Partial<
+    Pick<
+      TerrainSurfaceStyle,
+      'road' | 'parking' | 'sidewalk' | 'curb' | 'railElectrification' | 'railGauge'
+    >
+  >;
 }
 
 export const DEFAULT_WORLD_REGION: WorldRegion = {
@@ -27,7 +51,19 @@ export const DEFAULT_WORLD_REGION: WorldRegion = {
   airport: { id: 'KBFI', runway: '14R/32L' },
   // Include Boeing Field and the neighborhoods south of its runway start.
   detailBounds: [-122.46, 47.49, -121.95, 47.7],
-  coverageBounds: [-123.15, 46.95, -120.9, 48.3],
+  // East past the Cascade crest and south past Mount Rainier and the Tatoosh Range.
+  coverageBounds: [-123.15, 46.6, -120.9, 48.3],
+  detailWindows: [
+    // The summit, Paradise and Sunrise: about 13 m between elevation samples.
+    {
+      id: 'mount-rainier',
+      label: 'Mount Rainier',
+      bounds: [-121.93, 46.73, -121.58, 46.95],
+      elevationMaxLevel: 13,
+    },
+  ],
+  // Rainier's glaciers and the high Cascades keep their snow above about 2,000 m all year.
+  snowLevel: 2000,
   // Puget Sound and Lake Washington read near-black navy in summer NAIP imagery.
   water: '#071f2b',
 };
@@ -45,6 +81,8 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
     coverageBounds: [150.3, -34.5, 151.8, -33.2],
     // Port Jackson's harbour water is a dark green-teal in NSW imagery.
     water: '#22493f',
+    // Sydney Trains' suburban network is electrified (1500 V DC overhead).
+    surfaces: { railElectrification: 'all' },
   },
   {
     id: 'kyoto',
@@ -55,6 +93,8 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
     airport: { id: 'RJOO', runway: '14R/32L' },
     detailBounds: [135.66, 34.88, 135.88, 35.09],
     coverageBounds: [135.15, 34.5, 136.4, 35.7],
+    // JR and private railways around Kyoto run under overhead catenary, on 1,067 mm gauge.
+    surfaces: { railElectrification: 'all', railGauge: 1.067 },
   },
   {
     id: 'yuma',
@@ -76,7 +116,15 @@ export const WORLD_REGIONS: readonly WorldRegion[] = [
     detailBounds: [77.08, 28.49, 77.34, 28.75],
     coverageBounds: [76.4, 27.9, 78, 29.4],
     // Dust settles on Delhi's roads and footpaths: Sentinel-2 reads them warm grey-brown.
-    surfaces: { road: '#625a4e', parking: '#685f52', sidewalk: '#94876f', curb: '#ab9d85' },
+    // Indian Railways' main lines through Delhi are electrified (25 kV AC overhead).
+    surfaces: {
+      road: '#625a4e',
+      parking: '#685f52',
+      sidewalk: '#94876f',
+      curb: '#ab9d85',
+      railElectrification: 'all',
+      railGauge: 1.676,
+    },
   },
 ];
 
@@ -113,6 +161,8 @@ export function regionUrl(current: URL, region: WorldRegion): URL {
     'navigation',
     'aircraft',
     'boat',
+    // Each region opens on its own snow line.
+    'snow',
   ])
     next.searchParams.delete(key);
   next.searchParams.set('region', region.id);

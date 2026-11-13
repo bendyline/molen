@@ -1,0 +1,373 @@
+{
+  "planId": "nagoya_tv_tower",
+  "id": "nagoya_tv_tower",
+  "assetId": "molen.worldgen.structure.nagoya_tv_tower",
+  "title": "Nagoya TV Tower",
+  "wikidataId": "Q283373",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 136.9083338,
+    "latitude": 35.17229715
+  },
+  "size": [
+    37.7400016784668,
+    179.36969697475433,
+    37.7400016784668
+  ],
+  "actualBounds": {
+    "min": [
+      -18.8700008392334,
+      -0.669700026512146,
+      -18.8700008392334
+    ],
+    "max": [
+      18.8700008392334,
+      178.6999969482422,
+      18.8700008392334
+    ]
+  },
+  "visualBrief": "Silver lattice broadcast tower with four splayed legs, suspended glazed floors and paired observation decks in central Nagoya.",
+  "nativeAxes": {
+    "x": "east across the park",
+    "y": "up",
+    "z": "south along the park"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2011-04-04",
+    "validFrom": "2011-01-01",
+    "validUntil": "2011-07-24",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Nagoya_TV_Tower_3.JPG",
+    "https://commons.wikimedia.org/wiki/File:Nagoya_TV_Tower_4.JPG"
+  ],
+  "stories": [
+    {
+      "id": "nagoya-tv-tower-wp",
+      "url": "https://qualla.com/nagoya-tv-tower/"
+    }
+  ],
+  "referenceInputHash": "488d1cee45c3d27b3329995ba5cab7b7cdfdb196c63c9ced514be109d6192923",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn3/nagoya_tv_tower/models/nagoya-tv-tower-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn3/nagoya_tv_tower/models/nagoya-tv-tower-model.mjs",
+    "level": "skyline",
+    "export": "towerSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.25
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.38,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "towerDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "towerStreet",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "towerCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.25
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_painted",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      136.9083338,
+      35.17229715
+    ],
+    "heading": 0.08242418336639051,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        136.9083338,
+        35.17229715
+      ],
+      "modelHeight": 0,
+      "basis": "Source ground at the center of the four legs. Individual concrete plinths have approximate original-field contacts."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -23.66369609718944,
+          -23.46247497622546
+        ],
+        [
+          -23.65976079986816,
+          23.462474976012533
+        ],
+        [
+          2.0334841476855763,
+          23.462753239371594
+        ],
+        [
+          23.663696094611986,
+          23.462474976012533
+        ],
+        [
+          23.65976079986816,
+          -23.462474976012533
+        ],
+        [
+          1.4726967424473516,
+          -23.463519534862066
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Named OpenStreetMap Nagoya TV Tower outline, ODbL 1.0."
+    },
+    "featureIds": [
+      "way/51778897"
+    ],
+    "source": "https://www.openstreetmap.org/way/51778897",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3b6193afcb11d11888315b0aec0faac7de5c4733e82df029bb6b715d0b80e1cb",
+    "notes": "The mapped outline is wider than the documented steel leg span. It establishes center and heading. Four footing centers are reconstructed from the stated square span."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The April 2011 photographs show the upper tower clearly. Trees obscure the lower building, whose glazed elevations and subdivisions are approximate and use documented levels and structural arrangement.",
+    "Steel bay subdivisions, antenna panel fittings, underdeck joists, equipment and balcony fencing are simplified. The 35 m leg spacing, 90 m and 100 m deck heights, and 178.7 m tip follow published dimensions.",
+    "The untouched GSI DEM5A field controls footing contact. The alternative Terrarium field was sampled before selection and showed a broad high area at the tower. The Japanese elevation field is the higher-resolution ground product and represents modern park grades."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Footprint © OpenStreetMap contributors, ODbL 1.0. Two exact CC0 Qualla exterior photographs. Ground elevations from Geospatial Information Authority of Japan.",
+  "qaLodCameras": [
+    {
+      "name": "whole-nagoya-tv-tower-skyline",
+      "position": [
+        110,
+        74,
+        220
+      ],
+      "lookAt": [
+        0,
+        86,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-nagoya-tv-tower-district",
+      "position": [
+        110,
+        74,
+        220
+      ],
+      "lookAt": [
+        0,
+        86,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-nagoya-tv-tower-street",
+      "position": [
+        110,
+        74,
+        220
+      ],
+      "lookAt": [
+        0,
+        86,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-nagoya-tv-tower-closeup",
+      "position": [
+        110,
+        74,
+        220
+      ],
+      "lookAt": [
+        0,
+        86,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "plaza-and-suspended-floors",
+      "position": [
+        38,
+        8,
+        56
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ]
+    },
+    {
+      "name": "observation-deck-and-balcony",
+      "position": [
+        32,
+        88,
+        44
+      ],
+      "lookAt": [
+        0,
+        96,
+        0
+      ]
+    },
+    {
+      "name": "lattice-mast-and-antenna-arrays",
+      "position": [
+        35,
+        135,
+        60
+      ],
+      "lookAt": [
+        0,
+        147,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7272,
+    "vertices": 21816,
+    "materials": 3,
+    "bytes": 940360,
+    "sha256": "sha256:62226346a254c7aaeff1e18901ab733480a0e4889508d0cb9f7fb2965560037f"
+  }
+}

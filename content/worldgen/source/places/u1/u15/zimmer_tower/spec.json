@@ -1,0 +1,438 @@
+{
+  "planId": "zimmer_tower",
+  "id": "zimmer_tower",
+  "assetId": "molen.worldgen.structure.zimmer_tower",
+  "title": "Zimmer Tower",
+  "wikidataId": "Q203864",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 4.5701201000000005,
+    "latitude": 51.12912625
+  },
+  "size": [
+    6.593999147415161,
+    20.85433602333069,
+    9.812359094619751
+  ],
+  "actualBounds": {
+    "min": [
+      -3.219771146774292,
+      -0.5443365573883057,
+      -5.894999980926514
+    ],
+    "max": [
+      3.374228000640869,
+      20.309999465942383,
+      3.9173591136932373
+    ]
+  },
+  "visualBrief": "The sandstone Jubilee Clock façade, brick-and-stone side elevations and slate tent roof of the former Cornelius Tower in Lier.",
+  "nativeAxes": {
+    "x": "right across the clock facade",
+    "y": "up",
+    "z": "outward toward Zimmerplein"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2010-03-25",
+    "validFrom": "2010-01-01",
+    "validUntil": "2011-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Lier_Zimmertoren1.JPG",
+    "https://commons.wikimedia.org/wiki/File:Lier_Zimmertoren2.JPG",
+    "https://commons.wikimedia.org/wiki/File:Lier_Zimmertoren3.JPG"
+  ],
+  "stories": [
+    {
+      "id": "zimmer-tower-wp",
+      "url": "https://qualla.com/zimmer-tower/"
+    }
+  ],
+  "referenceInputHash": "b23364953909e474df55db9a05923528a1adf98b17a30fd26f8bf29337b03828",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u1/u15/zimmer_tower/models/zimmer-tower-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u1/u15/zimmer_tower/models/zimmer-tower-model.mjs",
+    "level": "skyline",
+    "export": "towerSkyline",
+    "errorMeters": 0.7,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.18
+      },
+      "paint": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.72,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "towerDistrict",
+        "errorMeters": 0.31,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.18
+          },
+          "paint": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "towerStreet",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.18
+          },
+          "paint": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "towerCloseup",
+        "errorMeters": 0.033,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.18
+          },
+          "paint": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "stone_sandstone_raw",
+    "slate",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.7,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      4.5701201000000005,
+      51.12912625
+    ],
+    "heading": -2.406010847990661,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        4.570068712815296,
+        51.12916188336821
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate exterior paving just outside the main sandstone entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -2.9091391387324204,
+          3.6204796989738983
+        ],
+        [
+          -0.001394453425122455,
+          3.624606537857866
+        ],
+        [
+          2.913819977293108,
+          3.620479698973899
+        ],
+        [
+          2.909139138778426,
+          -3.6204796989322627
+        ],
+        [
+          -2.913819977247102,
+          -3.620479698932263
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Named OpenStreetMap Zimmertoren footprint, ODbL 1.0."
+    },
+    "featureIds": [
+      "way/89505428"
+    ],
+    "source": "https://www.openstreetmap.org/way/89505428",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:102e262d00c993d190d6f82fa70ac48aa2a689a38da1794eeeec257c8b9dc8d9",
+    "notes": "The named footprint centers the model on the tower rather than the less precise article point. The March 2010 photos show the three main faces and the operator records three vertical control points."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The exterior represents March 2010. The museum’s three surveyed-by-operator height figures control the main silhouette. Intermediate roof and opening dimensions and the sheltered stairs are estimated.",
+    "The clock layout is original simplified geometry based on the visible arrangement of concentric dials. Small dial graphics, figures and inscriptions are simplified.",
+    "Original public elevation samples are preserved. Approach paving and individual steps are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Footprint © OpenStreetMap contributors, ODbL 1.0. Three exact public-domain Qualla exterior photographs.",
+  "qaLodCameras": [
+    {
+      "name": "whole-zimmer-tower-skyline",
+      "position": [
+        16,
+        12,
+        26
+      ],
+      "lookAt": [
+        0,
+        9.1,
+        -0.7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-zimmer-tower-district",
+      "position": [
+        16,
+        12,
+        26
+      ],
+      "lookAt": [
+        0,
+        9.1,
+        -0.7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-zimmer-tower-street",
+      "position": [
+        16,
+        12,
+        26
+      ],
+      "lookAt": [
+        0,
+        9.1,
+        -0.7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-zimmer-tower-closeup",
+      "position": [
+        16,
+        12,
+        26
+      ],
+      "lookAt": [
+        0,
+        9.1,
+        -0.7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "jubilee-clock-and-sandstone-door",
+      "position": [
+        10,
+        7.5,
+        26
+      ],
+      "lookAt": [
+        0,
+        9.05,
+        2.5
+      ]
+    },
+    {
+      "name": "brick-side-and-bell-hatches",
+      "position": [
+        21,
+        9,
+        1.5
+      ],
+      "lookAt": [
+        1.1,
+        8.3,
+        0
+      ]
+    },
+    {
+      "name": "rear-sheltered-stair-and-slate-roof",
+      "position": [
+        13,
+        12,
+        -24
+      ],
+      "lookAt": [
+        0,
+        8.75,
+        -1.85
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4011,
+    "vertices": 12033,
+    "materials": 5,
+    "bytes": 633720,
+    "sha256": "sha256:f41d4d21dfb04d5d6369d2afaa37f67a42a7b658d8efa46f7eac9452fa6928fb"
+  }
+}

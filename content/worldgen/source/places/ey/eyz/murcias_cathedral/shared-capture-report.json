@@ -1,0 +1,84 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.murcias_cathedral",
+  "inputHash": "sha256:bf9762cdca119375a399ed0012c3f45e741c01d8aba695b7d5f555ea2d138959",
+  "sourceHash": "sha256:3d5d8634e8e06d853334d3c891da026b67207ad7eec17695185b51b97bbf3452",
+  "runtimeHash": "sha256:65891458428d53b98cbd98d034bd0fe31c0abed3c85708f91cf6f96feb678d90",
+  "fixtureHash": "sha256:d3ba610086731682e42e7bd5cf21c8c670d51c6726bebf2941ef2904b080982c",
+  "placementHash": "sha256:f10fd210e7e6d862e177519a98814406a56486e514a25c3cfc2889699f33113b",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    },
+    "molen.worldgen.material.tile_flat": {
+      "path": "materials/tile_flat.matgraph.json",
+      "hash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448"
+    },
+    "molen.worldgen.material.tile_glazed": {
+      "path": "materials/tile_glazed.matgraph.json",
+      "hash": "sha256:9ee4eb92b327c632c1d7d95213bc78d1b874083e29feb51438a6f99a50d85f21"
+    },
+    "molen.worldgen.material.metal_bronze_cast": {
+      "path": "materials/metal_bronze_cast.matgraph.json",
+      "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    },
+    "molen.worldgen.material.wood_plain": {
+      "path": "materials/wood_plain.matgraph.json",
+      "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-murcia-cathedral.png",
+      "hash": "sha256:b39d08f3505c2ac170b8e6cd86037905ff1954fd71cf792139e99ec95073e4c6",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -77,
+          11,
+          -22
+        ],
+        "lookAt": [
+          -31,
+          21,
+          2
+        ],
+        "fov": 50,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.74,
+          1,
+          -0.57
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "murcias.cathedral",
+        "visibleDraws": 7
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Seven shared material graphs each resolve once. Two limestone surfaces distinguish the walls and relief, while glazed tile and cast bronze serve the blue cupolas and the bell."
+}

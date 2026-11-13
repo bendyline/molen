@@ -5,7 +5,7 @@
 
 [Primary-factual reconstruction method](FACTUAL-RECONSTRUCTIONS.md)
 
-**289 / 300 accepted completions; 158 saved rows pass strict readiness.** Core100 complete. Finish each model and its story annotation in one pass.
+**300 / 300 accepted completions.** [Closeout](research/round-002-closeout-2026-11-09.json) and [next 500](QUALLA-003.md).
 
 
 
@@ -39,7 +39,7 @@
 | 26 | [Chen Clan Ancestral Hall](https://qualla.com/chen-clan-ancestral-hall/) | East and Southeast Asia | civic-institutional | [Completed](../../places/ws/ws0/chen_clan_ancestral_hall/README.md) |
 | 27 | [Sakuma Dam](https://qualla.com/sakuma-dam/) | East and Southeast Asia | dam | [Completed](../../places/xn/xn1/sakuma_dam/README.md) |
 | 28 | [Casino Lisboa (Macau)](https://qualla.com/casino-lisboa-macau/) | East and Southeast Asia | hotel-commercial | [Completed](../../places/we/web/casino_lisboa_macau/README.md) |
-| 29 | [Fukushima Daiichi Nuclear Power Plant](https://qualla.com/fukushima-daiichi-nuclear-power-plant/) | East and Southeast Asia | industrial | deferred-imagery |
+| 29 | [Fukushima Daiichi Nuclear Power Plant](https://qualla.com/fukushima-daiichi-nuclear-power-plant/) | East and Southeast Asia | industrial | [Completed](../../places/xn/xns/fukushima_daiichi_nuclear_power_plant/README.md) |
 | 30 | [Inubōsaki Lighthouse](https://qualla.com/inub-saki-lighthouse/) | East and Southeast Asia | lighthouse | [Completed](../../places/xn/xnk/inubosaki_lighthouse/README.md) |
 | 31 | [Cihu Mausoleum](https://qualla.com/cihu-mausoleum/) | East and Southeast Asia | monument | [Completed](../../places/ws/wsq/cihu_mausoleum/README.md) |
 | 32 | [Beijing Ancient Observatory](https://qualla.com/beijing-ancient-observatory/) | East and Southeast Asia | museum-library | [Completed](../../places/wx/wx4/beijing_ancient_observatory/README.md) |
@@ -81,7 +81,7 @@
 | 68 | [Caldecott Tunnel](https://qualla.com/caldecott-tunnel/) | North America | transport | [Completed](../../places/9q/9q9/caldecott_tunnel/README.md) |
 | 69 | [Albert Bridge, Brisbane](https://qualla.com/albert-bridge-brisbane/) | Oceania | bridge | [Completed](../../places/r7/r7h/albert_bridge_brisbane/README.md) |
 | 70 | [Boggo Road Gaol](https://qualla.com/boggo-road-gaol/) | Oceania | civic-institutional | [Completed](../../places/r7/r7h/boggo_road_gaol/README.md) |
-| 71 | [Olympic Dam mine](https://qualla.com/olympic-dam-mine/) | Oceania | dam | deferred-imagery |
+| 71 | [Olympic Dam mine](https://qualla.com/olympic-dam-mine/) | Oceania | dam | [Completed](../../places/r4/r49/olympic_dam_mine/README.md) |
 | 72 | [Queen's Hotel, Townsville](https://qualla.com/queen-s-hotel-townsville/) | Oceania | hotel-commercial | [Completed structure](../../places/rk/rk8/queen_s_hotel_townsville/README.md) |
 | 73 | [The Old Windmill, Brisbane](https://qualla.com/the-old-windmill-brisbane/) | Oceania | industrial | [Completed](../../places/r7/r7h/the_old_windmill_brisbane/README.md) |
 | 74 | [Matiu / Somes Island Lighthouse](https://qualla.com/matiu-somes-island-lighthouse/) | Oceania | lighthouse | [Completed](../../places/rb/rbs/matiu_somes_island_lighthouse/README.md) |
@@ -96,7 +96,7 @@
 | 83 | [Friendship Bridge (Brazil–Paraguay)](https://qualla.com/friendship-bridge-brazil-paraguay/) | South America | bridge | [Completed](../../places/6g/6g3/friendship_bridge_brazil_paraguay/README.md) |
 | 84 | [Buenos Aires Central Post Office](https://qualla.com/buenos-aires-central-post-office/) | South America | civic-institutional | [Completed](../../places/69/69y/buenos_aires_central_post_office/README.md) |
 | 85 | [Bristol Hotel, Mar del Plata](https://qualla.com/bristol-hotel-mar-del-plata/) | South America | hotel-commercial | [Completed](../../places/69/69p/bristol_hotel_mar_del_plata/README.md) |
-| 86 | [Fray Bentos Pulp Mill](https://qualla.com/uruguay-river-pulp-mill-dispute/) | South America | industrial | deferred-plan-controls |
+| 86 | [Fray Bentos Pulp Mill](https://qualla.com/uruguay-river-pulp-mill-dispute/) | South America | industrial | [Completed](../../places/6d/6dn/fray_bentos_pulp_mill/README.md) |
 | 87 | [JK Memorial](https://qualla.com/jk-memorial/) | South America | monument | [Completed](../../places/6v/6vj/jk_memorial/README.md) |
 | 88 | [Galileo Galilei Planetarium](https://qualla.com/galileo-galilei-planetarium/) | South America | museum-library | [Completed](../../places/69/69y/galileo_galilei_planetarium/README.md) |
 | 89 | [Fortress of Humaitá](https://qualla.com/fortress-of-humaita/) | South America | palace-castle-fort | [Completed](../../places/6e/6en/fortress_of_humaita/README.md) |
@@ -112,7 +112,7 @@
 | 99 | [Giant Metrewave Radio Telescope](https://qualla.com/giant-metrewave-radio-telescope/) | South and Central Asia | industrial | [Completed](../../places/te/tek/giant_metrewave_radio_telescope/README.md) |
 | 100 | [Statue of Unity](https://qualla.com/statue-of-unity/) | South and Central Asia | monument | [Completed](../../places/te/teu/statue_of_unity/README.md) |
 | 101 | [Daulatabad Fort](https://qualla.com/daulatabad-fort/) | South and Central Asia | palace-castle-fort | [Completed](../../places/te/tet/daulatabad_fort/README.md) |
-| 102 | [Fondukistan monastery](https://qualla.com/fondukistan-monastery/) | South and Central Asia | religious | deferred-imagery |
+| 102 | [Fondukistan monastery](https://qualla.com/fondukistan-monastery/) | South and Central Asia | religious | [Completed](../../places/tw/tw0/fondukistan_monastery/README.md) |
 | 103 | [Quaid-e-Azam House](https://qualla.com/quaid-e-azam-house/) | South and Central Asia | residence | [Completed](../../places/tk/tkr/quaid_e_azam_house/README.md) |
 | 104 | [Salang Tunnel](https://qualla.com/salang-tunnel/) | South and Central Asia | transport | [Completed structure](../../places/tw/tw3/salang_tunnel/README.md) |
 | 105 | [Black Pyramid](https://qualla.com/black-pyramid/) | Africa and Middle East | archaeological | [Completed](../../places/st/stq/black_pyramid/README.md) |
@@ -132,19 +132,19 @@
 | 119 | [Hotel Nutibara](https://qualla.com/hotel-nutibara/) | South America | hotel-commercial | [Completed](../../places/d3/d34/hotel_nutibara/README.md) |
 | 120 | [Statue of Father Cícero](https://qualla.com/statue-of-father-cicero/) | South America | monument | [Completed](../../places/7n/7ns/statue_of_father_cicero/README.md) |
 | 121 | [Miraflores Palace](https://qualla.com/miraflores-palace/) | South America | palace-castle-fort | [Completed](../../places/d9/d9b/miraflores_palace/README.md) |
-| 122 | [Arena da Amazônia](https://qualla.com/arena-da-amazonia/) | Central America and Caribbean | performance-sport | deferred-imagery |
+| 122 | [Arena da Amazônia](https://qualla.com/arena-da-amazonia/) | South America | performance-sport | Complete via existing catalog model |
 | 123 | [Cartagena Cathedral, Colombia](https://qualla.com/cartagena-cathedral-colombia/) | Central America and Caribbean | religious | [Completed structure](../../places/d3/d3f/cartagena_cathedral_colombia/README.md) |
 | 124 | [Villa de Leyva](https://qualla.com/villa-de-leyva/) | Central America and Caribbean | residence | [Completed museum](../../places/d3/d35/paleontological_museum_villa_de_leyva/README.md) |
-| 125 | [Tate's Cairn](https://qualla.com/tate-s-cairn/) | East and Southeast Asia | archaeological | deferred-imagery |
+| 125 | [Tate's Cairn](https://qualla.com/tate-s-cairn/) | East and Southeast Asia | archaeological | [Completed](../../places/we/wec/tate_s_cairn/README.md) |
 | 126 | [Bridge of No Return](https://qualla.com/bridge-of-no-return/) | Asia | bridge | [Completed](../../places/wy/wyd/bridge_of_no_return/README.md) |
 | 127 | [General Post Office, Hong Kong](https://qualla.com/general-post-office-hong-kong/) | Asia | civic-institutional | [Completed](../../places/we/wec/general_post_office_hong_kong/README.md) |
 | 128 | [Shihmen Dam](https://qualla.com/shihmen-dam/) | Asia | dam | [Completed](../../places/ws/wsq/shihmen_dam/README.md) |
 | 129 | [Exchange Square, Hong Kong](https://qualla.com/hong-kong-stock-exchange/) | Asia | civic-commercial | [Completed](../../places/we/wec/exchange_square_hong_kong/README.md) |
 | 130 | [Mihama Nuclear Power Plant](https://qualla.com/mihama-nuclear-power-plant/) | East and Southeast Asia | industrial | [Completed structure](../../places/xn/xn2/mihama_nuclear_power_plant/README.md) |
 | 131 | [Kaohsiung Lighthouse](https://qualla.com/kaohsiung-lighthouse/) | Asia | lighthouse | [Completed](../../places/ws/wsj/kaohsiung_lighthouse/README.md) |
-| 132 | [Datong Mass Grave Memorial](https://qualla.com/datong-mass-grave-memorial/) | East and Southeast Asia | monument | deferred-imagery |
+| 132 | [Datong Mass Grave Memorial](https://qualla.com/datong-mass-grave-memorial/) | East and Southeast Asia | monument | [Completed](../../places/wx/wx0/datong_mass_grave_memorial/README.md) |
 | 133 | [Qingdao Observatory](https://qualla.com/qingdao-observatory/) | East and Southeast Asia | museum-library | [Completed structure](../../places/ww/wwm/qingdao_observatory/README.md) |
-| 134 | [Chihaya Castle](https://qualla.com/chihaya-castle/) | East and Southeast Asia | palace-castle-fort | deferred-plan-controls |
+| 134 | [Chihaya Castle](https://qualla.com/chihaya-castle/) | East and Southeast Asia | palace-castle-fort | [Completed](../../places/xn/xn0/chihaya_castle/README.md) |
 | 135 | [Hong Kong Stadium](https://qualla.com/hong-kong-stadium/) | Asia | performance-sport | [Completed](../../places/we/wec/hong_kong_stadium/README.md) |
 | 136 | [Atsuta Shrine](https://qualla.com/atsuta-shrine/) | East and Southeast Asia | religious | [Completed](../../places/xn/xn1/atsuta_shrine/README.md) |
 | 137 | [Government House, Hong Kong](https://qualla.com/government-house-hong-kong/) | East and Southeast Asia | residence | [Completed structure](../../places/we/wec/government_house_hong_kong/README.md) |
@@ -173,7 +173,7 @@
 | 160 | [Buffalo Trace Distillery](https://qualla.com/buffalo-trace-distillery/) | North America | industrial | [Completed](../../places/dn/dng/buffalo_trace_distillery/README.md) |
 | 161 | [Cape Charles Lighthouse](https://qualla.com/cape-charles-lighthouse/) | North America | lighthouse | [Completed](../../places/dq/dqd/cape_charles_lighthouse/README.md) |
 | 162 | [Confederate Monument (Greenville, South Carolina)](https://qualla.com/confederate-monument-greenville-south-carolina/) | North America | monument | [Completed](../../places/dn/dnj/confederate_monument_greenville_south_carolina/README.md) |
-| 163 | [Golden Gate Raptor Observatory](https://qualla.com/golden-gate-raptor-observatory/) | North America | museum-library | deferred-plan-controls |
+| 163 | [Golden Gate Raptor Observatory](https://qualla.com/golden-gate-raptor-observatory/) | North America | museum-library | [Completed](../../places/9q/9q8/golden_gate_raptor_observatory/README.md) |
 | 164 | [Atalaya Castle (US)](https://qualla.com/atalaya-castle-us/) | North America | palace-castle-fort | [Completed](../../places/dj/djz/atalaya_castle_us/README.md) |
 | 165 | [Atlanta–Fulton County Stadium](https://qualla.com/atlanta-fulton-county-stadium/) | North America | performance-sport | [Completed](../../places/dj/djg/atlanta_fulton_county_stadium/README.md) |
 | 166 | [Baltimore Basilica](https://qualla.com/basilica-of-the-national-shrine-of-the-assumption-of-the-blessed-virgin-mary/) | North America | religious | [Completed](../../places/dq/dqc/baltimore_basilica/README.md) |
@@ -206,14 +206,14 @@
 | 193 | [Frere Hall](https://qualla.com/frere-hall/) | South and Central Asia | civic-institutional | [Completed structure](../../places/tk/tkr/frere_hall/README.md) |
 | 194 | [Kaptai Dam](https://qualla.com/kaptai-dam/) | South and Central Asia | dam | [Completed structure](../../places/w5/w5c/kaptai_dam/README.md) |
 | 195 | [Gawhar Shad Mausoleum](https://qualla.com/gawhar-shad-mausoleum/) | South and Central Asia | monument | [Completed](../../places/tq/tqh/gawhar_shad_mausoleum/README.md) |
-| 196 | [Mubarak Mandi Palace](https://qualla.com/mubarak-mandi-palace/) | South and Central Asia | palace-castle-fort | deferred-imagery |
-| 197 | [Great Mosque of Herat](https://qualla.com/great-mosque-of-herat/) | South and Central Asia | religious | deferred-other-device |
+| 196 | [Mubarak Mandi Palace](https://qualla.com/mubarak-mandi-palace/) | South and Central Asia | palace-castle-fort | [Completed](../../places/tt/ttv/mubarak_mandi_palace/README.md) |
+| 197 | [Great Mosque of Herat](https://qualla.com/great-mosque-of-herat/) | South and Central Asia | religious | Complete via existing catalog model |
 | 198 | [Wazir Mansion](https://qualla.com/wazir-mansion/) | South and Central Asia | residence | [Completed](../../places/tk/tkr/wazir_mansion/README.md) |
 | 199 | [Great Pyramid of Giza](https://qualla.com/great-pyramid-of-giza/) | Africa and Middle East | archaeological | [Completed](../../places/st/stq/great_pyramid_of_giza/README.md) |
 | 200 | [Dona Ana Bridge](https://qualla.com/dona-ana-bridge/) | Africa and Middle East | bridge | [Completed](../../places/ku/kub/dona_ana_bridge/README.md) |
 | 201 | [Kuwait National Assembly Building](https://qualla.com/kuwait-national-assembly-building/) | Africa and Middle East | civic-institutional | [Completed structure](../../places/tj/tj4/kuwait_national_assembly_building/README.md) |
 | 202 | [Cahora Bassa Dam](https://qualla.com/cahora-bassa-dam/) | Africa and Middle East | dam | [Completed](../../places/kt/ktp/cahora_bassa_dam/README.md) |
-| 203 | [Grand Bazaar, Isfahan](https://qualla.com/grand-bazaar-isfahan/) | Africa and Middle East | hotel-commercial | deferred-imagery |
+| 203 | [Grand Bazaar, Isfahan](https://qualla.com/grand-bazaar-isfahan/) | Africa and Middle East | hotel-commercial | [Completed](../../places/tj/tju/grand_bazaar_isfahan/README.md) |
 | 204 | [Southern African Large Telescope](https://qualla.com/southern-african-large-telescope/) | Africa and Middle East | industrial | [Completed](../../places/k6/k6n/southern_african_large_telescope/README.md) |
 | 205 | [Tomb of Tutankhamun](https://qualla.com/tomb-of-tutankhamun/) | Africa and Middle East | monument | [Completed](../../places/ss/ssx/tomb_of_tutankhamun/README.md) |
 | 206 | [Palace of Darius in Susa](https://qualla.com/palace-of-darius-in-susa/) | Africa and Middle East | palace-castle-fort | [Completed](../../places/tj/tjd/palace_of_darius_in_susa/README.md) |
@@ -239,7 +239,7 @@
 | 226 | [Bái Đính Temple](https://qualla.com/bai-inh-temple/) | East and Southeast Asia | religious | [Completed](../../places/w7/w7e/bai_dinh_temple/README.md) |
 | 227 | [Hong Kong House of Stories](https://qualla.com/hong-kong-house-of-stories/) | East and Southeast Asia | residence | Reused accepted Blue House; story linked, current readiness not renewed |
 | 228 | [Canton Tower](https://qualla.com/canton-tower/) | East and Southeast Asia | tower | [Completed](../../places/ws/ws0/canton_tower/README.md) |
-| 229 | [Pier-2 Art Center](https://qualla.com/pier-2-art-center/) | East and Southeast Asia | transport | deferred-imagery |
+| 229 | [Pier-2 Art Center](https://qualla.com/pier-2-art-center/) | East and Southeast Asia | transport | [Completed](../../places/ws/wsj/pier_2_art_center/README.md) |
 | 230 | [Cairn Gorm](https://qualla.com/cairn-gorm/) | Europe | archaeological | [Completed](../../places/gf/gfj/cairn_gorm_weather_station/README.md) |
 | 231 | [Aqueduct of Valens](https://qualla.com/aqueduct-of-valens/) | Europe | bridge | [Completed](../../places/sx/sxk/aqueduct_of_valens/README.md) |
 | 232 | [Brussels Town Hall](https://qualla.com/brussels-town-hall/) | Europe | civic-institutional | [Completed](../../places/u1/u15/brussels_town_hall/README.md) |
@@ -276,7 +276,7 @@
 | 263 | [Birdsville Hotel](https://qualla.com/birdsville-hotel/) | Oceania | hotel-commercial | [Completed](../../places/r5/r57/birdsville_hotel/README.md) |
 | 264 | [CSR Refinery, New Farm](https://qualla.com/csr-refinery-new-farm/) | Oceania | industrial | [Completed](../../places/r7/r7h/csr_refinery_new_farm/README.md) |
 | 265 | [Canterbury Earthquake National Memorial](https://qualla.com/canterbury-earthquake-national-memorial/) | Oceania | monument | [Completed](../../places/rb/rb6/canterbury_earthquake_national_memorial/README.md) |
-| 266 | [Murchison Radio-astronomy Observatory](https://qualla.com/murchison-radio-astronomy-observatory/) | Oceania | museum-library | queued |
+| 266 | [Murchison Radio-astronomy Observatory](https://qualla.com/murchison-radio-astronomy-observatory/) | Oceania | museum-library | [Completed](../../places/qe/qe6/murchison_radio_astronomy_observatory/README.md) |
 | 267 | [Larnach Castle](https://qualla.com/larnach-castle/) | Oceania | palace-castle-fort | [Completed](../../places/pz/pzc/larnach_castle/README.md) |
 | 268 | [Theatre Royal, Hobart](https://qualla.com/theatre-royal-hobart/) | Oceania | performance-sport | [Completed structure](../../places/r2/r22/theatre_royal_hobart/README.md) |
 | 269 | [Cathedral Square, Christchurch](https://qualla.com/cathedral-square-christchurch/) | Oceania | religious | [Completed](../../places/rb/rb6/cathedral_square_christchurch/README.md) |
@@ -285,9 +285,9 @@
 | 272 | [Puente de la Mujer](https://qualla.com/puente-de-la-mujer/) | South America | bridge | [Completed](../../places/69/69y/puente_de_la_mujer/README.md) |
 | 273 | [Caseros Prison](https://qualla.com/caseros-prison/) | South America | civic-institutional | [Completed structure](../../places/69/69y/caseros_prison/README.md) |
 | 274 | [Hotel de Inmigrantes](https://qualla.com/hotel-de-inmigrantes/) | South America | hotel-commercial | [Completed structure](../../places/69/69y/hotel_de_inmigrantes/README.md) |
-| 275 | [Giant Magellan Telescope](https://qualla.com/giant-magellan-telescope/) | South America | industrial | queued |
+| 275 | [Giant Magellan Telescope](https://qualla.com/giant-magellan-telescope/) | South America | industrial | [Completed](../../places/66/66v/giant_magellan_telescope/README.md) |
 | 276 | [National Flag Memorial](https://qualla.com/national-flag-memorial-argentina/) | South America | monument | [Completed](../../places/6d/6dh/national_flag_memorial/README.md) |
-| 277 | [Pierre Auger Observatory](https://qualla.com/pierre-auger-observatory/) | South America | museum-library | queued |
+| 277 | [Pierre Auger Observatory](https://qualla.com/pierre-auger-observatory/) | South America | museum-library | [Completed](../../places/63/63w/pierre_auger_observatory/README.md) |
 | 278 | [National Congress Palace](https://qualla.com/national-congress-palace/) | South America | palace-castle-fort | [Completed](../../places/6v/6vj/national_congress_palace/README.md) |
 | 279 | [Municipal Theatre of Santiago](https://qualla.com/municipal-theatre-of-santiago/) | South America | performance-sport | [Completed original theatre](../../places/66/66j/municipal_theatre_of_santiago/README.md) |
 | 280 | [Cathedral of Córdoba, Argentina](https://qualla.com/cathedral-of-cordoba-argentina/) | South America | religious | [Completed](../../places/6d/6d6/cathedral_of_cordoba_argentina/README.md) |
@@ -308,7 +308,7 @@
 | 295 | [Mortuary Temple of Hatshepsut](https://qualla.com/mortuary-temple-of-hatshepsut/) | Africa and Middle East | religious | [Completed](../../places/ss/ssx/mortuary_temple_of_hatshepsut/README.md) |
 | 296 | [Dr Xuma House](https://qualla.com/dr-xuma-house/) | Africa and Middle East | residence | [Completed structure](../../places/ke/ke7/dr_xuma_house/README.md) |
 | 297 | [Markar Clock Tower](https://qualla.com/markar-clock-tower/) | Africa and Middle East | tower | [Completed structure](../../places/tj/tjw/markar_clock_tower/README.md) |
-| 298 | [Litoral Penitentiary](https://qualla.com/litoral-penitentiary/) | Central America and Caribbean | civic-institutional | queued |
+| 298 | [Litoral Penitentiary](https://qualla.com/litoral-penitentiary/) | Central America and Caribbean | civic-institutional | [Completed](../../places/6p/6px/litoral_penitentiary/README.md) |
 | 299 | [Fort Orange (Dutch Brazil)](https://qualla.com/fort-orange-dutch-brazil/) | South America | palace-castle-fort | [Completed](../../places/7n/7nx/fort_orange_dutch_brazil/README.md) |
 | 300 | [Quito Metropolitan Cathedral](https://qualla.com/quito-metropolitan-cathedral/) | South America | religious | [Completed](../../places/6r/6rb/quito_metropolitan_cathedral/README.md) |
 

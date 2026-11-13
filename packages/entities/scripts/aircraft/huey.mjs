@@ -254,6 +254,17 @@ export function buildHuey(s) {
       [side * 0.82, 2.57, 2.27],
     ];
     glazing(d, corner, glass, paint, 0.025, [side, 0.2, 0.3]);
+    // Closes the wedge between the nose skin and the corner pane's rising lower edge.
+    sheet(
+      d,
+      [
+        [side * 0.91, 1.45, 2.88],
+        [side * 1.05, 1.55, 2.52],
+        [side * 1.05, 1.44, 2.52],
+      ],
+      paint,
+      [side, 0.2, 0.3],
+    );
     const door = [
       [side * cabinHalf(0.76), 0.76, 2.52],
       [side * 1.05, 1.55, 2.52],
@@ -535,7 +546,7 @@ function addHueyCockpit(root) {
   const cabin = group(root, 'cockpit', [0, -0.29, 0]),
     d = detailKit(cabin, 'huey-cockpit');
   const panel = mat('huey-panel', '#343a36'),
-    coaming = mat('huey-coaming', '#202622', { roughness: 0.95 }),
+    coaming = mat('huey-coaming', '#202622', { roughness: 0.95, side: T.DoubleSide }),
     floor = mat('huey-floor', '#495044'),
     seat = mat('huey-seat-webbing', '#7c8061', { roughness: 0.95 }),
     face = mat('huey-gauge-face', '#101a17'),
@@ -543,7 +554,7 @@ function addHueyCockpit(root) {
     sky = mat('huey-attitude-sky', '#7896a1'),
     earth = mat('huey-attitude-earth', '#69573f');
   const bindings = [];
-  d.box([1.93, 0.055, 4.05], [0, 0.77, 0.35], floor);
+  d.box([1.7, 0.055, 4.05], [0, 0.83, 0.35], floor);
   // Rear bench and internal door panels visible through the side windows.
   for (const side of [-1, 1]) {
     d.box([0.42, 0.1, 1.75], [side * 0.73, 1.03, -0.45], seat);
@@ -551,11 +562,14 @@ function addHueyCockpit(root) {
     for (const z of [0.25, -0.65])
       d.rod([side * 0.73, 0.81, z], [side * 0.73, 0.98, z], 0.023, d.metal);
   }
-  // Figure 2-4, PDF page 77 rasterized to 1700 px high: uniform relative calibration.
-  // The face's 1.76 m width is an authored cabin-fit assumption, not a published dimension.
+  // Figure 2-4, PDF page 77 rasterized to 1700 px high. The figure carries no dimensions, so its
+  // scale comes from the instruments it shows: the 53 px flight dials are 3.125 in (79.4 mm), which
+  // also makes the 34 px engine dials 2 in and the face 1.05 m wide. The 1.76 m width used before
+  // was a cabin-fit guess that drew every dial 1.7 times too large.
   // Keeping source image coordinates makes the relative outline/instrument layout auditable.
-  const drawingScale = 1.76 / 703;
-  const panelDrawing = (x, y) => [(689.5 - x) * drawingScale, 1.22 + (715 - y) * drawingScale];
+  const drawingScale = 0.0794 / 53;
+  // The hood top sits 1.60 m above ground, 0.3 m below the eye, as a matched front photograph puts it.
+  const panelDrawing = (x, y) => [(689.5 - x) * drawingScale, 1.385 + (715 - y) * drawingScale];
   const panelOutline = [
     [338, 500],
     [425, 467],
@@ -574,9 +588,6 @@ function addHueyCockpit(root) {
     [338, 675],
   ].map(([x, y]) => panelDrawing(x, y));
   const panelPoint = (x, y, z = 2.68) => [x, y, z + (1.62 - y) * 0.12];
-  // The windshield sweeps aft at its corners. Keep the calibrated instrument face
-  // flat, but taper the forward housing depth so its shoulders stay behind the glass.
-  const panelFront = (x, y) => panelPoint(x, y, 2.96 - 0.24 * (x / 0.88) ** 2);
   sheet(
     d,
     panelOutline.map(([x, y]) => panelPoint(x, y)),
@@ -585,18 +596,22 @@ function addHueyCockpit(root) {
   );
   sheet(
     d,
-    panelOutline.map(([x, y]) => panelFront(x, y)),
+    panelOutline.map(([x, y]) => panelPoint(x, y, 2.86)),
     coaming,
     [0, 0, 1],
   );
   for (let i = 0; i < panelOutline.length; i++) {
     const a = panelOutline[i],
       b = panelOutline[(i + 1) % panelOutline.length];
-    quad(d, panelPoint(...a), panelPoint(...b), panelFront(...b), panelFront(...a), panel, [
-      a[0],
-      a[1] - 1.6,
-      0,
-    ]);
+    quad(
+      d,
+      panelPoint(...a),
+      panelPoint(...b),
+      panelPoint(...b, 2.86),
+      panelPoint(...a, 2.86),
+      panel,
+      [a[0], a[1] - 1.6, 0],
+    );
   }
   // Rounded hood wraps around, with visible forward depth, rather than a rectangular shelf.
   const hood = [
@@ -621,17 +636,16 @@ function addHueyCockpit(root) {
     const width = Math.min(Math.abs(x), 0.88) + Math.max(0, Math.abs(x) - 0.88) * 0.25;
     return [Math.sign(x) * width, y];
   });
-  const hoodFront = (x, y) => panelPoint(x, y, 2.93 - 0.29 * (x / 0.96) ** 2);
   for (let i = 0; i < hood.length - 1; i++) {
-    const a = panelPoint(...hood[i], 2.58),
-      b = panelPoint(...hood[i + 1], 2.58),
-      c = hoodFront(...hood[i + 1]),
-      e = hoodFront(...hood[i]);
+    const a = panelPoint(...hood[i], 2.59),
+      b = panelPoint(...hood[i + 1], 2.59),
+      c = panelPoint(...hood[i + 1], 2.84),
+      e = panelPoint(...hood[i], 2.84);
     quad(d, a, b, c, e, coaming, [0, 1, 0]);
   }
   d.path(
-    hood.map((p) => panelPoint(...p, 2.58)),
-    0.022,
+    hood.map((p) => panelPoint(...p, 2.59)),
+    0.016,
     coaming,
   );
   const hoodInner = [
@@ -647,9 +661,16 @@ function addHueyCockpit(root) {
   ].map(([x, y]) => panelDrawing(x, y));
   sheet(
     d,
-    [...hood, ...hoodInner.toReversed()].map(([x, y]) => panelPoint(x, y, 2.58)),
+    [...hood, ...hoodInner.toReversed()].map(([x, y]) => panelPoint(x, y, 2.59)),
     coaming,
     [0, 0, -1],
+  );
+  // The forward wall closes the shell, so the hood reads as solid from outside the windscreen.
+  sheet(
+    d,
+    [...hood, ...hoodInner.toReversed()].map(([x, y]) => panelPoint(x, y, 2.84)),
+    coaming,
+    [0, 0, 1],
   );
   const instrument = (x, y, r, name, source = 'rpm', style = 'dial') => {
     const z = panelPoint(x, y)[2] - 0.015;
@@ -780,8 +801,8 @@ function addHueyCockpit(root) {
     [967, 449],
   ]) {
     const [x, y] = panelDrawing(px, py);
-    d.box([0.085, 0.035, 0.018], panelPoint(x, y, 2.56), d.dark);
-    d.box([0.055, 0.012, 0.003], panelPoint(x, y, 2.548), d.amber);
+    d.box([0.05, 0.021, 0.012], panelPoint(x, y, 2.58), d.dark);
+    d.box([0.033, 0.008, 0.003], panelPoint(x, y, 2.572), d.amber);
   }
   // Distinct blanking, warning and HSI control panels occupy the remaining reference areas.
   for (const [px, py, pw, ph] of [
@@ -798,10 +819,10 @@ function addHueyCockpit(root) {
     d.box([pw * drawingScale, ph * drawingScale, 0.012], panelPoint(x, y, 2.655), coaming);
   }
   // Radio/control pedestal slopes down toward the seats; it is separate from the flight panel.
-  const pedestal = group(cabin, 'huey-center-pedestal', [0, 1.13, 1.87]);
-  pedestal.rotation.x = Math.PI / 2 - 0.13;
+  const pedestal = group(cabin, 'huey-center-pedestal', [0, 1.3, 1.93]);
+  pedestal.rotation.x = Math.PI / 2 - 0.1;
   const cd = detailKit(pedestal, 'huey-pedestal');
-  cd.box([0.41, 1.47, 0.16], [0, 0, 0.06], panel);
+  cd.box([0.41, 1.47, 0.46], [0, 0, 0.21], panel);
   const knob = (x, y, r = 0.017) => {
     cd.add(new T.CylinderGeometry(r, r, 0.022, 8).rotateX(Math.PI / 2), cd.dark, [x, y, -0.049]);
     cd.box([0.003, r * 0.8, 0.003], [x, y + r * 0.35, -0.062], ink);
@@ -836,35 +857,59 @@ function addHueyCockpit(root) {
   cd.rod([-0.07, -0.56, -0.055], [0.07, -0.56, -0.055], 0.009, cd.metal);
   cd.finish();
   // Seat frames, fabric pads, armor sides, four-point harness and floor-mounted curved cyclics.
+  // The eye is fixed by the side view; the cushion sits 0.8 m under it on raised seat legs.
+  const seatLift = 0.2,
+    seatAft = 0.16;
   for (const side of [-1, 1]) {
     const x = side * 0.47;
-    d.box([0.43, 0.11, 0.49], [x, 1.14, 1.78], seat);
-    const back = d.box([0.44, 0.62, 0.095], [x, 1.48, 1.53], seat);
+    d.box([0.43, 0.11, 0.49], [x, 1.14 + seatLift, 1.78 - seatAft], seat);
+    const back = d.box([0.44, 0.62, 0.095], [x, 1.48 + seatLift, 1.53 - seatAft], seat);
     back.rotation.x = -0.08;
     for (const edge of [-1, 1]) {
-      d.rod([x + edge * 0.22, 0.79, 1.57], [x + edge * 0.22, 1.17, 1.57], 0.024, d.metal);
-      d.box([0.025, 0.62, 0.32], [x + edge * 0.25, 1.48, 1.55], floor);
-      d.rod([x + edge * 0.12, 1.77, 1.47], [x + edge * 0.035, 1.19, 1.91], 0.018, coaming);
-      d.rod([x + edge * 0.22, 1.18, 1.7], [x + edge * 0.035, 1.19, 1.91], 0.022, coaming);
+      d.rod(
+        [x + edge * 0.22, 0.79, 1.57 - seatAft],
+        [x + edge * 0.22, 1.17 + seatLift, 1.57 - seatAft],
+        0.024,
+        d.metal,
+      );
+      d.rod(
+        [x + edge * 0.17, 0.79, 1.95 - seatAft],
+        [x + edge * 0.17, 1.1 + seatLift, 1.95 - seatAft],
+        0.024,
+        d.metal,
+      );
+      d.box([0.025, 0.62, 0.32], [x + edge * 0.25, 1.48 + seatLift, 1.55 - seatAft], floor);
+      d.rod(
+        [x + edge * 0.12, 1.77 + seatLift, 1.47 - seatAft],
+        [x + edge * 0.035, 1.19 + seatLift, 1.91 - seatAft],
+        0.018,
+        coaming,
+      );
+      d.rod(
+        [x + edge * 0.22, 1.18 + seatLift, 1.7 - seatAft],
+        [x + edge * 0.035, 1.19 + seatLift, 1.91 - seatAft],
+        0.022,
+        coaming,
+      );
     }
-    d.box([0.065, 0.042, 0.025], [x, 1.2, 1.92], d.metal);
+    d.box([0.065, 0.042, 0.025], [x, 1.2 + seatLift, 1.92 - seatAft], d.metal);
     const stick = group(cabin, `huey-cyclic-${side}`, [x, 0.8, 2.16]),
       sd = detailKit(stick, 'cyclic');
     outline(
       sd,
       [
         [0, 0, 0],
-        [0, 0.32, 0],
-        [0, 0.48, -0.14],
-        [0, 0.64, -0.19],
+        [0, 0.42, 0],
+        [0, 0.6, -0.14],
+        [0, 0.76, -0.19],
       ],
       0.023,
       sd.dark,
       false,
     );
-    const grip = sd.box([0.075, 0.16, 0.067], [0, 0.68, -0.18], coaming);
+    const grip = sd.box([0.075, 0.16, 0.067], [0, 0.8, -0.18], coaming);
     grip.rotation.x = 0.2;
-    sd.box([0.025, 0.018, 0.018], [-0.024, 0.77, -0.2], sd.red);
+    sd.box([0.025, 0.018, 0.018], [-0.024, 0.89, -0.2], sd.red);
     sd.finish();
     bindings.push(
       { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.13 },
@@ -872,9 +917,9 @@ function addHueyCockpit(root) {
     );
     const collective = group(cabin, `huey-collective-${side}`, [x + 0.26, 0.95, 1.57]),
       ld = detailKit(collective, 'collective');
-    ld.rod([0, 0, 0], [0, 0.13, 0.48], 0.025, ld.dark);
-    ld.box([0.07, 0.06, 0.19], [0, 0.14, 0.48], coaming);
-    ld.box([0.022, 0.014, 0.024], [-0.018, 0.18, 0.53], ld.red);
+    ld.rod([0, 0, 0], [0, 0.31, 0.48], 0.025, ld.dark);
+    ld.box([0.07, 0.06, 0.19], [0, 0.32, 0.48], coaming);
+    ld.box([0.022, 0.014, 0.024], [-0.018, 0.36, 0.53], ld.red);
     ld.finish();
     bindings.push({
       node: collective.name,

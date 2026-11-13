@@ -220,6 +220,18 @@ export class VehicleDetail {
     return this.active.size;
   }
 
+  /**
+   * Meters to the nearest selected car still waiting for a model of `type`. Infinity when none
+   * is, which a frame queue treats as unordered: arrival order, after anything nearer.
+   */
+  private waitingDistance(type: string): number {
+    let nearest = Number.POSITIVE_INFINITY;
+    for (const candidate of this.candidates)
+      if (candidate.type === type && !this.active.has(candidate.id))
+        nearest = Math.min(nearest, candidate.distance);
+    return nearest;
+  }
+
   /** Choose which cars get full models (call a few times a second). */
   select(candidates: readonly DetailCandidate[], exists: (id: string) => boolean): void {
     const near = this.options.near ?? 45;
@@ -320,29 +332,41 @@ export class VehicleDetail {
         tintGlass(object);
       });
       this.group.add(visual.object);
+      // A host's frame queue prepares this for the nearest car waiting on its type, before ground
+      // and buildings farther off: in arrival order a car's model waited 10-35 s behind a fast
+      // flight's tiles, and its car had driven away by then. A type no car waits on finishes last.
+      visual.object.userData.admissionOrder = () => this.waitingDistance(type);
+      // A type no car wants any more gives up its slot to one that is wanted, and still finishes
+      // into the pool: traffic brings the same few types back, and discarding finished models
+      // left none at all after a flight.
+      const freeSlot = (): void => {
+        if (this.loading.get(type) === controller) this.loading.delete(type);
+      };
+      controller.signal.addEventListener('abort', freeSlot, { once: true });
       await this.options.prepare?.(visual.object);
-      if (
-        this.disposed ||
-        controller.signal.aborted ||
-        !this.wanted.has(type) ||
-        this.cacheStats().bytes > this.byteLimit
-      ) {
+      controller.signal.removeEventListener('abort', freeSlot);
+      delete visual.object.userData.admissionOrder;
+      if (this.disposed || this.cacheStats().bytes > this.byteLimit) {
         this.release(visual);
         return;
       }
-      const candidate = this.candidates.find((c) => c.type === type && !this.active.has(c.id));
+      const candidate = this.wanted.has(type)
+        ? this.candidates.find((c) => c.type === type && !this.active.has(c.id))
+        : undefined;
       if (candidate && this.active.size < this.max) this.activate(candidate, visual);
       else {
         const pool = this.idle.get(type) ?? [];
         pool.push(visual);
         this.idle.set(type, pool);
+        const resident = this.resident.get(visual);
+        if (resident) resident.used = ++this.clock;
       }
       this.prune();
     } catch {
       if (bound) this.release(bound);
       if (!controller.signal.aborted) this.missing.add(type);
     } finally {
-      this.loading.delete(type);
+      if (this.loading.get(type) === controller) this.loading.delete(type);
     }
   }
 

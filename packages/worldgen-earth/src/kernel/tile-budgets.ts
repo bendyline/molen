@@ -10,10 +10,15 @@ export type WorldgenQualityPreset = 'economy' | 'balanced' | 'high';
  * while distant coverage remains tightly capped.
  */
 const SCATTER_INSTANCES: Record<WorldgenQualityPreset, readonly number[]> = {
-  economy: [2200, 400, 0],
-  balanced: [6000, 1200, 250],
-  high: [9000, 1800, 350],
+  economy: [2200, 800, 200],
+  balanced: [6000, 2400, 800],
+  high: [9000, 3600, 1200],
 };
+// The coarser levels were 1,200 and 250 at Balanced (400 and none at Economy): a twentieth of the
+// finest level's density, then a four-hundredth, so a wood ended on the straight edge of a tile
+// and the land beyond read as lawn. Trees are not what a frame spends its triangles on (at
+// Balanced from 900 m, 8,400 instances drew 4% of them; the ground under them drew 43%), and a
+// distant crown is 12-20 triangles, so the far levels can afford to thin by tens, not hundreds.
 
 /**
  * Ground cover (tussocks, ferns, small stones) only near the camera: the finest level on

@@ -1,0 +1,108 @@
+{
+  "format": "molen/scene@3",
+  "name": "National Museum of Anthropology preview",
+  "seed": "national_museum_of_anthropology",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "structure",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.national_museum_of_anthropology",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            -23,
+            -4.6,
+            0
+          ],
+          "scale": [
+            315,
+            0.2,
+            194
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#aaa396",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#dce5ed",
+            "ground": "#6c7473",
+            "intensity": 1.15
+          },
+          "sun": {
+            "direction": [
+              -8,
+              15,
+              12
+            ],
+            "color": "#fff1d3",
+            "intensity": 2.2,
+            "castShadow": true
+          },
+          "background": "#b5d2df",
+          "toneMapping": "agx",
+          "exposure": 1.08,
+          "shadows": "high"
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      -204,
+      42,
+      89
+    ],
+    "lookAt": [
+      -29,
+      5,
+      -4
+    ],
+    "fov": 55
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

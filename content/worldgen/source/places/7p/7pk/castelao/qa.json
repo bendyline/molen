@@ -32,8 +32,69 @@
       "shots/shared/membrane-roof-translucent-inner-band-and-frame.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Six existing256-square graphs: concrete_plain, metal_painted, metal_perforated_round, glass_frit_triangular, window_grid and fabric_canvas. Concrete supplies structure/floor/risers; paint supplies roof/steel/seats/markings/neutral boards; existing perforated metal supplies the curved screen; existing frit supplies an opaque visual approximation of the translucent roof-edge band; window-grid supplies closed facade/hospitality/entry glazing; canvas grain approximates turf. Physical shared repeats and palette tints, six near material groups, zero embedded images or unique/photo atlases. Each nearby graph is read once; unloading releases model geometry. All six actual GLBs have canonical shared refs and runtime levels use separate POSITION/NORMAL streams with equal counted CPU/GPU geometry bytes. No optical transmission or exact membrane/perforation survey claim.",
-    "captureReportHash": "sha256:ceec53ed01545079fe6bff09982c243ff27c3c6047791ed2f78d83cd1cc96cb6"
+    "notes": "Six existing256-square graphs: concrete_plain, metal_painted, metal_perforated_round, glass_frit_triangular, window_grid and fabric_canvas. Concrete supplies structure/floor/risers; paint supplies roof/steel/seats/markings/neutral boards; existing perforated metal supplies the curved screen; existing frit supplies an opaque visual approximation of the translucent roof-edge band; window-grid supplies closed facade/hospitality/entry glazing; canvas grain approximates turf. Physical shared repeats and palette tints, six near material groups, zero embedded images or unique/photo atlases. Each nearby graph is read once; unloading releases model geometry. All six actual GLBs have canonical shared refs and runtime levels use separate POSITION/NORMAL streams with equal counted CPU/GPU geometry bytes. No optical transmission or exact membrane/perforation survey claim. The shared window_grid graph changed after the original review. All eight new shared-material views were inspected on the existing placement. The window rhythm stays distinct behind the western lattice fins and inside the hospitality band.",
+    "captureReportHash": "sha256:ad11af40dd39435fda293630e3f5c91bb46b79772282c80d60b20fd9b9ca431b",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:bffcaf015bb693b38d352c83c864e54d89f38465d187a2b9a0f7bb4ce8e4b928"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:1b6debd8a12741c893082588f022b63c0e6d1828589b0e2a7d5ee0d93c8fe7a5"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:f5bc7372755392b433421aa36a07a238ed77da7a446cc152a74df476189ae242"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:845f5ad61fa5c5ce54084ff1c317ac5c158c0ca7800f93b798e7cdf7705e241b"
+      },
+      {
+        "path": "shots/shared/open-pitch-two-tiers-and-central-hospitality.png",
+        "hash": "sha256:70333a3694d3752c7317d1a61c92a09687306f54250e5128a98908a0a1e5ef48"
+      },
+      {
+        "path": "shots/shared/western-glazed-frontage-and-tapered-lattice-fins.png",
+        "hash": "sha256:ab09b6158aa05d8fb05082bea884d86d2f5cfe35ee6e7728cbea40812610ae14"
+      },
+      {
+        "path": "shots/shared/membrane-roof-translucent-inner-band-and-frame.png",
+        "hash": "sha256:3289b47d1da3d76f28708d255f34ca4f8888a4d4b68d737421be90cab2022004"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:81975244479289140e817aa7951dae82d66c9136e50a0be5fc35310edc15e9c6"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.glass_frit_triangular": {
+        "path": "materials/glass_frit_triangular.matgraph.json",
+        "hash": "sha256:ab416307e458827df9d530e60622e3db805370db7cbf2697ebb4eb0716c967b6"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.metal_perforated_round": {
+        "path": "materials/metal_perforated_round.matgraph.json",
+        "hash": "sha256:e8a12829a9a5c09661eb60ce2eb4deb064de202142e091b1d1ffe6e329ff8943"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

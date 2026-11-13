@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.westport_house",
+  "kind": "static-structure",
+  "title": "Westport House",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.westport_house",
+        "output": "assets/places/gc/gc9/westport_house/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:753dbb30cb330167ef6556dc8ae667489aa583fbe9946776ce9fbdd148d9b536"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-westport-house",
+        "path": "models/generate-westport-house.mjs"
+      },
+      {
+        "id": "westport-house-model",
+        "path": "models/westport-house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-15515-10551.png",
+      "terrain-sources/terrarium-15-15515-10552.png",
+      "terrain-sources/terrarium-15-15516-10551.png",
+      "terrain-sources/terrarium-15-15516-10552.png",
+      "preview.png",
+      "native-map/manor-controls.json",
+      "reference-rights/commons-qualla-manor-originals.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

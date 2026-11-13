@@ -1,0 +1,80 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "railways",
+  "path": "/?region=seattle-bellevue-sammamish&lat=47.5532&lon=-122.3222&alt=130&yaw=-2.28&pitch=-0.5&mode=human&quality=balanced&backend=webgl&hud=0&weather=sunny&sky=daylight&freeze=1&ambient=0",
+  "viewport": [1400, 900],
+  "probes": [
+    { "name": "status", "selector": "#status" },
+    { "name": "location", "selector": "#location" }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 3000,
+      "timeoutMs": 300000
+    },
+    { "type": "screenshot", "name": "yard-130m" },
+    {
+      "type": "navigate",
+      "path": "/?region=seattle-bellevue-sammamish&lat=47.548&lon=-122.3165&alt=400&yaw=-2.28&pitch=-0.6&mode=human&quality=balanced&backend=webgl&hud=0&weather=sunny&sky=daylight&freeze=1&ambient=0"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 3000,
+      "timeoutMs": 300000
+    },
+    { "type": "screenshot", "name": "yard-400m" },
+    {
+      "type": "navigate",
+      "path": "/?region=seattle-bellevue-sammamish&lat=47.5527&lon=-122.31915&alt=5&yaw=-2.2&pitch=-0.35&mode=human&quality=balanced&backend=webgl&hud=0&weather=sunny&sky=daylight&freeze=1&ambient=0"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 3000,
+      "timeoutMs": 300000
+    },
+    { "type": "screenshot", "name": "turnout-crossing-walk" },
+    {
+      "type": "navigate",
+      "path": "/?region=seattle-bellevue-sammamish&lat=47.57434&lon=-122.33148&alt=7.6&yaw=3.1&pitch=-0.1&mode=human&quality=balanced&backend=webgl&hud=0&weather=sunny&sky=daylight&freeze=1&ambient=0"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 3000,
+      "timeoutMs": 300000
+    },
+    { "type": "screenshot", "name": "main-line-crossing" },
+    {
+      "type": "navigate",
+      "path": "/?region=seattle-bellevue-sammamish&lat=47.57975&lon=-122.32705&alt=7&yaw=3.1&pitch=-0.06&mode=human&quality=balanced&backend=webgl&hud=0&weather=sunny&sky=daylight&freeze=1&ambient=0"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 3000,
+      "timeoutMs": 300000
+    },
+    { "type": "screenshot", "name": "link-crossing-catenary" },
+    {
+      "type": "navigate",
+      "path": "/?region=kyoto&lat=34.973&lon=135.77075&alt=40&yaw=3.1&pitch=-0.12&mode=human&quality=balanced&backend=webgl&hud=0&weather=sunny&sky=daylight&freeze=1&ambient=0"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 3000,
+      "timeoutMs": 300000
+    },
+    { "type": "screenshot", "name": "kyoto-crossing-electrified" }
+  ]
+}

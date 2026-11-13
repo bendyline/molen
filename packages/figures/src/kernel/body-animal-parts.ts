@@ -59,7 +59,11 @@ export function buildAnimalLegs(c: AnimalContext): void {
               ? blend(lowerJ, 1 - (t - 0.51) / 0.3, footJ, (t - 0.51) / 0.3)
               : blend(footJ, 1 - (t - 0.81) / 0.19, toeJ, (t - 0.81) / 0.19);
       const color = d.species === 'sheep' ? (t < 0.25 ? fur : c.markings) : coat(c, center, 0.3);
-      const muscle = d.species === 'cat' && t < 0.3 ? 0.8 : 1;
+      // Horses and deer stand on slim cannon bones below heavy forearms and gaskins.
+      const slim = d.species === 'horse' ? 0.72 : d.species === 'deer' ? 0.82 : 1;
+      const muscle =
+        (d.species === 'cat' && t < 0.3 ? 0.8 : 1) *
+        dmath.lerp(1, slim, dmath.smoothstep(dmath.clamp((t - 0.3) / 0.3, 0, 1)));
       const ring = b.ring(
         'skin',
         center,
@@ -166,13 +170,19 @@ export function buildAnimalTail(c: AnimalContext): void {
     if (short) offset = [0, -0.12 * L * t, -L * t];
     else if (horse || cow)
       offset = [0, -L * 0.96 * t, -L * (0.16 * t + 0.1 * dmath.sin(t * dmath.PI))];
-    else
-      offset = [0, L * (cat ? 0.12 : 0.1) * dmath.sin(t * dmath.PI) - L * 0.28 * t, -L * 0.9 * t];
+    else if (cat)
+      // A cat's tail falls in a curve and lifts again at the tip.
+      offset = [
+        0,
+        L * (0.12 * dmath.sin(t * dmath.PI) - 0.42 * t + 0.3 * t * t * t),
+        -L * 0.85 * t,
+      ];
+    else offset = [0, L * 0.1 * dmath.sin(t * dmath.PI) - L * 0.28 * t, -L * 0.9 * t];
     const p = add(root, offset);
     // Long user-authored tails remain above the ground in their bind pose.
     p[1] = dmath.max(0.025 * d.height, p[1]);
     points.push(p);
-    const thickness = horse ? 0.19 : cow ? 0.052 : cat ? 0.14 : short ? 0.23 : 0.17;
+    const thickness = horse ? 0.19 : cow ? 0.052 : cat ? 0.19 : short ? 0.23 : 0.17;
     radii.push(
       r * thickness * (bushy ? 2 : 1) * (0.18 + 0.82 * dmath.sin((0.48 + 0.48 * t) * dmath.PI)),
     );

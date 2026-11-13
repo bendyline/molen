@@ -1,11 +1,9 @@
 /** ATR 72-600/PW127M. Stations measured from ATR CM Marketing June 2015,
  * checked against the 2020 fact sheet and Pierre Barthe's in-flight photograph.
+ * The nose and window band are traced from that sheet's side and plan outlines.
  * Metres, +Z forward. References are local review inputs, never runtime textures.
  */
-
-import { smoothSurface } from '../surface-normals.mjs';
-import { buildATR72Cockpit } from './atr-72-cockpit.mjs';
-import { atr72Nose, atr72Stations } from './atr-72-shape.mjs';
+import { atr72Deck, buildATR72Cockpit } from './atr-72-cockpit.mjs';
 import {
   cleanGeometry,
   detailKit,
@@ -19,7 +17,6 @@ import {
   T,
   wing,
 } from './mesh-kit.mjs';
-import { transportCell, transportSection, transportWindowFrames } from './transport-profiles.mjs';
 export const atr72Frame = () => ({
   heli: false,
   fighter: false,
@@ -27,12 +24,44 @@ export const atr72Frame = () => ({
   radius: 1.43,
   cy: 2.31,
   ry: 1.31,
-  cabinZ: 10.45,
+  cabinZ: atr72Deck.eye[2],
   cabinWidth: 2.57,
-  eye: [0.52, 3.14, 10.45],
-  panelZ: 11.02,
-  floor: 1.53,
+  eye: atr72Deck.eye,
+  panelZ: atr72Deck.panelZ,
+  floor: atr72Deck.floor,
 });
+/** The nose is a smooth moulding; share area-weighted normals between coincident vertices. */
+function smoothNormals(mesh) {
+  const g = mesh.geometry,
+    p = g.getAttribute('position'),
+    n = g.getAttribute('normal'),
+    index = g.index,
+    key = (i) =>
+      `${Math.round(p.getX(i) * 2e3)},${Math.round(p.getY(i) * 2e3)},${Math.round(p.getZ(i) * 2e3)}`,
+    sums = new Map(),
+    a = new T.Vector3(),
+    b = new T.Vector3(),
+    c = new T.Vector3();
+  for (let i = 0; i < index.count; i += 3) {
+    const ids = [index.getX(i), index.getX(i + 1), index.getX(i + 2)];
+    a.fromBufferAttribute(p, ids[0]);
+    b.fromBufferAttribute(p, ids[1]).sub(a);
+    c.fromBufferAttribute(p, ids[2]).sub(a);
+    b.cross(c);
+    for (const id of ids) {
+      const sum = sums.get(key(id)) ?? [0, 0, 0];
+      sum[0] += b.x;
+      sum[1] += b.y;
+      sum[2] += b.z;
+      sums.set(key(id), sum);
+    }
+  }
+  for (let i = 0; i < n.count; i++) {
+    const [x, y, z] = sums.get(key(i)) ?? [n.getX(i), n.getY(i), n.getZ(i)],
+      length = Math.sqrt(x * x + y * y + z * z);
+    if (length > 0) n.setXYZ(i, x / length, y / length, z / length);
+  }
+}
 export function buildATR72(s) {
   const root = new T.Group();
   root.name = s.slug;
@@ -49,6 +78,7 @@ export function buildATR72(s) {
       roughness: 0.12,
     });
   const d = detailKit(root, 'ATR72-shell'),
+    noseKit = detailKit(root, 'ATR72-nose'),
     bindings = [],
     rotors = [],
     enginePoints = [],
@@ -56,73 +86,57 @@ export function buildATR72(s) {
   const ppm = 1033 / 27.166,
     z = (u) => 13.583 - (u - 35) / ppm,
     y = (v) => (330 - v) / ppm;
-  const stations = atr72Stations;
+  // Nose outline traced from page 2 of the 2015 sheet: [z, half width, belly, crown] in that
+  // drawing's metres, fitted to the 2.86 m width and the 0.97 to 3.60 m body.
+  const noseY = (v) => 0.97 + (v - 1) * 0.991;
+  const nose = [
+    [13.583, 0.02, 1.87, 1.93],
+    [13.57, 0.132, 1.79, 1.99],
+    [13.53, 0.212, 1.73, 2.05],
+    [13.46, 0.318, 1.66, 2.125],
+    [13.4, 0.397, 1.61, 2.17],
+    [13.3, 0.489, 1.54, 2.245],
+    [13.133, 0.616, 1.45, 2.36],
+    [12.91, 0.754, 1.347, 2.485],
+    [12.712, 0.862, 1.277, 2.594],
+    [12.514, 0.943, 1.218, 2.703],
+    [12.365, 1.007, 1.188, 2.792],
+    [12.118, 1.09, 1.139, 3.05],
+    [11.821, 1.19, 1.089, 3.327],
+    [11.524, 1.27, 1.059, 3.475],
+    [11.128, 1.355, 1.03, 3.584],
+    [10.732, 1.415, 1.01, 3.634],
+    [10.137, 1.447, 1.01, 3.653],
+  ].map(([zz, w, b, t]) => [zz, w * 0.988, noseY(b), noseY(t)]);
+  const samples = [
+    [240, 1.43, 293, 193],
+    [350, 1.43, 293, 193],
+    [474, 1.43, 293, 193],
+    [618, 1.43, 293, 193],
+    [742, 1.4, 292, 194],
+    [800, 1.32, 284, 198],
+    [880, 1.06, 269, 202],
+    [960, 0.68, 248, 207],
+    [1035, 0.3, 229, 212],
+    [1068, 0.015, 222, 218],
+  ];
+  const noseEnd = nose.length; // The loft takes over here, 9.77 m, on the round barrel.
+  const stations = [
+    ...nose,
+    [z(180), 1.43, y(293), y(193)],
+    ...samples.map(([u, w, b, t]) => [z(u), w, y(b), y(t)]),
+  ];
   const rings = stations.map(([zz, w, b, t]) => ({
     z: zz,
-    points: Array.from({ length: 64 }, (_, j) => {
-      const a = (j * Math.PI) / 32;
+    points: Array.from({ length: 16 }, (_, j) => {
+      const a = (j * Math.PI) / 8;
       return [Math.sin(a) * w, (b + t) / 2 + (Math.cos(a) * (t - b)) / 2];
     }),
   }));
-  const p = (i, j) => [...rings[i].points[((j + 16) % 16) * 4], rings[i].z];
-  // The nose and each pane share a clipped boundary. Never turn whole roof
-  // facets into glazing: those old cuts exposed the avionics through the skin.
-  const noseEnd = 7;
+  const p = (i, j) => [...rings[i].points[(j + 16) % 16], rings[i].z];
   loft(d, rings, paint, {
-    skip: (i, j) =>
-      i < noseEnd || (i >= 7 && i <= 12 && ((j >= 8 && j < 16) || (j >= 48 && j < 56))),
+    skip: (i, j) => i < noseEnd || (i <= noseEnd + 6 && [2, 3, 12, 13].includes(j)),
   });
-  const lining = mat('ATR72-cockpit-lining', '#a5aaa5', { side: T.DoubleSide });
-  const inset = (q) => {
-    const [, , b, t] = transportSection(s, atr72Nose, q[2]);
-    const center = (b + t) / 2;
-    return [q[0] * 0.985, center + (q[1] - center) * 0.985, q[2]];
-  };
-  const noseRoot = group(root, 'ATR72-nose'),
-    nd = detailKit(noseRoot, 'ATR72-nose-skin');
-  const cuts = [
-    ...new Set([
-      ...stations.slice(0, noseEnd + 1).map((a) => a[0]),
-      ...atr72Nose.windows.flat().map((a) => s.length / 2 - a[1]),
-      ...Array.from(
-        { length: 61 },
-        (_, i) => stations[0][0] + ((stations[noseEnd][0] - stations[0][0]) * i) / 60,
-      ),
-    ]),
-  ].sort((a, b) => a - b);
-  for (let i = 0; i < cuts.length - 1; i++)
-    for (let j = 0; j < 64; j++) {
-      const a = (j * Math.PI) / 32,
-        b = ((j + 1) * Math.PI) / 32;
-      transportCell(
-        s,
-        atr72Nose,
-        [
-          [cuts[i], a],
-          [cuts[i + 1], a],
-          [cuts[i + 1], b],
-          [cuts[i], b],
-        ],
-        (kind, points) => {
-          sheet(nd, points, kind === 'glass' ? glass : paint, [
-            Math.sin((a + b) / 2),
-            Math.cos((a + b) / 2),
-            0,
-          ]);
-          if (kind === 'skin')
-            sheet(nd, points.map(inset), lining, [
-              -Math.sin((a + b) / 2),
-              -Math.cos((a + b) / 2),
-              0,
-            ]);
-        },
-      );
-    }
-  nd.finish();
-  noseRoot.traverse((node) => {
-    if (node.isMesh) node.geometry = smoothSurface(node.geometry, 40);
-  });
-  transportWindowFrames(d, s, atr72Nose, dark, 0.009);
   const sample = (zz, k) => {
     for (let i = 0; i < stations.length - 1; i++)
       if (zz <= stations[i][0] && zz >= stations[i + 1][0]) {
@@ -131,16 +145,186 @@ export function buildATR72(s) {
       }
     return stations.at(-1)[k];
   };
+  // Flat windscreen panes leave the upper nose narrower than an ellipse at sill height, so the
+  // crown carries a super-elliptic exponent over the flight deck and relaxes to the round barrel.
+  const crownPower = (zz) => {
+    const up = Math.min(1, Math.max(0, (zz - 10.2) / 0.9)),
+      down = Math.min(1, Math.max(0, (12.9 - zz) / 0.6));
+    return 2 - 0.3 * up * down;
+  };
+  const skinCentre = (zz) => (sample(zz, 2) + sample(zz, 3)) / 2,
+    skinRadius = (zz) => (sample(zz, 3) - sample(zz, 2)) / 2;
+  /** Half width of the skin at a height, so a drawn side-view point can sit on the surface. */
+  const skinX = (zz, yy) => {
+    const v = (yy - skinCentre(zz)) / skinRadius(zz);
+    if (v <= 0) return sample(zz, 1) * Math.sqrt(Math.max(0, 1 - v * v));
+    const e = crownPower(zz);
+    return sample(zz, 1) * Math.pow(Math.max(0, 1 - Math.pow(Math.min(1, v), e)), 1 / e);
+  };
+  // Window band from the same sheet, in its pixels at 101 px/m with the ground line at 857.
+  const sideZ = (u) => 13.583 - (u - 52) / 101,
+    sideY = (v) => noseY((857 - v) / 101);
+  const profile = (points) => {
+    const line = points.map(([u, v]) => [sideZ(u), sideY(v)]);
+    return (zz) => {
+      if (zz >= line[0][0]) return line[0][1];
+      for (let i = 0; i < line.length - 1; i++)
+        if (zz >= line[i + 1][0]) {
+          const t = (line[i][0] - zz) / (line[i][0] - line[i + 1][0]);
+          return line[i][1] * (1 - t) + line[i + 1][1] * t;
+        }
+      return line.at(-1)[1];
+    };
+  };
+  const glassTop = profile([
+      [231, 530],
+      [312, 530],
+      [331, 572.5],
+    ]),
+    glassBottom = profile([
+      [221, 570.75],
+      [233, 572],
+      [284, 581],
+      [295, 581],
+      [331, 572.5],
+    ]),
+    bandTop = profile([
+      [230, 523],
+      [316, 523],
+      [341, 577],
+    ]),
+    bandBottom = profile([
+      [227.5, 577.5],
+      [290, 589],
+      [341, 577],
+    ]);
+  const bandAft = sideZ(341),
+    glassAft = sideZ(331),
+    postHalfWidth = 0.035;
+  // Every ring carries the same columns per side. They bend onto the drawn band edges, so the
+  // openings are real gaps in the skin and the sills stay level instead of following facets.
+  const columns = [5, 1, 6, 1, 19];
+  const ringAngles = (zz) => {
+    if (zz < bandAft - 0.001) return Array.from({ length: 33 }, (_, k) => (k * Math.PI) / 32);
+    const angle = (yy) => {
+      const v = Math.max(-1, Math.min(1, (yy - skinCentre(zz)) / skinRadius(zz)));
+      return Math.acos(v <= 0 ? v : Math.pow(v, crownPower(zz) / 2));
+    };
+    const post = Math.asin(Math.min(1, postHalfWidth / sample(zz, 1))),
+      sill = angle(bandBottom(Math.max(zz, bandAft))),
+      top = zz < bandAft ? sill : Math.min(sill, angle(bandTop(zz))),
+      bottom = angle(glassBottom(zz)),
+      open = zz >= glassAft && bottom > post,
+      upper = open ? Math.min(bottom, Math.max(post, angle(glassTop(zz)))) : (top + sill) / 2,
+      lower = open ? Math.min(sill, bottom) : upper;
+    const stops = [0, top, Math.max(top, upper), Math.max(top, lower), sill, Math.PI],
+      angles = [];
+    columns.forEach((count, part) => {
+      for (let k = 0; k < count; k++)
+        angles.push(stops[part] + ((stops[part + 1] - stops[part]) * k) / count);
+    });
+    angles.push(Math.PI);
+    return angles;
+  };
+  const noseRings = [
+    ...new Set(
+      [
+        ...nose.map((n) => n[0]),
+        10.45,
+        9.95,
+        ...[175, 189, 205, 221, 233, 246, 259, 272, 284, 295, 312, 331, 336, 341].map(sideZ),
+      ].map((zz) => Math.round(zz * 1e4) / 1e4),
+    ),
+    z(180),
+  ].sort((a, b) => b - a);
+  const skinPoint = (zz, angle, sign) => {
+    const s = Math.sin(angle),
+      c = Math.cos(angle),
+      e = c > 0 ? crownPower(zz) : 2,
+      facet = Math.min(1, Math.max(0, (10.6 - zz) / (10.6 - z(180))));
+    let x = Math.pow(Math.max(0, s), 2 / e),
+      v = Math.sign(c) * Math.pow(Math.abs(c), 2 / e);
+    if (facet > 0) {
+      // Relax onto the sixteen-sided barrel so the loft behind it meets vertex for vertex.
+      const m = Math.min(15, Math.floor((angle * 8) / Math.PI)),
+        t = (angle * 8) / Math.PI - m,
+        a = (m * Math.PI) / 8,
+        b = ((m + 1) * Math.PI) / 8;
+      x += (Math.sin(a) * (1 - t) + Math.sin(b) * t - x) * facet;
+      v += (Math.cos(a) * (1 - t) + Math.cos(b) * t - v) * facet;
+    }
+    return [sign * sample(zz, 1) * x, skinCentre(zz) + skinRadius(zz) * v, zz];
+  };
+  const shell = new Map();
+  const triangle = (material, a, b, c, zz) => {
+    const pa = new T.Vector3(...a),
+      n = new T.Vector3(...b).sub(pa).cross(new T.Vector3(...c).sub(pa));
+    if (n.lengthSq() < 1e-14) return;
+    const outward = (a[0] + b[0] + c[0]) * n.x + (a[1] + b[1] + c[1] - 3 * skinCentre(zz)) * n.y;
+    const list = shell.get(material) ?? [];
+    list.push(...(outward >= 0 ? [...a, ...b, ...c] : [...a, ...c, ...b]));
+    shell.set(material, list);
+  };
+  const noseAngles = noseRings.map(ringAngles);
+  for (const side of [-1, 1])
+    for (let i = 0; i < noseRings.length - 1; i++)
+      for (let k = 0; k < 32; k++) {
+        const band = noseRings[i + 1] >= bandAft - 0.001;
+        const material = !band
+          ? paint
+          : k === 5 || k === 12
+            ? dark
+            : k > 5 && k < 12
+              ? glass
+              : paint;
+        const at = (r, c) => skinPoint(noseRings[r], noseAngles[r][c], side);
+        const a = at(i, k),
+          b = at(i + 1, k),
+          c = at(i + 1, k + 1),
+          e = at(i, k + 1),
+          mid = (noseRings[i] + noseRings[i + 1]) / 2;
+        triangle(material, a, b, c, mid);
+        triangle(material, a, c, e, mid);
+      }
+  for (const [material, list] of shell) {
+    const geometry = new T.BufferGeometry();
+    geometry.setAttribute('position', new T.Float32BufferAttribute(list, 3));
+    geometry.computeVertexNormals();
+    noseKit.add(geometry, material);
+  }
+  noseKit.finish();
+  // Flat posts between the panes, from the drawn band to the header, standing on the skin.
+  const onSkin = (u, v, sign, lift = 0.004) => {
+    const zz = sideZ(u),
+      yy = sideY(v);
+    return [sign * (skinX(zz, yy) + lift), yy, zz];
+  };
+  for (const side of [-1, 1])
+    for (const [from, to] of [
+      [
+        [227, 574],
+        [260, 527],
+      ],
+      [
+        [289.5, 585],
+        [289.5, 527],
+      ],
+    ])
+      outline(
+        d,
+        [0, 0.25, 0.5, 0.75, 1].map((t) =>
+          onSkin(from[0] + (to[0] - from[0]) * t, from[1] + (to[1] - from[1]) * t, side),
+        ),
+        0.024,
+        dark,
+        false,
+      );
   // Rebuild each side belt separately by station. Real holes, no dark decals covering a solid wall.
   for (const side of [-1, 1]) {
-    const sideX = (zz, yy) => {
-      const b = sample(zz, 2),
-        t = sample(zz, 3),
-        v = (yy - (b + t) / 2) / ((t - b) / 2);
-      return side * sample(zz, 1) * Math.sqrt(Math.max(0, 1 - v * v));
-    };
+    const sideX = (zz, yy) => side * skinX(zz, yy);
     const pt = (zz, yy, off = 0) => [sideX(zz, yy) + side * off, yy, zz];
     const holes = [];
+    // Passenger belt: 25 openings per side.
     for (let j = 0; j < 25; j++) {
       const zz = z(257 + j * 20.65),
         yy = y(233),
@@ -160,7 +344,7 @@ export function buildATR72(s) {
         ].map(([dz, dy]) => pt(zz + dz, yy + dy)),
       );
     }
-    for (let i = 7; i <= 12; i++) {
+    for (let i = noseEnd; i <= noseEnd + 6; i++) {
       const upper = side > 0 ? 2 : 14,
         lower = side > 0 ? 4 : 12,
         a = stations[i][0],
@@ -176,14 +360,6 @@ export function buildATR72(s) {
         [side, 0, 0],
         relevant,
       );
-      if (i <= 7)
-        sheet(
-          d,
-          [p(i, upper), p(i + 1, upper), p(i + 1, lower), p(i, lower)].map(inset),
-          lining,
-          [-side, 0, 0],
-          relevant.map((h) => h.map(inset)),
-        );
     }
     for (const h of holes) {
       sheet(d, h, glass, [side, 0, 0]);
@@ -216,14 +392,14 @@ export function buildATR72(s) {
       const zz = z(u),
         b = sample(zz, 2),
         t = sample(zz, 3);
-      const arc = Array.from({ length: 12 }, (_, j) =>
-        pt(zz, b + 0.18 + ((t - b - 0.36) * j) / 11, 0.004),
+      const arc = Array.from({ length: 7 }, (_, j) =>
+        pt(zz, b + 0.18 + ((t - b - 0.36) * j) / 6, 0.004),
       );
       outline(d, arc, 0.0014, metal, false);
       for (const q of arc)
         d.add(new T.SphereGeometry(0.003, 4, 2), metal, [q[0] + side * 0.002, q[1], q[2] + 0.025]);
     }
-    for (let i = 5; i < stations.length - 2; i++) {
+    for (let i = noseEnd; i < stations.length - 2; i++) {
       const a = stations[i],
         b = stations[i + 1];
       quad(
@@ -241,9 +417,10 @@ export function buildATR72(s) {
     const ld = detailKit(label, label.name);
     ld.text('ATR 72 600', [0, 0, 0], 0.14, 0, accent);
     ld.finish();
-    // Windscreen wipers, pitot and static ports visible from the pilot position.
-    d.rod([side * 0.2, 2.85, 11.91], [side * 0.6, 2.91, 11.72], 0.008, dark);
-    d.rod([side * 0.85, 2.48, 12.08], [side * 0.91, 2.46, 12.47], 0.011, metal);
+    // Windscreen wiper on each main pane and the probe under each side of the window band.
+    d.rod(onSkin(222, 566, side, 0.03), onSkin(248, 537, side, 0.03), 0.008, dark);
+    const probe = onSkin(214, 602, side, 0);
+    d.rod(probe, [probe[0] + side * 0.07, probe[1], probe[2] + 0.32], 0.011, metal);
   }
   // High wing, straight inner panel and tapered outer panel. Printed 61 m² takes priority over artwork.
   const wy = (x) => 3.58 + Math.max(0, x - 4.05) * 0.013,
@@ -574,8 +751,20 @@ export function buildATR72(s) {
   ])
     d.rod([0, 3.61, z(u)], [0, 3.61 + h, z(u) - 0.1], 0.015, dark);
   d.finish();
-  const interior = buildATR72Cockpit(root, { paint, accent, dark, metal }, rings);
+  const interior = buildATR72Cockpit(
+    root,
+    {
+      paint,
+      accent,
+      dark,
+      metal,
+      skinX,
+      sill: glassBottom,
+    },
+    rings,
+  );
   cleanGeometry(root);
+  smoothNormals(root.getObjectByName('ATR72-nose-ATR72-ivory'));
   return {
     root,
     frame: atr72Frame(),

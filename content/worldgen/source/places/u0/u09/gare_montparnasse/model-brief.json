@@ -1,0 +1,1106 @@
+{
+  "id": "gare_montparnasse",
+  "title": "Gare Montparnasse",
+  "wikidataId": "Q631114",
+  "referenceCoordinate": {
+    "longitude": 2.318208695,
+    "latitude": 48.839257274
+  },
+  "module": "packages/worldgen/scripts/gare-montparnasse-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-gare-montparnasse.mjs",
+  "builder": "buildMontparnasseLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.92
+    },
+    "lower": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.92
+    },
+    "slab": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.92
+    },
+    "concretePanel": {
+      "slot": "wall",
+      "graph": "concrete_panel",
+      "roughness": 0.88
+    },
+    "glass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.43,
+      "metallic": 0.12
+    },
+    "darkGlass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.43,
+      "metallic": 0.12
+    },
+    "lightGlass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.43,
+      "metallic": 0.12
+    },
+    "roofGlass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.43,
+      "metallic": 0.12
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.73,
+      "metallic": 0.14
+    },
+    "rail": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.73,
+      "metallic": 0.14
+    },
+    "post": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.73,
+      "metallic": 0.14
+    },
+    "white": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.73,
+      "metallic": 0.14
+    },
+    "teal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.73,
+      "metallic": 0.14
+    },
+    "red": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.73,
+      "metallic": 0.14
+    },
+    "walk": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.93
+    },
+    "ballast": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.93
+    },
+    "sleeper": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.93
+    },
+    "soil": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.93
+    },
+    "zinc": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.83,
+      "metallic": 0.1
+    },
+    "clear": {
+      "slot": "window",
+      "localRef": "palette:#dbf4fa",
+      "roughness": 0.25,
+      "metallic": 0.05,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.49
+      ],
+      "doubleSided": true
+    },
+    "foliage": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.98
+    },
+    "lawn": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.98
+    },
+    "leafDark": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.98
+    },
+    "leafLight": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.98
+    },
+    "court": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.98
+    },
+    "flower": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.98
+    }
+  },
+  "exportLabel": "Molen original Gare Montparnasse master",
+  "expectedDraftMasterHash": "sha256:b1c3d7c4d2c842ddbb1e7b49d2cdd4eaf1524afb5bc624dcd9f041ace40a650e",
+  "visualBrief": "Porte Océane has a bowed glass entrance between concrete piers and a ribbed podium roof beneath the CNP slab. Jardin Atlantique sits between the side slabs above eleven platform islands, two side platforms and twenty-four mapped rail alignments. The curved Pasteur overbuild has an open central atrium.",
+  "heightPolicy": "The 72 m sea-level datum follows standard viewer terrain. The front entrance is set at Place Raoul Dautry. A bounded opening beneath the deck maintains the separation between the platform hall and Jardin Atlantique.",
+  "nativeAxes": "The Pasteur crossing roof sets the transverse X axis. The rail centerlines run toward positive Z away from Porte Océane and Place Raoul Dautry at the negative Z end.",
+  "limitations": [
+    "Standard PMTiles controls the mapped exteriors, roof court footprints and 24 rail alignments. The heights of the entrance, train floor and park deck are reconstructed from the photographs and standard viewer terrain.",
+    "The model includes the main public entrance volume and the covered track passages. Shop interiors, transit operations, planting schedules and restricted station interiors are outside this model.",
+    "The garden and forecourt follow the photographed configuration. The separate Tour Montparnasse remains a neighboring landmark."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Fa%C3%A7ade_de_la_gare_de_Paris-Montparnasse_depuis_la_place_Raoul-Dautry.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Fa%C3%A7ade_de_la_gare_de_Paris-Montparnasse_depuis_la_place_Raoul-Dautry.jpg",
+      "hash": "sha256:4805a4af15d71a79174f0c9505da431021ccde6d2c7135b7312dbceaeda34add",
+      "observed": "porte oceane"
+    },
+    {
+      "url": "https://www.momentsparfaits.com/blog/2019/6/28/the-other-tower",
+      "imageUrl": "https://images.squarespace-cdn.com/content/v1/58e2de95be65948ce462e06b/1561729746370-XS6YCN91N18RZPCVVZDV/Gare%2BMontparnasse?format=1500w",
+      "hash": "sha256:37c03b5d362b4d5cde032893b21df790f0b60fb8e1cfa0161f5c44a20a02f46e",
+      "observed": "station roof aerial"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Jardin_Atlantique2.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Jardin_Atlantique2.jpg",
+      "hash": "sha256:e1c2ae42b56d7e1086bd7e1b7f31b8a23425379337d40f7709f9ece628018bd6",
+      "observed": "jardin atlantique"
+    }
+  ],
+  "cameras": [
+    {
+      "name": "station-overview",
+      "position": [
+        -260,
+        240,
+        -402
+      ],
+      "lookAt": [
+        0,
+        1,
+        -92
+      ],
+      "fov": 57,
+      "lightDirection": [
+        -0.55,
+        1,
+        -0.7
+      ]
+    },
+    {
+      "name": "porte-oceane",
+      "position": [
+        1,
+        -18.6,
+        -372
+      ],
+      "lookAt": [
+        -6,
+        -1.6,
+        -284
+      ],
+      "fov": 62,
+      "lightDirection": [
+        -0.61,
+        1,
+        -0.75
+      ]
+    },
+    {
+      "name": "rooftop-garden-and-cnp",
+      "position": [
+        7,
+        18,
+        -48
+      ],
+      "lookAt": [
+        1,
+        15,
+        -205
+      ],
+      "fov": 66,
+      "lightDirection": [
+        -0.51,
+        1,
+        -0.62
+      ]
+    },
+    {
+      "name": "jardin-atlantique-from-above",
+      "position": [
+        15,
+        158,
+        -242
+      ],
+      "lookAt": [
+        0,
+        4,
+        -81
+      ],
+      "fov": 56,
+      "lightDirection": [
+        0.59,
+        1,
+        -0.72
+      ]
+    },
+    {
+      "name": "pasteur-overbuild",
+      "position": [
+        133,
+        67,
+        157
+      ],
+      "lookAt": [
+        0,
+        12,
+        58
+      ],
+      "fov": 59,
+      "lightDirection": [
+        0.53,
+        1,
+        0.74
+      ]
+    },
+    {
+      "name": "covered-platform-approaches",
+      "position": [
+        17,
+        -1.75,
+        -31
+      ],
+      "lookAt": [
+        17,
+        -1.75,
+        -133
+      ],
+      "fov": 64,
+      "lightDirection": [
+        0.42,
+        1,
+        0.77
+      ]
+    },
+    {
+      "name": "garden-tennis-courts",
+      "position": [
+        -54,
+        15,
+        -155
+      ],
+      "lookAt": [
+        -51,
+        5,
+        -56
+      ],
+      "fov": 66,
+      "lightDirection": [
+        -0.57,
+        1,
+        -0.59
+      ]
+    },
+    {
+      "name": "entrance-escalators",
+      "position": [
+        -5,
+        -18,
+        -299
+      ],
+      "lookAt": [
+        -9,
+        -11,
+        -273
+      ],
+      "fov": 67,
+      "lightDirection": [
+        -0.61,
+        1,
+        -0.76
+      ]
+    }
+  ],
+  "materialMethod": "Six shared graphs cover concrete, panel concrete, zinc, painted metal, granite and opaque glazing. The entrance glazing and planting palette use two lightweight local materials. The framing, station sign and court markings use geometry.",
+  "sourceFacts": {
+    "station": "way/29402542",
+    "terrainDatumMeters": 72,
+    "footprintPartIds": [
+      35184452381376,
+      35184772243068,
+      52776559800037,
+      35184401491374,
+      35184452381103,
+      35184601501306,
+      35185450601327,
+      35184451777018,
+      52776559032782,
+      35185305967400,
+      35184508012051,
+      35184451777218,
+      35184452381795,
+      35184451776405,
+      35184452381627,
+      35184451776231,
+      35184452380592,
+      35184452381621,
+      35184452381751,
+      35184981907769,
+      35184982004420,
+      35184430048764,
+      35184746613572,
+      52776572263414
+    ],
+    "platformIslands": 11,
+    "railAlignments": 24
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        12,
+        -78
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/gare-montparnasse-model.mjs",
+    "export": "buildMontparnasseSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      },
+      "lower": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      },
+      "slab": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92
+      },
+      "concretePanel": {
+        "slot": "wall",
+        "graph": "concrete_panel",
+        "roughness": 0.88
+      },
+      "glass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.43,
+        "metallic": 0.12
+      },
+      "darkGlass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.43,
+        "metallic": 0.12
+      },
+      "lightGlass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.43,
+        "metallic": 0.12
+      },
+      "roofGlass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.43,
+        "metallic": 0.12
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.14
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.14
+      },
+      "post": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.14
+      },
+      "white": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.14
+      },
+      "teal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.14
+      },
+      "red": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.14
+      },
+      "walk": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.93
+      },
+      "ballast": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.93
+      },
+      "sleeper": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.93
+      },
+      "soil": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.93
+      },
+      "zinc": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.83,
+        "metallic": 0.1
+      },
+      "clear": {
+        "slot": "window",
+        "localRef": "palette:#dbf4fa",
+        "roughness": 0.25,
+        "metallic": 0.05,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.49
+        ],
+        "doubleSided": true
+      },
+      "foliage": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98
+      },
+      "lawn": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98
+      },
+      "leafDark": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98
+      },
+      "leafLight": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98
+      },
+      "court": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98
+      },
+      "flower": {
+        "slot": "wall",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.98
+      }
+    },
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMontparnasseDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "lower": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "slab": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "concretePanel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.43,
+            "metallic": 0.12
+          },
+          "darkGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.43,
+            "metallic": 0.12
+          },
+          "lightGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.43,
+            "metallic": 0.12
+          },
+          "roofGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.43,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "post": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "teal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "sleeper": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "soil": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.1
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#dbf4fa",
+            "roughness": 0.25,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.49
+            ],
+            "doubleSided": true
+          },
+          "foliage": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "lawn": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "leafDark": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "leafLight": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "court": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "flower": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.72
+      },
+      "street": {
+        "export": "buildMontparnasseStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "lower": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "slab": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "concretePanel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.43,
+            "metallic": 0.12
+          },
+          "darkGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.43,
+            "metallic": 0.12
+          },
+          "lightGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.43,
+            "metallic": 0.12
+          },
+          "roofGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.43,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "post": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "teal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "sleeper": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "soil": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.1
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#dbf4fa",
+            "roughness": 0.25,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.49
+            ],
+            "doubleSided": true
+          },
+          "foliage": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "lawn": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "leafDark": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "leafLight": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "court": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "flower": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "closeup": {
+        "export": "buildMontparnasseCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "lower": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "slab": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92
+          },
+          "concretePanel": {
+            "slot": "wall",
+            "graph": "concrete_panel",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.43,
+            "metallic": 0.12
+          },
+          "darkGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.43,
+            "metallic": 0.12
+          },
+          "lightGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.43,
+            "metallic": 0.12
+          },
+          "roofGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.43,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "post": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "teal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.14
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "sleeper": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "soil": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.93
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.1
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#dbf4fa",
+            "roughness": 0.25,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.49
+            ],
+            "doubleSided": true
+          },
+          "foliage": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "lawn": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "leafDark": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "leafLight": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "court": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          },
+          "flower": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.98
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "gare_montparnasse-skyline",
+      "position": [
+        -260,
+        240,
+        -402
+      ],
+      "lookAt": [
+        0,
+        1,
+        -92
+      ],
+      "fov": 57,
+      "lightDirection": [
+        -0.55,
+        1,
+        -0.7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "gare_montparnasse-district",
+      "position": [
+        -260,
+        240,
+        -402
+      ],
+      "lookAt": [
+        0,
+        1,
+        -92
+      ],
+      "fov": 57,
+      "lightDirection": [
+        -0.55,
+        1,
+        -0.7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "gare_montparnasse-street",
+      "position": [
+        -260,
+        240,
+        -402
+      ],
+      "lookAt": [
+        0,
+        1,
+        -92
+      ],
+      "fov": 57,
+      "lightDirection": [
+        -0.55,
+        1,
+        -0.7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "gare_montparnasse-closeup",
+      "position": [
+        -260,
+        240,
+        -402
+      ],
+      "lookAt": [
+        0,
+        1,
+        -92
+      ],
+      "fov": 57,
+      "lightDirection": [
+        -0.55,
+        1,
+        -0.7
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

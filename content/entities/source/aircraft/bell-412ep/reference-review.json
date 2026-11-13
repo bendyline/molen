@@ -65,9 +65,9 @@
     "mode": "top-down-ortho",
     "center": [
       0,
-      -1.4
+      -1.41
     ],
-    "viewHeight": 1.25,
+    "viewHeight": 0.6,
     "cameraHeight": 7.3
   },
   "overlays": [
@@ -159,12 +159,12 @@
       ],
       "modelAnchor": [
         0,
-        -1.0633333333333335
+        -1.1669
       ],
       "scaleControls": {
         "pixels": 1800,
-        "meters": 2,
-        "description": "Assumed panel face width, relative arrangement only."
+        "meters": 1.3742,
+        "description": "Panel width from instrument size: the 104 px flight dials are 3.125 in (79.4 mm), making the 1800 px face 1.37 m wide."
       },
       "edgeMode": "photo",
       "scope": "Planar homography from oblique photograph using inferred face corners and approximately circular instrument faces; absolute size, coaming and cabin depth are not validated."
@@ -238,13 +238,14 @@
     ],
     "visual": "Individually inspected four calibrated overlays, current lit three-quarter, operator, close and wide cockpit, and four turntable views. Compared with exact EP exterior photo and exact N7506M panel photo; no blocking silhouette or cockpit clipping defects found."
   },
-  "sourceHash": "sha256:55a925f7d408e6bedcce9d70615b480826d99bfbfce818fac34625f152a04715",
-  "runtimeHash": "sha256:3fd7d248a015cf7c713f198571b8043f4a21488478bcb935c03175d89fdd20f1",
+  "sourceHash": "sha256:fc71b9f4ef1c32244259a7e3edea0de7c4cc148cb806e18899ecafc31db2a7eb",
+  "runtimeHash": "sha256:756bfe0e0c184f32643b88b22109d39f820f7a8f4d9a93396807c168a56499df",
   "limitations": [
     "Dimension sheet is schematic and its front hub height differs from side; printed dimensions take precedence. Static rotor azimuth and blade droop differ from the drawing.",
     "Panel homography uses inferred corners and gauge roundness. Absolute panel width, coaming depth and cabin placement remain reconstruction assumptions.",
     "The cockpit is a 2006 analog EP equipment fit. The fifteen-seat layout follows the manufacturer standard interior, while overhead structure is corroborated by a related AB-412 photo; equipment installations vary.",
-    "Instrument legends, controls and engine indications are simplified for the assisted flight simulation. No reference pixels or manufacturer artwork are shipped."
+    "Instrument legends, controls and engine indications are simplified for the assisted flight simulation. No reference pixels or manufacturer artwork are shipped.",
+    "Panel height is judged from side photographs at unsolved cameras, not measured. The pedestal length and the floor height are estimates."
   ],
   "controlReview": {
     "checked": "2026-10-22",
@@ -263,6 +264,55 @@
       "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
       "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
       "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  },
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "Rays from the pilotEye through source.glb (cockpit-sweep), seat view at the runtime camera (+Z, 60 degrees vertical), an exterior nose render, and sections through the pilot plane and at hood height, each checked against a photograph of the real aircraft.",
+    "findings": [
+      "The panel carried a 2.0 m cabin-fit width with no absolute basis, so its 3.125 in flight dials drew at 115 mm. Its 0.28 m deep box ran through the windscreen and the corner panes, which is the black hood seen from outside.",
+      "The eye stood 1.00 m over the cushion. The floor lay on the belly, 0.13 m low, and poked through the skin chamfer; together these were the 11.3 percent of cockpit vertices reading outside the shell.",
+      "The wipers stood 0.18 m ahead of the glass at their pivot, reading as rods coming out of the hood. The pitot rods on the nose are real: the Penerbad photograph shows them.",
+      "A 0.12 m slot in the belly and a sliver between the windscreen edge and the corner pane were open to the sky."
+    ],
+    "before": {
+      "eye": [
+        -0.55,
+        1.94,
+        2.12
+      ],
+      "eyeToPanelMeters": 0.79,
+      "headroomMeters": 0.3,
+      "eyeAboveCushionMeters": 1,
+      "largeDialDiameterMm": 115,
+      "panelMeters": [
+        2,
+        0.63
+      ],
+      "panelTopHeightMeters": 1.73,
+      "cockpitVerticesOutsidePercent": 11.3
+    },
+    "after": {
+      "eye": [
+        -0.55,
+        1.94,
+        2.12
+      ],
+      "eyeToPanelMeters": 0.79,
+      "headroomMeters": 0.3,
+      "eyeAboveCushionMeters": 0.8,
+      "largeDialDiameterMm": 79.4,
+      "panelMeters": [
+        1.37,
+        0.435
+      ],
+      "panelTopHeightMeters": 1.62,
+      "cockpitVerticesOutsidePercent": 0
+    },
+    "corrections": [
+      "Panel rescaled from the 3.125 in dial, hood top lowered 0.11 m and its depth cut to 0.18 m; layout and bindings unchanged.",
+      "Floor raised 0.13 m and narrowed inside the skin. Crew seats raised 0.2 m and cabin seats 0.1 m; cyclic, collective, pedals and pedestal follow.",
+      "Wipers placed on the pane; belly slot and windscreen post closed."
     ]
   }
 }

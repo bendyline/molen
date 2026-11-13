@@ -1,5 +1,10 @@
 import type { BoatEnvironment } from '@bendyline/molen-kernel/boats';
-import type { LiveryData, LiveryVariant, WaterSettings } from '@bendyline/molen-schema';
+import type {
+  LiveryData,
+  LiveryVariant,
+  WaterSettings,
+  WeatherData,
+} from '@bendyline/molen-schema';
 import { selectLivery } from './liveries';
 import { EarthNightLighting } from './night-lighting';
 import { EARTH_WATER_CONDITIONS, EarthWater } from './water';
@@ -12,6 +17,7 @@ import { EARTH_WATER_CONDITIONS, EarthWater } from './water';
 import {
   AdaptiveQualityController,
   type AdaptiveQualityReason,
+  type AssetProvider,
   applyEnvironment,
   createViewer,
   type EnvironmentData,
@@ -46,7 +52,12 @@ import {
 } from '@bendyline/molen-client/navigation';
 import type { FigureData } from '@bendyline/molen-figures/client';
 import { Mountable, Mounted, vehicleLocalPoint } from '@bendyline/molen-kernel/vehicles';
-import { setBoostMode as setWorldBoostMode, Transform, World } from '@bendyline/molen-kernel/world';
+import {
+  setBoostMode as setWorldBoostMode,
+  Transform,
+  Weather,
+  World,
+} from '@bendyline/molen-kernel/world';
 import type { BakedMaterialStore } from '@bendyline/molen-materials';
 import {
   type BlockCache,
@@ -58,6 +69,7 @@ import {
   createDefaultTerrainSemanticRenderer,
   createProfiledTerrainPackageSemanticLayers,
   createTerrainGroundMaterialAsync,
+  createTerrainGroundTextureMaterialAsync,
   createTerrainPackagePyramidStream,
   createTerrainPavementMaterialAsync,
   createTerrainSurfaceRenderer,
@@ -65,6 +77,7 @@ import {
   createTerrainWaterMaterialAsync,
   sampleTerrainTunnel,
   setTerrainGroundOrigin,
+  setTerrainGroundSnow,
   setTerrainWaterTime,
   type TerrainPyramidBudget,
   type TerrainPyramidHeightSource,
@@ -72,6 +85,7 @@ import {
   type TerrainPyramidTileLayer,
   type TerrainPyramidView,
   type TerrainQualityPreset,
+  type TerrainRoadGrading,
   type TerrainSurfaceRenderer,
   type TerrainTileArchive,
   type TerrainWaterMaterial,
@@ -90,8 +104,15 @@ import {
   type StructureStreamingOptions,
   type StructureStreamingStats,
 } from '@bendyline/molen-worldgen/client';
-import type { StructureTerrainSampler } from '@bendyline/molen-worldgen-earth/client';
-import { isStructureViewingDate } from '@bendyline/molen-worldgen-earth/kernel';
+import {
+  type StructureTerrainSampler,
+  withMapOverrides,
+} from '@bendyline/molen-worldgen-earth/client';
+import {
+  createMapOverrideSet,
+  isStructureViewingDate,
+  withMapOverrideStructures,
+} from '@bendyline/molen-worldgen-earth/kernel';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import {
@@ -129,6 +150,7 @@ import { EarthAudioTerrain, type EarthAudioTerrainSample } from './audio-terrain
 import type { EarthContent } from './content';
 import { EarthDioramaDirector, type EarthDioramaOptions, type EarthDioramas } from './dioramas';
 import { createEarthFleet, type EarthFleetOptions } from './fleet';
+import { composeEarthGroundGrading } from './ground-grading';
 import {
   EARTH_EXPOSURE,
   EARTH_LIGHTING,
@@ -140,8 +162,17 @@ import {
   earthShadowFocus,
 } from './look';
 import {
+  bindMapOverrideEntities,
+  bindMapOverrides,
+  type EarthBuildingHit,
+  type EarthOverride,
+  type EarthOverrides,
+  type MapOverrideBinding,
+} from './overrides';
+import {
   createEarthAdmissionGovernor,
   EARTH_CALIBRATION_QUALITY,
+  EARTH_INDEPENDENT_LAYERS,
   EARTH_QUALITY_CALIBRATION_MS,
   EARTH_STICKY_QUALITY,
   earthAdmission,
@@ -150,7 +181,9 @@ import {
   earthPerformanceTier,
   earthPixelRatio,
   earthQualityLevel,
+  earthTerrainBudget,
   earthTerrainCacheBudget,
+  earthWorldgenCacheBytes,
 } from './performance';
 import {
   createEarthPrefetcher,
@@ -164,6 +197,7 @@ import {
 import { createEarthTilePreloader } from './preload';
 import { createRegionalGroundColor } from './regional-ground';
 import { createEarthRoadSigns } from './road-signs';
+import { createSnowPace } from './snow';
 import { EarthVehicles } from './vehicles';
 import { EarthWildlife, type EarthWildlifeStats } from './wildlife';
 import {
@@ -224,6 +258,18 @@ export type EarthVehicleStatus =
       heading: number;
       view: 'cockpit' | 'chase';
       waitingForTerrain: boolean;
+      /** A car with a powertrain: the selected gear, -1 in reverse. */
+      gear?: number;
+      /** A car with a powertrain: engine speed in rev/min. */
+      rpm?: number;
+      /** 0–1: how hard traction or stability control is intervening. */
+      assist?: number;
+      /** Grip of the surface under the car relative to dry pavement (1 on the road). */
+      surfaceGrip?: number;
+      /** Meters of lying snow under the vehicle (less on a ploughed road); absent on bare ground. */
+      snowDepth?: number;
+      /** Deep snow is holding the vehicle against its own drive. */
+      stuck?: boolean;
     }
   | ({ kind: 'aircraft' } & EarthFlightStatus);
 
@@ -359,6 +405,17 @@ export interface EarthViewOptions {
   actors?: EarthActorSettings;
   /** Bounded scripted set pieces. Content loads only while nearby and scheduled active. */
   dioramas?: EarthDioramaOptions;
+  /**
+   * Places where the host replaces the mapped world: a rectangle to clear and what stands there
+   * instead. Change them later through {@link EarthView.overrides}.
+   */
+  overrides?: readonly EarthOverride[];
+  /**
+   * Loads the models an override places that no content pack carries: `load(ref)` returns a
+   * GLB's bytes. Without it such a ref is asked of `content`, which serves a host's own content
+   * pack; a model that cannot be loaded is not drawn and says so once on the console.
+   */
+  overrideAssets?: AssetProvider;
   /** Boardable parked aircraft on mapped airport aprons (default true when airport data exists). */
   airportTraffic?: boolean;
   /** What the interact key (E) reaches on foot; change it later with {@link EarthView.setInteraction}. */
@@ -371,6 +428,13 @@ export interface EarthViewOptions {
   workers?: EarthViewWorkers;
   /** Seeded synthetic homes where street density suggests missing outlines (default true). */
   buildingInfill?: CreateEarthWorldgenOptions['buildingInfill'];
+  /**
+   * Grade roads with the tiles around each one (default true): the ground is leveled under
+   * every road, so pavement no longer tilts and ripples with the elevation samples, and bridges
+   * are stacked clear of what they cross, meeting across tile edges. `{ earthworks: false }`
+   * keeps the bridge grading and leaves the ground as surveyed; `false` turns both off.
+   */
+  roadGrading?: boolean | { earthworks?: boolean };
   /**
    * Keep baked building materials across visits, e.g. `createIndexedDbMaterialStore()` from
    * `@bendyline/molen-client`; a later visit reads them instead of baking.
@@ -393,6 +457,12 @@ export interface EarthViewOptions {
   water?: WaterSettings;
   /** Optional measured water coverage/depth in absolute metric coordinates of the current frame. */
   waterAt?: BoatEnvironment['waterAt'];
+  /**
+   * Weather at mount: clouds, precipitation, visibility and wind, and the snow lying on the
+   * ground (`snowCover`, with its snow line in meters above sea level). Change it with
+   * `setWeather`. Omitted, the sky is clear and the ground bare.
+   */
+  weather?: WeatherData;
   style?: EarthViewStyle;
   /** Keyboard target (default the canvas, which should have `tabindex="0"`). */
   keyTarget?: NavigationKeyTarget;
@@ -541,8 +611,9 @@ export interface EarthInteractable {
    * `vehicle`: a parked car or aircraft within reach on foot, or the one the viewer is in.
    * `actor`: an interactable actor within reach and in sight. `pedestrian`: an ambient
    * pedestrian (with `interaction.pedestrians`; `view.actors.adopt(id)` makes it an actor).
+   * `elevator`: the lift the viewer is standing in, which the key takes up a floor.
    */
-  kind: 'actor' | 'vehicle' | 'pedestrian' | 'none';
+  kind: 'actor' | 'vehicle' | 'pedestrian' | 'elevator' | 'none';
   id?: string;
   /** Meters from the viewer, on foot. */
   distance?: number;
@@ -567,6 +638,11 @@ export interface EarthViewEvents {
     reason?: string;
   };
   camerachange: EarthCameraState;
+  /**
+   * The overrides changed (`pending`: the view still shows what stood there before), or that
+   * change reached the screen (`applied`).
+   */
+  overridechange: { revision: number; state: 'pending' | 'applied'; ids: readonly string[] };
   /** A host-provided terrain region became active; update visible attribution. */
   terrainchange: { key?: string; credits: EarthCredit[] };
   markerclick: { id: string };
@@ -607,6 +683,8 @@ export interface EarthViewStats {
    */
   worldgen?: { tiles: number; buildings: number; standIns: number };
   structures?: StructureStreamingStats;
+  /** Overrides registered, and tile layers still showing what a change of them replaced. */
+  overrides?: { count: number; refreshing: number };
 }
 
 /** What {@link EarthView.cacheStats} reports. */
@@ -620,6 +698,23 @@ export interface EarthCacheStats {
 export interface EarthView {
   /** Register geographic set pieces; no content is fetched until one is nearby. */
   readonly dioramas: EarthDioramas;
+  /**
+   * Places where the host replaces the mapped world: add, change and remove them while the view
+   * runs. They are geographic, so they stay through re-anchors of the view.
+   */
+  readonly overrides: EarthOverrides;
+  /**
+   * The mapped building or landmark at a place, or the nearest within `radius` meters (default
+   * 6): its outline and extent, to name what the viewer is looking at or to size an override
+   * that replaces it. Undefined when nothing is there, without content packs, or before the
+   * detailed map around the place has streamed. It reads map data: for a key press or a slow
+   * poll, not every frame.
+   */
+  buildingAt(place: {
+    latitude: number;
+    longitude: number;
+    radius?: number;
+  }): EarthBuildingHit | undefined;
   readonly viewer: MolenClient;
   readonly input: NavigationInputSource;
   /** Required data credits; keep them visible whenever the view is. */
@@ -690,6 +785,14 @@ export interface EarthView {
   ): Promise<EarthPrefetchResult>;
   /** The sound layer (volume, mute, bus gains) once it has loaded; undefined when silent. */
   readonly audio: AudioLayer | undefined;
+  /**
+   * Set the weather, or clear it with `undefined`, at once and without rebuilding anything. It is
+   * one `weather` component for the whole view: the sky draws its clouds and precipitation,
+   * vehicles feel its wind and wet or snowy grip, and above its `snowCover` snow line the ground,
+   * roofs and trees whiten, walkers slow, cars bog down and skis glide.
+   */
+  setWeather(weather: WeatherData | undefined): void;
+  readonly weather: WeatherData | undefined;
   /** Stop rendering (e.g. while hidden); input and streaming pause with it. */
   setPaused(paused: boolean): void;
   /** Show or hide ambient life (no-op when mounted with `ambient: false`). */
@@ -698,13 +801,13 @@ export interface EarthView {
   dispose(): void;
 }
 
-const VERTICAL_FOV = THREE.MathUtils.degToRad(60);
+/** The view world's singleton weather entity. */
+const WEATHER_ENTITY = 'earth-weather';
+const VERTICAL_FOV_DEGREES = 60;
+/** Radians, as terrain views take it; the landmark streamer takes degrees. */
+const VERTICAL_FOV = THREE.MathUtils.degToRad(VERTICAL_FOV_DEGREES);
 /** The entity that stands for the viewer in the shared world (seats, avatar). */
 const PLAYER_ID = 'world-player';
-/** Degrees past the view where ground stays built at reduced detail, covering a quick turn. */
-const PERIPHERAL_DEGREES = 20;
-/** Error weight of that band: roughly a level coarser than the view beside it. */
-const PERIPHERAL_DETAIL = 0.4;
 /** The package with its bare-ground surface layers recolored by name (others untouched). */
 function withGroundColors(
   pkg: TerrainPackageDescriptor,
@@ -802,6 +905,8 @@ interface EarthStack {
   wildlife: EarthWildlife | undefined;
   audioTerrain: EarthAudioTerrain;
   viewDistance: number;
+  /** The view's map overrides, bound to this stack's tiles. */
+  overrides: MapOverrideBinding;
   dispose(): void;
 }
 
@@ -878,24 +983,23 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           };
         })()
       : undefined;
-  // Ground just left must stay warm up to the device budget, whatever the level: a smaller cache
-  // re-streams it on every pan, and loses the intermediate levels that bridge a refinement.
-  // Ground a little past the view stays loaded as bare terrain, so turning the camera reveals
-  // ground that is already there; its buildings and trees follow once it is in view.
-  const terrainBudget = (): TerrainPyramidBudget => {
-    const base = automatic ? tier.terrain : terrainPyramidBudgetForQuality(quality());
-    return {
-      ...earthTerrainCacheBudget(base, memoryBudget),
-      peripheralDegrees: PERIPHERAL_DEGREES,
-      peripheralDetail: PERIPHERAL_DETAIL,
-    };
-  };
+  // Manual quality keeps automatic quality's preparation capacity (earthTerrainCacheBudget), and
+  // ground just left stays warm up to the device budget with ground a little past the view
+  // loaded as bare terrain (earthTerrainBudget), so a pan or turn reveals ground already there.
+  const terrainBudget = (): TerrainPyramidBudget =>
+    earthTerrainBudget(
+      earthTerrainCacheBudget(
+        automatic ? tier.terrain : terrainPyramidBudgetForQuality(quality()),
+        memoryBudget,
+      ),
+      memoryBudget,
+    );
   // Sun shadows follow the performance tier (see EarthPerformanceTier.shadows).
   const shadowsOn = options.shadows ?? true;
   const shadowQuality = (): 'off' | 'medium' | 'high' =>
     !shadowsOn ? 'off' : earthPerformanceTier(level).shadows;
   const worldgenCacheBytes = (): number =>
-    Math.max(automatic ? tier.cacheBytes : 192 * 1024 * 1024, memoryBudget / 4);
+    earthWorldgenCacheBytes(automatic ? tier.cacheBytes : 192 * 1024 * 1024, memoryBudget);
   const viewport = (): [number, number] => [
     Math.max(1, canvas.clientWidth),
     Math.max(1, canvas.clientHeight),
@@ -986,9 +1090,22 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       renderer.backend,
     );
     disposers.push(() => fieldMaterial.dispose());
+    // Distant tiles draw their land cover as one texture each (see `farLandcover`).
+    const farGroundMaterial: THREE.Material | undefined =
+      await createTerrainGroundTextureMaterialAsync({}, renderer.backend);
+    if (farGroundMaterial !== undefined) disposers.push(() => farGroundMaterial.dispose());
     // Roads, sidewalks, markings and lots: asphalt, concrete slabs and worn paint.
     const pavementMaterial = await createTerrainPavementMaterialAsync({}, renderer.backend);
     disposers.push(() => pavementMaterial.dispose());
+    const groundMaterials = [
+      groundMaterial,
+      fieldMaterial,
+      ...(farGroundMaterial !== undefined ? [farGroundMaterial] : []),
+      pavementMaterial,
+    ];
+    // One weather for the sky, the simulation and the ground's lying snow (setWeather).
+    let weather = options.weather;
+    if (weather !== undefined) renderer.setWeather(weather);
     // Trees, shrubs and props: leaf speckle and crown occlusion.
     const scatterMaterial = await createScatterMaterialAsync(renderer.backend);
     disposers.push(() => scatterMaterial.dispose());
@@ -1033,6 +1150,19 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       ).scene;
     };
 
+    // The view's map overrides are geographic: one set serves every stack the view anchors.
+    const overrideSet = createMapOverrideSet<EarthOverride>(options.overrides ?? []);
+    const worldgenContent =
+      content?.worldgen !== undefined
+        ? {
+            ...content.worldgen,
+            // Without the landmarks an override clears, and with the models it places.
+            structures: withMapOverrideStructures(content.worldgen.structures, overrideSet, {
+              isCatalogAsset: (asset) => content.worldgen?.pack.assets[asset] !== undefined,
+            }),
+          }
+        : undefined;
+
     let stack: EarthStack | undefined;
     const cockpitPointer = bindAircraftCockpitPointer({
       element: canvas,
@@ -1076,7 +1206,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           ? createEarthFleet(
               content.fleet,
               ambientContent.types.car ?? [],
-              content.parkedVehicles,
+              content.fleetParkedVehicles ?? content.parkedVehicles,
               metersPerUnit,
               options.fleet,
             )
@@ -1110,6 +1240,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             details: {
               preferMappedProps: content?.worldgen !== undefined,
               parkedVehicles: content?.parkedVehicles ?? [],
+              railCars: content?.railCars ?? [],
               ...surfaceBudgets(quality(), automatic ? tier.surfaceScale : 1),
             },
           },
@@ -1120,7 +1251,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         surface.setMaterial(pavementMaterial);
         parts.push(() => surface.dispose());
         const worldgen =
-          content?.worldgen !== undefined
+          content !== undefined && worldgenContent !== undefined
             ? createEarthWorldgen({
                 ...(options.buildingInfill !== undefined
                   ? { buildingInfill: options.buildingInfill }
@@ -1133,12 +1264,18 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                   ? { landcoverColors: options.style.landcover }
                   : {}),
                 groundMaterial: fieldMaterial,
+                ...(farGroundMaterial !== undefined
+                  ? { farLandcover: { material: farGroundMaterial } }
+                  : {}),
                 modelMaterial: scatterMaterial,
                 ...(options.sampleStructureTerrain
                   ? { sampleStructureTerrain: options.sampleStructureTerrain }
                   : {}),
-                content: content.worldgen,
+                content: worldgenContent,
                 assets: content.assets,
+                ...(options.overrideAssets !== undefined
+                  ? { overrideAssets: options.overrideAssets }
+                  : {}),
                 surfaceRenderer: surface,
                 metersPerUnit,
                 quality: quality(),
@@ -1163,6 +1300,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             : undefined;
         if (worldgen !== undefined) parts.push(() => worldgen.dispose());
         let layers: TerrainPyramidTileLayer[] = [];
+        let roadGrading: TerrainRoadGrading | undefined;
         let provideTunnelHeights!: (source: TerrainPyramidHeightSource) => void;
         const tunnelHeightsReady = new Promise<TerrainPyramidHeightSource>((resolve) => {
           provideTunnelHeights = resolve;
@@ -1191,6 +1329,20 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                   load: async (address, signal) => (await tunnelHeightsReady).load(address, signal),
                 },
               },
+              ...(options.roadGrading !== false
+                ? {
+                    roadGrading: {
+                      heights: {
+                        load: async (address, signal) =>
+                          (await tunnelHeightsReady).load(address, signal),
+                      },
+                      ...(typeof options.roadGrading === 'object' &&
+                      options.roadGrading.earthworks !== undefined
+                        ? { earthworks: options.roadGrading.earthworks }
+                        : {}),
+                    },
+                  }
+                : {}),
               ...(selected.baseUrl !== undefined ? { baseUrl: selected.baseUrl } : {}),
               ...(cacheTransport !== undefined
                 ? { transport: cacheTransport.normal, buildingDetailTransport: cacheTransport.low }
@@ -1226,26 +1378,37 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 worldgen !== undefined
                   ? {
                       visible: true,
+                      // Map overrides edit the tile inside the airport overlay (which would
+                      // clear a host's buildings off airport ground) and outside the observers,
+                      // so wildlife and sound read the edited map.
                       renderer: withEarthAirports(
-                        wildlifeCover !== undefined
-                          ? observeSemanticTiles(
-                              observeSemanticTiles(worldgen.classification, wildlifeCover),
-                              audioTerrain.observer,
-                            )
-                          : observeSemanticTiles(worldgen.classification, audioTerrain.observer),
+                        withMapOverrides(
+                          wildlifeCover !== undefined
+                            ? observeSemanticTiles(
+                                observeSemanticTiles(worldgen.classification, wildlifeCover),
+                                audioTerrain.observer,
+                              )
+                            : observeSemanticTiles(worldgen.classification, audioTerrain.observer),
+                          overrideSet,
+                          { metersPerUnit },
+                        ),
                         content?.airports,
                       ),
                     }
                   : {
                       visible: true,
                       renderer: withEarthAirports(
-                        observeSemanticTiles(
-                          createDefaultTerrainSemanticRenderer({
-                            renderWater: false,
-                            renderTransportation: false,
-                            renderBuildings: false,
-                          }),
-                          audioTerrain.observer,
+                        withMapOverrides(
+                          observeSemanticTiles(
+                            createDefaultTerrainSemanticRenderer({
+                              renderWater: false,
+                              renderTransportation: false,
+                              renderBuildings: false,
+                            }),
+                            audioTerrain.observer,
+                          ),
+                          overrideSet,
+                          { metersPerUnit },
                         ),
                         content?.airports,
                       ),
@@ -1266,11 +1429,15 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 return {
                   visible: true,
                   renderer: withEarthAirports(
-                    observeSemanticTiles(
-                      ambientTiles !== undefined
-                        ? observeSemanticTiles(inner, ambientTiles)
-                        : inner,
-                      audioTerrain.observer,
+                    withMapOverrides(
+                      observeSemanticTiles(
+                        ambientTiles !== undefined
+                          ? observeSemanticTiles(inner, ambientTiles)
+                          : inner,
+                        audioTerrain.observer,
+                      ),
+                      overrideSet,
+                      { metersPerUnit },
                     ),
                     content?.airports,
                   ),
@@ -1278,6 +1445,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
               })(),
             });
             layers = semantic.layers;
+            roadGrading = semantic.roadGrading;
             const { landcover, features, buildingDetail } = semantic.semantics;
             sidecars = {
               ...(landcover !== undefined ? { landcover } : {}),
@@ -1309,9 +1477,19 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           options.style?.ground === undefined
             ? createRegionalGroundColor(worldgen?.environment)
             : undefined;
+        // Roads first, then airports: an airfield's leveling wins over the roads that cross it.
+        const groundGrading = composeEarthGroundGrading(
+          roadGrading,
+          content?.airports ? createAirportTerrainGrading(content.airports) : undefined,
+        );
+        if (roadGrading !== undefined) {
+          const grading = roadGrading;
+          parts.push(() => grading.dispose());
+        }
         const opened = await createTerrainPackagePyramidStream(
           withGroundColors(pkg, options.style?.ground),
           {
+            independentLayers: EARTH_INDEPENDENT_LAYERS,
             ...(selected.baseUrl !== undefined ? { baseUrl: selected.baseUrl } : {}),
             ...(selected.archives?.elevation !== undefined
               ? { archive: selected.archives.elevation }
@@ -1321,9 +1499,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             ...(regionalGroundColor !== undefined ? { surfaceColor: regionalGroundColor } : {}),
             frame,
             ...budget,
-            ...(content?.airports
-              ? { transformHeightfield: createAirportTerrainGrading(content.airports) }
-              : {}),
+            ...(groundGrading ? { transformHeightfield: groundGrading } : {}),
             ...(elevationWorker !== undefined ? { elevationWorker } : {}),
             admission: renderer.admission,
             prepareObject: (object, prepareSignal, parent) =>
@@ -1350,6 +1526,17 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           stream.dispose();
         });
         renderer.worldRoot.add(stream.object);
+        // A change of overrides builds the tiles around it again, in this stack's frame.
+        const overrideBinding = bindMapOverrides(overrideSet, {
+          stream,
+          metersPerUnit,
+          layers,
+          ...(worldgen !== undefined ? { worldgen } : {}),
+          onError: (error) => report(error, 'map overrides'),
+        });
+        parts.push(() => overrideBinding.dispose());
+        // Scenery past the focused shadow map is shadowed from the far one (see earthShadowFocus).
+        renderer.setFarShadowCasters(stream.object);
         // Look ahead along the camera's track into the byte cache (bytes only, spare slots only).
         let prefetcher: EarthPrefetcher | undefined;
         if (options.byteCache !== undefined && options.prefetch !== false) {
@@ -1367,14 +1554,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             metersPerUnit,
             budget: () => stream.getBudget(),
             resident: () => new Set(stream.residentTiles().map(terrainPyramidTileKey)),
-            busy: () => {
-              const loading = stream.loading();
-              const limits = stream.getBudget();
-              return (
-                loading.tiles >= limits.maxConcurrentLoads ||
-                loading.layers >= limits.maxConcurrentLayerLoads
-              );
-            },
+            // Terrain loads only: layer slots are bound by CPU and GPU work rather than reads, and
+            // fast travel keeps them full, which is exactly when reading ahead is most useful.
+            busy: () => stream.loading().tiles >= stream.getBudget().maxConcurrentLoads,
             groundHeight: (x, z) => stream.sampleSurfaceHeight(x, z),
             viewShape: () => {
               const [w, h] = viewport();
@@ -1393,6 +1575,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         // steps it once (stepWorld); each piece applies its inputs before and poses models after.
         const world = new World({ tickRate: 60, seed: 'earth', devFreeze: false });
         setWorldBoostMode(world, boostMode);
+        if (weather !== undefined) world.spawnRaw({ weather }, WEATHER_ENTITY);
         let accumulator = 0;
         const stepWorld = (dt: number): void => {
           accumulator = Math.min(accumulator + Math.min(0.1, Math.max(0, dt)), world.dt * 3);
@@ -1414,6 +1597,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 types: content.types,
                 water: options.water ?? EARTH_WATER_CONDITIONS,
                 ...(options.waterAt ? { waterAt: options.waterAt } : {}),
+                // Cars grip, drag and shake by the mapped road or land cover under them.
+                surfaceAt: (x, z) => audioTerrain.sample(x, z).surface,
                 obstacles: (box, except) =>
                   (ambient?.blocks(box, except) ?? false) ||
                   (aircraft?.blocks(box, except) ?? false),
@@ -1507,6 +1692,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           wildlife,
           audioTerrain,
           viewDistance: budget.viewDistance,
+          overrides: overrideBinding,
           dispose: cleanup,
         };
       } catch (error) {
@@ -1577,6 +1763,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       actorchange: new Set(),
       vehiclechange: new Set(),
       camerachange: new Set(),
+      overridechange: new Set(),
       terrainchange: new Set(),
       markerclick: new Set(),
       modechange: new Set(),
@@ -1609,6 +1796,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       return water == null ? water : water.height;
     };
     walker.boostMode = boostMode;
+    // Lying snow slows anyone on foot: the walker, and the actors the director moves.
+    const snowPace = createSnowPace({
+      snowCover: () => weather?.snowCover,
+      surfaceAt: (x, z) => stack?.audioTerrain.sample(x, z).surface,
+    });
+    walker.paceAt = snowPace;
     const setBoostMode = (enabled: boolean): void => {
       if (boostMode === enabled) return;
       boostMode = enabled;
@@ -2048,7 +2241,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
      * so the ground there is no place to leave a car.
      */
     const nearLandmark = (x: number, z: number): boolean => {
-      const structures = content?.worldgen?.structures;
+      const structures = worldgenContent?.structures;
       if (structures === undefined) return false;
       const { latitude, longitude } = toLatLon(x, z);
       const dLat = 0.0015;
@@ -2264,6 +2457,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       aircraft.view = 'chase';
     };
 
+    /** A lift was asked for a storey; the walker moves once it has been built. */
+    let ride: { identity: string; level: number; floors: number[] } | undefined;
     /** What the interact key would act on now. */
     let interaction: EarthInteractionSettings = { ...options.interaction };
     const interactable = (): EarthInteractable => {
@@ -2278,6 +2473,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         return id !== undefined ? { kind: 'vehicle', id, distance: 0 } : { kind: 'none' };
       }
       if (mode !== 'walk') return { kind: 'none' };
+      if (current.worldgen?.elevatorAt([walker.feet.x, walker.feet.y, walker.feet.z]))
+        return { kind: 'elevator', distance: 0 };
       const eye = walkerEye();
       const distanceTo = (position: [number, number, number] | undefined): number =>
         position === undefined
@@ -2326,6 +2523,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         },
       });
       if (claimed) return;
+      if (found.kind === 'elevator') {
+        const stop = current.worldgen?.elevatorAt([walker.feet.x, walker.feet.y, walker.feet.z]);
+        if (stop) ride = { ...stop, level: ((ride?.level ?? stop.level) + 1) % stop.floors.length };
+        return;
+      }
       // Talking to someone is the host's business: unclaimed, nothing happens.
       if (found.kind === 'actor' || found.kind === 'pedestrian') return;
       if (mode === 'drive' || mode === 'fly') {
@@ -2368,6 +2570,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         toWorld: (latitude, longitude) => toWorld(latitude, longitude),
         toGeo: (x, z) => toLatLon(x, z),
         groundHeight: (x, z) => groundHeight(x, z),
+        paceAt: snowPace,
         ...(content?.types !== undefined ? { types: content.types } : {}),
         prepare: (object) => {
           void renderer.prepareObject(object);
@@ -2627,6 +2830,162 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       },
     };
 
+    /** Resolves once the tiles on screen show every change of overrides made so far. */
+    const tilesApplied = async (): Promise<void> => {
+      for (;;) {
+        // A re-anchor builds its tiles from the overrides as they are by then.
+        while (anchoring !== undefined) await anchoring;
+        const current = stack;
+        await current?.overrides.whenApplied();
+        if (anchoring === undefined && stack === current) return;
+      }
+    };
+    /** Changes whose `applied` event has not been emitted yet. */
+    const announcements = new Set<Promise<void>>();
+    const overridesApi: EarthOverrides = {
+      set: (override) => overrideSet.set(override),
+      remove: (id) => overrideSet.delete(id),
+      get: (id) => overrideSet.get(id),
+      list: () => overrideSet.list(),
+      clear: () => overrideSet.replace([]),
+      get revision() {
+        return overrideSet.revision;
+      },
+      whenApplied(waitOptions = {}) {
+        const applied = (async (): Promise<void> => {
+          await tilesApplied();
+          // After the `applied` events: a host that awaits this reads what they left behind.
+          while (announcements.size > 0) await Promise.all([...announcements]);
+        })();
+        const waitSignal = waitOptions.signal;
+        if (waitSignal === undefined) return applied;
+        return new Promise<void>((resolve, reject) => {
+          const abort = (): void => reject(new DOMException('Wait aborted', 'AbortError'));
+          if (waitSignal.aborted) {
+            abort();
+            return;
+          }
+          waitSignal.addEventListener('abort', abort, { once: true });
+          void applied
+            .then(resolve, reject)
+            .finally(() => waitSignal.removeEventListener('abort', abort));
+        });
+      },
+    };
+    /**
+     * A point 1.5 m outside whichever building of the named overrides stands around world X/Z,
+     * or undefined when none does: where to stand a walker a new building appeared around.
+     */
+    const outsideOverrideBuildings = (
+      x: number,
+      z: number,
+      ids: readonly string[],
+    ): [number, number] | undefined => {
+      for (const id of ids)
+        for (const building of overrideSet.resolved(id)?.buildings ?? []) {
+          const ring = building.ring.map(([px, pz]): [number, number] => [
+            px * metersPerUnit,
+            pz * metersPerUnit,
+          ]);
+          const inside = (qx: number, qz: number): boolean => {
+            let within = false;
+            for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+              const [ax, az] = ring[i] as [number, number];
+              const [bx, bz] = ring[j] as [number, number];
+              if (az > qz !== bz > qz && qx < ((bx - ax) * (qz - az)) / (bz - az) + ax)
+                within = !within;
+            }
+            return within;
+          };
+          if (!inside(x, z)) continue;
+          let best:
+            | { point: [number, number]; normal: [number, number]; distance: number }
+            | undefined;
+          for (let i = 0; i < ring.length; i++) {
+            const [ax, az] = ring[i] as [number, number];
+            const [bx, bz] = ring[(i + 1) % ring.length] as [number, number];
+            const dx = bx - ax;
+            const dz = bz - az;
+            const length = Math.hypot(dx, dz);
+            if (length === 0) continue;
+            const t = Math.max(0, Math.min(1, ((x - ax) * dx + (z - az) * dz) / (length * length)));
+            const point: [number, number] = [ax + t * dx, az + t * dz];
+            const distance = Math.hypot(x - point[0], z - point[1]);
+            if (best === undefined || distance < best.distance)
+              best = { point, normal: [dz / length, -dx / length], distance };
+          }
+          if (best === undefined) continue;
+          // The edge's normal, turned to point away from the building.
+          const sign = inside(
+            best.point[0] + best.normal[0] * 0.05,
+            best.point[1] + best.normal[1] * 0.05,
+          )
+            ? -1
+            : 1;
+          return [
+            best.point[0] + best.normal[0] * sign * 1.5,
+            best.point[1] + best.normal[1] * sign * 1.5,
+          ];
+        }
+      return undefined;
+    };
+    // Each task's changes are announced once: `pending` now, `applied` when the tiles on screen
+    // show them. The view announces, not a stack: a change made while the view re-anchors (no
+    // stack is bound then) or still pending when the old stack goes is told like any other.
+    let announcing: { ids: Set<string>; tiles: boolean } | undefined;
+    disposers.push(
+      overrideSet.subscribe((change) => {
+        if (announcing === undefined) {
+          const batch = { ids: new Set<string>(), tiles: false };
+          announcing = batch;
+          let told!: () => void;
+          const announcement = new Promise<void>((resolve) => {
+            told = resolve;
+          });
+          announcements.add(announcement);
+          const finish = (): void => {
+            announcements.delete(announcement);
+            told();
+          };
+          queueMicrotask(() => {
+            announcing = undefined;
+            if (disposed) {
+              finish();
+              return;
+            }
+            const ids = [...batch.ids];
+            const revision = overrideSet.revision;
+            emit('overridechange', { revision, state: 'pending', ids });
+            void tilesApplied()
+              .then(() => {
+                if (disposed) return;
+                emit('overridechange', { revision, state: 'applied', ids });
+                if (!batch.tiles) return;
+                // What stands there changed under the collision tree, and perhaps around the
+                // walker. (Judged by the footprints declared: where a terrain package has no
+                // map features to draw them on, a walker inside one is still stepped out.)
+                collision.invalidate();
+                if (mode !== 'walk' || pending !== undefined || !walker.ready) return;
+                const clear = outsideOverrideBuildings(walker.feet.x, walker.feet.z, ids);
+                if (clear !== undefined) enterWalk(clear[0], clear[1], look.yaw);
+              })
+              .finally(finish);
+          });
+        }
+        for (const id of change.ids) announcing.ids.add(id);
+        if (change.tiles) announcing.tiles = true;
+      }),
+    );
+    const overrideEntities = bindMapOverrideEntities(
+      overrideSet,
+      { actors: actorDirector.api, vehicles: ownedApi, dioramas: dioramaDirector },
+      {
+        whenApplied: () => overridesApi.whenApplied(),
+        onError: (error, context) => report(error, context),
+      },
+    );
+    disposers.push(() => overrideEntities.dispose());
+
     /** The frame event's view of the viewer. */
     const frameState = (current: EarthStack, dt: number, now: number): EarthFrame => {
       const here = whereabouts(current);
@@ -2748,6 +3107,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
               details: {
                 preferMappedProps: current.worldgen !== undefined,
                 parkedVehicles: content?.parkedVehicles ?? [],
+                railCars: content?.railCars ?? [],
                 ...budgets,
               },
             })
@@ -2954,6 +3314,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         groundCollision.update(current.stream.object, walker.feet.x, walker.feet.z);
         walker.place(collision, groundHeight, groundCollision);
       }
+      if (ride && current.worldgen?.requestStorey(ride.identity, ride.level)) {
+        walker.feet.y = (ride.floors[ride.level] as number) + 0.02;
+        walker.velocity.set(0, 0, 0);
+        collision.invalidate();
+        ride = undefined;
+      }
       walker.update(
         dt,
         {
@@ -3072,7 +3438,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       });
       current.stepWorld(dt);
       vehicles.render();
-      current.aircraft?.render(pose.position);
+      current.aircraft?.render(pose.position, renderer.shadowTexelSize);
       const view = vehicles.cameraPose();
       if (view === undefined) return pose;
       const direction = new THREE.Vector3()
@@ -3112,14 +3478,20 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         throttle: pilot?.throttle ?? 0,
         brake: frameInput.jump,
         ...(pilot !== undefined
-          ? { engine: pilot.engine, gear: pilot.gear, flaps: pilot.flaps, vector: pilot.vector }
+          ? {
+              engine: pilot.engine,
+              gear: pilot.gear,
+              flaps: pilot.flaps,
+              vector: pilot.vector,
+              cyclic: pilot.cyclic,
+            }
           : {}),
       });
       // Cars hold still; the shared world step runs the flight model.
       current.vehicles?.update(dt, { throttle: 0, steering: 0, brake: true });
       current.stepWorld(dt);
       current.vehicles?.render();
-      aircraft.render(pose.position);
+      aircraft.render(pose.position, renderer.shadowTexelSize);
       const view = aircraft.cameraPose();
       if (view === undefined) return pose;
       const direction = new THREE.Vector3()
@@ -3152,12 +3524,21 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     // little ahead of the walker, car or aircraft, where most of the frame is.
     const shadowFocus = (
       current: NavigationPose,
-    ): { center: [number, number, number]; radius: number } => {
+    ): {
+      center: [number, number, number];
+      radius: number;
+      far: { center: [number, number, number]; radius: number };
+    } => {
       if (mode === 'orbit' || pending !== undefined) {
         const state = orbit.state;
+        const radius = Math.min(2_500, Math.max(150, state.range * 1.2));
         return {
           center: [state.target[0], state.target[1], state.target[2]],
-          radius: Math.min(2_500, Math.max(150, state.range * 1.2)),
+          radius,
+          far: {
+            center: [state.target[0], state.target[1], state.target[2]],
+            radius: Math.min(6_000, Math.max(2_000, radius * 4)),
+          },
         };
       }
       const [x, y, z] = current.position;
@@ -3257,7 +3638,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         current.worldgen?.updateStructures({
           position: pose.position,
           direction: pose.direction,
-          verticalFov: VERTICAL_FOV,
+          // Degrees here: in radians every landmark measured some sixty times its size on
+          // screen and asked for its finest level.
+          verticalFov: VERTICAL_FOV_DEGREES,
           viewportHeight: canvas.height,
           maxPixelError: automatic ? tier.objectPixelError : 2,
         });
@@ -3306,7 +3689,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           current.vehicles?.update(dt, { throttle: 0, steering: 0, brake: true });
           current.stepWorld(dt);
           current.vehicles?.render();
-          current.aircraft?.render(pose.position);
+          current.aircraft?.render(pose.position, renderer.shadowTexelSize);
         }
         actorDirector.update(dt, now, pose.position, actorViewer(current), avatarFrame(current));
         cockpitPointer.update();
@@ -3403,9 +3786,11 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         origin[0],
         origin[2],
       ]);
-      setTerrainGroundOrigin(groundMaterial, [origin[0], origin[2]]);
-      setTerrainGroundOrigin(fieldMaterial, [origin[0], origin[2]]);
-      setTerrainGroundOrigin(pavementMaterial, [origin[0], origin[2]]);
+      for (const material of groundMaterials) {
+        setTerrainGroundOrigin(material, [origin[0], origin[2]]);
+        // Every frame, as the origin is: the snow line is drawn in rendered height.
+        setTerrainGroundSnow(material, weather?.snowCover, origin[1]);
+      }
       const timing = gpuTimer?.begin() === true;
       viewer.renderFrame();
       if (timing) gpuTimer?.end();
@@ -3533,6 +3918,17 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             heading: vehicles.heading ?? 0,
             view: vehicles.view,
             waitingForTerrain: vehicles.waiting,
+            ...(vehicles.driveline
+              ? {
+                  gear: vehicles.driveline.gear,
+                  rpm: vehicles.driveline.rpm,
+                  assist: vehicles.driveline.assist,
+                  surfaceGrip: vehicles.driveline.surfaceGrip,
+                }
+              : {}),
+            ...(vehicles.snow
+              ? { snowDepth: vehicles.snow.depth, stuck: vehicles.snow.stuck }
+              : {}),
           };
         }
         return undefined;
@@ -3582,6 +3978,23 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       vehicles: ownedApi,
       actors: actorDirector.api,
       dioramas: dioramaDirector,
+      overrides: overridesApi,
+      buildingAt({ latitude, longitude, radius = 6 }) {
+        const [x, z] = toWorld(latitude, longitude);
+        const hit = stack?.worldgen?.buildingsNear(x, z, radius)[0];
+        if (hit === undefined) return undefined;
+        const geo = ([px, pz]: readonly [number, number]): [number, number] => {
+          const place = toLatLon(px, pz);
+          return [place.longitude, place.latitude];
+        };
+        const [west, north] = geo([hit.bounds[0], hit.bounds[1]]);
+        const [east, south] = geo([hit.bounds[2], hit.bounds[3]]);
+        return {
+          ...hit,
+          outlines: hit.outlines.map((ring) => ring.map(geo)),
+          bounds: [west, south, east, north],
+        };
+      },
       airfields,
       interactable,
       setInteraction(settings) {
@@ -3631,6 +4044,14 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           ...(stack?.worldgen?.structureStats()
             ? { structures: stack.worldgen.structureStats() }
             : {}),
+          ...(overrideSet.list().length > 0 || (streamStats?.refreshingLayers ?? 0) > 0
+            ? {
+                overrides: {
+                  count: overrideSet.list().length,
+                  refreshing: streamStats?.refreshingLayers ?? 0,
+                },
+              }
+            : {}),
           ...(stack?.worldgen !== undefined
             ? (() => {
                 const generated = (stack.worldgen as EarthWorldgen).stats();
@@ -3661,6 +4082,19 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         ambientOn = enabled;
         stack?.ambient?.setEnabled(enabled);
         stack?.wildlife?.setEnabled(enabled);
+      },
+      get weather() {
+        return weather;
+      },
+      setWeather(next) {
+        weather = next;
+        renderer.setWeather(next);
+        const world = stack?.world;
+        if (world === undefined) return;
+        if (next === undefined) {
+          if (world.exists(WEATHER_ENTITY)) world.destroy(WEATHER_ENTITY);
+        } else if (world.exists(WEATHER_ENTITY)) world.set(WEATHER_ENTITY, Weather, next);
+        else world.spawnRaw({ weather: next }, WEATHER_ENTITY);
       },
       setPaused(next) {
         manuallyPaused = next;

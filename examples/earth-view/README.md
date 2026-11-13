@@ -27,6 +27,11 @@ order instead of regenerating the shared packs concurrently.
 - **Walk:** WASD to move, mouse-look, Space to jump, E next to a parked car to drive.
 - **Drive:** W/S to drive, A/D to steer, V to switch views, E to get out.
 - **Space Needle:** fly to Seattle, switch terrain packages and draw the indexed landmark.
+- **Replace Needle:** swap the Space Needle for a place of the sample's own (a warehouse and an
+  office, street furniture and trees, two people and a dog, a parked car and the market scene),
+  and put it back. It is one `EarthOverride` object and two calls, `view.overrides.set` and
+  `view.overrides.remove`, in `src/main.ts`. The view keeps showing what stood there until the
+  replacement is ready. `?override=1` mounts with it already in place.
 - **Traffic:** show or hide ambient life: NPC cars on the mapped streets, pedestrians on the
   sidewalks, trains on rail lines and aircraft overhead.
 
@@ -54,10 +59,13 @@ anchors follow terrain refinement and survive package re-anchoring.
 `mountEarthView` itself is covered by `packages/earth/test/earth-view.test.ts` (streaming, credits,
 markers and walking over a procedural archive). This example has no browser test of its own.
 
-Select a motorcycle, scooter or bicycle beside **Drive**, then press **Drive** to ride it. W powers,
-S/Space brake, A/D steer, V switches rider/chase view and E dismounts once stopped. The avatar
-sits on the saddle and follows the handlebars and pedals. A direct start is
-`?mode=drive&vehicle=molen.entities.cycle.city_bicycle`.
+Select a motorcycle, scooter, moped, bicycle, auto-rickshaw, electric kick scooter or skateboard
+beside **Drive**, then press **Drive** to ride it. W powers (the skateboarder pushes off), S/Space
+brake, A/D steer, V switches rider/chase view and E dismounts once stopped. The avatar sits on the
+saddle and follows the handlebars and pedals, stands on the kick scooter's deck, or rides the
+boards sideways. Skis, a snowboard and a snowmobile are in the list too: they slide on lying
+snow and scrape on bare ground. `?snow=1500` mounts the view with snow above 1,500 m
+(`weather: { snowCover: { level: 1500 } }`), and `?snow=0` covers the lowlands as well. A direct start is `?mode=drive&vehicle=molen.entities.cycle.city_bicycle`.
 
 The Boat button (or `?boat=1`) launches a speedboat on nearby mapped water. W/S thrust, A/D helm,
 Space opposing thrust, hold Shift to anchor below walking speed, V helm/chase, E dry dockside exit.

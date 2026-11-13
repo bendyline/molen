@@ -10,8 +10,15 @@ import {
 } from '../weather/cloud-shadows';
 import { type CloudQuality, CloudTextures, type CloudUniforms } from '../weather/clouds';
 import { cloudNoise } from '../weather/noise';
+import {
+  createSnowCoverUniforms,
+  injectSnowCover,
+  type SnowCoverUniforms,
+  writeSnowCover,
+} from '../weather/snow-cover';
 import { WeatherVisual } from '../weather/visual';
 import { applyEnvironment, defaultEnvironment, findEnvironmentRig } from './environment';
+import { FarShadow, type FarShadowInfo, type FarShadowView, injectFarShadow } from './far-shadow';
 import {
   createGpuFrameTimer,
   type GpuFrameTimer,
@@ -41,6 +48,8 @@ export type ThreeRenderer = THREE.WebGLRenderer | WebGPURenderer;
 interface CloudBackend {
   material(uniforms: CloudUniforms, textures: CloudTextures): THREE.Material;
   installShadows(uniforms: CloudShadowUniforms): void;
+  /** Lying snow on marked materials (WebGPU: webgpu-snow-cover.ts). */
+  installSnowCover(uniforms: SnowCoverUniforms): void;
 }
 
 interface InitializedRenderer {
@@ -291,6 +300,8 @@ export class Renderer {
   private readonly cloudShadows: CloudShadowUniforms = createCloudShadowUniforms(
     this.cloudTextures.shadow,
   );
+  /** The weather's lying snow, read by every material marked with `enableSnowCover`. */
+  private readonly snowCover: SnowCoverUniforms = createSnowCoverUniforms();
   private readonly cloudBackend: CloudBackend | undefined;
   private releaseCloudShadows: (() => void) | undefined;
   private cloudQualityLevel: CloudQuality = 'medium';
@@ -304,6 +315,10 @@ export class Renderer {
   private shadowFocus: ShadowFocus | undefined;
   private readonly shadowCenter = new THREE.Vector3();
   private readonly shadowDirection = new THREE.Vector3();
+  /** The sun's far shadow map (WebGL); see setFarShadowCasters. */
+  private farShadow: FarShadow | undefined;
+  private readonly farShadowCenter = new THREE.Vector3();
+  private readonly farShadowDirection = new THREE.Vector3();
 
   /** Active clear-sky visual and sampled ephemeris, when environment.sky is configured. */
   get sky(): SkyVisual | undefined {
@@ -318,8 +333,50 @@ export class Renderer {
   setShadowFocus(focus: ShadowFocus | undefined): void {
     if (focus !== undefined && (!(focus.radius > 0) || !Number.isFinite(focus.radius)))
       throw new RangeError('Shadow focus radius must be a positive number of meters');
+    const far = focus?.far;
+    if (far !== undefined && (!(far.radius > 0) || !Number.isFinite(far.radius)))
+      throw new RangeError('Far shadow radius must be a positive number of meters');
     this.shadowFocus =
-      focus === undefined ? undefined : { center: [...focus.center], radius: focus.radius };
+      focus === undefined
+        ? undefined
+        : {
+            center: [...focus.center],
+            radius: focus.radius,
+            ...(far !== undefined ? { far: { center: [...far.center], radius: far.radius } } : {}),
+          };
+  }
+
+  /**
+   * The scenery that does not move (a terrain stream's object: ground, buildings, trees), for the
+   * sun's far shadow map. With it and a focus that names a `far` square, surfaces past the
+   * focused map are shadowed from a second, wider map instead of ending in sunlight: over a
+   * city the focused map ends a few hundred meters out, and buildings gained their shadows as
+   * it reached them. Only what is under `root` casts into it, and it is redrawn when the camera
+   * has left its middle, when the sun has moved and about once a second for scenery that has
+   * arrived, so a moving caster would leave its shadow behind. WebGL; `undefined` turns it off.
+   */
+  setFarShadowCasters(root: THREE.Object3D | undefined): void {
+    this.farShadow?.setCasters(this.scene, root);
+  }
+
+  /** The far shadow map as last drawn, or `undefined` while there is none. */
+  get farShadowInfo(): FarShadowInfo | undefined {
+    return this.farShadow?.info;
+  }
+
+  /**
+   * Meters one texel of the sun's shadow map covers as of the last frame, or `undefined` while sun
+   * shadows are off or parked. A focus over a wide view coarsens it: hosts use it to keep a subject
+   * the map cannot resolve out of the shadow pass (`AircraftVisual.updateShadows`).
+   */
+  get shadowTexelSize(): number | undefined {
+    if (!this.three.shadowMap.enabled) return undefined;
+    for (const light of this.sunLights()) {
+      if (!light.castShadow || light.shadow.intensity <= 0) continue;
+      const camera = light.shadow.camera;
+      return (camera.right - camera.left) / (light.shadow.mapSize.x || 1);
+    }
+    return undefined;
   }
 
   /**
@@ -377,7 +434,11 @@ export class Renderer {
     if (this.backend === 'webgpu' && this.three.shadowMap.enabled) return;
     if (parked && this.three.shadowMap.enabled) return;
     this.three.shadowMap.enabled = enabled;
-    this.three.shadowMap.type = quality === 'low' ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
+    // three's WebGL shadow pass replaces the deprecated soft type with PCF at its first shadow
+    // frame, with a warning, after programs warmed before that frame were already built for the
+    // soft type's key: they were rebuilt at first draw. WebGPU still has a distinct soft filter.
+    this.three.shadowMap.type =
+      quality === 'low' || this.backend === 'webgl' ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
   }
 
   /** WebGL PCF shadow lookups against a reversed depth buffer; see focusDirectionalShadow. */
@@ -403,27 +464,55 @@ export class Renderer {
 
   private applyShadowFocus(): void {
     const focus = this.shadowFocus;
-    if (focus === undefined || !this.three.shadowMap.enabled) return;
-    const center = this.shadowCenter.set(
-      focus.center[0] - this.worldOrigin[0],
-      focus.center[1] - this.worldOrigin[1],
-      focus.center[2] - this.worldOrigin[2],
-    );
-    for (const light of this.sunLights()) {
-      if (!light.castShadow) continue;
-      const direction =
-        light === this.activeSky?.sunLight
-          ? this.shadowDirection.fromArray(this.activeSky.frame.sunDirection)
-          : this.shadowDirection.copy(light.userData.molenSunDirection as THREE.Vector3);
-      focusDirectionalShadow(
-        light,
-        direction,
-        center,
-        focus.radius,
-        this.backend === 'webgl' && this.webglReversedPcfShadows(),
-        this.worldOrigin,
+    let far: FarShadowView | undefined;
+    if (focus !== undefined && this.three.shadowMap.enabled) {
+      const center = this.shadowCenter.set(
+        focus.center[0] - this.worldOrigin[0],
+        focus.center[1] - this.worldOrigin[1],
+        focus.center[2] - this.worldOrigin[2],
       );
+      const reversedPcf = this.backend === 'webgl' && this.webglReversedPcfShadows();
+      for (const light of this.sunLights()) {
+        if (!light.castShadow) continue;
+        const direction =
+          light === this.activeSky?.sunLight
+            ? this.shadowDirection.fromArray(this.activeSky.frame.sunDirection)
+            : this.shadowDirection.copy(light.userData.molenSunDirection as THREE.Vector3);
+        focusDirectionalShadow(
+          light,
+          direction,
+          center,
+          focus.radius,
+          reversedPcf,
+          this.worldOrigin,
+        );
+        // The far map follows the first sun that is casting: not a parked map's, nor a sun
+        // below the horizon.
+        if (
+          far === undefined &&
+          focus.far !== undefined &&
+          light.shadow.autoUpdate &&
+          light.shadow.intensity > 0 &&
+          light.visible &&
+          direction.y > 0.02
+        )
+          far = {
+            direction: this.farShadowDirection.copy(direction).normalize(),
+            center: this.farShadowCenter.set(
+              focus.far.center[0] - this.worldOrigin[0],
+              focus.far.center[1] - this.worldOrigin[1],
+              focus.far.center[2] - this.worldOrigin[2],
+            ),
+            radius: focus.far.radius,
+            // A quarter of the focused map's memory at 'high': the far map's texels are meters.
+            mapSize: Math.min(2048, light.shadow.mapSize.x),
+            biasAddsTowardLight: reversedPcf,
+            worldOrigin: this.worldOrigin,
+            now: performance.now(),
+          };
+      }
     }
+    this.farShadow?.update(far);
   }
 
   /** Active weather effects; physical weather data is also available in the simulation component. */
@@ -547,12 +636,14 @@ export class Renderer {
             ? undefined
             : new (await import('./webgpu-scene-optimizer')).WebGpuSceneOptimizer(three);
         const clouds = await import('./webgpu-clouds');
+        const snow = await import('./webgpu-snow-cover');
         return new Renderer(opts, {
           three,
           backend: 'webgpu',
           clouds: {
             material: clouds.createWebGpuCloudMaterial,
             installShadows: (uniforms) => clouds.installWebGpuCloudShadows(three, uniforms),
+            installSnowCover: (uniforms) => snow.installWebGpuSnowCover(three, uniforms),
           },
           ...(optimizer ? { optimizer } : {}),
           ...(opts.reflections === true
@@ -618,12 +709,23 @@ export class Renderer {
     this.three.setPixelRatio(pixelRatio);
     // Before any lit shader is built: every one reads the cloud shadow, which stays off (and
     // costs a uniform test) until weather with clouds and a 'high' cloud quality turn it on.
-    if (this.cloudBackend) this.cloudBackend.installShadows(this.cloudShadows);
-    else
+    // Lying snow rides the same hooks: marked materials whiten once weather with a snow cover
+    // arrives (setWeather), and until then pay for a uniform test.
+    if (this.cloudBackend) {
+      this.cloudBackend.installShadows(this.cloudShadows);
+      this.cloudBackend.installSnowCover(this.snowCover);
+    } else {
+      const far = new FarShadow(this.three as THREE.WebGLRenderer);
+      this.farShadow = far;
       this.releaseCloudShadows = installWebGlCloudShadows(
         this.three as THREE.WebGLRenderer,
         this.cloudShadows,
+        (shader, material) => {
+          injectFarShadow(shader, far.uniforms);
+          injectSnowCover(shader, this.snowCover, material);
+        },
       );
+    }
     if (this.backend === 'webgpu') {
       (this.three as WebGPURenderer).onDeviceLost = (info): void => {
         if (this.disposed) return;
@@ -966,14 +1068,23 @@ export class Renderer {
       else variants.push({ map, key: variantKey });
     }
     const instanced = mesh as THREE.InstancedMesh;
+    // An interleaved buffer once, however many attributes read it: an instance batch's matrix
+    // and its four columns are one buffer.
     const attributes = [
-      ...Object.values(mesh.geometry.attributes).map((a) =>
-        a instanceof THREE.InterleavedBufferAttribute ? a.data : a,
+      ...new Set(
+        [
+          ...Object.values(mesh.geometry.attributes),
+          ...(mesh.geometry.index ? [mesh.geometry.index] : []),
+          ...(instanced.isInstancedMesh
+            ? [
+                instanced.instanceMatrix as
+                  | THREE.BufferAttribute
+                  | THREE.InterleavedBufferAttribute,
+                ...(instanced.instanceColor ? [instanced.instanceColor] : []),
+              ]
+            : []),
+        ].map((a) => (a instanceof THREE.InterleavedBufferAttribute ? a.data : a)),
       ),
-      ...(mesh.geometry.index ? [mesh.geometry.index] : []),
-      ...(instanced.isInstancedMesh
-        ? [instanced.instanceMatrix, ...(instanced.instanceColor ? [instanced.instanceColor] : [])]
-        : []),
     ];
     const fresh = attributes.filter((attribute) => {
       if (lane.glAttributes.has(attribute)) return false;
@@ -1455,6 +1566,7 @@ export class Renderer {
     );
     if (weather) weather.writeShadows(this.cloudShadows, cloudShadowed);
     else this.cloudShadows.molenCloudShadow.value.x = 0;
+    writeSnowCover(this.snowCover, weather?.data.snowCover, this.worldOrigin);
     // Every lit shader samples the shadow map, but WebGPU uploads a texture's new data only when
     // some object that binds it refreshes, which static meshes do not: upload it here.
     const shadowMap = this.cloudShadows.molenCloudMap.value;
@@ -1729,6 +1841,7 @@ export class Renderer {
     this.activeWeather?.dispose();
     this.activeWeather = undefined;
     this.releaseCloudShadows?.();
+    this.farShadow?.dispose();
     this.cloudTextures.dispose();
     this.reflections?.dispose();
     this.hideReflectedAmbient(undefined);

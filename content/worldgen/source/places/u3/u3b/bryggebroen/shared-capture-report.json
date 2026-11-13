@@ -1,0 +1,69 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.bryggebroen",
+  "inputHash": "sha256:b360abbf5a3483d09697644380ec152144acc99105c6bf3326cbb37ca58ce151",
+  "sourceHash": "sha256:b88bac6f4d25b2c60546ec45a5222d89d9496f5ae29047ab44d7ef189505d571",
+  "runtimeHash": "sha256:2bc706e89f958601c3e56330c91e3391789a7ae05df039fcd4d8341e12725740",
+  "fixtureHash": "sha256:a797e88c9e12d954dd47e942b717cc6da240ee47edbbcf1c5acc0219a2e2d31a",
+  "placementHash": "sha256:8e7d3e1bb6c9318b364a01ff0e5b0be9f84a5d2128cf0919a42455cc1ba6a68b",
+  "materialGraphs": {
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.metal_stainless": {
+      "path": "materials/metal_stainless.matgraph.json",
+      "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-bridge.png",
+      "hash": "sha256:c05fc04ec37d6a8ce9809d75f8b7c49418bbf3d6afbf131598fc4dd3ef466769",
+      "camera": {
+        "name": "main-street-noon-high",
+        "mediumName": "street-noon-high",
+        "group": "main",
+        "position": [
+          20,
+          12,
+          85
+        ],
+        "lookAt": [
+          0,
+          5,
+          0
+        ],
+        "fov": 55,
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "lightDirection": [
+          -0.6,
+          1,
+          0.6
+        ],
+        "shadows": true,
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "bryggebroen",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "liveSupportGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The near tiers load concrete_plain, metal_painted and metal_stainless once each. The skyline tier shares concrete and painted metal. All tiers use metric UVs without embedded images."
+}

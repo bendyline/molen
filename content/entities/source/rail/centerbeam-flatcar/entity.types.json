@@ -1,0 +1,114 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.rail.centerbeam_flatcar": {
+      "doc": "73 ft centerbeam flatcar: open lattice centre partition between end bulkheads over a fishbelly centre sill, loaded with wrapped lumber bundles leaning on the beam and strapped to side-sill winches (node load). Unpowered car for track-guided consists; vehicle.color repaints the car.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.centerbeam_flatcar",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.centerbeam_flatcar",
+          "color": "#5b636c",
+          "spec": {
+            "label": "73 ft centerbeam flatcar",
+            "bodyStyle": "freight-car",
+            "genericLabel": "Centerbeam flatcar",
+            "width": 3.2,
+            "length": 22.4,
+            "height": 4.6,
+            "centerOfMass": [
+              0,
+              2,
+              0
+            ],
+            "wheelbase": 18.6,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.457,
+            "mass": 100000,
+            "engineForce": 1,
+            "maxSpeed": 31.3,
+            "reverseSpeed": 30,
+            "brakeDeceleration": 0.45,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [
+              0,
+              2.5,
+              0
+            ],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00001,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 18.6,
+              "couplerLength": 23.3,
+              "power": 0,
+              "gauge": 1.435,
+              "profile": "flat"
+            }
+          },
+          "visual": {
+            "wheelNodes": [
+              "axle-1",
+              "axle-2",
+              "axle-3",
+              "axle-4"
+            ],
+            "frontWheelNodes": [
+              "axle-1"
+            ],
+            "paintMaterial": "rail-livery-body"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.rail.centerbeam_flatcar"
+      ]
+    }
+  }
+}

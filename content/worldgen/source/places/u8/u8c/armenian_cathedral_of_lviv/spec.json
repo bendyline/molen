@@ -1,0 +1,401 @@
+{
+  "planId": "armenian_cathedral_of_lviv",
+  "id": "armenian_cathedral_of_lviv",
+  "assetId": "molen.worldgen.structure.armenian_cathedral_of_lviv",
+  "title": "Armenian Cathedral of Lviv",
+  "wikidataId": "Q684239",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 24.030493,
+    "latitude": 49.843446
+  },
+  "size": [
+    41.10000038146973,
+    23.450000405311584,
+    19.389999389648438
+  ],
+  "actualBounds": {
+    "min": [
+      -21.43000030517578,
+      -1.850000023841858,
+      -9.739999771118164
+    ],
+    "max": [
+      19.670000076293945,
+      21.600000381469727,
+      9.649999618530273
+    ]
+  },
+  "visualBrief": "Low polygonal metal cupola, dressed stone apses and open southern courtyard arcade of Lviv’s Armenian Cathedral.",
+  "nativeAxes": {
+    "x": "east along the north edge of the nave",
+    "y": "up",
+    "z": "south toward the arcaded courtyard"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2016-05-11",
+    "validFrom": "2016-01-01",
+    "validUntil": "2017-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Armenian_Cathedral_of_Lviv_03.jpg",
+    "https://commons.wikimedia.org/wiki/File:Armenian_Cathedral_of_Lviv_04.jpg",
+    "https://commons.wikimedia.org/wiki/File:Armenian_Cathedral_of_Lviv_05.jpg"
+  ],
+  "stories": [
+    {
+      "id": "armenian-cathedral-of-lviv-wp",
+      "url": "https://qualla.com/armenian-cathedral-of-lviv/"
+    }
+  ],
+  "referenceInputHash": "0a1b1507abd31e28d5d2de51304113dd9b4e8f6f0e89ee1267c3cfef01d4b092",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u8/u8c/armenian_cathedral_of_lviv/models/cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u8/u8c/armenian_cathedral_of_lviv/models/cathedral-model.mjs",
+    "level": "skyline",
+    "export": "cathedralSkyline",
+    "errorMeters": 0.24,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.85,
+        "metallic": 0.05
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.1
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.87,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cathedralDistrict",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85,
+            "metallic": 0.05
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.1
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "cathedralStreet",
+        "errorMeters": 0.061,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85,
+            "metallic": 0.05
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.1
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "cathedralCloseup",
+        "errorMeters": 0.023,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.85,
+            "metallic": 0.05
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.1
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_sandstone",
+    "metal_standing_seam",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      24.030493,
+      49.843446
+    ],
+    "heading": 0.02605595227381129,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        24.030496705311823,
+        49.843354315208806
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain immediately south of the mapped cathedral wall beside the arcade courtyard. Threshold grade is approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/179437775"
+    ],
+    "source": "https://www.openstreetmap.org/way/179437775",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7f843fe3b0b50b4a41bbb1430908a8483f32595ee620c2826be26ea0cd02abcb",
+    "notes": "OpenStreetMap way 179437775 defines the native cathedral outline and way 166631763 locates the separately mapped belfry. The outline generalizes the east end and includes attached ranges. The visible apse and gallery shapes come from the courtyard photographs. North and west elevations, exact roof junctions and individual threshold heights require estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Exterior represents the May 2016 photographs. Distances from the mapped perimeter set scale and orientation. The footprint generalizes the east apses.",
+    "Roof junctions, northern and western elevations, attached range subdivisions, stone courses and unmeasured heights are approximate. Fine carving, inscriptions and interior art are omitted.",
+    "The independently mapped belfry and other courtyard buildings are outside the cathedral scope.",
+    "A preserved original elevation field supplies placement. Thresholds and foundations are representative rather than surveyed.",
+    "Cleared exterior photographs remain in the local story corpus. The recipe uses its own geometry and shared materials."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. The three published exterior photographs are by Aschroet under CC0. OpenStreetMap contributors supply mapped geometry under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-cathedral-skyline",
+      "position": [
+        53,
+        33,
+        47
+      ],
+      "lookAt": [
+        -1,
+        8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-cathedral-district",
+      "position": [
+        53,
+        33,
+        47
+      ],
+      "lookAt": [
+        -1,
+        8,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-cathedral-street",
+      "position": [
+        53,
+        33,
+        47
+      ],
+      "lookAt": [
+        -1,
+        8,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-cathedral-closeup",
+      "position": [
+        53,
+        33,
+        47
+      ],
+      "lookAt": [
+        -1,
+        8,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "eastern-apses-and-drum",
+      "position": [
+        38,
+        13,
+        19
+      ],
+      "lookAt": [
+        10,
+        9,
+        -1
+      ]
+    },
+    {
+      "name": "courtyard-gallery-and-chapel",
+      "position": [
+        17,
+        7,
+        28
+      ],
+      "lookAt": [
+        -1,
+        5,
+        5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2912,
+    "vertices": 8736,
+    "materials": 5,
+    "bytes": 484172,
+    "sha256": "sha256:4c2dc1247f2e954754c55e9498942e5f4e4c0c13af00c50aaf7246b07410159f"
+  }
+}

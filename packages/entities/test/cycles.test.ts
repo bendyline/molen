@@ -27,6 +27,9 @@ const flat = { groundHeight: () => 0 };
 function setup(id: (typeof MOLEN_CYCLE_ENTITY_IDS)[number]) {
   const w = new World({ tickRate: 60, seed: 'riding' });
   installVehicles(w, flat);
+  // Skis and a snowboard need snow under them: on bare ground their runners only scrape.
+  if (molenVehicle(types, id).spec.runners !== undefined)
+    w.spawnRaw({ weather: { snowCover: { level: -1000, transition: 0, depth: 0.4 } } }, 'weather');
   w.spawnRaw(types.components(id), 'cycle');
   w.spawnRaw({ transform: { pos: [1, 0, 0], rot: [0, 0, 0, 1] } }, 'rider');
   return w;
@@ -99,7 +102,12 @@ describe('rideable cycle content', () => {
     const w = setup(id);
     const spec = molenVehicle(types, id).spec;
     expect(spec.cycle).toBeDefined();
-    expect(types.components(id).ambientRole).toBeUndefined();
+    // Motor two-wheelers join traffic and parking only where a regional fleet weights them (a
+    // car role of weight 0); bicycles, kick scooters and boards never do.
+    const role = types.components(id).ambientRole as { role?: string; weight?: number } | undefined;
+    if (role !== undefined) expect(role).toMatchObject({ role: 'car', weight: 0 });
+    if (spec.cycle?.pedals !== undefined || (spec.cycle?.stance ?? 'seated') !== 'seated')
+      expect(role).toBeUndefined();
     expect(mountEntity(w, 'rider', 'cycle')).toBe(true);
     driveVehicle(w, 'rider', { throttle: 1, steering: 0, brake: false });
     w.stepN(180);
@@ -120,6 +128,31 @@ describe('rideable cycle content', () => {
     expect(unmountEntity(w, 'rider', flat)).toBe(true);
     expect(w.has('rider', Mounted)).toBe(false);
     expect(w.get('rider', Transform)?.pos[1]).toBeCloseTo(0.02);
+  });
+
+  it('pushes a skateboard off once per stride under power and finishes the push after it', () => {
+    const w = setup('molen.entities.cycle.skateboard');
+    const spec = molenVehicle(types, 'molen.entities.cycle.skateboard').spec;
+    expect(spec.cycle).toMatchObject({ stance: 'sideways', kick: { stride: 2.2 } });
+    mountEntity(w, 'rider', 'cycle');
+    driveVehicle(w, 'rider', { throttle: 1, steering: 0, brake: false });
+    w.stepN(60);
+    const pushing = w.get('cycle', VehicleState) as VehicleStateData;
+    expect(pushing.kick).toBeCloseTo(1, 8);
+    expect(pushing.pedalAngle).toBeGreaterThan(0);
+    driveVehicle(w, 'rider', { throttle: 0, steering: 0, brake: false });
+    w.stepN(90);
+    const coasting = w.get('cycle', VehicleState) as VehicleStateData;
+    expect(coasting.pedalAngle).toBe(0);
+    expect(coasting.kick).toBe(0);
+    expect(coasting.speed).toBeGreaterThan(0.5);
+    // Standing riders: a kick scooter stands up, an electric board rides sideways unpushed.
+    expect(molenVehicle(types, 'molen.entities.cycle.kick_scooter').spec.cycle?.stance).toBe(
+      'standing',
+    );
+    expect(
+      molenVehicle(types, 'molen.entities.cycle.electric_skateboard').spec.cycle?.kick,
+    ).toBeUndefined();
   });
 
   it('freewheels without moving the pedals and restores the exact riding state', () => {

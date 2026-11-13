@@ -32,8 +32,61 @@
       "shots/shared/west-roof-underside-third-tier-and-glazed-leading-edge.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Four existing256-square graphs: concrete_plain, metal_painted, fabric_canvas and window_grid. Concrete supplies services/cores/decks/columns/common floor; paint supplies blue-yellow-green tiers/pale roof framing/trim/neutral displays/marks/lights; shared canvas supplies canopy/terracotta track/turf grain; window-grid supplies opaque hospitality glazing/leading roof strip. Roof and wall canvas slots make five near draws. Zero embedded images or unique atlas; every nearby graph read once. Metric UVs/linear palette conversion/separate POSITION and NORMAL buffers/equal reported CPU and GPU geometry bytes pass. Shared surfaces approximate metal/roof/track/glazing without bespoke imagery or exact optical transmission.",
-    "captureReportHash": "sha256:ec54655a620d97da78b790c06c34eb06299c20ae548b9520f8c7513fe0a3e602"
+    "notes": "Four existing256-square graphs: concrete_plain, metal_painted, fabric_canvas and window_grid. Concrete supplies services/cores/decks/columns/common floor; paint supplies blue-yellow-green tiers/pale roof framing/trim/neutral displays/marks/lights; shared canvas supplies canopy/terracotta track/turf grain; window-grid supplies opaque hospitality glazing/leading roof strip. Roof and wall canvas slots make five near draws. Zero embedded images or unique atlas; every nearby graph read once. Metric UVs/linear palette conversion/separate POSITION and NORMAL buffers/equal reported CPU and GPU geometry bytes pass. Shared surfaces approximate metal/roof/track/glazing without bespoke imagery or exact optical transmission. The shared window_grid graph changed after the original review. Eight new shared-material views confirm the revised glazing in the existing geographic placement.",
+    "captureReportHash": "sha256:899b71d2cc63df87594beed0ce2c9c0b45b5b193d11289d1f1468edb0f565069",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:fb8916ad6e4caa2cd75f592adf02214bd3a26a1419d41b8f3a228ba839c8e5fe"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:9b176a21719c436721c07702bd662d73a186d180ba79372db2a0a060d4f2f31b"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:e5dd67aad48b030c989158f827c8bab9f80f1814a4a03ff3ca3817e9bc8a7e80"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:b720db1cba1f211fd83f4d0431b7e3cea0340fa8f151590de8eb7e17a92cb820"
+      },
+      {
+        "path": "shots/shared/west-cantilever-masts-rakers-and-hospitality.png",
+        "hash": "sha256:4e2fb7e34e38be5b41657eba6cf1fba63c614d973afe11ae12870265e2773156"
+      },
+      {
+        "path": "shots/shared/uncovered-blue-yellow-bowl-track-and-end-display.png",
+        "hash": "sha256:c2d6f343db4cfe65fa9ab0bc24a5c39b8f71bb7c4a1bbd19c49b7839a3af36b5"
+      },
+      {
+        "path": "shots/shared/west-roof-underside-third-tier-and-glazed-leading-edge.png",
+        "hash": "sha256:28f498e3e3c703a918fcc46af2b4cc81ab376bca3eaa834ec6e303e826065c72"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:a6c68d821130a2779c36265bf8fd0f46cf1c80b8b48df38b29b46724447cab8d"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.national_museum_of_decorative_arts_buenos_aires",
+  "kind": "static-structure",
+  "title": "Palacio Errázuriz Alvear, Buenos Aires",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.national_museum_of_decorative_arts_buenos_aires",
+        "output": "assets/places/69/69y/national_museum_of_decorative_arts_buenos_aires/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e64d303fd77499d74b773ea378c96f1de5d050278022e232cd7fdbfeefae64f9"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-palace",
+        "path": "models/generate-palace.mjs"
+      },
+      {
+        "id": "palace-model",
+        "path": "models/palace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "reference-rights/commons-pd-originals.json",
+      "construction-preparation.json",
+      "native-map/exterior-controls.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-11068-19742.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

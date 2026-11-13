@@ -8,6 +8,11 @@
 type MolenAircraftData = {
   kind: string;
   spec: {
+    actuators?: Record<string, {
+        seconds: number;
+        initial?: number;
+        mode?: 'position' | 'cycle' | 'latch';
+      }>;
     label: string;
     genericLabel?: string;
     model: 'airplane' | 'helicopter';
@@ -43,6 +48,8 @@ type MolenAircraftData = {
       minPropellerSpeed?: number;
       propellerRotation?: 'clockwise' | 'counterclockwise';
       propellerInertia?: number;
+      fuelConsumption?: number;
+      afterburnerFuelConsumption?: number;
     };
     engines?: {
       mixtureControl?: boolean;
@@ -70,6 +77,8 @@ type MolenAircraftData = {
       minPropellerSpeed?: number;
       propellerRotation?: 'clockwise' | 'counterclockwise';
       propellerInertia?: number;
+      fuelConsumption?: number;
+      afterburnerFuelConsumption?: number;
       id: string;
     }[];
     airplane?: {
@@ -126,6 +135,7 @@ type MolenAircraftData = {
       profileDrag: number;
       inducedDrag: number;
       gearDrag: number;
+      speedBrakeDrag?: number;
       flapDrag: number;
       fixedGear?: boolean;
       gearTransitTime?: number;
@@ -138,8 +148,13 @@ type MolenAircraftData = {
       brakeDeceleration: number;
       rollingDeceleration: number;
       groundTrackRate: number;
+      tailwheel?: boolean;
+      gearRebound?: number;
+      pilotGTolerance?: number;
     };
     helicopter?: {
+      fixedGear?: boolean;
+      gearTransitTime?: number;
       rotorPosition: [number, number, number];
       rotorRadius: number;
       powerLimitedRotor?: boolean;
@@ -148,6 +163,7 @@ type MolenAircraftData = {
       vortexRing?: boolean;
       retreatingBladeSpeed?: number;
       rotorDiscs?: number;
+      rotorInertiaTime?: number;
       cyclicTilt: number;
       cyclicResponse: number;
       cyclicDamping: number;
@@ -171,6 +187,9 @@ type MolenAircraftData = {
       yawAuthority: number;
       damping: number;
     };
+    fuel?: {
+      capacity: number;
+    };
     hardLandingSpeed: number;
     hardLandingRoll: number;
     hardLandingPitch: number;
@@ -178,9 +197,22 @@ type MolenAircraftData = {
     collisionProbes: [number, number, number][];
     collisionParts?: {
       id: string;
-      role: 'body' | 'leftWing' | 'rightWing' | 'tail' | 'rotor' | 'gear' | 'engine';
+      role: 'body' | 'leftWing' | 'rightWing' | 'tail' | 'rotor' | 'tailRotor' | 'gear' | 'engine';
       probes: [number, number, number][];
       radius: number;
+      disc?: {
+        center: [number, number, number];
+        normal: [number, number, number];
+        radius: number;
+        halfThickness: number;
+        rotor: string;
+        tilt?: {
+          pivot: [number, number, number];
+          axis: [number, number, number];
+          angle: number;
+        };
+      };
+      parent?: string;
       center: [number, number, number];
       massFraction: number;
       breakSpeed?: number;
@@ -277,6 +309,7 @@ type MolenAircraftData = {
 };
 /** Pilot flight controls. Power is retained when input keys are released. */
 type MolenAircraftInputData = {
+  actuators?: Record<string, number | boolean>;
   mixture?: number;
   propeller?: number;
   power: number;
@@ -297,6 +330,7 @@ type MolenAircraftInputData = {
 };
 /** Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. */
 type MolenAircraftStateData = {
+  actuators?: Record<string, number>;
   damage?: Record<string, {
       integrity: number;
       detached: boolean;
@@ -329,6 +363,10 @@ type MolenAircraftStateData = {
   thrustVectorPosition?: number;
   sideslip?: number;
   loadFactor?: number;
+  fuel?: number;
+  buffet?: number;
+  greyout?: number;
+  redout?: number;
   engines?: Record<string, {
       rpm: number;
       shaftPower?: number;
@@ -370,6 +408,7 @@ type MolenAmbientAgentData = {
   hidden?: boolean;
   consist?: string;
   carIndex?: number;
+  offset?: number;
   trail?: string[];
   served?: string;
   air?: {
@@ -399,6 +438,17 @@ type MolenAmbientRoleData = {
   max?: number;
   weight?: number;
   cars?: number;
+  track?: 'light' | 'heavy';
+  consist?: {
+    units?: [number, number];
+    length: [number, number];
+    block?: [number, number];
+    cars: {
+      type: string;
+      weight?: number;
+      colors?: string[];
+    }[];
+  };
   colors?: string[];
   visual?: {
     wheelNodes?: string[];
@@ -721,6 +771,11 @@ type MolenCollider3dData = {
   friction?: number;
   density?: number;
 };
+/** A rail car in a consist: rides the leader's track trail at a fixed distance behind it, sharing its speed. Powered cars add their traction to the leader's (multiple-unit control); every car adds its mass and brakes. */
+type MolenCoupledData = {
+  leader: string;
+  offset: number;
+};
 /** Singleton scene environment: optional Earth/custom sky, ambient/sun lighting, background, fog, tone mapping, shadow quality tier. */
 type MolenEnvironmentData = {
   sky?: {
@@ -863,10 +918,12 @@ type MolenFigureData = {
     snoutLength?: number;
   };
   features?: {
-    hair?: 'none' | 'cap' | 'bob' | 'long';
+    form?: 'neutral' | 'masculine' | 'feminine';
+    hair?: 'none' | 'buzz' | 'balding' | 'cap' | 'crop' | 'bob' | 'long' | 'ponytail' | 'bun' | 'afro';
+    facialHair?: 'none' | 'stubble' | 'mustache' | 'beard';
     hands?: 'mitten' | 'fingers';
     sleeves?: 'none' | 'short' | 'long';
-    legs?: 'shorts' | 'long';
+    legs?: 'shorts' | 'long' | 'skirt';
     tail?: 'none' | 'short' | 'long' | 'bushy';
     ears?: 'none' | 'round' | 'pointed' | 'floppy';
     horns?: 'none' | 'short' | 'long' | 'antlers';
@@ -936,6 +993,42 @@ type MolenFsmData = {
     event: string;
     to: string;
   }[];
+};
+/** Breakable glass surfaces with metric geometry, material fracture and independent frame/interlayer retention. */
+type MolenGlassData = {
+  surfaces: {
+    id: string;
+    material: 'laminated' | 'tempered' | 'annealed';
+    center: [number, number, number];
+    rotation: [number, number, number, number];
+    size: [number, number];
+    thickness: number;
+    density?: number;
+    strength?: number;
+    fractureEnergy?: number;
+    retentionForce?: number;
+    retentionEnergy?: number;
+    nodes?: string[];
+  }[];
+  crashPulseSeconds?: number;
+};
+/** Persistent glass fracture, retention and release state. Missing panes are intact; remove the component to repair. */
+type MolenGlassStateData = {
+  surfaces: Record<string, {
+      fracture: 'intact' | 'cracked' | 'shattered';
+      retained: boolean;
+      damage: number;
+      retentionDamage: number;
+      peakStress: number;
+      point: [number, number];
+      release?: {
+        time: number;
+        position: [number, number, number];
+        rotation: [number, number, number, number];
+        velocity: [number, number, number];
+        fragmentSpeed?: number;
+      };
+    }>;
 };
 /** Common gameplay hit-points component. */
 type MolenHealthData = {
@@ -1189,8 +1282,29 @@ type MolenVehicleData = {
   kind: string;
   color: string;
   spec: {
+    collisionParts?: {
+      id: string;
+      role: 'frontWheel' | 'rearWheel' | 'panel' | 'engine';
+      hinge?: {
+        pivot: [number, number, number];
+        axis: [number, number, number];
+        angle: number;
+        actuator: string;
+      };
+      center: [number, number, number];
+      probes: [number, number, number][];
+      radius: number;
+      massFraction: number;
+      breakSpeed: number;
+      nodes: string[];
+    }[];
+    actuators?: Record<string, {
+        seconds: number;
+        initial?: number;
+        mode?: 'position' | 'cycle' | 'latch';
+      }>;
     label: string;
-    bodyStyle?: 'city' | 'hatchback' | 'sedan' | 'fastback' | 'coupe' | 'roadster' | 'wagon' | 'crossover' | 'suv' | 'offroad' | 'pickup' | 'van' | 'cargo-van' | 'box-truck' | 'motorhome' | 'bus' | 'light-rail' | 'bicycle' | 'motorcycle' | 'scooter';
+    bodyStyle?: 'city' | 'hatchback' | 'sedan' | 'fastback' | 'coupe' | 'roadster' | 'wagon' | 'crossover' | 'suv' | 'offroad' | 'pickup' | 'van' | 'cargo-van' | 'box-truck' | 'motorhome' | 'bus' | 'light-rail' | 'locomotive' | 'freight-car' | 'passenger-car' | 'bicycle' | 'motorcycle' | 'scooter';
     genericLabel?: string;
     width: number;
     length: number;
@@ -1223,6 +1337,29 @@ type MolenVehicleData = {
     pitchStiffness?: number;
     suspensionFrequency?: number;
     suspensionDamping?: number;
+    powertrain?: {
+      power: number;
+      peakPowerRpm: number;
+      redline?: number;
+      idle?: number;
+      curve?: 'gasoline' | 'turbo' | 'diesel' | 'electric';
+      gears: number[];
+      continuous?: boolean;
+      reverse?: number;
+      efficiency?: number;
+      shiftTime?: number;
+      engineBraking?: number;
+      response?: number;
+      inertia?: number;
+    };
+    rearGrip?: number;
+    tireLoadSensitivity?: number;
+    rollBalance?: number;
+    aerodynamicLift?: number;
+    tractionControl?: boolean;
+    stabilityControl?: boolean;
+    limitedSlip?: number;
+    looseSurfaceGrip?: number;
     cycle?: {
       maxLean: number;
       riderLean: number;
@@ -1235,6 +1372,13 @@ type MolenVehicleData = {
         halfWidth: number;
         ratio: number;
       };
+    };
+    rail?: {
+      truckCenters: number;
+      couplerLength?: number;
+      power?: number;
+      gauge?: number;
+      profile?: 'box' | 'hopper' | 'tank' | 'gondola' | 'flat' | 'well' | 'autorack' | 'locomotive' | 'coach' | 'railcar';
     };
   };
   visual: {
@@ -1297,6 +1441,7 @@ type MolenVehicleData = {
 };
 /** Driver intent: signed throttle (negative brakes then reverses), signed steering (positive right), service brake and optional handbrake. */
 type MolenVehicleInputData = {
+  actuators?: Record<string, number | boolean>;
   throttle: number;
   steering: number;
   brake: boolean;
@@ -1304,6 +1449,19 @@ type MolenVehicleInputData = {
 };
 /** Snapshot-safe chassis state. Speeds in m/s, angles in radians; owned by installVehicles. */
 type MolenVehicleStateData = {
+  damage?: Record<string, {
+      integrity: number;
+      detached: boolean;
+    }>;
+  debris?: {
+    part: string;
+    pos: [number, number, number];
+    rot: [number, number, number, number];
+    velocity: [number, number, number];
+    angularVelocity: [number, number, number];
+    age: number;
+  }[];
+  actuators?: Record<string, number>;
   boosted?: boolean;
   speed: number;
   steer: number;
@@ -1322,6 +1480,18 @@ type MolenVehicleStateData = {
   bodyRoll?: number;
   bodyRollRate?: number;
   skid?: number;
+  gear?: number;
+  rpm?: number;
+  engineLoad?: number;
+  shift?: number;
+  assist?: number;
+  surfaceGrip?: number;
+  track?: {
+    trail: number[];
+    prefer: -1 | 0 | 1;
+    ended?: boolean;
+    ref?: string;
+  };
 };
 /** Opt-in per-tick body velocity mirror (presence = subscription; plugin-written). */
 type MolenVelocityData = {
@@ -1357,6 +1527,9 @@ type MolenWeatherData = {
     baseAltitude?: number;
     thickness?: number;
     scale?: number;
+    type?: 'cumulus' | 'stratocumulus' | 'stratus' | 'cumulonimbus';
+    cirrus?: number;
+    cirrusAltitude?: number;
   };
   precipitation?: {
     kind?: 'none' | 'rain' | 'snow';
@@ -1432,6 +1605,8 @@ interface MolenComponentData {
   'collider': MolenColliderData;
   /** 3D collider (ball/cuboid/capsule/hull/trimesh/asset/heightfield) with layer/mask, sensor, and material params. Static without a rigidbody. */
   'collider3d': MolenCollider3dData;
+  /** A rail car in a consist: rides the leader's track trail at a fixed distance behind it, sharing its speed. Powered cars add their traction to the leader's (multiple-unit control); every car adds its mass and brakes. */
+  'coupled': MolenCoupledData;
   /** Singleton scene environment: optional Earth/custom sky, ambient/sun lighting, background, fog, tone mapping, shadow quality tier. */
   'environment': MolenEnvironmentData;
   /** What a figure is: a preset plus descriptor overrides (height, build, proportions, features, palette) and how it faces its motion. Pair with renderable.kind "figure". */
@@ -1446,6 +1621,10 @@ interface MolenComponentData {
   'force': MolenForceData;
   /** Minimal event-driven state machine: transitions fire on world events targeting the entity. */
   'fsm': MolenFsmData;
+  /** Breakable glass surfaces with metric geometry, material fracture and independent frame/interlayer retention. */
+  'glass': MolenGlassData;
+  /** Persistent glass fracture, retention and release state. Missing panes are intact; remove the component to repair. */
+  'glassState': MolenGlassStateData;
   /** Common gameplay hit-points component. */
   'health': MolenHealthData;
   /** One-shot impulse/torque; consumed the tick it is applied. */

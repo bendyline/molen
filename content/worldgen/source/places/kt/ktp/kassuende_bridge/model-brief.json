@@ -1,0 +1,351 @@
+{
+  "id": "kassuende_bridge",
+  "title": "Kassuende Bridge",
+  "wikidataId": "Q12270259",
+  "referenceCoordinate": {
+    "longitude": 33.61590430140495,
+    "latitude": -16.193169121861857
+  },
+  "module": "content/worldgen/source/places/kt/ktp/kassuende_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-kassuende-bridge.mjs",
+  "builder": "buildKassuendeLevel",
+  "surfaces": {
+    "girder": {
+      "slot": "wall",
+      "graph": "concrete_boardformed",
+      "roughness": 0.92
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.96
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.84,
+      "metallic": 0.07
+    }
+  },
+  "exportLabel": "Molen original Kassuende Bridge master",
+  "expectedDraftMasterHash": "sha256:dd163dbbdc3bc19d20c7048f2a44b54e9cddc1579cc08ecb60def9cb00761f95",
+  "visualBrief": "Two low approach viaducts lead to the variable-depth concrete spans over the Zambezi. The shallow deck crest, red open parapets, wide shoulders, and slender lamps follow the photographed crossing. Twenty-five piers and two abutments support the deck, with open space between the piers.",
+  "heightPolicy": "The two skewed landings follow the sampled banks and mapped N7 continuations. Pier bases extend below the standard terrain and the native river and unrelated roads remain in place.",
+  "nativeAxes": "Positive X points east-northeast from the Tete approach viaducts toward the Moatize abutment. Positive Z points south-southeast across the deck.",
+  "limitations": [
+    "The authored pavement runs between the two exact mapped N7 endpoints, including short embankment transitions outside the 1,586 m concrete structure.",
+    "Pier stations, box-girder depths, railing spacing and vertical grades are exterior reconstructions informed by the published overall and main span dimensions, reference photographs, and standard viewer terrain.",
+    "The surrounding river and terrain use the host map and elevation data. Actual exposed pier height changes with the water level."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Ponte_Kassuende_Novembro_2014_cropped.jpg",
+      "observed": "Completed bridge, pier silhouettes, road surface and lamps."
+    },
+    {
+      "url": "https://pgse.co.uk/projects/kb/",
+      "observed": "Construction photograph showing the cantilever box girder, haunch and river pier form."
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Ponte_Kassuende_Novembro_2014_cropped.jpg",
+      "hash": "sha256:4b485dbf0af5c45824ad28774fcf827d7ae4a1af4b053b509c9aad5d1b633677",
+      "observed": "Shallow road crest, red railing, alternating lamps, and vertical piers."
+    },
+    {
+      "url": "https://pgse.co.uk/_astro/main.c47b5ff3_2vS1Bs.webp",
+      "hash": "sha256:e42773c7085abf220acd8ddcf790d163519435956fedb20f4075bd38840d384a",
+      "observed": "Box-girder cantilevers, pier form and cross section."
+    },
+    {
+      "url": "https://www.betar.pt/en/project/kassuende-bridge-in-tete-over-the-zambezi-river/",
+      "observed": "Primary design project. Two 434.8 m approach viaducts and a 716.8 m main section with variable-depth box girders. These segment dimensions inform the placement."
+    },
+    {
+      "url": "https://www.mota-engil.com/en/portfolio/base-kasuende-bridge/",
+      "observed": "Contractor records the 14.8 m deck width including sidewalks."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-zambezi-crossing",
+      "position": [
+        25,
+        845,
+        400
+      ],
+      "lookAt": [
+        0,
+        7,
+        -2
+      ],
+      "fov": 62
+    },
+    {
+      "name": "cantilever-spans-and-piers",
+      "position": [
+        426,
+        69,
+        236
+      ],
+      "lookAt": [
+        344,
+        12,
+        -5
+      ],
+      "fov": 60
+    },
+    {
+      "name": "red-parapets-and-lamps",
+      "position": [
+        78,
+        27,
+        5
+      ],
+      "lookAt": [
+        215,
+        23,
+        -6
+      ],
+      "fov": 58
+    },
+    {
+      "name": "approach-viaduct-rhythm",
+      "position": [
+        -635,
+        47,
+        160
+      ],
+      "lookAt": [
+        -439,
+        8,
+        -4
+      ],
+      "fov": 61
+    },
+    {
+      "name": "tete-road-join",
+      "position": [
+        -823,
+        31,
+        65
+      ],
+      "lookAt": [
+        -760,
+        11,
+        -0.5
+      ],
+      "fov": 58
+    },
+    {
+      "name": "moatize-road-join",
+      "position": [
+        827,
+        36,
+        -82
+      ],
+      "lookAt": [
+        757,
+        9,
+        0
+      ],
+      "fov": 60
+    },
+    {
+      "name": "under-deck-and-haunches",
+      "position": [
+        530,
+        7,
+        -58
+      ],
+      "lookAt": [
+        389,
+        16,
+        -5
+      ],
+      "fov": 66
+    }
+  ],
+  "materialMethod": "Shared board-formed concrete, plain concrete and painted metal supply the model surfaces. Geometry supplies the haunches, footing caps, red rail profiles and expansion joints.",
+  "sourceFacts": {
+    "mappedBridgeWay": 302040503,
+    "mappedPathLength": 1617.5077974005378,
+    "concreteLengthMeters": 1586.4,
+    "mainSectionMeters": 716.8,
+    "approachViaductMeters": [
+      434.8,
+      434.8
+    ],
+    "widthMeters": 14.8,
+    "modeledPiers": 25,
+    "abutments": 2
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        7,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/kt/ktp/kassuende_bridge/models/bridge-model.mjs",
+    "export": "buildKassuendeSkyline",
+    "surfaces": {
+      "girder": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.92
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.07
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKassuendeDistrict",
+        "surfaces": {
+          "girder": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.92
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.07
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildKassuendeStreet",
+        "surfaces": {
+          "girder": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.92
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.07
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildKassuendeCloseup",
+        "surfaces": {
+          "girder": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.92
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.07
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "kassuende_bridge-skyline",
+      "position": [
+        25,
+        845,
+        400
+      ],
+      "lookAt": [
+        0,
+        7,
+        -2
+      ],
+      "fov": 62,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "kassuende_bridge-district",
+      "position": [
+        25,
+        845,
+        400
+      ],
+      "lookAt": [
+        0,
+        7,
+        -2
+      ],
+      "fov": 62,
+      "reviewLod": "district"
+    },
+    {
+      "name": "kassuende_bridge-street",
+      "position": [
+        25,
+        845,
+        400
+      ],
+      "lookAt": [
+        0,
+        7,
+        -2
+      ],
+      "fov": 62,
+      "reviewLod": "street"
+    },
+    {
+      "name": "kassuende_bridge-closeup",
+      "position": [
+        25,
+        845,
+        400
+      ],
+      "lookAt": [
+        0,
+        7,
+        -2
+      ],
+      "fov": 62,
+      "reviewLod": "closeup"
+    }
+  ]
+}

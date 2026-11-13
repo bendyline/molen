@@ -150,9 +150,10 @@ export const beech18Frame = () => ({
   radius: 0.71,
   cy: 1.95,
   ry: 0.78,
-  cabinZ: pose([0.34, 2.75, 3.1])[2],
+  cabinZ: pose([0.34, 2.655, 2.88])[2],
   cabinWidth: 1.31,
-  eye: pose([0.34, 2.75, 3.1]),
+  // Seated under the flat roof, aft of the windscreen header; the level sightline clears the nose.
+  eye: pose([0.34, 2.655, 2.88]),
   panelZ: pose([0, 2, 3.55])[2],
   floor: 1.19,
 });

@@ -30,6 +30,27 @@
       "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
       "revision": 1202083600,
       "scope": "Exterior photograph for shape and detail comparison; gear configuration may differ."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bell_206B-3_JetRanger_Cockpit_FromR_TAM_3Feb2010_(14626988371).jpg",
+      "author": "Valder137",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "scope": "B-3 cockpit from the right door: T-shaped console on a narrow stem, floor and chin windows open on both sides."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Jet_Ranger_controls.jpg",
+      "author": "Jerry Gunner",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "scope": "AB206 panel: ratio of panel width to a 3.125 in dial, hood depth, stem sloping aft to the floor console."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:TAM_07_-_Cabina_(14361471064).jpg",
+      "author": "David Ceballos",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "scope": "Second console view through glass, relating panel, door post and seats."
     }
   ],
   "cabinCamera": {
@@ -49,11 +70,11 @@
   "panelCamera": {
     "mode": "top-down-ortho",
     "center": [
-      0.075,
-      -1.17
+      0,
+      -1.1
     ],
-    "viewHeight": 1.05,
-    "cameraHeight": 8.5
+    "viewHeight": 0.55,
+    "cameraHeight": 8.45
   },
   "overlays": [
     {
@@ -143,13 +164,13 @@
         0
       ],
       "modelAnchor": [
-        -0.5,
-        -1.43
+        -0.2875,
+        -1.235
       ],
       "scaleControls": {
         "pixels": 1400,
-        "meters": 1.15,
-        "description": "Cabin-fit panel width assumption. Relative layout, not an independent dimension."
+        "meters": 0.575,
+        "description": "Panel width from instrument size: 85 mm over the bezel on the large dials, the case of a 3.125 in instrument."
       },
       "edgeMode": "photo",
       "scope": "Perspective rectified planar face; assumed aspect checked against round gauges. Does not validate coaming or depth. Controls and labels remain schematic."
@@ -186,13 +207,15 @@
     "method": "Projective transform of extrapolated coplanar panel corners; output aspect chosen to approximately preserve circular gauges. Relative comparison only."
   },
   "status": "reviewed-with-limitations",
-  "sourceHash": "sha256:883de98654c2a4606d86a8e52ab39fb517c17be0c7ba187fe9752fc813da1aa5",
-  "runtimeHash": "sha256:6683fccaf3329fadb59c845e2c8290f30da484352ccb0b59a78a30229ba212b9",
+  "sourceHash": "sha256:b79f8020433eaedf2512d2cb94bbc81f59054a65e42325ddf2fc5e0bd7df6a35",
+  "runtimeHash": "sha256:8d1ff03d06d4c6cf697f226d799d6238245066f4fbe198e56f03b42e8c89743c",
   "limitations": [
     "Low-skid B-3 dimensions take precedence over the family 206A schematic; front and side drawing hub heights are not fully consistent.",
-    "The PT-HUR panel photograph was projectively rectified using inferred planar corners and round gauges. Absolute face size and cabin depth remain reconstruction assumptions.",
+    "The PT-HUR panel photograph was projectively rectified using inferred planar corners and round gauges. Panel size now comes from instrument size, but panel height above the floor and cabin depth are judged from photographs at unsolved cameras, not measured.",
     "Avionics faceplates, annunciators, needles and legends are simplified. This is an assisted simulation, not a systems trainer.",
-    "Seats, belt routing, mechanical fittings and cowling sections approximate the cited configuration; no claim of manufacturing-level accuracy."
+    "Seats, belt routing, mechanical fittings and cowling sections approximate the cited configuration; no claim of manufacturing-level accuracy.",
+    "The photographed PT-HUR panel keeps its rounded outline; the B-3 in the Valder137 photograph has a narrower T-shaped lower face that is not modeled.",
+    "The side wall stays flat, so the door tumblehome visible in the front view is not modeled; fuselage aft of the rear door was not re-measured."
   ],
   "controlReview": {
     "checked": "2026-10-22",
@@ -211,6 +234,58 @@
       "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
       "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
       "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  },
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "Rays from the pilotEye through source.glb, seat view at the runtime camera (+Z, 60 degrees vertical), overlays of true-scale orthographic renders on the Bell B-3 sheet, and a look from the exterior photograph angle.",
+    "findings": [
+      "The panel was drawn at twice life size: 170 mm dials and a 1.15 m by 0.80 m face. A 3.125 in instrument is 79 mm across, and a real JetRanger console is 0.6 to 0.7 m wide on a narrow stem. Its dark back filled the windscreen from outside.",
+      "The fuselage was oversized, which fed the impression. The sheet front view gives 1.31 m wide and 1.35 m deep; the model was 1.40 m by 1.42 m.",
+      "The windscreen stopped at the top of the nose. On the aircraft it wraps down to the door post, and the side glass was modeled as opaque skin, with the nose a sharp wedge.",
+      "The front door window ran 0.30 m too far forward and the door seam 0.25 m too far forward."
+    ],
+    "before": {
+      "eye": [
+        -0.34,
+        1.62,
+        1.04
+      ],
+      "eyeToPanelMeters": 0.61,
+      "headroomMeters": 0.12,
+      "eyeAboveCushionMeters": 0.9,
+      "largeDialDiameterMm": 170,
+      "panelMeters": [
+        1.15,
+        0.8
+      ],
+      "cabinWidthMeters": 1.4
+    },
+    "after": {
+      "eye": [
+        -0.34,
+        1.5,
+        0.98
+      ],
+      "eyeToPanelMeters": 0.75,
+      "headroomMeters": 0.2,
+      "eyeAboveCushionMeters": 0.78,
+      "sideWallMeters": 0.32,
+      "largeDialDiameterMm": 85,
+      "panelMeters": [
+        0.575,
+        0.4
+      ],
+      "panelTopHeightMeters": 1.3,
+      "panelTopBelowEyeDegrees": 15,
+      "cabinWidthMeters": 1.32,
+      "cockpitVerticesOutsideShell": 0
+    },
+    "corrections": [
+      "Panel group scaled 0.5 and centered on the aircraft; layout and bindings unchanged.",
+      "Eye lowered 0.12 m and moved 0.06 m aft to sit over the seat; pedals raised onto the forward floor; floors narrowed inside the belly.",
+      "Cabin narrowed to 1.32 m, roof and belly set from the sheet; door, window, hinge, hatch and fairing landmarks follow.",
+      "Forward fuselage rebuilt as smooth curved panels: wrap-around windscreen, blunt nose ending at 2.83 m, pitot reaching the sheet nose station of 2.96 m, chin windows."
     ]
   }
 }

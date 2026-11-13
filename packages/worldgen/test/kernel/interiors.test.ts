@@ -31,6 +31,16 @@ export function site(
   return value;
 }
 
+const ON_AXIS: ReadonlySet<string> = new Set([
+  'screen',
+  'altar',
+  'court-lines',
+  'hoop',
+  'bleacher',
+  'fire-engine',
+  'wardrobe',
+]);
+
 describe('deterministic inferred interiors', () => {
   it('validates data-driven profiles and rejects ambiguous catalogs', () => {
     expect(validateInteriorCatalog(INTERIORS)).toEqual(INTERIORS);
@@ -52,11 +62,14 @@ describe('deterministic inferred interiors', () => {
       b = generateInteriorPlan(s, { catalog: INTERIORS });
     expect(a).toEqual(b);
     expect(a.profile).toBe(profile.id);
-    expect(a.fixtures.length).toBeGreaterThan(0);
-    expect(a.fixtures.length).toBeLessThanOrEqual(160);
+    // A mall needs more than this footprint; building-stereotypes.test.ts covers it at size.
+    if (profile.algorithm !== 'atrium') expect(a.fixtures.length).toBeGreaterThan(0);
+    expect(a.fixtures.length).toBeLessThanOrEqual(profile.algorithm === 'tower' ? 512 : 160);
     expect(a.stats.candidates).toBeLessThanOrEqual(1024);
     for (const fixture of a.fixtures) {
       expect(interiorRectFits(s, fixture.bounds)).toBe(true);
+      // What a hall faces stands on its axis, at the far end of the way in.
+      if (ON_AXIS.has(fixture.kind)) continue;
       const [x0, , x1] = fixture.bounds;
       expect(x0 >= profile.aisleWidth / 2 - 1e-9 || x1 <= -profile.aisleWidth / 2 + 1e-9).toBe(
         true,

@@ -1,4 +1,6 @@
 import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { createTypeLibrary } from '@bendyline/molen-kernel/content';
 import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import { Heightfield } from '../src/heightfield';
@@ -15,6 +17,7 @@ import {
   assertTerrainSemanticTile,
   createEmptyTerrainSemanticTile,
   type TerrainSemanticPolygon,
+  type TerrainSemanticTile,
   type TerrainTransportationFeature,
 } from '../src/semantic-types';
 import {
@@ -107,11 +110,31 @@ function fixture() {
   return tile;
 }
 
+/** Mark the whole tile as residential land: without footprints, that reads as built up. */
+function builtUp(tile: TerrainSemanticTile): TerrainSemanticTile {
+  tile.landcover.push({
+    class: 'residential',
+    polygons: [
+      {
+        outer: [
+          [-0.1, -0.1],
+          [1.1, -0.1],
+          [1.1, 1.1],
+          [-0.1, 1.1],
+        ],
+      },
+    ],
+  });
+  return tile;
+}
+
 function stats(object: THREE.Object3D): TerrainSurfaceStats {
   return object.userData.surfaceStats as TerrainSurfaceStats;
 }
+/** A mesh's triangles as a flat list of corners, whether or not they share vertices. */
 function positions(object: THREE.Object3D, name: string) {
-  return (object.getObjectByName(name) as THREE.Mesh).geometry.getAttribute('position');
+  const geometry = (object.getObjectByName(name) as THREE.Mesh).geometry;
+  return (geometry.index ? geometry.toNonIndexed() : geometry).getAttribute('position');
 }
 
 /** Pairs of a mesh's triangles that overlap in plan at one height: one plane, so they z-fight. */
@@ -342,7 +365,7 @@ describe('surface styles', () => {
     expect(inferTerrainParkingAreas(tile, cluster, 200).length).toBeGreaterThan(0);
   });
   it('builds fully paved parking with holes, clipped markings, corner/block lights and bounded parked cars', () => {
-    const tile = fixture();
+    const tile = builtUp(fixture());
     const ctx = context();
     const object = createTerrainSurfaceObject(tile, ctx, {
       details: { maxFixturesPerTile: 30, parkedVehicles: PARKED_VEHICLES },
@@ -443,7 +466,7 @@ describe('surface styles', () => {
     });
     const cars = object.userData.vehicles as unknown[];
     const digest = createHash('sha256').update(JSON.stringify(cars)).digest('hex').slice(0, 16);
-    expect({ count: cars.length, digest }).toEqual({ count: 26, digest: 'd56f3890d769b766' });
+    expect({ count: cars.length, digest }).toEqual({ count: 26, digest: '9523b91f7cbadbad' });
   });
 
   it('draws parked cars from an injected vehicle list', () => {
@@ -456,7 +479,7 @@ describe('surface styles', () => {
     };
     const same = place(fromLibrary).cars;
     const digest = createHash('sha256').update(JSON.stringify(same)).digest('hex').slice(0, 16);
-    expect(digest).toBe('d56f3890d769b766');
+    expect(digest).toBe('9523b91f7cbadbad');
     const van = fromLibrary.find((vehicle) => vehicle.id === 'molen.entities.vehicle.van');
     expect(van).toBeDefined();
     const vans = place([van as TerrainParkedVehicle]).cars;
@@ -464,6 +487,55 @@ describe('surface styles', () => {
     const none = place([]);
     expect(none.cars).toEqual([]);
     expect(none.stats.parkedCars).toBe(0);
+  });
+
+  it('parks two-wheelers two or three to a bay, upright, and auto-rickshaws one to a bay', () => {
+    const cycles = createTypeLibrary([
+      JSON.parse(
+        readFileSync(
+          new URL('../../../content/entities/types/cycle.types.json', import.meta.url),
+          'utf8',
+        ),
+      ),
+      JSON.parse(
+        readFileSync(
+          new URL('../../../content/entities/types/vehicle.types.json', import.meta.url),
+          'utf8',
+        ),
+      ),
+    ]);
+    const kind = (id: string): TerrainParkedVehicle => ({
+      id,
+      spec: cycles.component<import('@bendyline/molen-schema').VehicleData>(id, 'vehicle').spec,
+    });
+    const place = (vehicles: TerrainParkedVehicle[]) =>
+      createTerrainSurfaceObject(fixture(), context(), {
+        details: { maxFixturesPerTile: 600, parkedVehicles: vehicles, roadSigns: false },
+      }).userData.vehicles as import('@bendyline/molen-schema').VehiclePlacement[];
+    const sedans = place([kind('molen.entities.vehicle.sedan')]);
+    const bikes = place([
+      kind('molen.entities.cycle.underbone_moped'),
+      kind('molen.entities.cycle.motor_scooter'),
+    ]);
+    // The same occupied bays, each holding a row of two or three.
+    expect(bikes.length).toBeGreaterThanOrEqual(sedans.length * 2);
+    expect(bikes.length).toBeLessThanOrEqual(sedans.length * 3);
+    expect(new Set(bikes.map((bike) => bike.kind)).size).toBe(2);
+    expect(new Set(bikes.map((bike) => bike.id)).size).toBe(bikes.length);
+    for (const bike of bikes) {
+      expect(bike.roll).toBe(0);
+      // Within its bay: every bike has a sedan's bay centre within half a bay's diagonal.
+      expect(
+        Math.min(
+          ...sedans.map((car) =>
+            Math.hypot(car.position[0] - bike.position[0], car.position[2] - bike.position[2]),
+          ),
+        ),
+      ).toBeLessThan(1.5);
+    }
+    const autos = place([kind('molen.entities.vehicle.auto_rickshaw')]);
+    const plan = (cars: typeof sedans) => cars.map((car) => [car.position[0], car.position[2]]);
+    expect(plan(autos)).toEqual(plan(sedans));
   });
 
   it('keeps lane dividers out of intersections and does not detect bridges or grade-separated crossings', () => {
@@ -485,7 +557,7 @@ describe('surface styles', () => {
   });
 
   it('treats a T-junction as three arms, and a bend as no junction', () => {
-    const tile = fixture();
+    const tile = builtUp(fixture());
     (tile.transportation[1] as TerrainTransportationFeature).lines = [
       [
         [0.3, 0.3],

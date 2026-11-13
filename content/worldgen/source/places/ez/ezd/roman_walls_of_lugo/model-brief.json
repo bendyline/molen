@@ -1,0 +1,337 @@
+{
+  "id": "roman_walls_of_lugo",
+  "title": "Roman Walls of Lugo",
+  "wikidataId": "Q2733427",
+  "referenceCoordinate": {
+    "longitude": -7.557730747,
+    "latitude": 43.01141296
+  },
+  "module": "content/worldgen/source/places/ez/ezd/roman_walls_of_lugo/models/wall-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-roman-walls-of-lugo.mjs",
+  "builder": "buildWallLevel",
+  "surfaces": {
+    "rubble": {
+      "slot": "wall",
+      "graph": "stone_drywall"
+    },
+    "ashlar": {
+      "slot": "trim",
+      "graph": "stone_ashlar"
+    },
+    "walk": {
+      "slot": "foundation",
+      "graph": "stone_granite"
+    }
+  },
+  "exportLabel": "Molen original Roman Walls of Lugo master",
+  "expectedDraftMasterHash": "sha256:007440b5dd9da121cb5bad87001790102978e2e86bb0d1f87e0b9a7802036327",
+  "visualBrief": "The complete mapped Roman wall circuit around Lugo, rounded towers, ten open gateways, sloping rampart walk, stone parapets and the Santiago gate shrine.",
+  "heightPolicy": "Standard Terrarium sets a 455 m datum and individual wall foot, gate and rampart grades. Original terrain and road surfaces stay active through all openings.",
+  "nativeAxes": "The native +X follows the mapped long axis of the complete ring. The ordered gate coordinates and both wall faces control the signed WGS84 transform.",
+  "limitations": [
+    "Deck grades and arch dimensions are reconstructed from the mapped circuit, available terrain and exterior views. The station stair is fitted on the town side of its mapped path.",
+    "The two wall outlines and mapped passages establish placement. Individual masonry repairs and other stair flights are outside the model scope."
+  ],
+  "materialMethod": "Three shared graphs provide elongated slate rubble, dressed granite arch trim and rampart paving. Per-face metric UVs compress the rubble in the vertical direction. No image is embedded.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Muralla_romana_de_Lugo%2C_torres_redondas_de_la_muralla.jpg",
+      "hash": "sha256:bc7af5c1d9d7597c0f6da914e676855e978e8009c0442617d8c28292212da047",
+      "observed": "Exterior circular towers, lower wall and slate coursing."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Muralla_romana_de_Lugo%2C_Puerta_que_lleva_a_la_Catedral.jpg",
+      "hash": "sha256:506f12598aeb35dbb97a53dfde3309ca76c6476d663c688cefca7472ef71044c",
+      "observed": "The walkable arch passage at the cathedral gate."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Mosqueira_muralla_Lugo.JPG",
+      "hash": "sha256:a22415e3d524540e56d9702e7be6feb26d028e42411cc293231b5d7edeb74f43",
+      "observed": "Two surviving arched upper openings and the weathered profile of the tower remnant."
+    },
+    {
+      "url": "https://mapagalicia.es/lugar/a-mosqueira",
+      "observed": "Mapped location of the two surviving upper arches, snapped to the exterior wall trace."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "complete-walled-city",
+      "position": [
+        588,
+        814,
+        611
+      ],
+      "lookAt": [
+        0,
+        1,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "station-stair-and-wall-walk",
+      "position": [
+        20.531965705587595,
+        13.34067,
+        -261.2909735054285
+      ],
+      "lookAt": [
+        30.33044809178793,
+        11.34067,
+        -270.9206697351137
+      ],
+      "fov": 55
+    },
+    {
+      "name": "santiago-cathedral-gate",
+      "position": [
+        137.66092,
+        0.07106999999999974,
+        272.85389000000004
+      ],
+      "lookAt": [
+        132.68542,
+        0.8710699999999996,
+        281.52829
+      ],
+      "fov": 65
+    },
+    {
+      "name": "porta-falsa-passage",
+      "position": [
+        -226.27657,
+        13.40782,
+        -258.89737
+      ],
+      "lookAt": [
+        -223.18853,
+        11.80782,
+        -242.09071
+      ],
+      "fov": 53
+    },
+    {
+      "name": "san-pedro-gate",
+      "position": [
+        360.85332000000005,
+        14.24054,
+        -192.88551999999999
+      ],
+      "lookAt": [
+        339.14118,
+        11.64054,
+        -190.52275
+      ],
+      "fov": 53
+    },
+    {
+      "name": "porta-mina",
+      "position": [
+        -50.42588000000001,
+        -7.15437,
+        292.68122999999997
+      ],
+      "lookAt": [
+        -45.79759,
+        -9.35437,
+        273.30134
+      ],
+      "fov": 53
+    },
+    {
+      "name": "mosqueira-two-arches",
+      "position": [
+        365.41013,
+        25.91924,
+        -87.51884
+      ],
+      "lookAt": [
+        346.83901,
+        21.41924,
+        -101.08769
+      ],
+      "fov": 49
+    },
+    {
+      "name": "rampart-walk-and-parapets",
+      "position": [
+        -120,
+        27,
+        280
+      ],
+      "lookAt": [
+        -225,
+        5,
+        275
+      ],
+      "fov": 57
+    }
+  ],
+  "sourceFacts": {
+    "mappedParts": [
+      52776559358468,
+      35185438028099
+    ],
+    "mappedWalk": 35184399156520,
+    "mappedGateCount": 10,
+    "insideBoundaryMeters": 2208.22124,
+    "outsideBoundaryMeters": 2675.55188,
+    "stationSteps": [
+      35184681427550
+    ],
+    "mosqueira": [
+      -7.55393,
+      43.00976
+    ]
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        8,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ez/ezd/roman_walls_of_lugo/models/wall-model.mjs",
+    "export": "buildWallSkyline",
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_drywall"
+      },
+      "ashlar": {
+        "slot": "trim",
+        "graph": "stone_ashlar"
+      },
+      "walk": {
+        "slot": "foundation",
+        "graph": "stone_granite"
+      }
+    },
+    "errorMeters": 4.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildWallDistrict",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall"
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_ashlar"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          }
+        },
+        "errorMeters": 1.92
+      },
+      "street": {
+        "export": "buildWallStreet",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall"
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_ashlar"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          }
+        },
+        "errorMeters": 0.32
+      },
+      "closeup": {
+        "export": "buildWallCloseup",
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall"
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_ashlar"
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          }
+        },
+        "errorMeters": 0.16
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "roman_walls_of_lugo-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        588,
+        814,
+        611
+      ],
+      "lookAt": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "roman_walls_of_lugo-district",
+      "reviewLod": "district",
+      "position": [
+        588,
+        814,
+        611
+      ],
+      "lookAt": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "roman_walls_of_lugo-street",
+      "reviewLod": "street",
+      "position": [
+        588,
+        814,
+        611
+      ],
+      "lookAt": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "roman_walls_of_lugo-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        588,
+        814,
+        611
+      ],
+      "lookAt": [
+        0,
+        1,
+        0
+      ]
+    }
+  ]
+}

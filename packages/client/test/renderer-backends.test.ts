@@ -778,6 +778,7 @@ describe('renderer backend selection', () => {
     // Never on yet: 'off' leaves the renderer's shadow map off.
     renderer.setShadowQuality('off');
     expect(renderer.three.shadowMap.enabled).toBe(false);
+    expect(renderer.shadowTexelSize).toBeUndefined();
     renderer.setShadowQuality('medium');
     expect(light.castShadow).toBe(true);
     expect(light.shadow.mapSize.x).toBe(2048);
@@ -788,6 +789,7 @@ describe('renderer backend selection', () => {
     // Rebased: the focus 100 m east of the origin is 100 m east of the scene origin.
     expect(light.target.position.x).toBeCloseTo(100, 0);
     expect(light.shadow.camera.right).toBe(320);
+    expect(renderer.shadowTexelSize).toBe(640 / 2048);
     light.shadow.updateMatrices(light);
     const projected = new THREE.Vector3(101, 0, 0).applyMatrix4(light.shadow.matrix);
     // A different local origin must not change where an absolute point lands in the shadow map.
@@ -799,6 +801,21 @@ describe('renderer backend selection', () => {
     );
     expect(rebased.distanceTo(projected)).toBeLessThan(1e-9);
     expect(() => renderer.setShadowFocus({ center: [0, 0, 0], radius: 0 })).toThrow(RangeError);
+    expect(() =>
+      renderer.setShadowFocus({
+        center: [0, 0, 0],
+        radius: 300,
+        far: { center: [0, 0, 0], radius: Number.NaN },
+      }),
+    ).toThrow(RangeError);
+    // A far square without static casters named, or without a shadow pass to draw it: no map.
+    renderer.setShadowFocus({
+      center: [10_100, 0, 0],
+      radius: 300,
+      far: { center: [10_000, 0, 0], radius: 2_000 },
+    });
+    renderer.render();
+    expect(renderer.farShadowInfo).toBeUndefined();
     // Off again parks the map instead: every lit program keeps the shadow inputs it was built
     // with, so a quality tier change does not rebuild them all in the next frame.
     renderer.setShadowQuality('off');
@@ -806,6 +823,7 @@ describe('renderer backend selection', () => {
     expect(light.shadow.autoUpdate).toBe(false);
     expect(light.shadow.intensity).toBe(0);
     expect(renderer.three.shadowMap.enabled).toBe(true);
+    expect(renderer.shadowTexelSize).toBeUndefined();
     renderer.setShadowQuality('high');
     expect(light.shadow.autoUpdate).toBe(true);
     expect(light.shadow.intensity).toBe(1);

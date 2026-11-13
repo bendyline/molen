@@ -36,6 +36,20 @@
       "author": "C.W.Boppe/B.S.Rosen,Grumman forNASA",
       "license": "Public NASA contractor report; local study",
       "scope": "Independent swept-wing/body photographic-form check; not D cockpit reference."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:164341_Grumman_F-14D_Tomcat_U.S._Navy_(8801197822).jpg",
+      "title": "F-14D 164341 stored at Davis-Monthan",
+      "author": "Aeroprints.com",
+      "license": "CC BY-SA 3.0; local study only, no pixels distributed",
+      "scope": "Solved telephoto photograph, 41 degrees off the beam. Independent check of canopy, nose and body volume."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:A_right_side_view_of_a_US_Navy_F-14D_Tomcat_from_Fighter_Squadron_11_(VF-11),_Naval_Air_Station_Miramar,_Calif.,_taxis_down_the_runway_after_landing_at_Roswell_Industrial_Air_Center_-_DPLA_-_1815b80455fdb0135779081e0b932db4.jpeg",
+      "title": "F-14D VF-11 taxiing at Roswell",
+      "author": "US Department of Defense",
+      "license": "Public domain, US federal government work",
+      "scope": "Viewed only: 56 degrees off the beam, too oblique to solve for the side outline. Chin pods and gear reading."
     }
   ],
   "cabinCamera": {
@@ -303,8 +317,8 @@
       }
     }
   },
-  "sourceHash": "sha256:92f18812f0640d893c297a63a73f8cef15842ffcb810db17e44cef0ea472ba71",
-  "runtimeHash": "sha256:595398426c8209f79d2ea26a6daa02cabab8d5225b7e4939c20348da729fb601",
+  "sourceHash": "sha256:9de89eebb2fc266b4406a249d42cec8806d204188494f82f7b935800f21ce162",
+  "runtimeHash": "sha256:7c0381a7eba22b2a16308a75dfd5cc0276fd91b350365727c274f4d7d7bcc989",
   "limitations": [
     "Polygonal F-14D interpretation combining July1985 preservice SAC exterior dimensions with later D photographs and PTID-equipped RIO foldout. Small planform and canopy contour discrepancies remain; uniform overlays disclose them.",
     "Panel positions follow the foldouts, but display symbology, dial scales, switch counts, side-console spacing, seat details, gear mechanisms and selected fastener/seam positions remain approximations. Not a complete rivet or systems reproduction.",
@@ -313,5 +327,105 @@
     "20–68degree sweep is an illustrative TAS-based visual schedule with smoothing, not the real Mach-based air-data computer; kernel aerodynamics do not change with span. No75degree parking oversweep or sweep/flap interlock.",
     "Simplified shared flight dynamics and gear retraction; flight smoke demonstrates controllability, not real F-14 performance. No external stores.",
     "Publicly hosted D flight manual carries reproduction restrictions: reference pixels are local study evidence only. Public-domain Navy photos are cited but not embedded as textures."
-  ]
+  ],
+  "proportionReview": {
+    "date": "2026-11-06",
+    "outcome": "Exterior reworked from measured tables; side, plan and front overlays and one photo match inspected.",
+    "method": "Drawing resampled into model metres from two control points and overlaid on the rasterized GLB; dark-pixel runs per row and column turned outlines into numbers. Photographs solved as a pinhole camera with nose and canopy held out of the fit, then the imported model rendered through that camera and blended with the photograph.",
+    "calibration": {
+      "side": "SAC PDF2 leveled to its own ground line, 2.1 degrees; 54.1 px/m from the 276.35in wheelbase. The 742.56in length bar agrees; 192in fin height agrees to 0.4 percent.",
+      "plan": "54.6 px/m from nose tip to nozzle (18.86 m). The drawn 64ft1.5in span is 2.5 percent short at that scale and the stabilator 1.3 percent short, so outer wing and stabilator stations are scaled to the annotated spans while body widths are not.",
+      "front": "Track 54.7 px/m and 128in fin spacing 54.1 px/m. The view is level to the fuselage, not at ground attitude: radome centre 0.39 m and canopy 0.24 m below their side-view heights. Used for widths only.",
+      "photo": "Airframe-only solve, because the stored jet sits on a collapsed nose strut: four fin-tip corners, intake lip, chin pod nose, wing tip, nozzle end. Camera 89 m, field of view 8.1 degrees, residual 23 px of 4752 (about 9 cm)."
+    },
+    "landmarks": {
+      "canopyCrown": {
+        "before": 3.62,
+        "after": 3.733,
+        "sac": 3.733,
+        "photoHeldOut": 3.746
+      },
+      "noseTipHeight": {
+        "sac": 2.07,
+        "photoHeldOut": 2.063
+      },
+      "canopyAboveNoseToFinLine": {
+        "sac": 0.842,
+        "photoFirstSolve": 0.826,
+        "frontViewWouldGive": 0.6
+      },
+      "canopyHeightToBodyDepth": {
+        "before": 0.65,
+        "after": 0.42
+      },
+      "bodyHalfBreadthAtZ7": {
+        "before": 0.69,
+        "after": 0.769
+      },
+      "engineCentreline": {
+        "before": 1.68,
+        "after": 1.4
+      },
+      "finTipSpacing": {
+        "before": 3.66,
+        "after": 3.2,
+        "annotated": 3.2512
+      },
+      "stabilator": {
+        "heightBefore": 2.12,
+        "heightAfter": 1.78,
+        "rootLeadingEdgeBefore": -3.78,
+        "rootLeadingEdgeAfter": -2.57
+      },
+      "wing": "Moved 0.3 m forward and 0.25 m down at the 20 degree setting.",
+      "ventralFins": "Moved 1.1 m forward and from x 1.83 to 1.45, under the engines."
+    },
+    "corrections": [
+      "Fuselage replaced with station tables (half-breadth, keel, crown) and rail rings; a turtledeck now carries the canopy arch aft, where the model had no spine at all.",
+      "Separate round nacelles on a rake-cut skin with tilted parallelogram mouths, glove traced to the pivot, center body and beavertail closing the tunnel. Top and bottom views checked for gaps.",
+      "Fins, swept rudder hinge, stabilators, ventral fins, chin pods, nose door, wider nose wheel track and inward-leaning main legs set from the SAC. F110 nozzles close to the drawn 0.34 m exit.",
+      "Wing pivot z is 1.25 m. The SAC swept outline suggests 1.4 to 1.6; 1.25 keeps the existing sweep test, whose tip offset is fixed, and has no effect on the 20 degree geometry."
+    ],
+    "limitations": [
+      "SAC is a 1985 pre-service sheet; the photographed aircraft is under preservation coating with its nozzles boxed, so nozzle exit and petals are not confirmed by the photo.",
+      "Through the solved camera the model nose tip lands about 0.15 m long in the image, within the solve residual. The annotated length was kept.",
+      "Canopy half-width 0.48 m lies between the plan line (0.38) and front arc (0.525); no top-down photograph was used to settle it. Three-pane windscreen is simplified.",
+      "Commons rate-limited further photo requests, so no second independent camera was solved. Wing stations outboard rely on annotated span scaling."
+    ],
+    "note": "instrumentReview captures predate this exterior rework; cockpit instruments, eye points and controls were not moved, only the tub liner rises to the new rail. Targeted aircraft tests were rerun."
+  },
+  "cockpitSweep": {
+    "tool": "packages/entities/scripts/cockpit-sweep.mjs",
+    "finding": "Seat, stick, pedals and exterior were sound. The solid HUD control box stopped the view over the nose at -8 degrees.",
+    "before": {
+      "outside": 61.0,
+      "horizon": 71.0,
+      "overNose": -8.0,
+      "headroom": 0.35,
+      "wall": 0.38,
+      "panel": 0.7,
+      "cushion": 0.81,
+      "seatback": 0.15,
+      "dial": 92.0,
+      "poked": 0.0
+    },
+    "after": {
+      "outside": 61.98,
+      "horizon": 70.73,
+      "overNose": -11,
+      "headroom": 0.35,
+      "wall": 0.38,
+      "panel": 0.72,
+      "cushion": 0.81,
+      "seatback": 0.15,
+      "dial": 91.82,
+      "poked": 0
+    },
+    "changes": [
+      "HUD control box top lowered 0.05 m; the clear combiner runs down to it. Exterior geometry unchanged."
+    ],
+    "limitations": [
+      "The box label is kept, but its height is a sightline choice rather than a traced dimension."
+    ]
+  }
 }

@@ -3,7 +3,9 @@
 All 53 aircraft have explicit calibration records in [aircraft-performance.json](aircraft-performance.json).
 The records distinguish published anchors with estimated test conditions from wholly estimated
 anchors. The fictional Bendy Small Airliner has no real-world performance claim. Mass is the
-existing authored operating mass, not empty weight or MTOW. No stores or fuel consumption are modeled.
+existing authored operating mass with full tanks, not empty weight or MTOW. No stores are modeled.
+Fuel burns from a per-class estimate of usable capacity (a share of that mass), so long flights
+get lighter; the calibration anchors are solved at the full-tank mass.
 
 ## Reproduce
 

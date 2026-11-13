@@ -25,7 +25,7 @@ export const mv22Frame = () => ({
   ry: 1.3,
   cabinZ: 5.85,
   cabinWidth: 2.1,
-  eye: [0.62, 2.4, 5.65],
+  eye: [0.62, 2.65, 5.85],
   panelZ: 6.65,
   floor: 1.05,
 });
@@ -855,7 +855,7 @@ function cockpit(root, m) {
     rightFlaperon: { op: 'subtract', args: ['flapBase', 'rollFlap'] },
   });
   const px = (u) => ((705 - u) * 2.1) / 1310,
-    py = (v) => 1.95 + ((630 - v) * 2.1) / 1310,
+    py = (v) => 2.06 + ((630 - v) * 2.1) / 1310,
     z = 6.65,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz];
   // Upper outer corners chamfered so they stay inside the window sills of the broader nose.
@@ -993,7 +993,7 @@ function cockpit(root, m) {
   }
   d.box([1.7, 0.055, 0.22], [0, 2.155, 6.78], m.dark);
   // Lower central display and two independent keypads on a sloping pedestal.
-  const console = group(cabin, 'MV22-console', [0.045, 1.6, 6.36]);
+  const console = group(cabin, 'MV22-console', [0.045, 1.68, 6.36]);
   console.rotation.x = 0.55;
   const cd = detailKit(console, console.name),
     cp = panelTools(cd);
@@ -1081,7 +1081,8 @@ function cockpit(root, m) {
   d.box([1.3, 0.04, 1.85], [0, 2.9, 4.65], liner);
   for (const side of [-1, 1]) {
     const x = side * 0.62,
-      g = group(cabin, `MV22-seat-${side}`, [x, 1.05, 5.5]),
+      // The crew stand on a raised deck. The seat slides under the eye, its cushion 0.8 m below it.
+      g = group(cabin, `MV22-seat-${side}`, [x, 1.38, 5.75]),
       dd = detailKit(g, g.name);
     dd.box([0.36, 0.32, 0.45], [0, 0.19, 0], m.metal);
     beveledBox(dd, [0.51, 0.14, 0.56], [0, 0.4, 0], seat, 0.03);
@@ -1092,18 +1093,18 @@ function cockpit(root, m) {
     dd.rod([-0.2, 0.49, -0.1], [0.2, 0.49, 0.18], 0.023, belt);
     dd.box([0.065, 0.045, 0.025], [0, 0.49, 0.05], m.metal);
     dd.finish();
-    const stick = group(cabin, `MV22-cyclic-${side}`, [x, 1.2, 6.02]),
+    const stick = group(cabin, `MV22-cyclic-${side}`, [x, 1.4, 6.25]),
       sd = detailKit(stick, stick.name);
-    sd.rod([0, 0, 0], [0, 0.45, -0.08], 0.023, m.metal);
-    beveledBox(sd, [0.065, 0.17, 0.075], [0, 0.51, -0.1], m.dark, 0.015);
-    sd.add(new T.CircleGeometry(0.012, 12).rotateY(Math.PI), d.red, [0.013, 0.565, -0.141]);
+    sd.rod([0, 0, 0], [0, 0.58, -0.08], 0.023, m.metal);
+    beveledBox(sd, [0.065, 0.17, 0.075], [0, 0.64, -0.1], m.dark, 0.015);
+    sd.add(new T.CircleGeometry(0.012, 12).rotateY(Math.PI), d.red, [0.013, 0.695, -0.141]);
     sd.finish();
     bindings.push(
       { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.22 },
       { node: stick.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.22 },
     );
     // Each pilot's left-hand thrust lever has the nacelle control thumbwheel.
-    const lever = group(cabin, `MV22-thrust-${side}`, [x + 0.28, 1.34, 5.7]),
+    const lever = group(cabin, `MV22-thrust-${side}`, [x + 0.28, 1.66, 5.95]),
       ld = detailKit(lever, lever.name);
     ld.rod([0, 0, 0], [0, 0.3, 0.16], 0.025, m.metal);
     beveledBox(ld, [0.1, 0.09, 0.15], [0, 0.32, 0.16], m.dark, 0.018);
@@ -1127,7 +1128,7 @@ function cockpit(root, m) {
       scale: -Math.PI / 2,
     });
     for (const dx of [-0.16, 0.16]) {
-      const pg = group(cabin, `MV22-pedal-${side}-${Math.sign(dx)}`, [x + dx, 1.22, 6.61]),
+      const pg = group(cabin, `MV22-pedal-${side}-${Math.sign(dx)}`, [x + dx, 1.52, 6.61]),
         pd = detailKit(pg, pg.name);
       pd.box([0.18, 0.2, 0.045], [0, 0, 0], m.metal);
       for (let j = 0; j < 5; j++)
@@ -1146,7 +1147,7 @@ function cockpit(root, m) {
         scale: Math.sign(dx) * 0.05,
       });
     }
-    const sideboard = group(cabin, `MV22-sideboard-${side}`, [side * 1.05, 1.65, 5.45]);
+    const sideboard = group(cabin, `MV22-sideboard-${side}`, [side * 1.05, 1.98, 5.7]);
     sideboard.rotation.y = (side * Math.PI) / 2;
     const bd = detailKit(sideboard, sideboard.name),
       bp = panelTools(bd);
@@ -1158,6 +1159,9 @@ function cockpit(root, m) {
     bd.finish();
   }
   d.box([2.1, 0.05, 3.15], [0, 1.04, 5.1], m.dark);
+  // The crew stand on a raised deck over the cabin floor, with a riser at its aft edge.
+  d.box([2, 0.05, 1.9], [0, 1.355, 5.72], m.dark);
+  d.box([2, 0.33, 0.05], [0, 1.215, 4.77], m.dark);
   // Cockpit bulkhead following the cabin section (its square corners stood out of the roof).
   sheet(
     d,

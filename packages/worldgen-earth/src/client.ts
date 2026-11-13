@@ -8,7 +8,10 @@ export type {
 export { createWorldgenTileCache, outputBytes, worldgenTileCacheKey } from './client/cache';
 export type { InThreadGeneratorOptions } from './client/generators';
 export { createInThreadWorldgenGenerator, withWorldgenTileCache } from './client/generators';
+export type { MapOverrideRendererOptions } from './client/map-overrides';
+export { withMapOverrides } from './client/map-overrides';
 export type {
+  WorldgenBuildingHit,
   WorldgenRendererOptions,
   WorldgenRenderStats,
   WorldgenSemanticRenderers,

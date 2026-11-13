@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hull_house",
+  "kind": "static-structure",
+  "title": "Hull House, Chicago",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hull_house",
+        "output": "assets/places/dp/dp3/hull_house/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:952621a309b8f22aa1664454834483d9b4072f7fabf27ecc5351debf72b385f1"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-hull-house",
+        "path": "models/generate-hull-house.mjs"
+      },
+      {
+        "id": "hull-house-model",
+        "path": "models/hull-house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/house-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-hull-house-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-8405-12179.png",
+      "terrain-sources/terrarium-15-8406-12179.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

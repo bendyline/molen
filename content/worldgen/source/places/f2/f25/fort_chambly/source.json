@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fort_chambly",
+  "kind": "static-structure",
+  "title": "Fort Chambly",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fort_chambly",
+        "output": "assets/places/f2/f25/fort_chambly/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:458c4df98ac4f055bddf48d84ddef2b21ead87bbbd2879f81c1020159c676005"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-fort",
+        "path": "models/generate-fort.mjs"
+      },
+      {
+        "id": "fort-model",
+        "path": "models/fort-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/exterior-controls.json",
+      "reference-rights/commons-pd-originals.json",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-9714-11729.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.umeda_sky_building",
+  "kind": "static-structure",
+  "title": "Umeda Sky Building",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.umeda_sky_building",
+        "output": "assets/places/xn/xn0/umeda_sky_building/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ad0b55db82c5278360afb434cda06972ade1c1c98cf0d7d1e271ce9af5070a7a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-umeda-sky-building",
+        "path": "models/generate-umeda-sky-building.mjs"
+      },
+      {
+        "id": "umeda-sky-building-model",
+        "path": "models/umeda-sky-building-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-28716-13011.png",
+      "terrain-sources/terrarium-15-28716-13012.png",
+      "preview.png",
+      "native-map/tower-controls.json",
+      "reference-rights/commons-qualla-umeda-originals.json",
+      "reference-rights/commons-author-redirect.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

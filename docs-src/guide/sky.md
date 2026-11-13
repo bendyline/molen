@@ -95,9 +95,25 @@ map resolution without rebuilding the environment, and `renderer.setShadowFocus(
 radius })` aims them at a point in absolute world coordinates covering ±`radius` meters — for a
 large world, what the camera frames rather than the camera itself. The box moves in whole
 shadow-map texels so edges do not shimmer; `setShadowFocus(undefined)` restores the default.
+A focused map sized for what is close ends close: over a city it stops a few hundred meters
+out, and buildings gain their shadows as it reaches them. On WebGL a focus can name a second,
+wider square, `far: { center, radius }`, drawn from the scenery a host passes to
+`renderer.setFarShadowCasters(root)` (a terrain stream's object: ground, buildings, trees).
+Surfaces past the focused map then read the far one, which fades out toward its own edge. Only
+what is under `root` casts into it, because it is not drawn every frame: it is redrawn when its
+center has moved an eighth of its radius, when the sun has moved, and once a second for scenery
+that has arrived, so a moving caster would leave its shadow behind. It is at most 2048 texels
+across (meters a texel: a house's shadow, not a chimney's) and costs under a millisecond of
+main thread each time it is drawn. `renderer.farShadowInfo` reports its radius, how often it has
+been drawn and how long the last drawing took.
+`renderer.shadowTexelSize` reports the meters one texel covers as of the last frame (`undefined`
+while sun shadows are off), for hosts that keep a subject the map cannot resolve out of the
+shadow pass (see `AircraftVisual.updateShadows` in the aircraft guide).
 `sun.visible`/`moon.visible` control the disks independently of lighting. Use the corresponding
 light intensity to disable illumination. `sun.size` and `moon.size` are visual multipliers;
 the default 1 preserves real angular size. Larger values help stylized scenes and small displays.
+A soft glare surrounds the Sun disk, so it reads as a bright source at that real size; `sun.visible`
+and `sun.size` apply to it as well.
 
 ## Ambient occlusion
 
@@ -126,7 +142,15 @@ the same target and copies the image out unshaded, so nothing is built again. Tu
 with `setAmbientOcclusion` changes the target, and every object in view builds its shaders again,
 mid-frame. The World Explorer suspends it above 24 m over the ground and resumes below 18 m, where
 its creases are small but its passes still cost a full-screen share of each frame (about 3 ms of
-a 44 ms rooftop frame on an Apple M2 at High); `?ao=0` turns it off for comparison.
+a 44 ms rooftop frame on an Apple M2 at High).
+
+> [!WARNING]
+> With occlusion on, World Explorer's nearby buildings draw without their facade textures (blank
+> walls, no windows) while their shaders are warmed through `prepareObject` and
+> `prepareMaterialChange`; with occlusion off, or without the warm-up, they draw as they should.
+> The cause is not found. The explorer keeps occlusion off unless `?ao=1` asks for it. Before
+> turning it on in a host that warms shaders, look at materials that gain their textures after
+> they are first drawn.
 
 ## Reflections
 
@@ -178,7 +202,9 @@ and render its `scene`/`camera` as a background pass before your scene. Dispose 
 `palette` also accepts `ground`, `sun`, and `moon`. `dome.brightness` (default 1) scales only the
 drawn dome, not the sky light or reflections taken from the palette: under filmic tone mapping a
 clear sky lit at the palette's brightness renders pale, and the Earth look draws it at about half
-(`EARTH_SKY_DOME`). `moon.earthshine` controls the dark side's subtle visibility. Stars support `enabled`, `magnitudeLimit` (up to the catalog limit of 6.5),
+(`EARTH_SKY_DOME`). `moon.earthshine` controls the dark side's subtle visibility at night. By day
+the Moon's light adds to the sky in front of it, so its unlit side matches the sky around it while
+the disk still covers the Sun. Stars support `enabled`, `magnitudeLimit` (up to the catalog limit of 6.5),
 `intensity` and visual angular `size`. Stars disappear below the horizon and fade through
 twilight; a bright visible Moon reduces their contrast. Moon disks occlude stars behind them.
 

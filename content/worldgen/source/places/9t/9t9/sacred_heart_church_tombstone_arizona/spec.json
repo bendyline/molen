@@ -1,0 +1,569 @@
+{
+  "planId": "sacred_heart_church_tombstone_arizona",
+  "id": "sacred_heart_church_tombstone_arizona",
+  "assetId": "molen.worldgen.structure.sacred_heart_church_tombstone_arizona",
+  "title": "Sacred Heart Church, Tombstone",
+  "wikidataId": "Q7397166",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -110.06411890000001,
+    "latitude": 31.7141301
+  },
+  "size": [
+    42.80500030517578,
+    10.149999737739563,
+    40.96999931335449
+  ],
+  "actualBounds": {
+    "min": [
+      -32.30500030517578,
+      -1.5800000429153442,
+      -30.239999771118164
+    ],
+    "max": [
+      10.5,
+      8.569999694824219,
+      10.729999542236328
+    ]
+  },
+  "visualBrief": "Three historic Sacred Heart parish buildings and the timber rose trellis on East Safford Street in Tombstone.",
+  "nativeAxes": {
+    "x": "right along the 1947 church street frontage",
+    "y": "up",
+    "z": "toward East Safford Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2015-03-12",
+    "validFrom": "2015-01-01",
+    "validUntil": "2016-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Sacred_Heart_church_(Tombstone_AZ)_from_S_2.JPG",
+    "https://commons.wikimedia.org/wiki/File:Sacred_Heart_church_(Tombstone_AZ)_from_SW_1.JPG",
+    "https://commons.wikimedia.org/wiki/File:Sacred_Heart_complex_(Tombstone_AZ)_from_S_1.JPG",
+    "https://commons.wikimedia.org/wiki/File:Sacred_Heart_complex_(Tombstone_AZ)_rose_trees_2.JPG",
+    "https://commons.wikimedia.org/wiki/File:Sacred_Heart_church_(Tombstone_AZ)_parish_hall_1.JPG"
+  ],
+  "stories": [
+    {
+      "id": "sacred-heart-church-tombstone-arizona-wp",
+      "url": "https://qualla.com/sacred-heart-church-tombstone-arizona/"
+    }
+  ],
+  "referenceInputHash": "64e66f5fc1a59d6164378d6b2a331f9184161a2c3875c0385fe3d0cf3b6ec410",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/9t/9t9/sacred_heart_church_tombstone_arizona/models/sacred-heart-tombstone-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/9t/9t9/sacred_heart_church_tombstone_arizona/models/sacred-heart-tombstone-model.mjs",
+    "level": "skyline",
+    "export": "parishSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "stucco": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "metalRoof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.17
+      },
+      "shingle": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0
+      },
+      "plants": {
+        "slot": "trim",
+        "localRef": "palette:#fefefe",
+        "roughness": 0.99,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "parishDistrict",
+        "errorMeters": 0.44,
+        "surfaces": {
+          "stucco": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metalRoof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.17
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0
+          },
+          "plants": {
+            "slot": "trim",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "parishStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "stucco": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metalRoof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.17
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0
+          },
+          "plants": {
+            "slot": "trim",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "parishCloseup",
+        "errorMeters": 0.037,
+        "surfaces": {
+          "stucco": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metalRoof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.17
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0
+          },
+          "plants": {
+            "slot": "trim",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "concrete_plain",
+    "metal_painted",
+    "slate",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.5,
+    "groundY": -0.21,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -110.06411890000001,
+      31.7141301
+    ],
+    "heading": -0.3881077782304064,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -110.06416214703546,
+        31.71404011606786
+      ],
+      "modelHeight": 0,
+      "basis": "Front landing approach near the center of the 1947 church gable."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -7.5454514506784935,
+          -9.121868250882137
+        ],
+        [
+          7.544724155923499,
+          -9.121868250372861
+        ],
+        [
+          7.545451453020116,
+          9.121868249497515
+        ],
+        [
+          -7.544724154827521,
+          9.121868249497513
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -7.5454514506784935,
+            -9.121868250882137
+          ],
+          [
+            7.544724155923499,
+            -9.121868250372861
+          ],
+          [
+            7.545451453020116,
+            9.121868249497515
+          ],
+          [
+            -7.544724154827521,
+            9.121868249497513
+          ]
+        ],
+        [
+          [
+            -26.5043686212952,
+            6.638960170520198
+          ],
+          [
+            -26.499589710097872,
+            -3.934190600299159
+          ],
+          [
+            -15.954248979863197,
+            -3.94014947327729
+          ],
+          [
+            -15.954815144286131,
+            6.643305328258771
+          ]
+        ],
+        [
+          [
+            -27.50848949024718,
+            -4.700293517974542
+          ],
+          [
+            -32.10876999592611,
+            -4.791821251716335
+          ],
+          [
+            -31.872823245504772,
+            -16.00067132222903
+          ],
+          [
+            -27.198546358027137,
+            -15.903317445718637
+          ],
+          [
+            -27.218603513114754,
+            -14.476003147251003
+          ],
+          [
+            -15.352133094321847,
+            -14.228357127080658
+          ],
+          [
+            -15.517249818258474,
+            -6.1993797545723925
+          ],
+          [
+            -27.46648206649356,
+            -6.449268211227588
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "The three corresponding OpenStreetMap Sacred Heart building envelopes."
+    },
+    "featureIds": [
+      "way/993690740",
+      "way/993691820",
+      "way/993691819",
+      "way/993695453"
+    ],
+    "source": "https://www.openstreetmap.org/way/993690740",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0f29d53145b4917861824ab14d0ec596fc787a0bc91fe9b9f0dfc11205b415cf",
+    "notes": "The common block grid is aligned to the 1947 church gable. The 1882 front is fixed by its mapped range, the same-day exterior photograph and the operator’s record of its east-facing entrance. Rear range subdivisions remain approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The March 2015 photos establish the 1947 and 1881 street fronts, the 1882 hall entrance, and the rose trellis. Exact window tracery, decorative detail and rear openings remain approximate.",
+    "The 1882 hall and side additions share an irregular mapped outline. Their roof joint, kitchen openings and minor details are reconstructed from the mapped mass and the parish description.",
+    "Original elevations are unchanged. Individual thresholds, the low approach ramp and the rose beds use approximate contact with the composite source field."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap footprints are ODbL. Ammodramus dedicated the five referenced photographs under CC0.",
+  "qaLodCameras": [
+    {
+      "name": "whole-sacred-heart-parish-skyline",
+      "position": [
+        39,
+        21,
+        64
+      ],
+      "lookAt": [
+        -9,
+        2.6,
+        -4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-sacred-heart-parish-district",
+      "position": [
+        39,
+        21,
+        64
+      ],
+      "lookAt": [
+        -9,
+        2.6,
+        -4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-sacred-heart-parish-street",
+      "position": [
+        39,
+        21,
+        64
+      ],
+      "lookAt": [
+        -9,
+        2.6,
+        -4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-sacred-heart-parish-closeup",
+      "position": [
+        39,
+        21,
+        64
+      ],
+      "lookAt": [
+        -9,
+        2.6,
+        -4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "safford-street-church-and-rectory",
+      "position": [
+        9,
+        8.2,
+        39
+      ],
+      "lookAt": [
+        -10,
+        3,
+        3.4
+      ]
+    },
+    {
+      "name": "parish-hall-and-rose-trellis",
+      "position": [
+        22,
+        10,
+        -17
+      ],
+      "lookAt": [
+        -10,
+        2,
+        -15
+      ]
+    },
+    {
+      "name": "stained-glass-and-east-wall",
+      "position": [
+        23,
+        5,
+        14
+      ],
+      "lookAt": [
+        2.3,
+        2.6,
+        -0.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5744,
+    "vertices": 17232,
+    "materials": 7,
+    "bytes": 857792,
+    "sha256": "sha256:ce5bf2f576e84974cc2ef5bc19ab89e3ea28e12c415175fa22a6d6e343b92cb9"
+  }
+}

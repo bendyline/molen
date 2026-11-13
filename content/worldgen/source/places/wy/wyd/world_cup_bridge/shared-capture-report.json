@@ -1,0 +1,62 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.world_cup_bridge",
+  "inputHash": "sha256:7da206bbec6ef39b92005a98d8a64b3880c7fcb0a8832cba037b65ad81a1a25f",
+  "sourceHash": "sha256:a21eda649efbe4e6f2fef1538a0f79c29697159028c984c42f667befbfc5747f",
+  "runtimeHash": "sha256:f3c24b844461db20652a6408cc2a1fe704e27c075302b03e1b14ae4cea1bd743",
+  "fixtureHash": "sha256:264621db76c3af765e026cc974f7c144aafb1c4e6de737e487676aecda4de103",
+  "placementHash": "sha256:f2f90d812424ea30870109a176ae825e028d0ef0f1244351dd68ec7a17fcab69",
+  "materialGraphs": {
+    "molen.worldgen.material.gravel": {
+      "path": "materials/gravel.matgraph.json",
+      "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.concrete_boardformed": {
+      "path": "materials/concrete_boardformed.matgraph.json",
+      "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-world-cup-bridge.png",
+      "hash": "sha256:35f9e7ba52c809675f75ab86be35e8f0a101ab0a8a4bb689d5418741b4d6a749",
+      "camera": {
+        "name": "detail-inclined-mast-and-cable-plane",
+        "position": [
+          111,
+          76,
+          136
+        ],
+        "lookAt": [
+          177,
+          77,
+          0
+        ],
+        "fov": 55,
+        "group": "detail",
+        "lightDirection": [
+          -0.57,
+          1,
+          0.64
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "world.cup.bridge",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Board-formed concrete, road aggregate and painted metal resolve once at each tier."
+}

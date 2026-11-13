@@ -1,0 +1,510 @@
+{
+  "planId": "rafael_uribe_uribe_palace_of_culture",
+  "id": "rafael_uribe_uribe_palace_of_culture",
+  "assetId": "molen.worldgen.structure.rafael_uribe_uribe_palace_of_culture",
+  "title": "Rafael Uribe Uribe Palace of Culture",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -75.568211,
+    "latitude": 6.251716
+  },
+  "size": [
+    64.01340866088867,
+    45.599998474121094,
+    51.250478744506836
+  ],
+  "actualBounds": {
+    "min": [
+      -28.026592254638672,
+      -2.75,
+      -28.685443878173828
+    ],
+    "max": [
+      35.98681640625,
+      42.849998474121094,
+      22.565034866333008
+    ]
+  },
+  "visualBrief": "The Medellín palace with checker masonry, clustered Gothic turrets, the principal slate cupola, pale later wings and an open inner court.",
+  "nativeAxes": {
+    "x": "southwest along the long plaza edge",
+    "y": "up",
+    "z": "northwest toward the plaza"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2006-11-09",
+    "validFrom": "2006-01-01",
+    "validUntil": "2007-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Palacio_de_la_Cultura-FacadaInterna-Medellin.JPG",
+    "https://commons.wikimedia.org/wiki/File:Palacio_de_la_Cultura-Fachada-Medellin.JPG",
+    "https://commons.wikimedia.org/wiki/File:Palacio_de_la_Cultura-Cupula-Medellin.JPG",
+    "https://commons.wikimedia.org/wiki/File:Palacio_de_la_Cultura-EntradaSur-Medellin.JPG",
+    "https://commons.wikimedia.org/wiki/File:Vista_de_Plaza_Botero,_Palacio_de_la_Cultura,_Medellin,_Colombia,_2017-04-11.jpg"
+  ],
+  "stories": [
+    {
+      "id": "rafael-uribe-uribe-palace-of-culture-wp",
+      "url": "https://qualla.com/rafael-uribe-uribe-palace-of-culture/"
+    }
+  ],
+  "referenceInputHash": "c06805ddf969519e80a4375228338d335c4693ee8de7b9d699641753201fbaf9",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/d3/d34/rafael_uribe_uribe_palace_of_culture/models/palace-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/d3/d34/rafael_uribe_uribe_palace_of_culture/models/palace-model.mjs",
+    "level": "skyline",
+    "export": "palaceSkyline",
+    "errorMeters": 0.34,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "pane": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.53,
+        "metallic": 0.02
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "palaceDistrict",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.53,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "palaceStreet",
+        "errorMeters": 0.079,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.53,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "palaceCloseup",
+        "errorMeters": 0.026,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.53,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_raw",
+    "plaster_lime",
+    "stone_sandstone_raw",
+    "slate"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -75.568211,
+      6.251716
+    ],
+    "heading": -2.019204697112003,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -75.5684186575568,
+        6.251796972766917
+      ],
+      "modelHeight": 0,
+      "basis": "Independent ground at the central approach from Plaza Botero."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          9.98438255318997,
+          11.381282067310357
+        ],
+        [
+          -1.4460904724770396,
+          11.78431465790709
+        ],
+        [
+          -2.059342236150174,
+          -5.615766623229361
+        ],
+        [
+          9.371130789516835,
+          -6.018799213826095
+        ]
+      ],
+      "basis": "The original source field rises above the lower courtyard level. Bound the display opening to the mapped court and retain every original terrain sample."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -27.833053827252346,
+          22.46503427561983
+        ],
+        [
+          31.511760859064594,
+          22.46503427561984
+        ],
+        [
+          31.973462993793525,
+          -7.6705468061483515
+        ],
+        [
+          33.60161091356002,
+          -8.625754697795845
+        ],
+        [
+          34.49180053910903,
+          -9.471530517588755
+        ],
+        [
+          34.71908844344407,
+          -11.926308584166875
+        ],
+        [
+          34.53944200686435,
+          -13.866039790962875
+        ],
+        [
+          34.01522682922534,
+          -15.161091137861312
+        ],
+        [
+          26.37766950787484,
+          -23.6927782592604
+        ],
+        [
+          21.973163884090873,
+          -28.585533495936538
+        ],
+        [
+          -15.701869836679105,
+          -26.988854812439744
+        ],
+        [
+          -23.886997666573862,
+          -26.464811772719923
+        ],
+        [
+          -23.812039199891437,
+          -23.94668681793266
+        ],
+        [
+          -23.279469015798234,
+          -6.765664797770343
+        ],
+        [
+          -27.926593445626978,
+          -6.359645243316164
+        ],
+        [
+          -27.91186277328513,
+          -2.1179402552169666
+        ],
+        [
+          -27.899282987623295,
+          0.8354262688184999
+        ]
+      ],
+      "minimumCoverage": 0.95,
+      "basis": "The named building multipolygon fixes the outer masonry footprint."
+    },
+    "featureIds": [
+      "relation/7460245",
+      "way/31964639",
+      "way/514510200"
+    ],
+    "source": "https://www.openstreetmap.org/relation/7460245",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3ae0d9cf931ba8d1089de2e9a4959f26e3ffc4b0a53f44e00935cd6dc1657b4e",
+    "notes": "The named building relation 7460245 supplies the exact mapped outer outline and the open court. The Antioquia cultural institute identifies the work of architect Agustín Goovaerts and the later completion of the built palace. The 2006 front, cupola and courtyard photographs determine the historic appearance. Dated trims and roof heights are approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "November 2006 exterior of the constructed palace. Open court and principal roof features are included. Facade carving, window tracery and exact historic eave and dome heights are approximate.",
+    "The 2017 CC0 overview confirms surviving massing along the plaza. Street furniture and landscaping are outside the asset.",
+    "The original DEM is retained. A viewer opening is limited to the mapped courtyard so the estimated paved floor can remain visible. Exterior thresholds and rear base grades are approximate."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. SajoR released the 2006 photos into the public domain, and Sebastian Reategui dedicated the 2017 view under CC0. OpenStreetMap contributors supply the geographic outline under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-medellin-palace-skyline",
+      "position": [
+        89,
+        48,
+        -105
+      ],
+      "lookAt": [
+        0,
+        15,
+        -2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-medellin-palace-district",
+      "position": [
+        89,
+        48,
+        -105
+      ],
+      "lookAt": [
+        0,
+        15,
+        -2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-medellin-palace-street",
+      "position": [
+        89,
+        48,
+        -105
+      ],
+      "lookAt": [
+        0,
+        15,
+        -2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-medellin-palace-closeup",
+      "position": [
+        89,
+        48,
+        -105
+      ],
+      "lookAt": [
+        0,
+        15,
+        -2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "street-checker-masonry-and-south-gable",
+      "position": [
+        76,
+        16,
+        -49
+      ],
+      "lookAt": [
+        11,
+        14,
+        -7
+      ]
+    },
+    {
+      "name": "cupola-and-lantern",
+      "position": [
+        -58,
+        37,
+        -55
+      ],
+      "lookAt": [
+        -15,
+        28,
+        -15
+      ]
+    },
+    {
+      "name": "open-court-and-plaza-wing",
+      "position": [
+        -13,
+        64,
+        48
+      ],
+      "lookAt": [
+        0,
+        13,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 26214,
+    "vertices": 78642,
+    "materials": 5,
+    "bytes": 3331452,
+    "sha256": "sha256:5af78f72f14db8a13ce52474355e5c7db00e71fb712483123519e9dc39aab540"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.old_government_house_brisbane",
+  "kind": "static-structure",
+  "title": "Old Government House, Brisbane",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.old_government_house_brisbane",
+        "output": "assets/places/r7/r7h/old_government_house_brisbane/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9b9876f3f5ccf5c67731340ad47951721fe3ee239363c3891e0f2ae5bfe89cd2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/exterior-controls.json",
+      "reference-rights/commons-pd-originals.json",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-30312-18986.png",
+      "terrain-sources/terrarium-15-30313-18986.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,401 @@
+{
+  "id": "tomb_of_the_unknown_soldier",
+  "title": "Tomb of the Unknown Soldier",
+  "wikidataId": "Q2075146",
+  "referenceCoordinate": {
+    "longitude": 37.616049531,
+    "latitude": 55.754836773
+  },
+  "module": "content/worldgen/source/places/uc/ucf/tomb_of_the_unknown_soldier/models/tomb-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-tomb-unknown-soldier.mjs",
+  "builder": "buildTombLevel",
+  "surfaces": {
+    "granite": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.64
+    },
+    "polished": {
+      "slot": "trim",
+      "graph": "stone_granite",
+      "roughness": 0.29
+    },
+    "bronze": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.43,
+      "metallic": 0.75
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.48,
+      "metallic": 0.55
+    },
+    "flame": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "name": "Eternal flame",
+      "roughness": 1
+    }
+  },
+  "exportLabel": "Molen original Tomb of the Unknown Soldier master",
+  "expectedDraftMasterHash": "sha256:30550597fdf8a4611d12ec2945c357a636eca53b634c69bf07c4ba545dfd1440",
+  "visualBrief": "Tomb of the Unknown Soldier in Alexander Garden with its stepped granite approach, dark stone tomb, folded bronze banner, helmet, laurel, and the five-point Eternal Flame burner.",
+  "heightPolicy": "The 145.5 m model datum and standard Terrarium samples fit the stepped apron to the park grade. A recessed side stair follows the mapped footway. The viewer retains the existing paths and terrain.",
+  "nativeAxes": "Native +X follows the Kremlin wall toward the north-northeast. Native +Z points to the Kremlin wall. The tomb and star face the garden across the -Z approach.",
+  "limitations": [
+    "The footprint and terrain use map data. Internal dimensions, bronze sculpture and paving details use exterior photographs and visual estimates.",
+    "The flame is a static 3D sculpture. The independent Kremlin wall, the adjacent memorials and vegetation remain in the host map."
+  ],
+  "materialMethod": "The paving and both polished stone tints use the shared granite graph. The sculpture, inlay and metalwork use shared cast bronze and painted metal. The stylized flame uses local constant-color geometry.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Soldiers_in_front_of_the_Unknown_Soldier's_Tomb_(19937543006).jpg",
+      "hash": "sha256:ea1335047791f69c848c387e5de9647a7d58d36640a6ce5fe8de8c6ca35cc91f",
+      "observed": "Memorial axis, plinth and guard surrounds."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Moscow_Kremlin%2C_Eternal_flame_Alexander_Garden.jpg",
+      "hash": "sha256:6ac95091709292effa22a8b67101f88708a5eef4f94d7fa0daa3c7246369e1d5",
+      "observed": "Star-shaped flame recess, draped flag, helmet and inscription."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "memorial-and-approach",
+      "position": [
+        15,
+        9,
+        -23
+      ],
+      "lookAt": [
+        0,
+        0.9,
+        -2
+      ],
+      "fov": 49
+    },
+    {
+      "name": "garden-front",
+      "position": [
+        1,
+        4.3,
+        -16
+      ],
+      "lookAt": [
+        0,
+        0.87,
+        -0.3
+      ],
+      "fov": 47
+    },
+    {
+      "name": "star-and-bronze-banner",
+      "position": [
+        -2.9,
+        2.8,
+        -5.8
+      ],
+      "lookAt": [
+        0,
+        0.54,
+        0.8
+      ],
+      "fov": 43
+    },
+    {
+      "name": "helmet-laurel-and-folds",
+      "position": [
+        -2.55,
+        2.85,
+        -0.69
+      ],
+      "lookAt": [
+        -0.13,
+        1.03,
+        2.18
+      ],
+      "fov": 37
+    },
+    {
+      "name": "star-burner-and-inscription",
+      "position": [
+        0.78,
+        4.65,
+        -4.9
+      ],
+      "lookAt": [
+        0,
+        0.28,
+        -1.65
+      ],
+      "fov": 46
+    },
+    {
+      "name": "guard-hood-and-paving",
+      "position": [
+        11.1,
+        2.65,
+        -4.5
+      ],
+      "lookAt": [
+        6.25,
+        1.07,
+        2.13
+      ],
+      "fov": 43
+    },
+    {
+      "name": "crossfall-and-steps",
+      "position": [
+        -13.4,
+        2.7,
+        -14.7
+      ],
+      "lookAt": [
+        -5.3,
+        0.19,
+        -5.8
+      ],
+      "fov": 51
+    },
+    {
+      "name": "overhead-footprint",
+      "position": [
+        4.2,
+        24,
+        3.2
+      ],
+      "lookAt": [
+        0,
+        0.2,
+        -3.2
+      ],
+      "fov": 55
+    }
+  ],
+  "sourceFacts": {
+    "mappedEnclosureMeters": [
+      24.9,
+      22.9
+    ],
+    "mappedSidePath": 35184914998520,
+    "modeledSteps": 5,
+    "flameStarPoints": 5,
+    "flamePolicy": "static-sculpture"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        0.5,
+        -2
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucf/tomb_of_the_unknown_soldier/models/tomb-model.mjs",
+    "export": "buildTombSkyline",
+    "surfaces": {
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.64
+      },
+      "polished": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.29
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.43,
+        "metallic": 0.75
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.48,
+        "metallic": 0.55
+      },
+      "flame": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "name": "Eternal flame",
+        "roughness": 1
+      }
+    },
+    "errorMeters": 0.36,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTombDistrict",
+        "surfaces": {
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.64
+          },
+          "polished": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.29
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.43,
+            "metallic": 0.75
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.55
+          },
+          "flame": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "name": "Eternal flame",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.18
+      },
+      "street": {
+        "export": "buildTombStreet",
+        "surfaces": {
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.64
+          },
+          "polished": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.29
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.43,
+            "metallic": 0.75
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.55
+          },
+          "flame": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "name": "Eternal flame",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.07
+      },
+      "closeup": {
+        "export": "buildTombCloseup",
+        "surfaces": {
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.64
+          },
+          "polished": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.29
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.43,
+            "metallic": 0.75
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.55
+          },
+          "flame": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "name": "Eternal flame",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.022
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "tomb_of_the_unknown_soldier-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        15,
+        9,
+        -23
+      ],
+      "lookAt": [
+        0,
+        0.9,
+        -2
+      ]
+    },
+    {
+      "name": "tomb_of_the_unknown_soldier-district",
+      "reviewLod": "district",
+      "position": [
+        15,
+        9,
+        -23
+      ],
+      "lookAt": [
+        0,
+        0.9,
+        -2
+      ]
+    },
+    {
+      "name": "tomb_of_the_unknown_soldier-street",
+      "reviewLod": "street",
+      "position": [
+        15,
+        9,
+        -23
+      ],
+      "lookAt": [
+        0,
+        0.9,
+        -2
+      ]
+    },
+    {
+      "name": "tomb_of_the_unknown_soldier-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        15,
+        9,
+        -23
+      ],
+      "lookAt": [
+        0,
+        0.9,
+        -2
+      ]
+    }
+  ]
+}

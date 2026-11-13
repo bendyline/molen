@@ -29,8 +29,15 @@ it('covers every controllable source bundle with an authored layout and honest r
   expect(Object.keys(profiles).sort()).toEqual(ids.sort());
 });
 
+// Handlebar-steered road vehicles (an auto-rickshaw) have no steering wheel or enclosed cabin.
+const handlebars = new Set(
+  Object.entries((await json('types/vehicle.types.json')).types)
+    .filter(([, type]) => type.components.vehicle?.spec.handlebar !== undefined)
+    .map(([id]) => id),
+);
+
 it.each(
-  Object.entries(profiles).filter(([, p]) => p.category === 'vehicles'),
+  Object.entries(profiles).filter(([id, p]) => p.category === 'vehicles' && !handlebars.has(id)),
 )('%s keeps cabin and instrument bindings valid in the imported GLB', async (id, { slug }) => {
   const source = await json(`source/vehicles/${slug}/source.json`);
   const model = source.files.models.find((m) => m.output);

@@ -1,0 +1,60 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.roman_theatre_cartagena",
+  "kind": "static-structure",
+  "title": "Roman Theatre of Cartagena",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.roman_theatre_cartagena",
+        "output": "assets/places/ey/eyx/roman_theatre_cartagena/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:48e9312ec9792d1bedaafb5485f791739370b8dd54c219e727fcd3b493326906"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-cartagena-theatre",
+        "path": "models/generate-cartagena-theatre.mjs"
+      },
+      {
+        "id": "cartagena-theatre-model",
+        "path": "models/cartagena-theatre-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/theatre-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-theatre-originals.json",
+      "reference-rights/commons-danirj-theatre-overview.json",
+      "reference-rights/commons-pyjamb-theatre-overview.json",
+      "references/danirj-theatre-overview.jpg",
+      "references/pyjamb-theatre-overview.jpg",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-16294-12685.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

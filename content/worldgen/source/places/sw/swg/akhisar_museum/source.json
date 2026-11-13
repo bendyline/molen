@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.akhisar_museum",
+  "kind": "static-structure",
+  "title": "Akhisar Museum",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.akhisar_museum",
+        "output": "assets/places/sw/swg/akhisar_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:cd8582d7e3eeabd76d1bcfae0c35f6c8bf6945470ab8e921f8bc11017796dbdb"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/exterior-controls.json",
+      "reference-rights/commons-cc0-originals.json",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-18917-12532.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

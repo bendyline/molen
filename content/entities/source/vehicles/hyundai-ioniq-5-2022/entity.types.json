@@ -40,18 +40,18 @@
             "centerOfMass": [
               0,
               0.5136000000000001,
-              0
+              -0.03
             ],
             "wheelbase": 3,
             "wheelTrack": 1.6254,
             "wheelRadius": 0.365,
-            "mass": 1650,
-            "engineForce": 6270,
-            "maxSpeed": 50,
+            "mass": 1985,
+            "engineForce": 9819,
+            "maxSpeed": 52.42,
             "reverseSpeed": 7,
-            "brakeDeceleration": 8,
+            "brakeDeceleration": 10.7,
             "maxSteer": 0.52,
-            "grip": 8,
+            "grip": 9.56,
             "driverEye": [
               0.4347,
               1.335,
@@ -61,7 +61,7 @@
             "steeringRate": 1.8,
             "steeringFadeSpeed": 18,
             "rollingResistance": 0.15,
-            "aerodynamicResistance": 0.0025,
+            "aerodynamicResistance": 0.000231,
             "terrainAlignRate": 1.8,
             "supportTolerance": 0.08,
             "maxStepHeight": 0.16,
@@ -1408,7 +1408,26 @@
                   "actuator": "trunk"
                 }
               }
-            ]
+            ],
+            "corneringStiffness": 20.9,
+            "rollStiffness": 0.071,
+            "pitchStiffness": 0.038,
+            "suspensionFrequency": 1.64,
+            "suspensionDamping": 0.53,
+            "rollBalance": 0.605,
+            "brakeBias": 0.59,
+            "aerodynamicLift": 0.000077,
+            "powertrain": {
+              "power": 168000,
+              "peakPowerRpm": 4322,
+              "redline": 15000,
+              "curve": "electric",
+              "gears": [
+                10.728
+              ],
+              "efficiency": 0.9,
+              "idle": 0
+            }
           },
           "visual": {
             "wheelNodes": [

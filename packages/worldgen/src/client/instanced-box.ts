@@ -5,6 +5,7 @@
  * roofs darker than walls, so a neighbourhood seen from above reads as roofs, not boxes.
  */
 
+import { InstanceBatch } from '@bendyline/molen-client/instancing';
 import * as THREE from 'three';
 import { GABLE_BOX_EAVE } from '../kernel/building';
 import { PLACEMENT_STRIDE, type PlacementSet } from '../kernel/types';
@@ -90,14 +91,17 @@ export function unitBoxGeometry(): THREE.BoxGeometry {
   return unitBox;
 }
 
-/** One `InstancedMesh` for a placement set; geometry is shared, instance buffers are owned. */
+/**
+ * One instanced mesh for a placement set; geometry is shared, instance buffers are owned. It is an
+ * `InstanceBatch`, so on WebGPU every set drawn with one material shares one shader build.
+ */
 export function createInstancedPlacements(
   set: PlacementSet,
   geometry: THREE.BufferGeometry,
   material: THREE.Material,
   name = `worldgen:${set.setId}`,
-): THREE.InstancedMesh {
-  const mesh = new THREE.InstancedMesh(geometry, material, set.count);
+): InstanceBatch {
+  const mesh = new InstanceBatch(geometry, material, set.count);
   const matrix = new THREE.Matrix4();
   const position = new THREE.Vector3();
   const quaternion = new THREE.Quaternion();

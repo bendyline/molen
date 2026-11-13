@@ -1,0 +1,334 @@
+{
+  "id": "halic_bridge_southeast_deck",
+  "collectionId": "halic_bridge",
+  "title": "Haliç Bridge southeast deck",
+  "wikidataId": "Q5642498",
+  "referenceCoordinate": {
+    "longitude": 28.942286437425707,
+    "latitude": 41.0435191712337
+  },
+  "module": "content/worldgen/source/places/sx/sxk/halic_bridge_southeast_deck/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-halic-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_boardformed",
+      "roughness": 0.94
+    },
+    "roadway": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.97
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.87,
+      "metallic": 0.08
+    }
+  },
+  "exportLabel": "Molen original Haliç Bridge southeast deck master",
+  "expectedDraftMasterHash": "sha256:53469fa4d429d678d6e95446549e2331895423d25a62ed60d8f1954d83d28c0d",
+  "visualBrief": "The southeast flanking deck follows its own curved alignment, with slender piers, open railings, traffic lanes and the mapped ramp connections.",
+  "heightPolicy": "The authored sea-level deck profile meets the sampled bank elevations and transfers join heights to the corresponding native approach lanes. Native shore paths, water and buildings remain part of the host tile.",
+  "nativeAxes": "Positive X points northeast from the Ayvansaray approaches toward Halıcıoğlu. Positive Z points southeast across the three decks.",
+  "limitations": [
+    "The deck outline and nearby ramps follow the corresponding member of OSM relation 16512008. PMTiles road traces determine the signed axis and carriageway placement.",
+    "Vertical grades, concrete pier spacing and below-deck members are exterior reconstructions using ordinary photos and the standard terrain. Lane details represent the photographed configuration.",
+    "At the approach forks, the host renderer supplies clipped ramp tails and pavement beyond the authored outlines. Their lateral edges depend on the host road widths and grade."
+  ],
+  "references": [
+    {
+      "url": "https://www.trthaber.com/foto-galeri/halic-koprusunde-bir-ay-surecek-yol-calismasi-basladi/27360.html",
+      "observed": "Aerial view of the separate roadways and transition ramps."
+    },
+    {
+      "url": "https://isfalt.istanbul/tr/projeler/halic-metrobus-yolu",
+      "observed": "Municipal project photo showing lane divisions, fence and parapet profile."
+    },
+    {
+      "url": "https://trthaberstatic.cdn.wp.trt.com.tr/resimler/1342000/1342788.jpg",
+      "hash": "sha256:0a98246bfa68fb5a547dc84c6501075755fb34bc637f040b8682859486d771da",
+      "observed": "Three separated decks, approach ramps and open channel."
+    },
+    {
+      "url": "https://api.isfalt.istanbul/storage/app/uploads/public/66f/d32/8d4/66fd328d4f329394032823.jpg",
+      "hash": "sha256:db2c30f9f5de4b832ca117f1d99e5227bcd67a18d3cfb5f051bca5e42dd8e659",
+      "observed": "Central busway, rails, lamp spacing and separate side decks."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "golden-horn-and-all-three-decks",
+      "position": [
+        -50.03,
+        224,
+        485.8
+      ],
+      "lookAt": [
+        1.97,
+        16,
+        -29.2
+      ],
+      "fov": 67
+    },
+    {
+      "name": "separate-decks-over-the-harbor",
+      "position": [
+        -135.03,
+        55,
+        116.8
+      ],
+      "lookAt": [
+        31.97,
+        12,
+        -29.2
+      ],
+      "fov": 64
+    },
+    {
+      "name": "motorway-and-metrobus",
+      "position": [
+        -110.03,
+        34,
+        -27.2
+      ],
+      "lookAt": [
+        102.97,
+        22,
+        -32.2
+      ],
+      "fov": 55
+    },
+    {
+      "name": "shoreline-paths-and-piers",
+      "position": [
+        -217.03,
+        12,
+        100.8
+      ],
+      "lookAt": [
+        -141.03,
+        14,
+        -29.2
+      ],
+      "fov": 60
+    },
+    {
+      "name": "ayvansaray-deck-joins",
+      "position": [
+        -524.03,
+        61,
+        77.8
+      ],
+      "lookAt": [
+        -424.03,
+        18,
+        -29.2
+      ],
+      "fov": 66
+    },
+    {
+      "name": "halicioglu-deck-forks",
+      "position": [
+        505.97,
+        63,
+        81.8
+      ],
+      "lookAt": [
+        381.97,
+        20,
+        -29.2
+      ],
+      "fov": 61
+    },
+    {
+      "name": "underside-and-separated-bents",
+      "position": [
+        64.97,
+        6,
+        -131.2
+      ],
+      "lookAt": [
+        -51.03,
+        15,
+        -29.2
+      ],
+      "fov": 62
+    }
+  ],
+  "materialMethod": "Three shared material graphs cover board-formed concrete, tinted plain concrete paving and painted metal. Lane markings, slender fences and piers use authored geometry.",
+  "sourceFacts": {
+    "memberOf": "relation/16512008",
+    "deckOutlineIndex": 2,
+    "controlHash": "sha256:f2088f14651706f84aead8bd615d60217c12438d5820448a58c1fc603c2598ba",
+    "profileStations": 85,
+    "pierStations": 19
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        17,
+        0
+      ]
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sx/sxk/halic_bridge_southeast_deck/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.94
+      },
+      "roadway": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.97
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.87,
+        "metallic": 0.08
+      }
+    },
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94
+          },
+          "roadway": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.08
+          }
+        },
+        "errorMeters": 0.55
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94
+          },
+          "roadway": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.08
+          }
+        },
+        "errorMeters": 0.15
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94
+          },
+          "roadway": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.08
+          }
+        },
+        "errorMeters": 0.045
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "halic_bridge_southeast_deck-skyline",
+      "position": [
+        -50.03,
+        224,
+        485.8
+      ],
+      "lookAt": [
+        1.97,
+        16,
+        -29.2
+      ],
+      "fov": 67,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "halic_bridge_southeast_deck-district",
+      "position": [
+        -50.03,
+        224,
+        485.8
+      ],
+      "lookAt": [
+        1.97,
+        16,
+        -29.2
+      ],
+      "fov": 67,
+      "reviewLod": "district"
+    },
+    {
+      "name": "halic_bridge_southeast_deck-street",
+      "position": [
+        -50.03,
+        224,
+        485.8
+      ],
+      "lookAt": [
+        1.97,
+        16,
+        -29.2
+      ],
+      "fov": 67,
+      "reviewLod": "street"
+    },
+    {
+      "name": "halic_bridge_southeast_deck-closeup",
+      "position": [
+        -50.03,
+        224,
+        485.8
+      ],
+      "lookAt": [
+        1.97,
+        16,
+        -29.2
+      ],
+      "fov": 67,
+      "reviewLod": "closeup"
+    }
+  ]
+}

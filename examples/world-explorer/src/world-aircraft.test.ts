@@ -476,6 +476,40 @@ describe('world aircraft', () => {
     flight.dispose();
     vehicles.dispose();
   });
+  it('sets power with = and - and ignores Ctrl', async () => {
+    const { vehicles, flight } = await setup();
+    expect(flight.enter(flight.visitPosition('oh6'))).toBe(true);
+    const listeners = new Map<string, Set<(event: Event) => void>>();
+    const source = new NavigationInputSource({
+      element: {
+        addEventListener(type, listener) {
+          listeners.set(type, (listeners.get(type) ?? new Set()).add(listener));
+        },
+        removeEventListener(type, listener) {
+          listeners.get(type)?.delete(listener);
+        },
+      },
+      profile: 'pilot',
+      getGamepads: () => [],
+    });
+    const emit = (type: string, event: object): void => {
+      for (const listener of listeners.get(type) ?? []) listener(event as Event);
+    };
+    const hold = (code: string): number => {
+      emit('keydown', { code, ctrlKey: code.startsWith('Control') });
+      flight.input(0.1, source.read(0.1));
+      emit('keyup', { code });
+      return flight.power;
+    };
+    const start = flight.power;
+    const raised = hold('Equal');
+    expect(raised).toBeGreaterThan(start);
+    expect(hold('ControlLeft')).toBe(raised);
+    expect(hold('Minus')).toBeLessThan(raised);
+    source.dispose();
+    flight.dispose();
+    vehicles.dispose();
+  });
   it('recovers only after an impact and respects missing terrain before spawning', async () => {
     const { vehicles, flight } = await setup();
     flight.enter(flight.visitPosition('p51d'));

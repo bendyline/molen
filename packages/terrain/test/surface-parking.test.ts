@@ -136,6 +136,33 @@ it('honors parking_aisle metadata even without a site or building', () => {
   expect(pavement(t)([0.5, 0.36])).toBe(true);
 });
 
+it('infers no lot across ground a host cleared', () => {
+  const t = createEmptyTerrainSemanticTile();
+  t.transportation = [
+    {
+      class: 'minor_road',
+      service: 'parking_aisle',
+      lines: [
+        [
+          [0.1, 0.25],
+          [0.9, 0.25],
+        ],
+        [
+          [0.1, 0.475],
+          [0.9, 0.475],
+        ],
+      ],
+    },
+  ];
+  // A map override's cover over the middle of the lot: the look is the subclass, never parking.
+  t.landcover = [
+    { class: 'cleared', subclass: 'pavement', polygons: [rectangle(0.4, 0.2, 0.2, 0.35)] },
+  ];
+  const paved = pavement(t);
+  expect(paved([0.5, 0.36])).toBe(false);
+  expect(paved([0.2, 0.36])).toBe(true);
+});
+
 it('fills angled, conjoining service aisles near a building without requiring a complete loop', () => {
   const t = createEmptyTerrainSemanticTile();
   t.transportation = [

@@ -1,0 +1,316 @@
+{
+  "id": "wikipedia_monument",
+  "title": "Wikipedia Monument",
+  "wikidataId": "Q18201640",
+  "referenceCoordinate": {
+    "longitude": 14.56011950969696,
+    "latitude": 52.34928092491077
+  },
+  "module": "content/worldgen/source/places/u3/u36/wikipedia_monument/models/monument-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-wikipedia-monument.mjs",
+  "builder": "buildWikipediaMonumentLevel",
+  "surfaces": {
+    "bronze": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.67,
+      "metallic": 0.52
+    },
+    "plaque": {
+      "slot": "wall",
+      "graph": "metal_painted",
+      "roughness": 0.57,
+      "metallic": 0.16
+    }
+  },
+  "exportLabel": "Molen original Wikipedia Monument master",
+  "expectedDraftMasterHash": "sha256:4d085564a39c81acafe850711020dff4c565f807d3cef07852986d32ce14dc91",
+  "visualBrief": "Four bronze figures lift a hollow jigsaw globe above layered stacks of pages. The plinth has the green plaque, and the globe includes cutouts at the crown, carved seams and characters from several scripts.",
+  "heightPolicy": "The point placement follows the host terrain at the named artwork node. The plinth extends 4.8 cm below local Y=0 to sit across the sampled grade. Nearby roads, buildings, paths and landcover remain native.",
+  "nativeAxes": "Positive X faces southeast out from the plaque toward the square. Positive Z points southwest across the plinth.",
+  "limitations": [
+    "The named PMTiles artwork point anchors the monument. The southeast plaque bearing is a photo estimate with about 30° of uncertainty.",
+    "The bronze poses, puzzle seams, multilingual marks and layered pages are modeled from exterior photos. Fine lettering and facial details are simplified. The surrounding shelter belongs to the square."
+  ],
+  "references": [
+    {
+      "url": "https://slubice.pl/atrakcje/985/strona/1/pomnik-wikipedii",
+      "observed": "Municipal exterior photographs and monument location."
+    },
+    {
+      "url": "https://cms-v2-files.idcom-jst.pl/sites/316/atrakcje/985/fotos/orign/pomnik_wikipedii_w_slubicach_fot_barbara_aniolossowska.jpg",
+      "hash": "sha256:1d507baccfb7a92564a9fc477a5c53b863090a10b71826006334082bfc9e3fb6",
+      "observed": "Raised hands, modeled jigsaw seams, bronze patina and distinctive hair."
+    },
+    {
+      "url": "https://www.vbb.de/fileadmin/_processed_/4/0/csm_ausflugsziel-polen-slubice-5_582ca5f3d2.jpg",
+      "hash": "sha256:389669f2a4468b8c39cbe291784d5f2a7834e379ba56a274613d70c98c96c99f",
+      "observed": "Full height, page stacks, plaque location and adjacent white hipped-roof building."
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Wikipedia_Monument_2.JPG",
+      "hash": "sha256:31e03d6ca75a75e9be22b78442944128acd7b90023e6d0555dad3c08d4a7b7e4",
+      "observed": "Open puzzle crown and staggered poses on separate page stacks."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "monument-in-plac-frankfurcki",
+      "position": [
+        5.2,
+        3.05,
+        -3.65
+      ],
+      "lookAt": [
+        0,
+        1.22,
+        0
+      ],
+      "fov": 38
+    },
+    {
+      "name": "plaque-and-layered-pages",
+      "position": [
+        2.6,
+        1.2,
+        0.4
+      ],
+      "lookAt": [
+        0.37,
+        0.63,
+        0.055
+      ],
+      "fov": 33
+    },
+    {
+      "name": "four-figures-and-globe",
+      "position": [
+        2.58,
+        1.69,
+        -1.74
+      ],
+      "lookAt": [
+        0,
+        1.57,
+        0
+      ],
+      "fov": 39
+    },
+    {
+      "name": "puzzle-crown",
+      "position": [
+        1.45,
+        3.28,
+        1.29
+      ],
+      "lookAt": [
+        0,
+        2.105,
+        0.035
+      ],
+      "fov": 36
+    },
+    {
+      "name": "side-poses",
+      "position": [
+        -1.84,
+        1.57,
+        2.6
+      ],
+      "lookAt": [
+        0,
+        1.37,
+        0
+      ],
+      "fov": 44
+    },
+    {
+      "name": "grounded-plinth",
+      "position": [
+        2.62,
+        0.53,
+        -1.5
+      ],
+      "lookAt": [
+        0,
+        0.55,
+        0
+      ],
+      "fov": 38
+    },
+    {
+      "name": "rear-globe-and-steps",
+      "position": [
+        -3.34,
+        2.07,
+        -1.83
+      ],
+      "lookAt": [
+        0,
+        1.38,
+        0
+      ],
+      "fov": 39
+    }
+  ],
+  "materialMethod": "Cast bronze and painted metal use the shared graph library and meter-scale UVs. Geometry supplies the puzzle seams, missing tiles, page layers and modeled inscription marks.",
+  "sourceFacts": {
+    "heightMeters": 2.5,
+    "figures": 4,
+    "artworkNode": 3144422008,
+    "orientationUncertaintyDegrees": 30
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        1.27,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u3/u36/wikipedia_monument/models/monument-model.mjs",
+    "export": "buildWikipediaMonumentSkyline",
+    "surfaces": {
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.67,
+        "metallic": 0.52
+      },
+      "plaque": {
+        "slot": "wall",
+        "graph": "metal_painted",
+        "roughness": 0.57,
+        "metallic": 0.16
+      }
+    },
+    "errorMeters": 0.18,
+    "authoredLevels": {
+      "district": {
+        "export": "buildWikipediaMonumentDistrict",
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.67,
+            "metallic": 0.52
+          },
+          "plaque": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.57,
+            "metallic": 0.16
+          }
+        },
+        "errorMeters": 0.085
+      },
+      "street": {
+        "export": "buildWikipediaMonumentStreet",
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.67,
+            "metallic": 0.52
+          },
+          "plaque": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.57,
+            "metallic": 0.16
+          }
+        },
+        "errorMeters": 0.028
+      },
+      "closeup": {
+        "export": "buildWikipediaMonumentCloseup",
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.67,
+            "metallic": 0.52
+          },
+          "plaque": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.57,
+            "metallic": 0.16
+          }
+        },
+        "errorMeters": 0.008
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "wikipedia_monument-skyline",
+      "position": [
+        5.2,
+        3.05,
+        -3.65
+      ],
+      "lookAt": [
+        0,
+        1.22,
+        0
+      ],
+      "fov": 38,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "wikipedia_monument-district",
+      "position": [
+        5.2,
+        3.05,
+        -3.65
+      ],
+      "lookAt": [
+        0,
+        1.22,
+        0
+      ],
+      "fov": 38,
+      "reviewLod": "district"
+    },
+    {
+      "name": "wikipedia_monument-street",
+      "position": [
+        5.2,
+        3.05,
+        -3.65
+      ],
+      "lookAt": [
+        0,
+        1.22,
+        0
+      ],
+      "fov": 38,
+      "reviewLod": "street"
+    },
+    {
+      "name": "wikipedia_monument-closeup",
+      "position": [
+        5.2,
+        3.05,
+        -3.65
+      ],
+      "lookAt": [
+        0,
+        1.22,
+        0
+      ],
+      "fov": 38,
+      "reviewLod": "closeup"
+    }
+  ]
+}

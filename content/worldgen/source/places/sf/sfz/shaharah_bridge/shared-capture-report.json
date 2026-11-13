@@ -1,0 +1,66 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.shaharah_bridge",
+  "inputHash": "sha256:4ad84a192665deae48864bd69ae7ae0fd38e46aa89f9917260ece9fb2fd9381a",
+  "sourceHash": "sha256:7667d8e46413ac37f794cfad867ea1c346087a39f15ff08197b76650e2fec337",
+  "runtimeHash": "sha256:f084a78c0b0c0d464d2c7e0fb681fdf87e2b4ddbd831541bc82b79faa7ab467b",
+  "fixtureHash": "sha256:4379a34f40f544cffded21fb73325e23b02a8368d711391121c6082d66b9f075",
+  "placementHash": "sha256:431d85d4d29e120b69ca5dfd6cf6252044c154c2eb2c015908a677bcc3d0b039",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_drywall": {
+      "path": "materials/stone_drywall.matgraph.json",
+      "hash": "sha256:a3bd96f1a584b9da94425ad12ed716a17a528cd76d22ce4468cb18476a7a3619"
+    },
+    "molen.worldgen.material.stone_limestone_weathered": {
+      "path": "materials/stone_limestone_weathered.matgraph.json",
+      "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
+    },
+    "molen.worldgen.material.stone_ashlar": {
+      "path": "materials/stone_ashlar.matgraph.json",
+      "hash": "sha256:f5692cbd995206b1475a803b027d181a664bd3a20df51db34667f205abce8093"
+    },
+    "molen.worldgen.material.stone_basalt_raw": {
+      "path": "materials/stone_basalt_raw.matgraph.json",
+      "hash": "sha256:4a0e752aa8330a06238149d39fe4ddf6398c3e9f7c17e41a4438f40136baed10"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-shaharah-bridge.png",
+      "hash": "sha256:aaa6ecb5fb2d8e56de924148e48a82c14d37d7d0147f2407417d6bec41cb1eab",
+      "camera": {
+        "name": "detail-open-arch-and-gate",
+        "position": [
+          -9,
+          5,
+          17
+        ],
+        "lookAt": [
+          -1,
+          0.2,
+          0
+        ],
+        "fov": 51,
+        "group": "detail",
+        "lightDirection": [
+          0.62,
+          1,
+          0.56
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "shaharah.bridge",
+        "visibleDraws": 4
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Four shared graphs provide the rubble, limestone, paving and basalt. The skyline uses three graphs. Each graph loads once per required tier."
+}

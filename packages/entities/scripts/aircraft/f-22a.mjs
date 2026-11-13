@@ -1015,16 +1015,19 @@ function f22Cockpit(root, m, fore) {
     txt(side === 1 ? 'WARN' : 'CAUT', side * 0.18, 2.763, 0.007, amber, -0.072);
   }
   // HUD optical combiner: geometry only, no invented conformal targeting symbology.
-  const hud = group(dashboard, 'F22-HUD', [0, 2.827, 8.3]);
-  beveledBox(d, [0.23, 0.04, 0.22], [0, 2.81, 8.26], black, 0.008);
+  // The mount sits 0.097 m lower (0.088 in the 1.1-scaled dashboard), so the view over the nose
+  // stays clear down to the panel; the taller combiner still crosses the horizon line, its top
+  // under the canopy.
+  const hud = group(dashboard, 'F22-HUD', [0, 2.739, 8.3]);
+  beveledBox(d, [0.23, 0.04, 0.22], [0, 2.722, 8.26], black, 0.008);
   hud.rotation.x = -0.12;
   const ud = detailKit(hud, hud.name);
   const hc = [
     [-0.1, 0, 0],
-    [-0.105, 0.12, 0],
-    [-0.08, 0.16, 0],
-    [0.08, 0.16, 0],
-    [0.105, 0.12, 0],
+    [-0.105, 0.17, 0],
+    [-0.08, 0.21, 0],
+    [0.08, 0.21, 0],
+    [0.105, 0.17, 0],
     [0.1, 0, 0],
   ];
   sheet(ud, hc, m.glass, [0, 0, -1]);
@@ -1179,7 +1182,8 @@ function f22Cockpit(root, m, fore) {
     }
     gd.finish();
   }
-  const sg = group(cabin, 'F22-ACES-II', [0, 2.01, 6.83]);
+  tub.box([0.42, 0.26, 0.44], [0, 2, 7.34], black);
+  const sg = group(cabin, 'F22-ACES-II', [0, 2.16, 7.18]);
   sg.rotation.x = -0.25;
   const sd = detailKit(sg, sg.name);
   beveledBox(sd, [0.47, 0.12, 0.49], [0, 0, 0.18], seat);
@@ -1233,7 +1237,7 @@ function f22Cockpit(root, m, fore) {
     });
   }
   for (const side of [-1, 1]) {
-    const g = group(cabin, `F22-pedal-${side}`, [side * 0.14, 1.98, 8.15]),
+    const g = group(cabin, `F22-pedal-${side}`, [side * 0.14, 2, 7.95]),
       gd = detailKit(g, g.name);
     gd.box([0.13, 0.13, 0.03], [0, 0, 0], m.metal);
     for (let j = 0; j < 5; j++) gd.box([0.11, 0.004, 0.004], [0, -0.05 + j * 0.025, -0.02], black);

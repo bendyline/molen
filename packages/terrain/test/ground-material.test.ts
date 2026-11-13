@@ -1,12 +1,16 @@
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import {
+  cloneTerrainGroundMaterial,
   createTerrainGroundMaterial,
   createTerrainGroundMaterialAsync,
+  createTerrainGroundTextureMaterial,
+  createTerrainGroundTextureMaterialAsync,
   createTerrainPavementMaterial,
   createTerrainPavementMaterialAsync,
   isTerrainGroundMaterial,
   setTerrainGroundOrigin,
+  setTerrainGroundSnow,
 } from '../src/ground-material';
 
 function compile(material: THREE.MeshStandardMaterial): THREE.WebGLProgramParametersWithUniforms {
@@ -89,6 +93,33 @@ describe('terrain ground variation', () => {
     material.dispose();
   });
 
+  it('draws ground from a texture on both backends, each tile with its own copy', async () => {
+    expect(await createTerrainGroundTextureMaterialAsync({}, 'webgl')).toMatchObject({
+      name: 'terrain-ground-texture',
+      vertexColors: false,
+    });
+    const far = await createTerrainGroundTextureMaterialAsync({ roughness: 0.9 }, 'webgpu');
+    expect('isMeshStandardNodeMaterial' in far).toBe(true);
+    // No vertex colors: the variation is a factor over the material's color, which three
+    // multiplies by the copy's `map`.
+    expect(far).toMatchObject({ name: 'terrain-ground-texture', vertexColors: false });
+    expect(far.roughness).toBe(0.9);
+    const nodes = far as { colorNode?: unknown; normalNode?: unknown };
+    expect(nodes.colorNode).toBeTruthy();
+    const tile = cloneTerrainGroundMaterial(far);
+    tile.map = new THREE.DataTexture(new Uint8Array(4), 1, 1);
+    tile.alphaTest = 0.5;
+    // The copy draws with the same node graph and follows the shared origin.
+    expect((tile as typeof nodes).colorNode).toBe(nodes.colorNode);
+    expect((tile as typeof nodes).normalNode).toBe(nodes.normalNode);
+    expect(far.map).toBeNull();
+    expect(isTerrainGroundMaterial(tile)).toBe(true);
+    expect(() => setTerrainGroundOrigin(tile, [12_345, -6_789])).not.toThrow();
+    tile.map.dispose();
+    tile.dispose();
+    far.dispose();
+  });
+
   it('blends landcover toward the neighboring class with organic edges', () => {
     const material = createTerrainGroundMaterial({ agriculture: true });
     const shader = compile(material);
@@ -133,6 +164,71 @@ describe('terrain ground variation', () => {
     setTerrainGroundOrigin(webgpu, [12_345, -6_789]);
     webgl.dispose();
     webgpu.dispose();
+  });
+
+  it('lays snow above a snow line without rebuilding a shader, on both backends', async () => {
+    /** The live `terrainGroundSnow` uniform value: line, transition band, amount. */
+    const snowOf = (material: THREE.Material, backend: 'webgl' | 'webgpu'): THREE.Vector4 => {
+      if (backend === 'webgl')
+        return compile(material as THREE.MeshStandardMaterial).uniforms.terrainGroundSnow
+          ?.value as THREE.Vector4;
+      type GraphNode = { name?: string; value?: unknown; getChildren(): Iterable<GraphNode> };
+      const seen = new Set<GraphNode>();
+      const stack = [(material as { colorNode?: GraphNode }).colorNode].filter(
+        (node): node is GraphNode => node !== undefined,
+      );
+      while (stack.length > 0) {
+        const node = stack.pop() as GraphNode;
+        if (seen.has(node)) continue;
+        seen.add(node);
+        if (node.name === 'terrainGroundSnow' && node.value instanceof THREE.Vector4)
+          return node.value;
+        for (const child of node.getChildren()) stack.push(child);
+      }
+      throw new Error('no terrainGroundSnow uniform in the color graph');
+    };
+    for (const backend of ['webgl', 'webgpu'] as const) {
+      for (const material of [
+        await createTerrainGroundMaterialAsync({ agriculture: true }, backend),
+        await createTerrainPavementMaterialAsync({}, backend),
+      ]) {
+        const snow = snowOf(material, backend);
+        // No snow until a cover is set: an amount of 0 skips the work.
+        expect(snow.z).toBe(0);
+        const key = material.customProgramCacheKey();
+        setTerrainGroundSnow(material, { level: 1500, transition: 200 }, 40);
+        // The line is in rendered Y: world height less the floating origin's.
+        expect([snow.x, snow.y, snow.z]).toEqual([1460, 200, 1]);
+        setTerrainGroundSnow(material, { level: 0 });
+        expect([snow.x, snow.y, snow.z]).toEqual([0, 150, 1]);
+        setTerrainGroundSnow(material, undefined);
+        expect(snow.z).toBe(0);
+        expect(material.customProgramCacheKey()).toBe(key);
+        material.dispose();
+      }
+    }
+    // WebGL: world height and facing reach the fragment shader, snow is applied after the
+    // ground's own variation, and roads keep a worn share of it.
+    const ground = compile(createTerrainGroundMaterial());
+    expect(ground.vertexShader).toContain('vTerrainSnow = vec2(');
+    expect(ground.fragmentShader).toContain(
+      'terrainGroundSnowColor(terrainSnowTone, terrainSnowCrest), terrainSnow);',
+    );
+    // Snow smooths the turf's relief away and lays its own wind drifts in its place.
+    expect(ground.fragmentShader).toContain('terrainSnowDrift * terrainSnow;');
+    expect(
+      ground.fragmentShader.indexOf('terrainGroundSnowCover(terrainGroundDistance)'),
+    ).toBeGreaterThan(ground.fragmentShader.indexOf('diffuseColor.rgb *= terrainGroundFactor('));
+    const road = compile(createTerrainPavementMaterial());
+    expect(road.fragmentShader).toContain('terrainPavementSnow(');
+    // A per-tile copy follows the material it was cloned from.
+    const far = createTerrainGroundTextureMaterial();
+    const tile = cloneTerrainGroundMaterial(far);
+    setTerrainGroundSnow(far, { level: 900 });
+    expect(snowOf(tile, 'webgl').x).toBe(900);
+    expect(() => setTerrainGroundSnow(new THREE.MeshStandardMaterial(), { level: 0 })).toThrow(
+      /terrain ground material/,
+    );
   });
 
   it('rejects out-of-range strength and foreign materials', () => {

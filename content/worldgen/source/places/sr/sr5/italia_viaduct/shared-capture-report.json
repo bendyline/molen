@@ -1,0 +1,62 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.italia_viaduct",
+  "inputHash": "sha256:b039579bcc48f6ec3a59a90bcfbf484a9cbcd7803a34b3aee622665d3c929d8d",
+  "sourceHash": "sha256:a46fea7a61e57ad2cc88bf330ceb4d95dbdfb97263992c3d23857d8518c1eb00",
+  "runtimeHash": "sha256:2d30fff46c334c146a3dbfb19d6ff06462461a8fc0d3a3cf1eac284569ff1772",
+  "fixtureHash": "sha256:5c14da667b21e905184b74d2d2e3e3718e9f77ea16df1fc8037a3a0bf83afdc4",
+  "placementHash": "sha256:adc52d36b585bd55c0f472e498411979dd785a3c6cd9973a0d06bd37e189d13c",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_boardformed": {
+      "path": "materials/concrete_boardformed.matgraph.json",
+      "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-italia-viaduct.png",
+      "hash": "sha256:5a9dc49c1167e2d1a0230b47ad6fe6976b5c260217ffc6426341358c4d78dca5",
+      "camera": {
+        "name": "detail-red-steel-girder-and-gorge",
+        "position": [
+          -125,
+          226,
+          397
+        ],
+        "lookAt": [
+          -49,
+          105,
+          60
+        ],
+        "fov": 56,
+        "detail": true,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "italia.viaduct",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Board-formed concrete, plain concrete and painted metal each resolve once per detail level."
+}

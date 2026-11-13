@@ -22,6 +22,7 @@ import {
 } from '@bendyline/molen-client/navigation';
 import {
   ambientContentFromTypes,
+  composeEarthGroundGrading,
   createAirportTerrainGrading,
   createEarthAdmissionGovernor,
   createEarthFleet,
@@ -31,6 +32,8 @@ import {
   createEarthTilePreloader,
   createEarthWorldgen,
   createRegionalGroundColor,
+  createSnowPace,
+  EARTH_INDEPENDENT_LAYERS,
   EARTH_SHADOW_CASTER_HEIGHT,
   EARTH_WATER_COLOR,
   EARTH_WATER_CONDITIONS,
@@ -52,19 +55,23 @@ import {
   earthPixelRatio,
   earthQualityLevel,
   earthShadowFocus,
+  earthStreamDistance,
+  earthTerrainBudget,
   earthTerrainCacheBudget,
+  earthWorldgenCacheBytes,
   observeSemanticTiles,
   regionalEarthAttribution,
   SemanticTileBuffer,
   updateEarthFog,
   withEarthAirports,
 } from '@bendyline/molen-earth/client';
-import { validateByKind } from '@bendyline/molen-schema';
+import { snowCoverAt, validateByKind } from '@bendyline/molen-schema';
 import type { TerrainSurfaceRenderer } from '@bendyline/molen-terrain/client';
 import {
   createDefaultTerrainSemanticRenderer,
   createProfiledTerrainPackageSemanticLayers,
   createTerrainGroundMaterialAsync,
+  createTerrainGroundTextureMaterialAsync,
   createTerrainPackagePyramidStream,
   createTerrainPackageStream,
   createTerrainPavementMaterialAsync,
@@ -72,6 +79,7 @@ import {
   createTerrainWaterMaterialAsync,
   sampleTerrainTunnel,
   setTerrainGroundOrigin,
+  setTerrainGroundSnow,
   setTerrainWaterTime,
   type TerrainPackagePyramidStream,
   type TerrainPackageStream,
@@ -80,6 +88,7 @@ import {
   type TerrainPyramidTileLayer,
   type TerrainPyramidView,
   type TerrainQualityPreset,
+  type TerrainRoadGrading,
   type TerrainStreamStats,
   type TerrainTileArchive,
   type TerrainTileLayer,
@@ -106,21 +115,30 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { airportStart } from './airport-start.js';
 import { startExplorerAudio } from './audio.js';
-import { selectedAntialias, selectedRendererBackend } from './backend-options.js';
+import { autopilotOptions, autopilotPose } from './autopilot.js';
+import {
+  selectedAmbientOcclusion,
+  selectedAntialias,
+  selectedRendererBackend,
+} from './backend-options.js';
 import { type ExplorerWorldgenContent, loadExplorerContent } from './content.js';
 import { createExplorerDioramas, DIORAMA_SITES, selectedDiorama } from './dioramas.js';
 import { createFlightInstrumentPanel } from './flight-instrument-panel.js';
 import { formatCameraLocation } from './location-readout.js';
-import { createExplorerQualityController } from './quality-policy.js';
+import { createExplorerOverrides } from './override-controls.js';
+import { createPilotVision } from './pilot-vision.js';
+import { createExplorerQualityController, createStreamStrainMeter } from './quality-policy.js';
 import {
   createRegionControls,
   DEFAULT_WORLD_REGION,
   regionPackagePath,
   selectedRegion,
 } from './regions.js';
+import { sceneComposition } from './scene-composition.js';
 import { createSkyControls } from './sky-controls.js';
 import { createSurfaceControls } from './surface-controls.js';
 import { syntheticFeatureTile, syntheticLandcoverTile } from './synthetic-footprints.js';
+import { ExplorerTrains, isTrainRequest, TRAIN_HELP, TRAIN_RIDE_HELP } from './trains.js';
 import { createWeatherControls } from './weather-controls.js';
 import { AIRCRAFT_HELP, aircraftBlocks, WorldAircraft } from './world-aircraft.js';
 import { PARACHUTE_HELP, WorldParachute } from './world-parachute.js';
@@ -204,6 +222,34 @@ class ProceduralElevationArchive implements TerrainTileArchive {
     });
     return { data: png.slice().buffer };
   }
+}
+
+/**
+ * The driven car's gear and engine speed for the status line, with a note while traction or
+ * stability control is working or the wheels are off the pavement. Vehicles without a gearbox
+ * (cycles, trains) read Drive or Reverse.
+ */
+function drivelineStatus(vehicles: EarthVehicles): string {
+  // Lying snow under the wheels or runners, and whether it has the vehicle held fast.
+  const lying = vehicles.snow;
+  const snow =
+    lying === undefined
+      ? ''
+      : lying.stuck
+        ? ' · stuck in snow'
+        : ` · snow ${Math.round(lying.depth * 100)} cm`;
+  return `${drivelineGear(vehicles)}${snow}`;
+}
+
+function drivelineGear(vehicles: EarthVehicles): string {
+  const driveline = vehicles.driveline;
+  if (driveline === undefined) return vehicles.speed < -0.1 ? 'Reverse' : 'Drive';
+  // A CVT or a single-speed electric car has no gears to count.
+  const gear = driveline.gear < 0 ? 'R' : driveline.gears > 1 ? `D${driveline.gear}` : 'D';
+  const rpm = driveline.rpm >= 50 ? ` · ${Math.round(driveline.rpm / 50) * 50} rpm` : '';
+  const aid = driveline.assist > 0.25 ? ' · traction control' : '';
+  const ground = driveline.surfaceGrip < 0.95 ? ' · loose surface' : '';
+  return `${gear}${rpm}${aid}${ground}`;
 }
 
 function random01(seed: number): number {
@@ -410,8 +456,13 @@ function createSyntheticAdaptiveLayers(options: {
   stores: PlacesContent | undefined;
   houses: boolean;
   parking: boolean;
+  uses: boolean;
   surfaceRenderer: TerrainSurfaceRenderer;
   renderers: WorldgenSemanticRenderers | undefined;
+  /** Applied to both layers' renderers: map overrides edit each tile before it is built. */
+  wrap: (
+    renderer: WorldgenSemanticRenderers['humanFeatures'],
+  ) => WorldgenSemanticRenderers['humanFeatures'];
 }): TerrainPyramidTileLayer[] {
   return [
     createTerrainSemanticPyramidLayer({
@@ -423,22 +474,25 @@ function createSyntheticAdaptiveLayers(options: {
         load: async (address) =>
           options.parking
             ? syntheticFeatureTile(address, { parking: true })
-            : options.houses
-              ? syntheticFeatureTile(address, { houses: true })
-              : options.stores !== undefined && address.level === DEMO_LEVEL
-                ? syntheticFeatureTile(address, { stores: options.stores })
-                : syntheticLandcoverTile(address),
+            : options.uses
+              ? syntheticFeatureTile(address, { uses: true })
+              : options.houses
+                ? syntheticFeatureTile(address, { houses: true })
+                : options.stores !== undefined && address.level === DEMO_LEVEL
+                  ? syntheticFeatureTile(address, { stores: options.stores })
+                  : syntheticLandcoverTile(address),
       },
-      renderer:
+      renderer: options.wrap(
         options.renderers?.classification ??
-        createDefaultTerrainSemanticRenderer({
-          renderWater: false,
-          renderTransportation: false,
-          renderBuildings: false,
-          treesPerSquareKilometer: 70,
-          maxTreesPerTile: 180,
-          treeHeight: 28,
-        }),
+          createDefaultTerrainSemanticRenderer({
+            renderWater: false,
+            renderTransportation: false,
+            renderBuildings: false,
+            treesPerSquareKilometer: 70,
+            maxTreesPerTile: 180,
+            treeHeight: 28,
+          }),
+      ),
     }),
     createTerrainSemanticPyramidLayer({
       id: humanFeatureLayer.id,
@@ -454,15 +508,17 @@ function createSyntheticAdaptiveLayers(options: {
               : {}),
             houses: options.houses,
             parking: options.parking,
+            uses: options.uses,
           }),
       },
-      renderer:
+      renderer: options.wrap(
         options.renderers?.humanFeatures ??
-        createDefaultTerrainSemanticRenderer({
-          surfaceRenderer: options.surfaceRenderer,
-          renderLandcover: false,
-          renderWater: false,
-        }),
+          createDefaultTerrainSemanticRenderer({
+            surfaceRenderer: options.surfaceRenderer,
+            renderLandcover: false,
+            renderWater: false,
+          }),
+      ),
     }),
   ];
 }
@@ -482,6 +538,8 @@ async function loadWorldgen(options: {
   content: ExplorerWorldgenContent;
   /** Every pack's assets: entity models, style-pack props and material documents. */
   assets: AssetProvider;
+  /** Serves the models a map override places that no pack carries. */
+  overrideAssets: AssetProvider;
   surfaceRenderer: TerrainSurfaceRenderer;
   metersPerUnit: number;
   quality: TerrainQualityPreset;
@@ -491,6 +549,8 @@ async function loadWorldgen(options: {
   /** Generate tiles in a Worker by default; `?worker=0` enables in-thread diagnostics. */
   worker: boolean;
   groundMaterial?: THREE.Material;
+  /** Land cover drawn as a texture on distant tiles: see `createEarthWorldgen`'s `farLandcover`. */
+  farGroundMaterial?: THREE.Material;
   modelMaterial?: THREE.Material;
   buildingDecorator?: BuildingMaterialDecorator;
 }): Promise<ExplorerWorldgen> {
@@ -516,6 +576,7 @@ async function loadWorldgen(options: {
       : {}),
     content: options.content,
     assets: options.assets,
+    overrideAssets: options.overrideAssets,
     surfaceRenderer: options.surfaceRenderer,
     metersPerUnit: options.metersPerUnit,
     quality: options.quality,
@@ -545,6 +606,18 @@ async function loadWorldgen(options: {
       : {},
     ...(materialStore !== undefined ? { materialStore } : {}),
     ...(options.groundMaterial ? { groundMaterial: options.groundMaterial } : {}),
+    // `?farGroundDepth=` and `?farGroundSize=` move where the texture starts and its resolution.
+    ...(options.farGroundMaterial
+      ? {
+          farLandcover: {
+            material: options.farGroundMaterial,
+            ...(params.has('farGroundDepth')
+              ? { minDepth: Number(params.get('farGroundDepth')) }
+              : {}),
+            ...(params.has('farGroundSize') ? { size: Number(params.get('farGroundSize')) } : {}),
+          },
+        }
+      : {}),
     ...(options.modelMaterial ? { modelMaterial: options.modelMaterial } : {}),
     ...(options.buildingDecorator ? { buildingDecorator: options.buildingDecorator } : {}),
     propLod: params.get('propLod') !== '0',
@@ -763,8 +836,16 @@ async function main(): Promise<void> {
   let automaticQuality =
     !params.has('level') && (!params.has('quality') || params.get('quality') === 'auto');
   let performanceLevel = automaticQuality ? 3 : earthQualityLevel(quality);
+  // `?tier=N` holds one adaptive tier, for measurements that compare like with like.
+  const pinnedTier = params.has('tier') ? Number(params.get('tier')) : undefined;
+  if (pinnedTier !== undefined) performanceLevel = pinnedTier;
   const qualityController = createExplorerQualityController(performanceLevel);
-  const memoryBudget = earthMemoryBudget();
+  if (pinnedTier !== undefined) qualityController.setBounds(pinnedTier, pinnedTier);
+  // ?memory=<MiB> sets the terrain and layer memory budget, past what the browser reports.
+  const memoryBudget =
+    Number(params.get('memory')) > 0
+      ? Number(params.get('memory')) * 1024 * 1024
+      : earthMemoryBudget();
   // The tier's object error; the frame loop scales it with height above the ground.
   let objectPixelError = automaticQuality
     ? earthPerformanceTier(performanceLevel).objectPixelError
@@ -772,6 +853,8 @@ async function main(): Promise<void> {
   const lodPolicy: ScreenSpaceLodPolicy = {
     viewportHeight: window.innerHeight,
     maxPixelError: objectPixelError,
+    // Not relaxed with height, unlike the above: see the frame loop.
+    horizonPixelError: objectPixelError,
   };
   const content = await contentLoad;
   const loadEntityModel = async (id: string, signal?: AbortSignal): Promise<THREE.Object3D> =>
@@ -791,11 +874,18 @@ async function main(): Promise<void> {
     content.fonts,
     (x, z) => roadSigns?.profileAt(x, z),
     content.roadSigns?.shields,
+    content.railCars,
   );
-  const pyramidBudget = earthTerrainCacheBudget(
-    automaticQuality
-      ? earthPerformanceTier(performanceLevel).terrain
-      : terrainPyramidBudgetForQuality(quality),
+  // Manual quality keeps automatic quality's preparation capacity (earthTerrainCacheBudget), and
+  // ground just left stays warm up to the device budget, with ground a little past the view
+  // loaded for a turn (earthTerrainBudget).
+  const pyramidBudget = earthTerrainBudget(
+    earthTerrainCacheBudget(
+      automaticQuality
+        ? earthPerformanceTier(performanceLevel).terrain
+        : terrainPyramidBudgetForQuality(quality),
+      memoryBudget,
+    ),
     memoryBudget,
   );
   const fixedBudget = terrainStreamBudgetForQuality(quality);
@@ -814,6 +904,9 @@ async function main(): Promise<void> {
     admission: {
       ...earthAdmission(selectedRendererBackend(params), false),
       onSample: (sample) => {
+        graphics.total('admission-jobs', 1);
+        graphics.total('admission-work-ms', sample.workMs);
+        graphics.total(`admission-work-ms:${sample.label}`, sample.workMs);
         graphics.record(sample.label, sample.workMs);
         graphics.record(
           sample.background ? 'admission-wait-background' : 'admission-wait',
@@ -848,8 +941,8 @@ async function main(): Promise<void> {
   });
   startupStage('renderer');
   // Ambient occlusion (WebGPU): creases, corners and the ground at building and tree bases darken
-  // a little. `?ao=0` turns it off for comparison.
-  const occlusionWanted = params.get('ao') !== '0';
+  // a little. `?ao=1` turns it on: see selectedAmbientOcclusion for why it is off otherwise.
+  const occlusionWanted = selectedAmbientOcclusion(params);
   viewer.renderer.setAmbientOcclusion(occlusionWanted);
   let occlusionOn = occlusionWanted;
   const waterMaterial = await createTerrainWaterMaterialAsync(
@@ -872,6 +965,12 @@ async function main(): Promise<void> {
   const fieldMaterial = groundMaterial
     ? await createTerrainGroundMaterialAsync({ agriculture: true }, viewer.renderer.backend)
     : undefined;
+  // Distant tiles draw land cover, with their roads and roofs, as one texture each instead of the
+  // draped mesh. `?farGround=mesh` drapes every tile, for comparison.
+  const farGroundMaterial =
+    groundMaterial && params.get('farGround') !== 'mesh'
+      ? await createTerrainGroundTextureMaterialAsync({}, viewer.renderer.backend)
+      : undefined;
   // Roads, sidewalks, markings and lots: asphalt wear, concrete slabs and worn paint from the
   // bands' own coordinates. `?ground=flat` keeps the plain vertex colors here too.
   const pavementMaterial = groundMaterial
@@ -897,13 +996,16 @@ async function main(): Promise<void> {
       ? webMercatorScaleAtLatitude((space.bounds[1] + space.bounds[3]) / 2)
       : 1;
   const useWorker = params.get('worker') !== '0';
+  // Map overrides (the "Replace building" controls): one set, read by every tile as it is built.
+  const explorerOverrides = createExplorerOverrides({ params, metersPerUnit });
   if (content.roadSigns && space.kind === 'geospatial')
     roadSigns = createEarthRoadSigns(content.roadSigns, metersPerUnit);
   if (content.fleet)
     fleet = createEarthFleet(
       content.fleet,
       roadContent.types.car ?? [],
-      content.parkedVehicles,
+      // Regional two-wheelers and auto-rickshaws park only where a fleet profile weights them.
+      content.fleetParkedVehicles ?? content.parkedVehicles,
       metersPerUnit,
     );
   let worldgen: ExplorerWorldgen | undefined;
@@ -924,14 +1026,20 @@ async function main(): Promise<void> {
                 viewer.renderer.prepareMaterialChange(current, next),
             }
           : {}),
-        content: content.worldgen,
+        // Without the landmarks an override clears, and with the models it places.
+        content: explorerOverrides.worldgenContent(content.worldgen),
         assets: content.assets,
+        overrideAssets: explorerOverrides.assets(content.assets),
         metersPerUnit,
         quality,
         // WebGL pays full price for every building and plant draw, so it keeps a compact scene.
-        compact: viewer.renderer.backend === 'webgl',
+        // `?compact=0` or `1` sets it on either backend, to compare them drawing the same scene.
+        compact: params.has('compact')
+          ? params.get('compact') !== '0'
+          : viewer.renderer.backend === 'webgl',
         worker: useWorker,
         ...(fieldMaterial ? { groundMaterial: fieldMaterial } : {}),
+        ...(farGroundMaterial ? { farGroundMaterial } : {}),
         ...(scatterMaterial ? { modelMaterial: scatterMaterial } : {}),
         ...(buildingDecorator ? { buildingDecorator } : {}),
         lodPolicy,
@@ -947,6 +1055,7 @@ async function main(): Promise<void> {
     (section) => section !== undefined,
   );
   let realSemanticLayers: TerrainPyramidTileLayer[] = [];
+  let roadGrading: TerrainRoadGrading | undefined;
   let provideTunnelHeights!: (source: TerrainPyramidHeightSource) => void;
   const tunnelHeightsReady = new Promise<TerrainPyramidHeightSource>((resolve) => {
     provideTunnelHeights = resolve;
@@ -970,15 +1079,24 @@ async function main(): Promise<void> {
   const wildlifeFeatures = wildlifeWanted ? new SemanticTileBuffer() : undefined;
   let wildlife: EarthWildlife | undefined;
   let ambient: EarthAmbient | undefined;
+  // The railway network trains run on, read from the same feature tiles.
+  // Ambient life also keeps switchers working nearby yards; ?yard=0 leaves the yards still.
+  const explorerTrains = new ExplorerTrains({ yard: ambientWanted && params.get('yard') !== '0' });
   const observeRoads = (
     renderer: WorldgenSemanticRenderers['humanFeatures'],
   ): WorldgenSemanticRenderers['humanFeatures'] => {
+    const railed = observeSemanticTiles(renderer, explorerTrains.rail);
     const observed =
-      wildlifeFeatures !== undefined ? observeSemanticTiles(renderer, wildlifeFeatures) : renderer;
+      wildlifeFeatures !== undefined ? observeSemanticTiles(railed, wildlifeFeatures) : railed;
+    // Map overrides edit the tile inside the airport overlay (which would clear a host's
+    // buildings off airport ground) and outside the observers, so traffic, rails and sound read
+    // the edited map.
     return withEarthAirports(
-      observeSemanticTiles(
-        ambientTiles !== undefined ? observeSemanticTiles(observed, ambientTiles) : observed,
-        audioTerrain.observer,
+      explorerOverrides.wrap(
+        observeSemanticTiles(
+          ambientTiles !== undefined ? observeSemanticTiles(observed, ambientTiles) : observed,
+          audioTerrain.observer,
+        ),
       ),
       content.airports,
     );
@@ -1001,6 +1119,18 @@ async function main(): Promise<void> {
             load: async (address, signal) => (await tunnelHeightsReady).load(address, signal),
           },
         },
+        // Level the ground under roads and stack bridges clear of what they cross, read with
+        // each tile's neighbors. ?roadGrading=0 turns both off, ?earthworks=0 the leveling only.
+        ...(params.get('roadGrading') !== '0'
+          ? {
+              roadGrading: {
+                heights: {
+                  load: async (address, signal) => (await tunnelHeightsReady).load(address, signal),
+                },
+                earthworks: params.get('earthworks') !== '0',
+              },
+            }
+          : {}),
         ...(loaded.baseUrl !== undefined ? { baseUrl: loaded.baseUrl } : {}),
         waterLayer: {
           visible: true,
@@ -1026,12 +1156,14 @@ async function main(): Promise<void> {
           ? {
               landcoverLayer: {
                 renderer: withEarthAirports(
-                  wildlifeCover !== undefined
-                    ? observeSemanticTiles(
-                        observeSemanticTiles(worldgen.classification, wildlifeCover),
-                        audioTerrain.observer,
-                      )
-                    : observeSemanticTiles(worldgen.classification, audioTerrain.observer),
+                  explorerOverrides.wrap(
+                    wildlifeCover !== undefined
+                      ? observeSemanticTiles(
+                          observeSemanticTiles(worldgen.classification, wildlifeCover),
+                          audioTerrain.observer,
+                        )
+                      : observeSemanticTiles(worldgen.classification, audioTerrain.observer),
+                  ),
                   content.airports,
                 ),
               },
@@ -1040,13 +1172,15 @@ async function main(): Promise<void> {
           : {
               landcoverLayer: {
                 renderer: withEarthAirports(
-                  observeSemanticTiles(
-                    createDefaultTerrainSemanticRenderer({
-                      renderWater: false,
-                      renderTransportation: false,
-                      renderBuildings: false,
-                    }),
-                    audioTerrain.observer,
+                  explorerOverrides.wrap(
+                    observeSemanticTiles(
+                      createDefaultTerrainSemanticRenderer({
+                        renderWater: false,
+                        renderTransportation: false,
+                        renderBuildings: false,
+                      }),
+                      audioTerrain.observer,
+                    ),
                   ),
                   content.airports,
                 ),
@@ -1063,6 +1197,7 @@ async function main(): Promise<void> {
             }),
       });
       realSemanticLayers = opened.layers;
+      roadGrading = opened.roadGrading;
     } catch (error) {
       semanticUnavailableReason = `Semantic sidecars unavailable: ${(error as Error).message}`;
       console.warn(semanticUnavailableReason);
@@ -1077,8 +1212,10 @@ async function main(): Promise<void> {
         stores: params.has('stores') ? content.worldgen?.places : undefined,
         houses: params.has('houses'),
         parking: params.has('parking'),
+        uses: params.has('uses'),
         renderers: worldgen,
         surfaceRenderer,
+        wrap: explorerOverrides.wrap,
       })
     : realSemanticLayers;
   const hasClassification =
@@ -1202,16 +1339,47 @@ async function main(): Promise<void> {
           },
         });
   const shadowsWanted = params.get('shadows') !== '0';
+  // Terrain is streamed to where the haze completes, not to the tier's full distance: the rest
+  // is drawn in the sky's own color (see earthStreamDistance). `?hazeClamp=0` streams it all for
+  // comparison; the fixed daylight rig keeps it all, since its haze does not match its sky.
+  const clampToHaze = params.get('hazeClamp') !== '0' && params.get('sky') !== 'daylight';
+  const hazedReach = (viewDistance: number): number =>
+    clampToHaze
+      ? earthStreamDistance(
+          viewDistance,
+          camera.pos[1],
+          window.innerWidth / Math.max(1, window.innerHeight),
+        )
+      : viewDistance;
+  let streamReach = hazedReach(pyramidBudget.viewDistance);
+  // While the haze cuts the view short, a little under the tier's tiles. Ground past the haze
+  // took about three selected tiles in ten. The surround takes most of those; the rest, spent
+  // on nearer ground, displayed more geometry than the tier did before, and a device near its
+  // memory budget would step down a tier for it. At four fifths the view lost detail instead.
+  const hazedTiles = (tiles: number, viewDistance: number, reach: number): number =>
+    reach <= viewDistance * 0.6 ? Math.max(8, Math.round(tiles * 0.92)) : tiles;
+  let tierSelectedTiles = pyramidBudget.maxSelectedTiles;
   const regionalGroundColor = createRegionalGroundColor(worldgen?.environment);
+  // Roads first, then airports: an airfield's leveling wins over the roads that cross it.
+  const groundGrading = composeEarthGroundGrading(
+    roadGrading,
+    content.airports ? createAirportTerrainGrading(content.airports) : undefined,
+  );
   const pyramidEarth: TerrainPackagePyramidStream | undefined = adaptive
     ? await createTerrainPackagePyramidStream(loaded.descriptor, {
         ...(regionalGroundColor !== undefined ? { surfaceColor: regionalGroundColor } : {}),
         ...(loaded.baseUrl !== undefined ? { baseUrl: loaded.baseUrl } : {}),
         ...(loaded.archive !== undefined ? { archive: loaded.archive } : {}),
         ...pyramidBudget,
-        ...(content.airports
-          ? { transformHeightfield: createAirportTerrainGrading(content.airports) }
-          : {}),
+        viewDistance: streamReach,
+        maxSelectedTiles: hazedTiles(
+          pyramidBudget.maxSelectedTiles,
+          pyramidBudget.viewDistance,
+          streamReach,
+        ),
+        // Water and land cover also load for ground outside the view, and show as each is ready.
+        independentLayers: EARTH_INDEPENDENT_LAYERS,
+        ...(groundGrading ? { transformHeightfield: groundGrading } : {}),
         ...(useWorker && params.get('elevationWorker') !== '0'
           ? {
               elevationWorker: new Worker(new URL('./elevation-worker.ts', import.meta.url), {
@@ -1221,6 +1389,11 @@ async function main(): Promise<void> {
           : {}),
         onElevationTiming: (sample) =>
           graphics.record(`elevation-${sample.stage}`, sample.milliseconds),
+        onLayerTiming: (sample) => {
+          graphics.record(`${sample.layerId}-create`, sample.createMs);
+          graphics.record(`${sample.layerId}-prepare`, sample.prepareMs);
+          graphics.record(`${sample.layerId}-publish`, sample.publishMs);
+        },
         ...(params.get('admission') !== '0' ? { admission: viewer.renderer.admission } : {}),
         ...(params.get('warmup') !== '0'
           ? {
@@ -1249,7 +1422,8 @@ async function main(): Promise<void> {
           aspect: window.innerWidth / window.innerHeight,
         },
         onError: (error, context) => {
-          if (context.layerId !== undefined) lastLayerError = (error as Error).message;
+          if (context.layerId !== undefined)
+            lastLayerError = `${context.layerId}: ${(error as Error).message}`;
           else lastTileError = (error as Error).message;
         },
       })
@@ -1277,6 +1451,8 @@ async function main(): Promise<void> {
   dioramaToggle.addEventListener('change', () => {
     dioramas.dispose();
     dioramas = createExplorerDioramas(dioramaToggle.checked, prepareDiorama);
+    // The scenes map overrides brought belong to the director that was just replaced.
+    explorerOverrides.resyncScenes();
   });
   const requestedDiorama = selectedDiorama(params.get('diorama'));
   let fitDioramaCamera =
@@ -1329,7 +1505,14 @@ async function main(): Promise<void> {
   }
   startupStage('environment-controls');
   viewer.renderer.worldRoot.add(stream.object);
+  // Scenery past the focused shadow map is shadowed from a second, wider map (WebGL), so
+  // buildings do not gain their shadows in a ring around an aircraft. `?farShadows=0` leaves it
+  // out, for comparison.
+  if (params.get('farShadows') !== '0') viewer.renderer.setFarShadowCasters(stream.object);
   const gpuTimer = viewer.renderer.createGpuTimer();
+  // `?renderScale=1.5` draws more pixels than the tier asks for and lets the browser scale the
+  // frame down: supersampling, to see what it does for thin distant edges that flicker.
+  const renderScale = Math.min(2, Math.max(0.5, Number(params.get('renderScale') ?? 1) || 1));
   const resizeRenderer = (): void => {
     const ratio = automaticQuality
       ? earthPixelRatio(
@@ -1339,7 +1522,7 @@ async function main(): Promise<void> {
           window.devicePixelRatio,
         )
       : 1;
-    viewer.renderer.setPixelRatio(ratio);
+    viewer.renderer.setPixelRatio(ratio * renderScale);
     viewer.renderer.setSize(window.innerWidth, window.innerHeight);
     lodPolicy.viewportHeight = canvas.height;
   };
@@ -1371,16 +1554,30 @@ async function main(): Promise<void> {
       () => {
         objectPixelError = automaticQuality ? tier.objectPixelError : 2;
         lodPolicy.maxPixelError = objectPixelError;
+        lodPolicy.horizonPixelError = objectPixelError;
         fogViewDistance = budget.viewDistance;
         resizeRenderer();
         performanceStatus.dataset.mode = automaticQuality ? 'auto' : 'manual';
         performanceStatus.dataset.level = String(performanceLevel);
         performanceStatus.dataset.maxPixels = automaticQuality ? String(tier.maxPixels) : '';
       },
-      () => pyramidEarth?.stream.setBudget(earthTerrainCacheBudget(budget, memoryBudget)),
+      () => {
+        streamReach = hazedReach(budget.viewDistance);
+        tierSelectedTiles = budget.maxSelectedTiles;
+        pyramidEarth?.stream.setBudget({
+          ...earthTerrainBudget(earthTerrainCacheBudget(budget, memoryBudget), memoryBudget),
+          viewDistance: streamReach,
+          maxSelectedTiles: hazedTiles(tierSelectedTiles, budget.viewDistance, streamReach),
+        });
+      },
       () => {
         worldgen?.setQuality(stepQuality);
-        worldgen?.setCacheBudget(automaticQuality ? tier.cacheBytes : 192 * 1024 * 1024);
+        worldgen?.setCacheBudget(
+          earthWorldgenCacheBytes(
+            automaticQuality ? tier.cacheBytes : 192 * 1024 * 1024,
+            memoryBudget,
+          ),
+        );
       },
       () => {
         void surfaceRenderer
@@ -1393,6 +1590,10 @@ async function main(): Promise<void> {
       },
       () => {
         shadowQuality = shadowsWanted ? earthPerformanceTier(level).shadows : 'off';
+        // `?treeShadows=all` has trees cast at their distant level too, so the ground past the
+        // near trees carries tree shadows as well: 350 more draws and 0.85 million more
+        // triangles a frame over a wooded town at High, and 1.9 ms more main thread.
+        lodPolicy.distantShadows = shadowQuality === 'high' && params.get('treeShadows') === 'all';
       },
       // Uniform-driven like shadow parking: switching rebuilds no shader.
       () => viewer.renderer.setCloudQuality(earthPerformanceTier(level).clouds),
@@ -1412,6 +1613,8 @@ async function main(): Promise<void> {
     if (!automaticQuality) quality = qualitySelect.value as TerrainQualityPreset;
     if (!automaticQuality) performanceLevel = earthQualityLevel(quality);
     qualityController.setLevel(performanceLevel);
+    // Auto has a ceiling of its own: coming back from manual High, run the level it holds.
+    if (automaticQuality) performanceLevel = qualityController.getStats().level;
     applyPerformanceLevel();
     history.replaceState(null, '', next);
   });
@@ -1487,6 +1690,24 @@ async function main(): Promise<void> {
   });
   if (selectedDiorama(params.get('diorama')) !== undefined || params.get('mode') === 'human')
     setMode('human');
+  /** A lift asked for a storey; the walker moves once the streamer has built it. */
+  let ride: { identity: string; level: number; floors: number[] } | undefined;
+  const liftStatus = (feet: { x: number; y: number; z: number }): string | undefined => {
+    const stop = worldgen?.elevatorAt([feet.x, feet.y, feet.z]);
+    if (!stop) return undefined;
+    const floor =
+      (ride?.level ?? stop.level) === 0 ? 'Lobby' : `Floor ${ride?.level ?? stop.level}`;
+    return `Lift · ${floor} of ${stop.floors.length - 1} · E up · Q down`;
+  };
+  /** Step a lift one storey up or down, from where it is headed; false off a lift. */
+  const rideLift = (step: 1 | -1): boolean => {
+    const stop = worldgen?.elevatorAt([walker.feet.x, walker.feet.y, walker.feet.z]);
+    if (!stop) return false;
+    const count = stop.floors.length;
+    const level = ((ride?.level ?? stop.level) + step + count) % count;
+    ride = { identity: stop.identity, level, floors: stop.floors };
+    return true;
+  };
   const walker = new WalkController();
   // A full scan of the streamed scene each frame was the walk mode's largest fixed cost; 5 Hz
   // rescans still catch streamed changes, and placement forces one.
@@ -1518,12 +1739,26 @@ async function main(): Promise<void> {
       : {}),
     obstacles: (box, except) =>
       aircraftBlocks(vehicles.world, box, except) || (ambient?.blocks(box, except) ?? false),
+    track: explorerTrains.rail.network,
+    // Cars grip, drag and shake by the mapped road or land cover under them.
+    surfaceAt: (x, z) => audioTerrain.sample(x, z).surface,
   });
+  explorerTrains.attach(vehicles, content.types);
+  {
+    // ?train=freight|commuter|ride|light-rail puts the viewer on a train near the start.
+    const requested = params.get('train');
+    if (isTrainRequest(requested)) explorerTrains.request(requested);
+  }
   walker.sampleWaterHeight = (x, z) => {
     if (sampleTerrainTunnel(stream.object, x, walker.feet.y, z)) return null;
     const water = vehicles.boatEnvironment.waterAt(x, z);
     return water == null ? water : water.height;
   };
+  // Lying snow (the Snow level control) slows the walk, less on a ploughed road or footway.
+  walker.paceAt = createSnowPace({
+    snowCover: () => weatherControls.snowCover(),
+    surfaceAt: (x, z) => audioTerrain.sample(x, z).surface,
+  });
   let requestedBoat = params.get('boat') ?? undefined;
   let boatAttemptAt = 0;
   let boatSearchStarted = 0;
@@ -1532,7 +1767,13 @@ async function main(): Promise<void> {
     boatAttemptAt = 0;
     boatSearchStarted = 0;
   };
-  const weatherControls = createWeatherControls(viewer.renderer, params, vehicles.world);
+  const regionSnowLevel = selectedRegion(params)?.snowLevel;
+  const weatherControls = createWeatherControls(
+    viewer.renderer,
+    params,
+    vehicles.world,
+    regionSnowLevel === undefined ? {} : { snowLevel: regionSnowLevel },
+  );
   aircraft = new WorldAircraft(
     vehicles.world,
     stream.object,
@@ -1597,6 +1838,8 @@ async function main(): Promise<void> {
   // the cockpit or chase view, which V or F5 returns to.
   let flyby = false;
   const flightInstruments = createFlightInstrumentPanel(params.get('hud') !== '0');
+  // Tunnel vision and blackout under sustained g, redout under negative g.
+  const pilotVision = createPilotVision(params.get('hud') !== '0');
   const cockpitPointer = bindAircraftCockpitPointer({
     element: canvas,
     camera: viewer.renderer.camera,
@@ -1655,7 +1898,7 @@ async function main(): Promise<void> {
     })
     .catch((error: unknown) => console.warn('audio unavailable', error));
   const walkHelp =
-    'WASD walk · Shift run · Space jump · E board vehicle · click to look · Esc release mouse';
+    'WASD walk · Shift run · Space jump · E board vehicle · P personal ride · click to look · Esc release mouse';
   const swimHelp =
     'WASD swim · Shift swim faster · Return to shore to walk · E board vehicle · click to look · Esc release mouse';
   const boatHelp =
@@ -1686,6 +1929,8 @@ async function main(): Promise<void> {
     const leaving = flight.mountedKind ? flight.bailOut(eject) : undefined;
     if (!leaving) {
       if (flight.mountedKind) flight.exitHint();
+      // Panel buttons bail out on a refused exit, before they would hand focus back themselves.
+      canvas.focus();
       return false;
     }
     // Not the ordinary exit's complaint, now that the pilot is out.
@@ -1737,9 +1982,12 @@ async function main(): Promise<void> {
       flight.dispose();
       cockpitPointer.dispose();
       flightInstruments.dispose();
+      pilotVision.dispose();
       nightLighting.dispose();
       parachute.dispose();
       besideVehicles.clear();
+      explorerTrains.dispose();
+      explorerOverrides.dispose();
       vehicles.dispose();
     }
   });
@@ -1821,12 +2069,80 @@ async function main(): Promise<void> {
   for (const button of document.querySelectorAll<HTMLButtonElement>('[data-transit]')) {
     button.addEventListener('click', () => {
       if (vehicles.mountedId && !exitVehicle()) return;
+      // Light rail runs on a real line when one is in reach; otherwise on the practice track.
+      if (
+        button.dataset.transit === 'lightrail' &&
+        explorerTrains.hasTrack('light-rail', camera.pos[0], camera.pos[2])
+      ) {
+        explorerTrains.request('light-rail');
+        help.textContent = explorerTrains.message;
+        canvas.focus();
+        return;
+      }
       visitAircraft('p51d');
       visitingTransit = button.dataset.transit as 'bus' | 'lightrail';
     });
   }
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-train]')) {
+    button.addEventListener('click', () => {
+      if ((vehicles.mountedId || flight.mountedKind) && !exitVehicle()) return;
+      const request = button.dataset.train;
+      if (isTrainRequest(request)) explorerTrains.request(request);
+      help.textContent = explorerTrains.message;
+      canvas.focus();
+    });
+  }
+  // P on foot: a personal ride from the walker's bag (a skateboard, an electric board, a shared
+  // kick scooter), set down a step ahead and boarded. Each press brings the next one. Standing
+  // on lying snow the bag holds skis, a snowboard and a snowmobile instead.
+  const streetRides = [
+    'molen.entities.cycle.skateboard',
+    'molen.entities.cycle.electric_skateboard',
+    'molen.entities.cycle.kick_scooter',
+  ].filter((kind) => content.types?.has(kind));
+  const snowRides = [
+    'molen.entities.cycle.skis',
+    'molen.entities.cycle.snowboard',
+    'molen.entities.vehicle.snowmobile',
+  ].filter((kind) => content.types?.has(kind));
+  let personalRide = 0;
+  // `?ride=skis` (or snowboard, snowmobile, skateboard, kick_scooter…): start on that ride once
+  // the walker stands on the ground.
+  let requestedRide = [...snowRides, ...streetRides].find(
+    (kind) => kind.split('.').at(-1) === params.get('ride'),
+  );
+  const takePersonalRide = (requested?: string): void => {
+    if (navigation !== 'walk' || parachute.active || !walker.ready) return;
+    if (vehicles.mountedId || flight.mountedKind) return;
+    const onSnow = snowCoverAt(weatherControls.snowCover(), walker.feet.y).coverage >= 0.5;
+    const personalRides = onSnow && snowRides.length > 0 ? snowRides : streetRides;
+    const kind = requested ?? personalRides[personalRide++ % Math.max(1, personalRides.length)];
+    if (kind === undefined) return;
+    if (vehicles.world.exists('personal-ride')) vehicles.remove('personal-ride');
+    const [fx, , fz] = cameraForward(camera.yaw, 0);
+    const x = walker.feet.x + fx * 0.8,
+      z = walker.feet.z + fz * 0.8;
+    const id = vehicles.spawn(
+      kind,
+      [x, sampleHeight(x, z) ?? walker.feet.y, z],
+      Math.PI / 2 - camera.yaw,
+      { id: 'personal-ride', retain: true },
+    );
+    if (id !== undefined && vehicles.board(id)) {
+      input.map.reset();
+      vehicles.view = 'chase';
+      help.textContent = snowRides.includes(kind)
+        ? kind.endsWith('.snowmobile')
+          ? 'W throttle · S brake, then reverse · A/D steer · Space brake · L headlight · E step off · V change view'
+          : 'Point downhill to slide · A/D carve · S or Space stop on the edges · W push along the flat · E step off · V change view'
+        : 'W ride (push on a skateboard) · S brake · A/D steer and lean · E step off · V change view · drag to look';
+    } else help.textContent = vehicles.message || 'No room to set a ride down here';
+    canvas.focus();
+  };
   const interact = (): void => {
     if (navigation !== 'walk' || parachute.active || (!vehicles.mountedId && !walker.ready)) return;
+    // Standing in a lift, E takes it up a storey rather than reaching for a vehicle.
+    if (!vehicles.mountedId && rideLift(1)) return;
     if (vehicles.mountedId) {
       const car = vehicles.mountedId;
       // Out through the door, which shuts once the walker moves off.
@@ -1841,13 +2157,43 @@ async function main(): Promise<void> {
       vehicles.view = 'cockpit';
       vehicles.lookYaw = 0;
       vehicles.lookPitch = -0.18;
+      const trainHelp = flight.mountedKind ? undefined : explorerTrains.boarded();
       help.textContent = flight.mountedKind
         ? AIRCRAFT_HELP
-        : vehicles.mountedId && vehicles.isBoat(vehicles.mountedId)
-          ? boatHelp
-          : 'W/S accelerate / brake / reverse · A/D steer · Space brake · Shift handbrake · 1–4 doors · 5 hood · 6 rear access · K wipers · L lights · E exit · V change view · drag to look';
+        : trainHelp !== undefined
+          ? trainHelp
+          : vehicles.mountedId && vehicles.isBoat(vehicles.mountedId)
+            ? boatHelp
+            : 'W/S accelerate / brake / reverse · A/D steer · Space brake · Shift handbrake · 1–4 doors · 5 hood · 6 rear access · K wipers · L lights · E exit · V change view · drag to look';
     }
   };
+  // The "Replace building" controls act on the scene from here on: its stream, its vehicles and
+  // scenes, and where the viewer stands and looks.
+  explorerOverrides.attach({
+    ...(!adaptive || !hasHumanFeatures || pyramidEarth === undefined
+      ? { unavailable: 'Replacing buildings needs adaptive Human layers.' }
+      : { stream: pyramidEarth.stream }),
+    layers: adaptiveLayers,
+    ...(worldgen !== undefined ? { worldgen } : {}),
+    vehicles,
+    dioramas: () => dioramas,
+    viewer: () => ({
+      position: camera.pos,
+      yaw: camera.yaw,
+      pitch: camera.pitch,
+      ...(navigation === 'walk' && walker.ready
+        ? { feet: { x: walker.feet.x, z: walker.feet.z } }
+        : {}),
+      busy: Boolean(vehicles.mountedId || flight.mountedKind || parachute.active),
+    }),
+    sampleHeight,
+    moveWalker: (x, z) => walker.reset(x, z),
+    onApplied: () => walkCollision.invalidate(),
+    showBuildings: () => {
+      if (hasHumanFeatures) setMode('human');
+    },
+    focus: () => canvas.focus(),
+  });
   window.addEventListener('keydown', (event) => {
     if (event.defaultPrevented) return;
     // Not a reload in mid-flight, wherever focus is; Ctrl+F5 still reloads.
@@ -1868,8 +2214,16 @@ async function main(): Promise<void> {
     )
       return;
     if (event.code === 'KeyB' && !flight.mountedKind && !vehicles.mountedId) spawnBoat();
+    if (event.code === 'KeyP') takePersonalRide();
+    // Q takes a lift down a storey; walk binds no other action to it.
+    if (event.code === 'KeyQ' && navigation === 'walk' && walker.ready && !vehicles.mountedId)
+      rideLift(-1);
     if (event.code === 'KeyR' && !flight.mountedKind && !vehicles.mountedId)
       viewer.renderer.setWorldOrigin([camera.pos[0], 0, camera.pos[2]]);
+    // N replaces the building ahead with the picked sample; U takes the last one back. No
+    // navigation profile binds either key.
+    if (event.code === 'KeyN') explorerOverrides.replace();
+    if (event.code === 'KeyU') explorerOverrides.undo();
     if (
       event.code === 'KeyL' &&
       ambient !== undefined &&
@@ -1905,12 +2259,41 @@ async function main(): Promise<void> {
   let surfaceGeometryRevision = -1;
   let memoryRefreshTime = Number.NEGATIVE_INFINITY;
   let streamingBusy = true;
+  // Whether the level asks for more than the terrain cache holds (see createStreamStrainMeter).
+  const streamStrain = createStreamStrainMeter();
+  let streamStrained = false;
   // Quality adapts once the first view has finished loading (or after 20 s). Until then frames
   // carry one-time work: the first ground refining under the camera, collision trees rebuilt
   // for each refinement, models and materials arriving. Measured as overload, it stepped a fast
   // desktop down to the lowest level before the visitor had moved.
   let qualitySettled = false;
   const qualityGraceUntil = performance.now() + 20_000;
+  const autopilot = autopilotOptions(params);
+  const autopilotOrigin: [number, number, number] = [...camera.pos];
+  const autopilotYaw = camera.yaw;
+  let autopilotClock: number | undefined;
+  if (autopilot !== undefined) {
+    // What a measurement reads from the page, a few times a second.
+    const probe = globalThis as { molenFlightProbe?: unknown; molenFlightReport?: unknown };
+    // Light enough to run four times a second without changing what it measures.
+    probe.molenFlightProbe = () => ({
+      position: [...camera.pos],
+      tier: performanceLevel,
+      tierReason: qualityController.getStats().reason,
+      rendered: viewer.renderer.stats(),
+      farShadow: viewer.renderer.farShadowInfo,
+      loading: pyramidEarth?.stream.loading(),
+      pressure: pyramidEarth?.stream.pressure(),
+      coverage: pyramidEarth?.stream.viewCoverage([2_000, 5_000, 10_000, 20_000]),
+    });
+    // Walks every resident object: for the start and end of a flight, not during it.
+    probe.molenFlightReport = () => ({
+      stats: pyramidEarth?.stream.stats(),
+      worldgen: worldgen?.stats(),
+      graphics: graphics.snapshot(),
+      scene: sceneComposition(viewer.renderer.scene),
+    });
+  }
   canvas.addEventListener('webglcontextlost', () => {
     lastGpuMs = undefined;
   });
@@ -1954,6 +2337,7 @@ async function main(): Promise<void> {
         // Measured against the fixed device budget, as EarthView does: each level's own byte
         // cap is smaller, so a dense city's buildings cascaded every step down to Low.
         memoryPressure: (pressure?.displayedBytes ?? 0) / memoryBudget,
+        strained: streamStrained,
       });
       if (change) {
         performanceLevel = change.level;
@@ -2109,6 +2493,20 @@ async function main(): Promise<void> {
       frameInput = input.read(0);
     }
     flight.input(dt, frameInput);
+    {
+      const boarded = explorerTrains.update(dt, now, camera.pos, Math.PI / 2 - camera.yaw);
+      if (boarded) {
+        parachute.stop();
+        navigation = 'walk';
+        viewer.renderer.setCameraClip(0.05, 500_000);
+        document.body.dataset.navigation = 'walk';
+        vehicles.view = 'cockpit';
+        vehicles.lookYaw = 0;
+        vehicles.lookPitch = boarded === 'driver' ? -0.12 : -0.05;
+        input.map.reset();
+        help.textContent = boarded === 'driver' ? TRAIN_HELP : TRAIN_RIDE_HELP;
+      } else if (explorerTrains.searching) help.textContent = explorerTrains.message;
+    }
     if (frameInput.actuators) vehicles.toggleActuators(frameInput.actuators);
     if ((frameInput.recover ?? 0) > 0) vehicles.recover();
     vehicles.update(dt, {
@@ -2123,10 +2521,12 @@ async function main(): Promise<void> {
       flare: frameInput.jump,
     });
     if (landing) standAt(landing);
-    // Last frame's camera: parked and distant aircraft draw without their cockpits.
-    flight.render(camera.pos);
+    // Last frame's camera and shadow map: parked and distant aircraft draw without their
+    // cockpits, and the flown one leaves a shadow map too coarse for it (a flickering cockpit).
+    flight.render(camera.pos, viewer.renderer.shadowTexelSize);
     cockpitPointer.update();
     flightInstruments.update(flight.instrumentSource(), flyby || vehicles.view === 'chase', now);
+    pilotVision.update(flight.state);
     surfaceRenderer.updateSignals(
       params.has('freeze') ? 0 : vehicles.world.tick / vehicles.world.tickRate,
       ambient?.surfaceSignalColor,
@@ -2170,6 +2570,12 @@ async function main(): Promise<void> {
           walker.place(walkCollision, sampleHeight);
         }
       }
+      if (ride && worldgen?.requestStorey(ride.identity, ride.level)) {
+        walker.feet.y = (ride.floors[ride.level] as number) + 0.02;
+        walker.velocity.set(0, 0, 0);
+        walkCollision.invalidate();
+        ride = undefined;
+      }
       walker.update(
         dt,
         {
@@ -2211,6 +2617,19 @@ async function main(): Promise<void> {
           camera.pos = previousFlyPosition;
         } else if (ground !== undefined && camera.pos[1] < ground + 2) camera.pos[1] = ground + 2;
       }
+    }
+    if (autopilot !== undefined && navigation === 'fly') {
+      autopilotClock ??= now;
+      const pose = autopilotPose(
+        autopilot,
+        autopilotOrigin,
+        autopilotYaw,
+        (now - autopilotClock) / 1000,
+      );
+      camera.pos = pose.position;
+      camera.yaw = pose.yaw;
+      camera.pitch = pose.pitch;
+      viewDirection = cameraForward(camera.yaw, camera.pitch);
     }
     // Keep the inexpensive 10 Hz cadence while the view barely changes, but refresh before this
     // frame renders if a drag or movement could outrun the selector's view guard band. Otherwise
@@ -2357,10 +2776,14 @@ async function main(): Promise<void> {
       params.has('freeze') ? 0 : vehicles.world.tick * vehicles.world.dt,
       [waterOrigin[0], waterOrigin[2]],
     );
-    if (groundMaterial) setTerrainGroundOrigin(groundMaterial, [waterOrigin[0], waterOrigin[2]]);
-    if (fieldMaterial) setTerrainGroundOrigin(fieldMaterial, [waterOrigin[0], waterOrigin[2]]);
-    if (pavementMaterial)
-      setTerrainGroundOrigin(pavementMaterial, [waterOrigin[0], waterOrigin[2]]);
+    // The pattern stays fixed to the ground across rebases, and the weather's lying snow (the
+    // Snow level control) whitens it above the snow line, drawn in rendered height.
+    const snowCover = weatherControls.snowCover();
+    for (const material of [groundMaterial, fieldMaterial, farGroundMaterial, pavementMaterial]) {
+      if (!material) continue;
+      setTerrainGroundOrigin(material, [waterOrigin[0], waterOrigin[2]]);
+      setTerrainGroundSnow(material, snowCover, waterOrigin[1]);
+    }
     const skyLocation = webMercatorToWgs84(
       camera.pos[0] / metersPerUnit,
       camera.pos[2] / metersPerUnit,
@@ -2417,6 +2840,9 @@ async function main(): Promise<void> {
     // From high up a two-pixel error budget buys detail nobody can see, paid for on the GPU. Above
     // 100 m over the ground the budget grows with height (up to four times), so the trees and
     // buildings below hand over to their coarser levels sooner; street and rooftop views keep it.
+    // The handover to a conifer's horizon cone keeps the tier's own budget (horizonPixelError):
+    // both levels are opaque and cheap, and at four times the budget every fir under an aircraft
+    // was that cone.
     lodPolicy.maxPixelError = objectPixelError * Math.min(4, Math.max(1, above / 100));
     // Ambient occlusion darkens creases a meter or two across, under shrubs and along wall bases:
     // it grounds what a walker or driver sees up close. From rooftop height up the same creases
@@ -2435,6 +2861,19 @@ async function main(): Promise<void> {
     if (firstFrame) startupStage('sky');
     const fog = viewer.renderer.scene.fog;
     if (fog instanceof THREE.Fog) updateEarthFog(fog, fogViewDistance, camera.pos[1]);
+    // Follow the haze as the camera climbs or the window changes shape: reach farther at once,
+    // and give ground up only once the reach has shrunk by two steps, so a camera bobbing across
+    // a step does not replan each time.
+    if (adaptive) {
+      const reach = hazedReach(fogViewDistance);
+      if (reach > streamReach || reach <= streamReach - 4_000) {
+        streamReach = reach;
+        pyramidEarth?.stream.setBudget({
+          viewDistance: reach,
+          maxSelectedTiles: hazedTiles(tierSelectedTiles, fogViewDistance, reach),
+        });
+      }
+    }
     const audioGround = audio ? sampleHeight(camera.pos[0], camera.pos[2]) : undefined;
     const audioSky = viewer.renderer.sky?.frame.earth;
     if (audio && now - audioTerrainAt >= 250) {
@@ -2478,6 +2917,11 @@ async function main(): Promise<void> {
     });
     gpuTimer?.begin();
     weatherControls.update(now / 1000);
+    if (requestedRide !== undefined && navigation === 'walk' && walker.ready) {
+      const kind = requestedRide;
+      requestedRide = undefined;
+      takePersonalRide(kind);
+    }
     viewer.renderFrame();
     if (firstFrame) {
       startupStage('first-frame');
@@ -2514,6 +2958,17 @@ async function main(): Promise<void> {
         stats.loadingLayers > 0 ||
         (isPyramidStats(stats) && stats.retryingLayers > 0) ||
         surfaceStats.loading > 0;
+      if (isPyramidStats(stats)) {
+        const cache = pyramidEarth?.stream.pressure();
+        streamStrained = streamStrain({
+          nowMs: now,
+          builtTiles: stats.builtTiles,
+          rebuiltTiles: stats.rebuiltTiles,
+          residentBytes: cache?.residentBytes ?? 0,
+          displayedBytes: cache?.displayedBytes ?? 0,
+          maxResidentBytes: cache?.maxResidentBytes,
+        });
+      }
       // Surface detail changes in place on tiles in view; the rest of the cache is counted. The
       // recount walks every displayed mesh (4-6 ms in a city), so a pan's constant surface changes
       // recount every two seconds rather than at every status update.
@@ -2530,6 +2985,8 @@ async function main(): Promise<void> {
         navigation === 'walk' && walker.ready ? vehicles.nearest(camera.pos) : undefined;
       const nearAircraft =
         navigation === 'walk' && walker.ready ? flight.nearest(camera.pos) : undefined;
+      // The building a walker faces, read from the map only when the walker moved.
+      const replacePrompt = explorerOverrides.tick();
       const navigationText = flight.mountedKind
         ? flight.status()
         : parachute.status() ||
@@ -2537,7 +2994,8 @@ async function main(): Promise<void> {
             ? `E · Board ${flight.label(nearAircraft)} · I starts the engine`
             : flight.message ||
               (vehicles.mountedId
-                ? `${vehicles.label(vehicles.mountedId)} · ${Math.abs(vehicles.speed * 3.6).toFixed(0)} km/h · ${vehicles.speed < -0.1 ? 'Reverse' : 'Drive'} · ${vehicles.view} · ${vehicles.waiting ? 'Waiting for terrain…' : vehicles.message || 'E exit · V view'}`
+                ? ((vehicles.waiting ? undefined : explorerTrains.status()) ??
+                  `${vehicles.label(vehicles.mountedId)} · ${Math.abs(vehicles.speed * 3.6).toFixed(0)} km/h · ${drivelineStatus(vehicles)} · ${vehicles.view} · ${vehicles.waiting ? 'Waiting for terrain…' : vehicles.message || 'E exit · V view'}`)
                 : vehicles.message ||
                   (nearVehicle
                     ? vehicles.closedDoor(nearVehicle, camera.pos)
@@ -2550,11 +3008,13 @@ async function main(): Promise<void> {
                           ? 'Waiting for terrain…'
                           : walker.swimming
                             ? 'Swimming · Return to shore to walk'
-                            : `Walk mode · ${WALK_EYE_HEIGHT.toFixed(1)}m eye height · ${walker.grounded ? 'On ground' : 'In air'}`
+                            : (liftStatus(walker.feet) ??
+                              `Walk mode · ${WALK_EYE_HEIGHT.toFixed(1)}m eye height · ${walker.grounded ? 'On ground' : 'In air'}${replacePrompt !== undefined ? ` · ${replacePrompt}` : ''}`)
                       : 'Fly mode · Explore from above')));
       if (navigationStatus.textContent !== navigationText)
         navigationStatus.textContent = navigationText;
       navigationStatus.dataset.vehicle = vehicles.mountedId ?? '';
+      navigationStatus.dataset.train = explorerTrains.current() ?? '';
       navigationStatus.dataset.parachute = parachute.phase ?? '';
       const waterHere = vehicles.boatEnvironment.waterAt(camera.pos[0], camera.pos[2]);
       navigationStatus.dataset.waterHeight = waterHere ? String(waterHere.height) : '';
@@ -2652,10 +3112,18 @@ async function main(): Promise<void> {
             ]
           : []),
         `${fallbackSummary} · ${stats.evictions} evicted · ${(stats.decodedSamples / 1_000_000).toFixed(2)}M samples`,
+        ...(adaptiveStats === undefined
+          ? []
+          : [
+              `ahead ${adaptiveStats.aheadReady}/${adaptiveStats.aheadTiles} tiles built · ${adaptiveStats.rebuiltTiles}/${adaptiveStats.builtTiles} rebuilt · ${adaptiveStats.cameraSpeed.toFixed(0)} m/s, finest level ${adaptiveStats.speedLevel}`,
+            ]),
         `geometry ${(stats.geometryBytes / 1_048_576).toFixed(1)}MiB · ${(stats.triangles / 1_000).toFixed(0)}k triangles`,
         `${stats.drawCalls} draws · ${stats.instances} instances`,
         `layers ${stats.layerObjects} objects · ${adaptiveStats?.retryingLayers ?? 0} retrying · ${stats.failedLayers} failed · origin ${origin[0].toFixed(0)}, ${origin[2].toFixed(0)}m`,
-        ...(stats.failedLayers > 0 && lastLayerError !== undefined
+        // Shown while layers retry too, as tile errors are: a layer that times out every attempt
+        // spends minutes "retrying" before it counts as failed.
+        ...(stats.failedLayers + (adaptiveStats?.retryingLayers ?? 0) > 0 &&
+        lastLayerError !== undefined
           ? [`layer error: ${lastLayerError}`]
           : []),
         worldgenSummary,

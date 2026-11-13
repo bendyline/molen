@@ -1,0 +1,415 @@
+{
+  "id": "panathenaic_stadium",
+  "title": "Panathenaic Stadium",
+  "wikidataId": "Q208811",
+  "referenceCoordinate": {
+    "longitude": 23.74110318,
+    "latitude": 37.968237353
+  },
+  "module": "content/worldgen/source/places/sw/sw8/panathenaic_stadium/models/stadium-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-panathenaic-stadium.mjs",
+  "builder": "buildStadiumLevel",
+  "surfaces": {
+    "marble": {
+      "slot": "wall",
+      "graph": "stone_marble",
+      "roughness": 0.75
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.86
+    },
+    "track": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.99
+    },
+    "sand": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.99
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.52
+    },
+    "cloth": {
+      "slot": "wall",
+      "graph": "fabric_canvas",
+      "roughness": 0.91,
+      "doubleSided": true
+    }
+  },
+  "exportLabel": "Molen original Panathenaic Stadium master",
+  "expectedDraftMasterHash": "sha256:bbacc8ae509269b147d2faf638b6a40bc853f944fffb50909b47e9afac9c82a0",
+  "visualBrief": "Panathenaic Stadium in Athens, with its open northwest forecourt, paired banks of marble seats, southeast horseshoe, historic tunnel portal, and black track around the tan infield.",
+  "heightPolicy": "The 90.86 m arena datum is an exterior reconstruction tied to the northwestern approach and standard Terrarium samples. A scoped opening clears the arena and seats while the marble exterior and apron join original terrain.",
+  "nativeAxes": "The open northwest entry is the -X end. The horseshoe closes toward +X in the southeast.",
+  "limitations": [
+    "The mapped seat and pitch polygons set the horizontal fit. Row heights, arena elevation, paving, flags and small details are reconstructed from the standard terrain and exterior photographs.",
+    "The track and forecourt are modeled for exterior viewing. The tunnel has an open portal and a short visible vault. The unseen passage continues outside the model scope."
+  ],
+  "materialMethod": "The modeled rows reuse marble. The forecourt, running surface, infield, fences and flags use shared granite, concrete, gravel, painted metal and fabric graphs.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Panorama_Panathenaic_Stadium.jpg",
+      "hash": "sha256:9eb012ef214634b272dfa47a86a10abfb9e7e8bd4057fd88de901bdabf149933",
+      "observed": "Marble seating banks, horseshoe, arena floor and open forecourt."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:The_Panathenaic_Stadium_(Kallimarmaro)_of_Athens.jpg",
+      "hash": "sha256:ef65fbad7ced0175ee3e0c429d423158346b2a6f95563eb36595e7dbb2f9e96d",
+      "observed": "Site grade, entry axis and relationship to the hillsides."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "whole-horseshoe",
+      "position": [
+        -229,
+        144,
+        126
+      ],
+      "lookAt": [
+        -4,
+        6,
+        0
+      ],
+      "fov": 50
+    },
+    {
+      "name": "northwest-forecourt",
+      "position": [
+        -158,
+        6,
+        0
+      ],
+      "lookAt": [
+        -71,
+        10,
+        0
+      ],
+      "fov": 65
+    },
+    {
+      "name": "upper-marble-rows",
+      "position": [
+        -64,
+        23,
+        -58
+      ],
+      "lookAt": [
+        1,
+        8,
+        18
+      ],
+      "fov": 49
+    },
+    {
+      "name": "south-curved-seating",
+      "position": [
+        119,
+        23,
+        37
+      ],
+      "lookAt": [
+        68,
+        10,
+        -6
+      ],
+      "fov": 49
+    },
+    {
+      "name": "tunnel-and-aisle",
+      "position": [
+        55,
+        4,
+        -7
+      ],
+      "lookAt": [
+        65,
+        2.4,
+        -21
+      ],
+      "fov": 46
+    },
+    {
+      "name": "gate-and-flagpoles",
+      "position": [
+        -135,
+        6,
+        24
+      ],
+      "lookAt": [
+        -119,
+        3,
+        2
+      ],
+      "fov": 51
+    },
+    {
+      "name": "track-and-central-field",
+      "position": [
+        -58,
+        3,
+        8
+      ],
+      "lookAt": [
+        33,
+        2,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "arena-overhead",
+      "position": [
+        9,
+        205,
+        19
+      ],
+      "lookAt": [
+        7,
+        2,
+        0
+      ],
+      "fov": 70
+    }
+  ],
+  "sourceFacts": {
+    "modeledRows": 47,
+    "lowerRows": 24,
+    "upperRows": 23,
+    "trackLanes": 6,
+    "mappedSeatFeature": 52776577157094,
+    "mappedPitchFeature": 35185752206005,
+    "openEnd": "northwest"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -2,
+        8,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sw/sw8/panathenaic_stadium/models/stadium-model.mjs",
+    "export": "buildStadiumSkyline",
+    "surfaces": {
+      "marble": {
+        "slot": "wall",
+        "graph": "stone_marble",
+        "roughness": 0.75
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.86
+      },
+      "track": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.99
+      },
+      "sand": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.99
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.52
+      },
+      "cloth": {
+        "slot": "wall",
+        "graph": "fabric_canvas",
+        "roughness": 0.91,
+        "doubleSided": true
+      }
+    },
+    "errorMeters": 2.16,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStadiumDistrict",
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.75
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.86
+          },
+          "track": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.99
+          },
+          "sand": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.52
+          },
+          "cloth": {
+            "slot": "wall",
+            "graph": "fabric_canvas",
+            "roughness": 0.91,
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 1.61
+      },
+      "street": {
+        "export": "buildStadiumStreet",
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.75
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.86
+          },
+          "track": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.99
+          },
+          "sand": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.52
+          },
+          "cloth": {
+            "slot": "wall",
+            "graph": "fabric_canvas",
+            "roughness": 0.91,
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.56
+      },
+      "closeup": {
+        "export": "buildStadiumCloseup",
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.75
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.86
+          },
+          "track": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.99
+          },
+          "sand": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.99
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.52
+          },
+          "cloth": {
+            "slot": "wall",
+            "graph": "fabric_canvas",
+            "roughness": 0.91,
+            "doubleSided": true
+          }
+        },
+        "errorMeters": 0.15
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "panathenaic_stadium-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -229,
+        144,
+        126
+      ],
+      "lookAt": [
+        -4,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "panathenaic_stadium-district",
+      "reviewLod": "district",
+      "position": [
+        -229,
+        144,
+        126
+      ],
+      "lookAt": [
+        -4,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "panathenaic_stadium-street",
+      "reviewLod": "street",
+      "position": [
+        -229,
+        144,
+        126
+      ],
+      "lookAt": [
+        -4,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "panathenaic_stadium-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -229,
+        144,
+        126
+      ],
+      "lookAt": [
+        -4,
+        6,
+        0
+      ]
+    }
+  ]
+}

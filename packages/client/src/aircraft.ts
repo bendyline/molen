@@ -19,8 +19,9 @@ import {
   type ModelSignals,
   type ModelSignalVisual,
 } from './model-signals';
+import { createRotorBlur, type RotorBlur } from './rotor-blur';
 import type { VehicleCameraOptions, VehicleCameraPose } from './vehicle-camera';
-import { drawGlassInOnePass } from './vehicle-glass';
+import { drawGlassInOnePass, isGlass } from './vehicle-glass';
 import { createVehicleInteriorVisual, type VehicleInteriorVisual } from './vehicle-interior';
 
 /** The group the cockpit-controls generator adds beside a model's cockpit: levers and legends. */
@@ -32,6 +33,15 @@ const FLIGHT_CONTROLS_NODE = 'flight-controls';
  * the P-51's cockpit, 415 meshes, was a quarter of a takeoff's draws in chase view.
  */
 const CABIN_DETAIL_ANGLE = 0.002;
+/**
+ * Sun shadow-map texel (meters) beyond which the map no longer resolves an aircraft's own canopy
+ * frame, seat and panels. Coarser, their shadows on the aircraft fall in blocks that jump as it
+ * slides across the map's texel grid: at 0.2 m (100 m above the ground on High) about 1% of an
+ * F-15C's cockpit view changed from frame to frame in straight flight, at 0.8 m 10%, a cockpit
+ * flickering in the sun. It comes back once texels are SELF_SHADOW_RETURN or finer.
+ */
+const SELF_SHADOW_TEXEL = 0.15;
+const SELF_SHADOW_RETURN = 0.12;
 
 export interface AircraftVisual {
   setLivery(data: LiveryData | undefined): void;
@@ -56,6 +66,14 @@ export interface AircraftVisual {
    * so a binding's or damage's own `visible` is never overridden.
    */
   updateView(camera: readonly [number, number, number]): void;
+  /**
+   * The sun shadow map's texel size in meters (`Renderer.shadowTexelSize`) for the aircraft a view
+   * is built around: the one flown or followed. Hosts pass `undefined` for every other aircraft.
+   * While texels are too coarse to resolve the aircraft's own parts (over 0.15 m), it casts no
+   * sun shadow until they are 0.12 m or finer. Its shadows on itself and on the ground below go,
+   * and it still receives shadows from terrain, buildings and clouds.
+   */
+  updateShadows(texel: number | undefined): void;
   dispose(): void;
 }
 /**
@@ -87,7 +105,8 @@ export function createAircraftVisual(
   model.traverse((o) => {
     o.userData.vehicleGeometry = true;
     if (o instanceof THREE.Mesh) {
-      o.castShadow = !o.name.includes('canopy') && !o.name.includes('bubble');
+      // Glass by name or by material: most catalog aircraft name theirs glass or glazing.
+      o.castShadow = !o.name.includes('canopy') && !o.name.includes('bubble') && !isGlass(o);
       o.receiveShadow = true;
       drawGlassInOnePass(o);
     }
@@ -111,6 +130,33 @@ export function createAircraftVisual(
   const cabinRange = Math.max(60, 3 * Math.max(spec.length, spec.span));
   const damage = createAircraftDamageVisual(model, spec);
   let propellers = createAircraftPropellers(model, spec);
+  // Airplane propellers (tiltrotors' included) cross-fade into the disk createAircraftPropellers
+  // draws, which follows damage and liveries. Every other rotor (helicopter main and tail rotors,
+  // fans a jet binds as rotors) blurs here.
+  const rotorEngines = spec.engines ?? (spec.engine ? [{ ...spec.engine, id: 'main' }] : []);
+  const ownPropeller = (binding: (typeof spec.visual.rotors)[number]): boolean => {
+    if (spec.model !== 'airplane') return false;
+    const engine =
+      binding.engine === undefined
+        ? rotorEngines[0]
+        : rotorEngines.find((e) => e.id === binding.engine);
+    return engine !== undefined && engine.propulsion !== 'jet';
+  };
+  const blurs = new Map<(typeof spec.visual.rotors)[number], RotorBlur[]>();
+  for (const binding of spec.visual.rotors) {
+    if (ownPropeller(binding)) continue;
+    const prepared = (moving.get(binding.node) ?? []).flatMap(
+      (node) => createRotorBlur(node, binding.axis) ?? [],
+    );
+    if (prepared.length > 0) blurs.set(binding, prepared);
+  }
+  const shaftSpeed = (id: string | undefined): number =>
+    (id === undefined
+      ? undefined
+      : spec.engines?.find((engine) => engine.id === id)?.rotorAngularSpeed) ??
+    spec.engine?.rotorAngularSpeed ??
+    spec.engines?.[0]?.rotorAngularSpeed ??
+    0;
   let cabinShown = true;
   // Cabin parts, farthest-seen first, with the camera distance from the pilot's eye beyond which
   // each is too small to draw. The first `detailed` are drawn; the rest keep their layers here.
@@ -132,13 +178,34 @@ export function createAircraftVisual(
   details.sort((a, b) => b.reach - a.reach);
   let detailed = details.length;
   const eye = new THREE.Vector3();
+  // Parts updateShadows took out of the shadow pass; each casts again when texels are fine enough.
+  let shadowsOut = false;
+  const unshadowed: THREE.Mesh[] = [];
+  const castShadows = (cast: boolean): void => {
+    shadowsOut = !cast;
+    if (cast) {
+      for (const mesh of unshadowed) mesh.castShadow = true;
+      unshadowed.length = 0;
+      return;
+    }
+    model.traverse((object) => {
+      const mesh = object as THREE.Mesh;
+      if (!mesh.isMesh || !mesh.castShadow) return;
+      mesh.castShadow = false;
+      unshadowed.push(mesh);
+    });
+  };
   return {
     setLivery(data) {
+      // New propellers record each blade's own shadow flag, so restore the flags first.
+      const out = shadowsOut;
+      if (out) castShadows(true);
       propellers.dispose();
       appearance?.dispose();
       damage.reset();
       appearance = data === undefined ? undefined : applyLivery(model, data);
       propellers = createAircraftPropellers(model, spec);
+      if (out) castShadows(false);
     },
     object: model,
     cockpit,
@@ -154,6 +221,10 @@ export function createAircraftVisual(
           binding.axis,
           (engine?.rotorAngle ?? state.rotorAngle) * binding.multiplier,
         );
+        // State rpm is a 0..1 fraction; ambient traffic reports a nominal figure, so it saturates.
+        const fraction = Math.min(1, engine?.rpm ?? state.rpm ?? 0);
+        const speed = fraction * shaftSpeed(binding.engine) * binding.multiplier;
+        for (const blur of blurs.get(binding) ?? []) blur.update(speed);
       }
       for (const name of spec.visual.gearNodes) {
         // Authored hinges carry the gear into its well. Keep exposed stowed wheels visible
@@ -269,8 +340,13 @@ export function createAircraftVisual(
       });
       interior?.update(telemetry, timeSeconds);
       animation?.update(telemetry, timeSeconds);
-      propellers.update(state);
+      propellers.update(state, !shadowsOut);
       damage.update(state);
+    },
+    updateShadows(texel) {
+      const out =
+        texel !== undefined && texel > (shadowsOut ? SELF_SHADOW_RETURN : SELF_SHADOW_TEXEL);
+      if (out !== shadowsOut) castShadows(!out);
     },
     updateView(camera) {
       if (cabin.length === 0) return;
@@ -331,6 +407,23 @@ export function aircraftCameraPose(
   let position = new THREE.Vector3().fromArray(spec.pilotEye).applyQuaternion(q).add(origin);
   let target = position.clone().add(direction);
   let up = new THREE.Vector3(0, 1, 0).applyQuaternion(q);
+  const shake = options.view === 'chase' ? 0 : Math.min(1, options.shake?.amount ?? 0);
+  if (shake > 0) {
+    // Buffet: the seat hammers up and down and the view nods and rocks with it.
+    const time = options.shake?.time ?? 0;
+    const wobble = (rate: number, phase: number): number =>
+      Math.sin(time * rate + phase) + 0.5 * Math.sin(time * rate * 1.73 + phase * 2.1);
+    const left = new THREE.Vector3(1, 0, 0).applyQuaternion(q);
+    position
+      .addScaledVector(up, 0.012 * shake * wobble(64, 0))
+      .addScaledVector(left, 0.005 * shake * wobble(47, 1));
+    target = position
+      .clone()
+      .add(direction)
+      .addScaledVector(up, 0.004 * shake * wobble(58, 2))
+      .addScaledVector(left, 0.002 * shake * wobble(49, 0.7));
+    up = up.addScaledVector(left, 0.006 * shake * wobble(67, 3)).normalize();
+  }
   if (options.view === 'chase') {
     target = origin.clone().add(new THREE.Vector3(0, 1.5, 0));
     position = target

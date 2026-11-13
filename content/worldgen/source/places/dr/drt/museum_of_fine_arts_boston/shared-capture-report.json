@@ -1,0 +1,88 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.museum_of_fine_arts_boston",
+  "inputHash": "sha256:3fdb6c1af119fa0b19e4674f28f255a15b3f75dbf73927f9f7b3421537dfc3e1",
+  "sourceHash": "sha256:8b9935d06d68e1bb9412c7b500abe05e4ea5a25a18863016e4ea07cdee99b423",
+  "runtimeHash": "sha256:46339bf5bd8ffbf093f2341ac39b8371ee48d325d4c168d26391527fc976d514",
+  "fixtureHash": "sha256:27f5eb1204c300a55375586b5c5f9364329f31956b7115aea380eb3721965ee8",
+  "placementHash": "sha256:2695bb1fb4ecb01fbe7358c0561bfbec6faf345169ff9bd1f01dc5a88e8b28ab",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_panel": {
+      "path": "materials/concrete_panel.matgraph.json",
+      "hash": "sha256:abe4cae93974b54fcec791eeaf719abfc7b069c87e136f4c371cebdaed7321f4"
+    },
+    "molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    },
+    "molen.worldgen.material.membrane": {
+      "path": "materials/membrane.matgraph.json",
+      "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
+    },
+    "molen.worldgen.material.metal_copper": {
+      "path": "materials/metal_copper.matgraph.json",
+      "hash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    },
+    "molen.worldgen.material.window_grid": {
+      "path": "materials/window_grid.matgraph.json",
+      "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-museum.png",
+      "hash": "sha256:a80033fdf0a0bb6f016b242df03e72b37c27cbf09989517998ddb1feb595f9d5",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          84,
+          96,
+          219
+        ],
+        "lookAt": [
+          0,
+          9,
+          3
+        ],
+        "fov": 48,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          0.76,
+          1,
+          0.55
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "museum.of.fine.arts.boston",
+        "visibleDraws": 8
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "All four tiers use eight existing graphs. Each graph resolves once per viewer session. All levels use metric UVs and linear vertex colors."
+}

@@ -97,8 +97,48 @@ Versioned type-specific layout algorithms, metric clearances and furnishing pale
               "workplace",
               "storage",
               "hall",
-              "residential"
+              "residential",
+              "parking",
+              "tower",
+              "atrium",
+              "auditorium",
+              "court",
+              "concourse",
+              "gallery",
+              "apparatus"
             ]
+          },
+          "tower": {
+            "type": "object",
+            "properties": {
+              "plate": {
+                "type": "string",
+                "enum": [
+                  "open",
+                  "guest",
+                  "flat",
+                  "ward",
+                  "class"
+                ]
+              },
+              "elevators": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 8
+              },
+              "lobby": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 40
+              }
+            },
+            "required": [
+              "plate",
+              "elevators",
+              "lobby"
+            ],
+            "additionalProperties": false,
+            "description": "How a tower profile fills each storey around its lift core."
           },
           "residential": {
             "type": "object",
@@ -151,13 +191,26 @@ Versioned type-specific layout algorithms, metric clearances and furnishing pale
               "coffee-table",
               "bookcase",
               "plant",
-              "dresser"
+              "dresser",
+              "reception",
+              "seat-row",
+              "pew",
+              "altar",
+              "screen",
+              "plinth",
+              "painting",
+              "court-lines",
+              "hoop",
+              "bleacher",
+              "ticket-gate",
+              "fire-engine",
+              "planter"
             ]
           },
           "aisleWidth": {
             "type": "number",
             "minimum": 1.2,
-            "maximum": 8,
+            "maximum": 20,
             "description": "Minimum clear route width in meters."
           },
           "moduleWidth": {

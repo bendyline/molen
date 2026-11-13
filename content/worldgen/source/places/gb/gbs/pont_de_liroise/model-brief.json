@@ -1,0 +1,361 @@
+{
+  "id": "pont_de_liroise",
+  "title": "Pont de l'Iroise",
+  "wikidataId": "Q3397237",
+  "referenceCoordinate": {
+    "longitude": -4.39879936,
+    "latitude": 48.388468501
+  },
+  "module": "content/worldgen/source/places/gb/gbs/pont_de_liroise/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-pont-de-liroise.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "foundation",
+      "graph": "concrete_boardformed",
+      "roughness": 0.9
+    },
+    "pavement": {
+      "slot": "wall",
+      "graph": "gravel",
+      "roughness": 0.94
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.27
+    },
+    "stays": {
+      "slot": "trim",
+      "graph": "metal_stainless",
+      "roughness": 0.58,
+      "metallic": 0.54
+    }
+  },
+  "exportLabel": "Molen original Pont de l'Iroise master",
+  "expectedDraftMasterHash": "sha256:225a140fd6bf6e2889a8cae7b1723b1c9efdb3c745f495e58e900ae2cedb36ea",
+  "visualBrief": "Two slim concrete pylons and a single central plane of stays carry the four-lane N165 across the Élorn. A pale fascia, dark box girder, separate approach piers and restrained road furniture follow the mapped deck and exterior photographs.",
+  "heightPolicy": "Use sea level as the fixed model datum and the standard viewer terrain to fit the two N165 landings. River pier bases extend below the native water surface and the independent Albert Louppe crossing stays native.",
+  "nativeAxes": "Positive X crosses the Élorn southeast toward Plougastel-Daoulas. Positive Z faces the independent Pont Albert Louppe downstream.",
+  "limitations": [
+    "The retained outline defines the full 876.5 m crossing and the two mapped N165 carriageways. The catalog’s 800.05 m structural length is a separate measurement.",
+    "Pylon stationing, road camber, box-girder section and cable anchorage spacing are approximated from exterior photographs and the mapped plan. The standard elevation grid fixes approach grades.",
+    "The southeast deck end is skewed to meet the offset N165 lanes. Local viewer water uses standard terrain and does not model tides."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Pont_de_l'Iroise_-_2024.jpg",
+      "hash": "sha256:437b1e3a2aac03f012ab1d0e21183286e86f2f58787f8b175abefcf811d9be82",
+      "observed": "Modern deck, pylons and cable planes."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Elorn_Plougastel_Pont_Iroise.jpg",
+      "hash": "sha256:dc444ee2935786a5c1e74cf56e154c05cc77447022734b14ef9b2a10bd66ff96",
+      "observed": "Upstream profile and independent older crossing."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "crossings-over-elorn",
+      "position": [
+        -92,
+        126,
+        -563
+      ],
+      "lookAt": [
+        0,
+        38,
+        32
+      ],
+      "fov": 50
+    },
+    {
+      "name": "main-span-and-stay-fans",
+      "position": [
+        88,
+        53,
+        -263
+      ],
+      "lookAt": [
+        0.3,
+        49,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "median-stays",
+      "position": [
+        -249,
+        33.9,
+        6
+      ],
+      "lookAt": [
+        -181,
+        53,
+        0
+      ],
+      "fov": 52
+    },
+    {
+      "name": "northwest-landing",
+      "position": [
+        -452,
+        35,
+        8
+      ],
+      "lookAt": [
+        -357,
+        35,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "southeast-landing",
+      "position": [
+        466,
+        32,
+        -13
+      ],
+      "lookAt": [
+        381,
+        32,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "downstream-bridge-separation",
+      "position": [
+        -85,
+        210,
+        544
+      ],
+      "lookAt": [
+        0,
+        28,
+        46
+      ],
+      "fov": 54
+    },
+    {
+      "name": "tide-and-pier",
+      "position": [
+        -153,
+        7,
+        -82
+      ],
+      "lookAt": [
+        -200,
+        18,
+        0
+      ],
+      "fov": 52
+    }
+  ],
+  "materialMethod": "Board-formed concrete, road aggregate, painted metal and stainless steel share library materials. Metric UVs and a muted palette distinguish the details without embedded images.",
+  "sourceFacts": {
+    "mappedBridgeRoad": 35184377244700,
+    "independentBridgeRoad": 35184562479320,
+    "mappedSpanMeters": 876.52,
+    "catalogStructuralLengthMeters": 800.05,
+    "mainPylons": 2,
+    "approachPiers": 4,
+    "authoredCableCount": 100
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        36,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/gb/gbs/pont_de_liroise/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.9
+      },
+      "pavement": {
+        "slot": "wall",
+        "graph": "gravel",
+        "roughness": 0.94
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.27
+      },
+      "stays": {
+        "slot": "trim",
+        "graph": "metal_stainless",
+        "roughness": 0.58,
+        "metallic": 0.54
+      }
+    },
+    "errorMeters": 3.25,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.9
+          },
+          "pavement": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.27
+          },
+          "stays": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.58,
+            "metallic": 0.54
+          }
+        },
+        "errorMeters": 1.72
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.9
+          },
+          "pavement": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.27
+          },
+          "stays": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.58,
+            "metallic": 0.54
+          }
+        },
+        "errorMeters": 0.61
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.9
+          },
+          "pavement": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.27
+          },
+          "stays": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.58,
+            "metallic": 0.54
+          }
+        },
+        "errorMeters": 0.2
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "pont_de_liroise-skyline",
+      "position": [
+        -92,
+        126,
+        -563
+      ],
+      "lookAt": [
+        0,
+        38,
+        32
+      ],
+      "fov": 50,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "pont_de_liroise-district",
+      "position": [
+        -92,
+        126,
+        -563
+      ],
+      "lookAt": [
+        0,
+        38,
+        32
+      ],
+      "fov": 50,
+      "reviewLod": "district"
+    },
+    {
+      "name": "pont_de_liroise-street",
+      "position": [
+        -92,
+        126,
+        -563
+      ],
+      "lookAt": [
+        0,
+        38,
+        32
+      ],
+      "fov": 50,
+      "reviewLod": "street"
+    },
+    {
+      "name": "pont_de_liroise-closeup",
+      "position": [
+        -92,
+        126,
+        -563
+      ],
+      "lookAt": [
+        0,
+        38,
+        32
+      ],
+      "fov": 50,
+      "reviewLod": "closeup"
+    }
+  ]
+}

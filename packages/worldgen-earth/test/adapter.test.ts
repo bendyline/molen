@@ -1,5 +1,6 @@
 import {
   createEmptyTerrainSemanticTile,
+  type TerrainBuildingFeature,
   type TerrainSemanticTile,
   webMercatorScaleAtLatitude,
   wgs84ToWebMercator,
@@ -10,7 +11,22 @@ import {
   queueBuildings,
 } from '@bendyline/molen-worldgen/kernel';
 import { describe, expect, it } from 'vitest';
-import { buildingLabels, contextLabelAt, landcoverLabel } from '../src/kernel/labels';
+import {
+  buildingLabels,
+  contextLabelAt,
+  isLandcoverDesignation,
+  landcoverLabel,
+} from '../src/kernel/labels';
+import {
+  MAP_OVERRIDE_COVER_CLASS,
+  MAP_OVERRIDE_MODEL_TAG,
+  MAP_OVERRIDE_PROP_CLASS,
+  MAP_OVERRIDE_STYLE_TAG,
+  MAP_OVERRIDE_TAG,
+  MAP_OVERRIDE_TRIM_TAG,
+  MAP_OVERRIDE_WALL_TAG,
+  mapOverrideFeatureId,
+} from '../src/kernel/map-override-tags';
 import { createRegionResolver } from '../src/kernel/region';
 import {
   OPEN_GROUND_LABEL,
@@ -19,8 +35,9 @@ import {
   type TileGeometry,
 } from '../src/kernel/semantic-adapter';
 import { worldgenTileBudgetForQuality } from '../src/kernel/tile-budgets';
+import { PROTOMAPS_TILE_BUFFER } from '../src/kernel/tile-edges';
 import { generateWorldgenTile } from '../src/kernel/tile-generate';
-import { loadDefaultAtlas, loadDefaultPack } from './helpers/pack';
+import { loadDefaultAtlas, loadDefaultPack, PLACES } from './helpers/pack';
 
 const atlas = await loadDefaultAtlas();
 const pack = await loadDefaultPack();
@@ -49,6 +66,38 @@ it('preserves physical habitat beneath nature reserve and national park designat
   expect(request.polygons.map((polygon) => polygon.label)).toEqual(['open_ground', 'scrub']);
   expect(contextLabelAt([0.5, 0.5], tile.landcover)).toBe('scrub');
   expect(tile.landcover).toHaveLength(3); // Protection evidence stays on the source for wildlife.
+});
+
+it('reads a named neighbourhood outline as a place, not as ground or a land use', () => {
+  const polygon = {
+    outer: [
+      [0, 0],
+      [1, 0],
+      [1, 1],
+      [0, 1],
+    ] as [number, number][],
+  };
+  // `other` is the Protomaps basemap's class for one, `neighbourhood` the OpenMapTiles one.
+  for (const kind of ['other', 'neighbourhood']) {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.landcover.push({ class: kind, polygons: [polygon] });
+    const labels = () =>
+      scatterRequestFromTile(
+        tile,
+        geometryAt(-114.6, 32.68),
+        { roads: 2, buildings: 2, water: 1 },
+        1,
+      ).polygons.map((entry) => entry.label);
+    expect(labels()).toEqual(['open_ground']);
+    expect(contextLabelAt([0.5, 0.5], tile.landcover)).toBeUndefined();
+    tile.landcover.push({ class: 'residential', polygons: [polygon] });
+    expect(labels()).toEqual(['open_ground', 'residential']);
+    expect(contextLabelAt([0.5, 0.5], tile.landcover)).toBe('residential');
+    // With a subclass that describes the ground, the polygon is cover like any other.
+    expect(isLandcoverDesignation({ class: kind, subclass: 'grass', polygons: [polygon] })).toBe(
+      false,
+    );
+  }
 });
 
 function geometryAt(lon: number, lat: number, size = 1600): TileGeometry {
@@ -262,7 +311,9 @@ describe('semantic adapter', () => {
       regions,
       features: { scatter: false },
     });
-    expect(output.records.every((r) => r.styleId.endsWith('.commercial'))).toBe(true);
+    // Neither reads as a house; a footprint big enough to teach in gets the school itself.
+    expect(output.records.every((r) => !r.styleId.includes('.house'))).toBe(true);
+    expect(output.records.some((r) => r.styleId === 'molen.worldgen.use.school')).toBe(true);
   });
 
   it('preserves mapped parts, raised clearance, uncovered outlines, and a shared ground platform', () => {
@@ -575,5 +626,242 @@ describe('semantic adapter', () => {
       expect(output.records[0]?.height).toBeGreaterThan(20);
       expect(output.records[0]?.height).toBeLessThan(30);
     }
+  });
+});
+
+describe('map override features', () => {
+  const rectangle = (u0: number, v0: number, u1: number, v1: number): [number, number][] => [
+    [u0, v0],
+    [u1, v0],
+    [u1, v1],
+    [u0, v1],
+  ];
+  /** A host's building as the tile edit injects it: one whole polygon and its tags. */
+  const hostBuilding = (
+    local: string,
+    outer: [number, number][],
+    fields: Partial<TerrainBuildingFeature> = {},
+    tags: Record<string, string> = {},
+  ): TerrainBuildingFeature => ({
+    id: mapOverrideFeatureId('lot', local),
+    class: 'building',
+    polygons: [{ outer }],
+    levels: 1,
+    ...fields,
+    tags: { [MAP_OVERRIDE_TAG]: 'lot', ...tags },
+  });
+  const requests = (
+    tile: TerrainSemanticTile,
+    geom: TileGeometry,
+    options: Partial<Parameters<typeof semanticTileToBatch>[2]> = {},
+  ) =>
+    semanticTileToBatch(tile, geom, {
+      pack,
+      atlas,
+      regions,
+      features: { scatter: false },
+      ...options,
+    });
+  const seattle = (levelBelowMax = 0): TileGeometry => ({
+    ...geometryAt(-122.03, 47.61),
+    levelBelowMax,
+  });
+
+  it('takes its style, colors and priority from its tags, the same at every level', () => {
+    const style = 'molen.worldgen.catalog.light_industrial';
+    expect(pack.archstyles[style]).toBeDefined();
+    const tile = createEmptyTerrainSemanticTile();
+    tile.buildings = [
+      hostBuilding(
+        'shed',
+        rectangle(0.4, 0.4, 0.43, 0.42),
+        { subclass: 'warehouse', height: 9, name: 'Warehouse' },
+        {
+          [MAP_OVERRIDE_STYLE_TAG]: style,
+          [MAP_OVERRIDE_WALL_TAG]: '#b9b4a8',
+          [MAP_OVERRIDE_TRIM_TAG]: '#75604a',
+        },
+      ),
+    ];
+    const styles = [0, 1].map((levelBelowMax) => {
+      const batch = requests(tile, seattle(levelBelowMax));
+      const request = batch.buildings[0];
+      expect(batch.buildings).toHaveLength(1);
+      expect(request?.identity).toBe('f:override:lot:shed');
+      expect(request?.labels).toEqual(['warehouse']);
+      expect(request?.style).toBe(style);
+      expect(request?.appearance).toEqual({ wall: '#b9b4a8', trim: '#75604a' });
+      expect(request?.priority).toBe(1);
+      expect(request?.height).toBe(9);
+      expect(request?.clipped).toBeUndefined();
+      return queueBuildings(batch, emptyWorldgenStats())[0]?.styleId;
+    });
+    expect(styles).toEqual([style, style]);
+  });
+
+  it('falls back from an unknown style to the declared use, and never throws', () => {
+    const tile = createEmptyTerrainSemanticTile();
+    tile.buildings = [
+      hostBuilding(
+        'shed',
+        rectangle(0.4, 0.4, 0.43, 0.42),
+        { subclass: 'warehouse' },
+        { [MAP_OVERRIDE_STYLE_TAG]: 'molen.worldgen.no.such_style' },
+      ),
+      // Big enough that the pack's own rule would call a warehouse a shopping mall.
+      hostBuilding('depot', rectangle(0.5, 0.4, 0.56, 0.44), { subclass: 'warehouse' }),
+      hostBuilding('school', rectangle(0.4, 0.5, 0.44, 0.53), { subclass: 'school', levels: 2 }),
+      hostBuilding(
+        'styled-school',
+        rectangle(0.5, 0.5, 0.54, 0.53),
+        { subclass: 'school' },
+        { [MAP_OVERRIDE_STYLE_TAG]: 'molen.worldgen.catalog.light_industrial' },
+      ),
+      hostBuilding(
+        'box',
+        rectangle(0.6, 0.5, 0.62, 0.52),
+        {},
+        { [MAP_OVERRIDE_STYLE_TAG]: 'molen.worldgen.no.such_style' },
+      ),
+    ];
+    for (const levelBelowMax of [0, 1]) {
+      const geom = seattle(levelBelowMax);
+      const batch = requests(tile, geom);
+      const byId = new Map(batch.buildings.map((request) => [request.identity, request]));
+      const of = (local: string) => byId.get(`f:override:lot:${local}`);
+      expect(of('shed')?.style).toBe('molen.worldgen.generic.warehouse');
+      expect(of('depot')?.style).toBe('molen.worldgen.generic.warehouse');
+      // A declared use lays out the inside too, on every level (mapped uses only on the finest).
+      expect(of('school')?.style).toBe('molen.worldgen.use.school');
+      expect(of('school')?.interiorLabels).toEqual(['school']);
+      expect(of('school')?.labels).toEqual(['school']);
+      expect(of('school')?.levels).toBe(2);
+      // An explicit style keeps the outside; the use still decides the inside.
+      expect(of('styled-school')?.style).toBe('molen.worldgen.catalog.light_industrial');
+      expect(of('styled-school')?.interiorLabels).toEqual(['school']);
+      // Neither a known style nor a use: the rules choose, as for any mapped building.
+      expect(of('box')?.style).not.toBe('molen.worldgen.no.such_style');
+      expect(of('box')?.labels).toEqual(['building']);
+      const output = generateWorldgenTile({
+        tile,
+        geom,
+        ground: flatGround,
+        pack,
+        atlas,
+        regions,
+        features: { scatter: false },
+      });
+      expect(output.records.map((record) => record.identity).sort()).toEqual(
+        [...byId.keys()].sort(),
+      );
+      for (const record of output.records) expect(pack.archstyles[record.styleId]).toBeDefined();
+    }
+  });
+
+  it('is not re-signed, repainted or made a car park by what is mapped inside it', () => {
+    const geom: TileGeometry = { ...seattle(), size: 100 };
+    const outer = rectangle(0.1, 0.1, 0.8, 0.5);
+    const tenant = {
+      id: 1,
+      class: 'supermarket',
+      name: 'Safeway',
+      point: [0.4, 0.3] as [number, number],
+    };
+    const garage = {
+      id: 2,
+      class: 'parking',
+      name: 'Main Street Parking Garage',
+      point: [0.6, 0.3] as [number, number],
+    };
+    // The same footprint as mapped: a tenant signs it and a named garage makes it a car park.
+    const mapped = createEmptyTerrainSemanticTile();
+    mapped.buildings = [{ id: 9, class: 'building', height: 6, polygons: [{ outer }] }];
+    mapped.pois = [tenant];
+    expect(requests(mapped, geom, { places: PLACES }).buildings[0]?.storefronts).toHaveLength(1);
+    mapped.pois = [garage];
+    expect(requests(mapped, geom, { places: PLACES }).buildings[0]?.parking).toBeDefined();
+
+    const tile = createEmptyTerrainSemanticTile();
+    tile.buildings = [
+      // Its own class and name would resolve as a business too.
+      hostBuilding(
+        'shop',
+        outer,
+        { subclass: 'supermarket', name: 'Safeway', height: 6 },
+        { [MAP_OVERRIDE_WALL_TAG]: '#ffffff' },
+      ),
+    ];
+    tile.pois = [tenant, garage];
+    const request = requests(tile, geom, { places: PLACES }).buildings[0];
+    expect(request?.storefronts).toBeUndefined();
+    expect(request?.parking).toBeUndefined();
+    expect(request?.appearance).toEqual({ wall: '#ffffff' });
+    expect(request?.labels).toEqual(['supermarket']);
+    expect(request?.height).toBe(6);
+  });
+
+  it('is rendered whole by the tile holding its center and skipped by the others', () => {
+    // Reaches from this tile across its east neighbour, with a wall on this tile's clip line.
+    const outer = rectangle(1 - PROTOMAPS_TILE_BUFFER, 0.4, 1.4, 0.5);
+    const here = createEmptyTerrainSemanticTile();
+    here.buildings = [hostBuilding('hall', outer, { height: 12 })];
+    const skipped = requests(here, seattle());
+    expect(skipped.buildings).toEqual([]);
+    expect(skipped.skippedByOwnership).toBe(1);
+    const east = createEmptyTerrainSemanticTile();
+    east.buildings = [
+      hostBuilding(
+        'hall',
+        outer.map(([u, v]): [number, number] => [u - 1, v]),
+        { height: 12 },
+      ),
+    ];
+    const geom = seattle();
+    const owned = requests(east, { ...geom, x: geom.x + 1, originX: geom.originX + geom.size });
+    expect(owned.skippedByOwnership).toBe(0);
+    expect(owned.clippedPieces).toBe(0);
+    expect(owned.buildings).toHaveLength(1);
+    const request = owned.buildings[0];
+    expect(request?.identity).toBe('f:override:lot:hall');
+    expect(request?.clipped).toBeUndefined();
+    expect(request?.seamEdges).toBeUndefined();
+    // All of it, the part west of this tile's edge included.
+    expect(request?.outline[0]?.[0]).toBeCloseTo(-PROTOMAPS_TILE_BUFFER * geom.size, 6);
+    expect(request?.outline[1]?.[0]).toBeCloseTo(0.4 * geom.size, 6);
+  });
+
+  it('keeps plants off cleared ground and away from the props a host placed', () => {
+    const tile = tileFixture();
+    tile.landcover.push({
+      id: mapOverrideFeatureId('lot', 'ground'),
+      class: MAP_OVERRIDE_COVER_CLASS,
+      subclass: 'grass',
+      density: 0,
+      polygons: [{ outer: rectangle(0.6, 0.6, 0.8, 0.8) }],
+    });
+    tile.pois = [
+      {
+        id: mapOverrideFeatureId('lot', 'kiosk'),
+        class: MAP_OVERRIDE_PROP_CLASS,
+        point: [0.7, 0.7],
+        tags: { [MAP_OVERRIDE_TAG]: 'lot', [MAP_OVERRIDE_MODEL_TAG]: 'builtin:rock' },
+      },
+      { id: 4, class: 'bench', point: [0.3, 0.7] },
+    ];
+    const scatter = (levelBelowMax: number) =>
+      scatterRequestFromTile(tile, seattle(levelBelowMax), { roads: 2, buildings: 2, water: 1 }, 1);
+    // Painted last, over the forest it was cut from, with nothing to scatter.
+    const cover = scatter(0).polygons.at(-1);
+    expect(cover?.label).toBe('cleared grass');
+    expect(cover?.density).toBe(0);
+    // Mapped furniture is placed on the finest level only; a host's one level coarser too.
+    const propExclusions = (levelBelowMax: number) =>
+      scatter(levelBelowMax).exclusions.filter((entry) => entry.kind === undefined);
+    expect(propExclusions(0)).toHaveLength(2);
+    expect(propExclusions(1)).toHaveLength(1);
+    expect(propExclusions(2)).toHaveLength(0);
+    expect(requests(tile, seattle()).props?.map((prop) => prop.identity)).toEqual([
+      'poi:override:lot:kiosk',
+    ]);
   });
 });

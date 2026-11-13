@@ -1,0 +1,552 @@
+{
+  "planId": "saumarez_homestead",
+  "id": "saumarez_homestead",
+  "assetId": "molen.worldgen.structure.saumarez_homestead",
+  "title": "Saumarez Homestead",
+  "wikidataId": "Q18331577",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 151.58940125,
+    "latitude": -30.539727550000002
+  },
+  "size": [
+    50.46824264526367,
+    13.618000030517578,
+    24.082496643066406
+  ],
+  "actualBounds": {
+    "min": [
+      -24.5,
+      -1.5399999618530273,
+      -14.417496681213379
+    ],
+    "max": [
+      25.968242645263672,
+      12.07800006866455,
+      9.664999961853027
+    ]
+  },
+  "visualBrief": "The Saumarez brick homestead with green corrugated gables, paired bracketed windows, tall chimneys and two tiers of light verandas.",
+  "nativeAxes": {
+    "x": "southwest along the northwest elevation",
+    "y": "up",
+    "z": "northwest toward the lawn"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2014-10-03",
+    "validFrom": "2014-01-01",
+    "validUntil": "2015-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Saumarez_Homestead.png"
+  ],
+  "stories": [
+    {
+      "id": "saumarez-homestead-wp",
+      "url": "https://qualla.com/saumarez-homestead/"
+    }
+  ],
+  "referenceInputHash": "5bc3c4de937d4cbbdd94fb2aa46da4e20fa7fd9a2594944d16a7467677666a27",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r6/r6e/saumarez_homestead/models/saumarez-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r6/r6e/saumarez_homestead/models/saumarez-model.mjs",
+    "level": "skyline",
+    "export": "saumarezSkyline",
+    "errorMeters": 0.29,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.86,
+        "metallic": 0.08
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "pane": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.53,
+        "metallic": 0.035
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "saumarezDistrict",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.53,
+            "metallic": 0.035
+          }
+        }
+      },
+      "street": {
+        "export": "saumarezStreet",
+        "errorMeters": 0.061,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.53,
+            "metallic": 0.035
+          }
+        }
+      },
+      "closeup": {
+        "export": "saumarezCloseup",
+        "errorMeters": 0.021,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.53,
+            "metallic": 0.035
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "metal_corrugated",
+    "wood_plain",
+    "stone_sandstone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.85,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      151.58940125,
+      -30.539727550000002
+    ],
+    "heading": -2.589423562076074,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        151.58948780775916,
+        -30.539593054304486
+      ],
+      "modelHeight": 0,
+      "basis": "Original grade on the lawn outside the northwest house envelope."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -22.548477455399315,
+          6.39396369667435
+        ],
+        [
+          -22.550519281188848,
+          -3.034404005301111
+        ],
+        [
+          -24.316732483509433,
+          -3.037327727714146
+        ],
+        [
+          -24.313526442774062,
+          -9.769002325173508
+        ],
+        [
+          -22.217164907855548,
+          -9.771877085210198
+        ],
+        [
+          -22.214725339575207,
+          -11.731631311577488
+        ],
+        [
+          -7.285895125685894,
+          -11.725832828791049
+        ],
+        [
+          -7.282980139163264,
+          -14.417496851917399
+        ],
+        [
+          -0.675425399839888,
+          -14.412964382261432
+        ],
+        [
+          -0.6789971322779573,
+          -12.50620786794454
+        ],
+        [
+          3.388899956965433,
+          -12.510411592210273
+        ],
+        [
+          3.3897349834273016,
+          -11.999970258331341
+        ],
+        [
+          6.009889002597909,
+          -11.993940956673432
+        ],
+        [
+          6.006439168098264,
+          -8.478878414053696
+        ],
+        [
+          3.49710917787361,
+          -8.482004977474542
+        ],
+        [
+          3.4959800566174506,
+          -6.743719212558028
+        ],
+        [
+          0.9504833047874968,
+          -6.742977791127775
+        ],
+        [
+          0.9498356875767662,
+          -2.1540348690364888
+        ],
+        [
+          5.555527212719937,
+          -2.15378306565233
+        ],
+        [
+          5.55718814157901,
+          -6.506750825936508
+        ],
+        [
+          15.334369536737796,
+          -6.510688758432571
+        ],
+        [
+          15.33825361230693,
+          0.08152848420245906
+        ],
+        [
+          18.25822830633271,
+          0.0761496746758521
+        ],
+        [
+          18.265787761828985,
+          -4.3777844262166
+        ],
+        [
+          25.829944494108247,
+          -4.372272720805157
+        ],
+        [
+          25.825853123560968,
+          7.31429969498099
+        ],
+        [
+          17.96771481776161,
+          7.3107184860755385
+        ],
+        [
+          17.97265946290009,
+          6.882288260252404
+        ],
+        [
+          6.260109272701711,
+          6.883687170697062
+        ],
+        [
+          6.2653510555360485,
+          5.997813323045395
+        ],
+        [
+          -0.9523316382576645,
+          5.9965612983004375
+        ],
+        [
+          -0.949823518290509,
+          9.319168775474797
+        ],
+        [
+          -7.291400588218955,
+          9.321602878749104
+        ],
+        [
+          -7.289498908704625,
+          6.393963696674348
+        ]
+      ],
+      "minimumCoverage": 0.95,
+      "basis": "The named mapped principal house is separate from the site’s farm buildings."
+    },
+    "featureIds": [
+      "way/583441451"
+    ],
+    "source": "https://www.openstreetmap.org/way/583441451",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:20597fbc322dab92f690654d70cd150c37d8dbcb3ed59dd85aa38af2e5bfb9fb",
+    "notes": "Named OpenStreetMap way 583441451 fixes the principal house envelope. The National Trust describes the two-stage 1888–1906 house, and the October 2014 Qualla photograph records its garden elevations. The source image guides the green corrugated roof, ornamented gables and two tiers of pale verandas. Heights and fine joinery are estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "October 2014 exterior of the principal house and its attached ranges. Detached farm buildings and interiors are outside scope.",
+    "The northwest elevation is based on the cleared photograph. Rear and side elevations, roof joins, absolute heights and fine decorative joinery are estimates.",
+    "Original terrain samples are preserved. Foundation and entrance step heights use the original grade near the photographed northwest elevation."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. Damien Linnane dedicated the exact October 2014 reference under CC0. OpenStreetMap contributors supply the mapped envelope under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-saumarez-homestead-skyline",
+      "position": [
+        43,
+        18,
+        48
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-saumarez-homestead-district",
+      "position": [
+        43,
+        18,
+        48
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-saumarez-homestead-street",
+      "position": [
+        43,
+        18,
+        48
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-saumarez-homestead-closeup",
+      "position": [
+        43,
+        18,
+        48
+      ],
+      "lookAt": [
+        0,
+        5.5,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "brick-gables-and-northwest-verandas",
+      "position": [
+        -38,
+        10,
+        36
+      ],
+      "lookAt": [
+        -7,
+        5,
+        3
+      ]
+    },
+    {
+      "name": "veranda-ironwork-and-glazed-bay",
+      "position": [
+        -13,
+        9,
+        22
+      ],
+      "lookAt": [
+        -9,
+        5,
+        6.2
+      ]
+    },
+    {
+      "name": "rear-service-roofs-and-chimneys",
+      "position": [
+        24,
+        19,
+        -43
+      ],
+      "lookAt": [
+        0,
+        6,
+        -4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 3146,
+    "vertices": 9438,
+    "materials": 5,
+    "bytes": 518888,
+    "sha256": "sha256:24a3520af831a4cfbe9ed6ddc33080e16c82a2fc504559c95c0029d555a7790b"
+  }
+}

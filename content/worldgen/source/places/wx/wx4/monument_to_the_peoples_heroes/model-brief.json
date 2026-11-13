@@ -1,0 +1,367 @@
+{
+  "id": "monument_to_the_peoples_heroes",
+  "title": "Monument to the People's Heroes",
+  "wikidataId": "Q536955",
+  "referenceCoordinate": {
+    "longitude": 116.391424642,
+    "latitude": 39.90319718
+  },
+  "module": "content/worldgen/source/places/wx/wx4/monument_to_the_peoples_heroes/models/monument-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-peoples-heroes-monument.mjs",
+  "builder": "buildMonumentLevel",
+  "surfaces": {
+    "granite": {
+      "slot": "wall",
+      "graph": "stone_granite",
+      "roughness": 0.85
+    },
+    "marble": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.81
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_ashlar",
+      "roughness": 0.89
+    },
+    "gilt": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.49,
+      "metallic": 0.47
+    }
+  },
+  "exportLabel": "Molen original Monument to the People's Heroes master",
+  "expectedDraftMasterHash": "sha256:5b643408105f0d9149719c82804cd4b2f4ec1385f68e67cbecdc93d127292f2d",
+  "visualBrief": "Tiananmen Square memorial with two terraced platforms, eight stair runs, carved white railings, ten relief compositions, the tapered granite shaft, north and south inscriptions and wreath cornices.",
+  "heightPolicy": "The 48.65 m datum uses standard Terrarium elevations. The locally leveled stone apron blends back to sampled grades within the 88 by 76 m cut around the mapped terraces and stair approaches.",
+  "nativeAxes": "The long local axis runs north–south. The large gold inscription faces local -X toward the north end of Tiananmen Square. The multi-column dedication faces south.",
+  "limitations": [
+    "Stair, deck, plinth and shaft dimensions follow PMTiles. The small stone apron reconciles standard Terrarium samples with the level plaza seen in photographs. The rest of the square retains native terrain and map features.",
+    "Individual carved figures, clouds, wreaths and historic calligraphy are represented by modeled approximations. The inscription text follows the map record."
+  ],
+  "materialMethod": "Shared granite, marble, ashlar and cast bronze cover the structure, retaining rails, reliefs, paving and inscription without embedded images.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Monument_to_the_People's_Heroes_(54136587116).jpg",
+      "hash": "sha256:5b8a07b26ee7794ab51d3bde807c103e038e6fa3519814847fb8e06b818f640d",
+      "observed": "Stele, inscriptions and approach."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Monument_to_the_People's_Heroes%2C_Beijing%2C_from_southwest.jpg",
+      "hash": "sha256:ac4b13ecba9dec4ed9d04e60acf7966df66c3e59005cb57b4957f01f93f0a1e6",
+      "observed": "Rear inscription, reliefs and wide stepped base."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Monument_to_the_People's_Heroes_on_Tiananmen_Square.jpg",
+      "hash": "sha256:3512e2916376e4cf9593af705b2d9e40ded6108fbdf18248213ea0b40bc2a6e9",
+      "observed": "Relationship of podium, stone railings and surrounding plaza."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "north-plaza",
+      "position": [
+        -95,
+        34,
+        69
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "fov": 49
+    },
+    {
+      "name": "north-inscription",
+      "position": [
+        -31,
+        24,
+        0.2
+      ],
+      "lookAt": [
+        0,
+        25,
+        -0.8
+      ],
+      "fov": 43
+    },
+    {
+      "name": "south-plaza",
+      "position": [
+        87,
+        31,
+        -63
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "south-dedication",
+      "position": [
+        28,
+        25,
+        -2
+      ],
+      "lookAt": [
+        0,
+        24,
+        -0.7
+      ],
+      "fov": 48
+    },
+    {
+      "name": "reliefs-and-inner-stair",
+      "position": [
+        -25,
+        8,
+        -17
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "side-wreath-and-cornice",
+      "position": [
+        13,
+        38,
+        -24
+      ],
+      "lookAt": [
+        1,
+        33,
+        -0.8
+      ],
+      "fov": 47
+    },
+    {
+      "name": "plaza-treads-and-railings",
+      "position": [
+        -58,
+        5,
+        15
+      ],
+      "lookAt": [
+        -15,
+        4,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "overhead-terraces",
+      "position": [
+        5,
+        112,
+        -2
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 45
+    }
+  ],
+  "sourceFacts": {
+    "mappedBuilding": 52776566980970,
+    "heightMeters": 37.94,
+    "stairRuns": 8,
+    "northInscription": "人民英雄永垂不朽"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        17,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wx/wx4/monument_to_the_peoples_heroes/models/monument-model.mjs",
+    "export": "buildMonumentSkyline",
+    "surfaces": {
+      "granite": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.85
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.81
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.89
+      },
+      "gilt": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.49,
+        "metallic": 0.47
+      }
+    },
+    "errorMeters": 2.03,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMonumentDistrict",
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.85
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.81
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.89
+          },
+          "gilt": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.49,
+            "metallic": 0.47
+          }
+        },
+        "errorMeters": 0.97
+      },
+      "street": {
+        "export": "buildMonumentStreet",
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.85
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.81
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.89
+          },
+          "gilt": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.49,
+            "metallic": 0.47
+          }
+        },
+        "errorMeters": 0.35
+      },
+      "closeup": {
+        "export": "buildMonumentCloseup",
+        "surfaces": {
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.85
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.81
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.89
+          },
+          "gilt": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.49,
+            "metallic": 0.47
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "monument_to_the_peoples_heroes-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -95,
+        34,
+        69
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "monument_to_the_peoples_heroes-district",
+      "reviewLod": "district",
+      "position": [
+        -95,
+        34,
+        69
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "monument_to_the_peoples_heroes-street",
+      "reviewLod": "street",
+      "position": [
+        -95,
+        34,
+        69
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "monument_to_the_peoples_heroes-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -95,
+        34,
+        69
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ]
+    }
+  ]
+}

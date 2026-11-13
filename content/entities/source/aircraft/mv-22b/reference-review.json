@@ -219,12 +219,51 @@
       "Gear uses translation/hiding without full linkage sequencing. Conversion is0–90degrees; aft-of-vertical nacelle travel, blade folding, wing stow, flapping/coning and cargo-ramp motion are not implemented. Hover flaperon scheduling is a visual approximation. The cargo cabin is unfurnished. Selective seams/fasteners are not a manufacturing rivet schedule. Assisted flight checks do not establish real aircraft performance."
     ]
   },
-  "sourceHash": "sha256:3afcbaa142c673a182fc63542160f3523162edfeb9017d1b3eebc9544683f50d",
-  "runtimeHash": "sha256:93e06979dd3a085fb0a81ac2886a6af128c3aea65b6e3585e30a5e2867e4272d",
+  "sourceHash": "sha256:a59a331abea7337dad741e1c23f4cd6707129205c9b816a0f026b79d4dcebf1a",
+  "runtimeHash": "sha256:5d7213aae95b42512fc1ce276eb5bd426017d8b3bb0e16d54ff0030a81ba47e3",
   "limitations": [
     "General arrangements and the CC drawing are illustrative, with inconsistent side/front fin proportions and rotor phase. Cross-sections, airfoils, glazing, nacelle ducts and sponsons remain approximations rather than production station data. The exterior photo supports the frontal appearance, but is not a metrically calibrated view.",
     "Cockpit dimensions are estimated. The photo has perspective, a helmet obscuring the autoflight unit, and a cropped right display. Main layout is reference-based; screen pages and labels are original simulator adaptations. Side panels, seats, belts, wiring and upholstery remain simplified. The overhead is lowered slightly for clearance within the reconstructed roof.",
     "Speed is TAS, altitude geometric, heading true, RPM normalized simulator shaft speed and nozzle angle0–90degrees. These are not certified V-22 avionics. Electrical power, fuel, temperature, torque, navigation, radio, warning systems and autopilot are unsupported and do not show invented readings. The engine model does not simulate the real interconnecting drive shaft.",
-    "Gear uses translation/hiding without full linkage sequencing. Conversion is0–90degrees; aft-of-vertical nacelle travel, blade folding, wing stow, flapping/coning and cargo-ramp motion are not implemented. Hover flaperon scheduling is a visual approximation. The cargo cabin is unfurnished. Selective seams/fasteners are not a manufacturing rivet schedule. Assisted flight checks do not establish real aircraft performance."
-  ]
+    "Gear uses translation/hiding without full linkage sequencing. Conversion is0–90degrees; aft-of-vertical nacelle travel, blade folding, wing stow, flapping/coning and cargo-ramp motion are not implemented. Hover flaperon scheduling is a visual approximation. The cargo cabin is unfurnished. Selective seams/fasteners are not a manufacturing rivet schedule. Assisted flight checks do not establish real aircraft performance.",
+    "The deck height is inferred from the eye, not measured. The outer PFD horizon mask in the shared instrument-geometry helper extends about 0.09 m past the side glass at its top corner; it does not show from the front or the nose view. Wipers set the sweep overNose reading at -5 degrees."
+  ],
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "Rays from the pilotEye through source.glb (cockpit-sweep), seat view at the runtime camera (+Z, 60 degrees vertical), an exterior nose render, and sections through the pilot plane and at hood height, each checked against a photograph of the real aircraft.",
+    "findings": [
+      "The seat stood 0.35 m aft of the eye, which was ahead of the cushion: the ray down reached the floor at 1.58 m and the seatback lay 0.55 m behind the shoulders.",
+      "The eye, hood and glass agree, and the eye stood 1.13 m over the cushion, so the seat was too low. The crew need a raised deck: the floor continued level from the cabin.",
+      "A glareshield shelf and two radio boxes reached past the side glass: the 0.2 percent poked reading."
+    ],
+    "before": {
+      "eye": [
+        0.62,
+        2.65,
+        5.85
+      ],
+      "eyeToPanelMeters": 0.8,
+      "headroomMeters": 0.34,
+      "eyeAboveCushionMeters": 1.13,
+      "seatbackMeters": 0.55,
+      "cockpitVerticesOutsidePercent": 0.2
+    },
+    "after": {
+      "eye": [
+        0.62,
+        2.65,
+        5.85
+      ],
+      "eyeToPanelMeters": 0.8,
+      "headroomMeters": 0.34,
+      "eyeAboveCushionMeters": 0.8,
+      "seatbackMeters": 0.3,
+      "cockpitVerticesOutsidePercent": 0
+    },
+    "corrections": [
+      "Crew deck raised 0.32 m under the seats and pedals. Seats slid 0.25 m forward and raised 0.33 m.",
+      "Sticks, thrust levers, pedals, sideboards and console follow; eye and panel unchanged.",
+      "Glareshield shelf and radio boxes trimmed inside the glass."
+    ]
+  }
 }

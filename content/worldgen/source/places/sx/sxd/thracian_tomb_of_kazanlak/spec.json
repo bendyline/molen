@@ -1,0 +1,507 @@
+{
+  "planId": "thracian_tomb_of_kazanlak",
+  "id": "thracian_tomb_of_kazanlak",
+  "assetId": "molen.worldgen.structure.thracian_tomb_of_kazanlak",
+  "title": "Thracian Tomb of Kazanlak",
+  "category": "monument",
+  "quality": "detailed",
+  "wikidataId": "Q301815",
+  "referenceCoordinate": {
+    "longitude": 25.399170219898224,
+    "latitude": 42.625774951657604
+  },
+  "visualBrief": "The original Thracian tomb has a tiled stone protective pavilion with three recessed iron-grilled arches, a freestanding four-sided brick vault and a stone forecourt. The editable master includes the northern corbelled burial chamber, a narrow dromos and a stone antechamber. Its concentric friezes use original colored geometry.",
+  "size": [
+    20.459999561309814,
+    8.329999923706055,
+    27.65860939025879
+  ],
+  "actualBounds": {
+    "min": [
+      -13.899999618530273,
+      -3.0399999618530273,
+      -5.858610153198242
+    ],
+    "max": [
+      6.559999942779541,
+      5.289999961853027,
+      21.799999237060547
+    ]
+  },
+  "nativeAxes": {
+    "basis": "Direction of the long pavilion sides and the footpath terminating south of the original footprint.",
+    "front": "+Z toward the mapped park approach",
+    "up": "+Y",
+    "units": "meters"
+  },
+  "sourceFacts": {
+    "pavilionFootprint": 35184584195941,
+    "threeBarredEntrances": true,
+    "brickVaultArches": 4,
+    "groundDatumMeters": 398,
+    "chamberDiameterMeters": 2.64,
+    "chamberHeightMeters": 3.24,
+    "nearbyReplicaFeature": 17592509446332
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:The_thracian_tomb_in_Kazanlak_from_outside.jpg",
+    "https://www.lifebites.bg/kazanlashkata-grobnitsa/",
+    "https://alba-camping.com/page-7.html",
+    "https://www.hasegawadai2.com/%E3%83%A8%E3%83%BC%E3%83%AD%E3%83%83%E3%83%91%E3%81%AE%E4%B8%96%E7%95%8C%E9%81%BA%E7%94%A3/%E3%83%96%E3%83%AB%E3%82%AC%E3%83%AA%E3%82%A2%E3%81%AE%E4%B8%96%E7%95%8C%E9%81%BA%E7%94%A3/%E3%82%AB%E3%82%B6%E3%83%B3%E3%83%A9%E3%82%AF%E3%81%AE%E3%83%88%E3%83%A9%E3%82%AD%E3%82%A2%E4%BA%BA%E3%81%AE%E5%A2%B3%E5%A2%93/",
+    "https://traciantombs.blogspot.com/2013/06/blog-post_7298.html",
+    "https://www.worldhistory.org/image/9072/painted-tomb-kazanlak/"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      25.399170219898224,
+      42.625774951657604
+    ],
+    "heading": -0.09232926059566596,
+    "elevationMode": "sea-level",
+    "orientationPolicy": "approximate-visualization",
+    "elevationMeters": 398,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The 398 m anchor is the standard terrain datum. The south sill sits at 396.61 m. Foundations descend to standard grade, and the north wall sits partly into the hillside.",
+    "groundModelY": 0,
+    "replaceFootprint": true,
+    "buildingCutout": {
+      "outline": [
+        [
+          -5.81736,
+          -5.63911
+        ],
+        [
+          6.09689,
+          -5.63911
+        ],
+        [
+          6.01587,
+          5.4001
+        ],
+        [
+          4.90182,
+          5.28262
+        ],
+        [
+          4.73977,
+          15.44682
+        ],
+        [
+          -4.74787,
+          15.44276
+        ],
+        [
+          -4.76408,
+          5.73634
+        ],
+        [
+          -5.85787,
+          5.83762
+        ]
+      ],
+      "minimumCoverage": 0.95,
+      "basis": "The original tomb POI shares the exact mapped protective pavilion footprint. The separately named replica POI remains independent."
+    },
+    "bounds": [
+      25.398981249037146,
+      42.625575604832505,
+      25.39925068618927,
+      42.625830210992156
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:77a77d3c43310bf6e9d5ec8d50f7c113806a8134e3b660e1b57e4158f42f9f4b",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://data.source.coop/protomaps/openstreetmap/v4.pmtiles",
+    "wikidataId": "Q301815",
+    "notes": "The south entry faces the park footway and agrees with the north-oriented burial chamber section. The mapped original pavilion is the only replacement footprint."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Six shared graphs for limestone, rough dressed stone, brick, glazed clay, painted iron and granite paving. The painted chamber uses colored geometry with a portable fallback.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_stack",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sx/sxd/thracian_tomb_of_kazanlak/models/tomb-model.mjs",
+    "export": "buildTombSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone"
+      },
+      "dressed": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw"
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_stack"
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic"
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite"
+      },
+      "plaster": {
+        "slot": "wall",
+        "localRef": "palette:#c9bba3",
+        "roughness": 1
+      }
+    },
+    "errorMeters": 0.64,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTombDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone"
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_stack"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "plaster": {
+            "slot": "wall",
+            "localRef": "palette:#c9bba3",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "street": {
+        "export": "buildTombStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone"
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_stack"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "plaster": {
+            "slot": "wall",
+            "localRef": "palette:#c9bba3",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.1
+      },
+      "closeup": {
+        "export": "buildTombCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone"
+          },
+          "dressed": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_stack"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "plaster": {
+            "slot": "wall",
+            "localRef": "palette:#c9bba3",
+            "roughness": 1
+          }
+        },
+        "errorMeters": 0.045
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": -3.6,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -2,
+        0,
+        8
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "thracian_tomb_of_kazanlak-skyline",
+      "position": [
+        26,
+        17,
+        44
+      ],
+      "lookAt": [
+        -2,
+        1,
+        7
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "thracian_tomb_of_kazanlak-district",
+      "position": [
+        26,
+        17,
+        44
+      ],
+      "lookAt": [
+        -2,
+        1,
+        7
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "thracian_tomb_of_kazanlak-street",
+      "position": [
+        26,
+        17,
+        44
+      ],
+      "lookAt": [
+        -2,
+        1,
+        7
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "thracian_tomb_of_kazanlak-closeup",
+      "position": [
+        26,
+        17,
+        44
+      ],
+      "lookAt": [
+        -2,
+        1,
+        7
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "The mapped pavilion footprint and its southern approach establish geographic fit and heading. The open brick vault, roof heights and paving perimeter are photo estimates.",
+    "Standard Terrarium terrain gives the pavilion a partly banked rear wall. Foundation bottoms follow the sampled grade. Nearby park paths and land cover remain in place.",
+    "The source master includes the below-grade burial chamber, dromos and antechamber from the published section image. The concentric bands and figures are an original simplified reconstruction. Chamber depth within the protective building is estimated. The exterior LODs omit below-grade geometry, and the native site remains closed. The visitor replica stays a separate mapped point."
+  ],
+  "qaCameras": [
+    {
+      "name": "original-approach",
+      "position": [
+        -8,
+        1.8,
+        32
+      ],
+      "lookAt": [
+        -2,
+        1.1,
+        13
+      ],
+      "fov": 44
+    },
+    {
+      "name": "brick-vault-from-the-west",
+      "position": [
+        -19,
+        2.1,
+        21
+      ],
+      "lookAt": [
+        -6,
+        1.1,
+        12
+      ],
+      "fov": 43
+    },
+    {
+      "name": "three-barred-arches",
+      "position": [
+        10,
+        1.45,
+        24
+      ],
+      "lookAt": [
+        0.2,
+        0.7,
+        15
+      ],
+      "fov": 43
+    },
+    {
+      "name": "tile-roof-and-chimney",
+      "position": [
+        17,
+        12,
+        3
+      ],
+      "lookAt": [
+        0,
+        2.5,
+        4
+      ],
+      "fov": 49
+    },
+    {
+      "name": "park-path-connection",
+      "position": [
+        -23,
+        4,
+        30
+      ],
+      "lookAt": [
+        -5,
+        -0.5,
+        15
+      ],
+      "fov": 50
+    },
+    {
+      "name": "rear-on-the-hillside",
+      "position": [
+        14,
+        8,
+        -22
+      ],
+      "lookAt": [
+        -0.3,
+        1.5,
+        1
+      ],
+      "fov": 44
+    },
+    {
+      "name": "corbelled-painted-chamber",
+      "position": [
+        0.09,
+        -2.41,
+        -1.13
+      ],
+      "lookAt": [
+        0.09,
+        -0.43999999999999995,
+        -1.89
+      ],
+      "fov": 94
+    },
+    {
+      "name": "dromos-and-chamber-door",
+      "position": [
+        0.09,
+        -2.18,
+        1.61
+      ],
+      "lookAt": [
+        0.09,
+        -2.01,
+        -2.45
+      ],
+      "fov": 72
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10026,
+    "vertices": 21242,
+    "materials": 7,
+    "bytes": 889248,
+    "sha256": "sha256:ab36a198fa1d9aa15ae91a4d0a0e10d452c020f3b75604f2ef721126107c2adf"
+  }
+}

@@ -70,7 +70,7 @@
     "mode": "top-down-ortho",
     "center": [
       0,
-      -1.4
+      -1.38
     ],
     "viewHeight": 0.7,
     "cameraHeight": 8.98
@@ -252,8 +252,8 @@
     ],
     "statesInspected": true
   },
-  "sourceHash": "sha256:6b9ba085bc9466fc66176375d42e05ed3cb0cbd4c87ab446f75c7c59f91a21ec",
-  "runtimeHash": "sha256:2cb3bda9be14d2f2f1946908d8bb777dd4110ba9ca69f3a58f5d34ab5edb5779",
+  "sourceHash": "sha256:e81770460e015360626afb648b8d3d064b91d70e7cacacf01c9f0cdb81ac8c66",
+  "runtimeHash": "sha256:adb7184d2ba03a65af0a12a349d06bfc01c2188a80145f8c238853e39ef711cb",
   "limitations": [
     "The plan drawing scaled by span is about 0.2m shorter overall than the printed 8.56m length; the side drawing places the nose wheel about 0.08m farther forward than the printed 1.735m wheelbase. Printed dimensions take precedence. Small tailplane, nacelle, aft-fuselage and gear outline residuals remain. The simplified website front drawing was replaced by the AFM front view, which includes a usable ground line.",
     "Compound canopy/nose/nacelle curvature, wing roots, intake throats, gear-door linkages and fairings remain finite polygonal approximations. Exterior service seams and fasteners follow composite construction without a fictitious all-metal rivet grid. Fine stencils and trim-tab mechanisms are simplified.",
@@ -283,6 +283,50 @@
       "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
       "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
       "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  },
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "packages/entities/scripts/cockpit-sweep.mjs rays from pilotEye through source.glb, then seat, pitched-down and exterior nose renders inspected at the runtime camera (+Z, 60 degrees vertical).",
+    "before": {
+      "eye": [
+        0.28,
+        1.8,
+        0.35
+      ],
+      "outside": 68,
+      "horizon": 100,
+      "overNose": -11,
+      "headroom": 0.1,
+      "wall": 0.22,
+      "panel": 0.88,
+      "cushion": 0.77,
+      "seatback": 0.3,
+      "poked": 0
+    },
+    "after": {
+      "eye": [
+        0.28,
+        1.75,
+        0.35
+      ],
+      "outside": 75,
+      "horizon": 100,
+      "overNose": -9,
+      "headroom": 0.17,
+      "wall": 0.27,
+      "panel": 0.88,
+      "cushion": 0.75,
+      "seatback": 0.32,
+      "poked": 0
+    },
+    "corrections": [
+      "The black slab was a pair of sun visors, 0.10 m above the eye and running into the canopy. The straight-on DA42-VI factory cockpit photograph shows none hanging in the windscreen, so they were removed.",
+      "Eye lowered 0.05 m and front seats 0.03 m: the canopy glass at the pilot position is at about y 1.925.",
+      "Glareshield hood shortened from z 1.55 to 1.42 and narrowed; panel lowered 0.02 m."
+    ],
+    "limitations": [
+      "Sun visors are absent from the photograph inspected; an optional visor kit is not ruled out."
     ]
   }
 }

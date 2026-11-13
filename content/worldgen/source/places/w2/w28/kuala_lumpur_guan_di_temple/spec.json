@@ -1,0 +1,549 @@
+{
+  "planId": "kuala_lumpur_guan_di_temple",
+  "id": "kuala_lumpur_guan_di_temple",
+  "assetId": "molen.worldgen.structure.kuala_lumpur_guan_di_temple",
+  "title": "Kuala Lumpur Guan Di Temple",
+  "wikidataId": "Q106179173",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 101.69689692499999,
+    "latitude": 3.14406535
+  },
+  "size": [
+    22.558448791503906,
+    10.594675064086914,
+    48.717140197753906
+  ],
+  "actualBounds": {
+    "min": [
+      -11.257737159729004,
+      -1.25,
+      -24.362140655517578
+    ],
+    "max": [
+      11.300711631774902,
+      9.344675064086914,
+      24.354999542236328
+    ]
+  },
+  "visualBrief": "Cantonese temple frontage with green glazed tile roofs, orange-red walls and an ornate gate on Jalan Tun H.S. Lee.",
+  "nativeAxes": {
+    "x": "right along the street facade",
+    "y": "up",
+    "z": "toward Jalan Tun H.S. Lee"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2007-02-18",
+    "validFrom": "2007-01-01",
+    "validUntil": "2008-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Kuan-Ti-Temple-20070218-027.jpg"
+  ],
+  "stories": [
+    {
+      "id": "kuala-lumpur-guan-di-temple-wp",
+      "url": "https://qualla.com/kuala-lumpur-guan-di-temple/"
+    }
+  ],
+  "referenceInputHash": "fb8044836ddc1522d3e2dd46efd6662b9ec8ae2e52e26004b55be12e6b48fd85",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/w2/w28/kuala_lumpur_guan_di_temple/models/guan-di-temple-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/w2/w28/kuala_lumpur_guan_di_temple/models/guan-di-temple-model.mjs",
+    "level": "skyline",
+    "export": "templeSkyline",
+    "errorMeters": 0.82,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.76,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_glazed",
+        "roughness": 0.67,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.92,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "templeDistrict",
+        "errorMeters": 0.43,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.67,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "templeStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.67,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "templeCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.76,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.67,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "wood_plain",
+    "tile_glazed",
+    "stone_granite"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.15,
+    "groundY": -0.03,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      101.69689692499999,
+      3.14406535
+    ],
+    "heading": -1.5638174450940243,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        101.69667810100096,
+        3.1440634500086913
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate public approach at the center of the west frontage."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -11.257737238519471,
+          -24.285268931644286
+        ],
+        [
+          -8.909496179363734,
+          -24.191072322469804
+        ],
+        [
+          11.174222903728715,
+          -24.36214113352328
+        ],
+        [
+          11.180545662892918,
+          -20.482800148817343
+        ],
+        [
+          11.196526251257627,
+          -16.39219795032365
+        ],
+        [
+          11.212506839671773,
+          -12.301595751829613
+        ],
+        [
+          11.217355750074919,
+          -8.211071242840411
+        ],
+        [
+          11.23333633843963,
+          -4.120469044346718
+        ],
+        [
+          11.249316926853776,
+          -0.029866845852680457
+        ],
+        [
+          11.25416583725692,
+          4.060657663136522
+        ],
+        [
+          11.300711324622798,
+          16.532532861152443
+        ],
+        [
+          11.190675672143295,
+          24.32370503021449
+        ],
+        [
+          9.87721524018594,
+          24.303422933304674
+        ],
+        [
+          -0.29783658230393617,
+          24.33245047024786
+        ],
+        [
+          -11.107161337319468,
+          24.323705030214494
+        ],
+        [
+          -11.131248817575957,
+          16.609405063031783
+        ]
+      ],
+      "basis": "Limit the opening to the mapped property covered by the modeled paving and hall foundations. Original composite elevation samples remain independent."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -11.257737238519471,
+          -24.285268931644286
+        ],
+        [
+          -8.909496179363734,
+          -24.191072322469804
+        ],
+        [
+          11.174222903728715,
+          -24.36214113352328
+        ],
+        [
+          11.180545662892918,
+          -20.482800148817343
+        ],
+        [
+          11.196526251257627,
+          -16.39219795032365
+        ],
+        [
+          11.212506839671773,
+          -12.301595751829613
+        ],
+        [
+          11.217355750074919,
+          -8.211071242840411
+        ],
+        [
+          11.23333633843963,
+          -4.120469044346718
+        ],
+        [
+          11.249316926853776,
+          -0.029866845852680457
+        ],
+        [
+          11.25416583725692,
+          4.060657663136522
+        ],
+        [
+          11.300711324622798,
+          16.532532861152443
+        ],
+        [
+          11.190675672143295,
+          24.32370503021449
+        ],
+        [
+          9.87721524018594,
+          24.303422933304674
+        ],
+        [
+          -0.29783658230393617,
+          24.33245047024786
+        ],
+        [
+          -11.107161337319468,
+          24.323705030214494
+        ],
+        [
+          -11.131248817575957,
+          16.609405063031783
+        ]
+      ],
+      "minimumCoverage": 0.97,
+      "basis": "Suppress only generic buildings wholly within the named temple property."
+    },
+    "featureIds": [
+      "way/28215278"
+    ],
+    "source": "https://www.openstreetmap.org/way/28215278",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4e511a8b708e445309fe4a1f4355f3d27563ef8ba0b1141cb4234e8d2387b65a",
+    "notes": "The named property controls the front alignment and overall extents. The width and height of the street roof are scaled from the local photo. Depths, internal court, and rear roof remain estimated."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    }
+  ],
+  "limitations": [
+    "The February 2007 Qualla photo establishes the street façade, recessed hall, roof, gateway and front fence. Roof ridge figures, plaques and door ornament are simplified at this scale.",
+    "The named map polygon represents the full property. Hall depths, the interior court and rear elevations are approximations. The two-storey rear building is documented by the temple association.",
+    "The original composite field includes a steep elevation anomaly across the property, consistent with nearby building returns. The dated placement opens terrain only within the paved site boundary. Original source elevations are retained and independently viewable. The modeled thresholds and adjoining street grade remain approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Property boundary © OpenStreetMap contributors, ODbL 1.0. Exact Gary Houston exterior photograph dedicated under CC0.",
+  "qaLodCameras": [
+    {
+      "name": "whole-guan-di-temple-skyline",
+      "position": [
+        28,
+        19,
+        61
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        9
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-guan-di-temple-district",
+      "position": [
+        28,
+        19,
+        61
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        9
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-guan-di-temple-street",
+      "position": [
+        28,
+        19,
+        61
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        9
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-guan-di-temple-closeup",
+      "position": [
+        28,
+        19,
+        61
+      ],
+      "lookAt": [
+        0,
+        3.8,
+        9
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "jalan-tun-hs-lee-entrance",
+      "position": [
+        13,
+        7.2,
+        48
+      ],
+      "lookAt": [
+        0,
+        4.1,
+        19
+      ]
+    },
+    {
+      "name": "green-tile-and-ceramic-ridges",
+      "position": [
+        -18,
+        16,
+        36
+      ],
+      "lookAt": [
+        0,
+        6,
+        14
+      ]
+    },
+    {
+      "name": "court-and-rear-ranges",
+      "position": [
+        27,
+        25,
+        -31
+      ],
+      "lookAt": [
+        0,
+        2.9,
+        -5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10598,
+    "vertices": 31794,
+    "materials": 5,
+    "bytes": 1500392,
+    "sha256": "sha256:6670a1c644a9faf93bbc64b777dcb677bc498cf97f819810ee4c52dbde0b6063"
+  }
+}

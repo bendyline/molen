@@ -15,19 +15,39 @@ export { aircraftObstacleContacts as vehicleObstacleContacts } from './aircraft-
 import { createGlassVisual, type GlassVisual } from './glass';
 import { applyLivery } from './livery';
 import { createModelSignalVisual, type ModelSignalVisual } from './model-signals';
+import { railVehicleProxyGeometry } from './rail-proxy';
 import { drawGlassInOnePass } from './vehicle-glass';
 import {
   createVehicleInteriorVisual,
   type VehicleInteriorSignals,
   type VehicleInteriorVisual,
 } from './vehicle-interior';
-import { vehicleProxyGeometry } from './vehicle-proxy';
+import {
+  threeWheelerProxyGeometry,
+  twoWheelerProxyGeometry,
+  vehicleProxyGeometry,
+} from './vehicle-proxy';
+import { enableSnowCover } from './weather/snow-cover';
 
+export { type RailVehicleProxyDimensions, railVehicleProxyGeometry } from './rail-proxy';
 export type { VehicleCameraOptions, VehicleCameraPose } from './vehicle-camera';
 export { vehicleCameraPose } from './vehicle-camera';
 export type { VehicleInteriorSignals, VehicleInteriorVisual } from './vehicle-interior';
 export { createVehicleInteriorVisual } from './vehicle-interior';
-export { type VehicleProxyDimensions, vehicleProxyGeometry } from './vehicle-proxy';
+export {
+  threeWheelerProxyGeometry,
+  twoWheelerProxyGeometry,
+  type VehicleProxyDimensions,
+  vehicleProxyGeometry,
+} from './vehicle-proxy';
+
+/** The stand-in for a parked vehicle: a rail car's silhouette on track, a car's on the street. */
+function parkedProxyGeometry(spec: VehiclePlacement['spec']): THREE.BufferGeometry {
+  if (spec.rail !== undefined) return railVehicleProxyGeometry(spec);
+  if (spec.cycle !== undefined) return twoWheelerProxyGeometry(spec);
+  if (spec.bodyStyle === 'auto-rickshaw') return threeWheelerProxyGeometry(spec);
+  return vehicleProxyGeometry(spec);
+}
 
 export interface VehicleVisual {
   setLivery(data: LiveryData | undefined): void;
@@ -116,6 +136,10 @@ export function createVehicleVisual(
         ) {
           (material as THREE.MeshStandardMaterial).color.copy(color);
         }
+        // The painted shell of a car or truck takes the weather's lying snow like its distant
+        // stand-in; its cabin, glass and running gear, and anything ridden in the open, do not.
+        if (source.name === vehicle.visual.paintMaterial && vehicle.spec?.cycle === undefined)
+          enableSnowCover(material, VEHICLE_SNOW);
         return material;
       });
       // A material array only draws through geometry groups: keep a single material single, or
@@ -209,11 +233,20 @@ export function createVehicleVisual(
   };
 }
 
-const parkedMaterial = new THREE.MeshStandardMaterial({
-  vertexColors: true,
-  roughness: 0.55,
-  metalness: 0.12,
-});
+/**
+ * Share of a standing vehicle's up-facing bodywork that lying snow whitens (`enableSnowCover`): a
+ * frosting on the roof, hood and trunk rather than a drift, since a car is also driven away.
+ */
+const VEHICLE_SNOW = 0.7;
+
+const parkedMaterial = enableSnowCover(
+  new THREE.MeshStandardMaterial({
+    vertexColors: true,
+    roughness: 0.55,
+    metalness: 0.12,
+  }),
+  VEHICLE_SNOW,
+);
 const paints = new Map<string, THREE.Color>();
 
 /** The shared vertex-coloured material of parked and proxy vehicles. */
@@ -232,7 +265,7 @@ export function createParkedVehicleBatch(
   const group = new THREE.Group();
   group.name = 'surface:parked-cars';
   if (placements.length === 0) return group;
-  const templates = placements.map((placement) => vehicleProxyGeometry(placement.spec));
+  const templates = placements.map((placement) => parkedProxyGeometry(placement.spec));
   const vertices = templates.reduce(
     (sum, template) => sum + template.getAttribute('position').count,
     0,
@@ -333,6 +366,59 @@ export function createParkedVehicleBatch(
   return group;
 }
 
+/**
+ * Dormant cars as one instanced mesh per body size, for a car park of hundreds where a merged
+ * batch would cost more than the building. Each mesh keeps the batch's `vehicleIds` contract:
+ * instance `i` belongs to `userData.vehicleIds[i]`, and `setParkedVehicleHidden` hides it.
+ */
+export function createParkedVehicleInstances(
+  placements: readonly VehiclePlacement[],
+  origin: [number, number] = [0, 0],
+): THREE.Group {
+  const group = new THREE.Group();
+  group.name = 'surface:parked-cars';
+  const sizes = new Map<string, VehiclePlacement[]>();
+  for (const placement of placements) {
+    const { width, length, height, wheelbase, rail } = placement.spec;
+    const key = `${width}:${length}:${height}:${wheelbase}:${rail?.profile ?? ''}`;
+    const size = sizes.get(key);
+    if (size) size.push(placement);
+    else sizes.set(key, [placement]);
+  }
+  const matrix = new THREE.Matrix4();
+  const rotation = new THREE.Quaternion();
+  const position = new THREE.Vector3();
+  const scale = new THREE.Vector3(1, 1, 1);
+  const euler = new THREE.Euler(0, 0, 0, 'YXZ');
+  const paint = new THREE.Color();
+  for (const size of sizes.values()) {
+    const first = size[0] as VehiclePlacement;
+    const mesh = new THREE.InstancedMesh(
+      parkedProxyGeometry(first.spec),
+      vehicleProxyMaterial,
+      size.length,
+    );
+    size.forEach((placement, index) => {
+      position.set(
+        placement.position[0] - origin[0],
+        placement.position[1],
+        placement.position[2] - origin[1],
+      );
+      euler.set(placement.pitch ?? 0, placement.yaw, placement.roll ?? 0);
+      rotation.setFromEuler(euler);
+      mesh.setMatrixAt(index, matrix.compose(position, rotation, scale));
+      mesh.setColorAt(index, paint.set(placement.color));
+    });
+    mesh.computeBoundingBox();
+    mesh.computeBoundingSphere();
+    mesh.name = 'vehicle:parked';
+    mesh.userData.vehicleIds = size.map((placement) => placement.id);
+    mesh.receiveShadow = true;
+    group.add(mesh);
+  }
+  return group;
+}
+
 /** Whether `setParkedVehicleHidden` currently hides car `index` of a parked batch. */
 export function isParkedVehicleHidden(batch: THREE.Mesh, index: number): boolean {
   return (
@@ -345,6 +431,8 @@ export function isParkedVehicleHidden(batch: THREE.Mesh, index: number): boolean
  * model or a driven entity stands in for it. Returns whether the geometry changed.
  */
 export function setParkedVehicleHidden(batch: THREE.Mesh, index: number, hidden: boolean): boolean {
+  if ((batch as THREE.InstancedMesh).isInstancedMesh)
+    return setInstanceHidden(batch as THREE.InstancedMesh, index, hidden);
   const ranges = batch.userData.vehicleRanges as Uint32Array | undefined;
   const start = ranges?.[index * 2];
   const count = ranges?.[index * 2 + 1];
@@ -368,5 +456,27 @@ export function setParkedVehicleHidden(batch: THREE.Mesh, index: number, hidden:
   }
   attribute.addUpdateRange(from, to - from);
   attribute.needsUpdate = true;
+  return true;
+}
+
+/** A zero matrix collapses the instance to a point, as a hidden batch car does. */
+function setInstanceHidden(mesh: THREE.InstancedMesh, index: number, hidden: boolean): boolean {
+  if (index < 0 || index >= mesh.count) return false;
+  let saved = mesh.userData.vehicleHidden as Map<number, Float32Array> | undefined;
+  if (saved === undefined) {
+    saved = new Map();
+    mesh.userData.vehicleHidden = saved;
+  }
+  if (saved.has(index) === hidden) return false;
+  const array = mesh.instanceMatrix.array as Float32Array;
+  const from = index * 16;
+  if (hidden) {
+    saved.set(index, array.slice(from, from + 16));
+    array.fill(0, from, from + 16);
+  } else {
+    array.set(saved.get(index) as Float32Array, from);
+    saved.delete(index);
+  }
+  mesh.instanceMatrix.needsUpdate = true;
   return true;
 }

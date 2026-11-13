@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.crossley_telescope",
+  "kind": "static-structure",
+  "title": "Crossley Telescope Dome",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.crossley_telescope",
+        "output": "assets/places/9q/9q9/crossley_telescope/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4730feb9d27d79180a04a635ef2264f87b5b430bc9cdddf4dbf0f3255d9ec6e4"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-crossley-telescope",
+        "path": "models/generate-crossley-telescope.mjs"
+      },
+      {
+        "id": "crossley-telescope-model",
+        "path": "models/crossley-telescope-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/observatory-controls.json",
+      "reference-rights/commons-qualla-crossley-original.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-5311-12715.png",
+      "preview.png",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

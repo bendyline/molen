@@ -1,0 +1,330 @@
+{
+  "id": "kharkiv_metro_bridge",
+  "planId": "kharkiv_metro_bridge",
+  "assetId": "molen.worldgen.structure.kharkiv_metro_bridge",
+  "title": "Kharkiv Metro Bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q4496328",
+  "referenceCoordinate": {
+    "longitude": 36.2827452,
+    "latitude": 50.0017043
+  },
+  "visualBrief": "A long enclosed metro viaduct with a gray corrugated roof, pale blue scalloped skirt, inset solid panels, paired round piers and service walks. Close views include the enclosed track bed and concrete portal walls.",
+  "nativeAxes": "+X runs toward the east bank, +Y is up, +Z is to the right looking east.",
+  "actualBounds": {
+    "min": [
+      -540,
+      99.91470336914062,
+      -3.6797752380371094
+    ],
+    "max": [
+      537,
+      113.28299713134766,
+      10.290650367736816
+    ]
+  },
+  "size": [
+    1077,
+    13.368293762207031,
+    13.970425605773926
+  ],
+  "geometrySource": "Original deterministic geometry from mapped metro track axes, public exterior photos and standard Terrarium elevations.",
+  "materialMethod": "Shared board-formed concrete, plain concrete, corrugated metal and painted steel with metric UVs and vertex tints.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ukr_Kharkiv_Tyurynka_Metromist_5_BNB-UM.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ukr_Kharkiv_Tyurynka_Metromist_2_BNB-UM.jpg",
+    "https://gortransport.kharkov.ua/photobase/1006/"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      36.2827452,
+      50.0017043
+    ],
+    "heading": 0.052155967096,
+    "bounds": [
+      36.27520445787928,
+      50.00134007467729,
+      36.29024888899437,
+      50.0020078044515
+    ],
+    "minLevel": 11,
+    "elevationMode": "sea-level",
+    "elevationMeters": 0,
+    "orientationPolicy": "approximate-visualization",
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Meter-scale elevations follow the Terrarium datum. Pier bases extend below the sampled sampled terrain.",
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 1010.86789,
+      "width": 5.32,
+      "outline": [
+        [
+          -505.40464,
+          -2.63337
+        ],
+        [
+          -421.99537,
+          -2.69849
+        ],
+        [
+          365.16861,
+          -2.642
+        ],
+        [
+          505.46325,
+          -2.71206
+        ],
+        [
+          505.46325,
+          2.60794
+        ],
+        [
+          365.16861,
+          2.678
+        ],
+        [
+          -421.99537,
+          2.62151
+        ],
+        [
+          -505.40464,
+          2.68663
+        ]
+      ],
+      "bridgeFeatureIds": [
+        35184461908309
+      ],
+      "additionalDecks": [
+        {
+          "length": 1009.5363,
+          "width": 5.32,
+          "outline": [
+            [
+              -504.60488,
+              4.13466
+            ],
+            [
+              -422.3456,
+              4.01051
+            ],
+            [
+              364.83791,
+              3.69291
+            ],
+            [
+              504.93142,
+              3.79427
+            ],
+            [
+              504.93142,
+              9.11427
+            ],
+            [
+              364.83791,
+              9.01291
+            ],
+            [
+              -422.3456,
+              9.33051
+            ],
+            [
+              -504.60488,
+              9.45466
+            ]
+          ],
+          "bridgeFeatureIds": [
+            35185627138698
+          ]
+        }
+      ]
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3d31de192cd4adf6bded138065c3449ecb2172bc9f28092194e098552fbd43b5",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://data.source.coop/protomaps/openstreetmap/v4.pmtiles",
+    "wikidataId": "Q4496328",
+    "notes": "Both tracks follow Protomaps PMTiles and the roof ends follow the aerial footprint. The underground alignments stay native. Deck elevations, bay spacing, roof height and the short cut-and-cover portal transitions are visual estimates based on exterior photos and standard Terrarium samples. The enclosed railway has a modeled track bed and structural surfaces. Internal systems and operating trains are outside the reconstruction."
+  },
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ub/ubc/kharkiv_metro_bridge/models/bridge-model.mjs",
+    "export": "buildMaster",
+    "layoutHash": "sha256:474b50cb9e31c5019676e0efb4fc7614c2a2ccb57d3f37adc899d5b5c0590c48"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ub/ubc/kharkiv_metro_bridge/models/bridge-model.mjs",
+    "export": "buildSkyline",
+    "inputHash": "sha256:3e61906d191c3ac5c01f1659b65091208076fb9b8e86be23b973a2c7d73a8d50",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "structure": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.88
+      },
+      "finish": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.93
+      },
+      "panel": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.68,
+        "metallic": 0.12
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.18
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "buildDistrict",
+        "errorMeters": 0.48,
+        "surfaces": {
+          "structure": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.88
+          },
+          "finish": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "panel": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.68,
+            "metallic": 0.12
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.18
+          }
+        }
+      },
+      "street": {
+        "export": "buildStreet",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "structure": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.88
+          },
+          "finish": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "panel": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.68,
+            "metallic": 0.12
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.18
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "structure": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.88
+          },
+          "finish": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93
+          },
+          "panel": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.68,
+            "metallic": 0.12
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.18
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Current visual and geographic acceptance is recorded separately in qa.json.",
+  "limitations": [
+    "Both tracks follow Protomaps PMTiles and the roof ends follow the aerial footprint. The underground alignments stay native.",
+    "Deck elevations, bay spacing, roof height and the short cut-and-cover portal transitions are visual estimates based on exterior photos and standard Terrarium samples.",
+    "The enclosed railway has a modeled track bed and structural surfaces. Internal systems and operating trains are outside the reconstruction."
+  ],
+  "qaCameras": [
+    {
+      "name": "enclosed-span",
+      "position": [
+        97,
+        129,
+        114
+      ],
+      "lookAt": [
+        24,
+        107,
+        3
+      ],
+      "fov": 49
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 31772,
+    "vertices": 81924,
+    "materials": 4,
+    "bytes": 3333468,
+    "sha256": "sha256:b47326324337c6ae66b72347f92974e44cfa2fc26838844364fe9332eb01c7a3"
+  }
+}

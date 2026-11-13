@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.drayton_hall",
+  "kind": "static-structure",
+  "title": "Drayton Hall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.drayton_hall",
+        "output": "assets/places/dj/djz/drayton_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:3a0fd642574608289aa08cd56b36f549be0ba3f6c66529a7b8085f166479a120"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-drayton-hall",
+        "path": "models/generate-drayton-hall.mjs"
+      },
+      {
+        "id": "drayton-hall-model",
+        "path": "models/drayton-hall-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-9095-13212.png",
+      "terrain-sources/terrarium-15-9095-13213.png",
+      "preview.png",
+      "native-map/main-house-controls.json",
+      "reference-rights/commons-qualla-drayton-original.json",
+      "reference-rights/commons-first-revision.json",
+      "reference-rights/habs-measured-sheets.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

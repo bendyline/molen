@@ -22,7 +22,9 @@ experience with **zero human intervention** from shipped docs, schemas, and the 
    [docs-src/guide/3d-model-assets.md](docs-src/guide/3d-model-assets.md). Anything drawn in
    the Earth view (buildings, styles, palettes, landmarks, vehicles, props) follows the
    [medium-fi style guide](docs-src/guide/medium-fi.md); the corpus audit and its backlog are in
-   [content/worldgen/source/MEDIUM-FI-REVIEW.md](content/worldgen/source/MEDIUM-FI-REVIEW.md).
+   [content/worldgen/source/MEDIUM-FI-REVIEW.md](content/worldgen/source/MEDIUM-FI-REVIEW.md),
+   and the whole-scene review of the World Explorer against that guide, with its backlog, is in
+   [examples/world-explorer/VISUAL-REVIEW.md](examples/world-explorer/VISUAL-REVIEW.md).
    Vehicles, people, animals and other moving models also follow
    [content/entities/MODEL-QUALITY.md](content/entities/MODEL-QUALITY.md) (proportion archetypes,
    family review, the `model-sheet.mjs` review tool).
@@ -145,7 +147,7 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
 - **ESM-only, Node ≥ 22.13.** Subpath exports matter: `@bendyline/molen-kernel` also exposes
   `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`, `/platformer`,
   `/determinism`, `/content`, `/vehicles`, `/aircraft`, `/world`; `@bendyline/molen-client`
-  also exposes `/camera-track`, `/vite`, `/vehicles`, `/aircraft`, `/navigation`, `/markers`, `/audio`;
+  also exposes `/camera-track`, `/vite`, `/vehicles`, `/aircraft`, `/navigation`, `/markers`, `/audio`, `/snow`;
   `@bendyline/molen-terrain`, `@bendyline/molen-figures` and `@bendyline/molen-ambient` expose
   only `/kernel` and `/client` (no `.`).
 - **Content lives in `content/`, not in packages.** Each `content/<pack>/` directory builds into

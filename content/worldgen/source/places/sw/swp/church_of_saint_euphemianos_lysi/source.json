@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.church_of_saint_euphemianos_lysi",
+  "kind": "static-structure",
+  "title": "Church of Saint Euphemianos, Lysi",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.church_of_saint_euphemianos_lysi",
+        "output": "assets/places/sw/swp/church_of_saint_euphemianos_lysi/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9695f816a3d66be64fa864a3315a0a0150946a5b08da8bf422342587b6f10007"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-lysi-chapel",
+        "path": "models/generate-lysi-chapel.mjs"
+      },
+      {
+        "id": "lysi-chapel-model",
+        "path": "models/lysi-chapel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/chapel-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-lysi-chapel-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-19448-12969.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

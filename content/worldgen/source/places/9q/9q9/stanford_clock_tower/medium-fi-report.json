@@ -1,0 +1,1084 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.stanford_clock_tower",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.stanford_clock_tower",
+    "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071"
+  },
+  "sourceHash": "sha256:d1d4bdf1f02b46a316e5e3bf62fd7942eb85b89da3d60fd897fe7a7b9b8dfd63",
+  "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+  "fixtureHash": "sha256:782972c8391d269788b4c64692c17e95fb4ced73248d13e1aed1525b895a2629",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2a6cc4",
+      "dayHorizon": "#b2cde4",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#9a8f70",
+      "sun": "#fff8f0",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 6.1,
+      "dayAmbient": 1.25,
+      "nightAmbient": 0.05,
+      "skyLightSaturation": 0.3,
+      "referenceElevation": 26
+    },
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:ac3c70f7f139e7de61fbe85369d2d18315909699f37bfd4c97af806d95028260",
+      "bytes": 49540,
+      "gzipBytes": 9050,
+      "triangles": 638,
+      "cpuBytes": 45732,
+      "gpuBytes": 45732,
+      "errorMeters": 0.29,
+      "drawCalls": 3
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:2c97f1962ebceb199fb34d6fd67dcddda1bc4dd928bdd3612ab35b196b35578f",
+      "bytes": 74140,
+      "gzipBytes": 14007,
+      "triangles": 980,
+      "cpuBytes": 70320,
+      "gpuBytes": 70320,
+      "errorMeters": 0.145,
+      "drawCalls": 3
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:de6b511dddedecbe8ba23bfed820e2aee422ea0ec38f973b4b73327fd0b1f3f9",
+      "bytes": 123552,
+      "gzipBytes": 25660,
+      "triangles": 1640,
+      "cpuBytes": 119712,
+      "gpuBytes": 119712,
+      "errorMeters": 0.048,
+      "drawCalls": 3
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:a5c6c6b1a4a67a4647f430bbec172898a85ff1b3ce8efd9116af308c963fe796",
+      "bytes": 135408,
+      "gzipBytes": 27251,
+      "triangles": 1792,
+      "cpuBytes": 131568,
+      "gpuBytes": 131568,
+      "errorMeters": 0.018,
+      "drawCalls": 3
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:bb445d3061993eb78b4b8660e074dfe514e45d48f904807ceed6139cb480f67c"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:20bda5e2ef3a3eb42d7eb4d77167a7fd3f323837224c244cf9f3b3bf7d9fadf7"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:0cd3d4ac8b013df1ef9dcc53c0e009fcb0802a081d16ab03e042035019d3597c",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:a5c6c6b1a4a67a4647f430bbec172898a85ff1b3ce8efd9116af308c963fe796",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 40802,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          49.6387,
+          32.498000000000005,
+          83.78869999999999
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:74014084e2ec14ff8f6780a339a18da6fa335f75f243f0ea1a5377b9c5478e56",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:a5c6c6b1a4a67a4647f430bbec172898a85ff1b3ce8efd9116af308c963fe796",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 40802,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          49.6387,
+          32.498000000000005,
+          83.78869999999999
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:c0a11223e77736066155ead8539ece7d15d08761b5b9b6620ac48b653fccd287",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:a5c6c6b1a4a67a4647f430bbec172898a85ff1b3ce8efd9116af308c963fe796",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 40802,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          49.6387,
+          32.498000000000005,
+          83.78869999999999
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:4db3c323dd0042f2cd111bf2db669816257dac795c50b44cf7cb72aaafe7d473",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:a5c6c6b1a4a67a4647f430bbec172898a85ff1b3ce8efd9116af308c963fe796",
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 40802,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          49.6387,
+          32.498000000000005,
+          83.78869999999999
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:119fe77634b03d23304935f67ddb45345c0bf3c57b8e936fb4619342a16c4ca9",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:2c97f1962ebceb199fb34d6fd67dcddda1bc4dd928bdd3612ab35b196b35578f",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 39990,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          96.67869999999999,
+          67.05799999999999,
+          165.3887
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:a49339c10d06927e3c138635280da47eeb8ac022c72b700302459c07bc6774d5",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:2c97f1962ebceb199fb34d6fd67dcddda1bc4dd928bdd3612ab35b196b35578f",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 39990,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          96.67869999999999,
+          67.05799999999999,
+          165.3887
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:5f294e9cb42529c15672b426c375ec6eba3685353dfd65cfeb448034b76d177b",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:2c97f1962ebceb199fb34d6fd67dcddda1bc4dd928bdd3612ab35b196b35578f",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 39990,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          96.67869999999999,
+          67.05799999999999,
+          165.3887
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:c623b8052309fee677ad70d63cf99f22bd0560f810028b2f0cb587af7a0bbf28",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:2c97f1962ebceb199fb34d6fd67dcddda1bc4dd928bdd3612ab35b196b35578f",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 39990,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          96.67869999999999,
+          67.05799999999999,
+          165.3887
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:17625c38921fd26d27b39ce5b80cb660799b7f00d3bfd38c6bd8cb2b90a753c6",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:ac3c70f7f139e7de61fbe85369d2d18315909699f37bfd4c97af806d95028260",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 39648,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          189.79869999999997,
+          103.538,
+          326.6687
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:5f094595e8d63a2a40e571db7e87392bdc91098562ebf7aceef01ca669602bcc",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:ac3c70f7f139e7de61fbe85369d2d18315909699f37bfd4c97af806d95028260",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 39648,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          189.79869999999997,
+          103.538,
+          326.6687
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:c65a608e90f2906ad4e01652a2b36334657babf7bc7490bb838823d700ade96d",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:ac3c70f7f139e7de61fbe85369d2d18315909699f37bfd4c97af806d95028260",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 39648,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          189.79869999999997,
+          103.538,
+          326.6687
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:0fd384f427d1a32e3775c024eaa7e787162b25b8a2867c104c8fb136149daa43",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:ac3c70f7f139e7de61fbe85369d2d18315909699f37bfd4c97af806d95028260",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 39648,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          189.79869999999997,
+          103.538,
+          326.6687
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:39ec07ecf848f5ac253f687605b4e9fe929f7e31882ec2da0d9d0a29b20026b8",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:ac3c70f7f139e7de61fbe85369d2d18315909699f37bfd4c97af806d95028260",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 5,
+        "triangles": 33408,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          189.79869999999997,
+          103.538,
+          326.6687
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/lasuen-mall-clock-face-and-steps.png",
+      "hash": "sha256:43e1a2ba11eebb5764290235cdca22dc04b21a5d57698612a2b4d03e32dcabb2",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:a5c6c6b1a4a67a4647f430bbec172898a85ff1b3ce8efd9116af308c963fe796",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 40802,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          -10,
+          8,
+          -23
+        ],
+        "lookAt": [
+          0,
+          7.65,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-belfry-and-bronze-bells.png",
+      "hash": "sha256:1591ee791785e90fe6bf56f0275cd55521f27f09ac6012aaa90becbaf30b2649",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:a5c6c6b1a4a67a4647f430bbec172898a85ff1b3ce8efd9116af308c963fe796",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 40802,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          -8,
+          13.8,
+          -11
+        ],
+        "lookAt": [
+          0,
+          12.65,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/two-pergola-arms-and-glazed-base.png",
+      "hash": "sha256:16f511c521d6f8e4ef1369c53f8f4101d4e6e34856943bafb2129d1b845c1be8",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:a5c6c6b1a4a67a4647f430bbec172898a85ff1b3ce8efd9116af308c963fe796",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 40802,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          18,
+          10,
+          18
+        ],
+        "lookAt": [
+          2.5,
+          4.7,
+          2.5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-stanford-clock-tower-skyline.png",
+      "hash": "sha256:6de3158ae07aa3b82733b9d8fe1f37ff1795f7010b6260f9bd201e371093cca2",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:ac3c70f7f139e7de61fbe85369d2d18315909699f37bfd4c97af806d95028260",
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 39648,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          -19,
+          13,
+          -24
+        ],
+        "lookAt": [
+          1.25,
+          7.3,
+          1.8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-stanford-clock-tower-district.png",
+      "hash": "sha256:e4a9bf6ac7895ad702f17854ad065a7cd64611df27c8e5ed7a49f8b1c8e2cb6c",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:2c97f1962ebceb199fb34d6fd67dcddda1bc4dd928bdd3612ab35b196b35578f",
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 39990,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          -19,
+          13,
+          -24
+        ],
+        "lookAt": [
+          1.25,
+          7.3,
+          1.8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-stanford-clock-tower-street.png",
+      "hash": "sha256:6b039b67af0ce6984ea7516735fd681409919b1a397d1755d60ca03afd1ebd54",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:de6b511dddedecbe8ba23bfed820e2aee422ea0ec38f973b4b73327fd0b1f3f9",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 40650,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          -19,
+          13,
+          -24
+        ],
+        "lookAt": [
+          1.25,
+          7.3,
+          1.8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-stanford-clock-tower-closeup.png",
+      "hash": "sha256:c74b080284fc022eb45a80ba385c9546f2a714dd24061029f6c3a25a50e53643",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:a5c6c6b1a4a67a4647f430bbec172898a85ff1b3ce8efd9116af308c963fe796",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 40802,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          -19,
+          13,
+          -24
+        ],
+        "lookAt": [
+          1.25,
+          7.3,
+          1.8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:2d49f2976266207b48b00cfe41d75ffb9aff8d859b3082d7cec229dc62e4698e",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:ac3c70f7f139e7de61fbe85369d2d18315909699f37bfd4c97af806d95028260",
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 39648,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          96.67869999999999,
+          67.05799999999999,
+          165.3887
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:a49339c10d06927e3c138635280da47eeb8ac022c72b700302459c07bc6774d5",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:2c97f1962ebceb199fb34d6fd67dcddda1bc4dd928bdd3612ab35b196b35578f",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 39990,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          96.67869999999999,
+          67.05799999999999,
+          165.3887
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:c7f68a45efafb31b7817df78dbdeb3fd16edf6935999829c966a978cc3a14e8c",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:de6b511dddedecbe8ba23bfed820e2aee422ea0ec38f973b4b73327fd0b1f3f9",
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 40650,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          96.67869999999999,
+          67.05799999999999,
+          165.3887
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:bedcd03142f446e37168f61ce95030d7bfe5bc64fdf03c608a013670ca3532ca",
+      "state": {
+        "assetId": "molen.worldgen.structure.stanford_clock_tower",
+        "runtimeHash": "sha256:4919ca6af5ce2eb7fede2f0bc3b6379efc7f26e684682394db67ef66866a1071",
+        "lodHash": "sha256:a5c6c6b1a4a67a4647f430bbec172898a85ff1b3ce8efd9116af308c963fe796",
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 40802,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/stanford_clock_tower/terrain-review.height.png"
+        },
+        "position": [
+          96.67869999999999,
+          67.05799999999999,
+          165.3887
+        ],
+        "lookAt": [
+          3.5587,
+          18.098,
+          4.1087
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 0.96,
+        "cameraYaw": 0,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

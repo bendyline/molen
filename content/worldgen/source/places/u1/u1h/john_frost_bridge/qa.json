@@ -1,0 +1,672 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.john_frost_bridge",
+  "reviewedOn": "2026-11-09",
+  "inputHash": "sha256:c14a8cc481ae0ca1452ce77cc47fd1f0fcf838892f03712879d27d957077b042",
+  "sourceHash": "sha256:386d11daadb3ee18623a3857092003e111874f7f1445e28d05213d0f6331030a",
+  "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+  "captureReportHash": "sha256:70dd337acb9f5037989c7dee1ea5247ad92276210e938575334a04e84475b519",
+  "notes": "The full Arnhem crossing with paired off-white steel arches, straight vertical hangers and overhead K bracing, two deep continuous girders, pointed granite river piers, red cycle decks, and the two tower-and-stair approaches. The 603.402 m mapped footprint and the traced roadway and cycleways locate the bridge. The heritage register sets the 120 m arch span, 17.5 m rise and flanking 50 m spans. The deck grade, approach pier spacing and visible stair profiles adapt the standard terrain and ordinary photographs. The north lower access retains its separately mapped connector. The lowest floodplain path has 2.268 m rendered headroom. The local fixture has tile edges and uses approximate terrain and river levels. Physical-device timings and surveyed clearances remain unmeasured.",
+  "visualReview": {
+    "status": "passed",
+    "inputHash": "sha256:c14a8cc481ae0ca1452ce77cc47fd1f0fcf838892f03712879d27d957077b042",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/arch-and-river-piers.png",
+      "shots/deck-arch-and-lanes.png",
+      "shots/north-towers-and-stairs.png",
+      "shots/south-viaduct-and-stairs.png",
+      "shots/northern-viaduct-and-landing.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "preview.png",
+        "hash": "sha256:0c5250f2c25042fe5104c640cfb38524ad91ef51c884b45fe269fea99a05c650"
+      },
+      {
+        "path": "shots/turntable/angle_0.png",
+        "hash": "sha256:f25333259d277c24131d6362d4d506d8989841a6f876647b80f0297c994a8130"
+      },
+      {
+        "path": "shots/turntable/angle_1.png",
+        "hash": "sha256:90054a5af2f603e4990c6e8c5d331c46959568f6312bba8fe6144268a3a13d65"
+      },
+      {
+        "path": "shots/turntable/angle_2.png",
+        "hash": "sha256:66abd90a2a43dbbac321581442e2c90521a33d9d189f38d84be0811701bca1f4"
+      },
+      {
+        "path": "shots/turntable/angle_3.png",
+        "hash": "sha256:392530a045b0039620830a35e68d54e8933dddf2909b832f422a30f053c3930e"
+      },
+      {
+        "path": "shots/arch-and-river-piers.png",
+        "hash": "sha256:3eb5888ee54df6d4e333f4b11740ec3768391221d91d42462badc80ba0c4af65"
+      },
+      {
+        "path": "shots/deck-arch-and-lanes.png",
+        "hash": "sha256:35eb04cc3752aea7dbc81f65066251789937fca563c5a472f2741d00003f6b39"
+      },
+      {
+        "path": "shots/north-towers-and-stairs.png",
+        "hash": "sha256:a73c02427b728907625224b1943075938df617132bfe4bf8cc40a3597f993aee"
+      },
+      {
+        "path": "shots/south-viaduct-and-stairs.png",
+        "hash": "sha256:1854dec5ed7b0a8b2b613cfd8dec2522a8fbfbd865caf265f28c749a37559879"
+      },
+      {
+        "path": "shots/northern-viaduct-and-landing.png",
+        "hash": "sha256:09ac58560e980e94147927c979acb3c03b9b852fd0fb8227076737e0bca19cae"
+      }
+    ],
+    "notes": "The full Arnhem crossing with paired off-white steel arches, straight vertical hangers and overhead K bracing, two deep continuous girders, pointed granite river piers, red cycle decks, and the two tower-and-stair approaches."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "inputHash": "sha256:c14a8cc481ae0ca1452ce77cc47fd1f0fcf838892f03712879d27d957077b042",
+    "captureReportHash": "sha256:68fce3f0bcca20278c2b385848ac3e410fb9e04cfac471b1e9a3649ece8c7ac1",
+    "materialGraphs": {
+      "molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "molen.worldgen.material.stone_granite": {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    },
+    "inspectedFrames": [
+      "shots/shared/native-bridge.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/native-bridge.png",
+        "hash": "sha256:d5e6756bd457e929231b78fa177615044030a690af4cf974e90c8f259d8b41b7"
+      }
+    ],
+    "notes": "Each tier loads concrete_plain, metal_painted and stone_granite once each. All tiers use metric UVs without embedded images."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "inputHash": "sha256:c14a8cc481ae0ca1452ce77cc47fd1f0fcf838892f03712879d27d957077b042",
+    "placementHash": "sha256:0d0ca396ffc387abdc3d93416f70f301d261e3e25fad3de5c42c1721d4ab694f",
+    "notes": "Retained Q2692477 and OSM way 595322843 identify the structure. The November 9 Nijmeegseweg carriageway and two cycleways establish the signed frame. +X points north-northeast toward Arnhem city center. +Z points east-southeast across the deck. The 603.402 m mapped footprint and the traced roadway and cycleways locate the bridge. The heritage register sets the 120 m arch span, 17.5 m rise and flanking 50 m spans. The deck grade, approach pier spacing and visible stair profiles adapt the standard terrain and ordinary photographs. The north lower access retains its separately mapped connector. The lowest floodplain path has 2.268 m rendered headroom. The local fixture has tile edges and uses approximate terrain and river levels. Physical-device timings and surveyed clearances remain unmeasured."
+  },
+  "fidelityReview": {
+    "status": "passed",
+    "target": "medium-fi",
+    "inputHash": "sha256:c14a8cc481ae0ca1452ce77cc47fd1f0fcf838892f03712879d27d957077b042",
+    "notes": "The full Arnhem crossing with paired off-white steel arches, straight vertical hangers and overhead K bracing, two deep continuous girders, pointed granite river piers, red cycle decks, and the two tower-and-stair approaches. The 603.402 m mapped footprint and the traced roadway and cycleways locate the bridge. The heritage register sets the 120 m arch span, 17.5 m rise and flanking 50 m spans. The deck grade, approach pier spacing and visible stair profiles adapt the standard terrain and ordinary photographs. The north lower access retains its separately mapped connector. The lowest floodplain path has 2.268 m rendered headroom. The local fixture has tile edges and uses approximate terrain and river levels. Physical-device timings and surveyed clearances remain unmeasured."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "inputHash": "sha256:c14a8cc481ae0ca1452ce77cc47fd1f0fcf838892f03712879d27d957077b042",
+    "captureReportHash": "sha256:39127b8a610c3015620e247fb81946d882550ea578df8a6d9ded91305a01f105",
+    "inspectedFrames": [
+      "medium-fi/transition-skyline.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/transition-closeup.png",
+      "medium-fi/silhouette.png"
+    ],
+    "inspectedFrameHashes": [
+      {
+        "path": "medium-fi/transition-skyline.png",
+        "hash": "sha256:00c666678ec9895f05d6f2106feada5bd40d62d9599d7abc283fcb901e2df3db"
+      },
+      {
+        "path": "medium-fi/skyline-noon-economy.png",
+        "hash": "sha256:3df6a6145859ad661559d4ea2117f3881b460daadc64f5fc75e43ca54a2b6146"
+      },
+      {
+        "path": "medium-fi/skyline-noon-high.png",
+        "hash": "sha256:f14b0b79b1acacdd20d395a5a83ae6e51fe8a5737d972155676e296112131ace"
+      },
+      {
+        "path": "medium-fi/skyline-late-economy.png",
+        "hash": "sha256:63a4adb8ff27b1a7f56756c3056f074d37809a15e6a1deb764dd097fc1e70a49"
+      },
+      {
+        "path": "medium-fi/skyline-late-high.png",
+        "hash": "sha256:8eb863cb4c9204a55ea49cd7ed1a24c18f5568d24a8cde434e6b39b668204faf"
+      },
+      {
+        "path": "medium-fi/transition-district.png",
+        "hash": "sha256:1ed1aa5c9590aeb9e09e9c966f20b4031547aba3925d4f71b2f9e5e8609837e7"
+      },
+      {
+        "path": "medium-fi/block-noon-economy.png",
+        "hash": "sha256:83cab636cbcfbdd1e66e49cb9cb5701967d7d93dff17f2853b8ee6b4b2150d7e"
+      },
+      {
+        "path": "medium-fi/block-noon-high.png",
+        "hash": "sha256:4778d8b48bf3e2d9ac70d9c0c3e7a31102b2baeec95dff3068648afa3ef21d49"
+      },
+      {
+        "path": "medium-fi/block-late-economy.png",
+        "hash": "sha256:0e83f8a70b3860af96b2ce1814f416dac444b8d1958e035a7869f85508fd2e38"
+      },
+      {
+        "path": "medium-fi/block-late-high.png",
+        "hash": "sha256:a4b5839e84e42b73a0eb672bb8d25cbf64ecb6e7997449c035f233ffa61fbc20"
+      },
+      {
+        "path": "medium-fi/transition-street.png",
+        "hash": "sha256:d5e6756bd457e929231b78fa177615044030a690af4cf974e90c8f259d8b41b7"
+      },
+      {
+        "path": "medium-fi/street-noon-economy.png",
+        "hash": "sha256:dd2eed23c0717b66cf2fcbeea7a08d78517acf4f8fce14089c719d7a246f59cc"
+      },
+      {
+        "path": "medium-fi/street-noon-high.png",
+        "hash": "sha256:d5e6756bd457e929231b78fa177615044030a690af4cf974e90c8f259d8b41b7"
+      },
+      {
+        "path": "medium-fi/street-late-economy.png",
+        "hash": "sha256:be3bbcd53f6b23494b621ae377717c9422e69955d70c9737f32422612574729f"
+      },
+      {
+        "path": "medium-fi/street-late-high.png",
+        "hash": "sha256:f8665dbe4f337868c1dee958c05f916d5feadd08b27a3c0e76d8dff525693ecf"
+      },
+      {
+        "path": "medium-fi/transition-closeup.png",
+        "hash": "sha256:34bfc64582d71b991013c43c1ff6ac7c8809f5dfeacbdd131e5570e882d93904"
+      },
+      {
+        "path": "medium-fi/silhouette.png",
+        "hash": "sha256:ef93105a1ab0518e2d80c013e43a047bd3162a6ab73ba009f3775ec8d028b91a"
+      }
+    ],
+    "notes": "Actual fixed geographic placement on unchanged standard terrain with the native river, arterial carriageway and cycleways. Three distances, noon/late directional light, High and reduced-resolution shadowless Economy, four fixed-camera LOD transitions and flat silhouette. Every tier retains the twin steel arch silhouette, vertical hangers, river piers, tower pair and the complete approach viaducts. The nearer tiers add stepped stairs, K bracing, edge railings and lane markings."
+  },
+  "nativeIntegrationReview": {
+    "status": "passed",
+    "inputHash": "sha256:c14a8cc481ae0ca1452ce77cc47fd1f0fcf838892f03712879d27d957077b042",
+    "report": {
+      "format": "molen/structure-native-review@1",
+      "assetId": "molen.worldgen.structure.john_frost_bridge",
+      "inputHash": "sha256:c14a8cc481ae0ca1452ce77cc47fd1f0fcf838892f03712879d27d957077b042",
+      "sourceHash": "sha256:386d11daadb3ee18623a3857092003e111874f7f1445e28d05213d0f6331030a",
+      "runtimeHash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+      "status": "passed",
+      "fixtureHash": "sha256:65c1f9e4de22ad2f2f72df8dd2eecf6da06aa4974e75497e3fbb34e7dfdc6c37",
+      "fit": {
+        "joinWidthProbes": 18,
+        "joinToleranceMeters": 0.15,
+        "joinFailures": 0,
+        "bankProbes": 24,
+        "bankToleranceMeters": 0.15,
+        "maximumBankDifferenceMeters": 0.005999605630481852,
+        "bankFailures": 0,
+        "lowerRouteProbes": 12,
+        "minimumLowerRouteHeadroomMeters": 2.2680812538199255,
+        "riverCenterlineProbes": 3,
+        "riverFeatureId": 35184380997340,
+        "minimumRiverHeadroomMeters": 14.023063882366177,
+        "obstructions": 0,
+        "protectedMappedRouteParts": 42,
+        "originalGridUnchanged": true,
+        "originalRoadInputsRetained": true,
+        "changedIndependentRoads": [],
+        "changedIndependentBuildings": [],
+        "retainedBuildings": 87,
+        "waterFeatures": 13,
+        "waterLines": 28
+      },
+      "frames": [
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-skyline-main-transition-skyline.png",
+          "hash": "sha256:00c666678ec9895f05d6f2106feada5bd40d62d9599d7abc283fcb901e2df3db",
+          "camera": "main-transition-skyline",
+          "level": "skyline"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-skyline-main-skyline-noon-economy.png",
+          "hash": "sha256:3df6a6145859ad661559d4ea2117f3881b460daadc64f5fc75e43ca54a2b6146",
+          "camera": "main-skyline-noon-economy",
+          "level": "skyline"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-skyline-main-skyline-noon-high.png",
+          "hash": "sha256:f14b0b79b1acacdd20d395a5a83ae6e51fe8a5737d972155676e296112131ace",
+          "camera": "main-skyline-noon-high",
+          "level": "skyline"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-skyline-main-skyline-late-economy.png",
+          "hash": "sha256:63a4adb8ff27b1a7f56756c3056f074d37809a15e6a1deb764dd097fc1e70a49",
+          "camera": "main-skyline-late-economy",
+          "level": "skyline"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-skyline-main-skyline-late-high.png",
+          "hash": "sha256:8eb863cb4c9204a55ea49cd7ed1a24c18f5568d24a8cde434e6b39b668204faf",
+          "camera": "main-skyline-late-high",
+          "level": "skyline"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-district-main-transition-district.png",
+          "hash": "sha256:1ed1aa5c9590aeb9e09e9c966f20b4031547aba3925d4f71b2f9e5e8609837e7",
+          "camera": "main-transition-district",
+          "level": "district"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-district-main-block-noon-economy.png",
+          "hash": "sha256:83cab636cbcfbdd1e66e49cb9cb5701967d7d93dff17f2853b8ee6b4b2150d7e",
+          "camera": "main-block-noon-economy",
+          "level": "district"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-district-main-block-noon-high.png",
+          "hash": "sha256:4778d8b48bf3e2d9ac70d9c0c3e7a31102b2baeec95dff3068648afa3ef21d49",
+          "camera": "main-block-noon-high",
+          "level": "district"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-district-main-block-late-economy.png",
+          "hash": "sha256:0e83f8a70b3860af96b2ce1814f416dac444b8d1958e035a7869f85508fd2e38",
+          "camera": "main-block-late-economy",
+          "level": "district"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-district-main-block-late-high.png",
+          "hash": "sha256:a4b5839e84e42b73a0eb672bb8d25cbf64ecb6e7997449c035f233ffa61fbc20",
+          "camera": "main-block-late-high",
+          "level": "district"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-street-main-transition-street.png",
+          "hash": "sha256:d5e6756bd457e929231b78fa177615044030a690af4cf974e90c8f259d8b41b7",
+          "camera": "main-transition-street",
+          "level": "street"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-street-main-street-noon-economy.png",
+          "hash": "sha256:dd2eed23c0717b66cf2fcbeea7a08d78517acf4f8fce14089c719d7a246f59cc",
+          "camera": "main-street-noon-economy",
+          "level": "street"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-street-main-street-noon-high.png",
+          "hash": "sha256:d5e6756bd457e929231b78fa177615044030a690af4cf974e90c8f259d8b41b7",
+          "camera": "main-street-noon-high",
+          "level": "street"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-street-main-street-late-economy.png",
+          "hash": "sha256:be3bbcd53f6b23494b621ae377717c9422e69955d70c9737f32422612574729f",
+          "camera": "main-street-late-economy",
+          "level": "street"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-street-main-street-late-high.png",
+          "hash": "sha256:f8665dbe4f337868c1dee958c05f916d5feadd08b27a3c0e76d8dff525693ecf",
+          "camera": "main-street-late-high",
+          "level": "street"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-closeup-main-transition-closeup.png",
+          "hash": "sha256:34bfc64582d71b991013c43c1ff6ac7c8809f5dfeacbdd131e5570e882d93904",
+          "camera": "main-transition-closeup",
+          "level": "closeup"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-closeup-main-silhouette.png",
+          "hash": "sha256:ef93105a1ab0518e2d80c013e43a047bd3162a6ab73ba009f3775ec8d028b91a",
+          "camera": "main-silhouette",
+          "level": "closeup"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-closeup-detail-complete-crossing.png",
+          "hash": "sha256:04f94c77b79a7238ae7be14366beffb53c1c63c91259a2ca0f0daae0c8841fea",
+          "camera": "detail-complete-crossing",
+          "level": "closeup"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-closeup-detail-arch-and-river-piers.png",
+          "hash": "sha256:cde33439366cfb4c308f4babfa4426fb7f37c297b8197da87f8b9e655ae15c7f",
+          "camera": "detail-arch-and-river-piers",
+          "level": "closeup"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-closeup-detail-deck-arch-and-lanes.png",
+          "hash": "sha256:ff20e9c7faa8325b77cf13e19e8a30b4eacdee63474c71f09ddf8e5b1c49e5f4",
+          "camera": "detail-deck-arch-and-lanes",
+          "level": "closeup"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-closeup-detail-north-towers-and-stairs.png",
+          "hash": "sha256:a87c08a2d6994f73d2d8eeed173678633d1a965a86731b9d6a3e88b87c02c13d",
+          "camera": "detail-north-towers-and-stairs",
+          "level": "closeup"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-closeup-detail-south-viaduct-and-stairs.png",
+          "hash": "sha256:a60cbf2fde5413ada467edabbcefd3e7f6cef10309a32d311c50625e02be8276",
+          "camera": "detail-south-viaduct-and-stairs",
+          "level": "closeup"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-closeup-detail-northern-viaduct-and-landing.png",
+          "hash": "sha256:d162cdbadbaa190defe7935f06767210d144a7f1aad8a82a9a465b309d2363fb",
+          "camera": "detail-northern-viaduct-and-landing",
+          "level": "closeup"
+        },
+        {
+          "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-failure-complete-crossing.png",
+          "hash": "sha256:1fc7a675c3d8df65093b4e5f9f3760eb2acb786d2a6f973e3dd245b06f539ba5",
+          "camera": "complete-crossing",
+          "level": "failure"
+        }
+      ],
+      "lifecycle": [
+        {
+          "level": "skyline",
+          "components": 1,
+          "reads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.stone_granite": 1
+          },
+          "unloaded": {
+            "groundRetained": true,
+            "waterRetained": true,
+            "liveGeometries": 0,
+            "liveSupportGeometries": 0
+          },
+          "errors": [],
+          "requests": []
+        },
+        {
+          "level": "district",
+          "components": 1,
+          "reads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.stone_granite": 1
+          },
+          "unloaded": {
+            "groundRetained": true,
+            "waterRetained": true,
+            "liveGeometries": 0,
+            "liveSupportGeometries": 0
+          },
+          "errors": [],
+          "requests": []
+        },
+        {
+          "level": "street",
+          "components": 1,
+          "reads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.stone_granite": 1
+          },
+          "unloaded": {
+            "groundRetained": true,
+            "waterRetained": true,
+            "liveGeometries": 0,
+            "liveSupportGeometries": 0
+          },
+          "errors": [],
+          "requests": []
+        },
+        {
+          "level": "closeup",
+          "components": 1,
+          "reads": {
+            "molen.worldgen.material.metal_painted": 1,
+            "molen.worldgen.material.concrete_plain": 1,
+            "molen.worldgen.material.stone_granite": 1
+          },
+          "unloaded": {
+            "groundRetained": true,
+            "waterRetained": true,
+            "liveGeometries": 0,
+            "liveSupportGeometries": 0
+          },
+          "errors": [],
+          "requests": []
+        },
+        {
+          "level": "failure",
+          "components": 0,
+          "reads": {},
+          "unloaded": {
+            "groundRetained": true,
+            "waterRetained": true,
+            "liveGeometries": 0,
+            "liveSupportGeometries": 0
+          },
+          "errors": [],
+          "requests": []
+        }
+      ],
+      "notes": "The 603.402 m mapped footprint and the traced roadway and cycleways locate the bridge. The heritage register sets the 120 m arch span, 17.5 m rise and flanking 50 m spans. The deck grade, approach pier spacing and visible stair profiles adapt the standard terrain and ordinary photographs. The north lower access retains its separately mapped connector. The lowest floodplain path has 2.268 m rendered headroom. The local fixture has tile edges and uses approximate terrain and river levels. Physical-device timings and surveyed clearances remain unmeasured."
+    },
+    "notes": "The 603.402 m mapped footprint and the traced roadway and cycleways locate the bridge. The heritage register sets the 120 m arch span, 17.5 m rise and flanking 50 m spans. The deck grade, approach pier spacing and visible stair profiles adapt the standard terrain and ordinary photographs. The north lower access retains its separately mapped connector. The lowest floodplain path has 2.268 m rendered headroom. The local fixture has tile edges and uses approximate terrain and river levels. Physical-device timings and surveyed clearances remain unmeasured."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u1/u1h/john_frost_bridge/models/source.glb",
+        "hash": "sha256:386d11daadb3ee18623a3857092003e111874f7f1445e28d05213d0f6331030a",
+        "bytes": 1398180,
+        "triangles": 15916,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -301.72149658203125,
+          -2.4000000953674316,
+          -20.897499084472656
+        ],
+        "max": [
+          301.9618835449219,
+          33.43002700805664,
+          16.797500610351562
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u1/u1h/john_frost_bridge/model.glb",
+        "hash": "sha256:c41756ec218f2a3364ba7be7c54e309d16e42c394a5a72b4876b867321892595",
+        "bytes": 1397812,
+        "triangles": 15916,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -301.72149658203125,
+          -2.4000000953674316,
+          -20.897499084472656
+        ],
+        "max": [
+          301.9618835449219,
+          33.43002700805664,
+          16.797500610351562
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u1/u1h/john_frost_bridge/model.skyline.glb",
+        "hash": "sha256:48d8cf325da80259a7b74da817ccb228fae15c82672d2cd83a76eff4f92f9192",
+        "bytes": 78316,
+        "triangles": 980,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -301.7200012207031,
+          -2.4000000953674316,
+          -15.180000305175781
+        ],
+        "max": [
+          301.9599914550781,
+          33.431114196777344,
+          14.430000305175781
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u1/u1h/john_frost_bridge/model.district.glb",
+        "hash": "sha256:ab530d026bc4cfcad5263411944753bbb040f5f08b5fed06064242106c00b700",
+        "bytes": 269104,
+        "triangles": 3540,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -301.72235107421875,
+          -2.4000000953674316,
+          -20.897499084472656
+        ],
+        "max": [
+          301.96295166015625,
+          33.43024826049805,
+          16.797500610351562
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u1/u1h/john_frost_bridge/model.street.glb",
+        "hash": "sha256:98ebc472c59d2483b6ac4df3b476dc3ff431908dcb51c9f81f61e589deba83fa",
+        "bytes": 973804,
+        "triangles": 12436,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -301.72149658203125,
+          -2.4000000953674316,
+          -20.897499084472656
+        ],
+        "max": [
+          301.9618835449219,
+          33.43011474609375,
+          16.797500610351562
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u1/u1h/john_frost_bridge/model.closeup.glb",
+        "hash": "sha256:858684d8da5b75675c76beeebd31b1f020e7700b49d3052540b277b5b0483531",
+        "bytes": 1216452,
+        "triangles": 15532,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -301.72149658203125,
+          -2.4000000953674316,
+          -20.897499084472656
+        ],
+        "max": [
+          301.9618835449219,
+          33.43004608154297,
+          16.797500610351562
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "checks": [
+      "Six exact current GLBs: zero errors, warnings and embedded images.",
+      "Source generator exact-byte --check passes.",
+      "Ten portable and 24 native images inspected; four-tier placement/material/lifecycle checks pass with explicit join/approach tolerances."
+    ]
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:ad8885e25ba889f9b6aeb3b2b9ee23f38d11347866a8cad264b69f7cd32d73dc",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:48d8cf325da80259a7b74da817ccb228fae15c82672d2cd83a76eff4f92f9192",
+        "bytes": 78316,
+        "gzipBytes": 18328,
+        "triangles": 980,
+        "cpuBytes": 74424,
+        "gpuBytes": 74424,
+        "errorMeters": 1,
+        "drawCalls": 3
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:ab530d026bc4cfcad5263411944753bbb040f5f08b5fed06064242106c00b700",
+        "bytes": 269104,
+        "gzipBytes": 62723,
+        "triangles": 3540,
+        "cpuBytes": 265176,
+        "gpuBytes": 265176,
+        "errorMeters": 0.4,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:98ebc472c59d2483b6ac4df3b476dc3ff431908dcb51c9f81f61e589deba83fa",
+        "bytes": 973804,
+        "gzipBytes": 217960,
+        "triangles": 12436,
+        "cpuBytes": 969864,
+        "gpuBytes": 969864,
+        "errorMeters": 0.2,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:858684d8da5b75675c76beeebd31b1f020e7700b49d3052540b277b5b0483531",
+        "bytes": 1216452,
+        "gzipBytes": 267586,
+        "triangles": 15532,
+        "cpuBytes": 1212504,
+        "gpuBytes": 1212504,
+        "errorMeters": 0.1,
+        "drawCalls": 3
+      }
+    ],
+    "initialBytes": 347420
+  },
+  "sitePreview": {
+    "path": "site-preview.png",
+    "hash": "sha256:655f2252e824f2bb5f4c2ae96608dd19c8e4b4200a368ff4af10697ecb7e6a31",
+    "derivedFrom": {
+      "path": "D:\\gh\\molen\\.artifacts\\john-frost-review/native/shots/final-closeup-detail-arch-and-river-piers.png",
+      "hash": "sha256:cde33439366cfb4c308f4babfa4426fb7f37c297b8197da87f8b9e655ae15c7f"
+    },
+    "method": "Resized actual native Molen capture."
+  }
+}

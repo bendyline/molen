@@ -1,0 +1,355 @@
+{
+  "planId": "palace_of_sultan_mas_ud_iii",
+  "id": "palace_of_sultan_mas_ud_iii",
+  "assetId": "molen.worldgen.structure.palace_of_sultan_mas_ud_iii",
+  "title": "Palace of Sultan Mas'ud III",
+  "wikidataId": "Q105360438",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 68.44258995,
+    "latitude": 33.56777615
+  },
+  "size": [
+    45.07612133026123,
+    7.930814743041992,
+    78.47789001464844
+  ],
+  "actualBounds": {
+    "min": [
+      -29.43328857421875,
+      -2.6184234619140625,
+      -31
+    ],
+    "max": [
+      15.64283275604248,
+      5.31239128112793,
+      47.47789001464844
+    ]
+  },
+  "visualBrief": "Earth-colored, discontinuous Ghaznavid wall remnants around an open court and the damaged later domed shrine in the 2010 view.",
+  "nativeAxes": {
+    "x": "northeast along the mapped southeast boundary",
+    "y": "up",
+    "z": "southeast across the courtyard"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2010-06-24",
+    "validFrom": "2010-01-01",
+    "validUntil": "2011-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Palace_of_Sultan_Mas%27ud_III_(northeast_of_Ghazni).jpg",
+    "https://commons.wikimedia.org/wiki/File:Minaret_(left)_and_Palace_(right)_of_Sultan_Mas%27ud_III_(northeast_of_Ghazni).jpg"
+  ],
+  "stories": [
+    {
+      "id": "palace-of-sultan-mas-ud-iii-wp",
+      "url": "https://qualla.com/palace-of-sultan-mas-ud-iii/"
+    }
+  ],
+  "referenceInputHash": "fbce6c46301c45fff947eeb4b7a026179432aa5020e4b0b8fb645e305729caa8",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tt/ttb/palace_of_sultan_mas_ud_iii/models/masud-palace-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tt/ttb/palace_of_sultan_mas_ud_iii/models/masud-palace-model.mjs",
+    "level": "skyline",
+    "export": "ruinsSkyline",
+    "errorMeters": 0.87,
+    "surfaces": {
+      "earth": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.98,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_longformat",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.99,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "ruinsDistrict",
+        "errorMeters": 0.38,
+        "surfaces": {
+          "earth": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "ruinsStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "earth": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "ruinsCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "earth": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_longformat",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.99,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stucco",
+    "brick_longformat",
+    "stone_sandstone_raw"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.8,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      68.44258995,
+      33.56777615
+    ],
+    "heading": 0.5980641999067056,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        68.44258995,
+        33.56777615
+      ],
+      "modelHeight": 0,
+      "basis": "Original local ground at the centre of the named site envelope."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/1148141859",
+      "way/1148141858"
+    ],
+    "source": "https://www.openstreetmap.org/way/1148141859",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:dd448da3a0a50ba415f8352b1c518d882a5c643893ec868e1a73f93a905645a0",
+    "notes": "Mapped bounds indicate the surviving archaeological area. The image provides surviving massing at distance, with heights and wall alignment estimated."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_longformat",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        0.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The dated model represents the archaeological remains in the June 2010 photograph. Parts of the excavation plan were already lost or buried and the palace vaults, walls and roofs are absent.",
+    "The exact Qualla images are two crops of one distant federal photograph. The shrine dimensions, fragmented wall paths, masonry, doorway and rubble heights are approximate. The central open court proportions follow the excavators’ description.",
+    "Mapped outlines are archaeological-area boundaries. Wall edges, grades and minor remains were estimated within them. Unmodified independent Terrarium terrain is used for local ground contact.",
+    "The two Ghazni minarets lie outside this archaeological site. The ziyara is a later shrine traditionally associated with Ibrahim."
+  ],
+  "sourceLicense": "Original geometry under the repository license. The OSM mapped extent is ODbL. Both exact story reference files are from the same public-domain United States Air Force photograph.",
+  "qaLodCameras": [
+    {
+      "name": "whole-masud-palace-skyline",
+      "position": [
+        -69,
+        23,
+        -58
+      ],
+      "lookAt": [
+        -5,
+        0,
+        7
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-masud-palace-district",
+      "position": [
+        -69,
+        23,
+        -58
+      ],
+      "lookAt": [
+        -5,
+        0,
+        7
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-masud-palace-street",
+      "position": [
+        -69,
+        23,
+        -58
+      ],
+      "lookAt": [
+        -5,
+        0,
+        7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-masud-palace-closeup",
+      "position": [
+        -69,
+        23,
+        -58
+      ],
+      "lookAt": [
+        -5,
+        0,
+        7
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "ziyara-and-west-wall",
+      "position": [
+        -37,
+        9,
+        -26
+      ],
+      "lookAt": [
+        -12,
+        1.6,
+        -6
+      ]
+    },
+    {
+      "name": "open-court-and-wall-remnants",
+      "position": [
+        41,
+        28,
+        49
+      ],
+      "lookAt": [
+        -2,
+        0,
+        5
+      ]
+    },
+    {
+      "name": "south-foundation-and-excavation",
+      "position": [
+        -34,
+        12,
+        65
+      ],
+      "lookAt": [
+        -6,
+        -0.8,
+        24
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2350,
+    "vertices": 7050,
+    "materials": 3,
+    "bytes": 400216,
+    "sha256": "sha256:2a6f51c8968ab119265f6497d5ab98ed55d3098e8377daa3872dd2da9d47351e"
+  }
+}

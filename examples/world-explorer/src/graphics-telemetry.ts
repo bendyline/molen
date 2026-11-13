@@ -9,7 +9,10 @@ export class GraphicsTelemetry {
     this.stages.set(stage, values);
   }
   count(name: string): void {
-    this.counters[name] = (this.counters[name] ?? 0) + 1;
+    this.total(name, 1);
+  }
+  total(name: string, amount: number): void {
+    this.counters[name] = (this.counters[name] ?? 0) + amount;
   }
   snapshot(): {
     stages: Record<string, { count: number; mean: number; p95: number; p99: number; max: number }>;

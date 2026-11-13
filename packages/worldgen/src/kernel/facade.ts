@@ -80,7 +80,7 @@ export interface FacadeInput {
     top: number;
     start?: number;
     end?: number;
-    kind?: 'door' | 'window';
+    kind?: 'door' | 'window' | 'open';
   }[];
   /** Internal layout reservation so a fallback entrance does not overlap a punched window. */
   entranceReservation?: { edge: number; start: number; end: number };
@@ -279,6 +279,8 @@ export function buildOpeningFrames(
   out: MeshBufferBuilder,
 ): void {
   for (const opening of openings) {
+    // An unglazed gap is only a hole in the wall; a frame per bay would cost more than the wall.
+    if (opening.kind === 'open') continue;
     const edge = edgeOf(outline, opening.edge, 0, { topAt: () => opening.top });
     windowFrame(
       edge,

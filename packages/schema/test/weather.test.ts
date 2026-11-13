@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { componentIssues } from '../src/components';
-import { resolveWeather, weatherProfile, weatherSchema } from '../src/weather';
+import {
+  resolveWeather,
+  snowCoverAt,
+  snowWalkingPace,
+  weatherProfile,
+  weatherSchema,
+} from '../src/weather';
 
 describe('weather data', () => {
   it('validates every preset and permits independent cloud, phase and visibility choices', () => {
@@ -38,6 +44,47 @@ describe('weather data', () => {
       { rain: true },
     ])
       expect(weatherSchema.safeParse(value).success).toBe(false);
+  });
+  it('lays snow above a snow line, deeper with height', () => {
+    const cover = { level: 1000 };
+    expect(componentIssues('weather', { snowCover: cover }, '/weather')).toEqual([]);
+    for (const value of [{}, { level: 1000, transition: -1 }, { level: 1000, depth: -0.1 }])
+      expect(weatherSchema.safeParse({ snowCover: value }).success).toBe(false);
+    // No snow without a cover, and none at or below the line.
+    expect(snowCoverAt(undefined, 4000)).toEqual({ coverage: 0, depth: 0 });
+    expect(snowCoverAt(cover, 1000)).toEqual({ coverage: 0, depth: 0 });
+    expect(snowCoverAt(cover, 200)).toEqual({ coverage: 0, depth: 0 });
+    // Patchy through the transition (150 m by default), complete at its top at the base depth.
+    const patchy = snowCoverAt(cover, 1075);
+    expect(patchy.coverage).toBeCloseTo(0.5, 6);
+    expect(patchy.depth).toBeCloseTo(0.075, 6);
+    expect(snowCoverAt(cover, 1150)).toEqual({ coverage: 1, depth: 0.15 });
+    // 0.6 m more for each 1000 m above that, up to the cap.
+    expect(snowCoverAt(cover, 2150).depth).toBeCloseTo(0.75, 6);
+    expect(snowCoverAt(cover, 4392).depth).toBe(1.5);
+    // A zero transition is a hard line that includes the line itself.
+    expect(snowCoverAt({ level: 0, transition: 0, depth: 0.3 }, 0)).toEqual({
+      coverage: 1,
+      depth: 0.3,
+    });
+    expect(resolveWeather().snowCover).toBeUndefined();
+    expect(resolveWeather({ snowCover: cover }).snowCover).toEqual({
+      level: 1000,
+      transition: 150,
+      depth: 0.15,
+      depthGain: 0.6,
+      maxDepth: 1.5,
+    });
+  });
+  it('slows a walker with the depth of the snow', () => {
+    // Boot-sole depth costs nothing; 30 cm leaves 72%, knee-deep 40%, and deeper is no worse.
+    expect(snowWalkingPace(0)).toBe(1);
+    expect(snowWalkingPace(0.03)).toBe(1);
+    expect(snowWalkingPace(0.3)).toBeCloseTo(0.72, 2);
+    expect(snowWalkingPace(0.6)).toBeCloseTo(0.4, 6);
+    expect(snowWalkingPace(1.5)).toBeCloseTo(0.4, 6);
+    for (let depth = 0; depth < 1; depth += 0.05)
+      expect(snowWalkingPace(depth + 0.05)).toBeLessThanOrEqual(snowWalkingPace(depth));
   });
   it('returns independent default and profile values', () => {
     const a = weatherProfile('rain');

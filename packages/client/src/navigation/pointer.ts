@@ -171,6 +171,12 @@ export class NavigationPointer {
 
   private down(event: NavigationPointerEvent): void {
     this.surface.focus?.({ preventScroll: true });
+    // Request the lock last: capture is refused from that moment, before any property shows it.
+    try {
+      this.surface.setPointerCapture?.(event.pointerId);
+    } catch {
+      // Refused while a lock is active or pending, and locked look reads movement without it.
+    }
     if (this.pointerLock && event.pointerType !== 'touch' && !this.locked()) {
       // Drag-look keeps working when the host or browser declines pointer lock.
       const request = this.surface.requestPointerLock?.();
@@ -190,7 +196,6 @@ export class NavigationPointer {
     if (this.pointers.size > 1) {
       for (const pointer of this.pointers.values()) pointer.moved = true;
     }
-    this.surface.setPointerCapture?.(event.pointerId);
   }
 
   private move(event: NavigationPointerEvent): void {

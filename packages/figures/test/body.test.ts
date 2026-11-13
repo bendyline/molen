@@ -2,6 +2,7 @@ import { hashBytes } from '@bendyline/molen-kernel/determinism';
 import { describe, expect, it } from 'vitest';
 import {
   deriveRig,
+  FIGURE_HAIR_STYLES,
   FIGURE_PRESET_IDS,
   type FigureBody,
   type FigureTier,
@@ -42,12 +43,18 @@ const HUMAN_BUDGET: Record<FigureTier, [number, number]> = {
 
 describe('procedural bodies', () => {
   it('keeps human clothing and hair variants finite and cheaper at every lower tier', () => {
-    for (const hair of ['none', 'cap', 'bob', 'long'] as const) {
+    for (const [h, hair] of FIGURE_HAIR_STYLES.entries()) {
       for (const sleeves of ['none', 'short', 'long'] as const) {
-        for (const legs of ['shorts', 'long'] as const) {
+        for (const legs of ['shorts', 'long', 'skirt'] as const) {
           const d = resolveFigureDescriptor({
             preset: 'human.adult',
-            features: { hair, sleeves, legs },
+            features: {
+              hair,
+              sleeves,
+              legs,
+              facialHair: h % 2 === 0 ? 'beard' : 'stubble',
+              form: h % 3 === 0 ? 'masculine' : 'feminine',
+            },
           });
           let previous = Infinity;
           for (const tier of [0, 1, 2] as const) {

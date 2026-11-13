@@ -1,0 +1,444 @@
+{
+  "planId": "canterbury_museum_christchurch",
+  "id": "canterbury_museum_christchurch",
+  "assetId": "molen.worldgen.structure.canterbury_museum_christchurch",
+  "title": "Canterbury Museum, Christchurch",
+  "wikidataId": "Q1033769",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 172.626985,
+    "latitude": -43.530903
+  },
+  "size": [
+    62.88168716430664,
+    24.469999253749847,
+    78.27023696899414
+  ],
+  "actualBounds": {
+    "min": [
+      -31.901334762573242,
+      -0.6700000166893005,
+      -42.41023635864258
+    ],
+    "max": [
+      30.9803524017334,
+      23.799999237060547,
+      35.86000061035156
+    ]
+  },
+  "visualBrief": "Pre-redevelopment Canterbury Museum, with a dark Gothic stone frontage, pale window tracery and a steep roof tower.",
+  "nativeAxes": {
+    "x": "north parallel to Rolleston Avenue",
+    "y": "up",
+    "z": "east toward Rolleston Avenue"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2016-01-27",
+    "validFrom": "2016-01-01",
+    "validUntil": "2017-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Canterbury_Museum,_entrance,_2016-01-27.jpg"
+  ],
+  "stories": [
+    {
+      "id": "canterbury-museum-christchurch-wp",
+      "url": "https://qualla.com/canterbury-museum-christchurch/"
+    }
+  ],
+  "referenceInputHash": "7c33140549b946b0d664ab1c591020855d9f83e528c4acbd973731abf9746870",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/rb/rb6/canterbury_museum_christchurch/models/museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/rb/rb6/canterbury_museum_christchurch/models/museum-model.mjs",
+    "level": "skyline",
+    "export": "museumSkyline",
+    "errorMeters": 0.27,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_ashlar",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "deck": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.88,
+        "metallic": 0.08
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "museumDistrict",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.08
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "museumStreet",
+        "errorMeters": 0.063,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.08
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "museumCloseup",
+        "errorMeters": 0.024,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.88,
+            "metallic": 0.08
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_ashlar",
+    "stone_limestone",
+    "slate",
+    "membrane",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      172.626985,
+      -43.530903
+    ],
+    "heading": 1.600850689863768,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        172.62743773781975,
+        -43.53103461746719
+      ],
+      "modelHeight": 0,
+      "basis": "Original Rolleston Avenue-side terrain near the photographed porch. Exact historic doorstep grades are approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/23504437"
+    ],
+    "source": "https://api.openstreetmap.org/api/0.6/way/23504437/7",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:857007d8792b0fbedb24a5b410dc9ecc7306bd450b8c683497af54a773937fd7",
+    "notes": "OpenStreetMap way 23504437 version 7 and the historic versions of its twelve nodes preserve the January 2016 perimeter. Heritage New Zealand list entry 290 identifies the Gothic Revival street range at 15 Rolleston Avenue. The public-domain photograph defines the Rolleston façade. Unseen rear gallery roofs and side elevations are approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "January 2016 exterior before redevelopment. Roof dimensions, concealed portions of the tower, secondary elevations and the later gallery roofs are estimates.",
+    "The temporary exhibition banner and street furnishings are outside this architectural scope.",
+    "The original elevation field is preserved. Local floor and threshold levels are representative."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. The January 2016 exterior photograph by Szilas is public domain. OpenStreetMap contributors supply the archived footprint under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-canterbury-museum-skyline",
+      "position": [
+        -64,
+        34,
+        107
+      ],
+      "lookAt": [
+        1,
+        9,
+        4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-canterbury-museum-district",
+      "position": [
+        -64,
+        34,
+        107
+      ],
+      "lookAt": [
+        1,
+        9,
+        4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-canterbury-museum-street",
+      "position": [
+        -64,
+        34,
+        107
+      ],
+      "lookAt": [
+        1,
+        9,
+        4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-canterbury-museum-closeup",
+      "position": [
+        -64,
+        34,
+        107
+      ],
+      "lookAt": [
+        1,
+        9,
+        4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "rolleston-avenue-gothic-frontage",
+      "position": [
+        -10,
+        9,
+        94
+      ],
+      "lookAt": [
+        -2,
+        10,
+        32
+      ]
+    },
+    {
+      "name": "tower-porch-and-rose-window",
+      "position": [
+        -34,
+        14,
+        62
+      ],
+      "lookAt": [
+        -16,
+        10,
+        32
+      ]
+    },
+    {
+      "name": "historic-range-and-rear-galleries",
+      "position": [
+        65,
+        61,
+        -82
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2036,
+    "vertices": 6108,
+    "materials": 6,
+    "bytes": 513412,
+    "sha256": "sha256:cbaea3ce56bade7b6dd1f4fd82958c6078db041f9cb4062dfe0b8fcf26a673f5"
+  }
+}

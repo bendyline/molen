@@ -55,6 +55,9 @@ async function fly(
       maxConcurrentLoads: 4,
       maxConcurrentLayerLoads: 4,
       prepareObject: async () => wait(250),
+      // Measure Earth's preloader alone. The stream's own camera-track look-ahead also keeps
+      // forward detail ready, so with it on the reactive baseline is already at 100%.
+      lookAhead: false,
       layers: [
         {
           id: 'buildings',

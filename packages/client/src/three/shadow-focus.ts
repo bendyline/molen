@@ -13,6 +13,12 @@ export interface ShadowFocus {
   center: readonly [number, number, number];
   /** Minimum half-width of the shadowed square, meters. Rounded up for a stable texel grid. */
   radius: number;
+  /**
+   * A second, wider map around `center` (absolute world coordinates) covering at least
+   * ±`radius` meters, for the scenery named by `Renderer.setFarShadowCasters`: surfaces past the
+   * focused map read it instead of ending in sunlight. WebGL.
+   */
+  far?: { center: readonly [number, number, number]; radius: number };
 }
 
 export const SHADOW_MAP_SIZE: Record<Exclude<ShadowQuality, 'off'>, number> = {

@@ -1,0 +1,84 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.cathedral_of_la_laguna",
+  "inputHash": "sha256:6522e1ef99c7fbc7c983ddd40b6afc45fcc3d97dc9cf87b9485f9bfa6848c409",
+  "sourceHash": "sha256:6eaa65beafba66dd88d68c4ef76ce9bce09e45949acf47cf8cd1c3d4a60471f4",
+  "runtimeHash": "sha256:b6acb3a4fe6a62cecd03d36cdaf6aeeff097306d09a2ebfdf82c69e3c4bff6ee",
+  "fixtureHash": "sha256:83c7c43c8be2233b7905e197123ed8609b654fcc20a4fcbc8cea4a58910ae676",
+  "placementHash": "sha256:89496dffa9d963c38a963b0687a3c7f3fd5f862bd794da043f3fc818e195ecf8",
+  "materialGraphs": {
+    "molen.worldgen.material.plaster_lime": {
+      "path": "materials/plaster_lime.matgraph.json",
+      "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+    },
+    "molen.worldgen.material.stone_basalt": {
+      "path": "materials/stone_basalt.matgraph.json",
+      "hash": "sha256:41efa6ad89840fdf50772224f4eabb544099dc0cafa791c3a85f916b44b9bf8c"
+    },
+    "molen.worldgen.material.tile_flat": {
+      "path": "materials/tile_flat.matgraph.json",
+      "hash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448"
+    },
+    "molen.worldgen.material.metal_bronze_cast": {
+      "path": "materials/metal_bronze_cast.matgraph.json",
+      "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_basalt_raw": {
+      "path": "materials/stone_basalt_raw.matgraph.json",
+      "hash": "sha256:4a0e752aa8330a06238149d39fe4ddf6398c3e9f7c17e41a4438f40136baed10"
+    },
+    "molen.worldgen.material.wood_plain": {
+      "path": "materials/wood_plain.matgraph.json",
+      "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-la-laguna-cathedral.png",
+      "hash": "sha256:751905b83f6cec48c27c38a81f24b209be56fc094fd58e4f1a4eba19539a1b2c",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -61,
+          12,
+          36
+        ],
+        "lookAt": [
+          -3,
+          16,
+          -4
+        ],
+        "fov": 50,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.64,
+          1,
+          0.56
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "cathedral.of.la.laguna",
+        "visibleDraws": 8
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Basalt, rough basalt, lime plaster, flat clay tile, painted metal, wood and bronze use seven reusable material graphs. Each graph resolves once across the model, including both lime plaster tints."
+}

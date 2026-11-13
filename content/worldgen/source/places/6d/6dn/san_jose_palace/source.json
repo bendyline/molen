@@ -1,0 +1,65 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.san_jose_palace",
+  "kind": "static-structure",
+  "title": "Palacio San José, Entre Ríos",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.san_jose_palace",
+        "output": "assets/places/6d/6dn/san_jose_palace/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6d9861bebb9a8220521136b0b0d2a38e560fc8f0c5fa74788bdfc44b771208ae"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-san-jose",
+        "path": "models/generate-san-jose.mjs"
+      },
+      {
+        "id": "san-jose-model",
+        "path": "models/san-jose-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/exterior-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/arcade-native-original.json",
+      "reference-rights/court-native-original.json",
+      "reference-rights/facade-native-original.json",
+      "reference-rights/qualla-main-arch-original.json",
+      "references/arcade-2010-belgrano-public-domain.jpg",
+      "references/court-2010-belgrano-public-domain.jpg",
+      "references/facade-2010-belgrano-public-domain.jpg",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-11056-19506.png",
+      "terrain-sources/terrarium-15-11056-19507.png",
+      "terrain-sources/terrarium-15-11057-19506.png",
+      "terrain-sources/terrarium-15-11057-19507.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.freedom_monument",
+  "inputHash": "sha256:ffb8909b0164e57820dcbaf9735679356d158cb54e6b53835337dd02831c1ba0",
+  "sourceHash": "sha256:8f824ba5ca9477c4da91442b832d17f6204321b330c31f2a6822894a716ed3e7",
+  "runtimeHash": "sha256:5313df43db2af0a3e2e8d32724e56d6da17487b945465ea36a588788894465a1",
+  "fixtureHash": "sha256:fa438d4aa1b96ad3e4b2cf6405597f30859fe1f8a26988fbfe4ba8ec8b58b46b",
+  "placementHash": "sha256:bed3f9890424093001c82174e666aef6bac57be86ec22bdd37b7a4cea5f82713",
+  "materialGraphs": {
+    "molen.worldgen.material.metal_bronze_cast": {
+      "path": "materials/metal_bronze_cast.matgraph.json",
+      "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    },
+    "molen.worldgen.material.stone_travertine": {
+      "path": "materials/stone_travertine.matgraph.json",
+      "hash": "sha256:9dbdc06581500e8a384c4ae72c6bee0a6653dcc7860b85b52fd96a830b420b58"
+    },
+    "molen.worldgen.material.metal_copper": {
+      "path": "materials/metal_copper.matgraph.json",
+      "hash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-freedom-monument.png",
+      "hash": "sha256:99dc052c8f4313f1f9880cfe29a6c9edbb47d886ab10906e1e3170cb4e2988eb",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -49,
+          12,
+          30
+        ],
+        "lookAt": [
+          -4,
+          17,
+          0
+        ],
+        "fov": 47,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.58,
+          1,
+          0.46
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "freedom.monument",
+        "visibleDraws": 6
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Granite, travertine, copper and cast bronze each resolve once. The cast bronze graph supplies separate verdigris and gilded tints, and granite is reused for both the paving and the stone figures."
+}

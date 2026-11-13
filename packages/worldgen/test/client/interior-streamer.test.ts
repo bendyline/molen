@@ -74,6 +74,54 @@ describe('lazy interior lifecycle', () => {
       stream.dispose();
     }
   });
+
+  it('stands covers in for an unloaded roof opening, and lets a host furnish what it publishes', () => {
+    const scene = new THREE.Group();
+    const region = new THREE.Group();
+    scene.add(region);
+    const site = fixture('covered');
+    const walls = site.openings.length;
+    site.covers = [
+      [
+        [4, 6, 4],
+        [8, 6, 4],
+        [8, 6, 8],
+        [4, 6, 8],
+      ],
+    ];
+    const furnish = vi.fn((_plan: unknown, group: THREE.Group) => {
+      group.add(new THREE.Group());
+    });
+    const stream = new InteriorStreamer({ catalog: INTERIORS, frameBudgetMs: 50, furnish });
+    stream.register(region, [site]);
+    const portals = region.getObjectByName('worldgen:interior-portals') as THREE.Mesh;
+    // One quad for each wall opening, and one for the roof.
+    expect(portals.geometry.index?.count).toBe((walls + 1) * 6);
+    expect(furnish).not.toHaveBeenCalled();
+    settle(stream, [10, 2, 10]);
+    expect(furnish).toHaveBeenCalledTimes(1);
+    expect(portals.geometry.drawRange.count).toBe(0);
+    stream.dispose();
+  });
+
+  it('keeps an interior whose host cannot furnish it, and does not retry forever', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const scene = new THREE.Group();
+    const region = new THREE.Group();
+    scene.add(region);
+    const furnish = vi.fn(() => {
+      throw new Error('no fleet');
+    });
+    const stream = new InteriorStreamer({ catalog: INTERIORS, frameBudgetMs: 50, furnish });
+    stream.register(region, [fixture('bare')]);
+    settle(stream, [10, 2, 10]);
+    expect(stream.stats().resident).toBe(1);
+    expect(stream.stats().failed).toBe(0);
+    expect(furnish).toHaveBeenCalledTimes(1);
+    warn.mockRestore();
+    stream.dispose();
+  });
+
   it('skips footprint queries above a region and restores interiors after descending', () => {
     const scene = new THREE.Group();
     const region = new THREE.Group();

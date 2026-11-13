@@ -17,8 +17,10 @@ import {
   toWorld,
 } from './footprint';
 import { distancePointToSegment, ringBounds } from './geometry2d';
+import { resolveInteriorProfile } from './interior-catalog';
+import { createParkingSite, planParkingSite } from './interior-parking-site';
 import { createInteriorSite } from './interior-site';
-import type { BuildingOpening, InteriorCatalogDoc } from './interior-types';
+import type { BuildingOpening, InteriorCatalogDoc, InteriorStorey } from './interior-types';
 import type { MeshBufferBuilder } from './mesh-buffers';
 import { type PropPlacement, placeProps, type RidgeLine, yawForDirection } from './props';
 import { type BuildingRecipe, resolveBuildingRecipe, visibleProps } from './recipe';
@@ -101,6 +103,10 @@ export interface BuildingResult {
 }
 
 const SKIRT_SPACING = 8;
+/** Structural depth of a car park deck, between one ceiling and the deck above it. */
+const DECK_DEPTH = 0.3;
+/** Far more than any lift bank serves; a rough footprint can resolve to absurd heights. */
+const MAX_STOREYS = 120;
 
 /** Map seam edges of the request outline onto the cleaned (possibly snapped) build outline. */
 function seamEdgesFor(
@@ -335,6 +341,24 @@ export function generateBuilding(
     !analysis.rectilinear &&
     analysis.area < 400;
 
+  // The top ramp comes up through the roof, so a car park's layout precedes the roof it cuts.
+  const garage =
+    input.interiors !== undefined &&
+    input.request.parking !== undefined &&
+    recipe.roof.type === 'flat'
+      ? planParkingSite(
+          input.request,
+          input.interiors,
+          outline,
+          holes,
+          wallBase,
+          (recipe.totalHeight -
+            (input.request.height !== undefined ? (recipe.roof.parapet?.height ?? 0) : 0)) /
+            recipe.floors,
+          input.ground,
+          seams,
+        )
+      : undefined;
   const roofMark = out.mark();
   const ridges: RidgeLine[] = [];
   let dormerBudget = 16;
@@ -439,7 +463,15 @@ export function generateBuilding(
     }
   } else {
     const parapet = recipe.roof.type === 'flat' ? recipe.roof.parapet : undefined;
-    const ok = buildFlatRoof(outline, holes, eave, parapet, surfaces, geometryTier, out);
+    const ok = buildFlatRoof(
+      outline,
+      garage?.roofOpening ? [...holes, garage.roofOpening] : holes,
+      eave,
+      parapet,
+      surfaces,
+      geometryTier,
+      out,
+    );
     if (!ok) return { analysis, recipe, record, skipped: 'roof' };
     record.roof = 'flat';
   }
@@ -481,8 +513,44 @@ export function generateBuilding(
     wallUv.floorHeight = recipe.floorHeight;
   }
 
-  const interiorStoreys = [];
-  for (let i = 0; i < Math.min(2, recipe.floors); i++) {
+  const interiorStoreys: InteriorStorey[] = [];
+  const stacked =
+    input.interiors !== undefined &&
+    !garage &&
+    ['tower', 'atrium'].includes(
+      resolveInteriorProfile(
+        [...(input.request.interiorLabels ?? []), ...input.request.labels],
+        input.interiors,
+      ).algorithm,
+    );
+  if (stacked) {
+    // Every storey the facade shows, though a lazy plan only builds the ones near a viewer.
+    const top = wallBase + recipe.groundFloorHeight + (recipe.floors - 1) * recipe.floorHeight;
+    for (let i = 0; i < Math.min(MAX_STOREYS, recipe.floors); i++) {
+      const floor =
+        i === 0 ? wallBase : wallBase + recipe.groundFloorHeight + (i - 1) * recipe.floorHeight;
+      const next =
+        i + 1 === recipe.floors
+          ? Math.min(top, eave)
+          : floor + (i === 0 ? recipe.groundFloorHeight : recipe.floorHeight);
+      if (next - floor - DECK_DEPTH < 2.35) break;
+      interiorStoreys.push({ floor: floor + 0.04, ceiling: next - DECK_DEPTH });
+    }
+  }
+  if (garage) {
+    const deck = (eave - wallBase) / recipe.floors;
+    recipe.floorHeight = deck;
+    recipe.groundFloorHeight = deck;
+    wallUv.floorHeight = deck;
+    for (let i = 0; i < recipe.floors; i++)
+      interiorStoreys.push({
+        floor: wallBase + i * deck + 0.04,
+        ceiling: wallBase + (i + 1) * deck - DECK_DEPTH,
+      });
+    interiorStoreys.push({ floor: eave + 0.02, ceiling: eave + deck, open: true });
+  }
+  const ordinary = garage || stacked ? 0 : Math.min(2, recipe.floors);
+  for (let i = 0; i < ordinary; i++) {
     const floor = wallBase + (i === 0 ? 0 : recipe.groundFloorHeight) + 0.04;
     const ceiling =
       wallBase +
@@ -501,9 +569,13 @@ export function generateBuilding(
       floor: wallBase + 0.04,
       ceiling: wallBase + Math.min(3, eave - wallBase) - 0.12,
     });
+  const parkingSite = garage
+    ? createParkingSite(input.request, garage, wallBase, interiorStoreys, input.ground, seams)
+    : undefined;
   const site =
     input.interiors !== undefined
-      ? createInteriorSite(
+      ? (parkingSite ??
+        createInteriorSite(
           {
             ...input.request,
             interiorLabels: [
@@ -521,7 +593,7 @@ export function generateBuilding(
           input.ground,
           seams,
           interiorStoreys,
-        )
+        ))
       : undefined;
   if (site) record.interior = site;
   buildWalls(

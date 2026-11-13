@@ -1,0 +1,175 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.cycle.snowboard": {
+      "doc": "Bendy Snowboard. Rideable snowboard: the rider stands across it, slides downhill on lying snow under gravity, leans into turns and skates along the flat.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.cycle.snowboard",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.cycle.snowboard",
+          "color": "#2f6fb0",
+          "spec": {
+            "label": "Bendy Snowboard",
+            "bodyStyle": "snowboard",
+            "genericLabel": "Snowboard",
+            "width": 0.3,
+            "length": 1.56,
+            "height": 0.3,
+            "centerOfMass": [
+              0,
+              0.9,
+              0
+            ],
+            "wheelbase": 0.9,
+            "wheelTrack": 0,
+            "wheelRadius": 0.02,
+            "mass": 82,
+            "engineForce": 110,
+            "maxSpeed": 34,
+            "reverseSpeed": 0,
+            "brakeDeceleration": 5.5,
+            "maxSteer": 0.5,
+            "driverEye": [
+              0,
+              1.59,
+              0.06
+            ],
+            "grip": 7,
+            "steeringRate": 2,
+            "steeringFadeSpeed": 8,
+            "rollingResistance": 0,
+            "aerodynamicResistance": 0.0048,
+            "terrainAlignRate": 6,
+            "supportTolerance": 0.3,
+            "maxStepHeight": 0.35,
+            "maxSlope": 0.95,
+            "drive": "rear",
+            "suspensionDamping": 1,
+            "suspensionFrequency": 2.5,
+            "pitchStiffness": 0,
+            "headlamps": [],
+            "runners": {
+              "friction": 0.055,
+              "bareDrag": 3.5,
+              "pushSpeed": 3.5
+            },
+            "cycle": {
+              "maxLean": 0.65,
+              "riderLean": 0.15,
+              "stance": "sideways",
+              "kick": {
+                "stride": 2.4
+              },
+              "handlebarPivot": [
+                0,
+                0.1,
+                0.45
+              ],
+              "grips": [
+                [
+                  -0.18,
+                  1.01,
+                  0.27
+                ],
+                [
+                  -0.15,
+                  0.99,
+                  -0.3
+                ]
+              ],
+              "footrests": [
+                [
+                  0,
+                  0.16,
+                  0.26
+                ],
+                [
+                  0,
+                  0.16,
+                  -0.26
+                ]
+              ]
+            }
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0,
+                0.93,
+                0
+              ]
+            }
+          ],
+          "exits": [
+            [
+              0.7,
+              0,
+              0
+            ],
+            [
+              -0.7,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              -1.2
+            ]
+          ],
+          "reach": 2.5
+        }
+      },
+      "assets": [
+        "molen.entities.cycle.snowboard"
+      ]
+    }
+  }
+}

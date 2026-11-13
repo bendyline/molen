@@ -1,0 +1,474 @@
+{
+  "planId": "carthage_amphitheatre",
+  "id": "carthage_amphitheatre",
+  "assetId": "molen.worldgen.structure.carthage_amphitheatre",
+  "title": "Carthage Amphitheatre",
+  "wikidataId": "Q2844404",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 10.315078,
+    "latitude": 36.85612
+  },
+  "size": [
+    55.2272891998291,
+    6.475866317749023,
+    83.74028015136719
+  ],
+  "actualBounds": {
+    "min": [
+      -18.301088333129883,
+      -3.3399999141693115,
+      -50.25692367553711
+    ],
+    "max": [
+      36.92620086669922,
+      3.135866403579712,
+      33.48335647583008
+    ]
+  },
+  "visualBrief": "The excavated amphitheatre at Carthage in 2017, with its low arena walls, exposed underground passages, surviving arches and protective railings.",
+  "nativeAxes": {
+    "x": "northwest across the arena",
+    "y": "up",
+    "z": "northeast along the surviving passage axis"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2017-04-30",
+    "validFrom": "2017-01-01",
+    "validUntil": "2018-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Amphitheatre_of_Carthage_2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "carthage-amphitheatre-wp",
+      "url": "https://qualla.com/carthage-amphitheatre/"
+    }
+  ],
+  "referenceInputHash": "ebb32aca0d67fa8a460ed8f3d64a1998fa4a950160b09c5683945cab40eb3b71",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sn/snx/carthage_amphitheatre/models/carthage-amphitheatre-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sn/snx/carthage_amphitheatre/models/carthage-amphitheatre-model.mjs",
+    "level": "skyline",
+    "export": "amphitheatreSkyline",
+    "errorMeters": 0.73,
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "raw": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.16
+      },
+      "local": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.95,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "amphitheatreDistrict",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.16
+          },
+          "local": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "amphitheatreStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.16
+          },
+          "local": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "amphitheatreCloseup",
+        "errorMeters": 0.038,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.16
+          },
+          "local": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "stone_limestone",
+    "stone_limestone_raw",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.84,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      10.315078,
+      36.85612
+    ],
+    "heading": 2.6072257983919562,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        10.315090999940535,
+        36.856338698999615
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate paving at the northeast entry to the arena."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          8.8,
+          -24.93
+        ],
+        [
+          13.16,
+          -24.93
+        ],
+        [
+          13.16,
+          18.69
+        ],
+        [
+          8.8,
+          18.69
+        ]
+      ],
+      "additionalOutlines": [
+        [
+          [
+            3.15,
+            -1.8
+          ],
+          [
+            8.81,
+            -1.8
+          ],
+          [
+            8.81,
+            3.42
+          ],
+          [
+            3.15,
+            3.42
+          ]
+        ],
+        [
+          [
+            3.18,
+            -15.85
+          ],
+          [
+            8.83,
+            -15.85
+          ],
+          [
+            8.83,
+            -11.22
+          ],
+          [
+            3.18,
+            -11.22
+          ]
+        ]
+      ],
+      "minHeight": -3.38,
+      "basis": "Narrow openings inside mapped ruins way 153679399, interpreted against the 2017 photograph of the excavated passages."
+    },
+    "featureIds": [
+      "way/26336599",
+      "way/153679512",
+      "way/26336624",
+      "way/153679399",
+      "way/153679412"
+    ],
+    "source": "https://www.openstreetmap.org/way/26336599",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d6e0859aefee02c1fb4095ddd183a3f78a1e19f61cd1c320b99dfa3f46da6cf1",
+    "notes": "The native site boundary includes the access path and does not measure the Roman seating envelope. The 2017 Qualla exterior controls the excavated passage, modern cross and railings, and surviving walls."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the surviving excavated amphitheatre and modern site fittings seen in April 2017. The vanished Roman upper tiers are outside this dated scope.",
+    "The named archaeological outline, retaining wall and mapped ruins constrain the surviving structures. The heritage institute gives the arena dimensions. Wall breaks and original masonry courses are simplified.",
+    "The original Terrarium grid remains intact. A narrow modeled opening exposes the photographed passages in the viewer. The excavated floor depth and paving datum are estimates."
+  ],
+  "sourceLicense": "Original geometry under the repository license, OpenStreetMap ODbL 1.0 and one exact first-party CC0 Qualla photo.",
+  "qaLodCameras": [
+    {
+      "name": "whole-carthage-amphitheatre-skyline",
+      "position": [
+        49,
+        47,
+        71
+      ],
+      "lookAt": [
+        8.5,
+        -0.2,
+        -9
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-carthage-amphitheatre-district",
+      "position": [
+        49,
+        47,
+        71
+      ],
+      "lookAt": [
+        8.5,
+        -0.2,
+        -9
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-carthage-amphitheatre-street",
+      "position": [
+        49,
+        47,
+        71
+      ],
+      "lookAt": [
+        8.5,
+        -0.2,
+        -9
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-carthage-amphitheatre-closeup",
+      "position": [
+        49,
+        47,
+        71
+      ],
+      "lookAt": [
+        8.5,
+        -0.2,
+        -9
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "northeast-approach-and-excavated-passage",
+      "position": [
+        10.73,
+        2.95,
+        26.8
+      ],
+      "lookAt": [
+        10.81,
+        -0.58,
+        -5.7
+      ]
+    },
+    {
+      "name": "retaining-wall-and-low-arena-remains",
+      "position": [
+        43,
+        20,
+        -39
+      ],
+      "lookAt": [
+        9.6,
+        -0.38,
+        -8.2
+      ]
+    },
+    {
+      "name": "central-openings-from-above",
+      "position": [
+        -17,
+        38,
+        11.5
+      ],
+      "lookAt": [
+        9.6,
+        -1.1,
+        -7.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2345,
+    "vertices": 7035,
+    "materials": 5,
+    "bytes": 626036,
+    "sha256": "sha256:eb4b72ad3526238ed1f6fc179e6ede11305ff847ba29f45da02bcfa09a86155a"
+  }
+}

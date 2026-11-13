@@ -1,0 +1,925 @@
+{
+  "format": "molen/structure-medium-fi-report@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.monivong_bridge_north",
+  "inputHash": "sha256:adc0239bd826756c33cf21cf956a9d6f041f44d284da6489a1d51f71a4f7d447",
+  "sourceHash": "sha256:10c5c5f8dd4aa9e88157b84315f1a87adddee0f586702b3406f6a9e4806cc245",
+  "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.monivong_bridge_north",
+    "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f"
+  },
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:8a8b90950a85fe69f62ff162a38fc62ff0c7736b01e9155172b9ec186be2b60a",
+      "bytes": 37272,
+      "gzipBytes": 11301,
+      "triangles": 404,
+      "cpuBytes": 34536,
+      "gpuBytes": 34536,
+      "errorMeters": 1.1,
+      "drawCalls": 2
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:a61aed01da0f071ee5c3ad0778c59d7f06b782550757a1929806d23878217367",
+      "bytes": 169328,
+      "gzipBytes": 43230,
+      "triangles": 2064,
+      "cpuBytes": 165384,
+      "gpuBytes": 165384,
+      "errorMeters": 0.38,
+      "drawCalls": 3
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:18d355f9bdd8b548b375c2477393e2bb63172079582976ff26f601bcda37c862",
+      "bytes": 321072,
+      "gzipBytes": 77957,
+      "triangles": 4002,
+      "cpuBytes": 317124,
+      "gpuBytes": 317124,
+      "errorMeters": 0.17,
+      "drawCalls": 3
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:b90288df8c5d0c4e1058172717661b2750e4c62a692be753856e69e4c00f08f3",
+      "bytes": 431524,
+      "gzipBytes": 101323,
+      "triangles": 5418,
+      "cpuBytes": 427572,
+      "gpuBytes": 427572,
+      "errorMeters": 0.075,
+      "drawCalls": 3
+    }
+  ],
+  "rig": {
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "fixtureHash": "sha256:0f5f352a444fa098d2c432a50b5c9bffed8d65d41f0137352587525e9038e45f",
+  "terrainFixture": {
+    "parent": "../monivong_bridge/terrain-grid.json",
+    "hash": "sha256:c88c816f0ca623336f4d422cddb232c075eceea89b42c6f1bbfe0c17416e3d63"
+  },
+  "frames": [
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:8468886c4b9788c1a3501e1de500e7042de1b94f85bfee529c3a9529abc53659",
+      "camera": {
+        "name": "main-transition-skyline",
+        "position": [
+          -126,
+          94,
+          195
+        ],
+        "lookAt": [
+          0,
+          4,
+          20
+        ],
+        "fov": 59,
+        "lightDirection": [
+          0.53,
+          1,
+          0.71
+        ],
+        "group": "main",
+        "mediumName": "transition-skyline",
+        "shadows": true
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:8a8b90950a85fe69f62ff162a38fc62ff0c7736b01e9155172b9ec186be2b60a",
+        "level": "skyline",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 2
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 544067,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 2,
+          "monivong.bridge.south": 2
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:adc7f589e3896acd4135dee911517cee625d43c91e099f2f293d72bf1504fd26",
+      "camera": {
+        "name": "main-skyline-noon-economy",
+        "position": [
+          -187,
+          132,
+          238
+        ],
+        "lookAt": [
+          0,
+          5.2,
+          20
+        ],
+        "fov": 58,
+        "lightDirection": [
+          0.53,
+          1,
+          0.71
+        ],
+        "group": "main",
+        "mediumName": "skyline-noon-economy",
+        "shadows": false,
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:8a8b90950a85fe69f62ff162a38fc62ff0c7736b01e9155172b9ec186be2b60a",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 2
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 544067,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 2,
+          "monivong.bridge.south": 2
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:4095cbe1efecd5ae601fe0bd5e7813a2cb440adca4768458a704c53a66731a6a",
+      "camera": {
+        "name": "main-skyline-noon-high",
+        "position": [
+          -187,
+          132,
+          238
+        ],
+        "lookAt": [
+          0,
+          5.2,
+          20
+        ],
+        "fov": 58,
+        "lightDirection": [
+          0.53,
+          1,
+          0.71
+        ],
+        "group": "main",
+        "mediumName": "skyline-noon-high",
+        "shadows": true,
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:8a8b90950a85fe69f62ff162a38fc62ff0c7736b01e9155172b9ec186be2b60a",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 2
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 544067,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 2,
+          "monivong.bridge.south": 2
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:5dbca46810d03c1a6231d188e70ac73205df9a00407dc3b19ae899e8b8c3ae2e",
+      "camera": {
+        "name": "main-skyline-late-economy",
+        "position": [
+          -187,
+          132,
+          238
+        ],
+        "lookAt": [
+          0,
+          5.2,
+          20
+        ],
+        "fov": 58,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "group": "main",
+        "mediumName": "skyline-late-economy",
+        "shadows": false,
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:8a8b90950a85fe69f62ff162a38fc62ff0c7736b01e9155172b9ec186be2b60a",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 2
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 544067,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 2,
+          "monivong.bridge.south": 2
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:b44f3e77195b2656c243fe8b32e3c35165ac600fac20ec8da1b47063614f34a6",
+      "camera": {
+        "name": "main-skyline-late-high",
+        "position": [
+          -187,
+          132,
+          238
+        ],
+        "lookAt": [
+          0,
+          5.2,
+          20
+        ],
+        "fov": 58,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "group": "main",
+        "mediumName": "skyline-late-high",
+        "shadows": true,
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:8a8b90950a85fe69f62ff162a38fc62ff0c7736b01e9155172b9ec186be2b60a",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 2
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 544067,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 2,
+          "monivong.bridge.south": 2
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:143b036205b118d4bbf6225ed8c41d1f51fa43964fe93009736b3f5db609591c",
+      "camera": {
+        "name": "main-transition-district",
+        "position": [
+          -126,
+          94,
+          195
+        ],
+        "lookAt": [
+          0,
+          4,
+          20
+        ],
+        "fov": 59,
+        "lightDirection": [
+          0.53,
+          1,
+          0.71
+        ],
+        "group": "main",
+        "mediumName": "transition-district",
+        "shadows": true
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:a61aed01da0f071ee5c3ad0778c59d7f06b782550757a1929806d23878217367",
+        "level": "district",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 547351,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 3,
+          "monivong.bridge.south": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:cd2626820582945c49330bf8d09c431bc1cdc488958eae5953db347bc66d8f0a",
+      "camera": {
+        "name": "main-block-noon-economy",
+        "position": [
+          40,
+          63,
+          141
+        ],
+        "lookAt": [
+          0,
+          5.2,
+          20
+        ],
+        "fov": 58,
+        "lightDirection": [
+          0.53,
+          1,
+          0.71
+        ],
+        "group": "main",
+        "mediumName": "block-noon-economy",
+        "shadows": false,
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:a61aed01da0f071ee5c3ad0778c59d7f06b782550757a1929806d23878217367",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 547351,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 3,
+          "monivong.bridge.south": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:52378600795ecf53e26a98472327d8f22a130615186e14786c7ade66e446dec6",
+      "camera": {
+        "name": "main-block-noon-high",
+        "position": [
+          40,
+          63,
+          141
+        ],
+        "lookAt": [
+          0,
+          5.2,
+          20
+        ],
+        "fov": 58,
+        "lightDirection": [
+          0.53,
+          1,
+          0.71
+        ],
+        "group": "main",
+        "mediumName": "block-noon-high",
+        "shadows": true,
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:a61aed01da0f071ee5c3ad0778c59d7f06b782550757a1929806d23878217367",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 547351,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 3,
+          "monivong.bridge.south": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:4d3a8745c746e4623264938d65ab0e61fcd16fa2d0d7a768b9006a2c2319b83c",
+      "camera": {
+        "name": "main-block-late-economy",
+        "position": [
+          40,
+          63,
+          141
+        ],
+        "lookAt": [
+          0,
+          5.2,
+          20
+        ],
+        "fov": 58,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "group": "main",
+        "mediumName": "block-late-economy",
+        "shadows": false,
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:a61aed01da0f071ee5c3ad0778c59d7f06b782550757a1929806d23878217367",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 547351,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 3,
+          "monivong.bridge.south": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:0ca715bae86622dfea1eba12078af647c473aa9f94d2d4e501a73a19218a4b73",
+      "camera": {
+        "name": "main-block-late-high",
+        "position": [
+          40,
+          63,
+          141
+        ],
+        "lookAt": [
+          0,
+          5.2,
+          20
+        ],
+        "fov": 58,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "group": "main",
+        "mediumName": "block-late-high",
+        "shadows": true,
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:a61aed01da0f071ee5c3ad0778c59d7f06b782550757a1929806d23878217367",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 547351,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 3,
+          "monivong.bridge.south": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:baddc43f34905b4cd829375a6319648805ddb3383c12e682879c756ba7905925",
+      "camera": {
+        "name": "main-transition-street",
+        "position": [
+          -126,
+          94,
+          195
+        ],
+        "lookAt": [
+          0,
+          4,
+          20
+        ],
+        "fov": 59,
+        "lightDirection": [
+          0.53,
+          1,
+          0.71
+        ],
+        "group": "main",
+        "mediumName": "transition-street",
+        "shadows": true
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:18d355f9bdd8b548b375c2477393e2bb63172079582976ff26f601bcda37c862",
+        "level": "street",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 551129,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 3,
+          "monivong.bridge.south": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:928fcfd715849e3ad5813e3afee3c9be84bfd60ab1f17f78ba644832f17823ae",
+      "camera": {
+        "name": "main-street-noon-economy",
+        "position": [
+          -37,
+          10.5,
+          62
+        ],
+        "lookAt": [
+          51,
+          6.9,
+          22.1
+        ],
+        "fov": 64,
+        "lightDirection": [
+          0.53,
+          1,
+          0.71
+        ],
+        "group": "main",
+        "mediumName": "street-noon-economy",
+        "shadows": false,
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:18d355f9bdd8b548b375c2477393e2bb63172079582976ff26f601bcda37c862",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 545279,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 3,
+          "monivong.bridge.south": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:5374b86b8ca3ce06c1475e37e2267e77f2422201d49d48bab3e849936b6d5c8f",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -37,
+          10.5,
+          62
+        ],
+        "lookAt": [
+          51,
+          6.9,
+          22.1
+        ],
+        "fov": 64,
+        "lightDirection": [
+          0.53,
+          1,
+          0.71
+        ],
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:18d355f9bdd8b548b375c2477393e2bb63172079582976ff26f601bcda37c862",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 545279,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 3,
+          "monivong.bridge.south": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:d9e020833b6ce46c7a885d24ac0c94c1d032ed2106cce6533bd005eabb731635",
+      "camera": {
+        "name": "main-street-late-economy",
+        "position": [
+          -37,
+          10.5,
+          62
+        ],
+        "lookAt": [
+          51,
+          6.9,
+          22.1
+        ],
+        "fov": 64,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "group": "main",
+        "mediumName": "street-late-economy",
+        "shadows": false,
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:18d355f9bdd8b548b375c2477393e2bb63172079582976ff26f601bcda37c862",
+        "level": "street",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 545279,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 3,
+          "monivong.bridge.south": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:aa81f4df2a4718a90c5222df53ee8aeae03e21f7081969ff0a4afe3d09c2aaf5",
+      "camera": {
+        "name": "main-street-late-high",
+        "position": [
+          -37,
+          10.5,
+          62
+        ],
+        "lookAt": [
+          51,
+          6.9,
+          22.1
+        ],
+        "fov": 64,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "group": "main",
+        "mediumName": "street-late-high",
+        "shadows": true,
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:18d355f9bdd8b548b375c2477393e2bb63172079582976ff26f601bcda37c862",
+        "level": "street",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 545279,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 3,
+          "monivong.bridge.south": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:a986e460535135c0cee11327b8057c49aa4c92898520686f562d731a6cd42300",
+      "camera": {
+        "name": "main-transition-closeup",
+        "position": [
+          -126,
+          94,
+          195
+        ],
+        "lookAt": [
+          0,
+          4,
+          20
+        ],
+        "fov": 59,
+        "lightDirection": [
+          0.53,
+          1,
+          0.71
+        ],
+        "group": "main",
+        "mediumName": "transition-closeup",
+        "shadows": true
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:b90288df8c5d0c4e1058172717661b2750e4c62a692be753856e69e4c00f08f3",
+        "level": "closeup",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 553937,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 3,
+          "monivong.bridge.south": 3
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:45af79bb20c2a7ba946a77901d32fc62f47d274d4d70844648214fb93def8a1d",
+      "camera": {
+        "name": "main-silhouette",
+        "position": [
+          -126,
+          94,
+          195
+        ],
+        "lookAt": [
+          0,
+          4,
+          20
+        ],
+        "fov": 59,
+        "lightDirection": [
+          0.53,
+          1,
+          0.71
+        ],
+        "group": "main",
+        "mediumName": "silhouette",
+        "shadows": false,
+        "silhouette": true
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.monivong_bridge_north",
+        "runtimeHash": "sha256:77190f60035bdc79a6f567edb33d412db93261062fc14b210de375da3ace2e4f",
+        "lodHash": "sha256:b90288df8c5d0c4e1058172717661b2750e4c62a692be753856e69e4c00f08f3",
+        "level": "closeup",
+        "placementId": "monivong.bridge.north",
+        "visibleMemberDraws": 3
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 553937,
+        "visibleMemberDraws": {
+          "monivong.bridge.north": 3,
+          "monivong.bridge.south": 3
+        },
+        "quality": "economy",
+        "resolutionScale": 1,
+        "silhouette": true
+      }
+    }
+  ],
+  "errors": [],
+  "notes": "Both decks render together at three distances, two lighting directions and two quality settings, through four fixed-camera LOD views and a silhouette view."
+}

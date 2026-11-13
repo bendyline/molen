@@ -1,0 +1,484 @@
+{
+  "planId": "la_plata_museum",
+  "id": "la_plata_museum",
+  "assetId": "molen.worldgen.structure.la_plata_museum",
+  "title": "La Plata Museum",
+  "wikidataId": "Q1798541",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -57.93541666666667,
+    "latitude": -34.909
+  },
+  "size": [
+    130.81954193115234,
+    23.049999237060547,
+    78.07073593139648
+  ],
+  "actualBounds": {
+    "min": [
+      -66.63579559326172,
+      -5.5,
+      -33.070735931396484
+    ],
+    "max": [
+      64.18374633789062,
+      17.549999237060547,
+      45
+    ]
+  },
+  "visualBrief": "La Plata Museum’s six-column portico and paired stone cats, curved gallery wings, original open courts and central rotunda in 1912.",
+  "nativeAxes": {
+    "x": "right across the main facade",
+    "y": "up",
+    "z": "out toward the entrance steps"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1912-10-01",
+    "validFrom": "1912-01-01",
+    "validUntil": "1913-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:To_the_River_Plate_and_back;_the_narrative_of_a_scientific_mission_to_South_America_(IA_cu31924021078161).pdf"
+  ],
+  "stories": [
+    {
+      "id": "la-plata-museum-wp",
+      "url": "https://qualla.com/la-plata-museum/"
+    }
+  ],
+  "referenceInputHash": "5e5a761c4c3c40e59f4e3bade1bf549fca2963805cd6e0d7a5cf31ce9e86f903",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/69/69y/la_plata_museum/models/la-plata-museum-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/69/69y/la_plata_museum/models/la-plata-museum-model.mjs",
+    "level": "skyline",
+    "export": "museumSkyline",
+    "errorMeters": 1.15,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.86,
+        "metallic": 0.16
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.61,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "museumDistrict",
+        "errorMeters": 0.52,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.61,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "museumStreet",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.61,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "museumCloseup",
+        "errorMeters": 0.055,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.61,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone_raw",
+    "stone_granite",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.7,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -57.93541666666667,
+      -34.909
+    ],
+    "heading": -2.3393289000653175,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -57.93579247721037,
+        -34.908726969433076
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate ground beyond the toe of the main staircase."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -43.15703779194119,
+          18.974984157781442
+        ],
+        [
+          -15.06419498188069,
+          20.181128506024102
+        ],
+        [
+          -15.524721478716954,
+          34.39085401881954
+        ],
+        [
+          1.6284481059650666,
+          35.380571600212534
+        ],
+        [
+          19.515617466750584,
+          34.390854018819525
+        ],
+        [
+          18.173730817674908,
+          18.749282702809545
+        ],
+        [
+          44.07966939566773,
+          15.771644113235343
+        ],
+        [
+          53.81682067364448,
+          10.852562356737725
+        ],
+        [
+          61.4757383561827,
+          2.038265718332262
+        ],
+        [
+          63.72301492362228,
+          -11.1561976721176
+        ],
+        [
+          53.94431109594416,
+          -24.697719390377415
+        ],
+        [
+          37.34021411905766,
+          -32.63071194113863
+        ],
+        [
+          -40.76649252095231,
+          -31.867464353715206
+        ],
+        [
+          -58.982820590392194,
+          -23.93122653222155
+        ],
+        [
+          -66.18739202754614,
+          -10.883391942776228
+        ],
+        [
+          -65.62260586446376,
+          1.776329762261014
+        ],
+        [
+          -56.878073487626004,
+          11.733788140711205
+        ]
+      ],
+      "minimumCoverage": 0.9,
+      "basis": "Native La Plata Museum way 23592480, ODbL 1.0."
+    },
+    "featureIds": [
+      "way/23592480"
+    ],
+    "source": "https://www.openstreetmap.org/way/23592480",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:05493e72f916059eb848fad16edfc823c27789f2fb0ceca3054309fad86501d5",
+    "notes": "The native way describes the surviving outer envelope. Its end facets, front projection and rear edge are plan controls. The 1912 library-free arrangement follows the University museum account. The viewing date represents the documented 1912 visit and is not a measured exposure date."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The building represents the 1912 museum before the library filled one original court. The historic court shapes, roofs, concealed elevations and individual ornaments are approximated.",
+    "The original terrain field is preserved. Local Terrarium relief rises behind the frontage and covers some lower rear exterior detail in the terrain view. Precise historic grade and paving are approximate.",
+    "The black-and-white original controls architectural forms. The warm exterior palette and roof colors are estimates."
+  ],
+  "sourceLicense": "Original geometry under the repository license. Footprint © OpenStreetMap contributors, ODbL 1.0. Public-domain reference from Holland’s 1913 publication.",
+  "qaLodCameras": [
+    {
+      "name": "whole-la-plata-museum-skyline",
+      "position": [
+        -155,
+        75,
+        186
+      ],
+      "lookAt": [
+        0,
+        7.9,
+        2.5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-la-plata-museum-district",
+      "position": [
+        -155,
+        75,
+        186
+      ],
+      "lookAt": [
+        0,
+        7.9,
+        2.5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-la-plata-museum-street",
+      "position": [
+        -155,
+        75,
+        186
+      ],
+      "lookAt": [
+        0,
+        7.9,
+        2.5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-la-plata-museum-closeup",
+      "position": [
+        -155,
+        75,
+        186
+      ],
+      "lookAt": [
+        0,
+        7.9,
+        2.5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "corinthian-portico-and-granite-steps",
+      "position": [
+        -36,
+        14.5,
+        97
+      ],
+      "lookAt": [
+        2,
+        7.6,
+        24
+      ]
+    },
+    {
+      "name": "curving-west-gallery-and-portico",
+      "position": [
+        -119,
+        20,
+        83
+      ],
+      "lookAt": [
+        -19,
+        7.2,
+        4.5
+      ]
+    },
+    {
+      "name": "open-courts-and-raised-rotunda",
+      "position": [
+        97,
+        109,
+        -89
+      ],
+      "lookAt": [
+        1,
+        8,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10496,
+    "vertices": 31488,
+    "materials": 5,
+    "bytes": 1556200,
+    "sha256": "sha256:506f8f89d32eb6ad2e85f072d80af1784cbe35cec3a770062b9fc2e3ecd5c6a4"
+  }
+}

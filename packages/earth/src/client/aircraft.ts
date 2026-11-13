@@ -28,6 +28,7 @@ import {
   initialAircraftState,
   installAircraft,
   levelFlightAngleOfAttack,
+  refuelAircraft,
 } from '@bendyline/molen-kernel/aircraft';
 import type { TypeLibrary } from '@bendyline/molen-kernel/content';
 import {
@@ -143,6 +144,17 @@ export interface EarthFlightStatus {
   crashed: boolean;
   waitingForTerrain: boolean;
   view: 'cockpit' | 'chase';
+  /** Fuel remaining and full-tank capacity in kg, for aircraft that carry fuel. */
+  fuel?: number;
+  fuelCapacity?: number;
+  /** Pre-stall and stalled-wing buffet, 0..1: the cockpit view shakes with it. */
+  buffet: number;
+  /**
+   * The pilot under g, both 0..1: `greyout` under sustained positive g (vision starts to dim
+   * near 0.3 and is gone at 1), `redout` under negative g. For a host to dim or tint its view.
+   */
+  greyout: number;
+  redout: number;
 }
 
 /** One frame of pilot intent. Axes are -1..1; switches are presses since the last frame. */
@@ -161,6 +173,8 @@ export interface EarthPilotControls {
   gear?: number;
   flaps?: number;
   vector?: number;
+  /** Helicopter cyclic toggles between assisted and direct (full authority). */
+  cyclic?: number;
 }
 
 /** A compass heading as the kernel's vehicle yaw (+Z south is yaw 0 in the Earth frame). */
@@ -395,6 +409,8 @@ export class EarthAircraft {
       return false;
     }
     if (input !== undefined) this.world.set(id, AircraftInput, input);
+    // A parked aircraft is boarded with full tanks; one taken over in flight keeps its fuel.
+    refuelAircraft(this.world, id);
     this.pointerAxes.clear();
     this.cockpitBrake = false;
     this.controls = { ...(input ?? IDLE_AIRCRAFT_INPUT) };
@@ -558,8 +574,13 @@ export class EarthAircraft {
       pos: [t.pos[0], ground + 300, t.pos[2]],
       rot: vehicleRotation(state.yaw, 0, 0),
     });
+    const cyclicMode = this.controls.cyclicMode;
     this.launch(id, aircraft.spec, state.yaw, {});
-    this.controls = { ...(this.world.get(id, AircraftInput) ?? IDLE_AIRCRAFT_INPUT) };
+    // The pilot's cyclic choice survives the reset.
+    this.controls = {
+      ...(this.world.get(id, AircraftInput) ?? IDLE_AIRCRAFT_INPUT),
+      ...(cyclicMode === undefined ? {} : { cyclicMode }),
+    };
     this.message = '';
     return true;
   }
@@ -582,6 +603,11 @@ export class EarthAircraft {
     if ((controls.gear ?? 0) % 2 === 1 && state !== undefined && !state.grounded)
       next.gear = !next.gear;
     if ((controls.flaps ?? 0) % 2 === 1) next.flaps = !next.flaps;
+    if (
+      this.world.get(id, Aircraft)?.spec.model === 'helicopter' &&
+      (controls.cyclic ?? 0) % 2 === 1
+    )
+      next.cyclicMode = next.cyclicMode === 'direct' ? 'assisted' : 'direct';
     if (this.world.get(id, Aircraft)?.spec.poweredLift && (controls.vector ?? 0) > 0)
       next.thrustVector =
         ((Math.round((next.thrustVector ?? 0) * 4) + (controls.vector ?? 0)) % 5) / 4;
@@ -613,9 +639,10 @@ export class EarthAircraft {
 
   /**
    * Move models to their simulated poses and animate controls, gear and propellers. `camera`
-   * (in the same frame) keeps distant cockpits out of the frame.
+   * (in the same frame) keeps distant cockpits out of the frame. `shadowTexel`
+   * (`Renderer.shadowTexelSize`) takes the flown aircraft out of a sun shadow map too coarse for it.
    */
-  render(camera?: readonly [number, number, number]): void {
+  render(camera?: readonly [number, number, number], shadowTexel?: number): void {
     for (const [id, visual] of this.visuals) {
       let t = this.world.get(id, Transform);
       const state = this.world.get(id, AircraftState);
@@ -640,6 +667,7 @@ export class EarthAircraft {
           Math.hypot(t.pos[0] - camera[0], t.pos[1] - camera[1], t.pos[2] - camera[2]) > 12;
         visual.updateView(distantApron ? [Infinity, Infinity, Infinity] : camera);
       }
+      visual.updateShadows(id === this.mountedId ? shadowTexel : undefined);
       const channels = this.world.get(id, Aircraft)?.spec.visual;
       const weather = weatherOf(this.world);
       const atmosphere = weather ? sampleAtmosphere(weather, t.pos[1]) : undefined;
@@ -669,6 +697,11 @@ export class EarthAircraft {
       view: this.view,
       lookYaw: this.lookYaw,
       lookPitch: this.lookPitch,
+      // The airframe shakes the pilot's seat before and in a stall.
+      shake: {
+        amount: (id !== undefined ? this.world.get(id, AircraftState)?.buffet : 0) ?? 0,
+        time: performance.now() / 1000,
+      },
       obstructionDistance: (from, to) => {
         const a = new THREE.Vector3().fromArray(from).sub(this.collision.origin);
         const b = new THREE.Vector3().fromArray(to).sub(this.collision.origin);
@@ -718,6 +751,15 @@ export class EarthAircraft {
       crashed: state.crashed,
       waitingForTerrain: state.waitingForTerrain,
       view: this.view,
+      ...(aircraft.spec.fuel
+        ? {
+            fuel: state.fuel ?? aircraft.spec.fuel.capacity,
+            fuelCapacity: aircraft.spec.fuel.capacity,
+          }
+        : {}),
+      buffet: state.buffet ?? 0,
+      greyout: state.greyout ?? 0,
+      redout: state.redout ?? 0,
     };
   }
 

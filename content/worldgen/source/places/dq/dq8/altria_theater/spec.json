@@ -1,0 +1,433 @@
+{
+  "planId": "altria_theater",
+  "id": "altria_theater",
+  "assetId": "molen.worldgen.structure.altria_theater",
+  "title": "Altria Theater, Richmond",
+  "wikidataId": "Q6484803",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -77.4522,
+    "latitude": 37.5462
+  },
+  "size": [
+    62.197275161743164,
+    34.750001549720764,
+    87.10719299316406
+  ],
+  "actualBounds": {
+    "min": [
+      -32.02763366699219,
+      -0.8500000238418579,
+      -48.321998596191406
+    ],
+    "max": [
+      30.169641494750977,
+      33.900001525878906,
+      38.785194396972656
+    ]
+  },
+  "visualBrief": "Moorish Revival theater with twin brick towers, patinated copper lanterns, a recessed pointed arch, terracotta ornament and an extended auditorium roof behind North Laurel Street.",
+  "nativeAxes": {
+    "x": "south along North Laurel Street",
+    "y": "up",
+    "z": "west into the auditorium"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2023-06-07",
+    "validFrom": "2023-01-01",
+    "validUntil": "2026-11-10",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Richmond_23_Shooting_-_Altria_Closed_Road.jpg",
+    "https://commons.wikimedia.org/wiki/File:Richmond_23_Shooting_-_Altria_VCU.jpg"
+  ],
+  "stories": [
+    {
+      "id": "altria-theater-wp",
+      "url": "https://qualla.com/altria-theater/"
+    }
+  ],
+  "referenceInputHash": "e458a2fff82f3a63b5703655ad089be6b23ef80319a9ebf8292d63f4c725851c",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dq/dq8/altria_theater/models/house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dq/dq8/altria_theater/models/house-model.mjs",
+    "level": "skyline",
+    "export": "houseSkyline",
+    "errorMeters": 0.26,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.73,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.77,
+        "metallic": 0.18
+      },
+      "tile": {
+        "slot": "trim",
+        "graph": "tile_glazed",
+        "roughness": 0.66,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.39,
+        "metallic": 0.06
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "houseDistrict",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.77,
+            "metallic": 0.18
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.66,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.39,
+            "metallic": 0.06
+          }
+        }
+      },
+      "street": {
+        "export": "houseStreet",
+        "errorMeters": 0.075,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.77,
+            "metallic": 0.18
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.66,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.39,
+            "metallic": 0.06
+          }
+        }
+      },
+      "closeup": {
+        "export": "houseCloseup",
+        "errorMeters": 0.035,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.77,
+            "metallic": 0.18
+          },
+          "tile": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.66,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.39,
+            "metallic": 0.06
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "stone_limestone",
+    "metal_standing_seam",
+    "metal_copper",
+    "tile_glazed"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -77.4522,
+      37.5462
+    ],
+    "heading": -1.567311928460762,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -77.45166069630152,
+        37.54620148991219
+      ],
+      "modelHeight": 0,
+      "basis": "Original unmodified ground near the North Laurel Street entrance. Coarse source grade and exact threshold elevation remain approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/229623395"
+    ],
+    "source": "https://www.openstreetmap.org/way/229623395",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7d0ec313aa29ddddf751ee8f243b7c2c2043cbf03ec1c44f38b9b35d76330459",
+    "notes": "Named OpenStreetMap way 229623395 provides the original mapped building outline and Q6484803 identity. The eastern edge abuts North Laurel Street and faces Monroe Park. Cleared street references document the main facade and portions of the side. Concealed roof and west rear details remain estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Two verified Qualla CC0 street photographs establish the Laurel Street façade as documented on 2023-06-07. The tall pointed entrance recess, tower shafts and copper lanterns, window pairs and bands, limestone street base, and brick wing and corner pavilion are modeled from visible proportions.",
+    "The mapped boundary fixes the plan envelope. Rear roof, stage mass, exact building and tower elevations, and details screened from the street are medium-fi estimates. Only the June 2023 exterior is represented.",
+    "The original 128 m DEM field is unchanged. Source ground near the Laurel Street entrance supplies Y=0. Foundation, threshold and grade remain approximate.",
+    "The model contains original geometry and shared procedural materials. Foreground objects, branded signage, surrounding sites and interior features are outside its scope."
+  ],
+  "sourceLicense": "Original deterministic reconstruction under the repository license. The two published Qualla photographs by MonkeyBBGB have explicit CC0 dedications. Mapped outline attributed to OpenStreetMap contributors under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-theater-skyline",
+      "position": [
+        74,
+        45,
+        -103
+      ],
+      "lookAt": [
+        0,
+        11.6,
+        -1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-theater-district",
+      "position": [
+        74,
+        45,
+        -103
+      ],
+      "lookAt": [
+        0,
+        11.6,
+        -1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-theater-street",
+      "position": [
+        74,
+        45,
+        -103
+      ],
+      "lookAt": [
+        0,
+        11.6,
+        -1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-theater-closeup",
+      "position": [
+        74,
+        45,
+        -103
+      ],
+      "lookAt": [
+        0,
+        11.6,
+        -1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "laurel-street-and-twin-towers",
+      "position": [
+        33,
+        12,
+        -103
+      ],
+      "lookAt": [
+        0,
+        15.1,
+        -44.5
+      ]
+    },
+    {
+      "name": "auditorium-and-rear-masses",
+      "position": [
+        -71,
+        48,
+        79
+      ],
+      "lookAt": [
+        -1,
+        11,
+        1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7930,
+    "vertices": 23790,
+    "materials": 6,
+    "bytes": 1135708,
+    "sha256": "sha256:cdd851ae0632f7ada273048d8db24108c94b3715941ceed1d2c0e3740e8ad9b4"
+  }
+}

@@ -18,6 +18,7 @@ import type { AssetSidecar } from '@bendyline/molen-schema';
 import {
   createTerrainLandcoverWorkerBridge,
   type TerrainLandcoverGenerator,
+  type TerrainLandcoverRasterOptions,
   type TerrainQualityPreset,
   type TerrainSurfaceRenderer,
 } from '@bendyline/molen-terrain/client';
@@ -26,9 +27,11 @@ import {
   createResolvedMaterialSet,
   ModelLibrary,
   NightWindowLighting,
+  routeStructureModels,
   type ScreenSpaceLodPolicy,
   StructureLodStreamer,
   StructureModelLibrary,
+  type StructureModelLibraryOptions,
   type StructureStreamingOptions,
   type StructureStreamingStats,
   type StructureStreamingView,
@@ -52,6 +55,7 @@ import {
 import type * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import type { EarthWorldgenContent } from './content';
+import { createGarageFurnisher } from './garage-cars';
 import { hasOnlyEmbeddedImages } from './structure-image-ownership';
 
 /** Factories for module workers; each is optional and its work runs in-thread without it. */
@@ -93,6 +97,18 @@ export interface CreateEarthWorldgenOptions {
   sampleStructureTerrain?: StructureTerrainSampler;
   content: EarthWorldgenContent;
   assets: AssetProvider;
+  /**
+   * Loads the models a map override places that the style pack does not carry: `load(ref)`
+   * returns a GLB's bytes (default `assets`, which serves a host's own content pack). Such a
+   * model is drawn at one detail level: static meshes in meters, +Y up, its origin on the ground
+   * and its front toward +Z, without Draco, meshopt or KTX2 compression.
+   */
+  overrideAssets?: AssetProvider;
+  /**
+   * Largest model `overrideAssets` may bring in: file bytes (default 32 MiB) and triangles
+   * (default 300,000). A larger one is not drawn, and says so once on the console.
+   */
+  overrideModelLimits?: { maxBytes?: number; maxTriangles?: number };
   surfaceRenderer: TerrainSurfaceRenderer;
   metersPerUnit: number;
   quality: TerrainQualityPreset;
@@ -122,6 +138,16 @@ export interface CreateEarthWorldgenOptions {
    * terrain surface; the host owns and disposes it.
    */
   groundMaterial?: THREE.Material;
+  /**
+   * Draw land cover on distant tiles as one texture a tile, with the tile's mapped roads and
+   * building footprints painted in, instead of the draped mesh: a fraction of its triangles,
+   * memory and build time, where its crop rows and soft class edges are too small to see.
+   * `material` is `createTerrainGroundTextureMaterialAsync` from `@bendyline/molen-terrain/client`
+   * for the renderer's backend (keep its origin current with `setTerrainGroundOrigin` like the
+   * ground's), owned by the host. The rest are `TerrainLandcoverRasterOptions`: by default tiles two or more levels
+   * coarser than the finest, 256 texels across.
+   */
+  farLandcover?: { material: THREE.Material } & TerrainLandcoverRasterOptions;
   /**
    * Material for scatter (trees, shrubs, ground cover) and props, usually
    * `createScatterMaterialAsync` from `@bendyline/molen-worldgen/client` for the renderer's
@@ -231,23 +257,55 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
   const sharedRefs = new Set(Object.entries(pack.materials).map(([ref, kind]) => `${kind}:${ref}`));
   const structureLoader = new GLTFLoader();
   const ownedImageScenes = new WeakSet<THREE.Object3D>();
+  const libraryOptions: StructureModelLibraryOptions = {
+    nightWindows,
+    ownsImageBitmaps: (scene) => ownedImageScenes.has(scene),
+    resolveSurface: ({ ref, slot }) =>
+      sharedRefs.has(ref) ? materials.materialFor(slot, ref) : undefined,
+  };
+  // A host's own models, placed by map overrides: any ref the style pack does not carry. They
+  // come whole, without the catalog's source-derived detail levels, so each is bounded here.
+  const hostModelLimits = {
+    maxBytes: options.overrideModelLimits?.maxBytes ?? 32 * 1024 * 1024,
+    maxTriangles: options.overrideModelLimits?.maxTriangles ?? 300_000,
+  };
+  const loadHostModel = async (ref: string): Promise<THREE.Object3D> => {
+    const bytes = await (options.overrideAssets ?? options.assets).load(ref);
+    if (bytes.byteLength > hostModelLimits.maxBytes)
+      throw new Error(
+        `override model is ${bytes.byteLength} bytes; the limit is ${hostModelLimits.maxBytes}`,
+      );
+    const parsed = await structureLoader.parseAsync(bytes, '');
+    let triangles = 0;
+    parsed.scene.traverse((object) => {
+      const { isMesh, geometry } = object as THREE.Mesh;
+      if (isMesh) triangles += (geometry.index ?? geometry.getAttribute('position')).count / 3;
+    });
+    if (triangles > hostModelLimits.maxTriangles) {
+      parsed.scene.traverse((object) => {
+        const mesh = object as THREE.Mesh;
+        if (!mesh.isMesh) return;
+        mesh.geometry.dispose();
+        for (const material of [mesh.material].flat()) material.dispose();
+      });
+      throw new Error(
+        `override model has ${Math.round(triangles)} triangles; the limit is ${hostModelLimits.maxTriangles}`,
+      );
+    }
+    if (hasOnlyEmbeddedImages(parsed.parser.json)) ownedImageScenes.add(parsed.scene);
+    return parsed.scene;
+  };
+  const isCatalogModel = (ref: string): boolean => pack.assets[ref] !== undefined;
   const legacyStructures =
     options.landmarkStreaming === false
-      ? new StructureModelLibrary(
-          async (ref) => {
-            const parsed = await structureLoader.parseAsync(await options.assets.load(ref), '');
-            // Embedded images get fresh blob URLs per parse. URI/data-URI images may be borrowed
-            // from Three's host-global cache, even when this GLTFParser is new.
-            if (hasOnlyEmbeddedImages(parsed.parser.json)) ownedImageScenes.add(parsed.scene);
-            return parsed.scene;
-          },
-          {
-            nightWindows,
-            ownsImageBitmaps: (scene) => ownedImageScenes.has(scene),
-            resolveSurface: ({ ref, slot }) =>
-              sharedRefs.has(ref) ? materials.materialFor(slot, ref) : undefined,
-          },
-        )
+      ? new StructureModelLibrary(async (ref) => {
+          if (!isCatalogModel(ref)) return loadHostModel(ref);
+          const parsed = await structureLoader.parseAsync(await options.assets.load(ref), '');
+          // Embedded images get fresh blob URLs per parse. URI/data-URI images may be borrowed
+          // from Three's host-global cache, even when this GLTFParser is new.
+          if (hasOnlyEmbeddedImages(parsed.parser.json)) ownedImageScenes.add(parsed.scene);
+          return parsed.scene;
+        }, libraryOptions)
       : undefined;
   const structureManifests = new Map<string, AssetSidecar>();
   const streamingStructures =
@@ -293,7 +351,20 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
               sharedRefs.has(ref) ? materials.materialFor(slot, ref) : undefined,
           },
         );
-  const structureObjects = streamingStructures ?? legacyStructures;
+  // The streamer knows only the style pack's landmarks; a plain library beside it loads the rest.
+  const hostStructures =
+    streamingStructures !== undefined
+      ? new StructureModelLibrary(loadHostModel, libraryOptions)
+      : undefined;
+  const routedStructures =
+    streamingStructures !== undefined && hostStructures !== undefined
+      ? routeStructureModels({
+          primary: streamingStructures,
+          isPrimary: isCatalogModel,
+          secondary: hostStructures,
+        })
+      : undefined;
+  const structureObjects = routedStructures ?? legacyStructures;
   if (!structureObjects) throw new Error('No structure model source');
   let preparation: Promise<void> | undefined;
   let disposed = false;
@@ -343,16 +414,33 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     quality: options.quality,
     ...(options.compact === true ? { compact: true } : {}),
     lodPolicy: options.lodPolicy,
-    interiors: options.interiors ?? true,
+    interiors:
+      (options.interiors ?? true)
+        ? { furnish: createGarageFurnisher(options.content.parkedVehicles ?? []) }
+        : false,
     propLod: options.propLod ?? true,
-    ...(options.landcoverColors !== undefined || options.groundMaterial !== undefined
+    ...(options.landcoverColors !== undefined ||
+    options.groundMaterial !== undefined ||
+    options.farLandcover !== undefined
       ? {
           landcover: {
             ...(options.landcoverColors !== undefined
               ? { landcoverColors: options.landcoverColors }
               : {}),
-            ...(options.groundMaterial !== undefined
-              ? { materials: { landcover: options.groundMaterial } }
+            ...(options.groundMaterial !== undefined || options.farLandcover !== undefined
+              ? {
+                  materials: {
+                    ...(options.groundMaterial !== undefined
+                      ? { landcover: options.groundMaterial }
+                      : {}),
+                    ...(options.farLandcover !== undefined
+                      ? { landcoverRaster: options.farLandcover.material }
+                      : {}),
+                  },
+                }
+              : {}),
+            ...(options.farLandcover !== undefined
+              ? { landcoverRaster: farLandcoverRaster(options.farLandcover) }
               : {}),
           },
         }
@@ -387,7 +475,10 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
       pool?.dispose();
       renderers.dispose();
       generator?.dispose();
-      structureObjects.dispose();
+      routedStructures?.dispose();
+      streamingStructures?.dispose();
+      hostStructures?.dispose();
+      legacyStructures?.dispose();
       nightWindows.dispose();
       materials.dispose();
       models.dispose();
@@ -396,30 +487,59 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
   };
 }
 
+function logicalCores(): number {
+  return typeof navigator !== 'undefined' ? (navigator.hardwareConcurrency ?? 4) : 4;
+}
+
 /**
- * World generation workers: a quarter of the logical cores, at most two. One worked through a
- * city's tiles one at a time; four, beside as many for land cover and road surfaces, took the
- * cores the frame needs: on a 12-core laptop a jet's frames drew the same scene up to twice as
- * slowly while a town streamed in, and a frame over 33 ms came every few seconds. Two halved those
- * for a tile generated ~170 ms later (most of it hidden by the predicted views loading ahead).
+ * World generation workers: a quarter of the logical cores, at most two, up to 15 cores. One
+ * worked through a city's tiles one at a time; four, beside as many for land cover and road
+ * surfaces, took the cores the frame needs: on a 12-core laptop a jet's frames drew the same
+ * scene up to twice as slowly while a town streamed in, and a frame over 33 ms came every few
+ * seconds. Two halved those for a tile generated ~170 ms later (most of it hidden by the
+ * predicted views loading ahead).
+ *
+ * A workstation has the cores to spare: three from 16 logical cores, four from 24. On 32 (with
+ * three land cover and three surface workers, see `surfaceWorkers`) a 250 m/s circle at Balanced
+ * built a tile's buildings in 0.41 s on average instead of 0.63 s, and missed fewer frames (9
+ * over 20 ms instead of 32) rather than more. Only the 32-core figures were measured; 16-23 is
+ * the step between them and the laptop.
  */
-export function generationWorkers(): number {
-  const cores = typeof navigator !== 'undefined' ? (navigator.hardwareConcurrency ?? 4) : 4;
+export function generationWorkers(cores: number = logicalCores()): number {
+  if (cores >= 24) return 4;
+  if (cores >= 16) return 3;
   return Math.max(1, Math.min(2, Math.floor(cores / 4)));
 }
 
 /**
- * Land cover and road surface workers: one each. Their jobs are short beside world generation's,
- * and a second of each still took the frame's cores: with two, panning low over Kyoto, Sydney or
- * Seattle drew the same scene up to three times as slowly in some frames (a few a minute over
- * 50 ms, at about 80-90 fps); with one, none, at 100+ fps. A low flight streamed just as fast;
- * the first view loaded about a fifth later.
+ * Land cover and road surface workers: one each up to 15 logical cores. Their jobs are short
+ * beside world generation's, and a second of each still took the frame's cores on a 12-core
+ * laptop: with two, panning low over Kyoto, Sydney or Seattle drew the same scene up to three
+ * times as slowly in some frames (a few a minute over 50 ms, at about 80-90 fps); with one, none,
+ * at 100+ fps. A low flight streamed just as fast; the first view loaded about a fifth later.
+ *
+ * With cores to spare one is the bottleneck instead: land cover is the layer a tile waits for
+ * longest. On 32 logical cores, one worker took 1.7 s a tile on average over a 250 m/s circle
+ * (8.0 s at the 95th percentile) and the first view took 23 s to finish; three took 0.5 s (1.7 s)
+ * and 13 s, with fewer missed frames. Two from 16 cores, three from 24.
  */
-export function surfaceWorkers(): number {
-  return 1;
+export function surfaceWorkers(cores: number = logicalCores()): number {
+  return cores >= 24 ? 3 : cores >= 16 ? 2 : 1;
 }
 
 /** Landcover tiles go to whichever worker has the fewest in flight. */
+/**
+ * The raster options alone: the material travels separately, and never to a worker. Plants are
+ * placed on tiles up to two levels coarser than the finest (see the classification layer), so
+ * woods take the canopy tint from the third.
+ */
+function farLandcoverRaster({
+  material: _material,
+  ...raster
+}: { material: THREE.Material } & TerrainLandcoverRasterOptions): TerrainLandcoverRasterOptions {
+  return { canopy: { minDepth: 3 }, ...raster };
+}
+
 function landcoverPool(members: readonly TerrainLandcoverGenerator[]): TerrainLandcoverGenerator {
   const busy = members.map(() => 0);
   return {

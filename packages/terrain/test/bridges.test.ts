@@ -132,7 +132,7 @@ describe('automatic bridge structures', () => {
     expect(JSON.stringify(tile)).toBe(before);
     disposeTerrainSurfaceObject(object);
   });
-  it('seats a raised ground approach on supports without adding bridge barriers', () => {
+  it('seats a raised ground approach on walls, railed where they are tall, with no bridge slab', () => {
     const tile = fixture(false);
     tile.transportation[0] = {
       class: 'path',
@@ -147,11 +147,37 @@ describe('automatic bridge structures', () => {
     };
     const object = createTerrainSurfaceObject(tile, context());
     expect(object.getObjectByName('surfaces:bridges')).toBeUndefined();
+    // The path's surface, read back from the pavement drawn along its centerline.
+    const paved = vertices(object, 'semantic:transportation');
+    const heightOfPath = (x: number): number => {
+      let best = Number.POSITIVE_INFINITY,
+        y = 0;
+      for (let i = 0; i < paved.count; i++) {
+        const distance = Math.abs(paved.getX(i) - x);
+        if (distance < best) {
+          best = distance;
+          y = paved.getY(i);
+        }
+      }
+      return y;
+    };
     const p = vertices(object, 'surfaces:approach-supports'),
       ys = Array.from({ length: p.count }, (_, i) => p.getY(i));
     expect(Math.min(...ys)).toBeLessThan(5);
-    expect(Math.max(...ys)).toBeCloseTo(17.92);
+    // The walls stop under the path's surface at 18 m; a 1.1 m rail stands along each drop.
+    expect(ys.some((y) => Math.abs(y - 17.92) < 0.005)).toBe(true);
+    expect(Math.max(...ys)).toBeCloseTo(19.1);
     expect(Array.from({ length: p.count }, (_, i) => p.getX(i)).every((x) => x <= 42)).toBe(true);
+    // Rails stand off the path, either side of it, and only where there is a meter to fall:
+    // the last of the ramp, where it comes down to the ground, has walls and no rail.
+    const rails = Array.from({ length: p.count }, (_, i) => i).filter(
+      (i) => p.getY(i) > heightOfPath(p.getX(i)) + 0.5,
+    );
+    expect(rails.length).toBeGreaterThan(0);
+    for (const i of rails) {
+      expect(Math.abs(p.getZ(i) - 100)).toBeGreaterThanOrEqual(1.4);
+      expect(heightOfPath(p.getX(i)) - 5).toBeGreaterThan(0.6);
+    }
     const normal = (
       object.getObjectByName('surfaces:approach-supports') as THREE.Mesh
     ).geometry.getAttribute('normal');

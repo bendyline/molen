@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.faro_cathedral",
+  "kind": "static-structure",
+  "title": "Faro Cathedral",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.faro_cathedral",
+        "output": "assets/places/ey/eyd/faro_cathedral/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8ee0a6869d8d707145866edb5c9e8958362eb21ab48bd95a98ed4c346c900a48"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-cathedral",
+        "path": "models/generate-cathedral.mjs"
+      },
+      {
+        "id": "cathedral-model",
+        "path": "models/cathedral-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/exterior-controls.json",
+      "reference-rights/commons-cc0-originals.json",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-15661-12752.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

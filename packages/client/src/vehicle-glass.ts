@@ -12,3 +12,13 @@ export function drawGlassInOnePass(mesh: THREE.Mesh): void {
   for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material])
     if (material.transparent && material.side === THREE.DoubleSide) material.forceSinglePass = true;
 }
+
+/**
+ * Whether a mesh is see-through glass (every material blended at less than full opacity), which
+ * must not cast sun shadows: three's shadow pass draws a pane as solid, so a windscreen put its
+ * whole cockpit in shade. Lettering decals blend too, but at full opacity, and still cast.
+ */
+export function isGlass(mesh: THREE.Mesh): boolean {
+  const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+  return materials.every((material) => material.transparent && material.opacity < 1);
+}

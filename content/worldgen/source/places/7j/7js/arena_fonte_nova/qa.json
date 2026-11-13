@@ -32,8 +32,61 @@
       "shots/shared/south-steps-louvers-and-ground-contact-frame.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Four existing256px graphs: concrete_plain, metal_painted, window_grid and fabric_canvas. Concrete, green seating/metal/louvers, glazing, pale membrane/apron/turf reuse the library. Four near draws/one skyline draw; no new graph, embedded image or private atlas. Each graph read once; separate POSITION/NORMAL streams and equal CPU/GPU accounting. Shared opaque fabric/glazing approximate fine weave/transmission. Flat synthetic contexts can hide downslope stair bottoms; the native sloping-terrain views establish their placement.",
-    "captureReportHash": "sha256:c89d169969dd3c45d404ccf9fa1debd4b62bfed1c9c96553b89be5bc154f15c3"
+    "notes": "Four existing256px graphs: concrete_plain, metal_painted, window_grid and fabric_canvas. Concrete, green seating/metal/louvers, glazing, pale membrane/apron/turf reuse the library. Four near draws/one skyline draw; no new graph, embedded image or private atlas. Each graph read once; separate POSITION/NORMAL streams and equal CPU/GPU accounting. Shared opaque fabric/glazing approximate fine weave/transmission. Flat synthetic contexts can hide downslope stair bottoms; the native sloping-terrain views establish their placement. The shared window_grid graph changed after the original review. Eight new shared-material views confirm the revised glazing in the existing geographic placement.",
+    "captureReportHash": "sha256:872666fc152fe9316399cc0777c5587f1a0b5bd81868b84dd5129cc0ee388333",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:f1fb613c3bbb0942f2862ff5376699cf5f74d3cc68187e46ae5e57103673bfaf"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:1856f8509b3ab409f31acfc0cb1619557c0c9c50dd0ec7b6b8b01d9de988309c"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:139b86a5f1fcdb5a9d41861e8387d8d4ccf72a20ee156eef73e3f19d8428d7ce"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:b3ffa2005fb35f7444dc7e6eb6816c732f408124eafa84eb90b3be5f089aee21"
+      },
+      {
+        "path": "shots/shared/open-southern-bowl-and-crossing-restaurant.png",
+        "hash": "sha256:1b4dace019456dcad9d2103c6a8b6c682a97134dfc69b02b6479a29dea7a5436"
+      },
+      {
+        "path": "shots/shared/membrane-underside-and-cable-ring.png",
+        "hash": "sha256:dca852a226ea787360592a125834445ed519231c86619bca726986bc548125f8"
+      },
+      {
+        "path": "shots/shared/south-steps-louvers-and-ground-contact-frame.png",
+        "hash": "sha256:5ee45369a58fbab6db58821179929c244380c9c4305086e5eba24cee3c70b71c"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:0ca7455e8eab95e7ad35a0b64fb5aa9e27b20bc1c05536a12f06298ced40529f"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

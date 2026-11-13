@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fort_christian",
+  "kind": "static-structure",
+  "title": "Fort Christian, Charlotte Amalie",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fort_christian",
+        "output": "assets/places/de/de3/fort_christian/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:2173c0372228860dbd8939b4cff3c0cec9f79440af94062ddfa8244ba5af6656"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-fort",
+        "path": "models/generate-fort.mjs"
+      },
+      {
+        "id": "fort-model",
+        "path": "models/fort-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/exterior-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-pd-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-10473-14685.png",
+      "terrain-sources/terrarium-15-10474-14685.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

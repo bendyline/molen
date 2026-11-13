@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.boljoon_church",
+  "kind": "static-structure",
+  "title": "Boljoon Church",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.boljoon_church",
+        "output": "assets/places/w9/w9x/boljoon_church/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9f2e9366bce86b3d01ed8163ff986984316a517f4e4b35a4607813ca4ef22222"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-church",
+        "path": "models/generate-church.mjs"
+      },
+      {
+        "id": "church-model",
+        "path": "models/church-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/exterior-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/national-museum-architectural-facts.json",
+      "reference-rights/national-museum-conservation-facts.json",
+      "primary-facts-reconstruction.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-27623-15503.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

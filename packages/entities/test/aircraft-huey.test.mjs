@@ -39,11 +39,13 @@ describe.each(['source', 'imported'])('UH-1H windshield clearance (%s)', (versio
     let sampled = 0;
     // Scan from outside toward the dashboard. The old constant-depth housing
     // protruded by almost 20 cm; every sampled panel point must now sit behind skin/glass.
+    // The grid follows the panel's rescale to 1.05 m: on each side from 0.3 m out to past the
+    // hood's ears (0.62 m), and from the panel foot to above the hood top, at the same 2.5 cm.
     for (const side of [-1, 1])
-      for (let column = 0; column <= 20; column++)
-        for (let row = 0; row <= 30; row++) {
-          const x = side * (0.5 + column * 0.025),
-            y = 1.15 + row * 0.025;
+      for (let column = 0; column <= 14; column++)
+        for (let row = 0; row <= 24; row++) {
+          const x = side * (0.3 + column * 0.025),
+            y = 1.05 + row * 0.025;
           ray.set(new Vector3(x, y, 4), direction);
           const panel = ray.intersectObjects(housing, false)[0];
           if (!panel || panel.point.z < 2.35) continue;

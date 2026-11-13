@@ -135,9 +135,10 @@ describe('default structure catalog', () => {
     expect(new Set(catalog.entries.map((entry) => entry.title)).size).toBe(120);
     expect(catalog.taxonomies).toHaveLength(13);
     expect(catalog.entries.map((entry) => entry.style).sort()).toEqual(
+      // Regional variants and styles chosen by a building's mapped use are not gallery entries.
       Object.keys(pack.archstyles)
         // Airport footprint recipes have their own integration coverage; this is the curated catalog.
-        .filter((id) => !/^molen\.worldgen\.(regional|airport)\./.test(id))
+        .filter((id) => !/^molen\.worldgen\.(regional|airport|use)\./.test(id))
         .sort(),
     );
     for (const entry of catalog.entries) {

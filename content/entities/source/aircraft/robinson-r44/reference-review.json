@@ -186,7 +186,7 @@
       0.3118579105101766,
       296.74009931697776,
       -0.00010268562401263785,
-      0.000004460551993310384
+      4.460551993310384e-06
     ],
     "scope": "Projective rectification of the manufacturer diagram using the centers of its four corner gauges. Equal 0.105 m gauge pitch is assumed; relative placement only, not measured panel width or depth."
   },
@@ -232,13 +232,14 @@
     ],
     "visual": "Individually inspected four calibrated exterior/panel overlays, lit three-quarter, operator, close and wide cockpit, and four turntable views. Compared to Raven II exterior and cockpit photos; remaining reconstruction limits recorded."
   },
-  "sourceHash": "sha256:2072442af2aaa16de43acb9aabdbe404fc953a98069f540942754d875f945090",
-  "runtimeHash": "sha256:414825175852ccd2643ee589b06c87da200299218fd5bc1e2812e7930479b44f",
+  "sourceHash": "sha256:7db803ee1ec99cda5ff1f0d730524a7f37fd25eeca02672ba9836c70fbde6c10",
+  "runtimeHash": "sha256:fd03851ef73889a39dd46c4ba5b92a59e1915086b0fd759d6e3ecca638e9cf88",
   "limitations": [
     "Panel overlay rectifies an oblique manufacturer diagram using equal gauge pitch; 0.105 m pitch, panel depth and absolute cockpit placement remain estimates.",
     "Photograph corroborates cabin construction and controls but depicts a different instrument fit. Model follows the later handbook instrument arrangement, with simplified engine instruments and radios.",
     "Manufacturer three-views have small scale differences; side dimensions take precedence for height. Static rotor azimuth differs, and the rear engine fairing and bubble remain visibly faceted.",
-    "Original geometry and markings only; reference pixels are not distributed."
+    "Original geometry and markings only; reference pixels are not distributed.",
+    "The sweep cushion reading of 0.68 m is the belt strap; the cushion itself is 0.77 m below the eye. The pod sits on the centerline, as on the aircraft."
   ],
   "controlReview": {
     "checked": "2026-10-22",
@@ -257,6 +258,45 @@
       "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
       "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
       "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  },
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "Rays from the pilotEye through source.glb (cockpit-sweep), seat view at the runtime camera (+Z, 60 degrees vertical), an exterior nose render, and sections through the pilot plane and at hood height, each checked against a photograph of the real aircraft.",
+    "findings": [
+      "The eye stood ahead of the cushion front edge, so the ray down reached the floor at 0.95 m and every near object looked oversized.",
+      "The gauge pod floating at top left of the seat view is the real wet compass, on the center bow in the Dtom photograph. It is about the right size; the eye was 0.41 m from it.",
+      "The gray box at right was a door hinge hung on bare windscreen at 1.43 m, above the door frame.",
+      "The pedestal slab stood in front of the panel and hid its lower row. On the aircraft it runs from under the pod to the floor."
+    ],
+    "before": {
+      "eye": [
+        -0.3,
+        1.43,
+        1.05
+      ],
+      "eyeToPanelMeters": 0.62,
+      "headroomMeters": 0.34,
+      "eyeAboveCushionMeters": 0.7,
+      "seatbackMeters": 0.46,
+      "eyeToCompassMeters": 0.41
+    },
+    "after": {
+      "eye": [
+        -0.3,
+        1.5,
+        0.88
+      ],
+      "eyeToPanelMeters": 0.79,
+      "headroomMeters": 0.28,
+      "eyeAboveCushionMeters": 0.77,
+      "seatbackMeters": 0.3,
+      "eyeToCompassMeters": 0.58
+    },
+    "corrections": [
+      "Eye moved 0.17 m aft over the cushion and raised 0.07 m.",
+      "Pedestal slid under the pod and closed with side and forward walls to the floor; panel unchanged.",
+      "Upper hinge moved onto the door frame; floor narrowed forward so its corners stay inside the belly."
     ]
   }
 }

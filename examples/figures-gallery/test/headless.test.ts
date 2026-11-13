@@ -27,10 +27,11 @@ function gait(mode: 'idle' | 'walk' | 'run', tick: number, seq = 0): Command {
 describe('figures gallery headless', () => {
   // Pinned, so a rig, gait or pose-evaluation change has to be an intentional edit here.
   it('matches the pinned state hash across engine versions', async () => {
-    // Includes the relaxed biped arm/hand poses and revised quadruped proportions.
+    // Includes the 2026-11-08 proportions: shorter human necks and narrower shoulders (the
+    // hand, eye and chest sockets moved) and the raised quadruped necks and heads.
     const r = await runSimulation({ scene: scene(), ticks: 240 });
     expect(r.stateHash).toBe(
-      'sha256:10628a29c491c331660f3952a6b5382cbdb3f3ee2de258d3a1eaf37c7654489a',
+      'sha256:7bcb918efc8f168d178f593a16cb200a56b47ef2ac2e149b480447a1a063a868',
     );
   });
 

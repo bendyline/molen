@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.blair_pavilion_ipswich",
+  "kind": "static-structure",
+  "title": "Blair Pavilion, Ipswich",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.blair_pavilion_ipswich",
+        "output": "assets/places/r7/r7h/blair_pavilion_ipswich/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:4c4a929d45e9004479bdc8677acbec91ebe109ccca449e3cb748fed11e3078ff"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-pavilion",
+        "path": "models/generate-pavilion.mjs"
+      },
+      {
+        "id": "pavilion-model",
+        "path": "models/pavilion-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/exterior-controls.json",
+      "reference-rights/commons-cc0-originals.json",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-30287-19002.png",
+      "terrain-sources/terrarium-15-30288-19002.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

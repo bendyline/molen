@@ -1,0 +1,72 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.bayterek",
+  "inputHash": "sha256:02807415bc1e6c6a951691b3cff35f0910c7bc62e6b10ca294c209f1f1ff0699",
+  "sourceHash": "sha256:a4f57f0b5a586aaa8d3d39f2975c3c426f9cd458d83098b3e93c3e44e43e2a59",
+  "runtimeHash": "sha256:883f8169043b41e47960071ba886c930634cef1148a676a76d86f8f0b340fb2d",
+  "fixtureHash": "sha256:5be3bec9d898e7fd80a0fa00b9accd6ca0e53eca49877b1d23e3cdff1e4f6010",
+  "placementHash": "sha256:c014e4828c187d27bfb0ece11bbdcf7e90613708f3ccf58a4801319e8611685d",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.metal_stainless_polished": {
+      "path": "materials/metal_stainless_polished.matgraph.json",
+      "hash": "sha256:b727e8101b2ad53f7c6615c992a674691a248d0ee802f1be49060870a4c87974"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-bayterek.png",
+      "hash": "sha256:fce6844ed561459c2e3d978f6f75c905a788b8a0b0541e15554a36f354a0430b",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -132,
+          68,
+          75
+        ],
+        "lookAt": [
+          0,
+          53,
+          0
+        ],
+        "fov": 48,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.45,
+          1,
+          0.64
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "bayterek",
+        "visibleDraws": 4
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Four shared graphs serve every tier. Granite, limestone, painted steel and polished metal repeat in model meters. The sphere uses vertex tint and geometric seams. Each graph resolves once per viewer session."
+}

@@ -3,6 +3,7 @@ import '../../worldgen/scripts/install-deterministic-math.mjs';
 import * as T from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { joinedPath } from '../../worldgen/scripts/joined-path.mjs';
+import { LIGHT_VEHICLES } from './light-vehicles.mjs';
 import { prepareSurface, smoothSurface } from './surface-normals.mjs';
 import { addBoatDetail, addCarDetail, addCycleDetail } from './vehicle-detail.mjs';
 
@@ -351,7 +352,7 @@ const CYCLE_FRAMES = {
 
 /** Frame geometry and rider contact points for a cycle recipe (also used by the authoring tools). */
 export function cycleGeometry(s) {
-  const f = CYCLE_FRAMES[s.shape];
+  const f = CYCLE_FRAMES[s.shape] ?? LIGHT_VEHICLES[s.shape]?.frame;
   if (!f) throw new Error(`No cycle frame for ${s.shape}`);
   const wb = s.wheelbase,
     rr = s.wheelRadius,
@@ -385,12 +386,14 @@ export function cycleGeometry(s) {
     g.seat = [0, f.seat.top + 0.03, f.seat.z];
     // The rider's ankle rests above and behind the peg.
     const [px, py, pz] = f.peg;
-    g.footrests = [
+    // A standing or sideways rider's feet are placed one ahead of the other on the deck.
+    g.footrests = f.footrests ?? [
       [px, py + 0.08, pz - 0.06],
       [-px, py + 0.08, pz - 0.06],
     ];
   }
-  g.grips = [f.grip, [-f.grip[0], f.grip[1], f.grip[2]]];
+  // A sideways rider's free hands are not mirror images of each other.
+  g.grips = f.grips ?? [f.grip, [-f.grip[0], f.grip[1], f.grip[2]]];
   g.eye = [0, g.seat[1] + f.eye[0], g.seat[2] + f.eye[1]];
   return g;
 }
@@ -645,7 +648,7 @@ export function fleetModel(s) {
         ['right', -W * 0.49],
       ])
         wheel(`wheel-${axle}-${side}`, x, z, r, W * 0.12);
-  } else if (s.family === 'bicycle' || s.family === 'motorcycle') {
+  } else if (s.family === 'bicycle' || s.family === 'motorcycle' || LIGHT_VEHICLES[s.shape]) {
     // Cycles are built from the measured geometry of real archetypes (cycleGeometry): head and
     // seat angles, fork offset, bottom-bracket drop and the rider's contact points, which the
     // entity's grips, pedals, footrests and seat repeat.
@@ -893,27 +896,6 @@ export function fleetModel(s) {
       }
       return g;
     };
-    const [rearTire, frontTire] = Array.isArray(G.tire[0]) ? G.tire : [G.tire, G.tire];
-    const rearWheel = cycleWheel(
-      'wheel-rear',
-      G.R,
-      rearTire,
-      kind === 'motor-scooter' ? 'cast' : 'wire',
-    );
-    const frontWheel = cycleWheel(
-      'wheel-front',
-      G.F,
-      frontTire,
-      kind === 'motor-scooter' ? 'cast' : 'wire',
-    );
-    // Fork, fender and caliper steer with the wheel; stem, bars and lamp with the handlebar.
-    const fork = steered(frontWheel, G.tilt);
-    const handlebar = new T.Group();
-    handlebar.name = 'handlebar';
-    handlebar.position.set(...G.pivot);
-    root.add(handlebar);
-    const bars = steered(handlebar, G.barTilt);
-    const at = G.axisAt;
     const lamp = (g, centre, radius, depth, shellMaterial) => {
       cylinderZ(
         g,
@@ -939,6 +921,62 @@ export function fleetModel(s) {
       );
       return lens;
     };
+    // Mopeds, a kick scooter, boards and a three-wheeler build in light-vehicles.mjs with these
+    // same tools, then finish here: merged by material, then their own close detail.
+    const builder = LIGHT_VEHICLES[kind];
+    if (builder) {
+      builder.build({
+        T,
+        s,
+        G,
+        root,
+        body,
+        materials: { paint, cream, glass, dark, metal, deck, light, red },
+        material,
+        mesh,
+        box,
+        rod,
+        loft,
+        steered,
+        indexed,
+        tube,
+        ringLoft,
+        section,
+        shell,
+        fender,
+        cylinderX,
+        cylinderZ,
+        ringX,
+        barrel,
+        fins,
+        cycleWheel,
+        lamp,
+      });
+      consolidate(root);
+      builder.detail?.(root, s);
+      return root;
+    }
+    const [rearTire, frontTire] = Array.isArray(G.tire[0]) ? G.tire : [G.tire, G.tire];
+    const rearWheel = cycleWheel(
+      'wheel-rear',
+      G.R,
+      rearTire,
+      kind === 'motor-scooter' ? 'cast' : 'wire',
+    );
+    const frontWheel = cycleWheel(
+      'wheel-front',
+      G.F,
+      frontTire,
+      kind === 'motor-scooter' ? 'cast' : 'wire',
+    );
+    // Fork, fender and caliper steer with the wheel; stem, bars and lamp with the handlebar.
+    const fork = steered(frontWheel, G.tilt);
+    const handlebar = new T.Group();
+    handlebar.name = 'handlebar';
+    handlebar.position.set(...G.pivot);
+    root.add(handlebar);
+    const bars = steered(handlebar, G.barTilt);
+    const at = G.axisAt;
     if (bike) {
       const { bb, R, F } = G;
       const fr = kind === 'road-bicycle' ? 0.014 : kind === 'cargo-bicycle' ? 0.019 : 0.016;

@@ -96,6 +96,17 @@ const buildingRequest = z.strictObject({
   appearance: buildingAppearanceSchema.optional(),
   storefronts: z.array(storefrontSchema).max(12).optional(),
   interiorLabels: z.array(z.string().min(1)).max(32).optional(),
+  parking: z
+    .strictObject({
+      levels: z.int().min(1).max(16).describe('Storeys below the roof deck.'),
+      entrances: z
+        .array(point)
+        .max(8)
+        .describe('Mapped vehicle entrances near the footprint, strongest first.')
+        .optional(),
+    })
+    .describe('Model a multi-storey car park: decks, ramps and bays instead of rooms.')
+    .optional(),
   outline: ring,
   holes: z.array(ring).optional(),
   groundOutline: ring.describe('Shared ground-fitting footprint for related parts.').optional(),

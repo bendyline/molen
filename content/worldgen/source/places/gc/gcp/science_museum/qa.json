@@ -34,8 +34,73 @@
       "shots/shared/front-clerestory-roof-and-rear-junction.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Seven roles share six existing 256px graphs: stone_limestone (wall/trim variants), brick, membrane, storefront, metal_painted and wood_plain. Canonical metric UVs, sRGB-to-linear tint and graph means baked for skyline. Seven textured draws/one skyline; no embedded image, private atlas or new graph. Separate POSITION/NORMAL streams and equal CPU/GPU geometry accounting. Each used graph reads once, and unload disposes all model geometry. Flat portable/shared/synthetic planes intersect native-grade foundations or partly bury outer stair treads; actual native ground supplies fit.",
-    "captureReportHash": "sha256:2542ca4ad078c0e873b430032a75f990bc9775cec778d11c497ddbecb7ae78be"
+    "notes": "Seven roles share six existing 256px graphs: stone_limestone (wall/trim variants), brick, membrane, storefront, metal_painted and wood_plain. Canonical metric UVs, sRGB-to-linear tint and graph means baked for skyline. Seven textured draws/one skyline; no embedded image, private atlas or new graph. Separate POSITION/NORMAL streams and equal CPU/GPU geometry accounting. Each used graph reads once, and unload disposes all model geometry. Flat portable/shared/synthetic planes intersect native-grade foundations or partly bury outer stair treads; actual native ground supplies fit. Current viewer renders confirm the updated shared membrane, storefront material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:fed0996a00569607eb8230ad99e7f9c506e5c1a1d44f4e6fa141665b08c1c933",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:07d38b24e10216e6d9bdf6d3ca1c7c62af99f3801c924a05aeae1d7f187bde2c"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:100a68027a50f75703a3aa00f511cd9fb92111b4e426c9f02af1037cf3a13ac6"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:be5438ef470ac4941fe7233bf5edf35ee7d11add81b9c751b2bc79e84749adbf"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:613d280b555ae1a2343c6dfd8d8225df96541e10d52f47bb158452841379d9fa"
+      },
+      {
+        "path": "shots/shared/giant-ionic-front-columns-paired-windows-and-cornice.png",
+        "hash": "sha256:6883f41f64922166f394365082fc9f9eb0ab2dc317f80233de23ec95d16d6516"
+      },
+      {
+        "path": "shots/shared/three-recessed-lower-entrances-and-wooden-door.png",
+        "hash": "sha256:96f2b6f1d65ab37ec4892a9b8d74eb9eb29be010fa3969190101a50c1240b9c2"
+      },
+      {
+        "path": "shots/shared/connected-long-brick-range-and-western-modern-block.png",
+        "hash": "sha256:e7e41518b9c734f65d3bdb8b431f61fdaf0eafa2f1900540d42ce8e91cc0cc7b"
+      },
+      {
+        "path": "shots/shared/front-clerestory-roof-and-rear-junction.png",
+        "hash": "sha256:8e2245095863a37a80ebccfa8ccf876938907c2664bea478d0f63850d8d0b381"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:1c4e661ee4958c183d7271a6a2367d9b9b94a42d101a82b54c7425897a2ebeb2"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone": {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

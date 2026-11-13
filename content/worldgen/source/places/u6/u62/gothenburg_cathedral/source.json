@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.gothenburg_cathedral",
+  "kind": "static-structure",
+  "title": "Gothenburg Cathedral",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.gothenburg_cathedral",
+        "output": "assets/places/u6/u62/gothenburg_cathedral/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:89ebd6b18b4263db1d1eeac80c56944083598038dcf687e49e5bd64c4d53e705"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-cathedral",
+        "path": "models/generate-cathedral.mjs"
+      },
+      {
+        "id": "cathedral-model",
+        "path": "models/cathedral-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/exterior-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-pd-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-17472-9919.png",
+      "terrain-sources/terrarium-15-17472-9920.png",
+      "terrain-sources/terrarium-15-17473-9919.png",
+      "terrain-sources/terrarium-15-17473-9920.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

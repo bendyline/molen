@@ -10,7 +10,7 @@ const check = process.argv.includes('--check');
 let count = 0,
   vehicles = 0;
 for (const family of ['vehicles', 'cycles', 'transit']) {
-  const root = new URL(family + '/', sourceRoot);
+  const root = new URL(`${family}/`, sourceRoot);
   for (const slug of await readdir(root)) {
     const file = new URL(`${slug}/entity.types.json`, root);
     const old = await readFile(file, 'utf8'),

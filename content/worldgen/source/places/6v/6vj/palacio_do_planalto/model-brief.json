@@ -1,0 +1,398 @@
+{
+  "id": "palacio_do_planalto",
+  "title": "Palácio do Planalto",
+  "wikidataId": "Q496950",
+  "referenceCoordinate": {
+    "longitude": -47.860762852,
+    "latitude": -15.799005076
+  },
+  "module": "content/worldgen/source/places/6v/6vj/palacio_do_planalto/models/palace-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-palacio-do-planalto.mjs",
+  "builder": "buildPlanaltoLevel",
+  "surfaces": {
+    "slab": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw"
+    },
+    "deck": {
+      "slot": "foundation",
+      "graph": "stone_marble"
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "concrete_plain"
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid"
+    },
+    "metal": {
+      "slot": "door",
+      "graph": "metal_painted"
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "membrane"
+    }
+  },
+  "exportLabel": "Molen original Palácio do Planalto master",
+  "expectedDraftMasterHash": "sha256:e18efd3b59a75718883a756d65b7482cc5e54e1b9ab4518653abac074d56742f",
+  "visualBrief": "Palácio do Planalto with a thin overhanging roof, two rows of curved white piers, a raised glazed volume, a long ceremonial ramp and a linked speaker platform facing Praça dos Três Poderes.",
+  "heightPolicy": "The 1058 m reference datum comes from unchanged standard Terrarium elevation. Exterior foundations and the ramp toe sample the local grade. The modeled ramp and short at-grade approach replace the mapped elevated footway and rise to the level public entrance.",
+  "nativeAxes": "+Z southwest toward Praça dos Três Poderes. +X east-southeast along the plaza façade. The primary ceremonial ramp approaches the public façade from +Z.",
+  "sourceFacts": {
+    "retainedLengthMeters": 125.394,
+    "retainedWidthMeters": 66.689,
+    "nativeFeatures": {
+      "source": "https://build.protomaps.com/20261109.pmtiles",
+      "main": 35184417906580,
+      "roof": 35185199903418,
+      "ramp": 35185199903942,
+      "lectern": 35185198587767,
+      "water": 3087429510,
+      "frontRoad": 35184386570340
+    },
+    "piers": 22,
+    "mappedPiers": 15,
+    "georeferencing": "+Z southwest toward Praça dos Três Poderes. +X east-southeast along the plaza façade. The primary ceremonial ramp approaches the public façade from +Z."
+  },
+  "limitations": [
+    "Pier curves, roof fixtures, and glazing are photo-derived visual approximations. Fifteen pier centers follow mapped parts, with the continuous bay rhythm supplying the seven remaining centers.",
+    "The standard elevation grid slopes across the site. Pier bases and the low apron adapt to that grade while the upper floors remain level. The exterior model preserves the native reflecting pool and approaches."
+  ],
+  "materialMethod": "Six shared material graphs, metric UVs and linear palette tints. No embedded textures.",
+  "references": [
+    {
+      "page": "https://commons.wikimedia.org/wiki/File:Arquivo_da_Ag%C3%AAncia_Brasil_-_Bras%C3%ADlia_10.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/6/63/Arquivo_da_Ag%C3%AAncia_Brasil_-_Bras%C3%ADlia_10.jpg",
+      "hash": "sha256:e067275abe894fee8a14022c2ba606bb43658b2fd8a59cdf86978332c13ec865",
+      "url": "https://commons.wikimedia.org/wiki/File:Arquivo_da_Ag%C3%AAncia_Brasil_-_Bras%C3%ADlia_10.jpg",
+      "observed": "The southwest façade has repeated white fins tapering to slender uprights at the eave and flaring inward at the elevated gallery floor."
+    },
+    {
+      "page": "https://www.expedia.co.jp/en/Planalto-Palace-Plano-Piloto.d6098038.Vacation-Attraction",
+      "image": "https://a.travel-assets.com/findyours-php/viewfinder/images/res70/71000/71210-Planalto-Palace.jpg",
+      "hash": "sha256:63ee4f1283d0200066fcb277536b6a57150118e1c82125f5366b6aa8604731e1",
+      "url": "https://www.expedia.co.jp/en/Planalto-Palace-Plano-Piloto.d6098038.Vacation-Attraction",
+      "observed": "Keep the overhanging thin roof, clear ground level under the three glazed stories, and long pale ceremonial ramp distinct."
+    },
+    {
+      "page": "https://spdiario.com.br/noticias/artigos/a-rampa-do-planalto-e-a-composicao-do-stf.html",
+      "image": "https://spdiario.com.br/media/_versions/imagem_-_2023-09-19t081751.649_widelg.jpg",
+      "hash": "sha256:057eb80b4f3bc75ab43d7b938c0589d03f10bb3f1ceda01197f3c22490d6a7c1",
+      "url": "https://spdiario.com.br/noticias/artigos/a-rampa-do-planalto-e-a-composicao-do-stf.html",
+      "observed": "The reflecting pool and plaza are standard mapped surroundings. Use the mapped façade and courtyard features for fit."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "plaza-front-and-pool",
+      "position": [
+        -108,
+        58,
+        151
+      ],
+      "lookAt": [
+        0,
+        9,
+        4
+      ],
+      "fov": 48
+    },
+    {
+      "name": "ceremonial-ramp-and-curved-piers",
+      "position": [
+        -44,
+        7.7,
+        67
+      ],
+      "lookAt": [
+        -10,
+        9,
+        18
+      ],
+      "fov": 56
+    },
+    {
+      "name": "speaker-platform-and-slab",
+      "position": [
+        55,
+        11.5,
+        63
+      ],
+      "lookAt": [
+        32,
+        8.6,
+        29
+      ],
+      "fov": 51
+    },
+    {
+      "name": "roof-outline-and-native-pool",
+      "position": [
+        -36,
+        137,
+        95
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "rear-colonnade-and-grounded-piers",
+      "position": [
+        87,
+        26,
+        -87
+      ],
+      "lookAt": [
+        11,
+        9,
+        -13
+      ],
+      "fov": 52
+    },
+    {
+      "name": "thin-roof-and-glazed-end",
+      "position": [
+        -96,
+        18,
+        0
+      ],
+      "lookAt": [
+        -38,
+        9,
+        1
+      ],
+      "fov": 53
+    },
+    {
+      "name": "ramp-threshold-and-lower-floor",
+      "position": [
+        -10,
+        11.6,
+        38
+      ],
+      "lookAt": [
+        -15.8,
+        7,
+        19
+      ],
+      "fov": 55
+    },
+    {
+      "name": "northeast-piers-and-slope",
+      "position": [
+        94,
+        12,
+        -32
+      ],
+      "lookAt": [
+        44,
+        7,
+        -14
+      ],
+      "fov": 56
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        9,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/6v/6vj/palacio_do_planalto/models/palace-model.mjs",
+    "export": "buildPlanaltoSkyline",
+    "surfaces": {
+      "slab": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw"
+      },
+      "deck": {
+        "slot": "foundation",
+        "graph": "stone_marble"
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "concrete_plain"
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid"
+      },
+      "metal": {
+        "slot": "door",
+        "graph": "metal_painted"
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane"
+      }
+    },
+    "errorMeters": 1.25,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPlanaltoDistrict",
+        "surfaces": {
+          "slab": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_marble"
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane"
+          }
+        },
+        "errorMeters": 0.55
+      },
+      "street": {
+        "export": "buildPlanaltoStreet",
+        "surfaces": {
+          "slab": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_marble"
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane"
+          }
+        },
+        "errorMeters": 0.24
+      },
+      "closeup": {
+        "export": "buildPlanaltoCloseup",
+        "surfaces": {
+          "slab": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_marble"
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "concrete_plain"
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid"
+          },
+          "metal": {
+            "slot": "door",
+            "graph": "metal_painted"
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane"
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "palacio_do_planalto-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -108,
+        58,
+        151
+      ],
+      "lookAt": [
+        0,
+        9,
+        4
+      ]
+    },
+    {
+      "name": "palacio_do_planalto-district",
+      "reviewLod": "district",
+      "position": [
+        -108,
+        58,
+        151
+      ],
+      "lookAt": [
+        0,
+        9,
+        4
+      ]
+    },
+    {
+      "name": "palacio_do_planalto-street",
+      "reviewLod": "street",
+      "position": [
+        -108,
+        58,
+        151
+      ],
+      "lookAt": [
+        0,
+        9,
+        4
+      ]
+    },
+    {
+      "name": "palacio_do_planalto-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -108,
+        58,
+        151
+      ],
+      "lookAt": [
+        0,
+        9,
+        4
+      ]
+    }
+  ]
+}

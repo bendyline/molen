@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.museum_of_cham_sculpture",
+  "kind": "static-structure",
+  "title": "Museum of Cham Sculpture, Da Nang",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.museum_of_cham_sculpture",
+        "output": "assets/places/w6/w6u/museum_of_cham_sculpture/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:a951abd8f0fa5e29d0c5ef0110a5842698e44d7db784f6abcb7f721b3d082bbc"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-museum",
+        "path": "models/generate-museum.mjs"
+      },
+      {
+        "id": "museum-model",
+        "path": "models/museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/exterior-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-pd-originals.json",
+      "reference-rights/dinkum-courtyard-cc0-native.json",
+      "references/courtyard-gallery-2009-dinkum-cc0.jpg",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-26234-14902.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -6,6 +6,59 @@ people, animals and the animated diorama structures. It complements the
 this page records what a whole-fleet review found, the rules that came out of it, and the
 tools that make the next review fast.
 
+## The figure review of 2026-11-08
+
+Humans still read wrong in the world explorer (long neck, broad chest), and every pedestrian wore
+the same short hair, shirt and trousers. The human mesh was sliced at landmark heights (exact
+triangle-plane intersections of the bind pose, not vertex bands) and compared with adult
+anthropometric means as fractions of stature; the animals were compared with side and front
+photographs. Every change was then checked in lineups from the front, profile, rear and
+three-quarters, idle and walking, with `scripts/review-humans.mjs` and the model sheets.
+
+| Family | What was wrong | What changed |
+| --- | --- | --- |
+| Human proportions | Neck base at 0.80 of stature and chin at 0.856 under a head 0.144 tall: 12 cm of 0.10 m-wide neck under a large head. A 1.75 m adult measured 0.42 × 0.30 m through the chest (adults: about 0.33 × 0.24) and 0.57 m across the arms (about 0.47). The sleeve cap ran straight from neck to arm with a bulge added, which read as shoulder pads. The jaw was as wide as the cheekbones. | Neck base 0.825, chin 0.87, head 0.13 (7.5 heads); neck radius 0.036 of stature (feminine 0.9 of it); shoulder joints 0.2 apart; chest 0.19 × 0.135; upper arms 0.84 of the leg radius; the cap is a cubic that slopes off the neck, crests over the acromion and rounds the deltoid; a pectoral or bust row; jaw 0.83 of the cheekbones; deeper skull. Now 0.34 × 0.24 m chest, 0.32 × 0.21 m waist, 0.48 m across the arms, 0.126 m neck. |
+| Human variety | One hair style per age; long hair was a flat panel the width of the head; no facial hair, body forms or skirts. | `form` (neutral, masculine, feminine), ten hair styles (shells lift at the crown instead of only widening), stubble, mustache and beard, a skirt. Long hair drapes down the back about 1 cm off the torso; it and the ponytail blend from head to chest. The ambient wardrobe has 31 outfits across skin tones. |
+| Quadrupeds | Dog, cat and sheep heads at or below the back line; one head-droop formula for every species; horse and cow heads about twice real width and depth (the horse 0.51 m across); the top neck section stood behind the skull as a ridge; a dachshund-length dog; thick horse cannons; a high, leggy cat. | Steeper necks (dog 45°, cat 60°, sheep 42°) that stay full through the middle; per-species head width, depth, droop and limb radius; neck sections turn into the head's axis; dog body 1.2 withers heights; slim cannons on horses and deer; a lower, deeper cat with a thicker tail that lifts at the tip; a 0.6 m horse head. |
+
+Triangle budgets are unchanged: the default human is 7,500 / 2,234 / 1,088 and the most detailed
+combination (long hair, beard, skirt) 8,460 / 2,570 / 1,188 against 8,500 / 2,600 / 1,200. The
+medium tier keeps the chest row only for a bust; the distant tier also drops the hairline lip and
+the eyelid rims.
+
+Four landmarks carve statues from the shared human and horse bodies (Trevi Fountain, the New
+York Stock Exchange pediment, the Louisville water statuary and the Joséphine monument), so they
+follow the new anatomy. Their `headScale` values were divided by the head change (0.145 / 0.16)
+to keep the carved head sizes. Trevi's street level now reduces each figure to its error floor
+(`simplifyStaticSculpture` takes an optional cap): people at 8.5 cm (was 380 triangles at 8 cm),
+horses at 4 cm, 15,911 triangles against the 16,000 cap (15,980 before). The four models'
+GLBs change and need the next asset batch rebuild and review.
+
+A second look the same day found the necks still long and unnatural. The proportions were close
+to anatomy (about 6 cm of throat between collar and chin), but the shape was not:
+
+- **A level neck base.** The shirt's top ring was flat, so behind the head a 9 cm column, about
+  45% of head height, stood between the collar and the skull. On a person the trapezius rises
+  to the seventh vertebra, about level with the chin, and 3 to 5 cm show. The neck line now
+  slants: 0.83 of stature at the notch, 0.85 at the sides and 0.865 behind. The collar, the
+  sleeve-cap seam and the long-hair drape follow it.
+- **A vertical stalk under the middle of the head.** The neck is now 0.072 of stature across
+  (0.065 feminine). It is set back on the shoulders by 0.011 of stature and leans forward to the
+  skull, and it tapers to 0.88 under the jaw. The trapezius curve is concave, falling steeply off
+  the neck and then flattening toward the shoulder.
+- **Knock-on effects on hair.** The set-back collar pushed the long-hair drape out past the head's
+  shell as a visible ledge. The drape now starts inside the shell. It is thin and close over the
+  collar and clears the body below it within a cone (slope 0.75), so it fans out gradually. The
+  shell flares a little below the skull. Buzz and balding shells moved to about 3 mm off the
+  scalp: at 1.4 mm the skull, which bulges about 2 mm between the shell's coarser rows, showed
+  through in blotches.
+- **Quadrupeds.** The dog's raised head sat on a long, thin neck, and the horse's crest ran about
+  1.6 head lengths. The dog neck is now 0.34 of withers height at 45° (was 0.42 at 50°) and the
+  horse's 0.44 (was 0.5). Every species tapers its neck as t^1.3, so it stays full through the
+  middle.
+
+The triangle counts did not change.
+
 ## The look review of 2026-10-29
 
 Proportions passed, but side-profile landmarks miss what people see from the three-quarter
@@ -213,8 +266,13 @@ Worth adding next:
 ## Backlog
 
 - Aircraft draw calls: consolidate static detail by material in the per-aircraft builders.
-- Human figures are shallow in profile (about 0.19 m chest depth against roughly 0.24 m).
-- The cat's tail is thin; elephants are blocky; birds at rest could use more shape.
+- Elephants are blocky; birds at rest could use more shape.
+- Figures: a fully seated skirt still shows the knees through its front (each hem vertex follows
+  its thigh at most 0.85); long hair and a ponytail twist where a look-at turns the head past
+  about 60 degrees; the beard is a single sheet without an underside; every top is the same
+  button shirt (no jackets, T-shirts or dresses yet). Model sheets bake the bind pose under
+  their own lighting, which makes the dog's and cat's necks look flatter than they do posed in a
+  scene; judge necks in a scene render.
 - Cars do not yet reach 96 on look (refit self-grades 82–94). The most common builder limits
   the refits ran into: a hood-to-grille edge and per-corner fascia lean so noses stop reading as upright slabs under a
   soft hood; a shoulder crease across tailgates and trunk lids with a plate recess and a rear
@@ -253,6 +311,7 @@ Worth adding next:
 
 ```sh
 node packages/entities/scripts/generate-fleet.mjs --ids=<slug,...>   # road, cycle, boat recipes
+node packages/entities/scripts/generate-rail.mjs --ids=<slug,...>    # rail rolling stock (RAIL.md)
 node content/entities/source/transit/bus/models/generate.mjs
 node packages/entities/scripts/generate-aircraft.mjs --ids=pa-28-180
 node content/wildlife/source/build-catalog.mjs                     # wildlife detail tags

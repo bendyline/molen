@@ -79,7 +79,7 @@ model; scene and tile budgets still control total instances and building vertice
 | Ordinary tree | 300–2,000 triangles | Fewer crown clusters, then a faceted crown/cone |
 | Small static building | 1,000–8,000 triangles | Remove furniture and small facade details |
 | Procedural building | Budgeted per outline | Keep measured envelope, main roof and identity where feasible |
-| Human figure | About 7,400 triangles, one vertex-color material | About 2,200 medium tier; 1,100 rigid distant tier |
+| Human figure | About 7,500 triangles (styled at most 8,500), one vertex-color material | About 2,200 medium tier; 1,100–1,200 rigid distant tier |
 | Animal figure | About 4,100–6,500 triangles, one vertex-color material | About 2,100–2,900 medium; 1,100–1,500 rigid distant tier |
 
 Higher budgets need a visible reason and a distance fallback. Repeated street furniture and signs
@@ -95,7 +95,10 @@ unseeded randomness, or locale-dependent sorting to generate geometry.
 
 Human figures ([guide](figures.md)) target early open-world polygonal realism: a shaped jaw,
 cheekbones and nose, inset almond eyes with lids, ears, lips, a shaped hairline, and recognizable
-hands and shoes. Keep adult proportions believable and preserve the larger child head. Clothing
+hands and shoes. Keep adult proportions believable and preserve the larger child head: about 7.5
+heads tall, a neck that shows about 6 cm between collar and chin and about 5 cm behind (the
+collar line rises from the throat to the nape), shoulders that fall off the neck before rounding
+over the arm, and a chest narrower than the arms hanging beside it. Clothing
 needs a waist, shoulders, cuffs, a crotch seam and clear garment boundaries; avoid disconnected
 capsule limbs or overlapping pelvis shells. Near hands have four gently curled fingers and a
 tucked thumb; lower levels merge the curved fingers. Resting forearms turn the backs of the

@@ -1,0 +1,62 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.general_stefan_grot_rowecki_bridge",
+  "inputHash": "sha256:2f4e27d2cc29b008e1b94b1c696bdfd97617ee47280878a4676148362cbfe69b",
+  "sourceHash": "sha256:d09fb876a105afceaa303c5c2b4d66ce5368057ac153916ba7c588be851fe723",
+  "runtimeHash": "sha256:447215e7f2a76e1200b4bdd9f5f18d6c6ceb342e63289fd0870b4da170b57dd3",
+  "fixtureHash": "sha256:db58d44b1a6fa882f3bd14193b28e930731331757e2279c2bd65e3c308f3bea7",
+  "placementHash": "sha256:83ade5705b215557773c69d632ce279dc98f6c9b3e3692bc8fbfad6dc257d6f2",
+  "materialGraphs": {
+    "molen.worldgen.material.gravel": {
+      "path": "materials/gravel.matgraph.json",
+      "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.concrete_boardformed": {
+      "path": "materials/concrete_boardformed.matgraph.json",
+      "hash": "sha256:a1c5097003fb4092f88f2fe596e1d3d66e7e27d01f38f77c47eb9110f3a0b32d"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-grot-rowecki-bridge.png",
+      "hash": "sha256:bac3c1131217c38d73a92c46a0a933f756dc7e4a97a4e6db684a01438e40b2b9",
+      "camera": {
+        "name": "detail-twin-decks-over-vistula",
+        "position": [
+          132,
+          132,
+          605
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "fov": 52,
+        "group": "detail",
+        "lightDirection": [
+          -0.57,
+          1,
+          0.64
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "general.stefan.grot.rowecki.bridge",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Board-formed concrete, road aggregate and painted metal resolve once per required tier. Skyline uses two shared graphs and the other three tiers use all three."
+}

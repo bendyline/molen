@@ -32,8 +32,61 @@
       "shots/shared/glazed-curved-entrance-roof-and-recess.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Four existing256px shared graphs: brick_longformat neutral warm masonry; stone_limestone_raw panel faces/footings; metal_painted light roof membrane/eaves, opaque frosted glazing/roof, white framework and restrained joints; storefront opaque dark glazing. Raw limestone and broad modeled joints substitute for dressed panel cladding; painted metal substitutes for membrane/frosted glass. No new graph/private atlas/embedded image. Actual draw/triangle costs below. Linear tints, common surface bindings, separate POSITION/NORMAL streams and equal CPU/GPU byte accounting. Each native textured run reads each graph once; all LOD unloads release model geometry.",
-    "captureReportHash": "sha256:ccd96ab4d4f2fe5618c932ce9e74d1695952c985d575227a5b04e1ff7d8e3908"
+    "notes": "Four existing256px shared graphs: brick_longformat neutral warm masonry; stone_limestone_raw panel faces/footings; metal_painted light roof membrane/eaves, opaque frosted glazing/roof, white framework and restrained joints; storefront opaque dark glazing. Raw limestone and broad modeled joints substitute for dressed panel cladding; painted metal substitutes for membrane/frosted glass. No new graph/private atlas/embedded image. Actual draw/triangle costs below. Linear tints, common surface bindings, separate POSITION/NORMAL streams and equal CPU/GPU byte accounting. Each native textured run reads each graph once; all LOD unloads release model geometry. Current viewer renders confirm the updated shared storefront material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:708f73250e19ec0e93e54a4d9fae420a2302ac4824a13c5c471a74878c2aa3fa",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:33b712165db997ffa6bcd87971f887e882f0a64110019b644661ba069d136c2c"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:f58126de78bad0ec1bfe3e67ec69f6b5c136364a9a822b849b0f266c3e10d9a0"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:82f583f8e83744226b63d699c67c40a5b64539463bffb8616abf2dd255ad702f"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:da888a168d9f94c8c16d3a902c0ff3c9b0f2c0a89944fafda0ee8cdf14ac0f8b"
+      },
+      {
+        "path": "shots/shared/museumplein-stepped-main-block-and-curved-wing.png",
+        "hash": "sha256:4225427c974c0e93a0f87aef8220972d64504d09a71b9eedf787fee25f61f8af"
+      },
+      {
+        "path": "shots/shared/street-brick-front-frosted-atrium-and-canopy.png",
+        "hash": "sha256:50045e251e781f27be1fef696499da38e8617840c9a9bc65971dc9c0365f83b7"
+      },
+      {
+        "path": "shots/shared/glazed-curved-entrance-roof-and-recess.png",
+        "hash": "sha256:797d9cd020c4f0ea634b279cebe785432ae5e01aa625f462b59b21e4525322f2"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:08884b588953df28fd982035b2a7eb63ceb6d8653b3c0301223d0bceb9ec9a45"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick_longformat": {
+        "path": "materials/brick_longformat.matgraph.json",
+        "hash": "sha256:4fdf393d228a5d543b82290a8f382b2cbfd7a67279bc504e4e526d59ed2335a8"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone_raw": {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

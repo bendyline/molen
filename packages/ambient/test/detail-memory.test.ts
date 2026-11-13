@@ -111,6 +111,40 @@ describe('vehicle detail residency', () => {
     expect(detail.cacheStats()).toEqual({ active: 0, idle: 0, bytes: 0, pending: 0 });
     detail.dispose();
   });
+  it('orders preparation by the waiting car, frees its slot when the car leaves, and keeps the model', async () => {
+    const preparing: Array<{ object: THREE.Object3D; finish: () => void }> = [];
+    const detail = new VehicleDetail({
+      parent: new THREE.Group(),
+      models: { vehicle: () => data, load: async () => model() },
+      prepare: (object) =>
+        new Promise<void>((resolve) => {
+          preparing.push({ object, finish: resolve });
+        }),
+    });
+    detail.setCacheBudget({ concurrentLoads: 1 });
+    detail.select([{ ...candidate(0), distance: 30 }], () => true);
+    await flush();
+    const first = preparing[0] as { object: THREE.Object3D; finish: () => void };
+    const order = first.object.userData.admissionOrder as () => number;
+    // A frame queue reads the nearest waiting car's distance, live.
+    expect(order()).toBe(30);
+    detail.select([{ ...candidate(0), distance: 12 }], () => true);
+    expect(order()).toBe(12);
+    // The car drives off: another type takes the slot while the first model still prepares.
+    detail.select([candidate(1)], () => true);
+    expect(order()).toBe(Number.POSITIVE_INFINITY);
+    await flush();
+    expect(preparing).toHaveLength(2);
+    first.finish();
+    await flush();
+    expect(first.object.userData.admissionOrder).toBeUndefined();
+    expect(detail.has('car0')).toBe(false);
+    // The type comes back, and its finished model shows without another load.
+    detail.select([candidate(0)], () => true);
+    expect(detail.has('car0')).toBe(true);
+    expect(preparing).toHaveLength(2);
+    detail.dispose();
+  });
   it('hides a gone agent model in the frame it leaves, not at the next select', async () => {
     const parent = new THREE.Group();
     const detail = new VehicleDetail({

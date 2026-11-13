@@ -1,0 +1,440 @@
+{
+  "planId": "wadi_el_kuf_bridge",
+  "id": "wadi_el_kuf_bridge",
+  "assetId": "molen.worldgen.structure.wadi_el_kuf_bridge",
+  "title": "Wadi el Kuf Bridge",
+  "category": "bridge",
+  "quality": "detailed",
+  "wikidataId": "Q996209",
+  "referenceCoordinate": {
+    "longitude": 21.56527105,
+    "latitude": 32.69697025
+  },
+  "visualBrief": "Two slender concrete towers rise above the straight gorge crossing. Paired sheathed stays meet the narrow highway deck and V frames brace it from below. A shallower center segment, guardrails, curb strips and graded approaches follow the mapped road.",
+  "size": [
+    526.4352416992188,
+    120.2347183227539,
+    27.700000762939453
+  ],
+  "actualBounds": {
+    "min": [
+      -263.37744140625,
+      -56.79471969604492,
+      -13.850000381469727
+    ],
+    "max": [
+      263.05780029296875,
+      63.439998626708984,
+      13.850000381469727
+    ]
+  },
+  "nativeAxes": "Positive X goes from the southwest to the northeast abutment. Positive Z faces southeast.",
+  "sourceFacts": {
+    "mappedBridgeWay": 224748413,
+    "mappedPathLength": 525.278,
+    "concreteSpanMeters": 477.4,
+    "towers": 2,
+    "terrainFootings": 4
+  },
+  "referencePages": [
+    "https://libyaobserver.ly/culture/wadi-el-kuf-bridge"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      21.56527105,
+      32.69697025
+    ],
+    "heading": 0.79132185698,
+    "elevationMode": "sea-level",
+    "orientationPolicy": "approximate-visualization",
+    "elevationMeters": 425,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The 425 m sea-level datum follows the standard terrain. Four tower footings and two abutments extend into the sampled gorge slopes. The two skewed deck ends meet the mapped adjoining roads across both lanes.",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "replaceRoads": {
+      "length": 525.72994,
+      "width": 13.200000000000001,
+      "outline": [
+        [
+          -262.00491,
+          -6.6521
+        ],
+        [
+          262.66038,
+          -6.56032
+        ],
+        [
+          263.233,
+          6.63968
+        ],
+        [
+          -263.56159,
+          6.5479
+        ]
+      ],
+      "deckEndpoints": [
+        [
+          -262.61325,
+          -0.0521
+        ],
+        [
+          262.77669,
+          0.03968
+        ]
+      ],
+      "deckHeights": [
+        -0.91127,
+        3.65416
+      ],
+      "deckProfile": [
+        [
+          -262.61325,
+          -0.91127,
+          -0.0521
+        ],
+        [
+          -238.7,
+          -0.47,
+          -0.0521
+        ],
+        [
+          -147,
+          0.27,
+          -0.023
+        ],
+        [
+          -42,
+          1.08,
+          0
+        ],
+        [
+          43,
+          1.73,
+          0.024
+        ],
+        [
+          136,
+          2.46,
+          0.045
+        ],
+        [
+          238.7,
+          3.27,
+          0.03968
+        ],
+        [
+          262.77669,
+          3.65416,
+          0.03968
+        ]
+      ],
+      "includeConnectedApproaches": true
+    },
+    "bounds": [
+      21.5632326450515,
+      32.69522286083005,
+      21.567318575356182,
+      32.69871195925451
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:bc04ad1a1ede5eef3d712bd60106879acae74b0d78af99003d2ddc5ffd6fd75b",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://www.openstreetmap.org/way/224748413",
+    "wikidataId": "Q996209",
+    "notes": "Two slender concrete towers rise above the straight gorge crossing. Paired sheathed stays meet the narrow highway deck and V frames brace it from below. A shallower center segment, guardrails, curb strips and graded approaches follow the mapped road. The 425 m sea-level datum follows the standard terrain. Four tower footings and two abutments extend into the sampled gorge slopes. The two skewed deck ends meet the mapped adjoining roads across both lanes."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Shared board-formed concrete, plain concrete and painted metal supply the model surfaces. Beam profiles, V braces, curb strips and guardrails use authored geometry.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sm/smz/wadi_el_kuf_bridge/models/bridge-model.mjs",
+    "export": "buildWadiSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.91
+      },
+      "deck": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.04
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildWadiDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.91
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.04
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildWadiStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.91
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.04
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildWadiCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.91
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.04
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        -5,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "wadi_el_kuf_bridge-skyline",
+      "position": [
+        32,
+        110,
+        390
+      ],
+      "lookAt": [
+        -4,
+        -15,
+        0
+      ],
+      "fov": 68,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "wadi_el_kuf_bridge-district",
+      "position": [
+        32,
+        110,
+        390
+      ],
+      "lookAt": [
+        -4,
+        -15,
+        0
+      ],
+      "fov": 68,
+      "reviewLod": "district"
+    },
+    {
+      "name": "wadi_el_kuf_bridge-street",
+      "position": [
+        32,
+        110,
+        390
+      ],
+      "lookAt": [
+        -4,
+        -15,
+        0
+      ],
+      "fov": 68,
+      "reviewLod": "street"
+    },
+    {
+      "name": "wadi_el_kuf_bridge-closeup",
+      "position": [
+        32,
+        110,
+        390
+      ],
+      "lookAt": [
+        -4,
+        -15,
+        0
+      ],
+      "fov": 68,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "PMTiles fixes the signed highway crossing. The 525 m mapped segment includes short approaches beyond the roughly 477 m concrete bridge.",
+    "The paired towers, stay sheaths, V braces and under-deck profile follow exterior photographs. Their exact sections, footing elevations and finishes are approximations on the standard viewer terrain."
+  ],
+  "qaCameras": [
+    {
+      "name": "long-concrete-elevation",
+      "position": [
+        21,
+        47,
+        368
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "fov": 72
+    },
+    {
+      "name": "southwest-tower-and-v-frame",
+      "position": [
+        -224,
+        20,
+        143
+      ],
+      "lookAt": [
+        -139,
+        15,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "northeast-tower-seat",
+      "position": [
+        178,
+        31,
+        136
+      ],
+      "lookAt": [
+        137,
+        1,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "opposite-gorge-side",
+      "position": [
+        -41,
+        89,
+        -407
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 65
+    },
+    {
+      "name": "highway-and-stays",
+      "position": [
+        -249,
+        11,
+        4
+      ],
+      "lookAt": [
+        -130,
+        25,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "center-suspended-deck",
+      "position": [
+        44,
+        -26,
+        99
+      ],
+      "lookAt": [
+        2,
+        1,
+        0
+      ],
+      "fov": 56
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 21724,
+    "vertices": 44092,
+    "materials": 3,
+    "bytes": 1850496,
+    "sha256": "sha256:177c961593d7b919d74823e4e9f07b8f42854571dfcd97e95494325c81c3d980"
+  }
+}

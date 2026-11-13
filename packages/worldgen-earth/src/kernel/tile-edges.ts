@@ -60,6 +60,20 @@ function seamEdgesOf(ring: readonly TerrainSemanticPoint[]): number[] {
   return seams;
 }
 
+/**
+ * Ownership of a footprint every tile holds complete: a map override's building, which is put
+ * unclipped into each tile it reaches. The tile holding its bounding box's center renders all of
+ * it and the others skip it. `analyzeTileEdge` cannot judge these: it takes an edge lying on a
+ * buffer line for the source's clip, which a north-aligned rectangle may well have, and it gives
+ * a footprint wider than a few tiles to no tile at all.
+ */
+export function analyzeWholeFootprint(polygon: TerrainSemanticPolygon): EdgeDecision {
+  const [minU, minV, maxU, maxV] = polygonBounds(polygon);
+  const u = (minU + maxU) / 2;
+  const v = (minV + maxV) / 2;
+  return u >= 0 && u < 1 && v >= 0 && v < 1 ? { mode: 'whole' } : { mode: 'skip' };
+}
+
 /** Decide whether this tile renders a footprint whole, clipped to the unit square, or not at all. */
 export function analyzeTileEdge(polygon: TerrainSemanticPolygon, buffer: number): EdgeDecision {
   const [minU, minV, maxU, maxV] = polygonBounds(polygon);

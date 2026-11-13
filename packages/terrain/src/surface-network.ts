@@ -1,4 +1,5 @@
 /** Spatially indexed road corridors and same-grade junctions, in tile-local world units. */
+import { terrainLineMiter } from './line-path';
 import {
   joinTerrainLines,
   sampleTerrainLine,
@@ -184,6 +185,69 @@ export class SurfaceNetwork {
         }
       }
     }
+    this.joinContinuations();
+  }
+
+  /**
+   * Miter the ends where one carriageway carries straight on into another. A road whose tags
+   * change part way (a bridge and its approach, a lane count, a name) arrives as two features,
+   * each drawn with square ends, so wherever the two met at an angle their bands left a wedge
+   * of bare ground on the outside of the bend: a few degrees on a 16 m ramp opened nearly a
+   * meter at its edge, enough for a car's wheels to drop into. Only two ends meeting alone and
+   * turning less than 60° are joined; anything more is a junction or a deliberate cut.
+   */
+  private joinContinuations(): void {
+    const ends = new Map<string, { road: SurfaceRoad; start: boolean }[]>();
+    const at = (road: SurfaceRoad, start: boolean): TerrainSemanticPoint =>
+      (start ? road.path.points[0] : road.path.points.at(-1)) as TerrainSemanticPoint;
+    for (const road of this.roads) {
+      if (road.kind === 'path' || road.kind === 'rail' || road.path.points.length < 2) continue;
+      for (const start of [true, false]) {
+        const [x, z] = at(road, start);
+        const key = `${Math.round(x * 20)}/${Math.round(z * 20)}`;
+        const list = ends.get(key) ?? [];
+        list.push({ road, start });
+        ends.set(key, list);
+      }
+    }
+    // The unit direction of travel along `road` at one end, pointing into that end.
+    const arriving = (road: SurfaceRoad, start: boolean): TerrainSemanticPoint => {
+      const points = road.path.points;
+      const [ax, az] = (start ? points[1] : points.at(-2)) as TerrainSemanticPoint;
+      const [bx, bz] = at(road, start);
+      const length = Math.hypot(bx - ax, bz - az) || 1;
+      return [(bx - ax) / length, (bz - az) / length];
+    };
+    for (const list of ends.values()) {
+      if (list.length !== 2) continue;
+      const [a, b] = list as [(typeof list)[number], (typeof list)[number]];
+      if (a.road === b.road) continue;
+      const [x, z] = at(a.road, a.start);
+      const through = (
+        this.cells.get(`${Math.floor(x / this.cellSize)}/${Math.floor(z / this.cellSize)}`) ?? []
+      ).some(
+        (s) =>
+          s.road !== a.road &&
+          s.road !== b.road &&
+          s.road.kind !== 'path' &&
+          s.road.kind !== 'rail' &&
+          distanceToSegment(x, z, s) < 0.5,
+      );
+      if (through) continue;
+      // Travel from a into b: arriving along a, leaving along b.
+      const incoming = arriving(a.road, a.start);
+      const reverse = arriving(b.road, b.start);
+      const outgoing: TerrainSemanticPoint = [-reverse[0], -reverse[1]];
+      if (incoming[0] * outgoing[0] + incoming[1] * outgoing[1] < 0.5) continue;
+      const miter = terrainLineMiter(incoming, outgoing);
+      const flipped: TerrainSemanticPoint = [-miter[0], -miter[1]];
+      // A path's offsets lie to the right of its own direction: an end its line leaves from
+      // runs against the a-to-b travel, so its normal turns over.
+      if (a.start) a.road.path.startJoin = flipped;
+      else a.road.path.endJoin = miter;
+      if (b.start) b.road.path.startJoin = miter;
+      else b.road.path.endJoin = flipped;
+    }
   }
 
   /** Whether a road's paving reaches within `padding` of a point; mapped paths only if `paths`. */
@@ -204,6 +268,24 @@ export class SurfaceNetwork {
           c.road !== except && Math.hypot(x - c.center[0], z - c.center[1]) < c.radius + padding,
       )
     );
+  }
+
+  /**
+   * Whether a mapped footway runs alongside a point: within `radius` of it and within about 30°
+   * of parallel to the direction (dx, dz). Many cities map their sidewalks as separate ways; where
+   * one runs beside a street, the street's own inferred sidewalk on that side would double it.
+   */
+  parallelPath(x: number, z: number, dx: number, dz: number, radius: number): boolean {
+    const cx = Math.floor(x / this.cellSize),
+      cz = Math.floor(z / this.cellSize);
+    for (let i = -1; i <= 1; i++)
+      for (let j = -1; j <= 1; j++)
+        for (const s of this.cells.get(`${cx + i}/${cz + j}`) ?? []) {
+          if (s.road.kind !== 'path' || s.road.feature.bridge || s.length < 0.5) continue;
+          const along = Math.abs(((s.b[0] - s.a[0]) * dx + (s.b[1] - s.a[1]) * dz) / s.length);
+          if (along > 0.86 && distanceToSegment(x, z, s) < radius + s.road.width / 2) return true;
+        }
+    return false;
   }
 
   /** True where another carriageway occupies the same elevation (merge openings and paint). */

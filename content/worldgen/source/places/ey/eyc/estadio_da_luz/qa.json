@@ -32,8 +32,65 @@
       "shots/shared/concrete-glass-concourse-and-grey-louver-frontage.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Five existing256-square graphs: concrete_plain, metal_painted, metal_corrugated, window_grid and fabric_canvas. Concrete supports lower structure/decks/cores/footings; tinted paint supplies red tubular arches/webbing/rakers/tiers and pale trim/marks/screens; shared corrugated metal approximates grey upper facade louvers, window-grid closed lower glazing, canvas opaque pale roof/turf grain. Six near draws because roof and turf use different slots of the same graph; zero embedded images/unique atlas/copied photo pixels. Each nearby shared graph read once; metric repeats/linear tints and separate POSITION/NORMAL uploads/equal reported CPU/GPU geometry bytes verified. Corrugation/glazing/roof opacity are explicit shared approximations, not exact louver construction/translucent polycarbonate or optical simulation.",
-    "captureReportHash": "sha256:04ca1256f8dd274cd91a37c138a1cf206ba623dc34da4920aa93c226ed517c08"
+    "notes": "Five existing256-square graphs: concrete_plain, metal_painted, metal_corrugated, window_grid and fabric_canvas. Concrete supports lower structure/decks/cores/footings; tinted paint supplies red tubular arches/webbing/rakers/tiers and pale trim/marks/screens; shared corrugated metal approximates grey upper facade louvers, window-grid closed lower glazing, canvas opaque pale roof/turf grain. Six near draws because roof and turf use different slots of the same graph; zero embedded images/unique atlas/copied photo pixels. Each nearby shared graph read once; metric repeats/linear tints and separate POSITION/NORMAL uploads/equal reported CPU/GPU geometry bytes verified. Corrugation/glazing/roof opacity are explicit shared approximations, not exact louver construction/translucent polycarbonate or optical simulation. The shared window_grid graph changed after the original review. All eight new shared-material views were inspected on the existing placement. The glazing remains readable beneath the louver frontage and the red facade rakers.",
+    "captureReportHash": "sha256:c38210352d9567b976ecf2d7131448b7ea5d28e5ecfe67d4b90d3dc43968791f",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:97b3c1a6f66e58b9c4e900b89e263b600e16327944b34934b826d16ca8062e0c"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:60088548fc6442e776b527488dea4e9cffd127af57c9b7aa8db47c69071208d1"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:ed66d91511c1187579e186191abbc1e97d0a99930bf9d0da9e8b79919c8dbf94"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:ac93fdd017105d99ee73c1b4115c7aa65f50e7d3b456e3cb3e8dd0d4f0313db8"
+      },
+      {
+        "path": "shots/shared/red-bow-arches-corner-core-and-sloping-facade-rakers.png",
+        "hash": "sha256:b93a2d25cfa4962903accd9e9bfcb4b2df789135af903892da7a9d1f202c46ba"
+      },
+      {
+        "path": "shots/shared/three-red-bowl-tiers-and-wave-roof-underside.png",
+        "hash": "sha256:c4c9f62a052b8ba632781658b01e1d8d3d29e89bb6d35baa21b659710fa69a8a"
+      },
+      {
+        "path": "shots/shared/concrete-glass-concourse-and-grey-louver-frontage.png",
+        "hash": "sha256:4d7ff737d37fa99a976304d5a3617ded18786bc818eab592a9207592628b0b44"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:ef71fadd424c71156eef39d91b63117773552aa6cbf0c7028d43e28dd3ba9332"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.metal_corrugated": {
+        "path": "materials/metal_corrugated.matgraph.json",
+        "hash": "sha256:f2d0648da95df58305679176365fd55b9656f3666312eea610394737e1c5001f"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

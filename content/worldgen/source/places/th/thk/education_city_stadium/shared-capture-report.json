@@ -5,11 +5,12 @@
   "sourceHash": "sha256:65c05bab20dea25ac89a9fc84f07d9f07bdc9b9d4e38e40c26ac59eeaf351707",
   "runtimeHash": "sha256:e544e00d50f607845ba847c1c69c9d1f1ac62129ca639bf119b40defc0e06dea",
   "reviewGroundY": -5,
-  "fixtureHash": "sha256:7602608105f3d55798b8e573ee16fbb6b58dd3c8834f0a9e3ba65a3b00360afa",
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "footprintEvidenceHash": "sha256:6e50c98537b179407cc75e22ef293560216fb8c62d54753030c76340eff323be",
   "reflectionMode": "sky-pmrem",
   "clippingMode": "bounds",
   "reviewBoundedPlacement": true,
+  "targetOnly": true,
   "placementHash": "sha256:836c47cddb68de7eba7f65bfbeb2c2ed845213310437a18b29ecb3b4ed68c1b7",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.concrete_plain": {
@@ -34,13 +35,13 @@
     },
     "matgraph:molen.worldgen.material.window_grid": {
       "path": "materials/window_grid.matgraph.json",
-      "hash": "sha256:be487d8aaf9268a0dd9682d3dd86bfb960e24a92a2dc288c117610c335aa3b85"
+      "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:cb4fc5588544dfbcfb5b43f93b85ad5026c84421a2f97ef02cb8d73d1cd9f121",
+      "hash": "sha256:0b2e961f6f36b9b78e818d12b4f938bf64ba4cb4f490f3e83371951b61396a07",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -50,7 +51,7 @@
         "mode": "geographic-flat-terrain",
         "placementId": "education.city.stadium",
         "position": [
-          -4.656612873077393e-10,
+          0,
           0,
           0
         ],
@@ -59,12 +60,12 @@
         "triangles": 54682,
         "bounds": {
           "min": [
-            -114.92742157028988,
+            -114.92742156982422,
             -5.400000095367432,
             -124.76414489746094
           ],
           "max": [
-            113.01439666701481,
+            113.01439666748047,
             43,
             129.53590393066406
           ]
@@ -83,20 +84,20 @@
         },
         "reviewGroundY": -5,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "62d33b20-f045-41e8-b8a4-c9794a01bd88",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "da708a7d-a269-4452-a9e8-d247310aa924",
-          "worldgen:matgraph:molen.worldgen.material.metal_expanded_diamond": "cd9e9ecf-ddf1-44d5-9ae3-d36c3648a786",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "5696f3c0-524e-4fb3-b8a3-1abd7ce74ed2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dc6bc90-aff7-4048-ba55-c8de75a49f3d",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "7eb1d570-be9c-4200-ab92-e34e75da08ad"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_expanded_diamond": "60ee3df1-63d3-4ff2-ad9d-32ce252fa489",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "3c0f7721-7692-4237-a60a-eff715549475",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.education_city_stadium"
         ],
         "selectionBounds": [
-          51.42238960550716,
-          25.30898580036367,
-          51.4265234680326,
+          51.4223896202436,
+          25.30898582700761,
+          51.42652345329614,
           25.31272281858949
         ],
         "terrainSamples": [
@@ -116,12 +117,16 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
-          "molen.worldgen.material.metal_expanded_diamond": 1,
-          "molen.worldgen.material.metal_stainless_beadblasted": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
+          "molen.worldgen.material.metal_expanded_diamond": 1
         },
         "draws": 8,
         "renderedTriangles": 54740
@@ -129,7 +134,7 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:66047d51d4129b05afd7dd0accbd98618e9b408a2960ca86e57eadcbe6390d35",
+      "hash": "sha256:6883d36a19d91a5055ce33d82868d80c45ae86496a7eb73050e9aa237bcae6fd",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -139,7 +144,7 @@
         "mode": "geographic-flat-terrain",
         "placementId": "education.city.stadium",
         "position": [
-          -4.656612873077393e-10,
+          0,
           0,
           0
         ],
@@ -148,12 +153,12 @@
         "triangles": 54682,
         "bounds": {
           "min": [
-            -114.92742157028988,
+            -114.92742156982422,
             -5.400000095367432,
             -124.76414489746094
           ],
           "max": [
-            113.01439666701481,
+            113.01439666748047,
             43,
             129.53590393066406
           ]
@@ -172,20 +177,20 @@
         },
         "reviewGroundY": -5,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "62d33b20-f045-41e8-b8a4-c9794a01bd88",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "da708a7d-a269-4452-a9e8-d247310aa924",
-          "worldgen:matgraph:molen.worldgen.material.metal_expanded_diamond": "cd9e9ecf-ddf1-44d5-9ae3-d36c3648a786",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "5696f3c0-524e-4fb3-b8a3-1abd7ce74ed2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dc6bc90-aff7-4048-ba55-c8de75a49f3d",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "7eb1d570-be9c-4200-ab92-e34e75da08ad"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_expanded_diamond": "60ee3df1-63d3-4ff2-ad9d-32ce252fa489",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "3c0f7721-7692-4237-a60a-eff715549475",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.education_city_stadium"
         ],
         "selectionBounds": [
-          51.42238960550716,
-          25.30898580036367,
-          51.4265234680326,
+          51.4223896202436,
+          25.30898582700761,
+          51.42652345329614,
           25.31272281858949
         ],
         "terrainSamples": [
@@ -205,12 +210,16 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
-          "molen.worldgen.material.metal_expanded_diamond": 1,
-          "molen.worldgen.material.metal_stainless_beadblasted": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
+          "molen.worldgen.material.metal_expanded_diamond": 1
         },
         "draws": 8,
         "renderedTriangles": 54740
@@ -218,7 +227,7 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:4ffd81dfde5805ffbc7969594001fbdc516b1ffc4f8bb651501b1acf0f09025b",
+      "hash": "sha256:a0cd1a2ee2856879befb66420747591cfffbf1d62074bef2a633387d91d6f99c",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -228,7 +237,7 @@
         "mode": "geographic-flat-terrain",
         "placementId": "education.city.stadium",
         "position": [
-          -4.656612873077393e-10,
+          0,
           0,
           0
         ],
@@ -237,12 +246,12 @@
         "triangles": 54682,
         "bounds": {
           "min": [
-            -114.92742157028988,
+            -114.92742156982422,
             -5.400000095367432,
             -124.76414489746094
           ],
           "max": [
-            113.01439666701481,
+            113.01439666748047,
             43,
             129.53590393066406
           ]
@@ -261,20 +270,20 @@
         },
         "reviewGroundY": -5,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "62d33b20-f045-41e8-b8a4-c9794a01bd88",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "da708a7d-a269-4452-a9e8-d247310aa924",
-          "worldgen:matgraph:molen.worldgen.material.metal_expanded_diamond": "cd9e9ecf-ddf1-44d5-9ae3-d36c3648a786",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "5696f3c0-524e-4fb3-b8a3-1abd7ce74ed2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dc6bc90-aff7-4048-ba55-c8de75a49f3d",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "7eb1d570-be9c-4200-ab92-e34e75da08ad"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_expanded_diamond": "60ee3df1-63d3-4ff2-ad9d-32ce252fa489",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "3c0f7721-7692-4237-a60a-eff715549475",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.education_city_stadium"
         ],
         "selectionBounds": [
-          51.42238960550716,
-          25.30898580036367,
-          51.4265234680326,
+          51.4223896202436,
+          25.30898582700761,
+          51.42652345329614,
           25.31272281858949
         ],
         "terrainSamples": [
@@ -294,12 +303,16 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
-          "molen.worldgen.material.metal_expanded_diamond": 1,
-          "molen.worldgen.material.metal_stainless_beadblasted": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
+          "molen.worldgen.material.metal_expanded_diamond": 1
         },
         "draws": 8,
         "renderedTriangles": 54740
@@ -307,7 +320,7 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:f72bc32f01e91481962c794a9af7269a9073ead85c28cc5873a1c7c977120efd",
+      "hash": "sha256:d716e3980527e124aa59da36fb2d3335e17cbf019aef9178d0f099ef7b7cc392",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -317,7 +330,7 @@
         "mode": "geographic-flat-terrain",
         "placementId": "education.city.stadium",
         "position": [
-          -4.656612873077393e-10,
+          0,
           0,
           0
         ],
@@ -326,12 +339,12 @@
         "triangles": 54682,
         "bounds": {
           "min": [
-            -114.92742157028988,
+            -114.92742156982422,
             -5.400000095367432,
             -124.76414489746094
           ],
           "max": [
-            113.01439666701481,
+            113.01439666748047,
             43,
             129.53590393066406
           ]
@@ -350,20 +363,20 @@
         },
         "reviewGroundY": -5,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "62d33b20-f045-41e8-b8a4-c9794a01bd88",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "da708a7d-a269-4452-a9e8-d247310aa924",
-          "worldgen:matgraph:molen.worldgen.material.metal_expanded_diamond": "cd9e9ecf-ddf1-44d5-9ae3-d36c3648a786",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "5696f3c0-524e-4fb3-b8a3-1abd7ce74ed2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dc6bc90-aff7-4048-ba55-c8de75a49f3d",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "7eb1d570-be9c-4200-ab92-e34e75da08ad"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_expanded_diamond": "60ee3df1-63d3-4ff2-ad9d-32ce252fa489",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "3c0f7721-7692-4237-a60a-eff715549475",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.education_city_stadium"
         ],
         "selectionBounds": [
-          51.42238960550716,
-          25.30898580036367,
-          51.4265234680326,
+          51.4223896202436,
+          25.30898582700761,
+          51.42652345329614,
           25.31272281858949
         ],
         "terrainSamples": [
@@ -383,12 +396,16 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
-          "molen.worldgen.material.metal_expanded_diamond": 1,
-          "molen.worldgen.material.metal_stainless_beadblasted": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
+          "molen.worldgen.material.metal_expanded_diamond": 1
         },
         "draws": 8,
         "renderedTriangles": 54740
@@ -396,7 +413,7 @@
     },
     {
       "path": "shots/shared/folded-silver-diamonds-chevron-vents-and-scalloped-hem.png",
-      "hash": "sha256:f74281bfcd7434ba22e4e0fedfae88f40b36ad0112ef155ebeb47a86a90c387a",
+      "hash": "sha256:59f127a94be3a76ffc8dd879318d37956fb8b2fdc49f775ba06afdac4072ae24",
       "camera": {
         "name": "folded-silver-diamonds-chevron-vents-and-scalloped-hem",
         "position": [
@@ -416,7 +433,7 @@
         "mode": "geographic-flat-terrain",
         "placementId": "education.city.stadium",
         "position": [
-          -4.656612873077393e-10,
+          0,
           0,
           0
         ],
@@ -425,12 +442,12 @@
         "triangles": 54682,
         "bounds": {
           "min": [
-            -114.92742157028988,
+            -114.92742156982422,
             -5.400000095367432,
             -124.76414489746094
           ],
           "max": [
-            113.01439666701481,
+            113.01439666748047,
             43,
             129.53590393066406
           ]
@@ -449,20 +466,20 @@
         },
         "reviewGroundY": -5,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "62d33b20-f045-41e8-b8a4-c9794a01bd88",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "da708a7d-a269-4452-a9e8-d247310aa924",
-          "worldgen:matgraph:molen.worldgen.material.metal_expanded_diamond": "cd9e9ecf-ddf1-44d5-9ae3-d36c3648a786",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "5696f3c0-524e-4fb3-b8a3-1abd7ce74ed2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dc6bc90-aff7-4048-ba55-c8de75a49f3d",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "7eb1d570-be9c-4200-ab92-e34e75da08ad"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_expanded_diamond": "60ee3df1-63d3-4ff2-ad9d-32ce252fa489",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "3c0f7721-7692-4237-a60a-eff715549475",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.education_city_stadium"
         ],
         "selectionBounds": [
-          51.42238960550716,
-          25.30898580036367,
-          51.4265234680326,
+          51.4223896202436,
+          25.30898582700761,
+          51.42652345329614,
           25.31272281858949
         ],
         "terrainSamples": [
@@ -482,12 +499,16 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
-          "molen.worldgen.material.metal_expanded_diamond": 1,
-          "molen.worldgen.material.metal_stainless_beadblasted": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
+          "molen.worldgen.material.metal_expanded_diamond": 1
         },
         "draws": 8,
         "renderedTriangles": 54740
@@ -495,7 +516,7 @@
     },
     {
       "path": "shots/shared/three-green-white-bowl-bands-and-deep-roof-underside.png",
-      "hash": "sha256:17b6dd0343a35b05b82a3a18f30c9744500d1cf8a58c967ba1a4c0904ba950fc",
+      "hash": "sha256:9f80663372990367d13ea6a7d6874bbd3bf8ffc6a415cd893afaa969831c656e",
       "camera": {
         "name": "three-green-white-bowl-bands-and-deep-roof-underside",
         "position": [
@@ -515,7 +536,7 @@
         "mode": "geographic-flat-terrain",
         "placementId": "education.city.stadium",
         "position": [
-          -4.656612873077393e-10,
+          0,
           0,
           0
         ],
@@ -524,12 +545,12 @@
         "triangles": 54682,
         "bounds": {
           "min": [
-            -114.92742157028988,
+            -114.92742156982422,
             -5.400000095367432,
             -124.76414489746094
           ],
           "max": [
-            113.01439666701481,
+            113.01439666748047,
             43,
             129.53590393066406
           ]
@@ -548,20 +569,20 @@
         },
         "reviewGroundY": -5,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "62d33b20-f045-41e8-b8a4-c9794a01bd88",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "da708a7d-a269-4452-a9e8-d247310aa924",
-          "worldgen:matgraph:molen.worldgen.material.metal_expanded_diamond": "cd9e9ecf-ddf1-44d5-9ae3-d36c3648a786",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "5696f3c0-524e-4fb3-b8a3-1abd7ce74ed2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dc6bc90-aff7-4048-ba55-c8de75a49f3d",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "7eb1d570-be9c-4200-ab92-e34e75da08ad"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_expanded_diamond": "60ee3df1-63d3-4ff2-ad9d-32ce252fa489",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "3c0f7721-7692-4237-a60a-eff715549475",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.education_city_stadium"
         ],
         "selectionBounds": [
-          51.42238960550716,
-          25.30898580036367,
-          51.4265234680326,
+          51.4223896202436,
+          25.30898582700761,
+          51.42652345329614,
           25.31272281858949
         ],
         "terrainSamples": [
@@ -581,12 +602,16 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
-          "molen.worldgen.material.metal_expanded_diamond": 1,
-          "molen.worldgen.material.metal_stainless_beadblasted": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
+          "molen.worldgen.material.metal_expanded_diamond": 1
         },
         "draws": 8,
         "renderedTriangles": 54740
@@ -594,7 +619,7 @@
     },
     {
       "path": "shots/shared/recessed-entries-local-supports-and-chevron-skin.png",
-      "hash": "sha256:e662026f5fcef610e671750f2288182d715ab8ff687685534f93fe87dd59d353",
+      "hash": "sha256:47842726cc40e1e2d3f43c9c999f35590d6b461cf0bf6a186ae13ec34ef5097e",
       "camera": {
         "name": "recessed-entries-local-supports-and-chevron-skin",
         "position": [
@@ -614,7 +639,7 @@
         "mode": "geographic-flat-terrain",
         "placementId": "education.city.stadium",
         "position": [
-          -4.656612873077393e-10,
+          0,
           0,
           0
         ],
@@ -623,12 +648,12 @@
         "triangles": 54682,
         "bounds": {
           "min": [
-            -114.92742157028988,
+            -114.92742156982422,
             -5.400000095367432,
             -124.76414489746094
           ],
           "max": [
-            113.01439666701481,
+            113.01439666748047,
             43,
             129.53590393066406
           ]
@@ -647,20 +672,20 @@
         },
         "reviewGroundY": -5,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "62d33b20-f045-41e8-b8a4-c9794a01bd88",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "da708a7d-a269-4452-a9e8-d247310aa924",
-          "worldgen:matgraph:molen.worldgen.material.metal_expanded_diamond": "cd9e9ecf-ddf1-44d5-9ae3-d36c3648a786",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "5696f3c0-524e-4fb3-b8a3-1abd7ce74ed2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dc6bc90-aff7-4048-ba55-c8de75a49f3d",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "7eb1d570-be9c-4200-ab92-e34e75da08ad"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_expanded_diamond": "60ee3df1-63d3-4ff2-ad9d-32ce252fa489",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "3c0f7721-7692-4237-a60a-eff715549475",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.education_city_stadium"
         ],
         "selectionBounds": [
-          51.42238960550716,
-          25.30898580036367,
-          51.4265234680326,
+          51.4223896202436,
+          25.30898582700761,
+          51.42652345329614,
           25.31272281858949
         ],
         "terrainSamples": [
@@ -680,12 +705,16 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
-          "molen.worldgen.material.metal_expanded_diamond": 1,
-          "molen.worldgen.material.metal_stainless_beadblasted": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
+          "molen.worldgen.material.metal_expanded_diamond": 1
         },
         "draws": 8,
         "renderedTriangles": 54740
@@ -693,7 +722,7 @@
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:037805c40026ddc3f0be31e13eab5c9342be7ef701a960f3edbfc629348428b2",
+      "hash": "sha256:46dbecdc510e12c7c27d99204e15beaffef4a0907149c145968162ba37dc033f",
       "camera": {
         "name": "placement",
         "placement": true
@@ -703,7 +732,7 @@
         "mode": "geographic-flat-terrain",
         "placementId": "education.city.stadium",
         "position": [
-          -4.656612873077393e-10,
+          0,
           0,
           0
         ],
@@ -712,12 +741,12 @@
         "triangles": 54682,
         "bounds": {
           "min": [
-            -114.92742157028988,
+            -114.92742156982422,
             -5.400000095367432,
             -124.76414489746094
           ],
           "max": [
-            113.01439666701481,
+            113.01439666748047,
             43,
             129.53590393066406
           ]
@@ -736,20 +765,20 @@
         },
         "reviewGroundY": -5,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "62d33b20-f045-41e8-b8a4-c9794a01bd88",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "da708a7d-a269-4452-a9e8-d247310aa924",
-          "worldgen:matgraph:molen.worldgen.material.metal_expanded_diamond": "cd9e9ecf-ddf1-44d5-9ae3-d36c3648a786",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "5696f3c0-524e-4fb3-b8a3-1abd7ce74ed2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dc6bc90-aff7-4048-ba55-c8de75a49f3d",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "7eb1d570-be9c-4200-ab92-e34e75da08ad"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_expanded_diamond": "60ee3df1-63d3-4ff2-ad9d-32ce252fa489",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "3c0f7721-7692-4237-a60a-eff715549475",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.education_city_stadium"
         ],
         "selectionBounds": [
-          51.42238960550716,
-          25.30898580036367,
-          51.4265234680326,
+          51.4223896202436,
+          25.30898582700761,
+          51.42652345329614,
           25.31272281858949
         ],
         "terrainSamples": [
@@ -769,12 +798,16 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
-          "molen.worldgen.material.metal_expanded_diamond": 1,
-          "molen.worldgen.material.metal_stainless_beadblasted": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1,
+          "molen.worldgen.material.metal_expanded_diamond": 1
         },
         "draws": 9,
         "renderedTriangles": 54740
@@ -789,7 +822,9 @@
   "groundLifecycle": {
     "applicable": true,
     "hiddenRestored": true,
-    "visibleOpen": true
+    "visibleOpen": true,
+    "visibleCapped": false,
+    "unchanged": false
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

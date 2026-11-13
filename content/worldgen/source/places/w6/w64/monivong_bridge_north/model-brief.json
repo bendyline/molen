@@ -1,0 +1,550 @@
+{
+  "id": "monivong_bridge_north",
+  "title": "Monivong Bridge north deck",
+  "wikidataId": "Q2426523",
+  "referenceCoordinate": {
+    "longitude": 104.93292644619942,
+    "latitude": 11.531323999037049
+  },
+  "module": "content/worldgen/source/places/w6/w64/monivong_bridge_north/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-monivong-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_boardformed",
+      "roughness": 0.93
+    },
+    "soffit": {
+      "slot": "wall",
+      "graph": "concrete_boardformed",
+      "roughness": 0.93
+    },
+    "fascia": {
+      "slot": "wall",
+      "graph": "concrete_boardformed",
+      "roughness": 0.93
+    },
+    "pier": {
+      "slot": "wall",
+      "graph": "concrete_boardformed",
+      "roughness": 0.93
+    },
+    "seat": {
+      "slot": "wall",
+      "graph": "concrete_boardformed",
+      "roughness": 0.93
+    },
+    "asphalt": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.94
+    },
+    "walk": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.94
+    },
+    "joint": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.94
+    },
+    "roadLine": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.94
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.77,
+      "metallic": 0.14
+    },
+    "rail": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.77,
+      "metallic": 0.14
+    },
+    "lamp": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.77,
+      "metallic": 0.14
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.77,
+      "metallic": 0.14
+    }
+  },
+  "exportLabel": "Molen original Monivong Bridge north deck master",
+  "expectedDraftMasterHash": "sha256:10c5c5f8dd4aa9e88157b84315f1a87adddee0f586702b3406f6a9e4806cc245",
+  "visualBrief": "The narrower north deck has two river piers, three open spans, deepened concrete haunches, pedestrian walks and tall curved lighting poles.",
+  "heightPolicy": "Each landing follows the standard terrain surface and the connected native roadway. The retained approach points, separate deck widths and ground contacts use the exact local placement frame.",
+  "nativeAxes": "The individual bridge deck runs west to east on +X.",
+  "limitations": [
+    "Each span follows its own PMTiles centerline and the paired landings. The northern and southern labels identify positions.",
+    "Cross sections, pier stations, parapets, and lighting are reconstructed from photos. The elevations fit standard viewer terrain and represent visual geometry.",
+    "The model includes both Monivong River decks. The surrounding roads, ramps and Bassac river remain native viewer data."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Bird's_Eye_View_of_Preah_Monivong_Bridge.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/78/Bird's_Eye_View_of_Preah_Monivong_Bridge.jpg",
+      "hash": "sha256:d0fd539d4201aacccae4378b556f06ca07b82fff51317985ea49ae77f379e9ab",
+      "observed": "The current twin deck outlines, pier rows, sloping girders and bank approaches."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Monivong_bridge.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Monivong_bridge.jpg",
+      "hash": "sha256:11cdf6b9968dfb69400d590ab489101023c6d2aa1fc39b70fa164bff48eb3e98",
+      "observed": "The earlier north-side crossing shows curved lamps and an open pedestrian railing."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "bridge-and-landings",
+      "position": [
+        -66,
+        46,
+        122
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "girder-and-piers",
+      "position": [
+        14,
+        3.6,
+        -66
+      ],
+      "lookAt": [
+        0,
+        4.1,
+        0
+      ],
+      "fov": 63
+    },
+    {
+      "name": "deck-walkways-and-lamps",
+      "position": [
+        -129.52883,
+        8.37584,
+        3.4
+      ],
+      "lookAt": [
+        24,
+        7.902419999999999,
+        0
+      ],
+      "fov": 61
+    },
+    {
+      "name": "east-bearing-and-shore",
+      "position": [
+        117,
+        13,
+        -31
+      ],
+      "lookAt": [
+        80,
+        4.3,
+        0
+      ],
+      "fov": 58
+    }
+  ],
+  "materialMethod": "Shared board-formed concrete, plain concrete and painted metal. Material colors distinguish asphalt, footways, fascia and the steel railing.",
+  "sourceFacts": {
+    "pairedCrossing": "monivong_bridge",
+    "spanLengthMeters": 275.05767,
+    "riverPiers": 2,
+    "widthMeters": 13,
+    "oneway": true
+  },
+  "mediumFiContext": {
+    "groundY": -0.25,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        4.5,
+        0
+      ]
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/w6/w64/monivong_bridge_north/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.93
+      },
+      "soffit": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.93
+      },
+      "fascia": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.93
+      },
+      "pier": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.93
+      },
+      "seat": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.93
+      },
+      "asphalt": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94
+      },
+      "walk": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94
+      },
+      "joint": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94
+      },
+      "roadLine": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.14
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.14
+      },
+      "lamp": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.14
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.77,
+        "metallic": 0.14
+      }
+    },
+    "errorMeters": 1.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "soffit": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "fascia": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "seat": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "asphalt": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "joint": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "roadLine": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.14
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.14
+          },
+          "lamp": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.14
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.14
+          }
+        },
+        "errorMeters": 0.38
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "soffit": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "fascia": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "seat": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "asphalt": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "joint": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "roadLine": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.14
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.14
+          },
+          "lamp": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.14
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.14
+          }
+        },
+        "errorMeters": 0.17
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "soffit": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "fascia": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "seat": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.93
+          },
+          "asphalt": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "walk": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "joint": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "roadLine": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.14
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.14
+          },
+          "lamp": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.14
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.14
+          }
+        },
+        "errorMeters": 0.075
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "monivong_bridge_north-skyline",
+      "position": [
+        -66,
+        46,
+        122
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 56,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "monivong_bridge_north-district",
+      "position": [
+        -66,
+        46,
+        122
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 56,
+      "reviewLod": "district"
+    },
+    {
+      "name": "monivong_bridge_north-street",
+      "position": [
+        -66,
+        46,
+        122
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 56,
+      "reviewLod": "street"
+    },
+    {
+      "name": "monivong_bridge_north-closeup",
+      "position": [
+        -66,
+        46,
+        122
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 56,
+      "reviewLod": "closeup"
+    }
+  ]
+}

@@ -167,6 +167,26 @@ Time-based node materials still receive Three's per-frame node updates.
 
 The world explorer also accepts `gpuOptimizations=0` for an uncached WebGPU comparison.
 
+## What differs between the backends
+
+The same scene is not pixel-identical on the two. Sky and haze match to within a level or two of
+255, and from the air the ground and far water come out a few levels brighter on WebGPU. The
+differences with a known cause:
+
+| | WebGL | WebGPU |
+| --- | --- | --- |
+| Far sun shadows (`setFarShadowCasters`) | A second, wider shadow map | None: scenery past the focused map stays sunlit |
+| Sun shadow filter | PCF | Soft PCF, except at the low shadow quality |
+| Ambient occlusion | None | `setAmbientOcclusion`, off by default |
+| Cloud deck haze | Mixed in after tone mapping | Mixed in before it, so distant clouds are brighter |
+| Earth view scene | Compact: half the plant scatter, and at High under half the building vertices | Full |
+
+In World Explorer the main-thread work of a frame is higher on WebGPU for the same scene, and the
+GPU time equal or lower: on one Windows laptop with an NVIDIA GPU at Balanced, about 9 ms against
+13 to 15 ms a frame for a settled view from the air. About a quarter of the WebGPU frame is the
+command-state check described under [WebGPU performance](#webgpu-performance), and
+`gpuOptimizations=0` measures the same.
+
 ## Testing the world explorer
 
 Open [World Explorer](https://molen.dev/play/world-explorer/), then compare the same location
@@ -174,8 +194,9 @@ and settings using [`?backend=webgpu`](https://molen.dev/play/world-explorer/?ba
 [`?backend=webgl`](https://molen.dev/play/world-explorer/?backend=webgl). World Explorer defaults
 to WebGL, as the embedded Earth view does: WebGPU currently builds node state for every new
 instanced mesh, which can leave terrain preparation behind a fast aircraft despite low GPU draw
-times. Explicit `?backend=auto` still negotiates WebGPU with fallback; `?backend=webgpu` pins it
-and enables its screen-space ambient occlusion. The general client/viewer default remains `auto`.
+times. Explicit `?backend=auto` still negotiates WebGPU with fallback; `?backend=webgpu` pins it.
+Screen-space [ambient occlusion](sky.md#ambient-occlusion) exists only on WebGPU and stays off
+unless `?ao=1` is added. The general client/viewer default remains `auto`.
 The performance HUD displays
 the backend that actually rendered and any automatic fallback reason; its
 `#performance-status` element also exposes `data-backend` and `data-fallback-reason` for tests.

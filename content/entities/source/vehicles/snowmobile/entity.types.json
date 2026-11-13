@@ -1,0 +1,328 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.vehicle.snowmobile": {
+      "doc": "Bendy Sled. Drivable trail snowmobile for two: a lugged track and two steered skis that ride over lying snow of any depth, steered with handlebars.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.snowmobile",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.snowmobile",
+          "color": "#c4221f",
+          "spec": {
+            "label": "Bendy Sled",
+            "bodyStyle": "snowmobile",
+            "genericLabel": "Trail snowmobile",
+            "width": 1.15,
+            "length": 2.9,
+            "height": 1.15,
+            "centerOfMass": [
+              0,
+              0.42,
+              -0.1
+            ],
+            "wheelbase": 1.5,
+            "wheelTrack": 1,
+            "wheelRadius": 0.12,
+            "mass": 330,
+            "engineForce": 1900,
+            "maxSpeed": 33,
+            "reverseSpeed": 5,
+            "brakeDeceleration": 6,
+            "maxSteer": 0.6,
+            "driverEye": [
+              0,
+              1.39,
+              -0.2
+            ],
+            "grip": 6.5,
+            "steeringRate": 2.2,
+            "steeringFadeSpeed": 9,
+            "rollingResistance": 0,
+            "aerodynamicResistance": 0.0018,
+            "terrainAlignRate": 5,
+            "supportTolerance": 0.25,
+            "maxStepHeight": 0.3,
+            "maxSlope": 0.75,
+            "drive": "rear",
+            "rollStiffness": 0.07,
+            "pitchStiffness": 0.04,
+            "suspensionFrequency": 1.8,
+            "suspensionDamping": 0.5,
+            "tractionControl": false,
+            "stabilityControl": false,
+            "headlamps": [
+              [
+                0,
+                0.44,
+                1.03
+              ]
+            ],
+            "runners": {
+              "friction": 0.12,
+              "bareDrag": 2.2
+            },
+            "handlebar": {
+              "riderLean": 0.2,
+              "handlebarPivot": [
+                0,
+                0.95,
+                0.3087
+              ],
+              "grips": [
+                [
+                  0.31,
+                  1,
+                  0.27
+                ],
+                [
+                  -0.31,
+                  1,
+                  0.27
+                ]
+              ],
+              "footrests": [
+                [
+                  0.31,
+                  0.35,
+                  0.09
+                ],
+                [
+                  -0.31,
+                  0.35,
+                  0.09
+                ]
+              ]
+            },
+            "actuators": {
+              "headlights": {
+                "seconds": 0
+              }
+            }
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "animation": {
+              "sources": {
+                "steering": {
+                  "component": "vehicleState",
+                  "path": [
+                    "steer"
+                  ]
+                },
+                "headlights": {
+                  "component": "vehicleState",
+                  "path": [
+                    "actuators",
+                    "headlights"
+                  ]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "handlebar",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1
+                },
+                {
+                  "node": "ski-left",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1
+                },
+                {
+                  "node": "ski-right",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1
+                },
+                {
+                  "node": "headlights-lit",
+                  "source": "headlights",
+                  "property": "visible",
+                  "scale": 1
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0,
+                0.73,
+                -0.3
+              ]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [
+                0,
+                0.75,
+                -0.85
+              ]
+            }
+          ],
+          "exits": [
+            [
+              0.95,
+              0,
+              -0.3
+            ],
+            [
+              -0.95,
+              0,
+              -0.3
+            ],
+            [
+              0.95,
+              0,
+              -0.85
+            ],
+            [
+              -0.95,
+              0,
+              -0.85
+            ]
+          ],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 0,
+          "cruise": 12,
+          "max": 25,
+          "colors": [
+            "#c4221f",
+            "#c4221f",
+            "#1f5fb0",
+            "#1f2124",
+            "#e4e6e3"
+          ]
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.car",
+          "loop": true,
+          "pitch": 1.7,
+          "gain": 0.8,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleState.speed",
+            "curve": [
+              [
+                0,
+                0.8
+              ],
+              [
+                8,
+                1.1
+              ],
+              [
+                30,
+                1.5
+              ]
+            ]
+          }
+        },
+        "model.signals": {
+          "sources": {
+            "steering": {
+              "component": "vehicleState",
+              "path": [
+                "steer"
+              ]
+            },
+            "headlights": {
+              "component": "vehicleState",
+              "path": [
+                "actuators",
+                "headlights"
+              ]
+            }
+          },
+          "bindings": [
+            {
+              "node": "handlebar",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "ski-left",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "ski-right",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "headlights-lit",
+              "source": "headlights",
+              "property": "visible",
+              "scale": 1
+            }
+          ]
+        }
+      },
+      "assets": [
+        "molen.entities.vehicle.snowmobile"
+      ]
+    }
+  }
+}

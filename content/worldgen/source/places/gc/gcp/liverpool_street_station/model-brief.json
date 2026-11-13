@@ -1,0 +1,949 @@
+{
+  "id": "liverpool_street_station",
+  "title": "Liverpool Street station",
+  "wikidataId": "Q801124",
+  "referenceCoordinate": {
+    "longitude": -0.0813,
+    "latitude": 51.5186
+  },
+  "module": "packages/worldgen/scripts/liverpool-street-station-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-liverpool-street-station.mjs",
+  "builder": "buildLiverpoolLevel",
+  "surfaces": {
+    "wall": {
+      "slot": "wall",
+      "graph": "brick_flemish",
+      "roughness": 0.91
+    },
+    "pier": {
+      "slot": "wall",
+      "graph": "brick_flemish",
+      "roughness": 0.91
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.92
+    },
+    "pale": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.92
+    },
+    "shadow": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.92
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.86
+    },
+    "zinc": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.79,
+      "metallic": 0.13
+    },
+    "under": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.79,
+      "metallic": 0.13
+    },
+    "floor": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "bed": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "deck": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "tactile": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.94
+    },
+    "iron": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.15
+    },
+    "green": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.15
+    },
+    "red": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.15
+    },
+    "dark": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.15
+    },
+    "white": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.76,
+      "metallic": 0.15
+    },
+    "glass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.39
+    },
+    "lightGlass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.39
+    },
+    "clear": {
+      "slot": "window",
+      "localRef": "palette:#d2e7ed",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.33
+      ],
+      "alphaMode": "BLEND",
+      "doubleSided": true,
+      "roughness": 0.31
+    }
+  },
+  "exportLabel": "Molen original Liverpool Street station master",
+  "expectedDraftMasterHash": "sha256:7dd2efc854193ec60140ab2a95ae79bf6cd6df38c551ec1a908ee95be8227837",
+  "visualBrief": "Victorian iron and glass train sheds open toward Exchange Square. The raised concourse and three stairways lead to ten platform bodies. The Bishopsgate canopy and brick clock towers frame the east entrance, and a modern glass portal serves Broadgate.",
+  "heightPolicy": "The 11 m sea-level datum and the three street approaches use standard viewer terrain. The upper concourse and lower platforms follow a reconstructed vertical profile. Bounded terrain cuts expose the depressed station floor.",
+  "nativeAxes": "The 212.16-meter mapped station wall establishes the signed axis toward the Great Eastern and West Anglia rail fan. Named station and Bishopsgate entrance points identify the lower rail and upper street approaches.",
+  "limitations": [
+    "The model represents the existing station and its above-ground public circulation. Future redevelopment, temporary roof works, train animation and underground platforms are outside this model.",
+    "Track centerlines and platform footprints follow PMTiles. Three eastern tracks are reconstructed from mapped platform stops and the parallel track alignment where centerlines are absent.",
+    "Roof sections, gables and internal elevations are photo-based reconstructions. The upper entrances fit standard terrain samples and the tracks use an estimated lower station datum.",
+    "Neighboring commercial and hotel buildings remain independent map objects. Their station-side approaches share the fitted station terrain cutout."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Liverpool_Street_station_-_Broadgate_entrance_viewed_from_Blomfield_street_01.jpg",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Liverpool_Street_station_-_Broadgate_entrance_viewed_from_Blomfield_street_01.jpg/960px-Liverpool_Street_station_-_Broadgate_entrance_viewed_from_Blomfield_street_01.jpg",
+      "hash": "sha256:7193c6bca67dacc2c4bce3f59d365e30ace613abbdcb25a8d75310b0a9296ce5",
+      "observed": "broadgate"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Liverpool_Street_station_entrance_Bishopsgate.JPG",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Liverpool_Street_station_entrance_Bishopsgate.JPG/960px-Liverpool_Street_station_entrance_Bishopsgate.JPG",
+      "hash": "sha256:78411db8bb790692dbbd194bb481f8bd9e507725ed51aba24a431a409af67ce3",
+      "observed": "bishopsgate"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Liverpool_Street_Station_train_sheds_seen_from_Exchange_Square.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Liverpool_Street_Station_train_sheds_seen_from_Exchange_Square.jpg",
+      "hash": "sha256:9c7c95c4698b9bcb72a25ca78e45bd9a7bb2e0d86baaf074155e1e88cf6da939",
+      "observed": "shed"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Roof_of_the_Platforms_at_Liverpool_Street_Railway_Station%2C_City_of_London.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Roof_of_the_Platforms_at_Liverpool_Street_Railway_Station%2C_City_of_London.jpg",
+      "hash": "sha256:e4cf627fabd7d83d8e7a4a25ce5dd0d58141cfd5bebd6395bd4df6bb598181ee",
+      "observed": "interior"
+    }
+  ],
+  "cameras": [
+    {
+      "name": "station-and-exchange-square",
+      "position": [
+        223,
+        136,
+        -28
+      ],
+      "lookAt": [
+        -12,
+        6,
+        -3
+      ],
+      "fov": 60,
+      "lightDirection": [
+        0.59,
+        1,
+        0.61
+      ]
+    },
+    {
+      "name": "bishopsgate-towers",
+      "position": [
+        -99.3,
+        6.62,
+        90.4
+      ],
+      "lookAt": [
+        -99,
+        11.7,
+        56
+      ],
+      "fov": 63,
+      "lightDirection": [
+        -0.31,
+        1,
+        0.77
+      ]
+    },
+    {
+      "name": "broadgate-portal",
+      "position": [
+        -111.3,
+        5.2,
+        -68.16
+      ],
+      "lookAt": [
+        -109,
+        7.6,
+        -57.8
+      ],
+      "fov": 70,
+      "lightDirection": [
+        -0.59,
+        1,
+        -0.53
+      ]
+    },
+    {
+      "name": "exchange-square-train-sheds",
+      "position": [
+        129.2,
+        8.65,
+        -42.5
+      ],
+      "lookAt": [
+        50,
+        10,
+        -29.2
+      ],
+      "fov": 65,
+      "lightDirection": [
+        0.67,
+        1,
+        0.45
+      ]
+    },
+    {
+      "name": "iron-trusses-and-platforms",
+      "position": [
+        -42,
+        1.48,
+        -39.85
+      ],
+      "lookAt": [
+        85,
+        10,
+        -38.4
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.64,
+        1,
+        -0.57
+      ]
+    },
+    {
+      "name": "concourse-balcony-and-stairs",
+      "position": [
+        -89.1,
+        5.47,
+        16.65
+      ],
+      "lookAt": [
+        -75.6,
+        1.36,
+        9.3
+      ],
+      "fov": 67,
+      "lightDirection": [
+        0.63,
+        1,
+        -0.6
+      ]
+    },
+    {
+      "name": "great-eastern-track-fan",
+      "position": [
+        169,
+        36,
+        11
+      ],
+      "lookAt": [
+        91,
+        5.6,
+        -5.9
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.68,
+        1,
+        -0.6
+      ]
+    },
+    {
+      "name": "south-headhouse",
+      "position": [
+        -134.5,
+        5.25,
+        -53.6
+      ],
+      "lookAt": [
+        -122,
+        8.3,
+        -54.05
+      ],
+      "fov": 64,
+      "lightDirection": [
+        -0.72,
+        1,
+        -0.45
+      ]
+    }
+  ],
+  "materialMethod": "Seven shared graphs supply Flemish-bond brick, weathered limestone, granite, painted iron, slate, standing-seam zinc and tinted glazing. An untextured translucent material serves the shed and entrance glazing.",
+  "sourceFacts": {
+    "station": "way/4959629",
+    "terrainDatumMeters": 11,
+    "footprintPartIds": [
+      35184377048461,
+      35184749684689,
+      35184749577431,
+      35184749577510,
+      35185207419869,
+      35185207419870,
+      35185207419871
+    ],
+    "mainSheds": 3,
+    "platformBodies": 10,
+    "surfaceTracks": 17,
+    "inferredTracks": 3,
+    "publicStairs": 3
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -9,
+        6,
+        6
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/liverpool-street-station-model.mjs",
+    "export": "buildLiverpoolSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.91
+      },
+      "pier": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.91
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.92
+      },
+      "pale": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.92
+      },
+      "shadow": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.92
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.86
+      },
+      "zinc": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.79,
+        "metallic": 0.13
+      },
+      "under": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.79,
+        "metallic": 0.13
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "bed": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "deck": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "tactile": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.94
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.15
+      },
+      "green": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.15
+      },
+      "red": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.15
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.15
+      },
+      "white": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.15
+      },
+      "glass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.39
+      },
+      "lightGlass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.39
+      },
+      "clear": {
+        "slot": "window",
+        "localRef": "palette:#d2e7ed",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.33
+        ],
+        "alphaMode": "BLEND",
+        "doubleSided": true,
+        "roughness": 0.31
+      }
+    },
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLiverpoolDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "shadow": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.13
+          },
+          "under": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.13
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "bed": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "tactile": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.39
+          },
+          "lightGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.39
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#d2e7ed",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.33
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.31
+          }
+        },
+        "errorMeters": 0.72
+      },
+      "street": {
+        "export": "buildLiverpoolStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "shadow": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.13
+          },
+          "under": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.13
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "bed": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "tactile": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.39
+          },
+          "lightGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.39
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#d2e7ed",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.33
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.31
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "closeup": {
+        "export": "buildLiverpoolCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "pale": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "shadow": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.92
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.13
+          },
+          "under": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.13
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "bed": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "tactile": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.94
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.39
+          },
+          "lightGlass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.39
+          },
+          "clear": {
+            "slot": "window",
+            "localRef": "palette:#d2e7ed",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.33
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true,
+            "roughness": 0.31
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "liverpool_street_station-skyline",
+      "position": [
+        223,
+        136,
+        -28
+      ],
+      "lookAt": [
+        -12,
+        6,
+        -3
+      ],
+      "fov": 60,
+      "lightDirection": [
+        0.59,
+        1,
+        0.61
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "liverpool_street_station-district",
+      "position": [
+        223,
+        136,
+        -28
+      ],
+      "lookAt": [
+        -12,
+        6,
+        -3
+      ],
+      "fov": 60,
+      "lightDirection": [
+        0.59,
+        1,
+        0.61
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "liverpool_street_station-street",
+      "position": [
+        223,
+        136,
+        -28
+      ],
+      "lookAt": [
+        -12,
+        6,
+        -3
+      ],
+      "fov": 60,
+      "lightDirection": [
+        0.59,
+        1,
+        0.61
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "liverpool_street_station-closeup",
+      "position": [
+        223,
+        136,
+        -28
+      ],
+      "lookAt": [
+        -12,
+        6,
+        -3
+      ],
+      "fov": 60,
+      "lightDirection": [
+        0.59,
+        1,
+        0.61
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

@@ -1,0 +1,736 @@
+{
+  "planId": "chateau_de_hautefort",
+  "id": "chateau_de_hautefort",
+  "assetId": "molen.worldgen.structure.chateau_de_hautefort",
+  "title": "Château de Hautefort",
+  "wikidataId": "Q1392601",
+  "category": "castle",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 1.1449498414285713,
+    "latitude": 45.25955819
+  },
+  "size": [
+    61.7718391418457,
+    30.42772936820984,
+    82.92799758911133
+  ],
+  "actualBounds": {
+    "min": [
+      -44.25,
+      -3.0077292919158936,
+      -41.26799774169922
+    ],
+    "max": [
+      17.521839141845703,
+      27.420000076293945,
+      41.65999984741211
+    ]
+  },
+  "visualBrief": "The limestone Château de Hautefort with its steep slate pavilions, domed round towers, copper lanterns, drawbridge gate and open court.",
+  "nativeAxes": {
+    "x": "south-southwest across the entrance",
+    "y": "up",
+    "z": "northwest toward the drawbridge approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2013-08-13",
+    "validFrom": "2013-01-01",
+    "validUntil": "2014-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_de_Hautefort_2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_de_Hautefort_13.jpg",
+    "https://commons.wikimedia.org/wiki/File:Balustrade_Ch%C3%A2teau_de_Hautefort_11.jpg",
+    "https://commons.wikimedia.org/wiki/File:Clocheton_Ch%C3%A2teau_de_Hautefort_12.jpg"
+  ],
+  "stories": [
+    {
+      "id": "chateau-de-hautefort-wp",
+      "url": "https://qualla.com/chateau-de-hautefort/"
+    }
+  ],
+  "referenceInputHash": "a88f724e0f8bb5203efe90250a87b02606bc5c339eff475822bd958175ea596b",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u0/u00/chateau_de_hautefort/models/hautefort-chateau-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u0/u00/chateau_de_hautefort/models/hautefort-chateau-model.mjs",
+    "level": "skyline",
+    "export": "chateauSkyline",
+    "errorMeters": 0.86,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "raw": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.86,
+        "metallic": 0.12
+      },
+      "copper": {
+        "slot": "trim",
+        "graph": "metal_copper",
+        "roughness": 0.8,
+        "metallic": 0.25
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.51,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "chateauDistrict",
+        "errorMeters": 0.36,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.25
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.51,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "chateauStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.25
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.51,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "chateauCloseup",
+        "errorMeters": 0.041,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "raw": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.25
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.51,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_limestone_raw",
+    "slate",
+    "metal_copper",
+    "wood_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.79,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      1.1449498414285713,
+      45.25955819
+    ],
+    "heading": -2.1409176021877663,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        1.144550760869955,
+        45.259836686646146
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate terrace paving at the outer end of the mapped approach bridge."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          2.8577710594265504,
+          30.591108569833573
+        ],
+        [
+          -9.220741013014795,
+          31.242487274320375
+        ],
+        [
+          -27.02408583946927,
+          32.390282863863874
+        ],
+        [
+          -26.99425521832307,
+          38.356149359082025
+        ],
+        [
+          -36.83465002828295,
+          38.84776725083319
+        ],
+        [
+          -41.89387973176352,
+          39.10359800424393
+        ],
+        [
+          -41.43679791227323,
+          21.749128700255355
+        ],
+        [
+          -38.01933267508393,
+          21.531335066953154
+        ],
+        [
+          -39.27477301863391,
+          -21.24343034673535
+        ],
+        [
+          -42.23660525598849,
+          -21.53184324561131
+        ],
+        [
+          -44.26701363304199,
+          -38.64113221154222
+        ],
+        [
+          -29.97646306009824,
+          -38.234830014377664
+        ],
+        [
+          -29.74291827748556,
+          -36.07620085952486
+        ],
+        [
+          1.7242912237866044,
+          -37.300153395439345
+        ],
+        [
+          2.514400684546871,
+          -38.43966242089752
+        ],
+        [
+          3.5958402402863108,
+          -39.496025067154164
+        ],
+        [
+          4.963132849046762,
+          -40.35403475413581
+        ],
+        [
+          6.110564906191669,
+          -40.79184554257361
+        ],
+        [
+          7.486131701292166,
+          -41.059453305411836
+        ],
+        [
+          8.984923580545669,
+          -41.052364625273185
+        ],
+        [
+          9.890679037937005,
+          -40.89775475383274
+        ],
+        [
+          11.54312122501858,
+          -40.30039135472155
+        ],
+        [
+          12.953066093504576,
+          -39.380010759129135
+        ],
+        [
+          14.11296805353887,
+          -38.16900686713479
+        ],
+        [
+          14.62984510926722,
+          -37.38344693741508
+        ],
+        [
+          15.460320542089583,
+          -35.26314068689756
+        ],
+        [
+          15.627202848241549,
+          -33.51785961835678
+        ],
+        [
+          15.411780879329593,
+          -31.853245289272838
+        ],
+        [
+          14.88513056878572,
+          -30.426562331040923
+        ],
+        [
+          14.116745035774827,
+          -29.170670507574684
+        ],
+        [
+          13.173136011639121,
+          -28.146828966612127
+        ],
+        [
+          11.851451926654642,
+          -27.197057762818698
+        ],
+        [
+          10.348824442442334,
+          -26.55013293569221
+        ],
+        [
+          8.32615427194164,
+          -26.23995830208556
+        ],
+        [
+          6.3384149044360125,
+          -26.473422670872225
+        ],
+        [
+          4.719228583039627,
+          -27.10141564383046
+        ],
+        [
+          3.6570842968552224,
+          -27.78869694418475
+        ],
+        [
+          2.265731224537337,
+          -29.195701360453345
+        ],
+        [
+          -18.602437689582008,
+          -28.558832006659475
+        ],
+        [
+          -18.457363057636933,
+          -19.092612018829563
+        ],
+        [
+          -23.59579213710279,
+          -18.79531132326321
+        ],
+        [
+          -23.111149236276848,
+          17.641630161714286
+        ],
+        [
+          -17.688449918722977,
+          17.76708729333137
+        ],
+        [
+          -17.251149100411556,
+          22.615379910020977
+        ],
+        [
+          6.265555163511325,
+          21.88139160278827
+        ],
+        [
+          6.614109466678601,
+          24.48752707116238
+        ],
+        [
+          7.598092837454631,
+          23.856656302190263
+        ],
+        [
+          8.75157979056781,
+          23.387039721956185
+        ],
+        [
+          9.651707460891872,
+          23.18224893943471
+        ],
+        [
+          11.031746336361769,
+          23.107240253135565
+        ],
+        [
+          12.276601080147792,
+          23.295753941855807
+        ],
+        [
+          13.451870583733179,
+          23.705731954288353
+        ],
+        [
+          14.780547528983005,
+          24.51998201142744
+        ],
+        [
+          16.00148417841074,
+          25.78493333577189
+        ],
+        [
+          16.728574150325333,
+          27.02211634070209
+        ],
+        [
+          17.164576892739742,
+          28.362155641094407
+        ],
+        [
+          17.308822431264584,
+          30.01025500802874
+        ],
+        [
+          17.096808958391644,
+          31.412062275576453
+        ],
+        [
+          16.68933876056056,
+          32.52963615453191
+        ],
+        [
+          15.640970827740775,
+          34.1325783469218
+        ],
+        [
+          14.291415797984131,
+          35.2863771042728
+        ],
+        [
+          12.545135288487767,
+          36.0895175504723
+        ],
+        [
+          11.047164128066878,
+          36.35183233371603
+        ],
+        [
+          9.59705428010664,
+          36.27629999525404
+        ],
+        [
+          8.31870080448118,
+          35.93241320612945
+        ],
+        [
+          6.62828780521893,
+          34.98707763011877
+        ],
+        [
+          5.546915246780559,
+          33.93980756704872
+        ],
+        [
+          4.734905990093003,
+          32.67329841050849
+        ],
+        [
+          4.247817681269201,
+          31.35670417379013
+        ],
+        [
+          4.070132033646541,
+          30.316443501139307
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Named native château outline from OpenStreetMap way 61677832."
+    },
+    "featureIds": [
+      "way/61677832",
+      "way/205966339",
+      "way/1481301129",
+      "way/1481301130"
+    ],
+    "source": "https://www.openstreetmap.org/way/61677832",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f28ee05f714d13b27890656f4ecfa891731bd966e665ad1243f740666a969cbd",
+    "notes": "The mapped polygon fixes the two wings, large circular towers and courtyard. The 2013 Qualla views show the west entrance, round dome, court balustrade and lantern detail. Roof and window details on the far sides remain estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The model depicts the main château in August 2013, including the limestone residence, two connected wings, circular tower roofs, drawbridge entrance and open court.",
+    "The cadastre-derived outline and bridge locate the major volumes. The cleared 2013 exterior and detail views determine the entrance frontage, roof silhouette, lantern and balustrade. Exact roof slopes, far-side opening counts and relative heights are reconstructed estimates.",
+    "The original Terrarium hillside is preserved. The bridge and court use approximate terrace levels."
+  ],
+  "sourceLicense": "Original geometry under the repository license, OpenStreetMap ODbL 1.0 and four exact first-party CC0 Qualla photos.",
+  "qaLodCameras": [
+    {
+      "name": "whole-hautefort-chateau-skyline",
+      "position": [
+        65,
+        40,
+        118
+      ],
+      "lookAt": [
+        -9,
+        9,
+        4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-hautefort-chateau-district",
+      "position": [
+        65,
+        40,
+        118
+      ],
+      "lookAt": [
+        -9,
+        9,
+        4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-hautefort-chateau-street",
+      "position": [
+        65,
+        40,
+        118
+      ],
+      "lookAt": [
+        -9,
+        9,
+        4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-hautefort-chateau-closeup",
+      "position": [
+        65,
+        40,
+        118
+      ],
+      "lookAt": [
+        -9,
+        9,
+        4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "drawbridge-bretagne-tower-and-pavilion",
+      "position": [
+        -9.2,
+        6.7,
+        100
+      ],
+      "lookAt": [
+        -13.5,
+        11,
+        24.5
+      ]
+    },
+    {
+      "name": "open-court-balustrade-and-two-round-towers",
+      "position": [
+        73,
+        36,
+        24
+      ],
+      "lookAt": [
+        -8.8,
+        9.6,
+        -2.9
+      ]
+    },
+    {
+      "name": "rear-pavilions-and-slate-roofline",
+      "position": [
+        -76,
+        43,
+        -78
+      ],
+      "lookAt": [
+        -12,
+        9,
+        -2.8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 35293,
+    "vertices": 105879,
+    "materials": 6,
+    "bytes": 4485092,
+    "sha256": "sha256:bc7348f5cd7d30d0f545234310a84b1ada36f87f69b48e9d56681298028d8b24"
+  }
+}

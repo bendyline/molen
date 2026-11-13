@@ -20,7 +20,11 @@ describe('package content gate', () => {
     expect(gate.checkPackedFile('dist/index.mjs', 40_000)).toEqual([]);
     expect(gate.checkPackedFile('dist/p51d/model.glb', 1000)[0]).toMatch(/content file \(\.glb\)/);
     expect(gate.checkPackedFile('assets/tree/asset.json', 100)[0]).toMatch(/content directory/);
-    expect(gate.checkPackedFile('dist/index.mjs', 440_000)[0]).toMatch(/430 KB of JavaScript/);
+    // Just under and just over the limit, so a raised MAX_CHUNK_BYTES keeps this test honest.
+    expect(gate.checkPackedFile('dist/index.mjs', gate.MAX_CHUNK_BYTES)).toEqual([]);
+    expect(gate.checkPackedFile('dist/index.mjs', gate.MAX_CHUNK_BYTES + 10_240)[0]).toMatch(
+      new RegExp(`${gate.MAX_CHUNK_BYTES / 1024 + 10} KB of JavaScript`),
+    );
     expect(gate.checkFilesField(['dist', 'packs/*'])).toEqual([
       '"files" publishes packs/*; content ships in content packs',
     ]);

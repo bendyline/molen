@@ -2,7 +2,8 @@ name: Restore repository GLBs
 description: >-
   Restore the asset bundle named by this checkout's asset inputs (scripts/asset-inputs.mjs):
   from the Actions cache, else from its GitHub release, else by building it from source when no
-  bundle exists for these inputs yet (a pull request that changes models).
+  bundle exists for these inputs yet (a pull request that changes models). That build starts from
+  the newest earlier build this branch can see, so it reruns only the jobs whose inputs changed.
 outputs:
   built:
     description: "'true' when this job built the bundle from source."
@@ -33,6 +34,39 @@ runs:
         status=$?
         if [ "$status" -eq 3 ]; then echo "build=true" >> "$GITHUB_OUTPUT"; exit 0; fi
         exit "$status"
+    # A source build starts from an earlier one instead of from nothing: the newest job records
+    # this branch can see (its own last build, else main's) and the bundle they describe, else the
+    # newest published bundle. Records are checked against the bytes on disk, so a seed that does
+    # not match only costs reruns, never a wrong GLB. Keep these paths identical to the save below.
+    - if: steps.fetch.outputs.build == 'true'
+      id: seed-records
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          .artifacts/asset-build/jobs/*.json
+          .artifacts/asset-build/seed.json
+          .artifacts/landmark-lods/*.json
+        key: molen-asset-seed-${{ steps.key.outputs.release }}
+        restore-keys: molen-asset-seed-
+    - if: steps.fetch.outputs.build == 'true'
+      id: seed
+      shell: bash
+      run: |
+        release=$(node -e "try { const { key } = require('./.artifacts/asset-build/seed.json'); if (/^[a-f0-9]{64}$/.test(key)) console.log('assets-' + key.slice(0, 16)); } catch {}")
+        echo "release=$release" >> "$GITHUB_OUTPUT"
+    # The seed's own archives, when an unpublished build (this pull request's last push) cached
+    # them; published bundles can also be downloaded.
+    - if: steps.fetch.outputs.build == 'true' && steps.seed.outputs.release != ''
+      uses: actions/cache/restore@v4
+      with:
+        path: .artifacts/asset-packs/
+        key: molen-assets-${{ steps.seed.outputs.release }}
+    - if: steps.fetch.outputs.build == 'true'
+      name: Start from an earlier bundle
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: node scripts/asset-packs.mjs seed
     # asset-build.json pins the Node major the committed metadata was generated with; the job's
     # own Node comes back afterwards, so the rest of the job still tests the version it asked for.
     - if: steps.fetch.outputs.build == 'true'
@@ -54,12 +88,23 @@ runs:
         pip install -r examples/lantern-dungeon/tools/requirements.txt
         pnpm assets:build --compile
         # Make the build restorable before its release exists: dependent jobs and reruns restore
-        # it offline, and on main the publish job uploads these archives.
+        # it offline, and on main the publish job uploads these archives. Groups the build did
+        # not change reuse the seed's archives instead of compressing them again.
         pnpm assets:pack
+        # The next build of this branch (or of any branch, from main) starts from this one.
+        cp .artifacts/asset-packs/installed.json .artifacts/asset-build/seed.json
     - if: steps.fetch.outputs.build == 'true'
       uses: actions/setup-node@v4
       with:
         node-version: ${{ steps.node.outputs.version }}
+    - if: steps.fetch.outputs.build == 'true'
+      uses: actions/cache/save@v4
+      with:
+        path: |
+          .artifacts/asset-build/jobs/*.json
+          .artifacts/asset-build/seed.json
+          .artifacts/landmark-lods/*.json
+        key: molen-asset-seed-${{ steps.key.outputs.release }}
     # A pull request that only downloaded the release reads main's cache instead of saving a copy.
     - if: >-
         steps.cache.outputs.cache-hit != 'true' &&

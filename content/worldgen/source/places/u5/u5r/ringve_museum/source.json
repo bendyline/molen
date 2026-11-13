@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.ringve_museum",
+  "kind": "static-structure",
+  "title": "Ringve Manor House",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.ringve_museum",
+        "output": "assets/places/u5/u5r/ringve_museum/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:ce2f3e495eae5eaacc8c1670fa8d7f4c4eca0f139be0f0cda8b52f6fcfca275d"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-ringve-manor",
+        "path": "models/generate-ringve-manor.mjs"
+      },
+      {
+        "id": "ringve-manor-model",
+        "path": "models/ringve-manor-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/manor-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-ringve-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-17335-8852.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

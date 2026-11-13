@@ -1,0 +1,29 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "building-uses",
+  "path": "/?synthetic=1&uses=1&mode=human&quality=balanced&freeze=1&hud=0&ambient=0&wildlife=0&dioramas=0&lat=47.6227&lon=-122.0172&alt=322&yaw=-0.2&pitch=0.08",
+  "viewport": [1280, 720],
+  "probes": [
+    {
+      "name": "status",
+      "selector": "#status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading layers",
+      "stableMs": 3000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "wait",
+      "durationMs": 12000
+    },
+    {
+      "type": "screenshot",
+      "name": "01-street"
+    }
+  ]
+}

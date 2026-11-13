@@ -18,6 +18,7 @@ export type {
   AmbientKind,
   AmbientObserverData,
   AmbientObserverState,
+  AmbientRoleConsist,
   AmbientRoleData,
   AmbientRoleVisual,
   AmbientStateData,
@@ -58,6 +59,7 @@ export {
   edgeHeight,
   laneCoordinate,
   laneEdgeDistance,
+  laneHeight,
   laneSample,
   sampleConnector,
   sampleLaneBody,
@@ -101,6 +103,8 @@ export type {
 export { DEFAULT_POLICY, mergePolicy, policyForBudget } from './kernel/spawn/policy';
 export type { ObserverView } from './kernel/spawn/spawner';
 export type {
+  AmbientConsist,
+  AmbientConsistCar,
   AmbientPedestrianType,
   AmbientSpawnInfo,
   AmbientTemplate,

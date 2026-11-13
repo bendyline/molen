@@ -320,8 +320,8 @@
       }
     }
   },
-  "sourceHash": "sha256:725365ab82ab50b1f80a5a096b209211ce356f15e8c0d9abc470ab58a327a813",
-  "runtimeHash": "sha256:495dec336cfb270af1c9880785c089169b8f9bbe5e9b84db2f30cd8ce583117f",
+  "sourceHash": "sha256:c817058ddd7c3228772531a19d09e0cb39c0a8ee40d2f9e64d6e22802a2090c2",
+  "runtimeHash": "sha256:634c0bef6122d9b6a64a752c8979351b74530e7b74a621e2a12422357d6d09d1",
   "limitations": [
     "Polygonal interpretation,not an engineering replica. Compound surfaces,airfoil sections,intake/engine internals,RAM edging,livery,individual fasteners and labels are simplified; low-resolution drawing has disclosed scale disagreements.",
     "Cockpit geometry uses museum91-4003 EMD evidence,not a verified current production block. Photo is oblique and partly occluded; upper-right auxiliary,console switch identities/spacing,seat and harness are approximations. Display scales are assumptions; several display surfaces are simplified to one plane.",
@@ -541,6 +541,57 @@
       "Existing simplified FLIGHT/SIM and NAV/SIM displays remain; unsupported tactical/engine systems remain INOP or blank.",
       "Earlier overlay measurements and their hashes above describe the historical baseline, not this enlarged cockpit.",
       "Targeted model validation only. Aggregate asset lock and full source rebuild remain for the next model-batch milestone; no full engine CI or publication performed."
+    ]
+  },
+  "proportionReview": {
+    "date": "2026-11-06",
+    "outcome": "Measured and left alone.",
+    "method": "Drawing resampled into model metres and overlaid on the rasterized GLB, side view. No photograph solved.",
+    "calibration": {
+      "side": "USAF line drawing, 33.7 px/m from the 6.14 m wheelbase at the drawing ground line. Low resolution, about 6 cm per pixel."
+    },
+    "landmarks": {
+      "finding": "Crown, keel, canopy and fin all fall on the drawing. No thin-forebody error."
+    },
+    "corrections": [],
+    "limitations": [
+      "Only the side view was checked in this pass."
+    ]
+  },
+  "cockpitSweep": {
+    "tool": "packages/entities/scripts/cockpit-sweep.mjs",
+    "finding": "The seat stood 0.68 m behind the eye. The pedals sat behind the panel face, out of the tub.",
+    "before": {
+      "outside": 79.0,
+      "horizon": 95.0,
+      "overNose": -6.0,
+      "headroom": 0.2,
+      "wall": 0.32,
+      "panel": 0.87,
+      "cushion": 1.16,
+      "seatback": 0.68,
+      "dial": 258.0,
+      "poked": 0.0
+    },
+    "after": {
+      "outside": 79.51,
+      "horizon": 100,
+      "overNose": -9,
+      "headroom": 0.2,
+      "wall": 0.32,
+      "panel": 0.87,
+      "cushion": 0.79,
+      "seatback": 0.28,
+      "dial": 258.1,
+      "poked": 0
+    },
+    "changes": [
+      "Seat forward 0.35 m and up 0.15 m on a pedestal; pedals aft 0.20 m.",
+      "HUD mount lowered 0.055 m; the combiner keeps its top height above the horizon line."
+    ],
+    "limitations": [
+      "Seat, stick, pedal and throttle positions come from seated-eye ergonomic targets and cockpit photographs, not a dimensioned installation drawing.",
+      "Measured before the 2026-10-27 enclosure revision was merged in. On the merged cockpit the dashboard sits 0.18 m nearer and is scaled 1.1, so the HUD mount drop is applied in the dashboard frame (0.088 m local) and the seat pedestal stays in cabin space. A candidate build then read outside 69, overNose -6 and panel 0.59 m, with headroom, wall, cushion and seatback unchanged; the panel itself now limits the view over the nose."
     ]
   }
 }

@@ -1,0 +1,58 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.wikipedia_monument",
+  "inputHash": "sha256:310f5edf3a8f77d4d3df2de15e72da9ce8d03c18ce1914083896facb937f701a",
+  "sourceHash": "sha256:4d085564a39c81acafe850711020dff4c565f807d3cef07852986d32ce14dc91",
+  "runtimeHash": "sha256:84118fb757622bd6716bccf721326f944fbfa48d6f25ba08021dec325ca6ddfe",
+  "fixtureHash": "sha256:7c18d25f2eab407c380756b837987b105d97eed89de888751fb10962373b50ff",
+  "placementHash": "sha256:671d5cddc5f2bb8ffc7e8d0c6761d172e4625f6f6ada3479668c9b38576af060",
+  "materialGraphs": {
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.metal_bronze_cast": {
+      "path": "materials/metal_bronze_cast.matgraph.json",
+      "hash": "sha256:1961f7307849a7e2d174144a27193c57a27e4f1515a4e16952483daeb46d8f58"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-wikipedia-monument.png",
+      "hash": "sha256:1ea91e50caab0cdac367135fbd31efb0007c0049a87046adb53886e2927e95bf",
+      "camera": {
+        "name": "detail-monument-in-plac-frankfurcki",
+        "position": [
+          5.2,
+          3.05,
+          -3.65
+        ],
+        "lookAt": [
+          0,
+          1.22,
+          0
+        ],
+        "fov": 38,
+        "group": "detail",
+        "lightDirection": [
+          0.59,
+          0.91,
+          -0.54
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "wikipedia.monument",
+        "visibleDraws": 2
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The two shared metal graphs resolve once per tier. Cast bronze supplies the figures, globe and page edges. Painted metal supplies the green plaque."
+}

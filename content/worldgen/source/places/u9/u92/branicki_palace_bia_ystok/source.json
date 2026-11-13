@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.branicki_palace_bia_ystok",
+  "kind": "static-structure",
+  "title": "Branicki Palace, Białystok",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.branicki_palace_bia_ystok",
+        "output": "assets/places/u9/u92/branicki_palace_bia_ystok/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e559acee76b4fe7de2d153aa5ebec8db342a57226a1f6b9e13b30f6693fcbdd2"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-branicki-palace",
+        "path": "models/generate-branicki-palace.mjs"
+      },
+      {
+        "id": "branicki-palace-model",
+        "path": "models/branicki-palace-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/palace-and-wing-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-rakoon-qualla-originals.json",
+      "reference-rights/commons-rakoon-courtyard-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-18492-10654.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

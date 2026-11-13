@@ -1,0 +1,441 @@
+{
+  "id": "herrenchiemsee",
+  "title": "Herrenchiemsee New Palace",
+  "wikidataId": "Q118618",
+  "referenceCoordinate": {
+    "longitude": 12.402288449,
+    "latitude": 47.860443689
+  },
+  "module": "content/worldgen/source/places/u2/u28/herrenchiemsee/models/new-palace-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-herrenchiemsee.mjs",
+  "builder": "buildHerrenchiemseeLevel",
+  "surfaces": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.91
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.89
+    },
+    "floor": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.96
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "membrane",
+      "roughness": 0.94
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.75,
+      "metallic": 0.24
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.46
+    },
+    "gravel": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.96
+    }
+  },
+  "exportLabel": "Molen original Herrenchiemsee New Palace master",
+  "expectedDraftMasterHash": "sha256:10998d6991a788ebb6aa4a9fb6876a99c9dfabb4aed3b7222fc1421c92d08ef5",
+  "visualBrief": "The standing New Palace wraps around an open gravel court. The west garden front has the grand order, three levels of windows and a continuous balustrade with urns. The east court has a columned balcony, three arches, the clock and winged crest, and a striped stone landing.",
+  "heightPolicy": "A 535.7 m sea-level model datum and standard terrain support the foundation, two terraces and graded gravel court. The replacement uses the named palace outline. The original garden basins, paths, surrounding buildings and elevation stay in the viewer.",
+  "nativeAxes": "+X points north-northeast, +Z faces the entrance court eastward, and -Z faces the west water parterre.",
+  "limitations": [
+    "The model covers the standing New Palace. The footprint and signed garden and court axes follow the map. The Old Palace and the formal park basins retain their separate mapped features.",
+    "Façade heights, window relief, stairs, roof fixtures, balustrades and the courtyard clock group are exterior photo-based reconstructions. Fine relief and figures are simplified to suit the viewer.",
+    "The local foundation and exterior terraces use standard terrain samples. Interiors, the demolished north extension and fountain animation are outside this model."
+  ],
+  "references": [
+    {
+      "url": "https://www.herrenchiemsee.de/englisch/n_palace/index.htm?vm=r",
+      "hash": "sha256:c980f21dae6b02f1888bdc33578ba3a8a051f506b9dcb61c8f9d019b53a38732",
+      "observed": "Photo of the completed exterior and scope of the standing palace."
+    },
+    {
+      "url": "https://www.herrenchiemsee.de/englisch/park/",
+      "hash": "sha256:29611f901779837a2c54f5cae4252897f939f9f468c2d8198d304e47e4fcf268",
+      "observed": "Aerial view and signed garden axis."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Schloss_Herrenchiemsee_02.jpg",
+      "hash": "sha256:ac42257ba71d8a725ae02a45e181db67c98820c990b31a53b1511d8b493bba1f",
+      "observed": "Court-facing clock group, balcony, arches, striped upper landing and gravel court."
+    },
+    {
+      "url": "https://geodaten.bayern.de/denkmal_static_data/externe_denkmalliste/pdf/denkmalliste_merge_187123.pdf",
+      "observed": "The standing three-wing palace has an attic storey, flat roof and balustrades."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "palace-and-west-water-parterre",
+      "position": [
+        -111,
+        76,
+        -169
+      ],
+      "lookAt": [
+        0,
+        8,
+        -29
+      ],
+      "fov": 51
+    },
+    {
+      "name": "garden-front-and-grand-order",
+      "position": [
+        3,
+        10.2,
+        -106
+      ],
+      "lookAt": [
+        0,
+        10,
+        -43
+      ],
+      "fov": 64
+    },
+    {
+      "name": "east-court-and-three-entrances",
+      "position": [
+        0.1,
+        7.6,
+        34
+      ],
+      "lookAt": [
+        0.1,
+        12,
+        -16
+      ],
+      "fov": 66
+    },
+    {
+      "name": "clock-crest-and-balcony",
+      "position": [
+        -9.5,
+        20.5,
+        8.9
+      ],
+      "lookAt": [
+        0.1,
+        15,
+        -17.6
+      ],
+      "fov": 56
+    },
+    {
+      "name": "flat-roofs-and-open-court",
+      "position": [
+        23,
+        110,
+        62
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "garden-arcades-and-balustrade",
+      "position": [
+        -31,
+        12.8,
+        -57
+      ],
+      "lookAt": [
+        -0.1,
+        11.3,
+        -44.8
+      ],
+      "fov": 66
+    },
+    {
+      "name": "side-pavilion-and-court-opening",
+      "position": [
+        88,
+        38,
+        58
+      ],
+      "lookAt": [
+        25,
+        8,
+        14
+      ],
+      "fov": 57
+    }
+  ],
+  "materialMethod": "Seven reusable graphs supply sandstone, limestone, granite, gravel, membrane roof, patterned glass and cast metal.",
+  "sourceFacts": {
+    "mappedWay": 4605747,
+    "mappedPlan": {
+      "length": 102.34,
+      "width": 91.018
+    },
+    "openCourt": 1,
+    "roofWings": 3,
+    "photoBasedEaveMeters": 18.74
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        9,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u2/u28/herrenchiemsee/models/new-palace-model.mjs",
+    "export": "buildHerrenchiemseeSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.91
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.89
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.96
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.94
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.75,
+        "metallic": 0.24
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.46
+      },
+      "gravel": {
+        "slot": "foundation",
+        "graph": "gravel",
+        "roughness": 0.96
+      }
+    },
+    "errorMeters": 1.45,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHerrenchiemseeDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.46
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.65
+      },
+      "street": {
+        "export": "buildHerrenchiemseeStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.46
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.26
+      },
+      "closeup": {
+        "export": "buildHerrenchiemseeCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.46
+          },
+          "gravel": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "herrenchiemsee-skyline",
+      "position": [
+        -111,
+        76,
+        -169
+      ],
+      "lookAt": [
+        0,
+        8,
+        -29
+      ],
+      "fov": 51,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "herrenchiemsee-district",
+      "position": [
+        -111,
+        76,
+        -169
+      ],
+      "lookAt": [
+        0,
+        8,
+        -29
+      ],
+      "fov": 51,
+      "reviewLod": "district"
+    },
+    {
+      "name": "herrenchiemsee-street",
+      "position": [
+        -111,
+        76,
+        -169
+      ],
+      "lookAt": [
+        0,
+        8,
+        -29
+      ],
+      "fov": 51,
+      "reviewLod": "street"
+    },
+    {
+      "name": "herrenchiemsee-closeup",
+      "position": [
+        -111,
+        76,
+        -169
+      ],
+      "lookAt": [
+        0,
+        8,
+        -29
+      ],
+      "fov": 51,
+      "reviewLod": "closeup"
+    }
+  ]
+}

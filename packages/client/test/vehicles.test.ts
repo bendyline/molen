@@ -3,9 +3,12 @@ import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import {
   createParkedVehicleBatch,
+  createParkedVehicleInstances,
   createVehicleVisual,
   isParkedVehicleHidden,
   setParkedVehicleHidden,
+  threeWheelerProxyGeometry,
+  twoWheelerProxyGeometry,
   vehicleProxyGeometry,
 } from '../src/vehicles';
 
@@ -103,6 +106,62 @@ describe('vehicle visuals', () => {
       expect(paintedRoof).toBeGreaterThan(0);
       expect(slopedGlass).toBeGreaterThan(0);
     }
+  });
+
+  it('draws parked two-wheelers and auto-rickshaws as their own light silhouettes', () => {
+    const scooter: VehicleSpec = {
+      ...SPEC,
+      width: 0.7,
+      length: 1.85,
+      height: 1.2,
+      wheelbase: 1.39,
+      wheelTrack: 0,
+      wheelRadius: 0.23,
+      bodyStyle: 'scooter',
+      cycle: {
+        maxLean: 0.6,
+        riderLean: 0.2,
+        handlebarPivot: [0, 1, 0.36],
+        grips: [
+          [0.3, 1, 0.22],
+          [-0.3, 1, 0.22],
+        ],
+        footrests: [
+          [0.13, 0.34, 0.1],
+          [-0.13, 0.34, 0.1],
+        ],
+      },
+    };
+    const auto: VehicleSpec = {
+      ...SPEC,
+      width: 1.3,
+      length: 2.63,
+      height: 1.76,
+      wheelbase: 2,
+      wheelTrack: 1.15,
+      wheelRadius: 0.205,
+      bodyStyle: 'auto-rickshaw',
+    };
+    for (const [spec, geometry, triangles] of [
+      [scooter, twoWheelerProxyGeometry(scooter), 110],
+      [auto, threeWheelerProxyGeometry(auto), 170],
+    ] as const) {
+      const position = geometry.getAttribute('position');
+      expect(position.count / 3).toBeLessThanOrEqual(triangles);
+      expect(geometry.boundingBox?.min.y).toBeCloseTo(0);
+      expect(geometry.boundingBox?.max.y).toBeLessThanOrEqual(spec.height + 0.01);
+      expect(geometry.boundingBox?.max.x).toBeLessThanOrEqual(spec.width / 2 + 0.06);
+      expect(geometry.userData.bodyVertices).toBeGreaterThan(0);
+      expect(geometry.userData.bodyVertices).toBeLessThan(position.count);
+      const batch = createParkedVehicleBatch([
+        { id: 'parked', kind: 'test', color: '#22aa44', spec, position: [0, 0, 0], yaw: 0 },
+      ]);
+      const mesh = batch.children[0] as THREE.Mesh;
+      expect(mesh.geometry.getAttribute('position').count).toBe(position.count);
+      const colors = mesh.geometry.getAttribute('color');
+      expect(new THREE.Color().fromBufferAttribute(colors, 0).getHexString()).toBe('22aa44');
+    }
+    expect(twoWheelerProxyGeometry({ ...scooter })).toBe(twoWheelerProxyGeometry(scooter));
   });
 
   it('caches all wheel dimensions independently and paints the roof with the parked body', () => {
@@ -290,5 +349,51 @@ describe('vehicle visuals', () => {
     expect(center(1)).toEqual([3, 0]);
     expect(setParkedVehicleHidden(mesh, 9, true)).toBe(false);
     mesh.geometry.dispose();
+  });
+});
+
+describe('instanced parked vehicles', () => {
+  const car = (id: string, x: number, length = SPEC.length): VehiclePlacement => ({
+    id,
+    kind: 'car',
+    color: '#914c40',
+    spec: { ...SPEC, length },
+    position: [x, 3, 20],
+    yaw: 0,
+  });
+  it('draws one mesh per body size, owning ids the way a merged batch does', () => {
+    const group = createParkedVehicleInstances(
+      [car('a', 10), car('b', 14), car('c', 18, 5.2)],
+      [10, 20],
+    );
+    const meshes = group.children as THREE.InstancedMesh[];
+    expect(meshes).toHaveLength(2);
+    expect(meshes[0]?.userData.vehicleIds).toEqual(['a', 'b']);
+    expect(meshes[1]?.userData.vehicleIds).toEqual(['c']);
+    expect(meshes[0]?.count).toBe(2);
+    const matrix = new THREE.Matrix4();
+    meshes[0]?.getMatrixAt(1, matrix);
+    // Local to the origin, with the height as given: a car on a deck, not at the ground.
+    expect(new THREE.Vector3().setFromMatrixPosition(matrix).toArray()).toEqual([4, 3, 0]);
+  });
+  it('hides an instance to a point and restores it', () => {
+    const [mesh] = createParkedVehicleInstances([car('a', 10), car('b', 14)]).children as [
+      THREE.InstancedMesh,
+    ];
+    const before = new THREE.Matrix4();
+    mesh.getMatrixAt(1, before);
+    const version = mesh.instanceMatrix.version;
+    expect(setParkedVehicleHidden(mesh, 1, true)).toBe(true);
+    expect(setParkedVehicleHidden(mesh, 1, true)).toBe(false);
+    expect(isParkedVehicleHidden(mesh, 1)).toBe(true);
+    expect(mesh.instanceMatrix.version).toBeGreaterThan(version);
+    const hidden = new THREE.Matrix4();
+    mesh.getMatrixAt(1, hidden);
+    expect(hidden.elements.every((value) => value === 0)).toBe(true);
+    expect(setParkedVehicleHidden(mesh, 1, false)).toBe(true);
+    const restored = new THREE.Matrix4();
+    mesh.getMatrixAt(1, restored);
+    expect(restored.equals(before)).toBe(true);
+    expect(setParkedVehicleHidden(mesh, 9, true)).toBe(false);
   });
 });

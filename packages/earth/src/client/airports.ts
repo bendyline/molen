@@ -268,7 +268,8 @@ export function withEarthAirports(
     async createEmptyTile(context) {
       const empty = createEmptyTerrainSemanticTile();
       const tile = await airports.augment(empty, context);
-      if (tile === empty) return undefined;
+      // No airport here: whatever else supplements the basemap (a map override) still may.
+      if (tile === empty) return renderer.createEmptyTile?.(context);
       // Missing basemap coverage is not evidence of a forest around the airport. Suppress
       // default open-ground scatter while the observed airport polygons keep their own cover.
       tile.landcover.unshift({

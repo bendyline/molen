@@ -1,0 +1,114 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.rail.tank_car_dot117": {
+      "doc": "DOT-117J jacketed general-service tank car of about 30,000 gal: sloped-bottom shell, integral full-height head shields, top fittings protective housing, centre ladders, end platforms, bottom outlet with skid. Unpowered car for track-guided consists; vehicle.color repaints the tank.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.tank_car_dot117",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.tank_car_dot117",
+          "color": "#3f4245",
+          "spec": {
+            "label": "DOT-117 tank car",
+            "bodyStyle": "freight-car",
+            "genericLabel": "Tank car",
+            "width": 3.2,
+            "length": 17,
+            "height": 4.6,
+            "centerOfMass": [
+              0,
+              2.3,
+              0
+            ],
+            "wheelbase": 13.4,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.457,
+            "mass": 120000,
+            "engineForce": 1,
+            "maxSpeed": 31.3,
+            "reverseSpeed": 30,
+            "brakeDeceleration": 0.45,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [
+              0,
+              2.5,
+              0
+            ],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00001,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 13.4,
+              "couplerLength": 18.1,
+              "power": 0,
+              "gauge": 1.435,
+              "profile": "tank"
+            }
+          },
+          "visual": {
+            "wheelNodes": [
+              "axle-1",
+              "axle-2",
+              "axle-3",
+              "axle-4"
+            ],
+            "frontWheelNodes": [
+              "axle-1"
+            ],
+            "paintMaterial": "rail-livery-body"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": [
+        "molen.entities.rail.tank_car_dot117"
+      ]
+    }
+  }
+}

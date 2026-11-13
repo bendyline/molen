@@ -5,11 +5,12 @@
   "sourceHash": "sha256:13057dbcf8720a6252e644ea79a55d96955c074d47d8e732be4a427a782a38a9",
   "runtimeHash": "sha256:49b74b363f721d4e81ea5fba477b4833a145fd6a03aaae9b479937e934658f44",
   "reviewGroundY": 0,
-  "fixtureHash": "sha256:7602608105f3d55798b8e573ee16fbb6b58dd3c8834f0a9e3ba65a3b00360afa",
+  "fixtureHash": "sha256:ba9d82c254852e65e6c8bfd10c48e92f57dc23243a86fcea80787ae9789621fc",
   "footprintEvidenceHash": "sha256:657e0061df817e6c6e4c9f252bdaab8b156d3182c25d59bb3bdd15f9bd9d26dc",
   "reflectionMode": "sky-pmrem",
   "clippingMode": "bounds",
   "reviewBoundedPlacement": true,
+  "targetOnly": true,
   "placementHash": "sha256:fba102bb926808f08c66c3970a4f6f59aa121f1d8c6af10b853b3536ec861d61",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.concrete_plain": {
@@ -34,13 +35,13 @@
     },
     "matgraph:molen.worldgen.material.window_grid": {
       "path": "materials/window_grid.matgraph.json",
-      "hash": "sha256:be487d8aaf9268a0dd9682d3dd86bfb960e24a92a2dc288c117610c335aa3b85"
+      "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:7c9ae398d473459649107ee84ab23ef3d7328561a335c88a2c9f736a1ac20331",
+      "hash": "sha256:3e49edbf2e5bfc556a0c11dbba3915575baa03b0f2f984830b06c9daae913ba2",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -83,20 +84,20 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "9c41a6fc-5117-4b83-896e-45c5f08da39a",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "06693007-b3e8-4045-bdcd-0dc51ebb28ae",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "bc3a675c-51d5-4306-a4dd-3f48085f07ab",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "58a1e0ec-9f3a-48bc-8dae-a39a7bee424e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fd5ef0fa-050e-4d0b-bab3-c3a9239d709f",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "d84cede2-551c-472b-9900-8ef9bee090a1"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "3c0f7721-7692-4237-a60a-eff715549475",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "77924547-7054-448c-9bb3-030136e7433e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.tottenham_hotspur_stadium"
         ],
         "selectionBounds": [
-          -0.06894893690074998,
-          51.60251867456998,
-          -0.06351055950470319,
+          -0.06894889054409496,
+          51.602518732155445,
+          -0.0635106058613582,
           51.60589639762369
         ],
         "terrainSamples": [
@@ -116,12 +117,15 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
-          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1
         },
         "draws": 9,
         "renderedTriangles": 46406
@@ -129,7 +133,7 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:d70926e67ec3beed23da1cff1496915b2ec1ed4ce0cb4c22e77b0c2dae66d9fb",
+      "hash": "sha256:336674df41a7db06f88816d5397a3f74ab2565bac5ad2ce1156ea8e9254f8af7",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -172,20 +176,20 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "9c41a6fc-5117-4b83-896e-45c5f08da39a",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "06693007-b3e8-4045-bdcd-0dc51ebb28ae",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "bc3a675c-51d5-4306-a4dd-3f48085f07ab",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "58a1e0ec-9f3a-48bc-8dae-a39a7bee424e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fd5ef0fa-050e-4d0b-bab3-c3a9239d709f",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "d84cede2-551c-472b-9900-8ef9bee090a1"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "3c0f7721-7692-4237-a60a-eff715549475",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "77924547-7054-448c-9bb3-030136e7433e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.tottenham_hotspur_stadium"
         ],
         "selectionBounds": [
-          -0.06894893690074998,
-          51.60251867456998,
-          -0.06351055950470319,
+          -0.06894889054409496,
+          51.602518732155445,
+          -0.0635106058613582,
           51.60589639762369
         ],
         "terrainSamples": [
@@ -205,12 +209,15 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
-          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1
         },
         "draws": 9,
         "renderedTriangles": 46406
@@ -218,7 +225,7 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:8c499971dd423c1776e5d736c4e2f99e9ef52531438ed7979caa8459bcf87ea0",
+      "hash": "sha256:4370139b6b0903948017565e4bf9568230c061bd8e50b89346f7a729003ab7ba",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -261,20 +268,20 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "9c41a6fc-5117-4b83-896e-45c5f08da39a",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "06693007-b3e8-4045-bdcd-0dc51ebb28ae",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "bc3a675c-51d5-4306-a4dd-3f48085f07ab",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "58a1e0ec-9f3a-48bc-8dae-a39a7bee424e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fd5ef0fa-050e-4d0b-bab3-c3a9239d709f",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "d84cede2-551c-472b-9900-8ef9bee090a1"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "3c0f7721-7692-4237-a60a-eff715549475",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "77924547-7054-448c-9bb3-030136e7433e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.tottenham_hotspur_stadium"
         ],
         "selectionBounds": [
-          -0.06894893690074998,
-          51.60251867456998,
-          -0.06351055950470319,
+          -0.06894889054409496,
+          51.602518732155445,
+          -0.0635106058613582,
           51.60589639762369
         ],
         "terrainSamples": [
@@ -294,12 +301,15 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
-          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1
         },
         "draws": 9,
         "renderedTriangles": 46406
@@ -307,7 +317,7 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:6d6cf1c546a894c007cb86835e8d708964261d0d0b7d4cb42e8ba00050981c59",
+      "hash": "sha256:deb4f1d1aa60aa08a0c580e866e7403be659cfb43877954138a891406196a24d",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -350,20 +360,20 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "9c41a6fc-5117-4b83-896e-45c5f08da39a",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "06693007-b3e8-4045-bdcd-0dc51ebb28ae",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "bc3a675c-51d5-4306-a4dd-3f48085f07ab",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "58a1e0ec-9f3a-48bc-8dae-a39a7bee424e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fd5ef0fa-050e-4d0b-bab3-c3a9239d709f",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "d84cede2-551c-472b-9900-8ef9bee090a1"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "3c0f7721-7692-4237-a60a-eff715549475",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "77924547-7054-448c-9bb3-030136e7433e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.tottenham_hotspur_stadium"
         ],
         "selectionBounds": [
-          -0.06894893690074998,
-          51.60251867456998,
-          -0.06351055950470319,
+          -0.06894889054409496,
+          51.602518732155445,
+          -0.0635106058613582,
           51.60589639762369
         ],
         "terrainSamples": [
@@ -383,12 +393,15 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
-          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1
         },
         "draws": 9,
         "renderedTriangles": 46406
@@ -396,7 +409,7 @@
     },
     {
       "path": "shots/shared/south-transparent-atrium-and-two-branching-trees.png",
-      "hash": "sha256:b1116a04fa6c8acff5c877ffaf1e41219ae47dedb1f6eb0d1bdd944814feccbf",
+      "hash": "sha256:c7705891a014178b3b78e2f500e1195ae3f43ae80c9341cd98a74910c5673c07",
       "camera": {
         "name": "south-transparent-atrium-and-two-branching-trees",
         "position": [
@@ -449,20 +462,20 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "9c41a6fc-5117-4b83-896e-45c5f08da39a",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "06693007-b3e8-4045-bdcd-0dc51ebb28ae",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "bc3a675c-51d5-4306-a4dd-3f48085f07ab",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "58a1e0ec-9f3a-48bc-8dae-a39a7bee424e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fd5ef0fa-050e-4d0b-bab3-c3a9239d709f",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "d84cede2-551c-472b-9900-8ef9bee090a1"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "3c0f7721-7692-4237-a60a-eff715549475",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "77924547-7054-448c-9bb3-030136e7433e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.tottenham_hotspur_stadium"
         ],
         "selectionBounds": [
-          -0.06894893690074998,
-          51.60251867456998,
-          -0.06351055950470319,
+          -0.06894889054409496,
+          51.602518732155445,
+          -0.0635106058613582,
           51.60589639762369
         ],
         "terrainSamples": [
@@ -482,12 +495,15 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
-          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1
         },
         "draws": 9,
         "renderedTriangles": 46406
@@ -495,7 +511,7 @@
     },
     {
       "path": "shots/shared/single-south-bank-and-multi-tier-side-stands.png",
-      "hash": "sha256:1e01e74ae1ce297e3aa520e2d87cfa030d9c70d9f20cc6dcdb31a8b470068a4e",
+      "hash": "sha256:63a9c7a4e5409ade11301609fb47573d3c5af565e151b9e2f162704eeb198c02",
       "camera": {
         "name": "single-south-bank-and-multi-tier-side-stands",
         "position": [
@@ -548,20 +564,20 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "9c41a6fc-5117-4b83-896e-45c5f08da39a",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "06693007-b3e8-4045-bdcd-0dc51ebb28ae",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "bc3a675c-51d5-4306-a4dd-3f48085f07ab",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "58a1e0ec-9f3a-48bc-8dae-a39a7bee424e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fd5ef0fa-050e-4d0b-bab3-c3a9239d709f",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "d84cede2-551c-472b-9900-8ef9bee090a1"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "3c0f7721-7692-4237-a60a-eff715549475",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "77924547-7054-448c-9bb3-030136e7433e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.tottenham_hotspur_stadium"
         ],
         "selectionBounds": [
-          -0.06894893690074998,
-          51.60251867456998,
-          -0.06351055950470319,
+          -0.06894889054409496,
+          51.602518732155445,
+          -0.0635106058613582,
           51.60589639762369
         ],
         "terrainSamples": [
@@ -581,12 +597,15 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
-          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1
         },
         "draws": 9,
         "renderedTriangles": 46406
@@ -594,7 +613,7 @@
     },
     {
       "path": "shots/shared/projecting-silver-panels-and-rounded-crown.png",
-      "hash": "sha256:950101c53fa5e324f20440f117bf680eccd83c50255c7f9bd2706e4c7675b14b",
+      "hash": "sha256:4e75073057792496de0c9cac077d0b025fb9d4e0dd86add673f590d5cfbe371c",
       "camera": {
         "name": "projecting-silver-panels-and-rounded-crown",
         "position": [
@@ -647,20 +666,20 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "9c41a6fc-5117-4b83-896e-45c5f08da39a",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "06693007-b3e8-4045-bdcd-0dc51ebb28ae",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "bc3a675c-51d5-4306-a4dd-3f48085f07ab",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "58a1e0ec-9f3a-48bc-8dae-a39a7bee424e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fd5ef0fa-050e-4d0b-bab3-c3a9239d709f",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "d84cede2-551c-472b-9900-8ef9bee090a1"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "3c0f7721-7692-4237-a60a-eff715549475",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "77924547-7054-448c-9bb3-030136e7433e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.tottenham_hotspur_stadium"
         ],
         "selectionBounds": [
-          -0.06894893690074998,
-          51.60251867456998,
-          -0.06351055950470319,
+          -0.06894889054409496,
+          51.602518732155445,
+          -0.0635106058613582,
           51.60589639762369
         ],
         "terrainSamples": [
@@ -680,12 +699,15 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
-          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1
         },
         "draws": 9,
         "renderedTriangles": 46406
@@ -693,7 +715,7 @@
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:ade0cfcebc727336437532353870be848b5f7139f2c2930f57ee3b99fd0d049d",
+      "hash": "sha256:ebb0bb66991950092a32f1c3b88248a937e44e2f52c8efe58ce4f74d2d6898ab",
       "camera": {
         "name": "placement",
         "placement": true
@@ -736,20 +758,20 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "9c41a6fc-5117-4b83-896e-45c5f08da39a",
-          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "06693007-b3e8-4045-bdcd-0dc51ebb28ae",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "bc3a675c-51d5-4306-a4dd-3f48085f07ab",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "58a1e0ec-9f3a-48bc-8dae-a39a7bee424e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "fd5ef0fa-050e-4d0b-bab3-c3a9239d709f",
-          "worldgen:matgraph:molen.worldgen.material.window_grid": "d84cede2-551c-472b-9900-8ef9bee090a1"
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "168251f3-ac09-4a06-86dd-d5162578f4d9",
+          "worldgen:matgraph:molen.worldgen.material.fabric_canvas": "48b860ff-7116-482e-92e4-440bceac2224",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless_beadblasted": "3c0f7721-7692-4237-a60a-eff715549475",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "77924547-7054-448c-9bb3-030136e7433e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "5017a3cf-420f-4405-a4a7-af7d36b385d6",
+          "worldgen:matgraph:molen.worldgen.material.window_grid": "ad473440-3849-43d8-8ec5-39b17c1a00f6"
         },
         "loads": [
           "molen.worldgen.structure.tottenham_hotspur_stadium"
         ],
         "selectionBounds": [
-          -0.06894893690074998,
-          51.60251867456998,
-          -0.06351055950470319,
+          -0.06894889054409496,
+          51.602518732155445,
+          -0.0635106058613582,
           51.60589639762369
         ],
         "terrainSamples": [
@@ -769,12 +791,15 @@
         "groundCoversCutoutProbe": false,
         "groundCutoutProbes": 1,
         "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.fabric_canvas": 1,
-          "molen.worldgen.material.metal_stainless_beadblasted": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.window_grid": 1
+          "molen.worldgen.material.window_grid": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.metal_stainless_beadblasted": 1
         },
         "draws": 10,
         "renderedTriangles": 46406
@@ -789,7 +814,9 @@
   "groundLifecycle": {
     "applicable": true,
     "hiddenRestored": true,
-    "visibleOpen": true
+    "visibleOpen": true,
+    "visibleCapped": false,
+    "unchanged": false
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

@@ -1,0 +1,62 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.farah_citadel",
+  "kind": "static-structure",
+  "title": "Farah Citadel",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.farah_citadel",
+        "output": "assets/places/tm/tmu/farah_citadel/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:edeb274df48f42d5b4afdbf76d2b9fe9f8795d0a0d6e807b97472ba401147064"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-farah-citadel",
+        "path": "models/generate-farah-citadel.mjs"
+      },
+      {
+        "id": "farah-citadel-model",
+        "path": "models/farah-citadel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "plan-controls.json",
+      "native-map/citadel-controls.json",
+      "reference-rights/commons-qualla-farah-originals.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/terrarium-15-22036-13265.png",
+      "terrain-sources/terrarium-15-22036-13266.png",
+      "terrain-sources/terrarium-15-22037-13265.png",
+      "terrain-sources/terrarium-15-22037-13266.png",
+      "terrain-sources/terrarium-15-22038-13265.png",
+      "terrain-sources/terrarium-15-22038-13266.png",
+      "preview.png",
+      "reference-rights/first-party-original-upload-revisions.json",
+      "construction-checkpoint.json",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

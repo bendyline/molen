@@ -10,8 +10,8 @@
  * stream's layers make. Reads stop at the bytes; nothing is decoded or meshed, so prefetching
  * costs bandwidth and cache space, not frame time.
  *
- * Reads run at most two at a time, only while the stream has a free load slot of its own (what
- * the camera sees always comes first), the page is visible and the browser is online without
+ * Reads run at most two at a time, only while the stream has a free terrain load slot of its own
+ * (what the camera sees always comes first), the page is visible and the browser is online without
  * Save-Data. A host can also queue places it expects the viewer to
  * reach (`EarthView.prefetch`, for example a simulator's flight plan); those go first and do not
  * wait for the stream.
@@ -246,7 +246,7 @@ export interface EarthPrefetcherDeps {
   budget(): TerrainPyramidBudget;
   /** Keys (`level/x/z`) of tiles the stream already holds. */
   resident(): ReadonlySet<string>;
-  /** Whether the stream is using all of its own load slots (then only host points are read). */
+  /** Whether the stream is using all its terrain load slots (then only host points are read). */
   busy(): boolean;
   groundHeight(x: number, z: number): number | undefined;
   /** The view parameters a virtual camera shares with the real one. */

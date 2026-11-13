@@ -402,11 +402,11 @@ describe('road signage', () => {
     const size = new THREE.Box3().setFromObject(face).getSize(new THREE.Vector3());
     const streetSize = new THREE.Box3().setFromObject(streetFace).getSize(new THREE.Vector3());
     expect(size.y / streetSize.y).toBeCloseTo(1.4, 4);
-    const vertices = Array.from(face.geometry.getAttribute('position').array);
-    const batch = Array.from(
-      (full.getObjectByName('surface:road-signs') as THREE.Mesh).geometry.getAttribute('position')
-        .array,
-    );
+    // The same triangles, last in the batch: each mesh shares its own vertices.
+    const corners = (mesh: THREE.Mesh) =>
+      Array.from(mesh.geometry.toNonIndexed().getAttribute('position').array);
+    const vertices = corners(face);
+    const batch = corners(full.getObjectByName('surface:road-signs') as THREE.Mesh);
     expect(batch.slice(-vertices.length)).toEqual(vertices);
     for (const object of [full, standalone, street]) disposeTerrainSurfaceObject(object);
   });

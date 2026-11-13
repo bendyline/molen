@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.fort_of_sao_joao_baptista_de_ajuda",
+  "kind": "static-structure",
+  "title": "Fort of São João Baptista de Ajudá",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.fort_of_sao_joao_baptista_de_ajuda",
+        "output": "assets/places/s1/s11/fort_of_sao_joao_baptista_de_ajuda/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:8d638af4dd7ce429cb6693dffe0438d3342119c4af96f38bc0f9e139465734fd"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-fort",
+        "path": "models/generate-fort.mjs"
+      },
+      {
+        "id": "fort-model",
+        "path": "models/fort-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/exterior-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-pd-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-16574-15803.png",
+      "terrain-sources/terrarium-15-16574-15804.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

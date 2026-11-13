@@ -1,0 +1,83 @@
+{
+  "variant": "Airbus A220-300 (BD-500-1A11), PW1500G, clean, gear down, static on ground",
+  "status": "exterior-reference-reviewed; visual acceptance pending owner review",
+  "references": [
+    {
+      "url": "https://mediaassets.airbus.com/pm_38_943_943905-x1g4kvdbru.pdf?fileName=a220-aircraft-characteristics-publication-acp-oct-2026.pdf",
+      "title": "A220 Aircraft Characteristics Publication, Oct 2026, module BD500-3AB48-13800-00",
+      "author": "Airbus",
+      "license": "Public manufacturer document; local study only",
+      "scope": "Tables of general dimensions and ground clearances. The dimension figures render with labels only, no line art, so locators were identified by label position. Visibility figure: eye 8 ft 6 in (2.6 m) aft of the nose tip; table 9 BL 20 in; 17 degrees down, 25 up."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:YL-CSA_AirBaltic_CS300_Bombardier_takeoff_from_Schiphol_(AMS_-_EHAM)%2C_The_Netherlands_pic2.JPG",
+      "title": "airBaltic CS300 YL-CSA at Schiphol, pic2",
+      "author": "Alf van Beem",
+      "license": "Public domain; reference only, no pixels embedded",
+      "scope": "Near-orthographic side view, traced at 43.65 px/m for the fuselage, fin, doors and windows. Livery ignored."
+    }
+  ],
+  "calibration": "43.65 px/m from the 38.69 m length, confirmed by the 15.31 m wheelbase (668 px). Heights rebased to locators A and R.",
+  "dimensionsChecked": [
+    {
+      "name": "overall length",
+      "reference": 38.7,
+      "model": 38.65
+    },
+    {
+      "name": "overall span",
+      "reference": 35.1,
+      "model": 35.11
+    },
+    {
+      "name": "overall height",
+      "reference": 11.65,
+      "model": 11.66
+    }
+  ],
+  "reviewNotes": {
+    "comparisons": [
+      "Side render stacked above the same photograph at matching scale and inspected. No per-pixel overlay was made."
+    ],
+    "corrections": [
+      "Row width corrected from 3.5 to 3.72 m (locator B) and height from 11.5 to 11.65 m (locator R, 11.58 to 11.73 m).",
+      "Static attitude 0.477 degrees nose down taken directly from locator AA.",
+      "Nose rows widened after the photograph showed the first pass too pointed in plan.",
+      "Reading M, J, G, F as wing stations gives 111.4 m2 of planform against the published 112.3 m2.",
+      "Seated eye moved from u 3.40 to the published 2.60. The window top is lowered from 2.8 to 2.71, because on this elliptical section the old top carried the glass over the pilot's head.",
+      "Kit changes: glass clear from the seat and tinted from outside, as on the Bendy airliner. The thick glareshield slab and its large FLIGHT GUIDANCE lettering are replaced by a thin sloped hood with a rolled lip over a slim mode control strip. The panel, floor and overhead take their reach from the nose skin, and a dark coaming lines the inside of the nose.",
+      "Published eye stations for four kit types sit 0.8 m ahead of where the kit had put them, and the same bias was removed here."
+    ]
+  },
+  "sourceHash": "sha256:8ad621f3dd0dbb18da679d037e94ba5d3eecfe40b0da0932390473b674d7f10e",
+  "runtimeHash": "sha256:0fbfec40de95a01609c9658dd2be8bf724fdc849e1f076dc1e639674aa5ffb00",
+  "limitations": [
+    "No plan or front drawing was usable: planform rests on locator interpretation, and locators other than those listed are unidentified.",
+    "Near wing and winglet in the photograph disagree with the planform by about 1.5 m, attributed to camera yaw and parallax but not resolved.",
+    "Exterior only: shared interior, refitted but not compared with an A220 flight deck.",
+    "The window top is 0.1 m under the airBaltic photograph's side window: chosen to give the pilot about the published upward view on a section rounder than the real one.",
+    "Sanity pass only: seating, glass and visibility. The panel, hood and pedestal remain the shared kit interior fitted to the nose, not compared with this type's real flight deck."
+  ],
+  "cockpitSweep": {
+    "method": "packages/entities/scripts/cockpit-sweep.mjs from spec.pilotEye at the runtime camera; seat, nose and front views rendered and inspected.",
+    "columns": "outside%, overNose degrees, headroom, wall, panel, cushion, seatback (m)",
+    "before": [
+      47,
+      -10,
+      0.48,
+      0.79,
+      0.74,
+      0.68,
+      0.41
+    ],
+    "after": [
+      73,
+      -17,
+      0.36,
+      0.47,
+      0.71,
+      0.74,
+      0.36
+    ]
+  }
+}

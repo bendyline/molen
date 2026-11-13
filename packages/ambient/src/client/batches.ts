@@ -1,16 +1,18 @@
 /**
- * Instanced proxies: one `InstancedMesh` per proxy shape and size, refilled every frame from the
+ * Instanced proxies: one instance batch per proxy shape and size, refilled every frame from the
  * live agents. Matrices are relative to an anchor near the camera (float32 instance matrices lose
  * precision at Web Mercator magnitudes); the anchor group sits at the anchor in absolute
- * coordinates, so the renderer's floating origin never needs a re-upload.
+ * coordinates, so the renderer's floating origin never needs a re-upload. Batches of every shape
+ * share one WebGPU shader build (see `InstanceBatch`), so growing a batch builds nothing.
  */
 
+import { InstanceBatch } from '@bendyline/molen-client/instancing';
 import { vehicleProxyMaterial } from '@bendyline/molen-client/vehicles';
 import * as THREE from 'three';
 import { type ProxyDimensions, type ProxyShape, proxyGeometry, proxyKey } from './proxies';
 
 interface Batch {
-  mesh: THREE.InstancedMesh;
+  mesh: InstanceBatch;
   count: number;
   /** Shaders built (or no preparation hook): drawn only then. */
   ready: boolean;
@@ -105,7 +107,7 @@ export class ProxyBatches {
     const capacity =
       previous === undefined ? this.initialCapacity : previous.mesh.instanceMatrix.count * 2;
     const geometry = proxyGeometry(instance.shape, instance.dims);
-    const mesh = new THREE.InstancedMesh(geometry, vehicleProxyMaterial, capacity);
+    const mesh = new InstanceBatch(geometry, vehicleProxyMaterial, capacity);
     mesh.name = `ambient:${key}`;
     mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
     mesh.setColorAt(0, new THREE.Color(1, 1, 1));

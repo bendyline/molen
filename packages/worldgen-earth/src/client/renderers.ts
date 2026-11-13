@@ -41,6 +41,7 @@ import {
   createInstancedPlacements,
   createVertexColorMaterialSet,
   disposeWorldgenObject,
+  type InteriorElevatorStop,
   InteriorStreamer,
   type InteriorStreamingOptions,
   type InteriorStreamingStats,
@@ -60,6 +61,8 @@ import { prepareAgricultureTile } from '../kernel/agriculture';
 import { coarseBuildingTile } from '../kernel/coarse-buildings';
 import { withDistrictLevels } from '../kernel/district-heights';
 import { isLandcoverDesignation } from '../kernel/labels';
+import { LAND_SITE_COLORS, prepareLandSites } from '../kernel/land-sites';
+import { isMapOverrideFeature, MAP_OVERRIDE_TAG } from '../kernel/map-override-tags';
 import type { PlacesContent } from '../kernel/places';
 import type { RegionResolver } from '../kernel/region';
 import { regionScatterId } from '../kernel/region';
@@ -84,6 +87,7 @@ import {
   clipStructureObject,
   footprintCovers,
   footprintOverlapsTile,
+  polygonWithin,
   type StructureFootprint,
   structureFootprint,
   withoutStructureRoads,
@@ -214,15 +218,56 @@ export interface WorldgenRenderStats {
   interiors?: InteriorStreamingStats;
 }
 
+/** A mapped building or placed landmark near a point: see `WorldgenSemanticRenderers.buildingsNear`. */
+export interface WorldgenBuildingHit {
+  kind: 'building' | 'landmark';
+  /** The map feature's id, or the landmark placement's. */
+  id: string;
+  name?: string;
+  /** What the map says it is: a building's finer class when it has one. */
+  class?: string;
+  /** World X/Z outer rings, one per mapped piece; a landmark's is its extent as a rectangle. */
+  outlines: [number, number][][];
+  /** World X/Z `[minX, minZ, maxX, maxZ]`. */
+  bounds: [number, number, number, number];
+  /** World units. */
+  height?: number;
+  levels?: number;
+  /** World units from the point to its outline; 0 inside. */
+  distance: number;
+  /** For a building a host placed: the id of the map override it came with. */
+  override?: string;
+  /** For a landmark: where it is anchored, `[longitude, latitude]`. */
+  anchor?: [number, number];
+}
+
 export interface WorldgenSemanticRenderers {
   classification: TerrainSemanticTileRenderer;
   humanFeatures: TerrainSemanticTileRenderer;
   stats(): WorldgenRenderStats;
+  /**
+   * Mapped buildings and placed landmarks within `radius` world units of a point (default 30),
+   * nearest first, from the detailed tiles in memory. It reads the tiles' kept map data, which
+   * may be decoded afresh: for a key press or a slow poll, not every frame.
+   */
+  buildingsNear(x: number, z: number, radius?: number): WorldgenBuildingHit[];
+  /**
+   * Say that the tiles overlapping a world X/Z rectangle `[minX, minZ, maxX, maxZ]` are about
+   * to be built again from changed map data (see `withMapOverrides`), before asking the stream
+   * to. Their replacements are then generated without the landmark footprints the outgoing tiles
+   * still hold, which would take a host's building for a landmark's own and drop it until the
+   * old tile was gone.
+   */
+  supersede(bounds: readonly [number, number, number, number]): void;
   /** Rebuild resident architecture cooperatively, keeping the previous geometry until ready. */
   setQuality(quality: WorldgenQualityPreset): void;
   setCacheBudget(maxBytes: number): void;
   /** Call before walking collision with the camera in metric world coordinates. */
   updateInteriors(position: readonly [number, number, number]): void;
+  /** The lift a viewer at this position is standing in. */
+  elevatorAt(position: readonly [number, number, number]): InteriorElevatorStop | undefined;
+  /** Ask a tower for a storey; true once it is built and a viewer can be moved there. */
+  requestStorey(identity: string, level: number): boolean;
   dispose(): void;
 }
 
@@ -307,11 +352,27 @@ export function createWorldgenSemanticRenderers(
     /** A neighbour's landmark footprints changed since this tile's buildings were generated. */
     stale?: boolean;
     pending?: AbortController;
+    /** The landmarks standing on it, for buildingsNear. */
+    placed: readonly PlacedStructure[];
+  }
+  interface PlacedStructure {
+    entry: StructurePlacement;
+    size: readonly [number, number];
+    footprint?: StructureFootprint;
+  }
+  interface SharedFootprints {
+    footprints: readonly StructureFootprint[];
+    /** The tile that placed them. */
+    origin: readonly [number, number];
+    tileSize: number;
   }
   const residents = new Map<THREE.Object3D, ResidentBuildings>();
   // Ground footprints of the `replaceFootprint` landmarks each resident tile placed, in world
   // X/Z. A stadium anchored near a tile edge stands on its neighbours' mapped parts too.
-  const sharedFootprints = new Map<THREE.Object3D, readonly StructureFootprint[]>();
+  const sharedFootprints = new Map<THREE.Object3D, SharedFootprints>();
+  // Tiles about to be replaced by ones built from changed map data (see supersede). Their
+  // footprints no longer count, and nothing is spent rebuilding them.
+  const superseded = new WeakSet<THREE.Object3D>();
   const disposedHumanTiles = new WeakSet<THREE.Object3D>();
   let rebuilding = false;
   let disposed = false;
@@ -480,13 +541,16 @@ export function createWorldgenSemanticRenderers(
           options.propLod !== false ? await models.prepare(set.modelRef, true) : prepared;
         const distant =
           options.propLod !== false ? await models.prepare(set.modelRef, 'distant') : prepared;
+        // The far model itself for everything but conifers, and then not a level of its own.
+        const horizon =
+          options.propLod !== false ? await models.prepare(set.modelRef, 'horizon') : prepared;
         if (context.signal.aborted) return objects;
         // Instance matrices for every placement: admitted, as a tile's sources resolve together.
         const build = (): THREE.Object3D =>
           options.propLod !== false
             ? createInstancedPlacementLod(
                 set,
-                [prepared, medium, distant],
+                [prepared, medium, distant, horizon],
                 {
                   // One batch per coarser tile: the terrain tile is already the culling unit. On
                   // WebGPU every InstancedMesh pays its own shader build (about 6 ms on the main
@@ -702,7 +766,9 @@ export function createWorldgenSemanticRenderers(
    * landmark's own off-centre parts (an observation level, its legs, a grandstand, a parked
    * roof) contain no anchor, so a polygon at least half covered by the model's own footprint
    * (`footprint`) goes too, as does one covered by a
-   * landmark a neighbouring tile placed (`nearby`).
+   * landmark a neighbouring tile placed (`nearby`). Whatever lies at least half inside a
+   * replaced polygon goes with it: a mapped building's parts (a shaft, a spire) stay
+   * the landmark's even where the model, anchored off them, covers less than half.
    * The extent fallback applies only when no geometry footprint is available; empty corners
    * of a rotated or concave landmark's bounding box can contain unrelated buildings.
    */
@@ -773,12 +839,29 @@ export function createWorldgenSemanticRenderers(
           (maxV - minV) * context.tileSize <= size[1] * FOOTPRINT_SIZE_RATIO + FOOTPRINT_SLACK
         );
       });
-    const removed: number[] = [];
-    const buildings = tile.buildings.filter((feature, i) => {
-      if (!feature.polygons.some(replaces)) return true;
-      removed.push(i);
-      return false;
+    const replaced = new Set<number>();
+    tile.buildings.forEach((feature, i) => {
+      // What a host placed is never a landmark's own footprint: it stays beside or under one.
+      if (!isMapOverrideFeature(feature) && feature.polygons.some(replaces)) replaced.add(i);
     });
+    // A replaced building takes what is mapped inside it: a tower's shaft and spire are separate
+    // parts within its outline, often off the anchor and mostly beside the model's footprint.
+    const outlines = [...replaced].flatMap((i) => tile.buildings[i]?.polygons ?? []);
+    if (outlines.length)
+      tile.buildings.forEach((feature, i) => {
+        if (
+          !replaced.has(i) &&
+          !isMapOverrideFeature(feature) &&
+          feature.polygons.some((polygon) =>
+            outlines.some((outline) => polygonWithin(polygon, outline)),
+          )
+        )
+          replaced.add(i);
+      });
+    const removed = [...replaced].sort((a, b) => a - b);
+    const buildings = replaced.size
+      ? tile.buildings.filter((_, i) => !replaced.has(i))
+      : tile.buildings;
     const filtered = buildings.length === tile.buildings.length ? tile : { ...tile, buildings };
     const mapped = withoutBuildingCutouts(filtered, context, cutouts, wholeBuildings);
     // Kept footprints stay the tile's own: the worldgen worker gets its packet and this edit.
@@ -1008,23 +1091,31 @@ export function createWorldgenSemanticRenderers(
     root: THREE.Object3D,
     context: TerrainPyramidTileLayerContext,
   ): StructureFootprint[] {
-    return [...sharedFootprints].flatMap(([owner, footprints]) =>
-      owner === root
+    return [...sharedFootprints].flatMap(([owner, { footprints }]) =>
+      owner === root || superseded.has(owner)
         ? []
         : footprints.filter((footprint) => footprintOverlapsTile(footprint, context)),
     );
   }
 
   /** Regenerate the resident buildings `footprints` reach, other than `owner`'s own. */
-  function restaleNeighbours(
-    owner: THREE.Object3D,
-    footprints: readonly StructureFootprint[],
-  ): void {
+  function restaleNeighbours(owner: THREE.Object3D, shared: SharedFootprints): void {
     if (disposed) return;
+    const replaced = superseded.has(owner);
     let marked = false;
     for (const [root, resident] of residents) {
-      if (root === owner || resident.generalized) continue;
-      if (!footprints.some((footprint) => footprintOverlapsTile(footprint, resident.context)))
+      if (root === owner || resident.generalized || superseded.has(root)) continue;
+      // The tile that took a superseded one's place was generated without its footprints.
+      if (
+        replaced &&
+        resident.context.tileSize === shared.tileSize &&
+        resident.context.origin[0] === shared.origin[0] &&
+        resident.context.origin[1] === shared.origin[1]
+      )
+        continue;
+      if (
+        !shared.footprints.some((footprint) => footprintOverlapsTile(footprint, resident.context))
+      )
         continue;
       resident.stale = true;
       marked = true;
@@ -1038,6 +1129,7 @@ export function createWorldgenSemanticRenderers(
    */
   function shareFootprints(
     root: THREE.Object3D,
+    context: TerrainPyramidTileLayerContext,
     placed: ReadonlyArray<{ entry: StructurePlacement; footprint?: StructureFootprint }>,
   ): void {
     const footprints = placed.flatMap(({ entry, footprint }) =>
@@ -1048,16 +1140,17 @@ export function createWorldgenSemanticRenderers(
       if (known) unshareFootprints(root);
       return;
     }
-    sharedFootprints.set(root, footprints);
+    const shared = { footprints, origin: context.origin, tileSize: context.tileSize };
+    sharedFootprints.set(root, shared);
     // A quality rebuild of the same tile re-places the same landmarks; neighbours already know.
-    if (!known) restaleNeighbours(root, footprints);
+    if (!known) restaleNeighbours(root, shared);
   }
 
   function unshareFootprints(root: THREE.Object3D): void {
-    const footprints = sharedFootprints.get(root);
-    if (footprints === undefined) return;
+    const shared = sharedFootprints.get(root);
+    if (shared === undefined) return;
     sharedFootprints.delete(root);
-    restaleNeighbours(root, footprints);
+    restaleNeighbours(root, shared);
   }
 
   function disposeHumanTile(root: THREE.Object3D): void {
@@ -1097,7 +1190,8 @@ export function createWorldgenSemanticRenderers(
     try {
       for (;;) {
         const entry = [...residents].find(
-          ([, resident]) => resident.quality !== quality || resident.stale,
+          ([root, resident]) =>
+            !superseded.has(root) && (resident.quality !== quality || resident.stale),
         );
         if (!entry) break;
         const [root, resident] = entry;
@@ -1160,8 +1254,9 @@ export function createWorldgenSemanticRenderers(
             root.add(replacement);
             resident.architecture = replacement;
             resident.quality = preset;
+            resident.placed = placed;
             registerInteriors(replacement, generated.output, context);
-            shareFootprints(root, placed);
+            shareFootprints(root, context, placed);
             replacement = undefined;
           };
           if (context.admission)
@@ -1251,7 +1346,7 @@ export function createWorldgenSemanticRenderers(
             disposeHumanTile(group);
             return undefined;
           }
-          shareFootprints(group, placed);
+          shareFootprints(group, context, placed);
           return group;
         } catch (error) {
           disposeHumanTile(group);
@@ -1348,8 +1443,11 @@ export function createWorldgenSemanticRenderers(
           architecture,
           quality: preset,
           stale,
+          // Landmarks that replace nothing were not gathered for the footprint pass above.
+          placed:
+            placed.length > 0 ? placed : placedStructures(structureGroup, context, structures),
         });
-        shareFootprints(group, placed);
+        shareFootprints(group, context, placed);
         void rebuildResidents();
         stats.boxes += output.stats.buildingsBoxed;
         stats.skippedByOwnership += output.skippedByOwnership;
@@ -1366,11 +1464,11 @@ export function createWorldgenSemanticRenderers(
   };
   const classification: TerrainSemanticTileRenderer = {
     async createTile(tile: TerrainSemanticTile, context): Promise<THREE.Object3D | undefined> {
-      tile = prepareAgricultureTile(
-        tile,
-        geometryFor(context, metersPerUnit),
-        options.environment,
-      ).tile;
+      const geometry = geometryFor(context, metersPerUnit);
+      tile = prepareLandSites(
+        prepareAgricultureTile(tile, geometry, options.environment).tile,
+        geometry,
+      );
       const centerX = context.origin[0] + context.tileSize / 2;
       const centerZ = context.origin[1] + context.tileSize / 2;
       const environment = options.environment;
@@ -1436,10 +1534,12 @@ export function createWorldgenSemanticRenderers(
       // The land cover worker gets the tile's packet and this edit, not the tile cloned whole.
       deriveTerrainSemanticTilePacket(tile, surfaceTile);
       // Host colors refine the style pack's palette class by class rather than replacing it.
+      // Classes the land-site layouts add keep their own colors under any palette that does not
+      // name them.
       const colors =
         packColors === undefined && hostColors === undefined
           ? undefined
-          : { ...packColors, ...hostColors };
+          : { ...LAND_SITE_COLORS, ...packColors, ...hostColors };
       const meshOptions: TerrainSemanticMeshOptions = {
         ...(models !== undefined ? { maxTreesPerTile: 0 } : {}),
         // Unmapped ground between a dense block's buildings is paving, not the habitat's lawn.
@@ -1532,6 +1632,8 @@ export function createWorldgenSemanticRenderers(
     classification,
     humanFeatures,
     updateInteriors: (position): void => interiors?.update(position),
+    elevatorAt: (position) => interiors?.elevatorAt(position),
+    requestStorey: (identity, level) => interiors?.requestStorey(identity, level) ?? false,
     setQuality(next): void {
       if (quality === next) return;
       quality = next;
@@ -1540,6 +1642,176 @@ export function createWorldgenSemanticRenderers(
     },
     setCacheBudget(maxBytes): void {
       cache?.setLimits({ maxBytes });
+    },
+    supersede(bounds): void {
+      const reaches = (origin: readonly [number, number], tileSize: number): boolean =>
+        origin[0] <= bounds[2] &&
+        origin[0] + tileSize >= bounds[0] &&
+        origin[1] <= bounds[3] &&
+        origin[1] + tileSize >= bounds[1];
+      for (const [root, resident] of residents) {
+        if (!reaches(resident.context.origin, resident.context.tileSize)) continue;
+        superseded.add(root);
+        resident.pending?.abort();
+      }
+      // Distant tiles place landmarks too, without being residents.
+      for (const [root, shared] of sharedFootprints)
+        if (reaches(shared.origin, shared.tileSize)) superseded.add(root);
+    },
+    buildingsNear(x, z, radius = 30): WorldgenBuildingHit[] {
+      // By address: a tile being replaced and its replacement are both resident for a moment,
+      // and the later one, the replacement, is the one to read.
+      const tiles = new Map<string, ResidentBuildings>();
+      for (const resident of residents.values()) {
+        const { origin, tileSize, address } = resident.context;
+        if (
+          x < origin[0] - radius ||
+          x > origin[0] + tileSize + radius ||
+          z < origin[1] - radius ||
+          z > origin[1] + tileSize + radius
+        )
+          continue;
+        tiles.set(`${address.level}/${address.x}/${address.z}`, resident);
+      }
+      const hits = new Map<string, WorldgenBuildingHit & { level: number }>();
+      const boxDistance = (box: readonly [number, number, number, number]): number =>
+        Math.hypot(Math.max(box[0] - x, 0, x - box[2]), Math.max(box[1] - z, 0, z - box[3]));
+      // Coarse first, so a finer tile's copy of a building replaces a coarser one's.
+      const ordered = [...tiles.values()].sort(
+        (a, b) => a.context.address.level - b.context.address.level,
+      );
+      for (const resident of ordered) {
+        const { origin, tileSize, address } = resident.context;
+        const point: [number, number] = [(x - origin[0]) / tileSize, (z - origin[1]) / tileSize];
+        const world = (uv: readonly [number, number]): [number, number] => [
+          origin[0] + uv[0] * tileSize,
+          origin[1] + uv[1] * tileSize,
+        ];
+        const candidates = resident.tile().buildings.flatMap((feature, index) => {
+          const box: [number, number, number, number] = [Infinity, Infinity, -Infinity, -Infinity];
+          for (const polygon of feature.polygons) {
+            const [minU, minV, maxU, maxV] = polygonBounds(polygon);
+            box[0] = Math.min(box[0], minU);
+            box[1] = Math.min(box[1], minV);
+            box[2] = Math.max(box[2], maxU);
+            box[3] = Math.max(box[3], maxV);
+          }
+          const bounds: [number, number, number, number] = [
+            ...world([box[0], box[1]]),
+            ...world([box[2], box[3]]),
+          ];
+          return boxDistance(bounds) <= radius ? [{ feature, index, bounds }] : [];
+        });
+        for (const { feature, index, bounds } of candidates) {
+          // A part belongs to the outline around it, which is the building to name.
+          if (
+            feature.class === 'building_part' &&
+            candidates.some(
+              (other) =>
+                other.feature.class !== 'building_part' &&
+                other.bounds[0] <= bounds[0] &&
+                other.bounds[1] <= bounds[1] &&
+                other.bounds[2] >= bounds[2] &&
+                other.bounds[3] >= bounds[3],
+            )
+          )
+            continue;
+          let distance = Infinity;
+          for (const polygon of feature.polygons) {
+            if (pointInPolygon(point, polygon)) {
+              distance = 0;
+              break;
+            }
+            for (let i = 0; i < polygon.outer.length; i++) {
+              const a = world(polygon.outer[i] as [number, number]);
+              const b = world(polygon.outer[(i + 1) % polygon.outer.length] as [number, number]);
+              const dx = b[0] - a[0];
+              const dz = b[1] - a[1];
+              const length = dx * dx + dz * dz;
+              const t =
+                length > 0
+                  ? Math.max(0, Math.min(1, ((x - a[0]) * dx + (z - a[1]) * dz) / length))
+                  : 0;
+              distance = Math.min(distance, Math.hypot(x - a[0] - t * dx, z - a[1] - t * dz));
+            }
+          }
+          if (distance > radius) continue;
+          const id =
+            feature.id !== undefined
+              ? String(feature.id)
+              : `${address.level}/${address.x}/${address.z}#${index}`;
+          const outlines = feature.polygons.map((polygon) => polygon.outer.map(world));
+          const known = hits.get(id);
+          if (known !== undefined && known.level === address.level) {
+            // The same footprint cut by a tile edge: its pieces are one building.
+            known.outlines.push(...outlines);
+            known.bounds = [
+              Math.min(known.bounds[0], bounds[0]),
+              Math.min(known.bounds[1], bounds[1]),
+              Math.max(known.bounds[2], bounds[2]),
+              Math.max(known.bounds[3], bounds[3]),
+            ];
+            known.distance = Math.min(known.distance, distance);
+            continue;
+          }
+          const kind = feature.subclass ?? feature.class;
+          const override = feature.tags?.[MAP_OVERRIDE_TAG];
+          hits.set(id, {
+            kind: 'building',
+            id,
+            ...(feature.name !== undefined ? { name: feature.name } : {}),
+            ...(kind !== undefined ? { class: kind } : {}),
+            outlines,
+            bounds,
+            ...(feature.height !== undefined ? { height: feature.height } : {}),
+            ...(feature.levels !== undefined ? { levels: feature.levels } : {}),
+            distance,
+            ...(override !== undefined ? { override } : {}),
+            level: address.level,
+          });
+        }
+        for (const { entry, size, footprint } of resident.placed) {
+          const [cx, cz] = wgs84ToWorld(metersPerUnit, entry.anchor[0], entry.anchor[1]);
+          const bounds: [number, number, number, number] =
+            footprint !== undefined
+              ? [
+                  footprint.minX,
+                  footprint.minZ,
+                  footprint.minX + footprint.size * footprint.cell,
+                  footprint.minZ + footprint.size * footprint.cell,
+                ]
+              : [cx - size[0] / 2, cz - size[1] / 2, cx + size[0] / 2, cz + size[1] / 2];
+          const distance = boxDistance(bounds);
+          if (distance > radius) continue;
+          hits.set(`structure:${entry.id}`, {
+            kind: 'landmark',
+            id: entry.id,
+            name: entry.title,
+            outlines: [
+              [
+                [bounds[0], bounds[1]],
+                [bounds[2], bounds[1]],
+                [bounds[2], bounds[3]],
+                [bounds[0], bounds[3]],
+              ],
+            ],
+            bounds,
+            distance,
+            anchor: [entry.anchor[0], entry.anchor[1]],
+            level: address.level,
+          });
+        }
+      }
+      return [...hits.values()]
+        .sort(
+          (a, b) =>
+            a.distance - b.distance ||
+            // A landmark stands on the mapped footprint it replaced: it is what is there to see.
+            Number(b.kind === 'landmark') - Number(a.kind === 'landmark') ||
+            (a.bounds[2] - a.bounds[0]) * (a.bounds[3] - a.bounds[1]) -
+              (b.bounds[2] - b.bounds[0]) * (b.bounds[3] - b.bounds[1]),
+        )
+        .map(({ level: _level, ...hit }) => hit);
     },
     stats: () => ({
       ...stats,

@@ -36,6 +36,20 @@
       "author": "Photographers Mate3rdClass Jonathan Chandler,US Navy",
       "license": "Public domain US federal government work",
       "scope": "Exterior photo: LEX curvature, canted fins and fairings, round-sided inlet, twin nose wheels and main trailing arms. No reference pixels embedded; pylons omitted."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:164008_405_an_F_A-18C_of_VFA-94_parked_at_Lemoore_NAS,_California_(3356134967).jpg",
+      "title": "F/A-18C 164008 of VFA-94 parked at Lemoore",
+      "author": "Jerry Gunner",
+      "license": "CC BY 2.0; local study only, no pixels distributed",
+      "scope": "Solved telephoto photograph, 30 degrees aft of the beam, wings folded, centerline tank excluded."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:J-5014_FA18_SWISS_AIR_FORCE_(29434412157).jpg",
+      "title": "Swiss F/A-18C J-5014 taxiing",
+      "author": "Jonathan Payne",
+      "license": "CC BY-SA 2.0; local study only, no pixels distributed",
+      "scope": "Viewed, not solved: LEX position on the flank, inlet lip, door panels, nose gear spacing."
     }
   ],
   "cabinCamera": {
@@ -258,8 +272,8 @@
       }
     }
   },
-  "sourceHash": "sha256:4dfab731a047614b25722117afc64ab427b6ee14a75be52f2213b1f828e1c7a9",
-  "runtimeHash": "sha256:506efab027163175ac1eb37aa1877e82d1044e589f42b2eacc0ff030e4c92bc1",
+  "sourceHash": "sha256:007be50db076b983067ef9d47ae06c9c7cbc2499651ab17c9c67f83f945d5b51",
+  "runtimeHash": "sha256:788a7affb647347b701b95eda3d6ed272bacf0860a8948c2c5512f9a78a7faf1",
   "limitations": [
     "Polygonal interpretation, not an engineering replica. Airfoil sections, compound fuselage curvature, inlet ducts, canopy refraction, individual fastener positions, stencils and unit livery remain simplified. NASA drawings have disclosed scale disagreements.",
     "Panel main instrument positions follow the foldout; switch counts, console spacing, dial marks, seat and harness details remain approximations. Static switches do not operate aircraft systems.",
@@ -267,5 +281,125 @@
     "IFEI core RPM,temperature,fuel flow,nozzle schedule,fuel quantity/time,hydraulic and cabin pressure are unsupported and unavailable. No fabricated power-to-engine-readout conversion.",
     "Shared simplified flight physics and visual control mixes, not Hornet flight-control laws or automatic flap schedules. Gear retraction is an approximate animation with closed-bay hiding; no mechanical linkage/bay simulation, wing-fold control, launch-bar or carrier arresting operation.",
     "Reference imagery/PDFs are local study material only. Source URLs and license information retained; no reference pixels redistributed in model textures."
-  ]
+  ],
+  "proportionReview": {
+    "date": "2026-11-06",
+    "outcome": "Exterior reworked from measured tables; side and plan overlays and a photo match inspected.",
+    "method": "Drawing resampled into model metres from two control points and overlaid on the rasterized GLB; dark-pixel runs per row and column turned outlines into numbers. Photographs solved as a pinhole camera with nose and canopy held out of the fit, then the imported model rendered through that camera and blended with the photograph.",
+    "calibration": {
+      "side": "NASA TM-4786 figure 2 (CCITT scan, 300 dpi) at 84.4 px/m: 56 ft bar, 5.38 m wheelbase and 10.5 ft canopy bar all agree. Its drawn fin is 89 px/m against the 15.3 ft bar, 5 percent tall.",
+      "plan": "Nose to tail 84.4 px/m after rotating 0.5 degrees to the drawn centerline. Drawn stabilator span is 4 percent short of its 21.6 ft bar.",
+      "rear": "Not to the same scale as the side view (fin measures 4.14 m). No heights taken from it.",
+      "photo": "Three wheel contacts plus four fin-tip corners. Solved with the annotated 4.648 m fin: 172 m, 3.1 degrees, 8.4 px. Solved with a 4.80 m fin, the value wheelbase scale gives: same geometry, 10.2 px, but range drifts to 498 m because the view is nearly orthographic, so that camera distance is not meaningful."
+    },
+    "landmarks": {
+      "lexEdge": {
+        "before": [
+          2.57,
+          2.29
+        ],
+        "after": [
+          2.24,
+          2.03
+        ],
+        "nasaSide": [
+          2.34,
+          2.14
+        ],
+        "photo": [
+          2.12,
+          1.98
+        ]
+      },
+      "flankAboveLex": {
+        "before": 0.75,
+        "after": 1.05,
+        "photo": 1.1
+      },
+      "spineAtZ2_4": {
+        "before": 2.9,
+        "after": 3.06,
+        "nasa": 3.061
+      },
+      "canopyRailAtZ5_5": {
+        "before": 2.69,
+        "after": 2.77,
+        "nasaFrameLine": 2.77
+      },
+      "canopyHeightToBodyDepth": {
+        "before": 0.39,
+        "after": 0.32
+      },
+      "aftKeelAtZMinus4_85": {
+        "before": 1.49,
+        "after": 1.78,
+        "nasa": 1.73,
+        "photo": 1.845
+      },
+      "nozzleCentreline": {
+        "before": 0.58,
+        "after": 0.52
+      },
+      "mainTrack": {
+        "before": 2.96,
+        "after": 3.11
+      },
+      "tireRadius": {
+        "noseBefore": 0.32,
+        "noseAfter": 0.28,
+        "mainBefore": 0.39,
+        "mainAfter": 0.38
+      },
+      "crownNasaMinusPhoto": "A near constant 0.14 to 0.20 m from z 10.1 to z 1.6, which is why the side-view outline was trusted for shape."
+    },
+    "corrections": [
+      "The thin-forebody look came from the LEX, not the nose. It sat near the canopy rail and cut the fuselage side; it now runs well down the flank, leaving the tall body side the photographs show.",
+      "Spine raised, rail raised so the glass is shallower, rear body and tail fairings lifted and narrowed behind the wing, nozzles respaced with a slight axis droop.",
+      "Station-table fuselage with rail rings, wing root lowered and thickened, fin tip chord lengthened with a fixed tip overhanging a rudder on a tilted hinge, fin roots run into the narrower fairing.",
+      "Track, tire sizes, nose bay doors and arresting hook set to the drawing and photographs."
+    ],
+    "limitations": [
+      "Fin height disagrees. Annotated 15 ft 3 in with 10 ft 6 in canopy gives a ratio of 1.45; the NASA drawing and the photograph both give 1.51, about 0.15 m taller at the fin. The annotated NATOPS height is kept, so the fins sit 0.15 m below the photograph when the body is matched.",
+      "NASA drawing and photograph differ on body depth by up to 0.1 m forward of the windscreen. The drawing was used; the LEX height is weighted toward the photograph.",
+      "Swiss photograph was not solved, and Commons rate-limited further requests, so no camera ahead of the beam confirms the nose."
+    ],
+    "note": "instrumentReview captures predate this exterior rework; cockpit instruments, eye points and controls were not moved, only the tub liner rises to the new rail. Targeted aircraft tests were rerun."
+  },
+  "cockpitSweep": {
+    "tool": "packages/entities/scripts/cockpit-sweep.mjs",
+    "finding": "The seat stood about 0.8 m behind the eye. The seatback ray read nothing because it passed through the gap below the headbox. The combiner was 0.08 m tall and wholly below the horizon line, so the seat view showed no HUD.",
+    "before": {
+      "outside": 75.0,
+      "horizon": 90.0,
+      "overNose": -11.0,
+      "headroom": 0.22,
+      "wall": 0.31,
+      "panel": 1.02,
+      "cushion": 1.31,
+      "seatback": null,
+      "dial": 62.0,
+      "poked": 0.0
+    },
+    "after": {
+      "outside": 74.22,
+      "horizon": 85.37,
+      "overNose": -11,
+      "headroom": 0.22,
+      "wall": 0.31,
+      "panel": 1.02,
+      "cushion": 0.79,
+      "seatback": 0.28,
+      "dial": 61.76,
+      "poked": 0
+    },
+    "changes": [
+      "Seat forward 0.41 m and up 0.19 m; stick forward 0.20 m and 0.20 m taller; pedals aft 0.27 m and up 0.02 m; consoles and throttles up 0.10 m.",
+      "Combiner top raised from 2.78 to 3.02 m: it is now visible from the seat with the horizon through it.",
+      "Bulkhead behind the seat and an avionics deck close the well the seat left."
+    ],
+    "limitations": [
+      "Seat, stick, pedal and throttle positions come from seated-eye ergonomic targets and cockpit photographs, not a dimensioned installation drawing.",
+      "The combiner is plain glass with no symbology. The deck behind the seat is a plain reconstruction."
+    ]
+  }
 }

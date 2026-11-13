@@ -1,0 +1,519 @@
+{
+  "planId": "tchaikovsky_house_in_taganrog",
+  "id": "tchaikovsky_house_in_taganrog",
+  "assetId": "molen.worldgen.structure.tchaikovsky_house_in_taganrog",
+  "title": "Tchaikovsky House in Taganrog",
+  "wikidataId": "Q4165435",
+  "category": "mansion",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 38.938302,
+    "latitude": 47.212457
+  },
+  "size": [
+    30.19719886779785,
+    14.410000324249268,
+    24.5600004196167
+  ],
+  "actualBounds": {
+    "min": [
+      -16.173599243164062,
+      -2.4000000953674316,
+      -11.130000114440918
+    ],
+    "max": [
+      14.023599624633789,
+      12.010000228881836,
+      13.430000305175781
+    ]
+  },
+  "visualBrief": "Red-brick house with staggered wings, a pedimented central entry, white porch posts and a square crenellated belvedere.",
+  "nativeAxes": {
+    "x": "southeast along the Grecheskaya Street façade",
+    "y": "up",
+    "z": "southwest toward the front"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2008-03-28",
+    "validFrom": "2008-01-01",
+    "validUntil": "2009-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:2008_Tchaikovsky_House.jpg",
+    "https://commons.wikimedia.org/wiki/File:Tchaikovsky_House_Right_Wing.jpg",
+    "https://commons.wikimedia.org/wiki/File:2008_Tchaikovsky_House_Front.jpg"
+  ],
+  "stories": [
+    {
+      "id": "tchaikovsky-house-in-taganrog-wp",
+      "url": "https://qualla.com/tchaikovsky-house-in-taganrog/"
+    }
+  ],
+  "referenceInputHash": "209db294a0b0298f69d267363088ca54f0d7c9e49d5a7ef76c1f808f0c466af5",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/ub/ub7/tchaikovsky_house_in_taganrog/models/taganrog-house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/ub/ub7/tchaikovsky_house_in_taganrog/models/taganrog-house-model.mjs",
+    "level": "skyline",
+    "export": "taganrogSkyline",
+    "errorMeters": 0.4,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_sandstone",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "plaster_lime",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.74,
+        "metallic": 0.2
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.16
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.47,
+        "metallic": 0.05
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "taganrogDistrict",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0.2
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "taganrogStreet",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0.2
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "taganrogCloseup",
+        "errorMeters": 0.024,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0.2
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.16
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.47,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stone_sandstone",
+    "plaster_lime",
+    "metal_standing_seam",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.83,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      38.938302,
+      47.212457
+    ],
+    "heading": -1.0699926314819943,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        38.938171155998525,
+        47.212408351873336
+      ],
+      "modelHeight": 0,
+      "basis": "Original public terrain just in front of the porch."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -15.938241672112262,
+          8.947941907610835
+        ],
+        [
+          -15.938241672112262,
+          -5.542837958040472
+        ],
+        [
+          0.6377748059690991,
+          -5.547223999048048
+        ],
+        [
+          0.6459596729146604,
+          -11.033896197211138
+        ],
+        [
+          6.308133128285781,
+          -11.038045252705857
+        ],
+        [
+          6.307714881065997,
+          -6.098823338228566
+        ],
+        [
+          7.201834600617125,
+          -6.109409352704475
+        ],
+        [
+          7.236171539858704,
+          -10.090449686747595
+        ],
+        [
+          11.622516550919261,
+          -10.198115999613655
+        ],
+        [
+          13.57876359590572,
+          -10.24801431644871
+        ],
+        [
+          13.80736477430964,
+          4.1265202790456
+        ],
+        [
+          11.70965139913448,
+          4.133468826664006
+        ],
+        [
+          2.584297602352845,
+          4.181633167804092
+        ],
+        [
+          2.5898742327030937,
+          10.77924030385066
+        ],
+        [
+          -0.4775744835430702,
+          10.772627586801203
+        ],
+        [
+          -3.372008245711979,
+          10.774510668405252
+        ],
+        [
+          -3.363980221667316,
+          8.95139417173104
+        ]
+      ],
+      "minimumCoverage": 0.89,
+      "basis": "Named mansion perimeter, OpenStreetMap way 335719684."
+    },
+    "featureIds": [
+      "way/335719684"
+    ],
+    "source": "https://www.openstreetmap.org/way/335719684",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1e2caac2852ddd0f3886bbb54c50b2b302f6dd1d2ea9c7b394f91d40b4301dc8",
+    "notes": "The Tchaikovsky House at Taganrog as photographed on 28 March 2008, including its two brick wings, projecting pedimented entry, balcony and square crenellated belvedere. The named building outline and cleared photos determine the exterior. Smaller elevations and roof setbacks will be approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the photographed March 2008 exterior. Building heights, unseen rear windows, roof slopes and small ornament require interpretation.",
+    "The source terrain is unchanged. The connection between rear foundation and ground follows its approximate local slope."
+  ],
+  "sourceLicense": "Original geometry under the repository license, OpenStreetMap ODbL 1.0 and three exact first-party public-domain Qualla photographs.",
+  "qaLodCameras": [
+    {
+      "name": "whole-taganrog-house-skyline",
+      "position": [
+        27,
+        17,
+        35
+      ],
+      "lookAt": [
+        0,
+        3.1,
+        2.2
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-taganrog-house-district",
+      "position": [
+        27,
+        17,
+        35
+      ],
+      "lookAt": [
+        0,
+        3.1,
+        2.2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-taganrog-house-street",
+      "position": [
+        27,
+        17,
+        35
+      ],
+      "lookAt": [
+        0,
+        3.1,
+        2.2
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-taganrog-house-closeup",
+      "position": [
+        27,
+        17,
+        35
+      ],
+      "lookAt": [
+        0,
+        3.1,
+        2.2
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "grecheskaya-street-porch",
+      "position": [
+        -7.2,
+        5.6,
+        39
+      ],
+      "lookAt": [
+        -1,
+        3.75,
+        4.8
+      ]
+    },
+    {
+      "name": "brick-right-gable-and-belvedere",
+      "position": [
+        30,
+        8.1,
+        17.1
+      ],
+      "lookAt": [
+        2,
+        3.85,
+        2.8
+      ]
+    },
+    {
+      "name": "rear-roofs-and-square-tower",
+      "position": [
+        28,
+        16,
+        -24
+      ],
+      "lookAt": [
+        1.5,
+        4.2,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 5592,
+    "vertices": 16776,
+    "materials": 6,
+    "bytes": 861896,
+    "sha256": "sha256:3bc8ed132769fe9df80103c520cf047b0414bb2bf5f0198f8fc19332378cc1f8"
+  }
+}

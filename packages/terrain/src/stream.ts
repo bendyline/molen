@@ -224,10 +224,18 @@ interface ObjectGeometryStats {
 
 function geometryStats(root: THREE.Object3D): ObjectGeometryStats {
   const seen = new Set<THREE.BufferGeometry>();
+  const arrays = new Set<ArrayLike<number>>();
   let bytes = 0;
   let triangles = 0;
   let instances = 0;
   let drawCalls = 0;
+  // Each array once: instance batches read one matrix array through several attributes, and
+  // their own geometries share the model's arrays.
+  const count = (array: ArrayLike<number> & { readonly byteLength: number }): void => {
+    if (arrays.has(array)) return;
+    arrays.add(array);
+    bytes += array.byteLength;
+  };
   root.traverse((object) => {
     const renderable = object as THREE.Mesh;
     if (!renderable.isMesh) return;
@@ -239,7 +247,7 @@ function geometryStats(root: THREE.Object3D): ObjectGeometryStats {
     if ((mesh as THREE.InstancedMesh).isInstancedMesh) {
       const instanced = mesh as THREE.InstancedMesh;
       instances += instanced.count;
-      bytes += instanced.instanceMatrix.array.byteLength;
+      count(instanced.instanceMatrix.array);
     }
     const geometry = mesh.geometry;
     const baseTriangles =
@@ -251,10 +259,8 @@ function geometryStats(root: THREE.Object3D): ObjectGeometryStats {
       ((mesh as THREE.InstancedMesh).isInstancedMesh ? (mesh as THREE.InstancedMesh).count : 1);
     if (seen.has(geometry)) return;
     seen.add(geometry);
-    for (const attribute of Object.values(geometry.attributes)) bytes += attribute.array.byteLength;
-    if (geometry.index !== null) {
-      bytes += geometry.index.array.byteLength;
-    }
+    for (const attribute of Object.values(geometry.attributes)) count(attribute.array);
+    if (geometry.index !== null) count(geometry.index.array);
   });
   return { bytes, triangles, instances, drawCalls };
 }

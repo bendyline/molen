@@ -1,0 +1,429 @@
+{
+  "planId": "blair_pavilion_ipswich",
+  "id": "blair_pavilion_ipswich",
+  "assetId": "molen.worldgen.structure.blair_pavilion_ipswich",
+  "title": "Blair Pavilion, Ipswich",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 152.7540662858114,
+    "latitude": -27.63099614289222
+  },
+  "size": [
+    62.66389465332031,
+    15.959999799728394,
+    15.287590026855469
+  ],
+  "actualBounds": {
+    "min": [
+      -33.82389450073242,
+      -2.759999990463257,
+      -8.859999656677246
+    ],
+    "max": [
+      28.84000015258789,
+      13.199999809265137,
+      6.427590370178223
+    ]
+  },
+  "visualBrief": "Federation-era Blair Pavilion with its long veranda, brick base, cream walls and red roofs with five ventilators.",
+  "nativeAxes": {
+    "x": "west-northwest along the veranda",
+    "y": "up",
+    "z": "north outward from the veranda"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2016-06-30",
+    "validFrom": "2016-01-01",
+    "validUntil": "2017-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ipswich_Mental_Hospital_3.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ipswich_Mental_Hospital_2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "ipswich-mental-hospital-wp",
+      "url": "https://qualla.com/ipswich-mental-hospital/"
+    }
+  ],
+  "referenceInputHash": "09babb9ec976bfcf0f75a5c186653bdb1a21924f94240cd909fe34d5ccdfb939",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/r7/r7h/blair_pavilion_ipswich/models/pavilion-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/r7/r7h/blair_pavilion_ipswich/models/pavilion-model.mjs",
+    "level": "skyline",
+    "export": "pavilionSkyline",
+    "errorMeters": 0.24,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.91,
+        "metallic": 0.07
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.9,
+        "metallic": 0.1
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.89,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "pavilionDistrict",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.91,
+            "metallic": 0.07
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.1
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "pavilionStreet",
+        "errorMeters": 0.063,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.91,
+            "metallic": 0.07
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.1
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "pavilionCloseup",
+        "errorMeters": 0.024,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.91,
+            "metallic": 0.07
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.9,
+            "metallic": 0.1
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.89,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick",
+    "plaster_lime",
+    "metal_corrugated",
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      152.7540662858114,
+      -27.63099614289222
+    ],
+    "heading": 2.9905760582017606,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        152.75407725496268,
+        -27.630932281298513
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain outward from the approximate main veranda. Threshold grade remains approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [],
+    "source": "https://www.unisq.edu.au/-/media/unisq/about/locations/facilities-management/emergencies/2022-ipw-security-plan---evac-aug-22.ashx?hash=CDAC2942776BE08022E3A22944570459&rev=556719144cf2401a86e46e03553ca2f8",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d3b773fe7557b3e786a73a71707d3bb62c567ec74aadaa33d10568589ad2b226",
+    "notes": "UniSQ’s August 2022 campus directory names the photographed building as Blair Pavilion, Building X. Its schematic perimeter was registered approximately using the published map scale and OSM Buildings H and T as controls. The University of Queensland identifies the Blair Pavilion as the 1907–1908 building with distinctive roof ventilators. The campus diagram is used as geographic evidence. Two cleared photographs supply exterior appearance. East and south elevations and exact position remain approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exterior represents the photographed Blair Pavilion at the former Ipswich Mental Hospital site. Other hospital buildings and interiors are outside the model.",
+    "The location and footprint derive from an approximately registered university campus plan. Window details, roof junctions and rear elevations are estimated.",
+    "The original terrain is preserved. Veranda and exterior stair footing heights remain approximate."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. The two exterior photographs by Shiftchange are CC0. The cited UniSQ map and OSM controls supply approximate geographic alignment.",
+  "qaLodCameras": [
+    {
+      "name": "whole-blair-pavilion-skyline",
+      "position": [
+        -65,
+        24,
+        56
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-blair-pavilion-district",
+      "position": [
+        -65,
+        24,
+        56
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-blair-pavilion-street",
+      "position": [
+        -65,
+        24,
+        56
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-blair-pavilion-closeup",
+      "position": [
+        -65,
+        24,
+        56
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "east-stair-veranda-and-ventilators",
+      "position": [
+        -39,
+        12,
+        37
+      ],
+      "lookAt": [
+        -6,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "roof-joins-and-rear-range",
+      "position": [
+        55,
+        24,
+        -41
+      ],
+      "lookAt": [
+        0,
+        5,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2488,
+    "vertices": 7464,
+    "materials": 6,
+    "bytes": 483532,
+    "sha256": "sha256:4c4a929d45e9004479bdc8677acbec91ebe109ccca449e3cb748fed11e3078ff"
+  }
+}

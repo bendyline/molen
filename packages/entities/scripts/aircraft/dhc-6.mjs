@@ -168,9 +168,10 @@ export const twinOtterFrame = () => ({
   radius: 0.915,
   cy: 1.92,
   ry: 1.04,
-  cabinZ: 4.64,
+  cabinZ: 4.45,
   cabinWidth: 1.75,
-  eye: [0.43, 2.57, 4.64],
+  // Over the seat and behind the yoke; low enough that the panel stays in the level view.
+  eye: [0.43, 2.55, 4.45],
   panelZ: 5.28,
   floor: 1.04,
 });
@@ -1008,9 +1009,9 @@ function twinOtterCockpit(root, m, sections) {
     pt.knob(px(u), py(351), z - 0.028, 0.006);
   }
   // Common pitch column with split ram-horn wheels, photographed geometry rather than two sticks.
-  const column = group(cabin, 'TwinOtter-column', [0, 1.35, 4.55]),
+  const column = group(cabin, 'TwinOtter-column', [0, 1.47, 4.71]),
     cd = detailKit(column, column.name);
-  cd.rod([0, 0, 0], [0, 0.32, 0], 0.055, m.metal);
+  cd.rod([0, -0.4, 0], [0, 0.32, 0], 0.055, m.metal);
   for (const side of [-1, 1]) {
     cd.rod([0, 0.32, 0], [side * 0.47, 0.55, 0.04], 0.041, liner);
     const g = group(column, `TwinOtter-yoke-${side}`, [side * 0.47, 0.55, 0.01]),
@@ -1079,28 +1080,28 @@ function twinOtterCockpit(root, m, sections) {
   oh.rotation.x = -Math.PI / 2;
   const od = detailKit(oh, oh.name);
   beveledBox(od, [0.34, 0.46, 0.055], [0, 0, 0], liner);
-  for (const [i, x, col, source] of [
-    [0, 0.12, m.dark, 'power'],
-    [1, 0.07, m.dark, 'power'],
-    [2, 0.025, metalColor(), null],
-    [3, -0.025, metalColor(), null],
-    [4, -0.07, m.accent, null],
-    [5, -0.12, m.accent, null],
+  // The pilot sits below and left of the quadrant and sees the levers almost end-on. The
+  // propeller levers hang 1 cm lower, and their alloy knobs are separate parts rather than merged
+  // into the shafts, so at full RPM the knobs show under the power knobs instead of behind them.
+  for (const [i, x, col, source, reach] of [
+    [0, 0.12, m.dark, 'power', 0.11],
+    [1, 0.07, m.dark, 'power', 0.11],
+    [2, 0.025, null, null, 0.12],
+    [3, -0.025, null, null, 0.12],
+    [4, -0.07, m.accent, null, 0.11],
+    [5, -0.12, m.accent, null, 0.11],
   ]) {
     od.box([0.012, 0.29, 0.006], [x, 0, -0.031], black);
     const g = group(oh, `TwinOtter-overhead-lever-${i}`, [x, 0, -0.035]),
       dd = detailKit(g, g.name);
-    dd.rod([0, 0, 0], [0, 0.03, -0.11], 0.007, m.metal);
-    beveledBox(dd, [0.038, 0.047, 0.027], [0, 0.03, -0.12], col);
+    dd.rod([0, 0, 0], [0, 0.03, -reach], 0.007, m.metal);
+    beveledBox(dd, [0.038, 0.047, 0.027], [0, 0.03, -reach - 0.01], col ?? dd.metal);
     dd.finish();
     if (source)
       bindings.push({ node: g.name, source, property: 'rotation', axis: 'x', scale: 0.65 });
   }
   od.text('POWER PROP COND', [0, 0.18, -0.04], 0.012, Math.PI, black);
   od.finish();
-  function metalColor() {
-    return m.metal;
-  }
   // Floor, two pilot seats, belts, pedals, side door trim and 19-seat utility cabin.
   fittedFloor(d, sections, m.dark, { y: 1.09, front: 5.3, back: -1.575, width: 1.68 });
   for (const side of [-1, 1]) {
@@ -1127,8 +1128,8 @@ function twinOtterCockpit(root, m, sections) {
     }
   }
   const seats = [
-    [0.43, 4.22],
-    [-0.43, 4.22],
+    [0.43, 4.3],
+    [-0.43, 4.3],
   ];
   for (let row = 0; row < 6; row++) {
     seats.push([0.58, 3.15 - row * 0.79], [-0.22, 3.15 - row * 0.79], [-0.66, 3.15 - row * 0.79]);
@@ -1136,14 +1137,25 @@ function twinOtterCockpit(root, m, sections) {
   seats.push([0.58, -1.6]);
   seats.forEach(([x, zz], i) => {
     const pilot = i < 2,
-      w = pilot ? 0.44 : 0.39;
-    beveledBox(d, [w, 0.11, 0.42], [x, 1.38, zz], seat, 0.035);
-    beveledBox(d, [w, 0.54, 0.12], [x, 1.7, zz - 0.19], seat, 0.04);
-    beveledBox(d, [w * 0.7, 0.17, 0.13], [x, 2.02, zz - 0.19], seat, 0.035);
+      w = pilot ? 0.44 : 0.39,
+      lift = pilot ? 0.3 : 0;
+    beveledBox(d, [w, 0.11, 0.42], [x, 1.38 + lift, zz], seat, 0.035);
+    beveledBox(d, [w, 0.54, 0.12], [x, 1.7 + lift, zz - 0.19], seat, 0.04);
+    beveledBox(d, [w * 0.7, 0.17, 0.13], [x, 2.02 + lift, zz - 0.19], seat, 0.035);
     for (const sign of [-1, 1])
-      d.rod([x + sign * w * 0.38, 1.07, zz], [x + sign * w * 0.38, 1.34, zz], 0.017, m.metal);
-    d.rod([x - w * 0.38, 1.45, zz - 0.14], [x + w * 0.36, 1.45, zz + 0.13], 0.012, liner);
-    d.box([0.04, 0.013, 0.03], [x + 0.04, 1.465, zz + 0.04], m.metal);
+      d.rod(
+        [x + sign * w * 0.38, 1.07, zz],
+        [x + sign * w * 0.38, 1.34 + lift, zz],
+        0.017,
+        m.metal,
+      );
+    d.rod(
+      [x - w * 0.38, 1.45 + lift, zz - 0.14],
+      [x + w * 0.36, 1.45 + lift, zz + 0.13],
+      0.012,
+      liner,
+    );
+    d.box([0.04, 0.013, 0.03], [x + 0.04, 1.465 + lift, zz + 0.04], m.metal);
   });
   d.finish();
   return { nodes: ['cockpit'], sources, derived, bindings };

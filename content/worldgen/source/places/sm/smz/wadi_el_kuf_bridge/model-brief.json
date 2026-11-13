@@ -1,0 +1,323 @@
+{
+  "id": "wadi_el_kuf_bridge",
+  "title": "Wadi el Kuf Bridge",
+  "wikidataId": "Q996209",
+  "referenceCoordinate": {
+    "longitude": 21.56527105,
+    "latitude": 32.69697025
+  },
+  "module": "content/worldgen/source/places/sm/smz/wadi_el_kuf_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-wadi-el-kuf.mjs",
+  "builder": "buildWadiLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_boardformed",
+      "roughness": 0.91
+    },
+    "deck": {
+      "slot": "foundation",
+      "graph": "concrete_plain",
+      "roughness": 0.94
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.82,
+      "metallic": 0.04
+    }
+  },
+  "exportLabel": "Molen original Wadi el Kuf Bridge master",
+  "expectedDraftMasterHash": "sha256:177c961593d7b919d74823e4e9f07b8f42854571dfcd97e95494325c81c3d980",
+  "visualBrief": "Two slender concrete towers rise above the straight gorge crossing. Paired sheathed stays meet the narrow highway deck and V frames brace it from below. A shallower center segment, guardrails, curb strips and graded approaches follow the mapped road.",
+  "heightPolicy": "The 425 m sea-level datum follows the standard terrain. Four tower footings and two abutments extend into the sampled gorge slopes. The two skewed deck ends meet the mapped adjoining roads across both lanes.",
+  "nativeAxes": "Positive X goes from the southwest to the northeast abutment. Positive Z faces southeast.",
+  "limitations": [
+    "PMTiles fixes the signed highway crossing. The 525 m mapped segment includes short approaches beyond the roughly 477 m concrete bridge.",
+    "The paired towers, stay sheaths, V braces and under-deck profile follow exterior photographs. Their exact sections, footing elevations and finishes are approximations on the standard viewer terrain."
+  ],
+  "references": [
+    {
+      "url": "https://libyaobserver.ly/culture/wadi-el-kuf-bridge",
+      "hash": "sha256:3a5f22bf0ab5427e0af7c398f053db0fe2cc538b6f038613894af856a82bdb53",
+      "observed": "Paired tower and stay arrangement against the side slopes."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "gorge-and-paired-towers",
+      "position": [
+        32,
+        110,
+        390
+      ],
+      "lookAt": [
+        -4,
+        -15,
+        0
+      ],
+      "fov": 68
+    },
+    {
+      "name": "long-concrete-elevation",
+      "position": [
+        21,
+        47,
+        368
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "fov": 72
+    },
+    {
+      "name": "southwest-tower-and-v-frame",
+      "position": [
+        -224,
+        20,
+        143
+      ],
+      "lookAt": [
+        -139,
+        15,
+        0
+      ],
+      "fov": 58
+    },
+    {
+      "name": "northeast-tower-seat",
+      "position": [
+        178,
+        31,
+        136
+      ],
+      "lookAt": [
+        137,
+        1,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "opposite-gorge-side",
+      "position": [
+        -41,
+        89,
+        -407
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "fov": 65
+    },
+    {
+      "name": "highway-and-stays",
+      "position": [
+        -249,
+        11,
+        4
+      ],
+      "lookAt": [
+        -130,
+        25,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "center-suspended-deck",
+      "position": [
+        44,
+        -26,
+        99
+      ],
+      "lookAt": [
+        2,
+        1,
+        0
+      ],
+      "fov": 56
+    }
+  ],
+  "materialMethod": "Shared board-formed concrete, plain concrete and painted metal supply the model surfaces. Beam profiles, V braces, curb strips and guardrails use authored geometry.",
+  "sourceFacts": {
+    "mappedBridgeWay": 224748413,
+    "mappedPathLength": 525.278,
+    "concreteSpanMeters": 477.4,
+    "towers": 2,
+    "terrainFootings": 4
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        -5,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sm/smz/wadi_el_kuf_bridge/models/bridge-model.mjs",
+    "export": "buildWadiSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.91
+      },
+      "deck": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.94
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.04
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildWadiDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.91
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.04
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildWadiStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.91
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.04
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildWadiCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.91
+          },
+          "deck": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.94
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.04
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "wadi_el_kuf_bridge-skyline",
+      "position": [
+        32,
+        110,
+        390
+      ],
+      "lookAt": [
+        -4,
+        -15,
+        0
+      ],
+      "fov": 68,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "wadi_el_kuf_bridge-district",
+      "position": [
+        32,
+        110,
+        390
+      ],
+      "lookAt": [
+        -4,
+        -15,
+        0
+      ],
+      "fov": 68,
+      "reviewLod": "district"
+    },
+    {
+      "name": "wadi_el_kuf_bridge-street",
+      "position": [
+        32,
+        110,
+        390
+      ],
+      "lookAt": [
+        -4,
+        -15,
+        0
+      ],
+      "fov": 68,
+      "reviewLod": "street"
+    },
+    {
+      "name": "wadi_el_kuf_bridge-closeup",
+      "position": [
+        32,
+        110,
+        390
+      ],
+      "lookAt": [
+        -4,
+        -15,
+        0
+      ],
+      "fov": 68,
+      "reviewLod": "closeup"
+    }
+  ]
+}

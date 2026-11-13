@@ -1,0 +1,340 @@
+{
+  "id": "monument_to_minin_and_pozharsky",
+  "title": "Monument to Minin and Pozharsky",
+  "wikidataId": "Q187531",
+  "referenceCoordinate": {
+    "longitude": 37.62262433767319,
+    "latitude": 55.752801867594314
+  },
+  "module": "content/worldgen/source/places/uc/ucf/monument_to_minin_and_pozharsky/models/monument-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-monument-to-minin-and-pozharsky.mjs",
+  "builder": "buildMonument",
+  "surfaces": {
+    "bronze": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.65,
+      "metallic": 0.31
+    },
+    "granite": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.78
+    }
+  },
+  "exportLabel": "Molen original Monument to Minin and Pozharsky master",
+  "expectedDraftMasterHash": "sha256:2b5be171cda48a4d8e855b4a7fb1cafd16c7439bb02d4810629f0bc79809fc30",
+  "visualBrief": "Minin stands in a belted tunic with one open hand raised. Pozharsky rises from his seat with the round shield while both figures hold the upright sword. The red granite pedestal has a gilt dedication and two distinct bronze reliefs, an assembly of donors on the front and a mounted group on the rear.",
+  "heightPolicy": "The standard terrain anchor is 148 m above sea level. The granite footing extends beneath the surrounding grade and the lowest step rises above the rendered pavement.",
+  "nativeAxes": "+X southwest along the adjacent footway, +Z northwest toward Red Square, +Y up. St Basil’s Cathedral is behind the sculpture.",
+  "limitations": [
+    "The State Historical Museum gives 4.5 m for the bronze group. Pedestal dimensions, body depths and hand positions are scaled from the photographs.",
+    "The named PMTiles monument point fixes the center. The neighboring footway and cathedral provide the signed pedestal axis. Individual photographic bearings are approximate.",
+    "The source geometry preserves the standing and seated figures, common sword, shield, two narrative reliefs and gilded lettering. Portrait likenesses, minor ornament and details in the relief crowds are simplified.",
+    "The asset includes the small paved footing within the mapped site. Surrounding flower beds, railings, paving and cathedral are site context."
+  ],
+  "references": [
+    {
+      "url": "https://moscowwalks.ru/2010/11/03/pamyatnik-mininu-i-pozharskomu/",
+      "imageUrl": "https://moscowwalks.ru/2010/minin-pozharsky/image02.jpg",
+      "hash": "sha256:749916508e8e67aa25713a4efbcfe63735a55aa7d9479ecd3ac201f41d9633a9",
+      "observed": "Oblique view confirms the shield angle, clasped hands and lower tunic hem."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:2010_Monument_to_Minin_and_Pozharsky.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/2010_Monument_to_Minin_and_Pozharsky.jpg",
+      "hash": "sha256:b583e295ec6048b5123f1b4a3285733cd5c9d0c009967dcd76e3cff52e71e8a8",
+      "observed": "The two heads, open hand, shared sword, round shield and gilded dedication."
+    },
+    {
+      "url": "https://www.theartnewspaper.ru/posts/20221026-ptan/",
+      "imageUrl": "https://www.theartnewspaper.ru/media/images/2_9ro3ske.width-1290.jpg",
+      "hash": "sha256:3075f3ad06e983aefd4a968cec1fa1ca493fda5915fd5ea524376894ee9a8f3e",
+      "observed": "Restoration-era site view shows the position of the pedestal and neighboring paths."
+    },
+    {
+      "url": "https://puzzlefactory.com/es/rompecabezas-arte/534725-monumento-minin-y-pozharsky-en-la-plaza-roja",
+      "imageUrl": "https://assets.puzzlefactory.com/puzzle/534/725/original.jpg",
+      "hash": "sha256:dcd03c9c8fa3569e4be18b990fe0f6244a1b6056e4e769c2315afc4151289d5c",
+      "observed": "Full granite pedestal, donor relief, layered stone bands and bronze casting silhouette."
+    },
+    {
+      "url": "https://moscowwalks.ru/2010/11/03/pamyatnik-mininu-i-pozarskomu/",
+      "imageUrl": "https://moscowwalks.ru/2010/minin-pozharsky/image03.jpg",
+      "hash": "sha256:0e90e05f97090b62dcae3d9f9268c5081d3b32a8fa0a8493749ece11b3d28e86",
+      "observed": "Rear bronze figures, mounted rider and neighboring shields and weapons."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "monument-from-red-square",
+      "position": [
+        10,
+        7.7,
+        15.3
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 42
+    },
+    {
+      "name": "front-figures-and-dedication",
+      "position": [
+        0.1,
+        4.2,
+        14.4
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 39
+    },
+    {
+      "name": "raised-hand-and-shared-sword",
+      "position": [
+        -5.2,
+        7.3,
+        8.1
+      ],
+      "lookAt": [
+        -0.33,
+        7.1,
+        0.18
+      ],
+      "fov": 43
+    },
+    {
+      "name": "seated-figure-and-shield",
+      "position": [
+        6.5,
+        6.05,
+        6
+      ],
+      "lookAt": [
+        0.8,
+        5.9,
+        0.4
+      ],
+      "fov": 43
+    },
+    {
+      "name": "donation-relief-and-lettering",
+      "position": [
+        1.05,
+        2.9,
+        5.9
+      ],
+      "lookAt": [
+        0,
+        2.34,
+        1.28
+      ],
+      "fov": 48
+    },
+    {
+      "name": "rear-mounted-relief",
+      "position": [
+        -1.05,
+        3,
+        -6.3
+      ],
+      "lookAt": [
+        0,
+        2.1,
+        -1.28
+      ],
+      "fov": 48
+    },
+    {
+      "name": "rear-drapery-and-plinth",
+      "position": [
+        -9.5,
+        6.5,
+        -11
+      ],
+      "lookAt": [
+        0,
+        4.1,
+        0
+      ],
+      "fov": 43
+    },
+    {
+      "name": "alignment-with-cathedral",
+      "position": [
+        0.65,
+        3,
+        22
+      ],
+      "lookAt": [
+        0,
+        4.4,
+        -2
+      ],
+      "fov": 48
+    }
+  ],
+  "materialMethod": "Shared cast bronze and granite graphs. The two narrative reliefs, shield ornament and gilt dedication are geometry.",
+  "sourceFacts": {
+    "bronzeHeightMeters": 4.5,
+    "bronzeFigures": 2,
+    "reliefPanels": 2,
+    "mappedMonument": 17593181979784,
+    "mappedFootway": 35184395458390,
+    "groundDatumMeters": 148
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        3.8,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/uc/ucf/monument_to_minin_and_pozharsky/models/monument-model.mjs",
+    "export": "buildMonumentSkyline",
+    "surfaces": {
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.65,
+        "metallic": 0.31
+      },
+      "granite": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.78
+      }
+    },
+    "errorMeters": 0.81,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMonumentDistrict",
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.65,
+            "metallic": 0.31
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.78
+          }
+        },
+        "errorMeters": 0.36
+      },
+      "street": {
+        "export": "buildMonumentStreet",
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.65,
+            "metallic": 0.31
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.78
+          }
+        },
+        "errorMeters": 0.115
+      },
+      "closeup": {
+        "export": "buildMonumentCloseup",
+        "surfaces": {
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.65,
+            "metallic": 0.31
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.78
+          }
+        },
+        "errorMeters": 0.037
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "monument_to_minin_and_pozharsky-skyline",
+      "position": [
+        10,
+        7.7,
+        15.3
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 42,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "monument_to_minin_and_pozharsky-district",
+      "position": [
+        10,
+        7.7,
+        15.3
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 42,
+      "reviewLod": "district"
+    },
+    {
+      "name": "monument_to_minin_and_pozharsky-street",
+      "position": [
+        10,
+        7.7,
+        15.3
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 42,
+      "reviewLod": "street"
+    },
+    {
+      "name": "monument_to_minin_and_pozharsky-closeup",
+      "position": [
+        10,
+        7.7,
+        15.3
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "fov": 42,
+      "reviewLod": "closeup"
+    }
+  ]
+}

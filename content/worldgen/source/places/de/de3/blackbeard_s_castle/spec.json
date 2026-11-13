@@ -1,0 +1,488 @@
+{
+  "planId": "blackbeard_s_castle",
+  "id": "blackbeard_s_castle",
+  "assetId": "molen.worldgen.structure.blackbeard_s_castle",
+  "title": "Blackbeard’s Castle (Skytsborg)",
+  "wikidataId": "Q2968446",
+  "category": "watchtower",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -64.92958784999999,
+    "latitude": 18.34385765
+  },
+  "size": [
+    6.1300740242004395,
+    12.420000046491623,
+    6.838411092758179
+  ],
+  "actualBounds": {
+    "min": [
+      -3.0650370121002197,
+      -0.46000000834465027,
+      -3.8499999046325684
+    ],
+    "max": [
+      3.0650370121002197,
+      11.960000038146973,
+      2.9884111881256104
+    ]
+  },
+  "visualBrief": "Skytsborg, the Government Hill watchtower known as Blackbeard’s Castle, with its tapered stone shell, open north entry, gun ports and wooden observatory around 1918.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1918-01-01",
+    "validFrom": "1915-01-01",
+    "validUntil": "1920-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:St._Thomas_-_Blackbeard%27s_castle.jpg",
+    "https://commons.wikimedia.org/wiki/File:St._Thomas_-_Blackbeard%27s_Castle.jpg"
+  ],
+  "stories": [
+    {
+      "id": "blackbeard-s-castle-wp",
+      "url": "https://qualla.com/blackbeard-s-castle/"
+    }
+  ],
+  "referenceInputHash": "592ae377726d9172bd4000f0ce89cc12e8d8146b53794060cde499f55e514f8e",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/de/de3/blackbeard_s_castle/models/skytsborg-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/de/de3/blackbeard_s_castle/models/skytsborg-model.mjs",
+    "level": "skyline",
+    "export": "skytsborgSkyline",
+    "errorMeters": 0.26,
+    "surfaces": {
+      "rubble": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick_flemish",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "wall",
+        "graph": "wood_weatherboard",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.83,
+        "metallic": 0.09
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.63,
+        "metallic": 0.03
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "skytsborgDistrict",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_flemish",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.09
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63,
+            "metallic": 0.03
+          }
+        }
+      },
+      "street": {
+        "export": "skytsborgStreet",
+        "errorMeters": 0.044,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_flemish",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.09
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63,
+            "metallic": 0.03
+          }
+        }
+      },
+      "closeup": {
+        "export": "skytsborgCloseup",
+        "errorMeters": 0.019,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick_flemish",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_weatherboard",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.83,
+            "metallic": 0.09
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.63,
+            "metallic": 0.03
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "brick_flemish",
+    "wood_weatherboard",
+    "metal_corrugated"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.73,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -64.92958784999999,
+      18.34385765
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -64.92958784999999,
+        18.34389070785124
+      ],
+      "modelHeight": 0,
+      "basis": "Original public terrain near the north entrance and stone steps."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -4.844638200123001,
+          -1.1632886789374803
+        ],
+        [
+          -4.2106615547117885,
+          -2.6661018044118117
+        ],
+        [
+          -3.1329012582635083,
+          -3.8906162032101097
+        ],
+        [
+          -1.7275863600594143,
+          -4.703248486005836
+        ],
+        [
+          -0.13207846898273606,
+          -5.037206958333465
+        ],
+        [
+          1.5479596424831426,
+          -4.814567976913541
+        ],
+        [
+          3.0800698682679206,
+          -4.057595439373924
+        ],
+        [
+          4.263492940202702,
+          -2.8330810405756264
+        ],
+        [
+          4.971433527703684,
+          -1.4527193548229302
+        ],
+        [
+          4.7178428695392,
+          2.064976554222079
+        ],
+        [
+          3.7774441789710322,
+          3.4898660364169545
+        ],
+        [
+          2.424960667759409,
+          4.514005351818675
+        ],
+        [
+          0.79775394478756,
+          5.037206958333465
+        ],
+        [
+          -0.9034167202740605,
+          4.992679162286772
+        ],
+        [
+          -2.424960670762526,
+          4.424949758934316
+        ],
+        [
+          -3.692913961584949,
+          3.4119423927420125
+        ],
+        [
+          -4.569914986861216,
+          2.0427126561987325
+        ],
+        [
+          -4.9714335292052425,
+          0.4619758866539727
+        ]
+      ],
+      "minimumCoverage": 0.93,
+      "basis": "Mapped Skytsborg tower envelope, OSM way 378307440. The modeled wall uses the NPS measurements."
+    },
+    "featureIds": [
+      "way/378307440"
+    ],
+    "source": "https://www.openstreetmap.org/way/378307440",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5c32b0ea9566d0d471f3a4c60d4455e859c238aff71cf626bc9e64143f60c125",
+    "notes": "Blackbeard’s Castle, the Skytsborg watchtower on Government Hill, in its early twentieth-century appearance around the 1918 postcard. Includes the tapered rubble-masonry tower, north entry and historical wooden observatory on the parapet. The National Park Service supplies the measured tower diameter, height and north arch. The mapped outline gives the location but is wider than the measured wall."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_weatherboard",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The NPS measurements control the masonry dimensions. The mapped perimeter gives a larger envelope around the site. Exact ovoid shape, radial opening positions, timber observatory measurements and colors are estimated from the records and prints.",
+    "The dated model includes the historical wooden observatory depicted in the postcards. The original public elevation field is preserved and the exterior step contact is approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license, OpenStreetMap ODbL 1.0 and the two exact public-domain Qualla postcards.",
+  "qaLodCameras": [
+    {
+      "name": "whole-skytsborg-watchtower-skyline",
+      "position": [
+        -14.5,
+        12.5,
+        -20
+      ],
+      "lookAt": [
+        0,
+        5.8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-skytsborg-watchtower-district",
+      "position": [
+        -14.5,
+        12.5,
+        -20
+      ],
+      "lookAt": [
+        0,
+        5.8,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-skytsborg-watchtower-street",
+      "position": [
+        -14.5,
+        12.5,
+        -20
+      ],
+      "lookAt": [
+        0,
+        5.8,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-skytsborg-watchtower-closeup",
+      "position": [
+        -14.5,
+        12.5,
+        -20
+      ],
+      "lookAt": [
+        0,
+        5.8,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "north-entry-and-tapered-masonry",
+      "position": [
+        -3.5,
+        4.6,
+        -15
+      ],
+      "lookAt": [
+        0,
+        4.9,
+        0
+      ]
+    },
+    {
+      "name": "gun-ports-and-wood-observatory",
+      "position": [
+        12.4,
+        12.5,
+        10.9
+      ],
+      "lookAt": [
+        0,
+        7.7,
+        0
+      ]
+    },
+    {
+      "name": "north-arch-and-stone-steps",
+      "position": [
+        2.5,
+        2.9,
+        -8.1
+      ],
+      "lookAt": [
+        0,
+        2.2,
+        -1.9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2880,
+    "vertices": 8640,
+    "materials": 5,
+    "bytes": 641604,
+    "sha256": "sha256:e9f06769fbf6757336ba74f1bc3f26a9abb10ae3dea05d4b4c8f9a3c24c2cc5a"
+  }
+}

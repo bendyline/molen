@@ -36,6 +36,20 @@
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "revision": 1120537595,
       "scope": "AS350 B3 exterior family reference; engine version and mission equipment differ."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Eurocopter_AS350_B3_FMO_12.06.22_JM_(6).jpg",
+      "author": "Johannes Maximilian",
+      "license": "GFDL 1.2",
+      "licenseUrl": "http://www.gnu.org/licenses/old-licenses/fdl-1.2.html",
+      "scope": "Side view: pilot head about 0.3 m under the roof and no hood showing above the door sill."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Microflite_(VH-YJB)_Eurocopter_AS_350B3_Ecureuil_on_display_at_the_2024_Canberra_Airport_open_day.jpg",
+      "author": "Robert Myers (Bidgee)",
+      "license": "CC BY-SA 3.0 AU",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/au/deed.en",
+      "scope": "Side view on the ground: clear windscreen above the sill."
     }
   ],
   "cabinCamera": {
@@ -47,8 +61,8 @@
     ],
     "lookAt": [
       0,
-      1.55,
-      2
+      1.4,
+      2.06
     ],
     "fov": 78
   },
@@ -56,10 +70,10 @@
     "mode": "top-down-ortho",
     "center": [
       0.02,
-      -1.7
+      -1.42
     ],
     "viewHeight": 0.72,
-    "cameraHeight": 8.4
+    "cameraHeight": 8.1
   },
   "overlays": [
     {
@@ -153,7 +167,7 @@
       ],
       "modelAnchor": [
         0,
-        -1.9
+        -1.6
       ],
       "scaleControls": {
         "pixels": 480,
@@ -257,13 +271,14 @@
     ],
     "visual": "Inspected current four overlays, lit three-quarter, operator, close and wide cockpit and four turntables. Exterior photo comparison and revised roof glazing checked. Known perspective and equipment-fit limitations retained."
   },
-  "sourceHash": "sha256:53530998122f130ccf5948c99766dc6bde35062b3ea91739945bf73a72e00dfe",
-  "runtimeHash": "sha256:ab9d69d89f733ddb643263a47c77ed31a21d5787e45adefead641a888af04308",
+  "sourceHash": "sha256:b1feab60fa73aed63651e2d62d8136bc83c057db36d1246d33d46bbc77d04648",
+  "runtimeHash": "sha256:1ab4952c1449c1096eb95a0945c317bdc8836a488a013ec94169ea438f2e02cb",
   "limitations": [
     "Airbus dimension sheet uses rendered views with small front/side scale differences and different rotor azimuth. Printed dimensions take precedence; body curvature remains polygonal.",
     "Panel rectification assumes a flat instrument face and identified GDU 1060 screen. Wide-angle lens distortion, curved coaming depth and absolute cabin installation remain approximate.",
     "Cockpit follows the current TXi equipment fit; 2020 dimension sheet and related AS350 B3 exterior photo corroborate the shell. Optional avionics and mission fittings vary.",
-    "Displays are original simplified geometry and assisted-flight indicators, not certified avionics. Source images are research-only and are not distributed."
+    "Displays are original simplified geometry and assisted-flight indicators, not certified avionics. Source images are research-only and are not distributed.",
+    "The panel sits on the centerline, as on the aircraft, so the pilot looks past its right edge and the sweep finds no panel dead ahead."
   ],
   "controlReview": {
     "checked": "2026-10-22",
@@ -282,6 +297,40 @@
       "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
       "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
       "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  },
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "Rays from the pilotEye through source.glb (cockpit-sweep), seat view at the runtime camera (+Z, 60 degrees vertical), an exterior nose render, and sections through the pilot plane and at hood height, each checked against a photograph of the real aircraft.",
+    "findings": [
+      "The eye stood 0.96 m over the cushion and 0.13 m under the roof, at the seat front edge. A side photograph puts the head about 0.3 m under the roof.",
+      "The hood top was only 0.13 m below that eye, so it filled the windscreen from outside. Its size was right: it is scaled from the Garmin screen."
+    ],
+    "before": {
+      "eye": [
+        -0.42,
+        2.03,
+        1.45
+      ],
+      "eyeToPanelMeters": 0.55,
+      "headroomMeters": 0.13,
+      "eyeAboveCushionMeters": 0.96,
+      "panelTopHeightMeters": 1.9
+    },
+    "after": {
+      "eye": [
+        -0.42,
+        1.87,
+        1.38
+      ],
+      "eyeToPanelMeters": 0.68,
+      "headroomMeters": 0.29,
+      "eyeAboveCushionMeters": 0.8,
+      "panelTopHeightMeters": 1.6
+    },
+    "corrections": [
+      "Eye lowered 0.16 m and moved 0.07 m aft over the cushion.",
+      "Panel lowered 0.3 m and moved 0.06 m forward; layout, scale and bindings unchanged. Console re-laid from the panel lower edge to the floor."
     ]
   }
 }

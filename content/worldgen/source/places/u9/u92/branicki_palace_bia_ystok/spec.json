@@ -1,0 +1,772 @@
+{
+  "planId": "branicki_palace_bia_ystok",
+  "id": "branicki_palace_bia_ystok",
+  "assetId": "molen.worldgen.structure.branicki_palace_bia_ystok",
+  "title": "Branicki Palace, Białystok",
+  "wikidataId": "Q2376970",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 23.16519,
+    "latitude": 53.13059
+  },
+  "size": [
+    112.25962448120117,
+    32.639999866485596,
+    101.66938400268555
+  ],
+  "actualBounds": {
+    "min": [
+      -52.47898483276367,
+      -3.6500000953674316,
+      -21.84000015258789
+    ],
+    "max": [
+      59.7806396484375,
+      28.989999771118164,
+      79.82938385009766
+    ]
+  },
+  "visualBrief": "The 2023 Branicki Palace exterior in Białystok, with its central baroque residence, clock pediment, green pavilions and attached red-roofed wings around the open forecourt.",
+  "nativeAxes": {
+    "x": "northwest across palace frontage",
+    "y": "up",
+    "z": "northeast toward the forecourt"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2023-07-22",
+    "validFrom": "2023-01-01",
+    "validUntil": "2024-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:20230711_172515_July_2023_in_Bia%C5%82ystok.jpg",
+    "https://commons.wikimedia.org/wiki/File:20230730_175034_July_2023_in_Bia%C5%82ystok.jpg",
+    "https://commons.wikimedia.org/wiki/File:20230722_170123_July_2023_in_Bia%C5%82ystok.jpg",
+    "https://commons.wikimedia.org/wiki/File:20221001_132221_October_2022_in_Bia%C5%82ystok.jpg",
+    "https://commons.wikimedia.org/wiki/File:20221001_132254_October_2022_in_Bia%C5%82ystok.jpg"
+  ],
+  "stories": [
+    {
+      "id": "branicki-palace-bia-ystok-wp",
+      "url": "https://qualla.com/branicki-palace-bia-ystok/"
+    }
+  ],
+  "referenceInputHash": "9a53ece9a06f9b604846832b4abaebf69ea873aeb1bf7fce4189b3a9923db781",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/u9/u92/branicki_palace_bia_ystok/models/branicki-palace-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/u9/u92/branicki_palace_bia_ystok/models/branicki-palace-model.mjs",
+    "level": "skyline",
+    "export": "branickiSkyline",
+    "errorMeters": 0.76,
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.84,
+        "metallic": 0.14
+      },
+      "pane": {
+        "slot": "window",
+        "localRef": "palette:#fffdfe",
+        "roughness": 0.75,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "branickiDistrict",
+        "errorMeters": 0.32,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.14
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.75,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "branickiStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.14
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.75,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "branickiCloseup",
+        "errorMeters": 0.044,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.14
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.75,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "tile_flat",
+    "slate",
+    "metal_copper"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.85,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      23.16519,
+      53.13059
+    ],
+    "heading": 2.2016352681469193,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        23.1652893347346,
+        53.130690875547856
+      ],
+      "modelHeight": 0,
+      "basis": "Original elevation at the mapped courtyard entrance approach. The medical university documents the four exterior steps."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          46.25297702309886,
+          39.1758777307799
+        ],
+        [
+          46.27473669761163,
+          40.788071255502416
+        ],
+        [
+          46.361246605405206,
+          42.27386767912278
+        ],
+        [
+          46.72063816339569,
+          56.12559701317727
+        ],
+        [
+          47.09557612287035,
+          56.1595932793321
+        ],
+        [
+          47.317482497086495,
+          64.78289221160365
+        ],
+        [
+          47.33873982196377,
+          66.320279948523
+        ],
+        [
+          47.400396638901746,
+          67.95334337829951
+        ],
+        [
+          47.62291112038941,
+          76.51918957208447
+        ],
+        [
+          47.63985881344263,
+          77.11880816268827
+        ],
+        [
+          59.638428751685325,
+          76.80929762826649
+        ],
+        [
+          59.09414606175177,
+          55.85008274537685
+        ],
+        [
+          59.53039712493373,
+          55.83788128641181
+        ],
+        [
+          58.633147665031274,
+          24.943805994790253
+        ],
+        [
+          52.79835578617241,
+          25.024338923617286
+        ],
+        [
+          51.672325692426696,
+          25.0372556018511
+        ],
+        [
+          51.61355077655951,
+          21.909248693775453
+        ],
+        [
+          50.915707711130295,
+          -3.8600466592863647
+        ],
+        [
+          47.91760532498507,
+          -3.7753408979507768
+        ],
+        [
+          47.6379816131799,
+          -14.037096848369586
+        ],
+        [
+          47.6121502624377,
+          -14.775539838221498
+        ],
+        [
+          46.86782662945876,
+          -14.756767120549082
+        ],
+        [
+          34.122104035795196,
+          -14.405737230767551
+        ],
+        [
+          33.95656658660704,
+          -20.407316722543534
+        ],
+        [
+          17.96820305573904,
+          -19.976501436848007
+        ],
+        [
+          18.059286989696975,
+          -16.477514606594205
+        ],
+        [
+          10.561506056135935,
+          -16.271729933632336
+        ],
+        [
+          10.440862807778796,
+          -20.768283218521727
+        ],
+        [
+          -2.05749221330227,
+          -20.435079601089225
+        ],
+        [
+          -1.9278595489813908,
+          -15.931960442774926
+        ],
+        [
+          -8.92979487969173,
+          -15.744475264919593
+        ],
+        [
+          -9.02087881364966,
+          -19.2434620951734
+        ],
+        [
+          -25.02217123969039,
+          -18.813819094723677
+        ],
+        [
+          -24.856633791140965,
+          -12.812239603414229
+        ],
+        [
+          -36.82035652357323,
+          -12.4938186257341
+        ],
+        [
+          -37.568619635761166,
+          -12.469652319882561
+        ],
+        [
+          -38.31294326874011,
+          -12.450879602210136
+        ],
+        [
+          -38.29499087655586,
+          -11.701649435808367
+        ],
+        [
+          -38.15639523551569,
+          -6.455865983859061
+        ],
+        [
+          -39.93119676049292,
+          -6.404011131985888
+        ],
+        [
+          -52.33148782993389,
+          -5.676613116554712
+        ],
+        [
+          -52.06852097693894,
+          7.136982237918723
+        ],
+        [
+          -51.63152960862694,
+          28.69605232283255
+        ],
+        [
+          -48.62494015601351,
+          28.543106646927065
+        ],
+        [
+          -48.027249760055426,
+          58.639414862284404
+        ],
+        [
+          -47.55958861963898,
+          58.7163232238763
+        ],
+        [
+          -47.30727686853665,
+          78.52766101365248
+        ],
+        [
+          -47.28237089825398,
+          79.72033232124352
+        ],
+        [
+          -35.15652140720266,
+          79.12332148455964
+        ],
+        [
+          -35.09296094856136,
+          69.93932597966786
+        ],
+        [
+          -35.03815195174647,
+          68.184554588731
+        ],
+        [
+          -34.993654342934434,
+          66.67038132744057
+        ],
+        [
+          -34.95275250099903,
+          58.404457348123074
+        ],
+        [
+          -34.63286149329516,
+          58.38170532449513
+        ],
+        [
+          -35.092960948561355,
+          44.63010959803476
+        ],
+        [
+          -35.13753787542568,
+          42.72830781217054
+        ],
+        [
+          -35.200516665321416,
+          41.34240838538206
+        ],
+        [
+          -35.65929414762985,
+          27.343648655933663
+        ],
+        [
+          -35.92797192371846,
+          27.296284031975148
+        ],
+        [
+          -35.995181026906714,
+          25.576455352599826
+        ],
+        [
+          -36.04581259001563,
+          23.513082528483856
+        ],
+        [
+          -36.501866807817585,
+          6.811699533937054
+        ],
+        [
+          -4.619581491201912,
+          5.947256556278907
+        ],
+        [
+          -3.618900869536779,
+          5.917223439490748
+        ],
+        [
+          0.15837235617650602,
+          5.822655404015999
+        ],
+        [
+          2.5791162886658405,
+          5.754609015257712
+        ],
+        [
+          2.704333564025413,
+          9.45221755420438
+        ],
+        [
+          5.154874766349113,
+          9.38112214737535
+        ],
+        [
+          7.686928818979231,
+          9.311666862417391
+        ],
+        [
+          7.587569334743811,
+          5.6164028942372415
+        ],
+        [
+          10.158410073032075,
+          5.550464464825069
+        ],
+        [
+          13.883967717634569,
+          5.451207288941969
+        ],
+        [
+          14.884648339299703,
+          5.421174172153812
+        ],
+        [
+          27.23573557702377,
+          5.0631159576878755
+        ],
+        [
+          45.51838311153348,
+          4.529784795171512
+        ],
+        [
+          45.750600874012044,
+          21.348891058432674
+        ],
+        [
+          45.76379416402385,
+          22.425484604654514
+        ],
+        [
+          45.85934636656949,
+          25.25778521498045
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Original mapped palace perimeter and both connected forecourt wings."
+    },
+    "featureIds": [
+      "way/242871669",
+      "node/10816067960",
+      "node/10816067961",
+      "node/10816067958",
+      "node/10816067957",
+      "node/2503195223",
+      "node/10816067959"
+    ],
+    "source": "https://www.openstreetmap.org/way/242871669",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4ab95d6e7f1918e203f96336363839f46ab478e4be3484a6e8f402f8e20984de",
+    "notes": "The main Branicki Palace exterior and both connected forecourt wings in Białystok in summer 2023. Includes the baroque garden façade, twin courtyard pavilions, entry portico and open forecourt between the mapped wings. Detached gate, gardens and interior rooms are outside this model. Current mapped ground plan, courtyard approach and original imagery locate the permanent exterior. Roof sections and carved ornament are proportional estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The principal palace and connected wings follow the original native plan. Height, minor roof limits, statues, architectural relief and bay spacing are proportional estimates from the cleared photographs.",
+    "The original provider terrain is unchanged. Entry thresholds and local foundations are approximate. The outer gate, formal gardens, boundary structures, and interiors are outside this model.",
+    "The summer 2023 permanent exterior uses two Qualla photographs and three independently confirmed CC0 courtyard images by the same photographer."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. OpenStreetMap geographic controls, ODbL 1.0. Photographer-released CC0 reference originals by Rakoon.",
+  "qaLodCameras": [
+    {
+      "name": "whole-branicki-palace-skyline",
+      "position": [
+        116,
+        69,
+        170
+      ],
+      "lookAt": [
+        3,
+        10,
+        25
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-branicki-palace-district",
+      "position": [
+        116,
+        69,
+        170
+      ],
+      "lookAt": [
+        3,
+        10,
+        25
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-branicki-palace-street",
+      "position": [
+        116,
+        69,
+        170
+      ],
+      "lookAt": [
+        3,
+        10,
+        25
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-branicki-palace-closeup",
+      "position": [
+        116,
+        69,
+        170
+      ],
+      "lookAt": [
+        3,
+        10,
+        25
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "garden-clock-and-portico",
+      "position": [
+        30,
+        30,
+        -106
+      ],
+      "lookAt": [
+        5,
+        10,
+        -10
+      ]
+    },
+    {
+      "name": "baroque-courtyard-and-wings",
+      "position": [
+        -54,
+        38,
+        131
+      ],
+      "lookAt": [
+        2,
+        10,
+        25
+      ]
+    },
+    {
+      "name": "palace-and-open-forecourt-plan",
+      "position": [
+        82,
+        126,
+        82
+      ],
+      "lookAt": [
+        2,
+        8,
+        28
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8898,
+    "vertices": 26694,
+    "materials": 6,
+    "bytes": 1311040,
+    "sha256": "sha256:e559acee76b4fe7de2d153aa5ebec8db342a57226a1f6b9e13b30f6693fcbdd2"
+  }
+}

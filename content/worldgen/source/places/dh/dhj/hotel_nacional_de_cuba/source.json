@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hotel_nacional_de_cuba",
+  "kind": "static-structure",
+  "title": "Hotel Nacional de Cuba",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hotel_nacional_de_cuba",
+        "output": "assets/places/dh/dhj/hotel_nacional_de_cuba/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:6264652c49c6dafc7fac74f069570906aa254ee4b5e32f1bb3bf64784cc3b0d0"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-hotel",
+        "path": "models/generate-hotel.mjs"
+      },
+      {
+        "id": "hotel-model",
+        "path": "models/hotel-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/exterior-controls.json",
+      "reference-rights/commons-pd-originals.json",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-8885-14217.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

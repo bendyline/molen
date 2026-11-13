@@ -31,6 +31,20 @@ export function edgeHeight(edge: TransportEdge, d: number): number {
   return y0 + (y1 - y0) * t;
 }
 
+/** Height of a lane's own surface at an edge-path distance (see `TransportLane.ys`). */
+export function laneHeight(lane: TransportLane, edge: TransportEdge, d: number): number {
+  const ys = lane.ys;
+  if (ys === undefined) return edgeHeight(edge, d);
+  const path = edge.path;
+  const i = lineSegmentIndex(path, d);
+  const d0 = path.distances[i] ?? 0;
+  const d1 = path.distances[i + 1] ?? d0;
+  const y0 = ys[i] ?? 0;
+  const y1 = ys[i + 1] ?? y0;
+  const t = d1 > d0 ? dmath.clamp((d - d0) / (d1 - d0), 0, 1) : 0;
+  return y0 + (y1 - y0) * t;
+}
+
 /** Sample a lane at `s` within [0, length], writing into `out`. */
 export function sampleLaneBody(
   lane: TransportLane,
@@ -44,9 +58,9 @@ export function sampleLaneBody(
   out.z = p.z;
   out.dx = p.dx * lane.dir;
   out.dz = p.dz * lane.dir;
-  out.y = edgeHeight(edge, d) + lane.lift;
-  const ahead = edgeHeight(edge, dmath.clamp(d + lane.dir * 2, 0, edge.path.length));
-  const behind = edgeHeight(edge, dmath.clamp(d - lane.dir * 2, 0, edge.path.length));
+  out.y = laneHeight(lane, edge, d) + lane.lift;
+  const ahead = laneHeight(lane, edge, dmath.clamp(d + lane.dir * 2, 0, edge.path.length));
+  const behind = laneHeight(lane, edge, dmath.clamp(d - lane.dir * 2, 0, edge.path.length));
   out.grade = (ahead - behind) / 4;
   return out;
 }

@@ -1,0 +1,516 @@
+{
+  "planId": "hull_house",
+  "id": "hull_house",
+  "assetId": "molen.worldgen.structure.hull_house",
+  "title": "Hull House, Chicago",
+  "wikidataId": "Q1582905",
+  "category": "house",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -87.647402,
+    "latitude": 41.871655
+  },
+  "size": [
+    22.640000343322754,
+    11.180000185966492,
+    18.735000610351562
+  ],
+  "actualBounds": {
+    "min": [
+      -11.335000038146973,
+      -0.3799999952316284,
+      -9.555000305175781
+    ],
+    "max": [
+      11.305000305175781,
+      10.800000190734863,
+      9.180000305175781
+    ]
+  },
+  "visualBrief": "The restored brick Italianate mansion with a pale wraparound veranda, arched windows, ornate eaves and rooftop cupola.",
+  "nativeAxes": {
+    "x": "north along the Halsted Street front",
+    "y": "up",
+    "z": "east toward Halsted Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2010-03-23",
+    "validFrom": "2010-01-01",
+    "validUntil": "2011-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hull_House_1.JPG",
+    "https://commons.wikimedia.org/wiki/File:Hull_House_3.JPG"
+  ],
+  "stories": [
+    {
+      "id": "hull-house-wp",
+      "url": "https://qualla.com/hull-house/"
+    }
+  ],
+  "referenceInputHash": "08cba8187b03e5cbecbf9b94e787ebe4aa17e2b17f90152c25cded95b50ceef8",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dp/dp3/hull_house/models/hull-house-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dp/dp3/hull_house/models/hull-house-model.mjs",
+    "level": "skyline",
+    "export": "hullSkyline",
+    "errorMeters": 0.36,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick_flemish",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.83,
+        "metallic": 0
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_vertical",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.78,
+        "metallic": 0.15
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.37,
+        "metallic": 0.06
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hullDistrict",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.37,
+            "metallic": 0.06
+          }
+        }
+      },
+      "street": {
+        "export": "hullStreet",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.37,
+            "metallic": 0.06
+          }
+        }
+      },
+      "closeup": {
+        "export": "hullCloseup",
+        "errorMeters": 0.025,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.37,
+            "metallic": 0.06
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "brick_flemish",
+    "stone_limestone_raw",
+    "wood_plain",
+    "wood_vertical",
+    "metal_standing_seam"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.76,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -87.647402,
+      41.871655
+    ],
+    "heading": 1.58835424145801,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -87.64729953748095,
+        41.871656339769316
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain immediately in front of the Halsted Street porch."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          9.14225044176706,
+          -7.060571097937526
+        ],
+        [
+          9.136433728672207,
+          6.5856427364058545
+        ],
+        [
+          4.415759477092087,
+          6.585654951558442
+        ],
+        [
+          4.416044066960235,
+          7.837539482217474
+        ],
+        [
+          1.1427367448474544,
+          7.838095275631109
+        ],
+        [
+          -2.2531486791751223,
+          7.844789224447085
+        ],
+        [
+          -2.2532877334434387,
+          6.584616656907829
+        ],
+        [
+          -5.960819687950201,
+          6.585838180177832
+        ],
+        [
+          -5.956731728223036,
+          3.8168519233812295
+        ],
+        [
+          -8.717902785893248,
+          3.818110092136772
+        ],
+        [
+          -9.906502691453415,
+          2.3961284048595504
+        ],
+        [
+          -10.250514690672773,
+          1.0635927818970874
+        ],
+        [
+          -9.83708868757048,
+          -0.288804815791749
+        ],
+        [
+          -8.712200970178438,
+          -1.5789657873980685
+        ],
+        [
+          -5.962160145881028,
+          -1.5804193999255902
+        ],
+        [
+          -5.96613320822815,
+          -7.060571097937527
+        ]
+      ],
+      "minimumCoverage": 0.88,
+      "basis": "Named original Hull mansion outline, OpenStreetMap way 148902944."
+    },
+    "featureIds": [
+      "way/148902944",
+      "way/148902943"
+    ],
+    "source": "https://www.openstreetmap.org/way/148902944",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:074a0ef0d8d8e99fe52065cfb436a5c5e03d0b5d7b14370b0e9dc123352f5be5",
+    "notes": "The restored historic Hull House mansion at 800 South Halsted Street, Chicago, as photographed on March 23, 2010. This model covers the original house that gave the settlement its name. The March 2010 sources document the restored east facade and south gabled end. The city records the neighboring Residents’ Dining Hall as a separate building."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick_flemish",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.44,
+        0.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The model covers the original Hull mansion as restored and photographed in 2010. The separately mapped Residents’ Dining Hall is a separate building.",
+    "Survey dimensions control the principal volumes and windows. Roof, small trim details and rear elevation are interpreted from the available views and written survey.",
+    "The original public source terrain is unchanged. The entrance landing and ground registration are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license, OpenStreetMap ODbL 1.0 and two exact first-party public-domain Qualla photographs.",
+  "qaLodCameras": [
+    {
+      "name": "whole-hull-house-skyline",
+      "position": [
+        20,
+        13,
+        33
+      ],
+      "lookAt": [
+        0,
+        4.2,
+        0.3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-hull-house-district",
+      "position": [
+        20,
+        13,
+        33
+      ],
+      "lookAt": [
+        0,
+        4.2,
+        0.3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-hull-house-street",
+      "position": [
+        20,
+        13,
+        33
+      ],
+      "lookAt": [
+        0,
+        4.2,
+        0.3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-hull-house-closeup",
+      "position": [
+        20,
+        13,
+        33
+      ],
+      "lookAt": [
+        0,
+        4.2,
+        0.3
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "halsted-entrance-and-paired-arches",
+      "position": [
+        8.5,
+        4.3,
+        29
+      ],
+      "lookAt": [
+        0.9,
+        4.24,
+        3.3
+      ]
+    },
+    {
+      "name": "south-bay-and-wraparound-veranda",
+      "position": [
+        -29,
+        6.8,
+        11.6
+      ],
+      "lookAt": [
+        -2.8,
+        4.35,
+        1.2
+      ]
+    },
+    {
+      "name": "north-roof-chimneys-and-cupola",
+      "position": [
+        22,
+        15,
+        -21.9
+      ],
+      "lookAt": [
+        1,
+        4.8,
+        -0.7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12147,
+    "vertices": 36441,
+    "materials": 6,
+    "bytes": 1659212,
+    "sha256": "sha256:952621a309b8f22aa1664454834483d9b4072f7fabf27ecc5351debf72b385f1"
+  }
+}

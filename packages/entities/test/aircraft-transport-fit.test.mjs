@@ -3,7 +3,6 @@ import { Box3, Group, Raycaster, Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { instrumentGeometry } from '../scripts/aircraft/instrument-geometry.mjs';
 import { detailKit } from '../scripts/aircraft/mesh-kit.mjs';
-import { transportPoint, transportProfiles } from '../scripts/aircraft/transport-profiles.mjs';
 import { aircraftPanelTools } from '../scripts/vehicle-interiors.mjs';
 import { GLTFLoader } from './helpers/gltf-loader.mjs';
 
@@ -41,17 +40,40 @@ describe.each(['source', 'runtime'])('transport fit (%s)', (version) => {
       )
     ).scene;
     root.updateMatrixWorld(true);
-    const deck = root.getObjectByName('fitted-glareshield-deck');
-    expect(deck).toBeDefined();
-    deck.traverse((node) => {
-      if (!node.isMesh) return;
+    // The transport kit builds these noses (transport-kit.mjs), so the glareshield is the deck's
+    // padded hood and the kit's coaming, measured against the built crown rather than a table.
+    const cockpit = root.getObjectByName('cockpit');
+    expect(cockpit).toBeDefined();
+    const glareshield = [];
+    cockpit.traverse((node) => {
+      if (node.isMesh && /^coaming-padding|-coaming$/.test(node.material.name))
+        glareshield.push(node);
+    });
+    expect(glareshield.length, 'glareshield padding and coaming').toBeGreaterThan(0);
+    const skin = [];
+    root.traverse((node) => {
+      if (node.isMesh && /^fuselage-skin$|canopy-glazing$/.test(node.name)) skin.push(node);
+    });
+    const top = new Box3().setFromObject(root).max.y + 1,
+      crowns = new Map();
+    const crown = (z) => {
+      const key = z.toFixed(2);
+      if (!crowns.has(key)) {
+        const hit = new Raycaster(new Vector3(0, top, z), new Vector3(0, -1, 0)).intersectObjects(
+          skin,
+          false,
+        )[0];
+        crowns.set(key, hit?.point.y ?? Number.NEGATIVE_INFINITY);
+      }
+      return crowns.get(key);
+    };
+    for (const node of glareshield) {
       const positions = node.geometry.getAttribute('position');
       for (let i = 0; i < positions.count; i++) {
         const v = new Vector3().fromBufferAttribute(positions, i).applyMatrix4(node.matrixWorld);
-        const roof = transportPoint(spec, transportProfiles[slug], v.z, 0)[1];
-        expect(v.y, 'glareshield stays beneath nose skin').toBeLessThanOrEqual(roof + 0.001);
+        expect(v.y, 'glareshield stays beneath nose skin').toBeLessThanOrEqual(crown(v.z) + 0.001);
       }
-    });
+    }
     const extent = new Box3().setFromObject(root).getSize(new Vector3());
     expect(Math.abs(extent.x - spec.span)).toBeLessThan(0.16);
     for (const name of ['engine-1', 'engine-2']) {

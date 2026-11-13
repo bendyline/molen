@@ -1,0 +1,662 @@
+{
+  "planId": "umeda_sky_building",
+  "id": "umeda_sky_building",
+  "assetId": "molen.worldgen.structure.umeda_sky_building",
+  "title": "Umeda Sky Building",
+  "wikidataId": "Q1151808",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 135.49013736249998,
+    "latitude": 34.705292656249995
+  },
+  "size": [
+    108.86898422241211,
+    173.13946069777012,
+    56.105918884277344
+  ],
+  "actualBounds": {
+    "min": [
+      -54.324073791503906,
+      -0.1394606977701187,
+      -27.96146583557129
+    ],
+    "max": [
+      54.5449104309082,
+      173,
+      28.144453048706055
+    ]
+  },
+  "visualBrief": "Osaka’s 173-metre twin towers with their open circular Floating Garden Observatory and paired inclined escalators.",
+  "nativeAxes": {
+    "x": "east along the towers",
+    "y": "up",
+    "z": "toward the south plaza"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2011-04-06",
+    "validFrom": "2011-01-01",
+    "validUntil": "2012-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Osaka_Umeda_Sky_Building_4.jpg",
+    "https://commons.wikimedia.org/wiki/File:Osaka_Umeda_Sky_Building_14.jpg",
+    "https://commons.wikimedia.org/wiki/File:Umeda_Sky_Buildng.jpg"
+  ],
+  "stories": [
+    {
+      "id": "umeda-sky-building-wp",
+      "url": "https://qualla.com/umeda-sky-building/"
+    }
+  ],
+  "referenceInputHash": "31d389cf129d2b13da2243a8f2bd0c195ef7cb9ec00fe1afe3eb2cbc04f69895",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/xn/xn0/umeda_sky_building/models/umeda-sky-building-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/xn/xn0/umeda_sky_building/models/umeda-sky-building-model.mjs",
+    "level": "skyline",
+    "export": "umedaSkyline",
+    "errorMeters": 1.19,
+    "surfaces": {
+      "cladding": {
+        "slot": "wall",
+        "graph": "metal_stainless_beadblasted",
+        "roughness": 0.75,
+        "metallic": 0.15
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.12
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.67,
+        "metallic": 0.21
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.34,
+        "metallic": 0.24
+      },
+      "tube": {
+        "slot": "window",
+        "localRef": "palette:#dbe8ef",
+        "roughness": 0.25,
+        "metallic": 0.06,
+        "alphaMode": "BLEND",
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.33
+        ],
+        "doubleSided": true
+      },
+      "detail": {
+        "slot": "trim",
+        "localRef": "palette:#fefefe",
+        "roughness": 0.79,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "umedaDistrict",
+        "errorMeters": 0.57,
+        "surfaces": {
+          "cladding": {
+            "slot": "wall",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.21
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.24
+          },
+          "tube": {
+            "slot": "window",
+            "localRef": "palette:#dbe8ef",
+            "roughness": 0.25,
+            "metallic": 0.06,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.33
+            ],
+            "doubleSided": true
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.79,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "umedaStreet",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "cladding": {
+            "slot": "wall",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.21
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.24
+          },
+          "tube": {
+            "slot": "window",
+            "localRef": "palette:#dbe8ef",
+            "roughness": 0.25,
+            "metallic": 0.06,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.33
+            ],
+            "doubleSided": true
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.79,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "umedaCloseup",
+        "errorMeters": 0.062,
+        "surfaces": {
+          "cladding": {
+            "slot": "wall",
+            "graph": "metal_stainless_beadblasted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.67,
+            "metallic": 0.21
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.34,
+            "metallic": 0.24
+          },
+          "tube": {
+            "slot": "window",
+            "localRef": "palette:#dbe8ef",
+            "roughness": 0.25,
+            "metallic": 0.06,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.33
+            ],
+            "doubleSided": true
+          },
+          "detail": {
+            "slot": "trim",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.79,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "metal_stainless_beadblasted",
+    "metal_painted",
+    "concrete_plain"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.08,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      135.49013736249998,
+      34.705292656249995
+    ],
+    "heading": -0.06496696681119152,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        135.49011589844284,
+        34.70502143248243
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate grade on the plaza approach south of the twin towers."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          -54.239209692018164,
+          -27.86768625311343
+        ],
+        [
+          -54.245071962198715,
+          27.01767056835146
+        ],
+        [
+          -39.81945526945282,
+          27.016221800861217
+        ],
+        [
+          -26.209492874232605,
+          27.023216366730374
+        ],
+        [
+          -17.7837806583817,
+          26.988204178989665
+        ],
+        [
+          -17.78049474764662,
+          28.025450304156475
+        ],
+        [
+          0.22782499503414266,
+          27.835538096855625
+        ],
+        [
+          18.437118655818487,
+          28.056459170981768
+        ],
+        [
+          18.431664641519195,
+          26.985887651399985
+        ],
+        [
+          26.412791128249417,
+          27.02442148576513
+        ],
+        [
+          34.89546448908007,
+          27.01916993885617
+        ],
+        [
+          44.33222015931346,
+          27.018780102398654
+        ],
+        [
+          54.465911863048255,
+          27.01767056835146
+        ],
+        [
+          54.46264195707259,
+          -27.867092127215816
+        ],
+        [
+          44.52144861143006,
+          -27.86735076919241
+        ],
+        [
+          34.286580293047884,
+          -27.87081431612625
+        ],
+        [
+          26.096859202072693,
+          -27.873466328426257
+        ],
+        [
+          -0.012290917371021504,
+          -27.87047695752865
+        ],
+        [
+          -27.00174325479636,
+          -27.865993837957014
+        ],
+        [
+          -40.60257347645587,
+          -27.87358252955492
+        ]
+      ],
+      "outlines": [
+        [
+          [
+            -54.239209692018164,
+            -27.86768625311343
+          ],
+          [
+            -54.245071962198715,
+            27.01767056835146
+          ],
+          [
+            -39.81945526945282,
+            27.016221800861217
+          ],
+          [
+            -26.209492874232605,
+            27.023216366730374
+          ],
+          [
+            -17.7837806583817,
+            26.988204178989665
+          ],
+          [
+            -17.78049474764662,
+            28.025450304156475
+          ],
+          [
+            0.22782499503414266,
+            27.835538096855625
+          ],
+          [
+            18.437118655818487,
+            28.056459170981768
+          ],
+          [
+            18.431664641519195,
+            26.985887651399985
+          ],
+          [
+            26.412791128249417,
+            27.02442148576513
+          ],
+          [
+            34.89546448908007,
+            27.01916993885617
+          ],
+          [
+            44.33222015931346,
+            27.018780102398654
+          ],
+          [
+            54.465911863048255,
+            27.01767056835146
+          ],
+          [
+            54.46264195707259,
+            -27.867092127215816
+          ],
+          [
+            44.52144861143006,
+            -27.86735076919241
+          ],
+          [
+            34.286580293047884,
+            -27.87081431612625
+          ],
+          [
+            26.096859202072693,
+            -27.873466328426257
+          ],
+          [
+            -0.012290917371021504,
+            -27.87047695752865
+          ],
+          [
+            -27.00174325479636,
+            -27.865993837957014
+          ],
+          [
+            -40.60257347645587,
+            -27.87358252955492
+          ]
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Mapped Umeda Sky Building relation with both shafts and the linked crown."
+    },
+    "featureIds": [
+      "way/252485322",
+      "way/252708905",
+      "way/252708903",
+      "way/252708901",
+      "way/252485324",
+      "way/252708902",
+      "way/252708904",
+      "way/588689730",
+      "way/649098944"
+    ],
+    "source": "https://www.openstreetmap.org/relation/3389505",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:dd4248278d68b4653837c60109d6e3e72efdbb659e4d2c5d0c65ad404b2ca767",
+    "notes": "The historic construction was completed in 1993. The photographic references show the permanent structure at ground and high levels. Exterior cladding and intermediate levels are estimated where the images do not expose the full elevations."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless_beadblasted",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The mapped tower parts and roof aperture control plan geometry. The 173 m height and escalator span come from the owner. Heights of individual terrace levels, curtain wall modules and supporting details are estimates.",
+    "The 2007 photograph supplies the view through the permanent crown and escalator arrangement. The two April 2011 photos guide cladding and lower supports. Temporary access rigs and neighboring development are outside the model scope.",
+    "The source terrain is unchanged and the plaza connections are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license. The mapped contours are ODbL. The three exact Qualla photographs are CC0.",
+  "qaLodCameras": [
+    {
+      "name": "whole-towers-skyline",
+      "position": [
+        -181,
+        94,
+        262
+      ],
+      "lookAt": [
+        0,
+        86,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-towers-district",
+      "position": [
+        -181,
+        94,
+        262
+      ],
+      "lookAt": [
+        0,
+        86,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-towers-street",
+      "position": [
+        -181,
+        94,
+        262
+      ],
+      "lookAt": [
+        0,
+        86,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-towers-closeup",
+      "position": [
+        -181,
+        94,
+        262
+      ],
+      "lookAt": [
+        0,
+        86,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "south-plaza-and-twin-towers",
+      "position": [
+        -29,
+        18,
+        216
+      ],
+      "lookAt": [
+        0,
+        81,
+        0
+      ]
+    },
+    {
+      "name": "floating-garden-aperture-and-escalators",
+      "position": [
+        -48,
+        198,
+        88
+      ],
+      "lookAt": [
+        0,
+        158,
+        0
+      ]
+    },
+    {
+      "name": "plaza-columns-and-tower-bases",
+      "position": [
+        -21,
+        11,
+        94
+      ],
+      "lookAt": [
+        0,
+        20,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11776,
+    "vertices": 35328,
+    "materials": 7,
+    "bytes": 1533832,
+    "sha256": "sha256:ad0b55db82c5278360afb434cda06972ade1c1c98cf0d7d1e271ce9af5070a7a"
+  }
+}

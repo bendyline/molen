@@ -1,0 +1,438 @@
+{
+  "planId": "saint_sebastian_cathedral_coronel_fabriciano",
+  "id": "saint_sebastian_cathedral_coronel_fabriciano",
+  "assetId": "molen.worldgen.structure.saint_sebastian_cathedral_coronel_fabriciano",
+  "title": "Saint Sebastian Cathedral, Coronel Fabriciano",
+  "wikidataId": "Q508405",
+  "category": "cathedral",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -42.6247796,
+    "latitude": -19.5239726
+  },
+  "size": [
+    27.286439895629883,
+    17.850971147418022,
+    52.61479949951172
+  ],
+  "actualBounds": {
+    "min": [
+      -14.218183517456055,
+      -0.17000000178813934,
+      -29.149799346923828
+    ],
+    "max": [
+      13.068256378173828,
+      17.680971145629883,
+      23.46500015258789
+    ]
+  },
+  "visualBrief": "The 2010 Saint Sebastian Co-Cathedral in Coronel Fabriciano with its folded tent-like roof, ochre gable, geometric glass framing and covered entry.",
+  "nativeAxes": {
+    "x": "northwest along the street",
+    "y": "up",
+    "z": "east-northeast toward Rua São Sebastião"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2010-06-07",
+    "validFrom": "2010-01-01",
+    "validUntil": "2011-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Fachada_da_Catedral_de_S%C3%A3o_Sebasti%C3%A3o,_Coronel_Fabriciano_MG.JPG"
+  ],
+  "stories": [
+    {
+      "id": "saint-sebastian-cathedral-coronel-fabriciano-wp",
+      "url": "https://qualla.com/saint-sebastian-cathedral-coronel-fabriciano/"
+    }
+  ],
+  "referenceInputHash": "7057de4738ba80bbb20c5bb812f4e9f17cb101d98d87e4a8ec4e856065d2f774",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/7h/7h9/saint_sebastian_cathedral_coronel_fabriciano/models/fabriciano-cathedral-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/7h/7h9/saint_sebastian_cathedral_coronel_fabriciano/models/fabriciano-cathedral-model.mjs",
+    "level": "skyline",
+    "export": "cathedralSkyline",
+    "errorMeters": 0.76,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_boardformed",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.81,
+        "metallic": 0.18
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.64,
+        "metallic": 0.27
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.48,
+        "metallic": 0.14
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "cathedralDistrict",
+        "errorMeters": 0.29,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.81,
+            "metallic": 0.18
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.27
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.14
+          }
+        }
+      },
+      "street": {
+        "export": "cathedralStreet",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.81,
+            "metallic": 0.18
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.27
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.14
+          }
+        }
+      },
+      "closeup": {
+        "export": "cathedralCloseup",
+        "errorMeters": 0.039,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_boardformed",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.81,
+            "metallic": 0.18
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.64,
+            "metallic": 0.27
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "concrete_boardformed",
+    "metal_standing_seam",
+    "concrete_plain",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.83,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -42.6247796,
+      -19.5239726
+    ],
+    "heading": 2.3000621242784263,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -42.62459498055376,
+        -19.523803858707694
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate forecourt paving outside the projecting east entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          13.019907897879179,
+          -29.33882877515613
+        ],
+        [
+          -14.223701060697678,
+          -28.989842497710484
+        ],
+        [
+          -13.480934057822036,
+          17.374956516770563
+        ],
+        [
+          2.393981474697142,
+          23.934495970464397
+        ],
+        [
+          12.29074574693687,
+          17.01921878451988
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Named cathedral outline from OpenStreetMap way 255920710."
+    },
+    "featureIds": [
+      "way/255920710",
+      "way/293886334",
+      "way/255783747"
+    ],
+    "source": "https://www.openstreetmap.org/way/255920710",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:beda31202d6d7c16a0a8c89fec75cd1aa43c3172480342ec6c4ebf523ec1c2c9",
+    "notes": "The mapped polygon and parish description fix the long nave, street-facing triangular front and the folded sides. The 2010 photograph controls the unpainted weathered facade and glass pattern."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_boardformed",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "The model represents the modern Santa Helena cathedral as photographed in June 2010, with the weathered tan frontage of that date.",
+    "The named outline and street constrain the plan. The original photograph controls the broad glass triangle, geometric grille, warm roof edging and lower porch. Side fold proportions and rear openings are reconstructed estimates based on the parish description.",
+    "The original Terrarium field is preserved. The terrace and paving contact are approximate."
+  ],
+  "sourceLicense": "Original geometry under the repository license, OpenStreetMap ODbL 1.0 and one exact first-party public-domain Qualla photo.",
+  "qaLodCameras": [
+    {
+      "name": "whole-fabriciano-cathedral-skyline",
+      "position": [
+        41,
+        28,
+        75
+      ],
+      "lookAt": [
+        0,
+        7.5,
+        -1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-fabriciano-cathedral-district",
+      "position": [
+        41,
+        28,
+        75
+      ],
+      "lookAt": [
+        0,
+        7.5,
+        -1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-fabriciano-cathedral-street",
+      "position": [
+        41,
+        28,
+        75
+      ],
+      "lookAt": [
+        0,
+        7.5,
+        -1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-fabriciano-cathedral-closeup",
+      "position": [
+        41,
+        28,
+        75
+      ],
+      "lookAt": [
+        0,
+        7.5,
+        -1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "rua-sao-sebastiao-glazed-gable",
+      "position": [
+        0,
+        5.2,
+        55
+      ],
+      "lookAt": [
+        -0.4,
+        8.5,
+        15.7
+      ]
+    },
+    {
+      "name": "three-folded-side-bays",
+      "position": [
+        52,
+        22,
+        28
+      ],
+      "lookAt": [
+        1.6,
+        7.4,
+        -3.8
+      ]
+    },
+    {
+      "name": "rear-and-folded-nave-roof",
+      "position": [
+        -43,
+        29,
+        -56
+      ],
+      "lookAt": [
+        -0.6,
+        7.7,
+        -10.5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 4743,
+    "vertices": 14229,
+    "materials": 5,
+    "bytes": 683676,
+    "sha256": "sha256:32bde9be62065dee9660009d339941932b7f160f044870efda9bc02ea351c187"
+  }
+}

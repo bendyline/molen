@@ -1,0 +1,428 @@
+{
+  "planId": "temple_of_anahita_bishapur",
+  "id": "temple_of_anahita_bishapur",
+  "assetId": "molen.worldgen.structure.temple_of_anahita_bishapur",
+  "title": "Temple of Anahita, Bishapur",
+  "wikidataId": "Q5866947",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 51.5757147,
+    "latitude": 29.780008
+  },
+  "size": [
+    19.25882339477539,
+    7.609999775886536,
+    19.7157564163208
+  ],
+  "actualBounds": {
+    "min": [
+      -9.661357879638672,
+      -5.949999809265137,
+      -10.135165214538574
+    ],
+    "max": [
+      9.597465515136719,
+      1.659999966621399,
+      9.580591201782227
+    ]
+  },
+  "visualBrief": "Surviving stone walls, excavated paved court and rectangular doorways of the Temple of Anahita at Bishapur.",
+  "nativeAxes": {
+    "x": "northeast parallel to the northwest wall",
+    "y": "up",
+    "z": "southeast across the excavated court"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2025-03-11",
+    "validFrom": "2025-01-01",
+    "validUntil": "2026-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Anahita_Temple_of_Bishapur_(Kazerun)_1.jpg"
+  ],
+  "stories": [
+    {
+      "id": "temple-of-anahita-bishapur-wp",
+      "url": "https://qualla.com/temple-of-anahita-bishapur/"
+    }
+  ],
+  "referenceInputHash": "ae1711f5b46a78e1e3214c4bf98454effcb0cabecc87d770f3a569901c499381",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/tj/tjk/temple_of_anahita_bishapur/models/temple-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/tj/tjk/temple_of_anahita_bishapur/models/temple-model.mjs",
+    "level": "skyline",
+    "export": "templeSkyline",
+    "errorMeters": 0.22,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "recess": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.97,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "templeDistrict",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "templeStreet",
+        "errorMeters": 0.056,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "templeCloseup",
+        "errorMeters": 0.022,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_raw",
+    "stone_limestone",
+    "stone_limestone_weathered"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.63,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      51.5757147,
+      29.780008
+    ],
+    "heading": 0.6262562567329756,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        51.5757803322738,
+        29.779920843604685
+      ],
+      "modelHeight": 0,
+      "basis": "Original grade immediately outside the southeast wall. The excavated court floor is below this datum."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -4.958128665060472,
+          6.366903998619542
+        ],
+        [
+          -4.9935689244975014,
+          1.1852824316535229
+        ],
+        [
+          -5.035487825039948,
+          -6.082981444752121
+        ],
+        [
+          -0.6724144333495734,
+          -6.112561403561957
+        ],
+        [
+          4.748252807994757,
+          -6.1455889496345355
+        ],
+        [
+          4.7941555346347045,
+          1.0836382417557062
+        ],
+        [
+          4.825611967974232,
+          6.304296493737125
+        ],
+        [
+          -0.53534180375053,
+          6.338601975747797
+        ]
+      ],
+      "basis": "Mapped excavated courtyard way 591894141, expanded 1.7 percent into the ruin’s masonry to prevent terrain slivers along the inside edge."
+    },
+    "buildingCutout": {
+      "outline": [
+        [
+          -9.661187159838422,
+          -10.13516484417565
+        ],
+        [
+          9.597465196209189,
+          -10.135164844175652
+        ],
+        [
+          9.597294123570709,
+          9.580591159436642
+        ],
+        [
+          -0.5487273950661793,
+          9.577776433349449
+        ],
+        [
+          -9.661358232708702,
+          9.580591159757075
+        ]
+      ],
+      "minimumCoverage": 0.95,
+      "basis": "The authored archaeological ruins replace the generic building form inside mapped temple relation 8338022 only."
+    },
+    "featureIds": [
+      "relation/8338022",
+      "way/591894142",
+      "way/591894141"
+    ],
+    "source": "https://www.openstreetmap.org/relation/8338022",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d3cf891a42ce6b5bf2b7262c1a02cae0d51ad92022188e99b0a30d4f6ba90830",
+    "notes": "OpenStreetMap archaeological relation 8338022 identifies the temple. Outer way 591894142 and courtyard way 591894141 independently fix the shell and open court. The source terrain will remain unchanged. A bounded viewer opening following the excavation is needed to reveal the court and walls. The exact depth and wall-top levels remain approximate."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The March 2025 excavated ruins are represented as found. The precise depth and wall-top elevations are approximate.",
+    "The courtyard opening follows the mapped excavation with a small overlap into the stone. The original elevation field remains unchanged.",
+    "Roof reconstruction, underground passages, adjacent ruins and uncertain ancient details are outside this model."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. Behnam9395’s March 2025 exterior photograph is CC0. OpenStreetMap contributors supply mapped controls under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-bishapur-temple-skyline",
+      "position": [
+        19,
+        16,
+        23
+      ],
+      "lookAt": [
+        0,
+        -2.1,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-bishapur-temple-district",
+      "position": [
+        19,
+        16,
+        23
+      ],
+      "lookAt": [
+        0,
+        -2.1,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-bishapur-temple-street",
+      "position": [
+        19,
+        16,
+        23
+      ],
+      "lookAt": [
+        0,
+        -2.1,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-bishapur-temple-closeup",
+      "position": [
+        19,
+        16,
+        23
+      ],
+      "lookAt": [
+        0,
+        -2.1,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "excavated-court-and-surrounding-grade",
+      "position": [
+        17,
+        14,
+        19
+      ],
+      "lookAt": [
+        0,
+        -2.9,
+        0
+      ]
+    },
+    {
+      "name": "sunken-court-and-stone-doorways",
+      "position": [
+        0,
+        -4.36,
+        4.58
+      ],
+      "lookAt": [
+        0,
+        -2.7,
+        -5.98
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1676,
+    "vertices": 5028,
+    "materials": 4,
+    "bytes": 510432,
+    "sha256": "sha256:cb5af6fe73358de2de2c6d2f7c3aa6e46b59fcb3c4de6d281b24d7359f233815"
+  }
+}

@@ -32,8 +32,65 @@
       "shots/shared/tapered-river-corner-mast-stays-and-roof-girders.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Five existing shared256-square graphs: concrete_plain, metal_painted, metal_standing_seam, window_grid and fabric_canvas. Concrete supplies frame/tiers/support floor/cores/steps; tinted paint supplies structure/seats/markings/goals/neutral displays; standing-seam finish approximates fixed and parked roof panels; window-grid supplies closed glazing; canvas grain explicitly approximates turf. Six near-level material draws, each nearby graph read once, eviction releases geometry. Six actual GLBs have zero embedded images/copied pixels, canonical shared refs, separate runtime POSITION/NORMAL streams and equal counted CPU/GPU geometry bytes. No unique bitmap texture/building photo atlas.",
-    "captureReportHash": "sha256:61461c75336c42fab96c4263ad0f972efa4caa2a0d8ab899d10a51889a2f6f5e"
+    "notes": "Five existing shared256-square graphs: concrete_plain, metal_painted, metal_standing_seam, window_grid and fabric_canvas. Concrete supplies frame/tiers/support floor/cores/steps; tinted paint supplies structure/seats/markings/goals/neutral displays; standing-seam finish approximates fixed and parked roof panels; window-grid supplies closed glazing; canvas grain explicitly approximates turf. Six near-level material draws, each nearby graph read once, eviction releases geometry. Six actual GLBs have zero embedded images/copied pixels, canonical shared refs, separate runtime POSITION/NORMAL streams and equal counted CPU/GPU geometry bytes. No unique bitmap texture/building photo atlas. The shared window_grid graph changed after the original review. All eight new shared-material views were inspected on the existing placement. The revised glazing stays readable beneath the open upper frame and along the curved river-facing wall.",
+    "captureReportHash": "sha256:b4d051e2edd78cc3469b05d3c4c7d7a60994807fc6e5e9c277f77fbb5dddc619",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:20677c40e9edc262fbaa543149482c89a74808d27b30f401f73270b1a11140ca"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:f4dc54197f56baff592fbd46b3850bd42dd84956353b9146d8786340194df418"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:576adebfee4929521309816eb6f7e6884141808f889bc7bba867b461151cd2e8"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:086b8a09d97cd7dc5c3132027b825a634aecef0b32b0c69abad2739ee18c8415"
+      },
+      {
+        "path": "shots/shared/open-roof-rugby-bowl-and-lower-north-stand.png",
+        "hash": "sha256:b2e50914247cbde9f112c729c58f74bd37c5c6aba2e1818f844263fc88ddc5d2"
+      },
+      {
+        "path": "shots/shared/curved-river-frontage-glazing-and-exposed-frame.png",
+        "hash": "sha256:0b38ec882449b19eb0165426272def3ab990a4fb29ae79d743ccfbf39ba76313"
+      },
+      {
+        "path": "shots/shared/tapered-river-corner-mast-stays-and-roof-girders.png",
+        "hash": "sha256:6db018aabeaab72a30eba019b210a55a5558aab6738c694adb93b16d440cd9bb"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:273930236cdfb643362e44fbf8dea85509665c3605a482d0bd0104b55f305771"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

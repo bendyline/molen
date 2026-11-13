@@ -1,0 +1,438 @@
+{
+  "id": "einsiedeln_abbey",
+  "title": "Einsiedeln Abbey",
+  "wikidataId": "Q125072234",
+  "referenceCoordinate": {
+    "longitude": 8.751630329,
+    "latitude": 47.126677634
+  },
+  "module": "content/worldgen/source/places/u0/u0q/einsiedeln_abbey/models/abbey-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-einsiedeln-abbey.mjs",
+  "builder": "buildAbbeyLevel",
+  "surfaces": {
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime"
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw"
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_flat"
+    },
+    "copper": {
+      "slot": "roof",
+      "graph": "metal_copper"
+    },
+    "window": {
+      "slot": "window",
+      "graph": "window_punched"
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain"
+    },
+    "bronze": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast"
+    }
+  },
+  "exportLabel": "Molen original Einsiedeln Abbey master",
+  "expectedDraftMasterHash": "sha256:e187341f1ce7cb2d632b3f852b00361034fc3857b9c62e927a8de63f01b2879f",
+  "visualBrief": "Einsiedeln Abbey in Schwyz with the twin copper-domed towers, curved west front, tiled church and pavilion roofs, and four open courts.",
+  "heightPolicy": "The fixed 906.5 m datum and sample-fitted foundations follow standard terrain. Seven treads connect the west square and closed portal.",
+  "nativeAxes": "Native +X runs east from the west-facing twin towers toward the rear range. Native +Z runs south from the north tower toward the south tower. The mapped tower pair sets the axis and the west square establishes its sign.",
+  "limitations": [
+    "The abbey footprint, tower centers and four courtyards use attributed PMTiles. Roof pitches, facade opening rhythm, statuary and clock details use ordinary exterior pictures.",
+    "The separate stables, fountain, crescent arcades, gardens and paths stay in their original viewer layers. The church and monastery interiors are outside this exterior model."
+  ],
+  "materialMethod": "Seven reusable material graphs with metric UVs cover lime plaster, limestone, terracotta, copper, glazing, wood and bronze. Tints and geometry carry the identity details without embedded images.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Einsiedeln_01.jpg",
+      "hash": "sha256:580a9a2b9b8d5f5bdc5c7fd7d1aa261fac23f6df9935c9526abe84eb39f3a567",
+      "observed": "Church and west-front wings from the monastery square."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Einsiedeln_Abbey_(7).jpg",
+      "hash": "sha256:7000e930a0c0969695e84cd6066e08709b599f61e0644982729f5402d663d2da",
+      "observed": "South wings, rear roofs and the detached equestrian buildings."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "west-square",
+      "position": [
+        -169,
+        45,
+        38
+      ],
+      "lookAt": [
+        46,
+        18,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "west-processional-front",
+      "position": [
+        -103,
+        10,
+        -3
+      ],
+      "lookAt": [
+        4,
+        24,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "church-pediment",
+      "position": [
+        -37,
+        32,
+        6
+      ],
+      "lookAt": [
+        -5,
+        26,
+        -2
+      ],
+      "fov": 51
+    },
+    {
+      "name": "south-tower-clock",
+      "position": [
+        -29,
+        43,
+        31
+      ],
+      "lookAt": [
+        0,
+        37.5,
+        19
+      ],
+      "fov": 47
+    },
+    {
+      "name": "north-tower-copper-crown",
+      "position": [
+        -25,
+        62,
+        -38
+      ],
+      "lookAt": [
+        0,
+        51,
+        -20
+      ],
+      "fov": 49
+    },
+    {
+      "name": "courtyards-and-church-roofs",
+      "position": [
+        101,
+        102,
+        133
+      ],
+      "lookAt": [
+        67,
+        14,
+        1
+      ],
+      "fov": 54
+    },
+    {
+      "name": "south-rear-court",
+      "position": [
+        95,
+        21,
+        31
+      ],
+      "lookAt": [
+        66,
+        11,
+        44
+      ],
+      "fov": 64
+    },
+    {
+      "name": "nave-and-northwest-court",
+      "position": [
+        22,
+        35,
+        -44
+      ],
+      "lookAt": [
+        40,
+        20,
+        -10
+      ],
+      "fov": 61
+    },
+    {
+      "name": "east-range-and-pavilions",
+      "position": [
+        191,
+        42,
+        55
+      ],
+      "lookAt": [
+        128,
+        16,
+        4
+      ],
+      "fov": 60
+    }
+  ],
+  "sourceFacts": {
+    "mappedParts": [
+      52776560750902,
+      35184740570041,
+      35184740570043,
+      35184740570045,
+      35184740570047,
+      35184740570049,
+      35184740570050,
+      35184740570051,
+      35184740660694,
+      35184740660695,
+      35184740660697,
+      35184740805140,
+      35184740805141,
+      35184740805142,
+      35184740805143,
+      35184740805144,
+      35184740805145,
+      35184740805146,
+      35184740805147,
+      35184740805148,
+      35184740805149,
+      35184744255071,
+      35184744255072
+    ],
+    "openCourts": 4,
+    "towerHeightsMeters": [
+      60,
+      60
+    ],
+    "westStairTreads": 7
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        52,
+        19,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u0/u0q/einsiedeln_abbey/models/abbey-model.mjs",
+    "export": "buildAbbeySkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime"
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw"
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat"
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper"
+      },
+      "window": {
+        "slot": "window",
+        "graph": "window_punched"
+      },
+      "door": {
+        "slot": "door",
+        "graph": "wood_plain"
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast"
+      }
+    },
+    "errorMeters": 2.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAbbeyDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat"
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper"
+          },
+          "window": {
+            "slot": "window",
+            "graph": "window_punched"
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast"
+          }
+        },
+        "errorMeters": 0.95
+      },
+      "street": {
+        "export": "buildAbbeyStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat"
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper"
+          },
+          "window": {
+            "slot": "window",
+            "graph": "window_punched"
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast"
+          }
+        },
+        "errorMeters": 0.35
+      },
+      "closeup": {
+        "export": "buildAbbeyCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime"
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat"
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper"
+          },
+          "window": {
+            "slot": "window",
+            "graph": "window_punched"
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain"
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast"
+          }
+        },
+        "errorMeters": 0.11
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "einsiedeln_abbey-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -169,
+        45,
+        38
+      ],
+      "lookAt": [
+        46,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "einsiedeln_abbey-district",
+      "reviewLod": "district",
+      "position": [
+        -169,
+        45,
+        38
+      ],
+      "lookAt": [
+        46,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "einsiedeln_abbey-street",
+      "reviewLod": "street",
+      "position": [
+        -169,
+        45,
+        38
+      ],
+      "lookAt": [
+        46,
+        18,
+        0
+      ]
+    },
+    {
+      "name": "einsiedeln_abbey-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -169,
+        45,
+        38
+      ],
+      "lookAt": [
+        46,
+        18,
+        0
+      ]
+    }
+  ]
+}

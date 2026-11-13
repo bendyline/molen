@@ -1,9 +1,9 @@
 import { execFileSync } from 'node:child_process';
-import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
 import { runtimeLodFixture } from './fixtures/runtime-lod-fixture.mjs';
+import { sourceHash } from './fixtures/source-hash.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
@@ -13,8 +13,7 @@ import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-so
 
 const source = resolve('../../content/worldgen/source/places/wx/wxj/shanhai_pass'),
   runtime = await runtimeLodFixture(source.replace(/([\\/])source([\\/])/, '$1assets$2'));
-const read = async (p) => JSON.parse(await readFile(p)),
-  hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
+const read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
   const g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12))),
     bin = 28 + b.readUInt32LE(12);
@@ -122,7 +121,7 @@ it('reproduces the original mesh and verifies signed fresh map and retained terr
   expect(grade.grid.heights.every(Number.isFinite)).toBe(true);
   expect(grade.datumMeters).toBe(26);
   expect(grade.workingCourtFloor).toBe(0.12);
-  for (const r of grade.sources) expect(hash(await readFile(source + '/' + r.file))).toBe(r.hash);
+  for (const r of grade.sources) expect(await sourceHash(source + '/' + r.file)).toBe(r.hash);
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(spec.geographicProposal.groundCutout).toBeUndefined();
   expect(spec.geographicProposal.terrainReference.modelHeight).toBe(0);

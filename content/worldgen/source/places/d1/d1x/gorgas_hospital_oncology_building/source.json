@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.gorgas_hospital_oncology_building",
+  "kind": "static-structure",
+  "title": "Gorgas Hospital Oncology Building, Ancón",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.gorgas_hospital_oncology_building",
+        "output": "assets/places/d1/d1x/gorgas_hospital_oncology_building/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b97183d1ae5863be6f6af9e96919afd1e008b071536a6cf5271ba76cccb27bd0"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-gorgas-oncology",
+        "path": "models/generate-gorgas-oncology.mjs"
+      },
+      {
+        "id": "gorgas-oncology-model",
+        "path": "models/gorgas-oncology-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/hospital-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-gorgas-oncology-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-9143-15564.png",
+      "terrain-sources/terrarium-15-9143-15565.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

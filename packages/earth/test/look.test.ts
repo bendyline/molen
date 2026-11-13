@@ -76,5 +76,14 @@ describe('the shared Earth look', () => {
     expect(large.radius).toBe(110);
     expect(Math.abs(110 - large.center[0]) + 50).toBeLessThan(large.radius);
     expect(earthShadowFocus('fly', [0, 9_000, 0], [1, 0, 0], 0).radius).toBe(5_000);
+    // The far map is around the camera itself, so turning does not move it: at least 2 km out,
+    // four times the focused map from higher up, and no wider than its texels can show a house.
+    expect(walk.far).toEqual({ center: [0, 0, 0], radius: 2_000 });
+    expect(earthShadowFocus('fly', [5, 50, 7], [1, 0, 0], 0).far).toEqual({
+      center: [5, 0, 7],
+      radius: 2_000,
+    });
+    expect(airborne.far).toEqual({ center: [0, 100, 0], radius: 6_000 });
+    expect(earthShadowFocus('fly', [0, 300, 0], [1, 0, 0], 0).far.radius).toBe(4_800);
   });
 });

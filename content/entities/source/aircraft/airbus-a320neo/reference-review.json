@@ -1,0 +1,84 @@
+{
+  "variant": "Airbus A320neo, CFM LEAP-1A, sharklets, clean, gear down, static on ground",
+  "status": "exterior-reference-reviewed; visual acceptance pending owner review",
+  "references": [
+    {
+      "url": "https://mediaassets.airbus.com/pm_38_916_916266-iujedqawwy.pdf?fileName=aca32001-jul-2026-2.pdf",
+      "title": "A320 Aircraft Characteristics, Airport and Maintenance Planning, Jul 01/26",
+      "author": "Airbus",
+      "license": "Public manufacturer document; local study only, no diagram pixels redistributed",
+      "scope": "Figures 2-2-0-991-009-A01 sheets 1 and 2, 2-3-0-991-032-A01 ground clearances. Outlines traced from a high-zoom raster of the page. Figure 4-4-0-991-001: pilot eye 2.41 m aft of the nose tip, 0.53 m off the centerline, 4.56 m high; 20 degrees down, 30 up."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Airbus_A320neo_landing_01_crop.jpg",
+      "title": "Airbus A320neo landing, crop",
+      "author": "Don-vip, derivative work Lämpe",
+      "license": "CC BY-SA 4.0; reference only, no pixels embedded",
+      "scope": "Oblique front view: windshield panes, nacelle size and throat, main gear. Manufacturer livery ignored."
+    }
+  ],
+  "calibration": "16.1 px/m at 2x page render on both axes; length, height, wheelbase and body depth agree within a pixel.",
+  "dimensionsChecked": [
+    {
+      "name": "overall length",
+      "reference": 37.57,
+      "model": 37.54
+    },
+    {
+      "name": "overall span",
+      "reference": 35.8,
+      "model": 35.83
+    },
+    {
+      "name": "overall height",
+      "reference": 11.76,
+      "model": 11.93
+    }
+  ],
+  "reviewNotes": {
+    "comparisons": [
+      "Traced tables regenerated into side, top and front renders and inspected; no drawing overlay image was made for this type.",
+      "Render inspected beside the oblique photograph. No matched-camera overlay was made."
+    ],
+    "corrections": [
+      "Width 3.95 m taken from the annotated bar; the drawn barrel measures 3.85 m.",
+      "Keel 1.79 m follows fuselage point F1 (1.72 to 1.82 m): the A320 stands higher than the 737, so the keel rose from the generic 1.49 m rather than falling.",
+      "Rectangular nacelle boxes replaced with round LEAP pods 2.78 m tall, 0.46 m clear of the ground (N1 0.46 to 0.56 m).",
+      "Seated eye moved from u 3.25 to the published 2.41 and to h 2.80 (4.57 m high). The traced sill then gives the published view without touching it.",
+      "First pillar: on the elliptical section its side-view upper end landed near the centerline, across the forward view. Its upper end now stops at the top edge outboard of the pilot (u 1.84 to 2.30).",
+      "Kit changes: glass clear from the seat and tinted from outside, as on the Bendy airliner. The thick glareshield slab and its large FLIGHT GUIDANCE lettering are replaced by a thin sloped hood with a rolled lip over a slim mode control strip. The panel, floor and overhead take their reach from the nose skin, and a dark coaming lines the inside of the nose.",
+      "Published eye stations for four kit types sit 0.8 m ahead of where the kit had put them, and the same bias was removed here."
+    ]
+  },
+  "sourceHash": "sha256:27350fe1c7a4a5062718f6400183822f73cd9227ed1b49c24a1a119a201e9db5",
+  "runtimeHash": "sha256:55035f79c9d0e9b829fe586bf01c12c0e9f524ca8dcc04bf68e97eb1f0d5ae91",
+  "limitations": [
+    "Modelled height sits inside the tabulated 11.83 to 12.08 m, above the 11.76 m general figure, because of the stance and table used.",
+    "LEAP fan-nozzle chevrons, flap-track detail and gear doors are omitted or simplified.",
+    "Exterior only: shared interior, refitted but not compared with an A320 flight deck.",
+    "The first pillar's upper end no longer matches the side view, because the kit's elliptical nose cannot carry the real flat pane. Upward view at the pilot's line is about +37 against the published +30.",
+    "Sanity pass only: seating, glass and visibility. The panel, hood and pedestal remain the shared kit interior fitted to the nose, not compared with this type's real flight deck."
+  ],
+  "cockpitSweep": {
+    "method": "packages/entities/scripts/cockpit-sweep.mjs from spec.pilotEye at the runtime camera; seat, nose and front views rendered and inspected.",
+    "columns": "outside%, overNose degrees, headroom, wall, panel, cushion, seatback (m)",
+    "before": [
+      45,
+      -7,
+      0.53,
+      0.84,
+      0.75,
+      0.68,
+      0.41
+    ],
+    "after": [
+      79,
+      -18,
+      0.39,
+      0.46,
+      0.75,
+      0.74,
+      0.36
+    ]
+  }
+}

@@ -1,0 +1,472 @@
+{
+  "id": "palais_des_papes",
+  "title": "Palais des Papes",
+  "wikidataId": "Q143463",
+  "referenceCoordinate": {
+    "longitude": 4.807581496,
+    "latitude": 43.950792616
+  },
+  "module": "content/worldgen/source/places/sp/spg/palais_des_papes/models/palace-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-palais-des-papes.mjs",
+  "builder": "buildAvignonLevel",
+  "surfaces": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.93
+    },
+    "cut": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.9
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.96
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.92
+    },
+    "iron": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.85,
+      "metallic": 0.09
+    },
+    "glass": {
+      "slot": "trim",
+      "graph": "window_grid",
+      "roughness": 0.57
+    },
+    "garden": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "name": "Palace garden vegetation",
+      "roughness": 0.95,
+      "baseColorFactor": [
+        0.23,
+        0.3,
+        0.104,
+        1
+      ]
+    }
+  },
+  "exportLabel": "Molen original Palais des Papes master",
+  "expectedDraftMasterHash": "sha256:04a272c25aa9cb79145a4e198531475fd9db9e5d219168f8aa9aeb8f0ef58afd",
+  "visualBrief": "The Old and New Palace ranges rise over the Avignon square. The west façade has blind arcades, square keeps, tall southern chapel recesses and the twin spired Champeaux turrets. The open Court of Honour, cloister and eastern gardens follow the mapped precinct.",
+  "heightPolicy": "A 40 m sea-level datum and standard terrain samples support the ramp, courtyard floors and retaining walls. The placement replaces the palace footprint only, leaving the adjacent cathedral and square independent.",
+  "nativeAxes": "+X runs from the New Palace and Court of Honour toward the Old Palace and separate cathedral. The main western square lies on the negative-Z side.",
+  "limitations": [
+    "The palace perimeter and four open spaces come from PMTiles. The west portal, roof heights, turret profiles and interior passage slope are reconstructed from exterior photographs and standard viewer terrain.",
+    "The modeled passage links the plaza and Court of Honour as a visualization. Architectural detail, court planting and masonry decoration are approximate. Rooms and below-ground routes are outside the model."
+  ],
+  "references": [
+    {
+      "url": "https://en.vaison-ventoux-provence.com/explore-vaison-ventoux-provence/discover-the-richness-of-vaison-ventoux-provence/our-neighbors-friends/",
+      "hash": "sha256:4d11c020a4dfb99d64367a310fe335ad19f26ef28ae39bc9562b258bb58960f5",
+      "observed": "Palace perimeter and roof groups, surrounding city and separate cathedral."
+    },
+    {
+      "url": "https://lifestyle.rosier.pro/details-le%2Bpalais%2Bdes%2Bpapes%2Ba%2Bavignon-2128.html",
+      "hash": "sha256:3e3e639a66b24e7e309b4920d68902c35334646463792dc38ea2abd72f6be262",
+      "observed": "Champeaux portal, pointed arch and conical turret roofs from the square."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Avignon,_Palais_des_Papes_by_JM_Rosier.jpg",
+      "hash": "sha256:47ce2e50016b9848480125ddda26aa7be6718ced944be6b4a37b41f47a01cc5c",
+      "observed": "Portal position, varied rooflines and west wall tiers from the square."
+    },
+    {
+      "url": "https://dda-architectes.com/en/projets/palais-des-papes",
+      "hash": "sha256:c60641c2c82d5de00399a5533f1bc492f2c00ed6f3d83a5beed1c5f167917095",
+      "observed": "Old and New Palace roof slopes and courtyards."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "palace-and-old-city",
+      "position": [
+        -103,
+        87,
+        -151
+      ],
+      "lookAt": [
+        4,
+        13,
+        4
+      ],
+      "fov": 53
+    },
+    {
+      "name": "champeaux-portal-from-square",
+      "position": [
+        -34.1,
+        8.1,
+        -100.7
+      ],
+      "lookAt": [
+        -34.4,
+        17.2,
+        -46.7
+      ],
+      "fov": 56
+    },
+    {
+      "name": "court-of-honour",
+      "position": [
+        -31,
+        8.4,
+        -12.7
+      ],
+      "lookAt": [
+        -67,
+        13.7,
+        -13.6
+      ],
+      "fov": 63
+    },
+    {
+      "name": "old-palace-cloister",
+      "position": [
+        31.2,
+        7.1,
+        -6.9
+      ],
+      "lookAt": [
+        23.5,
+        10.5,
+        5.4
+      ],
+      "fov": 62
+    },
+    {
+      "name": "west-towers-and-ramparts",
+      "position": [
+        16,
+        32,
+        -99
+      ],
+      "lookAt": [
+        13,
+        17,
+        -37
+      ],
+      "fov": 56
+    },
+    {
+      "name": "east-gardens-and-curtain",
+      "position": [
+        53,
+        43,
+        112
+      ],
+      "lookAt": [
+        5,
+        11,
+        17
+      ],
+      "fov": 57
+    },
+    {
+      "name": "rooflines-and-four-courts",
+      "position": [
+        66,
+        101,
+        10
+      ],
+      "lookAt": [
+        1,
+        11,
+        2
+      ],
+      "fov": 57
+    }
+  ],
+  "materialMethod": "Shared limestone, granite, painted metal, patterned glass and tile graphs provide the architectural surfaces. The garden beds use solid palette tints.",
+  "sourceFacts": {
+    "mappedRelation": 1253164,
+    "mappedLengthMeters": 176.057,
+    "courtyards": 4,
+    "champeauxTurrets": 2
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        14,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sp/spg/palais_des_papes/models/palace-model.mjs",
+    "export": "buildAvignonSkyline",
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.93
+      },
+      "cut": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.9
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.96
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.92
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.09
+      },
+      "glass": {
+        "slot": "trim",
+        "graph": "window_grid",
+        "roughness": 0.57
+      },
+      "garden": {
+        "slot": "foundation",
+        "localRef": "palette:#ffffff",
+        "name": "Palace garden vegetation",
+        "roughness": 0.95,
+        "baseColorFactor": [
+          0.23,
+          0.3,
+          0.104,
+          1
+        ]
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAvignonDistrict",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.09
+          },
+          "glass": {
+            "slot": "trim",
+            "graph": "window_grid",
+            "roughness": 0.57
+          },
+          "garden": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "name": "Palace garden vegetation",
+            "roughness": 0.95,
+            "baseColorFactor": [
+              0.23,
+              0.3,
+              0.104,
+              1
+            ]
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildAvignonStreet",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.09
+          },
+          "glass": {
+            "slot": "trim",
+            "graph": "window_grid",
+            "roughness": 0.57
+          },
+          "garden": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "name": "Palace garden vegetation",
+            "roughness": 0.95,
+            "baseColorFactor": [
+              0.23,
+              0.3,
+              0.104,
+              1
+            ]
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildAvignonCloseup",
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93
+          },
+          "cut": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.09
+          },
+          "glass": {
+            "slot": "trim",
+            "graph": "window_grid",
+            "roughness": 0.57
+          },
+          "garden": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "name": "Palace garden vegetation",
+            "roughness": 0.95,
+            "baseColorFactor": [
+              0.23,
+              0.3,
+              0.104,
+              1
+            ]
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "palais_des_papes-skyline",
+      "position": [
+        -103,
+        87,
+        -151
+      ],
+      "lookAt": [
+        4,
+        13,
+        4
+      ],
+      "fov": 53,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "palais_des_papes-district",
+      "position": [
+        -103,
+        87,
+        -151
+      ],
+      "lookAt": [
+        4,
+        13,
+        4
+      ],
+      "fov": 53,
+      "reviewLod": "district"
+    },
+    {
+      "name": "palais_des_papes-street",
+      "position": [
+        -103,
+        87,
+        -151
+      ],
+      "lookAt": [
+        4,
+        13,
+        4
+      ],
+      "fov": 53,
+      "reviewLod": "street"
+    },
+    {
+      "name": "palais_des_papes-closeup",
+      "position": [
+        -103,
+        87,
+        -151
+      ],
+      "lookAt": [
+        4,
+        13,
+        4
+      ],
+      "fov": 53,
+      "reviewLod": "closeup"
+    }
+  ]
+}

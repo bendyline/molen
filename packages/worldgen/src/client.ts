@@ -22,9 +22,10 @@ export {
   createInstancedPlacementLod,
   type InstancedPlacementLodOptions,
 } from './client/instanced-lod';
-export type { ModelLoader, PreparedModel } from './client/instanced-models';
+export type { ModelDetail, ModelLoader, PreparedModel } from './client/instanced-models';
 export { ModelLibrary, mergeSceneGeometry } from './client/instanced-models';
 export {
+  type InteriorElevatorStop,
   InteriorStreamer,
   type InteriorStreamingOptions,
   type InteriorStreamingStats,
@@ -50,11 +51,13 @@ export {
 } from './client/scatter-material';
 export { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './client/screen-space-lod';
 export {
+  routeStructureModels,
   type StructureAcquireOptions,
   type StructureInstanceOptions,
   type StructureModel,
   StructureModelLibrary,
   type StructureModelLibraryOptions,
+  type StructureModelRouteOptions,
   type StructureModelSource,
 } from './client/structure-models';
 export {

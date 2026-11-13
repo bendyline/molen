@@ -63,19 +63,24 @@ const stopping = (env: VehicleEnvironment) =>
     .pos[2];
 
 describe('car tire and chassis dynamics', () => {
-  it('corners up to the grip limit, then slides wide instead of turning tighter', () => {
+  it('corners up to the grip limit and no tighter, with the front tires short of sliding', () => {
     let peak = 0;
     let skid = 0;
-    drive(4, hold(15, 1), rolling(15), {
+    const end = drive(5, hold(15, 1), rolling(15), {
       watch: (r) => {
         peak = Math.max(peak, Math.abs(r.state.speed * (r.state.yawRate ?? 0)));
         skid = Math.max(skid, r.state.skid ?? 0);
       },
     });
-    // The sedan's tires hold 8 m/s² of cornering; speed times yaw rate briefly overshoots it.
-    expect(peak).toBeGreaterThan(6);
-    expect(peak).toBeLessThan(sedan.grip * 1.2);
-    expect(skid).toBeGreaterThan(0.5);
+    // The sedan corners at about 0.85 g on tires whose peak friction is higher still (unevenly
+    // loaded tires grip less than their rating); speed times yaw rate briefly overshoots.
+    expect(peak).toBeGreaterThan(7.5);
+    expect(peak).toBeLessThan(sedan.grip * 1.1);
+    const settled = Math.abs(end.state.speed * (end.state.yawRate ?? 0));
+    expect(settled).toBeGreaterThan(7.5);
+    expect(settled).toBeLessThan(sedan.grip);
+    // The driver's hands stop short of the lock that would slide the front tires.
+    expect(skid).toBeLessThan(0.5);
   });
 
   it('changes lanes on a keyboard tap at highway speed without spinning', () => {
@@ -86,7 +91,9 @@ describe('car tire and chassis dynamics', () => {
     );
     expect(Math.abs(result.state.yaw)).toBeLessThan(0.05);
     expect(Math.abs(result.state.lateralSpeed ?? 1)).toBeLessThan(0.05);
-    expect(result.transform.pos[0]).toBeLessThan(-1);
+    // A tap right and a tap back: about half a meter across the lane, pointing straight again.
+    expect(result.transform.pos[0]).toBeLessThan(-0.2);
+    expect(result.transform.pos[0]).toBeGreaterThan(-3);
   });
 
   it('swings the tail round on the handbrake', () => {
@@ -105,15 +112,28 @@ describe('car tire and chassis dynamics', () => {
     expect(Math.abs(turn(true))).toBeGreaterThan(Math.abs(turn(false)) * 1.5);
   });
 
-  it('spins a rear-drive pickup on power but not a front-drive sedan', () => {
-    const spin = (spec: VehicleSpec) =>
-      Math.abs(
-        drive(2.5, () => ({ throttle: 1, steering: 1, brake: false }), rolling(12), { spec }).state
-          .yaw,
-      );
+  it('keeps a rear-drive pickup and a front-drive sedan in line on full power in a corner', () => {
+    // How far the car points away from where it is going, at most, in degrees.
+    const slide = (spec: VehicleSpec) => {
+      let slip = 0;
+      drive(4, () => ({ throttle: 1, steering: 1, brake: false }), rolling(12), {
+        spec,
+        watch: (r) => {
+          if (Math.hypot(r.state.speed, r.state.lateralSpeed ?? 0) > 5)
+            slip = Math.max(
+              slip,
+              (Math.atan2(Math.abs(r.state.lateralSpeed ?? 0), Math.abs(r.state.speed)) * 180) /
+                Math.PI,
+            );
+        },
+      });
+      return slip;
+    };
     expect(pickup.drive).toBe('rear');
-    expect(spin(pickup)).toBeGreaterThan(2);
-    expect(spin(sedan)).toBeLessThan(1.6);
+    // Traction and stability control hold the pickup's tail (it spun before they existed; see
+    // vehicle-powertrain.test.ts for the same car without them). The sedan only runs wide.
+    expect(slide(pickup)).toBeLessThan(12);
+    expect(slide(sedan)).toBeLessThan(8);
   });
 
   it('loses grip in rain and much more in snow', () => {
@@ -123,9 +143,9 @@ describe('car tire and chassis dynamics', () => {
     expect(weatherGrip(weatherProfile('rain'))).toBeCloseTo(0.7, 6);
     expect(weatherGrip(weatherProfile('snow'))).toBeLessThan(0.45);
     const dry = stopping(flat);
-    // About 40 m from 100 km/h, like a real sedan on dry asphalt.
-    expect(dry).toBeGreaterThan(35);
-    expect(dry).toBeLessThan(43);
+    // About 38 m from 100 km/h, like a real sedan on dry asphalt.
+    expect(dry).toBeGreaterThan(34);
+    expect(dry).toBeLessThan(42);
     expect(stopping(weather(weatherProfile('rain')))).toBeGreaterThan(dry * 1.25);
     expect(stopping(weather(weatherProfile('snow')))).toBeGreaterThan(dry * 1.8);
   });
@@ -185,7 +205,14 @@ describe('car tire and chassis dynamics', () => {
       },
     });
     expect(impact).toBeGreaterThan(10);
-    expect(hit.state.speed).toBeLessThan(0);
+    // It leaves the wall again, whichever way the spin has turned it by then.
+    const sin = Math.sin(hit.state.yaw);
+    const cos = Math.cos(hit.state.yaw);
+    const side = hit.state.lateralSpeed ?? 0;
+    const closing =
+      (sin * hit.state.speed + cos * side) * normal[0] +
+      (cos * hit.state.speed - sin * side) * normal[1];
+    expect(closing).toBeLessThan(0);
     expect(spin).toBeGreaterThan(0.2);
     const wall: VehicleEnvironment = { ...flat, canOccupy: (p) => p[2] < 3 };
     const pressed = drive(4, () => ({ throttle: 1, steering: 0, brake: false }), rolling(0), {

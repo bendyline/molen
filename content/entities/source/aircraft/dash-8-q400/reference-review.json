@@ -1,0 +1,96 @@
+{
+  "variant": "De Havilland Canada Dash 8-400, PW150A, six-blade R408, clean, gear down, static on ground",
+  "status": "exterior-reference-reviewed; visual acceptance pending owner review",
+  "references": [
+    {
+      "url": "https://dehavillandfield.com/wp-content/uploads/2022/08/Dash8_Spec_Sheet_web.pdf",
+      "title": "Dash 8-400 spec sheet, July 2022",
+      "author": "De Havilland Aircraft of Canada",
+      "license": "Public manufacturer sheet; local study only",
+      "scope": "Overall length, height and span only."
+    },
+    {
+      "url": "https://www.scribd.com/doc/293959956/Q400-Aeroplane-General",
+      "title": "Q400 Aeroplane General notes, as summarised by search",
+      "author": "Operator training notes, not manufacturer",
+      "license": "Not downloaded; figures only",
+      "scope": "Secondary: wheelbase 13.94 m, track 8.80 m, propeller 4.12 m."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Flybe%2C_DHC-8-Q400%2C_G-ECOG%2C_2017-04-22%40LUX-103.jpg",
+      "title": "Flybe DHC-8-Q400 G-ECOG",
+      "author": "Jwh",
+      "license": "CC BY-SA 3.0 LU; reference only, no pixels embedded",
+      "scope": "Oblique ground view: body depth, stance, nacelle and fin proportions. Livery ignored."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Porter_Q400_C-GLQK_departing_Boston_June_2025.jpg",
+      "title": "Porter Q400 C-GLQK from below",
+      "author": "4300streetcar",
+      "license": "CC BY 4.0; reference only, no pixels embedded",
+      "scope": "Underside: propeller plane station and nacelle extent. Livery ignored."
+    }
+  ],
+  "calibration": "No drawing. About 54 px/m locally in the oblique photograph, checked by the 2.69 m body depth.",
+  "dimensionsChecked": [
+    {
+      "name": "overall length",
+      "reference": 32.84,
+      "model": 32.75
+    },
+    {
+      "name": "overall span",
+      "reference": 28.42,
+      "model": 28.42
+    },
+    {
+      "name": "overall height",
+      "reference": 8.36,
+      "model": 8.42
+    }
+  ],
+  "reviewNotes": {
+    "comparisons": [
+      "Side and three-quarter renders inspected against the photographs by eye. No overlay or matched camera was possible with the evidence found."
+    ],
+    "corrections": [
+      "Generic wing and stub nacelles replaced with a high wing on long nacelles carrying the main gear.",
+      "Nacelles reduced from a first pass 1.7 m deep and 9.6 m long to 1.48 m and 8.9 m, and the propeller plane moved forward, after the line-up and the underside photograph.",
+      "Seated eye moved from u 4.00 to 3.15 and h 2.02, forward in the side pane where G-ECOG shows the pilot. No published eye position was found, so this is an estimate.",
+      "Window top lowered 0.05 m, sill lowered about 0.06 m, and the stray post from 2.30 to 2.42 removed: G-ECOG shows two panes a side.",
+      "Kit changes: glass clear from the seat and tinted from outside, as on the Bendy airliner. The thick glareshield slab and its large FLIGHT GUIDANCE lettering are replaced by a thin sloped hood with a rolled lip over a slim mode control strip. The panel, floor and overhead take their reach from the nose skin, and a dark coaming lines the inside of the nose."
+    ]
+  },
+  "sourceHash": "sha256:9a742fd3cd7aa00b42a9db25a7bece846e5ea8b60c2e6e7c96d1468151c73555",
+  "runtimeHash": "sha256:8b2f93ea0e7859655bc85a701f6725107c04265c84fe5da1773340da0091ba28",
+  "limitations": [
+    "Lowest-confidence type with the CJ4: no dimensioned drawing was found. Nose, tail-cone and fin tables are reconstructions read by eye from oblique photographs.",
+    "Static attitude of 0.5 degrees and keel height are estimates. Model height runs slightly over the published figure.",
+    "Wing planform is scaled to the published area, not traced.",
+    "Exterior only: shared interior, refitted but not compared with a Dash 8 flight deck.",
+    "Eye station and window limits are estimated from an oblique photograph, not measured.",
+    "Sanity pass only: seating, glass and visibility. The panel, hood and pedestal remain the shared kit interior fitted to the nose, not compared with this type's real flight deck."
+  ],
+  "cockpitSweep": {
+    "method": "packages/entities/scripts/cockpit-sweep.mjs from spec.pilotEye at the runtime camera; seat, nose and front views rendered and inspected.",
+    "columns": "outside%, overNose degrees, headroom, wall, panel, cushion, seatback (m)",
+    "before": [
+      36,
+      -5,
+      0.48,
+      0.58,
+      0.74,
+      0.68,
+      0.41
+    ],
+    "after": [
+      64,
+      -14,
+      0.26,
+      0.33,
+      0.71,
+      0.74,
+      0.36
+    ]
+  }
+}

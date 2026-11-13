@@ -30,4 +30,4 @@ it('keeps a dense neighborhood textured and enterable within the High tile budge
   expect(result.stats.vertices).toBeLessThanOrEqual(budgets.maxBuildingVertices);
   expect(result.buildings?.groups.length).toBeLessThanOrEqual(budgets.maxMaterialGroups);
   expect(generateWorldgenBatch(input).hash).toBe(result.hash);
-});
+}, 30_000); // Loads the whole default pack and generates 240 houses twice under full-suite load.

@@ -8,6 +8,7 @@ import type { JsonObject, JsonValue } from '@bendyline/molen-schema';
 import { z } from 'zod';
 import { FIGURE_PRESETS } from './presets';
 import {
+  FIGURE_HAIR_STYLES,
   FIGURE_PRESET_IDS,
   type FigureDescriptor,
   type FigureFeatures,
@@ -61,7 +62,20 @@ const proportionsSchema = z
 
 const featuresSchema = z
   .strictObject({
-    hair: z.enum(['none', 'cap', 'bob', 'long']).describe('Hair shell style.').optional(),
+    form: z
+      .enum(['neutral', 'masculine', 'feminine'])
+      .describe('Human body form: shoulder, waist, hip and chest shape (bipeds).')
+      .optional(),
+    hair: z
+      .enum(FIGURE_HAIR_STYLES)
+      .describe(
+        'Hair style: none, buzz, balding, cap (short), crop, bob, long, ponytail, bun, afro.',
+      )
+      .optional(),
+    facialHair: z
+      .enum(['none', 'stubble', 'mustache', 'beard'])
+      .describe('Facial hair (humans), drawn in the hair color.')
+      .optional(),
     hands: z
       .enum(['mitten', 'fingers'])
       .describe('Hand geometry (fingers: near tier only).')
@@ -70,7 +84,10 @@ const featuresSchema = z
       .enum(['none', 'short', 'long'])
       .describe('Sleeve length (top color extent).')
       .optional(),
-    legs: z.enum(['shorts', 'long']).describe('Legwear length (bottom color extent).').optional(),
+    legs: z
+      .enum(['shorts', 'long', 'skirt'])
+      .describe('Legwear: shorts, long trousers, or a knee-length skirt (bottom color).')
+      .optional(),
     tail: z.enum(['none', 'short', 'long', 'bushy']).describe('Tail style.').optional(),
     ears: z.enum(['none', 'round', 'pointed', 'floppy']).describe('Ear style.').optional(),
     horns: z.enum(['none', 'short', 'long', 'antlers']).describe('Horn style.').optional(),

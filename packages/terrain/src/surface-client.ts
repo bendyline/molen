@@ -13,11 +13,14 @@ import {
   TERRAIN_SURFACE_KIND,
   type TerrainBoxPlacement,
   type TerrainLineBand,
+  type TerrainRoadWear,
   TerrainSurfaceMeshBuilder,
   terrainLinePath,
+  weldTerrainSurfaceMesh,
 } from './linear-features';
 import { normalizeRing, pointInPolygon, polygonBounds } from './polygon';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
+import { renderedGroundSampler } from './rendered-ground';
 import { DEFAULT_ROAD_SIGN_PROFILE, type TerrainRoadSignProfile } from './road-sign-styles';
 import { keepTerrainSemanticTile } from './semantic-packet';
 import type {
@@ -36,8 +39,14 @@ import {
   type TerrainStreetLight,
   updateTerrainStreetLights,
 } from './surface-lights';
-import { isSurfaceLink, SurfaceNetwork, type SurfaceRoad } from './surface-network';
+import {
+  isSurfaceLink,
+  type SurfaceJunction,
+  SurfaceNetwork,
+  type SurfaceRoad,
+} from './surface-network';
 import { inferTerrainParkingAreas } from './surface-parking';
+import { appendTerrainRailways, dressTerrainRailMeshes, TERRAIN_RAIL_MESHES } from './surface-rail';
 import { appendSurfaceSign } from './surface-sign-mesh';
 import { planSurfaceSigns } from './surface-signage';
 import {
@@ -52,7 +61,7 @@ import {
   type TerrainSurfaceOptions,
 } from './surface-styles';
 import { tagTerrainObject } from './tagged-objects';
-import { inferLaneCount } from './transport-features';
+import { inferLaneCount, isArterialRoad } from './transport-features';
 
 export interface TerrainSurfaceStats {
   /** Resident tile fragments; a runway crossing tiles contributes more than once. */
@@ -69,6 +78,11 @@ export interface TerrainSurfaceStats {
   roadSigns: number;
   parkingBays: number;
   parkedCars: number;
+  /** Railway track fragments, level crossings, turnouts and signals (see surface-rail). */
+  railTracks: number;
+  railCrossings: number;
+  railSwitches: number;
+  railSignals: number;
   detailLimited: boolean;
 }
 
@@ -84,6 +98,11 @@ export function disposeTerrainSurfaceObject(object: THREE.Object3D): void {
       (mesh as THREE.InstancedMesh).dispose();
       mesh.userData.terrainOwnedInstances = false;
     }
+    if (mesh.userData.terrainOwnedTexture) {
+      for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material])
+        (material as THREE.MeshStandardMaterial).map?.dispose();
+      mesh.userData.terrainOwnedTexture = false;
+    }
     if (mesh.userData.terrainOwnedMaterial) {
       for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material])
         material.dispose();
@@ -96,7 +115,9 @@ function areaKind(className: string, subclass = ''): 'parking' | 'plaza' | 'path
   const tag = `${className} ${subclass}`.toLowerCase();
   if (/parking|car_park/.test(tag) && !/garage|underground|multi.storey/.test(tag))
     return 'parking';
-  if (/pedestrian|plaza|square|platform/.test(tag)) return 'plaza';
+  // Platforms are raised beside their tracks by the railway painter (surface-rail).
+  if (/platform/.test(tag)) return undefined;
+  if (/pedestrian|plaza|square/.test(tag)) return 'plaza';
   if (/pavement|footway|sidewalk/.test(tag)) return 'path';
   return undefined;
 }
@@ -149,6 +170,94 @@ function appendAreaFringe(
   }
 }
 
+/** Meters per cell of the building-centroid grid, and its reach in cells (about 70 m). */
+const BUILT_CELL = 20;
+const BUILT_REACH = 3;
+/** Meters between the stations along a street at which its sidewalks are decided. */
+const SIDEWALK_STATION = 10;
+/** Meters between the stations at which a two-lane road's passing zones are decided. */
+const PASSING_STATION = 5;
+/** Countries whose center lines are yellow (MUTCD and its neighbors, much of Latin America, Korea). */
+const YELLOW_CENTER_LINES: ReadonlySet<string> = new Set([
+  'US',
+  'CA',
+  'MX',
+  'GT',
+  'BZ',
+  'SV',
+  'HN',
+  'NI',
+  'CR',
+  'PA',
+  'CO',
+  'VE',
+  'EC',
+  'PE',
+  'BO',
+  'BR',
+  'PY',
+  'UY',
+  'AR',
+  'CL',
+  'KR',
+]);
+/** US dash pattern: 10 ft of paint, 30 ft of gap. */
+const BROKEN_LINE: readonly [number, number] = [3, 9];
+/** Paint widths: lane and center lines (about 4.5 in), edge lines (6 in), and the gap of a double line. */
+const LINE_WIDTH = 0.11;
+const EDGE_LINE_WIDTH = 0.15;
+const DOUBLE_LINE_GAP = 0.11;
+
+const ARTERIAL_RANKS = ['trunk', 'primary', 'secondary', 'tertiary'];
+
+/** Freeways 0, then trunk to tertiary roads, other streets, service roads, and the rest. */
+function roadImportance(road: SurfaceRoad): number {
+  if (road.kind === 'motorway') return 0;
+  const category = road.feature.subclass ?? road.feature.class;
+  const rank = ARTERIAL_RANKS.findIndex((name) => category.startsWith(name));
+  if (rank >= 0) return rank + 1;
+  return road.kind === 'street' ? 5 : road.kind === 'service' ? 6 : 7;
+}
+
+/**
+ * Settle a row of 0/1 stations into runs, in place: grow every run by `grow` stations each way,
+ * fill gaps of up to `gap` stations, then clear runs shorter than `minimum` stations unless they
+ * reach an end of the row (where the line leaves the tile and may carry on).
+ */
+function settleRuns(flags: Uint8Array, grow: number, gap: number, minimum: number): void {
+  const source = flags.slice();
+  for (let i = 0; i < flags.length; i++) {
+    let on = 0;
+    for (let k = Math.max(0, i - grow); k <= Math.min(flags.length - 1, i + grow) && !on; k++)
+      on = source[k] ?? 0;
+    flags[i] = on;
+  }
+  forEachRun(flags, 0, (start, end) => {
+    if (start > 0 && end < flags.length && end - start <= gap) flags.fill(1, start, end);
+  });
+  forEachRun(flags, 1, (start, end) => {
+    if (start > 0 && end < flags.length && end - start < minimum) flags.fill(0, start, end);
+  });
+}
+
+/** Visit each maximal run `[start, end)` of `value` in `flags`. */
+function forEachRun(
+  flags: Uint8Array,
+  value: number,
+  visit: (start: number, end: number) => void,
+): void {
+  for (let i = 0; i < flags.length; ) {
+    if (flags[i] !== value) {
+      i++;
+      continue;
+    }
+    let j = i;
+    while (j < flags.length && flags[j] === value) j++;
+    visit(i, j);
+    i = j;
+  }
+}
+
 function midpoint(a: TerrainSemanticPoint, b: TerrainSemanticPoint): TerrainSemanticPoint {
   return [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
 }
@@ -158,6 +267,9 @@ function hash(x: number, z: number): number {
   value = Math.imul(value ^ (value >>> 16), 0x45d9f3b);
   return ((value ^ (value >>> 16)) >>> 0) / 4294967296;
 }
+
+/** Parked kinds at most this wide (meters) are two-wheelers, parked in rows across a bay. */
+const PARKED_TWO_WHEELER_WIDTH = 1;
 
 /** Stable weighted selection, shared by synchronous and worker surface generation. */
 export function pickParkedVehicle(
@@ -190,6 +302,8 @@ export function createTerrainSurfaceObject(
       : { ...regionalProfile, drivingSide: options.drivingSide };
   const side = signProfile.drivingSide === 'left' ? -1 : 1;
   const parkedVehicles = details.parkedVehicles ?? [];
+  // The parked two-wheelers among them, gathered the first time a bay draws one.
+  let twoWheelers: TerrainParkedVehicle[] | undefined;
   const detailed =
     context.pyramid.maxLevel - context.address.level <= (details.detailLevelsBelowMax ?? 0);
   const group = new THREE.Group();
@@ -210,12 +324,23 @@ export function createTerrainSurfaceObject(
     roadSigns: 0,
     parkingBays: 0,
     parkedCars: 0,
+    railTracks: 0,
+    railCrossings: 0,
+    railSwitches: 0,
+    railSignals: 0,
     detailLimited: false,
   };
   group.userData.surfaceStats = stats;
   appendAirportSurfaces(group, tile, context, options, roadMaterial);
+  // Graded on the rendered ground, like the deck profiles that read the grading back.
+  const renderedGround = renderedGroundSampler(
+    context.heightfield,
+    context.origin,
+    context.tileSize,
+    context.surfaceResolution,
+  );
   const graded = gradeHighwayBridges(tile.transportation, context.tileSize, (x, z) =>
-    context.heightfield.sampleHeight(context.origin[0] + x, context.origin[1] + z),
+    renderedGround(context.origin[0] + x, context.origin[1] + z),
   );
   const network = new SurfaceNetwork(
     { ...tile, transportation: [...graded] },
@@ -227,10 +352,123 @@ export function createTerrainSurfaceObject(
     // Before any band is built: mapped footways inside a turning circle are clipped away.
     if (style.sidewalks) network.findTurningCircles();
   }
-  const sidewalked = (road: SurfaceRoad): boolean =>
-    style.sidewalks && road.kind === 'street' && !road.feature.bridge && !road.unpaved;
+  // Built-up frontage, for which stretches of street have sidewalks: building centroids counted
+  // in 20 m cells, and mapped commercial land. A sidewalk on every street gave country lanes
+  // and farm roads curbs and concrete through open fields.
+  const builtCells = new Map<string, number>();
+  for (const building of tile.buildings)
+    for (const polygon of building.polygons) {
+      const bounds = polygonBounds(polygon);
+      const x = ((bounds[0] + bounds[2]) / 2) * context.tileSize;
+      const z = ((bounds[1] + bounds[3]) / 2) * context.tileSize;
+      const key = `${Math.floor(x / BUILT_CELL)}/${Math.floor(z / BUILT_CELL)}`;
+      builtCells.set(key, (builtCells.get(key) ?? 0) + 1);
+    }
+  // A tile without footprints (a host or test map that has none) reads mapped residential land
+  // as built up; one without land data either cannot tell, and keeps sidewalks on every street.
+  const footprints = tile.buildings.length > 0;
+  const unknownLand = !footprints && tile.landcover.length === 0;
+  const shops = tile.landcover
+    .filter((feature) =>
+      (footprints ? /^(commercial|retail)$/ : /^(commercial|retail|residential)$/).test(
+        feature.subclass ?? feature.class,
+      ),
+    )
+    .flatMap((feature) => feature.polygons)
+    .map((polygon) => ({ polygon, bounds: polygonBounds(polygon) }));
+  const builtUp = (x: number, z: number, threshold: number): boolean => {
+    if (unknownLand) return true;
+    const cx = Math.floor(x / BUILT_CELL),
+      cz = Math.floor(z / BUILT_CELL);
+    let count = 0;
+    for (let i = -BUILT_REACH; i <= BUILT_REACH; i++)
+      for (let j = -BUILT_REACH; j <= BUILT_REACH; j++)
+        count += builtCells.get(`${cx + i}/${cz + j}`) ?? 0;
+    if (count >= threshold) return true;
+    const u = x / context.tileSize,
+      v = z / context.tileSize;
+    return shops.some(
+      ({ polygon, bounds }) =>
+        u >= bounds[0] &&
+        u <= bounds[2] &&
+        v >= bounds[1] &&
+        v <= bounds[3] &&
+        pointInPolygon([u, v], polygon),
+    );
+  };
+  // Per street, which 10 m stations are built up: there it has sidewalks (when the style draws
+  // them), and its markings are a city street's rather than a country road's.
+  const builtStations = new Map<SurfaceRoad, Uint8Array>();
+  const stationsFor = (road: SurfaceRoad): Uint8Array => {
+    let stations = builtStations.get(road);
+    if (stations) return stations;
+    const count = Math.ceil(road.path.length / SIDEWALK_STATION) + 1;
+    stations = new Uint8Array(count);
+    const category = road.feature.subclass ?? road.feature.class;
+    // Arterials keep sidewalks through thinner frontage than local streets do.
+    const threshold = /^(trunk|primary|secondary|tertiary)/.test(category) ? 5 : 8;
+    if (road.kind === 'street') {
+      for (let i = 0; i < count; i++) {
+        const p = sampleTerrainLine(road.path, Math.min(road.path.length, i * SIDEWALK_STATION));
+        stations[i] = builtUp(p.x, p.z, threshold) ? 1 : 0;
+      }
+      // A sidewalk runs on past the last house to the corner instead of stopping lot by lot.
+      settleRuns(stations, 4, 12, 8);
+    }
+    builtStations.set(road, stations);
+    return stations;
+  };
+  const builtAt = (road: SurfaceRoad, distance: number): boolean =>
+    stationsFor(road)[Math.round(Math.max(0, distance) / SIDEWALK_STATION)] === 1;
+  const urbanRoad = (road: SurfaceRoad): boolean => stationsFor(road).includes(1);
+  const walkable = (road: SurfaceRoad): boolean =>
+    style.sidewalks &&
+    road.kind === 'street' &&
+    !road.feature.bridge &&
+    !road.unpaved &&
+    // A living street is a shared surface, curb to curb.
+    (road.feature.subclass ?? road.feature.class) !== 'living_street';
+  const sidewalkAt = (road: SurfaceRoad, distance: number): boolean =>
+    walkable(road) && builtAt(road, distance);
+  const sidewalked = (road: SurfaceRoad): boolean => walkable(road) && urbanRoad(road);
+  // Asphalt condition by class: busy roads are resurfaced, side streets and alleys wait.
+  const wearOf = (road: SurfaceRoad): TerrainRoadWear => {
+    if (road.kind === 'service') return 3;
+    if (road.kind === 'motorway') return 0;
+    const category = road.feature.subclass ?? road.feature.class;
+    if (/^(trunk|primary)/.test(category)) return 0;
+    if (/^(secondary|tertiary)/.test(category)) return 1;
+    return 2;
+  };
+  // Lanes as the traffic simulation drives them (ambient's `roadLanes`), so paint, wheel tracks
+  // and simulated cars agree: no lane under 2.5 m, and an untagged one-way about 3.3 m a lane.
+  const laneCount = (road: SurfaceRoad): number => {
+    const oneway = road.feature.oneway === true;
+    const minimum = oneway ? 1 : 2;
+    let lanes = inferLaneCount(road.feature, road.width);
+    if (road.width / lanes < 2.5) lanes = Math.max(minimum, Math.floor(road.width / 2.5));
+    if (oneway && road.feature.lanes === undefined)
+      lanes = Math.max(1, Math.min(lanes, Math.round(road.width / 3.3)));
+    return Math.max(minimum, lanes);
+  };
+  // Center lines are yellow in the Americas and Korea, white nearly everywhere else.
+  const centerColor =
+    signProfile.countries.length === 0 ||
+    signProfile.countries.some((country) => YELLOW_CENTER_LINES.has(country))
+      ? style.center
+      : style.white;
+  // A country road (no curb) has a gravel shoulder outside its edge line; a curbed street only
+  // the gutter's seam.
   const shoulder = (road: SurfaceRoad): number =>
-    road.unpaved ? 0.7 : road.kind === 'motorway' ? (isSurfaceLink(road) ? 0.8 : 2) : 0.3;
+    road.unpaved
+      ? 0.7
+      : road.kind === 'motorway'
+        ? isSurfaceLink(road)
+          ? 0.8
+          : 2
+        : road.kind === 'street' && !urbanRoad(road) && !road.feature.bridge
+          ? 0.8
+          : 0.3;
   // Overlapping roads' paving must not share a plane: past the carriageway edge, each reaches
   // over its shoulders or, beyond a curb, its sidewalks.
   network.stackRoads((road) =>
@@ -242,6 +480,135 @@ export function createTerrainSurfaceObject(
     context.tileSize,
     details.inferStopSigns ?? signProfile.inferStopSigns,
   );
+  // Where each road meets a junction: the distance along it at which its arm leaves the
+  // junction, which way along the road leads away, and whether the junction has signals.
+  const approaches = new Map<
+    SurfaceRoad,
+    { distance: number; outward: number; signal: boolean }[]
+  >();
+  for (const node of network.junctions)
+    for (const arm of node.arms) {
+      const tangent = sampleTerrainLine(arm.road.path, arm.distance);
+      const list = approaches.get(arm.road) ?? [];
+      list.push({
+        distance: arm.distance,
+        outward: tangent.dx * arm.dx + tangent.dz * arm.dz >= 0 ? 1 : -1,
+        signal: controls.get(node)?.signal === true,
+      });
+      approaches.set(arm.road, list);
+    }
+  type JunctionArm = SurfaceJunction['arms'][number];
+  const arterialRoad = (road: SurfaceRoad, width = road.width): boolean =>
+    isArterialRoad(road.feature.subclass ?? road.feature.class, width);
+  /**
+   * Whether an arm carries a marked crosswalk: every arm of a signal, and a stop- or
+   * yield-controlled arm meeting an arterial or at a mapped all-way stop. Where two quiet streets
+   * meet (stops inferred there or not), the crossing is legal but unmarked, as on most
+   * residential corners.
+   */
+  const crosswalkAt = (node: SurfaceJunction, arm: JunctionArm): boolean => {
+    const control = controls.get(node);
+    if (!style.crossings || !control || !builtAt(arm.road, arm.distance)) return false;
+    if (control.signal) return true;
+    if (!control.stops.has(arm) && !control.yields.has(arm)) return false;
+    return (
+      node.arms.some((a) => arterialRoad(a.road, a.width)) ||
+      (control.allWay && control.source === 'mapped')
+    );
+  };
+  // Where each road's lines end at each junction it meets. A road with the right of way past
+  // side streets that join from one side only (a tee), and that stop, yield or are minor, keeps
+  // its lines across their mouths, as a through road does; its paint over their pavement is
+  // dropped separately. Otherwise lines end at the crossing road's edge, and on an approach that
+  // stops, yields or meets a signal, at the stop line or crosswalk.
+  interface LineEnds {
+    through: boolean;
+    /** Clear of paint within this distance (m) of the junction's cores. */
+    clear: number;
+    /** Along-road spans to keep clear: outward of an arm from -inside to reach. */
+    held: { distance: number; outward: number; inside: number; reach: number }[];
+  }
+  const lineEnds = new Map<SurfaceRoad, Map<SurfaceJunction, LineEnds>>();
+  for (const node of network.junctions) {
+    const control = controls.get(node);
+    const held = (arm: JunctionArm): boolean =>
+      control?.signal === true ||
+      control?.stops.has(arm) === true ||
+      control?.yields.has(arm) === true;
+    for (const road of new Set(node.arms.map((arm) => arm.road))) {
+      const own = node.arms.filter((arm) => arm.road === road);
+      const others = node.arms.filter((arm) => arm.road !== road);
+      const major = arterialRoad(road);
+      const along = own[0] as JunctionArm;
+      const sides = new Set(others.map((arm) => Math.sign(along.dx * arm.dz - along.dz * arm.dx)));
+      const through =
+        control?.signal !== true &&
+        own.length >= 2 &&
+        sides.size === 1 &&
+        !own.some(held) &&
+        others.every(
+          (arm) => held(arm) || !incomingArm(arm) || (major && !arterialRoad(arm.road, arm.width)),
+        );
+      const ends: LineEnds = {
+        through,
+        clear: Math.max(0, ...others.map((arm) => arm.width / 2)) + 2,
+        held: [],
+      };
+      for (const arm of own) {
+        if (!held(arm)) continue;
+        const tangent = sampleTerrainLine(road.path, arm.distance);
+        const crosswalk = crosswalkAt(node, arm);
+        ends.held.push({
+          distance: arm.distance,
+          outward: tangent.dx * arm.dx + tangent.dz * arm.dz >= 0 ? 1 : -1,
+          // Back across the junction to the far arm, or across the whole of it.
+          inside:
+            own.length >= 2
+              ? Math.max(...own.map((other) => Math.abs(other.distance - arm.distance)))
+              : node.radius * 2 + 6,
+          // Past the stop line (or yield teeth) of an incoming approach, else the crosswalk.
+          reach: !incomingArm(arm) ? (crosswalk ? 1.6 : 0.5) : (crosswalk ? 2.8 : 1) + 0.8,
+        });
+      }
+      const map = lineEnds.get(road) ?? new Map<SurfaceJunction, LineEnds>();
+      map.set(node, ends);
+      lineEnds.set(road, map);
+    }
+  }
+  /** Whether `distance` along `road` lies within `reach` meters out along a junction's arm. */
+  const nearJunction = (
+    road: SurfaceRoad,
+    distance: number,
+    reach: number,
+    signalsOnly = false,
+  ): boolean =>
+    (approaches.get(road) ?? []).some((arm) => {
+      const out = (distance - arm.distance) * arm.outward;
+      return (!signalsOnly || arm.signal) && out >= -2 && out <= reach;
+    });
+  /**
+   * Where a two-lane road allows passing, per 5 m station: not on curves (sight distance; the
+   * heading turning more than about 11° over 90 m, a radius under ~450 m), not within 60 m of a
+   * junction, not on bridges, and not in zones too short to finish a pass (under ~120 m).
+   */
+  const passingZones = (road: SurfaceRoad): Uint8Array => {
+    const count = Math.ceil(road.path.length / PASSING_STATION) + 1;
+    const zones = new Uint8Array(count);
+    const heading = (distance: number): number => {
+      const t = sampleTerrainLine(road.path, Math.max(0, Math.min(road.path.length, distance)));
+      return Math.atan2(t.dz, t.dx);
+    };
+    for (let i = 0; i < count; i++) {
+      const distance = i * PASSING_STATION;
+      let turn = heading(distance + 45) - heading(distance - 45);
+      turn = Math.abs(((turn + Math.PI * 3) % (Math.PI * 2)) - Math.PI);
+      zones[i] = turn < 0.2 && !road.feature.bridge && !nearJunction(road, distance, 60) ? 1 : 0;
+    }
+    forEachRun(zones, 1, (start, end) => {
+      if (start > 0 && end < count && end - start < 24) zones.fill(0, start, end);
+    });
+    return zones;
+  };
   const pavement = new TerrainSurfaceMeshBuilder(context);
   const roads = new TerrainSurfaceMeshBuilder(context);
   const edges = new TerrainSurfaceMeshBuilder(context);
@@ -286,6 +653,8 @@ export function createTerrainSurfaceObject(
         profile,
         detailed ? 2 : 6,
         detailed ? shoulder(road) : 0,
+        // Parapets are street detail: a few decimeters wide, for the finest tiles only.
+        detailed ? { covered: (x, z) => covered(road, x, z) } : undefined,
       );
   }
   const bridgeMesh = bridges.mesh('surfaces:bridges', roadMaterial);
@@ -406,7 +775,9 @@ export function createTerrainSurfaceObject(
       maxElements: Math.max(0, remaining - parkingReserve),
       spacing: 3,
       filter,
-      ...(bridgeProfiles.has(road) ? { heightAt: bridgeProfiles.get(road) } : {}),
+      ...(bridgeProfiles.has(road)
+        ? { heightAt: bridgeProfiles.get(road), followGrid: !road.feature.bridge }
+        : {}),
     });
   };
   // Mapped paved areas and other roads (with their sidewalks), so a sidewalk whose lawn side runs
@@ -447,8 +818,16 @@ export function createTerrainSurfaceObject(
       );
     roads.surfaceSince(start, TERRAIN_SURFACE_KIND.road, () => [0, 60], 127);
   }
-  for (const road of network.roads) {
+  // Major roads first: where a dense tile runs out of detail budget, the side streets furnished
+  // last go without some sidewalk and paint, not the arterials.
+  const byImportance = network.roads
+    .map((road, order) => ({ road, order, rank: roadImportance(road) }))
+    .sort((a, b) => a.rank - b.rank || a.order - b.order)
+    .map(({ road }) => road);
+  for (const road of byImportance) {
     stats.roads++;
+    // Railways draw their own beds, rails and equipment (appendTerrainRailways, below).
+    if (road.kind === 'rail') continue;
     const elevation = (bridgeProfiles.has(road) ? 0 : road.elevation) + road.stack;
     // Frayed edges show the ground beneath, so a deck keeps its edges whole.
     const grounded = !bridgeProfiles.has(road) && !road.feature.bridge;
@@ -459,23 +838,13 @@ export function createTerrainSurfaceObject(
               network.clipPath(points, road),
           }
         : {};
-    const color =
-      road.kind === 'rail'
-        ? '#807b70'
-        : road.kind === 'path'
-          ? style.path
-          : road.unpaved
-            ? style.dirt
-            : style.road;
+    const color = road.kind === 'path' ? style.path : road.unpaved ? style.dirt : style.road;
     // Mapped footways are mostly poured concrete: slabs along the path, like a sidewalk.
-    const surface =
-      road.kind === 'rail'
-        ? TERRAIN_SURFACE_KIND.ballast
-        : road.unpaved
-          ? TERRAIN_SURFACE_KIND.dirt
-          : road.kind === 'path'
-            ? TERRAIN_SURFACE_KIND.sidewalk
-            : TERRAIN_SURFACE_KIND.road;
+    const surface = road.unpaved
+      ? TERRAIN_SURFACE_KIND.dirt
+      : road.kind === 'path'
+        ? TERRAIN_SURFACE_KIND.sidewalk
+        : TERRAIN_SURFACE_KIND.road;
     appendTerrainLineBand(
       roads,
       road.path,
@@ -484,13 +853,22 @@ export function createTerrainSurfaceObject(
         color,
         elevation,
         surface,
-        ...(surface === TERRAIN_SURFACE_KIND.road && road.kind !== 'service'
-          ? { lanes: inferLaneCount(road.feature, road.width) }
+        // A service road is one lane, worn by wheels down its middle.
+        ...(surface === TERRAIN_SURFACE_KIND.road
+          ? {
+              lanes: road.kind === 'service' ? 1 : laneCount(road),
+              wear: wearOf(road),
+            }
           : {}),
-        // Footpaths, dirt roads and track ballast meet the ground directly on both sides.
+        // Footpaths and dirt roads meet the ground directly on both sides.
         ...(surface !== TERRAIN_SURFACE_KIND.road && grounded ? { fray: 'both' as const } : {}),
       },
-      { spacing: detailed ? 6 : 16, ...clipPath, heightAt: bridgeProfiles.get(road) },
+      {
+        spacing: detailed ? 6 : 16,
+        ...clipPath,
+        heightAt: bridgeProfiles.get(road),
+        followGrid: !road.feature.bridge,
+      },
     );
     // Draw only the exposed shoulder edges, avoiding a second sheet beneath the asphalt. They
     // are a few decimeters wide: below a pixel on coarser tiles, which are kilometers away, yet
@@ -509,7 +887,12 @@ export function createTerrainSurfaceObject(
             surface: road.unpaved ? TERRAIN_SURFACE_KIND.dirt : TERRAIN_SURFACE_KIND.shoulder,
             ...(grounded ? { fray: 'outer' as const } : {}),
           },
-          { spacing: 6, ...clipPath, heightAt: bridgeProfiles.get(road) },
+          {
+            spacing: 6,
+            ...clipPath,
+            heightAt: bridgeProfiles.get(road),
+            followGrid: !road.feature.bridge,
+          },
         );
     if (!detailed) continue;
     // Lit urban blocks get regular fixtures between intersections, including long roads with
@@ -529,7 +912,12 @@ export function createTerrainSurfaceObject(
       ) {
         const side = Math.floor(d / 28) % 2 === 0 ? 1 : -1;
         const p = sampleTerrainLine(road.path, d, side * (road.width / 2 + 0.7));
-        if (!inTile(p.x, p.z) || blocked(p.x, p.z) || network.occupied(p.x, p.z, 0.4, road))
+        if (
+          !sidewalkAt(road, d) ||
+          !inTile(p.x, p.z) ||
+          blocked(p.x, p.z) ||
+          network.occupied(p.x, p.z, 0.4, road)
+        )
           continue;
         if (
           details.preferMappedProps &&
@@ -578,26 +966,9 @@ export function createTerrainSurfaceObject(
         stats.streetlights++;
       }
     }
-    if (road.kind === 'rail') {
-      for (const offset of [-0.72, 0.72])
-        band(marks, road, {
-          width: 0.09,
-          offset,
-          color: '#b5b5ae',
-          elevation: elevation + 0.14,
-          surface: TERRAIN_SURFACE_KIND.plain,
-        });
-      band(marks, road, {
-        width: 2.4,
-        color: '#74634f',
-        elevation: elevation + 0.06,
-        dash: [0.2, 0.65],
-        surface: TERRAIN_SURFACE_KIND.plain,
-      });
-      continue;
-    }
     if (sidewalked(road)) {
-      const clear = (points: readonly TerrainSemanticPoint[]): boolean =>
+      const clear = (points: readonly TerrainSemanticPoint[], distance: number): boolean =>
+        sidewalkAt(road, distance) &&
         points.every((p) => !network.occupied(p[0], p[1], 0.25, road) && !blocked(p[0], p[1]));
       for (const sign of [-1, 1]) {
         const start = edges.vertexCount;
@@ -612,7 +983,19 @@ export function createTerrainSurfaceObject(
             surface: TERRAIN_SURFACE_KIND.sidewalk,
             fray: 'outer',
           },
-          clear,
+          (points, distance) => {
+            if (!clear(points, distance)) return false;
+            // A sidewalk mapped as its own way beside the street replaces this one (the curb
+            // stays), leaving the planting strip between them.
+            const along = sampleTerrainLine(road.path, distance);
+            let cx = 0,
+              cz = 0;
+            for (const p of points) {
+              cx += p[0] / points.length;
+              cz += p[1] / points.length;
+            }
+            return !network.parallelPath(cx, cz, along.dx, along.dz, style.sidewalkWidth / 2 + 1.3);
+          },
         );
         // Where a driveway, footway or paved lot crosses its lawn side, that edge meets paving.
         edges.unfraySince(start, (x, z) => !overPaving(x, z, road));
@@ -669,7 +1052,7 @@ export function createTerrainSurfaceObject(
           d += 38
         ) {
           const p = sampleTerrainLine(road.path, d, side * back);
-          if (!free(p.x, p.z)) {
+          if (!sidewalkAt(road, d) || !free(p.x, p.z)) {
             previous = undefined;
             continue;
           }
@@ -715,7 +1098,7 @@ export function createTerrainSurfaceObject(
           d += 95
         ) {
           const p = sampleTerrainLine(road.path, d, -side * curb);
-          if (!free(p.x, p.z)) continue;
+          if (!sidewalkAt(road, d) || !free(p.x, p.z)) continue;
           const y = groundAt(p.x, p.z) + elevation + 0.13;
           fixtures.push(
             { x: p.x, z: p.z, y: y + 0.3, yaw: 0, size: [0.26, 0.6, 0.26], color: '#b3362b' },
@@ -735,7 +1118,7 @@ export function createTerrainSurfaceObject(
               d += 22 + hash(first[1] + d, first[0] - lot) * 8
             ) {
               const p = sampleTerrainLine(road.path, d, lot * behind);
-              if (!free(p.x, p.z) || !residential(p.x, p.z)) continue;
+              if (!sidewalkAt(road, d) || !free(p.x, p.z) || !residential(p.x, p.z)) continue;
               const ground = groundAt(p.x, p.z);
               const across = Math.atan2(-p.dz, p.dx);
               const pick = hash(p.x + context.origin[0], p.z + context.origin[1]);
@@ -848,93 +1231,123 @@ export function createTerrainSurfaceObject(
       }
       continue;
     }
-    if (style.markings && road.kind === 'motorway' && isSurfaceLink(road)) {
-      for (const side of [-1, 1])
-        band(
-          marks,
-          road,
-          {
-            width: 0.13,
-            offset: side * (road.width / 2 - 0.2),
-            color: style.white,
-            elevation: elevation + 0.045,
-          },
-          (points) => points.every((p) => !covered(road, p[0], p[1])),
-        );
-    }
-    if (
-      !style.markings ||
-      road.kind === 'path' ||
-      road.kind === 'service' ||
-      isSurfaceLink(road) ||
-      road.width < 5.5
-    )
-      continue;
-    const clearJunction = (points: readonly TerrainSemanticPoint[]): boolean =>
-      !network.junctions.some(
-        (node) =>
-          node.layer === (road.feature.layer ?? 0) &&
-          !road.feature.bridge &&
+    if (!style.markings || road.kind === 'path' || road.kind === 'service') continue;
+    // Markings after US practice (MUTCD), in the region's center-line color. Yellow separates
+    // opposing traffic, white the lanes going one way; broken lines may be crossed, solid not.
+    const link = isSurfaceLink(road);
+    const oneway = road.feature.oneway === true;
+    const category = road.feature.subclass ?? road.feature.class;
+    const minor = /^(residential|living_street)$/.test(category);
+    const urban = urbanRoad(road);
+    const ends = lineEnds.get(road);
+    const clearJunction = (points: readonly TerrainSemanticPoint[], distance: number): boolean =>
+      road.feature.bridge === true ||
+      !network.junctions.some((node) => {
+        if (node.layer !== (road.feature.layer ?? 0)) return false;
+        const end = ends?.get(node);
+        if (end?.through) return false;
+        // A junction this road only passes near keeps clear of its whole core.
+        const clear = end?.clear;
+        if (
           node.cores.some((core) =>
             points.some(
-              (p) =>
-                Math.hypot(p[0] - core.x, p[1] - core.z) < core.radius + (style.crossings ? 8 : 2),
+              (p) => Math.hypot(p[0] - core.x, p[1] - core.z) < (clear ?? core.radius + 0.5),
             ),
-          ),
-      );
-    if (!road.feature.oneway) {
-      for (const offset of road.width >= 9 ? [-0.15, 0.15] : [0])
-        band(
-          marks,
-          road,
-          {
-            width: 0.13,
-            offset,
-            color: style.center,
-            elevation: elevation + 0.045,
-            surface: TERRAIN_SURFACE_KIND.paint,
-            ...(road.width < 9 ? { dash: [3, 5] as const } : {}),
-          },
-          clearJunction,
-        );
-    }
-    const lanes = inferLaneCount(road.feature, road.width);
-    for (let lane = 1; lane < Math.min(12, lanes); lane++) {
-      const offset = -road.width / 2 + (road.width * lane) / lanes;
-      if (!road.feature.oneway && Math.abs(offset) < 0.3) continue;
+          )
+        )
+          return true;
+        return (end?.held ?? []).some((arm) => {
+          const out = (distance - arm.distance) * arm.outward;
+          return out > -arm.inside && out < arm.reach;
+        });
+      });
+    const unmerged = (points: readonly TerrainSemanticPoint[]): boolean =>
+      points.every((p) => !covered(road, p[0], p[1]));
+    const paint = (
+      line: Pick<TerrainLineBand, 'width' | 'offset' | 'color' | 'dash'>,
+      filter: (points: readonly TerrainSemanticPoint[], distance: number) => boolean,
+    ): void =>
       band(
         marks,
         road,
-        {
-          width: 0.12,
-          offset,
-          color: style.white,
-          elevation: elevation + 0.045,
-          dash: road.kind === 'motorway' ? [3.6, 9] : [3, 6],
-          surface: TERRAIN_SURFACE_KIND.paint,
-        },
-        clearJunction,
+        { ...line, elevation: elevation + 0.045, surface: TERRAIN_SURFACE_KIND.paint },
+        filter,
+      );
+    // Edge lines along the outside of the travel lanes: on freeways and ramps, on country roads
+    // (no curb to show the edge), and on wide city arterials; residential streets have none. A
+    // one-way carriageway's left edge is the center-line color.
+    if (road.kind === 'motorway' || (!minor && road.width >= (urban ? 8 : 5.5))) {
+      const inset = road.kind === 'motorway' ? (link ? 0.2 : 0.3) : urban ? 0.3 : 0.15;
+      for (const sign of [-1, 1])
+        paint(
+          {
+            width: EDGE_LINE_WIDTH,
+            offset: sign * (road.width / 2 - inset),
+            color: oneway && sign === -side ? centerColor : style.white,
+          },
+          (points, distance) => clearJunction(points, distance) && unmerged(points),
+        );
+    }
+    if (road.width < 5.5 || (link && road.feature.lanes === undefined)) continue;
+    const lanes = laneCount(road);
+    const laneWidth = road.width / lanes;
+    // Center offset of each line of a double line.
+    const pair = (LINE_WIDTH + DOUBLE_LINE_GAP) / 2;
+    const turnLane = !oneway && lanes >= 3 && lanes % 2 === 1;
+    // A residential street has no center line unless it is mapped with lanes.
+    const unlined = minor && road.feature.lanes === undefined;
+    if (!oneway && !link && turnLane) {
+      // A two-way left-turn lane down the middle: each of its edges solid on the outside and
+      // broken on the inside, toward the turn lane.
+      for (const sign of [-1, 1]) {
+        const edge = (sign * laneWidth) / 2;
+        paint({ width: LINE_WIDTH, offset: edge + sign * pair, color: centerColor }, clearJunction);
+        paint(
+          { width: LINE_WIDTH, offset: edge - sign * pair, color: centerColor, dash: BROKEN_LINE },
+          clearJunction,
+        );
+      }
+    } else if (!oneway && !link && !unlined) {
+      // Double solid on multilane roads and city arterials; on a two-lane country road broken
+      // where passing is allowed and double where it is not; otherwise a single broken line.
+      const arterial = /^(trunk|primary|secondary|tertiary)/.test(category);
+      const zones = !urban && lanes === 2 ? passingZones(road) : undefined;
+      const passing = (distance: number): boolean =>
+        zones !== undefined
+          ? zones[Math.round(Math.max(0, distance) / PASSING_STATION)] === 1
+          : !(lanes >= 4 || (urban && arterial) || road.kind === 'motorway');
+      for (const sign of [-1, 1])
+        paint(
+          { width: LINE_WIDTH, offset: sign * pair, color: centerColor },
+          (points, distance) => clearJunction(points, distance) && !passing(distance),
+        );
+      paint(
+        { width: LINE_WIDTH, offset: 0, color: centerColor, dash: BROKEN_LINE },
+        (points, distance) => clearJunction(points, distance) && passing(distance),
       );
     }
-    if (road.width >= 8)
-      for (const sign of [-1, 1])
-        band(
-          marks,
-          road,
-          {
-            width: 0.13,
-            offset: sign * (road.width / 2 - 0.3),
-            color:
-              road.kind === 'motorway' && road.feature.oneway && sign === -side
-                ? style.center
-                : style.white,
-            elevation: elevation + 0.045,
-            surface: TERRAIN_SURFACE_KIND.paint,
-          },
-          (points) =>
-            clearJunction(points) &&
-            (road.kind !== 'motorway' || points.every((p) => !covered(road, p[0], p[1]))),
+    // Lane lines between lanes going the same way: broken, but solid over the last 30 m into a
+    // signal, where changing lanes is discouraged.
+    if (laneWidth >= 2.5 && (oneway || !unlined))
+      for (let lane = 1; lane < Math.min(12, lanes); lane++) {
+        if (!oneway && (lane === lanes / 2 || (turnLane && Math.abs(lane - lanes / 2) < 1)))
+          continue;
+        const offset = -road.width / 2 + laneWidth * lane;
+        paint(
+          { width: LINE_WIDTH, offset, color: style.white, dash: BROKEN_LINE },
+          (points, distance) =>
+            clearJunction(points, distance) &&
+            unmerged(points) &&
+            !nearJunction(road, distance, 30, true),
         );
+        paint(
+          { width: LINE_WIDTH, offset, color: style.white },
+          (points, distance) =>
+            clearJunction(points, distance) &&
+            unmerged(points) &&
+            nearJunction(road, distance, 30, true),
+        );
+      }
   }
 
   const rectangle = (
@@ -952,48 +1365,158 @@ export function createTerrainSurfaceObject(
   ];
 
   const white = new THREE.Color(style.white);
+  const paintPolygon = (points: readonly TerrainSemanticPoint[], lift: number): void => {
+    const start = marks.vertexCount;
+    marks.polygon(points, white, lift);
+    marks.surfaceSince(start, TERRAIN_SURFACE_KIND.paint);
+  };
+  /**
+   * A lane arrow centered at (x, z), pointing along (fx, fz): straight (`turn` 0) or turning to
+   * its right (1) or left (-1), from rectangles and triangles the draper takes whole.
+   */
+  const laneArrow = (
+    x: number,
+    z: number,
+    fx: number,
+    fz: number,
+    turn: number,
+    lift: number,
+  ): void => {
+    // Arrow-local (forward, right) to tile meters; right of travel is (-fz, fx).
+    const at = (u: number, v: number): TerrainSemanticPoint => [
+      x + fx * u - fz * v,
+      z + fz * u + fx * v,
+    ];
+    if (turn === 0) {
+      paintPolygon(rectangle(...at(-0.45, 0), fx, fz, 0.16, 1.5), lift);
+      paintPolygon([at(0.3, -0.3), at(1.2, 0), at(0.3, 0.3)], lift);
+      return;
+    }
+    paintPolygon(rectangle(...at(-0.5, 0), fx, fz, 0.16, 1.4), lift);
+    paintPolygon(rectangle(...at(0.12, turn * 0.25), -fz * turn, fx * turn, 0.16, 0.5), lift);
+    paintPolygon([at(-0.15, turn * 0.5), at(0.12, turn * 0.95), at(0.4, turn * 0.5)], lift);
+  };
   for (const node of network.junctions) {
     if (!inTile(node.x, node.z)) continue;
     stats.junctions++;
     const control = controls.get(node);
-    if (style.crossings)
+    if (style.crossings || style.markings)
       for (const arm of node.arms) {
         const x = arm.x,
           z = arm.z;
-        for (
-          let offset = -arm.width / 2 + 0.65;
-          offset < arm.width / 2 - 0.3 && remaining > 0;
-          offset += 1.1
-        ) {
-          remaining--;
-          const start = marks.vertexCount;
-          marks.polygon(
-            rectangle(x - arm.dz * offset, z + arm.dx * offset, arm.dx, arm.dz, 0.5, 2.6),
-            white,
-            arm.road.elevation + arm.road.stack + 0.055,
-          );
-          marks.surfaceSince(start, TERRAIN_SURFACE_KIND.paint);
+        const lift = arm.road.elevation + arm.road.stack + 0.055;
+        const oneway = arm.road.feature.oneway === true;
+        const stopped = control?.stops.has(arm) === true;
+        const yielding = control?.yields.has(arm) === true;
+        const crosswalk = crosswalkAt(node, arm);
+        if (crosswalk) {
+          // High-visibility bars, then at a signal a transverse line along each side.
+          for (
+            let offset = -arm.width / 2 + 0.65;
+            offset < arm.width / 2 - 0.3 && remaining > 0;
+            offset += 1.1
+          ) {
+            remaining--;
+            paintPolygon(
+              rectangle(x - arm.dz * offset, z + arm.dx * offset, arm.dx, arm.dz, 0.5, 2.6),
+              lift,
+            );
+          }
+          if (control?.signal)
+            for (const along of [-1.45, 1.45])
+              if (remaining-- > 0)
+                paintPolygon(
+                  rectangle(
+                    x + arm.dx * along,
+                    z + arm.dz * along,
+                    arm.dx,
+                    arm.dz,
+                    arm.width - 0.3,
+                    0.2,
+                  ),
+                  lift,
+                );
         }
-        if (
-          style.markings &&
-          incomingArm(arm) &&
-          (control?.signal || control?.stops.has(arm)) &&
-          remaining-- > 0
-        ) {
-          const start = marks.vertexCount;
-          marks.polygon(
+        if (!style.markings || !incomingArm(arm)) continue;
+        // The approach: all of a one-way arm, else the half traffic keeps to. The stop line
+        // stands about 1.2 m short of a crosswalk, or at the corner where there is none.
+        const approach = oneway ? arm.width : arm.width / 2;
+        const ax = oneway ? 0 : (side * arm.dz * arm.width) / 4,
+          az = oneway ? 0 : (-side * arm.dx * arm.width) / 4;
+        const setback = crosswalk ? 2.8 : 1;
+        if ((control?.signal || stopped) && remaining-- > 0)
+          paintPolygon(
             rectangle(
-              x + arm.dx * 2.3 + (arm.road.feature.oneway ? 0 : (side * arm.dz * arm.width) / 4),
-              z + arm.dz * 2.3 - (arm.road.feature.oneway ? 0 : (side * arm.dx * arm.width) / 4),
+              x + arm.dx * setback + ax,
+              z + arm.dz * setback + az,
               arm.dx,
               arm.dz,
-              arm.width / (arm.road.feature.oneway ? 1 : 2) - 0.7,
-              0.35,
+              approach - 0.7,
+              0.45,
             ),
-            white,
-            arm.road.elevation + arm.road.stack + 0.055,
+            lift,
           );
-          marks.surfaceSince(start, TERRAIN_SURFACE_KIND.paint);
+        else if (yielding) {
+          // A yield line: a row of triangles pointing at approaching traffic ("shark teeth").
+          const teeth = Math.floor((approach - 0.7) / 0.9);
+          for (let i = 0; i < teeth && remaining-- > 0; i++) {
+            const lateral = -((teeth - 1) * 0.9) / 2 + i * 0.9;
+            const cx = x + arm.dx * setback + ax - arm.dz * lateral,
+              cz = z + arm.dz * setback + az + arm.dx * lateral;
+            paintPolygon(
+              [
+                [cx - arm.dz * 0.25, cz + arm.dx * 0.25],
+                [cx + arm.dx * 0.75, cz + arm.dz * 0.75],
+                [cx + arm.dz * 0.25, cz - arm.dx * 0.25],
+              ],
+              lift,
+            );
+          }
+        }
+        // Lane arrows 6 m behind a signal's stop line, on approaches of two or more lanes: the
+        // lane nearest the center turns across traffic where an arm leads that way, the curb lane
+        // goes straight (or turns curbside where nothing lies ahead), and lanes between go on.
+        const lanes = oneway ? laneCount(arm.road) : Math.floor(laneCount(arm.road) / 2);
+        if (!control?.signal || lanes < 2 || approach / lanes < 2.5 || remaining < lanes * 3)
+          continue;
+        const fx = -arm.dx,
+          fz = -arm.dz;
+        let ahead = false,
+          right = false,
+          left = false;
+        for (const other of node.arms) {
+          if (other === arm) continue;
+          if (other.dx * fx + other.dz * fz > 0.7) ahead = true;
+          const lateral = other.dx * -fz + other.dz * fx;
+          if (lateral > 0.5) right = true;
+          if (lateral < -0.5) left = true;
+        }
+        // Across traffic is left where traffic keeps right.
+        const across = side > 0 ? left : right;
+        const curbside = side > 0 ? right : left;
+        const width = approach / lanes;
+        for (let lane = 0; lane < lanes; lane++) {
+          // Lane 0 is the curb lane; its center lies `lateral` from the arm's centerline, toward
+          // the side traffic keeps to.
+          const lateral = arm.width / 2 - (lane + 0.5) * width;
+          const turn =
+            lane === lanes - 1 && across
+              ? -side
+              : lane === 0 && !ahead && curbside
+                ? side
+                : ahead
+                  ? 0
+                  : undefined;
+          if (turn === undefined) continue;
+          remaining -= 3;
+          laneArrow(
+            x + arm.dx * (setback + 6) + side * arm.dz * lateral,
+            z + arm.dz * (setback + 6) - side * arm.dx * lateral,
+            fx,
+            fz,
+            turn,
+            lift,
+          );
         }
       }
     if (!style.streetlights && !style.trafficSignals) continue;
@@ -1175,6 +1698,36 @@ export function createTerrainSurfaceObject(
       }
     }
   }
+
+  const railways = appendTerrainRailways(group, {
+    tile,
+    context,
+    network,
+    style,
+    signProfile,
+    detailed,
+    bridgeProfiles,
+    blocked,
+    fixtures,
+    signFaces,
+    fonts: options.fonts,
+    font: options.signFont,
+    maxFixtures,
+    maxDetailElements: details.maxDetailElements ?? 16_000,
+    ...(style.parkedCars && details.railCars?.length
+      ? {
+          railCars: details.railCars,
+          vehicles,
+          ...(details.railCarOccupancy !== undefined
+            ? { railCarOccupancy: details.railCarOccupancy }
+            : {}),
+        }
+      : {}),
+  });
+  stats.railTracks = railways.tracks;
+  stats.railCrossings = railways.crossings;
+  stats.railSwitches = railways.turnouts;
+  stats.railSignals = railways.signals;
 
   const inferredParking =
     details.inferParking === false ? [] : inferTerrainParkingAreas(tile, network, context.tileSize);
@@ -1415,41 +1968,63 @@ export function createTerrainSurfaceObject(
               fixtureCount < maxFixtures &&
               seed < (details.parkingOccupancy ?? 0.7)
             ) {
-              const x = center[0],
-                z = center[1];
-              const yaw = -angle + (side < 0 ? Math.PI : 0);
-              const wx = context.origin[0] + x,
-                wz = context.origin[1] + z;
-              const vehicle = pickParkedVehicle(parkedVehicles, hash(wx + 19.7, wz - 37.1));
-              if (!vehicle) continue;
-              fixtureCount++;
-              stats.parkedCars++;
-              const palette = vehicle.colors?.length
-                ? vehicle.colors
-                : ['#b7c0c5', '#566d82', '#914c40', '#e0dccc', '#3e4b50', '#8d989b'];
-              const color = palette[Math.floor(seed * 79) % palette.length] as string;
-              const kind = vehicle.id;
-              const spec = vehicle.spec;
-              const heights = [spec.wheelbase / 2, -spec.wheelbase / 2].flatMap((wheelZ) =>
-                [-spec.wheelTrack / 2, spec.wheelTrack / 2].map(
-                  (wheelX) =>
-                    pavement.groundHeight(
-                      x + Math.cos(yaw) * wheelX + Math.sin(yaw) * wheelZ,
-                      z - Math.sin(yaw) * wheelX + Math.cos(yaw) * wheelZ,
-                    ) + 0.3,
-                ),
+              const baseYaw = -angle + (side < 0 ? Math.PI : 0);
+              const wx = context.origin[0] + center[0],
+                wz = context.origin[1] + center[1];
+              const first = pickParkedVehicle(parkedVehicles, hash(wx + 19.7, wz - 37.1));
+              if (!first) continue;
+              // Motorcycles, scooters and mopeds stand two or three to a car's bay, side by side
+              // and a little staggered, each its own pick from the region's two-wheelers.
+              const row = first.spec.width <= PARKED_TWO_WHEELER_WIDTH;
+              twoWheelers ??= parkedVehicles.filter(
+                (v) => v.spec.width <= PARKED_TWO_WHEELER_WIDTH,
               );
-              const [fl, fr, rl, rr] = heights as [number, number, number, number];
-              vehicles.push({
-                id: `parked-car:${Math.round(wx * 10)}:${Math.round(wz * 10)}`,
-                kind,
-                color,
-                spec,
-                position: [wx, (fl + fr + rl + rr) / 4, wz],
-                yaw,
-                pitch: Math.atan2((rl + rr - fl - fr) / 2, spec.wheelbase),
-                roll: Math.atan2((fr + rr - fl - rl) / 2, spec.wheelTrack),
-              });
+              const count = row ? 2 + Math.floor(hash(wx - 7.3, wz + 2.9) * 2) : 1;
+              for (let k = 0; k < count && fixtureCount < maxFixtures; k++) {
+                const vehicle =
+                  k === 0
+                    ? first
+                    : (pickParkedVehicle(twoWheelers, hash(wx + 19.7 + k * 3.1, wz - 37.1 - k)) ??
+                      first);
+                const across = row ? (k - (count - 1) / 2) * (2.65 / count) : 0;
+                const stagger = row ? (hash(wx + k * 1.7, wz + 4.1) - 0.5) * 0.5 : 0;
+                const x = center[0] + dx * across - dz * side * stagger,
+                  z = center[1] + dz * across + dx * side * stagger;
+                const yaw = baseYaw + (row ? (hash(wz + k, wx - k) - 0.5) * 0.16 : 0);
+                const px = context.origin[0] + x,
+                  pz = context.origin[1] + z;
+                fixtureCount++;
+                stats.parkedCars++;
+                const palette = vehicle.colors?.length
+                  ? vehicle.colors
+                  : ['#b7c0c5', '#566d82', '#914c40', '#e0dccc', '#3e4b50', '#8d989b'];
+                const paint = row ? hash(px * 1.3, pz * 0.7) : seed;
+                const color = palette[Math.floor(paint * 79) % palette.length] as string;
+                const kind = vehicle.id;
+                const spec = vehicle.spec;
+                const heights = [spec.wheelbase / 2, -spec.wheelbase / 2].flatMap((wheelZ) =>
+                  [-spec.wheelTrack / 2, spec.wheelTrack / 2].map(
+                    (wheelX) =>
+                      pavement.groundHeight(
+                        x + Math.cos(yaw) * wheelX + Math.sin(yaw) * wheelZ,
+                        z - Math.sin(yaw) * wheelX + Math.cos(yaw) * wheelZ,
+                      ) + 0.3,
+                  ),
+                );
+                const [fl, fr, rl, rr] = heights as [number, number, number, number];
+                vehicles.push({
+                  id: `parked-car:${Math.round(px * 10)}:${Math.round(pz * 10)}`,
+                  kind,
+                  color,
+                  spec,
+                  position: [px, (fl + fr + rl + rr) / 4, pz],
+                  yaw,
+                  pitch: Math.atan2((rl + rr - fl - fr) / 2, spec.wheelbase),
+                  // A cycle's track is zero: it stands upright.
+                  roll:
+                    spec.wheelTrack > 0 ? Math.atan2((fr + rr - fl - rl) / 2, spec.wheelTrack) : 0,
+                });
+              }
             }
           }
         }
@@ -1461,14 +2036,14 @@ export function createTerrainSurfaceObject(
     edges.mesh('surface:edges'),
     roads.mesh('semantic:transportation', roadMaterial),
     marks.mesh('surface:markings'),
-  ]) {
+  ].map(weldTerrainSurfaceMesh)) {
     if (!mesh) continue;
     // A host pavement material (createTerrainSurfaceRenderer's setMaterial) replaces the plain one.
     if (mesh.name !== 'semantic:transportation' || roadMaterial === undefined)
       mesh.userData[TERRAIN_PAVEMENT] = true;
     group.add(mesh);
   }
-  const signMesh = signFaces.mesh('surface:road-signs', undefined, false);
+  const signMesh = weldTerrainSurfaceMesh(signFaces.mesh('surface:road-signs', undefined, false));
   if (signMesh) group.add(signMesh);
   const fixtureMesh = createTerrainBoxInstances(fixtures, 'surface:street-fixtures');
   if (fixtureMesh) group.add(fixtureMesh);
@@ -1542,10 +2117,22 @@ export interface TerrainSurfaceRenderer {
 const FIXTURE_DISTANCE = 900;
 const MARKING_DISTANCE = 1500;
 const PARKED_CAR_DISTANCE = 1500;
+/** Rails in 3D and catenary wires: centimeters across, so they hand over to the track shading
+ * (and to nothing) well before they shrink below a pixel. Both count the camera's height above
+ * the ground too (`userData.detailAboveGround`): from a plane, a tile under it is not near. */
+const RAIL_DISTANCE = 260;
+const WIRE_DISTANCE = 200;
 
-/** Give a surface tile's small detail its draw distance (`userData.detailDistance`). */
+/**
+ * Give a surface tile's small detail its draw distance (`userData.detailDistance`), and keep its
+ * paint out of walking and driving collision (`userData.walkIgnore`). Paint floats a few
+ * centimeters over the asphalt so the two never fight in the depth buffer; solid, each lane line,
+ * dash and crosswalk bar was a step a wheel jolted over, and crosswalks a washboard.
+ */
 export function markTerrainSurfaceDetail(group: THREE.Object3D): void {
+  dressTerrainRailMeshes(group);
   for (const child of group.children) {
+    if (child.name === 'surface:markings') child.userData.walkIgnore = true;
     const distance =
       child.name === 'surface:markings'
         ? MARKING_DISTANCE
@@ -1553,7 +2140,11 @@ export function markTerrainSurfaceDetail(group: THREE.Object3D): void {
           ? PARKED_CAR_DISTANCE
           : /^surface:(road-signs|street-fixtures|signal-|night-)/.test(child.name)
             ? FIXTURE_DISTANCE
-            : undefined;
+            : child.name === TERRAIN_RAIL_MESHES.rails
+              ? RAIL_DISTANCE
+              : child.name === TERRAIN_RAIL_MESHES.wires
+                ? WIRE_DISTANCE
+                : undefined;
     if (distance !== undefined) child.userData.detailDistance = distance;
   }
 }
@@ -1764,9 +2355,21 @@ export function createTerrainSurfaceRenderer(
           position.z - Math.max(detailMin.z, detailMax.z),
         );
         const distance = Math.hypot(dx, dz);
+        // The camera's height above the tile's ground, for detail flagged detailAboveGround.
+        let above: number | undefined;
         for (const child of object.children) {
           const limit = child.userData.detailDistance as number | undefined;
-          if (limit !== undefined) child.visible = distance <= limit;
+          if (limit === undefined) continue;
+          if (child.userData.detailAboveGround === true) {
+            above ??=
+              position.y -
+              detailMin.y -
+              entry.context.heightfield.sampleHeight(
+                entry.context.origin[0] + Math.max(0, Math.min(size, position.x - detailMin.x)),
+                entry.context.origin[1] + Math.max(0, Math.min(size, position.z - detailMin.z)),
+              );
+            child.visible = Math.hypot(distance, Math.max(0, above)) <= limit;
+          } else child.visible = distance <= limit;
         }
       }
     },
@@ -1793,6 +2396,10 @@ export function createTerrainSurfaceRenderer(
         roadSigns: 0,
         parkingBays: 0,
         parkedCars: 0,
+        railTracks: 0,
+        railCrossings: 0,
+        railSwitches: 0,
+        railSignals: 0,
         detailLimited: false,
         tiles: tiles.size,
         loading: 0,
@@ -1816,8 +2423,12 @@ export function createTerrainSurfaceRenderer(
           'roadSigns',
           'parkingBays',
           'parkedCars',
+          'railTracks',
+          'railCrossings',
+          'railSwitches',
+          'railSignals',
         ] as const)
-          sum[key] += stats[key];
+          sum[key] += stats[key] ?? 0;
         sum.detailLimited ||= stats.detailLimited;
       }
       return sum;

@@ -1,0 +1,1399 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "doc": "North American locomotives, passenger cars and freight cars for track-guided consists.",
+  "types": {
+    "molen.entities.rail.ge_es44ac": {
+      "doc": "GE ES44AC (Evolution Series): six-axle AC road freight locomotive with a wide-nose safety cab, C-C Hi-Ad trucks with 42 in wheels, dynamic-brake housing behind the cab and the flared radiator section at the rear, in a generic two-tone livery. Full cab interior (desktop console, live throttle and automatic brake handles, engineer and conductor seats). Drives on track: steering is locked, power at the rail limits tractive effort above starting speed.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.ge_es44ac",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.ge_es44ac",
+          "color": "#3d5a73",
+          "spec": {
+            "label": "GE ES44AC",
+            "bodyStyle": "locomotive",
+            "genericLabel": "Six-axle freight locomotive",
+            "width": 3.12,
+            "length": 21.4,
+            "height": 4.72,
+            "centerOfMass": [0, 1.8, 0],
+            "wheelbase": 15.9,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.533,
+            "mass": 195000,
+            "engineForce": 880000,
+            "maxSpeed": 33.5,
+            "reverseSpeed": 33.5,
+            "brakeDeceleration": 0.6,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [-0.72, 3.22, 7.85],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00003,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 15.9,
+              "couplerLength": 22.3,
+              "power": 3100000,
+              "gauge": 1.435,
+              "profile": "locomotive"
+            }
+          },
+          "visual": {
+            "wheelNodes": ["axle-1", "axle-2", "axle-3", "axle-4", "axle-5", "axle-6"],
+            "frontWheelNodes": ["axle-1"],
+            "paintMaterial": "rail-livery-body",
+            "interior": {
+              "nodes": ["close-detail", "throttle-handle", "brake-handle"],
+              "bindings": [
+                {
+                  "node": "throttle-handle",
+                  "source": "throttle",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": 0.5,
+                  "min": -0.5,
+                  "max": 0.5,
+                  "responseSeconds": 0.2
+                },
+                {
+                  "node": "brake-handle",
+                  "source": "brake",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -0.7,
+                  "responseSeconds": 0.3
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [-0.72, 3.22, 7.85]
+            },
+            {
+              "id": "conductor",
+              "role": "passenger",
+              "position": [0.72, 3.22, 7.85]
+            }
+          ],
+          "entries": [[1.81, 0.45, 10.28], [-1.81, 0.45, 10.28]],
+          "exits": [[2.46, 0, 10.28], [-2.46, 0, 10.28]],
+          "reach": 3
+        },
+        "ambientRole": {
+          "role": "rail",
+          "track": "heavy",
+          "cruise": 18,
+          "weight": 3,
+          "consist": {
+            "units": [2, 3],
+            "length": [12, 22],
+            "block": [2, 5],
+            "cars": [
+              {
+                "type": "molen.entities.rail.covered_hopper",
+                "weight": 22,
+                "colors": ["#b9b7ad", "#a9a59a", "#8f8c86", "#c2b8a3"]
+              },
+              {
+                "type": "molen.entities.rail.tank_car_dot117",
+                "weight": 18,
+                "colors": ["#1d1e20", "#26282a", "#d9d6cf"]
+              },
+              {
+                "type": "molen.entities.rail.boxcar_50ft",
+                "weight": 18,
+                "colors": ["#7a3326", "#8a4a2c", "#5f3a2e", "#2f4f6b", "#6b6f4a"]
+              },
+              {
+                "type": "molen.entities.rail.well_car_double_stack",
+                "weight": 16,
+                "colors": ["#3d3f3c", "#58402e"]
+              },
+              {
+                "type": "molen.entities.rail.gondola_52ft",
+                "weight": 10,
+                "colors": ["#3a3633", "#5b3527", "#2f3b33"]
+              },
+              {
+                "type": "molen.entities.rail.centerbeam_flatcar",
+                "weight": 8,
+                "colors": ["#4b4a46", "#5a3e2e"]
+              },
+              {
+                "type": "molen.entities.rail.autorack_enclosed",
+                "weight": 8,
+                "colors": ["#6d4a33", "#8d8b84", "#7a7369"]
+              }
+            ]
+          }
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.diesel",
+          "loop": true,
+          "pitch": 0.9,
+          "gain": 1,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [[-1, 0.62], [0, 0.55], [0.5, 0.78], [1, 1]]
+          },
+          "gainFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [[-1, 0.75], [0, 0.6], [1, 1]]
+          }
+        }
+      },
+      "assets": ["molen.entities.rail.ge_es44ac"]
+    },
+    "molen.entities.rail.emd_gp38_2": {
+      "doc": "EMD GP38-2: four-axle road switcher for yards and locals, with a low short hood, standard cab, Blomberg B trucks with 40 in wheels, dynamic-brake blister and two radiator fans, in a generic two-tone livery. Full cab interior (AAR control stand, 26L brake stand, live throttle and automatic brake handles, engineer and conductor seats). Drives on track with locked steering.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.emd_gp38_2",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.emd_gp38_2",
+          "color": "#2e5a47",
+          "spec": {
+            "label": "EMD GP38-2",
+            "bodyStyle": "locomotive",
+            "genericLabel": "Four-axle road switcher",
+            "width": 3.13,
+            "length": 17.3,
+            "height": 4.7,
+            "centerOfMass": [0, 1.7, 0],
+            "wheelbase": 10.36,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.508,
+            "mass": 113000,
+            "engineForce": 275000,
+            "maxSpeed": 29,
+            "reverseSpeed": 29,
+            "brakeDeceleration": 0.6,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [-0.72, 3.07, 5.4],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00003,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 10.36,
+              "couplerLength": 18.03,
+              "power": 1400000,
+              "gauge": 1.435,
+              "profile": "locomotive"
+            }
+          },
+          "visual": {
+            "wheelNodes": ["axle-1", "axle-2", "axle-3", "axle-4"],
+            "frontWheelNodes": ["axle-1"],
+            "paintMaterial": "rail-livery-body",
+            "interior": {
+              "nodes": ["close-detail", "throttle-handle", "brake-handle"],
+              "bindings": [
+                {
+                  "node": "throttle-handle",
+                  "source": "throttle",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": -0.45,
+                  "min": -0.5,
+                  "max": 0.5,
+                  "responseSeconds": 0.2
+                },
+                {
+                  "node": "brake-handle",
+                  "source": "brake",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -0.7,
+                  "responseSeconds": 0.3
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [-0.72, 3.07, 5.4]
+            },
+            {
+              "id": "conductor",
+              "role": "passenger",
+              "position": [0.72, 3.07, 5.4]
+            }
+          ],
+          "entries": [[1.815, 0.45, 8.25], [-1.815, 0.45, 8.25]],
+          "exits": [[2.465, 0, 8.25], [-2.465, 0, 8.25]],
+          "reach": 3
+        },
+        "ambientRole": {
+          "role": "rail",
+          "track": "heavy",
+          "cruise": 12,
+          "weight": 1,
+          "consist": {
+            "units": [1, 2],
+            "length": [4, 10],
+            "block": [1, 3],
+            "cars": [
+              {
+                "type": "molen.entities.rail.covered_hopper",
+                "weight": 22,
+                "colors": ["#b9b7ad", "#a9a59a", "#8f8c86", "#c2b8a3"]
+              },
+              {
+                "type": "molen.entities.rail.tank_car_dot117",
+                "weight": 18,
+                "colors": ["#1d1e20", "#26282a", "#d9d6cf"]
+              },
+              {
+                "type": "molen.entities.rail.boxcar_50ft",
+                "weight": 18,
+                "colors": ["#7a3326", "#8a4a2c", "#5f3a2e", "#2f4f6b", "#6b6f4a"]
+              },
+              {
+                "type": "molen.entities.rail.gondola_52ft",
+                "weight": 10,
+                "colors": ["#3a3633", "#5b3527", "#2f3b33"]
+              },
+              {
+                "type": "molen.entities.rail.centerbeam_flatcar",
+                "weight": 8,
+                "colors": ["#4b4a46", "#5a3e2e"]
+              }
+            ]
+          }
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.diesel",
+          "loop": true,
+          "pitch": 1,
+          "gain": 0.85,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [[-1, 0.62], [0, 0.55], [0.5, 0.78], [1, 1]]
+          },
+          "gainFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [[-1, 0.75], [0, 0.6], [1, 1]]
+          }
+        }
+      },
+      "assets": ["molen.entities.rail.emd_gp38_2"]
+    },
+    "molen.entities.rail.mpi_mp36ph_3c": {
+      "doc": "MPI MP36PH-3C: cab-forward commuter passenger locomotive with a full-width cowl carbody, raked windscreen, head-end-power compartment behind the cab, Blomberg B trucks with 40 in wheels, in a generic commuter livery (rail-livery-stripe band, rail-livery-accent pinstripe). Full cab interior (desktop console, live throttle and automatic brake handles, engineer and conductor seats). Drives on track with locked steering.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.mpi_mp36ph_3c",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.mpi_mp36ph_3c",
+          "color": "#c3c6c5",
+          "spec": {
+            "label": "MPI MP36PH-3C",
+            "bodyStyle": "locomotive",
+            "genericLabel": "Commuter passenger locomotive",
+            "width": 3.2,
+            "length": 19.8,
+            "height": 4.75,
+            "centerOfMass": [0, 1.8, 0],
+            "wheelbase": 12.5,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.508,
+            "mass": 129000,
+            "engineForce": 290000,
+            "maxSpeed": 49,
+            "reverseSpeed": 49,
+            "brakeDeceleration": 0.6,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [-0.72, 3.25, 8.05],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00003,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 12.5,
+              "couplerLength": 20.6,
+              "power": 2200000,
+              "gauge": 1.435,
+              "profile": "locomotive"
+            }
+          },
+          "visual": {
+            "wheelNodes": ["axle-1", "axle-2", "axle-3", "axle-4"],
+            "frontWheelNodes": ["axle-1"],
+            "paintMaterial": "rail-livery-body",
+            "interior": {
+              "nodes": ["close-detail", "throttle-handle", "brake-handle"],
+              "bindings": [
+                {
+                  "node": "throttle-handle",
+                  "source": "throttle",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": 0.5,
+                  "min": -0.5,
+                  "max": 0.5,
+                  "responseSeconds": 0.2
+                },
+                {
+                  "node": "brake-handle",
+                  "source": "brake",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -0.7,
+                  "responseSeconds": 0.3
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [-0.72, 3.25, 8.05]
+            },
+            {
+              "id": "conductor",
+              "role": "passenger",
+              "position": [0.72, 3.25, 8.05]
+            }
+          ],
+          "entries": [[1.8, 0.45, 7.35], [-1.8, 0.45, 7.35]],
+          "exits": [[2.5, 0, 7.35], [-2.5, 0, 7.35]],
+          "reach": 3
+        },
+        "ambientRole": {
+          "role": "rail",
+          "track": "heavy",
+          "cruise": 22,
+          "weight": 1.5,
+          "consist": {
+            "units": [1, 1],
+            "length": [3, 5],
+            "block": [3, 5],
+            "cars": [
+              {
+                "type": "molen.entities.rail.bombardier_bilevel_coach"
+              }
+            ]
+          }
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.diesel",
+          "loop": true,
+          "pitch": 0.95,
+          "gain": 0.95,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [[-1, 0.62], [0, 0.55], [0.5, 0.78], [1, 1]]
+          },
+          "gainFrom": {
+            "signal": "vehicleInput.throttle",
+            "curve": [[-1, 0.75], [0, 0.6], [1, 1]]
+          }
+        }
+      },
+      "assets": ["molen.entities.rail.mpi_mp36ph_3c"]
+    },
+    "molen.entities.rail.bombardier_bilevel_coach": {
+      "doc": "Bombardier BiLevel commuter coach: low-floor lower level between the trucks, upper level under the characteristic sloping upper sides, intermediate-level vestibules over the trucks with side doors, seats on both levels, stairs, luggage racks and ceiling lights. Unpowered car for track-guided consists; passengers board through the passenger seats.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.bombardier_bilevel_coach",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.bombardier_bilevel_coach",
+          "color": "#d6d7d1",
+          "spec": {
+            "label": "Bombardier BiLevel Coach",
+            "bodyStyle": "passenger-car",
+            "genericLabel": "Bi-level commuter coach",
+            "width": 2.97,
+            "length": 25.3,
+            "height": 4.84,
+            "centerOfMass": [0, 1.8, 0],
+            "wheelbase": 18.3,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.457,
+            "mass": 50000,
+            "engineForce": 1,
+            "maxSpeed": 41.6,
+            "reverseSpeed": 30,
+            "brakeDeceleration": 0.9,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [0, 2.5, 0],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00001,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 18.3,
+              "couplerLength": 25.91,
+              "power": 0,
+              "gauge": 1.435,
+              "profile": "coach"
+            }
+          },
+          "visual": {
+            "wheelNodes": ["axle-1", "axle-2", "axle-3", "axle-4"],
+            "frontWheelNodes": ["axle-1"],
+            "paintMaterial": "rail-livery-body",
+            "interior": {
+              "nodes": ["close-detail"],
+              "bindings": []
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "upper-left-1",
+              "role": "passenger",
+              "position": [0.96, 3.82, 2.63]
+            },
+            {
+              "id": "upper-right-1",
+              "role": "passenger",
+              "position": [-0.96, 3.82, 2.63]
+            },
+            {
+              "id": "lower-left-1",
+              "role": "passenger",
+              "position": [1.12, 1.82, 2.63]
+            },
+            {
+              "id": "lower-right-1",
+              "role": "passenger",
+              "position": [-1.12, 1.82, 2.63]
+            },
+            {
+              "id": "upper-left-2",
+              "role": "passenger",
+              "position": [0.96, 3.82, -3.48]
+            },
+            {
+              "id": "upper-right-2",
+              "role": "passenger",
+              "position": [-0.96, 3.82, -3.48]
+            },
+            {
+              "id": "lower-left-2",
+              "role": "passenger",
+              "position": [1.12, 1.82, -3.48]
+            },
+            {
+              "id": "lower-right-2",
+              "role": "passenger",
+              "position": [-1.12, 1.82, -3.48]
+            },
+            {
+              "id": "vestibule",
+              "role": "passenger",
+              "position": [0, 2.9, -10.35]
+            }
+          ],
+          "entries": [
+            [1.785, 0.55, 10.35],
+            [-1.785, 0.55, 10.35],
+            [1.785, 0.55, -10.35],
+            [-1.785, 0.55, -10.35]
+          ],
+          "exits": [[2.385, 0, 10.35], [-2.385, 0, 10.35], [2.385, 0, -10.35], [-2.385, 0, -10.35]],
+          "reach": 3
+        }
+      },
+      "assets": ["molen.entities.rail.bombardier_bilevel_coach"]
+    },
+    "molen.entities.rail.bombardier_bilevel_cab_car": {
+      "doc": "Bombardier BiLevel commuter cab car: the BiLevel coach with an operating cab at the front (+Z) end (windscreen, headlights, ditch lights, horn, driver desk and seat with live throttle and brake handles) for push-pull service. Unpowered: it leads a consist pushed by a locomotive; passengers board through the passenger seats.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.bombardier_bilevel_cab_car",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.bombardier_bilevel_cab_car",
+          "color": "#d6d7d1",
+          "spec": {
+            "label": "Bombardier BiLevel Cab Car",
+            "bodyStyle": "passenger-car",
+            "genericLabel": "Bi-level commuter cab car",
+            "width": 2.97,
+            "length": 25.3,
+            "height": 4.84,
+            "centerOfMass": [0, 1.8, 0],
+            "wheelbase": 18.3,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.457,
+            "mass": 52000,
+            "engineForce": 1,
+            "maxSpeed": 41.6,
+            "reverseSpeed": 30,
+            "brakeDeceleration": 0.9,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [-0.7, 3, 11.65],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00002,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 18.3,
+              "couplerLength": 25.91,
+              "power": 0,
+              "gauge": 1.435,
+              "profile": "coach"
+            }
+          },
+          "visual": {
+            "wheelNodes": ["axle-1", "axle-2", "axle-3", "axle-4"],
+            "frontWheelNodes": ["axle-1"],
+            "paintMaterial": "rail-livery-body",
+            "interior": {
+              "nodes": ["close-detail", "throttle-handle", "brake-handle"],
+              "bindings": [
+                {
+                  "node": "throttle-handle",
+                  "source": "throttle",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": 0.5,
+                  "min": -0.5,
+                  "max": 0.5,
+                  "responseSeconds": 0.2
+                },
+                {
+                  "node": "brake-handle",
+                  "source": "brake",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -0.7,
+                  "responseSeconds": 0.3
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [-0.7, 3, 11.65]
+            },
+            {
+              "id": "upper-left-1",
+              "role": "passenger",
+              "position": [0.96, 3.82, 2.63]
+            },
+            {
+              "id": "upper-right-1",
+              "role": "passenger",
+              "position": [-0.96, 3.82, 2.63]
+            },
+            {
+              "id": "lower-left-1",
+              "role": "passenger",
+              "position": [1.12, 1.82, 2.63]
+            },
+            {
+              "id": "lower-right-1",
+              "role": "passenger",
+              "position": [-1.12, 1.82, 2.63]
+            },
+            {
+              "id": "upper-left-2",
+              "role": "passenger",
+              "position": [0.96, 3.82, -3.48]
+            },
+            {
+              "id": "upper-right-2",
+              "role": "passenger",
+              "position": [-0.96, 3.82, -3.48]
+            },
+            {
+              "id": "lower-left-2",
+              "role": "passenger",
+              "position": [1.12, 1.82, -3.48]
+            },
+            {
+              "id": "lower-right-2",
+              "role": "passenger",
+              "position": [-1.12, 1.82, -3.48]
+            },
+            {
+              "id": "vestibule",
+              "role": "passenger",
+              "position": [0, 2.9, -10.35]
+            }
+          ],
+          "entries": [
+            [1.785, 0.55, 10.35],
+            [-1.785, 0.55, 10.35],
+            [1.785, 0.55, -10.35],
+            [-1.785, 0.55, -10.35]
+          ],
+          "exits": [[2.385, 0, 10.35], [-2.385, 0, 10.35], [2.385, 0, -10.35], [-2.385, 0, -10.35]],
+          "reach": 3
+        }
+      },
+      "assets": ["molen.entities.rail.bombardier_bilevel_cab_car"]
+    },
+    "molen.entities.rail.boxcar_50ft": {
+      "doc": "50 ft high-cube (plate F) boxcar: single 10 ft plug door, exterior posts, corrugated ends, peaked roof, three-piece trucks with 36 in wheels. Unpowered car for track-guided consists; vehicle.color repaints the carbody.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.boxcar_50ft",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.boxcar_50ft",
+          "color": "#8a4634",
+          "spec": {
+            "label": "50 ft high-cube boxcar",
+            "bodyStyle": "freight-car",
+            "genericLabel": "Boxcar",
+            "width": 3.25,
+            "length": 16.2,
+            "height": 5.18,
+            "centerOfMass": [0, 1.9, 0],
+            "wheelbase": 12.4,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.457,
+            "mass": 90000,
+            "engineForce": 1,
+            "maxSpeed": 31.3,
+            "reverseSpeed": 30,
+            "brakeDeceleration": 0.45,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [0, 2.5, 0],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00001,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 12.4,
+              "couplerLength": 17.3,
+              "power": 0,
+              "gauge": 1.435,
+              "profile": "box"
+            }
+          },
+          "visual": {
+            "wheelNodes": ["axle-1", "axle-2", "axle-3", "axle-4"],
+            "frontWheelNodes": ["axle-1"],
+            "paintMaterial": "rail-livery-body"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": ["molen.entities.rail.boxcar_50ft"]
+    },
+    "molen.entities.rail.covered_hopper": {
+      "doc": "Three-bay 5,161 cu ft covered hopper for grain and plastics: exterior-post sides, sloped end sheets over end platforms, three hopper bays with outlet gates, continuous roof trough hatch. Unpowered car for track-guided consists; vehicle.color repaints the carbody.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.covered_hopper",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.covered_hopper",
+          "color": "#a4a8a6",
+          "spec": {
+            "label": "3-bay 5,161 cu ft covered hopper",
+            "bodyStyle": "freight-car",
+            "genericLabel": "Covered hopper",
+            "width": 3.2,
+            "length": 16.9,
+            "height": 4.6,
+            "centerOfMass": [0, 2.1, 0],
+            "wheelbase": 13.3,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.457,
+            "mass": 110000,
+            "engineForce": 1,
+            "maxSpeed": 31.3,
+            "reverseSpeed": 30,
+            "brakeDeceleration": 0.45,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [0, 2.5, 0],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00001,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 13.3,
+              "couplerLength": 18,
+              "power": 0,
+              "gauge": 1.435,
+              "profile": "hopper"
+            }
+          },
+          "visual": {
+            "wheelNodes": ["axle-1", "axle-2", "axle-3", "axle-4"],
+            "frontWheelNodes": ["axle-1"],
+            "paintMaterial": "rail-livery-body"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": ["molen.entities.rail.covered_hopper"]
+    },
+    "molen.entities.rail.tank_car_dot117": {
+      "doc": "DOT-117J jacketed general-service tank car of about 30,000 gal: sloped-bottom shell, integral full-height head shields, top fittings protective housing, centre ladders, end platforms, bottom outlet with skid. Unpowered car for track-guided consists; vehicle.color repaints the tank.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.tank_car_dot117",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.tank_car_dot117",
+          "color": "#3f4245",
+          "spec": {
+            "label": "DOT-117 tank car",
+            "bodyStyle": "freight-car",
+            "genericLabel": "Tank car",
+            "width": 3.2,
+            "length": 17,
+            "height": 4.6,
+            "centerOfMass": [0, 2.3, 0],
+            "wheelbase": 13.4,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.457,
+            "mass": 120000,
+            "engineForce": 1,
+            "maxSpeed": 31.3,
+            "reverseSpeed": 30,
+            "brakeDeceleration": 0.45,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [0, 2.5, 0],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00001,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 13.4,
+              "couplerLength": 18.1,
+              "power": 0,
+              "gauge": 1.435,
+              "profile": "tank"
+            }
+          },
+          "visual": {
+            "wheelNodes": ["axle-1", "axle-2", "axle-3", "axle-4"],
+            "frontWheelNodes": ["axle-1"],
+            "paintMaterial": "rail-livery-body"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": ["molen.entities.rail.tank_car_dot117"]
+    },
+    "molen.entities.rail.well_car_double_stack": {
+      "doc": "Single-unit 53 ft intermodal well car carrying two unbranded 53 ft high-cube containers stacked in the well (node load; materials container-lower and container-upper recolour each box). Unpowered car for track-guided consists; vehicle.color repaints the car body.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.well_car_double_stack",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.well_car_double_stack",
+          "color": "#6b645b",
+          "spec": {
+            "label": "53 ft double-stack well car",
+            "bodyStyle": "freight-car",
+            "genericLabel": "Double-stack well car",
+            "width": 3,
+            "length": 21.8,
+            "height": 6.14,
+            "centerOfMass": [0, 2.2, 0],
+            "wheelbase": 19.1,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.457,
+            "mass": 70000,
+            "engineForce": 1,
+            "maxSpeed": 31.3,
+            "reverseSpeed": 30,
+            "brakeDeceleration": 0.45,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [0, 2.5, 0],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00001,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 19.1,
+              "couplerLength": 22.9,
+              "power": 0,
+              "gauge": 1.435,
+              "profile": "well"
+            }
+          },
+          "visual": {
+            "wheelNodes": ["axle-1", "axle-2", "axle-3", "axle-4"],
+            "frontWheelNodes": ["axle-1"],
+            "paintMaterial": "rail-livery-body"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": ["molen.entities.rail.well_car_double_stack"]
+    },
+    "molen.entities.rail.autorack_enclosed": {
+      "doc": "89 ft enclosed bi-level autorack: flatcar with a fishbelly centre sill under a fully enclosed rack of perforated side panels, arched roof and two-leaf end doors. Unpowered car for track-guided consists; vehicle.color repaints the rack frame, posts and fascia.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.autorack_enclosed",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.autorack_enclosed",
+          "color": "#c9c7be",
+          "spec": {
+            "label": "89 ft enclosed bi-level autorack",
+            "bodyStyle": "freight-car",
+            "genericLabel": "Autorack",
+            "width": 3.25,
+            "length": 27.2,
+            "height": 5.94,
+            "centerOfMass": [0, 2.4, 0],
+            "wheelbase": 19.5,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.457,
+            "mass": 55000,
+            "engineForce": 1,
+            "maxSpeed": 31.3,
+            "reverseSpeed": 30,
+            "brakeDeceleration": 0.45,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [0, 2.5, 0],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00001,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 19.5,
+              "couplerLength": 28,
+              "power": 0,
+              "gauge": 1.435,
+              "profile": "autorack"
+            }
+          },
+          "visual": {
+            "wheelNodes": ["axle-1", "axle-2", "axle-3", "axle-4"],
+            "frontWheelNodes": ["axle-1"],
+            "paintMaterial": "rail-livery-body"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": ["molen.entities.rail.autorack_enclosed"]
+    },
+    "molen.entities.rail.gondola_52ft": {
+      "doc": "52 ft mill gondola with exterior-post sides, fixed ends and a steel floor, carrying a heaped scrap load (node load, hideable). Unpowered car for track-guided consists; vehicle.color repaints the carbody.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.gondola_52ft",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.gondola_52ft",
+          "color": "#5d4a3c",
+          "spec": {
+            "label": "52 ft mill gondola",
+            "bodyStyle": "freight-car",
+            "genericLabel": "Gondola",
+            "width": 3.2,
+            "length": 16,
+            "height": 2.6,
+            "centerOfMass": [0, 1.5, 0],
+            "wheelbase": 12.7,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.457,
+            "mass": 90000,
+            "engineForce": 1,
+            "maxSpeed": 31.3,
+            "reverseSpeed": 30,
+            "brakeDeceleration": 0.45,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [0, 2.5, 0],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00001,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 12.7,
+              "couplerLength": 17,
+              "power": 0,
+              "gauge": 1.435,
+              "profile": "gondola"
+            }
+          },
+          "visual": {
+            "wheelNodes": ["axle-1", "axle-2", "axle-3", "axle-4"],
+            "frontWheelNodes": ["axle-1"],
+            "paintMaterial": "rail-livery-body"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": ["molen.entities.rail.gondola_52ft"]
+    },
+    "molen.entities.rail.centerbeam_flatcar": {
+      "doc": "73 ft centerbeam flatcar: open lattice centre partition between end bulkheads over a fishbelly centre sill, loaded with wrapped lumber bundles leaning on the beam and strapped to side-sill winches (node load). Unpowered car for track-guided consists; vehicle.color repaints the car.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.rail.centerbeam_flatcar",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.rail.centerbeam_flatcar",
+          "color": "#5b636c",
+          "spec": {
+            "label": "73 ft centerbeam flatcar",
+            "bodyStyle": "freight-car",
+            "genericLabel": "Centerbeam flatcar",
+            "width": 3.2,
+            "length": 22.4,
+            "height": 4.6,
+            "centerOfMass": [0, 2, 0],
+            "wheelbase": 18.6,
+            "wheelTrack": 1.5,
+            "wheelRadius": 0.457,
+            "mass": 100000,
+            "engineForce": 1,
+            "maxSpeed": 31.3,
+            "reverseSpeed": 30,
+            "brakeDeceleration": 0.45,
+            "maxSteer": 0,
+            "grip": 3,
+            "driverEye": [0, 2.5, 0],
+            "steeringRate": 1,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.012,
+            "aerodynamicResistance": 0.00001,
+            "terrainAlignRate": 2,
+            "supportTolerance": 0.1,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.07,
+            "drive": "all",
+            "rollStiffness": 0,
+            "pitchStiffness": 0,
+            "rail": {
+              "truckCenters": 18.6,
+              "couplerLength": 23.3,
+              "power": 0,
+              "gauge": 1.435,
+              "profile": "flat"
+            }
+          },
+          "visual": {
+            "wheelNodes": ["axle-1", "axle-2", "axle-3", "axle-4"],
+            "frontWheelNodes": ["axle-1"],
+            "paintMaterial": "rail-livery-body"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": ["molen.entities.rail.centerbeam_flatcar"]
+    }
+  }
+}

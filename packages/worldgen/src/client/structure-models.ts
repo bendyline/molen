@@ -1,7 +1,32 @@
+import { enableSnowCover, snowCoverAmount } from '@bendyline/molen-client/snow';
 import * as THREE from 'three';
 import type { GlbSharedSurface } from '../kernel/glb';
 import type { ModelLoader } from './instanced-models';
 import type { NightWindowLighting } from './night-windows';
+
+/**
+ * Let lying snow settle on a landmark's own opaque surfaces (see `enableSnowCover`): its roofs,
+ * decks and ledges whiten above the weather's snow line as generated buildings' do. Glass and
+ * glowing parts stay clear; shared surfaces borrowed from a material set come already marked.
+ */
+function settleSnow(scene: THREE.Object3D): void {
+  scene.traverse((object) => {
+    const mesh = object as THREE.Mesh;
+    if (!mesh.isMesh) return;
+    for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) {
+      const standard = material as THREE.MeshPhysicalMaterial;
+      if (
+        !standard.isMeshStandardMaterial ||
+        standard.transparent ||
+        (standard.transmission ?? 0) > 0 ||
+        standard.userData.molenNightLight !== undefined ||
+        snowCoverAmount(standard) > 0
+      )
+        continue;
+      enableSnowCover(standard);
+    }
+  });
+}
 
 export interface StructureModelLibraryOptions {
   /** Night layers for tagged glass/lamp materials. Caller owns the controller. */
@@ -256,6 +281,7 @@ export class StructureModelLibrary {
                 this.options.nightWindows.attachModel(scene);
               }
               this.bindSurfaces(scene);
+              settleSnow(scene);
             } catch (error) {
               this.disposeOwnedScene(scene);
               throw error;
@@ -308,4 +334,61 @@ export class StructureModelLibrary {
     for (const model of this.ready.values()) this.disposeOwnedScene(model.scene);
     this.ready.clear();
   }
+}
+
+export interface StructureModelRouteOptions {
+  /** The source of the refs `isPrimary` accepts. */
+  primary: StructureModelSource;
+  /** Whether a ref is the primary source's. It must answer the same for a ref every time. */
+  isPrimary: (ref: string) => boolean;
+  /** The source of every other ref. */
+  secondary: StructureModelSource;
+  /**
+   * Hold a secondary model this long after it is released, ms (default 5000). When a region is
+   * refined, its children take its place a moment after it goes; without the hold a model with
+   * no warm cache of its own would be loaded and parsed again for them.
+   */
+  keepAliveMs?: number;
+}
+
+/**
+ * Two model sources behind one: each ref goes to the source `isPrimary` names for it, for its
+ * whole life (a model is instantiated and released by the source that acquired it). It lets a
+ * streamed catalog and a plain library of a host's own models serve the same placements.
+ * `dispose` drops the releases it is holding; the sources stay the caller's to dispose.
+ */
+export function routeStructureModels(
+  options: StructureModelRouteOptions,
+): StructureModelSource & { dispose(): void } {
+  const { primary, secondary, isPrimary } = options;
+  const keepAliveMs = options.keepAliveMs ?? 5000;
+  const held = new Set<ReturnType<typeof setTimeout>>();
+  let disposed = false;
+  const sourceOf = (ref: string): StructureModelSource => (isPrimary(ref) ? primary : secondary);
+  return {
+    acquire: (ref, acquire) => sourceOf(ref).acquire(ref, acquire),
+    instantiate: (model, instance) => sourceOf(model.ref).instantiate(model, instance),
+    release(ref) {
+      if (isPrimary(ref)) {
+        primary.release(ref);
+        return;
+      }
+      if (disposed || keepAliveMs <= 0) {
+        secondary.release(ref);
+        return;
+      }
+      // The reference is kept until the timer gives it back: an acquire in between finds the
+      // model still loaded and adds its own.
+      const timer = setTimeout(() => {
+        held.delete(timer);
+        secondary.release(ref);
+      }, keepAliveMs);
+      held.add(timer);
+    },
+    dispose() {
+      disposed = true;
+      for (const timer of held) clearTimeout(timer);
+      held.clear();
+    },
+  };
 }

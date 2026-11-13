@@ -21,7 +21,8 @@
       "title": "An-124 flight deck RA-82081,20September2009",
       "author": "RAF-YYC",
       "license": "CC BY-SA2.0 https://creativecommons.org/licenses/by-sa/2.0/; Flickr license verified by Commons in2014",
-      "scope": "Frontal panel, blue surfaces, analog gauges, twin vertical engine housings, four tall throttle handles, yokes, fans and overhead. Estimated3m panel width; qualitative layout, not measured cockpit dimensions. No photo pixels shipped."
+      "scope": "Frontal panel, blue surfaces, analog gauges, twin vertical engine housings, four tall throttle handles, yokes, fans and overhead. Estimated3m panel width; qualitative layout, not measured cockpit dimensions. No photo pixels shipped.",
+      "local": ".artifacts/aircraft/references/an-124/flight-deck.jpg"
     },
     {
       "url": "https://commons.wikimedia.org/wiki/File:Polet_Antonov_An-124_cockpit_Pashnin.jpg",
@@ -61,8 +62,8 @@
     ],
     "lookAt": [
       0,
-      8.7,
-      28.4
+      8.91,
+      28.2
     ],
     "fov": 85
   },
@@ -71,10 +72,10 @@
     "mode": "top-down-ortho",
     "center": [
       0,
-      -8.8
+      -9.01
     ],
     "viewHeight": 2,
-    "cameraHeight": 17
+    "cameraHeight": 17.05
   },
   "instrumentState": {
     "trueAirspeed": 0,
@@ -219,7 +220,11 @@
       "Dedicated An-124 geometry replaces the generic transport: distinct raised cockpit/visor, deep fuselage, swept anhedral wing, low horizontal tail, tall fin and four D-18T nacelles with recessed fans and stepped rear cores. Top overlay corrected the inboard trailing edge; frontal photo corrected engine-center heights. Published height corrected from20.78m to21.08m.",
       "Twenty-four wheels: five twin-wheel main struts per side plus two twin-wheel nose struts; long side fairings, closed cargo seams, door outlines, selective skin seams/fasteners and an original geometric stripe. Swept control surfaces use fixed oriented mounts and separate moving hinge children.",
       "Individual blue analog cockpit layout from frontal photo, including asymmetrical pilot/copilot gauge positions, vertical engine instruments, tall ivory four-lever quadrant, dual yokes and fans, overhead, six seats and paired radio/navigation/engineer stations. Side-panel rotation and placement corrected after close renders; imported-mesh raycasts confirm upper-panel and overhead roof clearance.",
-      "Metric TAS/geometric-altitude/vertical-speed instruments, three attitudes, true-heading cards and four independent normalized simulator RPM pointers use shared named sources/expressions. Controls and gear animate from real simulation data; unavailable instrument information is blank."
+      "Metric TAS/geometric-altitude/vertical-speed instruments, three attitudes, true-heading cards and four independent normalized simulator RPM pointers use shared named sources/expressions. Controls and gear animate from real simulation data; unavailable instrument information is blank.",
+      "Identified from the AN-124 flight deck photograph: the black slab at top left is a tinted sun visor, and the round three-spoke object is a cabin fan. Both are real. The visors are now translucent and stowed against the ceiling at each side; the fans are 17 cm across and hang from the header beside the center post, out of the forward view.",
+      "The pilot seats stood 0.3 m aft of the eye and 1.29 m under it, 1.5 m from the panel. Eye moved to [0.98, 9.48, 27.33]; pilots now sit on a 0.56 m platform with their columns, pedals and pedestal, and the cushion is under the eye at 0.73 m.",
+      "Panel moved 0.2 m aft and 0.21 m up, which also stops the panel corners standing out through the nose skin below the windows. Glareshield narrowed to 2.3 m and wiper parked along the sill.",
+      "Primary display brought into the entry view: the attitude display was already on the pilot's line, at x 0.93 for an eye at 0.98, but too low. Eye lowered and moved aft, panel raised 0.03 m further, and the glareshield thinned, so it sits under the hood at about -32 degrees. Panel corners chamfered to stay inside the nose."
     ],
     "independentDimensions": "Manufacturer and operator agree69.1×73.3×21.08m. Main gear track8m and engine lateral stations9.932m/17.688m are independent operator dimensions. The illustrative front view disagrees locally with the published height and engine positions; it is qualitative. Engine-center heights4.65m/5.25m were estimated from the independent frontal USAF photograph and operator front drawing; ambiguous3.3/4m annotations are not interpreted as centerline heights. Cockpit span3m and cabin dimensions are estimates, not measurements.",
     "visual": "Personally inspected final-hash four overlays, eight standard views and13 close/state views including cruise, limits, below-sea-level, missing data, overhead, pedestal, six seats, engine/visor close-up, gear-up and both control extremes. Targeted geometry and pilot-sightline check,25 instrument tests and byte-identical regeneration passed. Mesh raycasts found no upper-panel/overhead vertices outside the roof after correction.",
@@ -230,12 +235,51 @@
       "Gear retracts by translation/hiding; kneeling, steering and truck sequencing are not modeled. Flaps rotate without full multi-slot/Fowler extension. Cargo doors stay closed and the cargo hold is not furnished. Seams/fasteners are selective visual detail, not a manufacturing rivet schedule. Assisted flight tuning does not establish real An-124 performance."
     ]
   },
-  "sourceHash": "sha256:62529c58233f8d74205a425d5839f9419dc855d023e55ba262ac986770d0d70a",
-  "runtimeHash": "sha256:44267284b0c43c56d007302821b0fe58047a87552851b18d4de4b1cf69e2e908",
+  "sourceHash": "sha256:dfc33a55190a89d52d43699eaaa7de7cb55d59356459966322450a84729a9b03",
+  "runtimeHash": "sha256:f3c22ce2a70aa20dc5041b69e2ef5061927a4aefa3201e4c25b026fb5aab9c81",
   "limitations": [
     "Exterior drawings are illustrative general arrangements with local inconsistencies, not production station data. Cross-sections, airfoils, glazing, fairings and nacelle details remain polygonal approximations. Front-photo alignment is qualitative because perspective, gear compression and camera height are not calibrated.",
     "The frontal panel is supported by close photography, but cockpit dimensions and six-place cabin proportions are estimated. Overhead and side systems panels preserve visible grouping and volume with simplified switches; labels are original English simulator labels rather than exact Cyrillic placards. Upholstery and equipment details are simplified.",
     "Live instruments are simulator adaptations, not certified Soviet instrument reproductions. Speed is TAS in km/h, altitude geometric meters with0–12000m dial limits, vertical speedm/s, and heading true. Engine pointers read normalized simulator RPM, not D-18T N1/N2/N3. Radar/navigation/radio/autopilot, temperature, pressure, fuel, electrical/hydraulic and warning systems are not simulated; their readings stay blank.",
-    "Gear retracts by translation/hiding; kneeling, steering and truck sequencing are not modeled. Flaps rotate without full multi-slot/Fowler extension. Cargo doors stay closed and the cargo hold is not furnished. Seams/fasteners are selective visual detail, not a manufacturing rivet schedule. Assisted flight tuning does not establish real An-124 performance."
-  ]
+    "Gear retracts by translation/hiding; kneeling, steering and truck sequencing are not modeled. Flaps rotate without full multi-slot/Fowler extension. Cargo doors stay closed and the cargo hold is not furnished. Seams/fasteners are selective visual detail, not a manufacturing rivet schedule. Assisted flight tuning does not establish real An-124 performance.",
+    "The pilots' platform is a step above the crew floor, because the crew stations were left in place; a real An-124 deck is one level. Panel span remains the 3 m estimate. Upward view at the pilot's line runs well past the 25 degree target, since the windscreen top stands nearly over the eye."
+  ],
+  "cockpitSweep": {
+    "method": "packages/entities/scripts/cockpit-sweep.mjs from spec.pilotEye at the runtime camera; seat, nose and front views rendered and inspected. World-explorer enters the seat at lookPitch -0.18, so the frame runs +19.7 to -40.3 degrees. The primary display has to sit near -30 and close to straight ahead.",
+    "columns": "outside%, overNose degrees, headroom, wall, panel, cushion, seatback (m)",
+    "before": [
+      42,
+      -8,
+      0.2,
+      0.53,
+      1.51,
+      1.29,
+      0.58
+    ],
+    "after": [
+      58,
+      -10,
+      0.27,
+      0.52,
+      0.94,
+      0.76,
+      0.35
+    ],
+    "attitudeDisplay": {
+      "sweepColumn": {
+        "before": -38,
+        "after": -27
+      },
+      "cardCenterElevationAndYaw": {
+        "before": [
+          -42.3,
+          -3.6
+        ],
+        "after": [
+          -32.0,
+          -2.9
+        ]
+      }
+    }
+  }
 }

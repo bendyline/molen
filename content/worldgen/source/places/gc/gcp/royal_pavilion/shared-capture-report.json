@@ -1,0 +1,62 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.royal_pavilion",
+  "inputHash": "sha256:8188299aea56589af2e4edd6d2db29e5a006efa425915eb0475efde7ef25eee1",
+  "sourceHash": "sha256:18af75fc2857ba82aeba3fdab366dcec56519e7ab673887493eb3c0d05a84ffc",
+  "runtimeHash": "sha256:f08bb81a4ce615223224887e3f628bf73e708f472bd2f00135af814c63062f4a",
+  "fixtureHash": "sha256:21ed036202910d6d90729a450b0877e30b9b055a394fa3e93d2d87a94ac218e2",
+  "placementHash": "sha256:c83503e043af84a3739f8d29600443117da5efa3648b277f8f8668892aa2e808",
+  "materialGraphs": {
+    "molen.worldgen.material.plaster_lime": {
+      "path": "materials/plaster_lime.matgraph.json",
+      "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_limestone_weathered": {
+      "path": "materials/stone_limestone_weathered.matgraph.json",
+      "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-royal-pavilion.png",
+      "hash": "sha256:28972ec5d07b979bd93722dc8fbfc0e917ab520e76cba68b383f576a784543eb",
+      "camera": {
+        "name": "detail-garden-front-and-domes",
+        "position": [
+          4,
+          13,
+          98
+        ],
+        "lookAt": [
+          -1,
+          11,
+          13
+        ],
+        "fov": 49,
+        "detail": true,
+        "lightDirection": [
+          -0.48,
+          1,
+          0.71
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "royal.pavilion",
+        "visibleDraws": 3
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Lime plaster, weathered limestone and painted metal each resolve once per tier."
+}

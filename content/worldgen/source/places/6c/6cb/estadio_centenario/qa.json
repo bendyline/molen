@@ -32,8 +32,69 @@
       "shots/shared/america-canopy-press-gallery-and-frame.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Six existing 256px graphs: concrete_plain, brick, metal_painted, metal_standing_seam, window_grid and fabric_canvas. Masonry, painted blue/pale seating/metal, low-frequency roof, shared glazing, apron and turf reuse the library. No new graph, embedded image or private atlas. Six near draws/one skyline draw; each graph read once; separate POSITION/NORMAL streams and equal CPU/GPU accounting. Opaque glazing/flag/lights approximate real optics; no working elevator or furnished rooms.",
-    "captureReportHash": "sha256:3caebe7fe1097263b18f5179dca4fc5e51b5d43ef745774177b35b4b05d3877c"
+    "notes": "Six existing 256px graphs: concrete_plain, brick, metal_painted, metal_standing_seam, window_grid and fabric_canvas. Masonry, painted blue/pale seating/metal, low-frequency roof, shared glazing, apron and turf reuse the library. No new graph, embedded image or private atlas. Six near draws/one skyline draw; each graph read once; separate POSITION/NORMAL streams and equal CPU/GPU accounting. Opaque glazing/flag/lights approximate real optics; no working elevator or furnished rooms. The shared window_grid graph changed after the original review. Eight new shared-material views confirm the revised glazing in the existing geographic placement.",
+    "captureReportHash": "sha256:277be1d324a2963dffd3bf5a6f2ced90f6a25c654f98a5c355b34a2407f650b4",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:9541674f6a733ae645538d89a1c779b7e7950619f60c9e77e1f528b825268887"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:994a7b5df489425a1e5543da954ad57fce8220f66c430d4dcaec4d041aaa89eb"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:09add46bad0be8342abcf4cc26696c64e07b95378226d25af6e843d3667b672e"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:5dd0c751aef9a80dca779000a7c275bdec9670471001557d7868825c21b92897"
+      },
+      {
+        "path": "shots/shared/fluted-tower-nine-side-ledges-and-upper-spine.png",
+        "hash": "sha256:39956cf3df2d62cdf4f00f658dad4fbd41f8deac1c6b78b5ebd19971ce6a5e43"
+      },
+      {
+        "path": "shots/shared/olympic-three-banks-apron-and-tower.png",
+        "hash": "sha256:bc021f2efa76d47f9798d8cfcc6ab127e5607c5f100d817be50464de9fb9d3a1"
+      },
+      {
+        "path": "shots/shared/america-canopy-press-gallery-and-frame.png",
+        "hash": "sha256:c8dc981b2ad4616119a505762dd9ef06b5c1f340d2822b3fb550f739338c6bad"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:7978bc73fd9ed469df7234c2d508747798f4eafcb48ba17de3a716f67c4f2d56"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

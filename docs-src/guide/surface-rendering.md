@@ -107,10 +107,14 @@ setTerrainGroundOrigin(pavement, [worldOrigin[0], worldOrigin[2]]);
 
 The material reads a `surfaceDetail` attribute the surface builder writes on every road, sidewalk,
 curb, marking and lot: meters along the band, meters across it from its edge, the surface kind
-and band width, and a road's lane width. Roads and lots get asphalt aggregate (within a few meters,
-crisp pale chips and dark pits a few centimeters across), blotchy wear, polished wheel
-tracks and an oil line in each lane, grit in the gutters, storm-drain grates, manhole covers and
-the odd darker repaired section; asphalt and concrete both get hairline cracks; lots get oil
+and band width, and a road's lane width and wear grade. Roads and lots get asphalt aggregate
+(within a few meters, crisp pale chips and dark pits a few centimeters across), blotchy wear,
+polished wheel tracks and an oil line in each lane, grit in the gutters, storm-drain grates,
+manhole covers and the odd darker repaired section; asphalt and concrete both get hairline cracks.
+Worn roads also get potholes in the wheel tracks, each with a ragged lip and a halo of alligator
+cracking, plus more patches and cracks: none on freeways, trunk and primary roads (grade 0), a few
+on secondary and tertiary roads (1), more on residential streets (2) and most on service roads and
+alleys (3). A band sets its grade with `wear` beside `lanes`; lots get oil
 stains; sidewalks and footways get 1.5 m saw-cut slabs and curbs 3 m ones, each slab its own
 tone, weathered with water stains and, close up, the odd spot of gum; plazas and pedestrian areas get a half-meter paver grid; markings wear through to the
 asphalt. Detail fades to the plain swatch with distance, so it never shimmers, and each layer's
@@ -158,6 +162,45 @@ street and round a loop back to its middle does. A stall line two parking bays s
 Curbs are a step, not a stripe: a 15 cm vertical face drops from the curb's road-side edge to the
 asphalt, split finer than the ground grid so it follows the draped ground, and jointed like the curb top.
 Any draped band can have one with `riser` (meters) on its `TerrainLineBand`.
+
+Markings follow US practice (MUTCD), with center lines yellow where the sign profile's countries
+use yellow (the Americas and Korea) and white elsewhere. Lines are about 11 cm wide (edge lines
+15 cm), and broken lines are 3 m of paint in every 12 m.
+
+- **Center lines:** residential streets have none unless mapped with `lanes`. Multilane roads and
+  city arterials get a double solid line. A two-lane country road gets a broken line where passing
+  is allowed, and a double line round curves (more than about 11° of turn over 90 m), within 60 m
+  of a junction, on bridges, and in passing zones too short to use (under about 120 m). Roads with
+  an odd lane count get a two-way left-turn lane down the middle: each edge is solid on the
+  outside and broken toward the turn lane.
+- **Lane and edge lines:** white broken lines separate lanes going the same way, turning solid over
+  the last 30 m into a signal. Lane counts match the traffic simulation's. Edge lines run along
+  freeways and ramps (yellow on a one-way carriageway's left), country roads, and city arterials at
+  least 8 m wide.
+- **Junctions:** marked crosswalks (high-visibility bars, laddered with transverse lines at
+  signals) cross every arm of a signal. At stop or yield signs they appear only where an arterial
+  meets the junction or at a mapped all-way stop. Where two quiet streets meet, the corner stays
+  unmarked. Stop lines stand about 1.2 m short of a crosswalk, yield lines are rows of triangles,
+  and signal approaches with two or more lanes get lane arrows. Lines run up to the stop line or
+  crosswalk, or to the crossing road's edge. A road with the right of way past side streets that
+  join from one side only (a tee) keeps its center line across their mouths, and its edge line
+  breaks only where each side street meets it. Where a track crosses a road, a crossing panel
+  carries the rails across it (see [Railways](#railways)).
+
+Sidewalks follow built-up frontage, not every street. Stations every 10 m along a street look for
+buildings within about 70 m (five for an arterial, eight otherwise) or mapped commercial or retail
+land. A sidewalk then runs about 40 m past the last house, bridges gaps under about 120 m, and
+skips stretches shorter than about 80 m. A tile without building footprints reads mapped
+residential land as built up, and a tile with no land data at all keeps sidewalks on every street.
+Where a sidewalk mapped as its own footway runs alongside a street, the inferred one on that side
+is left out (the curb stays). Streetlights, poles, hydrants and mailboxes stand only where there is
+a sidewalk. Living streets have none.
+
+Where a road continues into another feature (for example where its tags change at a bridge's
+end), the two lines' ends share a miter (`TerrainLinePath.startJoin` and `endJoin`), so their
+bands meet on one seam instead of leaving a wedge on the outside of the bend. Paint is drawn a few
+centimeters above the asphalt and is marked `walkIgnore`, so walkers and cars do not collide with
+it.
 
 Styles with streetlights also furnish their blocks: utility poles every 38 m on one side of each
 street with sidewalks, set back behind the sidewalk with a crossarm and a pair of sagging lines
@@ -253,9 +296,10 @@ The decoder preserves road `subclass`, `service`, `link` (including Protomaps `i
 and explicit `width`. Properties absent from the source use class-based defaults. Tunnel roads are
 excluded from the ground painter; Earth views add separate underground bores as described below.
 Bridges and differing layers do not form surface junctions. Tagged bridges receive inferred
-decks, slabs, barriers and supports. Motorway spans retain clearance through their ends;
-connected approaches ease back to terrain over the surrounding road fragments, with retaining
-sides below raised pavement. Curved profiles follow distance along the mapped road. Barriers
+decks, slabs, barriers and supports, at heights that clear whatever they cross (see
+[Road grading](#road-grading)). A deck that reaches its end still raised hands the rest of the
+descent to the roads joined to it there, which climb on retaining walls with a parapet along
+any drop of a meter or more. Curved profiles follow distance along the mapped road. Barriers
 sit outside paved shoulders and open at merges where the adjoining carriageway is at the same
 height; edge paint also clears these openings. Traffic uses the same grading samples.
 Surveyed deck heights and authored bridge connections take precedence. Inferred grades depend
@@ -310,6 +354,9 @@ this change does not add a full-stop/dwell simulation for the decorative signs.
 Ground surfaces render at all available semantic levels. Fine markings and fixtures default to
 the finest pyramid level; `detailLevelsBelowMax` extends them to coarser levels. Fixture/car and
 detail-work budgets bound each tile. A portion of the detail budget is reserved for parking.
+`maxDetailElements` counts the quads drawn for sidewalks, curbs and paint (dash gaps cost
+nothing), and roads are furnished in order of importance: freeways and arterials first, so on a
+tile that runs out the side streets go without, not the main roads.
 Geometry is batched by surface role, broad land-cover meshes share indexed vertices, and fixture/car parts are instanced. Stats cover resident
 surface tiles, including temporarily hidden tiles.
 
@@ -326,6 +373,151 @@ priority over inferred fills. A parking POI alone does not supply a boundary.
 Protomaps deliberately includes a subset of OSM features. Its documented `landuse` polygon
 kinds do not currently include parking, while roads may carry `parking_aisle` detail.
 See the [Protomaps layer reference](https://docs.protomaps.com/basemaps/layers).
+
+### Parking garages
+
+The same archive identifies multi-storey car parks, though it drops `building=parking` and
+`parking=multi-storey`. A `parking` POI keeps the source id of its OSM element, so a footprint that
+shares its id is one element tagged both `building=*` and `amenity=parking`. Failing that, a POI
+inside exactly one footprint counts if its name claims a structure ("garage", "car park",
+"Parkhaus", "立体駐車場"), since an unnamed one is as likely a tower's basement. Footprints under
+450 m² or over 48 m tall are left alone: small roofed lots, and towers with parking in them.
+
+Height gives the number of decks: Protomaps derives a missing height as `3 × levels + 2`, so
+`(height - 2) / 3` recovers `building:levels`. An unmapped height is assumed to be three decks.
+`parking_entrance` POIs within 6 m of the walls place the doors. `applyParkingStructure` then
+requests the `molen.worldgen.use.parking_garage` style and modeled decks, ramps and cars; see
+[Inferred building interiors](building-interiors.md#car-parks). A style pack without that style
+keeps its usual architecture.
+
+## Building use
+
+Stock Protomaps footprints say only `building`. `kind_detail` is empty on all of them, and in the
+regional archives between 3% and 22% carry a height. So the use of a building is argued from what
+surrounds it, strongest evidence first:
+
+1. A POI with the footprint's source id is the same OSM element, so the building is that thing: a
+   `hotel`, `school`, `place_of_worship`, `fire_station` and so on.
+2. A POI inside exactly one footprint names it when it is an institution (`hotel`, `hospital`,
+   `school`, `mall`, `library`, `museum`). A cinema or a chapel inside a tower does not.
+3. Eight or more shops and restaurants in a footprint of 5,000 m² or more make a mall.
+4. The land use under it: `school`, `university`, `college` and `hospital` land.
+5. Its shape on that land: at 15 m or more on `commercial` land it is offices, at 12 m or more on
+   `residential` land it is flats, at 45 m or more a tower, and at 60 m or more on anything but
+   residential land a skyscraper.
+
+`associateBuildingUses` returns the use and which of these decided it, and `applyBuildingUse` puts
+the use ahead of any tenant in the interior's labels, so a cafe in the lobby does not make the tower
+a cafe. It also requests a matching style from the `molen.worldgen.use.*` family, and a style pack
+without one keeps its usual architecture. Styles in that family are chosen by a building's use, so
+they are not part of the [structure library](structure-library.md).
+
+Everything else, most buildings by far, stays with the style rules. Use
+`?synthetic=1&uses=1` in world explorer for a street with one of each.
+
+## Road grading
+
+A digital elevation model is sampled every ten meters or so and knows nothing of roads, and
+many basemaps keep neither a bridge's height nor the OpenStreetMap `layer` tag that says which
+of two crossing bridges is on top. Draped as mapped, a street tilts with every hillside it runs
+along and ripples with the samples, and every bridge of an interchange stands at one height,
+through the others. Two passes put that right. World explorer and `mountEarthView` run both by
+default; compare with `?roadGrading=0` (neither) or `?earthworks=0` (bridges only).
+
+### Leveled ground
+
+The ground is graded for roads the way it is for an airfield, before the terrain is meshed, so
+the terrain, everything draped on it and everything that drives on it agree:
+
+- **Profile.** A road's height at a point is the elevation averaged 30 m either way along the
+  road's own direction, weighted toward the point: bumps shorter than a block go, the hill
+  stays. It is read from one elevation level, two below the finest (about the resolution
+  elevation is surveyed at), so every tile and every level of detail gets the same answer.
+- **Cross-section.** The road is level from edge to edge at that height: the carriageway with
+  its curbs and sidewalks, a freeway with its shoulders, a track with its ballast.
+- **Bench.** A road draped on the ground grid is only as level as the grid vertices around
+  it, so the level ground reaches 1.25 grid cells past the road's edge. Beyond that it blends
+  back to the surveyed ground over 1.6 cells (at least 8 m). At High detail that is about 16 m
+  and 21 m; at Ultra, half as much.
+- **Between roads** the nearest one decides. Two streets on one slope each keep their own
+  bench and the block between them takes up the difference, as a graded city block does.
+- Bridges and tunnels are not graded for (the ground under a deck is the river's or the lower
+  road's), nor are footpaths, which take the ground as they find it. Mapped water keeps its
+  bed beside a road. No point moves more than 12 m.
+
+Grading runs for the two finest feature levels, where the rendered grid is no coarser than
+28 m between vertices; coarser tiles are seen from too far to tell. Adjacent tiles agree on
+their shared edge exactly: each reads the roads of the eight tiles around it as well as its
+own.
+
+### Clearance
+
+Every inferred bridge gets a height profile, and so does every road that has to climb to one:
+
+- A deck meets the roads at its ends where they stand and spans straight between them. Over
+  ground with nothing mapped beneath it (water, mostly) it rises toward 6 m, 3 m for a
+  footbridge, no faster than its class of road climbs.
+- Where it crosses another way without sharing a vertex, it clears that way's surface by a
+  clear height plus 1.4 m of girder and slab: **6.5 m over a road** (5.1 m clear, the 16 ft
+  9 in of US practice and well over the 14 ft legal minimum), **8.4 m over a railway** (7 m
+  clear, for double-stack trains and wires) and **4.4 m over a footpath**. The height holds
+  across the lower way's whole width.
+- Two bridges that cross are stacked. The mapped `layer` decides which is on top when the
+  source keeps it. Otherwise: the deck whose span already stands 3 m or more above the
+  other's (a bridge between two hilltops is over a ramp in the valley); else by what they
+  carry (ramps over streets, streets over freeway carriageways and railways); else the one
+  farther along its structure from where it lands; else the one running more nearly north
+  and south. Only the two structures near the crossing enter into it, so every tile that
+  sees the crossing decides alike.
+- A deck falls away from a crossing no faster than its class allows: 5% for a freeway, 7% for
+  its ramps, 6 to 8% for streets, 10% for service roads and footpaths, 3% for heavy rail and
+  as stairs do for steps. Breaks in grade are rounded over about 20 m.
+- A road climbing to a structure lies on the ground wherever that same structure passes over
+  it: an approach never lifts what its own bridge has to clear. Lift passes down the ranks
+  only, so a footbridge's steps come down to the street and the street does not rise to the
+  footbridge; a footpath beside a climbing road rides on its embankment.
+- Decks side by side (twin carriageways, a sidewalk mapped along a road bridge) stand level
+  with each other.
+
+A vertex shared by a bridge and a road beneath it is taken for a junction or a mapper's tie,
+never a flyover, and a way's end lying on another way is joined to it even where the tile
+dropped the shared vertex. Surveyed deck heights and authored bridge connections are left
+alone. The stacking order where nothing is mapped is an inference that produces a buildable
+interchange, not a survey of the real one.
+
+### Using it
+
+`createTerrainPackageSemanticLayers` wires both passes with one option and hands back the
+ground transform for the stream:
+
+```ts
+const semantic = await createProfiledTerrainPackageSemanticLayers(pkg, {
+  roadGrading: { heights: elevationSource }, // the stream's elevation source
+  featuresLayer: { renderer },
+});
+const stream = await createTerrainPackagePyramidStream(pkg, {
+  layers: semantic.layers,
+  ...(semantic.roadGrading
+    ? { transformHeightfield: semantic.roadGrading.transformHeightfield }
+    : {}),
+});
+```
+
+Pass `earthworks: false` to keep the ground as surveyed, and `maxSpacing` to change the
+coarsest grid that is leveled. A host with its own transform (an airport's leveling) applies
+the road grading first; `composeEarthGroundGrading(roads, airports)` from
+`@bendyline/molen-earth/client` does that. The pieces are public for custom hosts:
+`createTerrainRoadGrading` and `withTerrainRoadGrading` (client), and the pure
+`gradeRoadEarthworks`, `roadProfileHeight` and `gradeTransportSeparations` (kernel), which need
+neither three.js nor a tile stream.
+
+Without the option, each tile's bridges are still graded from that tile alone, with the same
+clearances. A bridge cut by a tile edge then cannot see what it crosses in the next tile and
+assumes a free clearance at the cut.
+
+Both passes run on the main thread in slices of about 2 ms, so a tile arriving under a fast
+camera does not hold a frame. A town tile's earthworks take 3 to 10 ms in all; an
+interchange and its surroundings, 15 to 35 ms.
 
 ## Tunnels
 
@@ -363,6 +555,129 @@ returns a visible bore's floor and ceiling in the root's coordinate frame. Obser
 ceiling continue using the surface height. Static hosts can use `createTerrainTunnelObject`
 with complete route lines and a ground sampler that covers both portals.
 
+## Railways
+
+Railway lines in the transportation layer (a `class`, `subclass` or `service` that names rail,
+tram or train) are drawn as track rather than as roads, by the same surface renderer and worker.
+Everything below is inferred from the map's classes and points and placed by fixed rules, so a
+tile draws the same railway on every load and neighboring tiles agree.
+
+- **Track beds.** Each track is a ballast band as wide as its sleepers plus a shoulder each side:
+  about 3.6 m on a main line, 3.3 m on a siding and 3 m on yard, spur and crossover tracks. Main
+  lines and sidings in the open stand on a prism whose shoulders slope about a meter down to the
+  ground wherever no other track runs alongside. Yard ballast is darker and browner, and mapped
+  railway land (the `railway` land use of yards and corridors) is ballast grey rather than lawn.
+- **Sleepers and rails in the pavement material.** A track band is `TERRAIN_SURFACE_KIND.track`.
+  With the pavement material (see [Pavement material](#pavement-material)) it draws sleepers and a
+  pair of rails across the band's middle: concrete sleepers every 0.6 m on main lines and light
+  rail, timber every 0.52 m on sidings, yards, spurs, heritage and disused track, and rails at the
+  track's gauge with a polished head over a rusty web and foot. Both are box-filtered, so they stay
+  antialiased at every distance and settle, as they shrink below a pixel, to the averaged dark
+  stripe a track makes in an aerial photograph: a yard reads from the air as many parallel tracks
+  on grey ballast. Track is standard gauge unless the style's `railGauge` gives the region's
+  main-line gauge (1.067 m for Japan's conventional lines, 1.676 m for India's); light rail,
+  trams, subways and lines named as Shinkansen stay standard gauge, and lines mapped as
+  `narrow_gauge` are 1 m.
+- **Rails in 3D.** On the finest tiles each rail is also modeled: a 72 mm polished steel head on a
+  rusty web 0.17 m deep, its head `TERRAIN_RAIL_HEIGHT` (0.21 m) above the ballast top. Rails run
+  on unbroken through level crossings and over bridges and stay out of walking and driving
+  collision. They are `TERRAIN_SURFACE_KIND.rail`: the pavement material polishes the heads and
+  drops a rail wherever it would be under about a pixel and a half wide, where the track's drawn
+  rails beneath it take over, so a yard seen from a plane never sparkles with broken rails. Rails
+  and wires also stop drawing for tiles more than 260 m (rails) or 200 m (wires) away, counting
+  the camera's height above the ground as well as its distance.
+- **Level crossings.** Where a road crosses tracks on the same layer, neither on a bridge nor in a
+  tunnel, a concrete panel level with the rail heads covers the crossing, with short ramps down to
+  the road; tracks within 30 m of each other along one road share one crossing. A main line or
+  siding crossing a public road gets active warning: a crossbuck (R15-1) with a plate counting the
+  tracks (R15-2P) when there is more than one, a pair of flashing lights (dark until a train
+  comes), a raised gate arm on roads at least 5 m wide, and an equipment house beside the track.
+  Yard, spur and service-road crossings get crossbucks only, and disused track nothing. Each
+  approach also gets an advance warning sign 45 to 75 m up the road: the round yellow W10-1 in the
+  United States, Canada and Mexico, a red-bordered triangle elsewhere. Signs stand on the side the region's sign profile
+  drives on, and a one-way carriageway has a single approach.
+- **Turnouts.** Where a track's end meets another track's side at a shallow angle, where three or
+  more track ends meet, and at mapped `switch` points, a turnout gets a powered switch machine on a
+  main line or a hand-thrown stand with its target and lamp elsewhere, beside the points and
+  opposite the diverging track. Mapped `buffer_stop` and `derail` points get a buffer stop across
+  the track's end and a yellow derail on its rail.
+- **Signals.** Mapped `signal` points become color-light signals: a mast with three lenses on main
+  lines, a dwarf signal beside yard, siding and tram tracks, and a signal bridge where three or
+  more stand abreast over parallel tracks. Map data keeps no direction, so a signal faces the
+  trains heading toward the nearest turnout it stands short of, or governs the trains it is mapped
+  to the driving side of. Aspects are mostly green, yellow approaching a junction, and the odd red.
+  Each lit lens is a self-lit lamp in one instanced draw per tile; `object.userData.railLamps`
+  lists them.
+- **Lineside signs.** Whistle posts ("W") stand 400 m ahead of crossings with active warning on
+  main lines, unless another crossing comes first. Mileposts stand at mapped `milestone` points
+  and, where none is mapped nearby, wherever a main line crosses a north-south line of a world grid
+  a mile apart. "YARD LIMIT" boards stand on a main line about 150 m outside each stretch it runs
+  beside yard tracks. Like road signs, they need fonts for their lettering.
+- **Overhead catenary.** `railElectrification` on the surface style (or in `details`, which
+  overrides it) decides which tracks are wired: `'light'`, the default, wires light rail, trams
+  and subways in the open; `'all'` also wires heavy rail, for regions whose main lines are
+  electrified (Japan, India, much of Europe, Sydney's suburban network); `'none'` draws no wires.
+  Masts stand about every 60 m on heavy rail, 50 m on light rail and 35 m beside trams, at
+  stations fixed in the world so wires run on across tile edges, and on the outside of a pair of
+  tracks. Each mast's arms carry a messenger wire sagging between masts, droppers every 5.5 m and
+  a level contact wire 5.2 to 5.6 m up, staggered from side to side; street trams carry a single
+  contact wire. With WebGL, each wire segment also stops drawing beyond 140 m, where it would be
+  far thinner than a pixel.
+- **Platforms.** Mapped `platform` land is a raised slab with walls down to the ground: 0.36 m
+  beside light rail and trams, 1 m beside subways, 0.4 m beside heavy rail in North America and
+  0.9 m elsewhere, and curb height with no track within 40 m. Edges that face a track get a yellow
+  tactile strip. Platforms on viaducts are left to the viaduct.
+- **Disused lines** keep their track, with rusted rails, weeds through the ballast and the odd
+  missing sleeper, but get no signals, crossing equipment or wires.
+- **Rolling stock in yards.** With `details.railCars` (rail vehicle types: specs with a `rail`
+  block), yard, siding and spur tracks hold cuts of coupled cars. Freight cars and the odd idle
+  locomotive stand on heavy rail, and light-rail cars stand in light-rail yards. A cut is a unit
+  train's cars of one kind and paint, or a mixed manifest in blocks. Cuts keep 32 m clear of each
+  turnout's points and 14 m clear of road crossings. Tracks are split into blocks at stations fixed
+  in the world, about 75 m apart. That way neighbouring tiles, and the coarser tile one level up
+  (yards are filled that far out, for the view from the air), agree on which blocks hold cars and
+  what they hold. `railCarOccupancy` scales how full they are (default 1: about three yard blocks
+  in four, half of the sidings). The cars are ordinary parked-vehicle placements (`kind`, `spec`,
+  `color`, standing on the rail heads), drawn with the parked cars when `parkedCars` is on. Far off
+  each stands in as a silhouette of its `spec.rail.profile` (`railVehicleProxyGeometry` in
+  `@bendyline/molen-client/vehicles`), and a host makes the near ones entities as it does a
+  street's.
+
+`railEquipment: false` (on the style or in `details`) keeps the beds and rails and drops the
+equipment: signals, switch stands, crossing signs, lights and gates, lineside signs and catenary.
+The Simple surfaces style turns it off.
+
+```ts
+import {
+  createTerrainSurfaceRenderer,
+  TERRAIN_SURFACE_STYLES,
+} from '@bendyline/molen-terrain/client';
+
+// A region whose main lines are electrified and on 1,067 mm gauge.
+const surfaces = createTerrainSurfaceRenderer({
+  style: { ...TERRAIN_SURFACE_STYLES.modern, railElectrification: 'all', railGauge: 1.067 },
+});
+// Later: tracks only, no equipment.
+await surfaces.setOptions({ details: { railEquipment: false } });
+```
+
+Equipment has budgets of its own, scaled by `maxFixturesPerTile`: 25 boxes per fixture for
+signals, stands, crossing gear and masts, as many again for wire segments, and up to 48 lineside
+signs a tile. Rails in 3D take up to three quarters of `maxDetailElements`, in segments a few
+meters long. Tracks are furnished most important first: main lines, then light rail, sidings,
+trams, yards and spurs, then disused track. `stats()` counts `railTracks`, `railCrossings`,
+`railSwitches` and `railSignals`. `placeTerrainYardCars` is the yard placement on its own.
+`terrainRailTrack(feature, countries)` (a line's mode, service,
+gauge and sleepers) and `TERRAIN_RAIL_HEIGHT` are exported from `@bendyline/molen-terrain/kernel`
+as well, for anything that must run on the rails the renderer draws.
+
+The [Protomaps layer reference](https://docs.protomaps.com/basemaps/layers) keeps a railway's
+`kind_detail` (`rail`, `light_rail`, `tram`, `subway`, `disused` and others) and `service`
+(`yard`, `siding`, `spur`, `crossover`), and its points layer keeps railway nodes: `switch`,
+`signal`, `level_crossing`, `railway_crossing`, `buffer_stop`, `derail` and `milestone`. It keeps
+no electrification, voltage, gauge, signal direction or aspect; those are inferred as described
+above, not surveyed.
+
 ## Lines beyond roads
 
 `createTerrainLinearObject(lines, context, profile)` is independent of road semantics. Lines use
@@ -396,8 +711,8 @@ For a utility corridor, use narrow elevated bands and widely spaced pole repeate
 width across the route, height, and length along it. Band `dash: [length, gap]` and `phase` use
 world units along the path; callers can carry phase across tile fragments when their source
 provides route chainage. `terrainLinePath` and `sampleTerrainLine` are exported for custom
-attachment/model placement. Railway switches, wire sag and route-level cross-tile topology are
-separate consumers of this foundation, and traffic simulation is [ambient life](ambient-life.md).
+attachment/model placement. The surface renderer's [railways](#railways) are built on it, and
+traffic simulation is [ambient life](ambient-life.md).
 
 ## Road sign fonts
 

@@ -1,0 +1,589 @@
+{
+  "planId": "windsor_hotel_montreal",
+  "id": "windsor_hotel_montreal",
+  "assetId": "molen.worldgen.structure.windsor_hotel_montreal",
+  "title": "Windsor Hotel (Montreal)",
+  "wikidataId": "Q3145697",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -73.57135,
+    "latitude": 45.4987
+  },
+  "size": [
+    99.70378112792969,
+    43.5,
+    77.13699722290039
+  ],
+  "actualBounds": {
+    "min": [
+      -45.17177963256836,
+      -2.5,
+      -34.34199905395508
+    ],
+    "max": [
+      54.53200149536133,
+      41,
+      42.79499816894531
+    ]
+  },
+  "visualBrief": "The intact circa-1912 Windsor Hotel in Montreal, with its Second Empire corner dome, the taller Cypress annex, mansard roofs and two open service courts.",
+  "nativeAxes": {
+    "x": "toward Cypress Street",
+    "y": "up",
+    "z": "toward Dorchester Square"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "1912-07-01",
+    "validFrom": "1912-01-01",
+    "validUntil": "1913-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Windsor_Hotel_and_extension,_Peel_Street,_Montreal,_QC,_1906.jpg",
+    "https://numerique.banq.qc.ca/patrimoine/details/52327/2244204"
+  ],
+  "stories": [
+    {
+      "id": "windsor-hotel-montreal-wp",
+      "url": "https://qualla.com/windsor-hotel-montreal/"
+    }
+  ],
+  "referenceInputHash": "dbc269dd1c83c9021e98cdf4b3b1fbde711442877cf8f44502cf9faf4fd2c3a0",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/f2/f25/windsor_hotel_montreal/models/windsor-hotel-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/f2/f25/windsor_hotel_montreal/models/windsor-hotel-model.mjs",
+    "level": "skyline",
+    "export": "windsorSkyline",
+    "errorMeters": 0.73,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.12
+      },
+      "pane": {
+        "slot": "window",
+        "localRef": "palette:#fffdfe",
+        "roughness": 0.77,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "windsorDistrict",
+        "errorMeters": 0.31,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.77,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "windsorStreet",
+        "errorMeters": 0.11,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.77,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "windsorCloseup",
+        "errorMeters": 0.043,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.12
+          },
+          "pane": {
+            "slot": "window",
+            "localRef": "palette:#fffdfe",
+            "roughness": 0.77,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone",
+    "stone_limestone_weathered",
+    "slate",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.85,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -73.57135,
+      45.4987
+    ],
+    "heading": 2.5364593029688796,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -73.57081515404424,
+        45.49891036670642
+      ],
+      "modelHeight": 0,
+      "basis": "Present public elevation sampled at the old Peel-side entrance frontage in the dated plan. Historic threshold heights are estimated."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          54.336,
+          -34.134
+        ],
+        [
+          54.336,
+          39.339
+        ],
+        [
+          24.668,
+          39.517
+        ],
+        [
+          24.572,
+          38.62
+        ],
+        [
+          1.973,
+          38.529
+        ],
+        [
+          1.77,
+          39.424
+        ],
+        [
+          -3.904,
+          39.401
+        ],
+        [
+          -4.01,
+          40.993
+        ],
+        [
+          -11.875,
+          40.961
+        ],
+        [
+          -11.968,
+          39.368
+        ],
+        [
+          -16.846,
+          39.348
+        ],
+        [
+          -16.842,
+          38.253
+        ],
+        [
+          -35.659,
+          38.376
+        ],
+        [
+          -35.664,
+          39.769
+        ],
+        [
+          -40.244,
+          39.751
+        ],
+        [
+          -40.944,
+          40.644
+        ],
+        [
+          -45.012,
+          37.242
+        ],
+        [
+          -44.797,
+          33.161
+        ],
+        [
+          -44,
+          33.065
+        ],
+        [
+          -43.99,
+          30.576
+        ],
+        [
+          -42.894,
+          30.382
+        ],
+        [
+          -43.2,
+          7.682
+        ],
+        [
+          -43.996,
+          7.579
+        ],
+        [
+          -43.961,
+          -0.883
+        ],
+        [
+          -43.159,
+          -2.274
+        ],
+        [
+          -43.44,
+          -31.146
+        ],
+        [
+          -44.134,
+          -31.846
+        ],
+        [
+          -44.126,
+          -33.937
+        ],
+        [
+          -41.736,
+          -34.027
+        ],
+        [
+          -41.541,
+          -32.931
+        ],
+        [
+          -37.26,
+          -32.913
+        ],
+        [
+          -37.057,
+          -33.908
+        ],
+        [
+          -34.867,
+          -33.899
+        ],
+        [
+          -34.671,
+          -33.102
+        ],
+        [
+          -25.909,
+          -33.465
+        ],
+        [
+          46.969,
+          -34.164
+        ],
+        [
+          47.264,
+          -33.167
+        ],
+        [
+          48.757,
+          -33.161
+        ],
+        [
+          48.761,
+          -34.157
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Dated historic hotel plan from Goad plate 14 and the mapped surviving annex."
+    },
+    "featureIds": [
+      "goad/1912/14/1488-1489",
+      "goad/1912/14/court-1",
+      "goad/1912/14/court-2",
+      "way/113858525"
+    ],
+    "source": "https://numerique.banq.qc.ca/patrimoine/details/52327/2244204",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:cfd9d028e9e0c8dea0b14eedead83776ef80d6923c6e6b28da36526fbc70b8b4",
+    "notes": "The Windsor Hotel exterior circa 1912, with the original Second Empire hotel at Peel and Dorchester, the adjoining 1906–09 north annex at Cypress, and the two open service courts shown in the Goad atlas. Interior rooms and contemporary neighboring buildings are outside the reconstruction. The atlas scan was registered uniformly to the surviving Cypress corners. The original street edges and interior limits are approximate at that scale."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "The surviving annex corners locate the historic atlas plan. The original hotel and open service courts are traced at approximately 1:1200. Fine setbacks, roof sections, window bays and the largely undocumented courtyard elevations are interpreted.",
+    "The archival photograph is monochrome. The limestone, dark slate and metal finishes use approximate colors. Interior rooms and neighboring buildings are outside the model.",
+    "The dated placement represents circa 1912. Ground elevations use the unchanged original modern Terrarium field. Historic thresholds are approximate."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. The 1912 Goad atlas and the Notman print are public-domain originals. Geographic control points are from OpenStreetMap, ODbL 1.0.",
+  "qaLodCameras": [
+    {
+      "name": "whole-windsor-skyline",
+      "position": [
+        104,
+        68,
+        143
+      ],
+      "lookAt": [
+        1,
+        16,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-windsor-district",
+      "position": [
+        104,
+        68,
+        143
+      ],
+      "lookAt": [
+        1,
+        16,
+        1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-windsor-street",
+      "position": [
+        104,
+        68,
+        143
+      ],
+      "lookAt": [
+        1,
+        16,
+        1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-windsor-closeup",
+      "position": [
+        104,
+        68,
+        143
+      ],
+      "lookAt": [
+        1,
+        16,
+        1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "peel-from-dorchester-square",
+      "position": [
+        28,
+        39,
+        120
+      ],
+      "lookAt": [
+        0,
+        17,
+        15
+      ]
+    },
+    {
+      "name": "lost-dorchester-wing-and-dome",
+      "position": [
+        -107,
+        46,
+        82
+      ],
+      "lookAt": [
+        -25,
+        18,
+        16
+      ]
+    },
+    {
+      "name": "cypress-and-annex-mansards",
+      "position": [
+        110,
+        43,
+        56
+      ],
+      "lookAt": [
+        35,
+        22,
+        6
+      ]
+    },
+    {
+      "name": "historic-plan-and-service-courts",
+      "position": [
+        -63,
+        112,
+        -55
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 11608,
+    "vertices": 34824,
+    "materials": 5,
+    "bytes": 1704028,
+    "sha256": "sha256:5b3bb0adfb01fb44ab63586746ef70912540f2880bb5d466b5fe319a6a2c71f3"
+  }
+}

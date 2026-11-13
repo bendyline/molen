@@ -1,3 +1,4 @@
+import { Vehicle, VehicleState } from '@bendyline/molen-kernel/vehicles';
 import { Transform, World } from '@bendyline/molen-kernel/world';
 import * as THREE from 'three';
 import { expect, it } from 'vitest';
@@ -170,5 +171,66 @@ it('keeps sub-metre lens placement precise at Earth-scale coordinates', () => {
     const lens = new THREE.Vector3().setFromMatrixPosition(matrix).applyMatrix4(lenses.matrixWorld);
     expect(beams[i]?.getWorldPosition(new THREE.Vector3()).distanceTo(lens)).toBeLessThan(0.001);
   }
+  lighting.dispose();
+});
+
+it('lights a driven vehicle by its headlight switch, by day too, from its own lamp', () => {
+  const world = new World();
+  // One central lamp, as on an auto-rickshaw; the model draws its own lit lens.
+  world.spawnRaw(
+    {
+      transform: { pos: [1000, 0, 2000], rot: [0, 0, 0, 1] },
+      vehicle: {
+        spec: {
+          length: 2.6,
+          width: 1.3,
+          height: 1.76,
+          headlamps: [[0, 0.78, 1.3]],
+          actuators: { headlights: { seconds: 0 } },
+        },
+      },
+      vehicleState: { speed: 0, actuators: { headlights: 0 } },
+    },
+    'auto',
+  );
+  const lighting = new EarthNightLighting({
+    root: new THREE.Group(),
+    world,
+    sampleHeight: () => 0,
+    surface: { visitStreetLights: () => {} },
+  });
+  const beams = lighting.object.children.filter(
+    (o): o is THREE.SpotLight => o instanceof THREE.SpotLight,
+  );
+  const lenses = lighting.object.getObjectByName('earth:headlights') as THREE.InstancedMesh;
+  const driven = { ...frame, drivenVehicleId: 'auto' };
+  // Switched off: dark at night, no rig by day.
+  lighting.update(driven);
+  expect(beams.filter((b) => b.intensity > 0)).toHaveLength(0);
+  lighting.update({ ...driven, factor: 0 });
+  expect(lighting.object.visible).toBe(false);
+  // Switched on: one beam from the lamp, full at night and still lit by day.
+  world.patch('auto', VehicleState, { speed: 0, actuators: { headlights: 1 } });
+  lighting.update(driven);
+  const lit = beams.filter((b) => b.intensity > 0);
+  expect(lit).toHaveLength(1);
+  expect(lit[0]?.intensity).toBe(35);
+  expect(lit[0]?.position.toArray()).toEqual([1000, 0.78, 2001.3]);
+  expect(lit[0]?.target.position.z).toBeGreaterThan(2001.3);
+  expect(lenses.count).toBe(0);
+  lighting.update({ ...driven, factor: 0 });
+  expect(lighting.object.visible).toBe(true);
+  expect(beams.filter((b) => b.intensity > 0).map((b) => b.intensity)).toEqual([35 * 0.35]);
+  // Not driven, the same vehicle follows the dusk, and an empty lamp list lights nothing.
+  world.patch('auto', VehicleState, { speed: 3, actuators: { headlights: 0 } });
+  lighting.update(frame);
+  expect(lenses.count).toBe(1);
+  expect(beams.filter((b) => b.intensity > 0)).toHaveLength(1);
+  world.patch('auto', Vehicle, {
+    spec: { ...(world.get('auto', Vehicle)?.spec ?? {}), headlamps: [] },
+  } as never);
+  lighting.update(frame);
+  expect(lenses.count).toBe(0);
+  expect(beams.every((b) => b.intensity === 0)).toBe(true);
   lighting.dispose();
 });

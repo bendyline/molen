@@ -1,8 +1,12 @@
 import { dmath } from '@bendyline/molen-kernel/determinism';
+import { buildAtriumStructure } from './interior-atrium-geometry';
 import { resolveInteriorProfile } from './interior-catalog';
 import { buildDomesticFixture } from './interior-domestic-fixtures';
+import { generateParkingGeometrySteps } from './interior-parking-geometry';
+import { buildPublicFixture } from './interior-public-fixtures';
 import { buildResidentialStructure } from './interior-residential-geometry';
 import { interiorToLocal, interiorToWorld } from './interior-site';
+import { buildTowerStructure } from './interior-tower-geometry';
 import type {
   InteriorCatalogDoc,
   InteriorFixture,
@@ -16,20 +20,37 @@ import { hashString, unit01 } from './seed';
 import type { Vec2, Vec3 } from './types';
 import { buildWalls } from './walls';
 
+const BRIGHT_ALGORITHMS: ReadonlySet<string> = new Set([
+  'tower',
+  'atrium',
+  'auditorium',
+  'court',
+  'concourse',
+  'gallery',
+  'apparatus',
+]);
+
 /** Structured low-poly furniture, baked into one shared vertex-color batch per interior. */
 export function* generateInteriorGeometrySteps(
   plan: InteriorPlan,
   catalog: InteriorCatalogDoc,
 ): Generator<void, InteriorGeometry, void> {
+  if (plan.parking) return yield* generateParkingGeometrySteps(plan, catalog);
   const site = plan.site;
-  const palette = resolveInteriorProfile(site.labels, catalog).palette;
+  const profile = resolveInteriorProfile(site.labels, catalog);
+  const palette = profile.palette;
+  // Worked-in public spaces are lit; a room seen from the street, or a dark auditorium, is not.
+  const lit = BRIGHT_ALGORITHMS.has(profile.algorithm) && profile.furnishing !== 'seat-row';
+  const surface = (name: string): string => `interior:${lit ? 'bright-' : ''}${name}`;
   const structure = new MeshBufferBuilder(),
     furniture = new MeshBufferBuilder(),
     glass = new MeshBufferBuilder(),
     steps = new MeshBufferBuilder(),
     collision = new MeshBufferBuilder();
   const domestic = plan.rooms.some((r) => r.program !== undefined);
-  for (const [level, storey] of plan.storeys.entries()) {
+  // Towers and malls build their own plates, with openings and voids that differ by storey.
+  const plated = plan.tower !== undefined || plan.atrium !== undefined;
+  for (const [level, storey] of (plated ? [] : plan.storeys).entries()) {
     const holesAt = (ceiling: boolean): Vec2[][] => [
       ...site.holes,
       ...plan.stairs
@@ -48,7 +69,7 @@ export function* generateInteriorGeometrySteps(
     ];
     structure.addCap(
       'wall',
-      domestic ? 'interior:wood' : 'interior:ceramic',
+      domestic ? 'interior:wood' : surface('ceramic'),
       site.outline,
       holesAt(false),
       () => storey.floor,
@@ -58,7 +79,7 @@ export function* generateInteriorGeometrySteps(
     );
     structure.addCap(
       'wall',
-      'interior:plaster',
+      surface('plaster'),
       site.outline,
       holesAt(true),
       () => storey.ceiling,
@@ -69,18 +90,19 @@ export function* generateInteriorGeometrySteps(
     yield;
   }
   // Reverse-facing structural walls retain the same physical openings as the exterior.
-  buildWalls(
-    [site.outline, ...site.holes],
-    site.floor - 0.04,
-    plan.storeys[plan.storeys.length - 1]?.ceiling ?? site.ceiling,
-    { mode: 'meters', bayWidth: 1, floorHeight: 3, offsetU: 0, offsetV: 0, mirror: false },
-    { slot: 'wall', ref: 'interior:plaster', color: parseColor(palette.wall) },
-    undefined,
-    structure,
-    site.floor - 0.04,
-    site.openings,
-    true,
-  );
+  if (!plated)
+    buildWalls(
+      [site.outline, ...site.holes],
+      site.floor - 0.04,
+      plan.storeys[plan.storeys.length - 1]?.ceiling ?? site.ceiling,
+      { mode: 'meters', bayWidth: 1, floorHeight: 3, offsetU: 0, offsetV: 0, mirror: false },
+      { slot: 'wall', ref: surface('plaster'), color: parseColor(palette.wall) },
+      undefined,
+      structure,
+      site.floor - 0.04,
+      site.openings,
+      true,
+    );
   if (site.access.length === 4)
     structure.addQuad(
       'wall',
@@ -133,12 +155,14 @@ export function* generateInteriorGeometrySteps(
     h: number,
     d: number,
     color: string,
-    material = 'interior:plain',
+    material = surface('plain'),
   ): void => {
     const p = interiorToWorld(site, [x, z]);
     modelBox(out, [p[0], site.floor + y, p[1]], [w, h, d], color, yaw, material);
   };
   yield* buildResidentialStructure(plan, structure, steps, collision, box, palette);
+  if (plan.tower) yield* buildTowerStructure(plan, structure, glass, furniture, box, palette);
+  if (plan.atrium) yield* buildAtriumStructure(plan, structure, glass, furniture, box, palette);
   for (const room of plan.rooms) {
     if (room.program) continue;
     const [x0, z0, x1, z1] = room.bounds,
@@ -204,6 +228,20 @@ export function* generateInteriorGeometrySteps(
           : (['#597b77', '#aa775a', '#697c95', '#8d8069'][f.variant % 4] as string),
       metal = '#697173';
     if (buildDomesticFixture(f.kind, f.variant ?? 0, w, d, wood, accent, put)) return;
+    if (
+      buildPublicFixture(
+        f.kind,
+        f.variant ?? 0,
+        w,
+        d,
+        storey.ceiling - storey.floor,
+        wood,
+        accent,
+        metal,
+        put,
+      )
+    )
+      return;
     if (f.kind === 'shelf' || f.kind === 'rack') {
       const h = Math.min(f.kind === 'rack' ? 3.2 : 1.9, site.ceiling - site.floor - 0.35);
       for (const dx of [-w / 2 + 0.05, w / 2 - 0.05])

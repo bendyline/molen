@@ -1,0 +1,66 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.bogibeel_bridge",
+  "inputHash": "sha256:26688c9070188c9a31d72de0957d4dc60a12192176d2e44dfe524aee4971cdb9",
+  "sourceHash": "sha256:b0ad721a78aaa19ca8ee088037a8a8a2c52cf9314686ac5860009d3bd6728764",
+  "runtimeHash": "sha256:ed26d3c40272b8409339a0fcd2f478c1fcdcc9171752dc35b59e7932c127de1f",
+  "fixtureHash": "sha256:0d146cb75e1af71fa6c32676d2b9f8352350c01a3feaa8f4cc86416d11c7f07a",
+  "placementHash": "sha256:e37ffd347bffd9336ed483802ae0542377d003911c02deb4dd40db837e8c3221",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.gravel": {
+      "path": "materials/gravel.matgraph.json",
+      "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+    },
+    "molen.worldgen.material.wood_plain": {
+      "path": "materials/wood_plain.matgraph.json",
+      "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-bogibeel-bridge.png",
+      "hash": "sha256:61d924a6d217b09734dc00b7d1038c267809503a06074d355b6194a5c86a749c",
+      "camera": {
+        "name": "detail-trusses-and-paired-piers",
+        "position": [
+          -1460,
+          16,
+          155
+        ],
+        "lookAt": [
+          -1650,
+          7,
+          0
+        ],
+        "fov": 53,
+        "detail": true,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "bogibeel.bridge",
+        "visibleDraws": 5
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Shared plain concrete, painted metal, gravel and wood each resolve once per detail level."
+}

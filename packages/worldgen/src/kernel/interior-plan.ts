@@ -5,9 +5,13 @@ import {
   ringBounds,
   segmentsIntersect,
 } from './geometry2d';
+import { generateAtriumPlanSteps } from './interior-atrium';
 import { resolveInteriorProfile } from './interior-catalog';
+import { generateHallPlanSteps } from './interior-halls';
+import { generateParkingPlanSteps } from './interior-parking';
 import { generateResidentialPlanSteps } from './interior-residential';
 import { interiorToLocal, interiorToWorld } from './interior-site';
+import { generateTowerPlanSteps } from './interior-tower';
 import type {
   InteriorFixture,
   InteriorGenerateOptions,
@@ -18,7 +22,11 @@ import { hashCoord, hashString, unit01 } from './seed';
 import type { Vec2 } from './types';
 
 /** Whole-rectangle containment including concavities and courtyards; corners alone are unsafe. */
-export function interiorRectFits(site: InteriorSite, bounds: Bounds2, clearance = 0.35): boolean {
+export function interiorRectFits(
+  site: Pick<InteriorSite, 'outline' | 'holes' | 'entrance' | 'inward'>,
+  bounds: Bounds2,
+  clearance = 0.35,
+): boolean {
   const [x0, z0, x1, z1] = bounds;
   const corners = [
     [x0, z0],
@@ -78,6 +86,19 @@ export function* generateInteriorPlanSteps(
   };
   if (profile.algorithm === 'residential')
     return yield* generateResidentialPlanSteps(plan, profile, maxFixtures, maxCandidates);
+  if (profile.algorithm === 'parking' && site.parking)
+    return yield* generateParkingPlanSteps(plan, profile, options.maxParkedCars);
+  // A footprint too tight for one of these falls through to the plain grid below.
+  if (profile.algorithm === 'tower') {
+    const tower = yield* generateTowerPlanSteps(plan, profile, options);
+    if (tower) return tower;
+  } else if (profile.algorithm === 'atrium') {
+    const mall = yield* generateAtriumPlanSteps(plan, profile, options);
+    if (mall) return mall;
+  } else if (profile.algorithm !== 'parking') {
+    const hall = yield* generateHallPlanSteps(plan, profile, maxFixtures);
+    if (hall) return hall;
+  }
   const bounds = ringBounds(site.outline.map((p) => interiorToLocal(site, p)));
   const aisle = profile.aisleWidth;
   const width = profile.moduleWidth,

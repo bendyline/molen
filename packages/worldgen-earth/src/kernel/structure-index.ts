@@ -13,6 +13,28 @@ import {
 
 const alphabet = '0123456789bcdefghjkmnpqrstuvwxyz';
 
+export interface StructureRoadReplacement {
+  length: number;
+  width: number;
+  /** Optional exact native X/Z footprint; supersedes the rectangle for road suppression. */
+  outline?: [number, number][];
+  /** Uniform native deck Y, or separate native Y values at negative-X / positive-X ends. */
+  deckHeight?: number;
+  deckHeights?: [number, number];
+  /** Actual native X/Z road ends, ordered negative-X then positive-X, for curved crossings. */
+  deckEndpoints?: [[number, number], [number, number]];
+  /** Native [X,Y,Z] centerline samples, ordered by X; height at intermediate side connections. */
+  deckProfile?: [number, number, number][];
+  /** Also replace transverse bridge-tagged segments inside the exact authored outline. */
+  includeTransverseBridges?: boolean;
+  /** Also clip longitudinal road approaches and turning footways sharing a covered bridge endpoint. */
+  includeConnectedApproaches?: boolean;
+  /** When present, only replace bridge centerlines with these source tile feature IDs. */
+  bridgeFeatureIds?: (number | string)[];
+  /** IDs of mapped paving areas represented by the authored deck. */
+  pavingAreaIds?: (number | string)[];
+}
+
 export interface StructurePlacement {
   id: string;
   title: string;
@@ -31,22 +53,9 @@ export interface StructurePlacement {
   /** WGS84 extent [west, south, east, north]. Ground-opening models stay whole; others clip per tile. */
   bounds?: [number, number, number, number];
   /** Suppress mapped bridge centerlines inside this model-local rectangle (meters). */
-  replaceRoads?: {
-    length: number;
-    width: number;
-    /** Optional exact native X/Z footprint; supersedes the rectangle for road suppression. */
-    outline?: [number, number][];
-    /** Uniform native deck Y, or separate native Y values at negative-X / positive-X ends. */
-    deckHeight?: number;
-    deckHeights?: [number, number];
-    /** Actual native X/Z road ends, ordered negative-X then positive-X, for curved crossings. */
-    deckEndpoints?: [[number, number], [number, number]];
-    /** Native [X,Y,Z] centerline samples, ordered by X; height at intermediate side connections. */
-    deckProfile?: [number, number, number][];
-    /** Also replace transverse bridge-tagged segments inside the exact authored outline. */
-    includeTransverseBridges?: boolean;
-    /** Also clip longitudinal road approaches and turning footways sharing a covered bridge endpoint. */
-    includeConnectedApproaches?: boolean;
+  replaceRoads?: StructureRoadReplacement & {
+    /** Separate decks of this model with their own mask and connection profile. */
+    additionalDecks?: StructureRoadReplacement[];
   };
   /** Only a contained, nongeneralized mapped footprint may be replaced. */
   replaceFootprint?: boolean;
@@ -431,8 +440,18 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
       throw new Error(`invalid structure extent or vertical reference ${entry.id}`);
     if (entry.replaceRoads && !entry.bounds)
       throw new Error(`road replacement requires an extent ${entry.id}`);
-    if (entry.replaceRoads) {
-      const road = entry.replaceRoads;
+    const roads = entry.replaceRoads;
+    if (
+      roads?.additionalDecks !== undefined &&
+      (!Array.isArray(roads.additionalDecks) ||
+        roads.additionalDecks.length < 1 ||
+        roads.additionalDecks.length > 8 ||
+        roads.additionalDecks.some(
+          (deck) => !deck || typeof deck !== 'object' || 'additionalDecks' in deck,
+        ))
+    )
+      throw new Error(`invalid additional bridge decks ${entry.id}`);
+    for (const road of roads ? [roads, ...(roads.additionalDecks ?? [])] : []) {
       if (
         (road.includeTransverseBridges !== undefined &&
           typeof road.includeTransverseBridges !== 'boolean') ||
@@ -469,6 +488,17 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
           !validGroundOutline(road.outline))
       )
         throw new Error(`invalid structure road outline ${entry.id}`);
+      for (const field of ['bridgeFeatureIds', 'pavingAreaIds'] as const) {
+        const ids = road[field];
+        if (
+          ids !== undefined &&
+          (!Array.isArray(ids) ||
+            ids.length < 1 ||
+            ids.length > 64 ||
+            ids.some((id) => (typeof id === 'string' ? !id.trim() : !Number.isSafeInteger(id))))
+        )
+          throw new Error(`invalid structure road IDs (${field}) ${entry.id}`);
+      }
       if (
         !Number.isFinite(road.length) ||
         road.length <= 0 ||

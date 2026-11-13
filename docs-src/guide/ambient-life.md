@@ -148,7 +148,9 @@ them pass:
 ```
 
 Without a template, vehicles get the `ambient-vehicle` renderable and pedestrians a procedural
-`figure`.
+`figure` dressed from a built-in wardrobe: 20 adult, 6 elder and 5 child outfits that vary height,
+build, skin tone, body form, hair style, facial hair, sleeves, and trousers, shorts or skirts.
+Walkers share these bodies, so a crowd costs a bounded set of generated meshes.
 
 ## Components
 
@@ -194,8 +196,8 @@ few seconds instead of in one frame.
   stop for a vehicle someone is driving and for pedestrians on a crossing.
 - **Pedestrians** walk `path` ways and inferred sidewalks at 1.15 to 1.65 m/s, pause now and then,
   and cross roads only on a pedestrian phase or when no car is close.
-- **Trains** run `rail` ways as consists, two cars by default, that follow the lead around
-  curves. They dwell at stations for the station's `dwell` or 20 to 40 s, and reverse at the end
+- **Trains** run `rail` ways as consists, two cars by default or made up from a `consist`,
+  that follow the lead around curves. Yards, sidings, spurs and crossovers carry no ambient trains. They dwell at stations for the station's `dwell` or 20 to 40 s, and reverse at the end
   of the line.
 - **Aircraft** fly straight corridors a few hundred metres up, or the approach and departure of an
   aerodrome within 6 km.
@@ -334,11 +336,11 @@ The quality tier caps the numbers:
 | Tier | Cars | Pedestrians | Trains | Aircraft | Full-model cars | Activity radius |
 |---|---|---|---|---|---|---|
 | Minimum | 24 | 8 | 0 | 0 | 2 | 250 m |
-| Low | 48 | 16 | 0 | 1 | 4 | 350 m |
-| Medium | 96 | 32 | 1 | 1 | 6 | 450 m |
-| Balanced | 160 | 48 | 1 | 2 | 8 | 600 m |
-| High | 240 | 80 | 2 | 3 | 12 | 800 m |
-| Ultra | 320 | 120 | 2 | 4 | 16 | 1000 m |
+| Low | 48 | 16 | 1 | 1 | 4 | 350 m |
+| Medium | 96 | 32 | 2 | 1 | 6 | 450 m |
+| Balanced | 160 | 48 | 3 | 2 | 8 | 600 m |
+| High | 240 | 80 | 4 | 3 | 12 | 800 m |
+| Ultra | 320 | 120 | 6 | 4 | 16 | 1000 m |
 
 Ambient cars share the view's vehicle world, so the car you drive stops against them and traffic
 waits for you, for the view's [actors](earth-view.md#actors-companions-and-npcs) on foot and for
@@ -413,7 +415,32 @@ component takes its dimensions and wheels from the vehicle spec, so its role can
 wheel, paint, rotor and landing-gear nodes. `weight` sets how often a type spawns within its pool,
 and `cars` how many cars a train has.
 
-The `molen.entities` pack gives roles to its eleven road vehicles, a city bus, a light-rail car, an airliner
+Rail types take two more fields. `track` keeps a type on `light` lines (tram, light rail and
+metro ways) or `heavy` ones (the rest); a type without it runs anywhere, and when no type suits
+a line every type may run there. `consist` makes up a mixed train led by the type: `units` copies
+of it, then `length` cars drawn from the `cars` pool, in blocks of `block` alike. Ranges are
+inclusive `[min, max]`. Each car type comes from the same library and takes its size from its own
+vehicle spec. A car can carry its own `colors`.
+
+```json
+"ambientRole": {
+  "role": "rail",
+  "track": "heavy",
+  "consist": {
+    "units": [1, 3],
+    "length": [12, 24],
+    "block": [2, 5],
+    "cars": [
+      { "type": "my.pack.rail.covered_hopper", "weight": 3, "colors": ["#b9b7ad"] },
+      { "type": "my.pack.rail.tank_car", "weight": 2 }
+    ]
+  }
+}
+```
+
+The `molen.entities` pack's road and yard diesels lead mixed freight trains and its commuter
+locomotive leads bilevel coaches, on heavy rail; its light-rail car keeps to light lines. It also
+gives roles to its eleven road vehicles, a city bus, an airliner
 the P-51 and OH-6 aircraft, and eight watercraft. See [Reusable entities](entities.md). Near the
 camera the Earth view draws cars, trains and vessels with their full models, painted in the
 agent's colour. Their glazing (a transparent material named like `glass` or `glazing`) is tinted

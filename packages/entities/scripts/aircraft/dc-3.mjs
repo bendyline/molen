@@ -149,9 +149,10 @@ export const dc3Frame = () => ({
   radius: 1.24,
   cy: 3.3,
   ry: 1.32,
-  cabinZ: dc3Pose([0.56, 4.4, 7.5])[2],
+  cabinZ: dc3Pose([0.56, 4.2, 7.25])[2],
   cabinWidth: 2.3,
-  eye: dc3Pose([0.56, 4.4, 7.5]),
+  // Behind the windscreen header and over the raised flight-deck seat; the level sightline clears the nose.
+  eye: dc3Pose([0.56, 4.2, 7.25]),
   panelZ: dc3Pose([0, 3.9, 8.15])[2],
   floor: 2.18,
 });
@@ -419,6 +420,18 @@ export function buildDC3(s) {
       m.metal,
       false,
     );
+  // Flight-deck roof lining: bare aluminium reads as a black mass from the seat. It spans the
+  // windscreen's crown band (the 38-degree points either side) of the 22-point rings.
+  const lining = mat('DC3-deck-lining', '#667a6e', { side: T.DoubleSide }),
+    inside = (i, j) => {
+      const [x, y, z] = p(i, j);
+      return [x * 0.985, y - 0.018, z];
+    };
+  for (const i of [4, 5])
+    for (const j of screen) {
+      const k = (j + 1) % N;
+      quad(d, inside(i, j), inside(i + 1, j), inside(i + 1, k), inside(i, k), lining, [0, -1, 0]);
+    }
   const sample = (z, k) => {
     for (let i = 0; i < stations.length - 1; i++)
       if (z <= stations[i][0] && z >= stations[i + 1][0]) {

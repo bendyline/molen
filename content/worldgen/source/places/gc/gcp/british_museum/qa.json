@@ -32,8 +32,69 @@
       "shots/shared/northwest-conservation-wings-and-rooflights.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Six existing256px graphs: stone_limestone, brick, concrete_plain, metal_painted, metal_standing_seam and window_grid. All stone, brick, modern wings, frame/dome/roofs and windows reuse the library. Seven near draws/one skyline draw; no new graph, embedded image or private atlas. Great Court roof uses one local image-free22percent alpha PBR surface, with closed front/back shell and boundary caps. Each required graph read once; separate POSITION/NORMAL streams and equal CPU/GPU accounting. Shared opaque windows and approximate clear roof transmission do not reproduce exact architectural optics.",
-    "captureReportHash": "sha256:7ef8d9cc96119b0be5b908284e1a76ca9e8a5f83df46141b20517c1a6c82bbc4"
+    "notes": "Six existing256px graphs: stone_limestone, brick, concrete_plain, metal_painted, metal_standing_seam and window_grid. All stone, brick, modern wings, frame/dome/roofs and windows reuse the library. Seven near draws/one skyline draw; no new graph, embedded image or private atlas. Great Court roof uses one local image-free22percent alpha PBR surface, with closed front/back shell and boundary caps. Each required graph read once; separate POSITION/NORMAL streams and equal CPU/GPU accounting. Shared opaque windows and approximate clear roof transmission do not reproduce exact architectural optics. The shared window_grid graph changed after the original review. Eight new shared-material views confirm the revised glazing in the existing geographic placement.",
+    "captureReportHash": "sha256:aa6e22f612e81e109068feebb36dcef86cb8263085b5f52748ac8351ee19fed7",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:f32410193aecc0a31f4dbbe336d2850048c251d6e4487a2f75ea6ce6296fef7f"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:dd56431372cd5093d6acb0958c8f53b98ba9b3afdecfc33fd17664f00fc331c8"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:112f82c2261aea619f220bb9940974d759a1cbe7852aaaf55d53aec054dc254e"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:6af02e8a8a8e174742053f684a370928f3ed2d5d633c2dee12fbd58ee87c136e"
+      },
+      {
+        "path": "shots/shared/ionic-portico-and-triangular-relief-pediment.png",
+        "hash": "sha256:e6dd3f99c809d14ef4ff5ff87a542709d0ffe267b63ef0fd815de41e52fbeb70"
+      },
+      {
+        "path": "shots/shared/great-court-lattice-and-reading-room-windows.png",
+        "hash": "sha256:782c9a7d45633d17604a7e0e9128791b556975afed777f1ca46305bf772d8041"
+      },
+      {
+        "path": "shots/shared/northwest-conservation-wings-and-rooflights.png",
+        "hash": "sha256:b69f39e169dcf59bc3dd0e24abaa220dc55f04db3868c32308d3103762892bb1"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:47aafb45cd2520035d0f17680fa86e9f281ff69ade8807e197cc52fa4f666513"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone": {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

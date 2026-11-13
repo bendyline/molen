@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.el_paso_museum_of_art",
+  "kind": "static-structure",
+  "title": "El Paso Museum of Art",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.el_paso_museum_of_art",
+        "output": "assets/places/9t/9ts/el_paso_museum_of_art/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:b048e9804372154e096cede550fac2ee28dc76cd53cb9f90eb46d0993be63a07"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-house",
+        "path": "models/generate-house.mjs"
+      },
+      {
+        "id": "house-model",
+        "path": "models/house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/exterior-controls.json",
+      "reference-rights/commons-pd-original.json",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-6690-13332.png",
+      "terrain-sources/terrarium-15-6691-13332.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

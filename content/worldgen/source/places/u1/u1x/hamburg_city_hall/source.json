@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.hamburg_city_hall",
+  "kind": "static-structure",
+  "title": "Hamburg City Hall",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.hamburg_city_hall",
+        "output": "assets/places/u1/u1x/hamburg_city_hall/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:f8d6f45992b3b78e0c60e425954832cab2864b5c232fa88edbc6f130a57eceb6"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-hamburg-city-hall",
+        "path": "models/generate-hamburg-city-hall.mjs"
+      },
+      {
+        "id": "hamburg-city-hall-model",
+        "path": "models/hamburg-city-hall-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/rathaus-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-rathaus-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-17293-10590.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

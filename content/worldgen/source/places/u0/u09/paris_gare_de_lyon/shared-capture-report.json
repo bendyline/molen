@@ -1,0 +1,88 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.paris_gare_de_lyon",
+  "inputHash": "sha256:9fafaf55778501fceb7b179a7cf6f3dc069e6cf0dd7125f27c34162ab29fcc09",
+  "sourceHash": "sha256:7f64d71b9dc4fc4d9b042f61e00efc156de81de2741b79e337ab85578570fcca",
+  "runtimeHash": "sha256:b0ae707fd11e88932ea208d3ee8d89e57ce550a6c18d176481812ab9a4f7c4c8",
+  "fixtureHash": "sha256:fbb33eb60ba79b862d518c223f076fa4e32b3367d38d9dc3ccb63d7f8436af10",
+  "placementHash": "sha256:007c73567776ac56d26b9a67df78c157480561e627221538a79e50c0e451e31d",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_panel": {
+      "path": "materials/concrete_panel.matgraph.json",
+      "hash": "sha256:abe4cae93974b54fcec791eeaf719abfc7b069c87e136f4c371cebdaed7321f4"
+    },
+    "molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    },
+    "molen.worldgen.material.metal_standing_seam": {
+      "path": "materials/metal_standing_seam.matgraph.json",
+      "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+    },
+    "molen.worldgen.material.slate": {
+      "path": "materials/slate.matgraph.json",
+      "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+    },
+    "molen.worldgen.material.window_grid": {
+      "path": "materials/window_grid.matgraph.json",
+      "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+    },
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    },
+    "molen.worldgen.material.window_punched": {
+      "path": "materials/window_punched.matgraph.json",
+      "hash": "sha256:cc34da0c3f201320973e6000d3871295f88255e6ac6c8282bad935061b714fdc"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-station.png",
+      "hash": "sha256:8f09d6a403ec779e86567186a8bae8cfad3b5a1ffe253fa9baa7deb927fcc67f",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -211,
+          54,
+          148
+        ],
+        "lookAt": [
+          -25,
+          16,
+          38
+        ],
+        "fov": 52,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.85,
+          1,
+          -0.45
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "paris.gare.de.lyon",
+        "visibleDraws": 8
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Each tier uses the same eight shared graphs. Each graph resolves once per viewer session. All levels use metric UVs and linear vertex colors."
+}

@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.carthage_amphitheatre",
+  "kind": "static-structure",
+  "title": "Carthage Amphitheatre",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.carthage_amphitheatre",
+        "output": "assets/places/sn/snx/carthage_amphitheatre/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:eb4b72ad3526238ed1f6fc179e6ede11305ff847ba29f45da02bcfa09a86155a"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-carthage-amphitheatre",
+        "path": "models/generate-carthage-amphitheatre.mjs"
+      },
+      {
+        "id": "carthage-amphitheatre-model",
+        "path": "models/carthage-amphitheatre-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/ruin-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-carthage-amphitheatre-original.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-17322-12770.png",
+      "terrain-sources/terrarium-15-17323-12770.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

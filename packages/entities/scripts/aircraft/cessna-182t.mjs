@@ -475,13 +475,13 @@ export function buildCessna182(s) {
   }
   pd.finish();
   for (const [x, z, r] of [
-    [0, 1.6891, 0.22],
-    [1.3716, 0, 0.25],
-    [-1.3716, 0, 0.25],
+    [0, 1.6891, 0.18],
+    [1.3716, 0, 0.222],
+    [-1.3716, 0, 0.222],
   ]) {
     if (x) {
       const a = new T.Vector3(Math.sign(x) * 0.54, 0.55, -0.07),
-        b = new T.Vector3(x, 0.28, 0),
+        b = new T.Vector3(x, r + 0.05, 0),
         v = b.clone().sub(a);
       const leg = d.box(
         [0.065, v.length(), 0.17],
@@ -492,33 +492,36 @@ export function buildCessna182(s) {
     } else {
       d.rod([0, 0.72, 1.62], [0, 0.33, z], 0.028, metal);
       for (const side of [-1, 1])
-        d.rod([side * 0.085, 0.38, z - 0.03], [side * 0.085, r, z], 0.018, paint);
+        d.rod([side * 0.07, 0.38, z - 0.03], [side * 0.07, r, z], 0.018, paint);
     }
-    d.add(new T.CylinderGeometry(r, r, 0.16, 28).rotateZ(Math.PI / 2), rubber, [x, r, z]);
+    const tire = x ? 0.152 : 0.127;
+    d.add(new T.CylinderGeometry(r, r, tire, 28).rotateZ(Math.PI / 2), rubber, [x, r, z]);
     for (const side of [-1, 1])
       d.add(new T.CircleGeometry(r * 0.5, 20).rotateY((side * Math.PI) / 2), metal, [
-        x + side * 0.082,
+        x + side * (tire / 2 + 0.002),
         r,
         z,
       ]);
-    // Egg-shaped speed fairings that close over the tire tops; only the tread shows below.
+    // The pant is sized from its wheel, so the tire top always clears the inside of the shell.
+    const fit = r / 0.222;
     const pant = [
       [0.4, 0.035, 0.3, 0.37],
-      [0.28, 0.145, 0.24, 0.48],
-      [0.02, 0.17, 0.21, 0.54],
-      [-0.38, 0.13, 0.24, 0.44],
+      [0.28, 0.145, 0.24, 0.45],
+      [0.02, 0.17, 0.21, 0.485],
+      [-0.38, 0.13, 0.24, 0.39],
       [-0.52, 0.025, 0.28, 0.32],
     ].map(([zz, w, b, t]) => ({
-      z: z + zz,
-      points: Array.from({ length: 12 }, (_, i) => {
-        const a = (i * Math.PI) / 6,
-          c = Math.cos(a),
-          s = Math.sin(a);
-        return [
-          x + w * Math.sign(c) * Math.pow(Math.abs(c), 0.8),
-          (b + t) / 2 + ((t - b) / 2) * Math.sign(s) * Math.pow(Math.abs(s), 0.8),
-        ];
-      }),
+      z: z + zz * fit,
+      points: [
+        [x, t * fit],
+        [x + w * 0.7 * fit, (t - 0.02) * fit],
+        [x + w * fit, (t - 0.06) * fit],
+        [x + w * 0.8 * fit, b * fit],
+        [x, b * fit],
+        [x - w * 0.8 * fit, b * fit],
+        [x - w * fit, (t - 0.06) * fit],
+        [x - w * 0.7 * fit, (t - 0.02) * fit],
+      ],
     }));
     loft(d, pant, paint);
   }
@@ -984,7 +987,9 @@ function cockpit(root, m) {
         scale: -j * 0.035,
       });
     }
-    d.box([0.3, 0.025, 0.26], [side * 0.33, 1.86, 0.75], seats);
+    // Sun visors stow flat on the headliner behind the windscreen header (the roof crown is
+    // 1.91 m here).
+    d.box([0.3, 0.02, 0.2], [side * 0.33, 1.857, 0.7], seats);
   }
   d.finish();
   return { nodes: ['cockpit'], sources, derived, bindings };

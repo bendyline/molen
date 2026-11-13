@@ -1,6 +1,7 @@
 /** Material sets: shared three.js materials keyed by generated mesh groups. */
 
 import type { MaterialResolver } from '@bendyline/molen-client';
+import { enableSnowCover } from '@bendyline/molen-client/snow';
 import * as THREE from 'three';
 import type { MaterialSlot } from '../kernel/types';
 import type { BuildingMaterialDecorator } from './building-weathering';
@@ -48,6 +49,8 @@ export function createVertexColorMaterialSet(
         if (options.surfaceMean !== undefined) material.color.setScalar(options.surfaceMean);
         material.name = `worldgen:${slot}`;
         options.decorate?.(material, slot);
+        // Lying snow settles on roofs, ledges and sills (whatever faces the sky), not on glass.
+        if (slot !== 'window') enableSnowCover(material);
         materials.set(slot, material);
       }
       return material;
@@ -186,6 +189,8 @@ export function createResolvedMaterialSet(
         material.name = `worldgen:${ref}`;
         // A placeholder was decorated when created; copy() keeps its hooks. Glass is a variant.
         options.decorate?.(material, 'wall');
+        // copy() took the baked source's userData, and with it the placeholder's snow mark.
+        enableSnowCover(material);
         for (const key of TEXTURE_KEYS) {
           const texture = material[key];
           if (texture === null || texture === undefined) continue;
@@ -293,6 +298,7 @@ export function createResolvedMaterialSet(
         placeholder = flat.materialFor(slot, ref).clone() as THREE.MeshStandardMaterial;
         placeholder.name = `worldgen:${ref}`;
         options.decorate?.(placeholder, slot);
+        enableSnowCover(placeholder);
         // As bright as the texture that replaces it (the upgrade copies the textured color).
         placeholder.color.setScalar(TEXTURED_SURFACE_MEAN);
         placeholders.set(ref, placeholder);

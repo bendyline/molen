@@ -1,0 +1,407 @@
+{
+  "id": "palace_of_the_parliament",
+  "title": "Palace of the Parliament",
+  "wikidataId": "Q164150",
+  "referenceCoordinate": {
+    "longitude": 26.087402069,
+    "latitude": 44.42749677
+  },
+  "module": "content/worldgen/source/places/sx/sxf/palace_of_the_parliament/models/parliament-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-palace-of-the-parliament.mjs",
+  "builder": "buildParliamentLevel",
+  "surfaces": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.86
+    },
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.52
+    },
+    "plinth": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.96
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "concrete_plain",
+      "roughness": 0.95
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.12
+    }
+  },
+  "exportLabel": "Molen original Palace of the Parliament master",
+  "expectedDraftMasterHash": "sha256:e4d023f873b2ff2593da86b16537a49f26a3c2597d23acec3a670a9ab7cf3301",
+  "visualBrief": "The neoclassical palace presents a stepped central crown, symmetrical east ranges, lower projecting corner pavilions, the columned east balcony and west loggia, and two mapped open courts with distinct plans.",
+  "heightPolicy": "A 110 m sea-level model datum and standard viewer terrain set the foundation skirt, stair toe and the two court floors. The palace model replaces its named footprint while the surrounding roads, landcover and buildings remain independent.",
+  "nativeAxes": "+X points north along the long plan axis. +Z faces the east portico, Constitution Square and Unirii Boulevard.",
+  "limitations": [
+    "The outline and court voids follow the map. Above-ground block heights and stone ornament are reconstructed from exterior photographs, with an 84 m overall building height.",
+    "The entrance staircase and court floors fit the standard terrain grid. Their exact levels and the interiors are outside this exterior reconstruction."
+  ],
+  "references": [
+    {
+      "url": "https://3seaseurope.com/peoples-palace-romania-bucharest/",
+      "hash": "sha256:30e37e24e4392759378c5831b0012506ca2d63a39eb11a8294e476988e607702",
+      "observed": "East-facing portico, symmetry and Unirii Boulevard alignment."
+    },
+    {
+      "url": "https://it.gariwo.net/educazione/approfondimenti/romania-23702.html",
+      "hash": "sha256:cf87ffc36a0a58353a88d0f98cba7d4895906314f4607c89d101e37ad9a56c1d",
+      "observed": "Central setbacks, projecting wings and relative courtyard widths."
+    },
+    {
+      "url": "https://cic.cdep.ro/en/prezentare/cladire",
+      "observed": "The Chamber of Deputies lists 84 m height above ground."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "east-palace-and-constitution-square",
+      "position": [
+        206,
+        129,
+        335
+      ],
+      "lookAt": [
+        0,
+        28,
+        20
+      ],
+      "fov": 51
+    },
+    {
+      "name": "unirii-axis-and-stepped-front",
+      "position": [
+        0.8,
+        17,
+        228
+      ],
+      "lookAt": [
+        0.6,
+        42,
+        70
+      ],
+      "fov": 68
+    },
+    {
+      "name": "east-stair-portico-and-balcony",
+      "position": [
+        14,
+        21,
+        131
+      ],
+      "lookAt": [
+        0.5,
+        28,
+        85
+      ],
+      "fov": 62
+    },
+    {
+      "name": "north-range-and-pavilions",
+      "position": [
+        193,
+        36,
+        19
+      ],
+      "lookAt": [
+        85,
+        26,
+        11
+      ],
+      "fov": 58
+    },
+    {
+      "name": "west-loggia-and-roof-terraces",
+      "position": [
+        -117,
+        75,
+        -222
+      ],
+      "lookAt": [
+        1,
+        29,
+        -73
+      ],
+      "fov": 53
+    },
+    {
+      "name": "roof-crown-and-two-courts",
+      "position": [
+        18,
+        265,
+        -103
+      ],
+      "lookAt": [
+        0,
+        22,
+        4
+      ],
+      "fov": 59
+    },
+    {
+      "name": "court-walls-and-hemicycle",
+      "position": [
+        36.5,
+        24,
+        -13
+      ],
+      "lookAt": [
+        47,
+        25,
+        11
+      ],
+      "fov": 63
+    }
+  ],
+  "materialMethod": "The limestone, marble, granite, concrete, painted metal and patterned glass graphs provide reusable surfaces.",
+  "sourceFacts": {
+    "mappedRelation": 2230391,
+    "mappedLengthMeters": 277.056,
+    "mappedWidthMeters": 228.631,
+    "publishedHeightMeters": 84,
+    "courtyards": 2
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        28,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sx/sxf/palace_of_the_parliament/models/parliament-model.mjs",
+    "export": "buildParliamentSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.86
+      },
+      "glass": {
+        "slot": "window",
+        "graph": "window_grid",
+        "roughness": 0.52
+      },
+      "plinth": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.96
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.95
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.12
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildParliamentDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.52
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.12
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildParliamentStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.52
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.12
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildParliamentCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.52
+          },
+          "plinth": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.95
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.12
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "palace_of_the_parliament-skyline",
+      "position": [
+        206,
+        129,
+        335
+      ],
+      "lookAt": [
+        0,
+        28,
+        20
+      ],
+      "fov": 51,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "palace_of_the_parliament-district",
+      "position": [
+        206,
+        129,
+        335
+      ],
+      "lookAt": [
+        0,
+        28,
+        20
+      ],
+      "fov": 51,
+      "reviewLod": "district"
+    },
+    {
+      "name": "palace_of_the_parliament-street",
+      "position": [
+        206,
+        129,
+        335
+      ],
+      "lookAt": [
+        0,
+        28,
+        20
+      ],
+      "fov": 51,
+      "reviewLod": "street"
+    },
+    {
+      "name": "palace_of_the_parliament-closeup",
+      "position": [
+        206,
+        129,
+        335
+      ],
+      "lookAt": [
+        0,
+        28,
+        20
+      ],
+      "fov": 51,
+      "reviewLod": "closeup"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.national_theatre_nigeria",
+  "kind": "static-structure",
+  "title": "National Arts Theatre, Lagos",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.national_theatre_nigeria",
+        "output": "assets/places/s1/s14/national_theatre_nigeria/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:af6dc4a347225084c7db26572434c4b58d2779d94a97404f59135938c7dc0b6e"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-theatre",
+        "path": "models/generate-theatre.mjs"
+      },
+      {
+        "id": "theatre-model",
+        "path": "models/theatre-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/theatre-footprint.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/period-architecture-facts.json",
+      "reference-rights/commons-candidate-and-exclusions.json",
+      "primary-facts-reconstruction.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-16690-15793.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

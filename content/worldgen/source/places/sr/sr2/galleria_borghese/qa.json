@@ -34,8 +34,73 @@
       "shots/shared/central-ornament-eaves-and-front-wings.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Six roles share six existing 256px graphs: stucco, stone_limestone, tile_ceramic, storefront, metal_painted and wood_plain. Canonical metric UVs, linear tints and graph means for skyline. Six nearby draws/five district/one skyline. No embedded images, private atlas or new graph. Separate POSITION/NORMAL streams and equal CPU/GPU geometry accounting. Each used graph reads once and unload disposes all model geometry. Flat shared/synthetic ground partly buries sloped stair bases and can reveal small cutout patches; the unchanged native ground establishes site contact.",
-    "captureReportHash": "sha256:fd87a153195c9bb45ebf7fd9cdbffa3d6abeb5ea2a9cc2beffba4de08b634647"
+    "notes": "Six roles share six existing 256px graphs: stucco, stone_limestone, tile_ceramic, storefront, metal_painted and wood_plain. Canonical metric UVs, linear tints and graph means for skyline. Six nearby draws/five district/one skyline. No embedded images, private atlas or new graph. Separate POSITION/NORMAL streams and equal CPU/GPU geometry accounting. Each used graph reads once and unload disposes all model geometry. Flat shared/synthetic ground partly buries sloped stair bases and can reveal small cutout patches; the unchanged native ground establishes site contact. Current viewer renders confirm the updated shared storefront material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:acd1895ff9b843cac726686b3d6fc9362f13cd26e72b0b3156ac62133ef025ba",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:f7f5aba9be6ab28cbde1046a8af07279a0d685ff9d5732bd73a20193776418c9"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:ae322c32bef39ce0d27482d61710488769ef67d40acc5e3e350435679bce417d"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:c8bf1d554d44cbb0fd2c74abc41a51e0e23ebed04ece24c4747dbef3443b2aab"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:85f0aa109208e4e44292f72f0c1f7ba07716a5c5ab7af8a93b3f6f18f4a1b738"
+      },
+      {
+        "path": "shots/shared/five-open-arcade-bays-terrace-and-central-front.png",
+        "hash": "sha256:cdb5243b6dc61c7780092bd089e18e7011ef33f5e8222593793c8beaa29d5f60"
+      },
+      {
+        "path": "shots/shared/raised-loggia-recessed-gates-and-paired-stair-flights.png",
+        "hash": "sha256:9aae8560b1e342c1b7a4963b45f9b3bbc4b36735569d0588d6a3658fdd0c0039"
+      },
+      {
+        "path": "shots/shared/rear-range-twin-towers-and-hip-roofs.png",
+        "hash": "sha256:ae5d5fc4ad105beb0414bc3d68e95cf93f90925470402c1d691257f7fa89716d"
+      },
+      {
+        "path": "shots/shared/central-ornament-eaves-and-front-wings.png",
+        "hash": "sha256:2b41c9f42d448e3cbf26cf5ec13d469a41f810794d9058d7690474c0143c36be"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:48700c9f7e319246e2537f82b55c17a958bd33009588a23d545fd7d28fcc22d0"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stucco": {
+        "path": "materials/stucco.matgraph.json",
+        "hash": "sha256:d96343590b745615051aa42e86e1117bce5a4b4f7607fa129a99d6b1bece8119"
+      },
+      "matgraph:molen.worldgen.material.tile_ceramic": {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone": {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

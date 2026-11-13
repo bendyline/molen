@@ -1041,8 +1041,10 @@ function cockpit(root, m) {
   d.box([1.6, 0.04, 6.35], [0, 1.3, -0.5], m.dark);
   for (const zz of [1.5, 0.3, -0.65, -1.6, -2.55, -3.5])
     for (const x of [-0.44, 0.44]) {
-      beveledBox(d, [0.49, 0.11, 0.48], [x, 1.58, zz], seat, 0.035);
-      const back = group(cabin, `Caravan-seat-${x}-${zz}`, [x, 1.94, zz - 0.2]);
+      // Pilot seats ride high on their rails: eye 0.8 m above the cushion, thighs under the yoke.
+      const lift = zz === 1.5 ? 0.05 : 0;
+      beveledBox(d, [0.49, 0.11, 0.48], [x, 1.58 + lift, zz], seat, 0.035);
+      const back = group(cabin, `Caravan-seat-${x}-${zz}`, [x, 1.94 + lift, zz - 0.2]);
       back.rotation.x = -0.08;
       const sd = detailKit(back, back.name);
       beveledBox(sd, [0.47, 0.6, 0.16], [0, 0, 0], seat, 0.05);
@@ -1053,9 +1055,9 @@ function cockpit(root, m) {
       beveledBox(sd, [0.37, 0.18, 0.15], [0, 0.41, 0], seat, 0.047);
       sd.finish();
       for (const sign of [-1, 1])
-        d.rod([x + sign * 0.19, 1.33, zz], [x + sign * 0.19, 1.52, zz], 0.016, m.metal);
-      d.rod([x - 0.19, 1.65, zz - 0.12], [x + 0.16, 1.65, zz + 0.18], 0.018, liner);
-      d.box([0.055, 0.015, 0.045], [x + 0.04, 1.67, zz + 0.09], m.metal);
+        d.rod([x + sign * 0.19, 1.33, zz], [x + sign * 0.19, 1.52 + lift, zz], 0.016, m.metal);
+      d.rod([x - 0.19, 1.65 + lift, zz - 0.12], [x + 0.16, 1.65 + lift, zz + 0.18], 0.018, liner);
+      d.box([0.055, 0.015, 0.045], [x + 0.04, 1.67 + lift, zz + 0.09], m.metal);
     }
   for (const sign of [-1, 1]) {
     d.box([0.025, 0.25, 5.25], [sign * 0.82, 1.55, -1.12], liner);
@@ -1073,7 +1075,7 @@ function cockpit(root, m) {
     }
   }
   // Pilot-side electrical cabinet and the photographed overhead fuel-selector console.
-  const electrical = group(cabin, 'Caravan-electrical', [0.68, 1.76, 2.08]);
+  const electrical = group(cabin, 'Caravan-electrical', [0.64, 1.76, 2.08]);
   electrical.rotation.y = -0.35;
   const ed = detailKit(electrical, electrical.name);
   beveledBox(ed, [0.19, 0.5, 0.11], [0, 0, 0], face);
@@ -1093,8 +1095,9 @@ function cockpit(root, m) {
     od.add(new T.CylinderGeometry(0.027, 0.027, 0.025, 12), black, [side * 0.13, -0.039, 0.07]);
     od.box([0.05, 0.025, 0.065], [side * 0.1, -0.045, -0.09], black);
     od.rod([side * 0.1, -0.045, -0.09], [side * 0.1, -0.068, -0.04], 0.009, m.metal);
-    const visor = group(cabin, `Caravan-visor-${side}`, [side * 0.43, 2.6, 1.85]);
-    visor.rotation.x = -0.35;
+    // Sun visors stowed flat on the ceiling behind the header; deployed they fill the seat view.
+    const visor = group(cabin, `Caravan-visor-${side}`, [side * 0.43, 2.69, 1.63]);
+    visor.rotation.x = Math.PI / 2;
     const vd = detailKit(visor, visor.name);
     vd.box([0.36, 0.13, 0.012], [0, 0, 0], m.dark);
     vd.finish();

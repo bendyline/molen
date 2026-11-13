@@ -47,18 +47,32 @@ const descriptors = [
     preset: 'human.adult',
     height: 1.67,
     build: -0.45,
-    features: { hair: 'long', sleeves: 'short' },
+    features: { form: 'feminine', hair: 'long', sleeves: 'short' },
     palette: { skin: '#d3a080', hair: '#382720', top: '#874c48', bottom: '#424450' },
   },
   {
     preset: 'human.adult',
     height: 1.85,
     build: 0.4,
-    features: { hair: 'none', sleeves: 'none' },
+    features: { form: 'masculine', hair: 'none', facialHair: 'beard', sleeves: 'none' },
     palette: { skin: '#704630', top: '#b6ad97', bottom: '#3b4840', shoes: '#32302c' },
   },
+  {
+    preset: 'human.adult',
+    height: 1.64,
+    features: { form: 'feminine', hair: 'ponytail', legs: 'skirt' },
+    palette: { skin: '#e0b597', hair: '#6b4a2e', top: '#e8e6de', bottom: '#2f3b52' },
+  },
+  {
+    preset: 'human.adult',
+    features: { hair: 'afro', facialHair: 'stubble' },
+    palette: { skin: '#4a2e21', hair: '#1a1412', top: '#c9a227', bottom: '#2f3b52' },
+  },
   { preset: 'human.child' },
-  { preset: 'human.elder', features: { hair: 'bob' } },
+  {
+    preset: 'human.elder',
+    features: { form: 'masculine', hair: 'balding', facialHair: 'mustache' },
+  },
 ];
 const figure = (d, i) => ({
   id: `person-${i}`,
@@ -151,13 +165,13 @@ const lineup = {
     ground,
     ...descriptors.map((d, i) => {
       const f = figure(d, i);
-      f.components.transform.pos = [(i - 2) * 0.85, 0, 0];
+      f.components.transform.pos = [(i - (descriptors.length - 1) / 2) * 0.75, 0, 0];
       return f;
     }),
   ],
 };
 await writeJson('lineup.scene.json', lineup);
-await shot('lineup', lineup, [0.8, 1.35, 2.7], [0, 0.85, 0], [1400, 800]);
+await shot('lineup', lineup, [0.8, 1.35, 3.4], [0, 0.85, 0], [1600, 800]);
 for (const [mode, speed, tick] of [
   ['walk', 1.4, 21],
   ['walk', 1.4, 48],

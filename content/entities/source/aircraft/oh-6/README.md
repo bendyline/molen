@@ -31,9 +31,12 @@ The GLB embeds the atlas; it needs no installed fonts at runtime. The repository
 licensed font sources are documented in [cockpit lettering](../../../fonts/README.md).
 Cockpit enamel, upholstery and harnesses also use procedural finish textures.
 
-The exterior follows the OH-6A silhouette: an egg-shaped cabin with arched front door windows and
-separate rear glazing, a narrow transmission doghouse and louvered intakes, a tapered boom and
-braced tail stabilizer, a mechanical four-blade main rotor, a two-blade left-side tail rotor,
-curved low skid cross-tubes and a rear-facing exhaust outlet. The cockpit uses a narrow gray
-center pedestal with analog flight/engine instruments, dual tubular cyclics and collectives,
-exposed seat frames, harnesses and an aft bench. The main rotor radius remains 4.025 m.
+The airframe is built from station tables traced from the Army's station diagram and principal
+dimensions figure, and sits about 5 degrees nose-up on its skids as the real aircraft does. The egg
+carries one continuous windshield with a slim centre frame, a lower transverse frame at WL 38.64
+and the centre ventilating panel. The engine and transmission fairing lands on the boom fairing,
+which grows out of the egg with the exhaust low in its aft face. The tail is the original single
+right-hand stabilizer raised 25 degrees with one strut to the fin. The main rotor is 26 ft 4 in
+across; `spec.helicopter.rotorRadius` stays at its tuned 4.025 m. The cockpit has a small panel on
+a centre post, J-shaped cyclics, collectives beside each seat and an aft bench. The pilot's seat
+is on the right. See [reference-review.json](reference-review.json) for the measurements.

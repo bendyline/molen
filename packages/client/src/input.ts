@@ -288,11 +288,20 @@ export class InputMap {
   }
 
   private attach(target: EventTargetLike): void {
-    const editable = (ev: unknown): boolean => {
+    // Keys typed into a field stay there. A checkbox only toggles: it keeps its own Space and
+    // gives every other key to gameplay, since a click on one leaves focus there and the flight
+    // keys must keep working. (A radio group keeps its arrows, so radios keep every key.) Pointer
+    // presses on any control stay with it.
+    const editable = (ev: unknown, code?: string): boolean => {
       const element = (ev as { target?: { closest?: (selector: string) => unknown } }).target;
-      return !!element?.closest?.(
+      const control = element?.closest?.(
         'input, textarea, select, button, a, summary, [contenteditable]:not([contenteditable="false"]), [data-molen-input-editor]',
-      );
+      ) as { tagName?: unknown; type?: unknown } | null | undefined;
+      if (!control) return false;
+      const checkbox =
+        String(control.tagName).toUpperCase() === 'INPUT' &&
+        String(control.type).toLowerCase() === 'checkbox';
+      return !checkbox || code === undefined || code === 'Space';
     };
     const add = (type: string, fn: (ev: unknown) => void): void => {
       target.addEventListener(type, fn);
@@ -308,7 +317,7 @@ export class InputMap {
         altKey?: boolean;
         preventDefault?(): void;
       };
-      if (editable(ev) || event.defaultPrevented || event.isComposing) return;
+      if (editable(ev, event.code) || event.defaultPrevented || event.isComposing) return;
       // Preserve browser/assistive shortcuts while allowing a modifier itself to be bound.
       if (
         event.metaKey ||

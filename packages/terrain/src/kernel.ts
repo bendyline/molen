@@ -53,6 +53,13 @@ export {
   worldToProjected,
   worldToWgs84,
 } from './geospatial';
+export {
+  type GradeSeparationOptions,
+  gradeTransportSeparationSteps,
+  gradeTransportSeparations,
+  TERRAIN_GRADE_SEPARATION,
+  type TerrainGradeFamily,
+} from './grade-separation';
 export { Heightfield, type HeightfieldCollider, type HeightfieldOptions } from './heightfield';
 export { gradeHighwayBridges } from './highway-grading';
 export {
@@ -131,7 +138,29 @@ export {
   terrainPyramidTileOrigin,
   terrainPyramidTileSize,
 } from './pyramid-types';
+export { placeTerrainYardCars, type TerrainYardCarInput } from './rail-cars';
+export {
+  TERRAIN_RAIL_HEIGHT,
+  type TerrainRailElectrification,
+  type TerrainRailMode,
+  type TerrainRailService,
+  type TerrainRailTrack,
+  terrainRailElectrified,
+  terrainRailOffset,
+  terrainRailTrack,
+} from './rail-features';
 export { type RenderedGroundSource, renderedGroundSampler } from './rendered-ground';
+export {
+  beginRoadEarthworks,
+  clipRoadLine,
+  gradeRoadEarthworks,
+  ROAD_PROFILE_WINDOW,
+  type RoadEarthworkLine,
+  type RoadEarthworkOptions,
+  type RoadEarthworkPass,
+  roadEarthworkLines,
+  roadProfileHeight,
+} from './road-earthworks';
 export { registerTerrainSchemas } from './schema';
 export {
   composeTerrainBuildingDetail,
@@ -149,6 +178,7 @@ export {
   assertTerrainSemanticTile,
   createEmptyTerrainSemanticTile,
   type TerrainAgricultureObservation,
+  type TerrainBridgeProfileSample,
   type TerrainBuildingFeature,
   type TerrainCultivation,
   type TerrainLandcoverFeature,
@@ -222,6 +252,7 @@ export {
 } from './route-shields';
 export {
   deriveOverzoomTerrainSemanticTilePacket,
+  deriveTerrainSemanticTileContentHash,
   deriveTerrainSemanticTilePacket,
   keepTerrainSemanticTile,
   packTerrainSemanticTile,

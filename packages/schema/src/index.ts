@@ -222,15 +222,36 @@ export type { VehicleInteriorBinding, VehicleInteriorSpec } from './vehicle-inte
 export { vehicleInteriorSchema } from './vehicle-interior';
 export type {
   CycleSpec,
+  CycleStance,
+  HandlebarSpec,
+  RailVehicleProfile,
+  RailVehicleSpec,
+  RunnerSpec,
   VehicleBodyStyle,
   VehicleCollisionPart,
   VehicleDamageState,
   VehicleData,
   VehicleKind,
   VehiclePlacement,
+  VehiclePowertrainSpec,
   VehicleSpec,
   VehicleVisualSpec,
 } from './vehicles';
-export type { CloudType, ResolvedWeather, WeatherData, WeatherProfile } from './weather';
-export { resolveWeather, weatherProfile, weatherSchema } from './weather';
+export type {
+  CloudType,
+  ResolvedSnowCover,
+  ResolvedWeather,
+  SnowCoverData,
+  SnowCoverSample,
+  WeatherData,
+  WeatherProfile,
+} from './weather';
+export {
+  resolveSnowCover,
+  resolveWeather,
+  snowCoverAt,
+  snowWalkingPace,
+  weatherProfile,
+  weatherSchema,
+} from './weather';
 export { nearest, nearestWithDistance } from './zod-issues';

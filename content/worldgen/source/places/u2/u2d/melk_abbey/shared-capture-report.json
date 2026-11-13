@@ -1,0 +1,84 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.melk_abbey",
+  "inputHash": "sha256:efdcd18034570afa0cc1890e3429f0764824f41d9e8c3ead8bad3cc0c281bdb2",
+  "sourceHash": "sha256:558cd3295ef8d9789cff2a5655e2017958772d27415f7874caa9a8e352c5ed1c",
+  "runtimeHash": "sha256:cbd9309d790baa27a10f5c7a4638ad12653903c2aef439c3fb7cb314ab8c9d65",
+  "fixtureHash": "sha256:dc998305e9f54c37add4058b83989bd0c58d11f6f17c4fd13f19eb2efa8d166a",
+  "placementHash": "sha256:bab90efd59ab6c5e5a676e91b94dd230f178b3a85cf8aec8b4387899cd931a43",
+  "materialGraphs": {
+    "molen.worldgen.material.plaster_lime": {
+      "path": "materials/plaster_lime.matgraph.json",
+      "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+    },
+    "molen.worldgen.material.metal_copper": {
+      "path": "materials/metal_copper.matgraph.json",
+      "hash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935"
+    },
+    "molen.worldgen.material.tile_flat": {
+      "path": "materials/tile_flat.matgraph.json",
+      "hash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448"
+    },
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    },
+    "molen.worldgen.material.stone_ashlar": {
+      "path": "materials/stone_ashlar.matgraph.json",
+      "hash": "sha256:f5692cbd995206b1475a803b027d181a664bd3a20df51db34667f205abce8093"
+    },
+    "molen.worldgen.material.window_punched": {
+      "path": "materials/window_punched.matgraph.json",
+      "hash": "sha256:cc34da0c3f201320973e6000d3871295f88255e6ac6c8282bad935061b714fdc"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-abbey.png",
+      "hash": "sha256:b4c833f6912f84181eb48568a5b43a9d956c0e2d2a7d36157a14884a6f147cc8",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -216,
+          134,
+          251
+        ],
+        "lookAt": [
+          -1,
+          12,
+          12
+        ],
+        "fov": 47,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.71,
+          1,
+          0.66
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "melk.abbey",
+        "visibleDraws": 7
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The skyline uses six existing graphs. District, street and close-up each use seven. Each graph resolves once per viewer session. All levels use metric UVs and linear vertex colors."
+}

@@ -355,3 +355,52 @@ describe('airplane propeller blur', () => {
     visual.dispose();
   });
 });
+
+describe('aircraft sun shadows', () => {
+  it('leaves glass out of the shadow pass, and the flown aircraft out of a map too coarse for it', () => {
+    const f = fixture();
+    const glass = new THREE.Mesh(
+      new THREE.BoxGeometry(1, 0.5, 1),
+      new THREE.MeshStandardMaterial({ transparent: true, opacity: 0.3 }),
+    );
+    glass.name = 'airframe-glazing';
+    const lettering = new THREE.Mesh(
+      new THREE.PlaneGeometry(0.2, 0.05),
+      new THREE.MeshStandardMaterial({ transparent: true }),
+    );
+    f.model.add(glass, lettering);
+    const visual = createAircraftVisual(f.model, spec);
+    // A pane drawn solid in the shadow pass shaded the whole cockpit; decals blend at full opacity.
+    expect(glass.castShadow).toBe(false);
+    expect(lettering.castShadow).toBe(true);
+    // A host's own choice (world-explorer drops tiny parts) must survive the round trip.
+    lettering.castShadow = false;
+    visual.updateShadows(0.05);
+    expect(f.body.castShadow).toBe(true);
+    visual.updateShadows(0.4);
+    expect(f.body.castShadow).toBe(false);
+    expect(f.blade.castShadow).toBe(false);
+    // The propellers set their blades' flags every frame, and rebuild with a new livery.
+    visual.update(state(0), input, 0);
+    expect(f.blade.castShadow).toBe(false);
+    visual.setLivery(undefined);
+    visual.update(state(0), input, 0);
+    expect(f.blade.castShadow).toBe(false);
+    // Between the two limits it stays as it is, so a camera bobbing at the edge cannot toggle it.
+    visual.updateShadows(0.13);
+    expect(f.body.castShadow).toBe(false);
+    visual.updateShadows(0.1);
+    visual.update(state(0), input, 0);
+    expect(f.body.castShadow).toBe(true);
+    expect(f.blade.castShadow).toBe(true);
+    expect(glass.castShadow).toBe(false);
+    expect(lettering.castShadow).toBe(false);
+    visual.updateShadows(0.13);
+    expect(f.body.castShadow).toBe(true);
+    // No longer the subject, or no sun shadows: the authored flags.
+    visual.updateShadows(0.4);
+    visual.updateShadows(undefined);
+    expect(f.body.castShadow).toBe(true);
+    visual.dispose();
+  });
+});

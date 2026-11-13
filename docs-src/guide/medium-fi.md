@@ -3,7 +3,8 @@
 Molen's Earth view draws the real planet at full scale in a browser, with thousands of buildings,
 trees, vehicles and landmarks on screen at once. Its look is **medium-fi**: a bright, polygonal
 model-railroad version of the world. This page sets the standard for every model, building
-style, palette and prop made for it, and ends with the review an agent runs before submitting one.
+style, palette and prop made for it and for the picture they add up to, and ends with the
+reviews an agent runs before submitting either.
 
 Medium-fi sits between two looks it avoids. It is not low-fi, meaning voxels, pixel art or bare
 grey boxes. It is not high-fi either: photoreal surfaces, or even the most detail the engine can
@@ -11,6 +12,11 @@ draw. The nearest reference is an open-world game of the early 2000s, Grand Thef
 City. Proportions are realistic, faces are visibly polygonal, and shared textures are simple under
 a strong sun. Every object reads clearly, the whole frame is coherent, and it holds 60 frames per
 second on ordinary laptops.
+
+The technique is that era's; the mood is a model railway layout on a sunny afternoon. Someone
+who opens the Earth view should feel they have found a trainset of the whole world that is
+theirs to play with: true to the place, tidy, warm, legible from any height, and busy with small
+things that move. When a choice is unclear, make the one the layout's builder would have made.
 
 ## Why medium-fi
 
@@ -44,6 +50,45 @@ Three constraints decide the style, and every rule below follows from one of the
    [Rendering modes](#rendering-modes)) change resolution, shadows and level of detail. They
    never change the palette or the style, so every mode looks like the same world.
 
+## The picture
+
+The five rules govern an asset. These nine govern the frame the assets add up to, at street
+level, from a rooftop and from an airliner. They bind the engine and its content packs as much
+as a model: where the Earth view falls short of one, that is a defect to fix, not something to
+work around inside an asset. A change to light, palette, ground, weather, a distribution or a
+level-of-detail rule is reviewed against them (see [Scene review](#scene-review)).
+
+1. **Three values, and no black.** Squint at a daylight frame. It holds light (sky, roofs,
+   paving), middle (ground, walls, water) and dark (foliage in shade, glass, cast shadow), each
+   in clear shapes. Nothing larger than a car is darker than 8% on screen at noon, and shaded
+   ground keeps 40–50% of its sunlit value, so shade still has color.
+2. **Natural hues stay natural.** Watered turf is yellow-green (HSL hue 75–115°), broadleaf
+   foliage 85–135°, conifers 115–150°, and sea and lake water 185–215°. Dry grass runs to straw
+   and a silted river to olive or brown. No teal lawn, blue-black forest or emerald sea.
+3. **Palettes are albedo.** A color measured from a photograph already holds the shadows of
+   everything standing there, the haze above it and the camera's cast, and the engine adds its
+   own shadows, haze and tone curve. Convert a measurement to the surface's own color in open
+   sun before it becomes a palette entry, and judge it at eye level as well as from above.
+4. **Air gives depth.** Anything deeper than a few hundred meters shows aerial perspective:
+   farther is lighter, cooler and lower in contrast, warmer toward the sun, and the horizon
+   dissolves into the sky. A skyline never reads as a cut-out.
+5. **One hand.** Sky, clouds, water and weather are drawn in the same simplified, sculpted way
+   as the ground. A cumulus has a flat base, a lit top and a shaded side; water is dark below
+   the viewer and takes the sky toward the horizon.
+6. **No dead ground.** No surface larger than a hectare is one flat color. A lot has stalls and
+   cars, a field has rows, a yard has stacks, a plaza has pavers, and open water has a sky
+   gradient and a shore.
+7. **Life within fifty meters.** At street level any view holds a tree, a parked or moving
+   vehicle, a piece of street furniture and something with a sign on it. From the air, lots and
+   curbs hold cars, water holds boats and rail yards hold trains.
+8. **Distance reads as mass.** Far forest is a canopy, far city is roofs and streets, far fields
+   are a patchwork. Separate instances never become speckle. Every level of detail of an object
+   has the same average color, so nothing changes value as it comes closer, and a level change
+   is cross-faded or happens below notice.
+9. **One calendar, one exposure.** Sun, sky, foliage, lights and weather follow one date and
+   time. Exposure follows the light as a camera would: a low sun or an overcast sky gives a
+   softer frame, not a darker one. Only twilight and night are dark, and night keeps its shapes.
+
 ## The look the engine provides
 
 Author against the lighting the Earth view actually uses. Both Earth hosts share one rig:
@@ -61,13 +106,16 @@ exported from `@bendyline/molen-earth/client` as `EARTH_SKY_PALETTE`, `EARTH_LIG
 | Haze | The sky's own horizon color, from about 2 km | Distant ground dissolves into the horizon; do not add a fog color of your own |
 | Water | Deep teal `#1b4450` with a soft sky reflection; hosts may tint it per region (Puget Sound near-black navy, Sydney Harbour green-teal) | Water absorbs most light: from above it is far darker than land. Keep ripples legible nearby; fade small wave detail at airplane distance |
 
-Two consequences matter for authoring:
+Three consequences matter for authoring:
 
 - **Walls receive less light than roofs.** Under a high sun a vertical wall gets about half the
   light a roof gets. A wall palette therefore needs to be lighter than the color you want to see.
 - **Shadows do the grounding.** A building, tree or car is seated by its cast shadow. Never fake
   contact shading with a dark gradient or soot band at the base of a model; a foundation is its
   own material, not a shadow.
+- **The sky is part of a smooth material.** Glass, water, wet paving and polished metal show the
+  sky dome through the environment map. Give them enough reflectance to carry it: a pane or a
+  water surface that relies on its base color alone renders as a dark slab.
 
 ### Color spaces
 
@@ -103,16 +151,21 @@ where real buildings have it. Avoid both grey-on-grey and candy color.
 | Flat roof (membrane, gravel) | 45–90% | 0–12% | white membrane `#e6e6e2`, pale grey `#d3d4d0`, gravel `#b0a693`, dark membrane `#74777b`; mostly pale, a few dark |
 | Trim and frames | 85–95% or 22–30% | 0–30% | white `#f4f1ea`, dark frame `#3b3e42` |
 | Untextured window glass | 35–45% | 20–30% | blue-grey pane `#4d6178` |
+| Glazed facade, as seen in sun | 40–60% | 10–30% | takes the sky: pale blue-grey by day, gold at sunset |
 | Lawn and residential ground | 45–55% | 25–35% | lawn `#8aa065`, grass `#7fa258`, park `#6c9a55` |
-| Paved and commercial ground | 60–70% | 5–12% | paving `#aaa59a` |
+| Paved and commercial ground | 60–70% | 5–12% | paving `#aaa59a`; sidewalks in this band, curbs up to 75% |
 | Forest floor and conifers | 30–40% | 25–35% | forest `#3c6a3f`, fir `#3e7052` |
 | Asphalt | 35–42% | 0–10% | road `#646766` (near neutral and weathered: from the air streets read mid grey; a bluer gray turns navy in shade, a darker one crushes to black), with markings `#eee9d4` and `#e8bd57` |
+| Open water, below the viewer | 18–35% | 25–50% | deep teal `#1b4450`; lighter near a shore, sky-bright toward the horizon |
 | Identity and wayfinding accents | 35–60% | 55–90% | signal red `#b81d18`, chrome yellow `#e7b52a` |
 
-Regional ground palettes in the `molen.ecology` pack depart from the generic bands on purpose:
-they are calibrated against matched orthophotos of real cities. Desert and dry soil sits near
-45–50% lightness as a warm mid brown, not pale sand; Pacific Northwest lawns and woodland floor
-read darker and bluer under their conifer canopy; dense blocks pave over their unmapped ground.
+Regional ground palettes in the `molen.ecology` pack are tuned against orthophotos of real
+cities. They move hue and saturation and choose where in a band a surface sits; they do not
+leave the band. Desert and dry soil sits near 45–50% lightness as a warm mid brown, not pale
+sand; Pacific Northwest turf and woodland are deeper and cooler than the generic lawn, at the
+low end of their bands; dense blocks pave over their unmapped ground. An orthophoto is a
+measurement to convert, not a swatch to copy (rule 3 of [the picture](#the-picture)): its
+pixels hold the shadow of every tree and wall, and often a color cast.
 
 Palette rules:
 
@@ -126,7 +179,12 @@ Palette rules:
   about a tenth of an urban style's weight. Dark red and brown towers read as heavy blocks across
   a whole skyline.
 - **No black and no white on large surfaces.** Large surfaces stay between 22% and 94% lightness.
-  A near-black roof reads as a hole in the frame, and a pure white wall blooms in sun.
+  A near-black roof reads as a hole in the frame, and a pure white wall blooms in sun. This holds
+  for forest, turf, glass and regional ground as much as for walls and roofs; open deep water
+  alone may sit at 18%.
+- **Values step in order.** From the air, lightest to darkest: flat roofs and concrete, paving
+  and sidewalks, walls, bare ground and turf, pitched roofs, asphalt, foliage, water. Paving is
+  never the lightest thing in a frame, and nothing in sun is darker than a cast shadow.
 - **Roofs are darker than walls; flat commercial roofs are lighter.** Pitched roofs sit 15–35
   lightness points below their walls, so a neighborhood seen from above reads as roofs. Large
   flat roofs are light membranes and gravel, as they are in reality. A pitched style declares
@@ -286,9 +344,17 @@ For an identified real vehicle, the review must compare the actual geometry with
    mast, wing roots, glazing corners, roof breaks, intakes and tail junctions. Distinguish
    body length from overall length including rotors, propellers or appendages. Record the
    measurements and discrepancies; do not claim an overlay comparison if none was made.
+   Printed drawings are rarely one scale: calibrate each axis from its own dimension bar, trust
+   an annotated dimension over a drawn one, and settle a conflict with a matched photograph
+   whose camera is solved from landmarks other than the ones being tested.
 3. Correct the silhouette, cross sections, openings and major panel shapes before adding
    rivets, lettering or small controls. Shared generators may supply construction utilities;
    a generic body scaled to published dimensions is not an aircraft-specific airframe.
+   Matching length, width and height proves nothing about shape: judge the hood height, belt
+   line, roof end, forebody depth and canopy against the body they sit on, in a true-scale
+   side-on line-up of the whole class. In the engine repository,
+   `packages/entities/scripts/lineup-fleet.mjs` draws one. A part that looks oversized is often
+   correct on a body that is undersized, so measure both before changing either.
 4. Compare the operator view and wide cabin with the correct variant's references. Aim for
    overlays of the panel face and cabin sections where drawings exist, and matched-camera
    overlays for photographs. Verify panel outline, depth and tilt, instrument positions and
@@ -375,6 +441,25 @@ A style is a set of rules applied to arbitrary outlines, so its parts must survi
   falls back to a conservative default for the category, not to the style's tallest form.
 - **Declare the LOD tiers.** Each style lists which feature groups survive at tiers 0, 1 and 2,
   so distant buildings keep their roof shape and window rhythm after trim and props drop.
+
+A style cannot do all of it. A generated street is also held to these:
+
+- **Glass takes the sky.** A glazed facade reads as a sky-colored middle value, never as a dark
+  slab. Panes reflect the sky dome, and the flat levels used at distance carry the pane's
+  on-screen average rather than its base color, so a tower holds its value at every distance.
+- **Tops are finished.** A tower ends in a parapet and a plant enclosure or crown and steps back
+  where its style declares setbacks. A skyline shows more than one facade rhythm and more than
+  one glass tint. A straight extrusion with a bare top is a stand-in.
+- **A row is houses.** A long, narrow residential footprint is divided at its party walls, each
+  unit with its own roof, color and chimney, not roofed as one shed.
+- **Mapped appearance wins.** Where the map records a roof shape, a wall or roof color or a
+  material, use it, clamped to the palette bands.
+- **A building has a plot.** A house sits in a yard with an edge (fence, wall or hedge, by
+  region), a way in and something growing. A shop sits on paving with parking; a warehouse has a
+  yard and loading doors. Seeded buildings take their density from their mapped neighbors.
+- **Kinds are told apart.** A place of worship, a school, a fuel station, a greenhouse, a
+  stadium and a building site each read as what they are from the air. A windowless box is a
+  shed or a failure.
 
 The [worldgen guide](worldgen.md) and the
 [structure library](structure-library.md) cover the archstyle format and the 120 shipped styles.
@@ -471,6 +556,60 @@ instead of ending on a ruled line: grass blades and tufts of lawn over cast pavi
 10 cm edge on dirt and gravel. See
 [surface rendering](surface-rendering.md).
 
+Variation is felt, not seen. Patch edges are gradual and patch contrast stays within about ±6%,
+so ground detail never reads as camouflage, craters or stripes from a few hundred meters up.
+
+## Streets, lots and yards
+
+Roads, parking and the ground around buildings cover more of a city than its buildings do, so
+they carry the trainset as much as any model.
+
+- **A street has a section.** From the centerline out: lanes, a curb, a planting strip with
+  trees where the region plants them, a sidewalk, then a yard edge or a building front.
+  Arterials carry lane paint; residential streets carry parked cars instead.
+- **Paving is quiet.** Sidewalks sit at 62–70% lightness and curbs no higher than 75%, so roofs,
+  not paving, are the lightest things from the air. Markings appear at the size they are painted
+  and fade before they fall under a pixel. Distant streets stay asphalt grey.
+- **A lot is used.** Stall paint, cars at an occupancy that fits the use and the hour, end
+  islands with a tree, and lamp standards. Beyond a few hundred meters cars become color
+  patches, never nothing.
+- **Land shows its use.** A container terminal has stacks and cranes, an industrial yard has
+  trailers, a field has rows in the direction it is worked, a pitch has its lines and a cemetery
+  its stones.
+- **Shores are built or natural.** Sand with a foam line, a capped seawall, or a bank with rock
+  or reeds; never a cut edge.
+- **Pavement sits on its ground.** On a slope, bands follow one smoothed surface and stay joined
+  at their edges. A gap that shows soil, or a sidewalk that tilts away from its curb, is a defect
+  at any distance a walker can reach.
+
+## Sky, haze and water
+
+- **Haze** starts within a few hundred meters and thickens smoothly: a few percent at 500 m,
+  about 15% at 2 km and half at 8 km on a clear day, thinner with height so ridges stand above
+  valleys. It takes the sky's color in the direction of view, warmer toward the sun. Weather
+  shortens it.
+- **Clouds** are sculpted: flat bases at one altitude, billowed tops, grey beneath and bright
+  where the sun strikes. They shade the ground where the mode allows, and look as deliberate
+  from above as from below. A smooth lens or a white pad is unfinished.
+- **Water** is the largest surface in most famous views. Under the viewer it is deep and clear
+  in its regional color. Toward the horizon it takes the sky, and at sunset the sunset. Within a
+  few meters of a shore it lightens, and ocean beaches carry a foam line. Ponds, moats and
+  pools are lighter than open water. Ripples never show their repeat, and the sun's path is a
+  soft lobe, not sparkle.
+
+## Night and weather
+
+- **Night keeps its shapes.** The sky's floor is a deep blue that leaves roofs, roads and water
+  readable as dark shapes. Lights are warm and stay below white. Windows light pane by pane,
+  street lamps throw soft pools, and every lit street in view is a string of points, so a city
+  seen from the air is its grid.
+- **Overcast is soft, not dim.** Exposure holds and shadows go.
+- **Rain wets the ground.** Paving darkens and smooths, so lamps and signals streak on it.
+- **Snow settles.** Up-facing ground, roofs and crowns whiten; ploughed roads stay darker.
+- **Fog** shortens the haze and greys it. It makes a frame quieter, never emptier.
+
+A rain or snow frame is recognizable with its particles turned off.
+
 ## Vehicles, aircraft, trees and figures
 
 - **Controllable vehicles require close detail.** Follow the close-view vehicle standard above:
@@ -539,14 +678,20 @@ modes. Every mode keeps the same palette and style; only cost changes.
 | High | High, Ultra | 100–125% scale, ≤ 4 megapixels | High | Full detail, 1.5–2 px error | Discrete GPUs and capture |
 
 Economy has no cast shadows, so it must still look good without them. That is one more reason to
-keep roofs darker than walls and to avoid baked shading. Hosts choose a fixed mode with
+keep roofs darker than walls and to avoid baked shading. The reverse holds too: High, with its
+shadows, is never harder to read than Economy.
+
+Every mode shows the same things. Parked cars, street trees, lot paint and night lights step
+down to cheaper forms with the mode; they do not disappear. A lot that holds cars at High holds
+color patches at Economy. Hosts choose a fixed mode with
 `quality: 'economy' | 'balanced' | 'high'`, or let `'auto'` adapt; see
 [adaptive rendering performance](adaptive-performance.md).
 
 ## Review before submitting
 
 Run this review for every new or changed model, style or palette. A successful build is not a
-visual approval.
+visual approval. A change that touches the scene as a whole also runs the
+[scene review](#scene-review).
 
 Perform these checks during the same continuous pass that builds the model. Reuse the brief,
 reference pictures and map fit already established; do not restart research in a separate
@@ -580,6 +725,45 @@ npx molen figure preview --preset human.adult --angles review --out figure.png
 
 In the engine repository, the World Explorer is the reference scene. Its structure sheet renders
 all 120 styles under the same light, `node examples/world-explorer/scripts/capture-structure-sheet.mjs`.
+
+### Scene review
+
+Run this for a change to light, exposure, haze, sky, water or weather, to a ground or regional
+palette, to a distribution (trees, cars, seeded buildings) or to a level-of-detail rule. It
+judges whole frames against [the picture](#the-picture), in every region the host ships, and it
+compares the same poses before and after.
+
+| View | Height above ground | What it tests |
+| --- | --- | --- |
+| Street | Eye level, on a sidewalk | Life within fifty meters, shade, glass, paving |
+| Rooftop | 100–200 m, along a street | Tower tops, lots, street trees, level changes |
+| Low aerial | 300–500 m, looking 20–30° down | Values, dead ground, yards, water and shore |
+| Airliner | 5–8 km | Distance as mass, haze, clouds from above |
+
+Take each view at clear noon. Take the low aerial also an hour after sunrise, at sunset, at
+midnight, and under overcast, rain and snow. Take the street and the low aerial at Economy as
+well as High. Wait until nothing is still loading: an incomplete frame is a failed capture, not
+evidence.
+
+1. **Squint.** Blur the frame or view it 320 pixels wide. Three values in clear shapes, nothing
+   black, and the subject still obvious.
+2. **Grey.** In greyscale, roofs, ground, foliage and water are still told apart.
+3. **Floor and ceiling.** Sample the darkest and lightest large regions: none under 8% or over
+   94% on screen at noon.
+4. **Hue.** Sample sunlit turf, a conifer, a broadleaf crown and open water against the ranges
+   in rule 2.
+5. **Depth.** The farthest third of the frame is lighter and lower in contrast than the nearest.
+6. **Dead ground.** Find the largest flat, single-color surface. Over a hectare, it fails.
+7. **Life.** In the street view, find a tree, a vehicle, a piece of furniture and a sign.
+8. **Levels.** Fly the rooftop pose toward its subject. No object changes value, and no level
+   change draws the eye.
+9. **Light.** The morning, overcast and noon frames have the same overall brightness. The night
+   frame shows the street grid, the shoreline and the skyline.
+10. **Cost.** Record draws, triangles and resident geometry on the same pose before and after,
+    in each mode. A visual gain is not paid for with a slower mode.
+
+A region passes on its own frames. A palette that scores well against an orthophoto and fails
+the street view has not passed.
 
 ## Read next
 

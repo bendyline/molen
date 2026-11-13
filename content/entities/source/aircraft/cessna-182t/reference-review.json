@@ -218,8 +218,8 @@
     "statesInspected": true,
     "roundingCheck": "Digital airspeed now explicitly rounds to nearest knot; refreshed cruise and upper-range captures inspected. Geometry/source/runtime hashes unchanged."
   },
-  "sourceHash": "sha256:b809f525e6fcd0fe422015feb2b5ce8b75a50c981bfbfa3eae9cdf6fadb54f96",
-  "runtimeHash": "sha256:fb2e644f04f97911c66631cf7675034e50c2e68174b3b0a39d4656fd8d32117c",
+  "sourceHash": "sha256:64448a43d8372934ca07f14de714cebe6a6bddb17390268350712576abf236f6",
+  "runtimeHash": "sha256:415282cbbc3b2c0f9c8828ffb91977e4ae2894b5c50df9174224f675c349803e",
   "limitations": [
     "The handbook three-view is schematic: uniform length/span scale gives approximately 3.15–3.2 m fin height while the printed height is 2.8448 m. Published height, propeller diameter and clearance take precedence; visible fin, nose-wheel and propeller-hub residuals remain. The reference was not stretched to conceal this disagreement.",
     "The handbook panel photograph has perspective and callouts. GDU bezel width provides approximate absolute scale. Panel brow, upholstery, trim pedestal connection and small switch labels remain simplified; rivet rows follow visible skin divisions rather than a manufacturing fastener map.",
@@ -249,6 +249,48 @@
       "Checks cover existing bindings; Cherokee and Caravan pedal geometry is static.",
       "Full control travel and flight response remain approximations unless independently dimensioned in the model reference notes.",
       "This audit verifies movement; it does not upgrade legacy helicopter avionics or remove previously documented geometry limitations."
+    ]
+  },
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "packages/entities/scripts/cockpit-sweep.mjs rays from pilotEye through source.glb, then seat, pitched-down and exterior nose renders inspected at the runtime camera (+Z, 60 degrees vertical).",
+    "before": {
+      "eye": [
+        0.28,
+        1.81,
+        0.5
+      ],
+      "outside": 49,
+      "horizon": 95,
+      "overNose": -8,
+      "headroom": 0.22,
+      "wall": 0.29,
+      "panel": 1.09,
+      "cushion": 0.93,
+      "seatback": 0.39,
+      "poked": 6.2
+    },
+    "after": {
+      "eye": [
+        0.28,
+        1.81,
+        0.5
+      ],
+      "outside": 53,
+      "horizon": 95,
+      "overNose": -8,
+      "headroom": 0.22,
+      "wall": 0.29,
+      "panel": 1.09,
+      "cushion": 0.93,
+      "seatback": 0.39,
+      "poked": 6.2
+    },
+    "corrections": [
+      "The gray slab was the sun visors, reaching past the header into the windscreen. They now stow flat on the headliner behind it."
+    ],
+    "limitations": [
+      "Eye to panel reads 1.09 m, long against the 0.65 to 0.9 m target, and was left alone. Poked 6.2 percent is the speed tape, hidden at runtime by per-row visibility, not geometry through the skin."
     ]
   }
 }

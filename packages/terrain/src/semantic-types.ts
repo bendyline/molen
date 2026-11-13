@@ -123,12 +123,31 @@ export interface TerrainTransportationFeature extends TerrainStructureIdentity {
   bridgeConnections?: { point: TerrainSemanticPoint; elevation: number; radius: number }[];
   /** Sampled bridge deck or bounded, connected approach grading. Points are normalized tile coordinates;
    * elevation is absolute Y and flatness (0..1) suppresses terrain crossfall at the deck. */
-  bridgeApproachProfile?: { point: TerrainSemanticPoint; elevation: number; flatness: number }[];
+  bridgeApproachProfile?: TerrainBridgeProfileSample[];
   tunnel?: boolean;
   /** Surveyed tunnel road-floor height in absolute world Y units. Otherwise inferred from portals. */
   tunnelFloorElevation?: number;
   /** Interior floor-to-ceiling clearance in world units. Otherwise class-based. */
   tunnelClearance?: number;
+}
+
+/** One sample of a bridge deck or of a road climbing to one; see `bridgeApproachProfile`. */
+export interface TerrainBridgeProfileSample {
+  point: TerrainSemanticPoint;
+  /** Absolute Y of the road surface. */
+  elevation: number;
+  /** 0 where the cross-section follows the ground's crossfall, 1 where it is level. */
+  flatness: number;
+  /**
+   * The ground height the profile was worked out over at this point, when that was not the
+   * ground the road is drawn on (a profile graded with neighboring tiles reads one elevation
+   * level for all of them). With `anchor`, whoever draws the road moves the sample by the
+   * difference, so a deck still lands exactly on the road at its end.
+   */
+  ground?: number;
+  /** How much of that difference the sample takes, 0 to 1: all of it on the ground, less and
+   * less along a deck away from where it lands. */
+  anchor?: number;
 }
 
 export interface TerrainBuildingFeature extends TerrainStructureIdentity {

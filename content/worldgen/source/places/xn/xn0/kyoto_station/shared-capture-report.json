@@ -1,0 +1,75 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.kyoto_station",
+  "inputHash": "sha256:d59c4d883a44e417021cecf576ab5736eaee63937ae2f6ffdfe2b6836514d1da",
+  "sourceHash": "sha256:9f6ff2520401b955c3ae77ce52da6a57ecf64750a10710729736d4dea616b248",
+  "runtimeHash": "sha256:60f256ac88d4ae08f989ddebf2f78d7b71c533fd82453da7a2039a8722afdcfc",
+  "fixtureHash": "sha256:94621bb7508c0caa8c0131e21f3b655ea4f89bad1cdc858864f172ac69e5a342",
+  "placementHash": "sha256:19f7f0c7750aa83756971593611a56da63e7eee45b3abfacd2ed5ba0bb1411c6",
+  "materialGraphs": {
+    "molen.worldgen.material.concrete_panel": {
+      "path": "materials/concrete_panel.matgraph.json",
+      "hash": "sha256:abe4cae93974b54fcec791eeaf719abfc7b069c87e136f4c371cebdaed7321f4"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    },
+    "molen.worldgen.material.glass_frit_triangular": {
+      "path": "materials/glass_frit_triangular.matgraph.json",
+      "hash": "sha256:ab416307e458827df9d530e60622e3db805370db7cbf2697ebb4eb0716c967b6"
+    },
+    "molen.worldgen.material.metal_standing_seam": {
+      "path": "materials/metal_standing_seam.matgraph.json",
+      "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-kyoto-station.png",
+      "hash": "sha256:c4fd20b6dd870ccd9c27eca650fe3b09c8aed09d49ae09769321e7ab376ca869",
+      "camera": {
+        "name": "detail-station-and-karasuma-square",
+        "position": [
+          -147,
+          209,
+          -276
+        ],
+        "lookAt": [
+          -5,
+          12,
+          15
+        ],
+        "fov": 64,
+        "lightDirection": [
+          -0.58,
+          1,
+          -0.61
+        ],
+        "detail": true
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "kyoto.station",
+        "visibleDraws": 7
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true,
+    "landcoverRestored": true
+  },
+  "errors": [],
+  "notes": "Six shared graphs resolve once per tier for concrete, panel concrete, standing-seam roofing, painted steel, granite and tinted glazing. The atrium and guards use a local translucent material."
+}

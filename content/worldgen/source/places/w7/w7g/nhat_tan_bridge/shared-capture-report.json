@@ -1,0 +1,72 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.nhat_tan_bridge",
+  "inputHash": "sha256:db69caa9fdf09572983e2dd94e52c339005065ddb84553f02ba7adc899f49bfd",
+  "sourceHash": "sha256:62c80cc01ce47e2e19f6a6e3ff6dc8ede122796adcb739ad01567d677bb19e78",
+  "runtimeHash": "sha256:2811657d629123bf189df9edae850ccf9fc7ec2e00e8ce3e087308f1e79eb2fd",
+  "fixtureHash": "sha256:e47b225f9d634c19ef70236baa0538582b7a243a8e290880d60410dab65ffd60",
+  "placementHash": "sha256:9e22cfe552e7af797e7948bb043cd0ecc1bf593fa2845e67d94cee1e36332722",
+  "materialGraphs": {
+    "molen.worldgen.material.gravel": {
+      "path": "materials/gravel.matgraph.json",
+      "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.metal_stainless": {
+      "path": "materials/metal_stainless.matgraph.json",
+      "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-nhat-tan-bridge.png",
+      "hash": "sha256:badbbf45530cdd1d4d37ffe34623d5de9cd3ae718e27db10151d9482053d799d",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -668,
+          70,
+          145
+        ],
+        "lookAt": [
+          -520,
+          49,
+          28
+        ],
+        "fov": 50,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.74,
+          1,
+          -0.57
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "nhat.tan.bridge",
+        "visibleDraws": 4
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Concrete, road aggregate, painted steel and stainless steel resolve once per loaded tier. The skyline shares the painted-metal material for its cable silhouettes."
+}

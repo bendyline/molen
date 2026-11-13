@@ -1,0 +1,425 @@
+{
+  "planId": "hotel_nacional_de_cuba",
+  "id": "hotel_nacional_de_cuba",
+  "assetId": "molen.worldgen.structure.hotel_nacional_de_cuba",
+  "title": "Hotel Nacional de Cuba",
+  "wikidataId": "Q2915936",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -82.38071,
+    "latitude": 23.143497
+  },
+  "size": [
+    124.76491928100586,
+    44.47000026702881,
+    60.47867393493652
+  ],
+  "actualBounds": {
+    "min": [
+      -67.52456665039062,
+      -2.380000114440918,
+      -31.73025131225586
+    ],
+    "max": [
+      57.240352630615234,
+      42.09000015258789,
+      28.748422622680664
+    ]
+  },
+  "visualBrief": "Hotel Nacional de Cuba, with cream hotel wings, open tower crowns and red-roofed corner turrets.",
+  "nativeAxes": {
+    "x": "southeast along the twin towers",
+    "y": "up",
+    "z": "southwest toward the landward entrance"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2007-10-04",
+    "validFrom": "2007-01-01",
+    "validUntil": "2008-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hotelnacionale.jpg",
+    "https://commons.wikimedia.org/wiki/File:Hotel_Nacional_de_Cuba_La_Habana.jpg"
+  ],
+  "stories": [
+    {
+      "id": "hotel-nacional-de-cuba-wp",
+      "url": "https://qualla.com/hotel-nacional-de-cuba/"
+    }
+  ],
+  "referenceInputHash": "7d67f9b9fc67352c944041cb56426621b60ecf01d04a66d2219655a0854923d5",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/dh/dhj/hotel_nacional_de_cuba/models/hotel-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/dh/dhj/hotel_nacional_de_cuba/models/hotel-model.mjs",
+    "level": "skyline",
+    "export": "hotelSkyline",
+    "errorMeters": 0.31,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "deck": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "dark": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.87,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hotelDistrict",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "hotelStreet",
+        "errorMeters": 0.071,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "hotelCloseup",
+        "errorMeters": 0.026,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "plaster_lime",
+    "stone_limestone",
+    "tile_ceramic",
+    "membrane"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -82.38071,
+      23.143497
+    ],
+    "heading": -0.8847431017201803,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -82.38084147343027,
+        23.143370150063618
+      ],
+      "modelHeight": 0,
+      "basis": "Original terrain immediately outside the mapped landward entrance projection. Individual thresholds and terrace grades are approximate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/23866797",
+      "way/390924258",
+      "way/965808705",
+      "way/965808701",
+      "way/965808694",
+      "way/965808699",
+      "way/314642676",
+      "way/965808695",
+      "way/965808696",
+      "way/965808697",
+      "way/965808698",
+      "way/965808700",
+      "way/965808702",
+      "way/965808703",
+      "way/965808704"
+    ],
+    "source": "https://www.openstreetmap.org/way/23866797",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:903b20e91ba912c75cd8526a050ddd539178d3d145d39d22e953eeaff9aae858",
+    "notes": "OpenStreetMap building way 23866797 fixes the principal hotel footprint within named hotel site 1497720993. Separate ways map the twin roof towers and eight smaller corner turrets. The lower entrance and attached northwestern wing share boundaries with the main hotel. Two exterior photos establish the early-2000s tower profile, cream wall treatment, fenestration and low roof details. Unseen rear elevations and precise heights are estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "October 2007 exterior, corroborated by a January 2006 oblique view. Main footprints and roof tower positions are mapped; heights and detailed window divisions are estimated.",
+    "The courtyard and perimeter use the original elevation source. Entrance thresholds, service areas and terrace elevations remain approximate.",
+    "Garden structures, interior rooms, vehicles and later decorations are outside the model."
+  ],
+  "sourceLicense": "Original deterministic geometry under the repository license. Exterior photographs by Jongleur100 and Entropy1963 are public domain. OpenStreetMap contributors supply mapped geometry under ODbL.",
+  "qaLodCameras": [
+    {
+      "name": "whole-havana-hotel-skyline",
+      "position": [
+        126,
+        61,
+        143
+      ],
+      "lookAt": [
+        -1,
+        18,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-havana-hotel-district",
+      "position": [
+        126,
+        61,
+        143
+      ],
+      "lookAt": [
+        -1,
+        18,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-havana-hotel-street",
+      "position": [
+        126,
+        61,
+        143
+      ],
+      "lookAt": [
+        -1,
+        18,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-havana-hotel-closeup",
+      "position": [
+        126,
+        61,
+        143
+      ],
+      "lookAt": [
+        -1,
+        18,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "landward-entrance-and-twin-towers",
+      "position": [
+        17,
+        22,
+        119
+      ],
+      "lookAt": [
+        2,
+        17,
+        2
+      ]
+    },
+    {
+      "name": "seaward-wing-and-corner-turrets",
+      "position": [
+        91,
+        49,
+        -81
+      ],
+      "lookAt": [
+        18,
+        23,
+        -2
+      ]
+    },
+    {
+      "name": "tower-crowns-and-courtyard",
+      "position": [
+        76,
+        76,
+        86
+      ],
+      "lookAt": [
+        1,
+        29,
+        1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 10348,
+    "vertices": 31044,
+    "materials": 5,
+    "bytes": 1421076,
+    "sha256": "sha256:6264652c49c6dafc7fac74f069570906aa254ee4b5e32f1bb3bf64784cc3b0d0"
+  }
+}

@@ -1,0 +1,378 @@
+{
+  "id": "pena_palace",
+  "title": "Pena Palace",
+  "wikidataId": "Q69513",
+  "referenceCoordinate": {
+    "longitude": -9.390495371,
+    "latitude": 38.787582072
+  },
+  "module": "content/worldgen/source/places/ey/eyc/pena_palace/models/pena-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-pena-palace.mjs",
+  "builder": "buildPenaLevel",
+  "surfaces": {
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.89
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.95
+    },
+    "glazed": {
+      "slot": "trim",
+      "graph": "tile_glazed",
+      "roughness": 0.76
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.79,
+      "metallic": 0.16
+    },
+    "clay": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.88
+    }
+  },
+  "exportLabel": "Molen original Pena Palace master",
+  "expectedDraftMasterHash": "sha256:395f17782e412647722371fd44f433d7ec1bfaf884646d47663ed1a9601de290",
+  "visualBrief": "The red convent and corner-pinnacled clock tower stand beside the ochre palace and its lead-colored dome. An open stone gate leads toward twin gilded cupolas above the tiled portal. The vaulted passage links the entrance side with a paved terrace and an open domed lookout.",
+  "heightPolicy": "A 483.7 m sea-level datum anchors the palace to standard viewer terrain. The retaining walls extend below sampled grade and the approach crosses the gate along the mapped service route. Two mapped convent courts remain open. The replacement covers the palace and its parts while preserving nearby footprints and paths.",
+  "nativeAxes": "Positive X runs north-northeast along the hilltop plan. Positive Z faces the east-southeast slope.",
+  "limitations": [
+    "The original and newer wings follow the PMTiles component outlines. Parapets, tower heights, roof profiles, and the entrance carvings are photo-based estimates.",
+    "Hilltop walls use the standard terrain grid, whose source resolution approximates the exposed rock and terrace elevations.",
+    "The visitor terrace, gate threshold and connecting grades are inferred for exterior visualization. Interior rooms and exact stair dimensions are outside the model."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Palacio_Nacional_da_Pena.jpg",
+      "hash": "sha256:1f61dff52d6d2d58c9dbd7c6f9077b76e3e735668127bb807372ffeebc2e9085",
+      "observed": "Roof plan, courtyard massing, and cliffside retaining terraces."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Pena_Palace_terrace.JPG",
+      "hash": "sha256:89abfdd7b4263fc16dd7ab20b04b07f9bb5da8f9a163b44a79bc2e9db1616356",
+      "observed": "Balustrades, painted plaster and crenellated terrace walls."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "hilltop-and-color-wings",
+      "position": [
+        92,
+        53,
+        -99
+      ],
+      "lookAt": [
+        0,
+        12,
+        -3
+      ],
+      "fov": 49
+    },
+    {
+      "name": "red-convent-and-clock",
+      "position": [
+        81,
+        30,
+        -59
+      ],
+      "lookAt": [
+        34,
+        13,
+        -3
+      ],
+      "fov": 56
+    },
+    {
+      "name": "yellow-dome-and-south-towers",
+      "position": [
+        -70,
+        31,
+        -49
+      ],
+      "lookAt": [
+        -27,
+        13,
+        -10
+      ],
+      "fov": 54
+    },
+    {
+      "name": "azulejo-and-terrace",
+      "position": [
+        14,
+        8.3,
+        -19
+      ],
+      "lookAt": [
+        0.5,
+        11.3,
+        -8
+      ],
+      "fov": 57
+    },
+    {
+      "name": "courtyard-and-roof-plan",
+      "position": [
+        9,
+        79,
+        39
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "east-approach-gate",
+      "position": [
+        -1.4,
+        7.7,
+        27
+      ],
+      "lookAt": [
+        -12,
+        8,
+        22.64
+      ],
+      "fov": 59
+    },
+    {
+      "name": "south-retaining-wall",
+      "position": [
+        -76,
+        7,
+        26
+      ],
+      "lookAt": [
+        -34,
+        10,
+        5
+      ],
+      "fov": 59
+    }
+  ],
+  "materialMethod": "Shared lime plaster, weathered limestone, glazed tile, painted metal and flat tile color the palace. Cut stone, twisted portal columns and crenellations use mesh relief.",
+  "sourceFacts": {
+    "mappedBuildingWay": 612095421,
+    "mappedRecordCount": 23,
+    "courts": 2,
+    "domes": 4
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        12,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ey/eyc/pena_palace/models/pena-model.mjs",
+    "export": "buildPenaSkyline",
+    "surfaces": {
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.89
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.95
+      },
+      "glazed": {
+        "slot": "trim",
+        "graph": "tile_glazed",
+        "roughness": 0.76
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.79,
+        "metallic": 0.16
+      },
+      "clay": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.88
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPenaDistrict",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95
+          },
+          "glazed": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.76
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.16
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildPenaStreet",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95
+          },
+          "glazed": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.76
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.16
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildPenaCloseup",
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.89
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95
+          },
+          "glazed": {
+            "slot": "trim",
+            "graph": "tile_glazed",
+            "roughness": 0.76
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.79,
+            "metallic": 0.16
+          },
+          "clay": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.88
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "pena_palace-skyline",
+      "position": [
+        92,
+        53,
+        -99
+      ],
+      "lookAt": [
+        0,
+        12,
+        -3
+      ],
+      "fov": 49,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "pena_palace-district",
+      "position": [
+        92,
+        53,
+        -99
+      ],
+      "lookAt": [
+        0,
+        12,
+        -3
+      ],
+      "fov": 49,
+      "reviewLod": "district"
+    },
+    {
+      "name": "pena_palace-street",
+      "position": [
+        92,
+        53,
+        -99
+      ],
+      "lookAt": [
+        0,
+        12,
+        -3
+      ],
+      "fov": 49,
+      "reviewLod": "street"
+    },
+    {
+      "name": "pena_palace-closeup",
+      "position": [
+        92,
+        53,
+        -99
+      ],
+      "lookAt": [
+        0,
+        12,
+        -3
+      ],
+      "fov": 49,
+      "reviewLod": "closeup"
+    }
+  ]
+}

@@ -1,0 +1,904 @@
+{
+  "format": "molen/structure-medium-fi-report@1",
+  "captureVersion": 2,
+  "assetId": "molen.worldgen.structure.zwinger",
+  "inputHash": "sha256:02a48169c6d79df9538f6ceb590f75a3a93fe56a58f25d8bdc4722c9edefdf8f",
+  "sourceHash": "sha256:aa63c38676cbd805ee580e8d5a263f686532b66546786e48bb23e4be0e861648",
+  "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.zwinger",
+    "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114"
+  },
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:5a230fe3de566e94ec6865bac006fba130c347f7549f6b21755454e6f5cf0249",
+      "bytes": 89668,
+      "gzipBytes": 24459,
+      "triangles": 906,
+      "cpuBytes": 82224,
+      "gpuBytes": 82224,
+      "errorMeters": 1.6,
+      "drawCalls": 6
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:9990ba1940607e7748645eb2e7984e55efb581f8a6a2f0c4a0f5bae6af25fe65",
+      "bytes": 363140,
+      "gzipBytes": 95934,
+      "triangles": 3887,
+      "cpuBytes": 353372,
+      "gpuBytes": 353372,
+      "errorMeters": 0.72,
+      "drawCalls": 8
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:602730f23c0953b48364b486fb0ae2b884cfb55cf2b89d0a6a01d0885dab6173",
+      "bytes": 1459052,
+      "gzipBytes": 381557,
+      "triangles": 15666,
+      "cpuBytes": 1449220,
+      "gpuBytes": 1449220,
+      "errorMeters": 0.28,
+      "drawCalls": 8
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:786730d4d88be2194f95b215fa1dc3c83fd7eb2dca1ce9cb67e9f0b473a3c2e5",
+      "bytes": 3307232,
+      "gzipBytes": 855408,
+      "triangles": 36154,
+      "cpuBytes": 3297376,
+      "gpuBytes": 3297376,
+      "errorMeters": 0.1,
+      "drawCalls": 8
+    }
+  ],
+  "rig": {
+    "toneMapping": "aces",
+    "exposure": 1.05
+  },
+  "fixtureHash": "sha256:ef8f2bdfbc2dc3a5ed36746c4fcb89393615df313c940b6ceb5091eb77e52793",
+  "frames": [
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:71960c6f44cc97b9ee2af8bd7fce957d8435494e03837b11da82ad6b06031a2a",
+      "camera": {
+        "name": "main-transition-skyline",
+        "position": [
+          89,
+          165,
+          190
+        ],
+        "lookAt": [
+          0,
+          4,
+          10
+        ],
+        "fov": 60,
+        "group": "main",
+        "mediumName": "transition-skyline",
+        "shadows": true,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ]
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:5a230fe3de566e94ec6865bac006fba130c347f7549f6b21755454e6f5cf0249",
+        "level": "skyline",
+        "placementId": "zwinger",
+        "visibleDraws": 6
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 554225,
+        "visibleMemberDraws": {
+          "zwinger": 6
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:0fb2e3066df9065a8239606febf216a3bca88827ab1cc5b86b61c3deba7dd052",
+      "camera": {
+        "name": "main-skyline-noon-economy",
+        "position": [
+          98,
+          192,
+          221
+        ],
+        "lookAt": [
+          0,
+          6,
+          13
+        ],
+        "fov": 56,
+        "group": "main",
+        "mediumName": "skyline-noon-economy",
+        "shadows": false,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ],
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:5a230fe3de566e94ec6865bac006fba130c347f7549f6b21755454e6f5cf0249",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "placementId": "zwinger",
+        "visibleDraws": 6
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 554225,
+        "visibleMemberDraws": {
+          "zwinger": 6
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:ff1ea10c68b345b2f9840b8f98322124768d0b70802e8515206b32cdff3c91ee",
+      "camera": {
+        "name": "main-skyline-noon-high",
+        "position": [
+          98,
+          192,
+          221
+        ],
+        "lookAt": [
+          0,
+          6,
+          13
+        ],
+        "fov": 56,
+        "group": "main",
+        "mediumName": "skyline-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ],
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:5a230fe3de566e94ec6865bac006fba130c347f7549f6b21755454e6f5cf0249",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "zwinger",
+        "visibleDraws": 6
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 554225,
+        "visibleMemberDraws": {
+          "zwinger": 6
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:acf00b88a9d3e308f9af8c184265bbdc7ca1af242027791ab9d74ce8c54c6453",
+      "camera": {
+        "name": "main-skyline-late-economy",
+        "position": [
+          98,
+          192,
+          221
+        ],
+        "lookAt": [
+          0,
+          6,
+          13
+        ],
+        "fov": 56,
+        "group": "main",
+        "mediumName": "skyline-late-economy",
+        "shadows": false,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:5a230fe3de566e94ec6865bac006fba130c347f7549f6b21755454e6f5cf0249",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "placementId": "zwinger",
+        "visibleDraws": 6
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 554225,
+        "visibleMemberDraws": {
+          "zwinger": 6
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:d42ee62b04dd6e89ead0964bd693fd64574d506228ad39f6f0a782d61a6b11a3",
+      "camera": {
+        "name": "main-skyline-late-high",
+        "position": [
+          98,
+          192,
+          221
+        ],
+        "lookAt": [
+          0,
+          6,
+          13
+        ],
+        "fov": 56,
+        "group": "main",
+        "mediumName": "skyline-late-high",
+        "shadows": true,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:5a230fe3de566e94ec6865bac006fba130c347f7549f6b21755454e6f5cf0249",
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "placementId": "zwinger",
+        "visibleDraws": 6
+      },
+      "view": {
+        "draws": 22,
+        "triangles": 554225,
+        "visibleMemberDraws": {
+          "zwinger": 6
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:4f9dbde6dff00b67271c7ea2f2a9178cf4f60f6f422dad9e15f7f8e474b2c871",
+      "camera": {
+        "name": "main-transition-district",
+        "position": [
+          89,
+          165,
+          190
+        ],
+        "lookAt": [
+          0,
+          4,
+          10
+        ],
+        "fov": 60,
+        "group": "main",
+        "mediumName": "transition-district",
+        "shadows": true,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ]
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:9990ba1940607e7748645eb2e7984e55efb581f8a6a2f0c4a0f5bae6af25fe65",
+        "level": "district",
+        "placementId": "zwinger",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 557206,
+        "visibleMemberDraws": {
+          "zwinger": 8
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:d87047c09cc819936cf683e1a473637004b44c94b876c14b80d3fb7a178f42f4",
+      "camera": {
+        "name": "main-block-noon-economy",
+        "position": [
+          13,
+          74,
+          -81
+        ],
+        "lookAt": [
+          0,
+          2,
+          37
+        ],
+        "fov": 56,
+        "group": "main",
+        "mediumName": "block-noon-economy",
+        "shadows": false,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ],
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:9990ba1940607e7748645eb2e7984e55efb581f8a6a2f0c4a0f5bae6af25fe65",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "placementId": "zwinger",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 557206,
+        "visibleMemberDraws": {
+          "zwinger": 8
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:cac4b69fcf0ad393055e8a6ad4bf19cc4890575159f967db8e24496d323fa09a",
+      "camera": {
+        "name": "main-block-noon-high",
+        "position": [
+          13,
+          74,
+          -81
+        ],
+        "lookAt": [
+          0,
+          2,
+          37
+        ],
+        "fov": 56,
+        "group": "main",
+        "mediumName": "block-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ],
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:9990ba1940607e7748645eb2e7984e55efb581f8a6a2f0c4a0f5bae6af25fe65",
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "zwinger",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 557206,
+        "visibleMemberDraws": {
+          "zwinger": 8
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:162641acf8cfcd768ad9b6d404928ab0fddd60dad9858056bafe4d291b7f41be",
+      "camera": {
+        "name": "main-block-late-economy",
+        "position": [
+          13,
+          74,
+          -81
+        ],
+        "lookAt": [
+          0,
+          2,
+          37
+        ],
+        "fov": 56,
+        "group": "main",
+        "mediumName": "block-late-economy",
+        "shadows": false,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:9990ba1940607e7748645eb2e7984e55efb581f8a6a2f0c4a0f5bae6af25fe65",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "placementId": "zwinger",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 557206,
+        "visibleMemberDraws": {
+          "zwinger": 8
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:bdd2ab96c3df465bb111486a9a30de5c087f204e35f0c4c28cc555af2b7c8a35",
+      "camera": {
+        "name": "main-block-late-high",
+        "position": [
+          13,
+          74,
+          -81
+        ],
+        "lookAt": [
+          0,
+          2,
+          37
+        ],
+        "fov": 56,
+        "group": "main",
+        "mediumName": "block-late-high",
+        "shadows": true,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:9990ba1940607e7748645eb2e7984e55efb581f8a6a2f0c4a0f5bae6af25fe65",
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "placementId": "zwinger",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 557206,
+        "visibleMemberDraws": {
+          "zwinger": 8
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:4b87e3ffc33644e892219eae860e9360cf45fd53e8af6359c07f58f7651f66cf",
+      "camera": {
+        "name": "main-transition-street",
+        "position": [
+          89,
+          165,
+          190
+        ],
+        "lookAt": [
+          0,
+          4,
+          10
+        ],
+        "fov": 60,
+        "group": "main",
+        "mediumName": "transition-street",
+        "shadows": true,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ]
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:602730f23c0953b48364b486fb0ae2b884cfb55cf2b89d0a6a01d0885dab6173",
+        "level": "street",
+        "placementId": "zwinger",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 568985,
+        "visibleMemberDraws": {
+          "zwinger": 8
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:7a365605f3dbd6a5764871c3369ee7a319e7df192d3582f80a89ef4f0e28ab22",
+      "camera": {
+        "name": "main-street-noon-economy",
+        "position": [
+          20,
+          9,
+          13
+        ],
+        "lookAt": [
+          -7,
+          11,
+          -50
+        ],
+        "fov": 58,
+        "group": "main",
+        "mediumName": "street-noon-economy",
+        "shadows": false,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:602730f23c0953b48364b486fb0ae2b884cfb55cf2b89d0a6a01d0885dab6173",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "placementId": "zwinger",
+        "visibleDraws": 7
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 568809,
+        "visibleMemberDraws": {
+          "zwinger": 7
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:c3c0400f3c73d80209b2b37368e5e13477ae8becd561e86091320b431665745b",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          20,
+          9,
+          13
+        ],
+        "lookAt": [
+          -7,
+          11,
+          -50
+        ],
+        "fov": 58,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:602730f23c0953b48364b486fb0ae2b884cfb55cf2b89d0a6a01d0885dab6173",
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "placementId": "zwinger",
+        "visibleDraws": 7
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 568809,
+        "visibleMemberDraws": {
+          "zwinger": 7
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:1cea30a501ca0dc693cdc6d09de09f2d670acedb9bf4421db0b0eb91fd4ab4ab",
+      "camera": {
+        "name": "main-street-late-economy",
+        "position": [
+          20,
+          9,
+          13
+        ],
+        "lookAt": [
+          -7,
+          11,
+          -50
+        ],
+        "fov": 58,
+        "group": "main",
+        "mediumName": "street-late-economy",
+        "shadows": false,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "resolutionScale": 0.65
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:602730f23c0953b48364b486fb0ae2b884cfb55cf2b89d0a6a01d0885dab6173",
+        "level": "street",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "placementId": "zwinger",
+        "visibleDraws": 7
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 568809,
+        "visibleMemberDraws": {
+          "zwinger": 7
+        },
+        "quality": "economy",
+        "resolutionScale": 0.65,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:7f8cbab2e720ad95d7a22fc2912590a3d31e716e1e5d9fe7eec5f235fbab5fad",
+      "camera": {
+        "name": "main-street-late-high",
+        "position": [
+          20,
+          9,
+          13
+        ],
+        "lookAt": [
+          -7,
+          11,
+          -50
+        ],
+        "fov": 58,
+        "group": "main",
+        "mediumName": "street-late-high",
+        "shadows": true,
+        "lightDirection": [
+          0.69,
+          0.56,
+          0.45
+        ],
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:602730f23c0953b48364b486fb0ae2b884cfb55cf2b89d0a6a01d0885dab6173",
+        "level": "street",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "placementId": "zwinger",
+        "visibleDraws": 7
+      },
+      "view": {
+        "draws": 23,
+        "triangles": 568809,
+        "visibleMemberDraws": {
+          "zwinger": 7
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:5023ced00750e185728d87c97ed0177ad8bd43ff47770b4045a00d6bcfbc6165",
+      "camera": {
+        "name": "main-transition-closeup",
+        "position": [
+          89,
+          165,
+          190
+        ],
+        "lookAt": [
+          0,
+          4,
+          10
+        ],
+        "fov": 60,
+        "group": "main",
+        "mediumName": "transition-closeup",
+        "shadows": true,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ]
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:786730d4d88be2194f95b215fa1dc3c83fd7eb2dca1ce9cb67e9f0b473a3c2e5",
+        "level": "closeup",
+        "placementId": "zwinger",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 589473,
+        "visibleMemberDraws": {
+          "zwinger": 8
+        },
+        "quality": "high",
+        "resolutionScale": 1,
+        "silhouette": false
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:ea65a15f1fbdb9d07835fa4a585a8bb3504a5b494636c9652929ace005fb8f99",
+      "camera": {
+        "name": "main-silhouette",
+        "position": [
+          89,
+          165,
+          190
+        ],
+        "lookAt": [
+          0,
+          4,
+          10
+        ],
+        "fov": 60,
+        "group": "main",
+        "mediumName": "silhouette",
+        "shadows": false,
+        "lightDirection": [
+          0.58,
+          1,
+          0.75
+        ],
+        "silhouette": true
+      },
+      "state": {
+        "assetId": "molen.worldgen.structure.zwinger",
+        "runtimeHash": "sha256:ee1e035f9a12e52239047c588cbe07499ab58e094b09257ca69b65a4c7c32114",
+        "lodHash": "sha256:786730d4d88be2194f95b215fa1dc3c83fd7eb2dca1ce9cb67e9f0b473a3c2e5",
+        "level": "closeup",
+        "placementId": "zwinger",
+        "visibleDraws": 8
+      },
+      "view": {
+        "draws": 24,
+        "triangles": 589473,
+        "visibleMemberDraws": {
+          "zwinger": 8
+        },
+        "quality": "economy",
+        "resolutionScale": 1,
+        "silhouette": true
+      }
+    }
+  ],
+  "errors": [],
+  "notes": "The six pavilions, four basin court, long Semper Gallery and crowned gate read through all four detail levels. Street and close-up add arcaded sash, shaped terrace rails, window surrounds and gilt roof ornaments."
+}

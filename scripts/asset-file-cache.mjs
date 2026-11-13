@@ -5,6 +5,10 @@ import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 
 const FORMAT = 'molen/asset-file-cache@1';
+// Hashing reads whole files, and callers hand over thousands at once (every output of the
+// landmark LOD job: about 8,900 GLBs). Opening all of them together exhausts the process's file
+// handles (EMFILE), so at most this many calculations run at a time.
+const CONCURRENT_HASHES = 64;
 
 function fingerprint(path) {
   const info = statSync(path, { bigint: true });
@@ -54,11 +58,25 @@ export async function createAssetFileCache(root, { force = false } = {}) {
     else entries.delete(entry.key);
     return value;
   };
+  let active = 0;
+  const waiting = [];
+  const limited = async (calculate) => {
+    if (active < CONCURRENT_HASHES) active++;
+    else await new Promise((resume) => waiting.push(resume));
+    try {
+      return await calculate();
+    } finally {
+      // Hand the slot straight to the next waiter, so a new caller cannot slip in as well.
+      const next = waiting.shift();
+      if (next) next();
+      else active--;
+    }
+  };
   return {
     stats,
     async get(path, kind, calculate) {
       const entry = start(path, kind);
-      return entry.current ? entry.value : finish(path, entry, await calculate());
+      return entry.current ? entry.value : finish(path, entry, await limited(calculate));
     },
     getSync(path, kind, calculate) {
       const entry = start(path, kind);

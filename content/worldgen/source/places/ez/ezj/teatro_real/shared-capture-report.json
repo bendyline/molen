@@ -1,0 +1,80 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.teatro_real",
+  "inputHash": "sha256:d4c371ae35fa6b4ed68cd0734325a8e28f97e0b942ea2e590a7eec345f0731b6",
+  "sourceHash": "sha256:c43d7acc43b7b746befbe1ce691378239c931804420bff3f6ccaef4e45c71108",
+  "runtimeHash": "sha256:c2945d33b7532d302089c972f2854cd0bf554d29dc9a6f8abf6e8f370c71599c",
+  "fixtureHash": "sha256:7124eea2535b5be73ca053a0d40f3fcc82a4ec5518aefc0d8945978920a796bd",
+  "placementHash": "sha256:395a9ad18d5090178a2eaff292b1b85c6df088a344cbb4038426cbd907d4ac87",
+  "materialGraphs": {
+    "molen.worldgen.material.stucco": {
+      "path": "materials/stucco.matgraph.json",
+      "hash": "sha256:d96343590b745615051aa42e86e1117bce5a4b4f7607fa129a99d6b1bece8119"
+    },
+    "molen.worldgen.material.metal_standing_seam": {
+      "path": "materials/metal_standing_seam.matgraph.json",
+      "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    },
+    "molen.worldgen.material.stone_granite": {
+      "path": "materials/stone_granite.matgraph.json",
+      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    },
+    "molen.worldgen.material.window_punched": {
+      "path": "materials/window_punched.matgraph.json",
+      "hash": "sha256:cc34da0c3f201320973e6000d3871295f88255e6ac6c8282bad935061b714fdc"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-theatre.png",
+      "hash": "sha256:93b659b5b59260b798a842a97db0d82e4a2804e3140cf9d964c43163f5f00c0e",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -133,
+          43,
+          91
+        ],
+        "lookAt": [
+          -12,
+          20,
+          2
+        ],
+        "fov": 46,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.45,
+          1,
+          0.64
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "teatro.real",
+        "visibleDraws": 6
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Six shared graphs serve every tier. Glazed faces sample the interior of the shared punched-window graph. The decorative frames, dark mullions, and daylight bands are modeled. Each graph resolves once per viewer session."
+}

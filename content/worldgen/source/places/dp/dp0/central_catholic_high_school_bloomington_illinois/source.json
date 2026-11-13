@@ -1,0 +1,57 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.central_catholic_high_school_bloomington_illinois",
+  "kind": "static-structure",
+  "title": "Central Catholic High School, Bloomington",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.central_catholic_high_school_bloomington_illinois",
+        "output": "assets/places/dp/dp0/central_catholic_high_school_bloomington_illinois/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:9ba4fecfa1d637b4a126c25b761118540308ba611055a3d00ed8e69ba73b86ca"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-bloomington-central-catholic",
+        "path": "models/generate-bloomington-central-catholic.mjs"
+      },
+      {
+        "id": "bloomington-central-catholic-model",
+        "path": "models/bloomington-central-catholic-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/school-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-school-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-8289-12346.png",
+      "terrain-sources/terrarium-15-8290-12346.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

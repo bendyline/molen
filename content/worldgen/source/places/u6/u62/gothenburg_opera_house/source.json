@@ -1,0 +1,59 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.gothenburg_opera_house",
+  "kind": "static-structure",
+  "title": "Gothenburg Opera House",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.gothenburg_opera_house",
+        "output": "assets/places/u6/u62/gothenburg_opera_house/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:e6a39391df137d73bf6be992003eb846428fe0c93ae896967c778469e8aa45bd"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-gothenburg-opera-house",
+        "path": "models/generate-gothenburg-opera-house.mjs"
+      },
+      {
+        "id": "gothenburg-opera-house-model",
+        "path": "models/gothenburg-opera-house-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "native-map/opera-controls.json",
+      "imagery-evidence.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "reference-rights/commons-qualla-opera-originals.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-17472-9918.png",
+      "terrain-sources/terrarium-15-17472-9919.png",
+      "terrain-sources/terrarium-15-17473-9918.png",
+      "terrain-sources/terrarium-15-17473-9919.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -1,0 +1,586 @@
+{
+  "planId": "canadian_museum_for_human_rights",
+  "id": "canadian_museum_for_human_rights",
+  "assetId": "molen.worldgen.structure.canadian_museum_for_human_rights",
+  "title": "Canadian Museum for Human Rights",
+  "wikidataId": "Q630212",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -97.13109275,
+    "latitude": 49.8906429
+  },
+  "size": [
+    135.54308319091797,
+    100.73500335216522,
+    120.15825653076172
+  ],
+  "actualBounds": {
+    "min": [
+      -67.66179656982422,
+      -0.6299999952316284,
+      -60.07912826538086
+    ],
+    "max": [
+      67.88128662109375,
+      100.1050033569336,
+      60.07912826538086
+    ]
+  },
+  "visualBrief": "Winnipeg’s Canadian Museum for Human Rights, with angular limestone roots, the layered glass Cloud and the 100-metre Tower of Hope.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2014-04-17",
+    "validFrom": "2014-01-01",
+    "validUntil": "2015-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Canadian_Museum_for_Human_Rights,_April_2014,_showing_sign_with_expected_opening_date.jpg",
+    "https://commons.wikimedia.org/wiki/File:Canadian_Museum_for_Human_Rights,_October_2012.JPG"
+  ],
+  "stories": [
+    {
+      "id": "canadian-museum-for-human-rights-wp",
+      "url": "https://qualla.com/canadian-museum-for-human-rights/"
+    }
+  ],
+  "referenceInputHash": "d7c7b95602bc7fac08cc478411a55892e7bed9df869d63ab174165d27dc0131f",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/cb/cbf/canadian_museum_for_human_rights/models/canadian-museum-for-human-rights-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4",
+    "heritage-tower-detail-mesh.mjs": "sha256:7e512a5bf8c96b011a28626300bfa99ee2844e8f324e3fe0d708bd7080203c67",
+    "polygon-triangulation.mjs": "sha256:6ca035a36a7c2777b99e56ddf373f1e75a1701c4596480e5ba904dcfac26c2ac",
+    "joined-path.mjs": "sha256:ad80cf5f984f8be137edec6e88c26a8a062d6e5966ae4ed15bd314aadf2ac5bc"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/cb/cbf/canadian_museum_for_human_rights/models/canadian-museum-for-human-rights-model.mjs",
+    "level": "skyline",
+    "export": "museumSkyline",
+    "errorMeters": 1.18,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "stone_limestone",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.31,
+        "metallic": 0.18
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.58,
+        "metallic": 0.38
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "museumDistrict",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.31,
+            "metallic": 0.18
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.58,
+            "metallic": 0.38
+          }
+        }
+      },
+      "street": {
+        "export": "museumStreet",
+        "errorMeters": 0.23,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.31,
+            "metallic": 0.18
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.58,
+            "metallic": 0.38
+          }
+        }
+      },
+      "closeup": {
+        "export": "museumCloseup",
+        "errorMeters": 0.075,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.31,
+            "metallic": 0.18
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.58,
+            "metallic": 0.38
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_raw",
+    "stone_limestone",
+    "stone_limestone_weathered",
+    "metal_painted"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.45,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      -97.13109275,
+      49.8906429
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -97.1312600725998,
+        49.89033747420051
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate south forecourt near the public approach to the museum."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          48.74274427070676,
+          -49.50377755528282
+        ],
+        [
+          57.44206727556609,
+          -37.0359945862754
+        ],
+        [
+          65.54613569692624,
+          -43.358941663663465
+        ],
+        [
+          65.42421608361037,
+          -25.592350932669703
+        ],
+        [
+          67.66179957661338,
+          -16.709055567963794
+        ],
+        [
+          64.39148523966674,
+          -12.37872737612306
+        ],
+        [
+          59.00550702405215,
+          8.682920282100305
+        ],
+        [
+          57.46358250120556,
+          14.772096428463545
+        ],
+        [
+          55.71367746146605,
+          21.673904857622514
+        ],
+        [
+          53.61952880741839,
+          28.586845235990896
+        ],
+        [
+          46.490817293604394,
+          40.35331541271481
+        ],
+        [
+          35.733204344436245,
+          58.11990614370857
+        ],
+        [
+          26.811557338584638,
+          60.07912918162765
+        ],
+        [
+          30.368741354461118,
+          39.017481523404285
+        ],
+        [
+          32.12581813574072,
+          24.623871364106037
+        ],
+        [
+          29.120858252084478,
+          24.53481577122168
+        ],
+        [
+          26.34539411096061,
+          24.456892127546737
+        ],
+        [
+          26.137413594067695,
+          28.141567273151047
+        ],
+        [
+          24.939732685529258,
+          34.08602808137382
+        ],
+        [
+          16.663542457015023,
+          30.245505649210596
+        ],
+        [
+          9.412911329885151,
+          26.983844568818274
+        ],
+        [
+          -9.061495974036898,
+          43.79308767808487
+        ],
+        [
+          -32.17602033059809,
+          57.73028792612483
+        ],
+        [
+          -35.34593027884915,
+          55.80446073504302
+        ],
+        [
+          -19.53941098683446,
+          32.37170792289801
+        ],
+        [
+          -6.587244995942248,
+          13.491922284409137
+        ],
+        [
+          -14.088887092263134,
+          6.078044197944797
+        ],
+        [
+          -44.195859865223085,
+          6.757093091809471
+        ],
+        [
+          -58.14489798930093,
+          3.773730738488669
+        ],
+        [
+          -60.16015748131165,
+          -4.597494969702839
+        ],
+        [
+          -21.87739886751387,
+          -11.699678482258383
+        ],
+        [
+          -21.776994479837466,
+          -20.672029439848654
+        ],
+        [
+          -21.690933576260427,
+          -28.64250498045603
+        ],
+        [
+          -63.05036949319213,
+          -30.078526411860324
+        ],
+        [
+          -67.66179957763254,
+          -43.06951098738253
+        ],
+        [
+          -43.06272463462222,
+          -49.63736094421387
+        ],
+        [
+          30.469145741118357,
+          -60.07912918083668
+        ]
+      ],
+      "minimumCoverage": 0.95,
+      "basis": "Named museum way 131229325 and its mapped parts."
+    },
+    "featureIds": [
+      "way/131229325",
+      "way/131229326",
+      "way/250706846",
+      "way/295122849",
+      "way/306556703",
+      "way/308812811",
+      "way/308812812",
+      "way/308812813",
+      "way/308812814",
+      "way/308812815",
+      "way/1381564357",
+      "way/1381564358",
+      "way/1381564359",
+      "way/1381564360",
+      "way/1381564361",
+      "way/1381564362",
+      "way/1382370277",
+      "way/1383041213",
+      "way/1383041214"
+    ],
+    "source": "https://www.openstreetmap.org/way/131229325",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:90078a6d1f9d7490e62d643be6a8c0f40925925c2e1569c114498e603ad523c0",
+    "notes": "The principal shape follows the named map outline. The construction-period photographs record the permanent massing. The building model excludes the opening sign, site works and surrounding landscape."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "The dated exterior reflects April 2014. The October 2012 photograph also informs the permanent curved glass and tower. The temporary opening sign, construction equipment and surrounding landscape are excluded.",
+    "The named overall outline and mapped parts fix the roots, galleries and tower in plan. The detailed curves, changing glass panel sizes, lattice, roof joins and slopes are simplified and approximate.",
+    "The museum’s published 100-metre tower height sets the overall height. Original independent terrain is preserved. The approximate terrain datum is referenced to the south approach."
+  ],
+  "sourceLicense": "Original geometry under the repository license. OpenStreetMap outlines are ODbL. Both verified Qualla photographs are CC0.",
+  "qaLodCameras": [
+    {
+      "name": "whole-museum-skyline",
+      "position": [
+        128,
+        83,
+        173
+      ],
+      "lookAt": [
+        1,
+        38,
+        1
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-museum-district",
+      "position": [
+        128,
+        83,
+        173
+      ],
+      "lookAt": [
+        1,
+        38,
+        1
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-museum-street",
+      "position": [
+        128,
+        83,
+        173
+      ],
+      "lookAt": [
+        1,
+        38,
+        1
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-museum-closeup",
+      "position": [
+        128,
+        83,
+        173
+      ],
+      "lookAt": [
+        1,
+        38,
+        1
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "limestone-galleries-from-provencher",
+      "position": [
+        -13,
+        33,
+        -156
+      ],
+      "lookAt": [
+        17,
+        40,
+        -22
+      ]
+    },
+    {
+      "name": "layered-cloud-from-the-forks",
+      "position": [
+        110,
+        36,
+        116
+      ],
+      "lookAt": [
+        17,
+        37,
+        -2
+      ]
+    },
+    {
+      "name": "sloping-roots-and-entry",
+      "position": [
+        -103,
+        28,
+        123
+      ],
+      "lookAt": [
+        -3,
+        23,
+        7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 12994,
+    "vertices": 38982,
+    "materials": 5,
+    "bytes": 1903952,
+    "sha256": "sha256:9ef73aa77509f70dcc755ae98fcb8be0b957e2a4fcd832fd1406f19554f8aeeb"
+  }
+}

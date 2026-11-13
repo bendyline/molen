@@ -28,7 +28,8 @@ export const baronFrame = () => ({
   ry: 0.76,
   cabinZ: 0.35,
   cabinWidth: 1.07,
-  eye: [0.28, 1.88, 0.35],
+  // Under the domed roof the headliner sits 0.19 m above the eye.
+  eye: [0.28, 1.82, 0.35],
   panelZ: 1.12,
   floor: 0.75,
 });
@@ -790,7 +791,7 @@ function cockpit(root, m) {
   // 2016 factory cockpit photo, 1376px page: bezel width 282px = 11.8in.
   const k = 0.29972 / 282,
     px = (u) => (686 - u) * k,
-    py = (v) => 1.61 - (v - 1090) * k,
+    py = (v) => 1.54 - (v - 1090) * k,
     z = 1.12,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz];
   const rect = (x, y, w, h, zz = z) => [
@@ -844,8 +845,8 @@ function cockpit(root, m) {
       d,
       a,
       b,
-      [b[0], 1.67 - Math.abs(b[0]) * 0.12, 1.37],
-      [a[0], 1.67 - Math.abs(a[0]) * 0.12, 1.37],
+      [b[0] * 0.96, 1.66 - Math.abs(b[0]) * 0.1, 1.38],
+      [a[0] * 0.96, 1.66 - Math.abs(a[0]) * 0.1, 1.38],
       m.dark,
       [0, 1, 0],
     );

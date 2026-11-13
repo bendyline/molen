@@ -3,6 +3,22 @@
 // cars, flyable aircraft, sky and haze, performance tiers, credits) are exported for hosts that
 // compose their own.
 
+// The map override declaration a view takes, and the frame its contents are laid out in. The
+// pieces a host composing its own view needs (`createMapOverrideSet`, `withMapOverrides`,
+// `withMapOverrideStructures`) are `@bendyline/molen-worldgen-earth`'s.
+export {
+  type MapOverride,
+  type MapOverrideArea,
+  type MapOverrideBuilding,
+  type MapOverrideClear,
+  type MapOverrideFrame,
+  type MapOverrideModel,
+  type MapOverridePoint,
+  type MapOverrideProp,
+  type MapOverrideSurface,
+  mapOverrideFrame,
+  mapOverridePoint,
+} from '@bendyline/molen-worldgen-earth/kernel';
 export type {
   EarthActorBehaviour,
   EarthActorChange,
@@ -59,6 +75,7 @@ export {
   createEarthFog,
   createEarthSky,
   type EarthSkyStyle,
+  earthStreamDistance,
   updateEarthFog,
 } from './client/atmosphere';
 export {
@@ -119,6 +136,7 @@ export {
 } from './client/earth-view';
 export type { EarthFleet, EarthFleetContent, EarthFleetOptions } from './client/fleet';
 export { createEarthFleet } from './client/fleet';
+export { composeEarthGroundGrading } from './client/ground-grading';
 export {
   EARTH_EXPOSURE,
   EARTH_LIGHTING,
@@ -143,8 +161,24 @@ export {
   type EarthNightLightingOptions,
 } from './client/night-lighting';
 export {
+  bindMapOverrideEntities,
+  bindMapOverrides,
+  type EarthBuildingHit,
+  type EarthOverride,
+  type EarthOverrideActor,
+  type EarthOverrideScene,
+  type EarthOverrides,
+  type EarthOverrideVehicle,
+  MAP_OVERRIDE_REFRESH_MARGIN,
+  type MapOverrideBinding,
+  type MapOverrideBindingChange,
+  type MapOverrideEntities,
+  type MapOverrideEntitySinks,
+} from './client/overrides';
+export {
   createEarthAdmissionGovernor,
   EARTH_CALIBRATION_QUALITY,
+  EARTH_INDEPENDENT_LAYERS,
   EARTH_QUALITY_CALIBRATION_MS,
   EARTH_STICKY_QUALITY,
   type EarthDeviceMemory,
@@ -155,7 +189,9 @@ export {
   earthPerformanceTier,
   earthPixelRatio,
   earthQualityLevel,
+  earthTerrainBudget,
   earthTerrainCacheBudget,
+  earthWorldgenCacheBytes,
 } from './client/performance';
 export {
   createEarthPrefetcher,
@@ -174,12 +210,29 @@ export {
   extrapolateTrack,
 } from './client/prefetch';
 export { createEarthTilePreloader } from './client/preload';
+export {
+  EARTH_RAIL_TOP,
+  EarthRailNetwork,
+  type EarthRailStop,
+  type EarthTrackTags,
+  isLightRailTrack,
+  isRunningTrack,
+} from './client/rail';
 export { createRegionalGroundColor } from './client/regional-ground';
 export {
   createEarthRoadSigns,
   type EarthRoadSignContent,
   type EarthRoadSigns,
 } from './client/road-signs';
+export { createSnowPace } from './client/snow';
+export {
+  type EarthTrain,
+  type EarthTrainCar,
+  type EarthTrainKind,
+  type EarthTrainStatus,
+  EarthTrains,
+  type EarthTrainsOptions,
+} from './client/trains';
 export {
   type EarthSpawnOptions,
   EarthVehicles,

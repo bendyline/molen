@@ -1,0 +1,953 @@
+{
+  "id": "zurich_hauptbahnhof",
+  "title": "Zürich Hauptbahnhof",
+  "wikidataId": "Q224494",
+  "referenceCoordinate": {
+    "longitude": 8.540177777,
+    "latitude": 47.378169444
+  },
+  "module": "packages/worldgen/scripts/zurich-hauptbahnhof-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-zurich-hauptbahnhof.mjs",
+  "builder": "buildZurichLevel",
+  "surfaces": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.91
+    },
+    "pier": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.91
+    },
+    "inside": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.91
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.91
+    },
+    "litTrim": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.91
+    },
+    "soffit": {
+      "slot": "trim",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.91
+    },
+    "floor": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.91
+    },
+    "plaza": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.91
+    },
+    "ballast": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.91
+    },
+    "slab": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.91
+    },
+    "tactile": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.91
+    },
+    "dark": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.16
+    },
+    "iron": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.16
+    },
+    "green": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.16
+    },
+    "red": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.16
+    },
+    "white": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.16
+    },
+    "rail": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.72,
+      "metallic": 0.16
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.82,
+      "metallic": 0.13
+    },
+    "zinc": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.82,
+      "metallic": 0.13
+    },
+    "roofDark": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.82,
+      "metallic": 0.13
+    },
+    "glass": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.38
+    },
+    "glassLight": {
+      "slot": "wall",
+      "graph": "glass_frit_triangular",
+      "roughness": 0.38
+    }
+  },
+  "exportLabel": "Molen original Zürich Hauptbahnhof master",
+  "expectedDraftMasterHash": "sha256:f42d1e3eac6bfcdfd0d91cb2f92924ed2c5b082fe35565e2a3614d57aef3c02b",
+  "visualBrief": "The Bahnhofplatz clock pavilion and sandstone arcades frame the historic Zürich station. The barrel-roofed concourse carries iron roof trusses, clerestory arches and the four-sided hall clock. Nine platform shelters step across the westbound rail fan.",
+  "heightPolicy": "The 411 m sea-level datum is sampled from standard viewer terrain. Three entrance approaches connect that surface to the modeled concourse. A fitted rail profile meets the west platform fan and rises toward the historic hall.",
+  "nativeAxes": "The mapped 127-meter hall roof fixes the signed longitudinal axis toward Bahnhofquai. The mapped western tracks, Bahnhofplatz and the two named station points identify the frontages.",
+  "limitations": [
+    "The historic wings, main hall, west shed and centerlines use PMTiles plan geometry. Window, truss, roof and architectural sections are reconstructed from the photos.",
+    "Terrain supplies approach elevations. The interior concourse and rail bed heights are reconstructed from standard terrain samples and visible station connections.",
+    "The model represents the public ground-level concourses and western train hall. Underground tracks, shops, interiors beyond the public hall and moving trains are outside its scope."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Swiss_Zurich_RailwayStation.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Swiss_Zurich_RailwayStation.jpg",
+      "hash": "sha256:d02a41947cb5644f13beefd0fff3a9a189e39988839e49d7e1c1362ae9e05b4f",
+      "observed": "bahnhofplatz front"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Z%C3%BCrich_Hauptbahnhof_HB.jpg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Z%C3%BCrich_Hauptbahnhof_HB.jpg",
+      "hash": "sha256:94fcecff7370fcfcb5cd636d0dc1bbc2770330f09e6882c1bd3364b37bd1f2a7",
+      "observed": "station aerial"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Zurich_Hauptbahnhof_main_hall_interior_2026.JPG",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/76/Zurich_Hauptbahnhof_main_hall_interior_2026.JPG",
+      "hash": "sha256:c395c2aecf1fccd8114997b9925e887688c46431f4b615a80072a3d294d33fa7",
+      "observed": "main hall"
+    }
+  ],
+  "cameras": [
+    {
+      "name": "bahnhofplatz-and-train-sheds",
+      "position": [
+        200,
+        160,
+        242
+      ],
+      "lookAt": [
+        -89,
+        5,
+        28
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.49,
+        1,
+        0.78
+      ]
+    },
+    {
+      "name": "bahnhofplatz-clock-portal",
+      "position": [
+        31,
+        6.6,
+        121
+      ],
+      "lookAt": [
+        27.6,
+        11.25,
+        87.7
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.35,
+        1,
+        0.7
+      ]
+    },
+    {
+      "name": "bahnhofquai-east-front",
+      "position": [
+        121,
+        5.45,
+        51
+      ],
+      "lookAt": [
+        91.8,
+        11.5,
+        28
+      ],
+      "fov": 65,
+      "lightDirection": [
+        0.76,
+        1,
+        0.47
+      ]
+    },
+    {
+      "name": "open-main-hall",
+      "position": [
+        69,
+        3.34,
+        28
+      ],
+      "lookAt": [
+        -30,
+        12.5,
+        28
+      ],
+      "fov": 65,
+      "lightDirection": [
+        0.36,
+        1,
+        0.4
+      ]
+    },
+    {
+      "name": "iron-roof-trusses",
+      "position": [
+        -25,
+        9.8,
+        25
+      ],
+      "lookAt": [
+        61,
+        18.4,
+        29
+      ],
+      "fov": 66,
+      "lightDirection": [
+        0.47,
+        1,
+        0.56
+      ]
+    },
+    {
+      "name": "north-sandstone-wing",
+      "position": [
+        40,
+        7.3,
+        -47
+      ],
+      "lookAt": [
+        15,
+        9.1,
+        -30
+      ],
+      "fov": 72,
+      "lightDirection": [
+        0.53,
+        1,
+        -0.57
+      ]
+    },
+    {
+      "name": "west-platform-concourse",
+      "position": [
+        -69,
+        3.18,
+        19
+      ],
+      "lookAt": [
+        -235,
+        5.33,
+        19.9
+      ],
+      "fov": 66,
+      "lightDirection": [
+        -0.6,
+        1,
+        0.39
+      ]
+    },
+    {
+      "name": "rail-shed-and-platforms",
+      "position": [
+        -326,
+        39,
+        100
+      ],
+      "lookAt": [
+        -179,
+        3,
+        22
+      ],
+      "fov": 65,
+      "lightDirection": [
+        -0.54,
+        1,
+        0.62
+      ]
+    }
+  ],
+  "materialMethod": "Six shared graphs supply sandstone, limestone, granite, painted metal, standing-seam zinc and tinted glazing. The stone openings, trusses, clocks and rails use original geometry.",
+  "sourceFacts": {
+    "station": "relation/5708936",
+    "terrainDatumMeters": 411,
+    "footprintPartIds": [
+      52776563842184,
+      35184864594438,
+      35184864594408,
+      35184864594423,
+      35184864594425,
+      35184479724360,
+      35185646891065,
+      35184755826647,
+      35184755826648,
+      35184864594405,
+      35184864594406,
+      35185646117281,
+      35185646117294,
+      35185646891044,
+      35185646891045,
+      35184755718688,
+      35184755718694,
+      35185646891042,
+      35185646891043
+    ],
+    "platformSheds": 9,
+    "mappedRailSegments": 34,
+    "surfaceTracks": 16,
+    "undergroundParts": [
+      35184755718688,
+      35184755718694,
+      35185646891042,
+      35185646891043
+    ]
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -90,
+        8,
+        29
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/zurich-hauptbahnhof-model.mjs",
+    "export": "buildZurichSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.91
+      },
+      "pier": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.91
+      },
+      "inside": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.91
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.91
+      },
+      "litTrim": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.91
+      },
+      "soffit": {
+        "slot": "trim",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.91
+      },
+      "floor": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.91
+      },
+      "plaza": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.91
+      },
+      "ballast": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.91
+      },
+      "slab": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.91
+      },
+      "tactile": {
+        "slot": "foundation",
+        "graph": "stone_granite",
+        "roughness": 0.91
+      },
+      "dark": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.16
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.16
+      },
+      "green": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.16
+      },
+      "red": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.16
+      },
+      "white": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.16
+      },
+      "rail": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.16
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.82,
+        "metallic": 0.13
+      },
+      "zinc": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.82,
+        "metallic": 0.13
+      },
+      "roofDark": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.82,
+        "metallic": 0.13
+      },
+      "glass": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.38
+      },
+      "glassLight": {
+        "slot": "wall",
+        "graph": "glass_frit_triangular",
+        "roughness": 0.38
+      }
+    },
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildZurichDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.91
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.91
+          },
+          "inside": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "litTrim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "soffit": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "plaza": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "slab": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "tactile": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.13
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.13
+          },
+          "roofDark": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.13
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "glassLight": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          }
+        },
+        "errorMeters": 0.72
+      },
+      "street": {
+        "export": "buildZurichStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.91
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.91
+          },
+          "inside": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "litTrim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "soffit": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "plaza": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "slab": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "tactile": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.13
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.13
+          },
+          "roofDark": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.13
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "glassLight": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          }
+        },
+        "errorMeters": 0.28
+      },
+      "closeup": {
+        "export": "buildZurichCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.91
+          },
+          "pier": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.91
+          },
+          "inside": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.91
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "litTrim": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "soffit": {
+            "slot": "trim",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.91
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "plaza": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "ballast": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "slab": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "tactile": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.91
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "white": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "rail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.16
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.13
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.13
+          },
+          "roofDark": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.13
+          },
+          "glass": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          },
+          "glassLight": {
+            "slot": "wall",
+            "graph": "glass_frit_triangular",
+            "roughness": 0.38
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "zurich_hauptbahnhof-skyline",
+      "position": [
+        200,
+        160,
+        242
+      ],
+      "lookAt": [
+        -89,
+        5,
+        28
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.49,
+        1,
+        0.78
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "zurich_hauptbahnhof-district",
+      "position": [
+        200,
+        160,
+        242
+      ],
+      "lookAt": [
+        -89,
+        5,
+        28
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.49,
+        1,
+        0.78
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "zurich_hauptbahnhof-street",
+      "position": [
+        200,
+        160,
+        242
+      ],
+      "lookAt": [
+        -89,
+        5,
+        28
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.49,
+        1,
+        0.78
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "zurich_hauptbahnhof-closeup",
+      "position": [
+        200,
+        160,
+        242
+      ],
+      "lookAt": [
+        -89,
+        5,
+        28
+      ],
+      "fov": 62,
+      "lightDirection": [
+        0.49,
+        1,
+        0.78
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

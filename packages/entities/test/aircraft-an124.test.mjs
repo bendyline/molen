@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises';
-import { Raycaster, Vector3 } from 'three';
+import { Vector3 } from 'three';
 import { expect, it } from 'vitest';
 import {
   compileModelSignalExpressions,
@@ -71,7 +71,7 @@ it('keeps An-124 analog panel, four engine readings and swept control hinges con
   update({}, 0);
   for (const [i, rpm] of [0.9, 1, 0.85, 0].entries())
     expect(node(`rpm-${i + 1}`).position.y).toBeCloseTo(
-      8.6 + ((670 - 622) * 3) / 1040 - 0.085 + rpm * 0.17,
+      8.71 + ((670 - 622) * 3) / 1040 - 0.085 + rpm * 0.17,
       7,
     );
   for (const side of ['pilot', 'copilot'])

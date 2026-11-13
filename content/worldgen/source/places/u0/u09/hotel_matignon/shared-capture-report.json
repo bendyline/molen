@@ -1,0 +1,72 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.hotel_matignon",
+  "inputHash": "sha256:e1910770b6d4dd07f3a8dd2f777640c9079b974f5fe95570d04b8080196cdce7",
+  "sourceHash": "sha256:17a0f58c0fde0a12d757f7e4ee6a0cc0125749f239698780549f53905b898109",
+  "runtimeHash": "sha256:29360dae3586c3b504360300f4b496bdcb482ec314ff6fa88e4c9423e8a512f2",
+  "fixtureHash": "sha256:fc0eb9cf9b50016f3f3dd3161885754cb2faae88be2dfb42063d821997af269a",
+  "placementHash": "sha256:ba284be69eceea0eee16b2d45093da11793e4b940d8146e9540b3e340f1fb82c",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    },
+    "molen.worldgen.material.slate": {
+      "path": "materials/slate.matgraph.json",
+      "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-hotel-matignon.png",
+      "hash": "sha256:d977b6670b896f32458339a21f726d019436d742c2cb79732565ea59ed1db02e",
+      "camera": {
+        "name": "main-street-noon-high",
+        "position": [
+          -63,
+          8,
+          19
+        ],
+        "lookAt": [
+          -6,
+          7,
+          5
+        ],
+        "fov": 50,
+        "group": "main",
+        "mediumName": "street-noon-high",
+        "shadows": true,
+        "lightDirection": [
+          -0.64,
+          1,
+          0.56
+        ],
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "resolutionScale": 1
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "hotel.matignon",
+        "visibleDraws": 4
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "Ashlar limestone, continuous limestone, slate and painted metal each resolve once. Shared stone distinguishes the dressed walls from carved trim, and the painted graph supports window tints and frames."
+}

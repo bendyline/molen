@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.canterbury_museum_christchurch",
+  "kind": "static-structure",
+  "title": "Canterbury Museum, Christchurch",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.canterbury_museum_christchurch",
+        "output": "assets/places/rb/rb6/canterbury_museum_christchurch/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:cbaea3ce56bade7b6dd1f4fd82958c6078db041f9cb4062dfe0b8fcf26a673f5"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-museum",
+        "path": "models/generate-museum.mjs"
+      },
+      {
+        "id": "museum-model",
+        "path": "models/museum-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/exterior-controls.json",
+      "reference-rights/commons-pd-originals.json",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-32096-20793.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

@@ -28,8 +28,8 @@ export const aw139Frame = () => ({
   ry: 0.95,
   cabinZ: 2.24,
   cabinWidth: 2.1,
-  eye: [-0.48, 1.82, 2.24],
-  panelZ: 2.88,
+  eye: [-0.48, 1.79, 2.24],
+  panelZ: 2.92,
   floor: 0.58,
   mainRotorPosition: [0, 3.57, 0],
 });
@@ -540,10 +540,10 @@ function cockpit(root, m, shell) {
     face = mat('AW139-panel', '#3b4244'),
     seat = mat('AW139-seats', '#777d7a'),
     belt = mat('AW139-harness', '#444b4b'),
-    z = 2.88,
+    z = 2.92,
     k = 0.2032 / 100,
     px = (u) => (674 - u) * k,
-    py = (v) => 1.52 - (v - 1370) * k,
+    py = (v) => 1.5 - (v - 1370) * k,
     at = (u, v, dz = 0) => [px(u), py(v), z + dz],
     pt = panelTools(d);
   const contour = [
@@ -561,25 +561,20 @@ function cockpit(root, m, shell) {
     [314, 1527],
   ].map(([u, v]) => at(u, v));
   sheet(d, contour, face, [0, 0, -1]);
-  // Shallow housing and glareshield: both stay under the windscreen as it falls to the nose.
-  const deep = z + 0.1;
-  sheet(
-    d,
-    contour.map((p) => [p[0], p[1], deep]),
-    m.trim,
-    [0, 0, 1],
-  );
+  // The hood stays behind the glass: its forward end drops with the windscreen's rake.
+  const forward = (p) => [p[0], p[1] - 0.1, z + 0.15];
+  sheet(d, contour.map(forward), m.trim, [0, 0, 1]);
   for (let i = 0; i < contour.length; i++) {
     const a = contour[i],
       b = contour[(i + 1) % contour.length];
-    quad(d, a, b, [b[0], b[1], deep], [a[0], a[1], deep], m.trim, [0, 1, 0]);
+    quad(d, a, b, forward(b), forward(a), m.trim, [0, 1, 0]);
   }
   outline(d, contour, 0.021, m.trim);
   const brow = contour.slice(0, 8).map((p) => [p[0] * 1.025, p[1] + 0.025, p[2] - 0.01]);
   for (let i = 0; i < brow.length - 1; i++) {
     const a = brow[i],
       b = brow[i + 1];
-    quad(d, a, b, [b[0], b[1] - 0.1, z + 0.2], [a[0], a[1] - 0.1, z + 0.2], m.trim, [0, 1, 0]);
+    quad(d, a, b, [b[0], b[1] - 0.14, z + 0.19], [a[0], a[1] - 0.14, z + 0.19], m.trim, [0, 1, 0]);
   }
   outline(d, brow, 0.025, m.trim, false);
   for (const [u, v, kind] of [
@@ -643,8 +638,8 @@ function cockpit(root, m, shell) {
     for (let c = 0; c < 5; c++)
       d.box([0.006, 0.006, 0.006], at(734 + c * 6, 1458 + r * 6, -0.033), d.ivory);
   // Long sloped center console: twin FMS CDUs, engine levers, audio and flight controls.
-  const pg = group(cabin, 'AW139-pedestal', [0, 1.16, 2.83]);
-  pg.rotation.x = -0.67;
+  const pg = group(cabin, 'AW139-pedestal', [0, 1.15, 2.9]);
+  pg.rotation.x = 1;
   const pd = detailKit(pg, 'pedestal'),
     pp = panelTools(pd);
   beveledBox(pd, [0.54, 1.0, 0.16], [0, -0.46, 0.035], m.trim, 0.014);
@@ -697,12 +692,7 @@ function cockpit(root, m, shell) {
     beveledBox(sd, [0.45, 0.6, 0.13], [x, y + 0.32, z - 0.21], seat);
     beveledBox(sd, [0.26, 0.17, 0.14], [x, y + 0.68, z - 0.21], seat);
     for (const s of [-1, 1]) {
-      sd.rod(
-        [x + s * 0.17, y - 0.21, z - 0.12],
-        [x + s * 0.17, y - 0.05, z - 0.12],
-        0.018,
-        m.metal,
-      );
+      sd.rod([x + s * 0.17, 0.6, z - 0.12], [x + s * 0.17, y - 0.05, z - 0.12], 0.018, m.metal);
       sheet(
         sd,
         [
@@ -720,29 +710,29 @@ function cockpit(root, m, shell) {
   };
   for (const side of [-1, 1]) {
     const x = side * 0.48;
-    addSeat(x, 0.85, 2.05);
+    addSeat(x, 0.95, 2.05);
     const cg = group(cabin, `AW139-cyclic-${side}`, [x, 0.59, 2.4]),
       cd = detailKit(cg, 'cyclic');
     outline(
       cd,
       [
         [0, 0, 0],
-        [0, 0.22, 0],
-        [0, 0.36, -0.16],
-        [0, 0.5, -0.16],
+        [0, 0.32, 0],
+        [0, 0.46, -0.08],
+        [0, 0.6, -0.08],
       ],
       0.018,
       m.trim,
       false,
     );
-    beveledBox(cd, [0.075, 0.14, 0.07], [0, 0.53, -0.16], m.trim, 0.012);
-    cd.box([0.025, 0.025, 0.018], [0, 0.57, -0.205], cd.red);
+    beveledBox(cd, [0.075, 0.14, 0.07], [0, 0.63, -0.08], m.trim, 0.012);
+    cd.box([0.025, 0.025, 0.018], [0, 0.67, -0.125], cd.red);
     cd.finish();
     bindings.push(
       { node: cg.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.15 },
       { node: cg.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.15 },
     );
-    const lg = group(cabin, `AW139-collective-${side}`, [x + 0.26, 0.7, 1.83]),
+    const lg = group(cabin, `AW139-collective-${side}`, [x + 0.26, 0.8, 1.83]),
       ld = detailKit(lg, 'collective');
     ld.rod([0, 0, 0], [0, 0.24, 0.37], 0.023, m.trim);
     beveledBox(ld, [0.1, 0.065, 0.17], [0, 0.25, 0.4], m.trim, 0.01);

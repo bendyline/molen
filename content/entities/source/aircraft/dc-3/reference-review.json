@@ -90,7 +90,7 @@
     "mode": "top-down-ortho",
     "center": [
       0,
-      -2.845481817506299
+      -2.7455
     ],
     "viewHeight": 1.5,
     "cameraHeight": 2.7
@@ -271,8 +271,8 @@
       "Cabin liner, seating and airframe rivet courses are polygonal approximations; no source photograph pixels are embedded or redistributed."
     ]
   },
-  "sourceHash": "sha256:9294fe6dc118d589bfa5a95d96e81930bf20deaf4de58d15cc17697e4a0fa5ed",
-  "runtimeHash": "sha256:7c8c460e4bd087dd14672ff4b6d2bbaee4c9438cdf69fe1edf7df313e88c1981",
+  "sourceHash": "sha256:f4ec8ba88ae92b72593b57d2cd8ceabedaa2ed9adf74c9d5a58cbd60ec26a740",
+  "runtimeHash": "sha256:6770a47817681727d644badd647b719591cfc86f9d44c68a73071a32364a0247",
   "limitations": [
     "Manual drawing covers UAL P&W-powered DC-3/DST; only common airframe dimensions/geometry/control travel used. Modeled Wright cowls and cockpit come from Knoxville photographs. This is not an exact serial-number restoration.",
     "Scanned three-view has small plan/side dimension discrepancies; printed95ft span and64ft5.5in length take priority. No nonuniform overlay fitting.",
@@ -281,5 +281,50 @@
     "Live gauges show simulated true airspeed in mph, geometric altitude in feet, true heading, pitch/roll, vertical speed, yaw rate, flap position and independent normalized engine RPM scaled to2350. No IAS/barometric/magnetic/gyro-error or propeller-governor simulation is claimed.",
     "Manifold/oil/fuel/temperature/vacuum/navigation/clock systems are unmodeled and have no fabricated readings. Propeller, mixture, trim and overhead switches are static; only throttle levers follow shared power input.",
     "Cabin liner, seating and airframe rivet courses are polygonal approximations; no source photograph pixels are embedded or redistributed."
-  ]
+  ],
+  "cockpitReview": {
+    "checked": "2026-11-06",
+    "method": "packages/entities/scripts/cockpit-sweep.mjs rays from pilotEye through source.glb, then seat, pitched-down and exterior nose renders inspected at the runtime camera (+Z, 60 degrees vertical).",
+    "before": {
+      "eye": [
+        0.56,
+        4.986,
+        6.472
+      ],
+      "outside": 35,
+      "horizon": 78,
+      "overNose": -9,
+      "headroom": 0.08,
+      "wall": 0.11,
+      "panel": 0.71,
+      "cushion": 2.1,
+      "seatback": null,
+      "poked": 7.8
+    },
+    "after": {
+      "eye": [
+        0.56,
+        4.74,
+        6.267
+      ],
+      "outside": 40,
+      "horizon": 41,
+      "overNose": -2,
+      "headroom": 0.3,
+      "wall": 0.37,
+      "panel": 0.75,
+      "cushion": 0.8,
+      "seatback": 0.21,
+      "poked": 0.2
+    },
+    "corrections": [
+      "No seat stood under the eye: the seats sat on a low floor 2.1 m below it and aft of it. A raised flight deck at y 2.9 now carries seats, column bases and pedals, with the eye over the cushion at [0.56, 4.2, 7.25] in the airframe datum.",
+      "Overhead panel faced up and aft near the head. It now follows the sloping roof behind the header, facing the pilots, at 72 percent width to fit under the curved ceiling.",
+      "Compass housing stood outside the windscreen; it moved behind the header and shrank to a 90 mm card. Panel lowered 0.1 m and its outer corners clipped so it stays inside the skin. Side quilting pulled inside the shell.",
+      "Bare-aluminium roof read as a black mass from inside, so the deck roof gained a painted lining."
+    ],
+    "limitations": [
+      "Deck height is inferred from the seated eye and the fuselage section, not from a drawing; no cockpit floor plan was found. The overhead width is a fit to the modeled ceiling, not a measurement. Horizon 41 percent reflects the 11.5 degree tail-down stance."
+    ]
+  }
 }

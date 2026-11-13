@@ -11,6 +11,7 @@ import {
   setTerrainSemanticTileContentHash,
   type TerrainBuildingFeature,
   type TerrainLandcoverFeature,
+  type TerrainPoiFeature,
   type TerrainSemanticTile,
   type TerrainTransportationFeature,
   terrainSemanticTileChecked,
@@ -48,9 +49,11 @@ export interface TerrainSemanticTileEdit {
   buildings?: readonly (number | TerrainBuildingFeature)[];
   transportation?: readonly (number | TerrainTransportationFeature)[];
   landcover?: readonly (number | TerrainLandcoverFeature)[];
+  /** Indexes count into the tile's POIs after any land-cover tile's were joined (none: empty). */
+  pois?: readonly (number | TerrainPoiFeature)[];
 }
 
-const EDITABLE = ['buildings', 'transportation', 'landcover'] as const;
+const EDITABLE = ['buildings', 'transportation', 'landcover', 'pois'] as const;
 
 /** Marks a line moved into a packed tile's point buffer: `n` points from point `at`. */
 const LINE = '~line';
@@ -251,6 +254,13 @@ export function terrainSemanticTileFromPacket(
         typeof entry === 'number' ? (from[entry] as TerrainLandcoverFeature) : entry,
       );
     }
+    const pois = edit.pois;
+    if (pois !== undefined) {
+      const from = tile.pois ?? [];
+      tile.pois = pois.map((entry) =>
+        typeof entry === 'number' ? (from[entry] as TerrainPoiFeature) : entry,
+      );
+    }
   }
   return tile;
 }
@@ -364,12 +374,30 @@ function* featureParts(feature: object): Generator<object> {
 }
 
 /**
- * Remember a packet for `derived`, made from `base` by replacing its buildings, transportation or
- * land cover while keeping most features as they are: `base`'s packet and the edit. A
+ * Remember a content hash for `derived`, made from `base` by an edit that `key` names completely
+ * (what was removed and added, and the tile geometry it was worked out in): `base`'s hash and the
+ * key. A cache keyed by tile content then need not serialize the edited tile, 8-20 ms of main
+ * thread for a dense town's. Nothing is remembered when `base` has no hash or `derived` has one.
+ */
+export function deriveTerrainSemanticTileContentHash(
+  base: TerrainSemanticTile,
+  derived: TerrainSemanticTile,
+  key: string,
+): void {
+  if (derived === base) return;
+  const hash = terrainSemanticTileContentHash(base);
+  if (hash !== undefined && terrainSemanticTileContentHash(derived) === undefined)
+    setTerrainSemanticTileContentHash(derived, `${hash}|${key}`);
+}
+
+/**
+ * Remember a packet for `derived`, made from `base` by replacing its buildings, transportation,
+ * land cover or POIs while keeping most features as they are: `base`'s packet and the edit. A
  * footprint-filtered or road-replaced town tile then crosses to a worker without being cloned
  * whole, 7-10 ms of main thread each time. Nothing is remembered when `base` has no packet, when
- * anything else differs, or when a new feature shares a line, ring or object with a kept one: a
- * clone keeps that sharing and an edit would not.
+ * anything else differs, when the derived tile drops its POI list altogether, or when a new
+ * feature shares a line, ring or object with a kept one: a clone keeps that sharing and an edit
+ * would not.
  */
 export function deriveTerrainSemanticTilePacket(
   base: TerrainSemanticTile,
@@ -386,9 +414,11 @@ export function deriveTerrainSemanticTilePacket(
   const kept: object[] = [];
   const fresh = new Set<object>();
   for (const key of EDITABLE) {
-    const from = base[key] as readonly object[];
-    const to = derived[key] as readonly object[];
-    if (from === to) continue;
+    if (base[key] === derived[key]) continue;
+    // Only `pois` is optional. A tile without the list is not the tile with an empty one.
+    const to = derived[key] as readonly object[] | undefined;
+    if (to === undefined) return;
+    const from = (base[key] ?? []) as readonly object[];
     const index = new Map<object, number>();
     for (const [i, feature] of from.entries()) index.set(feature, i);
     const entries = to.map((feature) => {

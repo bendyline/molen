@@ -23,4 +23,8 @@ export const modelPlacementSchema: z.ZodType<ModelPlacementRequest> = z.strictOb
   at: point,
   yaw: z.number().finite().optional(),
   scale: z.tuple([z.number().positive(), z.number().positive(), z.number().positive()]).optional(),
+  color: z
+    .tuple([z.number().min(0).max(1), z.number().min(0).max(1), z.number().min(0).max(1)])
+    .optional()
+    .describe('Instance tint, sRGB-encoded red, green and blue in 0..1; default white.'),
 });

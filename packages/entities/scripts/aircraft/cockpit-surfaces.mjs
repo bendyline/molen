@@ -1,5 +1,5 @@
 /** Small, original cockpit finishes. No photographs, baked lighting or host canvas dependency. */
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, rm, writeFile } from 'node:fs/promises';
 import { PNG } from 'pngjs';
 import { Float32BufferAttribute, Vector3 } from 'three';
 import library from '../../../../content/entities/source/cockpit-materials/library.json' with {
@@ -280,9 +280,8 @@ export async function writeCockpitTextures(directory, bytes) {
   const fonts = [
     ...new Set(doc.materials?.map((m) => m.extras?.[letteringTag]).filter(Boolean)),
   ].sort();
-  if (!kinds.length && !fonts.length) return [];
-  await mkdir(`${directory}/textures`, { recursive: true });
   const entries = [];
+  if (kinds.length || fonts.length) await mkdir(`${directory}/textures`, { recursive: true });
   for (const kind of kinds)
     for (const slot of ['basecolor', 'roughness', 'normal']) {
       const path = `textures/cockpit-${kind}-${slot}.png`;
@@ -294,5 +293,15 @@ export async function writeCockpitTextures(directory, bytes) {
     await writeFile(`${directory}/${path}`, cockpitFontTexture(font));
     entries.push({ id: `cockpit-font-${font}`, path });
   }
+  // The manifest lists exactly these entries, so a finish or font atlas the model no longer uses
+  // must not linger from an earlier build (check-source-bundles rejects unlisted files).
+  const written = new Set(entries.map((entry) => entry.path));
+  const existing = await readdir(`${directory}/textures`).catch((e) => {
+    if (e.code !== 'ENOENT') throw e;
+    return [];
+  });
+  for (const name of existing)
+    if (/^cockpit-.+\.png$/.test(name) && !written.has(`textures/${name}`))
+      await rm(`${directory}/textures/${name}`);
   return entries;
 }

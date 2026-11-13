@@ -5,6 +5,7 @@ import {
   TERRAIN_SURFACE_KIND,
   TerrainSurfaceMeshBuilder,
   terrainLinePath,
+  weldTerrainSurfaceMesh,
 } from '../src/linear-features';
 import type { TerrainPyramidTileLayerContext } from '../src/pyramid-stream';
 
@@ -269,5 +270,45 @@ describe('pavement surface detail', () => {
     expect(detail).toBeDefined();
     expect([...(detail?.array ?? [])].every((v) => v === 0)).toBe(true);
     mesh?.geometry.dispose();
+  });
+
+  it('welds a draped band to shared vertices that draw exactly the same triangles', () => {
+    const path = terrainLinePath(
+      [
+        [0.1, 0.2],
+        [0.5, 0.7],
+        [0.9, 0.4],
+      ],
+      100,
+    );
+    const builder = new TerrainSurfaceMeshBuilder(context());
+    appendTerrainLineBand(builder, path, {
+      width: 6,
+      color: '#606060',
+      surface: TERRAIN_SURFACE_KIND.road,
+      lanes: 2,
+      fray: 'both',
+    });
+    const soup = builder.mesh('road');
+    if (!soup) throw new Error('expected a road mesh');
+    const before = Object.fromEntries(
+      Object.entries(soup.geometry.attributes).map(([name, attribute]) => [
+        name,
+        Array.from(attribute.array as Float32Array),
+      ]),
+    );
+    const mesh = weldTerrainSurfaceMesh(soup) as typeof soup;
+    const geometry = mesh.geometry;
+    expect(geometry.index).not.toBeNull();
+    // Fewer vertices than corners: neighboring triangles share theirs.
+    expect(geometry.getAttribute('position').count).toBeLessThan((geometry.index?.count ?? 0) / 2);
+    const expanded = geometry.toNonIndexed();
+    for (const [name, values] of Object.entries(before)) {
+      const after = Array.from(expanded.getAttribute(name).array as Float32Array);
+      expect(after.length, name).toBe(values.length);
+      for (let i = 0; i < values.length; i++)
+        expect(Math.abs((after[i] as number) - (values[i] as number)), name).toBeLessThan(1e-3);
+    }
+    geometry.dispose();
   });
 });

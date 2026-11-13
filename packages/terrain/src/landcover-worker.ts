@@ -4,8 +4,15 @@ import { terrainBuildingCoverage } from './building-coverage';
 import { markTerrainGroundSurface } from './ground-cutout';
 import { createTerrainGroundMaterial } from './ground-material';
 import { Heightfield } from './heightfield';
+import type { TerrainLandcoverRasterData } from './landcover-raster';
+import { landcoverRasterSize } from './landcover-raster';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
-import { createLandcoverMesh, type TerrainSemanticMeshOptions } from './semantic-client';
+import {
+  createLandcoverMesh,
+  createLandcoverRasterData,
+  landcoverRasterMesh,
+  type TerrainSemanticMeshOptions,
+} from './semantic-client';
 import {
   type TerrainSemanticTilePacket,
   terrainSemanticTileFromPacket,
@@ -57,8 +64,11 @@ interface Request {
     | 'landcoverOffset'
     | 'landcoverPaletteAreas'
     | 'landcoverDetail'
+    | 'landcoverRaster'
     | 'urbanGround'
   >;
+  /** Texels across the tile when it is drawn as a texture (see `landcoverRaster`). */
+  raster?: number;
 }
 interface Result {
   id: number;
@@ -72,6 +82,7 @@ interface Result {
     landcoverDetail: Float32Array;
     indices: Uint16Array | Uint32Array;
   };
+  raster?: TerrainLandcoverRasterData;
   error?: string;
 }
 
@@ -91,6 +102,34 @@ export function installTerrainLandcoverWorker(
         ? terrainSemanticTileFromPacket(request.packet)
         : (request.tile as TerrainSemanticTile);
       const urban = request.options.urbanGround;
+      if (request.raster !== undefined) {
+        // Roads and footprints are painted over the classes, so they stay with the tile here.
+        const raster = createLandcoverRasterData(
+          { ...whole, water: [] },
+          { ...request.context, heightfield },
+          {
+            ...request.options,
+            ...(urban
+              ? {
+                  urbanGround: {
+                    ...urban,
+                    coverage: urban.coverage ?? terrainBuildingCoverage(whole),
+                  },
+                }
+              : {}),
+          },
+          request.raster,
+        );
+        scope.postMessage(
+          { id: request.id, ...(raster ? { raster } : {}) } satisfies Result,
+          raster
+            ? [raster.pixels, raster.positions, raster.normals, raster.uvs].map(
+                (array) => array.buffer as ArrayBuffer,
+              )
+            : [],
+        );
+        return;
+      }
       const mesh = createLandcoverMesh(
         // Land cover draws none of the buildings, roads or water; only buildings' coverage.
         { ...whole, buildings: [], transportation: [], water: [] },
@@ -194,7 +233,10 @@ export function createTerrainLandcoverWorkerBridge(
     job.cleanup();
     if (job.signal.aborted || disposed) job.resolve(undefined);
     else if (result.error) job.reject(new Error(result.error));
-    else if (!result.geometry) job.resolve(undefined);
+    else if (result.raster) {
+      const mesh = landcoverRasterMesh(result.raster, job.request.context, job.options);
+      job.resolve(mesh);
+    } else if (!result.geometry) job.resolve(undefined);
     else {
       const data = result.geometry;
       const geometry = new THREE.BufferGeometry();
@@ -233,11 +275,19 @@ export function createTerrainLandcoverWorkerBridge(
       if (disposed || context.signal.aborted) return Promise.resolve(undefined);
       const { heightfield, signal, admission: _admission, priority, ...rest } = context;
       const packet = terrainSemanticTilePacket(tile);
+      const raster = landcoverRasterSize(
+        options.landcoverRaster,
+        context.address.level,
+        context.pyramid.maxLevel,
+      );
       const request: Request = {
         id: nextId++,
         ...(packet
           ? { packet }
-          : { tile: { ...tile, buildings: [], transportation: [], water: [] } }),
+          : raster !== undefined
+            ? { tile: { ...tile, water: [] } }
+            : { tile: { ...tile, buildings: [], transportation: [], water: [] } }),
+        ...(raster !== undefined ? { raster } : {}),
         context: rest,
         ground: {
           samples: heightfield.copySamples(),
@@ -256,6 +306,7 @@ export function createTerrainLandcoverWorkerBridge(
           ...(options.landcoverOffset !== undefined
             ? { landcoverOffset: options.landcoverOffset }
             : {}),
+          ...(options.landcoverRaster ? { landcoverRaster: options.landcoverRaster } : {}),
           // A packet carries the buildings, measured in the worker; else coverage travels.
           ...(options.urbanGround
             ? {

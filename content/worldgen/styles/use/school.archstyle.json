@@ -1,0 +1,271 @@
+{
+  "format": "molen/archstyle@1",
+  "id": "molen.worldgen.use.school",
+  "title": "School block",
+  "doc": "A teaching block: long brick elevations with large classroom windows, tall storeys, and a low flat roof.",
+  "version": 1,
+  "applicability": {
+    "classes": [
+      "school"
+    ]
+  },
+  "massing": {
+    "floorHeight": {
+      "min": 3.8,
+      "max": 3.8
+    },
+    "groundFloorHeight": {
+      "min": 4.0,
+      "max": 4.0
+    },
+    "heightFallback": [
+      {
+        "levels": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    ],
+    "groundFit": "platform-max",
+    "foundation": {
+      "height": {
+        "min": 0.3,
+        "max": 0.6
+      },
+      "exposeOnSlope": true
+    },
+    "wings": {
+      "split": "none",
+      "maxWingSpan": 300,
+      "minWingArea": 1,
+      "secondaryHeightScale": {
+        "min": 1,
+        "max": 1
+      }
+    },
+    "setbacks": [],
+    "respectMinHeight": true
+  },
+  "roof": {
+    "perWing": false,
+    "ridge": "long-axis",
+    "overhang": {
+      "min": 0,
+      "max": 0
+    },
+    "complexFootprint": "flat",
+    "choices": [
+      {
+        "type": "flat",
+        "weight": 1,
+        "parapet": {
+          "height": {
+            "min": 0.6,
+            "max": 0.6
+          },
+          "thickness": 0.4
+        }
+      }
+    ],
+    "fallback": "flat"
+  },
+  "facade": {
+    "bays": {
+      "width": {
+        "min": 3.6,
+        "max": 3.6
+      },
+      "cornerMargin": 0.8
+    },
+    "windows": {
+      "style": "grid",
+      "width": {
+        "min": 2.8,
+        "max": 2.8
+      },
+      "height": {
+        "min": 2.2,
+        "max": 2.2
+      },
+      "sill": {
+        "min": 0.9,
+        "max": 0.9
+      },
+      "probabilityPerBay": 1,
+      "groundFloor": "same"
+    },
+    "bands": {
+      "base": {
+        "height": {
+          "min": 0.5,
+          "max": 0.5
+        }
+      },
+      "floorLines": true,
+      "cornice": {
+        "height": 0.3
+      }
+    }
+  },
+  "materials": {
+    "wall": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.brick",
+          "weight": 1
+        }
+      ],
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false,
+      "palette": "wall",
+      "uvScale": [
+        3,
+        3
+      ]
+    },
+    "roof": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.membrane",
+          "weight": 1
+        }
+      ],
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false,
+      "palette": "roof",
+      "uvScale": [
+        6,
+        6
+      ]
+    },
+    "trim": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.concrete_plain",
+          "weight": 1
+        }
+      ],
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false,
+      "palette": "trim",
+      "uvScale": [
+        4,
+        4
+      ]
+    },
+    "foundation": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.concrete_plain",
+          "weight": 1
+        }
+      ],
+      "tint": "multiply",
+      "uv": "meters",
+      "uvOffset": "none",
+      "uvMirror": false,
+      "palette": "trim",
+      "uvScale": [
+        4,
+        4
+      ]
+    },
+    "window": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.window_grid",
+          "weight": 1
+        }
+      ],
+      "tint": "none",
+      "uv": "cell",
+      "uvOffset": "none",
+      "uvMirror": false
+    }
+  },
+  "palettes": {
+    "wall": {
+      "entries": [
+        {
+          "color": "#a5604a",
+          "weight": 3
+        },
+        {
+          "color": "#96573f",
+          "weight": 2
+        },
+        {
+          "color": "#b06e55",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.004,
+        "saturation": 0.02,
+        "lightness": 0.03
+      }
+    },
+    "roof": {
+      "entries": [
+        {
+          "color": "#6f7270",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.004,
+        "saturation": 0.02,
+        "lightness": 0.02
+      }
+    },
+    "trim": {
+      "entries": [
+        {
+          "color": "#9b9e9d",
+          "weight": 1
+        }
+      ],
+      "jitter": {
+        "hue": 0.004,
+        "saturation": 0.02,
+        "lightness": 0.02
+      }
+    }
+  },
+  "props": [],
+  "lod": {
+    "tiers": [
+      {
+        "minTier": 0,
+        "keep": [
+          "roof-shape",
+          "roof-features",
+          "facade-texture",
+          "facade-bands",
+          "props"
+        ]
+      },
+      {
+        "minTier": 1,
+        "keep": [
+          "roof-shape",
+          "facade-texture",
+          "facade-bands"
+        ]
+      },
+      {
+        "minTier": 2,
+        "keep": [
+          "roof-shape",
+          "facade-texture"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,367 @@
+{
+  "id": "hotel_matignon",
+  "title": "Hôtel Matignon",
+  "wikidataId": "Q912192",
+  "referenceCoordinate": {
+    "longitude": 2.320689533,
+    "latitude": 48.854424281
+  },
+  "module": "content/worldgen/source/places/u0/u09/hotel_matignon/models/matignon-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-hotel-matignon.mjs",
+  "builder": "buildMatignonLevel",
+  "surfaces": {
+    "ashlar": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.86
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.81
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.83
+    },
+    "painted": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.54
+    }
+  },
+  "exportLabel": "Molen original Hôtel Matignon master",
+  "expectedDraftMasterHash": "sha256:17a0f58c0fde0a12d757f7e4ee6a0cc0125749f239698780549f53905b898109",
+  "visualBrief": "Hôtel Matignon with its recessed Parisian courts, curved entrance arcade, ornate limestone garden front, slate mansards and broad stepped terrace.",
+  "heightPolicy": "The 45.13 m datum follows standard terrain at the garden stairs. Per-edge wall bases follow terrain along the footprint, and eight terrace treads meet the garden approach.",
+  "nativeAxes": "The mapped +X axis points north-northeast toward Rue de Varenne. The garden front and terrace face -X, and the curved entrance arcade encloses the north end of the main court.",
+  "limitations": [
+    "The building outline and three open courts follow PMTiles. Ordinary photos guide window, stonework, roof and stair proportions.",
+    "This is an exterior model. The glazed doors and windows depict the closed building, and the garden retains the viewer’s native terrain and land cover."
+  ],
+  "materialMethod": "Shared ashlar limestone forms the wall fields. Continuous limestone textures serve the carved trim and balusters. Slate covers roofs, and painted metal supports shaded glazing, mullions and rails.",
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Matignon_facade_jardin_2.JPG",
+      "hash": "sha256:90b76363c8e030aec18d1bed3c568131e570d13a533a3aeaeee93068101e1dec",
+      "observed": "Garden elevation, central bays, dormers and roof."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Matignon_grande_cour_3.JPG",
+      "hash": "sha256:e1ecbdfd41cd31808b828f0fdd4010faa32da568e06683a2db28a9d7a785e228",
+      "observed": "Court wall, window spacing and roof forms."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Grande_cour_de_l'H%C3%B4tel_Matignon_Sep_2017.jpg",
+      "hash": "sha256:9a64f1de81437b13fe0ca113f912e6973e42ead94a0a7de7e9dcab69c95bdc39",
+      "observed": "Courtyard arcades, slate roofs, and main entrance."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:H%C3%B4tel_de_Matignon_2017.jpg",
+      "hash": "sha256:582c4aa45d728266d049c3efcda15b99250eda3528fd097f8aa7f4f1c5f16e71",
+      "observed": "Courtyard arcades, slate roofs, and main entrance."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "garden-and-context",
+      "position": [
+        -78,
+        25,
+        43
+      ],
+      "lookAt": [
+        -11,
+        7,
+        1
+      ],
+      "fov": 49
+    },
+    {
+      "name": "garden-facade-and-stairs",
+      "position": [
+        -63,
+        6,
+        4
+      ],
+      "lookAt": [
+        -35.6,
+        6,
+        3.7
+      ],
+      "fov": 61
+    },
+    {
+      "name": "great-court-and-stone-bays",
+      "position": [
+        10,
+        5.8,
+        9.4
+      ],
+      "lookAt": [
+        -14,
+        6.15,
+        9.1
+      ],
+      "fov": 59
+    },
+    {
+      "name": "curved-entrance-arcade",
+      "position": [
+        -3,
+        5.25,
+        6
+      ],
+      "lookAt": [
+        25,
+        5.2,
+        10
+      ],
+      "fov": 57
+    },
+    {
+      "name": "garden-central-cartouche",
+      "position": [
+        -46,
+        8,
+        5.7
+      ],
+      "lookAt": [
+        -36.3,
+        7.7,
+        3.2
+      ],
+      "fov": 50
+    },
+    {
+      "name": "mansards-and-service-courts",
+      "position": [
+        18,
+        32,
+        -48
+      ],
+      "lookAt": [
+        5,
+        7,
+        -9
+      ],
+      "fov": 54
+    },
+    {
+      "name": "all-three-courtyards",
+      "position": [
+        -2,
+        86,
+        4
+      ],
+      "lookAt": [
+        0.1,
+        4,
+        4.25
+      ],
+      "fov": 55
+    },
+    {
+      "name": "street-and-pavilions",
+      "position": [
+        57,
+        14,
+        40
+      ],
+      "lookAt": [
+        15,
+        6.5,
+        6
+      ],
+      "fov": 56
+    }
+  ],
+  "sourceFacts": {
+    "mappedBuilding": 52776559210128,
+    "modeledCourtyards": 3,
+    "gardenTreads": 8,
+    "gardenFacade": "south-southwest"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        -5,
+        7,
+        3
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/u0/u09/hotel_matignon/models/matignon-model.mjs",
+    "export": "buildMatignonSkyline",
+    "surfaces": {
+      "ashlar": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.86
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.81
+      },
+      "slate": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.83
+      },
+      "painted": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.54
+      }
+    },
+    "errorMeters": 1.65,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMatignonDistrict",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.86
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.81
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.83
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.54
+          }
+        },
+        "errorMeters": 0.76
+      },
+      "street": {
+        "export": "buildMatignonStreet",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.86
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.81
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.83
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.54
+          }
+        },
+        "errorMeters": 0.27
+      },
+      "closeup": {
+        "export": "buildMatignonCloseup",
+        "surfaces": {
+          "ashlar": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.86
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.81
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.83
+          },
+          "painted": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.54
+          }
+        },
+        "errorMeters": 0.1
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "hotel_matignon-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -78,
+        25,
+        43
+      ],
+      "lookAt": [
+        -11,
+        7,
+        1
+      ]
+    },
+    {
+      "name": "hotel_matignon-district",
+      "reviewLod": "district",
+      "position": [
+        -78,
+        25,
+        43
+      ],
+      "lookAt": [
+        -11,
+        7,
+        1
+      ]
+    },
+    {
+      "name": "hotel_matignon-street",
+      "reviewLod": "street",
+      "position": [
+        -78,
+        25,
+        43
+      ],
+      "lookAt": [
+        -11,
+        7,
+        1
+      ]
+    },
+    {
+      "name": "hotel_matignon-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -78,
+        25,
+        43
+      ],
+      "lookAt": [
+        -11,
+        7,
+        1
+      ]
+    }
+  ]
+}

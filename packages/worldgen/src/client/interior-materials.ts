@@ -3,6 +3,10 @@ import type { WorldgenMaterialSet } from './upload';
 
 /** Share of the daylight a room's surfaces return, seen from the street. */
 const ROOM_LIGHT = 0.45;
+/** An open-sided car park deck: daylight crosses it, so concrete stays concrete rather than dusk. */
+const DECK_LIGHT = 0.85;
+/** Malls, offices, stations: lit to work in, so as bright inside as the street is outside. */
+const BRIGHT_LIGHT = 0.95;
 
 /** Shared neutral detail maps: metric UVs, repeat wrapping and mipmaps. Household colors stay
  * in vertex data, so different homes reuse the same small texture/material set. No downloads,
@@ -14,7 +18,8 @@ export function createInteriorMaterialSet(): WorldgenMaterialSet {
     materialFor: (_slot, ref) => {
       let material = materials.get(ref);
       if (material) return material;
-      const kind = ref.replace('interior:', '');
+      const bright = ref.startsWith('interior:bright-');
+      const kind = ref.replace('interior:bright-', '').replace('interior:', '');
       let map: THREE.DataTexture | undefined;
       if (['wood', 'ceramic', 'fabric', 'plaster'].includes(kind)) {
         const size = 256,
@@ -59,12 +64,14 @@ export function createInteriorMaterialSet(): WorldgenMaterialSet {
       // albedo carries it (WebGPU applies envMapIntensity only to a material's own envMap).
       material = new THREE.MeshStandardMaterial({
         vertexColors: true,
-        color: new THREE.Color().setScalar(kind === 'lamp' ? 1 : ROOM_LIGHT),
+        color: new THREE.Color().setScalar(
+          kind === 'lamp' ? 1 : kind === 'deck' ? DECK_LIGHT : bright ? BRIGHT_LIGHT : ROOM_LIGHT,
+        ),
         roughness: 0.9,
         metalness: 0,
         map: map ?? null,
-        emissive: kind === 'lamp' ? 0xffe5ac : 0xaaa79b,
-        emissiveIntensity: kind === 'lamp' ? 0.8 : 0.12,
+        emissive: kind === 'lamp' ? 0xffe5ac : kind === 'deck' || bright ? 0xa4a9ad : 0xaaa79b,
+        emissiveIntensity: kind === 'lamp' ? 0.8 : bright ? 0.42 : kind === 'deck' ? 0.16 : 0.12,
         emissiveMap: map ?? null,
       });
       materials.set(ref, material);

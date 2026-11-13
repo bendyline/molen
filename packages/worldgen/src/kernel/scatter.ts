@@ -57,7 +57,19 @@ export interface ScatterSampleInput {
   acceptsRule?: (rule: ScatterRule, x: number, z: number) => boolean;
   /** Appearance variant only (e.g. season); candidate seeds and positions remain unchanged. */
   modelAt?: (model: string, x: number, z: number) => string;
+  /**
+   * Tree line in request-local meters: the world height above which trees and brush (the canopy
+   * and understory layers) do not grow. Stands thin out over the `TREELINE_FADE` meters below
+   * it. Ground cover and crops are unaffected; undefined anywhere means no limit there.
+   */
+  treeline?: (x: number, z: number) => number | undefined;
 }
+
+/**
+ * Meters below a tree line over which stands thin from full density to none: closed forest
+ * opens into parkland and scattered trees before it stops.
+ */
+export const TREELINE_FADE = 350;
 
 interface Candidate {
   x: number;
@@ -382,6 +394,18 @@ export function* samplePlacementsSteps(
         const altitude = population.altitude ?? rule.altitude;
         if (altitude?.min !== undefined && y < altitude.min) continue;
         if (altitude?.max !== undefined && y > altitude.max) continue;
+        if (
+          input.treeline !== undefined &&
+          rule.layer !== 'groundcover' &&
+          rule.layer !== 'agriculture'
+        ) {
+          const line = input.treeline(x, z);
+          if (line !== undefined) {
+            const below = line - y;
+            if (below <= 0) continue;
+            if (below < TREELINE_FADE && unit01(hash, 11) >= below / TREELINE_FADE) continue;
+          }
+        }
         const scale = sampleRange(population.scale, unit01(hash, 4));
         const widthScale =
           population.widthScale === undefined

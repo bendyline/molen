@@ -58,6 +58,9 @@ returns linear RGB. An explicit host `style.ground` palette takes precedence in 
 Nature-reserve, national-park and protected-area designations retain their protection metadata,
 but do not paint over the physical habitat beneath them. With no mapped physical cover, sparse
 open-ground planting remains a prior, rather than inferred forest or a wildlife-presence claim.
+A named neighborhood outline is read the same way. The Protomaps basemap reports one as land use
+`other`, in place of any land use mapped on the same outline, so it paints nothing and labels no
+ground. Unlike a protection boundary it also leaves yard trees and inferred homes alone.
 
 ## Composable catalogs
 
@@ -191,7 +194,22 @@ bare winter branching keep the same mature dimensions, instance positions, indiv
 and placement seeds. The coarse calendar reverses the southern hemisphere and extends dormancy
 at high latitudes. Tropical locations stay leaf-on; evergreen plants do not become bare. This
 does not infer local weather, snow, tropical wet/dry seasons, crop harvest dates, or climate change.
-Remount with another month to change appearance.
+Remount with another month to change appearance. Snow on the ground is the weather's `snowCover`,
+set and changed without a remount and independent of the month; it dusts every plant above its
+snow line, leafless or not ([Snow cover](snow.md)).
+
+### Alpine tree line
+
+Mountain forest gives out with height. The Earth tile adapter gives scatter a tree line by
+latitude, about 3,900 m in the tropics, 2,400 m at 45° N and 800 m at 65° N, and lower in the
+southern hemisphere outside the tropics (1,300 m at 45° S). Trees and brush (the canopy and
+understory layers) thin from full density to none over the 350 m below it, so closed forest opens
+into scattered trees before it stops, and glaciers and summits stay bare. Ground cover and crops
+are not limited, and individually mapped trees stay where the map puts them. It is a coarse
+climatic prior, as the plant calendar is: no aspect, continentality or local species. The arctic
+tree line at sea level comes from the ecological atlas's tundra, not from this. A scatter rule's
+own `altitude` limits still apply; pass `treeline` to the worldgen kernel's scatter sampler to
+use the mechanism elsewhere.
 
 The ordinary architectural catalog supplies 294 recipes across 14 construction families and seven
 uses: detached homes, attached homes, apartments, commercial, civic, industrial, and farm

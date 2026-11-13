@@ -1,0 +1,70 @@
+{
+  "format": "molen/structure-shared-capture-report@1",
+  "assetId": "molen.worldgen.structure.milano_centrale_railway_station",
+  "inputHash": "sha256:705a9f30dc5fde49685a627ede518f437f3376419e696971a89c05f4240f7ae3",
+  "sourceHash": "sha256:d9515c822f50b039c21abea837289e423486d1237b7a2a4d2efb6307be242cfa",
+  "runtimeHash": "sha256:9cd3867968bce9e0831dce5d47002889d2f1a822374df90eae77a0fbc7cb2920",
+  "fixtureHash": "sha256:7009b8790820f42cf1cdde7343907236e191acffdeee403a85d94dfa981ba245",
+  "placementHash": "sha256:6b0305ac8b0e8601abde70d03966227214af64594e9577f18e5a41910267b3d4",
+  "materialGraphs": {
+    "molen.worldgen.material.stone_limestone_raw": {
+      "path": "materials/stone_limestone_raw.matgraph.json",
+      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    },
+    "molen.worldgen.material.metal_standing_seam": {
+      "path": "materials/metal_standing_seam.matgraph.json",
+      "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+    },
+    "molen.worldgen.material.metal_painted": {
+      "path": "materials/metal_painted.matgraph.json",
+      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+    },
+    "molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    },
+    "molen.worldgen.material.window_grid": {
+      "path": "materials/window_grid.matgraph.json",
+      "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+    }
+  },
+  "frames": [
+    {
+      "path": "shots/shared/native-milano-centrale-station.png",
+      "hash": "sha256:3cdadcf727c1ae69d68bb9376a128632758cd85e0d24ccf89d03dc7335ce83e0",
+      "camera": {
+        "name": "detail-under-the-main-vault",
+        "position": [
+          325,
+          10.7,
+          2
+        ],
+        "lookAt": [
+          98,
+          24,
+          -1
+        ],
+        "fov": 62,
+        "group": "detail",
+        "lightDirection": [
+          -0.59,
+          0.91,
+          0.54
+        ]
+      },
+      "state": {
+        "mode": "native-geographic-standard-terrain",
+        "placementId": "milano.centrale.railway.station",
+        "visibleDraws": 5
+      }
+    }
+  ],
+  "eviction": {
+    "disposed": true,
+    "liveModelGeometries": 0,
+    "groundRestored": true,
+    "waterRestored": true
+  },
+  "errors": [],
+  "notes": "The model resolves the five shared limestone, concrete, metal and glass graphs once per tier. The shed crowns use the shared glazing from both sides."
+}

@@ -28,20 +28,31 @@ describe('transport graph', () => {
         layer: 1,
       }),
       streetFeature([0.55, 0.5], [1, 0.5], { class: 'highway', name: 'exit' }),
+      // What the deck flies over: it stays on the ground, and the deck and both its
+      // approaches climb to clear it.
+      streetFeature([0.5, 0.2], [0.5, 0.8], { class: 'highway', name: 'under' }),
     ];
     const graded = gradeHighwayBridges(features, 400, () => 0);
+    expect(graded.filter((f) => f.bridgeApproachProfile?.length).map((f) => f.name)).toEqual([
+      'approach',
+      'deck',
+      'exit',
+    ]);
     const expected = new Map(
       graded.map((f) => [
         f.name,
-        bridgeDeckHeightFn(terrainLinePath(f.lines[0] ?? [], 400), () => 0, {
-          clearance: 6,
-          approachLift: 0.32,
-          connects: [false, false],
-          approachProfile: f.bridgeApproachProfile?.map((p) => ({
-            ...p,
-            point: [p.point[0] * 400, p.point[1] * 400],
-          })),
-        }),
+        f.bridgeApproachProfile?.length
+          ? bridgeDeckHeightFn(terrainLinePath(f.lines[0] ?? [], 400), () => 0, {
+              clearance: 6,
+              approachLift: 0.32,
+              groundApproach: !f.bridge,
+              connects: [false, false],
+              approachProfile: f.bridgeApproachProfile.map((p) => ({
+                ...p,
+                point: [p.point[0] * 400, p.point[1] * 400],
+              })),
+            })
+          : () => 0.32,
       ]),
     );
     for (let i = 0; i < (parts ? 2 : 1); i++)
@@ -54,13 +65,17 @@ describe('transport graph', () => {
         ...(parts ? { bounds: [1000 + i * 200, 2000, 1200 + i * 200, 2400] as const } : {}),
       });
     expect([...net.edgeList()].length).toBeGreaterThanOrEqual(3);
+    let highest = 0;
     for (const edge of net.edgeList())
       for (const [i, p] of edge.path.points.entries()) {
         expect(edge.ys[i]).toBeCloseTo(
           expected.get(edge.name)?.(p[0] - 1000, p[1] - 2000) ?? NaN,
           5,
         );
+        if (edge.name !== 'under') highest = Math.max(highest, edge.ys[i] ?? 0);
       }
+    // Traffic on the deck clears the road beneath by a truck's height and the deck's depth.
+    expect(highest).toBeGreaterThan(0.32 + 6.4);
   });
   it('shares complete airport runways across streamed tiles without creating car lanes', () => {
     const net = new TransportNetwork();
@@ -220,6 +235,39 @@ describe('transport graph', () => {
     const stopped = build('secondary', [{ class: 'stop', stop: 'all', point: [0.5, 0.5] }]);
     expect(stopped?.control).toBe('yield');
     expect(stopped?.arms.every((a) => a.yields)).toBe(true);
+  });
+  it('seats each lane on a hillside road beside the centreline, not at its height', () => {
+    // A street along X across a 25% hillside: the ground rises 0.25 m per metre toward +Z.
+    const ground = (_x: number, z: number): number => 3 + 0.25 * (z - 50);
+    const net = new TransportNetwork();
+    net.registerTile({
+      key: 'hillside',
+      origin: [0, 0],
+      tileSize: 100,
+      heightAt: ground,
+      features: [streetFeature([0, 0.5], [1, 0.5])],
+    });
+    const out = laneSample();
+    let lanes = 0,
+      uphill = 0,
+      downhill = 0;
+    for (const edge of net.edgeList())
+      for (const id of edge.lanes) {
+        const lane = net.lane(id);
+        if (lane === undefined || lane.class !== 'road') continue;
+        lanes++;
+        for (let s = 0; s <= lane.length; s += lane.length / 7) {
+          sampleLaneBody(lane, edge, s, out);
+          if (out.z > 50.5) uphill++;
+          if (out.z < 49.5) downhill++;
+          // The surface under the car itself, with the road's lift.
+          expect(out.y).toBeCloseTo(ground(out.x, out.z) + 0.32 + lane.lift, 5);
+        }
+      }
+    // Both directions were sampled, each off the centreline on its own side of the hill.
+    expect(lanes).toBeGreaterThanOrEqual(2);
+    expect(uphill).toBeGreaterThan(0);
+    expect(downhill).toBeGreaterThan(0);
   });
   it('keeps ground approach lane heights aligned with an authored deck through a graph split', () => {
     const net = new TransportNetwork();

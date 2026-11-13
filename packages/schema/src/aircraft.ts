@@ -62,6 +62,14 @@ export interface AircraftEngineSpec extends JsonObject {
   propellerInertia?: number;
   /** Rotate this engine's thrust from +Z toward +Y with the common vector lever. */
   vectored?: boolean;
+  /**
+   * Specific fuel consumption, used when the aircraft declares `fuel`: kg per joule of shaft
+   * work for a propeller or rotor engine (default 7.5e-8 with a manual mixture, about 0.27
+   * kg/kWh; 9.5e-8 otherwise), kg per newton-second of thrust for a jet (default 2e-5).
+   */
+  fuelConsumption?: number;
+  /** A jet's consumption per newton-second of total thrust at full reheat; default 5.4e-5. */
+  afterburnerFuelConsumption?: number;
 }
 
 /** A named installation in an airplane's engine bank. Positions use aircraft-local meters. */
@@ -200,6 +208,22 @@ export interface AirplanePhysicsSpec extends JsonObject {
   rollingDeceleration: number;
   /** Tire side grip: lateral deceleration in m/s² and yaw grip in 1/s with full weight on the wheels. */
   groundTrackRate: number;
+  /**
+   * Main wheels ahead of the center of mass with a tailwheel behind: a firm touchdown on the
+   * mains pitches the nose up (and the airplane back into the air), and hard braking lifts the
+   * tail. Default false: a nosewheel, which a touchdown pitches down onto.
+   */
+  tailwheel?: boolean;
+  /**
+   * Share of the sink speed beyond a gentle 0.6 m/s that the struts and tires give back at
+   * touchdown; default 0.45. A firm landing skips, a greased one stays down.
+   */
+  gearRebound?: number;
+  /**
+   * Sustained positive g the pilot holds before vision starts to dim; default 4.5, or 6.5 (a
+   * g-suit) when `maxLoadFactor` is 7.5 or more.
+   */
+  pilotGTolerance?: number;
 }
 
 export interface HelicopterPhysicsSpec extends JsonObject {
@@ -218,6 +242,31 @@ export interface HelicopterPhysicsSpec extends JsonObject {
   retreatingBladeSpeed?: number;
   /** Effective lifting disc count (e.g. 2 for tandem rotors), default 1. */
   rotorDiscs?: number;
+  /**
+   * Seconds of hover power stored in the turning rotor at full speed; default 2. With the
+   * engine out in flight the rotor lives on this and on the air it descends through
+   * (autorotation): a heavy rotor forgives a late flare, a light one does not. Needs
+   * `powerLimitedRotor`.
+   */
+  rotorInertiaTime?: number;
+  /**
+   * Tail-fin weathervaning in forward flight, default 1; 0 disables it. The nose turns into
+   * the relative wind at `directionalStability × airspeed / length` rad/s per radian of
+   * sideslip, fading out below about a fifth of `translationalLiftSpeed`, so a banked
+   * helicopter's nose follows its turning track.
+   */
+  directionalStability?: number;
+  /**
+   * Direct-cyclic pitch and roll rate at full stick with the rotor carrying the weight, rad/s.
+   * Default `cyclicResponse / 4`.
+   */
+  cyclicRate?: number;
+  /**
+   * Share of direct-cyclic control power that does not depend on rotor thrust, 0..1, default
+   * 0.25. The rest fades as the rotor unloads: near 0 for a teetering rotor, which has no
+   * control at zero g, higher for articulated and most for hingeless rotors.
+   */
+  hubStiffness?: number;
   rotorPosition: [number, number, number];
   rotorRadius: number;
   cyclicTilt: number;
@@ -349,6 +398,14 @@ export interface AircraftSpec extends JsonObject {
     /** Angular rate damping in 1/s. Requires running engine thrust. */
     damping: number;
   };
+  /**
+   * Fuel on board. `mass` is the aircraft with full tanks: it lightens as fuel burns, and the
+   * engines stop when the tanks are dry. Without it fuel is unlimited and the mass constant.
+   */
+  fuel?: {
+    /** Usable fuel in kg with full tanks. */
+    capacity: number;
+  };
   hardLandingSpeed: number;
   hardLandingRoll: number;
   hardLandingPitch: number;
@@ -383,6 +440,13 @@ export interface AircraftInputData extends JsonObject {
   flaps: boolean | number;
   /** Powered-lift lever: 0 forward, 1 vertical. Omitted selects forward thrust. */
   thrustVector?: number;
+  /**
+   * Helicopter cyclic. `assisted` (the default) commands a bounded tilt that levels itself when
+   * the stick is released. `direct` commands pitch and roll rates with full authority, so the
+   * helicopter can loop, roll or point straight down, and holds its attitude when released.
+   * On the ground both behave as assisted.
+   */
+  cyclicMode?: 'assisted' | 'direct';
 }
 export interface AircraftStateData extends JsonObject {
   actuators?: ActuatorPositions;
@@ -429,6 +493,20 @@ export interface AircraftStateData extends JsonObject {
   sideslip?: number;
   /** Aerodynamic and thrust load along the airframe's up axis, in g. */
   loadFactor?: number;
+  /** Fuel remaining in kg when the aircraft declares `fuel`; absent is full tanks. */
+  fuel?: number;
+  /**
+   * Pre-stall and stalled-wing buffet, 0..1: a cue for hosts to shake the view and sound a
+   * warning. It starts a few degrees before the stall. Airplanes only.
+   */
+  buffet?: number;
+  /**
+   * The pilot's accumulated strain under positive g, 0..1: vision starts to dim near 0.3 and is
+   * gone at 1. It builds above the tolerance and recovers below it. Airplanes only.
+   */
+  greyout?: number;
+  /** The same for negative g (blood to the head), 0..1. Airplanes only. */
+  redout?: number;
   /** Per-engine state, initialized by the solver and authoritative once present. */
   engines?: Record<string, AircraftEngineStateData>;
   /** Maximum engine RPM, retained for HUDs and safe boarding/exit checks. */

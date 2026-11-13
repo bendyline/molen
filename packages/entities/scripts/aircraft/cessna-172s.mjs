@@ -484,14 +484,14 @@ export function buildCessna172(s) {
   pd.finish();
   // 65-inch wheelbase. The published front view omits the stated propeller clearance.
   for (const [x, z, r] of [
-    [0, 1.651, 0.22],
-    [1.275, 0, 0.25],
-    [-1.275, 0, 0.25],
+    [0, 1.651, 0.18],
+    [1.275, 0, 0.222],
+    [-1.275, 0, 0.222],
   ]) {
     const side = Math.sign(x);
     if (x) {
       const a = new T.Vector3(side * 0.49, 0.55, -0.07),
-        b = new T.Vector3(x, 0.27, z),
+        b = new T.Vector3(x, r + 0.05, z),
         v = b.clone().sub(a);
       const strut = d.box(
         [0.06, v.length(), 0.15],
@@ -501,33 +501,36 @@ export function buildCessna172(s) {
       strut.quaternion.setFromUnitVectors(new T.Vector3(0, 1, 0), v.normalize());
     } else {
       d.rod([0, 0.72, 1.58], [0, 0.34, z], 0.027, metal);
-      for (const s of [-1, 1]) d.rod([s * 0.085, 0.38, z - 0.03], [s * 0.085, r, z], 0.017, paint);
+      for (const s of [-1, 1]) d.rod([s * 0.07, 0.38, z - 0.03], [s * 0.07, r, z], 0.017, paint);
     }
-    d.add(new T.CylinderGeometry(r, r, 0.15, 28).rotateZ(Math.PI / 2), rubber, [x, r, z]);
+    const tire = x ? 0.152 : 0.127;
+    d.add(new T.CylinderGeometry(r, r, tire, 28).rotateZ(Math.PI / 2), rubber, [x, r, z]);
     for (const side of [-1, 1])
       d.add(new T.CircleGeometry(r * 0.47, 20).rotateY((side * Math.PI) / 2), metal, [
-        x + side * 0.077,
+        x + side * (tire / 2 + 0.002),
         r,
         z,
       ]);
-    // Egg-shaped speed fairings that close over the tire tops; only the tread shows below.
+    // The pant is sized from its wheel, so the tire top always clears the inside of the shell.
+    const fit = r / 0.222;
     const pant = [
       [0.35, 0.04, 0.31, 0.37],
-      [0.27, 0.13, 0.25, 0.46],
-      [0.03, 0.16, 0.21, 0.53],
-      [-0.36, 0.115, 0.24, 0.43],
+      [0.27, 0.13, 0.25, 0.43],
+      [0.03, 0.16, 0.21, 0.485],
+      [-0.36, 0.115, 0.24, 0.39],
       [-0.46, 0.025, 0.28, 0.32],
     ].map(([zz, w, b, t]) => ({
-      z: z + zz,
-      points: Array.from({ length: 12 }, (_, i) => {
-        const a = (i * Math.PI) / 6,
-          c = Math.cos(a),
-          s = Math.sin(a);
-        return [
-          x + w * Math.sign(c) * Math.pow(Math.abs(c), 0.8),
-          (b + t) / 2 + ((t - b) / 2) * Math.sign(s) * Math.pow(Math.abs(s), 0.8),
-        ];
-      }),
+      z: z + zz * fit,
+      points: [
+        [x, t * fit],
+        [x + w * 0.7 * fit, (t - 0.015) * fit],
+        [x + w * fit, (t - 0.055) * fit],
+        [x + w * 0.8 * fit, b * fit],
+        [x, b * fit],
+        [x - w * 0.8 * fit, b * fit],
+        [x - w * fit, (t - 0.055) * fit],
+        [x - w * 0.7 * fit, (t - 0.015) * fit],
+      ],
     }));
     loft(d, pant, paint);
   }

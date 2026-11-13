@@ -1,0 +1,333 @@
+{
+  "id": "world_cup_bridge",
+  "title": "World Cup Bridge",
+  "wikidataId": "Q12609460",
+  "referenceCoordinate": {
+    "longitude": 126.884466587,
+    "latitude": 37.554520974
+  },
+  "module": "content/worldgen/source/places/wy/wyd/world_cup_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-world-cup-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "concrete": {
+      "slot": "foundation",
+      "graph": "concrete_boardformed",
+      "roughness": 0.88
+    },
+    "road": {
+      "slot": "wall",
+      "graph": "gravel",
+      "roughness": 0.94
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.73,
+      "metallic": 0.3
+    }
+  },
+  "exportLabel": "Molen original World Cup Bridge master",
+  "expectedDraftMasterHash": "sha256:a21eda649efbe4e6f2fef1538a0f79c29697159028c984c42f667befbfc5747f",
+  "visualBrief": "A single pale mast leans toward the south bank over the Han. Unequal fans of stays run in the median above the six-lane deck. A flared tower pier and repeating concrete approach piers support the crossing, which curves into the interchanges at either end.",
+  "heightPolicy": "The viewer uses a fixed sea-level datum. The modeled south approach rises above the ridge in the standard elevation data. The mapped bearing lines set the ends and the separate ramp links retain their native geometry.",
+  "nativeAxes": "Positive X points from the Yangpyeong bank north-northeast toward Sangam. Positive Z is the eastern side of the crossing.",
+  "limitations": [
+    "The mapped outline and carriageway traces set the deck geometry. Mast dimensions, stay spacing and individual piers use exterior photo estimates.",
+    "The south approach deck grade clears a ridge in the standard viewer terrain. Elevations and pier spacing are visual approximations."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:World_Cup_Bridge_Han_River.jpg",
+      "hash": "sha256:cdd86dc24c42f7bb29c35382cc988fa94f7313533c1b2503647854d710096378",
+      "observed": "Deck plan and tower position across the Han."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:%EC%9B%94%EB%93%9C%EC%BB%B5%EB%8C%80%EA%B5%90.jpg",
+      "hash": "sha256:dccc3bdd4570d3a51ba6e56732e33f3ded5dcdddd5c38a75c8e77e9be7b981b1",
+      "observed": "Inclined tower, stayed spans, and river piers."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "world-cup-bridge-over-han",
+      "position": [
+        245,
+        190,
+        835
+      ],
+      "lookAt": [
+        40,
+        45,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "asymmetric-stay-elevation",
+      "position": [
+        235,
+        54,
+        415
+      ],
+      "lookAt": [
+        225,
+        66,
+        0
+      ],
+      "fov": 59
+    },
+    {
+      "name": "inclined-mast-and-cable-plane",
+      "position": [
+        111,
+        76,
+        136
+      ],
+      "lookAt": [
+        177,
+        77,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "flared-pier-and-deck",
+      "position": [
+        243,
+        9,
+        107
+      ],
+      "lookAt": [
+        172,
+        37,
+        0
+      ],
+      "fov": 64
+    },
+    {
+      "name": "south-ramp-fan",
+      "position": [
+        -695,
+        73,
+        95
+      ],
+      "lookAt": [
+        -600,
+        33,
+        -6
+      ],
+      "fov": 64
+    },
+    {
+      "name": "north-carriageway-and-ramp",
+      "position": [
+        683,
+        57,
+        72
+      ],
+      "lookAt": [
+        603,
+        28,
+        7
+      ],
+      "fov": 64
+    },
+    {
+      "name": "reverse-han-elevation",
+      "position": [
+        113,
+        142,
+        -930
+      ],
+      "lookAt": [
+        77,
+        53,
+        0
+      ],
+      "fov": 55
+    }
+  ],
+  "materialMethod": "Board-formed concrete, road aggregate and painted metal share library graphs. Concrete faces, stays, and roadway fittings use meter-scale UVs and restrained vertex colors.",
+  "sourceFacts": {
+    "deckLengthMeters": 1290.672,
+    "maxMappedEnvelopeWidthMeters": 67.843,
+    "centralPylons": 1,
+    "cablesPerFan": 12,
+    "approachPierStations": 18,
+    "pmtilesCrossingIds": [
+      35184525131660,
+      35184409470270,
+      35184576147320
+    ]
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        160,
+        51,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/wy/wyd/world_cup_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_boardformed",
+        "roughness": 0.88
+      },
+      "road": {
+        "slot": "wall",
+        "graph": "gravel",
+        "roughness": 0.94
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.73,
+        "metallic": 0.3
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.88
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.3
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.88
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.3
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_boardformed",
+            "roughness": 0.88
+          },
+          "road": {
+            "slot": "wall",
+            "graph": "gravel",
+            "roughness": 0.94
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.73,
+            "metallic": 0.3
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "world_cup_bridge-skyline",
+      "position": [
+        245,
+        190,
+        835
+      ],
+      "lookAt": [
+        40,
+        45,
+        0
+      ],
+      "fov": 54,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "world_cup_bridge-district",
+      "position": [
+        245,
+        190,
+        835
+      ],
+      "lookAt": [
+        40,
+        45,
+        0
+      ],
+      "fov": 54,
+      "reviewLod": "district"
+    },
+    {
+      "name": "world_cup_bridge-street",
+      "position": [
+        245,
+        190,
+        835
+      ],
+      "lookAt": [
+        40,
+        45,
+        0
+      ],
+      "fov": 54,
+      "reviewLod": "street"
+    },
+    {
+      "name": "world_cup_bridge-closeup",
+      "position": [
+        245,
+        190,
+        835
+      ],
+      "lookAt": [
+        40,
+        45,
+        0
+      ],
+      "fov": 54,
+      "reviewLod": "closeup"
+    }
+  ]
+}

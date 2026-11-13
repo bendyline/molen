@@ -32,8 +32,69 @@
       "shots/shared/native-dune-pavilion-roof-and-projected-core.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Six shared256px graphs: concrete_plain, metal_painted, membrane, fabric_canvas, window_grid and new reusable metal_rosette_screen. No embedded images or unique atlas. The original analytic2m circular/eight-point rosette with100mm working strips uses actual alpha apertures/filtered coverage; baked mean alpha0.3267788756127457, transparent center/corners and opaque ring checks pass. All70 previous graph files remain byte-identical. Runtime binds each required graph once; six near draws/one skyline draw. Separate position/normal streams and equal CPU/GPU accounting avoid duplicate uploads.",
-    "captureReportHash": "sha256:9c527d15db0b14b329856b735422e2602d8a3f7e1c687d4b2defb31fbde667cd"
+    "notes": "Six shared256px graphs: concrete_plain, metal_painted, membrane, fabric_canvas, window_grid and new reusable metal_rosette_screen. No embedded images or unique atlas. The original analytic2m circular/eight-point rosette with100mm working strips uses actual alpha apertures/filtered coverage; baked mean alpha0.3267788756127457, transparent center/corners and opaque ring checks pass. All70 previous graph files remain byte-identical. Runtime binds each required graph once; six near draws/one skyline draw. Separate position/normal streams and equal CPU/GPU accounting avoid duplicate uploads. Current viewer renders confirm the updated shared membrane, window_grid material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:b09d64eaa3f85bec6128c9dd2ec1bb01f7c1002f8908aabcd8df66148f7cea33",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:3090e6b985a7fc1093eb38c73a811501c56a095eea80b1e6fd60187840b21987"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:23b211124cfff07e134ab71e6d3655bc46e17c1abc4c91dae403645678131408"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:24f3b3ca7b23511ebaaaa3bfc9016e58c9994171ebd1ba244b1f4c02897d0678"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:6a8e3f26bed6e3892e2278bfdcbdf9ec7644a24ac311e5f85c482d0cff73356a"
+      },
+      {
+        "path": "shots/shared/open-rosette-screen-stand-off-frame-and-service-core.png",
+        "hash": "sha256:3b7b7fd86dc7be8f78cbf5ef050bb9c391c02812722c39743993e5df177e4d81"
+      },
+      {
+        "path": "shots/shared/red-dark-two-tier-bowl-and-flying-roof-truss.png",
+        "hash": "sha256:552cee32a181460e037c4a5d0ea178387b70848ff200199c0a4383200576c7a2"
+      },
+      {
+        "path": "shots/shared/native-dune-pavilion-roof-and-projected-core.png",
+        "hash": "sha256:cb2020aab87a64c4c8907cdca3f25f2356fab386598184cb278a8b4b27a02ae7"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:4e9e1d188e0aad9338ec69df3f31d4b197a213af8ceae675ee86de8ed86e26e3"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.metal_rosette_screen": {
+        "path": "materials/metal_rosette_screen.matgraph.json",
+        "hash": "sha256:44cc3c7626ac2174a2ef7b02a3947f07de6b56a4d38c8e762160d1d71e1a583f"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

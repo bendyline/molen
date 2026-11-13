@@ -57,6 +57,9 @@ describe('sparse graphics work', () => {
     const third = queue.run(() => published.push(3), { bytes: 80 });
     queue.flush();
     expect(published).toEqual([1]);
+    // The first job ran a millisecond over its budget, repaid from this frame.
+    queue.flush();
+    expect(published).toEqual([1]);
     queue.flush();
     expect(published).toEqual([1, 2]);
     const abort = new AbortController();
@@ -167,8 +170,172 @@ describe('sparse graphics work', () => {
     expect(order).toEqual(['big1', 'small']);
     queue.flush();
     expect(order).toEqual(['big1', 'small', 'big2']);
+    // big2 ran 8 ms past the budget with work still waiting: two frames repay it.
+    queue.flush();
+    queue.flush();
+    expect(order).toEqual(['big1', 'small', 'big2']);
     queue.flush();
     expect(order).toEqual(['big1', 'small', 'big2', 'after']);
+    queue.dispose();
+  });
+
+  it('repays a job past its budget from later frames, so the budget holds on average', () => {
+    let time = 0;
+    const queue = new FrameAdmissionQueue({
+      maxMilliseconds: 8,
+      now: () => time,
+      schedule: () => {},
+    });
+    const ran: number[] = [];
+    let frames = 0;
+    for (let job = 0; job < 4; job++) {
+      void queue.run(() => {
+        time += 22;
+        ran.push(frames);
+      });
+    }
+    while (queue.pending > 0 && frames < 64) {
+      queue.flush();
+      frames++;
+    }
+    // 22 ms is 14 past the 8 ms budget: a build, then two frames repaying it, then the next.
+    expect(ran).toEqual([0, 3, 6, 9]);
+    queue.dispose();
+  });
+
+  it('repays the same share of a frame that comes slower than 60 a second', () => {
+    let time = 0;
+    const queue = new FrameAdmissionQueue({
+      maxMilliseconds: 4,
+      now: () => time,
+      schedule: () => {},
+    });
+    const ran: number[] = [];
+    let frames = 0;
+    for (let job = 0; job < 2; job++) {
+      void queue.run(() => {
+        time += 110;
+        ran.push(frames);
+      });
+    }
+    while (queue.pending > 0 && frames < 64) {
+      queue.flush();
+      // Software rendering: 250 ms a frame outside the queue.
+      time += 250;
+      frames++;
+    }
+    // 106 ms past a 4 ms budget, repaid 60 ms a frame (4 ms of every 16.7), not 4: two frames,
+    // where the old rule idled for 27.
+    expect(ran).toEqual([0, 3]);
+    queue.dispose();
+  });
+
+  it('runs the same share of sustained software-rendering frames, but not of one hitch or idle time', () => {
+    let time = 0;
+    const queue = new FrameAdmissionQueue({
+      maxMilliseconds: 2,
+      now: () => time,
+      schedule: () => {},
+    });
+    let ran = 0;
+    const counts: number[] = [];
+    // A 2 ms slice of a layer build per job, plenty always waiting (and cancelled at the end).
+    const frame = (outsideMs: number): void => {
+      while (queue.pending < 40)
+        queue
+          .run(
+            () => {
+              time += 2;
+              ran++;
+            },
+            { label: 'slice' },
+          )
+          .catch(() => {});
+      ran = 0;
+      queue.flush();
+      counts.push(ran);
+      time += outsideMs;
+    };
+    // 60 frames a second, one 500 ms hitch among them: one 2 ms slice a frame throughout.
+    for (const outside of [14, 14, 500, 14, 14]) frame(outside);
+    expect(counts).toEqual([1, 1, 1, 1, 1]);
+    // 440 ms frames: from the third in a row, 2 ms of every 16.7 is 52.8 ms, 26 slices.
+    counts.length = 0;
+    for (let i = 0; i < 5; i++) frame(440);
+    expect(counts).toEqual([1, 1, 1, 26, 26]);
+    // Back at an interactive rate, the fixed budget at once.
+    counts.length = 0;
+    frame(14);
+    frame(14);
+    expect(counts).toEqual([26, 1]);
+    queue.dispose();
+
+    // Idle time is not a frame: work arriving after ten quiet seconds gets the fixed budget.
+    const idle = new FrameAdmissionQueue({
+      maxMilliseconds: 2,
+      now: () => time,
+      schedule: () => {},
+    });
+    for (let i = 0; i < 3; i++) {
+      void idle.run(() => {
+        time += 2;
+      });
+      idle.flush();
+      time += 10_000;
+    }
+    let afterIdle = 0;
+    for (let job = 0; job < 10; job++)
+      idle
+        .run(() => {
+          time += 2;
+          afterIdle++;
+        })
+        .catch(() => {});
+    idle.flush();
+    expect(afterIdle).toBe(1);
+    idle.dispose();
+  });
+
+  it('forgets an overrun once nothing is waiting', () => {
+    let time = 0;
+    const queue = new FrameAdmissionQueue({
+      maxMilliseconds: 8,
+      now: () => time,
+      schedule: () => {},
+    });
+    const ran: string[] = [];
+    void queue.run(() => {
+      time += 40;
+      ran.push('long');
+    });
+    queue.flush();
+    void queue.run(() => ran.push('next'));
+    queue.flush();
+    expect(ran).toEqual(['long', 'next']);
+    queue.dispose();
+  });
+
+  it('gives background work a turn among the rest once it has waited', () => {
+    let time = 0;
+    const queue = new FrameAdmissionQueue({
+      maxJobs: 1,
+      backgroundWaitMs: 100,
+      backgroundShare: 3,
+      now: () => time,
+      schedule: () => {},
+    });
+    const order: string[] = [];
+    void queue.run(() => order.push('b1'), { priority: 'background' });
+    void queue.run(() => order.push('b2'), { priority: 'background' });
+    for (let frame = 0; frame < 12; frame++) {
+      time = frame * 20;
+      void queue.run(() => order.push('n'));
+      queue.flush();
+    }
+    // Nothing until 100 ms have passed, then one turn after every three other jobs.
+    expect(order).toEqual(['n', 'n', 'n', 'n', 'n', 'b1', 'n', 'n', 'n', 'b2', 'n', 'n']);
+    expect(() => new FrameAdmissionQueue({ backgroundShare: 0 })).toThrow(RangeError);
+    while (queue.pending) queue.flush();
     queue.dispose();
   });
 

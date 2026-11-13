@@ -1,0 +1,366 @@
+{
+  "id": "bayterek",
+  "title": "Bayterek",
+  "wikidataId": "Q804210",
+  "referenceCoordinate": {
+    "longitude": 71.430454343,
+    "latitude": 51.128288257
+  },
+  "module": "content/worldgen/source/places/v9/v94/bayterek/models/tower-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-bayterek.mjs",
+  "builder": "buildTowerLevel",
+  "surfaces": {
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_granite"
+    },
+    "plinth": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw"
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_painted"
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_stainless_polished",
+      "metallic": 0.88,
+      "roughness": 0.14
+    }
+  },
+  "exportLabel": "Molen original Bayterek master",
+  "expectedDraftMasterHash": "sha256:a4f57f0b5a586aaa8d3d39f2975c3c426f9cd458d83098b3e93c3e44e43e2a59",
+  "visualBrief": "Bayterek’s white flared lattice, paneled gold sphere, circular plinth and two stairs on the Nurzhol Boulevard axis.",
+  "heightPolicy": "Standard Terrarium sets the 345 m datum and the two stair threshold grades. The 97 m observation level is separate from the modeled 105 m mast height above the tower base.",
+  "nativeAxes": "Positive X follows the two mapped flights from the west garden approach to the east approach. The star-shaped tower footprint supplies the support positions.",
+  "limitations": [
+    "The modeled 97 m observation level and 105 m mast height are distinct. The two mapped building height tags are retained as source evidence. Standard terrain and exterior photographs determine the reconstructed plinth and branch proportions.",
+    "The sphere uses reflective opaque panels and modeled seams. The visitor interiors, fountain animation and independent landscape fixtures remain outside the landmark model."
+  ],
+  "materialMethod": "Four shared graphs cover granite paving, limestone plinth, painted steel and polished metal. Metric repeats and geometric seams render the observation panels without embedded textures.",
+  "references": [
+    {
+      "url": "https://e-history.kz/en/news/show/6848",
+      "hash": "sha256:2467c32b749170e18882d17c3271000af1867a7af8ea4cec6d9c07b155b9fcdf",
+      "observed": "Monument alignment on the formal city axis and stepped gardens."
+    },
+    {
+      "url": "https://whereisemil.eu/galleries/astana",
+      "hash": "sha256:464823ed699608c7b05b95a2c44feee77e5cf85480a8fa0f9a1ebbae7ffcaf20",
+      "observed": "Close-up of the sphere panels and the laced white beams at the crown."
+    },
+    {
+      "url": "https://davidgabis.blogspot.com/2017/04/bayterek-tower-golden-egg-on-top-of.html",
+      "hash": "sha256:5af1ca604859f7f01da3a1abcd8b295a2394712189946acfbf43ca4dd33bc163",
+      "observed": "A separate perspective of the lattice and the transition from plinth to shaft."
+    },
+    {
+      "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile",
+      "observed": "Aerial view confirms the two axial flights and the separation of the circular plinth from the planted plaza."
+    }
+  ],
+  "cameras": [
+    {
+      "name": "tower-on-the-boulevard",
+      "position": [
+        -132,
+        68,
+        75
+      ],
+      "lookAt": [
+        0,
+        53,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "west-stairs-and-full-tower",
+      "position": [
+        -108,
+        27,
+        5
+      ],
+      "lookAt": [
+        0,
+        48,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "sphere-and-crown-from-above",
+      "position": [
+        55,
+        117,
+        52
+      ],
+      "lookAt": [
+        0,
+        87,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "crown-cross-braces",
+      "position": [
+        37,
+        75,
+        -35
+      ],
+      "lookAt": [
+        0,
+        83,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "shaft-and-branches",
+      "position": [
+        -31,
+        30,
+        23
+      ],
+      "lookAt": [
+        0,
+        51,
+        0
+      ],
+      "fov": 55
+    },
+    {
+      "name": "east-stairs-and-entry",
+      "position": [
+        39,
+        8.8,
+        12
+      ],
+      "lookAt": [
+        4,
+        4,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "west-stairs-and-plinth",
+      "position": [
+        -37,
+        7.5,
+        -11
+      ],
+      "lookAt": [
+        -8,
+        4,
+        0
+      ],
+      "fov": 59
+    },
+    {
+      "name": "plaza-and-branch-footings",
+      "position": [
+        -11,
+        9.8,
+        34
+      ],
+      "lookAt": [
+        0,
+        7.2,
+        0
+      ],
+      "fov": 60
+    }
+  ],
+  "sourceFacts": {
+    "mappedParts": [
+      35184602490477,
+      35184602490476
+    ],
+    "mappedStairs": 35185919421980,
+    "mappedPlaza": 52776561606960,
+    "sphereDiameterMeters": 22.06137,
+    "mappedFeatureHeights": [
+      92,
+      83
+    ],
+    "observationLevelMeters": 97,
+    "modeledMastHeightMeters": 105,
+    "observationSource": "https://www.gov.kz/uploads/2020/12/27/4d25dfd8ea1e19b5488d44e2528a8e12_original.17964681.pdf"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        50,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/v9/v94/bayterek/models/tower-model.mjs",
+    "export": "buildTowerSkyline",
+    "surfaces": {
+      "paving": {
+        "slot": "foundation",
+        "graph": "stone_granite"
+      },
+      "plinth": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw"
+      },
+      "steel": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      },
+      "gold": {
+        "slot": "trim",
+        "graph": "metal_stainless_polished",
+        "metallic": 0.88,
+        "roughness": 0.14
+      }
+    },
+    "errorMeters": 1.35,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTowerDistrict",
+        "surfaces": {
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "plinth": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_stainless_polished",
+            "metallic": 0.88,
+            "roughness": 0.14
+          }
+        },
+        "errorMeters": 0.56
+      },
+      "street": {
+        "export": "buildTowerStreet",
+        "surfaces": {
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "plinth": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_stainless_polished",
+            "metallic": 0.88,
+            "roughness": 0.14
+          }
+        },
+        "errorMeters": 0.18
+      },
+      "closeup": {
+        "export": "buildTowerCloseup",
+        "surfaces": {
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "plinth": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw"
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_stainless_polished",
+            "metallic": 0.88,
+            "roughness": 0.14
+          }
+        },
+        "errorMeters": 0.065
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "bayterek-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -132,
+        68,
+        75
+      ],
+      "lookAt": [
+        0,
+        53,
+        0
+      ]
+    },
+    {
+      "name": "bayterek-district",
+      "reviewLod": "district",
+      "position": [
+        -132,
+        68,
+        75
+      ],
+      "lookAt": [
+        0,
+        53,
+        0
+      ]
+    },
+    {
+      "name": "bayterek-street",
+      "reviewLod": "street",
+      "position": [
+        -132,
+        68,
+        75
+      ],
+      "lookAt": [
+        0,
+        53,
+        0
+      ]
+    },
+    {
+      "name": "bayterek-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -132,
+        68,
+        75
+      ],
+      "lookAt": [
+        0,
+        53,
+        0
+      ]
+    }
+  ]
+}

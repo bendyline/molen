@@ -1,3 +1,4 @@
+import type { InstanceBatch } from '@bendyline/molen-client/instancing';
 import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { Heightfield } from '../src/heightfield';
@@ -73,11 +74,12 @@ describe('intersection traffic signals', () => {
       expect(lateral).toBeLessThan(0);
       expect(Math.abs(lateral)).toBeLessThan(head.direction[0] ? 6 : 4);
     }
-    const dark = object.getObjectByName('surface:signal-lenses') as THREE.InstancedMesh;
-    const lit = object.getObjectByName('surface:signal-lit') as THREE.InstancedMesh;
+    const dark = object.getObjectByName('surface:signal-lenses') as InstanceBatch;
+    const lit = object.getObjectByName('surface:signal-lit') as InstanceBatch;
     expect(dark.count).toBe(heads.length * 3);
     expect(lit.count).toBe(heads.length);
-    expect(dark.geometry.type).toBe('CircleGeometry');
+    // A batch's own geometry holds its instances; the lens model is what it draws.
+    expect(dark.sourceGeometry.type).toBe('CircleGeometry');
     expect(lit.material).toBeInstanceOf(THREE.MeshBasicMaterial);
     expect((lit.material as THREE.MeshBasicMaterial).toneMapped).toBe(false);
     // Signal geometry is independently switchable and absent in historical/simple styles.

@@ -2,9 +2,17 @@ import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { createInstancedPlacementLod } from '../../src/client/instanced-lod';
 import { ModelLibrary, type PreparedModel } from '../../src/client/instanced-models';
-import { createScatterMaterialAsync, scatterFullyLitTerm } from '../../src/client/scatter-material';
+import {
+  createScatterMaterialAsync,
+  scatterDistantShadowTerm,
+} from '../../src/client/scatter-material';
 import { disposeWorldgenObject } from '../../src/client/upload';
 import { PLACEMENT_STRIDE, type PlacementSet } from '../../src/kernel/types';
+
+/** The level geometry a batch draws: an instance batch wraps it with its own instance buffers. */
+const shown = (mesh: THREE.InstancedMesh): THREE.BufferGeometry =>
+  (mesh as THREE.InstancedMesh & { sourceGeometry?: THREE.BufferGeometry }).sourceGeometry ??
+  mesh.geometry;
 
 describe('camera-distance instance LOD', () => {
   it('preserves placement transforms and tint, reduces distant triangles, and survives rebasing', async () => {
@@ -152,23 +160,79 @@ describe('camera-distance instance LOD', () => {
     camera.position.copy(lod.position).add(new THREE.Vector3(0, 10, 0));
     camera.updateMatrixWorld();
     lod.update(camera);
-    expect(mesh.geometry).toBe(models[0].geometry);
+    expect(shown(mesh)).toBe(models[0].geometry);
     expect(lod.getCurrentLevel()).toBe(0);
     camera.position.x += 50_000;
     camera.updateMatrixWorld();
     lod.update(camera);
-    expect(mesh.geometry).toBe(models[2].geometry);
+    expect(shown(mesh)).toBe(models[2].geometry);
     expect(mesh.castShadow).toBe(false);
     // A shadow pass's orthographic camera does not reselect while the view camera is active.
     const shadow = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
     shadow.position.copy(lod.position);
     shadow.updateMatrixWorld();
     lod.update(shadow);
-    expect(mesh.geometry).toBe(models[2].geometry);
+    expect(shown(mesh)).toBe(models[2].geometry);
     camera.position.copy(lod.position);
     camera.updateMatrixWorld();
     lod.update(camera);
-    expect(mesh.geometry).toBe(models[0].geometry);
+    expect(shown(mesh)).toBe(models[0].geometry);
+    expect(mesh.castShadow).toBe(true);
+    disposeWorldgenObject(root);
+    library.dispose();
+  });
+
+  it('hands a conifer to its horizon cone by the horizon budget, not the relaxed one', async () => {
+    const library = new ModelLibrary();
+    const ref = 'builtin:tree.conifer.fir';
+    const models = [
+      await library.prepare(ref),
+      await library.prepare(ref, true),
+      await library.prepare(ref, 'distant'),
+      await library.prepare(ref, 'horizon'),
+    ] as const;
+    expect(new Set(models.map((model) => model.geometry)).size).toBe(4);
+    const set: PlacementSet = {
+      setId: 'firs',
+      modelRef: ref,
+      count: 1,
+      data: new Float32Array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1]),
+    };
+    // A host flying high relaxes the general budget fourfold and keeps the horizon one.
+    const policy: { viewportHeight: number; maxPixelError: number; horizonPixelError?: number } = {
+      viewportHeight: 1080,
+      maxPixelError: 10,
+      horizonPixelError: 2.5,
+    };
+    const root = createInstancedPlacementLod(set, models, {
+      cellSize: Number.POSITIVE_INFINITY,
+      screenSpace: policy,
+    });
+    const lod = root.children[0] as THREE.LOD;
+    let mesh: THREE.InstancedMesh | undefined;
+    root.traverse((o) => {
+      if ((o as THREE.InstancedMesh).isInstancedMesh) mesh = o as THREE.InstancedMesh;
+    });
+    if (mesh === undefined) throw new Error('no batch');
+    mesh.castShadow = true;
+    root.updateMatrixWorld(true);
+    const camera = new THREE.PerspectiveCamera(60, 16 / 9, 0.1, 100_000);
+    const from = (meters: number): THREE.BufferGeometry => {
+      camera.position.copy(lod.position).add(new THREE.Vector3(meters, 0, 0));
+      camera.updateMatrixWorld();
+      lod.update(camera);
+      return shown(mesh as THREE.InstancedMesh);
+    };
+    // The skirted far model out to about 930 m (2.5 m of error at 2.5 pixels), where the relaxed
+    // budget alone would have drawn the cone from about 230 m.
+    expect(from(600)).toBe(models[2].geometry);
+    expect(mesh.castShadow).toBe(false);
+    expect(from(2_000)).toBe(models[3].geometry);
+    expect(mesh.castShadow).toBe(false);
+    expect(from(600)).toBe(models[2].geometry);
+    delete policy.horizonPixelError;
+    expect(from(600)).toBe(models[3].geometry);
+    expect(from(5)).toBe(models[0].geometry);
     expect(mesh.castShadow).toBe(true);
     disposeWorldgenObject(root);
     library.dispose();
@@ -395,11 +459,21 @@ describe('camera-distance instance LOD', () => {
     expect(lod.getCurrentLevel()).toBe(2);
     const distant = mesh.material as THREE.Material & { receivedShadowNode?: () => unknown };
     expect(distant).not.toBe(material);
-    expect(distant.receivedShadowNode?.()).toBe(scatterFullyLitTerm(material));
+    expect(distant.receivedShadowNode?.()).toBe(scatterDistantShadowTerm(material));
     // Shaders are built for the flag, so it stays; the distant level still casts nothing.
     expect(mesh.receiveShadow).toBe(true);
     expect(mesh.castShadow).toBe(false);
     expect(mesh.userData.materialVariants).toContain(distant);
+    // Unless the host's shadow map can afford every tree in range: then it casts as the near
+    // levels do, and still reads no shadow itself.
+    const policy = (lod as THREE.LOD & { policy: { distantShadows?: boolean } }).policy;
+    policy.distantShadows = true;
+    lod.update(camera);
+    expect(mesh.castShadow).toBe(true);
+    expect(mesh.material).toBe(distant);
+    policy.distantShadows = false;
+    lod.update(camera);
+    expect(mesh.castShadow).toBe(false);
     disposeWorldgenObject(root);
     material.dispose();
   });

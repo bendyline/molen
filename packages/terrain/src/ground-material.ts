@@ -4,8 +4,17 @@
 // it costs no texture and no upload. Flat landcover polygons would otherwise read as one solid
 // swatch from edge to edge, meeting their neighbors along straight polygon edges.
 
+import {
+  SNOW_COVER_COLOR,
+  SNOW_COVER_GLSL,
+  SNOW_COVER_PERIOD,
+  snowLineNode,
+  writeSnowCoverValue,
+} from '@bendyline/molen-client/snow';
+import type { SnowCoverData } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import type { MeshStandardNodeMaterial, Node } from 'three/webgpu';
+import { TERRAIN_TRACK_GLSL, terrainTrackNode } from './rail-material';
 
 export interface TerrainGroundMaterialOptions {
   roughness?: number;
@@ -26,7 +35,7 @@ export type TerrainGroundMaterial = THREE.MeshStandardMaterial | MeshStandardNod
  * its floating origin reduced by this period: the shader then adds small numbers, keeping full
  * float precision, and a rebase never shifts the pattern. Every cell size below divides it.
  */
-const PERIOD = 4096;
+const PERIOD = SNOW_COVER_PERIOD;
 /** Noise cell sizes, meters: broad mottling, mid patches, clumps, grain, and dry/lush areas. */
 const BROAD = 64;
 const MID = 16;
@@ -135,6 +144,55 @@ const BRUSH_MEAN: [number, number, number] = [rimMean(0), rimMean(1), rimMean(2)
 const BARE_CELL = 32;
 /** Linear lift of a worn, bare-soil patch over its ground. */
 const BARE: [number, number, number] = [1.3, 1.24, 1.14];
+/**
+ * Lying snow (see `setTerrainGroundSnow`). Through the transition band above the snow line it
+ * arrives as patches, thresholded against these noise cells (meters, with their weights) so the
+ * covered share of the ground follows the line's smooth cover; past `SNOW_PATCH_FADE` meters the
+ * patches are sub-pixel and the ground takes that share evenly.
+ */
+const SNOW_PATCH: readonly (readonly [cell: number, weight: number, x: number, z: number])[] = [
+  [16, 0.6, 91, 37],
+  [4, 0.4, 23, 7],
+];
+const SNOW_PATCH_EDGE = 0.12;
+const SNOW_PATCH_FADE: [number, number] = [300, 1500];
+/**
+ * World-normal up component across which ground goes from shedding snow to holding it: faces
+ * steeper than about 58 degrees stay bare rock, and those under about 40 degrees are covered.
+ */
+const SNOW_HOLD: [number, number] = [0.53, 0.77];
+/** How far the patch noise moves that threshold, so a cliff's snow edge is ragged. */
+const SNOW_HOLD_RAGGED = 0.12;
+/** Brightness variation of the snow surface over 32 m: drifts and hollows. */
+const SNOW_DRIFT = 0.1;
+/**
+ * Wind drifts: the snow surface's own relief, which the light then models, where bare turf has
+ * its tufts. Each wave is whole cycles across the ground's period along x and z (so a
+ * floating-origin rebase keeps the pattern; 6.5 m, 4.1 m and 1.1 m long here, the first and
+ * last nearly parallel as wind lays them), its height in meters, and how many cycles the 32 m
+ * tone noise bends it by, which keeps the crests from running straight. Each fades as half its
+ * length nears two pixels, like the turf's layers. Waves rather than the noise lattice: a bump
+ * taken from that 8-bit texture is stippled, which only plain white shows.
+ */
+const SNOW_WAVES: readonly (readonly [x: number, z: number, height: number, bend: number])[] = [
+  [560, 290, 0.09, 1.5],
+  [930, -370, 0.04, -1.1],
+  [3300, 1900, 0.012, 2.3],
+];
+const snowWaveCell = (x: number, z: number): number => PERIOD / Math.hypot(x, z) / 2;
+/** Tint of a drift's hollow against its crest: denser snow, lit more by the sky. */
+const SNOW_HOLLOW: [number, number, number] = [0.92, 0.955, 1];
+/** Share of the turf's bump relief that snow smooths away. */
+const SNOW_SMOOTH = 0.85;
+/**
+ * Paving under snow: a road or lot is ploughed and driven on, so packed, greyer snow covers
+ * between `SNOW_ROAD[0]` and `SNOW_ROAD[1]` of it in 2 m patches with the paving showing through;
+ * sidewalks and plazas keep more, and unpaved bands and track ballast nearly all of it.
+ */
+const SNOW_PACKED: [number, number, number] = [0.6, 0.63, 0.67];
+const SNOW_ROAD: [number, number] = [0.4, 0.85];
+const SNOW_WALK: [number, number] = [0.75, 0.95];
+const SNOW_LOOSE = 0.95;
 const glslVec3 = (v: readonly number[]): string => `vec3(${v.map((x) => x.toFixed(3)).join(', ')})`;
 /**
  * Texels across the shared lattice texture, and the largest cell read from it. A cell of 4 m or
@@ -178,14 +236,28 @@ function groundNoiseLattice(): THREE.DataTexture {
 interface TerrainGroundState {
   origin: { value: THREE.Vector2 };
   strength: { value: number };
+  /** Snow line (rendered Y), transition band, amount (0 is none): `writeSnowCoverValue`. */
+  snow: { value: THREE.Vector4 };
 }
+
+const noSnow = (): THREE.Vector4 => new THREE.Vector4(0, 150, 0, 0);
+
+/** Vertex shader lines for the snow varying: world height, and how far the surface faces up. */
+const SNOW_VERTEX_GLSL = /* glsl */ `
+       vec3 terrainSnowNormal = mat3(modelMatrix) * objectNormal;
+       float terrainSnowLength = length(terrainSnowNormal);
+       vTerrainSnow = vec2((modelMatrix * vec4(transformed, 1.0)).y,
+         terrainSnowLength > 0.0 ? terrainSnowNormal.y / terrainSnowLength : 1.0);`;
 
 const states = new WeakMap<THREE.Material, TerrainGroundState>();
 
 const GLSL = /* glsl */ `
   varying vec2 vTerrainGround;
+  varying vec2 vTerrainSnow;
   uniform float terrainGroundStrength;
   uniform sampler2D terrainGroundNoiseMap;
+  uniform vec4 terrainGroundSnow;
+  ${SNOW_COVER_GLSL}
 
   float terrainGroundHash(vec2 c, float period) {
     c -= period * floor(c / period);
@@ -212,6 +284,47 @@ const GLSL = /* glsl */ `
   // The lattice value of one integer cell: a texel center, so bilinear lookup returns it unblended.
   float terrainGroundCell(vec2 cell) {
     return textureLod(terrainGroundNoiseMap, (cell + 0.5) / ${NOISE_SIZE.toFixed(1)}, 0.0).r;
+  }
+
+  // Share of this ground that lying snow covers: none below the snow line, patches through the
+  // transition band above it, and all of it higher up, less what steep faces shed.
+  float terrainGroundSnowCover(float distance) {
+    float line = molenSnowLine(vTerrainGround, vTerrainSnow.x, terrainGroundSnow);
+    if (line <= 0.0) return 0.0;
+    vec2 p = vTerrainGround;
+    float n = ${SNOW_PATCH.map(
+      ([cell, weight, x, z]) =>
+        `terrainGroundNoise(p + vec2(${x.toFixed(1)}, ${z.toFixed(1)}), ${cell.toFixed(1)}) * ${weight.toFixed(2)}`,
+    ).join(' + ')};
+    float cover = line;
+    if (line < 1.0) {
+      float patches = smoothstep(-${SNOW_PATCH_EDGE.toFixed(2)}, ${SNOW_PATCH_EDGE.toFixed(2)},
+        mix(-${SNOW_PATCH_EDGE.toFixed(2)}, ${(1 + SNOW_PATCH_EDGE).toFixed(2)}, line) - n);
+      cover = mix(patches, line,
+        smoothstep(${SNOW_PATCH_FADE[0].toFixed(1)}, ${SNOW_PATCH_FADE[1].toFixed(1)}, distance));
+    }
+    return cover * smoothstep(${SNOW_HOLD[0].toFixed(2)}, ${SNOW_HOLD[1].toFixed(2)},
+      vTerrainSnow.y + (n - 0.5) * ${SNOW_HOLD_RAGGED.toFixed(2)});
+  }
+
+  // The snow's wind drifts (see SNOW_WAVES): their height in meters, and how far up the
+  // longest one this point sits (0.5 where it has faded); tone is the 32 m tone noise.
+  float terrainGroundSnowDrift(float footprint, float tone, out float crest) {
+    vec2 p = vTerrainGround * ${((2 * Math.PI) / PERIOD).toFixed(10)};
+    float bend = (tone - 0.5) * ${(2 * Math.PI).toFixed(7)};
+    float height = 0.0;
+    float wave;${SNOW_WAVES.map(
+      ([x, z, height, bend], i) => `
+    wave = sin(dot(p, vec2(${x.toFixed(1)}, ${z.toFixed(1)})) + bend * ${bend.toFixed(2)}) *
+      (1.0 - smoothstep(0.25, 0.6, footprint / ${snowWaveCell(x, z).toFixed(3)}));
+    height += wave * ${height.toFixed(3)};${i === 0 ? ' crest = 0.5 + 0.5 * wave;' : ''}`,
+    ).join('')}
+    return height;
+  }
+
+  vec3 terrainGroundSnowColor(float tone, float crest) {
+    return ${glslVec3(SNOW_COVER_COLOR)} * mix(${glslVec3(SNOW_HOLLOW)}, vec3(1.0), crest) *
+      (${(1 - SNOW_DRIFT / 2).toFixed(3)} + ${SNOW_DRIFT.toFixed(3)} * tone);
   }
 
   // Bare patches and shrub crowns (see BRUSH_SHARE). Where crowns fall below a pixel the ground
@@ -437,6 +550,22 @@ function tslNoise(tsl: Tsl): {
   return { hash, noise, cell };
 }
 
+/** The patch noise of terrainGroundSnowCover, as TSL nodes. */
+function snowPatchNoise(
+  noise: (p: Node<'vec2'>, size: number) => Node<'float'>,
+  p: Node<'vec2'>,
+  vec2: Tsl['vec2'],
+): Node<'float'> {
+  let sum: Node<'float'> | undefined;
+  for (const [cell, weight, x, z] of SNOW_PATCH) {
+    const term = noise(p.add(vec2(x, z)) as unknown as Node<'vec2'>, cell).mul(
+      weight,
+    ) as unknown as Node<'float'>;
+    sum = sum === undefined ? term : (sum.add(term) as unknown as Node<'float'>);
+  }
+  return sum as Node<'float'>;
+}
+
 function parameters(options: TerrainGroundMaterialOptions): THREE.MeshStandardMaterialParameters {
   return { vertexColors: true, roughness: options.roughness ?? 0.97, metalness: 0 };
 }
@@ -455,6 +584,7 @@ export function createTerrainGroundMaterial(
   const state: TerrainGroundState = {
     origin: { value: new THREE.Vector2() },
     strength: { value: strength(options) },
+    snow: { value: noSnow() },
   };
   const material = new THREE.MeshStandardMaterial(parameters(options));
   material.name = 'terrain-ground';
@@ -465,15 +595,17 @@ export function createTerrainGroundMaterial(
       terrainGroundOrigin: state.origin,
       terrainGroundStrength: state.strength,
       terrainGroundNoiseMap: { value: groundNoiseLattice() },
+      terrainGroundSnow: state.snow,
     });
     shader.vertexShader = `
       ${options.agriculture ? 'attribute vec4 agricultureRows; attribute vec3 agricultureSoil; attribute vec4 landcoverBlend; attribute vec2 landcoverDetail; varying vec4 vAgricultureRows; varying vec3 vAgricultureSoil; varying vec4 vLandcoverBlend; varying vec2 vLandcoverDetail;' : ''}
       varying vec2 vTerrainGround;
+      varying vec2 vTerrainSnow;
       uniform vec2 terrainGroundOrigin;
     ${shader.vertexShader}`.replace(
       '#include <begin_vertex>',
       `#include <begin_vertex>
-       vTerrainGround = (modelMatrix * vec4(transformed, 1.0)).xz + terrainGroundOrigin;
+       vTerrainGround = (modelMatrix * vec4(transformed, 1.0)).xz + terrainGroundOrigin;${SNOW_VERTEX_GLSL}
        ${options.agriculture ? 'vAgricultureRows = agricultureRows; vAgricultureSoil = agricultureSoil; vLandcoverBlend = landcoverBlend; vLandcoverDetail = landcoverDetail;' : ''}`,
     );
     shader.fragmentShader = `${GLSL}
@@ -500,7 +632,21 @@ export function createTerrainGroundMaterial(
            : ''
 }
        float terrainGroundRelief = 0.0;
-       diffuseColor.rgb *= terrainGroundFactor(diffuseColor.rgb, terrainGroundDistance, terrainGroundRelief);`,
+       diffuseColor.rgb *= terrainGroundFactor(diffuseColor.rgb, terrainGroundDistance, terrainGroundRelief);
+       // Outside the branch: derivatives are undefined in divergent control flow.
+       float terrainSnowFootprint =
+         max(max(length(dFdx(vTerrainGround)), length(dFdy(vTerrainGround))), 0.0001);
+       float terrainSnow = terrainGroundSnowCover(terrainGroundDistance);
+       if (terrainSnow > 0.0) {
+         float terrainSnowTone = terrainGroundNoise(vTerrainGround + vec2(7.0, 61.0), 32.0);
+         float terrainSnowCrest;
+         float terrainSnowDrift =
+           terrainGroundSnowDrift(terrainSnowFootprint, terrainSnowTone, terrainSnowCrest);
+         diffuseColor.rgb = mix(diffuseColor.rgb,
+           terrainGroundSnowColor(terrainSnowTone, terrainSnowCrest), terrainSnow);
+         terrainGroundRelief = terrainGroundRelief * (1.0 - ${SNOW_SMOOTH.toFixed(2)} * terrainSnow) +
+           terrainSnowDrift * terrainSnow;
+       }`,
       )
       .replace(
         '#include <normal_fragment_maps>',
@@ -509,7 +655,7 @@ export function createTerrainGroundMaterial(
       );
   };
   material.customProgramCacheKey = (): string =>
-    `terrain-ground@34:${options.agriculture === true}`;
+    `terrain-ground@36:${options.agriculture === true}`;
   states.set(material, state);
   return material;
 }
@@ -523,6 +669,17 @@ export async function createTerrainGroundMaterialAsync(
   backend: 'webgl' | 'webgpu' = 'webgl',
 ): Promise<TerrainGroundMaterial> {
   if (backend === 'webgl') return createTerrainGroundMaterial(options);
+  return createTerrainGroundNodeMaterial(options, false);
+}
+
+/**
+ * The WebGPU ground. `textured` draws it from the material's `map` rather than vertex colors:
+ * see `createTerrainGroundTextureMaterialAsync`.
+ */
+async function createTerrainGroundNodeMaterial(
+  options: TerrainGroundMaterialOptions,
+  textured: boolean,
+): Promise<MeshStandardNodeMaterial> {
   const [{ MeshStandardNodeMaterial }, tsl] = await Promise.all([
     import('three/webgpu'),
     import('three/tsl'),
@@ -558,7 +715,10 @@ export async function createTerrainGroundMaterialAsync(
     dFdy,
     cross,
     sign,
+    sin,
     normalize,
+    float,
+    normalWorldGeometry,
   } = tsl;
   type F = Node<'float'>;
   type V2 = Node<'vec2'>;
@@ -566,6 +726,7 @@ export async function createTerrainGroundMaterialAsync(
   const { noise, cell } = tslNoise(tsl);
   const origin = uniform(new THREE.Vector2()).setName('terrainGroundOrigin');
   const amount = uniform(strength(options)).setName('terrainGroundStrength');
+  const snow = uniform(noSnow()).setName('terrainGroundSnow');
   const p = positionWorld.xz.add(origin).toVar() as unknown as V2;
   const distance = positionView.length().toVar();
   const footprint = max(max(dFdx(p).length(), dFdy(p).length()), 0.0001).toVar();
@@ -632,7 +793,11 @@ export async function createTerrainGroundMaterialAsync(
   const nMicro = octaves.y;
   const nNano = octaves.z;
   const nClump = octaves.w;
-  const vertex = vertexColor().rgb;
+  // Ground drawn from a texture has no vertex colors: its color is the material's own, which
+  // three has already multiplied by the `map` of the copy each tile draws with.
+  const vertex = textured
+    ? ((materialColor as unknown as Node<'vec4'>).rgb.toVar() as unknown as V3)
+    : vertexColor().rgb;
   // The node renderer multiplies colorNode by the vertex color itself (vertexColors stays on),
   // so everything below is a factor over it; `base` is the color that factor is judged against.
   let base: V3 = vertex as unknown as V3;
@@ -831,6 +996,63 @@ export async function createTerrainGroundMaterialAsync(
     .mul(mix(vec3(1), cast, abs(shade).mul(green).mul(0.6).mul(amount)))
     .mul(mix(vec3(1), muted, clamp(green.mul(amount), 0, 1)));
   factor = factor.mul(tint.mul(lum)) as unknown as V3;
+  // Lying snow, as terrainGroundSnowCover in the GLSL path: a factor too, so it divides the
+  // vertex color back out.
+  const snowCover = Fn(([lying]: [Node<'vec4'>]) => {
+    const result = float(0).toVar();
+    If(lying.z.greaterThan(0), () => {
+      const line = snowLineNode(tsl, p, positionWorld.y as unknown as F, lying).toVar();
+      If(line.greaterThan(0), () => {
+        const n = snowPatchNoise(noise, p, vec2).toVar();
+        const patches = smoothstep(
+          -SNOW_PATCH_EDGE,
+          SNOW_PATCH_EDGE,
+          mix(-SNOW_PATCH_EDGE, 1 + SNOW_PATCH_EDGE, line).sub(n),
+        );
+        const even = max(
+          smoothstep(SNOW_PATCH_FADE[0], SNOW_PATCH_FADE[1], distance),
+          step(1, line),
+        );
+        const hold = smoothstep(
+          SNOW_HOLD[0],
+          SNOW_HOLD[1],
+          (normalWorldGeometry.y as unknown as F).add(n.sub(0.5).mul(SNOW_HOLD_RAGGED)),
+        );
+        result.assign(mix(patches, line, even).mul(hold));
+      });
+    });
+    return result;
+  })(snow as unknown as Node<'vec4'>).toVar() as unknown as F;
+  // Its surface, as terrainGroundSnowDrift and terrainGroundSnowColor: x the drifts' height, y
+  // how far up the longest one this point sits, z the 32 m tone. Read only where snow lies.
+  const snowSurface = Fn(([cover]: [F]) => {
+    const result = vec3(0, 0.5, 0.5).toVar();
+    If(cover.greaterThan(0), () => {
+      const tone = noise(p.add(vec2(7, 61)) as unknown as V2, 32).toVar();
+      const turns = p.mul((2 * Math.PI) / PERIOD);
+      const bend = tone
+        .sub(0.5)
+        .mul(2 * Math.PI)
+        .toVar();
+      const waves = SNOW_WAVES.map(([x, z, , by]) =>
+        sin(dot(turns, vec2(x, z)).add(bend.mul(by)))
+          .mul(fade(snowWaveCell(x, z)))
+          .toVar(),
+      );
+      let height = float(0) as unknown as F;
+      waves.forEach((wave, i) => {
+        height = height.add(
+          wave.mul((SNOW_WAVES[i] as (typeof SNOW_WAVES)[number])[2]),
+        ) as unknown as F;
+      });
+      result.assign(vec3(height, (waves[0] as unknown as F).mul(0.5).add(0.5), tone));
+    });
+    return result;
+  })(snowCover).toVar();
+  const snowColor = vec3(...SNOW_COVER_COLOR)
+    .mul(mix(vec3(...SNOW_HOLLOW), vec3(1), snowSurface.y))
+    .mul(snowSurface.z.mul(SNOW_DRIFT).add(1 - SNOW_DRIFT / 2));
+  factor = mix(factor, snowColor.div(max(vertex, vec3(0.001))), snowCover) as unknown as V3;
   const relief = nFine
     .sub(0.5)
     .mul(RELIEF[0])
@@ -851,9 +1073,14 @@ export async function createTerrainGroundMaterialAsync(
     )
     .mul(amount)
     .mul(green.mul(0.6).add(0.4))
+    .mul(snowCover.mul(-SNOW_SMOOTH).add(1))
+    .add(snowSurface.x.mul(snowCover))
     .toVar() as unknown as F;
-  const material = new MeshStandardNodeMaterial(parameters(options));
-  material.name = 'terrain-ground';
+  const material = new MeshStandardNodeMaterial({
+    ...parameters(options),
+    ...(textured ? { vertexColors: false } : {}),
+  });
+  material.name = textured ? 'terrain-ground-texture' : 'terrain-ground';
   const color = materialColor as unknown as Node<'vec4'>;
   material.colorNode = vec4(color.rgb.mul(factor), color.a);
   // Unparametrized bump mapping (Mikkelsen) with metric, unnormalized screen derivatives.
@@ -867,7 +1094,7 @@ export async function createTerrainGroundMaterialAsync(
   const dy = dFdy(relief as unknown as V3) as unknown as F;
   const slope = r1.mul(dx).add(r2.mul(dy)).mul(sign(det)) as unknown as V3;
   material.normalNode = normalize(normalView.mul(abs(det)).sub(slope));
-  states.set(material, { origin, strength: amount });
+  states.set(material, { origin, strength: amount, snow });
   return material;
 }
 
@@ -890,6 +1117,10 @@ const VERGE_FADE = 0.12;
 const STONE = 0.03125;
 const STONE_LIGHT = 0.28;
 const STONE_DARK = 0.22;
+/** Meters a pixel spans across a rail in 3D past which it drops out (its 72 mm head then under
+ * about a pixel and a half), and a polished head's finish. */
+const RAIL_FOOTPRINT = 0.05;
+const RAIL_SHEEN = { roughness: 0.3, metalness: 0.55 };
 /** How far tufts of lawn creep over cast paving, and the size of a tuft, meters. */
 const CREEP = 0.1;
 const CREEP_TUFT = 0.35;
@@ -897,11 +1128,14 @@ const CREEP_TUFT = 0.35;
 /**
  * `surfaceDetail` kinds written by draped road bands and areas (see `TERRAIN_SURFACE_KIND`). The
  * attribute's z packs `kind * 128 + band width`, x is the distance along the band and y the
- * offset across it from its edge. w is a road's lane width (0 when unknown); for other kinds it
- * marks the edges that fray into the ground (1: across 0, 2: across the full width, 3: both).
+ * offset across it from its edge. For a road, w is its lane width (0 when unknown) plus 16 times
+ * its condition (0 well kept to 3 poor, which sets how often it cracks and holes; only with a lane
+ * width); for other kinds it marks the edges that fray into the ground (1: across 0, 2: across
+ * the full width, 3: both).
  */
 const PAVEMENT_GLSL = /* glsl */ `
   varying vec4 vSurfaceDetail;
+  ${TERRAIN_TRACK_GLSL}
 
   // A periodic line across a band coordinate, antialiased and faded once it is sub-pixel.
   float terrainPavementLine(float coord, float spacing, float halfWidth) {
@@ -922,7 +1156,12 @@ const PAVEMENT_GLSL = /* glsl */ `
     float kind = floor(code / 128.0 + 0.001);
     float along = vSurfaceDetail.x;
     float across = vSurfaceDetail.y;
-    float lane = vSurfaceDetail.w;
+    // A road carries its condition on its lane width, w = lane + 16 * condition (0 well kept,
+    // 1 fair, 2 worn, 3 poor); every other kind keeps its fray mask in w (read further down).
+    float condition = (1.0 - step(0.5, abs(kind - 1.0))) * floor(vSurfaceDetail.w / 16.0);
+    float lane = vSurfaceDetail.w - 16.0 * condition;
+    // Worn and poor roads crack and are patched more often; zero on well-kept and fair ones.
+    float decay = clamp(condition - 1.0, 0.0, 2.0) * 0.5;
     float footprint = max(max(length(dFdx(p)), length(dFdy(p))), 0.0001);
     float close = 1.0 - smoothstep(0.25, 0.6, footprint / 0.25);
     float near = 1.0 - smoothstep(0.25, 0.6, footprint / 1.0);
@@ -957,10 +1196,13 @@ const PAVEMENT_GLSL = /* glsl */ `
     float isPaint = 1.0 - step(0.5, abs(kind - 4.0));
     float isParking = 1.0 - step(0.5, abs(kind - 5.0));
     float isPlaza = 1.0 - step(0.5, abs(kind - 6.0));
-    float isLoose = step(6.5, kind);
+    // Rails in 3D (kind 11) are steel, not loose stone.
+    float isRail = 1.0 - step(0.5, abs(kind - 11.0));
+    float isLoose = step(6.5, kind) * (1.0 - isRail);
     float isAsphalt = isRoad + isParking;
     float isConcrete = isSidewalk + isCurb;
     float aa = max(fwidth(along), 0.0001);
+    float aaAcross = max(fwidth(across), 0.0001);
     // Asphalt: aggregate and patchy wear, polished wheel tracks, an oil line down each lane and
     // the odd darker repaired section, all fading to the plain swatch with distance.
     float wear = isRoad * step(0.5, lane) * mid;
@@ -972,7 +1214,7 @@ const PAVEMENT_GLSL = /* glsl */ `
       vec2 patchCell = vec2(floor(along / 9.0), floor(across / max(lane, 0.5)));
       float patchPick = terrainGroundHash(patchCell + vec2(17.0, 5.0), 65536.0);
       vec2 patchLocal = vec2(along - patchCell.x * 9.0, across - patchCell.y * max(lane, 0.5));
-      float repair = step(0.8, patchPick) * terrainPavementBox(patchLocal,
+      float repair = step(0.8 - 0.12 * decay, patchPick) * terrainPavementBox(patchLocal,
         vec2(1.0 + patchPick * 2.0, 0.3), vec2(6.5 + patchPick * 2.0, max(lane, 0.5) - 0.3), aa);
       wear *= 0.16 * tracks + 0.12 * drip + 0.06 * repair;
     }
@@ -1022,7 +1264,8 @@ const PAVEMENT_GLSL = /* glsl */ `
     float crackMask = 0.0;
     if (near > 0.0) {
       crackField = terrainGroundNoise(p + vec2(23.0, 11.0), 2.0);
-      crackMask = smoothstep(0.62, 0.8, terrainGroundNoise(p + vec2(5.0, 71.0), 8.0));
+      crackMask = smoothstep(0.62 - 0.1 * decay, 0.8 - 0.06 * decay,
+        terrainGroundNoise(p + vec2(5.0, 71.0), 8.0));
     }
     float crackWidth = max(fwidth(crackField) * 1.5, 0.002);
     float crack = (1.0 - smoothstep(0.0, crackWidth, abs(crackField - 0.5))) * crackMask * near *
@@ -1045,10 +1288,74 @@ const PAVEMENT_GLSL = /* glsl */ `
       terrainPavementBox(vec2(drainAlong, min(across, width - across)), vec2(-0.45, 0.05),
         vec2(0.45, 0.42), aa);
     float slats = terrainPavementLine(along, 0.09, 0.022);
-    float lived = (1.0 - 0.2 * crack) *
+    // Potholes, now and then on fair roads and more often on worn and poor ones: in one wheel
+    // track of a lane in some 13 m stretches, sometimes with a smaller twin just beyond, each a
+    // ragged dark hollow of loose stone with a crumbled lip and a halo of alligator cracking.
+    // Placed within their lane and stretch, so a lookup never needs the neighboring cells.
+    float holeCell = floor(along / 13.0);
+    float holeLane = floor(across / laneMeters);
+    vec2 holeKey = vec2(holeCell, holeLane);
+    float holePick = terrainGroundHash(holeKey + vec2(29.0, 13.0), 65536.0);
+    float holeAlong = terrainGroundHash(holeKey + vec2(7.0, 53.0), 65536.0);
+    float holeSide = terrainGroundHash(holeKey + vec2(47.0, 3.0), 65536.0);
+    float holeSize = terrainGroundHash(holeKey + vec2(71.0, 37.0), 65536.0);
+    vec2 holeCentre = vec2(holeCell * 13.0 + 1.6 + holeAlong * 8.6,
+      (holeLane + 0.27 + 0.46 * step(0.5, holeSide) + (fract(holeSide * 7.0) - 0.5) * 0.12) *
+      laneMeters);
+    float holeR = 0.18 + holeSize * 0.37;
+    vec2 twinCentre = holeCentre +
+      vec2(holeR + 0.35 + holeAlong * 0.35, (fract(holeSize * 5.0) - 0.5) * 0.4);
+    float twin = step(fract(holePick * 13.0), 0.3);
+    // Meters outside the nearest hole's nominal outline (negative inside it).
+    float holeEdge = min(length(vec2(along, across) - holeCentre) - holeR,
+      mix(64.0, length(vec2(along, across) - twinCentre) - holeR * 0.6, twin));
+    float holeAa = max(fwidth(holeEdge), 0.004);
+    float holeOdds = condition * (0.012 + condition * 0.022);
+    float holeOn = isRoad * step(0.5, lane) * step(holePick, holeOdds) * near;
+    float hole = 1.0;
+    float halo = 0.0;
+    float gatorA = 0.5;
+    float gatorB = 0.5;
+    if (holeOn > 0.0 && holeEdge < 1.2) {
+      float jag = (terrainGroundNoise(p + vec2(61.0, 23.0), 0.125) - 0.5) * 0.7 +
+        (terrainGroundNoise(p + vec2(11.0, 83.0), 0.5) - 0.5) * 0.5;
+      float edgeM = holeEdge + jag * holeR * 0.7;
+      float inside = 1.0 - smoothstep(-holeAa, holeAa, edgeM);
+      float deep = smoothstep(0.0, holeR * 0.8, -edgeM);
+      // Exposed stone: coarse pale chips and dark voids, darkest and dampest at the bottom.
+      float stone = smoothstep(0.6, 0.7, terrainGroundNoise(p + vec2(17.0, 29.0), 0.0625)) * 0.3 -
+        smoothstep(0.66, 0.76, terrainGroundNoise(p + vec2(43.0, 5.0), 0.125)) * 0.2;
+      float hollow = mix(0.54, 0.3, deep) * (1.0 + stone * close);
+      // The wall just inside the edge, lit on one side and shaded on the other, reads as depth.
+      vec2 spot = vec2(along, across);
+      vec2 nearest = mix(holeCentre, twinCentre,
+        twin * step(length(spot - twinCentre) - holeR * 0.6, length(spot - holeCentre) - holeR));
+      float facing = dot(normalize(spot - nearest + vec2(0.0001, 0.0)), vec2(0.6, 0.8));
+      float wall = inside * (1.0 - smoothstep(0.03, 0.09 + holeAa, -edgeM));
+      hollow = mix(hollow, 0.5 + 0.2 * facing, wall);
+      // A crumbled lip a few centimeters wide, lighter where the surface broke away.
+      float lip = (1.0 - smoothstep(0.015, 0.05 + holeAa, abs(edgeM - 0.02))) * (1.0 - inside) *
+        smoothstep(0.35, 0.6, terrainGroundNoise(p + vec2(5.0, 17.0), 0.0625));
+      hole = mix(1.0, mix(1.0 + 0.16 * lip, hollow, inside), holeOn);
+      // Alligator cracking round it, fading out before the lane's edges.
+      halo = (1.0 - smoothstep(0.15, 0.6 + holeR * 0.5, edgeM)) * (1.0 - inside) * holeOn *
+        smoothstep(0.0, 0.3, min(across - holeLane * laneMeters, (holeLane + 1.0) * laneMeters - across));
+      gatorA = terrainGroundNoise(p + vec2(37.0, 7.0), 0.5);
+      gatorB = terrainGroundNoise(p + vec2(3.0, 67.0), 0.25);
+    }
+    float gatorWidthA = max(fwidth(gatorA) * 1.2, 0.002);
+    float gatorWidthB = max(fwidth(gatorB) * 1.2, 0.002);
+    float gator = max(1.0 - smoothstep(0.0, gatorWidthA, abs(gatorA - 0.5)),
+      1.0 - smoothstep(0.0, gatorWidthB, abs(gatorB - 0.5))) * halo * close;
+    float lived = (1.0 - (0.2 + 0.1 * decay) * crack) * (1.0 - 0.32 * gator) * (1.0 - 0.08 * halo) * hole *
       mix(1.0, 0.58 + 0.12 * coverRim + 0.06 * grain, cover) * mix(1.0, 0.5 - 0.3 * slats, drain);
     float scalar = (isAsphalt * asphalt + isConcrete * concrete + isPlaza * plaza +
       isLoose * loose + isPlain * plain + isPaint) * lived;
+    // Track: sleepers and rails across a ballast band's middle (rail-material.ts).
+    vec3 track = vec3(1.0);
+    if (abs(kind - 10.0) < 0.5)
+      track = terrainTrackFactor(base, along, across - width * 0.5,
+        floor(floor(vSurfaceDetail.w + 0.5) / 4.0 + 0.01), aaAcross, aa, grain, stones, p);
     // Frayed edges: where a band meets the ground (a sidewalk's lawn side, a footpath, a shoulder
     // or a dirt track) the ground shows through a ragged margin and dirt collects inside it.
     // Loose surfaces break up in clumps; cast paving keeps its formed edge, and only grass
@@ -1056,7 +1363,7 @@ const PAVEMENT_GLSL = /* glsl */ `
     // the band's own antialiased edge. The edge mask is a whole number, rounded before its bits
     // are read: interpolation hands some pixels 2 as 1.9999999 (NVIDIA does), where mod(soft, 2)
     // is nearly 2 rather than 0, and a sidewalk's lawn side discarded half its pixels as ground.
-    float soft = floor(vSurfaceDetail.w + 0.5) * (1.0 - isRoad);
+    float soft = mod(floor(vSurfaceDetail.w + 0.5), 4.0) * (1.0 - isRoad);
     float edge = min(mix(64.0, across, mod(soft, 2.0)), mix(64.0, width - across, step(1.5, soft)));
     float coarse = 1.0 - smoothstep(0.25, 0.6, footprint / 0.8);
     float fine = 1.0 - smoothstep(0.25, 0.6, footprint / 0.2);
@@ -1099,9 +1406,25 @@ const PAVEMENT_GLSL = /* glsl */ `
     float grime = (1.0 - smoothstep(0.0, 0.35, edge - fray)) * step(edge, 63.0) *
       (0.35 + 0.65 * smoothstep(0.3, 0.7, spill)) * 0.45 *
       (1.0 - smoothstep(0.25, 0.6, footprint / ${VERGE_FADE.toFixed(2)}));
-    vec3 factor = mix(vec3(1.0), (isPaint > 0.5 ? paint : vec3(1.0)) * scalar *
+    vec3 factor = mix(vec3(1.0), (isPaint > 0.5 ? paint : vec3(1.0)) * scalar * track *
       mix(vec3(1.0), ${glslVec3(VERGE)}, grime), terrainGroundStrength);
-    return vec4(factor, edge - fray);
+    // A rail in 3D drops out where its 72 mm head would be under about a pixel and a half, measured
+    // across its face (its band coordinate): the track's drawn rails lie beneath it.
+    return vec4(factor, mix(edge - fray, ${RAIL_FOOTPRINT.toFixed(3)} - aaAcross, isRail));
+  }
+
+  // Share of a band that snow lying on it covers, by kind (see SNOW_ROAD): ploughed carriageways
+  // and lots in worn patches, footways mostly, loose bands nearly all, steel rails not at all.
+  float terrainPavementSnow(float kind) {
+    float worn = smoothstep(0.3, 0.7, terrainGroundNoise(vTerrainGround + vec2(61.0, 17.0), 2.0));
+    float carriageway = 1.0 - step(0.5, abs(kind - 1.0)) + 1.0 - step(0.5, abs(kind - 4.0)) +
+      1.0 - step(0.5, abs(kind - 5.0));
+    float rail = 1.0 - step(0.5, abs(kind - 11.0));
+    float loose = step(6.5, kind) * (1.0 - rail);
+    float walk = mix(${SNOW_WALK[0].toFixed(2)}, ${SNOW_WALK[1].toFixed(2)}, worn);
+    float share = mix(walk, mix(${SNOW_ROAD[0].toFixed(2)}, ${SNOW_ROAD[1].toFixed(2)}, worn),
+      clamp(carriageway, 0.0, 1.0));
+    return mix(share, ${SNOW_LOOSE.toFixed(2)}, loose) * (1.0 - rail);
   }
 `;
 
@@ -1125,6 +1448,7 @@ export function createTerrainPavementMaterial(
   const state: TerrainGroundState = {
     origin: { value: new THREE.Vector2() },
     strength: { value: strength(options) },
+    snow: { value: noSnow() },
   };
   const material = new THREE.MeshStandardMaterial(pavementParameters(options));
   material.name = 'terrain-pavement';
@@ -1135,33 +1459,55 @@ export function createTerrainPavementMaterial(
       terrainGroundOrigin: state.origin,
       terrainGroundStrength: state.strength,
       terrainGroundNoiseMap: { value: groundNoiseLattice() },
+      terrainGroundSnow: state.snow,
     });
     shader.vertexShader = `
       attribute vec4 surfaceDetail;
       varying vec4 vSurfaceDetail;
       varying vec2 vTerrainGround;
+      varying vec2 vTerrainSnow;
       uniform vec2 terrainGroundOrigin;
     ${shader.vertexShader}`.replace(
       '#include <begin_vertex>',
       `#include <begin_vertex>
        vTerrainGround = (modelMatrix * vec4(transformed, 1.0)).xz + terrainGroundOrigin;
+       vTerrainSnow = vec2((modelMatrix * vec4(transformed, 1.0)).y, 1.0);
        vSurfaceDetail = surfaceDetail;`,
     );
     shader.fragmentShader = `${GLSL}
       ${PAVEMENT_GLSL}
-    ${shader.fragmentShader}`.replace(
-      '#include <color_fragment>',
-      `#include <color_fragment>
+    ${shader.fragmentShader}`
+      .replace(
+        '#include <color_fragment>',
+        `#include <color_fragment>
        vec4 terrainPavement = terrainPavementFactor(diffuseColor.rgb);
        // Coverage ramps across about a pixel at the frayed edge, so with multisampling alpha to
        // coverage antialiases the ragged margin instead of stair-stepping it.
        float terrainFray = terrainPavement.a / max(fwidth(terrainPavement.a), 0.0001);
        if (terrainFray < -0.5) discard;
        diffuseColor.a *= clamp(terrainFray + 0.5, 0.0, 1.0);
-       diffuseColor.rgb *= terrainPavement.rgb;`,
-    );
+       diffuseColor.rgb *= terrainPavement.rgb;
+       float terrainSnow = molenSnowLine(vTerrainGround, vTerrainSnow.x, terrainGroundSnow);
+       if (terrainSnow > 0.0) {
+         diffuseColor.rgb = mix(diffuseColor.rgb, ${glslVec3(SNOW_PACKED)},
+           terrainSnow * terrainPavementSnow(floor(vSurfaceDetail.z / 128.0 + 0.001)));
+       }
+       // A rail head's top is polished steel.
+       float terrainRailSheen = (1.0 - step(0.5, abs(floor(vSurfaceDetail.z / 128.0 + 0.001) - 11.0))) *
+         step(3.5, floor(vSurfaceDetail.w + 0.5));`,
+      )
+      .replace(
+        '#include <roughnessmap_fragment>',
+        `#include <roughnessmap_fragment>
+       roughnessFactor = mix(roughnessFactor, ${RAIL_SHEEN.roughness.toFixed(2)}, terrainRailSheen);`,
+      )
+      .replace(
+        '#include <metalnessmap_fragment>',
+        `#include <metalnessmap_fragment>
+       metalnessFactor = mix(metalnessFactor, ${RAIL_SHEEN.metalness.toFixed(2)}, terrainRailSheen);`,
+      );
   };
-  material.customProgramCacheKey = (): string => 'terrain-pavement@30';
+  material.customProgramCacheKey = (): string => 'terrain-pavement@34';
   states.set(material, state);
   return material;
 }
@@ -1209,6 +1555,7 @@ export async function createTerrainPavementMaterialAsync(
   const { hash, noise } = tslNoise(tsl);
   const origin = uniform(new THREE.Vector2()).setName('terrainGroundOrigin');
   const amount = uniform(strength(options)).setName('terrainGroundStrength');
+  const snow = uniform(noSnow()).setName('terrainGroundSnow');
   const detail = varying(attribute('surfaceDetail', 'vec4')).toVar() as unknown as Node<'vec4'>;
   const p = positionWorld.xz.add(origin).toVar() as unknown as V2;
   const base = vertexColor().rgb;
@@ -1217,12 +1564,19 @@ export async function createTerrainPavementMaterialAsync(
     const kind = floor(detail.z.div(128).add(0.001)).toVar() as unknown as F;
     const along = detail.x.toVar() as unknown as F;
     const across = detail.y;
-    const lane = detail.w;
+    // A road's condition rides on its lane width (see the GLSL above).
+    const condition = step(0.5, abs(kind.sub(1)))
+      .oneMinus()
+      .mul(floor(detail.w.div(16)))
+      .toVar() as unknown as F;
+    const lane = detail.w.sub(condition.mul(16)).toVar() as unknown as F;
+    const decay = clamp(condition.sub(1), 0, 2).mul(0.5).toVar() as unknown as F;
     // Derivatives first, in uniform control flow. Each layer below then runs only where it
     // still shows: past its fade every term it feeds is zero, so a distant view skips those
     // noise lookups, and a branch's boundary lies where its terms have already faded out.
     const footprint = max(max(dFdx(p).length(), dFdy(p).length()), 0.0001).toVar();
     const aa = max(fwidth(along), 0.0001).toVar() as unknown as F;
+    const aaAcross = max(fwidth(across), 0.0001).toVar() as unknown as F;
     const close = smoothstep(0.25, 0.6, footprint.div(0.25)).oneMinus().toVar();
     const near = smoothstep(0.25, 0.6, footprint.div(1)).oneMinus().toVar();
     const mid = smoothstep(0.25, 0.6, footprint.div(4)).oneMinus().toVar();
@@ -1269,7 +1623,10 @@ export async function createTerrainPavementMaterialAsync(
     const isPaint = is(4);
     const isParking = is(5);
     const isPlaza = is(6);
-    const isLoose = step(6.5, kind).toVar() as unknown as F;
+    // Rails in 3D (kind 11) are steel, not loose stone (see the GLSL above).
+    const isRail = is(11);
+    const isLoose = step(6.5, kind).mul(isRail.oneMinus()).toVar() as unknown as F;
+    const isTrack = is(10);
     const isAsphalt = isRoad.add(isParking);
     const isConcrete = isSidewalk.add(isCurb);
     const line = (coord: F, spacing: number | F, half: number): F => {
@@ -1279,7 +1636,7 @@ export async function createTerrainPavementMaterialAsync(
         .oneMinus()
         .mul(smoothstep(0.03, 0.12, w).oneMinus()) as unknown as F;
     };
-    const laneWidth = max(lane, 0.5);
+    const laneWidth = max(lane, 0.5).toVar() as unknown as F;
     const width = detail.z.sub(kind.mul(128)).toVar() as unknown as F;
     // Derivative-based terms, still outside any branch: joints, pavers, grate slats, covers.
     const slab = isSidewalk.mul(1.5).add(isCurb.mul(3)).add(isConcrete.oneMinus().mul(1.5));
@@ -1322,7 +1679,7 @@ export async function createTerrainPavementMaterialAsync(
       const inside = clamp(patchLocal.sub(low).div(aa).add(0.5), 0, 1).mul(
         clamp(high.sub(patchLocal).div(aa).add(0.5), 0, 1),
       );
-      const repair = step(0.8, patchPick).mul(inside.x).mul(inside.y);
+      const repair = step(decay.mul(-0.12).add(0.8), patchPick).mul(inside.x).mul(inside.y);
       wear.mulAssign(tracks.mul(0.16).add(drip.mul(0.12)).add(repair.mul(0.06)));
     });
     // Grit and oil collect along a road's edges, in the gutters.
@@ -1420,7 +1777,13 @@ export async function createTerrainPavementMaterialAsync(
     const crackMask = float(0).toVar();
     If(near.greaterThan(0), () => {
       crackField.assign(noise(p.add(vec2(23, 11)) as unknown as V2, 2));
-      crackMask.assign(smoothstep(0.62, 0.8, noise(p.add(vec2(5, 71)) as unknown as V2, 8)));
+      crackMask.assign(
+        smoothstep(
+          decay.mul(-0.1).add(0.62),
+          decay.mul(-0.06).add(0.8),
+          noise(p.add(vec2(5, 71)) as unknown as V2, 8),
+        ),
+      );
     });
     const crackWidth = max(fwidth(crackField).mul(1.5), 0.002);
     const crack = smoothstep(0, crackWidth, abs(crackField.sub(0.5)))
@@ -1449,9 +1812,122 @@ export async function createTerrainPavementMaterialAsync(
       .mul(near)
       .mul(drainInside.x)
       .mul(drainInside.y);
+    // Potholes in a lane's wheel track, a twin beside some, alligator cracking round them (see
+    // the GLSL above). The terms a branch reads and the derivatives come first, as variables.
+    const holeCell = floor(along.div(13)).toVar() as unknown as F;
+    const holeLane = floor(across.div(laneWidth)).toVar() as unknown as F;
+    const holeKey = vec2(holeCell, holeLane);
+    const holePick = hash(
+      holeKey.add(vec2(29, 13)) as unknown as V2,
+      65536,
+    ).toVar() as unknown as F;
+    const holeAlong = hash(
+      holeKey.add(vec2(7, 53)) as unknown as V2,
+      65536,
+    ).toVar() as unknown as F;
+    const holeSide = hash(holeKey.add(vec2(47, 3)) as unknown as V2, 65536);
+    const holeSize = hash(
+      holeKey.add(vec2(71, 37)) as unknown as V2,
+      65536,
+    ).toVar() as unknown as F;
+    const holeCentre = vec2(
+      holeCell.mul(13).add(1.6).add(holeAlong.mul(8.6)),
+      holeLane
+        .add(0.27)
+        .add(step(0.5, holeSide).mul(0.46))
+        .add(fract(holeSide.mul(7)).sub(0.5).mul(0.12))
+        .mul(laneWidth),
+    ).toVar();
+    const holeR = holeSize.mul(0.37).add(0.18).toVar() as unknown as F;
+    const twinCentre = holeCentre
+      .add(vec2(holeR.add(0.35).add(holeAlong.mul(0.35)), fract(holeSize.mul(5)).sub(0.5).mul(0.4)))
+      .toVar();
+    const twin = step(fract(holePick.mul(13)), 0.3).toVar() as unknown as F;
+    const spot = vec2(along, across).toVar();
+    const holeEdge = min(
+      spot.sub(holeCentre).length().sub(holeR),
+      mix(64, spot.sub(twinCentre).length().sub(holeR.mul(0.6)), twin),
+    ).toVar() as unknown as F;
+    const holeAa = max(fwidth(holeEdge), 0.004).toVar() as unknown as F;
+    const holeOdds = condition.mul(condition.mul(0.022).add(0.012));
+    const holeOn = isRoad
+      .mul(step(0.5, lane))
+      .mul(step(holePick, holeOdds))
+      .mul(near)
+      .toVar() as unknown as F;
+    const hole = float(1).toVar();
+    const halo = float(0).toVar();
+    const gatorA = float(0.5).toVar();
+    const gatorB = float(0.5).toVar();
+    If(holeOn.greaterThan(0).and(holeEdge.lessThan(1.2)), () => {
+      const jag = noise(p.add(vec2(61, 23)) as unknown as V2, 0.125)
+        .sub(0.5)
+        .mul(0.7)
+        .add(
+          noise(p.add(vec2(11, 83)) as unknown as V2, 0.5)
+            .sub(0.5)
+            .mul(0.5),
+        );
+      const edgeM = holeEdge.add(jag.mul(holeR).mul(0.7)).toVar() as unknown as F;
+      const inside = smoothstep(holeAa.negate(), holeAa, edgeM).oneMinus().toVar();
+      const deep = smoothstep(0, holeR.mul(0.8), edgeM.negate());
+      // Exposed stone: coarse pale chips and dark voids, darkest and dampest at the bottom.
+      const stone = smoothstep(0.6, 0.7, noise(p.add(vec2(17, 29)) as unknown as V2, 0.0625))
+        .mul(0.3)
+        .sub(smoothstep(0.66, 0.76, noise(p.add(vec2(43, 5)) as unknown as V2, 0.125)).mul(0.2));
+      // The wall just inside the edge, lit on one side and shaded on the other, reads as depth.
+      const nearest = mix(
+        holeCentre,
+        twinCentre,
+        twin.mul(
+          step(
+            spot.sub(twinCentre).length().sub(holeR.mul(0.6)),
+            spot.sub(holeCentre).length().sub(holeR),
+          ),
+        ),
+      );
+      const facing = spot.sub(nearest).add(vec2(0.0001, 0)).normalize().dot(vec2(0.6, 0.8));
+      const wall = inside.mul(smoothstep(0.03, holeAa.add(0.09), edgeM.negate()).oneMinus());
+      const hollow = mix(
+        mix(0.54, 0.3, deep).mul(stone.mul(close).add(1)),
+        facing.mul(0.2).add(0.5),
+        wall,
+      );
+      // A crumbled lip a few centimeters wide, lighter where the surface broke away.
+      const lip = smoothstep(0.015, holeAa.add(0.05), abs(edgeM.sub(0.02)))
+        .oneMinus()
+        .mul(inside.oneMinus())
+        .mul(smoothstep(0.35, 0.6, noise(p.add(vec2(5, 17)) as unknown as V2, 0.0625)));
+      hole.assign(mix(1, mix(lip.mul(0.16).add(1), hollow, inside), holeOn));
+      // Alligator cracking round it, fading out before the lane's edges.
+      halo.assign(
+        smoothstep(0.15, holeR.mul(0.5).add(0.6), edgeM)
+          .oneMinus()
+          .mul(inside.oneMinus())
+          .mul(holeOn)
+          .mul(
+            smoothstep(
+              0,
+              0.3,
+              min(across.sub(holeLane.mul(laneWidth)), holeLane.add(1).mul(laneWidth).sub(across)),
+            ),
+          ),
+      );
+      gatorA.assign(noise(p.add(vec2(37, 7)) as unknown as V2, 0.5));
+      gatorB.assign(noise(p.add(vec2(3, 67)) as unknown as V2, 0.25));
+    });
+    const gator = max(
+      smoothstep(0, max(fwidth(gatorA).mul(1.2), 0.002), abs(gatorA.sub(0.5))).oneMinus(),
+      smoothstep(0, max(fwidth(gatorB).mul(1.2), 0.002), abs(gatorB.sub(0.5))).oneMinus(),
+    )
+      .mul(halo)
+      .mul(close);
     const lived = crack
-      .mul(0.2)
+      .mul(decay.mul(0.1).add(0.2))
       .oneMinus()
+      .mul(gator.mul(0.32).oneMinus())
+      .mul(halo.mul(0.08).oneMinus())
+      .mul(hole)
       .mul(mix(1, coverRim.mul(0.12).add(grain.mul(0.06)).add(0.58), cover))
       .mul(mix(1, slats.mul(-0.3).add(0.5), drain));
     const scalar = isAsphalt
@@ -1462,13 +1938,34 @@ export async function createTerrainPavementMaterialAsync(
       .add(isPlain.mul(plain))
       .add(isPaint)
       .mul(lived);
+    // Track: sleepers and rails across a ballast band's middle (rail-material.ts).
+    const track = vec3(1).toVar();
+    If(isTrack.greaterThan(0.5), () => {
+      track.assign(
+        terrainTrackNode(
+          tsl,
+          { hash, noise },
+          {
+            base,
+            along,
+            lateral: across.sub(width.mul(0.5)) as unknown as F,
+            variant: floor(detail.w.add(0.5).floor().div(4).add(0.01)) as unknown as F,
+            wa: aaAcross,
+            wl: aa,
+            grain: grain as unknown as F,
+            stones: stones as unknown as F,
+            p,
+          },
+        ),
+      );
+    });
     // Frayed edges: where a band meets the ground (a sidewalk's lawn side, a footpath, a shoulder
     // or a dirt track) the ground shows through a ragged margin and dirt collects inside it.
     // Loose surfaces break up in clumps; cast paving keeps its formed edge, and only grass
     // blades creep over it. The margin shrinks away as its noise falls below a pixel, leaving
     // the band's own antialiased edge. The edge mask is rounded before its bits are read (see
-    // the GLSL above).
-    const soft = lane.add(0.5).floor().mul(isRoad.oneMinus());
+    // the GLSL above); its two bits sit under a track's variant (`TerrainLineBand.variant`).
+    const soft = detail.w.add(0.5).floor().mod(4).mul(isRoad.oneMinus());
     const edge = min(
       mix(64, across, soft.mod(2)),
       mix(64, width.sub(across), step(1.5, soft)),
@@ -1550,23 +2047,113 @@ export async function createTerrainPavementMaterialAsync(
       vec3(1),
       mix(vec3(1), paint, isPaint)
         .mul(scalar)
+        .mul(track)
         .mul(mix(vec3(1), vec3(...VERGE), grime)),
       amount,
     );
     // Coverage ramps across about a pixel at the frayed edge, so with multisampling alpha to
     // coverage antialiases the ragged margin instead of stair-stepping it.
-    const margin = edge.sub(fray).toVar() as unknown as F;
+    // A rail in 3D drops out where it would be thinner than a pixel or two (see the GLSL).
+    const margin = mix(
+      edge.sub(fray),
+      aaAcross.negate().add(RAIL_FOOTPRINT),
+      isRail,
+    ).toVar() as unknown as F;
     return vec4(factor, margin.div(max(fwidth(margin), 0.0001)));
   })().toVar() as unknown as Node<'vec4'>;
   const material = new MeshStandardNodeMaterial(pavementParameters(options));
   material.name = 'terrain-pavement';
   const color = materialColor as unknown as Node<'vec4'>;
-  material.colorNode = vec4(color.rgb.mul(pavement.rgb), color.a);
+  // Lying snow, as terrainPavementSnow in the GLSL path; a factor, so it divides the vertex
+  // color back out.
+  const snowShare = Fn(([lying]: [Node<'vec4'>]) => {
+    const result = float(0).toVar();
+    If(lying.z.greaterThan(0), () => {
+      const line = snowLineNode(tsl, p, positionWorld.y as unknown as F, lying).toVar();
+      If(line.greaterThan(0), () => {
+        const kind = floor(detail.z.div(128).add(0.001)).toVar() as unknown as F;
+        const isKind = (k: number): F => step(0.5, abs(kind.sub(k))).oneMinus() as unknown as F;
+        const worn = smoothstep(0.3, 0.7, noise(p.add(vec2(61, 17)) as unknown as V2, 2)).toVar();
+        const rail = isKind(11);
+        const loose = step(6.5, kind).mul(rail.oneMinus());
+        const share = mix(
+          mix(SNOW_WALK[0], SNOW_WALK[1], worn),
+          mix(SNOW_ROAD[0], SNOW_ROAD[1], worn),
+          clamp(isKind(1).add(isKind(4)).add(isKind(5)), 0, 1),
+        );
+        result.assign(line.mul(mix(share, SNOW_LOOSE, loose)).mul(rail.oneMinus()));
+      });
+    });
+    return result;
+  })(snow as unknown as Node<'vec4'>).toVar() as unknown as F;
+  const snowed = mix(pavement.rgb, vec3(...SNOW_PACKED).div(max(base, vec3(0.001))), snowShare);
+  material.colorNode = vec4(color.rgb.mul(snowed), color.a);
   const coverage = pavement.a;
   material.maskNode = coverage.greaterThan(-0.5);
   material.opacityNode = clamp(coverage.add(0.5), 0, 1);
-  states.set(material, { origin, strength: amount });
+  // A rail head's top is polished steel.
+  const sheen = step(0.5, abs(floor(detail.z.div(128).add(0.001)).sub(11)))
+    .oneMinus()
+    .mul(step(3.5, detail.w.add(0.5).floor()));
+  material.roughnessNode = mix(float(material.roughness), RAIL_SHEEN.roughness, sheen);
+  material.metalnessNode = mix(float(material.metalness), RAIL_SHEEN.metalness, sheen);
+  states.set(material, { origin, strength: amount, snow });
   return material;
+}
+
+/**
+ * WebGL ground drawn from a texture instead of vertex colors (`map`, with texture coordinates
+ * across the mesh): the shared material for land cover drawn as one texture a tile. Each tile
+ * draws with its own copy, made with `cloneTerrainGroundMaterial`. Texels without alpha are cut.
+ */
+export function createTerrainGroundTextureMaterial(
+  options: Pick<TerrainGroundMaterialOptions, 'roughness' | 'strength'> = {},
+): THREE.MeshStandardMaterial {
+  const material = createTerrainGroundMaterial(options);
+  material.name = 'terrain-ground-texture';
+  material.vertexColors = false;
+  return material;
+}
+
+/**
+ * Ground drawn from a texture for an initialized renderer's backend: on WebGPU the same variation
+ * as nodes over the `map` of the copy each tile draws with. Without it a WebGPU host has no
+ * material for land cover drawn as a texture and drapes every tile's as a mesh: about four times
+ * the land-cover triangles and memory of a view from the air.
+ */
+export async function createTerrainGroundTextureMaterialAsync(
+  options: Pick<TerrainGroundMaterialOptions, 'roughness' | 'strength'> = {},
+  backend: 'webgl' | 'webgpu' = 'webgl',
+): Promise<TerrainGroundMaterial> {
+  if (backend === 'webgl') return createTerrainGroundTextureMaterial(options);
+  return createTerrainGroundNodeMaterial(options, true);
+}
+
+/**
+ * A copy of a ground material for one mesh's own texture or flags. It draws with the original's
+ * shaders and follows its origin, strength and snow; on WebGL `clone()` alone drops the shader
+ * hooks.
+ */
+export function cloneTerrainGroundMaterial<T extends THREE.Material>(material: T): T {
+  const copy = material.clone();
+  copy.onBeforeCompile = material.onBeforeCompile;
+  copy.customProgramCacheKey = material.customProgramCacheKey;
+  const state = states.get(material);
+  if (state !== undefined) states.set(copy, state);
+  return copy;
+}
+
+/**
+ * Ground color with `brush` ground detail (see `landcoverDetail`) where crowns no longer resolve:
+ * their mean color at their share, as the material settles to with distance. Changes `color`.
+ */
+export function terrainGroundFarDetail(color: THREE.Color, brush: number): THREE.Color {
+  const share = Math.min(1, Math.max(0, brush)) * BRUSH_SHARE;
+  if (share <= 0) return color;
+  color.r += (BRUSH_MEAN[0] - color.r) * share;
+  color.g += (BRUSH_MEAN[1] - color.g) * share;
+  color.b += (BRUSH_MEAN[2] - color.b) * share;
+  return color;
 }
 
 /**
@@ -1582,6 +2169,24 @@ export function setTerrainGroundOrigin(
     throw new Error('material was not created by a terrain ground material factory');
   const wrap = (value: number): number => ((value % PERIOD) + PERIOD) % PERIOD;
   state.origin.value.set(wrap(worldOrigin[0]), wrap(worldOrigin[1]));
+}
+
+/**
+ * Lay snow on a ground or pavement material above a snow line (`weather.snowCover`), or clear it
+ * with `undefined`; copies made with `cloneTerrainGroundMaterial` follow. Open ground whitens in
+ * patches through the transition band and fully above it, steep faces stay bare, and roads keep
+ * worn, greyer snow with the paving showing through. Changing it never rebuilds a shader.
+ * `worldOriginY` is the renderer's floating-origin height, when it rebases Y (default 0).
+ */
+export function setTerrainGroundSnow(
+  material: THREE.Material,
+  cover: SnowCoverData | undefined,
+  worldOriginY = 0,
+): void {
+  const state = states.get(material);
+  if (state === undefined)
+    throw new Error('material was not created by a terrain ground material factory');
+  writeSnowCoverValue(state.snow.value, cover, worldOriginY);
 }
 
 /** Whether a material carries the ground variation (and accepts setTerrainGroundOrigin). */

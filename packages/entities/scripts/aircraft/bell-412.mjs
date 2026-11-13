@@ -30,8 +30,8 @@ export const bell412Frame = () => ({
   cabinZ: 2.12,
   cabinWidth: 2.25,
   eye: [-0.55, 1.94, 2.12],
-  panelZ: 2.78,
-  floor: 0.55,
+  panelZ: 2.91,
+  floor: 0.68,
   mainRotorPosition: [0, 3.52, 0],
 });
 export function buildBell412(s) {
@@ -687,14 +687,21 @@ function cockpit412(root, m, sections) {
     cloth = mat('412-gray-fabric', '#69716d', { roughness: 0.95 }),
     floor = mat('412-floor', '#514d43'),
     bindings = [],
-    z = 2.78;
+    z = 2.91,
+    // The rectified photograph has no absolute size. Its 52 px radius flight dials are 3.125 in
+    // (79.4 mm) instruments, which also makes the 34 px engine dials 2 in and the face 1.37 m wide.
+    // The 2.0 m width used before was a cabin-fit guess: it drew every dial 1.45 times too large
+    // and put the hood through the windscreen.
+    k = 0.0794 / 104;
   let d = detailKit(cabin, '412-cockpit-floor');
-  fittedFloor(d, sections, floor, { y: 0.64, front: 2.65, back: -1.95, width: 2.24 });
+  // Clear of the belly and of the skin's lower chamfer, level with the door sills.
+  fittedFloor(d, sections, floor, { y: 0.7, front: 2.65, back: -1.5, width: 2.2 });
   d.box([1.0, 1.3, 0.65], [0, 1.22, -1.92], m.paint);
   d.finish();
   d = detailKit(panelRoot, '412-panel');
+  // The hood top sits 0.32 m below the eye, low in the windscreen as in the side photographs.
   const tools = panelTools(d),
-    xy = (u, v) => [(900 - u) / 1000, 1.73 - v / 1000];
+    xy = (u, v) => [(900 - u) * k, 1.625 - v * k];
   // Outer top corners stop just under the wrapped windscreen corners above the long nose.
   const outlinePixels = [
       [10, 230],
@@ -709,9 +716,9 @@ function cockpit412(root, m, sections) {
     ],
     face = outlinePixels.map(([u, v]) => [...xy(u, v), z]);
   const gaugeOpenings = [];
-  // The glare shield narrows and falls towards the windscreen. Extruding the
-  // full panel rectangle forward pushed its shoulders through both windscreens.
-  const rear = face.map(([x, y]) => [x * 0.76, y - 0.22, z + 0.2]);
+  // The 0.18 m deep glare shield narrows and falls towards the windscreen, which wraps down
+  // round the nose bulb: a full-width forward face stood through the glass.
+  const rear = face.map(([x, y]) => [x * 0.76, y - 0.22, z + 0.18]);
   sheet(d, rear, m.dark, [0, 0, 1]);
   for (let i = 0; i < face.length; i++) {
     const a = face[i],
@@ -721,7 +728,7 @@ function cockpit412(root, m, sections) {
   outline(d, face.slice(0, 7), 0.028, m.dark, false);
   const gauge = (u, v, r, label, source, att = false) => {
     const [x, y] = xy(u, v),
-      radius = r / 1000;
+      radius = r * k;
     gaugeOpenings.push(
       Array.from({ length: 32 }, (_, i) => [
         x + Math.cos((i * Math.PI) / 16) * radius,
@@ -806,18 +813,18 @@ function cockpit412(root, m, sections) {
   sheet(d, face, panel, [0, 0, -1], gaugeOpenings);
   const box = (u, v, w, h, material = m.dark) => {
     const [x, y] = xy(u, v);
-    return d.box([w / 1000, h / 1000, 0.013], [x, y, z - 0.021], material);
+    return d.box([w * k, h * k, 0.013], [x, y, z - 0.021], material);
   };
   box(680, 454, 215, 155);
   for (let row = 0; row < 7; row++)
     for (let col = 0; col < 5; col++) {
       const [x, y] = xy(594 + col * 42, 393 + row * 20);
-      d.box([0.039, 0.016, 0.006], [x, y, z - 0.032], row === 0 ? d.amber : m.seam);
+      d.box([0.029, 0.012, 0.006], [x, y, z - 0.032], row === 0 ? d.amber : m.seam);
     }
   box(440, 445, 190, 160);
   box(440, 435, 159, 115, mat('412-radar', '#1c383b'));
   const [rx, ry] = xy(440, 435);
-  for (const r of [0.025, 0.05, 0.075]) d.ring(r, 0.0013, [rx, ry, z - 0.034], d.green);
+  for (const r of [0.018, 0.036, 0.054]) d.ring(r, 0.0013, [rx, ry, z - 0.034], d.green);
   for (const [u, v, w, h] of [
     [165, 444, 86, 60],
     [1053, 218, 110, 52],
@@ -830,7 +837,7 @@ function cockpit412(root, m, sections) {
     box(u, v, w, h);
   for (const u of [1648, 1655]) {
     const [x, y] = xy(u, u === 1648 ? 510 : 397);
-    tools.knob(x, y, z - 0.05, 0.036);
+    tools.knob(x, y, z - 0.05, 0.027);
   }
   for (const [u, v] of [
     [1340, 531],
@@ -838,12 +845,12 @@ function cockpit412(root, m, sections) {
     [1050, 494],
   ]) {
     const [x, y] = xy(u, v);
-    tools.buttons(x, y, z - 0.04, 4, 0.03);
+    tools.buttons(x, y, z - 0.04, 4, 0.023);
   }
   for (const u of [625, 859]) {
     box(u, 71, 160, 22, m.red);
     const [x, y] = xy(u, 71);
-    d.text('FIRE', [x, y, z - 0.04], 0.017, Math.PI, d.ivory);
+    d.text('FIRE', [x, y, z - 0.04], 0.013, Math.PI, d.ivory);
   }
   // Switch placards are geometry labels, not copied photographic textures.
   for (const [u, v, label] of [
@@ -857,7 +864,7 @@ function cockpit412(root, m, sections) {
   }
   d.finish();
   d = detailKit(cabin, '412-cockpit');
-  const console = group(cabin, '412-console', [0, 0.82, 1.9]);
+  const console = group(cabin, '412-console', [0, 0.97, 1.9]);
   console.rotation.x = Math.PI / 2 - 0.18;
   const pd = detailKit(console, 'pedestal'),
     pt = panelTools(pd);
@@ -906,16 +913,19 @@ function cockpit412(root, m, sections) {
     }
   od.finish();
   const seat = (x, z, yaw = 0, crew = false) => {
-    const g = group(cabin, `412-seat-${x}-${z}`, [x, 0.89, z]);
+    // The eye is fixed by the side view and the floor by the skin; crew cushions sit 0.8 m under it.
+    const y = crew ? 1.09 : 0.99,
+      g = group(cabin, `412-seat-${x}-${z}`, [x, y, z]);
     g.rotation.y = yaw;
     const sd = detailKit(g, 'seat'),
-      w = crew ? 0.48 : 0.42;
+      w = crew ? 0.48 : 0.42,
+      leg = 0.7 - y;
     beveledBox(sd, [w, 0.11, 0.46], [0, 0, 0], cloth);
     const b = beveledBox(sd, [w, 0.63, 0.1], [0, 0.31, -0.24], cloth);
     b.rotation.x = -0.1;
     for (const side of [-1, 1]) {
-      sd.rod([side * w * 0.39, -0.31, -0.18], [side * w * 0.39, 0, -0.18], 0.018, m.metal);
-      sd.rod([side * w * 0.39, -0.31, 0.18], [side * w * 0.39, 0, 0.18], 0.018, m.metal);
+      sd.rod([side * w * 0.39, leg, -0.18], [side * w * 0.39, 0, -0.18], 0.018, m.metal);
+      sd.rod([side * w * 0.39, leg, 0.18], [side * w * 0.39, 0, 0.18], 0.018, m.metal);
       sheet(
         sd,
         [
@@ -934,7 +944,7 @@ function cockpit412(root, m, sections) {
   for (const side of [-1, 1]) {
     const x = side * 0.55;
     seat(x, 2.05, 0, true);
-    const stick = group(cabin, `412-cyclic-${side}`, [x, 0.55, 2.38]),
+    const stick = group(cabin, `412-cyclic-${side}`, [x, 0.7, 2.38]),
       sd = detailKit(stick, 'cyclic');
     outline(
       sd,
@@ -955,7 +965,7 @@ function cockpit412(root, m, sections) {
       { node: stick.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.16 },
       { node: stick.name, source: 'rollInput', property: 'rotation', axis: 'z', scale: 0.16 },
     );
-    const collective = group(cabin, `412-collective-${side}`, [x + 0.26, 0.69, 1.86]),
+    const collective = group(cabin, `412-collective-${side}`, [x + 0.26, 0.89, 1.86]),
       cd = detailKit(collective, 'collective');
     cd.rod([0, 0, 0], [0, 0.15, 0.46], 0.025, m.dark);
     cd.box([0.085, 0.065, 0.18], [0, 0.15, 0.46], m.dark);
@@ -968,8 +978,8 @@ function cockpit412(root, m, sections) {
       axis: 'x',
       scale: -0.4,
     });
-    for (const k of [-1, 1]) {
-      const pedal = group(cabin, `412-pedal-${side}-${k}`, [x + k * 0.13, 0.7, 3.1]),
+    for (const j of [-1, 1]) {
+      const pedal = group(cabin, `412-pedal-${side}-${j}`, [x + j * 0.13, 0.8, 3.1]),
         p = detailKit(pedal, 'pedal');
       p.box([0.18, 0.08, 0.04], [0, 0, 0], m.dark);
       p.rod([0, -0.1, 0.1], [0, 0, 0], 0.012, m.metal);
@@ -979,7 +989,7 @@ function cockpit412(root, m, sections) {
         source: 'yawInput',
         property: 'position',
         axis: 'z',
-        scale: -k * 0.045,
+        scale: -j * 0.045,
       });
     }
   }

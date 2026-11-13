@@ -34,8 +34,73 @@
       "shots/shared/upper-portico-depth-columns-and-door.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Seven material roles share six existing 256px graphs: stone_limestone (wall/trim tint variants), plaster_lime (court), membrane, storefront (opaque window/glass-roof proxies), metal_painted and brick. Canonical metric UVs, sRGB-to-linear tint and baked graph means for skyline. Seven textured draws/one skyline; no embedded image, private atlas or new graph. Separate vertex streams and equal CPU/GPU accounting. Every used graph reads once, and unloading disposes all model geometry. Native grade-specific bases intersect flat review planes or expose patches; original native terrain supplies geographic fit.",
-    "captureReportHash": "sha256:dcccc965aa30f039e42ae383746934bd358bdd47bc231d13e2a0412d3ca63d28"
+    "notes": "Seven material roles share six existing 256px graphs: stone_limestone (wall/trim tint variants), plaster_lime (court), membrane, storefront (opaque window/glass-roof proxies), metal_painted and brick. Canonical metric UVs, sRGB-to-linear tint and baked graph means for skyline. Seven textured draws/one skyline; no embedded image, private atlas or new graph. Separate vertex streams and equal CPU/GPU accounting. Every used graph reads once, and unloading disposes all model geometry. Native grade-specific bases intersect flat review planes or expose patches; original native terrain supplies geographic fit. Current viewer renders confirm the updated shared membrane, storefront material graphs in the existing geographic placement.",
+    "captureReportHash": "sha256:b5e6df63286b6c2afaa32fb3617f061d7623e3876aa35077ebd257eb0c4e364f",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:dc131d12500a63d9d8516d826e5d41f89c9fe55750bcd8553c717f64184fad21"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:d267c6c13c7a819802325e58ad52ac8d2e1adda100507bcce2a19d0aa6e6eba4"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:e32a8fa1995be329951f79310f2fb512c685ac5e58b93dcbef40a89e99f5a4fd"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:cd0ed7546056747456c9c163c2d2a7f815f6cec145e4f3e120091ef8bdb37a1f"
+      },
+      {
+        "path": "shots/shared/six-column-portico-pediment-dome-and-glass-pavilion.png",
+        "hash": "sha256:d5fd1399742c0ce5caa125fcab1f890125b2b2506a6a70d3c00b81c7d33fa1f9"
+      },
+      {
+        "path": "shots/shared/stepped-glass-pavilion-and-recessed-lower-door.png",
+        "hash": "sha256:2c29decdcee5639c8dc30d153acc55ef20b7460d2a969a977c047c7cf294af9e"
+      },
+      {
+        "path": "shots/shared/rear-open-court-connected-wings-and-skylights.png",
+        "hash": "sha256:43a945102b31b8391ff10f642fe96702707880c79567fa3144ec5878f19af0e5"
+      },
+      {
+        "path": "shots/shared/upper-portico-depth-columns-and-door.png",
+        "hash": "sha256:51c19e8136c622a2a081720d4876ff86cb084894735ebd0dc0ed64113e141107"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:7f9614caa19dc8e393373d4038146e65eb1649b1adecfcd334ae63022cb4ba58"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.plaster_lime": {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone": {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:e2f0fb4aa24f75d296c063c00cc5e533bc545dae394e630915c2c4092d1cc3e4"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.storefront": {
+        "path": "materials/storefront.matgraph.json",
+        "hash": "sha256:a1dddce23b05e1aee41f38fcbf4a1d994284e65c3992839b31ee9f9a3158a4a7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",

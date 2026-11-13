@@ -49,8 +49,14 @@ for (const path of project.types) {
       bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength),
       '',
     );
+    // Articulation can extract a whole paint skin (for example a tail rotor) into moving
+    // parts. The renderer still binds those parts through liverySourceNodes; accept them too.
     const nodes = new Set();
-    model.scene.traverse((node) => nodes.add(node.name));
+    model.scene.traverse((node) => {
+      nodes.add(node.name);
+      const sources = node.userData.liverySourceNodes;
+      if (Array.isArray(sources)) for (const source of sources) nodes.add(source);
+    });
     for (const [name, slot] of Object.entries(data.slots)) {
       if (slot.node && !nodes.has(slot.node)) throw new Error(`${id}/${name}: missing node`);
       for (const material of slot.materials)

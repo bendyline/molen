@@ -53,6 +53,7 @@
             "suspensionDamping": 1,
             "suspensionFrequency": 2,
             "pitchStiffness": 0.012,
+            "headlamps": [[0, 0.86, 0.64]],
             "cycle": {
               "maxLean": 0.65,
               "riderLean": 0.4,
@@ -136,6 +137,13 @@
           ],
           "exits": [[1, 0, -0.3], [-1, 0, -0.3], [0, 0, -1.6749999999999998]],
           "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 0,
+          "cruise": 10,
+          "max": 16,
+          "colors": ["#1f2124", "#a3302b", "#2a4d7a", "#c9c9c4", "#1f2124", "#5a5f63"]
         },
         "model.signals": {
           "sources": {
@@ -283,6 +291,7 @@
             "suspensionDamping": 1,
             "suspensionFrequency": 2,
             "pitchStiffness": 0.012,
+            "headlamps": [[0, 0.89, 0.67]],
             "cycle": {
               "maxLean": 0.65,
               "riderLean": 0.45,
@@ -571,6 +580,7 @@
             "suspensionDamping": 1,
             "suspensionFrequency": 2,
             "pitchStiffness": 0.012,
+            "headlamps": [[0, 0.99, 0.55]],
             "cycle": {
               "maxLean": 0.65,
               "riderLean": 0.25,
@@ -654,6 +664,13 @@
           ],
           "exits": [[0.95, 0, -0.22], [-0.95, 0, -0.22], [0, 0, -1.525]],
           "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 0,
+          "cruise": 10,
+          "max": 16,
+          "colors": ["#9eb6a2", "#e8e4da", "#a8322d", "#2c4f7c", "#1f2124", "#cfc39a"]
         },
         "model.signals": {
           "sources": {
@@ -1588,6 +1605,1624 @@
         }
       },
       "assets": ["molen.entities.cycle.cargo_bicycle"]
+    },
+    "molen.entities.cycle.underbone_moped": {
+      "doc": "Bendy Moped. Rideable underbone moped: step-through frame, leg shields, self-balancing handling, saddle, animated steering.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.cycle.underbone_moped",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.cycle.underbone_moped",
+          "color": "#2e5b8a",
+          "spec": {
+            "label": "Bendy Moped",
+            "bodyStyle": "moped",
+            "genericLabel": "Underbone moped",
+            "width": 0.7,
+            "length": 1.92,
+            "height": 1.08,
+            "centerOfMass": [0, 0.6, -0.05],
+            "wheelbase": 1.24,
+            "wheelTrack": 0,
+            "wheelRadius": 0.29,
+            "mass": 175,
+            "engineForce": 800,
+            "maxSpeed": 24,
+            "reverseSpeed": 0,
+            "brakeDeceleration": 7,
+            "maxSteer": 0.6,
+            "driverEye": [0, 1.465, -0.14],
+            "grip": 8,
+            "steeringRate": 2.5,
+            "steeringFadeSpeed": 12,
+            "rollingResistance": 0.12,
+            "aerodynamicResistance": 0.003,
+            "terrainAlignRate": 2.5,
+            "supportTolerance": 0.06,
+            "maxStepHeight": 0.18,
+            "maxSlope": 0.55,
+            "drive": "rear",
+            "suspensionDamping": 1,
+            "suspensionFrequency": 2,
+            "pitchStiffness": 0.012,
+            "headlamps": [[0, 0.985, 0.4]],
+            "cycle": {
+              "maxLean": 0.6,
+              "riderLean": 0.22,
+              "handlebarPivot": [0, 0.93, 0.2546],
+              "grips": [[0.32, 1, 0.17], [-0.32, 1, 0.17]],
+              "footrests": [[0.16, 0.37, -0.1], [-0.16, 0.37, -0.1]]
+            },
+            "collisionParts": [
+              {
+                "id": "wheel-rear",
+                "role": "rearWheel",
+                "center": [0, 0.29, -0.62],
+                "radius": 0.261,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": ["wheel-rear"],
+                "probes": [[0, 0.29, -0.62]]
+              },
+              {
+                "id": "wheel-front",
+                "role": "frontWheel",
+                "center": [0, 0.39038, 0.627994],
+                "radius": 0.261,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": ["wheel-front"],
+                "probes": [[0, 0.39038, 0.627994]]
+              }
+            ]
+          },
+          "visual": {
+            "wheelNodes": ["wheel-front", "wheel-rear"],
+            "frontWheelNodes": ["wheel-front"],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "animation": {
+              "sources": {
+                "steering": {
+                  "component": "vehicleState",
+                  "path": ["steer"]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "handlebar",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0, 0.805, -0.3]
+            }
+          ],
+          "exits": [[0.95, 0, -0.3], [-0.95, 0, -0.3], [0, 0, -1.56]],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 0,
+          "cruise": 10,
+          "max": 16,
+          "colors": ["#2e5b8a", "#a8352e", "#1f2124", "#c8c8c2", "#2f6b45", "#2e5b8a"]
+        },
+        "audioSource": {
+          "sound": "vehicle.engine.car",
+          "loop": true,
+          "pitch": 1.8,
+          "gain": 0.7,
+          "when": {
+            "self.occupied": true
+          },
+          "pitchFrom": {
+            "signal": "vehicleState.speed",
+            "curve": [[0, 0.85], [8, 1.15], [24, 1.5]]
+          }
+        },
+        "model.signals": {
+          "sources": {
+            "steering": {
+              "component": "vehicleState",
+              "path": ["steer"]
+            },
+            "wheelAngle": {
+              "component": "vehicleState",
+              "path": ["wheelAngle"]
+            }
+          },
+          "bindings": [
+            {
+              "node": "handlebar",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "wheel-front",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "wheel-front-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-rear-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            }
+          ]
+        },
+        "livery": {
+          "selected": "step-through-blue",
+          "slots": {
+            "body": {
+              "materials": ["vehicle-paint-and-trim"]
+            }
+          },
+          "variants": [
+            {
+              "id": "step-through-blue",
+              "label": "Step-through blue-grey",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Honda super cub, 1st Gen. 1958, Left side.jpg — Mj-bird (CC BY-SA 3.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Honda_super_cub,_1st_Gen._1958,_Left_side.jpg"
+                  }
+                ]
+              },
+              "paints": {
+                "body": {
+                  "color": "#9fb3bd"
+                }
+              }
+            },
+            {
+              "id": "commuter-black",
+              "label": "Commuter gloss black",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "2026 Honda Wave 110 Special Edition (Alloy Type).jpg — Chanokchon (CC BY-SA 4.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:2026_Honda_Wave_110_Special_Edition_(Alloy_Type).jpg"
+                  }
+                ]
+              },
+              "paints": {
+                "body": {
+                  "color": "#1e2023"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "assets": ["molen.entities.cycle.underbone_moped"]
+    },
+    "molen.entities.cycle.electric_moped": {
+      "doc": "Bendy E-Moped. Rideable electric moped: flat floor over the battery, rear hub motor, front basket, self-balancing handling.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.cycle.electric_moped",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.cycle.electric_moped",
+          "color": "#e6e3dc",
+          "spec": {
+            "label": "Bendy E-Moped",
+            "bodyStyle": "scooter",
+            "genericLabel": "Electric moped",
+            "width": 0.68,
+            "length": 1.9,
+            "height": 1.12,
+            "centerOfMass": [0, 0.6, -0.08],
+            "wheelbase": 1.3,
+            "wheelTrack": 0,
+            "wheelRadius": 0.235,
+            "mass": 160,
+            "engineForce": 520,
+            "maxSpeed": 13.5,
+            "reverseSpeed": 0,
+            "brakeDeceleration": 7,
+            "maxSteer": 0.6,
+            "driverEye": [0, 1.49, -0.15],
+            "grip": 8,
+            "steeringRate": 2.5,
+            "steeringFadeSpeed": 12,
+            "rollingResistance": 0.1,
+            "aerodynamicResistance": 0.004,
+            "terrainAlignRate": 2.5,
+            "supportTolerance": 0.06,
+            "maxStepHeight": 0.16,
+            "maxSlope": 0.55,
+            "drive": "rear",
+            "suspensionDamping": 1,
+            "suspensionFrequency": 2,
+            "pitchStiffness": 0.012,
+            "headlamps": [[0, 0.82, 0.47]],
+            "cycle": {
+              "maxLean": 0.6,
+              "riderLean": 0.2,
+              "handlebarPivot": [0, 0.95, 0.3043],
+              "grips": [[0.31, 1.02, 0.2], [-0.31, 1.02, 0.2]],
+              "footrests": [[0.13, 0.38, 0.06], [-0.13, 0.38, 0.06]]
+            },
+            "collisionParts": [
+              {
+                "id": "wheel-rear",
+                "role": "rearWheel",
+                "center": [0, 0.235, -0.65],
+                "radius": 0.2115,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": ["wheel-rear"],
+                "probes": [[0, 0.235, -0.65]]
+              },
+              {
+                "id": "wheel-front",
+                "role": "frontWheel",
+                "center": [0, 0.287786, 0.668312],
+                "radius": 0.2115,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": ["wheel-front"],
+                "probes": [[0, 0.287786, 0.668312]]
+              }
+            ]
+          },
+          "visual": {
+            "wheelNodes": ["wheel-front", "wheel-rear"],
+            "frontWheelNodes": ["wheel-front"],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "animation": {
+              "sources": {
+                "steering": {
+                  "component": "vehicleState",
+                  "path": ["steer"]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "handlebar",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0, 0.83, -0.27]
+            }
+          ],
+          "exits": [[0.94, 0, -0.27], [-0.94, 0, -0.27], [0, 0, -1.55]],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 0,
+          "cruise": 10,
+          "max": 16,
+          "colors": ["#e6e3dc", "#e6e3dc", "#8fb8d8", "#e7a8b8", "#1f2124", "#a7c49a", "#c9cdd1"]
+        },
+        "model.signals": {
+          "sources": {
+            "steering": {
+              "component": "vehicleState",
+              "path": ["steer"]
+            },
+            "wheelAngle": {
+              "component": "vehicleState",
+              "path": ["wheelAngle"]
+            }
+          },
+          "bindings": [
+            {
+              "node": "handlebar",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "wheel-front",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "wheel-front-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-rear-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            }
+          ]
+        },
+        "livery": {
+          "selected": "battery-silver",
+          "slots": {
+            "body": {
+              "materials": ["vehicle-paint-and-trim"]
+            }
+          },
+          "variants": [
+            {
+              "id": "battery-silver",
+              "label": "Battery scooter silver",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Yadea G5 2023-09-24.jpg — Wikisympathisant (CC BY-SA 4.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Yadea_G5_2023-09-24.jpg"
+                  }
+                ]
+              },
+              "paints": {
+                "body": {
+                  "color": "#b4b9bd"
+                }
+              }
+            },
+            {
+              "id": "lime-green",
+              "label": "Lime green",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Niu UQi Sport Electric Scooter.jpg — Anon user (CC BY-SA 4.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Niu_UQi_Sport_Electric_Scooter.jpg"
+                  }
+                ]
+              },
+              "paints": {
+                "body": {
+                  "color": "#98ab4c"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "assets": ["molen.entities.cycle.electric_moped"]
+    },
+    "molen.entities.cycle.kick_scooter": {
+      "doc": "Bendy Share Scooter. Rideable shared electric kick scooter: the rider stands on the deck, self-balancing handling, animated bars.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.cycle.kick_scooter",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.cycle.kick_scooter",
+          "color": "#3c9a6b",
+          "spec": {
+            "label": "Bendy Share Scooter",
+            "bodyStyle": "kick-scooter",
+            "genericLabel": "Electric kick scooter",
+            "width": 0.55,
+            "length": 1.2,
+            "height": 1.2,
+            "centerOfMass": [0, 0.85, -0.05],
+            "wheelbase": 0.88,
+            "wheelTrack": 0,
+            "wheelRadius": 0.135,
+            "mass": 105,
+            "engineForce": 165,
+            "maxSpeed": 7,
+            "reverseSpeed": 0,
+            "brakeDeceleration": 4.5,
+            "maxSteer": 0.55,
+            "driverEye": [0, 1.71, 0.01],
+            "grip": 7,
+            "steeringRate": 2.5,
+            "steeringFadeSpeed": 5,
+            "rollingResistance": 0.1,
+            "aerodynamicResistance": 0.008,
+            "terrainAlignRate": 3,
+            "supportTolerance": 0.05,
+            "maxStepHeight": 0.06,
+            "maxSlope": 0.4,
+            "drive": "rear",
+            "suspensionDamping": 1,
+            "suspensionFrequency": 2.4,
+            "pitchStiffness": 0.012,
+            "headlamps": [[0, 0.82, 0.3]],
+            "cycle": {
+              "maxLean": 0.45,
+              "riderLean": 0.08,
+              "stance": "standing",
+              "handlebarPivot": [0, 0.5, 0.3353],
+              "grips": [[0.235, 1.07, 0.16], [-0.235, 1.07, 0.16]],
+              "footrests": [[0.035, 0.235, 0.08], [-0.045, 0.235, -0.19]]
+            },
+            "collisionParts": [
+              {
+                "id": "wheel-rear",
+                "role": "rearWheel",
+                "center": [0, 0.135, -0.44],
+                "radius": 0.1215,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": ["wheel-rear"],
+                "probes": [[0, 0.135, -0.44]]
+              },
+              {
+                "id": "wheel-front",
+                "role": "frontWheel",
+                "center": [0, 0.180041, 0.448916],
+                "radius": 0.1215,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": ["wheel-front"],
+                "probes": [[0, 0.180041, 0.448916]]
+              }
+            ]
+          },
+          "visual": {
+            "wheelNodes": ["wheel-front", "wheel-rear"],
+            "frontWheelNodes": ["wheel-front"],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "animation": {
+              "sources": {
+                "steering": {
+                  "component": "vehicleState",
+                  "path": ["steer"]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "handlebar",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0, 1.05, -0.07]
+            }
+          ],
+          "exits": [[0.875, 0, -0.07], [-0.875, 0, -0.07], [0, 0, -1.2]],
+          "reach": 2.5
+        },
+        "model.signals": {
+          "sources": {
+            "steering": {
+              "component": "vehicleState",
+              "path": ["steer"]
+            },
+            "wheelAngle": {
+              "component": "vehicleState",
+              "path": ["wheelAngle"]
+            }
+          },
+          "bindings": [
+            {
+              "node": "handlebar",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "wheel-front",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "wheel-front-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-rear-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            }
+          ]
+        },
+        "livery": {
+          "selected": "black",
+          "slots": {
+            "body": {
+              "materials": ["vehicle-paint-and-trim"]
+            }
+          },
+          "variants": [
+            {
+              "id": "black",
+              "label": "Black",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Xiaomi M365 Scooter.jpg — Sprucecopse (CC0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Xiaomi_M365_Scooter.jpg"
+                  }
+                ]
+              },
+              "paints": {
+                "body": {
+                  "color": "#1f2124"
+                }
+              }
+            },
+            {
+              "id": "graphite",
+              "label": "Graphite",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Elektrische-tretroller.jpg — Ubahnverleih (CC0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Elektrische-tretroller.jpg"
+                  }
+                ]
+              },
+              "paints": {
+                "body": {
+                  "color": "#74797d"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "assets": ["molen.entities.cycle.kick_scooter"]
+    },
+    "molen.entities.cycle.skateboard": {
+      "doc": "Bendy Skateboard. Rideable push skateboard: the rider stands across the deck, pushes off under power, leans into turns.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.cycle.skateboard",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.cycle.skateboard",
+          "color": "#c8452f",
+          "spec": {
+            "label": "Bendy Skateboard",
+            "bodyStyle": "skateboard",
+            "genericLabel": "Skateboard",
+            "width": 0.21,
+            "length": 0.8,
+            "height": 0.15,
+            "centerOfMass": [0, 0.9, 0],
+            "wheelbase": 0.36,
+            "wheelTrack": 0,
+            "wheelRadius": 0.0265,
+            "mass": 78,
+            "engineForce": 120,
+            "maxSpeed": 5.5,
+            "reverseSpeed": 0,
+            "brakeDeceleration": 2.5,
+            "maxSteer": 0.5,
+            "driverEye": [0, 1.64, 0.06],
+            "grip": 6,
+            "steeringRate": 2,
+            "steeringFadeSpeed": 6,
+            "rollingResistance": 0.08,
+            "aerodynamicResistance": 0.006,
+            "terrainAlignRate": 4,
+            "supportTolerance": 0.03,
+            "maxStepHeight": 0.025,
+            "maxSlope": 0.3,
+            "drive": "rear",
+            "suspensionDamping": 1,
+            "suspensionFrequency": 3,
+            "pitchStiffness": 0.006,
+            "headlamps": [],
+            "cycle": {
+              "maxLean": 0.3,
+              "riderLean": 0.15,
+              "stance": "sideways",
+              "kick": {
+                "stride": 2.2
+              },
+              "handlebarPivot": [0, 0.1, 0.18],
+              "grips": [[-0.18, 1.03, 0.25], [-0.15, 1.01, -0.28]],
+              "footrests": [[0, 0.17, 0.17], [0, 0.17, -0.21]]
+            },
+            "collisionParts": [
+              {
+                "id": "wheel-front-left",
+                "role": "rearWheel",
+                "center": [0.086, 0.0265, 0.18],
+                "radius": 0.02385,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": ["wheel-front-left"],
+                "probes": [[0.086, 0.0265, 0.18]]
+              },
+              {
+                "id": "wheel-front-right",
+                "role": "rearWheel",
+                "center": [-0.086, 0.0265, 0.18],
+                "radius": 0.02385,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": ["wheel-front-right"],
+                "probes": [[-0.086, 0.0265, 0.18]]
+              },
+              {
+                "id": "wheel-rear-left",
+                "role": "rearWheel",
+                "center": [0.086, 0.0265, -0.18],
+                "radius": 0.02385,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": ["wheel-rear-left"],
+                "probes": [[0.086, 0.0265, -0.18]]
+              },
+              {
+                "id": "wheel-rear-right",
+                "role": "rearWheel",
+                "center": [-0.086, 0.0265, -0.18],
+                "radius": 0.02385,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": ["wheel-rear-right"],
+                "probes": [[-0.086, 0.0265, -0.18]]
+              }
+            ]
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "animation": {
+              "sources": {
+                "steering": {
+                  "component": "vehicleState",
+                  "path": ["steer"]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "truck-front",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -0.5
+                },
+                {
+                  "node": "truck-rear",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": 0.5
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0, 0.98, 0]
+            }
+          ],
+          "exits": [[0.6, 0, 0], [-0.6, 0, 0], [0, 0, -0.9]],
+          "reach": 2.5
+        },
+        "model.signals": {
+          "sources": {
+            "steering": {
+              "component": "vehicleState",
+              "path": ["steer"]
+            },
+            "wheelAngle": {
+              "component": "vehicleState",
+              "path": ["wheelAngle"]
+            }
+          },
+          "bindings": [
+            {
+              "node": "truck-front",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -0.5
+            },
+            {
+              "node": "truck-rear",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": 0.5
+            },
+            {
+              "node": "wheel-front-left-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-front-right-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-rear-left-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-rear-right-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            }
+          ]
+        },
+        "livery": {
+          "selected": "green-graphic",
+          "slots": {
+            "body": {
+              "materials": ["vehicle-paint-and-trim"]
+            }
+          },
+          "variants": [
+            {
+              "id": "green-graphic",
+              "label": "Green graphic",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Nash Vintage 60's Wooden Deck Shark Skateboard.jpg — H. Michael Karshis (CC BY 2.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Nash_Vintage_60's_Wooden_Deck_Shark_Skateboard.jpg"
+                  }
+                ]
+              },
+              "paints": {
+                "body": {
+                  "color": "#2c8a42"
+                }
+              }
+            },
+            {
+              "id": "blue-graphic",
+              "label": "Blue graphic",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Street-skateboard.jpg — PowerPCG5 (CC BY 4.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Street-skateboard.jpg"
+                  }
+                ]
+              },
+              "paints": {
+                "body": {
+                  "color": "#1d4fb0"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "assets": ["molen.entities.cycle.skateboard"]
+    },
+    "molen.entities.cycle.electric_skateboard": {
+      "doc": "Bendy E-Board. Rideable electric skateboard: the rider stands across the deck, belt-driven rear motor, leans into turns.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.cycle.electric_skateboard",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.cycle.electric_skateboard",
+          "color": "#2f4a6b",
+          "spec": {
+            "label": "Bendy E-Board",
+            "bodyStyle": "skateboard",
+            "genericLabel": "Electric skateboard",
+            "width": 0.25,
+            "length": 0.97,
+            "height": 0.17,
+            "centerOfMass": [0, 0.92, 0],
+            "wheelbase": 0.66,
+            "wheelTrack": 0,
+            "wheelRadius": 0.045,
+            "mass": 83,
+            "engineForce": 260,
+            "maxSpeed": 11,
+            "reverseSpeed": 0,
+            "brakeDeceleration": 4,
+            "maxSteer": 0.45,
+            "driverEye": [0, 1.68, 0.06],
+            "grip": 6.5,
+            "steeringRate": 2,
+            "steeringFadeSpeed": 8,
+            "rollingResistance": 0.08,
+            "aerodynamicResistance": 0.006,
+            "terrainAlignRate": 4,
+            "supportTolerance": 0.035,
+            "maxStepHeight": 0.035,
+            "maxSlope": 0.35,
+            "drive": "rear",
+            "suspensionDamping": 1,
+            "suspensionFrequency": 3,
+            "pitchStiffness": 0.006,
+            "headlamps": [],
+            "cycle": {
+              "maxLean": 0.35,
+              "riderLean": 0.18,
+              "stance": "sideways",
+              "handlebarPivot": [0, 0.15, 0.33],
+              "grips": [[-0.18, 1.07, 0.27], [-0.15, 1.05, -0.3]],
+              "footrests": [[0, 0.21, 0.25], [0, 0.21, -0.25]]
+            },
+            "collisionParts": [
+              {
+                "id": "wheel-front-left",
+                "role": "rearWheel",
+                "center": [0.087, 0.045, 0.33],
+                "radius": 0.0405,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": ["wheel-front-left"],
+                "probes": [[0.087, 0.045, 0.33]]
+              },
+              {
+                "id": "wheel-front-right",
+                "role": "rearWheel",
+                "center": [-0.087, 0.045, 0.33],
+                "radius": 0.0405,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": ["wheel-front-right"],
+                "probes": [[-0.087, 0.045, 0.33]]
+              },
+              {
+                "id": "wheel-rear-left",
+                "role": "rearWheel",
+                "center": [0.087, 0.045, -0.33],
+                "radius": 0.0405,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": ["wheel-rear-left"],
+                "probes": [[0.087, 0.045, -0.33]]
+              },
+              {
+                "id": "wheel-rear-right",
+                "role": "rearWheel",
+                "center": [-0.087, 0.045, -0.33],
+                "radius": 0.0405,
+                "massFraction": 0.02,
+                "breakSpeed": 12,
+                "nodes": ["wheel-rear-right"],
+                "probes": [[-0.087, 0.045, -0.33]]
+              }
+            ]
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "animation": {
+              "sources": {
+                "steering": {
+                  "component": "vehicleState",
+                  "path": ["steer"]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "truck-front",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -0.5
+                },
+                {
+                  "node": "truck-rear",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": 0.5
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0, 1.02, 0]
+            }
+          ],
+          "exits": [[0.6, 0, 0], [-0.6, 0, 0], [0, 0, -1]],
+          "reach": 2.5
+        },
+        "model.signals": {
+          "sources": {
+            "steering": {
+              "component": "vehicleState",
+              "path": ["steer"]
+            },
+            "wheelAngle": {
+              "component": "vehicleState",
+              "path": ["wheelAngle"]
+            }
+          },
+          "bindings": [
+            {
+              "node": "truck-front",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -0.5
+            },
+            {
+              "node": "truck-rear",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": 0.5
+            },
+            {
+              "node": "wheel-front-left-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-front-right-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-rear-left-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-rear-right-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            }
+          ]
+        },
+        "livery": {
+          "selected": "bamboo",
+          "slots": {
+            "body": {
+              "materials": ["vehicle-paint-and-trim"]
+            }
+          },
+          "variants": [
+            {
+              "id": "bamboo",
+              "label": "Bamboo",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Electric skateboard at TED.jpg — Steve Jurvetson (CC BY 2.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Electric_skateboard_at_TED.jpg"
+                  }
+                ]
+              },
+              "paints": {
+                "body": {
+                  "color": "#d6b98c"
+                }
+              }
+            },
+            {
+              "id": "red-stain",
+              "label": "Red stain",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Electric skateboard(800,600,400watt).jpg — Aleksandr Ponomarenko (Public domain)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Electric_skateboard(800,600,400watt).jpg"
+                  }
+                ]
+              },
+              "paints": {
+                "body": {
+                  "color": "#a24a33"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "assets": ["molen.entities.cycle.electric_skateboard"]
+    },
+    "molen.entities.cycle.skis": {
+      "doc": "Bendy Skis. Rideable alpine skis with poles: they slide downhill on lying snow under gravity, carve with the steering, stop on their edges and pole along the flat.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.cycle.skis",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.cycle.skis",
+          "color": "#c8372d",
+          "spec": {
+            "label": "Bendy Skis",
+            "bodyStyle": "skis",
+            "genericLabel": "Alpine skis",
+            "width": 0.7,
+            "length": 1.7,
+            "height": 1.2,
+            "centerOfMass": [0, 0.9, 0],
+            "wheelbase": 1.1,
+            "wheelTrack": 0,
+            "wheelRadius": 0.02,
+            "mass": 85,
+            "engineForce": 130,
+            "maxSpeed": 38,
+            "reverseSpeed": 0,
+            "brakeDeceleration": 6,
+            "maxSteer": 0.5,
+            "driverEye": [0, 1.62, 0.05],
+            "grip": 7.5,
+            "steeringRate": 2.2,
+            "steeringFadeSpeed": 9,
+            "rollingResistance": 0,
+            "aerodynamicResistance": 0.0042,
+            "terrainAlignRate": 6,
+            "supportTolerance": 0.3,
+            "maxStepHeight": 0.35,
+            "maxSlope": 0.95,
+            "drive": "rear",
+            "suspensionDamping": 1,
+            "suspensionFrequency": 2.5,
+            "pitchStiffness": 0,
+            "headlamps": [],
+            "runners": {
+              "friction": 0.05,
+              "bareDrag": 3.5,
+              "pushSpeed": 4.5,
+              "flat": true
+            },
+            "cycle": {
+              "maxLean": 0.6,
+              "riderLean": 0.22,
+              "stance": "standing",
+              "handlebarPivot": [0, 1.03, 0.2],
+              "grips": [[0.3, 1.03, 0.2], [-0.3, 1.03, 0.2]],
+              "footrests": [[0.13, 0.17, -0.05], [-0.13, 0.17, -0.05]]
+            }
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "animation": {
+              "sources": {
+                "steering": {
+                  "component": "vehicleState",
+                  "path": ["steer"]
+                },
+                "speed": {
+                  "component": "vehicleState",
+                  "path": ["speed"]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "handlebar",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1
+                },
+                {
+                  "node": "pole-left",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "x",
+                  "keys": [[0, 0], [0.6, 0], [3, 0.95]],
+                  "ease": "smooth",
+                  "responseSeconds": 0.2
+                },
+                {
+                  "node": "pole-right",
+                  "source": "speed",
+                  "property": "rotation",
+                  "axis": "x",
+                  "keys": [[0, 0], [0.6, 0], [3, 0.95]],
+                  "ease": "smooth",
+                  "responseSeconds": 0.2
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0, 0.92, -0.03]
+            }
+          ],
+          "exits": [[0.75, 0, 0], [-0.75, 0, 0], [0, 0, -1.3]],
+          "reach": 2.5
+        },
+        "model.signals": {
+          "sources": {
+            "steering": {
+              "component": "vehicleState",
+              "path": ["steer"]
+            },
+            "speed": {
+              "component": "vehicleState",
+              "path": ["speed"]
+            }
+          },
+          "bindings": [
+            {
+              "node": "handlebar",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "pole-left",
+              "source": "speed",
+              "property": "rotation",
+              "axis": "x",
+              "keys": [[0, 0], [0.6, 0], [3, 0.95]],
+              "ease": "smooth",
+              "responseSeconds": 0.2
+            },
+            {
+              "node": "pole-right",
+              "source": "speed",
+              "property": "rotation",
+              "axis": "x",
+              "keys": [[0, 0], [0.6, 0], [3, 0.95]],
+              "ease": "smooth",
+              "responseSeconds": 0.2
+            }
+          ]
+        },
+        "livery": {
+          "selected": "black-topsheet",
+          "slots": {
+            "body": {
+              "materials": ["vehicle-paint-and-trim"]
+            }
+          },
+          "variants": [
+            {
+              "id": "black-topsheet",
+              "label": "Black topsheet",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Rossignol Experience 88 Ti Skis.jpg — Викидим (CC BY-SA 4.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Rossignol_Experience_88_Ti_Skis.jpg"
+                  }
+                ]
+              },
+              "paints": {
+                "body": {
+                  "color": "#1d1d20"
+                }
+              }
+            },
+            {
+              "id": "white-topsheet",
+              "label": "White topsheet",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Snowborad and ski.jpeg — nafoooo (CC BY-SA 3.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Snowborad_and_ski.jpeg"
+                  }
+                ]
+              },
+              "paints": {
+                "body": {
+                  "color": "#e4e4df"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "assets": ["molen.entities.cycle.skis"]
+    },
+    "molen.entities.cycle.snowboard": {
+      "doc": "Bendy Snowboard. Rideable snowboard: the rider stands across it, slides downhill on lying snow under gravity, leans into turns and skates along the flat.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.cycle.snowboard",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.cycle.snowboard",
+          "color": "#2f6fb0",
+          "spec": {
+            "label": "Bendy Snowboard",
+            "bodyStyle": "snowboard",
+            "genericLabel": "Snowboard",
+            "width": 0.3,
+            "length": 1.56,
+            "height": 0.3,
+            "centerOfMass": [0, 0.9, 0],
+            "wheelbase": 0.9,
+            "wheelTrack": 0,
+            "wheelRadius": 0.02,
+            "mass": 82,
+            "engineForce": 110,
+            "maxSpeed": 34,
+            "reverseSpeed": 0,
+            "brakeDeceleration": 5.5,
+            "maxSteer": 0.5,
+            "driverEye": [0, 1.59, 0.06],
+            "grip": 7,
+            "steeringRate": 2,
+            "steeringFadeSpeed": 8,
+            "rollingResistance": 0,
+            "aerodynamicResistance": 0.0048,
+            "terrainAlignRate": 6,
+            "supportTolerance": 0.3,
+            "maxStepHeight": 0.35,
+            "maxSlope": 0.95,
+            "drive": "rear",
+            "suspensionDamping": 1,
+            "suspensionFrequency": 2.5,
+            "pitchStiffness": 0,
+            "headlamps": [],
+            "runners": {
+              "friction": 0.055,
+              "bareDrag": 3.5,
+              "pushSpeed": 3.5
+            },
+            "cycle": {
+              "maxLean": 0.65,
+              "riderLean": 0.15,
+              "stance": "sideways",
+              "kick": {
+                "stride": 2.4
+              },
+              "handlebarPivot": [0, 0.1, 0.45],
+              "grips": [[-0.18, 1.01, 0.27], [-0.15, 0.99, -0.3]],
+              "footrests": [[0, 0.16, 0.26], [0, 0.16, -0.26]]
+            }
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0, 0.93, 0]
+            }
+          ],
+          "exits": [[0.7, 0, 0], [-0.7, 0, 0], [0, 0, -1.2]],
+          "reach": 2.5
+        },
+        "livery": {
+          "selected": "white-deck",
+          "slots": {
+            "body": {
+              "materials": ["vehicle-paint-and-trim"]
+            }
+          },
+          "variants": [
+            {
+              "id": "white-deck",
+              "label": "White deck",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "White-Snowboard-With-Bindings.jpg (public domain)",
+                    "url": "https://commons.wikimedia.org/wiki/File:White-Snowboard-With-Bindings.jpg"
+                  }
+                ]
+              },
+              "paints": {
+                "body": {
+                  "color": "#e4e6e3"
+                }
+              }
+            },
+            {
+              "id": "black-deck",
+              "label": "Black deck",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint colors studied from the linked photograph. The photographed vehicle may differ in year, trim or body style; this recipe adapts its visible finish to the catalog model. Color values are visual approximations, not measured paint codes. Accessories and any advertising in the photograph are not part of the paint recipe.",
+                "references": [
+                  {
+                    "title": "Snowboard-In-The-Snow-2008.jpg — Kham Tran (CC BY-SA 3.0)",
+                    "url": "https://commons.wikimedia.org/wiki/File:Snowboard-In-The-Snow-2008.jpg"
+                  }
+                ]
+              },
+              "paints": {
+                "body": {
+                  "color": "#17181a"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "assets": ["molen.entities.cycle.snowboard"]
     }
   }
 }

@@ -20,7 +20,9 @@ export function bridgeDeckProfile(
     b = road.path.points.at(-1) as TerrainSemanticPoint;
   return bridgeDeckHeightFn(
     road.path,
-    (x, z) => context.heightfield.sampleHeight(context.origin[0] + x, context.origin[1] + z),
+    // The rendered ground, which the land cover beside the road is draped on: an approach that
+    // follows it then lies exactly on the drape, as any road on the ground does.
+    (x, z) => builder.groundHeight(x, z),
     {
       ...(road.feature.deckElevation !== undefined
         ? { deckElevation: road.feature.deckElevation }
@@ -33,6 +35,7 @@ export function bridgeDeckProfile(
         point: [sample.point[0] * context.tileSize, sample.point[1] * context.tileSize],
       })),
       connects: [connects(a), connects(b)],
+      bounds: [0, 0, context.tileSize, context.tileSize],
       connections: (road.feature.bridgeConnections ?? []).map((connection) => ({
         point: [
           connection.point[0] * context.tileSize,
@@ -182,16 +185,29 @@ export function appendBridgeStructure(
   }
 }
 
-/** A lifted ground approach needs a retaining volume, not a road floating above its bank. */
+/** Meters a retaining wall stands before the ramp on it gets a parapet. */
+const PARAPET_FROM = 1;
+
+/**
+ * A lifted ground approach needs a retaining volume, not a road floating above its bank, and
+ * where that wall is tall enough to fall from, a parapet along its top: 0.9 m of concrete
+ * beside a road, a 1.1 m rail beside a footpath. `parapet.covered` opens it where another
+ * carriageway joins at the same height.
+ */
 export function appendBridgeApproachSupport(
   builder: TerrainSurfaceMeshBuilder,
   road: SurfaceRoad,
   heightAt: (x: number, z: number) => number,
   sampleSpacing = 2,
   shoulder = 0,
+  parapet?: { covered?: (x: number, z: number) => boolean },
 ): void {
   const stone = new THREE.Color('#aaa79c');
+  const rail = new THREE.Color('#bfc1b8');
   const halfWidth = Math.max(0.3, road.width / 2 + shoulder - 0.05);
+  const guard = road.kind === 'path' ? { width: 0.1, height: 1.1 } : { width: 0.3, height: 0.9 };
+  /** Whether the previous sample drew a parapet on each side, to cap its ends. */
+  const guarded = [false, false];
   const point = (distance: number, offset: number, top: boolean): [number, number, number] => {
     const p = sampleTerrainLine(road.path, distance, offset);
     const ground = builder.context.heightfield.sampleHeight(
@@ -213,7 +229,10 @@ export function appendBridgeApproachSupport(
         B = point(next, -halfWidth, true),
         C = point(next, halfWidth, true),
         E = point(d, halfWidth, true);
-      if (Math.max(A[1] - a[1], B[1] - b[1], C[1] - c[1], E[1] - e[1]) < 0.6) continue;
+      if (Math.max(A[1] - a[1], B[1] - b[1], C[1] - c[1], E[1] - e[1]) < 0.6) {
+        guarded.fill(false);
+        continue;
+      }
       // Pavement supplies the top. Do not duplicate internal end faces at every sample:
       // opposite coplanar normals made the retaining walls stripe at their seams.
       for (const face of [
@@ -223,6 +242,43 @@ export function appendBridgeApproachSupport(
         builder.face(face, stone);
       if (d === 0) builder.face([a, e, E, A], stone);
       if (next === road.path.length) builder.face([b, B, C, c], stone);
+      if (!parapet) continue;
+      // Each side on its own: a ramp cut into a slope has a wall on its downhill side only.
+      for (const [side, sign, low0, low1, top0, top1] of [
+        [0, -1, a, b, A, B],
+        [1, 1, e, c, E, C],
+      ] as const) {
+        const tall = Math.min(top0[1] - low0[1], top1[1] - low1[1]) >= PARAPET_FROM;
+        const inner = sign * halfWidth,
+          outer = sign * (halfWidth + guard.width);
+        const open =
+          !tall ||
+          [d, (d + next) / 2, next].some((station) => {
+            const p = sampleTerrainLine(road.path, station, outer);
+            return parapet.covered?.(p.x, p.z) === true;
+          });
+        if (open) {
+          guarded[side] = false;
+          continue;
+        }
+        const at = (station: number, offset: number, lift: number): [number, number, number] => {
+          const p = sampleTerrainLine(road.path, station, offset);
+          return [p.x, heightAt(p.x, p.z) + lift, p.z];
+        };
+        const i0 = at(d, inner, -0.08),
+          i1 = at(next, inner, -0.08),
+          o0 = at(d, outer, -0.08),
+          o1 = at(next, outer, -0.08);
+        const I0 = at(d, inner, guard.height),
+          I1 = at(next, inner, guard.height),
+          O0 = at(d, outer, guard.height),
+          O1 = at(next, outer, guard.height);
+        builder.face([i0, I0, I1, i1], rail);
+        builder.face([o0, o1, O1, O0], rail);
+        builder.face([I0, O0, O1, I1], rail);
+        if (!guarded[side]) builder.face([i0, o0, O0, I0], rail);
+        guarded[side] = true;
+      }
     }
   }
 }

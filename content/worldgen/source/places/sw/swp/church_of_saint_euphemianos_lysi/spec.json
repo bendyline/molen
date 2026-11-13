@@ -1,0 +1,433 @@
+{
+  "planId": "church_of_saint_euphemianos_lysi",
+  "id": "church_of_saint_euphemianos_lysi",
+  "assetId": "molen.worldgen.structure.church_of_saint_euphemianos_lysi",
+  "title": "Church of Saint Euphemianos, Lysi",
+  "wikidataId": "Q4245084",
+  "category": "church",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 33.664720075000005,
+    "latitude": 35.0857127
+  },
+  "size": [
+    8.701299667358398,
+    6.950000166893005,
+    7.56000018119812
+  ],
+  "actualBounds": {
+    "min": [
+      -4.360000133514404,
+      -0.36000001430511475,
+      -3.6500000953674316
+    ],
+    "max": [
+      4.341299533843994,
+      6.590000152587891,
+      3.9100000858306885
+    ]
+  },
+  "visualBrief": "Rubble masonry chapel with tiled barrel roofs, a cylindrical dome drum, semicircular apse and recessed plank side door.",
+  "nativeAxes": {
+    "x": "east-northeast toward the apse",
+    "y": "up",
+    "z": "south-southeast toward the side entrance"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "kind": "historical",
+    "representedDate": "2010-06-27",
+    "validFrom": "2010-01-01",
+    "validUntil": "2011-01-01",
+    "currentWorldEligible": false
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Lysi_Chapel.JPG",
+    "https://commons.wikimedia.org/wiki/File:Lysi_Chapel_Side.JPG"
+  ],
+  "stories": [
+    {
+      "id": "church-of-saint-euphemianos-lysi-wp",
+      "url": "https://qualla.com/church-of-saint-euphemianos-lysi/"
+    }
+  ],
+  "referenceInputHash": "45634b285f24274f2e269655f380309513dea8bd557e95da18d1fd6bc0adb5a2",
+  "sourceGeometry": {
+    "module": "content/worldgen/source/places/sw/swp/church_of_saint_euphemianos_lysi/models/lysi-chapel-model.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e3935bae2e34d73fa1971f2aeef407f5c825fd6a8d0a727a523ad5c71234a10a",
+    "structure-mesh.mjs": "sha256:ad5f4ab808f482c2a638499290d1af930e623909c3fc9072e40ce89eed3362f4"
+  },
+  "runtimeLodOverlay": {
+    "module": "content/worldgen/source/places/sw/swp/church_of_saint_euphemianos_lysi/models/lysi-chapel-model.mjs",
+    "level": "skyline",
+    "export": "lysiSkyline",
+    "errorMeters": 0.23,
+    "surfaces": {
+      "masonry": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "ashlar": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "plank": {
+        "slot": "door",
+        "graph": "wood_vertical",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "shadow": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "lysiDistrict",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "plank": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "lysiStreet",
+        "errorMeters": 0.044,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "plank": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "lysiCloseup",
+        "errorMeters": 0.016,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "ashlar": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "plank": {
+            "slot": "door",
+            "graph": "wood_vertical",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "portableCanonicalFallbacks": [
+    "stone_limestone_weathered",
+    "stone_limestone_raw",
+    "tile_ceramic",
+    "wood_vertical"
+  ],
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.65,
+    "groundY": 0,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "orientationPolicy": "approximate-visualization",
+    "status": "historical-proposal",
+    "anchor": [
+      33.664720075000005,
+      35.0857127
+    ],
+    "heading": 0.3182385833821464,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        33.66473501743436,
+        35.08567558413512
+      ],
+      "modelHeight": 0,
+      "basis": "Original public source terrain by the photographed side entrance."
+    },
+    "replaceFootprint": false,
+    "buildingCutout": {
+      "outline": [
+        [
+          4.291403162436228,
+          -3.8487435175282814
+        ],
+        [
+          4.287069541652028,
+          3.850168624099692
+        ],
+        [
+          -4.287077260251816,
+          3.850168624099692
+        ],
+        [
+          -4.291395445680682,
+          -3.8515937312786614
+        ]
+      ],
+      "minimumCoverage": 0.92,
+      "basis": "Named 8.58 by 7.70 m mapped chapel envelope, OpenStreetMap way 190662188."
+    },
+    "featureIds": [
+      "way/190662188"
+    ],
+    "source": "https://www.openstreetmap.org/way/190662188",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0d990532012371c4f338105adb63f8f11136034cdee46eb5d9120ad4352899c4",
+    "notes": "The June 2010 exterior of the Church of Saint Euphemianos outside Lysi, including the small rubble masonry nave, low tiled barrel roofs, cylindrical dome drum, and rounded east apse. The mapped rectangle and photographs fix the overall scale. The finer wall and roof offsets require interpretation."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_vertical",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "The rectangle sets the overall dimensions. Offsets, curves, heights, masonry courses and individual tiles are estimated from the two June 2010 exterior photographs.",
+    "The north and west elevations are simplified continuations of the documented walls and barrel roof. The roof form and openings are an exterior interpretation.",
+    "The original terrain is preserved. Foundation embedment and threshold registration are approximate. The appearance is scoped to the 2010 photo year."
+  ],
+  "sourceLicense": "Original geometry under the repository license, OpenStreetMap ODbL 1.0 and two exact first-party CC0 1.0 Qualla photographs.",
+  "qaLodCameras": [
+    {
+      "name": "whole-lysi-chapel-skyline",
+      "position": [
+        11,
+        7.3,
+        13
+      ],
+      "lookAt": [
+        0.25,
+        2.6,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-lysi-chapel-district",
+      "position": [
+        11,
+        7.3,
+        13
+      ],
+      "lookAt": [
+        0.25,
+        2.6,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-lysi-chapel-street",
+      "position": [
+        11,
+        7.3,
+        13
+      ],
+      "lookAt": [
+        0.25,
+        2.6,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-lysi-chapel-closeup",
+      "position": [
+        11,
+        7.3,
+        13
+      ],
+      "lookAt": [
+        0.25,
+        2.6,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "qaCameras": [
+    {
+      "name": "south-entry-and-dome",
+      "position": [
+        5.8,
+        3.1,
+        12.8
+      ],
+      "lookAt": [
+        0,
+        2.85,
+        0.45
+      ]
+    },
+    {
+      "name": "east-apse-and-drum-window",
+      "position": [
+        14.3,
+        3.9,
+        0.45
+      ],
+      "lookAt": [
+        1,
+        2.8,
+        0
+      ]
+    },
+    {
+      "name": "north-and-west-roof",
+      "position": [
+        -10.1,
+        7.4,
+        -10.2
+      ],
+      "lookAt": [
+        -0.4,
+        2.45,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8845,
+    "vertices": 26535,
+    "materials": 5,
+    "bytes": 1337556,
+    "sha256": "sha256:9695f816a3d66be64fa864a3315a0a0150946a5b08da8bf422342587b6f10007"
+  }
+}

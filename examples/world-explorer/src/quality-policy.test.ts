@@ -1,6 +1,6 @@
 import type { AdaptiveQualityChange, AdaptiveQualitySample } from '@bendyline/molen-client';
 import { describe, expect, it } from 'vitest';
-import { createExplorerQualityController } from './quality-policy.js';
+import { createExplorerQualityController, createStreamStrainMeter } from './quality-policy.js';
 
 function run(
   controller: ReturnType<typeof createExplorerQualityController>,
@@ -19,13 +19,12 @@ function run(
 const flight = { loading: true, cpuFrameMs: 5, gpuFrameMs: 6, memoryPressure: 0.5 };
 
 describe('world explorer Auto detail', () => {
-  it('starts Balanced and reaches High then Ultra after sustained smooth flight', () => {
+  it('starts Balanced and stops at High after sustained smooth flight', () => {
     const controller = createExplorerQualityController();
     expect(controller.getStats().level).toBe(3);
     expect(run(controller, 19000, 1000 / 60, flight)).toEqual([]);
     expect(run(controller, 24000, 1000 / 60, flight)).toEqual([
       { previousLevel: 3, level: 4, reason: 'headroom' },
-      { previousLevel: 4, level: 5, reason: 'headroom' },
     ]);
     expect(run(controller, 60000, 1000 / 60, flight)).toEqual([]);
   });
@@ -50,7 +49,7 @@ describe('world explorer Auto detail', () => {
     const controller = createExplorerQualityController();
     expect(
       run(controller, 43000, 1000 / 60, { cpuFrameMs: 5 }).map((change) => change.level),
-    ).toEqual([4, 5]);
+    ).toEqual([4]);
   });
 
   it('ignores brief stalls but backs off a higher tier that cannot sustain flight', () => {
@@ -82,10 +81,67 @@ describe('world explorer Auto detail', () => {
     controller.sample(120000, { active: false });
     expect(run(controller, 10000, 1000 / 60, flight)).toEqual([]);
     controller.setLevel(5);
-    expect(controller.getStats().level).toBe(5);
+    expect(controller.getStats().level).toBe(4);
     expect(run(controller, 1000, 40, { cpuFrameMs: 25 })).toEqual([]);
     expect(run(controller, 6000, 40, { cpuFrameMs: 25 })).toEqual([
-      { previousLevel: 5, level: 4, reason: 'frame-time' },
+      { previousLevel: 4, level: 3, reason: 'frame-time' },
     ]);
+  });
+
+  it('needs real frame margin before stepping up', () => {
+    const controller = createExplorerQualityController();
+    // 12 of 16.7 ms is over the 0.6 share: the next level would not fit.
+    expect(run(controller, 60000, 1000 / 60, { ...flight, cpuFrameMs: 12 })).toEqual([]);
+    expect(run(controller, 22000, 1000 / 60, flight).map((change) => change.level)).toEqual([4]);
+  });
+
+  it('holds a step up while streaming is strained and steps down when it stays strained', () => {
+    const controller = createExplorerQualityController();
+    expect(run(controller, 9000, 1000 / 60, { ...flight, strained: true })).toEqual([]);
+    expect(run(controller, 3000, 1000 / 60, { ...flight, strained: true })).toEqual([
+      { previousLevel: 3, level: 2, reason: 'streaming' },
+    ]);
+  });
+
+  it('steps down on a second long stall within a minute, not the first', () => {
+    const controller = createExplorerQualityController();
+    run(controller, 5000, 1000 / 60, flight);
+    expect(controller.sample(1300, flight)).toBeUndefined();
+    run(controller, 5000, 1000 / 60, flight);
+    expect(controller.sample(1300, flight)).toEqual({
+      previousLevel: 3,
+      level: 2,
+      reason: 'frame-time',
+    });
+  });
+});
+
+describe('stream strain meter', () => {
+  const base = { residentBytes: 100, displayedBytes: 50, maxResidentBytes: 1000 };
+
+  it('reports tiles rebuilt after eviction as strain', () => {
+    const strained = createStreamStrainMeter();
+    expect(strained({ nowMs: 0, builtTiles: 0, rebuiltTiles: 0, ...base })).toBe(false);
+    expect(strained({ nowMs: 4000, builtTiles: 40, rebuiltTiles: 4, ...base })).toBe(false);
+    expect(strained({ nowMs: 6000, builtTiles: 60, rebuiltTiles: 20, ...base })).toBe(false);
+    expect(strained({ nowMs: 8000, builtTiles: 80, rebuiltTiles: 45, ...base })).toBe(true);
+    // Ten seconds later the burst has left the window.
+    expect(strained({ nowMs: 19000, builtTiles: 90, rebuiltTiles: 46, ...base })).toBe(false);
+  });
+
+  it('reports a view that crowds a full cache, but not a full warm cache', () => {
+    const strained = createStreamStrainMeter();
+    const counts = { builtTiles: 0, rebuiltTiles: 0, maxResidentBytes: 1000 };
+    expect(strained({ nowMs: 0, ...counts, residentBytes: 990, displayedBytes: 300 })).toBe(false);
+    expect(strained({ nowMs: 250, ...counts, residentBytes: 990, displayedBytes: 700 })).toBe(true);
+    expect(
+      strained({
+        nowMs: 500,
+        ...counts,
+        residentBytes: 990,
+        displayedBytes: 700,
+        maxResidentBytes: undefined,
+      }),
+    ).toBe(false);
   });
 });

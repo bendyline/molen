@@ -1,3 +1,4 @@
+import { InstanceBatch } from '@bendyline/molen-client/instancing';
 import { createParkedVehicleBatch } from '@bendyline/molen-client/vehicles';
 import type { FontLibrary } from '@bendyline/molen-materials/text';
 import type { VehiclePlacement } from '@bendyline/molen-schema';
@@ -23,6 +24,7 @@ import {
   type TerrainSurfaceStats,
 } from './surface-client';
 import { appendTerrainStreetLights, type TerrainStreetLight } from './surface-lights';
+import { appendTerrainRailLamps, type TerrainRailLamp } from './surface-rail';
 import type { SurfaceSign } from './surface-sign-mesh';
 import { appendTerrainSignalLenses, type TerrainSignalHead } from './surface-signals';
 import type { TerrainSurfaceOptions } from './surface-styles';
@@ -59,6 +61,8 @@ interface MeshData {
   normals?: Float32Array;
   colors?: Float32Array;
   surfaceDetail?: Float32Array;
+  /** Present for welded meshes, whose triangles share vertices. */
+  index?: Uint16Array | Uint32Array;
   matrices?: Float32Array;
   instanceColors?: Float32Array;
   /** Precompute culling bounds off-thread; avoid walking large buffers on first render. */
@@ -75,6 +79,7 @@ interface Result {
   signalHeads?: TerrainSignalHead[];
   streetLights?: TerrainStreetLight[];
   roadSigns?: SurfaceSign[];
+  railLamps?: TerrainRailLamp[];
   error?: string;
 }
 
@@ -140,6 +145,11 @@ export function installTerrainSurfaceWorker(
               data.normals.buffer as ArrayBuffer,
               data.colors.buffer as ArrayBuffer,
             );
+            const index = mesh.geometry.index?.array;
+            if (index instanceof Uint16Array || index instanceof Uint32Array) {
+              data.index = index;
+              transfer.push(index.buffer as ArrayBuffer);
+            }
             const detail = mesh.geometry.getAttribute('surfaceDetail');
             if (detail) {
               data.surfaceDetail = detail.array as Float32Array;
@@ -161,6 +171,7 @@ export function installTerrainSurfaceWorker(
           signalHeads: object.userData.trafficSignalHeads as TerrainSignalHead[],
           streetLights: object.userData.streetLights as TerrainStreetLight[],
           roadSigns: object.userData.roadSigns as SurfaceSign[],
+          railLamps: object.userData.railLamps as TerrainRailLamp[],
         } satisfies Result,
         transfer,
       );
@@ -318,8 +329,8 @@ export function createTerrainSurfaceWorkerBridge(
       let mesh: THREE.Mesh;
       if (data.matrices) {
         // Zero initial instances avoids allocating/initializing matrices we will replace.
-        const instances = new THREE.InstancedMesh(box, fixtureMaterial, 0);
-        instances.instanceMatrix = new THREE.InstancedBufferAttribute(data.matrices, 16);
+        const instances = new InstanceBatch(box, fixtureMaterial, 0);
+        instances.setInstanceMatrices(data.matrices);
         instances.count = data.matrices.length / 16;
         if (data.instanceColors)
           instances.instanceColor = new THREE.InstancedBufferAttribute(data.instanceColors, 3);
@@ -337,6 +348,7 @@ export function createTerrainSurfaceWorkerBridge(
         geometry.setAttribute('color', new THREE.BufferAttribute(data.colors as Float32Array, 3));
         if (data.surfaceDetail)
           geometry.setAttribute('surfaceDetail', new THREE.BufferAttribute(data.surfaceDetail, 4));
+        if (data.index) geometry.setIndex(new THREE.BufferAttribute(data.index, 1));
         geometry.boundingSphere = sphere;
         mesh = new THREE.Mesh(geometry, material);
         mesh.userData.terrainOwnedGeometry = true;
@@ -352,6 +364,7 @@ export function createTerrainSurfaceWorkerBridge(
       group.add(createParkedVehicleBatch(result.vehicles, job.context.origin));
     appendTerrainSignalLenses(group, result.signalHeads ?? []);
     appendTerrainStreetLights(group, result.streetLights ?? [], job.context);
+    appendTerrainRailLamps(group, result.railLamps ?? []);
     markTerrainSurfaceDetail(group);
     return group;
   };

@@ -38,7 +38,12 @@
     "library.central_africa": "africa-west",
     "library.east_africa": "africa-east",
     "library.madagascar": "africa-east",
-    "library.south_africa": "africa-south"
+    "library.south_africa": "africa-south",
+    "library.south_asia": "south-asia",
+    "library.mainland_southeast_asia": "southeast-asia",
+    "library.maritime_southeast_asia": "southeast-asia-maritime",
+    "library.philippines": "philippines",
+    "library.taiwan": "taiwan"
   },
   "profiles": [
     {
@@ -105,7 +110,10 @@
         "molen.entities.vehicle.toyota_rav4_2025": 3,
         "molen.entities.vehicle.volkswagen_polo_2024": 2,
         "molen.entities.vehicle.toyota_alphard_2024": 1,
-        "molen.entities.vehicle.hyundai_tucson_2025": 1
+        "molen.entities.vehicle.hyundai_tucson_2025": 1,
+        "molen.entities.cycle.electric_moped": 12,
+        "molen.entities.cycle.motor_scooter": 3,
+        "molen.entities.cycle.underbone_moped": 2
       }
     },
     {
@@ -173,7 +181,8 @@
         "molen.entities.vehicle.alfa_romeo_giulia_2018": 2,
         "molen.entities.vehicle.bmw_i3_2017": 2,
         "molen.entities.vehicle.toyota_yaris_2024": 6,
-        "molen.entities.vehicle.hyundai_tucson_2025": 4
+        "molen.entities.vehicle.hyundai_tucson_2025": 4,
+        "molen.entities.cycle.motor_scooter": 3
       }
     },
     {
@@ -184,7 +193,9 @@
         "molen.entities.vehicle.peugeot_208_2024": 22,
         "molen.entities.vehicle.renault_clio_2024": 24,
         "molen.entities.vehicle.dacia_duster_2024": 17,
-        "molen.entities.vehicle.skoda_octavia_combi_2024": 9
+        "molen.entities.vehicle.skoda_octavia_combi_2024": 9,
+        "molen.entities.cycle.motor_scooter": 4,
+        "molen.entities.cycle.electric_moped": 2
       }
     },
     {
@@ -227,7 +238,9 @@
         "molen.entities.vehicle.hyundai_tucson_2025": 4,
         "molen.entities.vehicle.peugeot_208_2024": 6,
         "molen.entities.vehicle.dacia_duster_2024": 5,
-        "molen.entities.vehicle.byd_seagull_2024": 2
+        "molen.entities.vehicle.byd_seagull_2024": 2,
+        "molen.entities.cycle.standard_motorcycle": 7,
+        "molen.entities.cycle.underbone_moped": 3
       }
     },
     {
@@ -255,7 +268,8 @@
         "molen.entities.vehicle.fiat_strada_2024": 7,
         "molen.entities.vehicle.isuzu_d_max_2024": 5,
         "molen.entities.vehicle.toyota_hiace_2024": 6,
-        "molen.entities.vehicle.hyundai_staria_2024": 3
+        "molen.entities.vehicle.hyundai_staria_2024": 3,
+        "molen.entities.vehicle.auto_rickshaw": 4
       }
     },
     {
@@ -285,7 +299,9 @@
         "molen.entities.vehicle.volkswagen_polo_2024": 5,
         "molen.entities.vehicle.renault_kwid_2024": 5,
         "molen.entities.vehicle.mercedes_benz_sprinter_2019": 4,
-        "molen.entities.vehicle.dacia_duster_2024": 5
+        "molen.entities.vehicle.dacia_duster_2024": 5,
+        "molen.entities.cycle.standard_motorcycle": 8,
+        "molen.entities.cycle.underbone_moped": 3
       }
     },
     {
@@ -300,7 +316,9 @@
         "molen.entities.vehicle.toyota_hiace_2024": 5,
         "molen.entities.vehicle.toyota_hilux_2024": 7,
         "molen.entities.vehicle.isuzu_d_max_2024": 3,
-        "molen.entities.vehicle.suzuki_swift_2024": 4
+        "molen.entities.vehicle.suzuki_swift_2024": 4,
+        "molen.entities.vehicle.auto_rickshaw": 6,
+        "molen.entities.cycle.motor_scooter": 3
       }
     },
     {
@@ -315,7 +333,9 @@
         "molen.entities.vehicle.peugeot_208_2024": 4,
         "molen.entities.vehicle.renault_clio_2024": 5,
         "molen.entities.vehicle.hyundai_tucson_2025": 8,
-        "molen.entities.vehicle.isuzu_d_max_2024": 5
+        "molen.entities.vehicle.isuzu_d_max_2024": 5,
+        "molen.entities.vehicle.auto_rickshaw": 9,
+        "molen.entities.cycle.standard_motorcycle": 10
       }
     },
     {
@@ -329,7 +349,9 @@
         "molen.entities.vehicle.toyota_yaris_2024": 17,
         "molen.entities.vehicle.isuzu_d_max_2024": 9,
         "molen.entities.vehicle.toyota_corolla_2025": 12,
-        "molen.entities.vehicle.nissan_leaf_2012": 2
+        "molen.entities.vehicle.nissan_leaf_2012": 2,
+        "molen.entities.vehicle.auto_rickshaw": 9,
+        "molen.entities.cycle.standard_motorcycle": 16
       }
     },
     {
@@ -344,6 +366,83 @@
         "molen.entities.vehicle.volkswagen_polo_2024": 18,
         "molen.entities.vehicle.renault_kwid_2024": 12,
         "molen.entities.vehicle.ford_ranger_2025": 10
+      }
+    },
+    {
+      "id": "south-asia",
+      "title": "India, Pakistan, Bangladesh, Sri Lanka and Nepal",
+      "extends": "global",
+      "weights": {
+        "molen.entities.vehicle.auto_rickshaw": 18,
+        "molen.entities.cycle.standard_motorcycle": 16,
+        "molen.entities.cycle.motor_scooter": 14,
+        "molen.entities.cycle.underbone_moped": 8,
+        "molen.entities.cycle.electric_moped": 4,
+        "molen.entities.vehicle.suzuki_swift_2024": 16,
+        "molen.entities.vehicle.renault_kwid_2024": 9,
+        "molen.entities.vehicle.hyundai_casper_electric_2024": 4,
+        "molen.entities.vehicle.toyota_hiace_2024": 4,
+        "molen.entities.vehicle.compact": 5,
+        "molen.entities.vehicle.toyota_rav4_2025": 0,
+        "molen.entities.vehicle.honda_civic_2025": 0
+      }
+    },
+    {
+      "id": "southeast-asia",
+      "title": "Thailand, Vietnam, Cambodia, Laos and Myanmar",
+      "extends": "global",
+      "weights": {
+        "molen.entities.cycle.underbone_moped": 22,
+        "molen.entities.cycle.motor_scooter": 14,
+        "molen.entities.cycle.electric_moped": 6,
+        "molen.entities.cycle.standard_motorcycle": 5,
+        "molen.entities.vehicle.auto_rickshaw": 5,
+        "molen.entities.vehicle.toyota_hilux_2024": 14,
+        "molen.entities.vehicle.isuzu_d_max_2024": 11,
+        "molen.entities.vehicle.toyota_yaris_2024": 10,
+        "molen.entities.vehicle.toyota_hiace_2024": 5,
+        "molen.entities.vehicle.honda_civic_2025": 3
+      }
+    },
+    {
+      "id": "southeast-asia-maritime",
+      "title": "Indonesia, Malaysia, Singapore and Brunei",
+      "extends": "southeast-asia",
+      "weights": {
+        "molen.entities.cycle.underbone_moped": 24,
+        "molen.entities.cycle.motor_scooter": 18,
+        "molen.entities.vehicle.auto_rickshaw": 1,
+        "molen.entities.vehicle.toyota_hilux_2024": 6,
+        "molen.entities.vehicle.isuzu_d_max_2024": 4,
+        "molen.entities.vehicle.suzuki_swift_2024": 7,
+        "molen.entities.vehicle.toyota_yaris_2024": 9
+      }
+    },
+    {
+      "id": "philippines",
+      "title": "Philippines",
+      "extends": "southeast-asia",
+      "weights": {
+        "molen.entities.cycle.underbone_moped": 18,
+        "molen.entities.cycle.motor_scooter": 9,
+        "molen.entities.vehicle.auto_rickshaw": 0,
+        "molen.entities.vehicle.toyota_hiace_2024": 12,
+        "molen.entities.vehicle.toyota_hilux_2024": 11,
+        "molen.entities.vehicle.toyota_yaris_2024": 12
+      }
+    },
+    {
+      "id": "taiwan",
+      "title": "Taiwan",
+      "extends": "global",
+      "weights": {
+        "molen.entities.cycle.motor_scooter": 26,
+        "molen.entities.cycle.electric_moped": 12,
+        "molen.entities.cycle.underbone_moped": 2,
+        "molen.entities.vehicle.toyota_yaris_2024": 10,
+        "molen.entities.vehicle.toyota_corolla_2025": 10,
+        "molen.entities.vehicle.toyota_rav4_2025": 6,
+        "molen.entities.vehicle.honda_cr_v_2025": 5
       }
     }
   ]

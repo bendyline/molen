@@ -70,6 +70,10 @@ for (const region of regions) {
     '--extra-elevation-attribution',
     JSON.stringify(extraCredits),
   ];
+  for (const window of region.detailWindows ?? []) {
+    const level = window.elevationMaxLevel === undefined ? '' : `@${window.elevationMaxLevel}`;
+    args.push('--detail-window', `${window.id}=${window.bounds.join(',')}${level}`);
+  }
   if (process.argv.includes('--skip-vector')) args.push('--skip-vector');
   await new Promise((resolve, reject) => {
     const child = spawn(process.execPath, args, { stdio: 'inherit', shell: false });

@@ -47,6 +47,13 @@ export interface PreparedModel {
 
 export type ModelLoader = (ref: string) => Promise<THREE.Object3D>;
 
+/**
+ * Which of a model's levels: `false` near, `true` medium, `'distant'` far, and `'horizon'` the
+ * level past that. Only conifers have a horizon model of their own (one cone, where the far level
+ * keeps three skirts); for every other model it is the far model itself.
+ */
+export type ModelDetail = boolean | 'distant' | 'horizon';
+
 function bakeColor(geometry: THREE.BufferGeometry, color: THREE.Color): THREE.BufferGeometry {
   const count = geometry.getAttribute('position').count;
   const existing = geometry.getAttribute('color');
@@ -147,14 +154,14 @@ export function mergeSceneGeometry(root: THREE.Object3D): THREE.BufferGeometry |
 
 function builtinGeometry(
   name: string,
-  coarse: boolean | 'distant',
+  coarse: ModelDetail,
   definitions: LandmarkDefinitions,
   fonts?: FontLibrary,
 ): THREE.BufferGeometry | undefined {
   const landmark = generateLandmarkModel(
     name,
     definitions,
-    coarse === 'distant' ? 2 : coarse ? 1 : 0,
+    coarse === 'distant' || coarse === 'horizon' ? 2 : coarse ? 1 : 0,
     fonts,
   );
   if (landmark !== undefined) {
@@ -224,18 +231,27 @@ export class ModelLibrary {
     this.material = material ?? createScatterMaterial();
   }
 
-  private key(ref: string, coarse: boolean | 'distant'): string {
-    return coarse && (ref.startsWith('builtin:') || this.plants[ref] !== undefined)
-      ? `${ref}:${coarse === 'distant' ? 'distant' : 'coarse'}`
-      : ref;
+  private key(ref: string, coarse: ModelDetail): string {
+    if (!coarse || !(ref.startsWith('builtin:') || this.plants[ref] !== undefined)) return ref;
+    if (coarse === true) return `${ref}:coarse`;
+    return `${ref}:${coarse === 'horizon' && this.hasHorizon(ref) ? 'horizon' : 'distant'}`;
+  }
+
+  /** Whether `ref` draws its horizon level differently from its far one: standing conifers. */
+  private hasHorizon(ref: string): boolean {
+    const plant = this.plants[ref] ?? BUILTIN_PLANTS[ref];
+    if (plant !== undefined) return plant.family === 'conifer' && plant.leafless !== true;
+    return (
+      ref.startsWith('builtin:tree.conifer') || ref.startsWith('builtin:tree.mapped.needleleaf')
+    );
   }
 
   /** The prepared model, if prepare has completed for the requested detail. */
-  get(ref: string, coarse: boolean | 'distant' = false): PreparedModel | undefined {
+  get(ref: string, coarse: ModelDetail = false): PreparedModel | undefined {
     return this.prepared.get(this.key(ref, coarse));
   }
 
-  async prepare(ref: string, coarse: boolean | 'distant' = false): Promise<PreparedModel> {
+  async prepare(ref: string, coarse: ModelDetail = false): Promise<PreparedModel> {
     if (this.disposed) throw new Error('Model library is disposed');
     const key = this.key(ref, coarse);
     const ready = this.prepared.get(key);
@@ -258,7 +274,7 @@ export class ModelLibrary {
   }
 
   /** Hold a prepared model while a consumer uses its geometry. */
-  async acquire(ref: string, coarse: boolean | 'distant' = false): Promise<PreparedModel> {
+  async acquire(ref: string, coarse: ModelDetail = false): Promise<PreparedModel> {
     const key = this.key(ref, coarse);
     this.references.set(key, (this.references.get(key) ?? 0) + 1);
     try {
@@ -270,7 +286,7 @@ export class ModelLibrary {
   }
 
   /** Release prepared geometry when the last consumer drops its reference. */
-  release(ref: string, coarse: boolean | 'distant' = false): void {
+  release(ref: string, coarse: ModelDetail = false): void {
     const key = this.key(ref, coarse);
     const count = this.references.get(key);
     if (count === undefined) return;
@@ -288,7 +304,9 @@ export class ModelLibrary {
     void this.pending.get(key)?.then(evict, () => {});
   }
 
-  private async load(ref: string, coarse: boolean | 'distant'): Promise<PreparedModel> {
+  private async load(ref: string, detail: ModelDetail): Promise<PreparedModel> {
+    // A model without a horizon level of its own is loaded, and cached, as its far level.
+    const coarse = detail === 'horizon' && !this.hasHorizon(ref) ? 'distant' : detail;
     const plant = this.plants[ref] ?? BUILTIN_PLANTS[ref];
     if (plant !== undefined) {
       const geometry = createPlantGeometry(plant, coarse);

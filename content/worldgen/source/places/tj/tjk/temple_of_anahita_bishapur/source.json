@@ -1,0 +1,56 @@
+{
+  "format": "molen/source-bundle@1",
+  "id": "molen.worldgen.structure.temple_of_anahita_bishapur",
+  "kind": "static-structure",
+  "title": "Temple of Anahita, Bishapur",
+  "files": {
+    "definitions": [
+      "spec.json",
+      "scene.json"
+    ],
+    "models": [
+      {
+        "path": "models/source.glb",
+        "assetId": "molen.worldgen.structure.temple_of_anahita_bishapur",
+        "output": "assets/places/tj/tjk/temple_of_anahita_bishapur/asset.json",
+        "pipeline": "import",
+        "sha256": "sha256:cb5af6fe73358de2de2c6d2f7c3aa6e46b59fcb3c4de6d281b24d7359f233815"
+      }
+    ],
+    "generators": [
+      {
+        "id": "generate-temple",
+        "path": "models/generate-temple.mjs"
+      },
+      {
+        "id": "temple-model",
+        "path": "models/temple-model.mjs"
+      }
+    ],
+    "scripts": [],
+    "textures": [],
+    "sounds": [],
+    "documents": [
+      "README.md",
+      "map-frame.json",
+      "reference-images.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "preview.png",
+      "plan-controls.json",
+      "research-preparation.json",
+      "construction-preparation.json",
+      "native-map/exterior-controls.json",
+      "reference-rights/commons-cc0-originals.json",
+      "imagery-evidence.json",
+      "construction-checkpoint.json",
+      "terrain-sources/terrarium-15-21078-13542.png",
+      "import-report.json",
+      "capture-report.json",
+      "shared-capture-report.json",
+      "medium-fi-report.json",
+      "qa.json"
+    ]
+  }
+}

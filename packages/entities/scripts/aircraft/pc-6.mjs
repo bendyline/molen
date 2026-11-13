@@ -159,9 +159,11 @@ export const porterFrame = () => ({
   radius: 0.635,
   cy: 1.3,
   ry: 0.75,
-  cabinZ: pose([0.3, 1.99, 2.1])[2],
+  cabinZ: pose([0.37, 1.89, 2])[2],
   cabinWidth: 1.16,
-  eye: pose([0.3, 1.99, 2.1]),
+  // Over the raised seat, aft of the windscreen header; at the tail-down stance the level
+  // sightline passes just outboard of the long cowling's crown.
+  eye: pose([0.37, 1.89, 2]),
   panelZ: pose([0, 1.37, 2.65])[2],
   floor: 0.59,
 });
@@ -926,12 +928,12 @@ function porterCockpit(root, m, sections) {
   // Dual floor-mounted sticks, rudder pedals and full tubular blue crossbar.
   d.rod([-0.6, 1.0, 2.1], [0.6, 1.0, 2.1], 0.025, blue);
   for (const side of [-1, 1]) {
-    const pitch = group(cabin, `Porter-stick-pitch-${side}`, [side * 0.31, 0.67, 1.95]),
+    const pitch = group(cabin, `Porter-stick-pitch-${side}`, [side * 0.35, 0.67, 2.3]),
       roll = group(pitch, `Porter-stick-roll-${side}`),
       sd = detailKit(roll, roll.name);
-    sd.rod([0, 0, 0], [0, 0.36, 0.03], 0.023, m.metal);
-    sd.rod([0, 0.36, 0.03], [0, 0.52, 0], 0.027, black);
-    sd.add(new T.SphereGeometry(0.015, 10, 8), m.red, [0, 0.52, -0.016]);
+    sd.rod([0, 0, 0], [0, 0.52, 0.03], 0.023, m.metal);
+    sd.rod([0, 0.52, 0.03], [0, 0.69, 0], 0.027, black);
+    sd.add(new T.SphereGeometry(0.015, 10, 8), m.red, [0, 0.69, -0.016]);
     sd.finish();
     bindings.push(
       { node: pitch.name, source: 'pitchInput', property: 'rotation', axis: 'x', scale: -0.2 },
@@ -966,8 +968,8 @@ function porterCockpit(root, m, sections) {
   }
   fittedFloor(d, sections, m.dark, { y: 0.66, front: 2.9, back: -0.66, width: 1.18 });
   for (const [x, z] of [
-    [0.3, 1.78],
-    [-0.3, 1.78],
+    [0.35, 1.84],
+    [-0.35, 1.84],
     [0.3, 0.85],
     [-0.3, 0.85],
     [0.3, -0.02],
@@ -975,12 +977,14 @@ function porterCockpit(root, m, sections) {
     [0.3, -0.83],
     [-0.3, -0.83],
   ]) {
-    beveledBox(d, [0.44, 0.1, 0.42], [x, 0.85, z], blue, 0.035);
-    beveledBox(d, [0.44, 0.57, 0.12], [x, 1.17, z - 0.19], blue, 0.035);
+    // Crew seats stand higher than the cabin rows, keeping the eye 0.8 m above the cushion.
+    const lift = z > 1 ? 0.2 : 0;
+    beveledBox(d, [0.44, 0.1, 0.42], [x, 0.85 + lift, z], blue, 0.035);
+    beveledBox(d, [0.44, 0.57, 0.12], [x, 1.17 + lift, z - 0.19], blue, 0.035);
     for (const side of [-1, 1])
-      d.rod([x + side * 0.18, 0.61, z], [x + side * 0.18, 0.82, z], 0.015, m.metal);
-    d.rod([x - 0.17, 0.92, z - 0.13], [x + 0.17, 0.92, z + 0.12], 0.012, liner);
-    d.box([0.045, 0.015, 0.03], [x + 0.04, 0.93, z + 0.04], m.metal);
+      d.rod([x + side * 0.18, 0.61, z], [x + side * 0.18, 0.82 + lift, z], 0.015, m.metal);
+    d.rod([x - 0.17, 0.92 + lift, z - 0.13], [x + 0.17, 0.92 + lift, z + 0.12], 0.012, liner);
+    d.box([0.045, 0.015, 0.03], [x + 0.04, 0.93 + lift, z + 0.04], m.metal);
   }
   // Panel fixing screws, windscreen compass housing and ceiling cabin fixtures.
   for (const [u, v] of [
@@ -994,12 +998,13 @@ function porterCockpit(root, m, sections) {
     [260, 623],
   ])
     d.add(new T.SphereGeometry(0.004, 6, 4), m.metal, at(u, v, -0.015));
-  const compass = group(cabin, 'Porter-compass-housing', [0, 1.82, 2.72]),
+  // F-GSAC photograph: the housing clamps to the tube along the panel top, inside the windscreen.
+  const compass = group(cabin, 'Porter-compass-housing', [0, 1.7, 2.52]),
     cd = detailKit(compass, compass.name);
   beveledBox(cd, [0.1, 0.09, 0.1], [0, 0, 0], black, 0.01);
-  cd.rod([0, -0.15, 0], [0, -0.04, 0], 0.012, m.metal);
+  cd.rod([0, -0.04, 0.03], [0, -0.06, 0.13], 0.012, m.metal);
   cd.finish();
-  ins.headingDrum('compass', [0, 1.82, 2.657], 0.037, 'trueHeading');
+  ins.headingDrum('compass', [0, 1.7, 2.457], 0.037, 'trueHeading');
   for (const z of [0.8, -0.3]) d.box([0.13, 0.018, 0.06], [0, 2.03, z], liner);
   d.finish();
   return { nodes: ['cockpit'], sources, derived, bindings };

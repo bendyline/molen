@@ -1,0 +1,487 @@
+{
+  "planId": "teatro_real",
+  "id": "teatro_real",
+  "assetId": "molen.worldgen.structure.teatro_real",
+  "title": "Teatro Real",
+  "category": "monument",
+  "quality": "detailed",
+  "wikidataId": "Q211250",
+  "referenceCoordinate": {
+    "longitude": -3.710583483,
+    "latitude": 40.418216138
+  },
+  "visualBrief": "Madrid’s Teatro Real with the distinct five-arch plaza fronts, individually recessed entrances and window bays, angled side walls, standing-seam roof, roof terrace and gabled stage house.",
+  "size": [
+    113.61706924438477,
+    53.18999934196472,
+    73.67409896850586
+  ],
+  "actualBounds": {
+    "min": [
+      -56.697044372558594,
+      -2.799999952316284,
+      -36.82236099243164
+    ],
+    "max": [
+      56.92002487182617,
+      50.38999938964844,
+      36.85173797607422
+    ]
+  },
+  "nativeAxes": "+X faces Plaza de Isabel II to the east. −X faces Plaza de Oriente and the palace. +Z points toward Calle de Vergara.",
+  "sourceFacts": {
+    "footprintAreaSquareMeters": 5982.9201,
+    "sourceBuildingPartHeights": [
+      27,
+      40,
+      42,
+      10,
+      31,
+      10,
+      30
+    ],
+    "westPortalCount": 5,
+    "eastPortalCount": 5,
+    "measuredMapOrientation": "+X faces Plaza de Isabel II to the east. −X faces Plaza de Oriente and the palace. +Z points toward Calle de Vergara."
+  },
+  "referencePages": [
+    "https://www.plateamagazine.com/noticias/18419-el-teatro-real-presenta-su-temporada-2025-2026-inspirada-en-shakespeare-y-en-el-barba-azul-de-perrault",
+    "https://www.spainlesstraveled.com/blog/showtime-in-spain",
+    "https://www.teatroreal.es/en/sustainability",
+    "https://www.teatroreal.es/en/sustainability"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      -3.710583483,
+      40.418216138
+    ],
+    "heading": -0.034628210077,
+    "elevationMode": "sea-level",
+    "orientationPolicy": "approximate-visualization",
+    "elevationMeters": 650,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard Terrarium elevation sets the 650 m datum and individually fitted entrance thresholds. The side foundations extend into the original slope and keep the native plaza and street surfaces.",
+    "groundModelY": 0,
+    "replaceFootprint": true,
+    "buildingCutout": {
+      "outline": [
+        [
+          -56.2489,
+          -20.2597
+        ],
+        [
+          22.8091,
+          -36.1908
+        ],
+        [
+          55.8945,
+          -20.0503
+        ],
+        [
+          55.8641,
+          -14.3629
+        ],
+        [
+          56.3184,
+          -14.3786
+        ],
+        [
+          55.0697,
+          15.234
+        ],
+        [
+          54.3881,
+          15.2576
+        ],
+        [
+          54.1699,
+          22.0889
+        ],
+        [
+          20.5409,
+          36.2189
+        ],
+        [
+          -56.2751,
+          11.8126
+        ],
+        [
+          -55.1953,
+          3.5867
+        ],
+        [
+          -55.04,
+          -5.062
+        ],
+        [
+          -55.6056,
+          -14.823
+        ]
+      ],
+      "minimumCoverage": 0.7,
+      "basis": "Exact parent shell and mapped component outlines. The separate side streets and plaza paving are retained."
+    },
+    "bounds": [
+      -3.711431914693608,
+      40.41770458474651,
+      -3.7097334924800185,
+      40.41871395676671
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a8f03b999ddd64903ccee34c64a150b0f05b5296295ee7f86daf811f0fe8e02a",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors; Protomaps basemap",
+    "source": "https://www.openstreetmap.org/way/4328975",
+    "wikidataId": "Q211250",
+    "notes": "Teatro Real, with the separate Plaza de Oriente and Plaza de Isabel II façades, recessed entrances, shaped zinc roof and stage-house volume."
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "Generated source; current visual and geographic acceptance is recorded separately in qa.json.",
+  "geometrySource": "Original deterministic geometry from checked-in ordinary-picture observations, attributed map alignment and standard terrain samples; no downloaded meshes.",
+  "materialMethod": "Six shared graphs supply render, pale limestone, granite, standing-seam metal, painted frames and dark glazing. The glazing samples the existing punched-window graph inside one pane. Mullions are geometry in the close-up tiers. No private or embedded image textures.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "foundation",
+      "uv": "repeats"
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.window_punched",
+      "slot": "window",
+      "uv": "repeats"
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/ez/ezj/teatro_real/models/theatre-model.mjs",
+    "export": "buildTheatreSkyline",
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco"
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw"
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_granite"
+      },
+      "zinc": {
+        "slot": "roof",
+        "graph": "metal_standing_seam"
+      },
+      "glazing": {
+        "slot": "window",
+        "graph": "window_punched"
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted"
+      }
+    },
+    "errorMeters": 1.35,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTheatreDistrict",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco"
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_punched"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.56
+      },
+      "street": {
+        "export": "buildTheatreStreet",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco"
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_punched"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.18
+      },
+      "closeup": {
+        "export": "buildTheatreCloseup",
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco"
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw"
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite"
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_standing_seam"
+          },
+          "glazing": {
+            "slot": "window",
+            "graph": "window_punched"
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted"
+          }
+        },
+        "errorMeters": 0.065
+      }
+    }
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        23,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "teatro_real-skyline",
+      "reviewLod": "skyline",
+      "position": [
+        -133,
+        43,
+        91
+      ],
+      "lookAt": [
+        -12,
+        20,
+        2
+      ]
+    },
+    {
+      "name": "teatro_real-district",
+      "reviewLod": "district",
+      "position": [
+        -133,
+        43,
+        91
+      ],
+      "lookAt": [
+        -12,
+        20,
+        2
+      ]
+    },
+    {
+      "name": "teatro_real-street",
+      "reviewLod": "street",
+      "position": [
+        -133,
+        43,
+        91
+      ],
+      "lookAt": [
+        -12,
+        20,
+        2
+      ]
+    },
+    {
+      "name": "teatro_real-closeup",
+      "reviewLod": "closeup",
+      "position": [
+        -133,
+        43,
+        91
+      ],
+      "lookAt": [
+        -12,
+        20,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "The footprint and major roof heights follow retained PMTiles building parts. Cornice dimensions, recessed door depths, terrace equipment and window framing are exterior photo-based estimates.",
+    "The model represents the exterior, including the installed roof panel field as a simplified arrangement. Opera-house interiors, temporary banners and visitor access states are outside this model."
+  ],
+  "qaCameras": [
+    {
+      "name": "oriente-five-arched-portals",
+      "position": [
+        -103,
+        13,
+        -7
+      ],
+      "lookAt": [
+        -47,
+        14,
+        -4
+      ],
+      "fov": 50
+    },
+    {
+      "name": "isabel-gallery-and-mansard",
+      "position": [
+        110,
+        29,
+        29
+      ],
+      "lookAt": [
+        24,
+        25,
+        4
+      ],
+      "fov": 50
+    },
+    {
+      "name": "north-side-rhythm",
+      "position": [
+        5,
+        25,
+        -75
+      ],
+      "lookAt": [
+        1,
+        19,
+        -20
+      ],
+      "fov": 59
+    },
+    {
+      "name": "south-side-street",
+      "position": [
+        -5,
+        18,
+        77
+      ],
+      "lookAt": [
+        -1,
+        16,
+        23
+      ],
+      "fov": 55
+    },
+    {
+      "name": "roof-and-stage-house",
+      "position": [
+        -110,
+        102,
+        -103
+      ],
+      "lookAt": [
+        1,
+        31,
+        0
+      ],
+      "fov": 48
+    },
+    {
+      "name": "west-portal-inset",
+      "position": [
+        -68,
+        4.2,
+        -5
+      ],
+      "lookAt": [
+        -52,
+        3.7,
+        -4.3
+      ],
+      "fov": 62
+    },
+    {
+      "name": "east-portal-and-terrace",
+      "position": [
+        75,
+        13.8,
+        2
+      ],
+      "lookAt": [
+        53,
+        16.7,
+        0
+      ],
+      "fov": 56
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 18381,
+    "vertices": 54239,
+    "materials": 6,
+    "bytes": 2177036,
+    "sha256": "sha256:c43d7acc43b7b746befbe1ce691378239c931804420bff3f6ccaef4e45c71108"
+  }
+}

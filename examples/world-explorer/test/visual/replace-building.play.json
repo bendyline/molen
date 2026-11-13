@@ -1,0 +1,86 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "world-explorer-replace-building",
+  "path": "/?synthetic=1&lineup=1&mode=human&quality=economy&freeze=1&hud=0&style=none&lat=47.62134000&lon=-122.01290236&alt=373&yaw=-1.5708&pitch=-0.95&date=2026-11-11T20:00:00Z",
+  "viewport": [960, 540],
+  "probes": [
+    {
+      "name": "navigation",
+      "selector": "#navigation-status"
+    },
+    {
+      "name": "overrides",
+      "selector": "#override-status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for-stable",
+      "note": "The lineup fixture: one building of each footprint shape in a row. The camera looks down on the courtyard block from 60 m up, 40 m south of it, so only nearby ground streams. No style pack: buildings are plain extrusions and the page needs no content. The date is noon there: left out, the sky takes noon in the browser's own time zone, which is night in Seattle on a UTC machine, and the frames are black.",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-overrides=\"0\"][data-override-state=\"applied\"]",
+      "timeoutMs": 60000
+    },
+    {
+      "type": "screenshot",
+      "name": "01-before",
+      "timeoutMs": 120000
+    },
+    {
+      "type": "navigate",
+      "note": "The same view with the Box sample where the courtyard block stands, given in the page address: it is in place before the first tile is built.",
+      "path": "/?synthetic=1&lineup=1&mode=human&quality=economy&freeze=1&hud=0&style=none&lat=47.62134000&lon=-122.01290236&alt=373&yaw=-1.5708&pitch=-0.95&date=2026-11-11T20:00:00Z&override=box&overrideAt=47.62170200,-122.01290236"
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-overrides=\"1\"][data-override-state=\"applied\"]",
+      "timeoutMs": 60000
+    },
+    {
+      "type": "screenshot",
+      "name": "02-replaced",
+      "timeoutMs": 120000
+    },
+    {
+      "type": "screenshot",
+      "name": "02-replaced-again",
+      "timeoutMs": 120000
+    },
+    {
+      "type": "keys",
+      "note": "U takes the replacement back while the page runs: the tiles under it are built again from the map as it was, and what was there stays on screen until they are ready.",
+      "keys": ["u"],
+      "durationMs": 120
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-overrides=\"0\"][data-override-state=\"applied\"]",
+      "timeoutMs": 240000
+    },
+    {
+      "type": "wait-for-stable",
+      "selector": "#status",
+      "text": "0 loading terrain · 0 loading layers",
+      "stableMs": 1000,
+      "timeoutMs": 240000
+    },
+    {
+      "type": "screenshot",
+      "name": "03-undone",
+      "timeoutMs": 120000
+    }
+  ]
+}

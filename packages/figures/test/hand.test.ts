@@ -25,10 +25,16 @@ describe('relaxed human hands', () => {
     const offset = (body.rig.index['hand.l'] as number) * 7;
     const wristX = bind[offset] as number,
       wristY = bind[offset + 1] as number;
-    const p = body.buffers.positions;
+    const { positions: p, indices, groups } = body.buffers;
+    // Skin below the wrist on the left is the hand alone (the default figure wears trousers,
+    // whose thighs now hang within a few centimeters of the hand).
+    const skinVertices = new Set<number>();
+    for (const g of groups.filter((group) => group.region === 'skin'))
+      for (let i = g.start; i < g.start + g.count; i++) skinVertices.add(indices[i] as number);
     const x: number[] = [],
       z: number[] = [];
-    for (let i = 0; i < p.length; i += 3) {
+    for (const v of skinVertices) {
+      const i = v * 3;
       if ((p[i] as number) > wristX * 0.75 && (p[i + 1] as number) < wristY) {
         x.push(p[i] as number);
         z.push(p[i + 2] as number);

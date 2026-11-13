@@ -28,7 +28,8 @@
       "title": "C-17 cockpit, Wings Over Houston,28October2012",
       "author": "Landmark9254",
       "license": "CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0/",
-      "scope": "Four main displays, standby instruments, glareshield, HUD hardware, short sticks, console and overhead. Local study/cropped comparison only; no photographic pixels shipped in model. Perspective and absolute scale estimated."
+      "scope": "Four main displays, standby instruments, glareshield, HUD hardware, short sticks, console and overhead. Local study/cropped comparison only; no photographic pixels shipped in model. Perspective and absolute scale estimated. The glareshield strip stands directly over the displays, with the HUD projectors on it and the sill just above.",
+      "local": ".artifacts/aircraft/references/c-17a/cockpit.jpg"
     },
     {
       "url": "https://commons.wikimedia.org/wiki/File:C-17_cockpit_2007-01-19.jpg",
@@ -61,8 +62,8 @@
     ],
     "lookAt": [
       0,
-      4.7,
-      23.38
+      4.99,
+      23.58
     ],
     "fov": 82
   },
@@ -71,10 +72,10 @@
     "mode": "top-down-ortho",
     "center": [
       0,
-      -4.82
+      -5.11
     ],
     "viewHeight": 2.15,
-    "cameraHeight": 6.82
+    "cameraHeight": 6.62
   },
   "instrumentState": {
     "trueAirspeed": 0,
@@ -217,7 +218,11 @@
       "Modeled four offset F117 nacelles with recessed fans and exhausts, twelve main wheels in two three-wheel axles per side, twin nose wheels, access panels, selected skin seams and fasteners. No weapons or optional mission equipment.",
       "Overlay iterations expanded the aft wing chord, lowered the wing tips, shortened the tail fairing and corrected the rudder outline. Replaced construction-facet glazing with two continuous front panes and four side panes, then adjusted windshield corners against the front drawing and cockpit sightline.",
       "Rebuilt the four-display panel from the photographed arrangement, with dual standby instruments, separate AFCS/radio glareshield, four fire handles, physical HUD assemblies, four-throttle console, short sticks, pedals, blue pilot/observer seats and partitioned overhead/circuit-breaker panels.",
-      "Flight displays share bounded expressions for unit conversion, heading, digit decoding and availability. Four engine gauges read independent simulated normalized RPM, explicitly labelled SIM RPM. Flap/elevator sign checks verify downward deployment and upward elevator trailing edges for nose-up input; all swept/canted hinges remain fixed."
+      "Flight displays share bounded expressions for unit conversion, heading, digit decoding and availability. Four engine gauges read independent simulated normalized RPM, explicitly labelled SIM RPM. Flap/elevator sign checks verify downward deployment and upward elevator trailing edges for nose-up input; all swept/canted hinges remain fixed.",
+      "The seat stood 0.45 m aft of the eye and 1.06 m under it. Eye moved to [0.87, 5.52, 22.75]; floor raised 0.44 m, with seats, sticks, pedals, pedestal, side consoles, door and stair following. The cushion is under the eye at 0.78 m. Note the cabin group carries a -0.5 m offset.",
+      "HUD: the 0.33 by 0.41 m frame on rods and the 0.41 m projector are replaced by a 20 by 16 cm combiner on the pilot's own centerline, 0.33 m ahead of the eye, with a small projector set into the glareshield.",
+      "Dark coaming added from the glareshield to the sill, so the long nose ahead of the panel no longer shows bare inner skin.",
+      "Primary display brought into the entry view: panel 0.29 m up and 0.2 m forward, shortening the long deck ahead of it. The glareshield strip now stands directly over the displays, as in the photograph, and the coaming slopes from it to the sill. The eye was checked against the headroom flag: raising it would take the windscreen top under +19 degrees, so the 0.85 m reading stands as a tall roof, not a low eye."
     ],
     "independentDimensions": "USAF factsheet: length53m, span51.75m to winglet tips, height16.79m. Manual three-view independently labels tailspan65ft/19.81m, inboard engine offset24ft10in/7.57m, outboard46ft8in/14.22m, main gear overallwidth33ft8in/10.26m, main axle spacing8ft1in/2.46m and nosegear11ft/3.35m aft of nose. Main wing area353.03m² follows AMC specification appendix3800ft². The scanned general-arrangement illustration and rounded metric labels differ slightly; all overlays use uniform scaling. Cockpit width2.70m and depth remain photographic estimates.",
     "visual": "Personally inspected final source-hash side/top/front/panel overlays, all eight standard views, and twelve detail/state captures: zero, cruise, limits, negative altitude, missing telemetry, pedestal, overhead, close nose, clean gear-up, tail and both control extremes. Corrected wing, tail, glazing and control directions before final inspection.24 shared instrument tests and final targeted geometry/sightline/hash checks passed; deterministic candidate matches source bytes.",
@@ -229,13 +234,52 @@
       "Gear retracts through translation/hiding, flaps rotate without full multi-slotted Fowler extension, and slats/reversers are not animated. Cargo ramp stays closed, the cargo hold is minimally furnished, and seams/fasteners are selective rather than a manufacturing rivet schedule. Assisted flight model is not aircraft performance certification."
     ]
   },
-  "sourceHash": "sha256:c2951d523b9b376b0bd68de865b0c776ce7dbce7bef5b9a83fba2f27d7a723b1",
-  "runtimeHash": "sha256:ae706db45dd7198e6c2a9835c398af67f6e86a6be61edb510819191f12f4e1f8",
+  "sourceHash": "sha256:de6fff05738b54e569b8de0b52abf79d403dbf0a054c89d43a308e6f9516d4d8",
+  "runtimeHash": "sha256:554db84cd8a1d9c2a02e58f6d976118e70bade6a1a9ffcbdf6807c0d583677b3",
   "limitations": [
     "Reference three-view is a scanned general-arrangement illustration, not engineering cross-sections. Fuselage sections, wing incidence/airfoil, pylons, nose glazing and local fairings are estimated. The front drawing shows a lower aft wing/flap silhouette than the clean model; exact illustrated flap configuration is unspecified.",
     "Cockpit scale and depth are estimated from perspective photographs. Panel positions and distinctive major assemblies are reference-based; overhead switch counts, sidewalls, seats, liners and ancillary controls remain simplified. Eyebrow windows are exterior dark insets, not transparent openings.",
     "Display symbology is an original simulator adaptation. Readings are true airspeed, geometric altitude and true heading. HUDs have geometry but no collimated symbology; radio navigation, flight management, autopilot and weather/terrain maps are unavailable.",
     "Engine gauges show each simulated engine normalized RPM, not calibrated F117 N1/N2. EPR, EGT, fuel, oil, hydraulic, electrical and failure indications are not simulated and remain blank rather than fabricated.",
-    "Gear retracts through translation/hiding, flaps rotate without full multi-slotted Fowler extension, and slats/reversers are not animated. Cargo ramp stays closed, the cargo hold is minimally furnished, and seams/fasteners are selective rather than a manufacturing rivet schedule. Assisted flight model is not aircraft performance certification."
-  ]
+    "Gear retracts through translation/hiding, flaps rotate without full multi-slotted Fowler extension, and slats/reversers are not animated. Cargo ramp stays closed, the cargo hold is minimally furnished, and seams/fasteners are selective rather than a manufacturing rivet schedule. Assisted flight model is not aircraft performance certification.",
+    "Raised floor height is set from the eye, not from a drawing. Headroom reads 0.82 m, above the sweep limit, because the roof really is high here. The heavy window posts keep the outside share at 37 percent, just under the sweep limit."
+  ],
+  "cockpitSweep": {
+    "method": "packages/entities/scripts/cockpit-sweep.mjs from spec.pilotEye at the runtime camera; seat, nose and front views rendered and inspected. World-explorer enters the seat at lookPitch -0.18, so the frame runs +19.7 to -40.3 degrees. The primary display has to sit near -30 and close to straight ahead.",
+    "columns": "outside%, overNose degrees, headroom, wall, panel, cushion, seatback (m)",
+    "before": [
+      32,
+      -7,
+      0.78,
+      1.15,
+      0.59,
+      1.57,
+      0.71
+    ],
+    "after": [
+      36,
+      -11,
+      0.85,
+      1.03,
+      0.9,
+      0.75,
+      0.37
+    ],
+    "attitudeDisplay": {
+      "sweepColumn": {
+        "before": -49,
+        "after": -26
+      },
+      "cardCenterElevationAndYaw": {
+        "before": [
+          -52.0,
+          -6.5
+        ],
+        "after": [
+          -31.1,
+          -4.9
+        ]
+      }
+    }
+  }
 }

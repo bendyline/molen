@@ -1,0 +1,338 @@
+{
+  "id": "old_railway_bridge",
+  "title": "Old Railway Bridge",
+  "wikidataId": "Q4441190",
+  "referenceCoordinate": {
+    "longitude": 20.4389013,
+    "latitude": 44.80159235
+  },
+  "module": "content/worldgen/source/places/sr/sry/old_railway_bridge/models/bridge-model.mjs",
+  "generator": "packages/worldgen/scripts/generate-old-railway-bridge.mjs",
+  "builder": "buildBridgeLevel",
+  "surfaces": {
+    "iron": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.86,
+      "metallic": 0.28
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_ashlar",
+      "roughness": 0.94
+    },
+    "wood": {
+      "slot": "foundation",
+      "graph": "wood_plain",
+      "roughness": 0.96
+    }
+  },
+  "appearance": {
+    "kind": "historical",
+    "currentWorldEligible": false,
+    "representedDate": "2017-03-04",
+    "validFrom": "2017-03-04",
+    "validUntil": "2017-03-05"
+  },
+  "exportLabel": "Molen original Belgrade Old Railway Bridge master",
+  "expectedDraftMasterHash": "sha256:b2927a804f1ba087a346f31fb2789c238931646a180c4f5a36eaec15da2d064e",
+  "visualBrief": "Four dark riveted through-lattice spans cross the Sava on pale masonry piers. The source restores the photographed railway deck, paired rails and timber sleepers, the double diagonals, portal posts and overhead and underside bracing.",
+  "heightPolicy": "An absolute 65 m datum and submerged foundations fit the standard viewer river and embankments. The placement uses the original signed railway alignment and preserves both neighboring bridges and native river terrain.",
+  "nativeAxes": "Positive X crosses the Sava southeast from Novi Beograd toward the east riverfront. Positive Z faces the newer railway crossing upstream.",
+  "limitations": [
+    "This model represents the documented pre-conversion railway appearance. Current construction and the planned pedestrian deck are separate appearance states.",
+    "The OSM centerline fixes the signed placement. Pier stationing, lattice dimensions and historic deck fixtures are exterior visualization approximations.",
+    "The supported date is the EXIF capture day of both reference photographs. The terrain and background roads in the fixture use present-day standard data."
+  ],
+  "references": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Old_Railway_Bridge_over_river_Sava_in_Belgrade_04.jpg",
+      "hash": "sha256:fee76ce4a00a22ffeb130e1a0ba6aa1db3c6ad27ecf800afe2113a2def3573a3",
+      "observed": "Steel trusses, deck and pier shape.",
+      "photographedOn": "2017-03-04"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Old_Railway_Bridge_over_river_Sava_in_Belgrade_05.jpg",
+      "hash": "sha256:2501dc6f17eddd3a120bb5162fd115107fa45ed4438ba88c8cb157625f9ff64f",
+      "observed": "Portal and bay rhythm.",
+      "photographedOn": "2017-03-04"
+    }
+  ],
+  "cameras": [
+    {
+      "name": "four-spans-over-sava",
+      "position": [
+        16,
+        59,
+        278
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 51
+    },
+    {
+      "name": "northwest-lattice-portal",
+      "position": [
+        -202,
+        15.6,
+        3.8
+      ],
+      "lookAt": [
+        -165,
+        14,
+        0
+      ],
+      "fov": 56
+    },
+    {
+      "name": "track-and-overhead-bracing",
+      "position": [
+        -180,
+        12,
+        0
+      ],
+      "lookAt": [
+        -139,
+        14.3,
+        0
+      ],
+      "fov": 57
+    },
+    {
+      "name": "southeast-stone-abutment",
+      "position": [
+        214,
+        24,
+        -29
+      ],
+      "lookAt": [
+        168,
+        10,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "stone-pier-and-floor-bracing",
+      "position": [
+        28,
+        3.6,
+        -44
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "fov": 54
+    },
+    {
+      "name": "independent-crossings",
+      "position": [
+        18,
+        230,
+        399
+      ],
+      "lookAt": [
+        0,
+        10,
+        25
+      ],
+      "fov": 54
+    },
+    {
+      "name": "downstream-elevation",
+      "position": [
+        -33,
+        45,
+        -280
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ],
+      "fov": 52
+    }
+  ],
+  "materialMethod": "Steel, ashlar masonry and wood use shared graphs with meter-scale UVs and muted vertex colors.",
+  "sourceFacts": {
+    "mappedWay": 10505926,
+    "mappedRailSpanMeters": 390.934,
+    "throughTrussSpans": 4,
+    "riverPiers": 3,
+    "observedAppearanceDate": "2017-03-04"
+  },
+  "mediumFiContext": {
+    "groundY": 65,
+    "scale": 1,
+    "focus": {
+      "center": [
+        0,
+        11,
+        0
+      ]
+    },
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "content/worldgen/source/places/sr/sry/old_railway_bridge/models/bridge-model.mjs",
+    "export": "buildBridgeSkyline",
+    "surfaces": {
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.28
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.94
+      },
+      "wood": {
+        "slot": "foundation",
+        "graph": "wood_plain",
+        "roughness": 0.96
+      }
+    },
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBridgeDistrict",
+        "surfaces": {
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.28
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "wood": {
+            "slot": "foundation",
+            "graph": "wood_plain",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.68
+      },
+      "street": {
+        "export": "buildBridgeStreet",
+        "surfaces": {
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.28
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "wood": {
+            "slot": "foundation",
+            "graph": "wood_plain",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.3
+      },
+      "closeup": {
+        "export": "buildBridgeCloseup",
+        "surfaces": {
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.28
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.94
+          },
+          "wood": {
+            "slot": "foundation",
+            "graph": "wood_plain",
+            "roughness": 0.96
+          }
+        },
+        "errorMeters": 0.12
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "old_railway_bridge-skyline",
+      "position": [
+        16,
+        59,
+        278
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 51,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "old_railway_bridge-district",
+      "position": [
+        16,
+        59,
+        278
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 51,
+      "reviewLod": "district"
+    },
+    {
+      "name": "old_railway_bridge-street",
+      "position": [
+        16,
+        59,
+        278
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 51,
+      "reviewLod": "street"
+    },
+    {
+      "name": "old_railway_bridge-closeup",
+      "position": [
+        16,
+        59,
+        278
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "fov": 51,
+      "reviewLod": "closeup"
+    }
+  ]
+}

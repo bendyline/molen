@@ -32,8 +32,65 @@
       "shots/shared/white-panel-entrance-and-trapezoid-glazing.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Five existing256px graphs: concrete_plain, metal_painted, metal_standing_seam, window_grid and fabric_canvas. Concrete, painted panels/red seating/metal, roof, glazing, apron and turf share the library. Six near draws/one skyline draw; no new graph, embedded image or private atlas. Each graph read once; separate POSITION/NORMAL streams and equal CPU/GPU accounting. Shared opaque glazing is a stylistic approximation, not certified optical transmission.",
-    "captureReportHash": "sha256:02cf15faf2192cfcb4f6e0a5da7a1f20549680d8425bf5b21071023d52aa610b"
+    "notes": "Five existing256px graphs: concrete_plain, metal_painted, metal_standing_seam, window_grid and fabric_canvas. Concrete, painted panels/red seating/metal, roof, glazing, apron and turf share the library. Six near draws/one skyline draw; no new graph, embedded image or private atlas. Each graph read once; separate POSITION/NORMAL streams and equal CPU/GPU accounting. Shared opaque glazing is a stylistic approximation, not certified optical transmission. The shared window_grid graph changed after the original review. Eight new shared-material views confirm the revised glazing in the existing geographic placement.",
+    "captureReportHash": "sha256:25ed941861b86276f8ce56b067d5fb82675fc951348f4bd561c4207e54971233",
+    "reviewedOn": "2026-11-09",
+    "inspectedFrameHashes": [
+      {
+        "path": "shots/shared/angle-0.png",
+        "hash": "sha256:adc087590b61bdca7955b9d496cb0b5e6ea26fa80b1ccacb4f4c4d081e1a9cdb"
+      },
+      {
+        "path": "shots/shared/angle-1.png",
+        "hash": "sha256:2111f4ea1ab3f9d5e7bd1479e44edf5b8ec1f17241ba173d3cd5dcb538fccc10"
+      },
+      {
+        "path": "shots/shared/angle-2.png",
+        "hash": "sha256:9cca5e12c07233ef580c59ec88135be3ea8b58195afd784ed0bf844ebcbfae11"
+      },
+      {
+        "path": "shots/shared/angle-3.png",
+        "hash": "sha256:135f79c1c3cd0e485c32db0095224b5765ad4d4768841be2ea795e457709004a"
+      },
+      {
+        "path": "shots/shared/red-saddle-bowl-oval-display-and-curled-roof.png",
+        "hash": "sha256:3a0574f9702f9cc787cc60593645d4aa38ab254fbe9ae63286732624db397983"
+      },
+      {
+        "path": "shots/shared/open-circular-ramp-tower-and-native-access-strips.png",
+        "hash": "sha256:bae3b2e6b4e823ec91dbe862e108faaf12fcf9ec92a45a3978d4c66584444a80"
+      },
+      {
+        "path": "shots/shared/white-panel-entrance-and-trapezoid-glazing.png",
+        "hash": "sha256:1de9177946c179ed0a2dba8ee88f6a73488085de6eebf9d1dff75f7f0d3af84b"
+      },
+      {
+        "path": "shots/shared/placement.png",
+        "hash": "sha256:192bb8e0935bddc8553e5b59225c26773f21ab55303b4cb4d93cd1fa9b379aec"
+      }
+    ],
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.fabric_canvas": {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.window_grid": {
+        "path": "materials/window_grid.matgraph.json",
+        "hash": "sha256:80f75bbb3a51e352bdb5f36747b7f8035c80b83052d1a58366b2a09d1dd56cc2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
