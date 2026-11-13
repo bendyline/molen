@@ -53,6 +53,8 @@ interface Job {
   /** A queued background job's promise, the key `promote` finds it by. */
   promise?: Promise<unknown>;
 }
+/** The frame length per-frame budgets are set for: 60 frames a second. */
+const NOMINAL_FRAME_MS = 1000 / 60;
 export class FrameAdmissionQueue implements SceneAdmission {
   private jobs: Job[] = [];
   private background: Job[] = [];
@@ -62,6 +64,8 @@ export class FrameAdmissionQueue implements SceneAdmission {
   private paused = false;
   /** Milliseconds past its budget the last flush ran, repaid from the frames after it. */
   private overrunMs = 0;
+  /** When the last flush finished, so a repaying frame knows how long it was. */
+  private lastFlushEnd: number | undefined;
   private readonly clock: () => number;
   private readonly schedule: (callback: () => void) => void;
   private maxMs: number;
@@ -193,11 +197,19 @@ export class FrameAdmissionQueue implements SceneAdmission {
    * would hold every frame at that length however small the budget. A frame that overruns repays
    * the excess from the frames after it, so the budget holds on average: a 20 ms shader build
    * every third frame, rather than every frame at half the frame rate, for the same throughput.
+   *
+   * The budget is a share of a frame at 60 a second. A frame that comes later than that repays
+   * the same share of its own length: under software rendering a frame takes 200 ms or more, and
+   * a job that waits on the GPU once is charged for a whole such frame, so repaying 2 ms a frame
+   * left the queue idle for minutes. At 60 frames a second and faster nothing changes.
    */
   flush(): void {
     if (this.disposed || this.paused) return;
     if (this.overrunMs > 0) {
-      this.overrunMs = Math.max(0, this.overrunMs - this.maxMs);
+      const sinceLast = this.lastFlushEnd === undefined ? 0 : this.clock() - this.lastFlushEnd;
+      const repaid = Math.max(this.maxMs, (sinceLast * this.maxMs) / NOMINAL_FRAME_MS);
+      this.overrunMs = Math.max(0, this.overrunMs - repaid);
+      this.lastFlushEnd = this.clock();
       this.request();
       return;
     }
@@ -291,6 +303,7 @@ export class FrameAdmissionQueue implements SceneAdmission {
     }
     // With nothing waiting there is nothing to pace.
     this.overrunMs = this.pending > 0 ? Math.max(0, this.clock() - start - this.maxMs) : 0;
+    this.lastFlushEnd = this.clock();
     this.request();
   }
   dispose(): void {

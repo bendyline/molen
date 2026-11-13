@@ -344,9 +344,9 @@ export interface StructureModelRouteOptions {
   /** The source of every other ref. */
   secondary: StructureModelSource;
   /**
-   * Hold a secondary model this long after it is released, ms (default 5000). A tile's children
-   * take its place a moment after it goes; without the hold a model with no warm cache of its
-   * own would be loaded and parsed again for them.
+   * Hold a secondary model this long after it is released, ms (default 5000). When a region is
+   * refined, its children take its place a moment after it goes; without the hold a model with
+   * no warm cache of its own would be loaded and parsed again for them.
    */
   keepAliveMs?: number;
 }

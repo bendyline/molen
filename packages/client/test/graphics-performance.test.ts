@@ -203,6 +203,33 @@ describe('sparse graphics work', () => {
     queue.dispose();
   });
 
+  it('repays the same share of a frame that comes slower than 60 a second', () => {
+    let time = 0;
+    const queue = new FrameAdmissionQueue({
+      maxMilliseconds: 4,
+      now: () => time,
+      schedule: () => {},
+    });
+    const ran: number[] = [];
+    let frames = 0;
+    for (let job = 0; job < 2; job++) {
+      void queue.run(() => {
+        time += 110;
+        ran.push(frames);
+      });
+    }
+    while (queue.pending > 0 && frames < 64) {
+      queue.flush();
+      // Software rendering: 250 ms a frame outside the queue.
+      time += 250;
+      frames++;
+    }
+    // 106 ms past a 4 ms budget, repaid 60 ms a frame (4 ms of every 16.7), not 4: two frames,
+    // where the old rule idled for 27.
+    expect(ran).toEqual([0, 3]);
+    queue.dispose();
+  });
+
   it('forgets an overrun once nothing is waiting', () => {
     let time = 0;
     const queue = new FrameAdmissionQueue({

@@ -108,6 +108,35 @@ describe('InputMap', () => {
     expect(prevented).toBe(1);
     im.dispose();
   });
+
+  it('leaves a focused checkbox its own Space and every other key to gameplay', () => {
+    const handlers = new Map<string, (ev: unknown) => void>();
+    const target = {
+      addEventListener: (type: string, fn: (ev: unknown) => void) => handlers.set(type, fn),
+      removeEventListener: (type: string) => handlers.delete(type),
+    };
+    const im = new InputMap({ bindings, target });
+    const on = (tagName: string, type: string) => ({ closest: () => ({ tagName, type }) });
+    const key = (code: string, element: unknown) =>
+      handlers.get('keydown')?.({ code, target: element, preventDefault: () => {} });
+    key('Space', on('INPUT', 'checkbox'));
+    expect(im.isActive('fire')).toBe(false);
+    key('KeyW', on('INPUT', 'checkbox'));
+    expect(im.isActive('move.up')).toBe(true);
+    handlers.get('keyup')?.({ code: 'KeyW' });
+    key('KeyS', on('input', 'Checkbox'));
+    expect(im.isActive('move.down')).toBe(true);
+    handlers.get('keyup')?.({ code: 'KeyS' });
+    // A typed field, here a number, keeps every key, and a radio group its arrows (so all keys);
+    // a checkbox keeps the pointer too.
+    key('KeyW', on('INPUT', 'number'));
+    expect(im.isActive('move.up')).toBe(false);
+    key('KeyW', on('INPUT', 'radio'));
+    expect(im.isActive('move.up')).toBe(false);
+    handlers.get('mousedown')?.({ button: 0, target: on('INPUT', 'checkbox') });
+    expect(im.isActive('select')).toBe(false);
+    im.dispose();
+  });
   it('tracks held actions from press/release', () => {
     const im = new InputMap({ bindings });
     im.press('KeyW');
