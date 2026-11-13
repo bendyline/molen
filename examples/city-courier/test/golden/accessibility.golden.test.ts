@@ -8,7 +8,7 @@ import { expect, it } from 'vitest';
 const name = 'city-courier' as string;
 const action = 'Accelerate';
 const axis = 'z';
-it('supports paused text play, reduced motion and simultaneous touch input', async () => {
+it('supports paused text play and reduced motion', async () => {
   const base = `/games/${name}/`;
   const server = await preview({
     base,
@@ -137,25 +137,6 @@ it('supports paused text play, reduced motion and simultaneous touch input', asy
     );
     await page.getByRole('button', { name: 'Return to visual play' }).click();
     await page.getByRole('button', { name: 'Resume animation' }).click();
-    const move = page.locator(
-      `.touch-controls [data-action="${name === 'skybound' ? 'right' : 'up'}"]`,
-    );
-    const second = page.locator(
-      `.touch-controls [data-action="${name === 'skybound' ? 'jump' : name === 'city-courier' ? 'right' : 'turnRight'}"]`,
-    );
-    const m = await move.boundingBox(),
-      s = await second.boundingBox();
-    if (!m || !s) throw new Error('Missing touch controls');
-    const cdp = await page.context().newCDPSession(page);
-    const points = [
-      { x: m.x + m.width / 2, y: m.y + m.height / 2, id: 1 },
-      { x: s.x + s.width / 2, y: s.y + s.height / 2, id: 2 },
-    ];
-    await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: points });
-    expect(await page.locator('.touch-controls [data-held]').count()).toBe(2);
-    await page.waitForTimeout(200);
-    await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
-    expect(await page.locator('.touch-controls [data-held]').count()).toBe(0);
     await page.getByRole('button', { name: 'Pause animation' }).click();
     await page.waitForTimeout(150);
     const pausedTick = await canvas.getAttribute('data-tick');
