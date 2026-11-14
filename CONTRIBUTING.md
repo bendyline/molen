@@ -107,6 +107,14 @@ every file byte for byte, except that `package.json` dependency keys may be reor
 pnpm writes resolved `workspace:` entries in a racy order. Any other difference is an error that
 needs inspection.
 
+Versioning can stop partway too, when GitHub refuses a tag push. The workflow retries every
+`git push` in that step (`scripts/git-push-retry.sh`), and if a push still fails, the metadata
+commit records only the packages whose tags reached GitHub (`scripts/stage-release-metadata.mjs`).
+Nothing is published in that case, so rerun `Release` on `main`: it versions the remaining
+packages from their newest tags on GitHub and publishes everything still missing from npm. A
+package whose dependencies release in the rerun moves past the version it was tagged with in the
+stopped run; that version never reaches npm.
+
 The workflow deploys the docs to GitHub Pages: in repository Settings → Pages, **GitHub Actions**
 must be the source, with `molen.dev` as the custom domain and its DNS configured with the domain
 provider. The site is built for the domain root. GitHub Pages handles the custom domain
