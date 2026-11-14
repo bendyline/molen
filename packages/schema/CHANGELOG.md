@@ -1,3 +1,11 @@
+## @bendyline/molen-schema [0.0.11](https://github.com/bendyline/molen/compare/@bendyline/molen-schema@0.0.10...@bendyline/molen-schema@0.0.11) (2026-11-14)
+
+### Bug Fixes
+
+* Content and viz fixes ([3c5f9e3](https://github.com/bendyline/molen/commit/3c5f9e3961e1e54fcee991ad09c60269375b21b5))
+* New modalities ([e23cde6](https://github.com/bendyline/molen/commit/e23cde65a9319ea3f132a6dfd241eba54432b936))
+* Snow ([56ba8ca](https://github.com/bendyline/molen/commit/56ba8ca18a2f124aa9e6b9c324ac0d6b4857b68f))
+
 ## @bendyline/molen-schema [0.0.10](https://github.com/bendyline/molen/compare/@bendyline/molen-schema@0.0.9...@bendyline/molen-schema@0.0.10) (2026-10-31)
 
 ### Bug Fixes

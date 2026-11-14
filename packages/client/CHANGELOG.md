@@ -1,3 +1,15 @@
+## @bendyline/molen-client [0.0.15](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.14...@bendyline/molen-client@0.0.15) (2026-11-14)
+
+### Bug Fixes
+
+* Add OV-10 and pilot-motion cockpit camera ([a045584](https://github.com/bendyline/molen/commit/a04558495f2fb108f18ceb571d80722fede2fda9))
+
+
+### Dependencies
+
+* **@bendyline/molen-materials:** upgraded to 0.0.12
+* **@bendyline/molen-schema:** upgraded to 0.0.11
+
 ## @bendyline/molen-client [0.0.14](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.13...@bendyline/molen-client@0.0.14) (2026-11-13)
 
 ### Bug Fixes

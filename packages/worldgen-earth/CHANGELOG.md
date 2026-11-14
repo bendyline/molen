@@ -1,3 +1,25 @@
+## @bendyline/molen-worldgen-earth [0.0.16](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen-earth@0.0.15...@bendyline/molen-worldgen-earth@0.0.16) (2026-11-14)
+
+### Bug Fixes
+
+* Add OV-10 and pilot-motion cockpit camera ([a045584](https://github.com/bendyline/molen/commit/a04558495f2fb108f18ceb571d80722fede2fda9))
+* Content and viz fixes ([3c5f9e3](https://github.com/bendyline/molen/commit/3c5f9e3961e1e54fcee991ad09c60269375b21b5))
+* Content updates ([367de13](https://github.com/bendyline/molen/commit/367de13cb3c115800c17ef7614d65187f0449dcc))
+* Content updates and fixes ([ac637c6](https://github.com/bendyline/molen/commit/ac637c6216aaedeb8fb21e5f83adf5a4e2422615))
+* New modalities ([e23cde6](https://github.com/bendyline/molen/commit/e23cde65a9319ea3f132a6dfd241eba54432b936))
+* Perf updates ([fb0481d](https://github.com/bendyline/molen/commit/fb0481d3dae755770f65936edb9817fde7a0c05b))
+* Snow ([56ba8ca](https://github.com/bendyline/molen/commit/56ba8ca18a2f124aa9e6b9c324ac0d6b4857b68f))
+
+
+### Dependencies
+
+* **@bendyline/molen-ambient:** upgraded to 0.0.17
+* **@bendyline/molen-kernel:** upgraded to 0.0.11
+* **@bendyline/molen-schema:** upgraded to 0.0.11
+* **@bendyline/molen-terrain:** upgraded to 0.0.16
+* **@bendyline/molen-worldgen:** upgraded to 0.0.15
+* **@bendyline/molen-client:** upgraded to 0.0.15
+
 ## @bendyline/molen-worldgen-earth [0.0.15](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen-earth@0.0.14...@bendyline/molen-worldgen-earth@0.0.15) (2026-11-07)
 
 ### Bug Fixes
