@@ -1,6 +1,6 @@
 # Aircraft flight performance
 
-All 53 aircraft have explicit calibration records in [aircraft-performance.json](aircraft-performance.json).
+All 54 aircraft have explicit calibration records in [aircraft-performance.json](aircraft-performance.json).
 The records distinguish published anchors with estimated test conditions from wholly estimated
 anchors. The fictional Bendy Small Airliner has no real-world performance claim. Mass is the
 existing authored operating mass with full tanks, not empty weight or MTOW. No stores are modeled.

@@ -6,7 +6,7 @@ Find each vehicle’s livery ids, photograph links and adaptation notes in this 
 
 ## Evidence and scope
 
-All 403 choices across 201 vehicle types have linked real-world photographs. Every vehicle has two choices; the F-16B has three. Colors and visible layout were compared with the photographs and the rendered models. These are **photo-based adaptations** (`inspired` provenance), not exact historical or factory replicas.
+All 406 choices across 202 vehicle types have linked real-world photographs. Every vehicle has two choices; the F-16B has three. Colors and visible layout were compared with the photographs and the rendered models. These are **photo-based adaptations** (`inspired` provenance), not exact historical or factory replicas.
 
 Paint values are visual estimates, not measured paint codes. Camouflage uses approximate masks; complex emblems and small stencils may be omitted. Generic Bendy bodies adapt finishes from the photographed real vehicles. Each entry explains its scope. Source photos are linked for inspection and attribution; they are not shipped as textures.
 
@@ -599,6 +599,22 @@ Type: `molen.entities.aircraft.mig_29a`.
 **Polish 105 blue gray.** Paint study of Polish 105 blue gray. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
 
 **Polish 89 gray green camouflage.** Paint study of Polish 89 gray green camouflage. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+
+### North American Rockwell OV-10A Bronco
+
+Type: `molen.entities.aircraft.ov_10`.
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `usmc-vmo-4-gray` | USMC VMO-4 gray | [Photo](https://commons.wikimedia.org/wiki/File:OV-10As_VMO-4_1990.JPEG) |
+| `usaf-21st-tass-green` | USAF 21st TASS dark green | [Photo](https://commons.wikimedia.org/wiki/File:OV-10A_21st_TASS_firing_rockets_1989.JPEG) |
+| `usaf-1985-two-tone-green` | USAF two-tone green | [Photo](https://commons.wikimedia.org/wiki/File:OV-10_Bronco_firing_White_phosphorus.jpg) |
+
+**USMC VMO-4 gray.** Paint study of USMC VMO-4 gray. The linked photograph identifies the real aircraft used for the colors; a multi-color camouflage is reduced to its dominant color and model panel boundaries are adapted. Colors are visual approximations. National insignia, unit markings, serials, lettering and stencils are omitted; this is a photo-based adaptation, not a certified replica.
+
+**USAF 21st TASS dark green.** Paint study of USAF 21st TASS dark green. The linked photograph identifies the real aircraft used for the colors; a multi-color camouflage is reduced to its dominant color and model panel boundaries are adapted. Colors are visual approximations. National insignia, unit markings, serials, lettering and stencils are omitted; this is a photo-based adaptation, not a certified replica.
+
+**USAF two-tone green.** Paint study of USAF two-tone green. The linked photograph identifies the real aircraft used for the colors; a multi-color camouflage is reduced to its dominant color and model panel boundaries are adapted. Colors are visual approximations. National insignia, unit markings, serials, lettering and stencils are omitted; this is a photo-based adaptation, not a certified replica.
 
 ### OH-6
 
@@ -2774,3 +2790,6 @@ Attribution and license labels below describe the linked source photographs. No 
 398. [Snowboard-In-The-Snow-2008.jpg — Kham Tran (CC BY-SA 3.0)](https://commons.wikimedia.org/wiki/File:Snowboard-In-The-Snow-2008.jpg)
 399. [Snowmobile Lynx Enduro 400.jpg — Dirk Unger (public domain)](https://commons.wikimedia.org/wiki/File:Snowmobile_Lynx_Enduro_400.jpg)
 400. [Snowmobile.jpg — Anthere (CC BY-SA 3.0)](https://commons.wikimedia.org/wiki/File:Snowmobile.jpg)
+401. [OV-10As VMO-4 1990.JPEG — Sgt. Joseph Garrison, USMC (public domain)](https://commons.wikimedia.org/wiki/File:OV-10As_VMO-4_1990.JPEG)
+402. [OV-10A 21st TASS firing rockets 1989.JPEG — TSgt. Hans H. Deffner, USAF (public domain)](https://commons.wikimedia.org/wiki/File:OV-10A_21st_TASS_firing_rockets_1989.JPEG)
+403. [OV-10 Bronco firing White phosphorus.jpg — TSgt. Bill Thompson, USAF (public domain)](https://commons.wikimedia.org/wiki/File:OV-10_Bronco_firing_White_phosphorus.jpg)

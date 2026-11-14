@@ -12,6 +12,7 @@ import { createAircraftPropellers } from './aircraft-propellers';
 export * from './aircraft-cockpit-pointer';
 export * from './aircraft-collision';
 export * from './aircraft-controls';
+export * from './pilot-motion';
 
 import { applyLivery } from './livery';
 import {
@@ -403,10 +404,23 @@ export function aircraftCameraPose(
   const look = new THREE.Quaternion().setFromEuler(
     new THREE.Euler(-(options.lookPitch ?? 0), -(options.lookYaw ?? 0), 0, 'YXZ'),
   );
-  const direction = new THREE.Vector3(0, 0, 1).applyQuaternion(look).applyQuaternion(q);
-  let position = new THREE.Vector3().fromArray(spec.pilotEye).applyQuaternion(q).add(origin);
+  // The pilot's body under load: the seat carries the head, and the look turns from there.
+  const motion = options.view === 'chase' ? undefined : options.motion;
+  const seat = motion
+    ? q
+        .clone()
+        .multiply(
+          new THREE.Quaternion().setFromEuler(
+            new THREE.Euler(-motion.pitch, motion.yaw, motion.roll, 'YXZ'),
+          ),
+        )
+    : q;
+  const direction = new THREE.Vector3(0, 0, 1).applyQuaternion(look).applyQuaternion(seat);
+  const eye = new THREE.Vector3().fromArray(spec.pilotEye);
+  if (motion) eye.add(new THREE.Vector3().fromArray(motion.offset));
+  let position = eye.applyQuaternion(q).add(origin);
   let target = position.clone().add(direction);
-  let up = new THREE.Vector3(0, 1, 0).applyQuaternion(q);
+  let up = new THREE.Vector3(0, 1, 0).applyQuaternion(seat);
   const shake = options.view === 'chase' ? 0 : Math.min(1, options.shake?.amount ?? 0);
   if (shake > 0) {
     // Buffet: the seat hammers up and down and the view nods and rocks with it.
@@ -415,14 +429,14 @@ export function aircraftCameraPose(
       Math.sin(time * rate + phase) + 0.5 * Math.sin(time * rate * 1.73 + phase * 2.1);
     const left = new THREE.Vector3(1, 0, 0).applyQuaternion(q);
     position
-      .addScaledVector(up, 0.012 * shake * wobble(64, 0))
-      .addScaledVector(left, 0.005 * shake * wobble(47, 1));
+      .addScaledVector(up, 0.0085 * shake * wobble(64, 0))
+      .addScaledVector(left, 0.0035 * shake * wobble(47, 1));
     target = position
       .clone()
       .add(direction)
-      .addScaledVector(up, 0.004 * shake * wobble(58, 2))
-      .addScaledVector(left, 0.002 * shake * wobble(49, 0.7));
-    up = up.addScaledVector(left, 0.006 * shake * wobble(67, 3)).normalize();
+      .addScaledVector(up, 0.0028 * shake * wobble(58, 2))
+      .addScaledVector(left, 0.0014 * shake * wobble(49, 0.7));
+    up = up.addScaledVector(left, 0.0042 * shake * wobble(67, 3)).normalize();
   }
   if (options.view === 'chase') {
     target = origin.clone().add(new THREE.Vector3(0, 1.5, 0));

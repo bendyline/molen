@@ -1,6 +1,6 @@
 # Shared cockpit finishes
 
-All 53 aircraft use the profiles in [library.json](library.json). This is a small,
+All 54 aircraft use the profiles in [library.json](library.json). This is a small,
 tintable surface library, not a separate texture set painted for every cockpit.
 The existing aircraft colors, labels, instrument faces and screens remain authored separately.
 

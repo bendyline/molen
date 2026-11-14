@@ -32,6 +32,8 @@ interface TunnelSegment extends TerrainTunnelClearance {
 const segments = new WeakMap<THREE.Object3D, TunnelSegment[]>();
 const tileSizes = new WeakMap<THREE.Object3D, number>();
 const objects = new Set<WeakRef<THREE.Object3D>>();
+/** Changes whenever a bore is registered, so each root's list of them is gathered again. */
+let objectsVersion = 0;
 const material = new THREE.MeshStandardMaterial({
   vertexColors: true,
   roughness: 0.95,
@@ -39,6 +41,42 @@ const material = new THREE.MeshStandardMaterial({
 });
 
 const scratchLocal = new THREE.Vector3();
+
+/** A registered bore as one root sees it; `offset` once its place under that root is known. */
+interface PlacedBore {
+  ref: WeakRef<THREE.Object3D>;
+  tileSize: number;
+  offset: THREE.Vector3 | undefined;
+}
+// An aircraft asks for the ground under each of its sixty-odd contact points on every collision
+// substep, and at speed a tick is thirty substeps: over two thousand questions a frame for one
+// P-51 in cruise. Each one dereferenced every registered bore and looked its tile and place up
+// again to find it was elsewhere, a third of the aircraft's whole step. A bore's place under a
+// root does not change (see terrainRootOffset), so each root keeps the list with those answers
+// beside it, in registration order.
+const boreLists = new WeakMap<THREE.Object3D, { version: number; bores: PlacedBore[] }>();
+
+function boresUnder(root: THREE.Object3D): PlacedBore[] {
+  let list = boreLists.get(root);
+  if (list === undefined || list.version !== objectsVersion) {
+    const bores: PlacedBore[] = [];
+    for (const ref of objects) {
+      const object = ref.deref();
+      if (!object) {
+        objects.delete(ref);
+        continue;
+      }
+      bores.push({
+        ref,
+        tileSize: tileSizes.get(object) ?? Infinity,
+        offset: knownTerrainRootOffset(object, root) ?? undefined,
+      });
+    }
+    list = { version: objectsVersion, bores };
+    boreLists.set(root, list);
+  }
+  return list.bores;
+}
 
 /** Query a visible bore in `root`'s coordinate frame. Above-ground observers retain DEM support. */
 export function sampleTerrainTunnel(
@@ -51,21 +89,21 @@ export function sampleTerrainTunnel(
   // and a point allocated for every query: each of an aircraft's ground probes, every tick.
   let worldPoint: THREE.Vector3 | undefined;
   let result: TerrainTunnelClearance | undefined;
-  for (const ref of objects) {
-    const object = ref.deref();
-    if (!object) {
-      objects.delete(ref);
-      continue;
-    }
-    // Outside a bore's tile, found before: no need to walk its parents for visibility. A city's
-    // bores are a few hundred tiles at every level, asked about for each probe.
-    const known = knownTerrainRootOffset(object, root);
-    if (known) {
-      const tileSize = tileSizes.get(object) ?? Infinity;
+  const bores = boresUnder(root);
+  for (let i = 0; i < bores.length; i++) {
+    const bore = bores[i] as PlacedBore;
+    // Outside a bore's tile, found before: no need to look at the bore at all, nor to walk its
+    // parents for visibility. A city's bores are tiles at every level, asked about for each probe.
+    const known = bore.offset;
+    if (known !== undefined) {
+      const tileSize = bore.tileSize;
       const lx = x - known.x,
         lz = z - known.z;
       if (lx < -1e-8 || lx > tileSize + 1e-8 || lz < -1e-8 || lz > tileSize + 1e-8) continue;
     }
+    // A collected bore leaves the list when it is next gathered.
+    const object = bore.ref.deref();
+    if (!object) continue;
     let visible = false;
     for (let p: THREE.Object3D | null = object; p; p = p.parent) {
       if (!p.visible) break;
@@ -78,10 +116,12 @@ export function sampleTerrainTunnel(
     // Tile layers sit at a fixed translation in the root's frame: subtracting it replaces
     // refreshing the object's matrix chain and inverting it, for every bore in view on each of
     // an aircraft's ground probes, several times a frame.
-    const offset = terrainRootOffset(object, root);
+    const offset = known ?? terrainRootOffset(object, root);
     let local: THREE.Vector3;
-    if (offset !== null) local = scratchLocal.set(x - offset.x, y - offset.y, z - offset.z);
-    else {
+    if (offset !== null) {
+      bore.offset = offset;
+      local = scratchLocal.set(x - offset.x, y - offset.y, z - offset.z);
+    } else {
       if (worldPoint === undefined) {
         root.updateWorldMatrix(true, false);
         worldPoint = new THREE.Vector3(x, y, z).applyMatrix4(root.matrixWorld);
@@ -89,7 +129,7 @@ export function sampleTerrainTunnel(
       object.updateWorldMatrix(true, false);
       local = object.worldToLocal(worldPoint.clone());
     }
-    const tileSize = tileSizes.get(object) ?? Infinity;
+    const tileSize = bore.tileSize;
     if (
       local.x < -1e-8 ||
       local.x > tileSize + 1e-8 ||
@@ -244,6 +284,7 @@ export function createTerrainTunnelObject(
     segments.set(group, records);
     tileSizes.set(group, context.tileSize);
     objects.add(new WeakRef(group));
+    objectsVersion++;
   }
   return group;
 }

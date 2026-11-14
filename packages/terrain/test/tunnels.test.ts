@@ -225,6 +225,46 @@ describe('mapped tunnels', () => {
     expect(sampleTerrainTunnel(turned, -100, 13, -100)?.floor).toBeCloseTo(10.32);
   });
 
+  it('answers the same for a root asked thousands of times while bores come, move out and go', () => {
+    // A stream as an aircraft's ground probes see it: tiles at fixed translations under one root.
+    const root = new THREE.Group();
+    const place = (x: number): { layer: THREE.Group; bore: THREE.Group } => {
+      const layer = new THREE.Group(),
+        bore = createTerrainTunnelObject(tile(), context());
+      layer.position.set(x, 0, 0);
+      layer.add(bore);
+      return { layer, bore };
+    };
+    const first = place(0);
+    root.add(first.layer);
+    expect(sampleTerrainTunnel(root, 100, 13, 100)?.floor).toBeCloseTo(10.32);
+    // Elsewhere: its place is known now, and the answer does not depend on having looked.
+    for (let i = 0; i < 2000; i++)
+      expect(sampleTerrainTunnel(root, 900 + i, 13, 100)).toBeUndefined();
+    expect(sampleTerrainTunnel(root, 100, 13, 100)?.floor).toBeCloseTo(10.32);
+    // A bore prepared before the root was first asked, attached after: found at once.
+    const second = place(400);
+    expect(sampleTerrainTunnel(root, 500, 13, 100)).toBeUndefined();
+    root.add(second.layer);
+    expect(sampleTerrainTunnel(root, 500, 13, 100)?.floor).toBeCloseTo(10.32);
+    expect(sampleTerrainTunnel(root, 100, 13, 100)?.floor).toBeCloseTo(10.32);
+    // One made after many questions is found too.
+    const third = place(800);
+    root.add(third.layer);
+    expect(sampleTerrainTunnel(root, 900, 13, 100)?.floor).toBeCloseTo(10.32);
+    // An evicted tile keeps its known place but no longer answers; nor does a hidden one.
+    root.remove(first.layer);
+    expect(sampleTerrainTunnel(root, 100, 13, 100)).toBeUndefined();
+    second.layer.visible = false;
+    expect(sampleTerrainTunnel(root, 500, 13, 100)).toBeUndefined();
+    second.layer.visible = true;
+    expect(sampleTerrainTunnel(root, 500, 13, 100)?.floor).toBeCloseTo(10.32);
+    // Another root sees none of them where this one placed them.
+    const other = new THREE.Group();
+    expect(sampleTerrainTunnel(other, 900, 13, 100)).toBeUndefined();
+    expect(sampleTerrainTunnel(root, 900, 13, 100)?.floor).toBeCloseTo(10.32);
+  });
+
   it('joins buffered neighboring fragments before grading; the same seam has the same floor', async () => {
     const left = surfacing(tile(0.1, 1.015625), [0, 0.1]),
       right = surfacing(tile(-0.015625, 0.9), [0.9, 1]);

@@ -306,10 +306,12 @@ bridges are stacked clear of what they cross (6.5 m over a road, 8.4 m over a ra
 comparison, `?roadGrading=0` turns both off and `?earthworks=0` only the leveling. See
 [Road grading](../../docs-src/guide/surface-rendering.md#road-grading).
 
-Performance defaults to **Auto (device)**: six tiers respond to frame time and resident buffer
-pressure, controlling render resolution, terrain refinement/range, concurrency, cache sizes,
-vegetation/building LOD, and surface decorations. Manual presets switch live without moving the
-camera. Object detail follows projected screen size with hysteresis; buildings retain their roof
+Performance defaults to **Auto (device)**: one of six tiers, guessed once from what the device
+reports and kept for the session, controlling render resolution, terrain refinement/range,
+concurrency, cache sizes, vegetation/building LOD, and surface decorations. Auto gives a tier up
+only when the device cannot run it (frames under 30 a second for ten seconds, or content over the
+memory budget) and never raises it; choosing Auto again makes the guess afresh. Manual presets
+switch live without moving the camera. Object detail follows projected screen size with hysteresis; buildings retain their roof
 and wall shapes while distant materials and facade details simplify. Spatial cells improve
 frustum culling. The live viewer requests multisample antialiasing on both graphics backends so
 geometry and surface-marking edges stay smoother when Auto lowers the drawing-buffer resolution;

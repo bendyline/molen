@@ -25,7 +25,12 @@ import {
   observePageActivity,
   type RendererBackendPreference,
 } from '@bendyline/molen-client';
-import { bindAircraftCockpitPointer } from '@bendyline/molen-client/aircraft';
+import {
+  bindAircraftCockpitPointer,
+  type PilotMotionOverrides,
+  type PilotMotionTuning,
+  pilotMotionTuning,
+} from '@bendyline/molen-client/aircraft';
 import type { AudioLayer } from '@bendyline/molen-client/audio';
 import {
   createMarkerLayer,
@@ -418,6 +423,14 @@ export interface EarthViewOptions {
   overrideAssets?: AssetProvider;
   /** Boardable parked aircraft on mapped airport aprons (default true when airport data exists). */
   airportTraffic?: boolean;
+  /**
+   * The pilot's body under load in an aircraft's cockpit view: the eye sinks into the seat in a
+   * pull and floats in a pushover, leans under thrust and braking, and the head lags a quick roll
+   * and levels toward the horizon in a bank (`PilotMotion` in `@bendyline/molen-client/aircraft`).
+   * On by default; `false` turns it off, an object changes its tuning. Change it later with
+   * {@link EarthView.setPilotMotion}.
+   */
+  pilotMotion?: boolean | PilotMotionOverrides;
   /** What the interact key (E) reaches on foot; change it later with {@link EarthView.setInteraction}. */
   interaction?: EarthInteractionSettings;
   /** The first view. */
@@ -733,6 +746,13 @@ export interface EarthView {
   vehicleStatus(): EarthVehicleStatus | undefined;
   /** Set the mounted aircraft's throttle or collective directly, 0..1 (e.g. an on-screen lever). */
   setThrottle(power: number): void;
+  /** The tuning of the pilot's body under load in cockpit views; `enabled` is its switch. */
+  readonly pilotMotion: PilotMotionTuning;
+  /**
+   * Switch the pilot's body under load on or off (`true`/`false`), or change some of its tuning:
+   * unset fields keep their value. It applies from the next frame.
+   */
+  setPilotMotion(settings: boolean | PilotMotionOverrides): void;
   /** Recover an impacted aircraft, or repair a stopped road vehicle's parts (the R key). */
   recover(): boolean;
   /** Animate to a view (orbit mode). Long hops re-anchor the metric frame on arrival. */
@@ -924,6 +944,7 @@ function surfaceBudgets(quality: TerrainQualityPreset, scale: number) {
 /** Mount an Earth view into a canvas. Dispose it (or abort `signal`) to release everything. */
 export async function mountEarthView(options: EarthViewOptions): Promise<EarthView> {
   let boostMode = options.boostMode ?? false;
+  let pilotMotion = pilotMotionTuning(options.pilotMotion);
   if (options.viewingDate !== undefined && !isStructureViewingDate(options.viewingDate))
     throw new Error('viewingDate must be a valid YYYY-MM-DD calendar date');
   if (
@@ -1626,6 +1647,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             types: content.types,
             vehicleEnvironment: vehicles.environment,
             prepare: (object) => renderer.prepareObject(object),
+            pilotMotion,
           });
           aircraft = flyable;
           parts.push(() => flyable.dispose());
@@ -3891,6 +3913,14 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         return boostMode;
       },
       setBoostMode,
+      get pilotMotion() {
+        return pilotMotion;
+      },
+      setPilotMotion(settings) {
+        pilotMotion = pilotMotionTuning(settings, pilotMotion);
+        // A stack built later (a re-anchor) starts from the same tuning.
+        stack?.aircraft?.pilotMotion.configure(pilotMotion);
+      },
       get audio() {
         return audio?.layer;
       },

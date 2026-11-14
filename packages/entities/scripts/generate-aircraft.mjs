@@ -97,7 +97,7 @@ for (const s of aircraft) {
   const fixed = s.gear === 'fixed' || s.gear === 'taildragger';
   const spec = {
     label: s.label,
-    genericLabel: `${f.heli ? 'Helicopter' : f.fighter ? 'Military jet' : s.category === 'tiltrotor' ? 'Tiltrotor' : s.category === 'cargo' ? 'Cargo transport' : s.category === 'ga' ? 'General aviation aircraft' : s.category === 'business' ? 'Business jet' : 'Civil transport'} with ${s.tandem ? 'tandem' : 'enclosed'} cockpit`,
+    genericLabel: `${f.heli ? 'Helicopter' : f.fighter ? 'Military jet' : s.category === 'observation' ? 'Military observation aircraft' : s.category === 'tiltrotor' ? 'Tiltrotor' : s.category === 'cargo' ? 'Cargo transport' : s.category === 'ga' ? 'General aviation aircraft' : s.category === 'business' ? 'Business jet' : 'Civil transport'} with ${s.tandem ? 'tandem' : 'enclosed'} cockpit`,
     model: f.heli ? 'helicopter' : 'airplane',
     mass: s.mass,
     span: s.span,
@@ -268,7 +268,8 @@ for (const s of aircraft) {
     ...(spec.poweredLift ? { thrustVectorPosition: s.category === 'tiltrotor' ? 1 : 0 } : {}),
   };
   const seats = [{ id: 'driver', role: 'driver', position: f.eye }];
-  if (!f.fighter)
+  // A tandem cockpit seats its second crew member behind the pilot, not beside.
+  if (!f.fighter && !s.tandem)
     seats.push({ id: 'copilot', role: 'passenger', position: [-f.eye[0], f.eye[1], f.eye[2]] });
   if (s.tandem)
     seats.push({

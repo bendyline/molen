@@ -188,7 +188,7 @@ describe('earth aircraft', () => {
   });
   it('lists the flyable types in the entities pack', () => {
     const aircraft = EarthAircraft.typeIds(ENTITY_TYPES);
-    expect(aircraft).toHaveLength(53);
+    expect(aircraft).toHaveLength(54);
     expect(aircraft).toEqual(
       expect.arrayContaining([
         P51,

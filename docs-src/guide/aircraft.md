@@ -1,11 +1,11 @@
 # Aircraft in the world explorer
 
-The world explorer includes 53 aircraft: the P-51D Mustang, OH-6 interpretation, Bendy Small Airliner
-and fifty additional real-type interpretations. Each has an editable GLB, reusable entity type,
+The world explorer includes 54 aircraft: the P-51D Mustang, OH-6 interpretation, Bendy Small Airliner
+and fifty-one additional real-type interpretations. Each has an editable GLB, reusable entity type,
 flight physics, an instrumented cockpit and a chase camera. The additions include ten helicopters,
-ten general aviation aircraft, ten fighters, five cargo transports, the MV-22B Osprey, AV-8B Harrier
-and thirteen utility, regional, historic and business aircraft. All use clean configurations without
-external weapons.
+ten general aviation aircraft, ten fighters, five cargo transports, the MV-22B Osprey, AV-8B Harrier,
+thirteen utility, regional, historic and business aircraft, and the OV-10A Bronco twin-boom
+observation aircraft. All use clean configurations without external weapons.
 
 Compare national markings and camouflage in the [livery gallery](livery-gallery.md), then
 find every aircraft’s choices and reference evidence in the [livery catalog](livery-catalog.md#aircraft).
@@ -14,11 +14,11 @@ Use the **P-51 Mustang**, **OH-6** or **Bendy Small Airliner** buttons to visit 
 board. The aircraft buttons also work from the example hub's world view. A direct link can use
 `?aircraft=p51d`, `?aircraft=oh6` or `?aircraft=airliner`. The **Aircraft catalog** selector visits
 the additional models; direct links also accept suffixes such as `?aircraft=uh_1h`,
-`?aircraft=f_16b`, `?aircraft=c_17a` and `?aircraft=mv_22b`.
+`?aircraft=f_16b`, `?aircraft=c_17a`, `?aircraft=mv_22b` and `?aircraft=ov_10`.
 The three original practice models load initially. Additional GLBs load on selection, with one
 additional request in flight and intermediate selections coalesced. Replacing a selection releases
 its model and ECS entity; an occupied aircraft is retained. The host's content-pack byte cache
-still follows its own cache budget. The catalog does not download all fifty new models on entry.
+still follows its own cache budget. The catalog does not download all fifty-one new models on entry.
 See [Vehicle interiors and instruments](vehicle-interiors.md)
 for cockpit source files, per-model instrument bindings and the shared exterior/seated GLB
 contract.
@@ -185,7 +185,7 @@ keyframes; `crashed` means damage requiring recovery and no longer freezes motio
 
 ## Reuse in another experience
 
-All 53 aircraft are registered in the `molen.entities` content pack, with their type documents and models.
+All 54 aircraft are registered in the `molen.entities` content pack, with their type documents and models.
 `npx molen pack fetch https://molen.dev/packs/index.json molen.entities` downloads it and lists it
 in your project.json `packs`, and the CLI then resolves the types; in a browser, open it with `openPack` from `@bendyline/molen-pack` and pass
 `createPackSet([pack]).assetProvider()` as the client's asset provider. The entity type IDs and
@@ -264,7 +264,7 @@ power for propellers and dry/reheat thrust for jets, with a transient RPM spool 
 
 ### Propulsion, altitude and performance
 
-All 53 shipped aircraft have separate performance profiles. `engine.propulsion: 'propeller'`
+All 54 shipped aircraft have separate performance profiles. `engine.propulsion: 'propeller'`
 uses shaft power, propeller efficiency and an altitude lapse, with `ratedDensityRatio` representing
 supercharging or flat rating. `'jet'` uses `dryThrust` in newtons, density lapse and a Mach-dependent
 ram term. `afterburnerThrust` is total augmented thrust per engine. The last 15% of throttle
@@ -395,7 +395,7 @@ kg/kWh, and 9.5e-8 otherwise), a jet by its thrust (kg per newton-second; defaul
 `afterburnerFuelConsumption` (default 5.4e-5, per newton of total thrust at full reheat) is why
 the afterburner is for moments: an F-16 that flies over half an hour at military power
 empties its tanks in about eight minutes with the burner lit. Engines never burn less than an idle
-flow. All 53 shipped aircraft carry fuel, sized by class as a share of their mass (13–17% for
+flow. All 54 shipped aircraft carry fuel, sized by class as a share of their mass (13–17% for
 propeller aircraft, 22% for airliners and transports, 28% for fighters and small jets, 14% for
 helicopters): estimates, not flight-manual capacities. Recovering (R) starts a fresh aircraft
 with full tanks, and so does boarding one that is parked: the Earth view and the world explorer
@@ -454,6 +454,83 @@ recovers in four. Below -1.5 g, `redout` builds a sixth of the excess per second
 keep working throughout: this is what the pilot sees, for a host to draw (the world explorer
 narrows the view to a tunnel, then darkens it, and tints it red), not a loss of consciousness.
 `view.vehicleStatus()` reports `buffet`, `greyout`, `redout`, and `fuel` with `fuelCapacity`.
+
+### The pilot's body in the seat
+
+`PilotMotion` from `@bendyline/molen-client/aircraft` moves the cockpit camera the way a load
+moves someone strapped into the seat. Like the buffet shake it is a cue for the view: it reads the
+aircraft's motion and never changes the flight.
+
+- **Heave.** In a pull the eye sinks into the seat and the chin drops; unloaded, the pilot floats
+  up against the straps.
+- **Surge.** Thrust presses the pilot into the seat back; braking throws them forward onto the
+  straps and nods the head.
+- **Sway.** A skid, or a turn on the ground, throws them to the outside and tilts the head with
+  the body.
+- **Lag.** The head is left behind for a moment when a roll, pitch or yaw starts quickly.
+- **Horizon lean.** In a bank the head tilts toward the horizon, as pilots do.
+- **Bracing.** The body gives way when a load arrives, then the pilot recovers part of the travel
+  over about a second, and is left leaning the other way for a moment when the load comes off.
+
+What the pilot feels is the specific force in the seat's own axes: the aircraft's acceleration
+less gravity, which is 1 g straight up through the seat when parked or in level flight. The model
+takes it from the change in the aircraft's velocity between simulation ticks, so it works for
+every airplane and helicopter, on the ground and in the air, with no change to the flight model.
+The body is three damped springs driven by how far that load is from 1 g up, and the head three
+more. It runs in simulation time: a paused world holds the pilot still.
+
+```ts
+import {
+  aircraftCameraPose,
+  PilotMotion,
+  pilotMotionSample,
+} from '@bendyline/molen-client/aircraft';
+
+const pilot = new PilotMotion();
+
+// Each frame, with the flown aircraft's transform and aircraftState:
+const motion = pilot.update(pilotMotionSample(world.tick * world.dt, transform, state));
+const pose = aircraftCameraPose(transform, spec, { view: 'cockpit', motion });
+```
+
+Call `update` in every view, so the body is already settled when the cockpit view returns, and
+`reset()` when the pilot changes aircraft. A teleport or a respawn is recognized (the aircraft
+moved farther than its speed carries it) and starts the pilot settled in the seat; an impact is
+felt as a jolt. Chase views ignore `motion`. `pilot.load` is the load last felt, in g, as
+`[left, up, forward]`, for a HUD.
+
+The defaults are sized to be felt more than seen. Flown through the flight model: a 6 g pull in
+the P-51D lowers the eye 3 cm, presses it a centimeter back and drops the chin 1.5°; full brakes
+throw the pilot nearly 3 cm forward, half of which they recover as they brace; a 60° bank tilts
+the head 3°. `pilot.tuning` holds every number and is live, so a host can adjust it while flying:
+
+| Tuning | Default | Meaning |
+|---|---|---|
+| `enabled` | `true` | The switch: off, the eye stays at the authored `pilotEye`. |
+| `intensity` | `1` | Scales every displacement and rotation before its limit. |
+| `maxLoad` | `12` | Loads beyond this many g on an axis are clipped: an impact jolts, it does not launch. |
+| `braceTime` | `1.2` | Seconds the pilot takes to brace against a sustained load. |
+| `heave`, `surge`, `sway` | | One body axis each: `travel` (meters per g), `limit` (meters, `[negative, positive]`, approached softly), `frequency` (Hz), `damping` (ratio) and `brace` (share of a sustained load recovered, 0–1). |
+| `head.nod` | `0.006` | Chin drop per g above 1, radians. |
+| `head.surgeNod` | `0.04` | Chin drop per g of deceleration, radians. Pressed back, the head meets the headrest. |
+| `head.swayTilt` | `0.05` | Head roll per g of sideways load, radians. |
+| `head.lag` | `0.004` | Radians of lag per rad/s² of airframe angular acceleration. |
+| `head.horizonLean` | `0.12` | Radians of tilt per radian of bank at small angles; it peaks at 45° and is gone at knife-edge and inverted. |
+| `head.limit` | `0.1` | Largest head rotation about one axis, radians, approached softly. |
+| `head.neck` | `0.12` | Height of the eyes above the neck's pivot, meters: a tilted head also moves the eye. |
+| `head.frequency`, `head.damping` | `2.4`, `0.6` | The head's spring. |
+
+`new PilotMotion(false)` or `pilot.configure(false)` switches the whole effect off;
+`pilot.configure({ heave: { travel: 0.012 } })` changes the fields it names. In an Earth view the
+effect is on by default: mount with `pilotMotion: false` (or a partial tuning), and call
+`view.setPilotMotion(...)` to change it while flying. World Explorer has a "Pilot feels g"
+checkbox; `?pilotMotion=0` starts with it off and `?pilotMotion=3` exaggerates it threefold to
+show what moves.
+
+> [!NOTE]
+> An Earth view's cockpit camera keeps a level horizon, so the head's roll (the horizon lean and
+> the lag of a roll) does not show there; the eye's travel and the nod do. Hosts that apply the
+> pose's `rotation`, as World Explorer does, show all of it.
 
 The gear and flaps travel rather than switch. `aircraftInput.gear` and `flaps` select a position,
 and `aircraftState.gearPosition` and `flapPosition` (0 up, 1 down) move toward it over
@@ -618,7 +695,7 @@ and also center on release. Drag a throttle or collective upward to increase its
 Modeled gear selectors toggle on click; flap and thrust-vector levers accept intermediate positions.
 Solid panel geometry blocks clicks behind it. Dragging empty space still looks around.
 
-All 53 bundled cockpits have physical controls for their supported systems, including engine
+All 54 bundled cockpits have physical controls for their supported systems, including engine
 master switches, individual engine switches and throttles for airplanes with named engine banks,
 parking brakes, and applicable gear, flap and nozzle controls. Supplemental labeled modules fill
 gaps in the original models; their layout approximates the aircraft rather than reproducing every
@@ -705,7 +782,7 @@ through `flyAircraft`, and mix `AircraftPointerAxes` with their keyboard/gamepad
 release must clear transient axes. The binder cancels drags on exit, view change, blur and pointer
 cancellation; it does not write simulation components directly.
 
-In the engine repository, build the client and kernel, then run a local live review of all 53 bundled aircraft:
+In the engine repository, build the client and kernel, then run a local live review of all 54 bundled aircraft:
 
 ```sh
 pnpm --filter @bendyline/molen-examples-world-explorer exec vite --config ../../packages/entities/scripts/cockpit-controls-vite.mjs

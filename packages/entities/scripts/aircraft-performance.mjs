@@ -168,6 +168,11 @@ export function tuneAircraftPerformance(id, spec) {
     w.maxLoadFactor = 2.5;
     w.minLoadFactor = -1;
   }
+  if (id.endsWith('.ov_10')) {
+    // A light-attack airframe, not a utility transport: estimated limits, not the T.O. chart.
+    w.maxLoadFactor = 6;
+    w.minLoadFactor = -3;
+  }
   if (id.endsWith('.airliner')) {
     // This original template copied the Mustang's explicit inertias. Use the kernel's
     // mass-and-dimension estimates instead of a 4-ton fighter's values for a 42-ton twin.

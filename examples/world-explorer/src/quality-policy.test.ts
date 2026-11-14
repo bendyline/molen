@@ -19,100 +19,87 @@ function run(
 const flight = { loading: true, cpuFrameMs: 5, gpuFrameMs: 6, memoryPressure: 0.5 };
 
 describe('world explorer Auto detail', () => {
-  it('starts Balanced and stops at High after sustained smooth flight', () => {
+  it('keeps its starting guess through smooth flight: nothing raises it', () => {
     const controller = createExplorerQualityController();
     expect(controller.getStats().level).toBe(3);
-    expect(run(controller, 19000, 1000 / 60, flight)).toEqual([]);
-    expect(run(controller, 24000, 1000 / 60, flight)).toEqual([
-      { previousLevel: 3, level: 4, reason: 'headroom' },
-    ]);
-    expect(run(controller, 60000, 1000 / 60, flight)).toEqual([]);
+    expect(run(controller, 180_000, 1000 / 60, flight)).toEqual([]);
+    expect(run(controller, 60_000, 1000 / 60, { cpuFrameMs: 4 })).toEqual([]);
+    expect(createExplorerQualityController(1).getStats().level).toBe(1);
   });
 
-  it('requires measured GPU margin during streaming, including sparse timing results', () => {
+  it('keeps it through frames a busy place costs, however long they last', () => {
     const controller = createExplorerQualityController();
-    expect(run(controller, 45000, 1000 / 60, { loading: true, cpuFrameMs: 4 })).toEqual([]);
-    const changes: AdaptiveQualityChange[] = [];
-    for (let frame = 0; frame < 2700; frame++) {
-      const change = controller.sample(1000 / 60, {
-        loading: true,
-        cpuFrameMs: 4,
-        ...(frame % 4 === 0 ? { gpuFrameMs: 16 } : {}),
-      });
-      if (change) changes.push(change);
-    }
-    expect(changes).toEqual([]);
-    expect(run(controller, 22000, 1000 / 60, flight).map((change) => change.level)).toEqual([4]);
+    // A piloted takeoff from a large airport at Balanced measured 19-26 ms a frame with 15-18 ms
+    // of work, which the old policy answered within ten seconds. So did 28 ms (36 a second).
+    const takeoff = { loading: true, cpuFrameMs: 17, gpuFrameMs: 9, memoryPressure: 0.3 };
+    expect(run(controller, 120_000, 22, takeoff)).toEqual([]);
+    expect(run(controller, 120_000, 28, { ...takeoff, loading: false })).toEqual([]);
   });
 
-  it('can probe without GPU timing once streaming settles', () => {
+  it('gives a level up once when the device cannot hold 30 frames a second, and stays down', () => {
+    const controller = createExplorerQualityController();
+    const slow = { cpuFrameMs: 40, gpuFrameMs: 30, memoryPressure: 0.3 };
+    // Under the floor (20 a second), but not for long enough.
+    expect(run(controller, 8000, 50, slow)).toEqual([]);
+    expect(run(controller, 5000, 1000 / 60, flight)).toEqual([]);
+    expect(run(controller, 13_000, 50, slow)).toEqual([
+      { previousLevel: 3, level: 2, reason: 'frame-time' },
+    ]);
+    // The lower level gets time to load before it is judged, then is judged the same way.
+    expect(run(controller, 15_000, 50, slow)).toEqual([]);
+    expect(run(controller, 20_000, 50, slow)).toEqual([
+      { previousLevel: 2, level: 1, reason: 'frame-time' },
+    ]);
+    // Smooth again: the level it gave up is not tried again.
+    expect(run(controller, 300_000, 1000 / 60, flight)).toEqual([]);
+    expect(controller.getStats().level).toBe(1);
+  });
+
+  it('does not take slow frames while loading for the device, unless frame work is heavy', () => {
     const controller = createExplorerQualityController();
     expect(
-      run(controller, 43000, 1000 / 60, { cpuFrameMs: 5 }).map((change) => change.level),
-    ).toEqual([4]);
+      run(controller, 60_000, 50, { loading: true, cpuFrameMs: 12, memoryPressure: 0.3 }),
+    ).toEqual([]);
   });
 
-  it('ignores brief stalls but backs off a higher tier that cannot sustain flight', () => {
+  it('lowers detail for good when the view outgrows the memory budget', () => {
     const controller = createExplorerQualityController();
-    run(controller, 22000, 1000 / 60, flight);
-    const slow = { ...flight, cpuFrameMs: 25, gpuFrameMs: 28 };
-    expect(run(controller, 1000, 40, slow)).toEqual([]);
-    expect(run(controller, 7000, 40, slow)).toEqual([
-      { previousLevel: 4, level: 3, reason: 'frame-time' },
-    ]);
-    expect(controller.getStats().recoveryDelayMs).toBe(40000);
-    expect(run(controller, 32000, 1000 / 60, flight)).toEqual([]);
-    expect(run(controller, 11000, 1000 / 60, flight)).toEqual([
-      { previousLevel: 3, level: 4, reason: 'headroom' },
-    ]);
-  });
-
-  it('holds upgrades near the memory budget and lowers detail when it is exceeded', () => {
-    const controller = createExplorerQualityController();
-    expect(run(controller, 45000, 1000 / 60, { ...flight, memoryPressure: 0.9 })).toEqual([]);
+    expect(run(controller, 45_000, 1000 / 60, { ...flight, memoryPressure: 0.9 })).toEqual([]);
     expect(run(controller, 3000, 1000 / 60, { ...flight, memoryPressure: 1.1 })).toEqual([
       { previousLevel: 3, level: 2, reason: 'memory-pressure' },
     ]);
+    expect(run(controller, 180_000, 1000 / 60, flight)).toEqual([]);
   });
 
-  it('discards hidden time and stale measurements when returning from manual High', () => {
-    const controller = createExplorerQualityController();
-    run(controller, 18000, 1000 / 60, flight);
-    controller.sample(120000, { active: false });
-    expect(run(controller, 10000, 1000 / 60, flight)).toEqual([]);
-    controller.setLevel(5);
-    expect(controller.getStats().level).toBe(4);
-    expect(run(controller, 1000, 40, { cpuFrameMs: 25 })).toEqual([]);
-    expect(run(controller, 6000, 40, { cpuFrameMs: 25 })).toEqual([
-      { previousLevel: 4, level: 3, reason: 'frame-time' },
-    ]);
-  });
-
-  it('needs real frame margin before stepping up', () => {
-    const controller = createExplorerQualityController();
-    // 12 of 16.7 ms is over the 0.6 share: the next level would not fit.
-    expect(run(controller, 60000, 1000 / 60, { ...flight, cpuFrameMs: 12 })).toEqual([]);
-    expect(run(controller, 22000, 1000 / 60, flight).map((change) => change.level)).toEqual([4]);
-  });
-
-  it('holds a step up while streaming is strained and steps down when it stays strained', () => {
+  it('lowers detail for good when streaming stays strained', () => {
     const controller = createExplorerQualityController();
     expect(run(controller, 9000, 1000 / 60, { ...flight, strained: true })).toEqual([]);
     expect(run(controller, 3000, 1000 / 60, { ...flight, strained: true })).toEqual([
       { previousLevel: 3, level: 2, reason: 'streaming' },
     ]);
+    expect(run(controller, 180_000, 1000 / 60, flight)).toEqual([]);
   });
 
-  it('steps down on a second long stall within a minute, not the first', () => {
+  it('ignores long stalls, however often they come', () => {
     const controller = createExplorerQualityController();
-    run(controller, 5000, 1000 / 60, flight);
-    expect(controller.sample(1300, flight)).toBeUndefined();
-    run(controller, 5000, 1000 / 60, flight);
-    expect(controller.sample(1300, flight)).toEqual({
-      previousLevel: 3,
-      level: 2,
-      reason: 'frame-time',
-    });
+    for (let i = 0; i < 6; i++) {
+      run(controller, 5000, 1000 / 60, flight);
+      expect(controller.sample(1300, flight)).toBeUndefined();
+    }
+    expect(controller.getStats().level).toBe(3);
+  });
+
+  it('makes its guess afresh on restart, and discards hidden time', () => {
+    const controller = createExplorerQualityController();
+    const slow = { cpuFrameMs: 40, gpuFrameMs: 30, memoryPressure: 0.3 };
+    expect(run(controller, 13_000, 50, slow).map((change) => change.level)).toEqual([2]);
+    controller.restart();
+    expect(controller.getStats().level).toBe(3);
+    // Measured from the restart: what was slow before it does not count.
+    expect(run(controller, 8000, 50, slow)).toEqual([]);
+    controller.sample(120_000, { active: false });
+    expect(run(controller, 8000, 50, slow)).toEqual([]);
+    expect(run(controller, 5000, 50, slow).map((change) => change.level)).toEqual([2]);
   });
 });
 

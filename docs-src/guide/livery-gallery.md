@@ -6,7 +6,7 @@ Compare every vehicle’s photo-based liveries side by side, then follow the pho
 
 ## Evidence and scope
 
-All 403 choices across 201 vehicle types have linked real-world photographs. Every vehicle has two choices; the F-16B has three. Colors and visible layout were compared with the photographs and the rendered models. These are **photo-based adaptations** (`inspired` provenance), not exact historical or factory replicas.
+All 406 choices across 202 vehicle types have linked real-world photographs. Every vehicle has two choices; the F-16B has three. Colors and visible layout were compared with the photographs and the rendered models. These are **photo-based adaptations** (`inspired` provenance), not exact historical or factory replicas.
 
 Paint values are visual estimates, not measured paint codes. Camouflage uses approximate masks; complex emblems and small stencils may be omitted. Generic Bendy bodies adapt finishes from the photographed real vehicles. Each entry explains its scope. Source photos are linked for inspection and attribution; they are not shipped as textures.
 
@@ -705,6 +705,24 @@ Type: `molen.entities.aircraft.mig_29a`.
 **Polish 105 blue gray.** Paint study of Polish 105 blue gray. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
 
 **Polish 89 gray green camouflage.** Paint study of Polish 89 gray green camouflage. The linked photograph identifies the real aircraft used for the colors; model panel boundaries are adapted. Colors and mask edges are visual approximations. Unlisted lettering, small stencils and complex emblems are omitted; this is a photo-based adaptation, not a certified replica.
+
+### North American Rockwell OV-10A Bronco
+
+Type: `molen.entities.aircraft.ov_10`.
+
+[![North American Rockwell OV-10A Bronco livery comparison: USMC VMO-4 gray, USAF 21st TASS dark green, USAF two-tone green](https://molen.dev/guide-media/liveries/ov_10.png)](https://molen.dev/guide-media/liveries/ov_10.png)
+
+| Livery id | Appearance | Photographs |
+| --- | --- | --- |
+| `usmc-vmo-4-gray` | USMC VMO-4 gray | [Photo](https://commons.wikimedia.org/wiki/File:OV-10As_VMO-4_1990.JPEG) |
+| `usaf-21st-tass-green` | USAF 21st TASS dark green | [Photo](https://commons.wikimedia.org/wiki/File:OV-10A_21st_TASS_firing_rockets_1989.JPEG) |
+| `usaf-1985-two-tone-green` | USAF two-tone green | [Photo](https://commons.wikimedia.org/wiki/File:OV-10_Bronco_firing_White_phosphorus.jpg) |
+
+**USMC VMO-4 gray.** Paint study of USMC VMO-4 gray. The linked photograph identifies the real aircraft used for the colors; a multi-color camouflage is reduced to its dominant color and model panel boundaries are adapted. Colors are visual approximations. National insignia, unit markings, serials, lettering and stencils are omitted; this is a photo-based adaptation, not a certified replica.
+
+**USAF 21st TASS dark green.** Paint study of USAF 21st TASS dark green. The linked photograph identifies the real aircraft used for the colors; a multi-color camouflage is reduced to its dominant color and model panel boundaries are adapted. Colors are visual approximations. National insignia, unit markings, serials, lettering and stencils are omitted; this is a photo-based adaptation, not a certified replica.
+
+**USAF two-tone green.** Paint study of USAF two-tone green. The linked photograph identifies the real aircraft used for the colors; a multi-color camouflage is reduced to its dominant color and model panel boundaries are adapted. Colors are visual approximations. National insignia, unit markings, serials, lettering and stencils are omitted; this is a photo-based adaptation, not a certified replica.
 
 ### OH-6
 
