@@ -48,6 +48,7 @@ import { buildHuey, hueyFrame } from './aircraft/huey.mjs';
 import { buildKingAir, kingAirFrame } from './aircraft/king-air-350i.mjs';
 import { buildMiG29A, mig29Frame } from './aircraft/mig-29a.mjs';
 import { buildMV22, mv22Frame } from './aircraft/mv-22b.mjs';
+import { buildOV10, ov10Frame } from './aircraft/ov-10.mjs';
 import { buildPorter, porterFrame } from './aircraft/pc-6.mjs';
 import { buildPC12, pc12Frame } from './aircraft/pilatus-pc12.mjs';
 import { buildRafaleC, rafaleFrame } from './aircraft/rafale-c.mjs';
@@ -128,6 +129,7 @@ export function aircraftFrame(s) {
   if (s.slug === 'uh-60m') return uh60Frame();
   if (s.slug === 'ch-47f') return ch47Frame();
   if (s.slug === 'aw139') return aw139Frame();
+  if (s.slug === 'ov-10') return ov10Frame();
   const heli = s.category === 'helicopter',
     fighter = ['fighter', 'vtol'].includes(s.category);
   const large = ['cargo', 'regional', 'airliner', 'business', 'heritage'].includes(s.category);
@@ -335,6 +337,7 @@ export function buildAircraft(s) {
   if (s.slug === 'ch-47f') return buildCH47(s);
   if (s.slug === 'aw139') return buildAW139(s);
   if (s.slug === 'uh-1h') return buildHuey(s);
+  if (s.slug === 'ov-10') return buildOV10(s);
   const f = aircraftFrame(s),
     root = new T.Group();
   root.name = s.slug;

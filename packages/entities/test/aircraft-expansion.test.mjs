@@ -9,9 +9,9 @@ const base = new URL('../../../content/entities/', import.meta.url);
 const json = async (path) => JSON.parse(await readFile(new URL(path, base), 'utf8'));
 const { aircraft } = await json('source/aircraft-expansion.json');
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
-it('adds fifty distinct aircraft and meets each requested category minimum', () => {
-  expect(aircraft).toHaveLength(50);
-  expect(new Set(aircraft.map((a) => a.id)).size).toBe(50);
+it('adds fifty-one distinct aircraft and meets each requested category minimum', () => {
+  expect(aircraft).toHaveLength(51);
+  expect(new Set(aircraft.map((a) => a.id)).size).toBe(51);
   for (const [category, minimum] of [
     ['helicopter', 10],
     ['ga', 10],
@@ -29,6 +29,7 @@ it('adds fifty distinct aircraft and meets each requested category minimum', () 
     'c-17a',
     'mv-22b',
     'av-8b',
+    'ov-10',
   ])
     expect(aircraft.some((a) => a.slug === slug)).toBe(true);
 });

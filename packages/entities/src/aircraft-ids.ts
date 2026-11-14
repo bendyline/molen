@@ -1,4 +1,4 @@
-/** Fifty additional original aircraft models in the entities content pack. */
+/** Fifty-one additional original aircraft models in the entities content pack. */
 export const MOLEN_ADDITIONAL_AIRCRAFT_ENTITY_IDS = [
   'molen.entities.aircraft.uh_1h',
   'molen.entities.aircraft.bell_206b',
@@ -50,5 +50,6 @@ export const MOLEN_ADDITIONAL_AIRCRAFT_ENTITY_IDS = [
   'molen.entities.aircraft.airbus_a320neo',
   'molen.entities.aircraft.gulfstream_g650er',
   'molen.entities.aircraft.citation_cj4',
+  'molen.entities.aircraft.ov_10',
 ] as const;
 export type MolenAdditionalAircraftEntityId = (typeof MOLEN_ADDITIONAL_AIRCRAFT_ENTITY_IDS)[number];

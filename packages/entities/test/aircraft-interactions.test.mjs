@@ -7,7 +7,7 @@ import { GLTFLoader } from './helpers/gltf-loader.mjs';
 it.each([
   'source',
   'runtime',
-])('models every supported control across all 53 %s cockpits, with reachable additions and independent throttles', async (version) => {
+])('models every supported control across all 54 %s cockpits, with reachable additions and independent throttles', async (version) => {
   const root = new URL('../../../content/entities/source/aircraft/', import.meta.url);
   let count = 0;
   for (const slug of await readdir(root)) {
@@ -139,5 +139,5 @@ it.each([
     visual.dispose();
     count++;
   }
-  expect(count).toBe(53);
+  expect(count).toBe(54);
 }, 30000);

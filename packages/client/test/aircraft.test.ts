@@ -185,6 +185,43 @@ it('retains bank in the cockpit quaternion and shortens obstructed chase views',
   ).toBeCloseTo(1.7);
 });
 
+it("moves the cockpit eye with the pilot's body in the seat frame and leaves the chase view alone", () => {
+  // Nose pointing east (+X), so the seat's axes are not the world's.
+  const transform = {
+    pos: [100000, 200, 300000] as [number, number, number],
+    rot: new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI / 2).toArray(),
+  };
+  const motion = {
+    offset: [0, -0.03, 0.02] as [number, number, number],
+    pitch: -0.02,
+    yaw: 0,
+    roll: 0.05,
+  };
+  const rest = aircraftCameraPose(transform, SPEC, { view: 'cockpit' });
+  const loaded = aircraftCameraPose(transform, SPEC, { view: 'cockpit', motion });
+  // Sunk 3 cm, and 2 cm forward along the nose.
+  expect(loaded.position[0] - rest.position[0]).toBeCloseTo(0.02);
+  expect(loaded.position[1] - rest.position[1]).toBeCloseTo(-0.03);
+  expect(loaded.position[2] - rest.position[2]).toBeCloseTo(0);
+  // Chin down: the view dips by the head's pitch.
+  expect(loaded.pitch).toBeCloseTo(-0.02);
+  // Right ear down: the camera's up leans to the pilot's right, which is south (+Z) here.
+  const up = new THREE.Vector3(0, 1, 0).applyQuaternion(
+    new THREE.Quaternion().fromArray(loaded.rotation),
+  );
+  expect(up.z).toBeCloseTo(Math.sin(0.05), 3);
+  // Looking left over the wing, the head's roll about the nose shows as pitch instead.
+  const left = aircraftCameraPose(transform, SPEC, {
+    view: 'cockpit',
+    lookYaw: -Math.PI / 2,
+    motion: { ...motion, pitch: 0 },
+  });
+  expect(left.pitch).toBeCloseTo(0.05, 3);
+  expect(aircraftCameraPose(transform, SPEC, { view: 'chase', motion })).toEqual(
+    aircraftCameraPose(transform, SPEC, { view: 'chase' }),
+  );
+});
+
 it('leaves cabin parts too small to see out of chase frames without touching their visibility', () => {
   const model = new THREE.Group(),
     cockpit = new THREE.Group(),

@@ -271300,6 +271300,2543 @@
         }
       },
       "assets": ["molen.entities.aircraft.citation_cj4"]
+    },
+    "molen.entities.aircraft.ov_10": {
+      "doc": "North American Rockwell OV-10A Bronco: original polygonal exterior and analog cockpit. Clean configuration. Assisted flight tuning, not a certified flight model.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.aircraft.ov_10",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "aircraft": {
+          "kind": "molen.entities.aircraft.ov_10",
+          "spec": {
+            "label": "North American Rockwell OV-10A Bronco",
+            "genericLabel": "Military observation aircraft with tandem cockpit",
+            "model": "airplane",
+            "mass": 4500,
+            "span": 12.19,
+            "length": 12.67,
+            "height": 4.62,
+            "centerOfMass": [0, 2.05, 0],
+            "pilotEye": [0, 2.3, 2.55],
+            "hardLandingSpeed": 4,
+            "hardLandingRoll": 0.2,
+            "hardLandingPitch": 0.28,
+            "maxSupportStep": 0.5,
+            "collisionProbes": [
+              [0, 2.05, 5.4481],
+              [0, 2.05, -5.4481],
+              [5.6074, 2.05, 0],
+              [-5.6074, 2.05, 0]
+            ],
+            "visual": {
+              "rotors": [
+                {
+                  "node": "Bronco-propeller-0",
+                  "axis": "z",
+                  "multiplier": 1,
+                  "engine": "engine-1"
+                },
+                {
+                  "node": "Bronco-propeller-1",
+                  "axis": "z",
+                  "multiplier": -1,
+                  "engine": "engine-2"
+                }
+              ],
+              "gearNodes": [],
+              "flaps": [],
+              "ailerons": [],
+              "animation": {
+                "bindings": [
+                  {
+                    "node": "Bronco-flap-right-inner",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.7
+                  },
+                  {
+                    "node": "Bronco-flap-right-outer",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.7
+                  },
+                  {
+                    "node": "Bronco-aileron--1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.3
+                  },
+                  {
+                    "node": "Bronco-flap-left-inner",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.7
+                  },
+                  {
+                    "node": "Bronco-flap-left-outer",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.7
+                  },
+                  {
+                    "node": "Bronco-aileron-1",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.3
+                  },
+                  {
+                    "node": "Bronco-rudder-right",
+                    "source": "yawInput",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": 0.4
+                  },
+                  {
+                    "node": "Bronco-rudder-left",
+                    "source": "yawInput",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": 0.4
+                  },
+                  {
+                    "node": "Bronco-elevator",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": 0.35
+                  },
+                  {
+                    "node": "Bronco-gear-0",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "offset": -1.72,
+                    "scale": 1.72
+                  },
+                  {
+                    "node": "Bronco-gear-1",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "offset": 1.22,
+                    "scale": -1.22
+                  },
+                  {
+                    "node": "Bronco-gear-2",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "offset": 1.22,
+                    "scale": -1.22
+                  }
+                ],
+                "sources": {
+                  "flapPosition": {
+                    "component": "aircraftState",
+                    "path": ["flapPosition"]
+                  },
+                  "rollInput": {
+                    "component": "aircraftInput",
+                    "path": ["roll"]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": ["yaw"]
+                  },
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": ["pitch"]
+                  },
+                  "gear": {
+                    "component": "aircraftState",
+                    "path": ["gearPosition"]
+                  }
+                }
+              },
+              "interior": {
+                "nodes": ["cockpit"],
+                "sources": {
+                  "trueAirspeed": {
+                    "component": "aircraftState",
+                    "path": ["airspeed"]
+                  },
+                  "altitude": {
+                    "component": "transform",
+                    "path": ["pos", 1]
+                  },
+                  "yaw": {
+                    "component": "aircraftState",
+                    "path": ["yaw"]
+                  },
+                  "roll": {
+                    "component": "aircraftState",
+                    "path": ["roll"]
+                  },
+                  "pitch": {
+                    "component": "aircraftState",
+                    "path": ["pitch"]
+                  },
+                  "verticalSpeed": {
+                    "component": "aircraftState",
+                    "path": ["verticalSpeed"]
+                  },
+                  "flapPosition": {
+                    "component": "aircraftState",
+                    "path": ["flapPosition"]
+                  },
+                  "gear": {
+                    "component": "aircraftState",
+                    "path": ["gearPosition"]
+                  },
+                  "fuel": {
+                    "component": "aircraftState",
+                    "path": ["fuel"]
+                  },
+                  "power": {
+                    "component": "aircraftInput",
+                    "path": ["power"]
+                  },
+                  "pitchInput": {
+                    "component": "aircraftInput",
+                    "path": ["pitch"]
+                  },
+                  "rollInput": {
+                    "component": "aircraftInput",
+                    "path": ["roll"]
+                  },
+                  "yawInput": {
+                    "component": "aircraftInput",
+                    "path": ["yaw"]
+                  },
+                  "engine1": {
+                    "component": "aircraftState",
+                    "path": ["engines", "engine-1", "rpm"]
+                  },
+                  "engine2": {
+                    "component": "aircraftState",
+                    "path": ["engines", "engine-2", "rpm"]
+                  },
+                  "shaft1": {
+                    "component": "aircraftState",
+                    "path": ["engines", "engine-1", "shaftPower"]
+                  },
+                  "shaft2": {
+                    "component": "aircraftState",
+                    "path": ["engines", "engine-2", "shaftPower"]
+                  }
+                },
+                "derived": {
+                  "knots": {
+                    "op": "multiply",
+                    "args": ["trueAirspeed", 1.9438444924406046]
+                  },
+                  "feet": {
+                    "op": "divide",
+                    "args": ["altitude", 0.3048]
+                  },
+                  "northYaw": {
+                    "op": "subtract",
+                    "args": [3.141592653589793, "yaw"]
+                  },
+                  "trueHeading": {
+                    "op": "modulo",
+                    "args": ["northYaw", 6.283185307179586]
+                  },
+                  "degreesTrue": {
+                    "op": "multiply",
+                    "args": ["trueHeading", 57.29577951308232]
+                  },
+                  "verticalFpm": {
+                    "op": "multiply",
+                    "args": ["verticalSpeed", 196.85039370078738]
+                  },
+                  "rpm1": {
+                    "op": "multiply",
+                    "args": ["engine1", 100]
+                  },
+                  "rpm2": {
+                    "op": "multiply",
+                    "args": ["engine2", 100]
+                  },
+                  "torque1": {
+                    "op": "multiply",
+                    "args": ["shaft1", 0.0001876172607879925]
+                  },
+                  "torque2": {
+                    "op": "multiply",
+                    "args": ["shaft2", 0.0001876172607879925]
+                  },
+                  "fuelPounds": {
+                    "op": "multiply",
+                    "args": ["fuel", 2.20462]
+                  },
+                  "gearLocked": {
+                    "op": "greater",
+                    "args": ["gear", 0.999]
+                  },
+                  "gearOffStop": {
+                    "op": "greater",
+                    "args": ["gear", 0.001]
+                  },
+                  "gearNotLocked": {
+                    "op": "less",
+                    "args": ["gear", 0.999]
+                  },
+                  "gearInTransit": {
+                    "op": "and",
+                    "args": ["gearOffStop", "gearNotLocked"]
+                  },
+                  "Bronco.front-ADI-bank.availableValue": {
+                    "op": "coalesce",
+                    "args": ["roll", -100000000000000000000]
+                  },
+                  "Bronco.front-ADI-bank.available": {
+                    "op": "greater",
+                    "args": ["Bronco.front-ADI-bank.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.front-ADI-pitch.availableValue": {
+                    "op": "coalesce",
+                    "args": ["pitch", -100000000000000000000]
+                  },
+                  "Bronco.front-ADI-pitch.available": {
+                    "op": "greater",
+                    "args": ["Bronco.front-ADI-pitch.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.front-airspeed.availableValue": {
+                    "op": "coalesce",
+                    "args": ["knots", -100000000000000000000]
+                  },
+                  "Bronco.front-airspeed.available": {
+                    "op": "greater",
+                    "args": ["Bronco.front-airspeed.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.front-altimeter-0.availableValue": {
+                    "op": "coalesce",
+                    "args": ["feet", -100000000000000000000]
+                  },
+                  "Bronco.front-altimeter-0.available": {
+                    "op": "greater",
+                    "args": ["Bronco.front-altimeter-0.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.front-altimeter-1.availableValue": {
+                    "op": "coalesce",
+                    "args": ["feet", -100000000000000000000]
+                  },
+                  "Bronco.front-altimeter-1.available": {
+                    "op": "greater",
+                    "args": ["Bronco.front-altimeter-1.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.front-altimeter-2.availableValue": {
+                    "op": "coalesce",
+                    "args": ["feet", -100000000000000000000]
+                  },
+                  "Bronco.front-altimeter-2.available": {
+                    "op": "greater",
+                    "args": ["Bronco.front-altimeter-2.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.front-heading.availableValue": {
+                    "op": "coalesce",
+                    "args": ["degreesTrue", -100000000000000000000]
+                  },
+                  "Bronco.front-heading.available": {
+                    "op": "greater",
+                    "args": ["Bronco.front-heading.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.front-VSI.availableValue": {
+                    "op": "coalesce",
+                    "args": ["verticalFpm", -100000000000000000000]
+                  },
+                  "Bronco.front-VSI.available": {
+                    "op": "greater",
+                    "args": ["Bronco.front-VSI.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.torque-1.availableValue": {
+                    "op": "coalesce",
+                    "args": ["torque1", -100000000000000000000]
+                  },
+                  "Bronco.torque-1.available": {
+                    "op": "greater",
+                    "args": ["Bronco.torque-1.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.rpm-1.availableValue": {
+                    "op": "coalesce",
+                    "args": ["rpm1", -100000000000000000000]
+                  },
+                  "Bronco.rpm-1.available": {
+                    "op": "greater",
+                    "args": ["Bronco.rpm-1.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.torque-2.availableValue": {
+                    "op": "coalesce",
+                    "args": ["torque2", -100000000000000000000]
+                  },
+                  "Bronco.torque-2.available": {
+                    "op": "greater",
+                    "args": ["Bronco.torque-2.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.rpm-2.availableValue": {
+                    "op": "coalesce",
+                    "args": ["rpm2", -100000000000000000000]
+                  },
+                  "Bronco.rpm-2.available": {
+                    "op": "greater",
+                    "args": ["Bronco.rpm-2.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.fuel.availableValue": {
+                    "op": "coalesce",
+                    "args": ["fuelPounds", -100000000000000000000]
+                  },
+                  "Bronco.fuel.available": {
+                    "op": "greater",
+                    "args": ["Bronco.fuel.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.flap-position.availableValue": {
+                    "op": "coalesce",
+                    "args": ["flapPosition", -100000000000000000000]
+                  },
+                  "Bronco.flap-position.available": {
+                    "op": "greater",
+                    "args": ["Bronco.flap-position.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.standby-compass.availableValue": {
+                    "op": "coalesce",
+                    "args": ["trueHeading", -100000000000000000000]
+                  },
+                  "Bronco.standby-compass.available": {
+                    "op": "greater",
+                    "args": ["Bronco.standby-compass.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.rear-ADI-bank.availableValue": {
+                    "op": "coalesce",
+                    "args": ["roll", -100000000000000000000]
+                  },
+                  "Bronco.rear-ADI-bank.available": {
+                    "op": "greater",
+                    "args": ["Bronco.rear-ADI-bank.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.rear-ADI-pitch.availableValue": {
+                    "op": "coalesce",
+                    "args": ["pitch", -100000000000000000000]
+                  },
+                  "Bronco.rear-ADI-pitch.available": {
+                    "op": "greater",
+                    "args": ["Bronco.rear-ADI-pitch.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.rear-airspeed.availableValue": {
+                    "op": "coalesce",
+                    "args": ["knots", -100000000000000000000]
+                  },
+                  "Bronco.rear-airspeed.available": {
+                    "op": "greater",
+                    "args": ["Bronco.rear-airspeed.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.rear-heading.availableValue": {
+                    "op": "coalesce",
+                    "args": ["degreesTrue", -100000000000000000000]
+                  },
+                  "Bronco.rear-heading.available": {
+                    "op": "greater",
+                    "args": ["Bronco.rear-heading.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.rear-VSI.availableValue": {
+                    "op": "coalesce",
+                    "args": ["verticalFpm", -100000000000000000000]
+                  },
+                  "Bronco.rear-VSI.available": {
+                    "op": "greater",
+                    "args": ["Bronco.rear-VSI.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.rear-altimeter-0.availableValue": {
+                    "op": "coalesce",
+                    "args": ["feet", -100000000000000000000]
+                  },
+                  "Bronco.rear-altimeter-0.available": {
+                    "op": "greater",
+                    "args": ["Bronco.rear-altimeter-0.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.rear-altimeter-1.availableValue": {
+                    "op": "coalesce",
+                    "args": ["feet", -100000000000000000000]
+                  },
+                  "Bronco.rear-altimeter-1.available": {
+                    "op": "greater",
+                    "args": ["Bronco.rear-altimeter-1.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.rear-altimeter-2.availableValue": {
+                    "op": "coalesce",
+                    "args": ["feet", -100000000000000000000]
+                  },
+                  "Bronco.rear-altimeter-2.available": {
+                    "op": "greater",
+                    "args": ["Bronco.rear-altimeter-2.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.rear-rpm-1.availableValue": {
+                    "op": "coalesce",
+                    "args": ["rpm1", -100000000000000000000]
+                  },
+                  "Bronco.rear-rpm-1.available": {
+                    "op": "greater",
+                    "args": ["Bronco.rear-rpm-1.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.rear-rpm-2.availableValue": {
+                    "op": "coalesce",
+                    "args": ["rpm2", -100000000000000000000]
+                  },
+                  "Bronco.rear-rpm-2.available": {
+                    "op": "greater",
+                    "args": ["Bronco.rear-rpm-2.availableValue", -100000000000000000000]
+                  },
+                  "Bronco.rear-fuel.availableValue": {
+                    "op": "coalesce",
+                    "args": ["fuelPounds", -100000000000000000000]
+                  },
+                  "Bronco.rear-fuel.available": {
+                    "op": "greater",
+                    "args": ["Bronco.rear-fuel.availableValue", -100000000000000000000]
+                  }
+                },
+                "bindings": [
+                  {
+                    "node": "Bronco-front-ADI-bank",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "Bronco-front-ADI-pitch",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.10500000000000001,
+                    "min": -0.03,
+                    "max": 0.03,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "Bronco-front-ADI-bank",
+                    "source": "Bronco.front-ADI-bank.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-front-ADI-pitch",
+                    "source": "Bronco.front-ADI-pitch.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-front-airspeed",
+                    "source": "knots",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [0, 0],
+                      [60, 0.9],
+                      [100, 2],
+                      [150, 3.2],
+                      [200, 4.2],
+                      [250, 5],
+                      [300, 5.6]
+                    ],
+                    "responseSeconds": 0.2,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Bronco-front-airspeed",
+                    "source": "Bronco.front-airspeed.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-front-altimeter-0",
+                    "source": "Bronco.front-altimeter-0.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-front-altimeter-1",
+                    "source": "Bronco.front-altimeter-1.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-front-altimeter-2",
+                    "source": "Bronco.front-altimeter-2.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-front-altimeter-0",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.006283185307179587,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Bronco-front-altimeter-1",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.0006283185307179586,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Bronco-front-altimeter-2",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.00006283185307179586,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Bronco-front-heading",
+                    "source": "degreesTrue",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [[0, 0], [360, 6.283185307179586]],
+                    "responseSeconds": 0,
+                    "period": 6.283185307179586,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Bronco-front-heading",
+                    "source": "Bronco.front-heading.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-front-VSI",
+                    "source": "verticalFpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [[-4000, -2.6], [0, 0], [4000, 2.6]],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Bronco-front-VSI",
+                    "source": "Bronco.front-VSI.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-torque-1",
+                    "source": "torque1",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [[0, -2.4], [110, 2.4]],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Bronco-torque-1",
+                    "source": "Bronco.torque-1.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-rpm-1",
+                    "source": "rpm1",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [[0, -2.4], [110, 2.4]],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Bronco-rpm-1",
+                    "source": "Bronco.rpm-1.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-torque-2",
+                    "source": "torque2",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [[0, -2.4], [110, 2.4]],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Bronco-torque-2",
+                    "source": "Bronco.torque-2.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-rpm-2",
+                    "source": "rpm2",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [[0, -2.4], [110, 2.4]],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Bronco-rpm-2",
+                    "source": "Bronco.rpm-2.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-fuel",
+                    "source": "fuelPounds",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [[0, -2.3], [1600, 2.3]],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Bronco-fuel",
+                    "source": "Bronco.fuel.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-flap-position",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [[0, -1.4], [1, 1.4]],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Bronco-flap-position",
+                    "source": "Bronco.flap-position.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-gear-lamp-0",
+                    "source": "gearLocked",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-gear-lamp-1",
+                    "source": "gearLocked",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-gear-lamp-2",
+                    "source": "gearLocked",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-gear-transit",
+                    "source": "gearInTransit",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-gear-handle",
+                    "source": "gear",
+                    "property": "rotation",
+                    "axis": "x",
+                    "offset": 0.6,
+                    "scale": -0.6
+                  },
+                  {
+                    "node": "Bronco-standby-compass-drum",
+                    "source": "trueHeading",
+                    "property": "rotation",
+                    "axis": "y",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Bronco-standby-compass-drum",
+                    "source": "Bronco.standby-compass.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-stick-front",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.15
+                  },
+                  {
+                    "node": "Bronco-stick-front",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.14
+                  },
+                  {
+                    "node": "Bronco-pedal-front-right",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  },
+                  {
+                    "node": "Bronco-pedal-front-left",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.04
+                  },
+                  {
+                    "node": "Bronco-stick-rear",
+                    "source": "pitchInput",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.15
+                  },
+                  {
+                    "node": "Bronco-stick-rear",
+                    "source": "rollInput",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.14
+                  },
+                  {
+                    "node": "Bronco-pedal-rear-right",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": -0.04
+                  },
+                  {
+                    "node": "Bronco-pedal-rear-left",
+                    "source": "yawInput",
+                    "property": "position",
+                    "axis": "z",
+                    "scale": 0.04
+                  },
+                  {
+                    "node": "Bronco-power-lever-1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "offset": -0.45,
+                    "scale": 0.9
+                  },
+                  {
+                    "node": "Bronco-power-lever-2",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "offset": -0.45,
+                    "scale": 0.9
+                  },
+                  {
+                    "node": "Bronco-flap-lever",
+                    "source": "flapPosition",
+                    "property": "rotation",
+                    "axis": "x",
+                    "scale": -0.6
+                  },
+                  {
+                    "node": "Bronco-rear-pwr-1",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "offset": -0.45,
+                    "scale": 0.9
+                  },
+                  {
+                    "node": "Bronco-rear-pwr-2",
+                    "source": "power",
+                    "property": "rotation",
+                    "axis": "x",
+                    "offset": -0.45,
+                    "scale": 0.9
+                  },
+                  {
+                    "node": "Bronco-rear-ADI-bank",
+                    "source": "roll",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": -1,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "Bronco-rear-ADI-pitch",
+                    "source": "pitch",
+                    "property": "position",
+                    "axis": "y",
+                    "scale": -0.0693,
+                    "min": -0.0198,
+                    "max": 0.0198,
+                    "responseSeconds": 0.08
+                  },
+                  {
+                    "node": "Bronco-rear-ADI-bank",
+                    "source": "Bronco.rear-ADI-bank.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-rear-ADI-pitch",
+                    "source": "Bronco.rear-ADI-pitch.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-rear-airspeed",
+                    "source": "knots",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [
+                      [0, 0],
+                      [60, 0.9],
+                      [100, 2],
+                      [150, 3.2],
+                      [200, 4.2],
+                      [250, 5],
+                      [300, 5.6]
+                    ],
+                    "responseSeconds": 0.2,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Bronco-rear-airspeed",
+                    "source": "Bronco.rear-airspeed.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-rear-heading",
+                    "source": "degreesTrue",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [[0, 0], [360, 6.283185307179586]],
+                    "responseSeconds": 0,
+                    "period": 6.283185307179586,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Bronco-rear-heading",
+                    "source": "Bronco.rear-heading.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-rear-VSI",
+                    "source": "verticalFpm",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [[-4000, -2.6], [0, 0], [4000, 2.6]],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Bronco-rear-VSI",
+                    "source": "Bronco.rear-VSI.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-rear-altimeter-0",
+                    "source": "Bronco.rear-altimeter-0.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-rear-altimeter-1",
+                    "source": "Bronco.rear-altimeter-1.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-rear-altimeter-2",
+                    "source": "Bronco.rear-altimeter-2.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-rear-altimeter-0",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.006283185307179587,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Bronco-rear-altimeter-1",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.0006283185307179586,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Bronco-rear-altimeter-2",
+                    "source": "feet",
+                    "property": "rotation",
+                    "axis": "z",
+                    "scale": 0.00006283185307179586,
+                    "period": 6.283185307179586,
+                    "responseSeconds": 0.15
+                  },
+                  {
+                    "node": "Bronco-rear-rpm-1",
+                    "source": "rpm1",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [[0, -2.4], [110, 2.4]],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Bronco-rear-rpm-1",
+                    "source": "Bronco.rear-rpm-1.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-rear-rpm-2",
+                    "source": "rpm2",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [[0, -2.4], [110, 2.4]],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Bronco-rear-rpm-2",
+                    "source": "Bronco.rear-rpm-2.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  },
+                  {
+                    "node": "Bronco-rear-fuel",
+                    "source": "fuelPounds",
+                    "property": "rotation",
+                    "axis": "z",
+                    "keys": [[0, -2.3], [1700, 2.3]],
+                    "responseSeconds": 0,
+                    "missing": "hold"
+                  },
+                  {
+                    "node": "Bronco-rear-fuel",
+                    "source": "Bronco.rear-fuel.available",
+                    "property": "visible",
+                    "scale": 1,
+                    "missing": "hide"
+                  }
+                ]
+              }
+            },
+            "airplane": {
+              "wingPosition": [0, 2.05, 0],
+              "wingArea": 27.03,
+              "controlAuthoritySpeed": 45,
+              "maxControlAuthority": 1.8,
+              "pitchAuthority": 0.18,
+              "pitchResponse": 2.5,
+              "stallPitchRate": 0.18,
+              "rollAuthority": 1.05,
+              "rollResponse": 2,
+              "rudderAuthority": 1,
+              "groundSteerSpeed": 8,
+              "groundLevelRate": 2,
+              "maxGroundPitch": 0.22,
+              "camberAngle": 0.045,
+              "flapLift": 0.8,
+              "postStallFlapEffect": 0.4,
+              "stallAngle": 0.28,
+              "stallTransitionAngle": 0.12,
+              "pitchFrequency": 3.5,
+              "pitchDamping": 0.7,
+              "maxLoadFactor": 6,
+              "minLoadFactor": -3,
+              "autoTrim": 1,
+              "directionalStability": 4,
+              "yawDamping": 1.2,
+              "dihedralEffect": 2.5,
+              "propellerEffects": 0.08,
+              "stallSpeed": 26,
+              "liftSlope": 4.8,
+              "postStallLift": 0.2,
+              "postStallDecay": 3.8,
+              "profileDrag": 0.025643276440461972,
+              "inducedDrag": 0.07061141416513775,
+              "gearDrag": 0.018,
+              "flapDrag": 0.075,
+              "gearTransitTime": 6,
+              "flapTransitTime": 4,
+              "stallDrag": 1.1,
+              "propellerEfficiency": 0.85,
+              "maxThrust": 18900,
+              "minPropellerSpeed": 25,
+              "lateralDamping": 0.35,
+              "brakeDeceleration": 4,
+              "rollingDeceleration": 0.22,
+              "groundTrackRate": 12,
+              "groundEffect": true,
+              "criticalMach": 0.62,
+              "waveDrag": 0.22,
+              "maxMach": 0.72,
+              "maxEquivalentAirspeed": 150.62933333333334,
+              "gearLimitSpeed": 81.59088888888888,
+              "flapLimitSpeed": 75.31466666666667
+            },
+            "engines": [
+              {
+                "id": "engine-1",
+                "position": [2.2, 2.28, 1.6499999999999995],
+                "thrustAxis": [0, 0, 1],
+                "power": 533000,
+                "idleRpm": 0.18,
+                "spoolRate": 0.25,
+                "rotorAngularSpeed": 209.43951023931953,
+                "maxThrust": 11326.25,
+                "minPropellerSpeed": 25,
+                "propellerEfficiency": 0.85,
+                "propellerRotation": "clockwise",
+                "propellerControl": {
+                  "minRpm": 0.6
+                },
+                "propulsion": "propeller",
+                "densityExponent": 1,
+                "ratedDensityRatio": 0.85
+              },
+              {
+                "id": "engine-2",
+                "position": [-2.2, 2.28, 1.6499999999999995],
+                "thrustAxis": [0, 0, 1],
+                "power": 533000,
+                "idleRpm": 0.18,
+                "spoolRate": 0.25,
+                "rotorAngularSpeed": 209.43951023931953,
+                "maxThrust": 11326.25,
+                "minPropellerSpeed": 25,
+                "propellerEfficiency": 0.85,
+                "propellerRotation": "counterclockwise",
+                "propellerControl": {
+                  "minRpm": 0.6
+                },
+                "propulsion": "propeller",
+                "densityExponent": 1,
+                "ratedDensityRatio": 0.85
+              }
+            ],
+            "fuel": {
+              "capacity": 765
+            },
+            "actuators": {},
+            "collisionParts": [
+              {
+                "id": "body",
+                "role": "body",
+                "center": [0, 2.05, 0],
+                "massFraction": 0.96,
+                "nodes": [],
+                "probes": [
+                  [0, 2.05, 5.4481],
+                  [0, 2.05, -5.4481],
+                  [5.6074, 2.05, 0],
+                  [-5.6074, 2.05, 0]
+                ],
+                "radius": 0.3
+              },
+              {
+                "id": "rotor-Bronco-propeller-0",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [2.2, 2.28, 1.674],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["Bronco-propeller-0"],
+                "disc": {
+                  "center": [2.2, 2.28, 1.674],
+                  "normal": [0, 0, 1],
+                  "radius": 1.295154,
+                  "halfThickness": 0.06,
+                  "rotor": "Bronco-propeller-0"
+                },
+                "engines": ["engine-1"]
+              },
+              {
+                "id": "rotor-Bronco-propeller-1",
+                "massFraction": 0.02,
+                "breakSpeed": 9,
+                "role": "engine",
+                "center": [-2.2, 2.28, 1.674],
+                "probes": [],
+                "radius": 0.3,
+                "nodes": ["Bronco-propeller-1"],
+                "disc": {
+                  "center": [-2.2, 2.28, 1.674],
+                  "normal": [0, 0, 1],
+                  "radius": 1.295154,
+                  "halfThickness": 0.06,
+                  "rotor": "Bronco-propeller-1"
+                },
+                "engines": ["engine-2"]
+              }
+            ]
+          }
+        },
+        "aircraftInput": {
+          "power": 0,
+          "pitch": 0,
+          "roll": 0,
+          "yaw": 0,
+          "brake": true,
+          "engine": false,
+          "gear": true,
+          "flaps": false
+        },
+        "aircraftState": {
+          "velocity": [0, 0, 0],
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "pitchRate": 0,
+          "rollRate": 0,
+          "rpm": 0,
+          "rotorAngle": 0,
+          "airspeed": 0,
+          "altitudeAGL": 0,
+          "verticalSpeed": 0,
+          "angleOfAttack": 0,
+          "stalled": false,
+          "grounded": true,
+          "crashed": false,
+          "waitingForTerrain": false,
+          "gearPosition": 1,
+          "flapPosition": 0,
+          "actuators": {}
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0, 2.3, 2.55]
+            },
+            {
+              "id": "rear",
+              "role": "passenger",
+              "position": [0, 2.46, 1.3]
+            }
+          ],
+          "entries": [[1.38, 0, 2.55]],
+          "exits": [[2.08, 0, 2.55]],
+          "reach": 4
+        },
+        "ambientRole": {
+          "role": "aircraft",
+          "length": 9.83,
+          "width": 11.28,
+          "height": 4.1,
+          "cruise": 90,
+          "weight": 0.35
+        },
+        "model.signals": {
+          "sources": {
+            "trueAirspeed": {
+              "component": "aircraftState",
+              "path": ["airspeed"]
+            },
+            "altitude": {
+              "component": "transform",
+              "path": ["pos", 1]
+            },
+            "yaw": {
+              "component": "aircraftState",
+              "path": ["yaw"]
+            },
+            "roll": {
+              "component": "aircraftState",
+              "path": ["roll"]
+            },
+            "pitch": {
+              "component": "aircraftState",
+              "path": ["pitch"]
+            },
+            "verticalSpeed": {
+              "component": "aircraftState",
+              "path": ["verticalSpeed"]
+            },
+            "flapPosition": {
+              "component": "aircraftState",
+              "path": ["flapPosition"]
+            },
+            "gear": {
+              "component": "aircraftState",
+              "path": ["gearPosition"]
+            },
+            "fuel": {
+              "component": "aircraftState",
+              "path": ["fuel"]
+            },
+            "power": {
+              "component": "aircraftInput",
+              "path": ["power"]
+            },
+            "pitchInput": {
+              "component": "aircraftInput",
+              "path": ["pitch"]
+            },
+            "rollInput": {
+              "component": "aircraftInput",
+              "path": ["roll"]
+            },
+            "yawInput": {
+              "component": "aircraftInput",
+              "path": ["yaw"]
+            },
+            "engine1": {
+              "component": "aircraftState",
+              "path": ["engines", "engine-1", "rpm"]
+            },
+            "engine2": {
+              "component": "aircraftState",
+              "path": ["engines", "engine-2", "rpm"]
+            },
+            "shaft1": {
+              "component": "aircraftState",
+              "path": ["engines", "engine-1", "shaftPower"]
+            },
+            "shaft2": {
+              "component": "aircraftState",
+              "path": ["engines", "engine-2", "shaftPower"]
+            }
+          },
+          "derived": {
+            "knots": {
+              "op": "multiply",
+              "args": ["trueAirspeed", 1.9438444924406046]
+            },
+            "feet": {
+              "op": "divide",
+              "args": ["altitude", 0.3048]
+            },
+            "northYaw": {
+              "op": "subtract",
+              "args": [3.141592653589793, "yaw"]
+            },
+            "trueHeading": {
+              "op": "modulo",
+              "args": ["northYaw", 6.283185307179586]
+            },
+            "degreesTrue": {
+              "op": "multiply",
+              "args": ["trueHeading", 57.29577951308232]
+            },
+            "verticalFpm": {
+              "op": "multiply",
+              "args": ["verticalSpeed", 196.85039370078738]
+            },
+            "rpm1": {
+              "op": "multiply",
+              "args": ["engine1", 100]
+            },
+            "rpm2": {
+              "op": "multiply",
+              "args": ["engine2", 100]
+            },
+            "torque1": {
+              "op": "multiply",
+              "args": ["shaft1", 0.0001876172607879925]
+            },
+            "torque2": {
+              "op": "multiply",
+              "args": ["shaft2", 0.0001876172607879925]
+            },
+            "fuelPounds": {
+              "op": "multiply",
+              "args": ["fuel", 2.20462]
+            },
+            "gearLocked": {
+              "op": "greater",
+              "args": ["gear", 0.999]
+            },
+            "gearOffStop": {
+              "op": "greater",
+              "args": ["gear", 0.001]
+            },
+            "gearNotLocked": {
+              "op": "less",
+              "args": ["gear", 0.999]
+            },
+            "gearInTransit": {
+              "op": "and",
+              "args": ["gearOffStop", "gearNotLocked"]
+            },
+            "Bronco.front-ADI-bank.availableValue": {
+              "op": "coalesce",
+              "args": ["roll", -100000000000000000000]
+            },
+            "Bronco.front-ADI-bank.available": {
+              "op": "greater",
+              "args": ["Bronco.front-ADI-bank.availableValue", -100000000000000000000]
+            },
+            "Bronco.front-ADI-pitch.availableValue": {
+              "op": "coalesce",
+              "args": ["pitch", -100000000000000000000]
+            },
+            "Bronco.front-ADI-pitch.available": {
+              "op": "greater",
+              "args": ["Bronco.front-ADI-pitch.availableValue", -100000000000000000000]
+            },
+            "Bronco.front-airspeed.availableValue": {
+              "op": "coalesce",
+              "args": ["knots", -100000000000000000000]
+            },
+            "Bronco.front-airspeed.available": {
+              "op": "greater",
+              "args": ["Bronco.front-airspeed.availableValue", -100000000000000000000]
+            },
+            "Bronco.front-altimeter-0.availableValue": {
+              "op": "coalesce",
+              "args": ["feet", -100000000000000000000]
+            },
+            "Bronco.front-altimeter-0.available": {
+              "op": "greater",
+              "args": ["Bronco.front-altimeter-0.availableValue", -100000000000000000000]
+            },
+            "Bronco.front-altimeter-1.availableValue": {
+              "op": "coalesce",
+              "args": ["feet", -100000000000000000000]
+            },
+            "Bronco.front-altimeter-1.available": {
+              "op": "greater",
+              "args": ["Bronco.front-altimeter-1.availableValue", -100000000000000000000]
+            },
+            "Bronco.front-altimeter-2.availableValue": {
+              "op": "coalesce",
+              "args": ["feet", -100000000000000000000]
+            },
+            "Bronco.front-altimeter-2.available": {
+              "op": "greater",
+              "args": ["Bronco.front-altimeter-2.availableValue", -100000000000000000000]
+            },
+            "Bronco.front-heading.availableValue": {
+              "op": "coalesce",
+              "args": ["degreesTrue", -100000000000000000000]
+            },
+            "Bronco.front-heading.available": {
+              "op": "greater",
+              "args": ["Bronco.front-heading.availableValue", -100000000000000000000]
+            },
+            "Bronco.front-VSI.availableValue": {
+              "op": "coalesce",
+              "args": ["verticalFpm", -100000000000000000000]
+            },
+            "Bronco.front-VSI.available": {
+              "op": "greater",
+              "args": ["Bronco.front-VSI.availableValue", -100000000000000000000]
+            },
+            "Bronco.torque-1.availableValue": {
+              "op": "coalesce",
+              "args": ["torque1", -100000000000000000000]
+            },
+            "Bronco.torque-1.available": {
+              "op": "greater",
+              "args": ["Bronco.torque-1.availableValue", -100000000000000000000]
+            },
+            "Bronco.rpm-1.availableValue": {
+              "op": "coalesce",
+              "args": ["rpm1", -100000000000000000000]
+            },
+            "Bronco.rpm-1.available": {
+              "op": "greater",
+              "args": ["Bronco.rpm-1.availableValue", -100000000000000000000]
+            },
+            "Bronco.torque-2.availableValue": {
+              "op": "coalesce",
+              "args": ["torque2", -100000000000000000000]
+            },
+            "Bronco.torque-2.available": {
+              "op": "greater",
+              "args": ["Bronco.torque-2.availableValue", -100000000000000000000]
+            },
+            "Bronco.rpm-2.availableValue": {
+              "op": "coalesce",
+              "args": ["rpm2", -100000000000000000000]
+            },
+            "Bronco.rpm-2.available": {
+              "op": "greater",
+              "args": ["Bronco.rpm-2.availableValue", -100000000000000000000]
+            },
+            "Bronco.fuel.availableValue": {
+              "op": "coalesce",
+              "args": ["fuelPounds", -100000000000000000000]
+            },
+            "Bronco.fuel.available": {
+              "op": "greater",
+              "args": ["Bronco.fuel.availableValue", -100000000000000000000]
+            },
+            "Bronco.flap-position.availableValue": {
+              "op": "coalesce",
+              "args": ["flapPosition", -100000000000000000000]
+            },
+            "Bronco.flap-position.available": {
+              "op": "greater",
+              "args": ["Bronco.flap-position.availableValue", -100000000000000000000]
+            },
+            "Bronco.standby-compass.availableValue": {
+              "op": "coalesce",
+              "args": ["trueHeading", -100000000000000000000]
+            },
+            "Bronco.standby-compass.available": {
+              "op": "greater",
+              "args": ["Bronco.standby-compass.availableValue", -100000000000000000000]
+            },
+            "Bronco.rear-ADI-bank.availableValue": {
+              "op": "coalesce",
+              "args": ["roll", -100000000000000000000]
+            },
+            "Bronco.rear-ADI-bank.available": {
+              "op": "greater",
+              "args": ["Bronco.rear-ADI-bank.availableValue", -100000000000000000000]
+            },
+            "Bronco.rear-ADI-pitch.availableValue": {
+              "op": "coalesce",
+              "args": ["pitch", -100000000000000000000]
+            },
+            "Bronco.rear-ADI-pitch.available": {
+              "op": "greater",
+              "args": ["Bronco.rear-ADI-pitch.availableValue", -100000000000000000000]
+            },
+            "Bronco.rear-airspeed.availableValue": {
+              "op": "coalesce",
+              "args": ["knots", -100000000000000000000]
+            },
+            "Bronco.rear-airspeed.available": {
+              "op": "greater",
+              "args": ["Bronco.rear-airspeed.availableValue", -100000000000000000000]
+            },
+            "Bronco.rear-heading.availableValue": {
+              "op": "coalesce",
+              "args": ["degreesTrue", -100000000000000000000]
+            },
+            "Bronco.rear-heading.available": {
+              "op": "greater",
+              "args": ["Bronco.rear-heading.availableValue", -100000000000000000000]
+            },
+            "Bronco.rear-VSI.availableValue": {
+              "op": "coalesce",
+              "args": ["verticalFpm", -100000000000000000000]
+            },
+            "Bronco.rear-VSI.available": {
+              "op": "greater",
+              "args": ["Bronco.rear-VSI.availableValue", -100000000000000000000]
+            },
+            "Bronco.rear-altimeter-0.availableValue": {
+              "op": "coalesce",
+              "args": ["feet", -100000000000000000000]
+            },
+            "Bronco.rear-altimeter-0.available": {
+              "op": "greater",
+              "args": ["Bronco.rear-altimeter-0.availableValue", -100000000000000000000]
+            },
+            "Bronco.rear-altimeter-1.availableValue": {
+              "op": "coalesce",
+              "args": ["feet", -100000000000000000000]
+            },
+            "Bronco.rear-altimeter-1.available": {
+              "op": "greater",
+              "args": ["Bronco.rear-altimeter-1.availableValue", -100000000000000000000]
+            },
+            "Bronco.rear-altimeter-2.availableValue": {
+              "op": "coalesce",
+              "args": ["feet", -100000000000000000000]
+            },
+            "Bronco.rear-altimeter-2.available": {
+              "op": "greater",
+              "args": ["Bronco.rear-altimeter-2.availableValue", -100000000000000000000]
+            },
+            "Bronco.rear-rpm-1.availableValue": {
+              "op": "coalesce",
+              "args": ["rpm1", -100000000000000000000]
+            },
+            "Bronco.rear-rpm-1.available": {
+              "op": "greater",
+              "args": ["Bronco.rear-rpm-1.availableValue", -100000000000000000000]
+            },
+            "Bronco.rear-rpm-2.availableValue": {
+              "op": "coalesce",
+              "args": ["rpm2", -100000000000000000000]
+            },
+            "Bronco.rear-rpm-2.available": {
+              "op": "greater",
+              "args": ["Bronco.rear-rpm-2.availableValue", -100000000000000000000]
+            },
+            "Bronco.rear-fuel.availableValue": {
+              "op": "coalesce",
+              "args": ["fuelPounds", -100000000000000000000]
+            },
+            "Bronco.rear-fuel.available": {
+              "op": "greater",
+              "args": ["Bronco.rear-fuel.availableValue", -100000000000000000000]
+            }
+          },
+          "bindings": [
+            {
+              "node": "Bronco-front-ADI-bank",
+              "source": "roll",
+              "property": "rotation",
+              "axis": "z",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "Bronco-front-ADI-pitch",
+              "source": "pitch",
+              "property": "position",
+              "axis": "y",
+              "scale": -0.10500000000000001,
+              "min": -0.03,
+              "max": 0.03,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "Bronco-front-ADI-bank",
+              "source": "Bronco.front-ADI-bank.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-front-ADI-pitch",
+              "source": "Bronco.front-ADI-pitch.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-front-airspeed",
+              "source": "knots",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [[0, 0], [60, 0.9], [100, 2], [150, 3.2], [200, 4.2], [250, 5], [300, 5.6]],
+              "responseSeconds": 0.2,
+              "missing": "hold"
+            },
+            {
+              "node": "Bronco-front-airspeed",
+              "source": "Bronco.front-airspeed.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-front-altimeter-0",
+              "source": "Bronco.front-altimeter-0.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-front-altimeter-1",
+              "source": "Bronco.front-altimeter-1.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-front-altimeter-2",
+              "source": "Bronco.front-altimeter-2.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-front-altimeter-0",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.006283185307179587,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Bronco-front-altimeter-1",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.0006283185307179586,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Bronco-front-altimeter-2",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.00006283185307179586,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Bronco-front-heading",
+              "source": "degreesTrue",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [[0, 0], [360, 6.283185307179586]],
+              "responseSeconds": 0,
+              "period": 6.283185307179586,
+              "missing": "hold"
+            },
+            {
+              "node": "Bronco-front-heading",
+              "source": "Bronco.front-heading.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-front-VSI",
+              "source": "verticalFpm",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [[-4000, -2.6], [0, 0], [4000, 2.6]],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "Bronco-front-VSI",
+              "source": "Bronco.front-VSI.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-torque-1",
+              "source": "torque1",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [[0, -2.4], [110, 2.4]],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "Bronco-torque-1",
+              "source": "Bronco.torque-1.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-rpm-1",
+              "source": "rpm1",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [[0, -2.4], [110, 2.4]],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "Bronco-rpm-1",
+              "source": "Bronco.rpm-1.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-torque-2",
+              "source": "torque2",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [[0, -2.4], [110, 2.4]],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "Bronco-torque-2",
+              "source": "Bronco.torque-2.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-rpm-2",
+              "source": "rpm2",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [[0, -2.4], [110, 2.4]],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "Bronco-rpm-2",
+              "source": "Bronco.rpm-2.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-fuel",
+              "source": "fuelPounds",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [[0, -2.3], [1600, 2.3]],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "Bronco-fuel",
+              "source": "Bronco.fuel.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-flap-position",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [[0, -1.4], [1, 1.4]],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "Bronco-flap-position",
+              "source": "Bronco.flap-position.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-gear-lamp-0",
+              "source": "gearLocked",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-gear-lamp-1",
+              "source": "gearLocked",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-gear-lamp-2",
+              "source": "gearLocked",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-gear-transit",
+              "source": "gearInTransit",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-gear-handle",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "offset": 0.6,
+              "scale": -0.6
+            },
+            {
+              "node": "Bronco-standby-compass-drum",
+              "source": "trueHeading",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Bronco-standby-compass-drum",
+              "source": "Bronco.standby-compass.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-stick-front",
+              "source": "pitchInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.15
+            },
+            {
+              "node": "Bronco-stick-front",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.14
+            },
+            {
+              "node": "Bronco-pedal-front-right",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": -0.04
+            },
+            {
+              "node": "Bronco-pedal-front-left",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": 0.04
+            },
+            {
+              "node": "Bronco-stick-rear",
+              "source": "pitchInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.15
+            },
+            {
+              "node": "Bronco-stick-rear",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.14
+            },
+            {
+              "node": "Bronco-pedal-rear-right",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": -0.04
+            },
+            {
+              "node": "Bronco-pedal-rear-left",
+              "source": "yawInput",
+              "property": "position",
+              "axis": "z",
+              "scale": 0.04
+            },
+            {
+              "node": "Bronco-power-lever-1",
+              "source": "power",
+              "property": "rotation",
+              "axis": "x",
+              "offset": -0.45,
+              "scale": 0.9
+            },
+            {
+              "node": "Bronco-power-lever-2",
+              "source": "power",
+              "property": "rotation",
+              "axis": "x",
+              "offset": -0.45,
+              "scale": 0.9
+            },
+            {
+              "node": "Bronco-flap-lever",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.6
+            },
+            {
+              "node": "Bronco-rear-pwr-1",
+              "source": "power",
+              "property": "rotation",
+              "axis": "x",
+              "offset": -0.45,
+              "scale": 0.9
+            },
+            {
+              "node": "Bronco-rear-pwr-2",
+              "source": "power",
+              "property": "rotation",
+              "axis": "x",
+              "offset": -0.45,
+              "scale": 0.9
+            },
+            {
+              "node": "Bronco-rear-ADI-bank",
+              "source": "roll",
+              "property": "rotation",
+              "axis": "z",
+              "scale": -1,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "Bronco-rear-ADI-pitch",
+              "source": "pitch",
+              "property": "position",
+              "axis": "y",
+              "scale": -0.0693,
+              "min": -0.0198,
+              "max": 0.0198,
+              "responseSeconds": 0.08
+            },
+            {
+              "node": "Bronco-rear-ADI-bank",
+              "source": "Bronco.rear-ADI-bank.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-rear-ADI-pitch",
+              "source": "Bronco.rear-ADI-pitch.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-rear-airspeed",
+              "source": "knots",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [[0, 0], [60, 0.9], [100, 2], [150, 3.2], [200, 4.2], [250, 5], [300, 5.6]],
+              "responseSeconds": 0.2,
+              "missing": "hold"
+            },
+            {
+              "node": "Bronco-rear-airspeed",
+              "source": "Bronco.rear-airspeed.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-rear-heading",
+              "source": "degreesTrue",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [[0, 0], [360, 6.283185307179586]],
+              "responseSeconds": 0,
+              "period": 6.283185307179586,
+              "missing": "hold"
+            },
+            {
+              "node": "Bronco-rear-heading",
+              "source": "Bronco.rear-heading.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-rear-VSI",
+              "source": "verticalFpm",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [[-4000, -2.6], [0, 0], [4000, 2.6]],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "Bronco-rear-VSI",
+              "source": "Bronco.rear-VSI.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-rear-altimeter-0",
+              "source": "Bronco.rear-altimeter-0.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-rear-altimeter-1",
+              "source": "Bronco.rear-altimeter-1.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-rear-altimeter-2",
+              "source": "Bronco.rear-altimeter-2.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-rear-altimeter-0",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.006283185307179587,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Bronco-rear-altimeter-1",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.0006283185307179586,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Bronco-rear-altimeter-2",
+              "source": "feet",
+              "property": "rotation",
+              "axis": "z",
+              "scale": 0.00006283185307179586,
+              "period": 6.283185307179586,
+              "responseSeconds": 0.15
+            },
+            {
+              "node": "Bronco-rear-rpm-1",
+              "source": "rpm1",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [[0, -2.4], [110, 2.4]],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "Bronco-rear-rpm-1",
+              "source": "Bronco.rear-rpm-1.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-rear-rpm-2",
+              "source": "rpm2",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [[0, -2.4], [110, 2.4]],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "Bronco-rear-rpm-2",
+              "source": "Bronco.rear-rpm-2.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-rear-fuel",
+              "source": "fuelPounds",
+              "property": "rotation",
+              "axis": "z",
+              "keys": [[0, -2.3], [1700, 2.3]],
+              "responseSeconds": 0,
+              "missing": "hold"
+            },
+            {
+              "node": "Bronco-rear-fuel",
+              "source": "Bronco.rear-fuel.available",
+              "property": "visible",
+              "scale": 1,
+              "missing": "hide"
+            },
+            {
+              "node": "Bronco-flap-right-inner",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.7
+            },
+            {
+              "node": "Bronco-flap-right-outer",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.7
+            },
+            {
+              "node": "Bronco-aileron--1",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.3
+            },
+            {
+              "node": "Bronco-flap-left-inner",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.7
+            },
+            {
+              "node": "Bronco-flap-left-outer",
+              "source": "flapPosition",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.7
+            },
+            {
+              "node": "Bronco-aileron-1",
+              "source": "rollInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -0.3
+            },
+            {
+              "node": "Bronco-rudder-right",
+              "source": "yawInput",
+              "property": "rotation",
+              "axis": "y",
+              "scale": 0.4
+            },
+            {
+              "node": "Bronco-rudder-left",
+              "source": "yawInput",
+              "property": "rotation",
+              "axis": "y",
+              "scale": 0.4
+            },
+            {
+              "node": "Bronco-elevator",
+              "source": "pitchInput",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 0.35
+            },
+            {
+              "node": "Bronco-gear-0",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "offset": -1.72,
+              "scale": 1.72
+            },
+            {
+              "node": "Bronco-gear-1",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "offset": 1.22,
+              "scale": -1.22
+            },
+            {
+              "node": "Bronco-gear-2",
+              "source": "gear",
+              "property": "rotation",
+              "axis": "x",
+              "offset": 1.22,
+              "scale": -1.22
+            }
+          ]
+        },
+        "livery": {
+          "selected": "usmc-vmo-4-gray",
+          "slots": {
+            "body-Bronco-shell-Bronco-gray": {
+              "materials": ["Bronco-gray"],
+              "node": "Bronco-shell-Bronco-gray"
+            },
+            "body-Bronco-flap-left-inner-skin-Bronco-gray": {
+              "materials": ["Bronco-gray"],
+              "node": "Bronco-flap-left-inner-skin-Bronco-gray"
+            },
+            "body-Bronco-flap-left-outer-skin-Bronco-gray": {
+              "materials": ["Bronco-gray"],
+              "node": "Bronco-flap-left-outer-skin-Bronco-gray"
+            },
+            "body-Bronco-flap-right-inner-skin-Bronco-gray": {
+              "materials": ["Bronco-gray"],
+              "node": "Bronco-flap-right-inner-skin-Bronco-gray"
+            },
+            "body-Bronco-flap-right-outer-skin-Bronco-gray": {
+              "materials": ["Bronco-gray"],
+              "node": "Bronco-flap-right-outer-skin-Bronco-gray"
+            },
+            "body-Bronco-aileron-1-skin-Bronco-gray": {
+              "materials": ["Bronco-gray"],
+              "node": "Bronco-aileron-1-skin-Bronco-gray"
+            },
+            "body-Bronco-aileron--1-skin-Bronco-gray": {
+              "materials": ["Bronco-gray"],
+              "node": "Bronco-aileron--1-skin-Bronco-gray"
+            },
+            "body-Bronco-cowl-0-Bronco-gray": {
+              "materials": ["Bronco-gray"],
+              "node": "Bronco-cowl-0-Bronco-gray"
+            },
+            "body-Bronco-cowl-1-Bronco-gray": {
+              "materials": ["Bronco-gray"],
+              "node": "Bronco-cowl-1-Bronco-gray"
+            },
+            "body-Bronco-fin-1-Bronco-gray": {
+              "materials": ["Bronco-gray"],
+              "node": "Bronco-fin-1-Bronco-gray"
+            },
+            "body-Bronco-fin--1-Bronco-gray": {
+              "materials": ["Bronco-gray"],
+              "node": "Bronco-fin--1-Bronco-gray"
+            },
+            "body-Bronco-rudder-left-skin-Bronco-gray": {
+              "materials": ["Bronco-gray"],
+              "node": "Bronco-rudder-left-skin-Bronco-gray"
+            },
+            "body-Bronco-rudder-right-skin-Bronco-gray": {
+              "materials": ["Bronco-gray"],
+              "node": "Bronco-rudder-right-skin-Bronco-gray"
+            },
+            "body-Bronco-elevator-skin-Bronco-gray": {
+              "materials": ["Bronco-gray"],
+              "node": "Bronco-elevator-skin-Bronco-gray"
+            },
+            "body-Bronco-gear-0-Bronco-gray": {
+              "materials": ["Bronco-gray"],
+              "node": "Bronco-gear-0-Bronco-gray"
+            },
+            "accent-Bronco-shell-Bronco-antiglare": {
+              "materials": ["Bronco-antiglare"],
+              "node": "Bronco-shell-Bronco-antiglare"
+            }
+          },
+          "variants": [
+            {
+              "id": "usmc-vmo-4-gray",
+              "label": "USMC VMO-4 gray",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint study of USMC VMO-4 gray. The linked photograph identifies the real aircraft used for the colors; a multi-color camouflage is reduced to its dominant color and model panel boundaries are adapted. Colors are visual approximations. National insignia, unit markings, serials, lettering and stencils are omitted; this is a photo-based adaptation, not a certified replica.",
+                "references": [
+                  {
+                    "title": "OV-10As VMO-4 1990.JPEG — Sgt. Joseph Garrison, USMC (public domain)",
+                    "url": "https://commons.wikimedia.org/wiki/File:OV-10As_VMO-4_1990.JPEG"
+                  }
+                ]
+              },
+              "paints": {
+                "body-Bronco-shell-Bronco-gray": {
+                  "color": "#9aa19c"
+                },
+                "body-Bronco-flap-left-inner-skin-Bronco-gray": {
+                  "color": "#9aa19c"
+                },
+                "body-Bronco-flap-left-outer-skin-Bronco-gray": {
+                  "color": "#9aa19c"
+                },
+                "body-Bronco-flap-right-inner-skin-Bronco-gray": {
+                  "color": "#9aa19c"
+                },
+                "body-Bronco-flap-right-outer-skin-Bronco-gray": {
+                  "color": "#9aa19c"
+                },
+                "body-Bronco-aileron-1-skin-Bronco-gray": {
+                  "color": "#9aa19c"
+                },
+                "body-Bronco-aileron--1-skin-Bronco-gray": {
+                  "color": "#9aa19c"
+                },
+                "body-Bronco-cowl-0-Bronco-gray": {
+                  "color": "#9aa19c"
+                },
+                "body-Bronco-cowl-1-Bronco-gray": {
+                  "color": "#9aa19c"
+                },
+                "body-Bronco-fin-1-Bronco-gray": {
+                  "color": "#9aa19c"
+                },
+                "body-Bronco-fin--1-Bronco-gray": {
+                  "color": "#9aa19c"
+                },
+                "body-Bronco-rudder-left-skin-Bronco-gray": {
+                  "color": "#9aa19c"
+                },
+                "body-Bronco-rudder-right-skin-Bronco-gray": {
+                  "color": "#9aa19c"
+                },
+                "body-Bronco-elevator-skin-Bronco-gray": {
+                  "color": "#9aa19c"
+                },
+                "body-Bronco-gear-0-Bronco-gray": {
+                  "color": "#9aa19c"
+                },
+                "accent-Bronco-shell-Bronco-antiglare": {
+                  "color": "#2a3032"
+                }
+              }
+            },
+            {
+              "id": "usaf-21st-tass-green",
+              "label": "USAF 21st TASS dark green",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint study of USAF 21st TASS dark green. The linked photograph identifies the real aircraft used for the colors; a multi-color camouflage is reduced to its dominant color and model panel boundaries are adapted. Colors are visual approximations. National insignia, unit markings, serials, lettering and stencils are omitted; this is a photo-based adaptation, not a certified replica.",
+                "references": [
+                  {
+                    "title": "OV-10A 21st TASS firing rockets 1989.JPEG — TSgt. Hans H. Deffner, USAF (public domain)",
+                    "url": "https://commons.wikimedia.org/wiki/File:OV-10A_21st_TASS_firing_rockets_1989.JPEG"
+                  }
+                ]
+              },
+              "paints": {
+                "body-Bronco-shell-Bronco-gray": {
+                  "color": "#3d4537"
+                },
+                "body-Bronco-flap-left-inner-skin-Bronco-gray": {
+                  "color": "#3d4537"
+                },
+                "body-Bronco-flap-left-outer-skin-Bronco-gray": {
+                  "color": "#3d4537"
+                },
+                "body-Bronco-flap-right-inner-skin-Bronco-gray": {
+                  "color": "#3d4537"
+                },
+                "body-Bronco-flap-right-outer-skin-Bronco-gray": {
+                  "color": "#3d4537"
+                },
+                "body-Bronco-aileron-1-skin-Bronco-gray": {
+                  "color": "#3d4537"
+                },
+                "body-Bronco-aileron--1-skin-Bronco-gray": {
+                  "color": "#3d4537"
+                },
+                "body-Bronco-cowl-0-Bronco-gray": {
+                  "color": "#3d4537"
+                },
+                "body-Bronco-cowl-1-Bronco-gray": {
+                  "color": "#3d4537"
+                },
+                "body-Bronco-fin-1-Bronco-gray": {
+                  "color": "#3d4537"
+                },
+                "body-Bronco-fin--1-Bronco-gray": {
+                  "color": "#3d4537"
+                },
+                "body-Bronco-rudder-left-skin-Bronco-gray": {
+                  "color": "#3d4537"
+                },
+                "body-Bronco-rudder-right-skin-Bronco-gray": {
+                  "color": "#3d4537"
+                },
+                "body-Bronco-elevator-skin-Bronco-gray": {
+                  "color": "#3d4537"
+                },
+                "body-Bronco-gear-0-Bronco-gray": {
+                  "color": "#3d4537"
+                },
+                "accent-Bronco-shell-Bronco-antiglare": {
+                  "color": "#25292a"
+                }
+              }
+            },
+            {
+              "id": "usaf-1985-two-tone-green",
+              "label": "USAF two-tone green",
+              "provenance": {
+                "kind": "inspired",
+                "note": "Paint study of USAF two-tone green. The linked photograph identifies the real aircraft used for the colors; a multi-color camouflage is reduced to its dominant color and model panel boundaries are adapted. Colors are visual approximations. National insignia, unit markings, serials, lettering and stencils are omitted; this is a photo-based adaptation, not a certified replica.",
+                "references": [
+                  {
+                    "title": "OV-10 Bronco firing White phosphorus.jpg — TSgt. Bill Thompson, USAF (public domain)",
+                    "url": "https://commons.wikimedia.org/wiki/File:OV-10_Bronco_firing_White_phosphorus.jpg"
+                  }
+                ]
+              },
+              "paints": {
+                "body-Bronco-shell-Bronco-gray": {
+                  "color": "#5b6649"
+                },
+                "body-Bronco-flap-left-inner-skin-Bronco-gray": {
+                  "color": "#5b6649"
+                },
+                "body-Bronco-flap-left-outer-skin-Bronco-gray": {
+                  "color": "#5b6649"
+                },
+                "body-Bronco-flap-right-inner-skin-Bronco-gray": {
+                  "color": "#5b6649"
+                },
+                "body-Bronco-flap-right-outer-skin-Bronco-gray": {
+                  "color": "#5b6649"
+                },
+                "body-Bronco-aileron-1-skin-Bronco-gray": {
+                  "color": "#5b6649"
+                },
+                "body-Bronco-aileron--1-skin-Bronco-gray": {
+                  "color": "#5b6649"
+                },
+                "body-Bronco-cowl-0-Bronco-gray": {
+                  "color": "#5b6649"
+                },
+                "body-Bronco-cowl-1-Bronco-gray": {
+                  "color": "#5b6649"
+                },
+                "body-Bronco-fin-1-Bronco-gray": {
+                  "color": "#5b6649"
+                },
+                "body-Bronco-fin--1-Bronco-gray": {
+                  "color": "#5b6649"
+                },
+                "body-Bronco-rudder-left-skin-Bronco-gray": {
+                  "color": "#5b6649"
+                },
+                "body-Bronco-rudder-right-skin-Bronco-gray": {
+                  "color": "#5b6649"
+                },
+                "body-Bronco-elevator-skin-Bronco-gray": {
+                  "color": "#5b6649"
+                },
+                "body-Bronco-gear-0-Bronco-gray": {
+                  "color": "#5b6649"
+                },
+                "accent-Bronco-shell-Bronco-antiglare": {
+                  "color": "#2c3029"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "assets": ["molen.entities.aircraft.ov_10"]
     }
   }
 }

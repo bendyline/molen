@@ -620,10 +620,18 @@ describe('worldgen human-feature tile orchestration', () => {
       generalized: false,
       replaced: false,
     },
+    // Generalized parts keep their own outlines: one under the model is still the landmark's.
     {
       source: 'generalized part off-centre',
       side: 12,
       offset: 10,
+      generalized: true,
+      replaced: true,
+    },
+    {
+      source: 'generalized neighbour beside the model',
+      side: 12,
+      offset: 30,
       generalized: true,
       replaced: false,
     },
@@ -715,7 +723,14 @@ describe('worldgen human-feature tile orchestration', () => {
       generalized: false,
       replaced: false,
     },
-    { source: 'generalized arm part', box: [95, 52, 125, 68], generalized: true, replaced: false },
+    { source: 'generalized arm part', box: [95, 52, 125, 68], generalized: true, replaced: true },
+    // Merged with its neighbours at low zoom: under a fifth of this block is under the arm.
+    {
+      source: 'generalized block merged past the arm',
+      box: [95, 52, 185, 88],
+      generalized: true,
+      replaced: false,
+    },
   ])('replaces the $source by model footprint: $replaced', async (fixture) => {
     // An L-shaped landmark anchored at world (50, 60): a 40 m block plus a 60 by 20 m arm east.
     const block = new THREE.Mesh(
@@ -810,6 +825,20 @@ describe('worldgen human-feature tile orchestration', () => {
       ],
       kept: [8],
     },
+    {
+      // The Columbia Center below zoom 15: parts with no outline, the anchor in its east lobe.
+      // Both 280 m shafts lie beside the anchor, and the block-wide podium fails the size rule.
+      source: 'the generalized shafts beside the part holding the anchor',
+      generalized: true,
+      buildings: [
+        { box: [46, 50, 66, 72], height: 225, part: true },
+        { box: [24, 44, 48, 78], height: 280, part: true },
+        { box: [27, 47, 46, 75], height: 285, part: true },
+        { box: [5, 15, 100, 105], height: 15, part: true },
+        { box: [75, 40, 95, 80], height: 30 },
+      ],
+      kept: [15, 30],
+    },
   ])('replaces $source', async (fixture) => {
     // A 40 m wide landmark anchored at world (50, 60) on a 200 m tile at the origin.
     const objects = new StructureModelLibrary(async () =>
@@ -868,6 +897,7 @@ describe('worldgen human-feature tile orchestration', () => {
             ...(building.part ? { class: 'building_part' } : {}),
           }),
         ),
+        ...('generalized' in fixture ? { buildingsGeneralized: true } : {}),
       },
       context(new AbortController().signal),
     );

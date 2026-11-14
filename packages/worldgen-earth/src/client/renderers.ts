@@ -762,15 +762,17 @@ export function createWorldgenSemanticRenderers(
    * there a footprint goes only when it is about the landmark's own size (`size`, its placed
    * world-space X/Z extent); a larger one is a merged block of other buildings and stays. A
    * ring footprint (a stadium bowl, a cloister) holds the anchor in its hole; it goes under the
-   * same size test, so a large courtyard block around a smaller landmark stays. In exact data a
-   * landmark's own off-centre parts (an observation level, its legs, a grandstand, a parked
-   * roof) contain no anchor, so a polygon at least half covered by the model's own footprint
-   * (`footprint`) goes too, as does one covered by a
-   * landmark a neighbouring tile placed (`nearby`). Whatever lies at least half inside a
-   * replaced polygon goes with it: a mapped building's parts (a shaft, a spire) stay
+   * same size test, so a large courtyard block around a smaller landmark stays. A landmark's
+   * own off-centre parts (an observation level, its legs, a grandstand, a parked roof, the
+   * shafts of a tower mapped as parts with no outline) contain no anchor, so a polygon at least
+   * half covered by the model's own footprint (`footprint`) goes too, at any zoom: it is at
+   * most twice the model's ground area, so never a merged block. In exact data so does one
+   * covered by a landmark a neighbouring tile placed (`nearby`). Whatever lies at least half
+   * inside a replaced polygon goes with it: a mapped building's parts (a shaft, a spire) stay
    * the landmark's even where the model, anchored off them, covers less than half.
-   * The extent fallback applies only when no geometry footprint is available; empty corners
-   * of a rotated or concave landmark's bounding box can contain unrelated buildings.
+   * The extent fallback applies only in exact data when no geometry footprint is available;
+   * empty corners of a rotated or concave landmark's bounding box can contain unrelated
+   * buildings.
    */
   function withoutReplacedFootprints(
     tile: TerrainSemanticTile,
@@ -813,8 +815,10 @@ export function createWorldgenSemanticRenderers(
     const replaces = (polygon: TerrainSemanticPolygon): boolean =>
       remote.some((footprint) => footprintCovers(footprint, polygon, context)) ||
       anchors.some(({ point, size, footprint }) => {
+        // Generalized parts keep their own outlines, and the anchor may fall in only one: the
+        // Columbia Center's two 280 m shafts stood through its model from the air.
+        if (footprint !== undefined && footprintCovers(footprint, polygon, context)) return true;
         if (!tile.buildingsGeneralized) {
-          if (footprint !== undefined && footprintCovers(footprint, polygon, context)) return true;
           const [minU, minV, maxU, maxV] = polygonBounds(polygon);
           const halfU = (size[0] / 2 + FOOTPRINT_SLACK / 4) / context.tileSize;
           const halfV = (size[1] / 2 + FOOTPRINT_SLACK / 4) / context.tileSize;

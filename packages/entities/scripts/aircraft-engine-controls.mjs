@@ -28,6 +28,7 @@ const manualPropeller = new Set([
   'dhc_6',
   'atr_72_600',
   'dash_8_q400',
+  'ov_10',
 ]);
 
 export function configureEngineControls(id, spec) {

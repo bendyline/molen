@@ -134,6 +134,9 @@ export function completeCockpitControls(model, spec, frame = {}) {
     'Eurofighter Typhoon': [0, eye[1] - 0.7, panelZ - 0.14],
     'Lockheed Martin F-22A Raptor': [0, 1.99, panelZ - 0.055],
     'De Havilland Canada DHC-2 Beaver': [0.4, eye[1] - 0.5, panelZ - 0.055],
+    // Flat on the aft end of the left console, behind the flap lever: the panel's lower centre
+    // carries the heading dial, and the console's forward end the power and condition levers.
+    'North American Rockwell OV-10A Bronco': [0.38, 1.64, 2.22, { columns: 1, tilt: Math.PI / 2 }],
   };
   // An optional fourth element fits the module to a tighter space: `columns` sets the grid width,
   // `skip` leaves those columns empty where something stands in front of them, and `tilt` lays

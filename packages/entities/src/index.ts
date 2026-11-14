@@ -89,6 +89,7 @@ export const MOLEN_AIRCRAFT_ENTITY_IDS = [
   'molen.entities.aircraft.airbus_a320neo',
   'molen.entities.aircraft.gulfstream_g650er',
   'molen.entities.aircraft.citation_cj4',
+  'molen.entities.aircraft.ov_10',
 ] as const;
 
 /** Airliners that also participate in ambient traffic; these are player-flyable. */
@@ -466,6 +467,7 @@ export const MOLEN_ENTITY_IDS = [
   'molen.entities.aircraft.airbus_a320neo',
   'molen.entities.aircraft.gulfstream_g650er',
   'molen.entities.aircraft.citation_cj4',
+  'molen.entities.aircraft.ov_10',
   'molen.entities.vehicle.compact',
   'molen.entities.vehicle.sedan',
   'molen.entities.vehicle.suv',
@@ -641,6 +643,7 @@ const MODEL_PATHS: Record<MolenEntityId, string> = {
   'molen.entities.aircraft.gulfstream_g650er':
     'assets/molen/entities/aircraft/gulfstream_g650er/model.glb',
   'molen.entities.aircraft.citation_cj4': 'assets/molen/entities/aircraft/citation_cj4/model.glb',
+  'molen.entities.aircraft.ov_10': 'assets/molen/entities/aircraft/ov_10/model.glb',
   'molen.entities.vehicle.compact': 'assets/molen/entities/vehicle/compact/model.glb',
   'molen.entities.vehicle.sedan': 'assets/molen/entities/vehicle/sedan/model.glb',
   'molen.entities.vehicle.suv': 'assets/molen/entities/vehicle/suv/model.glb',

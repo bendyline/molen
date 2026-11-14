@@ -1,4 +1,4 @@
-# Aircraft expansion: fifty controllable aircraft prototypes
+# Aircraft expansion: fifty-one controllable aircraft prototypes
 
 **Visual review status, 2026-10-22: rejected; rework required.** The owner identified poor
 likeness. This batch does not meet the requested realistic exterior and cockpit standard.
@@ -17,7 +17,9 @@ support only the individually reviewed aircraft and do not establish acceptance 
 absolute dimensions, and the exterior schematic has some inconsistent drawn proportions;
 those limitations remain explicit rather than being concealed by image stretching.
 
-Original polygonal exteriors and integrated cockpits, authored 2026-10-22. This batch adds 10 helicopters, 10 general aviation aircraft, 10 fighters, 5 cargo transports, the MV-22B Osprey, AV-8B Harrier and 13 other civil/utility aircraft. Together with the P-51D, OH-6 and Bendy Small Airliner, the catalog has 53 aircraft. No missiles, bombs, external weapons, weapon pylons or gun pods are modeled.
+Original polygonal exteriors and integrated cockpits, authored 2026-10-22. This batch adds 10 helicopters, 10 general aviation aircraft, 10 fighters, 5 cargo transports, the MV-22B Osprey, AV-8B Harrier and 13 other civil/utility aircraft. Together with the P-51D, OH-6 and Bendy Small Airliner, the catalog had 53 aircraft. No missiles, bombs, external weapons, weapon pylons or gun pods are modeled.
+
+Added 2026-11-13: the North American Rockwell OV-10A Bronco ([`ov-10`](aircraft/ov-10/README.md)), bringing the catalog to 54 aircraft. Its builder is `packages/entities/scripts/aircraft/ov-10.mjs`. The exterior follows published dimensions (12.19 m span, 12.67 m length, 4.62 m height, 27.03 m² wing, 2.59 m three-blade propellers) and the public-domain photographs in its table row. The sponsons are faired, with no guns, racks or stores. It is a prototype awaiting an individual review; no reference overlay or panel photograph comparison has been made.
 
 ## Brief and modeling scope
 
@@ -100,6 +102,7 @@ Original geometry is MIT licensed; that does not relicense the photographs.
 | [Airbus A320neo](aircraft/airbus-a320neo/README.md) | airliner | Six screens, side-sticks, FCU glareshield and ECAM/dual MCDU pedestal | [Louis from Paris, France](https://commons.wikimedia.org/wiki/File:Cockpit_of_Airbus_A320-211_Air_France_(F-GFKH).jpg) · [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0) | A320-211 family flight deck; neo-specific details are simplified. |
 | [Gulfstream G650ER](aircraft/gulfstream-g650er/README.md) | business | Four large landscape displays, dual yokes and center pedestal controllers | [Waerfelu](https://commons.wikimedia.org/wiki/File:Cockpit_G650_N520GA.jpg) · [CC BY 3.0](https://creativecommons.org/licenses/by/3.0) | G650 family file-page credit/license verified; thumbnail retrieval was rate-limited. Not used as visually inspected panel evidence. |
 | [Cessna Citation CJ4](aircraft/citation-cj4/README.md) | business | Four Pro Line displays, dual yokes, central FMS and twin thrust levers | [JetRequest.com](https://commons.wikimedia.org/wiki/File:Cessna_Citation_CJ4_cockpit.jpg) · [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) | Named type or closely related cockpit installation; original simplified geometry, not an instrument-for-instrument reproduction. |
+| [North American Rockwell OV-10A Bronco](aircraft/ov-10/README.md) | observation | Tandem ejection seats under a greenhouse canopy, analog front panel, centre sticks, left-console power and condition levers, raised rear seat with two instrument pods | [Sgt. Joseph Garrison, USMC](https://commons.wikimedia.org/wiki/File:OV-10As_VMO-4_1990.JPEG) · [Public domain](https://commons.wikimedia.org/wiki/File:OV-10As_VMO-4_1990.JPEG); [TSgt. Hans H. Deffner, USAF](https://commons.wikimedia.org/wiki/File:OV-10A_21st_TASS_firing_rockets_1989.JPEG) · [Public domain](https://commons.wikimedia.org/wiki/File:OV-10A_21st_TASS_firing_rockets_1989.JPEG); [National Archives RG 330](https://commons.wikimedia.org/wiki/File:OV-10_of_the_27th_TASS.png) · [Public domain](https://commons.wikimedia.org/wiki/File:OV-10_of_the_27th_TASS.png) | Exterior from published dimensions and these exterior photographs. No panel photograph was compared, so the analog panel is an authored approximation. The propellers are handed (counter-rotating); which way each turns is not verified. |
 
 Reference metadata, file-page revisions, dates and license URLs are in [aircraft-references.json](aircraft-references.json). Exact-variant gaps are preserved; family photographs do not establish an exact model-year instrument layout.
 

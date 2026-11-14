@@ -1,5 +1,6 @@
 import type { VehicleSpec } from '@bendyline/molen-schema';
 import * as THREE from 'three';
+import type { PilotMotionPose } from './pilot-motion';
 export interface VehicleCameraOptions {
   view: 'cockpit' | 'chase';
   lookYaw?: number;
@@ -11,10 +12,16 @@ export interface VehicleCameraOptions {
   ) => number | undefined;
   /**
    * Shake the seated view of an aircraft: `amount` 0–1 (its `aircraftState.buffet`) at `time`
-   * seconds on any steadily advancing clock. The eye moves a centimeter or two and the view a
+   * seconds on any steadily advancing clock. The eye moves about a centimeter and the view a
    * few tenths of a degree, about ten times a second. Chase views stay steady.
    */
   shake?: { amount: number; time: number };
+  /**
+   * The pilot's body under load, from a `PilotMotion` (`@bendyline/molen-client/aircraft`): the
+   * eye moves off the authored eye point and the head turns a little with it. Aircraft cockpit
+   * views only; chase views stay steady.
+   */
+  motion?: PilotMotionPose;
 }
 export interface VehicleCameraPose {
   position: [number, number, number];

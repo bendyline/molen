@@ -896,11 +896,13 @@ neither capture set substitutes altered heights to make a bridge fit. These repo
 evidence and are excluded from the Earth runtime pack.
 
 If `replaceFootprint` is set, mapped buildings are suppressed only once the replacement model
-has loaded; failed models keep the procedural building. In exact data a polygon goes when the
-anchor falls inside it, when it lies wholly inside the loaded model's horizontal extent around the
-anchor, or when at least half of it stands on the model's own ground footprint (its triangles
-stamped on a 64-cell grid). The last two catch a landmark's off-centre mapped parts: a tower's
-legs and observation level, a grandstand, a ballpark's parked roof. Whatever lies at least half
+has loaded; failed models keep the procedural building. At any zoom a polygon goes when at least
+half of it stands on the model's own ground footprint (its triangles stamped on a 64-cell grid).
+In exact data it also goes when the anchor falls inside it, or, for a model with no geometry
+footprint, when it lies wholly inside the loaded model's horizontal extent around the anchor.
+The footprint and extent rules catch a landmark's off-centre mapped parts: a tower's
+legs and observation level, a grandstand, a ballpark's parked roof, and the shafts of a tower
+mapped as parts with no outline, where the anchor falls in only one. Whatever lies at least half
 inside a replaced polygon goes with it: map sources draw a tower as an outline plus separate
 parts (a shaft, a spire), and those parts go even where an off-centre model covers less than
 half of them. Buildings in a replaced ring's courtyard stay. The footprint also reaches
@@ -908,9 +910,10 @@ neighbouring tiles, so a stadium anchored near a tile edge clears its mapped sta
 Those tiles regenerate their buildings when the landmark loads, and again when its tile is evicted.
 A ring polygon whose hole holds the anchor (a stadium bowl, a cloister) goes under the size rule
 below. Generalized sources (Protomaps below zoom 15, and tiles overzoomed from them) merge
-neighboring footprints, so there the polygon must contain or ring the anchor, and is suppressed
-only when neither side exceeds the loaded model's horizontal extent by more than 1.6 times plus
-12 meters; a larger polygon is a merged block of other buildings and keeps its procedural shell.
+neighboring footprints, so there a polygon the model covers less than half of must contain or
+ring the anchor, and is suppressed only when neither side exceeds the loaded model's horizontal
+extent by more than 1.6 times plus 12 meters; a larger polygon is a merged block of other
+buildings and keeps its procedural shell. Neighbouring tiles' footprints apply in exact data only.
 An Earth pack without a placement document still loads.
 
 For unsurveyed orientation, `orientation: 'mapped'` requires an explicit

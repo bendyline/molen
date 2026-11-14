@@ -247,6 +247,11 @@
       "url": "https://www.faa.gov/sites/faa.gov/files/helicopter_flying_handbook.pdf",
       "rights": "US government",
       "supports": "Qualitative rotor power, vortex-ring and retreating-blade behavior, including worsening high-density-altitude and low-RPM margin; no aircraft-specific coefficient fit."
+    },
+    "ov10": {
+      "url": "https://fortworthaviationmuseum.com/ov-10a-bronco-air-force",
+      "rights": "Museum collection; facts only",
+      "supports": "OV-10A: 281 mph maximum speed, 223 mph cruise, two 715 shp T76 turboprops, 40 ft span, 41 ft 7 in length. CAL FIRE's OV-10 fact sheet gives the same engine rating. Sea-level test altitude, unarmed authored mass and the T76 lapse are estimates."
     }
   },
   "aircraft": [
@@ -1213,6 +1218,24 @@
       "shaftPowerW": 2284000,
       "retreatingBladeSpeed": 95.9180838,
       "rotorDiscs": 1
+    },
+    {
+      "id": "molen.entities.aircraft.ov_10",
+      "slug": "ov-10",
+      "propulsion": "propeller",
+      "reference": {
+        "kind": "maximum",
+        "ktas": 244,
+        "altitudeM": 0,
+        "throttle": 1,
+        "massKg": 4500,
+        "tolerance": 0.12,
+        "evidence": "published-anchor-with-estimated-test-condition",
+        "source": "ov10"
+      },
+      "shaftPowerW": 533000,
+      "ratedDensityRatio": 0.85,
+      "wingAreaM2": 27.03
     }
   ]
 }

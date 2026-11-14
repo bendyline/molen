@@ -14,6 +14,9 @@ import {
   aircraftObstacleContacts,
   applyAircraftControl,
   createAircraftVisual,
+  PilotMotion,
+  type PilotMotionOverrides,
+  pilotMotionSample,
 } from '@bendyline/molen-client/aircraft';
 import { WalkCollision } from '@bendyline/molen-client/navigation';
 import {
@@ -85,6 +88,11 @@ export interface EarthAircraftOptions {
    * once it resolves: drawn first, an aircraft built its few dozen shaders in that frame.
    */
   prepare?: (object: THREE.Object3D) => Promise<void>;
+  /**
+   * The pilot's body under load in the cockpit view (see `PilotMotion`): on with its defaults
+   * when omitted, `false` turns it off, an object changes its tuning.
+   */
+  pilotMotion?: boolean | PilotMotionOverrides;
 }
 
 /** Where and how a new aircraft appears. */
@@ -208,6 +216,14 @@ export class EarthAircraft {
   private controls: AircraftInputData = { ...IDLE_AIRCRAFT_INPUT };
   private readonly pointerAxes = new AircraftPointerAxes();
   private cockpitBrake = false;
+  /**
+   * The pilot's body under load: the cockpit eye sinks in a pull, leans under braking and thrust,
+   * and the head lags a quick roll. `pilotMotion.configure(false)` turns it off; its `tuning` is
+   * live.
+   */
+  readonly pilotMotion: PilotMotion = new PilotMotion();
+  /** The aircraft `pilotMotion` last followed: a change of seat starts it afresh. */
+  private pilotSeat: string | undefined;
 
   /** Active pilot station for the shared mesh picker and accessible control panel. */
   cockpitSession(): AircraftCockpitSession | undefined {
@@ -270,6 +286,7 @@ export class EarthAircraft {
     this.types = options.types;
     this.vehicleEnvironment = options.vehicleEnvironment;
     this.prepare = options.prepare;
+    if (options.pilotMotion !== undefined) this.pilotMotion.configure(options.pilotMotion);
     this.object.name = 'earth:aircraft';
     this.root.add(this.object);
     installAircraft(this.world, {
@@ -693,15 +710,28 @@ export class EarthAircraft {
     const t = id !== undefined ? this.world.get(id, Transform) : undefined;
     const aircraft = id !== undefined ? this.world.get(id, Aircraft) : undefined;
     if (!t || !aircraft) return undefined;
+    const state = id !== undefined ? this.world.get(id, AircraftState) : undefined;
+    if (id !== this.pilotSeat) {
+      this.pilotSeat = id;
+      this.pilotMotion.reset();
+    }
     return aircraftCameraPose(t, aircraft.spec, {
       view: this.view,
       lookYaw: this.lookYaw,
       lookPitch: this.lookPitch,
       // The airframe shakes the pilot's seat before and in a stall.
       shake: {
-        amount: (id !== undefined ? this.world.get(id, AircraftState)?.buffet : 0) ?? 0,
+        amount: state?.buffet ?? 0,
         time: performance.now() / 1000,
       },
+      // Followed in every view, so the body is already settled when the cockpit view returns.
+      ...(state
+        ? {
+            motion: this.pilotMotion.update(
+              pilotMotionSample(this.world.tick * this.world.dt, t, state),
+            ),
+          }
+        : {}),
       obstructionDistance: (from, to) => {
         const a = new THREE.Vector3().fromArray(from).sub(this.collision.origin);
         const b = new THREE.Vector3().fromArray(to).sub(this.collision.origin);

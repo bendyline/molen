@@ -1,29 +1,72 @@
-import { AdaptiveQualityController } from '@bendyline/molen-client';
-import { EARTH_STICKY_QUALITY } from '@bendyline/molen-earth/client';
-
-/** The highest tier Auto reaches by itself. `?tier=5` still pins Ultra for measurement. */
-export const EXPLORER_AUTO_CEILING = 4;
+import {
+  type AdaptiveQualityChange,
+  AdaptiveQualityController,
+  type AdaptiveQualitySample,
+} from '@bendyline/molen-client';
 
 /**
- * Start at Balanced, then probe up to High using sustained frame/CPU/GPU headroom.
- * High rebuilds buildings across the view, so use the slow recovery timings from the start.
- * Keep this controller for the session: replacing it after calibration would discard failed
- * probe backoff and allow the same expensive upgrade again. Manual selections reset it.
- *
- * Auto stops at High. Ultra's frames fit a fast desktop at rest (15 of 16.7 ms), so the controller
- * climbed into it, but its view alone holds most of the terrain cache: on a 32-thread workstation
- * with a 2 GiB cache, a circling flight rebuilt 63% of its tiles after eviction, a 90-degree look
- * took 20 s to fill in, and the page froze for over a second. Frame times show none of that, so
- * the controller is also told when streaming is strained (see `streamStrain`), and a level needs
- * frame work under 0.6 of the target before stepping up rather than 0.9.
+ * The frame rate Auto still accepts at the level it guessed. Slower than this for
+ * `EXPLORER_FLOOR_SECONDS` in a row and it gives the level up.
  */
-export function createExplorerQualityController(initialLevel = 3): AdaptiveQualityController {
-  return new AdaptiveQualityController({
-    initialLevel,
-    maxLevel: EXPLORER_AUTO_CEILING,
-    upgradeWorkFraction: 0.6,
-    ...EARTH_STICKY_QUALITY,
-  });
+export const EXPLORER_FLOOR_FPS = 30;
+export const EXPLORER_FLOOR_SECONDS = 10;
+
+/**
+ * The explorer's Auto: one guess at a level from what the device reports, kept for the session.
+ * It no longer follows frame times up and down. A level change swaps resolution, shadows, terrain
+ * error and tile budget across the whole view at once, and a flight crossed the thresholds both
+ * ways: a P-51 weaving over Seattle went Balanced, Medium, Balanced, High in four minutes, each
+ * step a visible drop or rebuild, and a slow takeoff roll left a fast laptop at the lowest levels
+ * for the rest of the flight. What a frame costs depends on where the camera is and what it is
+ * doing (an airport, a city centre, a piloted aircraft) more than on the level, so the controller
+ * chased the place, not the device.
+ *
+ * Three things still lower the level, each one step and for good, since none of them passes: the
+ * view outgrowing the device's memory budget, streaming the level cannot hold (see
+ * `createStreamStrainMeter`), and frames under `EXPLORER_FLOOR_FPS` for `EXPLORER_FLOOR_SECONDS`
+ * running, which is a device the guess was wrong about rather than a busy moment. Nothing raises
+ * it. `restart` makes the guess again (choosing Auto in the quality menu does); a manual preset is
+ * the way to a higher level.
+ */
+export class ExplorerQualityController extends AdaptiveQualityController {
+  private readonly guess: number;
+
+  constructor(guess: number) {
+    super({
+      initialLevel: guess,
+      maxLevel: guess,
+      // The floor, not a target: overload is measured against it.
+      targetFrameMs: 1000 / EXPLORER_FLOOR_FPS,
+      decreaseDelayMs: EXPLORER_FLOOR_SECONDS * 1000,
+      // A step's replacements load before the lower level is judged.
+      cooldownMs: 20_000,
+      // A long frame is a shader build or a collection, whatever the level: not a reason to lower.
+      pauseRepeatMs: 0,
+    });
+    this.guess = guess;
+  }
+
+  override sample(
+    frameMs: number,
+    sample: AdaptiveQualitySample = {},
+  ): AdaptiveQualityChange | undefined {
+    const change = super.sample(frameMs, sample);
+    // A level given up is not tried again: the ceiling comes down with it.
+    if (change !== undefined && change.level < change.previousLevel)
+      this.setBounds(0, change.level);
+    return change;
+  }
+
+  /** Make the guess afresh: back to the starting level, with whatever lowered it forgotten. */
+  restart(): void {
+    this.setBounds(0, this.guess);
+    this.setLevel(this.guess);
+  }
+}
+
+/** Auto for a device whose starting guess is `guess` (`earthInitialQualityLevel()`). */
+export function createExplorerQualityController(guess = 3): ExplorerQualityController {
+  return new ExplorerQualityController(guess);
 }
 
 /** Cumulative stream counters and cache pressure, as the explorer samples them. */

@@ -1,9 +1,10 @@
 # Adaptive rendering performance
 
-The world explorer defaults to **Auto (device)** quality. It measures frame cadence, CPU frame
-work, and asynchronous GPU time when WebGL timer queries or WebGPU timestamps are available.
-Six rendering tiers target 60 FPS without changing simulation state. Manual Economy, Balanced,
-and High remain available and can be selected without reloading or moving the camera.
+The world explorer defaults to **Auto (device)** quality: one of six rendering tiers, guessed once
+from what the device reports and then kept, without changing simulation state. It measures frame
+cadence, CPU frame work, and asynchronous GPU time when WebGL timer queries or WebGPU timestamps
+are available, and gives a tier up only when the device plainly cannot run it. Manual Economy,
+Balanced, and High remain available and can be selected without reloading or moving the camera.
 
 ## Feedback and budgets
 
@@ -22,7 +23,7 @@ frame. A host reports it as `strained` in each sample (the explorer does when ha
 tiles built over ten seconds had been evicted and rebuilt, or when the view fills most of a full
 terrain cache). Strain blocks upgrades at once and, sustained for `strainDelayMs` (10 s), lowers
 detail with the reason `'streaming'`. `upgradeWorkFraction` (default 0.9) is the share of the
-target that measured frame work must stay under before a step up; the explorer uses 0.6.
+target that measured frame work must stay under before a step up.
 While content streams, slow frames lower detail only when the measured CPU/GPU frame work is itself
 heavy: streaming work runs outside the frame, and a lower tier would restart it. After a memory
 step, the controller lets that step's lower-detail replacements load (up to the recovery delay)
@@ -32,20 +33,25 @@ first frames carry one-time work (ground refining under the camera, collision tr
 each refinement, models and materials arriving), and measured as overload it stepped a fast
 desktop to the lowest tier before the visitor had moved.
 
-The explorer starts at Balanced and can climb to High (Ultra's view alone holds most of the
-terrain cache, so it is reached only with `?tier=5`), using measured performance
-rather than the GPU's name. It uses `EARTH_STICKY_QUALITY` timings from the start: down after
-2.5 s of sustained overload, up one tier after 20 s of headroom, and frame-time changes at least
-6 s apart. Measurements use one-second windows, so these are approximate delays. A failed upward
-probe doubles the recovery delay, up to 120 s; that history stays with the controller throughout
-the session. Selecting a manual preset resets it. Hidden time and startup loading do not earn an
-upgrade. Manual presets remain fixed.
+The explorer's Auto does not follow frame times up and down. It starts at
+`earthInitialQualityLevel()` (Low on touch devices and at 2 GiB or less, Medium at 4 GiB, otherwise
+Balanced) and keeps that tier for the session. What a frame costs depends on where the camera is
+and what it is doing more than on the tier: a piloted aircraft weaving over a city crossed the
+controller's thresholds both ways, Balanced to Medium to Balanced to High in four minutes, each
+step a change of resolution, shadows and terrain detail across the whole view, and a slow takeoff
+roll left a fast laptop at the lowest tiers for the rest of the flight.
 
-High switches buildings to a more detailed preset, so promotions need sustained headroom and the
-explorer applies the resolution, terrain, building, surface and shadow changes over separate
-frames. Brief takeoff/streaming stalls do not immediately undo an upgrade. The embeddable Earth
-view retains its separate default ceiling of Balanced (`maxQualityLevel: 3`) and its initial
-12 s calibration policy; hosts can explicitly raise that ceiling.
+Three things still lower the tier, one step at a time and for good: displayed content over the
+memory budget, streaming strain, and frames under 30 a second for ten seconds running, which is a
+device the guess was wrong about rather than a busy moment. Slow frames while content loads count
+only when frame work itself is heavy, and long stalls never do. Nothing raises the tier: High is a
+manual preset (Ultra, whose view alone holds most of the terrain cache, is reached only with
+`?tier=5`). Choosing Auto again in the quality menu makes the guess afresh. Manual presets remain
+fixed.
+
+The explorer applies a tier's resolution, terrain, building, surface and shadow changes over
+separate frames. The embeddable Earth view keeps its own policy: a default ceiling of Balanced
+(`maxQualityLevel: 3`), which hosts can raise, and an initial 12 s calibration.
 
 A level change rebuilds detail across the view, and that burst of work can outlast the controller's
 default cooldown, read as overload, and step down again until the view reaches the lowest level.
@@ -158,7 +164,7 @@ Call `dispose()` when the renderer is destroyed. Frame-time adaptation works wit
 The separate performance HUD shows Auto's active tier/change reason, frame average/max/p90,
 CPU/GPU timing, actual draw/triangle counts, drawing-buffer dimensions and resident buffer budget.
 These measurements are distinct from cumulative generation counters. Use `?quality=auto` for
-adaptation; explicit `quality=economy|balanced|high` fixes a preset. `?worker=0` and
+Auto; explicit `quality=economy|balanced|high` fixes a preset. `?worker=0` and
 `?surfaceWorker=0` are diagnostic fallbacks. Fixed-grid `?level=N` uses manual quality.
 
 The approach follows screen-space refinement and memory budgeting described in

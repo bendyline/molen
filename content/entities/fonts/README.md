@@ -1,6 +1,6 @@
 # Cockpit lettering
 
-All 53 aircraft use baked font textures for cockpit legends, dial numerals and static display
+All 54 aircraft use baked font textures for cockpit legends, dial numerals and static display
 labels. The shared analog gauges, glass displays, G1000 panels and physical control labels
 inherit the aircraft's [font profile](cockpit-profiles.json). A new label in those helpers gets
 font rendering automatically; individual aircraft do not need their own atlas implementation.

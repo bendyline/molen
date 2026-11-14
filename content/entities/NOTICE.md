@@ -18,8 +18,8 @@ and the contact sheets in `content/entities/` are Molen's renders of these model
 
 ## Real aircraft designations
 
-Fifty-two models depict real aircraft types, including the original P-51D Mustang and OH-6.
-The fifty additions and their reference credits are listed in
+Fifty-three models depict real aircraft types, including the original P-51D Mustang and OH-6.
+The fifty-one additions and their reference credits are listed in
 [source/AIRCRAFT-EXPANSION.md](source/AIRCRAFT-EXPANSION.md) and
 `source/aircraft-references.json`. These are original polygonal interpretations; dimensions,
 cockpit installations and flight tuning are approximate, not manufacturer CAD or flight-test

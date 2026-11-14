@@ -8,6 +8,8 @@ import {
   aircraftObstacleContacts,
   applyAircraftControl,
   createAircraftVisual,
+  PilotMotion,
+  pilotMotionSample,
 } from '@bendyline/molen-client/aircraft';
 import { type NavigationInput, WalkCollision } from '@bendyline/molen-client/navigation';
 import {
@@ -145,6 +147,13 @@ export class WorldAircraft {
   private readonly pointerAxes = new AircraftPointerAxes();
   private readonly flyby = new FlybyCamera();
   private cockpitBrake = false;
+  /**
+   * The pilot's body under load: the cockpit eye sinks in a pull, leans under braking and thrust,
+   * and the head lags a quick roll. `configure(false)` turns it off; its `tuning` is live.
+   */
+  readonly pilotMotion: PilotMotion = new PilotMotion();
+  /** The aircraft `pilotMotion` last followed: a change of seat starts it afresh. */
+  private pilotSeat: AircraftChoice | undefined;
   /** The aircraft last ejected from, flying on without a pilot until it comes to rest. */
   private abandoned: AircraftChoice | undefined;
   instrumentSource(): AircraftInstrumentSource | undefined {
@@ -750,12 +759,18 @@ export class WorldAircraft {
     const t = this.world.get(`aircraft-${kind}`, Transform);
     if (!t) return;
     const spec = this.aircraftData(this.typeId(kind)).spec;
+    const state = this.world.get(`aircraft-${kind}`, AircraftState);
+    if (kind !== this.pilotSeat) {
+      this.pilotSeat = kind;
+      this.pilotMotion.reset();
+    }
+    // Followed in every view, so the body is already settled when the cockpit view returns.
+    const motion = state
+      ? this.pilotMotion.update(pilotMotionSample(this.world.tick * this.world.dt, t, state))
+      : undefined;
     if (view === 'flyby')
-      return this.flyby.pose(
-        t,
-        this.world.get(`aircraft-${kind}`, AircraftState)?.velocity ?? [0, 0, 0],
-        spec,
-        (x, z) => this.groundHeight(x, z),
+      return this.flyby.pose(t, state?.velocity ?? [0, 0, 0], spec, (x, z) =>
+        this.groundHeight(x, z),
       );
     return aircraftCameraPose(t, spec, {
       view,
@@ -763,9 +778,10 @@ export class WorldAircraft {
       lookPitch,
       // The airframe shakes the pilot's seat before and in a stall.
       shake: {
-        amount: this.world.get(`aircraft-${kind}`, AircraftState)?.buffet ?? 0,
+        amount: state?.buffet ?? 0,
         time: performance.now() / 1000,
       },
+      ...(motion ? { motion } : {}),
       obstructionDistance: (from, to) => {
         const a = new THREE.Vector3().fromArray(from).sub(this.collision.origin);
         const b = new THREE.Vector3().fromArray(to).sub(this.collision.origin);

@@ -49,6 +49,7 @@ import {
   EarthWildlife,
   type EarthWorldgen,
   earthAdmission,
+  earthInitialQualityLevel,
   earthMemoryBudget,
   earthNightFactor,
   earthPerformanceTier,
@@ -835,11 +836,14 @@ async function main(): Promise<void> {
   let quality = selectedQuality();
   let automaticQuality =
     !params.has('level') && (!params.has('quality') || params.get('quality') === 'auto');
-  let performanceLevel = automaticQuality ? 3 : earthQualityLevel(quality);
+  // Auto's level is a guess from what the device reports, made once and kept (see
+  // ExplorerQualityController).
+  const guessedLevel = earthInitialQualityLevel();
+  let performanceLevel = automaticQuality ? guessedLevel : earthQualityLevel(quality);
   // `?tier=N` holds one adaptive tier, for measurements that compare like with like.
   const pinnedTier = params.has('tier') ? Number(params.get('tier')) : undefined;
   if (pinnedTier !== undefined) performanceLevel = pinnedTier;
-  const qualityController = createExplorerQualityController(performanceLevel);
+  const qualityController = createExplorerQualityController(guessedLevel);
   if (pinnedTier !== undefined) qualityController.setBounds(pinnedTier, pinnedTier);
   // ?memory=<MiB> sets the terrain and layer memory budget, past what the browser reports.
   const memoryBudget =
@@ -1610,11 +1614,14 @@ async function main(): Promise<void> {
       return;
     }
     automaticQuality = qualitySelect.value === 'auto';
-    if (!automaticQuality) quality = qualitySelect.value as TerrainQualityPreset;
-    if (!automaticQuality) performanceLevel = earthQualityLevel(quality);
-    qualityController.setLevel(performanceLevel);
-    // Auto has a ceiling of its own: coming back from manual High, run the level it holds.
-    if (automaticQuality) performanceLevel = qualityController.getStats().level;
+    if (!automaticQuality) {
+      quality = qualitySelect.value as TerrainQualityPreset;
+      performanceLevel = earthQualityLevel(quality);
+    } else {
+      // Choosing Auto makes its guess afresh, whatever lowered it earlier in the session.
+      if (pinnedTier === undefined) qualityController.restart();
+      performanceLevel = qualityController.getStats().level;
+    }
     applyPerformanceLevel();
     history.replaceState(null, '', next);
   });
@@ -2065,6 +2072,25 @@ async function main(): Promise<void> {
   }
   for (const button of document.querySelectorAll<HTMLButtonElement>('[data-aircraft]')) {
     button.addEventListener('click', () => visitAircraft(button.dataset.aircraft as AircraftKind));
+  }
+  // The pilot's body under g. `pilotMotion=0` starts with it off; any other number scales it
+  // (`pilotMotion=3` exaggerates it for a look at what moves). The checkbox switches it live, and
+  // `molenPilotMotion` in the console is the model itself: its `tuning` takes effect at once, and
+  // `load` and `pose` are what the pilot feels and where their eyes are.
+  const pilotMotionParam = params.get('pilotMotion');
+  if (pilotMotionParam !== null) {
+    const intensity = Number(pilotMotionParam);
+    flight.pilotMotion.configure(
+      Number.isFinite(intensity) && intensity > 0 ? { enabled: true, intensity } : false,
+    );
+  }
+  (globalThis as { molenPilotMotion?: unknown }).molenPilotMotion = flight.pilotMotion;
+  const pilotMotionToggle = document.querySelector<HTMLInputElement>('#pilot-motion');
+  if (pilotMotionToggle) {
+    pilotMotionToggle.checked = flight.pilotMotion.tuning.enabled;
+    pilotMotionToggle.addEventListener('change', () => {
+      flight.pilotMotion.configure(pilotMotionToggle.checked);
+    });
   }
   for (const button of document.querySelectorAll<HTMLButtonElement>('[data-transit]')) {
     button.addEventListener('click', () => {
@@ -3162,7 +3188,7 @@ async function main(): Promise<void> {
       performanceStatus.textContent = [
         `${viewer.renderer.backend === 'webgpu' ? 'WebGPU' : 'WebGL2'}${viewer.renderer.fallbackReason ? ` · fallback: ${viewer.renderer.fallbackReason}` : ''}`,
         automaticQuality
-          ? `Auto · ${earthPerformanceTier(performanceLevel).name} · target 60 FPS · ${control.reason === 'manual' ? 'measuring' : (control.reason ?? 'measuring')}`
+          ? `Auto · ${earthPerformanceTier(performanceLevel).name} · ${control.reason === undefined || control.reason === 'manual' ? 'device guess, held' : `lowered for ${control.reason}, held`}`
           : `Manual · ${quality}`,
         `frame ${(frameTotal / frameCount).toFixed(1)}ms avg / ${frameMax.toFixed(0)}ms max · p90 ${control.p90FrameMs?.toFixed(1) ?? '–'}ms`,
         `CPU ${previousCpuMs.toFixed(1)}ms · GPU ${lastGpuMs?.toFixed(1) ?? 'unavailable'}ms · resolution ${canvas.width}×${canvas.height}`,

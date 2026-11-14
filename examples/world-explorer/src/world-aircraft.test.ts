@@ -304,7 +304,7 @@ describe('world aircraft', () => {
       loads.push(id);
       return new THREE.Group();
     });
-    expect(flight.choices).toHaveLength(53);
+    expect(flight.choices).toHaveLength(54);
     expect(loads).toHaveLength(3);
     await flight.request('f_16b');
     await flight.request('f_16b');
@@ -544,5 +544,67 @@ describe('world aircraft', () => {
     expect(empty.world.query({ name: 'aircraft' }).count()).toBe(0);
     delayed.dispose();
     empty.dispose();
+  });
+  it('sinks the cockpit eye into the seat in a pull, and holds it still with pilot motion off', async () => {
+    const { vehicles, flight } = await setup();
+    const id = 'aircraft-p51d';
+    flight.enter(flight.visitPosition('p51d'));
+    flight.key('KeyI');
+    const eye = ENTITY_TYPES.component<{ spec: { pilotEye: [number, number, number] } }>(
+      'molen.entities.aircraft.p51d',
+      'aircraft',
+    ).spec.pilotEye;
+    const start = vehicles.world.get(id, Transform)?.pos;
+    if (!start) throw new Error('Aircraft transform disappeared');
+    vehicles.world.patch(id, Transform, { pos: [start[0], 1500, start[2]], rot: [0, 0, 0, 1] });
+    vehicles.world.patch(id, AircraftState, {
+      grounded: false,
+      velocity: [0, 0, 130],
+      gearPosition: 0,
+    });
+    /** How far the camera sits above the authored eye point, along the airframe's own up. */
+    const rise = (): number => {
+      const pose = flight.cameraPose('cockpit', 0, 0);
+      const t = vehicles.world.get(id, Transform);
+      if (!pose || !t) throw new Error('No cockpit view');
+      const q = new THREE.Quaternion().fromArray(t.rot);
+      const seat = new THREE.Vector3()
+        .fromArray(eye)
+        .applyQuaternion(q)
+        .add(new THREE.Vector3().fromArray(t.pos));
+      return new THREE.Vector3()
+        .fromArray(pose.position)
+        .sub(seat)
+        .dot(new THREE.Vector3(0, 1, 0).applyQuaternion(q));
+    };
+    // Boarded and placed: settled at the eye point.
+    expect(rise()).toBeCloseTo(0, 6);
+    // Half stick: a firm pull short of the buffet, which shakes the same eye.
+    const pull = controls(['ShiftLeft']);
+    pull.move.forward = -0.5;
+    let lowest = 0;
+    let peak = 0;
+    let buffet = 0;
+    for (let i = 0; i < 90; i++) {
+      flight.input(1 / 60, pull);
+      vehicles.world.step();
+      lowest = Math.min(lowest, rise());
+      peak = Math.max(peak, flight.state?.loadFactor ?? 0);
+      buffet = Math.max(buffet, flight.state?.buffet ?? 0);
+    }
+    // Measured: 4.3 g at the peak, the eye 2.3 cm down, no buffet.
+    expect(buffet).toBe(0);
+    expect(peak).toBeGreaterThan(3);
+    expect(lowest).toBeLessThan(-0.015);
+    expect(lowest).toBeGreaterThan(-0.035);
+    expect(flight.pilotMotion.load[1]).toBeGreaterThan(2);
+    flight.pilotMotion.configure(false);
+    for (let i = 0; i < 10; i++) {
+      flight.input(1 / 60, pull);
+      vehicles.world.step();
+      expect(rise()).toBeCloseTo(0, 6);
+    }
+    flight.dispose();
+    vehicles.dispose();
   });
 });

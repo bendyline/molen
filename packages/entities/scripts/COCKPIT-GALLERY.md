@@ -8,7 +8,7 @@ node packages/entities/scripts/cockpit-gallery.mjs --serve
 
 Open `http://127.0.0.1:4318`. The page also works by opening
 `.artifacts/cockpit-gallery/index.html` directly. It has aircraft/category search, panel-finish
-and detail-view filters, enlarged views and a two-aircraft comparison. All 53 cockpits use the
+and detail-view filters, enlarged views and a two-aircraft comparison. All 54 cockpits use the
 [shared finish library](../../../content/entities/source/cockpit-materials/README.md).
 The P-51D, OH-6A and Cessna 172S have extra panel and upholstery views; the Baron and P-51D
 also have throttle-quadrant close-ups. The Cessna 182T has a panel close-up, and the MiG-29
