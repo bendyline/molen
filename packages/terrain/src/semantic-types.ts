@@ -174,7 +174,10 @@ export interface TerrainPoiFeature extends TerrainStructureIdentity {
   class: string;
   subclass?: string;
   point: TerrainSemanticPoint;
+  /** The source's own name, in its local script and whole (see `createTerrainMvtSemanticDecoder`). */
   name?: string;
+  /** An English or Latin-script name, when the source has one besides `name`. */
+  nameLatin?: string;
   brand?: string;
   /** Stable source brand identifier, when supplied by an enriched source. */
   brandId?: string;
@@ -355,6 +358,7 @@ function checkTerrainSemanticTile(tile: TerrainSemanticTile): void {
     assertPoint(feature.point, `${path}/point`);
     for (const key of [
       'name',
+      'nameLatin',
       'brand',
       'brandId',
       'subclass',

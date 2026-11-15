@@ -1,6 +1,12 @@
 /** Measured point objects precede inferred decoration; buffered points have one owning tile. */
 import { dmath } from '@bendyline/molen-kernel/determinism';
-import type { TerrainPoiFeature, TerrainSemanticTile } from '@bendyline/molen-terrain/kernel';
+import {
+  isAeroway,
+  type TerrainPoiFeature,
+  type TerrainSemanticTile,
+  type TerrainTransportationFeature,
+  transportKind,
+} from '@bendyline/molen-terrain/kernel';
 import {
   hashString,
   type LandmarkLibrary,
@@ -86,12 +92,17 @@ export function mappedPoiIdentity(poi: TerrainPoiFeature, geom: TileGeometry): s
         ':' +
         Math.round(((geom.originZ + poi.point[1] * geom.size) / geom.metersPerUnit) * 10);
 }
-function heading(poi: TerrainPoiFeature, tile: TerrainSemanticTile): number {
-  if (poi.heading !== undefined) return poi.heading;
+/** The nearest line of an accepted road: its feature, the yaw facing it, and the distance (tile units). */
+function nearestRoad(
+  poi: TerrainPoiFeature,
+  tile: TerrainSemanticTile,
+  accept: (road: TerrainTransportationFeature) => boolean = () => true,
+): { road: TerrainTransportationFeature; yaw: number; distance: number } | undefined {
   let best = Infinity,
-    yaw = 0;
+    yaw = 0,
+    nearest: TerrainTransportationFeature | undefined;
   for (const road of tile.transportation) {
-    if (road.tunnel) continue;
+    if (road.tunnel || !accept(road)) continue;
     for (const line of road.lines)
       for (let i = 1; i < line.length; i++) {
         const a = line[i - 1] as Vec2,
@@ -111,10 +122,60 @@ function heading(poi: TerrainPoiFeature, tile: TerrainSemanticTile): number {
         if (distance < best) {
           best = distance;
           yaw = dmath.atan2(x, z);
+          nearest = road;
         }
       }
   }
-  return yaw;
+  return nearest === undefined ? undefined : { road: nearest, yaw, distance: best };
+}
+function heading(poi: TerrainPoiFeature, tile: TerrainSemanticTile): number {
+  return poi.heading ?? nearestRoad(poi, tile)?.yaw ?? 0;
+}
+
+/** A road cars use: not a footway, sidewalk, rail line, platform or airside pavement. */
+function carriageway(road: TerrainTransportationFeature): boolean {
+  const kind = transportKind(road);
+  return (
+    (kind === 'street' || kind === 'service' || kind === 'motorway') &&
+    !isAeroway(road) &&
+    !/platform|bus_stop|ferry|aerialway|pier/.test(`${road.class} ${road.subclass ?? ''}`)
+  );
+}
+/** A wide or major road, which keeps the mast-arm lamp reaching over its traffic. */
+function arterial(road: TerrainTransportationFeature): boolean {
+  const kind = transportKind(road);
+  if (kind === 'motorway') return true;
+  return (
+    kind === 'street' &&
+    (/^(trunk|primary)/.test(road.subclass ?? road.class) || (road.lanes ?? 0) >= 4)
+  );
+}
+/** How far (meters) from a street's centre line a lamp still lights that street. */
+const LAMP_REACH = 18;
+/** Heights of the two lamp models (the arm's pole, the post's lantern cap), which a mapped `height` scales. */
+const ARM_LAMP_HEIGHT = 7.2;
+const POST_LAMP_HEIGHT = 4.8;
+
+/**
+ * Where a mapped lamp faces and whether it is an arterial's mast arm. The arm reaches over the
+ * nearest street in reach, even where a sidewalk mapped as its own line runs closer: a lamp in
+ * the planting strip has that sidewalk behind it. With no street in reach (a park, a plaza) it
+ * faces the nearest path.
+ */
+function lampSite(
+  poi: TerrainPoiFeature,
+  tile: TerrainSemanticTile,
+  geom: TileGeometry,
+): { yaw: number; arterial: boolean } {
+  const street = nearestRoad(poi, tile, carriageway);
+  const served =
+    street !== undefined && street.distance * geom.size * geom.metersPerUnit <= LAMP_REACH
+      ? street
+      : undefined;
+  return {
+    yaw: poi.heading ?? served?.yaw ?? heading(poi, tile),
+    arterial: served !== undefined && arterial(served.road),
+  };
 }
 /** How far below the finest level a map override's props are still placed. */
 const OVERRIDE_PROP_LEVELS = 1;
@@ -198,12 +259,19 @@ export function mappedPropRequests(
         /tesla|supercharger/i.test(poi.brand ?? poi.name ?? '')
       )
         model = 'builtin:charger.fast';
+      // Arterials keep the mast arm; other streets, paths and plazas get a post-top lamp (where
+      // the library holds one).
+      const lamp = poi.class === 'street_lamp' ? lampSite(poi, tile, geom) : undefined;
+      if (lamp && !lamp.arterial && furniture.get('street_lamp.post') !== undefined)
+        model = 'builtin:street_lamp.post';
       if (furniture.get(model.slice('builtin:'.length)) === undefined) continue;
-      if (poi.class === 'street_lamp' && poi.height !== undefined)
-        scale = [1, Math.max(0.25, Math.min(4, poi.height / 7.2)), 1];
+      if (lamp && poi.height !== undefined) {
+        const natural = model === 'builtin:street_lamp.post' ? POST_LAMP_HEIGHT : ARM_LAMP_HEIGHT;
+        scale = [1, Math.max(0.25, Math.min(4, poi.height / natural)), 1];
+      }
       if (poi.class === 'bicycle_parking' && poi.capacity !== undefined)
         scale = [Math.max(0.5, Math.min(3, poi.capacity / 6)), 1, 1];
-      yaw = heading(poi, tile);
+      yaw = lamp?.yaw ?? heading(poi, tile);
     }
     if (model) output.push({ identity, model, at: [u * geom.size, v * geom.size], yaw, scale });
   }

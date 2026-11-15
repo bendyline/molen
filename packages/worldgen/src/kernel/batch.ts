@@ -5,6 +5,7 @@
  */
 
 import { hashBytes } from '@bendyline/molen-kernel/determinism';
+import type { GlyphAtlasSet } from '@bendyline/molen-materials/text';
 import { normalizeBudgets } from './budgets';
 import { type BoxPlacement, type BuildingResult, generateBuilding } from './building';
 import { analyzeFootprint, DEFAULT_FOOTPRINT_OPTIONS, type FootprintAnalysis } from './footprint';
@@ -14,6 +15,12 @@ import { buildingMetrics } from './recipe';
 import { type StyleRule, selectStyle } from './rules';
 import { type ScatterSampleInput, samplePlacementsSteps } from './scatter';
 import { hashString } from './seed';
+import {
+  buildSignMesh,
+  type SignMeshBuffers,
+  type SignPlacement,
+  signMeshTransferables,
+} from './sign-mesh';
 import { packIdentity, type ResolvedStylePack } from './stylepack';
 import {
   type BuildingRecord,
@@ -59,11 +66,18 @@ export interface WorldgenBatchInput {
   tier?: number;
   /** Real ground-floor openings and lazy interior descriptors; needs the pack's `interiors`. */
   interiors?: boolean;
+  /**
+   * Glyph atlas metrics for storefront names (`StorefrontRequest.sign`): with it, named
+   * storefronts build `WorldgenBatchOutput.signs`; without it they show their sign models.
+   */
+  glyphs?: GlyphAtlasSet;
 }
 
 export interface WorldgenBatchOutput {
   buildings?: MeshBuffers;
   placements: PlacementSet[];
+  /** Named storefront signs as one mesh; drawn with the glyph atlas's texture. */
+  signs?: SignMeshBuffers;
   records: BuildingRecord[];
   stats: WorldgenStats;
   /** sha256 over every output array; equal hashes mean byte-identical output. Empty when the
@@ -78,14 +92,21 @@ export interface QueuedBuilding {
   order: number;
 }
 
+/** Named signs per batch when the budgets do not say: more than a dense downtown block holds. */
+const MAX_SIGNS = 1000;
+
 export const BOX_PLACEMENT_SET_ID: string = 'buildings:box';
 /** Stand-ins for pitched buildings: the `builtin:box.gable` model. */
 export const GABLE_BOX_PLACEMENT_SET_ID: string = 'buildings:box.gable';
 
-/** Hash every typed array of an output (positions, normals, uvs, colors, indices, placements). */
+/**
+ * Hash every typed array of an output (positions, normals, uvs, colors, indices, placements,
+ * and named signs when there are any).
+ */
 export function hashWorldgenOutput(
   buildings: MeshBuffers | undefined,
   placements: readonly PlacementSet[],
+  signs?: SignMeshBuffers,
 ): string {
   const parts: Uint8Array[] = [];
   if (buildings !== undefined) {
@@ -102,6 +123,18 @@ export function hashWorldgenOutput(
   for (const set of placements) {
     parts.push(new TextEncoder().encode(`${set.setId}|${set.modelRef}|${set.count}`));
     parts.push(new Uint8Array(set.data.buffer, set.data.byteOffset, set.data.byteLength));
+  }
+  if (signs !== undefined) {
+    parts.push(new TextEncoder().encode(`signs|${signs.count}|${signs.plateIndexCount}`));
+    for (const array of [
+      signs.positions,
+      signs.normals,
+      signs.uvs,
+      signs.plate,
+      signs.ink,
+      signs.indices,
+    ])
+      parts.push(new Uint8Array(array.buffer, array.byteOffset, array.byteLength));
   }
   let total = 0;
   for (const part of parts) total += part.byteLength;
@@ -227,6 +260,9 @@ export function* generateWorldgenBatchSteps(
   }
   const catalog = input.interiors === true ? pack.interiors : undefined;
   const interiors = catalog !== undefined ? { interiors: catalog } : {};
+  // With a glyph atlas, storefronts that carry a name come back as sign placements.
+  const named = input.glyphs !== undefined ? { namedSigns: true } : {};
+  const signPlacements: SignPlacement[] = [];
   const stats = emptyWorldgenStats();
   stats.buildingsIn = input.buildings.length;
   const queue = queueBuildings(input, stats);
@@ -280,6 +316,7 @@ export function* generateWorldgenBatchSteps(
           request: item.request,
           style,
           pack: identity,
+          ...named,
           ground,
           tier: structuralTier,
           analysis: item.analysis,
@@ -296,6 +333,7 @@ export function* generateWorldgenBatchSteps(
             request: item.request,
             style,
             pack: identity,
+            ...named,
             ground,
             tier: 99,
             analysis: item.analysis,
@@ -326,6 +364,7 @@ export function* generateWorldgenBatchSteps(
           request: item.request,
           style,
           pack: identity,
+          ...named,
           ground,
           tier: baseTier,
           analysis: item.analysis,
@@ -378,6 +417,7 @@ export function* generateWorldgenBatchSteps(
             request: item.request,
             style,
             pack: identity,
+            ...named,
             ground,
             tier,
             analysis: item.analysis,
@@ -397,6 +437,7 @@ export function* generateWorldgenBatchSteps(
               request: item.request,
               style,
               pack: identity,
+              ...named,
               ground,
               tier,
               analysis: item.analysis,
@@ -435,6 +476,7 @@ export function* generateWorldgenBatchSteps(
           request: item.request,
           style,
           pack: identity,
+          ...named,
           ground,
           tier: baseTier,
           analysis: item.analysis,
@@ -481,12 +523,30 @@ export function* generateWorldgenBatchSteps(
       }
       list.push(prop);
     }
+    if (result.signs !== undefined) signPlacements.push(...result.signs);
     if ((index + 1) % step === 0) yield { done: 2 * queue.length + index + 1, total };
+  }
+  // Named signs in building priority order; a name the atlas cannot set shows its model instead.
+  // They come first out of the instance budget, as sign models do, so naming them never admits
+  // more of anything else.
+  let signs: SignMeshBuffers | undefined;
+  if (input.glyphs !== undefined && signPlacements.length > 0) {
+    const built = buildSignMesh(
+      signPlacements,
+      input.glyphs,
+      Math.min(budgets.maxSigns ?? MAX_SIGNS, Math.floor(budgets.maxInstances)),
+    );
+    signs = built.mesh;
+    for (const prop of built.fallbacks) {
+      const list = props.get(prop.model) ?? [];
+      list.push(prop);
+      props.set(prop.model, list);
+    }
   }
   const buildings = out.isEmpty() ? undefined : out.finalize();
   const placements: PlacementSet[] = [];
   placements.push(...placementSetsFromBoxes(boxes));
-  let usedInstances = 0;
+  let usedInstances = signs?.count ?? 0;
   const buildingProps = placementSetsFromProps(props);
   const admit = (set: PlacementSet): void => {
     const count = Math.min(set.count, Math.floor(budgets.maxInstances - usedInstances));
@@ -578,9 +638,10 @@ export function* generateWorldgenBatchSteps(
   return {
     ...(buildings !== undefined ? { buildings } : {}),
     placements,
+    ...(signs !== undefined ? { signs } : {}),
     records,
     stats,
-    hash: input.hashOutput === false ? '' : hashWorldgenOutput(buildings, placements),
+    hash: input.hashOutput === false ? '' : hashWorldgenOutput(buildings, placements, signs),
   };
 }
 
@@ -610,5 +671,6 @@ export function worldgenTransferables(output: WorldgenBatchOutput): ArrayBuffer[
   for (const set of output.placements) {
     if (set.data.buffer instanceof ArrayBuffer) buffers.push(set.data.buffer);
   }
+  buffers.push(...signMeshTransferables(output.signs));
   return buffers;
 }

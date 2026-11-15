@@ -105,6 +105,8 @@ import {
 } from '@bendyline/molen-terrain/kernel';
 import {
   createScatterMaterialAsync,
+  createSignAtlasTexture,
+  createSignMaterialAsync,
   type ScreenSpaceLodPolicy,
   type StructureStreamingOptions,
   type StructureStreamingStats,
@@ -363,6 +365,12 @@ export interface EarthViewOptions {
   viewingDate?: string;
   /** Explicit month (1..12) for regional foliage; remount to change. Omitted means leaf-on. */
   vegetationMonth?: number;
+  /**
+   * Storefront signs show mapped place names (`real`, the default, when the content packs carry
+   * sign looks and a glyph atlas) or every sign's generic descriptor (`generic`). Remount to
+   * change.
+   */
+  signNames?: 'real' | 'generic';
   /** Fine/cross-tile landmark ground heights in the active terrain's vertical reference. */
   sampleStructureTerrain?: StructureTerrainSampler;
   /** Shared sky/ground reflections for metal and glass. Defaults to true. */
@@ -1164,6 +1172,27 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
     // Trees, shrubs and props: leaf speckle and crown occlusion.
     const scatterMaterial = await createScatterMaterialAsync(renderer.backend);
     disposers.push(() => scatterMaterial.dispose());
+    // Storefront names: one atlas texture and one material for every sign the view draws.
+    let signMaterial: THREE.Material | undefined;
+    const signAtlas = content?.worldgen?.signAtlas;
+    const signGlyphs = content?.worldgen?.places.signs?.glyphs;
+    if (signAtlas !== undefined && signGlyphs !== undefined && options.signNames !== 'generic') {
+      try {
+        const texture = createSignAtlasTexture(await signAtlas());
+        const material = await createSignMaterialAsync(
+          renderer.backend,
+          texture,
+          signGlyphs.distanceRange,
+        );
+        disposers.push(() => {
+          material.dispose();
+          texture.dispose();
+        });
+        signMaterial = material;
+      } catch (error) {
+        report(error, 'storefront names');
+      }
+    }
     void content?.stars().then(
       (stars) => {
         if (!disposed) renderer.setStarCatalog(stars);
@@ -1323,6 +1352,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                   ? { farLandcover: { material: farGroundMaterial } }
                   : {}),
                 modelMaterial: scatterMaterial,
+                ...(signMaterial !== undefined ? { signMaterial } : {}),
+                ...(options.signNames !== undefined ? { signNames: options.signNames } : {}),
                 ...(options.sampleStructureTerrain
                   ? { sampleStructureTerrain: options.sampleStructureTerrain }
                   : {}),
@@ -3512,8 +3543,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       });
       current.stepWorld(dt);
       vehicles.render();
-      current.aircraft?.render(pose.position, renderer.shadowTexelSize);
+      // This frame's camera (see flyFrame): parked cockpits beside the road draw their small parts
+      // by their distance from it.
       const view = vehicles.cameraPose();
+      current.aircraft?.render(view?.position ?? pose.position, renderer.shadowTexelSize);
       if (view === undefined) return pose;
       const direction = new THREE.Vector3()
         .fromArray(view.lookAt)
@@ -3565,8 +3598,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       current.vehicles?.update(dt, { throttle: 0, steering: 0, brake: true });
       current.stepWorld(dt);
       current.vehicles?.render();
-      aircraft.render(pose.position, renderer.shadowTexelSize);
+      // Pose the camera from this frame's state before drawing: a cockpit's parts too small to see
+      // from the camera leave the frame (AircraftVisual.updateView), and `pose` trails a fast
+      // aircraft by the ticks run since (2 m each at 120 m/s), so single dial numerals and screws
+      // flashed in and out as frames ran 0, 1 or 2 ticks.
       const view = aircraft.cameraPose();
+      aircraft.render(view?.position ?? pose.position, renderer.shadowTexelSize);
       if (view === undefined) return pose;
       const direction = new THREE.Vector3()
         .fromArray(view.lookAt)

@@ -47,6 +47,7 @@ import {
 } from '@bendyline/molen-worldgen-earth/client';
 import {
   type BuildingInfillOptions,
+  createPlacesContent,
   createRegionalEnvironment,
   isStructureViewingDate,
   type RegionalEnvironment,
@@ -155,6 +156,17 @@ export interface CreateEarthWorldgenOptions {
    */
   modelMaterial?: THREE.Material;
   /**
+   * Material for storefront signs that show mapped names, usually `createSignMaterialAsync` from
+   * `@bendyline/molen-worldgen/client` over `content.signAtlas()`, for the renderer's backend.
+   * Caller-owned. Without it every sign keeps its generic descriptor text.
+   */
+  signMaterial?: THREE.Material;
+  /**
+   * `real` (the default) shows mapped place names on storefront signs when the content carries
+   * sign looks and a glyph atlas; `generic` shows every sign's descriptor text instead.
+   */
+  signNames?: 'real' | 'generic';
+  /**
    * Detail for generated building materials, usually `createBuildingWeatheringAsync` from
    * `@bendyline/molen-worldgen/client` for the renderer's backend: facade tone drift, rain
    * streaks and weathered roofs. Default: none.
@@ -193,7 +205,19 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
       options.vegetationMonth > 12)
   )
     throw new Error('vegetationMonth must be an integer from 1 through 12');
-  const { pack, atlas, places, placesDocs, structures } = options.content;
+  const { pack, atlas, structures } = options.content;
+  // Names need a material to draw them; without one, or when the host asks, signs stay generic.
+  const named =
+    options.content.places.signs !== undefined &&
+    options.signNames !== 'generic' &&
+    options.signMaterial !== undefined;
+  const placesDocs = named
+    ? options.content.placesDocs
+    : { ...options.content.placesDocs, signNames: 'generic' as const };
+  const places =
+    named || options.content.places.signs === undefined
+      ? options.content.places
+      : createPlacesContent(placesDocs);
   const workers = options.workers ?? {};
   const regions = createRegionResolver(atlas, { metersPerUnit: options.metersPerUnit });
   const environment =
@@ -414,6 +438,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     regions,
     ...(environment !== undefined ? { environment } : {}),
     models,
+    ...(named ? { signMaterial: options.signMaterial } : {}),
     structureObjects,
     materials,
     ...(options.buildingDecorator !== undefined

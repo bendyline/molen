@@ -512,6 +512,35 @@ function decodeBuildings(
   });
 }
 
+/** Scripts written without spaces between words, and so without one where a run of them ends. */
+const UNSPACED_SCRIPTS: ReadonlySet<string> = new Set(['Han', 'Hiragana', 'Katakana']);
+
+/**
+ * A POI's whole name. Protomaps cuts a name that mixes scripts into runs (`name`, `name2`,
+ * `name3`, each with its `script*`; a Latin run has none) and drops what separated them, so
+ * CoCo壱番屋 arrives as `CoCo` + `壱番屋`. Rejoin the runs: tight beside Han and kana, where
+ * Japanese writes no space (322 of 395 such boundaries in the Kyoto extract had none), and with a
+ * space between any other scripts. A name with no runs falls back to `name:en`.
+ */
+function poiName(properties: MvtProperties): string | undefined {
+  let text: string | undefined;
+  let previous = '';
+  for (const [name, script] of [
+    ['name', 'script'],
+    ['name2', 'script2'],
+    ['name3', 'script3'],
+  ] as const) {
+    const value = optionalStringProperty(properties, [name]);
+    if (value === undefined) continue;
+    const current = optionalStringProperty(properties, [script]) ?? 'Latin';
+    if (text === undefined) text = value;
+    else
+      text += `${UNSPACED_SCRIPTS.has(previous) || UNSPACED_SCRIPTS.has(current) ? '' : ' '}${value}`;
+    previous = current;
+  }
+  return text ?? optionalStringProperty(properties, ['name:en']);
+}
+
 function decodePois(
   vectorTile: VectorTile,
   result: TerrainSemanticTile,
@@ -545,8 +574,11 @@ function decodePois(
           ),
           point,
         };
+        const name = poiName(properties);
+        if (name !== undefined) poi.name = name;
+        const latin = optionalStringProperty(properties, ['name:en']);
+        if (latin !== undefined && latin !== name) poi.nameLatin = latin;
         for (const [field, names] of [
-          ['name', ['name', 'name:en']],
           ['subclass', ['kind_detail', 'subclass']],
           ['brand', ['brand']],
           ['brandId', ['brand:wikidata', 'brand_id']],

@@ -34,6 +34,7 @@ import {
   type WingRoofKind,
 } from './roofs';
 import { aspectSeed, type PackIdentity } from './seed';
+import type { SignPlacement } from './sign-mesh';
 import { buildStorefronts } from './storefronts';
 import type {
   BuildingRecord,
@@ -89,6 +90,11 @@ export interface BuildingGenerateInput {
   simplified?: boolean;
   /** Generate real openings and storey metadata for lazy interiors laid out by this catalog. */
   interiors?: InteriorCatalogDoc;
+  /**
+   * Return storefronts that carry a `sign` name as `BuildingResult.signs`, for a batch with a
+   * glyph atlas, instead of as sign model props.
+   */
+  namedSigns?: boolean;
 }
 
 export interface BuildingResult {
@@ -99,6 +105,8 @@ export interface BuildingResult {
   skipped?: 'degenerate' | 'roof';
   /** Prop instances attached to the building (roof props); empty for boxes. */
   props?: PropPlacement[];
+  /** Named storefront signs, with `namedSigns`. */
+  signs?: SignPlacement[];
   facade?: FacadeStats;
 }
 
@@ -675,6 +683,7 @@ export function generateBuilding(
       out,
     );
   }
+  const signs: SignPlacement[] | undefined = input.namedSigns === true ? [] : undefined;
   const props: PropPlacement[] =
     input.tier <= 1 && input.request.storefronts !== undefined
       ? buildStorefronts(
@@ -686,6 +695,7 @@ export function generateBuilding(
           input.simplified === true,
           out,
           site !== undefined,
+          signs,
         )
       : [];
   const visible = input.simplified === true ? [] : visibleProps(recipe, input.tier);
@@ -744,7 +754,14 @@ export function generateBuilding(
       );
     }
   }
-  return { analysis, recipe, record, props, ...(facade !== undefined ? { facade } : {}) };
+  return {
+    analysis,
+    recipe,
+    record,
+    props,
+    ...(signs !== undefined && signs.length > 0 ? { signs } : {}),
+    ...(facade !== undefined ? { facade } : {}),
+  };
 }
 
 /**

@@ -11,7 +11,11 @@ import {
   type TypeChecks,
   type TypeLibrary,
 } from '@bendyline/molen-kernel/content';
-import { type FontLibrary, loadFontLibrary } from '@bendyline/molen-materials/text';
+import {
+  assembleGlyphAtlasPixels,
+  type FontLibrary,
+  loadFontLibrary,
+} from '@bendyline/molen-materials/text';
 import {
   createPackSet,
   isDirectoryPackUrl,
@@ -174,6 +178,11 @@ export interface EarthWorldgenContent {
   places: PlacesContent;
   /** The same places content as plain documents, for the generation worker. */
   placesDocs: PlacesContentDocs;
+  /**
+   * The glyph atlas pages behind `places.signs` as one image, read on first call: upload it with
+   * `createSignAtlasTexture` for the sign material. Present only when signs show mapped names.
+   */
+  signAtlas?: () => Promise<{ width: number; height: number; data: Uint8Array }>;
   /** Indexed geographic positions for authored landmark models. */
   structures: StructureIndex;
 }
@@ -278,12 +287,59 @@ async function readTypes(
   return createTypeLibrary(docs, { label: labels.join(' + '), checks, onSkip });
 }
 
-async function readWorldgen(styles: Pack, earth: Pack): Promise<EarthWorldgenContent> {
+/** A glyph atlas document and where it came from, so its pages can be read beside it. */
+interface GlyphAtlasSource {
+  pack: Pack;
+  path: string;
+  doc: unknown;
+}
+
+/**
+ * What sets mapped names on storefront signs: the Earth pack's sign looks, and the glyph atlases
+ * of every open pack (the Earth pack's Latin faces first, then, in the order opened, any a region
+ * pack adds for its own scripts). Absent, or unreadable, signs keep their descriptor text.
+ */
+async function readSignContent(
+  earth: Pack,
+  opened: readonly Pack[],
+  warn: (message: string) => void,
+): Promise<{ signLooks: unknown; glyphs: GlyphAtlasSource[] } | undefined> {
+  const looksPath = earth.manifest.provides['sign-looks']?.[0];
+  if (looksPath === undefined) return undefined;
+  try {
+    const packs = [earth, ...opened.filter((pack) => pack !== earth)];
+    const [signLooks, glyphs] = await Promise.all([
+      earth.readJson(looksPath),
+      Promise.all(
+        packs.flatMap((pack) =>
+          (pack.manifest.provides['glyph-atlas'] ?? []).map(
+            async (path): Promise<GlyphAtlasSource> => ({
+              pack,
+              path,
+              doc: await pack.readJson(path),
+            }),
+          ),
+        ),
+      ),
+    ]);
+    return glyphs.length > 0 ? { signLooks, glyphs } : undefined;
+  } catch (error) {
+    warn(`storefront names unavailable: ${(error as Error).message}`);
+    return undefined;
+  }
+}
+
+async function readWorldgen(
+  styles: Pack,
+  earth: Pack,
+  opened: readonly Pack[],
+  warn: (message: string) => void,
+): Promise<EarthWorldgenContent> {
   const stylepackPath = styles.manifest.provides.stylepack?.[0] ?? 'stylepack.json';
   const landmarkPath = styles.manifest.provides.landmarks?.[0] ?? 'landmarks/catalog.json';
   const structuresPaths = earth.manifest.provides.structures ?? [];
   const landmarkDir = landmarkPath.slice(0, landmarkPath.lastIndexOf('/') + 1);
-  const [pack, atlas, catalog, businesses, structures] = await Promise.all([
+  const [pack, atlas, catalog, businesses, structures, signs] = await Promise.all([
     styles
       .readJson(stylepackPath)
       .then((root) => resolveStylePackDocuments(root, (path) => styles.readJson(path))),
@@ -293,6 +349,7 @@ async function readWorldgen(styles: Pack, earth: Pack): Promise<EarthWorldgenCon
     Promise.all(
       structuresPaths.map((path) => earth.readJson<StructureCatalogDoc | StructureDirectory>(path)),
     ),
+    readSignContent(earth, opened, warn),
   ]);
   for (const doc of structures)
     if (
@@ -328,13 +385,45 @@ async function readWorldgen(styles: Pack, earth: Pack): Promise<EarthWorldgenCon
       models[key] = await styles.readJson(`${landmarkDir}${path}`);
     }),
   );
-  const placesDocs: PlacesContentDocs = { landmarks: { catalog, models }, businesses };
+  const placesDocs: PlacesContentDocs = {
+    landmarks: { catalog, models },
+    businesses,
+    ...(signs !== undefined
+      ? { signLooks: signs.signLooks, glyphs: signs.glyphs.map((source) => source.doc) }
+      : {}),
+  };
+  let places: PlacesContent;
+  try {
+    places = createPlacesContent(placesDocs);
+  } catch (error) {
+    // Bad sign content costs the names, not the buildings.
+    if (signs === undefined) throw error;
+    warn(`storefront names unavailable: ${(error as Error).message}`);
+    delete placesDocs.signLooks;
+    delete placesDocs.glyphs;
+    places = createPlacesContent(placesDocs);
+  }
+  const glyphSet = places.signs?.glyphs;
+  let pixels: Promise<{ width: number; height: number; data: Uint8Array }> | undefined;
   return {
     pack,
     styleId: styles.manifest.id,
     atlas,
-    places: createPlacesContent(placesDocs),
+    places,
     placesDocs,
+    ...(glyphSet !== undefined && signs !== undefined
+      ? {
+          signAtlas: () => {
+            pixels ??= assembleGlyphAtlasPixels(glyphSet, (doc, path) => {
+              const source = signs.glyphs[doc] as GlyphAtlasSource;
+              return source.pack.readBytes(
+                source.path.slice(0, source.path.lastIndexOf('/') + 1) + path,
+              );
+            });
+            return pixels;
+          },
+        }
+      : {}),
     structures: structureIndex,
   };
 }
@@ -586,7 +675,7 @@ export async function loadEarthContent(
       const styles = byId.get(styleId);
       if (styles === undefined) throw new Error(`style pack "${styleId}" is not open`);
       if (earthPack === undefined) throw new Error(`the ${EARTH_PACK_IDS.earth} pack is not open`);
-      const worldgen = await readWorldgen(styles, earthPack);
+      const worldgen = await readWorldgen(styles, earthPack, opened, warn);
       try {
         const environment = await readRegionalContent(opened, worldgen.pack);
         if (environment !== undefined) worldgen.environment = environment;

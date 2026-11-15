@@ -671,6 +671,58 @@ export function createTerrainSurfaceObject(
   const fixtures: TerrainBoxPlacement[] = [];
   const signalHeads: TerrainSignalHead[] = [];
   const streetLights: TerrainStreetLight[] = [];
+  // Arterials keep the mast-arm lamp reaching over their traffic; other streets get a post-top.
+  const mastArmRoad = (road: SurfaceRoad): boolean =>
+    road.kind === 'motorway' ||
+    /^(trunk|primary)/.test(road.feature.subclass ?? road.feature.class) ||
+    laneCount(road) >= 4;
+  /** A lamp standing at `x, z` on `ground`; `dx, dz` (unit) is the way its arm would reach. */
+  const streetLamp = (
+    x: number,
+    z: number,
+    ground: number,
+    dx: number,
+    dz: number,
+    arm: boolean,
+    groundLift: number,
+    footing = false,
+  ): void => {
+    const yaw = Math.atan2(dx, dz);
+    fixtures.push(
+      arm
+        ? { x, z, y: ground + 3.7, yaw, size: [0.16, 7.4, 0.16], color: '#667078' }
+        : { x, z, y: ground + 2.25, yaw, size: [0.14, 4.5, 0.14], color: '#667078' },
+    );
+    if (footing)
+      fixtures.push({ x, z, y: ground + 0.15, yaw, size: [0.45, 0.3, 0.45], color: '#888d8b' });
+    if (!arm) {
+      fixtures.push(
+        { x, z, y: ground + 4.75, yaw, size: [0.38, 0.5, 0.38], color: '#efe8ba' },
+        { x, z, y: ground + 5.04, yaw, size: [0.5, 0.08, 0.5], color: '#667078' },
+      );
+      streetLights.push({ x, z, y: ground + 4.75, yaw, groundLift, post: true });
+      return;
+    }
+    fixtures.push(
+      {
+        x: x + dx * 0.9,
+        z: z + dz * 0.9,
+        y: ground + 7.35,
+        yaw,
+        size: [0.12, 0.12, 1.9],
+        color: '#667078',
+      },
+      {
+        x: x + dx * 1.8,
+        z: z + dz * 1.8,
+        y: ground + 7.3,
+        yaw,
+        size: [0.48, 0.18, 0.85],
+        color: '#efe8ba',
+      },
+    );
+    streetLights.push({ x: x + dx * 1.8, z: z + dz * 1.8, y: ground + 7.2, yaw, groundLift });
+  };
   const vehicles: VehiclePlacement[] = [];
   group.userData.vehicles = vehicles;
   tagTerrainObject('parked-vehicles', group);
@@ -931,38 +983,19 @@ export function createTerrainSurfaceObject(
           )
         )
           continue;
-        const dx = side * p.dz,
-          dz = -side * p.dx;
-        const yaw = Math.atan2(dx, dz);
         const ground =
           context.heightfield.sampleHeight(context.origin[0] + p.x, context.origin[1] + p.z) +
           elevation;
-        fixtures.push(
-          { x: p.x, z: p.z, y: ground + 3.7, yaw, size: [0.16, 7.4, 0.16], color: '#667078' },
-          {
-            x: p.x + dx * 0.9,
-            z: p.z + dz * 0.9,
-            y: ground + 7.35,
-            yaw,
-            size: [0.12, 0.12, 1.9],
-            color: '#667078',
-          },
-          {
-            x: p.x + dx * 1.8,
-            z: p.z + dz * 1.8,
-            y: ground + 7.3,
-            yaw,
-            size: [0.48, 0.18, 0.85],
-            color: '#efe8ba',
-          },
+        // Toward the road: the arm, where there is one, reaches over it.
+        streetLamp(
+          p.x,
+          p.z,
+          ground,
+          side * p.dz,
+          -side * p.dx,
+          mastArmRoad(road),
+          Math.max(0.5, elevation + 0.06),
         );
-        streetLights.push({
-          x: p.x + dx * 1.8,
-          z: p.z + dz * 1.8,
-          y: ground + 7.2,
-          yaw,
-          groundLift: Math.max(0.5, elevation + 0.06),
-        });
         stats.streetlights++;
       }
     }
@@ -1569,8 +1602,7 @@ export function createTerrainSurfaceObject(
       const y =
         context.heightfield.sampleHeight(context.origin[0] + x, context.origin[1] + z) + 0.45;
       const dx = -Math.cos(direction),
-        dz = -Math.sin(direction),
-        yaw = Math.atan2(dx, dz);
+        dz = -Math.sin(direction);
       fixtureCount++;
       const mappedLampNearby =
         details.preferMappedProps === true &&
@@ -1586,32 +1618,16 @@ export function createTerrainSurfaceObject(
         arms.some((arm) => arm.road.feature.tags?.lit !== 'no')
       ) {
         stats.streetlights++;
-        streetLights.push({
-          x: x + dx * 1.8,
-          z: z + dz * 1.8,
-          y: y + 7.2,
-          yaw,
-          groundLift: Math.max(0.5, a.road.elevation + a.road.stack + 0.06),
-        });
-        fixtures.push(
-          { x, z, y: y + 3.7, yaw, size: [0.16, 7.4, 0.16], color: '#667078' },
-          { x, z, y: y + 0.15, yaw, size: [0.45, 0.3, 0.45], color: '#888d8b' },
-          {
-            x: x + dx * 0.9,
-            z: z + dz * 0.9,
-            y: y + 7.35,
-            yaw,
-            size: [0.12, 0.12, 1.9],
-            color: '#667078',
-          },
-          {
-            x: x + dx * 1.8,
-            z: z + dz * 1.8,
-            y: y + 7.3,
-            yaw,
-            size: [0.48, 0.18, 0.85],
-            color: '#efe8ba',
-          },
+        // A corner touching an arterial keeps the mast arm, reaching into the junction.
+        streetLamp(
+          x,
+          z,
+          y,
+          dx,
+          dz,
+          arms.some((arm) => mastArmRoad(arm.road)),
+          Math.max(0.5, a.road.elevation + a.road.stack + 0.06),
+          true,
         );
       }
       // A curbside mast reaches across the approach, with heads facing arriving traffic.

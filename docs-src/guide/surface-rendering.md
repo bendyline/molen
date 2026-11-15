@@ -242,7 +242,8 @@ await surfaces.setOptions({
   Mapped signal junctions and inferred crossings of two substantial arterials can receive curbside masts with bars over the incoming lanes,
   yellow backplates, shaded round lenses, and one signal head per lane (up to three).
   Red, amber and green lenses are self-lit, remaining visible at night. Instanced streetlights
-  occupy eligible corners outside road corridors, buildings, and water.
+  occupy eligible corners outside road corridors, buildings, and water: mast arms where an
+  arterial meets the junction, post-top lanterns otherwise (see [night lighting](night-lighting.md)).
 - Freeways receive wider paved shoulders, longer lane dashes, a yellow left edge on one-way
   carriageways, and white ramp edges. Green overhead boards use mapped route references or
   destinations. At a connected outgoing ramp, an advance gantry and roadside exit board use

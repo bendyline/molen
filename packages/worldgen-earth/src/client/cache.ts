@@ -68,7 +68,23 @@ export function outputBytes(output: WorldgenTileOutput): number {
       c.structuralIndices.byteLength,
     0,
   );
-  return (output.buildings?.bytes ?? 0) + output.stats.instanceBytes + descriptors + preparedBytes;
+  const signs = output.signs;
+  const signBytes =
+    signs === undefined
+      ? 0
+      : signs.positions.byteLength +
+        signs.normals.byteLength +
+        signs.uvs.byteLength +
+        signs.plate.byteLength +
+        signs.ink.byteLength +
+        signs.indices.byteLength;
+  return (
+    (output.buildings?.bytes ?? 0) +
+    output.stats.instanceBytes +
+    descriptors +
+    preparedBytes +
+    signBytes
+  );
 }
 
 function validateLimits(count: number, size: number): void {

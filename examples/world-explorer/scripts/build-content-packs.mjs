@@ -18,7 +18,7 @@ const outDir = resolve(root, 'public/packs');
 const compression = process.env.MOLEN_PACK_COMPRESSION === 'store' ? 'store' : undefined;
 
 await buildPlacementCatalogs();
-for (const name of ['entities', 'earth', 'ecology', 'wildlife', 'sky', 'sounds']) {
+for (const name of ['entities', 'earth', 'ecology', 'wildlife', 'sky', 'sounds', 'glyphs-kyoto']) {
   const build = name === 'entities' ? buildEntityPack : buildPack;
   const built = await build(resolve(content, name), { outDir, compression });
   console.log(`${built.manifest.id}: ${built.file} (${Math.round(built.size / 1024)} KB)`);

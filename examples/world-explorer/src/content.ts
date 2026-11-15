@@ -46,7 +46,11 @@ export async function loadSkyStars(base: URL): Promise<SkyStar[]> {
 /** Open the packs listed in `packs/index.json` under `base` and read what the explorer needs. */
 export async function loadExplorerContent(
   base: URL,
-  options: { styleId: string },
+  options: {
+    styleId: string;
+    /** The region's own packs (`WorldRegion.packs`). */
+    packs?: readonly string[];
+  },
 ): Promise<ExplorerContent> {
   const stylePack = options.styleId === 'none' ? false : STYLE_PACKS[options.styleId];
   const packs = await openPacksFromIndex(packIndex(base), [
@@ -56,6 +60,7 @@ export async function loadExplorerContent(
     EARTH_PACK_IDS.wildlife,
     EARTH_PACK_IDS.sky,
     ...(typeof stylePack === 'string' ? [stylePack] : []),
+    ...(options.packs ?? []),
   ]);
   const content = await loadEarthContent(packs, {
     // An unknown style id reports as a missing style pack; terrain, cars and aircraft still load.

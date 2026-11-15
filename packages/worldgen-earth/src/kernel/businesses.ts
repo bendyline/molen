@@ -12,10 +12,12 @@ import {
   type ResolvedStylePack,
   ringCentroid,
   type StorefrontRequest,
+  type StorefrontSign,
   type Vec2,
 } from '@bendyline/molen-worldgen/kernel';
 import type { BuildingPiece } from './building-parts';
 import type { BusinessCatalog, ResolvedBusiness } from './business-catalog';
+import type { SignNamer } from './sign-names';
 
 interface Occupant {
   poi: TerrainPoiFeature;
@@ -203,6 +205,8 @@ export function applyBusinessAppearance(
   tile: TerrainSemanticTile,
   size: number,
   styles: ResolvedStylePack['archstyles'],
+  /** Sets mapped names on the signs; without it every sign keeps its descriptor text. */
+  namer?: SignNamer,
 ): void {
   if (!occupants.length) return;
   request.interiorLabels = [
@@ -284,25 +288,43 @@ export function applyBusinessAppearance(
       trim: standalone.business.profile.accent,
     };
   const used = new Set<string>();
-  request.storefronts = signs
-    .filter((o) => {
-      const [u, v] = o.poi.point;
-      if (request.clipped && (u < 0 || v < 0 || u >= 1 || v >= 1)) return false;
-      const key = identity(o.poi);
-      if (used.has(key)) return false;
-      used.add(key);
-      return true;
-    })
-    .sort((a, b) => (identity(a.poi) < identity(b.poi) ? -1 : 1))
+  const shown = signs.filter((o) => {
+    const [u, v] = o.poi.point;
+    if (request.clipped && (u < 0 || v < 0 || u >= 1 || v >= 1)) return false;
+    const key = identity(o.poi);
+    if (used.has(key)) return false;
+    used.add(key);
+    return true;
+  });
+  const named = new Map<Occupant, StorefrontSign>();
+  if (namer !== undefined)
+    for (const o of shown) {
+      const sign = namer.sign(o.poi, o.business);
+      if (sign !== undefined) named.set(o, sign);
+    }
+  // Past twelve tenants, names are what a street reads: a building's own business, then chains,
+  // then other named places, before descriptor-only signs. Without names, identity order as ever.
+  const rank = (o: Occupant): number =>
+    (o.direct ? 4 : 0) + (o.business.profile ? 2 : 0) + (named.has(o) ? 1 : 0);
+  request.storefronts = shown
+    .sort(
+      (a, b) =>
+        (namer !== undefined ? rank(b) - rank(a) : 0) ||
+        (identity(a.poi) < identity(b.poi) ? -1 : 1),
+    )
     .slice(0, 12)
     .map((o): StorefrontRequest => {
       const p = frontagePoint(o.poi, piece, tile, size);
+      const sign = named.get(o);
       return {
         identity: identity(o.poi),
         at: [p[0] * size, p[1] * size],
         signModel: o.business.sign,
-        accent: o.business.accent,
+        // A named place's fascia, canopy and pilasters take its plate, so sign and band read as
+        // one storefront; a chain's accent is its descriptor's.
+        accent: sign !== undefined && !o.business.profile ? sign.plate : o.business.accent,
         width: standalone ? (o.business.width ?? 18) : (o.business.sharedWidth ?? 9),
+        ...(sign !== undefined ? { sign } : {}),
       };
     });
 }

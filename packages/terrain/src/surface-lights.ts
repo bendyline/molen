@@ -9,9 +9,14 @@ export interface TerrainStreetLight {
   z: number;
   yaw: number;
   groundLift: number;
+  /** A post-top lantern (glowing all round), not a mast arm's downward lens. */
+  post?: boolean;
 }
 
 const HEAD = new THREE.BoxGeometry(0.48, 0.12, 0.85);
+/** The lens box stretched round a post-top lantern: just proud of its 0.38 m glass. */
+const POST_HEAD_SCALE = new THREE.Vector3(0.42 / 0.48, 0.46 / 0.12, 0.42 / 0.85);
+const UNIT_SCALE = new THREE.Vector3(1, 1, 1);
 const LIGHT_COLOR = '#ffe1a1';
 
 /** No point lights: two draws per tile, bounded by the surface fixture budget. */
@@ -45,7 +50,7 @@ export function appendTerrainStreetLights(
       matrix.compose(
         new THREE.Vector3(light.x, light.y, light.z),
         rotation,
-        new THREE.Vector3(1, 1, 1),
+        light.post ? POST_HEAD_SCALE : UNIT_SCALE,
       ),
     );
     // Several rings, sampled separately, keep the pool soft and seated on sloping roads.

@@ -537,6 +537,13 @@ and component fields this engine version does not know are kept instead of rejec
 `loadEarthContent` reads types, fonts, the style pack and the catalogs at once, so a large types
 download does not hold up the rest.
 
+Storefront signs show the names the map gives their places, set from the `molen.earth` pack's
+glyph atlas; Japanese names need the Kyoto glyph pack, `molen.glyphs.kyoto`, opened beside it (pass
+its id in `ids`). Other scripts, and names no open pack can set, fall back to the map's English
+name, then to a generic descriptor such as `EATERY`. `signNames: 'generic'` on `mountEarthView`
+shows the descriptors everywhere, with no business name. See
+[Names on signs](recognizable-places.md#names-on-signs).
+
 `openPacksFromIndex(indexUrl, ids, fetchImpl)` accepts a host fetch implementation for the index,
 archive opening and subsequent asset requests. Landmark model bytes are loaded as nearby
 placements need them. Large packs require HTTP Range support to retrieve those bytes selectively:
